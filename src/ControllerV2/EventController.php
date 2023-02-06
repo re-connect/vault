@@ -33,7 +33,7 @@ class EventController extends AbstractController
     ): Response {
         $searchForm = $this->createForm(SearchType::class);
 
-        return $this->renderForm('v2/app/event/index.html.twig', [
+        return $this->renderForm('v2/vault/event/index.html.twig', [
             'beneficiary' => $beneficiary,
             'events' => $paginator->create(
                 $this->isLoggedInUser($beneficiary->getUser())
@@ -62,7 +62,7 @@ class EventController extends AbstractController
         $searchForm = $this->createForm(SearchType::class);
 
         return new JsonResponse([
-            'html' => $this->renderForm('v2/app/event/list.html.twig', [
+            'html' => $this->renderForm('v2/vault/event/_list.html.twig', [
                 'events' => $paginator->create(
                     $this->isLoggedInUser($beneficiary->getUser())
                         ? $repository->searchFutureEventsByBeneficiary($beneficiary, $word)
@@ -97,7 +97,7 @@ class EventController extends AbstractController
             return $this->redirectToRoute('event_list', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/app/event/form.html.twig', [
+        return $this->renderForm('v2/vault/event/form.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
             'event' => $event,
@@ -121,7 +121,7 @@ class EventController extends AbstractController
             return $this->redirectToRoute('event_list', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/app/event/form.html.twig', [
+        return $this->renderForm('v2/vault/event/form.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
             'event' => $event,
@@ -132,7 +132,7 @@ class EventController extends AbstractController
     #[IsGranted('UPDATE', 'event')]
     public function detail(Evenement $event): Response
     {
-        return $this->render('v2/app/event/detail.html.twig', [
+        return $this->render('v2/vault/event/detail.html.twig', [
             'event' => $event,
             'beneficiary' => $event->getBeneficiaire(),
         ]);

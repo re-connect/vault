@@ -34,7 +34,7 @@ class SharedDocumentController extends AbstractController
             return $this->redirectToRoute('document_list', ['id' => $document->getBeneficiaire()->getId()]);
         }
 
-        return $this->renderForm('v2/app/document/share.html.twig', [
+        return $this->renderForm('v2/vault/document/share.html.twig', [
             'form' => $form,
             'document' => $document,
             'beneficiary' => $document->getBeneficiaire(),

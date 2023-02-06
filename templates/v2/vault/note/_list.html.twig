@@ -1,0 +1,21 @@
+<table class="table table-100 table-hover spaced-table mb-0">
+    <thead>
+    <tr class="text-primary text-center font-size-1-3">
+        <th class="bg-grey borderless text-start ps-md-3">{{ 'note.nomLabel'|trans }}</th>
+        <th class="bg-grey borderless pe-3">{{ 'access'|trans }}</th>
+        <th class="bg-grey borderless pe-3">{{ 'donneePersonnelle.list.entete.actions'|trans }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for note in notes %}
+        {{ include('v2/vault/note/_card.html.twig', {note}) }}
+    {% endfor %}
+    </tbody>
+</table>
+<hr class="text-primary">
+<div class="d-flex justify-content-end">
+    {{ knp_pagination_render(notes, 'v2/vault/components/_pagination.html.twig', {}, {
+        'routeName': 'note_search',
+        'id': beneficiary.id
+    }) }}
+</div>

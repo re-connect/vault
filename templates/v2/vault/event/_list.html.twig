@@ -1,0 +1,21 @@
+<table class="table table-100 table-hover spaced-table mb-0">
+    <thead>
+    <tr class="text-primary text-center font-size-1-3">
+        <th class="bg-grey borderless text-start ps-3">{{ 'evenement.dateLabel'|trans }} : {{ 'event'|trans|lower }}</th>
+        <th class="bg-grey borderless">{{ 'access'|trans }}</th>
+        <th class="bg-grey borderless pe-3">{{ 'donneePersonnelle.list.entete.actions'|trans }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for event in events %}
+        {{ include('v2/vault/event/_card.html.twig', {event}) }}
+    {% endfor %}
+    </tbody>
+</table>
+<hr class="text-primary">
+<div class="d-flex justify-content-end">
+    {{ knp_pagination_render(events, 'v2/vault/components/_pagination.html.twig', {}, {
+        'routeName': 'event_search',
+        'id': beneficiary.id
+    }) }}
+</div>

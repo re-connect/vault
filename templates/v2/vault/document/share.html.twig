@@ -1,0 +1,21 @@
+{% extends 'v2/vault/standard_layout.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid max-width-lg text-primary text-center mt-4">
+        <h3>
+            <i class="fas fa-paper-plane pl-2"
+               aria-hidden="true"></i>
+            {{ 'share_document'|trans }}
+        </h3>
+        <span><u>{{ document.nom }}</u></span>
+        <hr class="hr-2">
+        {{ form_start(form) }}
+        <div class="col-9 col-sm-6 col-md-4 mx-auto text-start mt-5">
+            {{ form_row(form.email) }}
+            <div class="text-end">
+            {{ button('submit', 'confirm', 'green') }}
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

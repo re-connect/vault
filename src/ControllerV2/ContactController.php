@@ -28,7 +28,7 @@ class ContactController extends AbstractController
     ): Response {
         $searchForm = $this->createForm(SearchType::class);
 
-        return $this->renderForm('v2/app/contact/index.html.twig', [
+        return $this->renderForm('v2/vault/contact/index.html.twig', [
             'beneficiary' => $beneficiary,
             'contacts' => $paginator->create(
                 $this->isLoggedInUser($beneficiary->getUser())
@@ -58,7 +58,7 @@ class ContactController extends AbstractController
         $searchForm = $this->createForm(SearchType::class);
 
         return new JsonResponse([
-            'html' => $this->renderForm('v2/app/contact/list.html.twig', [
+            'html' => $this->renderForm('v2/vault/contact/_list.html.twig', [
                 'contacts' => $paginator->create(
                     $this->isLoggedInUser($beneficiary->getUser())
                         ? $repository->searchByBeneficiary($beneficiary, $word)
@@ -93,7 +93,7 @@ class ContactController extends AbstractController
             return $this->redirectToRoute('contact_list', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/app/contact/create.html.twig', [
+        return $this->renderForm('v2/vault/contact/create.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
         ]);
@@ -103,7 +103,7 @@ class ContactController extends AbstractController
     #[IsGranted('UPDATE', 'contact')]
     public function detail(Contact $contact): Response
     {
-        return $this->render('v2/app/contact/detail.html.twig', [
+        return $this->render('v2/vault/contact/detail.html.twig', [
             'contact' => $contact,
             'beneficiary' => $contact->getBeneficiaire(),
         ]);
@@ -126,7 +126,7 @@ class ContactController extends AbstractController
             return $this->redirectToRoute('contact_list', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/app/contact/edit.html.twig', [
+        return $this->renderForm('v2/vault/contact/edit.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
         ]);

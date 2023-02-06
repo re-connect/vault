@@ -1,0 +1,46 @@
+{% set itemsList = {
+    'document-folder': {
+        'title': 'beneficiaire.menu.mesDocuments',
+        'routeName': 're_app_document_list',
+        'image': 'build/images/icons/docs_bleu.png',
+    },
+    'event': {
+        'title': 'beneficiaire.menu.monCalendrier',
+        'routeName': 'event_list',
+        'image': 'build/images/icons/rappels_bleu.png',
+    },
+    'contact': {
+        'title': 'beneficiaire.menu.mesContacts',
+        'routeName': 'contact_list',
+        'image': 'build/images/icons/contacts_bleu.png',
+    },
+    'note': {
+        'title': 'beneficiaire.menu.mesNotes',
+        'routeName': 'note_list',
+        'image': 'build/images/icons/notes_bleu.png',
+    },
+    'relay': {
+        'title': 'beneficiaire.menu.mesRelaisReconnect',
+        'routeName': 'relay_list',
+        'image': 'build/images/icons/relais_bleu.png',
+    },
+} %}
+<nav class="navbar navbar-expand-sm navbar-light bg-white mx-0 beneficiary-nav">
+    <div class="container-fluid max-width-lg px-0 my-2">
+        <button class="navbar-toggler btn-white text-primary ms-2 px-4 border-light-grey" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse ps-4 mt-1 mt-md-0" id="navbarSupportedContent">
+            <ul class="nav w-100 row">
+                {% for key, item in itemsList %}
+                    {{ include('v2/vault/beneficiary/nav/_beneficiary_nav_item.html.twig', {
+                        'item': key,
+                        'title': item.title,
+                        'routeName': item.routeName,
+                        'image': item.image
+                    }) }}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>

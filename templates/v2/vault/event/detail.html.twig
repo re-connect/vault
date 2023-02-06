@@ -1,0 +1,27 @@
+{% extends 'v2/vault/standard_layout.html.twig' %}
+
+{% block content %}
+    <div class="container row mx-auto my-4">
+        <div class="col-12 col-lg-4 offset-lg-4 text-primary bg-white rounded py-2 shadow">
+            <h4 class="font-size-1-3 text-center mt-1">
+                <i class="fa fa-info-circle me-2" aria-hidden="true"></i>
+                {{ 'donneePersonnelle.information'|trans }}
+            </h4>
+            <hr class="text-light-grey">
+            {{ include('v2/vault/event/_detail_information.html.twig', {
+                'information': {
+                    'evenement.nomLabel': event.nom,
+                    'date': event.date|format_datetime(),
+                    'location': event.lieu,
+                    'message': event.commentaire,
+                    'add_date': event.createdAt|format_datetime(),
+                },
+                'reminders': event.rappels
+            }) }}
+            <div class="row mx-1 mt-2">
+                {{ link(path('event_list', {'id': beneficiary.id}), 'main.retour', 'grey') }}
+                {{ link(path('event_edit', {'id': event.id}), 'main.modifier', 'green', 'fa fa-pencil-alt') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
