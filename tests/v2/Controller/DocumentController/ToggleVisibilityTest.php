@@ -3,54 +3,42 @@
 namespace App\Tests\v2\Controller\DocumentController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
+use App\DataFixtures\v2\MemberFixture;
 use App\Entity\User;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\DocumentFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
+use App\Tests\v2\Controller\TestRouteInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
-class ToggleVisibilityTest extends AbstractControllerTest
+class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const TEST_EMAIL = 'documenttest@mail.com';
-    private User $user;
-    private KernelBrowser $client;
+    private const URL = '/document/%s/toggle-visibility';
 
-    protected function setUp(): void
+    public function provideTestRoute(): ?\Generator
     {
-        parent::setUp();
-        static::ensureKernelShutdown();
-        $this->client = static::createClient();
-        $this->user = $this->createTestBeneficiary(self::TEST_EMAIL)->getUser();
+        yield 'Should redirect to login when not authenticated' => [self::URL, 302, null, '/login', 'PATCH'];
+        yield 'Should return 204 status code when authenticated as beneficiaire' => [self::URL, 204, BeneficiaryFixture::BENEFICIARY_MAIL, null, 'PATCH'];
+        yield 'Should return 204 status when authenticated as member with relay in common' => [self::URL, 204, MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES, null, 'PATCH'];
+        yield 'Should return 403 status code when authenticated as an other beneficiaire' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS, null, 'PATCH'];
+        yield 'Should return 403 status code when authenticated as member with no relay in common' => [self::URL, 403, MemberFixture::MEMBER_MAIL, null, 'PATCH'];
     }
 
-    protected function tearDown(): void
+    /** @dataProvider provideTestRoute */
+    public function testRoute(string $url, int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = null, string $method = 'GET'): void
     {
-        $this->removeTestUser(self::TEST_EMAIL);
-    }
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
 
-    public function testToggleVisibility(): void
-    {
-        // Only testedBeneficiary is logged
-        $this->client->loginUser($this->user);
-        $testedBeneficiary = $this->user->getSubjectBeneficiaire();
-        $randomBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $url = sprintf($url, $document->getId());
+        $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : '';
+        $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method, true);
 
-        $testedBeneficiaryDocument = DocumentFactory::createOne(['beneficiaire' => $testedBeneficiary, 'bPrive' => false])->object();
-        $randomBeneficiaryDocument = DocumentFactory::createOne(['beneficiaire' => $randomBeneficiary, 'bPrive' => false])->object();
-
-        $em = $this->getEntityManager();
-        $em->persist($testedBeneficiaryDocument);
-        $em->persist($randomBeneficiaryDocument);
-        $em->flush();
-
-        // testedBeneficiary try to toggle visibility of a contact from another beneficiary
-        $this->client->xmlHttpRequest('PATCH', sprintf('/document/%s/toggle-visibility', $randomBeneficiaryDocument->getId()));
-        $this->assertResponseStatusCodeSame(403);
-
-        $this->client->xmlHttpRequest('PATCH', sprintf('/document/%s/toggle-visibility', $testedBeneficiaryDocument->getId()));
-        $this->assertResponseStatusCodeSame(204);
-
-        $updatedDocument = DocumentFactory::find($testedBeneficiaryDocument->getId())->object();
-        $this->assertTrue($updatedDocument->getBPrive());
+        // Also check that authorized Pro can't update private data
+        if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
+            $newDocument = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+            $newUrl = sprintf(self::URL, $newDocument->getId());
+            $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
+        }
     }
 }

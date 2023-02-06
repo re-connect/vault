@@ -32,6 +32,8 @@ class PersonalDataVoter extends Voter
             return false;
         }
 
-        return $this->checker->isGranted('UPDATE', $subject->getBeneficiaire());
+        return $user->isBeneficiaire()
+            ? $this->checker->isGranted('UPDATE', $subject->getBeneficiaire())
+            : $this->checker->isGranted('UPDATE', $subject->getBeneficiaire()) && false === $subject->getBPrive();
     }
 }

@@ -407,6 +407,19 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return implode(', ', array_unique(array_map(fn (Centre $centre) => $centre?->getRegion(), $this->getCentres()->toArray())));
     }
 
+    /**
+     * @return Collection <int, Centre>
+     */
+    public function getAffiliatedRelaysWithBeneficiaryManagement(): Collection
+    {
+        return $this->getMembresCentres()
+            ->filter(
+                fn (MembreCentre $professionalRelay) => true === $professionalRelay->getBValid() && $professionalRelay->canManageBeneficiaries())
+            ->map(
+                fn (MembreCentre $professionalRelay) => $professionalRelay->getCentre(),
+            );
+    }
+
     public function __clone()
     {
         if ($this->id) {

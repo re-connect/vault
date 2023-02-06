@@ -4,9 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Beneficiaire;
 use App\Entity\BeneficiaireCentre;
-use App\Entity\Gestionnaire;
-use App\Entity\Membre;
-use App\Entity\MembreCentre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
@@ -123,32 +120,6 @@ class BeneficiaireRepository extends ServiceEntityRepository
             ->setParameters(['clientId' => $clientIdentifier])
             ->getQuery()
             ->getResult();
-    }
-
-    public function findByAuthorizedProfessional(Gestionnaire|Membre $professional): array
-    {
-        $qb = $this->createQueryBuilder('b')
-            ->innerJoin('b.beneficiairesCentres', 'bc')
-            ->innerJoin('bc.centre', 'c')
-            ->andWhere('b.isCreating = false')
-            ->andWhere('bc.bValid = true');
-
-        if ($professional instanceof Membre) {
-            $qb->innerJoin('c.membresCentres', 'mc')
-                ->innerJoin('mc.membre', 'm')
-                ->where('m.id = :id')
-                ->andWhere('mc.droits LIKE :access')
-                ->setParameters([
-                    'id' => $professional->getId(),
-                    'access' => sprintf('%%%s%%', MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES),
-                ]);
-        } elseif ($professional instanceof Gestionnaire) {
-            $qb->innerJoin('c.gestionnaire', 'g')
-                ->where('g.id = :id')
-                ->setParameter('id', $professional->getId());
-        }
-
-        return $qb->getQuery()->getResult();
     }
 
     public function getBeneficiariesSiSiaoNumbers(): array

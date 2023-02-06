@@ -930,4 +930,18 @@ class Beneficiaire extends Subject implements UserWithCentresInterface
             $this->getDateNaissanceStr()
         );
     }
+
+    /**
+     * @return Collection <int, Centre>
+     */
+    public function getAffiliatedRelays(): Collection
+    {
+        return $this->getBeneficiairesCentres()
+            ->filter(
+                fn (BeneficiaireCentre $beneficiaryRelay) => true === $beneficiaryRelay->getBValid(),
+            )
+            ->map(
+                fn (BeneficiaireCentre $beneficiaryRelay) => $beneficiaryRelay->getCentre(),
+            );
+    }
 }

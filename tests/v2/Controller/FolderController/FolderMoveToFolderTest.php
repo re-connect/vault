@@ -3,6 +3,7 @@
 namespace App\Tests\v2\Controller\FolderController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
+use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\FolderFactory;
 use App\Tests\Factory\UserFactory;
@@ -17,8 +18,8 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
     public function testRoute(string $url, int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = null, string $method = 'GET'): void
     {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $parentFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary])->object();
-        $subFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary])->object();
+        $parentFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        $subFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
 
         $url = sprintf(
             $url,
@@ -28,15 +29,25 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : '';
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 
-        FolderFactory::find(['id' => $subFolder->getId()])->remove();
-        FolderFactory::find(['id' => $parentFolder->getId()])->remove();
+        if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
+            $privateParentFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+            $subFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+            $newUrl = sprintf(
+                self::URL,
+                $subFolder->getId(),
+                $privateParentFolder->getId(),
+            );
+            $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
+        }
     }
 
     public function provideTestRoute(): ?\Generator
     {
         yield 'Should redirect to login when not authenticated' => [self::URL, 302, null, '/login'];
         yield 'Should redirect after when authenticated as beneficiary' => [self::URL, 302, BeneficiaryFixture::BENEFICIARY_MAIL, '/beneficiary/%s/documents'];
-        yield 'Should return 403 status code when authenticated as an other beneficiary' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS];
+        yield 'Should redirect after when authenticated as member with relay in common' => [self::URL, 302, MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES, '/beneficiary/%s/documents'];
+        yield 'Should return 403 status code when authenticated as an other beneficiaire' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS];
+        yield 'Should return 403 status code when authenticated as member with no relay in common' => [self::URL, 403, MemberFixture::MEMBER_MAIL];
     }
 
     public function testMoveToFolder(): void

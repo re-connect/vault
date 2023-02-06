@@ -21,7 +21,7 @@ class MembreCentre extends UserCentre
     /**
      * @var array
      */
-    private $droits;
+    private $droits = [];
 
     public static function getArDroits()
     {
@@ -108,6 +108,12 @@ class MembreCentre extends UserCentre
         $this->membre = $user->getSubjectMembre();
 
         return $this;
+    }
+
+    public function canManageBeneficiaries(): bool
+    {
+        return array_key_exists(self::TYPEDROIT_GESTION_BENEFICIAIRES, $this->getDroits())
+            && true === $this->getDroits()[self::TYPEDROIT_GESTION_BENEFICIAIRES];
     }
 
     /**

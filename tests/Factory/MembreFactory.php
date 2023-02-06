@@ -4,6 +4,7 @@ namespace App\Tests\Factory;
 
 use App\Entity\Centre;
 use App\Entity\Membre;
+use App\Entity\MembreCentre;
 use App\Repository\MembreRepository;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
@@ -63,8 +64,19 @@ final class MembreFactory extends ModelFactory
     }
 
     /** @param array<Centre> $centres */
-    public function linkToRelays(array $centres): self
+    public function linkToRelays(array $centres, bool $beneficiaryManagement = false, bool $proManagement = false): self
     {
-        return $this->addState(['membresCentres' => array_map(fn ($centre) => MembreCentreFactory::createOne(['membre' => $this, 'centre' => $centre]), $centres)]);
+        return $this->addState([
+            'membresCentres' => array_map(
+                fn ($centre) => MembreCentreFactory::createOne([
+                    'membre' => $this,
+                    'centre' => $centre,
+                    'droits' => [
+                        MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES => $beneficiaryManagement,
+                        MembreCentre::TYPEDROIT_GESTION_MEMBRES => $proManagement,
+                    ],
+                ]), $centres
+            ),
+        ]);
     }
 }

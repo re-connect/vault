@@ -11,6 +11,7 @@ use App\Tests\Factory\DocumentFactory;
 use App\Tests\Factory\EventFactory;
 use App\Tests\Factory\FolderFactory;
 use App\Tests\Factory\NoteFactory;
+use App\Tests\Factory\RelayFactory;
 use App\Tests\Factory\UserFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
@@ -25,20 +26,31 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
 
     public function load(ObjectManager $manager)
     {
-        $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL));
+        $this->createTestBeneficiary(
+            $this->getTestUser(self::BENEFICIARY_MAIL),
+            [RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY])]
+        );
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_SETTINGS));
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_SETTINGS_EDIT));
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_SETTINGS_DELETE));
     }
 
-    public function createTestBeneficiary(User $user): void
+    public function createTestBeneficiary(User $user, array $relays = []): void
     {
-        $beneficiary = BeneficiaireFactory::createOne(['user' => $user])->object();
+        $beneficiary = BeneficiaireFactory::new()
+            ->linkToRelays(!empty($relays)
+                ? $relays
+                : [RelayFactory::findOrCreate(['nom' => RelayFixture::DEFAULT_PRO_RELAY])]
+            )
+            ->withAttributes(['user' => $user])
+            ->create()->object();
+
         ContactFactory::createOne(['beneficiaire' => $beneficiary])->object();
         NoteFactory::createOne(['beneficiaire' => $beneficiary])->object();
         EventFactory::createOne(['beneficiaire' => $beneficiary])->object();
         DocumentFactory::createOne(['beneficiaire' => $beneficiary])->object();
         FolderFactory::createMany(2, ['beneficiaire' => $beneficiary]);
+
         $creatorRelay = CreatorCentreFactory::createOne()->object();
         $creatorUser = CreatorUserFactory::createOne()->object();
         $user->addCreator($creatorRelay);
