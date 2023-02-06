@@ -1,0 +1,13 @@
+re_gestionnaire_beneficiaires:
+    path:     /beneficiaires
+    defaults: { _controller: App\Controller\GestionnaireController::beneficiaires }
+
+re_gestionnaire_membres:
+    path:     /membres
+    defaults: { _controller: App\Controller\GestionnaireController::membres }
+
+re_gestionnaire_membresCentre:
+    path:     /membres/{id}
+    defaults: { _controller: App\Controller\GestionnaireController::membresCentre }
+    requirements:
+        id:  \d{1,10}

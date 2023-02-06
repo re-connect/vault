@@ -1,0 +1,43 @@
+{% extends 'user/membre-beneficiaire/creationUser_gestionUser_base.html.twig' %}
+
+{% block addUserSubtitle %}
+    {% if way is same as('default') %}
+        {{ 'create_new_benef_step6'|trans({'%step%': 6, '%totalSteps%': 6})|raw }}
+    {% else %}
+        {{ 'create_new_benef_remotely_step4'|trans({'%step%': 4, '%totalSteps%': 4})|raw }}
+    {% endif %}
+{% endblock addUserSubtitle %}
+
+{% block creation_addUserContent %}
+    <div class="text-primary font-size-1">
+        {% if way is same as('default') %}
+            {% trans %}membre.creationBeneficiaire.step6.content{% endtrans %} : &nbsp;
+            <a href="{{ path('re_admin_annexe', {'url':'bienvenue-compte-reconnect'}) }}"
+               class="btn btn-blue font-size-1" target="_blank">
+                {% trans %}membre.creationBeneficiaire.step6.telecharger{% endtrans %}
+            </a>
+        {% else %}
+            {% trans %}membre.creationBeneficiaire.step6.remotely.content{% endtrans %}
+        {% endif %}
+    </div>
+{#    <div class="text-primary font-size-1 mt-3"> #}
+    {#        {{ 'add_si_siao_number_intro'|trans }} #}
+    {#        <a href="{{ path('add_si_siao_number', {'id': beneficiary.id}) }}" class="btn btn-blue font-size-1 ml-2" #}
+    {#        > #}
+    {#            {{ 'add'|trans }} #}
+    {#        </a> #}
+    {#    </div>#}
+{% endblock creation_addUserContent %}
+
+{% block bottomLinks %}
+    {% set path = path('re_membre_beneficiaires') %}
+    {% if app.user.isGestionnaire %}
+        {% set path = path('re_gestionnaire_beneficiaires') %}
+    {% endif %}
+
+    <a href="{{ path }}"
+       class="btn btn-dark-blue font-size-1">{% trans %}membre.creationBeneficiaire.step6.terminer{% endtrans %}</a>
+{% endblock bottomLinks %}
+
+{% block mainDiv_creation_addUserContent %}
+    <div>{% endblock mainDiv_creation_addUserContent %}

@@ -1,0 +1,12 @@
+{{ include('v2/app/common/personal_data_detail.html.twig', {
+    'information': {
+        'name': folder.nom,
+        'status': (folder.bPrive ? 'private' : 'shared')|trans,
+        'add_date': folder.createdAt|format_datetime(),
+        'number_of_docs': folder.documents|length,
+    },
+    'editPath': path('folder_rename', {'id': folder.id}),
+    'cancelPath': folder.dossierParent
+        ? path('folder', {'id': folder.dossierParent.id})
+        : path('document_list', {'id': folder.beneficiaire.id})
+}) }}

@@ -1,0 +1,21 @@
+<footer class="position-relative bg-light-grey">
+    {{ include('v2/lang_selector.html.twig') }}
+    <div class="bg-primary pt-3"></div>
+    <div class="container text-center pt-3">
+        <div class="row mb-3">
+            <small class="text-primary col-xs-12 col-sm-4 mb-2">{{ 'now' | date('Y') }} {{ 'footer_copyright' | trans }}</small>
+            <a class="text-primary text-decoration-none col-12 col-sm-4 mb-2"
+               href="https://www.reconnect.fr/annexe/cgs-cs"
+               target="_blank"
+            >
+                <small>{{ 'footer_CGS_vault'|trans }}</small>
+            </a>
+            <a class="text-primary text-decoration-none col-12 col-sm-4 mb-2"
+               href="https://www.reconnect.fr/annexe/confidentialite-cs"
+               target="_blank"
+            >
+                <small>{{ 'footer_confidentiality_vault'|trans }}</small>
+            </a>
+        </div>
+    </div>
+</footer>

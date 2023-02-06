@@ -1,0 +1,46 @@
+image: chialab/php-dev:8.1-fpm
+
+test:
+    services:
+        - mysql:8.0
+    variables:
+        MYSQL_DATABASE: reconnect_test
+        MYSQL_ROOT_PASSWORD: Pl1PL6axxvOR9eY2
+    cache:
+        paths:
+            - vendor/
+            - node_modules/
+            - var/
+            - public/bundles/
+            - public/uploads/
+    before_script:
+        - apt update && apt install -y nodejs npm && apt-get -y install libmagickwand-dev --no-install-recommends
+        - pecl install imagick && docker-php-ext-enable imagick
+        - echo "memory_limit=1024M" >> /usr/local/etc/php/php.ini
+        - echo "xdebug.mode=coverage" >> /usr/local/etc/php/php.ini
+        - cat .env.ci >> .env.test
+        - composer install
+        - vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
+        - npm install -g yarn
+        - php bin/console doctrine:migrations:migrate --env=test -q
+        - php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
+        - yarn && yarn dev
+        - php bin/console lint:container
+        - mkdir -p var/oauth
+        - cp tests/keys/* var/oauth
+    stage: test
+    only:
+        - merge_requests
+    script:
+        - php bin/console doctrine:fixtures:load --env=test --group=v1 -n
+        - ./vendor/bin/simple-phpunit tests/v1
+        - php bin/console doctrine:fixtures:load --env=test --group=v2 -n
+        - ./vendor/bin/simple-phpunit tests/v2 --coverage-cobertura=coverage/cobertura-coverage.xml
+        - php phpunit-check-coverage.php coverage/cobertura-coverage.xml 60
+        - ./vendor/bin/phpstan analyse -c phpstan.dist.neon
+    artifacts:
+        reports:
+            coverage_report:
+                coverage_format: cobertura
+                path: coverage/cobertura-coverage.xml
+    coverage: '/^\s*Lines:\s*\d+.\d+\%/'

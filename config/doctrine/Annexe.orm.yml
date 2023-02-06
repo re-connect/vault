@@ -1,0 +1,32 @@
+App\Entity\Annexe:
+    type: entity
+    table: 'annexe'
+    repositoryClass: App\Repository\AnnexeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+            options:
+                unsigned: true
+    fields:
+        url:
+            type: string
+            length: 255
+            unique: true
+        fichier:
+            type: string
+            length: 255
+            unique: true
+        actif:
+            type: boolean
+            options:
+                default: true
+        dateAjout:
+            type: datetime
+            column: date_ajout
+            gedmo:
+                timestampable:
+                    on: create
+    lifecycleCallbacks: { }

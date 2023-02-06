@@ -1,0 +1,1 @@
+* * * * * php ~/www/current/bin/console re:everyMinute >> ~/www/shared/var/log/sms-reminders.log

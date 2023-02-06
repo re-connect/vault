@@ -1,0 +1,69 @@
+{% extends 'user/gestionUser_base.html.twig' %}
+
+{% form_theme form "form/tableForm.html.twig"  %}
+
+{% block metaTitle %}{% trans %}membre.ajoutMembre.metaTitle{% endtrans %}{% endblock metaTitle %}  
+{% block addUserTitle %}{{ 'add_new_member_big_title'|trans|raw }}{% endblock addUserTitle %}
+{% block addUserSubtitle %}{% trans %}membre.ajoutMembre.subtitle{% endtrans %}{% endblock addUserSubtitle %}
+
+{% block addUserContent %}   
+<div class="span12">
+	<div class="rp-blue font-size-1-3">{% trans %}membre.ajoutMembre.possedeCompte{% endtrans %}</div><br/>
+	
+	{{ form(form, {"attr" : {"class" : "reForm tableForm font-size-1"}}) }}
+	{% if foundUsers is defined %}
+	<br/><br/>
+	{% if foundUsers|length == 0 %}
+		    <div class="mid error">{% trans %}membre.ajoutMembre.aucunUtilisateurTrouve{% endtrans %}</div>
+		{% else %}
+			<table class="reTable2 table-100">
+				<thead>
+					<tr>
+						<th class="text-primary bg-secondary">{% trans %}membre.ajoutMembre.nomLabel{% endtrans %}</th>
+						<th class="text-primary bg-secondary">{% trans %}membre.ajoutMembre.prenomLabel{% endtrans %}</th>
+{#						<th>{% trans %}membre.ajoutMembre.centres{% endtrans %}</th>#}
+						<th class="text-primary bg-secondary">&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in foundUsers %}
+					<tr>
+						<td class="text-primary">{{ user.nom }}</td>
+						<td class="text-primary">{{ user.prenom }}</td>
+{#						<td>#}
+{#							{% for membreCentre in user.subjectMembre.membresCentres %}#}
+{#								{{ membreCentre.centre.nom }}#}
+{#								{% if not loop.last %},{% endif %}#}
+{#							{% endfor %}#}
+{#						</td>#}
+						<td><a href="{{ path('re_membre_doAjoutMembre', {'id': user.subjectMembre.id}) }}" class="btn btn-blue btn-small">{% trans %}main.choisir{% endtrans %}</a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
+		<br/><br/>
+	{% endif %}
+</div>
+<div class="span1">
+	&nbsp;
+</div>
+<div class="span11">
+	<div class="rp-blue font-size-1-3">{% trans %}membre.ajoutMembre.nePossedePasCompte{% endtrans %}</div><br/>
+	<a href="{{ path('re_membre_creationMembre')}}" class="btn btn-blue font-size-1">{% trans %}membre.ajoutMembre.creerCompte{% endtrans %}</a>
+</div>
+<div class="clearFloat">&nbsp;</div>
+{% endblock addUserContent %}
+
+
+
+{% block styles %}
+{{ parent() }}
+{#{{ form_stylesheet(form) }}#}
+{% endblock styles %}
+
+
+{% block javascripts %}
+{{ parent() }}
+{#{{ form_javascript(form) }}#}
+{% endblock javascripts %}

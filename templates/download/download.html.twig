@@ -1,0 +1,40 @@
+{% extends 'homeV2/base.html.twig' %}
+{% block metaTitle %}{% trans %}resetting.public.metaTitle{% endtrans %}{% endblock metaTitle %}
+
+{% block bodyCentered %}
+    <section class="bg-green mt-5 py-5 pt-md-5">
+        <div class="container mt-0 py-0 mt-md-3 py-md-3">
+            <div class="row text-center">
+                <div class="offset-1 offset-md-0 col-10 col-md-4 col-lg-4 mt-md-4">
+                    <img class="img-fluid mt-5" src="{{ asset('build/images/homeV2/logo_vault_white_v2.png') }}"
+                         alt="{{ 'home_our_solutions_alt_logo_cfn' |trans }}">
+                </div>
+                <div class="col-12 offset-md-1 col-md-7 offset-lg-2 col-lg-6">
+                    <div style="background-color:#9ee3a9;" class="card border-radius-20 box-shadow-white my-5 py-3">
+                        <h3 class="text-primary">{{ 'download_document'|trans }}</h3>
+                        {% for label, messages in app.flashes(['danger']) %}
+                            {% for message in messages %}
+                                <div class="w-75 mx-auto alert alert-{{ label }} alert-dismissible fade show"
+                                     role="alert">
+                                    <small>{{ message|trans() }}</small>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        <div class="row">
+                            {% if sharedDocument is not null %}
+                                <div class="py-3">
+                                    <p class="text-primary px-4">{{ 'user_shared_document_with_you'|trans({'%nom%': sharedDocument.sharedBy.nom, '%prenom%': sharedDocument.sharedBy.prenom, '%document%': sharedDocument.document.nom }) }}</p>
+                                    <p class="text-primary px-4">{{ 'download_document_click_button'|trans }}</p>
+                                    <a target="_blank" download href="{{ downloadLink }}"
+                                       class="btn btn-primary">{{ 'download_document'|trans }}</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock bodyCentered %}

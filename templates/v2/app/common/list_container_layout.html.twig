@@ -1,0 +1,18 @@
+{% extends 'v2/app/common/standard_layout.html.twig' %}
+
+{% block content %}
+    <div class="max-width-lg px-3 m-auto">
+        <div class="row mt-4 mx-1">
+            <div class="col-5 col-sm-3 col-lg-2 px-0">
+                {% block searchform %}{% endblock %}
+            </div>
+            <div class="col text-end px-0 mb-2">
+                {% block actionButtons %}{% endblock %}
+            </div>
+            <hr class="text-primary hr-2 mb-2">
+        </div>
+        <div class="max-width-md mx-auto">
+            {% block list %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

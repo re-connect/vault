@@ -1,0 +1,69 @@
+security:
+    role_hierarchy:
+        ROLE_MEMBRE: ROLE_BENEFICIAIRE
+        ROLE_GESTIONNAIRE: ROLE_MEMBRE
+        ROLE_ASSOCIATION: ROLE_MEMBRE
+        ROLE_ADMIN: ROLE_BENEFICIAIRE
+
+    # https://symfony.com/doc/current/security/experimental_authenticators.html
+    enable_authenticator_manager: true
+    # https://symfony.com/doc/current/security.html#c-hashing-passwords
+    password_hashers:
+        # a hasher used in the past for some users
+        legacy:
+            algorithm: sha512
+            encode_as_base64: false
+            iterations: 1
+        App\Entity\User:
+            algorithm: auto
+            migrate_from:
+                - sha512
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        user_provider:
+            entity:
+                class: App\Entity\User
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        api_token:
+            pattern: ^/api/token$
+            security: false
+        api:
+            pattern: ^/api
+            security: true
+            stateless: true
+            oauth2: true
+            login_link:
+                check_route: login_link
+                signature_properties: [ 'id' ]
+                lifetime: 1800
+                max_uses: 1
+        rosalie:
+            pattern: ^/appli/rosalie
+            security: true
+            stateless: true
+            oauth2: true
+        main:
+            pattern: ^/
+            provider: user_provider
+            custom_authenticators:
+                - App\Security\Authenticator
+            user_checker: App\Security\UserChecker
+            logout:
+                path: app_logout
+                target: /
+            login_throttling:
+                max_attempts: 9
+                interval: '2 minutes'
+            login_link:
+                check_route: login_link
+                signature_properties: [ 'id' ]
+                lifetime: 1800
+                max_uses: 1
+
+    access_control:
+        - { path: ^/($|api/doc|changer-langue|annexe|get-centers|auto-login|login|reset-password|oauth|reconnect-le-coffre-fort-numerique|reconnect-la-solution-pro|nous-contacter|faq-rgpd|public|reinitialiser-mot-de-passe|reconnect-accompagnement-numerique), roles: PUBLIC_ACCESS }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/(.+), roles: IS_AUTHENTICATED_FULLY }

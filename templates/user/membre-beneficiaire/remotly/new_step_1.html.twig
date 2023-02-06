@@ -1,0 +1,26 @@
+{% extends 'user/membre-beneficiaire/creationUser_gestionUser_base.html.twig' %}
+
+{% form_theme form _self %}
+
+{# Remove label #}
+{% block _re_form_beneficiaire_step1_user_row %}
+    {{- form_widget(form) -}}
+    {{- form_errors(form) -}}
+{% endblock _re_form_beneficiaire_step1_user_row %}
+
+{% block addUserSubtitle %}{% trans %}membre.creationBeneficiaire.step1.subtitle{% endtrans %}{% endblock addUserSubtitle %}
+
+{% block creation_addUserContent %}
+    {% for flash_message in app.session.flashBag.get('error') %}
+        <div class="alert alert-success">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    {{ form_row(form.user) }}
+    {{ form_row(form.dateNaissance) }}
+{% endblock creation_addUserContent %}
+
+{% block bottomLinks %}
+    <a href="{{ path('re_membre_ajoutBeneficiaire') }}" class="btn btn-dark-blue font-size-1">{% trans %}main.retour{% endtrans %}</a>
+    {{ form_widget(form.submit, {'attr': {'class': 'btn-blue font-size-1'}}) }}
+{% endblock bottomLinks %}

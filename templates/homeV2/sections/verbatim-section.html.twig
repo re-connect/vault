@@ -1,0 +1,19 @@
+<section class="py-5">
+    <div class="container">
+        <h2 class="h2 pb-1 text-primary text-uppercase text-center">{{ 'home_press_title'| trans }}</h2>
+        <div class="row py-4 text-primary">
+            <div id="carousel-verbatim" class="carousel slide py-3" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    {% for verbatim in verbatims  %}
+                        <button type="button" data-bs-target="#carousel-verbatim" data-bs-slide-to="{{ loop.index0 }}" class="{{ loop.index0 == 0 ? 'active' }} px-1 py-1 bg-primary border-0 mx-1 rounded-circle" aria-current="true" aria-label="Slide {{ loop.index0 }}"></button>
+                    {% endfor %}
+                </div>
+                <div class="carousel-inner">
+                    {% for verbatim in verbatims  %}
+                        {{ include('homeV2/templates/verbatim-template.html.twig') }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

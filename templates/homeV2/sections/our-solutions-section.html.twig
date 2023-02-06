@@ -1,0 +1,27 @@
+<section class="bg-success py-5">
+    <div class="container">
+        <h2 class="h2 pb-1 text-primary text-uppercase text-center">{{ 'home_our_solutions_title'| trans }}</h2>
+        <div class="row py-4 my-auto justify-content-between">
+            <article class="offset-2 col-8 offset-md-0 col-md-5 col-lg-3 offset-lg-0 d-flex flex-column align-items-center justify-content-around py-5 px-4 my-3 bg-white text-center rounded">
+                <img class="mb-4" id="logoCFN" src="{{ asset('build/images/homeV2/logo_cfn_home_v2.png') }}"
+                     alt="{{ 'home_our_solutions_alt_logo_cfn'| trans }}">
+                <p class="mb-4 text-primary">{{ 'home_our_solutions_text_cfn'| trans }}</p>
+                <a class="btn-primary text-decoration-none mt-3 py-2 px-3 border-radius-40 font-size-1-1" href="{{ path('re_main_page_vault') }}">{{ 'home_our_solutions_CTA'| trans }}</a>
+            </article>
+            <article class="offset-2 col-8 offset-md-0 col-md-5 col-lg-3 offset-lg-0 d-flex flex-column align-items-center justify-content-around py-5 px-4 my-3 bg-white text-center rounded">
+                <img class="mb-4" id="logo-rp" src="{{ asset('build/images/homeV2/logo_rpro_home_v2.png') }}"
+                     alt="{{ 'home_our_solutions_alt_logo_rp'| trans }}">
+                <p class="mb-4 text-primary">{{ 'home_our_solutions_text_rp'| trans }}</p>
+                <a class="btn-primary text-decoration-none mt-3 py-2 px-3 border-radius-40 font-size-1-1"
+                   href="{{ path('re_main_page_RP') }}">{{ 'home_our_solutions_CTA'| trans }}</a>
+            </article>
+            <article class="offset-2 col-8 offset-md-0 col-md-5 col-lg-3 offset-lg-0 d-flex flex-column align-items-center justify-content-around py-5 px-4 my-3 bg-white text-center rounded">
+                <img class="mb-3 w-100 mt-1" src="{{ asset('build/images/homeV2/logo_digital_cares_yellow.png') }}"
+                     alt="{{ 'digital_cares_logo_alt'| trans }}">
+                <p class="mb-4 mt-4 text-primary">{{ 'innovative_solution_digital_divide'| trans }}</p>
+                <a class="btn-primary text-decoration-none mt-3 mt-lg-5 py-2 px-3 border-radius-40 font-size-1-1"
+                   href="{{ path('digital_cares') }}">{{ 'home_our_solutions_CTA'| trans }}</a>
+            </article>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,18 @@
+twig:
+    #    default_path: '%kernel.project_dir%/templates'
+    #    debug: '%kernel.debug%'
+    #    strict_variables: '%kernel.debug%'
+    #    exception_controller: null
+
+    debug: "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    globals:
+        siteName: '%env(siteName)%'
+        uploadFolderPrefix: '%env(uploadFolderPrefix)%'
+        lang: '%env(locale)%'
+        google_site_verification: '%env(google_site_verification)%'
+        country: '%env(country)%'
+    form_themes:
+        - '@VichUploader/Form/fields.html.twig'
+        - 'form/fields.html.twig'
+        - 'bootstrap_3_layout.html.twig'

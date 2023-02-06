@@ -1,0 +1,129 @@
+body {
+  font-family: 'Barlow-Medium', sans-serif;
+}
+
+p {
+  font-size: 1.1rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+.home-main-section {
+  background-size: cover;
+  background-position: top;
+}
+
+.login-form {
+  bottom: 100px;
+  height: 120px;
+}
+
+.login-form-link {
+  line-height: 1 !important;
+  &:hover {
+  text-decoration: underline;
+  }
+}
+
+#logo-header-reconnect {
+  width: 60px;
+}
+
+.nav-links:hover {
+  color: #28ad7a !important;
+}
+
+#logo-rp {
+  width: 56%;
+}
+
+#logoCFN {
+  width: 78%;
+}
+
+#qui-sommes-nous {
+  scroll-margin-top: 70px;
+}
+
+#carousel-reconnect-centers {
+  height: 170px;
+  width: 80%;
+  @media (min-width: 768px) and (max-width: 992px) {
+    width: 92%;
+  }
+  @media screen and (max-width: 515px) {
+    height: 300px;
+    width: 80%;
+  }
+  button {
+    opacity: 1;
+  }
+}
+
+#carousel-verbatim {
+  .carousel-indicators button {
+    height: 3px;
+    width: 3px;
+  }
+  .carousel-inner {
+    height: 220px;
+  }
+}
+
+.carousel-control-prev {
+  left: -55px;
+  @media screen and (max-width: 515px) {
+    left: -20px;
+  }
+}
+
+.carousel-control-next {
+  right: -55px;
+  @media screen and (max-width: 515px) {
+    right: -20px;
+  }
+}
+
+.carousel-img, .solutions-list-icon {
+  width: 80px;
+}
+
+.product-is-icon {
+  width: 100px;
+}
+
+#reconnect-centers-map {
+  height: 400px;
+}
+
+.mobile-mockup {
+  width: 40%;
+  border-radius: 30px !important;
+  @media (min-width: 768px) and (max-width: 992px) {
+    width: 50%;
+    border-radius: 20px !important;
+  }
+}
+
+.feature-transmission-mockup {
+  width: 60%;
+  border-radius: 10px !important;
+  @media (min-width: 768px) and (max-width: 992px) {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .home-main-section {
+    background-size: auto;
+  }
+
+  #carousel-press .carousel-inner {
+    height: 20rem
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  #cfn-page-hero-text {
+    top: 15% !important;
+  }
+}

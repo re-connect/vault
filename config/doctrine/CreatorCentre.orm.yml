@@ -1,0 +1,8 @@
+App\Entity\CreatorCentre:
+  type: entity
+  table: null
+  repositoryClass: App\Repository\CreatorCentreRepository
+  manyToOne:
+    entity:
+      targetEntity: App\Entity\Centre
+  lifecycleCallbacks: {  }

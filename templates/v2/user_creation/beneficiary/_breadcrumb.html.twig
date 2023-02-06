@@ -1,0 +1,13 @@
+{% set breadCrumbStepNames = beneficiaryCreationProcess.breadCrumbStepNames %}
+
+<div class="mt-3 ps-0 border-start border-primary border-2 breadcrumb-step">
+    {% for breadcrumbStep in 1..breadCrumbStepNames|length %}
+        {% set isDone = step >= breadcrumbStep %}
+        <a href="{{ path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': breadcrumbStep}) }}"
+           class="btn ps-0 py-0 my-4 text-{{ isDone ? 'primary' : 'grey pe-none' }}" data-turbo="false">
+            <i class="fa fa-circle fa-lg text-{{ isDone ? 'primary' : 'grey' }} breadcrumb-icon position-relative"></i>
+            {{ breadCrumbStepNames[breadcrumbStep]|trans }}
+        </a>
+        <br>
+    {% endfor %}
+</div>

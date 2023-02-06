@@ -1,0 +1,7 @@
+{% if isFirstVisit %}
+    {{ include('v2/notifications/notification_modal_form.html.twig', {
+        'notificationTitle': 'membre.partageContact.title'|trans,
+        'notificationIntro': 'membre.partageContact.text'|trans,
+        'form': firstVisitForm,
+    }) }}
+{% endif %}

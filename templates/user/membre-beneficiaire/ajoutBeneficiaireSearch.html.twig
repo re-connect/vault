@@ -1,0 +1,118 @@
+{% extends 'user/gestionUser_base.html.twig' %}
+
+{% form_theme form "form/tableForm.html.twig" %}
+
+{% block metaTitle %}{% trans %}membre.ajoutBeneficiaire.metaTitle{% endtrans %}{% endblock metaTitle %}  
+{% block addUserTitle %}{{ 'add_new_benef_big_title'|trans|raw }}{% endblock addUserTitle %}
+{% block addUserSubtitle %}{{ 'add_new_beneficiary'|trans }}{% endblock addUserSubtitle %}
+
+{% block addUserContent %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="m-3 rp-blue font-size-1-3">{{ 'benef_has_account'|trans }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {{ form(form, {"attr" : {"class" : "reForm tableForm font-size-1"}}) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <br/><br/>
+                    {% if foundUsers is null %}
+                    {% elseif foundUsers|length == 0 %}
+                        <div class="mid error">{% trans %}membre.ajoutBeneficiaire.aucunUtilisateurTrouve{% endtrans %}</div>
+                    {% else %}
+                        <table class="reTable2 table-100">
+                            <thead>
+                            <tr>
+                                <th class="pl-2 text-primary bg-secondary">{% trans %}membre.ajoutBeneficiaire.nomLabel{% endtrans %}</th>
+                                <th class="text-primary bg-secondary">{% trans %}membre.ajoutBeneficiaire.prenomLabel{% endtrans %}</th>
+                                <th class="text-primary bg-secondary">{% trans %}membre.ajoutBeneficiaire.dateNaissanceLabel{% endtrans %}</th>
+                                <th class="text-primary bg-secondary">&nbsp;</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in foundUsers %}
+                                <tr>
+                                    <td class="text-primary">{{ user.nom }}</td>
+                                    <td class="text-primary">{{ user.prenom }}</td>
+                                    <td class="text-primary">{{ user.subjectBeneficiaire.dateNaissance|date('d/m/Y') }}</td>
+                                    <td>
+                                        <a href="{{ path('re_membre_doAjoutBeneficiaire', {'id': user.subjectBeneficiaire.id}) }}"
+                                           class="btn btn-blue btn-small">{% trans %}main.choisir{% endtrans %}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                    <br/><br/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="m-3 rp-blue font-size-1-3">{{ 'benef_has_no_account'|trans }}</div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="row" style="height: 40px">
+                        <div class="col-md-12">
+                            <div class="text-primary font-size-1">{% trans %}membre.ajoutBeneficiaire.creerCompte.default.description{% endtrans %}</div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <a href="{{ path('creationBeneficiaireStep1') }}"
+                               class="btn btn-blue">
+                                {% trans %}membre.ajoutBeneficiaire.creerCompte{% endtrans %}
+                                <br/>
+                                <small>
+                                    {% trans %}membre.ajoutBeneficiaire.creerCompte.subTitle{% endtrans %}
+                                </small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-2 mt-lg-0">
+                    <div class="row" style="height: 40px">
+                        <div class="col-md-12">
+                            <div class="text-primary font-size-1">{% trans %}membre.ajoutBeneficiaire.creerCompte.remotely.description1{% endtrans %}</div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <a href="{{ path('creationBeneficiaireStep1' , {'way' : 'remotely'}) }}"
+                               class="btn btn-blue">
+                                {% trans %}membre.ajoutBeneficiaire.creerCompte{% endtrans %}
+                                <br/>
+                                <small>
+                                    {% trans %}membre.ajoutBeneficiaire.creerCompte.subTitle.remotely{% endtrans %}
+                                </small>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mb-2">
+                        <div class="col-md-2 pl-0 pr-0">
+                            <div style="float: left;height: 30px;">
+                                <i class="fas fa-mobile-alt text-primary" aria-hidden="true"
+                                   style="font-size: 30px;height: 10px;vertical-align: middle;"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-xs-10 pl-1 pr-0">
+                            <div class="small text-primary">
+                                {% trans %}membre.ajoutBeneficiaire.creerCompte.remotely.description2{% endtrans %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock addUserContent %}

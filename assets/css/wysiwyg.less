@@ -1,0 +1,64 @@
+
+.wysiwyg{
+
+	p{
+		margin: 10px 0;
+	}
+	.h1{
+		margin: 20px 0;
+	}
+	.h2{
+		margin: 15px 0;
+	}
+	.h3, .h4, .h5{
+		margin: 10px 0;
+	}
+
+	> .h1:first-child, > .h2:first-child, > .h3:first-child, > .h4:first-child, > .h5:first-child, > p:first-child{
+		margin-top: 0;
+	}
+
+
+	strong{
+		.bold;
+	}
+
+	.alert{
+		.smallPadding;
+		display: inline-block;
+	}
+
+	.alert-right{
+		float: right;
+	}
+
+	
+	.info{
+		p{
+			margin-left: 30px;
+		}
+	}
+	em{
+		font-style: italic;
+	}
+
+
+}
+
+@media screen and (max-width: @responsiveThirdThresold){
+	.wysiwyg{
+		img{
+			float: none !important;
+			display: block !important;
+			margin: 25px auto !important;
+			max-width: 100% !important;
+			width: auto !important;
+			height: auto !important;
+		}
+		.alert{
+			display: block;
+			width: 100%;
+			text-align: center;
+		}
+	}
+}

@@ -1,0 +1,621 @@
+#flashContainer {
+  position: fixed;
+  right: 0;
+  top: 90px;
+  max-width: 300px;
+  z-index: 100;
+
+  .notification {
+    .smallShadowed;
+    .relative;
+  }
+
+  .notification-red {
+    .secondaryDarkBlock;
+    .white;
+  }
+
+  .notification-green {
+    .mainBlock;
+    .white;
+  }
+
+  .close {
+    .bold;
+    .white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+  }
+}
+
+
+.reSelectContainer {
+  height: 25px;
+
+  .reSelect {
+    display: none;
+  }
+
+
+  .reSelect-title {
+    cursor: pointer;
+    text-align: center;
+    padding: 5px 12px;
+    .rounded(3px);
+    .greyDarkBlock;
+    background: white;
+    .standard;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  ul.reSelect-childs.opened {
+    display: inline-block;
+  }
+
+  ul.reSelect-childs {
+    display: none;
+    position: relative;
+    z-index: 100;
+    .smallShadowed;
+
+    li {
+      .small;
+      float: none !important;
+      display: block;
+      text-align: center;
+      .transition(background);
+      cursor: pointer;
+      background: white;
+      padding: 6px 4px;
+    }
+
+    li:hover {
+      background: @main;
+      color: white;
+    }
+
+    li.selected {
+      text-decoration: underline;
+    }
+  }
+
+  .reSelect-handle {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    background: url("../images/greenDownArrow.png") no-repeat mix(@greyDark, @greyDarkest, 50%) 5px 10px;
+    .transition(background-color);
+  }
+
+  .reSelect-handle:hover {
+    background-color: @greyDarkest;
+  }
+}
+
+.reSelectContainer.reSelectContainer-grey {
+  .reSelect-title {
+    background: @greyDark url('../images/downArrow.png') 92% 50% no-repeat;
+    color: white;
+    padding: 3px 20px 3px 3px;
+  }
+
+  ul.reSelect-childs {
+    li {
+      background: @grey;
+      color: white;
+      padding: 7px;
+    }
+
+    li:hover {
+      background: @greyDark;
+    }
+  }
+}
+
+.reRadio {
+  li {
+    cursor: pointer;
+    .rounded(3px);
+    .whiteBlock;
+    .relative;
+    padding: 10px;
+    margin: 15px 0;
+    border: 1px solid transparent;
+    .transition(border);
+    height: 43px;
+
+    input[type=radio] {
+      opacity: 0;
+      filter: alpha(opacity=0);
+      height: 1px;
+      line-height: 1px;
+      width: 0;
+      position: absolute !important;
+    }
+
+    .reRadio-button {
+      width: 43px;
+      height: 43px;
+      background-color: @greyDarkest;
+      .rounded(3px);
+      display: inline-block;
+      vertical-align: middle;
+      position: absolute;
+      left: -1px;
+      top: -1px;
+    }
+
+    clear: both;
+
+    label {
+      float: none !important;
+      margin-right: 0;
+      padding-left: 40px;
+      display: block;
+      text-align: center;
+    }
+  }
+
+  li:hover {
+    border: 1px solid fade(@main, 50%);
+  }
+
+  li.checked {
+    border: 1px solid @main;
+
+    .reRadio-button {
+      background-image: url("../images/check.png");
+      background-position: 10px 12px;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+input[type=checkbox].reCheckbox {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  height: 1px !important;
+  line-height: 1px;
+  width: 1px !important;
+  min-width: 0 !important;
+}
+
+.reCheckbox-button.checked {
+  background-image: url('../images/checkSmall.png');
+  background-repeat: no-repeat;
+  background-position: 1px 2px;
+}
+
+.reCheckbox-button {
+  .inbl;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  background-color: @greyDarkest;
+  .rounded(0);
+  display: inline-block;
+  vertical-align: middle;
+  color: @main;
+  text-align: center;
+  .bold;
+  cursor: pointer;
+}
+
+.reDropDown {
+  width: 26px;
+  height: 26px;
+  .rounded(3px);
+  display: inline-block;
+  vertical-align: middle;
+  //background-color: ;
+  //background: url("../images/greenDownArrow.png") no-repeat @greyDarkest 3px 8px;
+  background-color: @greyDarkest;
+  //padding: 8px 0px 0px 3px;
+  text-align: center;
+  padding-top: 3px;
+  padding-left: 3px;
+}
+
+.reDropDown > span {
+  color: @main;
+  font-size: 1.5em;
+}
+
+.reDropDown.opened {
+  width: 26px;
+  height: 26px;
+  .rounded(3px);
+  display: inline-block;
+  vertical-align: middle;
+  //background-color: ;
+  //background: url("../images/greenUpArrow.png") no-repeat @greyDarkest 3px 8px;
+  background-color: @greyDarkest;
+  //padding: 8px 0px 0px 3px;
+  text-align: center;
+  padding-top: 3px;
+  padding-left: 3px;
+}
+
+.bigPuce {
+  .mainBlock;
+  width: 60px;
+  height: 60px;
+  .rounded(40px);
+  .center;
+  .bold;
+  font-size: 40px;
+  color: white;
+  padding: 20px;
+  display: inline-block;
+}
+
+
+.step {
+  p {
+    min-height: 70px;
+  }
+
+  img {
+    display: inline-block;
+  }
+}
+
+a.step {
+  cursor: pointer;
+  display: block;
+  color: inherit;
+}
+
+.step.current {
+  .main;
+
+  hr {
+    .mainBlock;
+  }
+}
+
+.step.step-float, .step.step-float.step-quarter, .step.step-float.step-tiers, .step.step-float.step-sixth, .step.step-float.step-demi {
+  @media screen and (max-width: @responsiveThirdThresold) {
+    // padding: 10px 0;
+    // float: left;
+    // width: 16.5%;
+    // border-bottom: none;
+    // position: relative;
+    // img{
+    // 	width: 50%;
+    // }
+    // p{
+    // 	font-size: 12px;
+    // 	line-height: 15px;
+    // 	min-height: 0;
+    // }
+  }
+
+  p {
+    min-height: 0;
+    margin-bottom: 15px;
+  }
+}
+
+.step.step-float:first-child {
+  margin-left: 0;
+}
+
+.step.step-float:last-child {
+  margin-right: 0;
+}
+
+
+.step.step-mid {
+  max-width: 500px;
+  margin: 50px auto;
+}
+
+.step.step-quarter {
+  width: 21.7%;
+  float: left;
+  margin: 0 1.6%;
+
+  @media screen and (max-width: @responsiveThirdThresold) {
+    padding: 30px 0;
+    width: 100%;
+    float: none;
+    border-bottom: 1px solid fade(black, 10%);
+    margin: 0;
+    p {
+      height: auto;
+      margin: 15px auto;
+      max-width: 360px;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+}
+
+.step.step-tiers {
+  width: 30.3%;
+  float: left;
+  margin: 0 2.2%;
+  @media screen and (max-width: @responsiveThirdThresold) {
+    padding: 30px 0;
+    width: 100%;
+    float: none;
+    border-bottom: 1px solid fade(black, 10%);
+    margin: 0;
+    p {
+      height: auto;
+      margin: 15px auto;
+      max-width: 360px;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+}
+
+.step.step-sixth {
+  width: 13.3%;
+  float: left;
+  margin: 0 2%;
+  @media screen and (max-width: @responsiveThirdThresold) {
+    padding: 30px 0;
+    width: 100%;
+    float: none;
+    border-bottom: 1px solid fade(black, 10%);
+    margin: 0;
+    p {
+      height: auto;
+      margin: 15px auto;
+      max-width: 360px;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+}
+
+
+.step.step-demi {
+  width: 48%;
+  float: left;
+  margin: 0 2%;
+  @media screen and (max-width: @responsiveThirdThresold) {
+    padding: 30px 0;
+    width: 100%;
+    float: none;
+    border-bottom: 1px solid fade(black, 10%);
+    margin: 0;
+    p {
+      height: auto;
+      margin: 15px auto;
+      max-width: 360px;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+}
+
+.step.step-cinq {
+  width: 16.7%;
+  float: left;
+  margin: 0 2%;
+  @media screen and (max-width: @responsiveThirdThresold) {
+    padding: 30px 0;
+    width: 100%;
+    float: none;
+    border-bottom: 1px solid fade(black, 10%);
+    margin: 0;
+    p {
+      height: auto;
+      margin: 15px auto;
+      max-width: 360px;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+}
+
+
+.reTable {
+  background: white;
+  .smallShadowed;
+
+  tr:nth-child(even) {
+    background: desaturate(fade(@main, 4%), 50%);
+  }
+
+  tr.mainLine {
+    .mainBlock;
+    .white;
+    .bold;
+    .mid;
+    .center;
+  }
+
+  tr.lightLine {
+    .mainLightBlock;
+    .white;
+    .bold;
+    .mid;
+    .center;
+  }
+
+  tr.tertiaryLine {
+    .tertiaryBlock;
+    .white;
+    .bold;
+    .mid;
+    .center;
+  }
+}
+
+.reTable2 {
+  border-collapse: separate;
+  border-spacing: 0px 10px;
+
+  thead {
+    //.greyDarkestBlock;
+    //color: white;
+    height: 40px;
+  }
+
+  thead th {
+    .greyLightBlock;
+  }
+
+  .smallPaddingTable;
+
+  th, td {
+    vertical-align: middle;
+  }
+
+  td {
+    .whiteBlock;
+    //.whitesmokeBlock;
+  }
+
+  thead tr:first-child th:first-child {
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 100px;
+  }
+
+  thead tr:first-child th:last-child {
+    -webkit-border-top-right-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  tbody tr td:first-child {
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  tbody tr td:last-child {
+    -webkit-border-top-right-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+}
+
+.hoverTableLine {
+  cursor: pointer;
+  .transition(all);
+
+  td > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: @greyDarkest;
+  }
+
+  td > a:hover {
+    color: white;
+  }
+}
+
+.hoverTableLine:hover {
+  background: fade(@main, 20%);
+  color: white;
+}
+
+.ui-progressbar.ui-widget-content {
+  border: 1px solid #fff;
+}
+
+.ui-progressbar-value {
+  border: none;
+}
+
+.inFolderDoc {
+  display: none;
+}
+
+.hiddenDoc {
+  display: none;
+}
+
+
+/*
+ * TOOLTIP CUSTOM STYLE
+ */
+.ui-tooltip {
+  .mainBlock;
+  .white;
+  .bold;
+  .italic;
+  //.uppercase;
+  .tiny;
+  padding: 3px;
+}
+
+.ui-tooltip-grey {
+  .greyBlock;
+}
+
+.ui-widget-content-grey {
+  border: 1px solid @grey;
+}
+
+.ui-tooltip-greyLight {
+  .greyLightBlock;
+}
+
+.ui-widget-content-greyLight {
+  border: 1px solid @greyLight;
+}
+
+/*
+ * END TOOLTIP CUSTOM STYLE
+ */
+
+
+.smallMap {
+  width: 500px;
+  height: 150px;
+}
+
+@media only screen and (max-width: 900px) {
+  .smallMap {
+    display: none;
+  }
+}
+
+.avertissement {
+  background: lighten(@red, 50%);
+  border: 1px solid darken(@red, 10%);
+  color: @greyDarkest;
+  .midPadding;
+}
+
+.d-block {
+  display: block;
+}

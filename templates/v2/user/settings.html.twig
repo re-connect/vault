@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+{% block metaTitle %}{{ 'user.parametres.metaTitle'|trans }}{% endblock metaTitle %}
+{% block notifications %}{% endblock %}
+
+{% block bodyClass %}{{ getUserBackgroundColor() }}{% endblock bodyClass %}
+{% block headerProfilSpacer %}{% endblock headerProfilSpacer %}
+{% block body %}
+    <div class="bg-white">
+        <div class="mt-md-1 pt-md-3 mt-lg-5 pt-lg-5"></div>
+        <h1 class="h1 mt-0 pt-4 center text-primary">
+            {{ 'user_parameters_title'|trans|raw }}
+        </h1>
+        <br/><br/>
+    </div>
+    <div>
+        <br/>
+        <div class="container">
+            <div class="text-primary pb-2 row">
+                <div class="col pt-2">
+                    <i class="fas fa-user-plus font-size-1-3"></i>
+                    <span class="font-size-1-3 bold uppercase">
+				        &nbsp; {{ 'user_parameters_subtitle'|trans({'%subject%' : app.user.prenom ~ ' ' ~ app.user.nom}) }}
+				    </span>
+                </div>
+                <div class="col text-right">
+                    <a href="{{ path('re_user_redirectUser') }}"
+                       class="btn {{ app.user.isBeneficiaire ? 'btn-green' : 'btn-blue' }} barlow-medium font-size-1">
+                        {{ 'back_home'|trans }}
+                    </a>
+                </div>
+            </div>
+            <hr class="bg-primary my-0">
+            <br/>
+            {% block content %}
+                <div class="container w-75 justify-content-center">
+                    {{ include( app.user.isBeneficiaire
+                        ? 'v2/user/user_beneficiary_settings_form.html.twig'
+                        : 'v2/user/user_settings_form.html.twig'
+                        , {'settingsForm': userForm}) }}
+                </div>
+                <div class="text-primary pb-2 row mt-4">
+                    <div class="col pt-2">
+                        <i class="fas fa-lock font-size-1-3"></i>
+                        <span class="font-size-1-3 bold uppercase">
+				        &nbsp; {{ 'user.parametres.changerMotDePasse'|trans }}
+				    </span>
+                    </div>
+                </div>
+                <hr class="bg-primary my-0">
+                <br/>
+                <div class="container w-75 justify-content-center mb-4">
+                    {{ include('v2/user/change_password_form.html.twig', {'askCurrentPassword': true, 'passwordForm': passwordForm}) }}
+                </div>
+                {% if app.user.isBeneficiaire %}
+                    <div class="text-center mb-5">
+                        <a href="{{ path('user_delete') }}"
+                           class="font-size-1 vault-green">{{ 'delete_your_account'|trans }}</a>
+                    </div>
+                {% endif %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock body %}
+
+{% block styles %}
+    {{ encore_entry_link_tags('appV2style') }}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('appV2') }}
+{% endblock %}

@@ -1,0 +1,46 @@
+<header class="position-fixed z-1 bg-white">
+    <div class="container-fluid max-width-lg mx-auto">
+        <div class="row">
+            <div class="col-1 col-lg-6 text-left px-2">
+                <a href="{{ path(app.user.beneficiaire ? 're_beneficiaire_accueil' : 're_membre_beneficiaires')  }}">
+                    <img src="{{ asset('build/images/vault-logo-small.png') }}" alt="logo reconnect" class="img-logo">
+                </a>
+            </div>
+            <div class="col-11 col-lg-6 d-flex align-items-center justify-content-end pb-1 position-relative">
+                <div {{ stimulus_controller('dropdown-menu', {
+                    'toggleClasses': ['fa-chevron-up', 'fa-chevron-down'],
+                }) }} data-action="click->dropdown-menu#toggle">
+                    <div class="btn btn-white text-primary">
+                        <i class="far fa-user fa-lg font-size-1-3 me-2"></i>
+                        <span class="font-size-1-3 bold">{{ app.user.prenom|upper }} {{ app.user.nom|upper }}</span>
+                    </div>
+                    <i class="fas fa-chevron-down font-size-1-3 text-primary btn p-0"
+                       data-dropdown-menu-target="button">
+                    </i>
+                    <div class="user-menu position-absolute rounded shadow bg-primary text-white text-left d-none p-2"
+                         data-dropdown-menu-target="menu">
+                        {% if app.user.isBeneficiaire %}
+                            {{ include('v2/header/available_capacity_progress_bar.html.twig') }}
+                        {% else %}
+                            <div class="col-12">
+                                <a href="{{ path("re_membre_centres") }}"
+                                   class="text-white text-decoration-none"><i
+                                            class="fas fa-hotel me-1"></i>{{ 'header.menu.relaisReconnect'|trans|upper }}
+                                </a>
+                            </div>
+                        {% endif %}
+                        <div class="col-12 mt-2">
+                            <a href="{{ path('user_settings') }}"
+                               class="text-white text-decoration-none"><i
+                                        class="fas fa-cog me-1"></i>{{ 'header.menu.parametres'|trans|upper }}</a>
+                        </div>
+                        <div class="col-12 text-end">
+                            <a href="{{ path('app_logout') }}"
+                               class="btn {{ getUserButtonColor() }} text-white bold">{{ 'header.menu.deconnection'|trans }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

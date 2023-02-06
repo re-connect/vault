@@ -1,0 +1,28 @@
+App\Entity\ConsultationBeneficiaire:
+    type: entity
+    table: "consultationbeneficiaire"
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        createdAt:
+            type: datetime
+            column: createdAt
+            gedmo:
+                timestampable:
+                    on: create
+    manyToOne:
+        membre:
+            targetEntity: App\Entity\Membre
+            inversedBy: consultationsBeneficiaires
+            joinColumn:
+                nullable: false
+        beneficiaire:
+            targetEntity: App\Entity\Beneficiaire
+            inversedBy: consultationsBeneficiaires
+            joinColumn:
+                nullable: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,26 @@
+{% extends 'homeV2/base.html.twig' %}
+
+    {% block title %}{{ 'home_meta_title_rp'| trans }}{% endblock %}
+    {% block meta_title %}{{ 'home_meta_title_rp'| trans }}{% endblock %}
+
+{% block body %}
+
+    {{ include('homeV2/sections/page-rp-hero-section.html.twig') }}
+
+    {% for feature in features %}
+        {{ include ('homeV2/sections/feature-rp-section.html.twig',
+            {
+                direction: loop.index is even ? 'row' : 'row-reverse',
+                feature
+            }) }}
+    {% endfor %}
+
+    {{ include('homeV2/templates/product-is-template.html.twig',{section_title: 'rp_is_title', product_is }) }}
+
+    {{ include('homeV2/templates/contact-us-template.html.twig', {
+        bg_class: 'bg-blue',
+        logo_file_name: 'watermark_rp.png',
+        logo_alt: 'contact_us_alt_logo_reconnect'
+    }) }}
+
+{% endblock body %}

@@ -1,0 +1,21 @@
+App\Entity\BeneficiaireCentre:
+    type: entity
+    table: "beneficiairecentre"
+    repositoryClass: App\Repository\BeneficiaireCentreRepository
+    manyToOne:
+        centre:
+            targetEntity: App\Entity\Centre
+            inversedBy: beneficiairesCentres
+            joinColumn:
+                nullable: false
+        beneficiaire:
+            targetEntity: App\Entity\Beneficiaire
+            inversedBy: beneficiairesCentres
+            joinColumn:
+                nullable: false
+    oneToOne:
+        externalLink:
+            targetEntity: App\Entity\ClientBeneficiaire
+            mappedBy: beneficiaireCentre
+            cascade: [ "persist", "remove" ]
+    lifecycleCallbacks: { }

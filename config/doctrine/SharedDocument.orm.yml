@@ -1,0 +1,36 @@
+App\Entity\SharedDocument:
+    type: entity
+    table: "shareddocument"
+    repositoryClass: App\Repository\SharedDocumentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        sharedAt:
+            type: datetime
+            nullable: false
+        expirationDate:
+            type: datetime
+            nullable: false
+        token:
+            type: text
+            nullable: false
+        selector:
+            type: string
+            length: '255'
+            nullable: false
+        sharedWithEmail:
+            type: string
+            length: '255'
+            nullable: false
+    manyToOne:
+        document:
+            targetEntity: App\Entity\Document
+            mappedBy: shareddocument
+        sharedBy:
+            targetEntity: App\Entity\User
+            mappedBy: shareddocument
+

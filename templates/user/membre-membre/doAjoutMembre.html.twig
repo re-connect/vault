@@ -1,0 +1,36 @@
+{% extends 'user/gestionUser_base.html.twig' %}
+{% form_theme form _self  %}
+
+{# Remove label #}
+{% block _form_centres_row %}
+{{- form_widget(form) -}}
+{{- form_errors(form) -}}
+{% endblock _form_centres_row %}
+
+{%- block choice_widget_expanded -%}
+    {% if not multiple %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' reRadio')|trim}) %}
+    {% endif %}
+
+    <ul {{ block('widget_container_attributes') }}>
+    {%- for child in form %}
+       <li> {{- form_widget(child) -}}
+           {{- form_label(child) -}}
+		<br/><br/></li>
+    {% endfor -%}
+    </ul>
+{%- endblock choice_widget_expanded -%}
+
+
+
+{% block metaTitle %}{% trans %}membre.doAjoutMembre.metaTitle{% endtrans %}{% endblock metaTitle %}  
+{% block addUserTitle %}{% trans %}membre.doAjoutMembre.title{% endtrans %}{% endblock addUserTitle %}
+{% block addUserSubtitle %}{% trans %}membre.doAjoutMembre.subtitle{% endtrans %}{% endblock addUserSubtitle %}
+
+{% block addUserContent %}   
+	<div class="bold uppercase mid midMargin">{{ membre.user.nom }} {{ membre.user.prenom }} </div>
+
+	{{ form_start(form, {"attr" : {"class" : "reForm "}}) }}<br/>
+	{{ form_widget(form.centres) }}<br/>
+	{{ form_end(form) }}
+{% endblock addUserContent %}

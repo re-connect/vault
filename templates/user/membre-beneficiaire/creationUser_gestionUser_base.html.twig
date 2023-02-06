@@ -1,0 +1,23 @@
+{% extends 'user/gestionUser_base.html.twig' %}
+
+{% block metaTitle %}{% trans %}membre.creationBeneficiaire.metaTitle{% endtrans %}{% endblock metaTitle %}  
+{% block addUserTitle %}{{ 'create_new_benef'|trans|raw }}{% endblock addUserTitle %}
+
+{% block addUserContent %}
+{% if form is defined %}{{ form_start(form, {"attr" : {"class" : "reForm"}}) }}{% endif %}
+	{% block mainDiv_creation_addUserContent %}
+		<div style="max-width: 300px; margin: auto;">
+	{% endblock mainDiv_creation_addUserContent %}
+		{% block creation_addUserContent %}
+		{% endblock creation_addUserContent %}
+		<br/><br/>
+		
+		<div class="smallMargin center">
+			{% block bottomLinks %}
+			{{ form_widget(form.submit) }}
+			{% endblock bottomLinks %}
+		</div>
+		<br/>
+	</div>
+{% if form is defined %}{{ form_end(form) }}{% endif %}	
+{% endblock addUserContent %}

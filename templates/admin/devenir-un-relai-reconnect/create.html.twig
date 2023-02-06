@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block metaTitle %}{% trans %}devenirUnRelaiReconnect.accueil.metaTitle{% endtrans %}{% endblock metaTitle %}
+{% block metaDesc %}{% trans %}devenirUnRelaiReconnect.accueil.metaDesc{% endtrans %}{% endblock metaDesc %}
+
+{% block body %}
+    <div id="page-devenirRelai">
+        <div class="greyLightestBlock bigPadding">
+            <div class="restrictCenter600">
+                <h1 class="center big uppercase bold bigMargin">{% trans %}admin.menu.create_centre{% endtrans %}</h1>
+                {{ form_start(form, {"attr" : {"class" : "form-100"}}) }}
+
+                <div class="row">
+                    <div class="col s12 m6">{{ form_row(form.user.nom) }}</div>
+                    <div class="col s12 m6">{{ form_row(form.user.prenom) }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 m6">{{ form_row(form.user.email) }}</div>
+                    <div class="col s12 m6">{{ form_row(form.user.telephoneFixe) }}</div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m6">{{ form_row(form.association.nom) }}</div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m6"><br>
+                        <button type="submit" class="btn">Création</button>
+                    </div>
+                </div>
+                <br><br>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

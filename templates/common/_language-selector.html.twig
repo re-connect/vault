@@ -1,0 +1,38 @@
+{% set languages = [
+    {isoCode: 'ar',flag: asset('build/images/icons/flags/ar.png')},
+    {isoCode: 'de',flag: asset('build/images/icons/flags/de.png')},
+    {isoCode: 'en',flag: asset('build/images/icons/flags/en.png')},
+    {isoCode: 'es',flag: asset('build/images/icons/flags/es.png')},
+    {isoCode: 'fr',flag: asset('build/images/icons/flags/fr.png')},
+    {isoCode: 'it',flag: asset('build/images/icons/flags/it.png')},
+    {isoCode: 'ps',flag: asset('build/images/icons/flags/ps.png')},
+    {isoCode: 'prs',flag: asset('build/images/icons/flags/prs.png')},
+    {isoCode: 'ru',flag: asset('build/images/icons/flags/ru.png')},
+] %}
+{% set locale =  app.session.get("_locale") ?: 'fr' %}
+<div class="js-language-selector text-white bg-primary box-shadow-white barlow-medium pb-1"
+     style="min-width: 100px"
+>
+    <div class="js-language-selector-click shadow" style="position:relative; cursor: pointer">
+        <img class="border m-2" style="width:20px;"
+             src="{{ asset('build/images/icons/flags/'~locale~'.png') }}"
+             alt="{{ locale }}">
+        {{ locale|upper }}
+        <div style="position: absolute; bottom: 100%; width: 100%; left: 0"
+             class="js-language-selector-show bg-primary d-none">
+            {% for language in languages %}
+                {% if not language.isoCode is same as(locale) %}
+                    <div data-language="{{ language.isoCode }}"
+                         class="js-language-selector-change-lang border-bottom border-dark p-2"
+                         style="cursor: pointer;"
+                    >
+                        <img class="border m-2" style="width:20px;"
+                             data-language="{{ language.isoCode }}"
+                             src="{{ language.flag }}" alt="{{ language.isoCode }}">
+                        {{ language.isoCode|upper }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+App\Entity\ConsultationCentre:
+    type: entity
+    table: "consultationcentre"
+    repositoryClass: App\Repository\ConsultationCentreRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    
+    fields:
+        createdAt:
+            type: datetime
+            column: createdAt
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updatedAt
+            gedmo:
+                timestampable:
+                    on: update
+    manyToOne:
+        centre:
+            targetEntity: App\Entity\Centre
+            inversedBy: consultationsCentre
+            joinColumn:
+                nullable: false
+        beneficiaire:
+            targetEntity: App\Entity\Beneficiaire
+            inversedBy: consultationsCentre
+            joinColumn:
+                nullable: false
+    lifecycleCallbacks: {  }

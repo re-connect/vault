@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div id="page-beneficiaireAccueil">
+        <div id="page-beneficiaireAccueilCont" data-has-never-clicked-mes-documents="{{ beneficiaire.hasNeverClickedMesDocuments }}">
+            {{ knp_menu_render(knp_menu_get('re_user.beneficiaire.menu_renderer', [], {'beneficiaire' : app.user.subjectBeneficiaire, 'itemPerLine' : 3}), {'template': 'knp_menu_step.html.twig'}) }}
+        </div>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('beneficiaire_accueil') }}
+{% endblock javascripts %}

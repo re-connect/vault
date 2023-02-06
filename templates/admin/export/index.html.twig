@@ -1,0 +1,26 @@
+{% extends "sonata/admin_layout.html.twig" %}
+
+{% block sonata_admin_content %}
+<div class="container text-secondary">
+    <h1 class="text-center">{{ 'export_title'|trans }}</h1>
+    <p class="text-center">{{ 'export_subtitle_1'|trans }}</p>
+    <p class="text-center margin-bottom">{{ 'export_subtitle_2'|trans }}</p>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            {{ form_start(form) }}
+            {{ form_row(form.centers) }}
+            {{ form_row(form.regions) }}
+            <div class="col-lg-6 text-center">
+                {{ form_row(form.start_date) }}
+            </div>
+            <div class="col-lg-6 text-center margin-bottom">
+                {{ form_row(form.end_date) }}
+            </div>
+            <div class="mt-5 mb-3">
+                <input class="btn btn-block bg-gray-active" value="Valider" type="submit">
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

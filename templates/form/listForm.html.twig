@@ -1,0 +1,47 @@
+{%- block form_rows -%}
+<ul>
+    {% for child in form %}
+        {{- form_row(child) -}}
+    {% endfor %}
+</ul>
+{%- endblock form_rows -%}
+
+{%- block form_row -%}
+<li>
+    <div>
+        {{- form_label(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+     {{- form_widget(form) -}}
+</li>
+{%- endblock form_row -%}
+
+
+
+<!-- Entoure les champs coumpund de balises <legend> -->
+{%- block form_label -%}
+    {% if label is not same as(false) -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- else %}
+        <legend>
+        {%- endif %}
+        {% if required and not compound-%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif %}
+        {% if label is empty -%}
+            {%- if label_format is not empty -%}
+                {% set label = label_format|replace({
+                    '%name%': name,
+                    '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {%- endif -%}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+        {% if compound -%}
+        </legend>
+        {%- endif %}
+    {%- endif -%}
+{%- endblock form_label -%}

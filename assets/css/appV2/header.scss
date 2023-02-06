@@ -1,0 +1,23 @@
+header {
+  box-shadow: 0 1px 4px #cbcfd9;
+  min-height: 40px;
+  top: 0;
+  width: 100%;
+
+  .img-logo {
+    height: 60px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+
+  .user-menu {
+    width: 250px;
+    font-size: 12px;
+    top: 50px;
+    right: 10px;
+
+    .progress {
+      height: 12px;
+    }
+  }
+}

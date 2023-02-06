@@ -1,0 +1,19 @@
+<section class="bg-green mt-3 pt-3 pb-2 pt-md-5">
+    <div class="container">
+        <div class="row text-center pt-5">
+            <div class="offset-1 offset-md-0 col-10 col-md-4 col-lg-4 mt-md-4">
+                <img class="img-fluid mt-5" src="{{ asset('build/images/homeV2/logo_vault_white_v2.png') }}" alt="{{ 'home_our_solutions_alt_logo_cfn' |trans }}">
+            </div>
+            <div class="col-12 offset-md-4 col-md-4 offset-lg-2 col-lg-6">
+                <h3 id="cfn-page-hero-text" class="text-primary position-relative top-30">{{ 'cfn_page_hero_text' |trans }}</h3>
+                <img class="img-fluid w-50" src="{{ asset('build/images/homeV2/watermark_vault.png') }}"
+                     alt="{{ 'home_our_solutions_alt_logo_cfn' |trans }}">
+            </div>
+        </div>
+        <div class="row position-relative login-form">
+            <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+                {{ include('homeV2/templates/login-form-template.html.twig', {bg_class: 'bg-primary', btn_class: 'bg-green text-white', icon_color:'text-vault'}) }}
+            </div>
+        </div>
+    </div>
+</section>

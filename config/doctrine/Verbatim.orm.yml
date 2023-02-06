@@ -1,0 +1,19 @@
+App\Entity\Verbatim:
+  type: entity
+  table: "verbatim"
+  repositoryClass: App\Repository\VerbatimRepository
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+  fields:
+    content:
+      type: string
+      length: '255'
+      nullable: false
+    author:
+      type: string
+      length: '255'
+      nullable: false

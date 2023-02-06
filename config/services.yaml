@@ -1,0 +1,153 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    locale: '%env(locale)%'
+    siteName: "%env(siteName)%"
+    timezone: "%env(timezone)%"
+    country: "%env(country)%"
+
+    container.dumper.inline_factories: true
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $adminMails: '%env(json:ADMIN_MAILS)%'
+            $apikey: '%env(MJ_APIKEY_PUBLIC)%'
+            $apisecret: '%env(MJ_APIKEY_PRIVATE)%'
+            $bucketAccess: '%env(BUCKET_ACCESS_KEY)%'
+            $bucketEndpoint: '%env(BUCKET_ENDPOINT)%'
+            $bucketName: '%env(BUCKET_NAME)%'
+            $bucketSecret: '%env(BUCKET_SECRET_KEY)%'
+            $country: '%env(country)%'
+            $kernelEnvironment: '%kernel.environment%'
+            $kernelProjectDir: '%kernel.project_dir%'
+            $maxIdleTime: '%env(sessionMaxIdleTimeSeconds)%'
+            $noReplyMail: 'noreply@reconnect.fr'
+            $siteName: '%env(siteName)%'
+            $upload_tmp_dir: '%env(upload_tmp_dir)%'
+            string $rosalieBasicToken: '%env(ROSALIE_BASIC_TOKEN)%'
+            string $iOSAppLink: '%env(IOS_APP_LINK)%'
+            string $androidAppLink: '%env(ANDROID_APP_LINK)%'
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    'Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter': ~
+
+    # Menu Builders
+    App\Menu\REMainMenuBuilder:
+        tags:
+            - { name: knp_menu.menu_builder, method: headerMenu, alias: re_main.header.menu_renderer }
+            - { name: knp_menu.menu_builder, method: devenirUnRelaiReconnectMenu, alias: re_main.header.menu_renderer }
+
+    App\Menu\REUserMenuBuilder:
+        tags:
+            - { name: knp_menu.menu_builder, method: beneficiaireMenu, alias: re_user.beneficiaire.menu_renderer }
+            - { name: knp_menu.menu_builder, method: membreMenu, alias: re_user.membre.menu_renderer }
+            - { name: knp_menu.menu_builder, method: gestionnaireMenu, alias: re_user.gestionnaire.menu_renderer }
+        public: true
+
+    # Twig Extension
+    App\Extension\DocumentExtension:
+        autowire: true
+        tags:
+            - { name: twig.extension }
+
+    App\Extension\NotificationExtension:
+        autowire: true
+        tags:
+            - { name: twig.extension }
+
+    App\Extension\CommonExtension:
+        autowire: true
+        tags:
+            - { name: twig.extension }
+
+    App\Extension\SolutionExtension:
+        autowire: true
+        tags:
+            - { name: twig.extension }
+
+    #Twig Extension V2
+    App\Twig\ExtensionV2\UserColorExtension:
+        autowire: true
+        tags:
+            - { name: twig.extension }
+
+    # Listener
+    App\Listener\UserListener:
+        autowire: true
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, method: prePersist }
+
+    App\Listener\SessionIdleListener:
+        autowire: true
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    App\Listener\DonneePersonnelleListener:
+        autowire: true
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    App\Listener\REImageListener:
+        autowire: true
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, method: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
+            - { name: doctrine.event_listener, event: preRemove, method: preRemove }
+
+    App\Listener\FaqQuestionListener:
+        autowire: true
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, method: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
+            - { name: doctrine.event_listener, event: postFlush, method: postFlush }
+
+    re.manager.sms:
+        class: App\Manager\SMSManager
+        autowire: true
+        tags:
+            - { name: 'kernel.event_listener', event: 're.event.evenement', method: onEvenementEvent }
+
+    #ListenerV2
+    App\ListenerV2\CreatorListener:
+        autowire: true
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+
+    App\ListenerV2\DeactivatableListener:
+        autowire: true
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate, }
+
+    # Voter
+    App\Security\Authorization\Voter\UserVoter:
+        autowire: true
+        public: false
+        calls:
+            - [ setBeneficiaireVoter, [ '@App\Security\Authorization\Voter\BeneficiaireVoter' ] ]
+            - [ setMembreVoter, [ '@App\Security\Authorization\Voter\MembreVoter' ] ]
+        tags:
+            - { name: security.voter }
+
+    Imagine\Gd\Imagine: '@liip_imagine.gd'
+
+    App\DataFixtures\FixturesPurgerFactory:
+        tags:
+            - { name: 'doctrine.fixtures.purger_factory', alias: 'fixtures_purger' }

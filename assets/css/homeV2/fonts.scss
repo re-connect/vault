@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "Barlow-Medium";
+  src: url('./fonts/BarlowSemiCondensed-Medium.otf') format('opentype'),
+  url('./fonts/BarlowSemiCondensed-Medium.ttf') format('truetype'),
+  url('./fonts/BarlowSemiCondensed-Medium.eot') format('embedded-opentype'),
+  url('./fonts/BarlowSemiCondensed-Medium.woff') format('woff'),
+  url('./fonts/BarlowSemiCondensed-Medium.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Barlow-Light';
+  src: url('./fonts/BarlowSemiCondensed-Light.otf') format('opentype'),
+  url('./fonts/BarlowSemiCondensed-Light.ttf') format('truetype'),
+  url('./fonts/BarlowSemiCondensed-Light.eot') format('embedded-opentype'),
+  url('./fonts/BarlowSemiCondensed-Light.woff') format('woff'),
+  url('./fonts/BarlowSemiCondensed-Light.woff2') format('woff2');
+  font-weight: auto;
+  font-style: normal;
+}
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';

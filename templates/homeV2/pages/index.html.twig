@@ -1,0 +1,12 @@
+{% extends 'homeV2/base.html.twig' %}
+
+{% block body %}
+    {% set isCanada = host ends with '.social' %}
+    {{ include('homeV2/sections/hero-section.html.twig') }}
+    {{ include('homeV2/sections/who-we-are-section.html.twig') }}
+    {{ include('homeV2/sections/our-solutions-section.html.twig') }}
+    {{ include('homeV2/sections/solutions-list-section.html.twig') }}
+    {{ include('homeV2/sections/reconnect-centers-section.html.twig') }}
+    {{ include('homeV2/sections/verbatim-section.html.twig', verbatims ) }}
+    {{ include('homeV2/templates/contact-us-template.html.twig', {bg_class: 'bg-secondary', logo_file_name: 'watermark_home_v2.png', logo_alt: 'contact_us_alt_logo_reconnect'}) }}
+{% endblock body %}

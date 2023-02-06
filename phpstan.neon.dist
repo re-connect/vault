@@ -1,0 +1,12 @@
+includes:
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/phpstan/phpstan-symfony/rules.neon
+
+parameters:
+    level: 1
+    paths:
+        - ./src
+        - ./tests
+    bootstrapFiles:
+        - ./vendor/bin/.phpunit/phpunit/vendor/autoload.php
+        - ./vendor/autoload.php

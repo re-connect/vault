@@ -1,0 +1,24 @@
+{% extends 'v2/app/common/list_container_layout.html.twig' %}
+
+{% block metaTitle %}{{ 'centre.metaTitle'|trans }}{% endblock metaTitle %}
+
+{% block content %}
+    <div class="max-width-lg mt-4 m-auto">
+        {% block list %}
+            {{ relays is not empty or pendingRelays is not empty
+            ? include('v2/app/relay/list.html.twig', {
+                'relays': relays,
+                'pendingRelays': pendingRelays,
+            })
+            : include('v2/app/common/empty_list_content.html.twig', {
+                'message': 'center_has_no_info'|trans,
+                'img' : asset('build/images/icons/relais_bleu.png')
+            }) }}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block notifications %}
+    {{ render(controller('App\\ControllerV2\\MemberBeneficiaryController::firstMemberVisitNotification', {'id': beneficiary.id})) }}
+    {{ render(controller('App\\ControllerV2\\RelayController::relayNotification', {'id': beneficiary.id})) }}
+{% endblock %}

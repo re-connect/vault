@@ -1,0 +1,57 @@
+<section id="reconnect-centers" class="bg-success py-5">
+    <div class="container">
+        <div class="row py-4 align-items-center">
+            <div class=" {{ isCanada ?  'col-12 offset-md-2 col-md-8 text-center' : 'col-12 col-md-6 col-lg-6 pe-lg-5 text-center text-md-start' }}">
+                <h2 class="h2 text-primary pb-1 text-uppercase">{{ 'home_reconnect_centers_title'| trans }}</h2>
+                <p class="text-primary">{{ 'home_reconnect_centers_p'| trans }}</p>
+                <div id="carousel-reconnect-centers" class="carousel slide py-3 mx-auto" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active text-center">
+                            <img src="{{ asset('build/images/homeV2/logo-samu-social.jpg') }}"
+                                 class="d-inline-block mx-2 my-1 carousel-img" alt="logo samu social">
+                            <img src="{{ asset('build/images/homeV2/logo-aurore.png') }}"
+                                 class="d-inline-block mx-2 my-1 carousel-img" alt="logo association aurore">
+                            <img src="{{ asset('build/images/homeV2/logo-adages.png') }}"
+                                 class="d-inline-block mx-2 my-1 carousel-img" alt="logo association adages">
+                            <img src="{{ asset('build/images/homeV2/logo-croix-rouge.jpg') }}"
+                                 class="d-inline-block mx-2 my-1 carousel-img" alt="logo croix-rouge">
+                            <img src="{{ asset('build/images/homeV2/logo-amiens.png') }}"
+                                 class="d-inline-block mx-2 my-1 carousel-img" alt="logo ville amiens">
+                            <img src="{{ asset('build/images/homeV2/logo-aphp.png') }}"
+                                 class="d-inline-block mx-2 my-1 carousel-img" alt="logo aphp">
+                            <img src="{{ asset('build/images/homeV2/logo-mairie-nanterre.png') }}"
+                                 class="d-inline-block mx-2 my-1 carousel-img" alt="logo mairie nanterre">
+                            <img src="{{ asset('build/images/homeV2/logo-paris.jpg') }}"
+                                 class="d-inline-block mx-2 my-1 carousel-img" alt="logo ville paris">
+                        </div>
+                        <div class="carousel-item text-center">
+                            <img src="{{ asset('build/images/homeV2/logo-pimms-lyon.png') }}"
+                                 class="d-inline-block mx-2 my-1 carousel-img" alt="logo pimms lyon">
+                            <img src="{{ asset('build/images/homeV2/logo-sauvegarde-du-nord.png') }}"
+                                 class="d-inline-block mx-2 my-1 carousel-img" alt="logo sauvegarde du nord">
+                            <img src="{{ asset('build/images/homeV2/logo-secours-populaire.png') }}"
+                                 class="d-inline-block mx-2 my-1 carousel-img" alt="logo secours populaire">
+                            <img src="{{ asset('build/images/homeV2/logo-seine-st-denis.png') }}"
+                                 class="d-inline-block mx-2 my-1 carousel-img" alt="logo seine st denis">
+                            <img src="{{ asset('build/images/homeV2/logo-sos-solidarite.png') }}"
+                                 class="d-inline-block mx-2 my-1 carousel-img"
+                                 alt="{{ 'alt_logo_groupe_sos_solidarite' | trans }}">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev border-0 bg-transparent w-0" type="button" data-bs-target="#carousel-reconnect-centers" data-bs-slide="prev">
+                        <i class="text-primary fas fa-angle-left font-size-2" aria-hidden="true"></i>
+                        <span class="visually-hidden">{{ 'previous'|trans }}</span>
+                    </button>
+                    <button class="carousel-control-next border-0 bg-transparent w-0" type="button" data-bs-target="#carousel-reconnect-centers" data-bs-slide="next">
+                        <i class="text-primary fas fa-angle-right font-size-2" aria-hidden="true"></i>
+                        <span class="visually-hidden">{{ 'next'|trans }}</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 {{ isCanada ? 'd-none' : ''}}">
+                <div id="reconnect-centers-map" class="box-shadow-white"
+                     data-marker={{ asset('build/images/homeV2/map-marker-white.png') }}></div>
+            </div>
+        </div>
+    </div>
+</section>

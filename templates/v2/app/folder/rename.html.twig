@@ -1,0 +1,14 @@
+{% extends 'v2/app/common/standard_layout.html.twig' %}
+
+{% block metas %}
+    <meta name="turbo-cache-control" content="no-preview">
+{% endblock %}
+
+{% block content %}
+    {{ include('v2/app/form/personal_data_form.html.twig', {
+        'title': 'rename',
+        'cancelPath': folder.dossierParent
+        ? path('folder', {'id': folder.dossierParent.id})
+        : path('document_list', {'id': folder.beneficiaire.id})
+    }) }}
+{% endblock %}

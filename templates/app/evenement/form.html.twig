@@ -1,0 +1,45 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+    {{ form_errors(form) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.timezone) }}
+    {{ form_row(form.lieu) }}
+    {{ form_row(form.commentaire) }}
+    {{ form_label(form.rappels) }}<br/>
+<button type="button"
+        class="add-another-collection-widget"
+        data-list-selector="#rappel-fields-list">{{ 'add_sms_reminder'|trans }}
+</button>
+
+<ul id="rappel-fields-list" class="list-group"
+    data-prototype="{{ form_widget(form.rappels.vars.prototype)|e }}"
+    data-widget-tags="{{ '<li class="list-group-item"></li>'|e }}"
+    data-widget-counter="{{ form.rappels|length }}">
+    {% for rappelField in form.rappels %}
+        <li class="list-group-item">
+            <div class="form-group">
+                <div class="form-inline">
+                    {% if rappelField.vars['value'].sms is not null %}
+                        {{ form_widget(rappelField.date.date, {'attr': { 'disabled': 'disabled'}}) }}{{ form_widget(rappelField.date.time.hour, {'attr': { 'disabled': 'disabled'}}) }}:{{ form_widget(rappelField.date.time.minute, {'attr': { 'disabled': 'disabled'}}) }}
+                        <div class="row">
+                            <div class="col-md-2 col">
+                                <div class="alert alert-info p-1" role="alert">SMS envoyé.</div>
+                            </div>
+                        </div>
+
+                    {% else %}
+                        {{ form_widget(rappelField) }}
+                    {% endif %}
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+{% if form.bPrive is defined %}
+    {{ form_row(form.bPrive) }}
+{% endif %}
+    {{ form_row(form.submit) }}
+    {{ form_row(form._token) }}
+
+{{ encore_entry_script_tags('evenement_form') }}

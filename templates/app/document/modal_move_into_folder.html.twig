@@ -1,0 +1,36 @@
+<div ng-controller="EntityMoveIntoFolderModalCtrl" id="moveIntoFolderModal"
+     class="modal fade bs-move-into-folder-modal" role="dialog" tabindex="-1"
+     aria-labelledby="moveIntoFolderModalLabel"
+     style="display: none;">
+    <div class="modal-dialog" role="document">
+        <div ng-if="isDefined()" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                <h4 class="modal-title text-primary font-size-1-3" id="moveIntoFolderModalLabel">
+                    <i class="fas fa-folder-open" aria-hidden="true"></i>
+                    &nbsp;{{ 'move'|trans }}</h4></div>
+            <div class="modal-body">
+                <div class="list-group move-modal"
+                     data-message-document-in="{{ 'modal_message_document_move_in'|trans }}"
+                     data-message-document-out="{{ 'modal_message_document_move_out'|trans }}"
+                     data-message-folder-in="{{ 'modal_message_folder_move_in'|trans }}"
+                     data-message-folder-out="{{ 'modal_message_folder_move_out'|trans }}"
+                     data-message-move-in="{{ 'modal_message_move_in_folder'|trans }}"
+                >
+                    <a class="list-group-item pointer {{ '{{isDisabledClass()}}' }} text-primary {{ app.user.isBeneficiaire ?  "bg-light-green"  : "bg-light-blue"}}"
+                       ng-really-message="{{ '{{getMessage()}}' }}"
+                       ng-really-click="getOut()">{{ 'document.modal.move.documents'|trans }}</a>
+                    <div class="list-group-item">
+                        <div class="list-group">
+                            <a ng-repeat="folder in folders" ng-if="inSameFolder(folder)"
+                               class="list-group-item pointer {{ '{{isDisabledClass(folder.id)}}' }} text-primary {{ app.user.isBeneficiaire ?  "bg-light-green"  : "bg-light-blue"}}"
+                               ng-really-message="{{ '{{getMessage(folder)}}' }}"
+                               ng-really-click="moveIntoFolder(folder.id)">{{ "{{ getNom(folder) }}" }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

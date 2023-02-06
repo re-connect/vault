@@ -1,0 +1,18 @@
+<section class="{{ direction == 'row' ? 'bg-blue-opacity-005' : '' }} py-2 py-md-5 px-4 px-md-0">
+    <div class="container py-3">
+        <div class="row text-primary flex-{{ direction }}">
+            <div class="col-12 {{ direction == 'row-reverse' ? 'offset-md-2' : '' }} col-md-5 p-3 d-flex flex-column justify-content-center">
+                <h2 class="h2 text-uppercase pb-2">{{ feature.title|trans }}</h2>
+                <p class="pt-2">{{ feature.text|trans }}</p>
+                {% if feature.gdpr_text is defined %}
+                    <a class="lighter" href="{{ path('re_main_faq') }}">{{ feature.gdpr_text|trans }}</a>
+                {% endif %}
+            </div>
+            <div class="col-12 {{ direction == 'row-reverse' ? '' : 'offset-md-2' }} col-md-5 text-center">
+                {% set img_path = 'build/images/homeV2/'~ feature.img_fileName %}
+                <img class="{{ feature.is_mobile ? 'feature-transmission-mockup' : 'w-100 border-radius-20' }} border-radius-20 box-shadow-light-blue"
+                     src="{{ asset(img_path) }}" alt="{{ feature.img_alt|trans }}">
+            </div>
+        </div>
+    </div>
+</section>

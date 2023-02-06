@@ -1,0 +1,168 @@
+App\Entity\User:
+    constraints:
+        -   Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+                fields: username
+                groups: [ username, username-beneficiaire ]
+                message: username_already_in_use
+        -   Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+                fields: email
+                groups: [ beneficiaire, membre, association, gestionnaire ]
+                message: email_already_in_use
+
+    properties:
+        username:
+            -   App\Validator\Constraints\Username:
+                    groups: [ username, username-beneficiaire ]
+            -   NotBlank:
+                    groups: [ username, username-beneficiaire ]
+            -   Regex:
+                    pattern: '#^[a-z\-]{1,}\.[a-z\-]{1,}(\.[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3})?(-[1-9]\d*)?$#'
+                    groups: [ username-beneficiaire ]
+                    message: username_not_valid
+        plainPassword:
+            -   NotBlank:
+                    groups: [ password ]
+                    message: "form_validation_no_password"
+            -   Regex:
+                    pattern: '#^[\S]+$#'
+                    message: "form.validation.passwordFormat"
+                    groups: [ password ]
+            -   Length:
+                    min: 5
+                    groups: [ password, password-beneficiaire ]
+            -   Length:
+                    min: 8
+                    groups: [ password-membre ]
+            -   Callback:
+                  callback: [ App\Entity\User, validatePassword ]
+                  groups: [ password-membre ]
+        prenom:
+            -   App\Validator\Constraints\Name:
+                    groups: [ beneficiaire, membre, gestionnaire ]
+            -   NotBlank:
+                    message: firstname_not_empty
+                    groups: [ beneficiaire, membre, gestionnaire ]
+            -   Regex:
+                  message: 'firstname_format'
+                  pattern: "/^[a-zA-ZáàâäãåąçčćęéèêëėįíìîïłńñóòôöõøšúùûüųýÿżźžÁÀÂÄÃÅĄÇČĆĘÉÈÊËĖÍÌÎÏŁĮŃÑÓÒÔÖÕØŠÚÙÛÜŲÝŸŽ \\-']+$/"
+        nom:
+            -   App\Validator\Constraints\Name:
+                    groups: [ beneficiaire, membre, gestionnaire ]
+            -   NotBlank:
+                    message: lastname_not_empty
+                    groups: [ beneficiaire, membre, gestionnaire ]
+            -   Regex:
+                  message: 'lastname_format'
+                  pattern: "/^[a-zA-ZáàâäãåąçčćęéèêëėįíìîïłńñóòôöõøšúùûüųýÿżźžÁÀÂÄÃÅĄÇČĆĘÉÈÊËĖÍÌÎÏŁĮŃÑÓÒÔÖÕØŠÚÙÛÜŲÝŸŽ \\-']+$/"
+        email:
+            -   Email:
+                    groups: [ beneficiaire, membre, gestionnaire ]
+            -   NotBlank:
+                    message: mail_not_empty
+                    groups: [ gestionnaire ]
+        telephone:
+            -   NotBlank:
+                    message: phone_not_empty
+                    groups: [ beneficiaire-remotely ]
+App\Entity\Membre:
+    properties:
+        externalLinks:
+            -   App\Validator\Constraints\UniqueExternalLink:
+                    groups: [ membre ]
+        user:
+            -   Valid: ~
+
+App\Entity\Beneficiaire:
+    constraints:
+        -   App\Validator\Constraints\Beneficiaire\Entity:
+                groups: [ beneficiaire ]
+    properties:
+        externalLinks:
+            -   App\Validator\Constraints\UniqueExternalLink:
+                    groups: [ beneficiaire ]
+        questionSecrete:
+            -   NotBlank:
+                    message: secret_question_not_empty
+                    groups: [ beneficiaireQuestionSecrete ]
+        reponseSecrete:
+            -   NotBlank:
+                    message: secret_answer_not_empty
+                    groups: [ beneficiaireQuestionSecrete ]
+            -   Length:
+                    min: 3
+                    groups: [ beneficiaireQuestionSecrete ]
+        dateNaissance:
+            -   NotBlank:
+                    message: birthdate_not_empty
+                    groups: [ beneficiaire ]
+        user:
+            -   Valid: ~
+
+App\Entity\Gestionnaire:
+    properties:
+        association:
+            -   NotBlank:
+                    groups: [ gestionnaire ]
+            -   Valid: ~
+        centres:
+            -   Valid: ~
+            -   Count:
+                    min: 1
+                    minMessage: devenirUnRelaiReconnect.inscriptionCentres.auMoinsUnCentre
+                    groups: [ centre ]
+        user:
+            -   Valid: ~
+
+App\Entity\Association:
+    properties:
+        nom:
+            -   App\Validator\Constraints\ContainsAlphanumeric: ~
+            -   NotBlank:
+                    groups: [ association ]
+        siren:
+            -   Regex:
+                    pattern: "#^[0-9]{3} ?[0-9]{3} ?[0-9]{3}$#"
+                    message: "form.validation.sirenFormat"
+                    groups: [ association ]
+        urlSite:
+            -   Url:
+                    groups: [ association ]
+        user:
+            -   NotBlank:
+                    groups: [ association ]
+
+App\Entity\Centre:
+    constraints:
+        -   Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+                fields: nom
+                groups: [ centre ]
+    properties:
+        nom:
+            -   NotBlank:
+                    groups: [ centre ]
+        finess:
+            -   NotBlank:
+                    groups: [ centre ]
+        externalLinks:
+            -   App\Validator\Constraints\UniqueExternalLink:
+                    groups: [ centre ]
+
+App\Form\Entity\PasswordResetSecretQuestion:
+  properties:
+    password:
+      - NotBlank:
+          groups: [ password ]
+          message: "form_validation_no_password"
+      - Length:
+          min: 5
+          groups: [ password ]
+
+App\Form\Entity\PasswordResetSMS:
+  properties:
+    password:
+      - NotBlank:
+          groups: [ password ]
+          message: "form_validation_no_password"
+      - Length:
+          min: 5
+          groups: [ password ]

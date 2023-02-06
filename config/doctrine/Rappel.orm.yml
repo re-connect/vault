@@ -1,0 +1,36 @@
+App\Entity\Rappel:
+    type: entity
+    table: 'rappel'
+    repositoryClass: App\Repository\RappelRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+            options:
+                unsigned: true
+    fields:
+        date:
+            type: datetime
+        timezone:
+            type: string
+            length: 255
+            nullable: true
+        bEnvoye:
+            type: boolean
+        types:
+            type: array
+        archive:
+            type: boolean
+            options:
+                default: 0
+    manyToOne:
+        evenement:
+            targetEntity: App\Entity\Evenement
+            inversedBy: rappels
+    oneToOne:
+        sms:
+            targetEntity: App\Entity\SMS
+            mappedBy: rappel
+    lifecycleCallbacks: { }

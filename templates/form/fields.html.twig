@@ -1,0 +1,91 @@
+{% use "form_div_layout.html.twig" %}
+
+{% block form_errors -%}
+    {% if errors|length > 0 -%}
+        <ul class="error">
+            {%- for error in errors -%}
+                <li>{{ error.message|trans() }}</li>
+            {%- endfor -%}
+        </ul>
+    {%- endif %}
+{%- endblock form_errors %}
+
+
+{% block form_row -%}
+    <div class="smallMargin">
+        {{- form_label(form) -}} &nbsp;
+        {{- form_widget(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock form_row %}
+
+
+<!-- Supprime le surround par un div -->
+{%- block button_row -%}{{- form_widget(form) -}}{%- endblock button_row -%}
+
+
+{% block vich_file_widget %}
+    {% apply spaceless %}
+        <div class="vich-file">
+            {{ form_widget(form.file) }}
+            {% if download_uri is defined and object.url is defined  %}
+                <a href="" class="btn btnUploadFile">{% trans %}main.modifierFichier{% endtrans %}</a>
+                &nbsp; <span class="filenameLabel"><a
+                        href="{{ path('re_admin_annexe', {'url': object.url ? object.url : download_uri })}}">{% trans %}main.voirFichier{% endtrans %}</a></span>
+            {% else %}
+                <a href="" class="btn btnUploadFile">{% trans %}main.uploaderFichier{% endtrans %}</a>
+                &nbsp; <span class="filenameLabel"></span>
+            {% endif %}
+        </div>
+    {% endapply %}
+{% endblock %}
+
+{% block file_widget %}
+    {% set type = type|default('file') %}
+    <input type="{{ type }}"
+           style="position: absolute; left: -500px; opacity: 0.5; width: 10px;" {{ block('widget_attributes') }} />
+{% endblock %}
+
+
+
+{%- block form_widget_simple -%}
+    {%- set type = type|default('text') -%}
+
+    {% if errors|length > 0 %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' uncorrect')|trim}) %}
+    {% elseif value is not null and value != "" %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' correct')|trim}) %}
+    {% endif %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{%- endblock form_widget_simple -%}
+
+
+
+{%- block choice_widget_expanded -%}
+    {% if not multiple %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' reRadio')|trim}) %}
+    {% endif %}
+
+    <ul {{ block('widget_container_attributes') }}>
+        {%- for child in form %}
+            <li> {{- form_widget(child) -}}
+                {{- child.vars.label|trans -}}</li>
+        {% endfor -%}
+    </ul>
+{%- endblock choice_widget_expanded -%}
+
+{%- block radio_widget -%}
+    <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+{%- endblock radio_widget -%}
+
+{%- block radio_label -%}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+{%- endblock radio_label -%}
+
+
+{%- block checkbox_widget -%}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' reCheckbox')|trim}) %}
+    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+{%- endblock checkbox_widget -%}
+
+

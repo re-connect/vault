@@ -1,0 +1,34 @@
+App\Entity\AccessToken:
+    type: entity
+    table: accesstoken
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        token:
+            type: string
+            length: 255
+            colomn: token
+            unique: true
+        expiresAt:
+            type: integer
+            nullable: true
+            colomn: expires_at
+        scope:
+            type: string
+            length: 255
+            colomn: scope
+            nullable: true
+    manyToOne:
+        client:
+            targetEntity: App\Entity\Client
+            joinColumn:
+                nullable: false
+        user:
+            targetEntity: App\Entity\User
+            inversedBy: accessTokens
+            joinColumn:
+                nullable: true

@@ -1,0 +1,51 @@
+App\Entity\SMS:
+  type: entity
+  table: "sms"
+  repositoryClass: App\Repository\SMSRepository
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+  fields:
+    dest:
+      type: string
+      length: 255
+    createdAt:
+      type: datetime
+      column: createdAt
+      gedmo:
+        timestampable:
+          on: create
+    updatedAt:
+      type: datetime
+      column: updatedAt
+      gedmo:
+        timestampable:
+          on: update
+  manyToOne:
+    centre:
+      targetEntity: Centre
+      inversedBy: sms
+      joinColumn:
+        nullable: true
+    beneficiaire:
+      targetEntity: Beneficiaire
+      inversedBy: sms
+      joinColumn:
+        nullable: false
+  oneToOne:
+    rappel:
+      targetEntity: App\Entity\Rappel
+      inversedBy: sms
+#      cascade: ["persist"]
+###################################
+#  A supprimer
+    evenement:
+      targetEntity: App\Entity\Evenement
+      inversedBy: sms
+      joinColumn:
+        nullable: true
+###################################
+  lifecycleCallbacks: {  }

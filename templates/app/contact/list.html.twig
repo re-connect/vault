@@ -1,0 +1,159 @@
+{% extends 'app/base.html.twig' %}
+
+{% block metaTitle %}{{ 'contact.metaTitle'|trans }}{% endblock metaTitle %}
+{% block ajouterBlock %}
+
+    <a data-toggle="modal" data-target=".bs-new-modal" ng-controller="EntityAddCtrl"
+       class="btn {{ app.user.isBeneficiaire ? 'btn-green' : 'btn-blue' }} floatRight pointer"
+       ng-click="getNewForm()">
+        <i class="fas fa-plus-circle align-middle font-size-1-2 pr-1" aria-hidden="true"></i>
+        <span class="font-size-1 barlow-medium"
+              style="position: relative; top: 2px;">{{ 'donneePersonnelle.ajouter'|trans }}
+        </span>
+    </a>
+{% endblock ajouterBlock %}
+{% block searchInput %}
+    <div class="searchInput">
+    <i class="fas fa-search font-size-1 text-secondary" style="position:relative; left: 30px;"></i>
+    <input class="font-size-1 text-secondary border-blue-secondary" type="search" ng-model="searchQuery"
+           placeholder="{{ 'main.chercher'|trans }}"/>
+    </div>{% endblock %}
+{% block angController %}
+<div ng-controller="ContactsListCtrl">{% endblock angController %}
+    {% block switchVuesBlock %}{% endblock %}
+    {% block appBody %}
+        <div id="contactsList" class="center-block">
+            <div id="alertSuccess" class="alert alert-success" role="alert" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div id="alertSuccessMessage"></div>
+            </div>
+            <div id="alertDanger" class="alert alert-danger" role="alert" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div id="alertDangerMessage">
+                </div>
+            </div>
+            <div ng-if="isLoadedAndEmpty(contacts)">
+                <div class="hugePadding center text-primary">
+                    <div class="bigMargin mid">{{ 'contact.emptyData'|trans }}</div>
+                </div>
+            </div>
+            <div ng-if="isLoadedAndNotEmpty(contacts)">
+                <table id="contactsTable" class="reTable2 table-100 table text-primary">
+                    <thead>
+                    <tr>
+                        <th class="center bg-secondary font-size-1-3">{{ 'name'|trans }}</th>
+                        <th class="center bg-secondary font-size-1-3">{{ 'surname'|trans }}</th>
+                        <th class="center visible-md visible-lg bg-secondary font-size-1-3">{{ 'phone'|trans }}</th>
+                        <th class="center visible-md visible-lg bg-secondary font-size-1-3">{{ 'email'|trans }}</th>
+                        {% if app.user.isBeneficiaire %}
+                            <th class="center bg-secondary font-size-1-3 pr-4"
+                                style="width: 10%">{{ 'access'|trans }}</th>
+                        {% endif %}
+                        <th class="center bg-secondary font-size-1-3"
+                            style="width: 10%">{{ 'donneePersonnelle.list.entete.actions'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tableLine center font-size-1-1"
+                        dir-paginate="contact in contacts | filter:privacyFilter | filter:searchQuery | itemsPerPage: pageSize"
+                        current-page="currentPage" ng-mouseover="activateLine(contact, $event)">
+                        <td class="pointer" data-toggle="modal"
+                            data-target=".bs-apercu-modal">{{ '{{contact.nom}}' }}</td>
+                        <td class="pointer" data-toggle="modal"
+                            data-target=".bs-apercu-modal">{{ '{{contact.prenom}}' }}</td>
+                        <td class="pointer visible-md visible-lg" data-toggle="modal"
+                            data-target=".bs-apercu-modal">{{ '{{contact.telephone}}' }}</td>
+                        <td class="pointer visible-md visible-lg" data-toggle="modal"
+                            data-target=".bs-apercu-modal">{{ '{{contact.email}}' }}</td>
+                        {% if app.user.isBeneficiaire %}
+                            <td ng-if="!isInFolder()" class="singleLine pr-4">
+                                <i class="switch-icon font-size-1 fas fa-lock{{ '{{ getLockIconClass(contact) }}' }}"
+                                   title="{{ 'private'|trans }}"></i>
+                                <label class="switch mx-2">
+                                    <input type="checkbox"
+                                           ng-click="toggleAccess(contact)"
+                                           ng-model="contact.b_prive"
+                                           ng-true-value="false" ng-false-value="true"
+                                    >
+                                    <span class="slider round"></span>
+                                </label>
+                                <i class="switch-icon font-size-1 fas fa-share {{ '{{ getShareIconClass(contact) }}' }}"
+                                   title="{{ 'shared'|trans }}"></i>
+                            </td>
+                        {% endif %}
+
+                        <td>
+                            <div class="dropdown">
+                                <button type="button"
+                                        class="btn {{ app.user.isBeneficiaire ? 'btn-green' : 'btn-blue' }} dropdown-toggle "
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"><span
+                                            class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    {% if not app.user.isBeneficiaire %}
+                                        <li>
+                                            <a ng-really-message="{{ 'donneePersonnelle.etesVousSurBasculerEnPrive'|trans }}"
+                                               ng-really-click="reportAbuse(contact)"
+                                               class="pointer text-primary font-size-1">
+                                                <i class="fas fa-exclamation-triangle"
+                                                   aria-hidden="true"></i>&nbsp;{{ 'donneePersonnelle.basculerEnPrive'|trans }}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    <li>
+                                        <a ng-really-message="{{ '{{getMessageDelete(contact)}}' }}"
+                                           ng-really-click="delete(contact)"
+                                           data-message="{{ 'modal_message_contact_delete'|trans }}"
+                                           class="pointer text-primary font-size-1 delete-button">
+                                            <i class="fas fa-trash pr-2"
+                                               aria-hidden="true"></i>&nbsp;{{ 'delete'|trans }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="modal" data-target=".bs-edit-modal"
+                                           ng-click="getEditForm(contact)"
+                                           class="pointer text-primary font-size-1">
+                                            <i class="fas fa-pencil-alt pr-2"
+                                               aria-hidden="true"></i>&nbsp;{{ 'edit'|trans }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="modal" data-target=".bs-information-modal"
+                                           class="pointer text-primary font-size-1">
+                                            <i class="fas fa-info-circle pr-2"
+                                               aria-hidden="true"></i>&nbsp;{{ 'donneePersonnelle.information'|trans }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div id="app-paginationLine">
+                    <div class="floatRight">
+                        <dir-pagination-controls class="inbl" boundary-links="true"
+                                                 on-page-change="pageChangeHandler(newPageNumber)"
+                        ></dir-pagination-controls>
+                        {% import "app/macros.html.twig" as macros %}
+                        {{ macros.pageSelect() }}
+                    </div>
+                    <div class="clearFloat">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+
+        {{ include('app/contact/modal_edit.html.twig') }}
+        {{ include('app/contact/modal_new.html.twig') }}
+        {{ include('app/contact/modal_information.html.twig') }}
+        {{ include('app/contact/modal_apercu.html.twig') }}
+    {% endblock appBody %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('contact') }}
+    {% endblock javascripts %}

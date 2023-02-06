@@ -1,0 +1,13 @@
+<div class="row px-3">
+    {% for label, value in information %}
+        <div class="col-5">{{ label|trans }} :</div>
+        <div class="col-7">{{ value }}</div>
+    {% endfor %}
+    <div class="col-5">{{ 'evenement.rappelsLabel'|trans }} :</div>
+    <div class="col-7">
+        {% for reminder in event.rappels %}
+            <span>{{ reminder.date|format_datetime() }}</span>
+            <br>
+        {% endfor %}
+    </div>
+</div>

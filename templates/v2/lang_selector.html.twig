@@ -1,0 +1,38 @@
+{% set languages = {
+    'ar': {url: asset('build/images/icons/flags/ar.png')},
+    'de': {url: asset('build/images/icons/flags/de.png')},
+    'en': {url: asset('build/images/icons/flags/en.png')},
+    'es': {url: asset('build/images/icons/flags/es.png')},
+    'fr': {url: asset('build/images/icons/flags/fr.png')},
+    'it': {url: asset('build/images/icons/flags/it.png')},
+    'ps': {url: asset('build/images/icons/flags/ps.png')},
+    'prs': {url: asset('build/images/icons/flags/prs.png')},
+    'ru': {url: asset('build/images/icons/flags/ru.png')}
+} %}
+{% set locale = app.session.get("_locale") ?: 'fr' %}
+
+<div class="lang-selector bg-primary rounded shadow text-white mb-5 position-absolute"
+        {{ stimulus_controller('lang-selector') }}
+     data-action="click->lang-selector#toggle"
+>
+    <img class="lang-selector-flag border m-2"
+         src="{{ languages[locale].url }}"
+         alt="{{ locale }}">
+    <span class="btn p-0 text-white">{{ locale|upper }}</span>
+    <i class="fas fa-chevron-down text-white btn ps-0 fa-2xs float-end"></i>
+    <div class="lang-selector-list d-none position-absolute bg-primary rounded-top"
+         data-lang-selector-target="list"
+    >
+        {% for lang, content in languages %}
+            {% if not lang is same as(locale) %}
+                <div data-action="click->lang-selector#select"
+                     data-lang="{{ lang }}"
+                >
+                    <img class="lang-selector-flag border m-2"
+                         src="{{ content.url }}" alt="{{ lang }}">
+                    <span class="btn p-0 text-white">{{ lang|upper }}</span>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

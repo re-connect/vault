@@ -1,0 +1,134 @@
+$primary: #203468;
+$secondary: #28ad7a;
+$success: #b1dfcd;
+$light: #cdd1dc;
+$green: #4db95f;
+$light-green: #9ee3a9;
+$blue: #47b4d1;
+$yellow: #f9b02a;
+$light-yellow: #fffbf5;
+$enable-shadows: true;
+$navbar-light-color: $primary;
+$position-values: (
+        30:30%,
+);
+
+@import '~bootstrap-next/scss/bootstrap.scss';
+
+.bg-light-purple {
+  background-color: #374976;
+}
+
+.bg-green {
+  background-color: $green;
+}
+
+.bg-light-green {
+  background-color: $light-green;
+}
+
+.bg-green-opacity-005 {
+  background-color: rgba(77, 185, 95, 0.05);
+}
+
+.bg-blue {
+  background-color: $blue;
+}
+
+.bg-blue-opacity-005 {
+  background-color: rgba(71, 180, 209, 0.05);
+}
+
+.box-shadow-primary {
+  -webkit-box-shadow: 2px -1px 10px 0px rgba(32, 52, 104, 0.44);
+  box-shadow: 2px -1px 10px 0px rgba(32, 52, 104, 0.44);
+}
+
+.box-shadow-secondary {
+  -webkit-box-shadow: 2px -1px 10px 0px rgba(49, 173, 122, 0.44);
+  box-shadow: 2px -1px 10px 0px rgba(49, 173, 122, 0.44);
+}
+
+.box-shadow-white {
+  -webkit-box-shadow: 0px 0px 4px 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 0px 4px 1px rgba(255, 255, 255, 0.5);
+}
+
+.box-shadow-light-green {
+  -webkit-box-shadow: 0px 0px 50px 5px rgba(77, 185, 95, 0.4);
+  box-shadow: 0px 0px 50px 5px rgba(77, 185, 95, 0.4);
+}
+
+.box-shadow-light-blue {
+  -webkit-box-shadow: 0px 0px 50px 5px rgba(71, 180, 209, 0.4);
+  box-shadow: 0px 0px 50px 5px rgba(71, 180, 209, 0.4);
+}
+
+.bg-yellow {
+  background-color: $yellow;
+}
+
+.bg-light-yellow {
+  background-color: $light-yellow;
+}
+
+.box-shadow-light-yellow {
+  -webkit-box-shadow: 0px 0px 50px 5px rgba(249, 176, 42, 0.4);
+  box-shadow: 0px 0px 50px 5px rgba(249, 176, 42, 0.4);
+}
+
+.border-radius-20 {
+  border-radius: 20px;
+}
+
+.border-radius-40 {
+  border-radius: 40px;
+}
+
+.font-size-0-9 {
+  font-size: 0.9rem;
+}
+
+.font-size-1 {
+  font-size: 1rem;
+}
+
+.font-size-1-1 {
+  font-size: 1.1rem;
+}
+
+.font-size-1-2 {
+  font-size: 1.2rem;
+}
+
+.font-size-1-3 {
+  font-size: 1.3rem;
+}
+
+.font-size-2 {
+  font-size: 2rem;
+}
+
+.lighter {
+  font-family: 'Barlow-Light', sans-serif;
+}
+
+.text-vault {
+  color: $green;
+}
+.text-success {
+  color: $green !important;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+@import './fonts.scss';
+@import './globalStructure.scss';
+@import '../language-selector.scss';
+@import '../helper/intl-tel-input.scss';

@@ -1,0 +1,25 @@
+@import '../homeV2/fonts.scss';
+
+.font-size-1 {
+  font-size: 1rem;
+}
+
+.font-size-1-2 {
+  font-size: 1.2rem;
+}
+
+.font-size-1-3 {
+  font-size: 1.3rem;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+body {
+  font-family: Barlow-Medium, sans-serif;
+}
+
+.transform-uppercase {
+  text-transform: uppercase !important;
+}

@@ -1,0 +1,39 @@
+{% extends 'user/gestionUser_base.html.twig' %}
+{% form_theme form _self  %}
+
+
+{% block metaTitle %}{% trans %}membre.arreterSuivi.metaTitle{% endtrans %}{% endblock metaTitle %}
+{% block addUserTitle %}{% trans %}membre.arreterSuivi.title{% endtrans %}{% endblock addUserTitle %}
+
+{% block addUserSubtitle %}{{ 'membre.arreterSuivi.subtitle'|trans({'%subject%' : subject.user.nom ~ ' ' ~ subject.user.prenom,  }) }}{% endblock addUserSubtitle %}
+
+
+{%- block choice_widget_expanded -%}
+    {% if not multiple %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' reRadio')|trim}) %}
+    {% endif %}
+
+    <ul {{ block('widget_container_attributes') }}>
+    {%- for child in form %}
+       <li> {{- form_widget(child) -}}
+           {{- form_label(child) -}}
+		<br/><br/></li>
+    {% endfor -%}
+    </ul>
+{%- endblock choice_widget_expanded -%}
+
+
+
+{% block addUserContent %} 
+<div class="" style="min-height: 364px;">
+    <div class="centeredContainer">
+    	<p class="mid">{% trans %}membre.arreterSuivi.text{% endtrans %}</p>
+    	{{ form_start(form, {"attr" : {"class" : "reForm "}}) }}<br/>
+    	{{ form_widget(form.centres) }}<br/>
+    	{{ form_end(form) }}
+	</div>
+</div>
+
+{% endblock addUserContent %}
+
+

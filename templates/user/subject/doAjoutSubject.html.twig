@@ -1,0 +1,31 @@
+{% extends 'user/gestionUser_base.html.twig' %}
+{% form_theme form _self  %}
+{# Remove label #}
+{% block _form_centres_row %}
+{{- form_widget(form) -}}
+{{- form_errors(form) -}}
+{% endblock _form_centres_row %}
+{%- block choice_widget_expanded -%}
+    {% if not multiple %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' reRadio')|trim}) %}
+    {% endif %}
+    <ul {{ block('widget_container_attributes') }}>
+    {%- for child in form %}
+       <li> {{- form_widget(child) -}}
+           {{- form_label(child) -}}
+		<br/><br/></li>
+    {% endfor -%}
+    </ul>
+{%- endblock choice_widget_expanded -%}
+{% block addUserSubtitle %}{% trans %}membre.doAjoutSubject.subtitle{% endtrans %}{% endblock addUserSubtitle %}
+
+{% block addUserContent %}   
+	<div class="midMargin text-primary font-size-1-3">{{ subject.user.nom }} {{ subject.user.prenom }} </div>
+
+	{{ form_start(form, {"attr" : {"class" : "reForm text-primary font-size-1"}}) }}<br/>
+	{{ form_widget(form.centres) }}<br/>
+	<a href="{{ path("re_membre_ajoutBeneficiaire") }}" class="btn btn-dark-blue font-size-1 mr-1">{{ 'main.annuler'|trans }}</a>
+	{{ form_widget(form.submit, {'attr': {'class': 'btn-blue font-size-1 ml-1'}}) }}<br/>
+	{{ form_end(form)}}
+
+{% endblock addUserContent %}

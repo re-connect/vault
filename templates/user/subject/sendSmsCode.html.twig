@@ -1,0 +1,15 @@
+{% extends 'user/gestionUser_base.html.twig' %}
+
+
+
+
+{% block addUserSubtitle %}{% trans %}membre.sendSmsCode.subtitle{% endtrans %}{% endblock addUserSubtitle %}
+
+{% block addUserContent %}   
+	
+	<div style="max-width: 400px; margin: auto;">
+		<div class="mid smallMargin text-primary">{{ 'membre.sendSmsCode.text'|trans({'%phone%' : subject.user.telephone}) }}</div>
+		{{ form(form, {"attr" : {"class" : "reForm form-100 text-primary font-size-1"}}) }}
+	</div>
+{% endblock addUserContent %}
+

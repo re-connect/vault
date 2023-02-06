@@ -1,0 +1,52 @@
+{% extends 'user/membre-beneficiaire/creationUser_gestionUser_base.html.twig' %}
+
+{% form_theme form _self %}
+
+{# Remove label #}
+{% block _form_centres_row %}
+    {{- form_widget(form) -}}
+    {{- form_errors(form) -}}
+{% endblock _form_centres_row %}
+
+{%- block choice_widget_expanded -%}
+    {% if not multiple %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' reRadio')|trim}) %}
+    {% endif %}
+
+    <ul {{ block('widget_container_attributes') }}>
+    {%- for child in form %}
+       <li class="text-center">
+           {{- form_widget(child) -}}
+		</li>
+    {% endfor -%}
+    </ul>
+{%- endblock choice_widget_expanded -%}
+
+
+{% block addUserSubtitle %}
+    {% if way is same as('default') %}
+    {{ 'create_new_benef_step4'|trans({'%step%': 4, '%totalSteps%': 6})|raw }}
+{% else %}
+    {{ 'create_new_benef_remotely_step2'|trans({'%step%': 2, '%totalSteps%': 4})|raw }}
+{% endif %}
+{% endblock addUserSubtitle %}
+
+{% block creation_addUserContent %}
+    {{ form_row(form.centres, {'attr': {'class': 'font-size-1'}}) }}
+{% endblock creation_addUserContent %}
+
+{% block bottomLinks %}
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-2 col-xs-4 col-xs-offset-2">
+            {% if way is same as('default') %}
+                <a href="{{ path('creationBeneficiaireStep3') }}" class="btn btn-dark-blue font-size-1">{% trans %}main.retour{% endtrans %}</a>
+            {% else %}
+                <a href="{{ path('reset_beneficiary_creation' , {'way' : way}) }}"
+                   class="btn btn-dark-blue">{% trans %}main.annuler{% endtrans %}</a>
+            {% endif %}
+        </div>
+        <div class="col-sm-4 col-xs-4">
+            {{ form_widget(form.submit, {'attr': {'class': 'btn-blue font-size-1'}}) }}
+        </div>
+    </div>
+{% endblock bottomLinks %}

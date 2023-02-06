@@ -1,0 +1,38 @@
+app_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+
+re_user_loginEnd:
+    path: /login-end
+    controller: App\Controller\SecurityController::loginEnd
+
+re_user_redirectUser:
+    path: /user/redirect-user/
+    controller: App\Controller\SecurityController::redirectUser
+
+re_user_firstVisit:
+    path: /user/premiere-visite
+    controller: App\Controller\UserController::firstVisit
+    methods: [ GET ]
+
+re_user_cgs:
+    path: /user/cgs
+    controller: App\Controller\UserController::cgs
+
+re_user_accepterCentre:
+    path: /user/accepter-centre/{id}
+    controller: App\Controller\UserController::accepterCentre
+    requirements:
+        id: \d{1,10}
+
+re_user_refuserCentre:
+    path: /user/refuser-centre/{id}
+    controller: App\Controller\UserController::refuserCentre
+    requirements:
+        id: \d{1,10}
+
+re_user_settings:
+    path: /user/{id}/settings
+    controller: App\Controller\UserController::parametres
+    requirements:
+        id: \d{1,10}

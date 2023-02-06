@@ -1,0 +1,13 @@
+birthdate_not_empty: Birthdate must not be empty
+email_already_in_use: Mail already in use
+firstname_format: 'You can only enter letters, hyphens (-) or apostrophes ('')'
+firstname_not_empty: Firstname must not be empty
+form_validation_no_password: Password must not be empty
+lastname_format: 'You can only enter letters, hyphens (-) or apostrophes ('')'
+lastname_not_empty: Lastname must not be empty
+mail_not_empty: Mail must not be empty
+phone_not_empty: Phone must not be empty
+secret_question_not_empty: Secret question must not be empty
+secret_answer_not_empty: Secret answer must not be empty
+username_already_in_use: Username already in use
+username_not_valid: Username invalid

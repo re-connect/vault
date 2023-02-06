@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block bodyCentered %}   
+	<div class="center">
+		<h1 class="h1 bigMargin">{% trans %}main.etesVousSur{% endtrans %}</h1>
+		<div class="smallMargin mid">{{ "membre.beneficiaires.arreterSuiviEtesVousSur"|trans({"%nom%" : beneficiaire.user.prenom ~ ' ' ~ beneficiaire.user.nom }) }}</div> 
+		{{form_start(form)}}
+		<a href="{{ app.request.headers.get('referer') }}" class="btn btn-dark-blue font-size-1">{% trans %}main.non{% endtrans %}</a>
+		{{form_widget(form.submit, {'attr': {'class': 'btn-blue font-size-1'}})}}
+		{{form_end(form)}}
+	</div>
+{% endblock bodyCentered %}
+

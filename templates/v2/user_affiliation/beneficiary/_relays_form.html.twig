@@ -1,0 +1,31 @@
+<h4 class="text-center mt-4">
+    <i class="fas fa-user me-1"></i>
+    {{ beneficiary.user.username }}
+</h4>
+{{ form_start(form) }}
+<div class="row mt-5" {{ stimulus_controller('toggle_display') }}>
+    <div class="col-md-4 offset-md-2 my-auto bg-white border shadow p-2">
+        <span class="bold">{{ 'relays'|trans }} :</span>
+        {{ form_row(form.relays) }}
+        <div class="{{ form_errors(form.secretAnswer)|length > 0 ? '' : 'd-none' }}" {{ stimulus_target('toggle_display', 'target') }}>
+            {{ form_row(form.secretAnswer) }}
+        </div>
+        <button type="submit" data-turbo="false" class="btn btn-blue text-white mt-2 w-100">
+            {{ 'submit'|trans }}
+        </button>
+    </div>
+    <div class="col-md-4 text-center mt-3 mt-md-0">
+        <div class="alert alert-green my-auto " role="alert">
+            <span>{{ 'answer_secret_question_relay_acception'|trans }}</span>
+            <br>
+            <button type="button" class="btn btn-green text-white rounded-pill shadow-sm mt-3"
+                    {{ stimulus_action('toggle_display', 'toggle') }}
+            >
+                {{ 'answer_secret_question'|trans }}
+            </button>
+        </div>
+    </div>
+    <div class="mt-4 col-md-2 offset-md-5">
+    </div>
+</div>
+{{ form_end(form) }}

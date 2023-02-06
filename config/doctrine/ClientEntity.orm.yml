@@ -1,0 +1,42 @@
+App\Entity\ClientEntity:
+  type: entity
+  table: 'client_entity'
+  repositoryClass: App\Repository\ClientEntityRepository
+  inheritanceType: SINGLE_TABLE
+  discriminatorColumn:
+    name: discr
+    type: string
+  discriminatorMap:
+    clientCentre: ClientCentre
+    clientMembre: ClientMembre
+    clientBeneficiaire: ClientBeneficiaire
+    clientGestionnaire: ClientGestionnaire
+  id:
+    client:
+      associationKey: true
+    distantId:
+      type: string
+      column: distant_id #    à supprimer après maj naming_strategy dans config
+      options:
+        unsigned: true
+    discr:
+      associationKey: true
+    entity_name:
+      type: string
+  fields:
+    createdAt:
+      type: datetime
+      column: created_at #    à supprimer après maj naming_strategy dans config
+      gedmo:
+        timestampable:
+          on: create
+    updateAt:
+      type: datetime
+      column: update_at #    à supprimer après maj naming_strategy dans config
+      gedmo:
+        timestampable:
+          on: update
+  manyToOne:
+    client:
+      targetEntity: Client
+  lifecycleCallbacks: {  }

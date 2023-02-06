@@ -1,0 +1,5 @@
+{% extends '@SonataAdmin/CRUD/base_list_field.html.twig' %}
+
+{% block field %}
+    <div title="{{ value }}">{{ value[0:20] }}{% if value|length > 20 %}&nbsp;...{% endif %}</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+App\Entity\Contact:
+  type: entity
+  table: "contact"
+  repositoryClass: App\Repository\ContactRepository
+  fields:
+    prenom:
+      type: string
+      length: 255
+    telephone:
+      type: string
+      length: 255
+      nullable: true
+    email:
+      type: string
+      length: 255
+      nullable: true
+    commentaire:
+      type: text
+      nullable: true
+    association:
+      type: string
+      length: 255
+      nullable: true
+
+  manyToOne:
+    beneficiaire:
+      targetEntity: App\Entity\Beneficiaire
+      inversedBy: contacts
+      joinColumn:
+        nullable: false
+  oneToMany:
+    creators:
+      targetEntity: App\Entity\Creator
+      cascade: ["persist", "remove"]
+      mappedBy: contact
+  #    oneToMany:
+  #        evenements:
+  #            targetEntity: App\Entity\Evenement
+  #            mappedBy: contact
+  lifecycleCallbacks: {  }

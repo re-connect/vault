@@ -1,0 +1,143 @@
+{# <div id="push{% if app.user %}Connected{% endif %}"></div> #}
+{% if not app.user %}
+    <div id="footer">
+        <div class="centeredContainer">
+
+            <div class="row">
+                <div class="col m6 s12 m-footer-menu">
+                    <div class="row">
+                        <div class="footer-menu col m12 s12">
+                            <h3 class="h3 white" style="text-align: center">
+                                {% trans %}footer.reconnect{% endtrans %}
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="footer-menu col m6 s12">
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <a href="http://www.groupe-sos.org/">{% trans %}footer.groupeSos{% endtrans %}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="scrollTo" data-scroll-to="home-partenaires">
+                                            {% trans %}footer.partenaires{% endtrans %}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="scrollTo" data-scroll-to="home-nousSuivre">
+                                            {% trans %}home.nousSuivre{% endtrans %}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="footer-menu col m6 s12">
+                            <nav>
+                                <ul>
+                                    <li><a href="{{ path('re_admin_annexe', {"url" : 'cgu-reconnect'}) }}"
+                                           target="_blank">{% trans %}footer.cguReconnect{% endtrans %}</a></li>
+                                    <li>
+                                        <a href="{{ path('re_admin_annexe', {"url" : 'confidentialite-reconnect'}) }}"
+                                           target="_blank">{% trans %}footer.confidentialiteReconnect{% endtrans %}</a>
+                                    </li>
+                                    <li><a href="{{ path('re_admin_annexe', {"url" : 'mentions-legales'} ) }}"
+                                           target="_blank">{% trans %}footer.mentionsLegales{% endtrans %}</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="col m6 s12">
+                    <div class="row">
+                        <div class="footer-menu col m12 s12">
+                            <h3 class="h3 white" style="text-align: center">
+                                {% trans %}footer.cloudSolidaire{% endtrans %}
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="footer-menu col m6 s12">
+                            <nav>
+                                <ul>
+                                    {% if app.user %}
+                                        <li>
+                                            <a href="{{ path('app_logout') }}">{% trans %}footer.deconnexion{% endtrans %}</a>
+                                        </li>
+                                        <li><a href="">{% trans %}footer.trouverUnCentreSocial{% endtrans %}</a></li>
+                                    {% else %}
+                                        <li>
+                                            <a href="{{ path('fos_user_security_login') }}">{% trans %}footer.connexion{% endtrans %}</a>
+                                        </li>
+                                    {% endif %}
+                                    <li>
+                                        <a href="#" class="scrollTo" data-scroll-to="home-commentCaMarche">
+                                            {% trans %}footer.commentCaMarche{% endtrans %}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="footer-menu col m6 s12">
+                            <nav>
+                                <ul>
+                                    <li><a href="{{ path('re_admin_annexe', {"url" : 'cgs-cs'}) }}"
+                                           target="_blank">{% trans %}footer.cgsCs{% endtrans %}</a></li>
+                                    <li><a href="{{ path('re_admin_annexe', {"url" : 'confidentialite-cs'}) }}"
+                                           target="_blank">{% trans %}footer.confidentialiteCs{% endtrans %}</a></li>
+
+                                    <li>&nbsp;</li>
+                                    <li>
+                                        <select name="changeLang" class="changeLang reSelect reSelect-grey">
+                                            <option value="en"
+                                                    {% if app.session.get("_locale") == "en" %}selected="selected"{% endif %}>
+                                                EN
+                                            </option>
+                                            <option value="fr"
+                                                    {% if not app.session.get("_locale") or app.session.get("_locale") == "fr" %}selected="selected"{% endif %}>
+                                                FR
+                                            </option>
+                                            cus
+                                            <option value="ru"
+                                                    {% if app.session.get("_locale") == "ru" %}selected="selected"{% endif %}>
+                                                RU
+                                            </option>
+                                            <option value="ar"
+                                                    {% if app.session.get("_locale") == "ar" %}selected="selected"{% endif %}>
+                                                AR
+                                            </option>
+                                        </select>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="clearFloat">&nbsp;</div>
+            <br/>
+            <hr class="mainBlock">
+            <div class="tiny white">{% trans %}footer.copyright{% endtrans %}</div>
+        </div>
+    </div>
+{% else %}
+    <footer class="bg-light" style="position: relative">
+        <div style="position:absolute; right: 16px; top: -48px;">
+            {{ include('common/_language-selector.html.twig') }}
+        </div>
+        <div class="bg-primary py-2"></div>
+        <div class="container py-3">
+            <div class="text-primary text-center row">
+                <small class="col-xs-12 col-sm-4 mb-2">{{ 'now' | date('Y') }} {{ 'footer_copyright' | trans }}</small>
+                <a class="text-primary col-xs-12 col-sm-4 mb-2" target="_blank"
+                   class="text-decoration-none my-3 text-primary"
+                   href="https://www.reconnect.fr/annexe/cgs-cs">{{ 'footer_CGS_vault'|trans }}</a>
+                <a class="text-primary col-xs-12 col-sm-4 mb-2" target="_blank"
+                   class="text-decoration-none my-3 text-primary"
+                   href="https://www.reconnect.fr/annexe/confidentialite-cs">{{ 'footer_confidentiality_vault'|trans }}</a>
+            </div>
+        </div>
+    </footer>
+{% endif %}

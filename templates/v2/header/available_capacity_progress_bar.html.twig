@@ -1,0 +1,10 @@
+<div class="col-12">
+    {{ "used_available"|trans({
+        "%used%" : app.user.subjectBeneficiaire.totalFileSize|printFileSize,
+        "%available%" : getMaxSizeForBeneficiaire()|printFileSize
+    }) }}
+    <div class="bg-green mt-2">
+        <div class="progress"
+             style="width: {{ 100*app.user.subjectBeneficiaire.totalFileSize/getMaxSizeForBeneficiaire() }}%;"></div>
+    </div>
+</div>

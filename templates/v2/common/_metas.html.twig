@@ -1,0 +1,12 @@
+<meta charset="UTF-8"/>
+{% block metas %}{% endblock %}
+    {% if siteName == 'prod' %}
+        <meta name="google-site-verification" content="{{ google_site_verification }}">
+    {% endif %}
+<meta name="description" content="{% block metaDesc %}{{ 'home.metaDescV2'|trans }}{% endblock metaDesc %}"/>
+<meta property="og:image" content="https://www.reconnect.fr{{ asset('build/images/home/background.jpg') }}"/>
+<meta property="og:description" content="{{ 'home.metaDescV2'|trans }}"/>
+<meta property="og:title" content="{{ 'home.metaTitleV2'|trans }}"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<link rel="alternate" href="https://www.reconnect.fr/" hreflang="fr-fr"/>
+<link rel="alternate" href="https://www.reconnect.social/" hreflang="fr-ca"/>

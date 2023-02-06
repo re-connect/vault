@@ -1,0 +1,21 @@
+<section class="home-main-section mt-5 pb-5 position-relative"
+         style="min-height: calc(100vh - 40px); background-image: url('{{ asset('build/images/homeV2/banner_blue.jpg') }}');">
+    <div class="container h-100 position-relative" style="z-index: 1">
+        <div class="row">
+            <div class="mx-auto offset-1 col-10 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-5 offset-lg-3 d-flex flex-column justify-content-evenly mt-md-5">
+                <img class=" w-100 px-1 pt-4 py-sm-5 mt-5 mt-md-4"
+                        {% set pathname = 'build/images/homeV2/' %}
+                     src="{{ asset( isCanada ? pathname~'logo_reconnect_canada_light.png' : pathname~'logo_reconnect_light.png') }}"
+                     alt="logo-reconnect">
+            </div>
+            <div class="row mx-auto">
+                <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+                    {{ include('homeV2/templates/login-form-template.html.twig', {bg_class: 'bg-secondary', btn_class: 'btn-primary', icon_color:'text-secondary'}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 100px; right: 5%; z-index: 1" class="position-absolute rounded">
+        {{ include('common/_language-selector.html.twig') }}
+    </div>
+</section>

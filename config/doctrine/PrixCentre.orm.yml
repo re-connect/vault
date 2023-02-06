@@ -1,0 +1,16 @@
+App\Entity\PrixCentre:
+    type: entity
+    table: "prixcentre"
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        budget:
+            type: string
+            length: 255
+        prix:
+            type: float
+    lifecycleCallbacks: {  }

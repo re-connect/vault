@@ -1,0 +1,45 @@
+<div class="modal fade" tabindex="-1" aria-hidden="true" {{ stimulus_controller('notification') }}>
+    <div class="modal-dialog">
+        <div class="modal-content text-primary bg-white p-3 rounded">
+            <div class="modal-header d-block">
+                <h4 class="bold text-center">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    {{ title }}
+                </h4>
+            </div>
+            <div class="modal-body">
+                <span>{{ content }}</span>
+            </div>
+            <div class="modal-footer text-center row">
+                <div class="col-6 d-grid gap-2 mx-0 px-2">
+                    {% if cancelPath is defined %}
+                        <a href="{{ cancelPath }}"
+                           class="btn btn-primary text-white"
+                           data-turbo="false"
+                        >
+                            {{ 'main.annuler'|trans }}
+                        </a>
+                    {% else %}
+                        <button type="button" class="btn btn-blue text-white" data-bs-dismiss="modal" aria-label="Close">
+                            {{ 'main.annuler'|trans }}
+                        </button>
+                    {% endif %}
+                </div>
+                <div class="col-6 d-grid gap-2 mx-0 px-2">
+                    {% if acceptPath is defined %}
+                        <a href="{{ acceptPath }}"
+                           class="btn {{ getUserButtonColor() }} text-white"
+                           data-turbo="false"
+                        >
+                            {{ 'main.continuer'|trans }}
+                        </a>
+                    {% else %}
+                        <button type="button" class="btn {{ getUserButtonColor() }} text-white" data-bs-dismiss="modal" aria-label="Close">
+                            {{ 'main.continuer'|trans }}
+                        </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

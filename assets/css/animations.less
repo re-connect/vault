@@ -1,0 +1,28 @@
+.animateOpacity {
+}
+
+.animateOpacity {
+  .transition(opacity);
+}
+
+.animateOpacity.ng-hide {
+  opacity:0;
+}
+
+.animateOpacity.ng-enter {
+  .transition(opacity);
+  opacity:0;
+}
+
+/* The starting CSS styles for the enter animation */
+.animateOpacity.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.animateOpacity.ng-leave {
+  .transition(opacity);
+  opacity:1;
+}
+.animateOpacity.ng-leave.ng-leave-active {
+  opacity:0;
+}

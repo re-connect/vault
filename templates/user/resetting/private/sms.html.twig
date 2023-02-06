@@ -1,0 +1,25 @@
+{% extends 'user/gestionUser_base.html.twig' %}
+
+{% block metaTitle %}{% trans %}user.reinitialiserMdp.metaTitle{% endtrans %}{% endblock metaTitle %}
+{% block addUserTitle %}{% trans %}user.reinitialiserMdp.title{% endtrans %}{% endblock addUserTitle %}
+{% block addUserSubtitle %}{% if userToReset is defined %}{{ 'user.reinitialiserMdp.subtitle'|trans({'%nom%' : userToReset.nom, '%prenom%' : userToReset.prenom}) }}{% endif %}
+{% endblock addUserSubtitle %}
+
+{% block addUserContent %}
+    <div class="m-3 rp-blue font-size-1-3">
+        <span>{{ 'user.reinitialiserMdp.telephone'|trans }}</span>
+    </div>
+    <div class="m-3 text-primary font-size-1-2">
+        <span>{{ 'user.reinitialiserMdp.smsCodeSent'|trans({'%phone%': userToReset.telephone}) }}</span>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+            {{ form_start(form) }}
+            {{ form_rest(form) }}
+            <div class="col-12 text-right">
+                <button class="btn-green btn-blue">{{ 'confirm'|trans }}</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock addUserContent %}

@@ -1,0 +1,46 @@
+# Membre membre
+re_membre_membres:
+    path: /
+    defaults: { _controller: App\Controller\MembreMembreController::membres }
+
+re_membre_membresCentre:
+    path: /{id}
+    defaults: { _controller: App\Controller\MembreMembreController::membresCentre }
+    requirements:
+        id: \d{1,10}
+
+re_membre_ajoutMembreSearch:
+    path: /ajout-membres/rechercher
+    defaults: { _controller: App\Controller\MembreMembreController::ajoutMembreSearch }
+re_membre_creationMembre:
+    path: /creation-membre
+    defaults: { _controller: App\Controller\MembreMembreController::creationMembre }
+re_membre_show_username:
+    path: /{id}/username
+    defaults: { _controller: App\Controller\MembreMembreController::showUsername }
+    requirements:
+        id: \d{1,10}
+re_membre_doAjoutMembre:
+    path: /ajout-membres/{id}
+    defaults: { _controller: App\Controller\MembreMembreController::doAjoutMembre }
+    requirements:
+        id: \d{1,10}
+re_membre_doDoAjoutMembre:
+    path: /ajout-membres/{id}/termine
+    defaults: { _controller: App\Controller\MembreMembreController::doDoAjoutMembre }
+    requirements:
+        id: \d{1,10}
+
+re_membre_arreterSuiviMembre:
+    path: /{id}/supprimer-du-centre
+    defaults: { _controller: App\Controller\MembreMembreController::arreterSuiviMembre }
+    requirements:
+        id: \d{1,10}
+    options:
+        expose: true
+
+re_membre_sendSmsCodeToMembre:
+    path: /ajout-membres/{id}/envoyer-sms
+    defaults: { _controller: App\Controller\MembreMembreController::sendSmsCode }
+    requirements:
+        id: \d{1,10}

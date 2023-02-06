@@ -1,0 +1,20 @@
+App\Entity\Adresse:
+  properties:
+    nom:
+      - NotBlank:
+          groups: [adresse]
+    ville:
+      - App\Validator\Constraints\Username:
+          groups: [adresse]
+      - NotBlank:
+          groups: [adresse]
+
+    codePostal:
+      - App\Validator\Constraints\Username:
+          groups: [adresse]
+      - NotBlank:
+          groups: [adresse]
+
+    pays:
+      - App\Validator\Constraints\Username:
+          groups: [adresse]

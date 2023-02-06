@@ -1,0 +1,35 @@
+re_main_accueil:
+    path: /
+    controller: App\Controller\MainController::homeV2
+
+re_main_login:
+    path: /login
+    controller: App\Controller\MainController::homeV2
+
+re_main_page_vault:
+    path: /reconnect-le-coffre-fort-numerique
+    controller: App\Controller\MainController::pageVault
+
+re_main_page_RP:
+    path: /reconnect-la-solution-pro
+    controller: App\Controller\MainController::pageRP
+
+re_main_contactV2:
+    path: /nous-contacter
+    controller: App\Controller\MainController::contactV2
+
+re_main_faq:
+    path: /faq-rgpd
+    controller: App\Controller\MainController::pageFAQ
+
+re_auto_login:
+    path: /auto-login
+    controller: App\Controller\MainController::autoLogin
+
+re_main_change_lang:
+    path: /changer-langue/{lang}
+    controller: App\Controller\MainController::changeLang
+    requirements:
+        lang: "[a-zA-Z]+"
+    options:
+        expose: true

@@ -1,0 +1,7 @@
+<div class="row">
+    {% for row in rows %}
+        {% if not row.hide %}
+            {{ include('v2/user_creation/beneficiary/_summary_row.html.twig', { row }) }}
+        {% endif %}
+    {% endfor %}
+</div>

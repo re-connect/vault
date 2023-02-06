@@ -1,0 +1,36 @@
+<table class="table text-start table-hover text-primary">
+    <thead>
+    <tr>
+        <th scope="col">
+            {{ 'lastname'|trans }}
+        </th>
+        <th scope="col">
+            {{ 'firstname'|trans }}
+        </th>
+        <th scope="col">
+            {{ 'birthdate'|trans }}
+        </th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if beneficiaries|length > 0 %}
+        {% for beneficiary in beneficiaries %}
+            <tr class="align-middle">
+                <td>{{ beneficiary.user.nom|upper }}</td>
+                <td>{{ beneficiary.user.prenom|lower }}</td>
+                <td>{{ beneficiary.dateNaissance|date('d/m/Y') }}</td>
+                <td>
+                    <a href="{{ path('affiliate_beneficiary_relays', {'id': beneficiary.id}) }}" class="btn btn-blue text-white">
+                        {{ 'choose'|trans }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="4" class="text-center">{{ 'no_result'|trans }}</td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>

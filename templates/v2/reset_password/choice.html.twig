@@ -1,0 +1,19 @@
+{% extends 'v2/reset_password/reset-password-layout.html.twig' %}
+
+{% block form %}
+    <h3 class="text-primary">{{ 'public_reset_password'|trans }}</h3>
+    <div class="row py-4">
+        <div class="col-4 offset-2">
+            <a href="{{ path('app_forgot_password_email_request') }}" type="button" class="btn btn-primary d-block">
+                <i class="fas fa-at"></i>
+                {{ 'public_reset_password_by_email'|trans }}
+            </a>
+        </div>
+        <div class="col-4">
+            <a href="{{ path('app_forgot_password_sms_request') }}" class="btn btn-primary d-block">
+                <i class="fas fa-mobile-alt pr-2 pl-0"></i>
+                {{ 'public_reset_password_by_sms'|trans }}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,444 @@
+#headerContainer {
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  #header {
+    position: relative;
+    bottom: 80px;
+  }
+}
+
+#header {
+  height: 80px;
+  width: 100%;
+  background: @greyDarkest;
+  border-bottom: 10px solid @main;
+  color: white;
+
+  #headerContained {
+    width: 100%;
+    padding: 0 40px;
+  }
+
+
+  #logoHeader {
+    float: left;
+    margin-top: 14px;
+    margin-right: 19px;
+    display: block;
+
+    @media screen and (max-width: @responsiveSecondThresold) {
+      float: none;
+      margin: 0;
+      padding-top: 14px;
+    }
+    @media screen and (max-width: @responsiveThirdThresold) {
+      margin-left: 80px;
+    }
+  }
+
+  #headerRight {
+    float: right;
+    margin-top: 14px;
+  }
+
+  #headerMid {
+    float: left;
+    margin-top: 14px;
+  }
+
+  nav {
+    > ul {
+      > li {
+        float: left;
+
+        > a {
+          font-size: 12px;
+          .bold;
+          .uppercase;
+          color: inherit;
+          display: inline-block;
+          padding: 0 12px;
+          text-align: center;
+          max-width: 130px;
+          @media screen and (max-width: @responsiveSecondThresold) {
+            max-width: 110px;
+          }
+        }
+      }
+
+      > li:hover {
+        a:not(.btn) {
+          color: @main;
+        }
+      }
+
+      > li.current {
+        > a {
+          color: @main;
+        }
+      }
+
+      li.lang {
+        position: relative;
+        top: 2px;
+        left: 15px;
+
+        a {
+          padding: 5px;
+        }
+      }
+
+      #header-leBlog {
+        margin: 0 20px 0 60px;
+      }
+
+      #header-devenirRelai {
+        margin: 0 20px;
+      }
+
+      #header-selectLang {
+        margin-top: 7px;
+        margin-right: 25px;
+      }
+
+      #header-connexion {
+        margin-top: 10px;
+      }
+
+      #header-search {
+        margin-top: 8px;
+      }
+    }
+  }
+
+
+  @media screen and (max-width: 1240px) {
+    nav > ul {
+      li {
+        a {
+          padding: 0 12px;
+        }
+      }
+
+      #header-leBlog {
+        margin: 0 15px 0 0px;
+      }
+
+      #header-devenirRelai {
+        margin: 0 15px;
+      }
+
+      #header-selectLang {
+        margin-top: 7px;
+        margin-right: 25px;
+      }
+
+      #header-search {
+        margin-top: 20px;
+      }
+    }
+  }
+
+
+  @media screen and (max-width: @responsiveFirstThresold) {
+    nav > ul {
+      li {
+        a {
+          padding: 0 5px;
+        }
+      }
+
+      #header-leBlog {
+        margin: 0 10px 0 0px;
+      }
+
+      #header-devenirRelai {
+        margin: 0 10px;
+      }
+
+      #header-selectLang {
+        margin-top: 7px;
+        margin-right: 15px;
+      }
+
+      #header-search {
+        margin-top: 10px;
+      }
+    }
+
+  }
+
+
+  @media screen and (max-width: @responsiveSecondThresold) {
+    text-align: center;
+    #headerRight, #headerMid {
+      float: none;
+      margin: 0;
+    }
+
+    nav {
+      float: none;
+      position: fixed;
+      right: -200px;
+      .transition(right);
+      top: 0;
+      height: 100%;
+      width: 200px;
+      z-index: 10000;
+      padding-top: 0;
+      margin-top: 0;
+      .shadowed;
+
+      background: @greyDarkest;
+
+      ul {
+        li {
+          float: none;
+          border-bottom: 1px solid darken(@white, 50%);
+
+          a {
+            width: 100%;
+            padding: 5px;
+          }
+        }
+
+        li#header-leBlog {
+          border-bottom: none;
+        }
+
+        li#header-devenirRelai {
+          margin: 0;
+        }
+
+        li#header-connexion {
+          border-bottom: none;
+          margin: 0;
+
+          .btn {
+            display: block;
+            .rounded(0);
+          }
+        }
+
+        li#header-selectLang {
+          float: left;
+          border-bottom: none;
+          margin: 5px 0 0 30px;
+        }
+
+        li#header-search {
+          float: left;
+          border-bottom: none;
+          margin: 5px 0 0 30px;
+        }
+      }
+    }
+
+    nav.opened {
+      right: 0px;
+    }
+  }
+
+
+  #header-handler {
+    position: absolute;
+    background: url("../images/handler.png");
+    width: 43px;
+    height: 26px;
+    top: 25px;
+    left: 15px;
+    cursor: pointer;
+    display: none;
+    @media screen and (max-width: @responsiveSecondThresold) {
+      display: block;
+    }
+  }
+
+
+  #header-handler-close {
+    display: none;
+    clear: both;
+    border-top: 1px solid darken(white, 50%);
+    @media screen and (max-width: @responsiveSecondThresold) {
+      display: block;
+    }
+  }
+
+
+}
+
+#headerContainer #header.scrollPassed {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+
+
+#headerProfil {
+  background: white;
+  min-height: 67px;
+  padding-bottom: 10px;
+  width: 100%;
+  .smallShadowed;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+
+
+  @media screen and (max-width: @responsiveSecondThresold) {
+    .center;
+    position: static;
+  }
+
+
+  #logoHeader {
+    float: left;
+    margin-top: 14px;
+    margin-right: 19px;
+
+    @media screen and (max-width: @responsiveSecondThresold) {
+      float: none;
+      margin-right: 0;
+    }
+
+
+  }
+
+  #otherUserMenuContainer, #userMenuContainer {
+    position: relative;
+    float: right;
+    @media screen and (max-width: @responsiveSecondThresold) {
+      float: none;
+    }
+  }
+
+  #otherUserMenuContainer {
+    margin-right: 20px;
+    @media screen and (max-width: @responsiveSecondThresold) {
+      margin-right: 0;
+    }
+  }
+
+  #userMenu-button, #otherUserMenu-button {
+    cursor: pointer;
+    margin-top: 10px;
+
+    div.inbl {
+      margin: 8px;
+      position: relative;
+      top: 4px;
+    }
+
+    .dropDown {
+      position: relative;
+      top: 4px;
+    }
+  }
+
+  #userMenu.opened, #otherUserMenu.opened {
+    display: block;
+    z-index: 100;
+  }
+
+  #userMenu, #otherUserMenu {
+    position: absolute;
+    top: 47px;
+    right: 0px;
+    @media screen and (max-width: @responsiveThirdThresold) {
+      top: 38px;
+      //left: 50%;
+    }
+    .small;
+    display: none;
+  }
+
+
+}
+
+.headerProfilSpacer {
+  height: 95px;
+  @media screen and (max-width: @responsiveSecondThresold) {
+    height: 40px;
+  }
+}
+
+#content {
+}
+
+#footerConnected {
+  .greyDarkestBlock;
+  padding: 20px 0;
+}
+
+#footer {
+  .greyDarkestBlock;
+  padding: 40px 0;
+
+  @media screen and (max-width: @responsiveThirdThresold) {
+    padding: 20px 0;
+    height: auto;
+    hr {
+      margin: 20px 0;
+    }
+  }
+
+  .footer-menu {
+    float: left;
+
+    @media screen and (max-width: @responsiveThirdThresold) {
+      width: 100%;
+      float: none;
+      margin: 20px 0;
+      .center;
+    }
+
+    nav {
+      margin-top: 20px;
+
+      @media screen and (max-width: @responsiveThirdThresold) {
+        margin-top: 10px;
+      }
+
+      ul {
+        li {
+          margin: 3px 0;
+
+          a {
+            color: #ddd;
+            .small;
+          }
+
+          a:not(.notiret):before {
+            content: "- ";
+          }
+
+          a:hover {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+
+  .m-footer-menu {
+    border-right: 1px solid white;
+    @media screen and (max-width: @responsiveThirdThresold) {
+      border-right: 0;
+    }
+  }
+}
+
+
+#switchUser {
+  .white;
+  .center;
+  .small;
+  position: fixed;
+  top: 67px;
+  width: 100%;
+  right: 0;
+  z-index: 9;
+  background: fade(@main, 75%);
+}

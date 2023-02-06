@@ -1,0 +1,27 @@
+{% extends 'v2/app/common/standard_layout.html.twig' %}
+
+{% block content %}
+    <div class="container row mx-auto my-4">
+        <div class="col-12 col-lg-4 offset-lg-4 text-primary bg-white rounded py-2 shadow">
+            <h4 class="font-size-1-3 text-center mt-1">
+                <i class="fa fa-folder-open me-2" aria-hidden="true"></i>{{ 'move'|trans }}
+            </h4>
+            <hr class="text-light-grey">
+            <div class="mb-2">
+                <a href="{{ path(
+                    element is instanceof ('App\\Entity\\Document')
+                    ? 'document_move_to_folder'
+                    : 'folder_move_to_folder',
+                    {'id': element.id, 'tree-view': true}
+                ) }}"
+                   class="btn btn-green text-white text-center w-100"
+                >
+                    <i class="fa fa-folder-open me-2" aria-hidden="true"></i>{{ 'beneficiaire.menu.mesDocuments'|trans }}
+                </a>
+                <ul class="list-group tree-list">
+                    {% include "v2/app/folder/tree_view_item.html.twig" with {'folders': folders, 'element': element} %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

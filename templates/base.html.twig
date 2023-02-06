@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8"/>
+    {% if siteName == 'prod' %}
+        <meta name="google-site-verification" content="{{ google_site_verification }}">
+    {% endif %}
+    <title>{% block metaTitle %}{% trans %}home.metaTitleV2{% endtrans %}{% endblock metaTitle %}
+        - {% trans %}main.metaAppend{% endtrans %}</title>
+    <meta name="description"
+          content="{% block metaDesc %}{% trans %}home.metaDescV2{% endtrans %}{% endblock metaDesc %}"/>
+
+    <meta property="og:image" content="https://www.reconnect.fr{{ asset('build/images/home/background.jpg') }}"/>
+    <meta property="og:description" content="{% trans %}home.metaDescV2{% endtrans %}"/>
+    <meta property="og:title" content="{% trans %}home.metaTitleV2{% endtrans %}"/>
+    <link rel="alternate" href="https://www.reconnect.fr/" hreflang="fr-fr"/>
+    <link rel="alternate" href="https://www.reconnect.social/" hreflang="fr-ca"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    {% block styles %}
+        {% if app.user is not null and (app.user.typeUser is same as("ROLE_MEMBRE") or app.user.typeUser is same as("ROLE_GESTIONNAIRE")) %}
+            {{ encore_entry_link_tags('app_pro') }}
+        {% else %}
+            {{ encore_entry_link_tags('app') }}
+        {% endif %}
+    {% endblock %}
+
+    {% include 'favicons.html.twig' %}
+</head>
+
+<body class="preload {% block bodyClass %}{% endblock bodyClass %}{% if app.user %} bodyFlex{% else %} body{% endif %}"
+      data-turbo="false">
+<div id="popups">
+    {% block popup %}{% endblock popup %}
+</div>
+
+{% block notifications %}
+    {% include "notifications.html.twig" %}
+{% endblock %}
+
+<div id="popups-overlay">&nbsp;</div>
+
+{% block bodyBeforeHeader %}
+{% endblock bodyBeforeHeader %}
+
+
+<main role="main" id="wrapper{% if app.user %}Connected{% endif %}">
+    {% include 'header.html.twig' %}
+    {% block headerProfilSpacer %}
+        {% if app.user %}
+            <div class="headerProfilSpacer"></div>
+        {% endif %}
+    {% endblock headerProfilSpacer %}
+
+    {{ include('flashMessagesDiv.html.twig') }}
+    {% block body %}
+        <div class="centeredContainer">
+            {% include "ies_alert.html.twig" %}
+            {% block bodyCentered %}
+            {% endblock bodyCentered %}
+        </div>
+    {% endblock body %}
+</main>
+{% include 'footer.html.twig' %}
+</body>
+
+{# Set userApp variable for crisp and mixpanel #}
+{% set userApp = {} %}
+{% if app.user %}
+    {% set userApp = {
+        "email" : app.user.email,
+        "username": app.user.username,
+        "avatar": app.user.avatar ? asset(app.user.avatar, null, true) : '',
+        "createdAt": app.user.createdAt|reDate("%Y-%m-%d %H:%M:%S"),
+        "nom": app.user.nom,
+        "prenom": app.user.prenom,
+        "telephone": app.user.telephone
+    } %}
+{% endif %}
+<input type="hidden" id="dataUserApp" value="{{ userApp | json_encode }}">
+<input type="hidden" id="siteName" value="{{ siteName }}">
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    {{ encore_entry_script_tags('app') }}
+{% endblock javascripts %}
+
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('style') }}
+{% endblock %}
+
+</html>

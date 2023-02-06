@@ -1,0 +1,5 @@
+{% extends '@SonataAdmin/CRUD/base_show_field.html.twig' %}
+
+{% block field_value %}
+    <img src="/uploads/client/{{ object.dossierImage }}" alt="{{ object.dossierImage }}" style="height: 100px" />
+{% endblock %}

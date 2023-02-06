@@ -1,0 +1,13 @@
+{{ include('v2/app/common/personal_data_detail.html.twig', {
+    'information': {
+        'document.nomLabel': document.nom,
+        'status': (document.bPrive ? 'private' : 'shared')|trans,
+        'added_by': document.getCreatorUserFullName|upper,
+        'add_date': document.createdAt|format_datetime(),
+    },
+    'editPath': path('document_rename', {'id': document.id}),
+    'cancelPath': document.dossier
+        ? path('folder', {'id': document.dossier.id})
+        : path('document_list', {'id': document.beneficiaire.id}),
+    'isDocument': true,
+}) }}

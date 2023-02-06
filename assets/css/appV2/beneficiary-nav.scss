@@ -1,0 +1,56 @@
+.beneficiary-nav {
+  margin-top: 75px;
+
+  .beneficiary-nav-item {
+    p {
+      line-height: 25px;
+    }
+
+    a {
+      border-radius: 15px;
+    }
+
+    img {
+      height: 57px;
+    }
+
+    .nav-link:hover,
+    .current-item {
+      background-color: #4db95f;
+
+      hr, p {
+        color: white;
+      }
+
+      .img-document-folder {
+        content: url('../../images/icons/docs_blanc.png');
+      }
+
+      .img-contact {
+        content: url('../../images/icons/contacts_blanc.png');
+      }
+
+      .img-event {
+        content: url('../../images/icons/rappels_blanc.png');
+      }
+
+      .img-note {
+        content: url('../../images/icons/notes_blanc.png');
+      }
+
+      .img-relay {
+        content: url('../../images/icons/relais_blanc.png');
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .beneficiary-nav-item {
+    flex-basis: 100%;
+
+    .nav-link {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+}

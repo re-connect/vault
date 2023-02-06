@@ -1,0 +1,54 @@
+sonata_admin:
+    show_mosaic_button: false
+    templates:
+        layout: sonata/admin_layout.html.twig
+    options:
+        html5_validate: true
+    dashboard:
+        groups:
+            utilisateurEtCentres:
+                label: "Utilisateurs et Centres"
+                icon: '<i class="fa fa-user"></i>'
+                items:
+                    - sonata.admin.beneficiaire
+                    - sonata.admin.membre
+                    - sonata.admin.gestionnaire
+                    - sonata.admin.association
+                    - sonata.admin.centre
+            doneesPersonnelles:
+                label: "Données personnelles"
+                icon: '<i class="fa fa-file"></i>'
+                items:
+                    - sonata.admin.note
+                    - sonata.admin.document
+                    - sonata.admin.dossier
+                    - sonata.admin.evenement
+                    - sonata.admin.contact
+            autre:
+                label: "Autres"
+                icon: '<i class="fa fa-star"></i>'
+                items:
+                    - sonata.admin.sms
+                    - sonata.admin.verbatim
+                    - sonata.admin.partenaire
+                    - sonata.admin.faq
+                    - reo_auth.admin.client
+                    - re_admin.admin.annexe
+    global_search:
+        empty_boxes: hide
+        admin_route: edit
+
+sonata_block:
+    default_contexts: [ cms ]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [ admin ]
+        sonata.admin.block.search_result:
+            contexts: [ admin ]
+
+sonata_exporter:
+    exporter:
+        default_writers:
+            - csv
+            - json
+            - xlsx

@@ -1,0 +1,29 @@
+{% extends "@SonataAdmin/standard_layout.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('custom') }}
+{% endblock %}
+
+{% block logo %}
+    {% apply spaceless %}
+        <a class="logo" href="{{ url('sonata_admin_dashboard') }}">
+            <span>Reconnect<br/>{{ 'database'|trans }}</span>
+        </a>
+    {% endapply %}
+{% endblock %}
+
+{% block sonata_top_nav_menu_add_block %}
+    <li>
+        <a href="{{ path('exports') }}"><i
+                    class="fa fa-download" style="margin-right: 8px;"></i>{{ 'export_title'|trans }}</a>
+    </li>
+{% endblock %}
+
+{% block sonata_top_nav_menu_user_block %}
+    <li>
+        <a href="{{ path('app_logout') }}"
+           style="color: red"><i class="fa fa-sign-out"
+                                 style="margin-right: 8px;"></i>{{ 'header.menu.deconnection'|trans }}</a>
+    </li>
+{% endblock %}

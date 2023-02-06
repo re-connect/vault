@@ -1,0 +1,10 @@
+<div class="mb-2" {{ stimulus_controller('ajax-search', {
+    'url': path(routeName, {'id': beneficiaryId})
+}) }}>
+    {{ form_start(form, {'attr': {'data-action': 'submit->ajax-search#search'}}) }}
+    <div class="input-group rounded-pill border bg-white z-0">
+        <i class="fa fa-search text-grey p-2 input-group-text bg-white rounded-pill border-0"></i>
+        {{ form_widget(form.search) }}
+    </div>
+    {{ form_end(form) }}
+</div>

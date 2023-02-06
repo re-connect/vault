@@ -1,0 +1,38 @@
+###> Tools ###
+.idea/
+*.cache
+phpstan.neon
+###< Tools ###
+
+###> Assets and uploads ###
+/node_modules/
+/public/uploads/
+/public/js/
+/public/build/
+/public/bundles/
+###< Assets and uploads ###
+
+###> symfony/phpunit-bridge ###
+/phpunit.xml
+.phpunit.result.cache
+coverage/
+###< symfony/phpunit-bridge ###
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/config/secrets/preprod/preprod.decrypt.private.php
+/var/
+vendor/
+###< symfony/framework-bundle ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###

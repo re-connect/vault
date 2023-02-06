@@ -1,0 +1,61 @@
+{% set menuItems = {
+    'delete': {
+        'icon': 'fa-trash',
+        'message': 'delete',
+        'path': delete.path,
+        'attr' : {
+            'dataAction': 'click->alert#confirm',
+            'dataMessage': delete.message
+        }
+    },
+    'edit': {
+        'icon': 'fa-pencil-alt',
+        'message': 'document' in editPath or 'folder' in editPath ? 'rename' : 'edit',
+        'path': editPath,
+    },
+    'detail': {
+        'icon': 'fa-info-circle',
+        'message': 'donneePersonnelle.information',
+        'path': detailPath,
+    }
+} %}
+
+{% if sendPath is defined %}
+    {% set menuItems = menuItems|merge({
+        'send': {
+            'icon': 'fa-paper-plane',
+            'message': 'send',
+            'path': sendPath,
+        },
+    }) %}
+{% endif %}
+
+{% if movePath is defined %}
+    {% set menuItems = menuItems|merge({
+        'move': {
+            'icon': 'fa-folder-open',
+            'message': 'move',
+            'path' : movePath,
+        }
+    }) %}
+{% endif %}
+
+<div class="position-relative d-none" data-dropdown-menu-target="menu"
+        {{ stimulus_controller('alert', {
+            'confirmButtonText': 'main.accepter'|trans,
+            'cancelButtonText': 'main.annuler'|trans,
+        }) }}>
+    <ul class="action-dropdown shadow border-1 position-absolute z-1 bg-white list-group font-size-1 mt-2 end-0">
+        {% for menuItem in menuItems %}
+            <li class="list-group-item hover p-0 border-0 my-1 d-grid gap-2">
+                <a href="{{ menuItem.path }}" class="btn p-0 text-primary text-start ps-3"
+                    {% if menuItem.attr is defined %}
+                        data-action="{{ menuItem.attr.dataAction }}"
+                        data-message="{{ menuItem.attr.dataMessage }}"
+                    {% endif %}>
+                    <i class="fas {{ menuItem.icon }} pe-2"></i>{{ menuItem.message|trans }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,8 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<div class="centeredContainer" style="position: absolute; top: 50%; margin-top: -80px; width: 640px; left: 50%; margin-left: -320px;">
+		{{ knp_menu_render(knp_menu_get('re_user.membre.menu_renderer', [], {'membre' : app.user.subjectMembre, 'itemPerLine' : 2}), {'template': 'knp_menu_step.html.twig'}) }}
+	</div>
+
+{% endblock body %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}   
+
+{% trans %}membre.doAjoutBeneficiaire.title{% endtrans %}
+<br/>
+{{ beneficiaire.user.nom }} {{ beneficiaire.user.prenom }}
+
+<table>
+	<thead>
+		<tr>
+			<th></th>
+			<th></th>
+			<th>{% trans %}membre.doAjoutBeneficiaire.btnAjouter{% endtrans %}</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% set countCentresPossibles = 0 %}
+	{% for centre in centresMembre %}
+	    <tr>
+	    	<td>
+	    		{% if centre in centresBeneficiaire %}
+	    		<input type="checkbox" name="" id="" checked="checked" readonly="readonly" disabled="disabled">
+	    		{% else %}
+	    		{% set countCentresPossibles = countCentresPossibles + 1 %}
+	    		<input type="checkbox" name="" id="" readonly="readonly" disabled="disabled">
+	    		{% endif %}
+	    	</td>
+	    	<td>{{ centre.nom }}</td>
+			<td>{% if centre in centresBeneficiaire %}{% else %}<a href="{{ path('re_membre_doDoAjoutBeneficiaire', {"id" : beneficiaire.id, "idCentre" : centre.id})}}" class="btn btn-blue">{% trans %}membre.doAjoutBeneficiaire.btnAjouter{% endtrans %}</a>{% endif %}</td>
+	    </tr>
+	{% endfor %}
+	</tbody>
+</table>
+
+{% if countCentresPossibles == 0 %}
+{% trans %}membre.doAjoutBeneficiaire.noCentrePossible{% endtrans %}
+{% endif %}
+
+{% endblock body %}
+

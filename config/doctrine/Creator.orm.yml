@@ -1,0 +1,40 @@
+App\Entity\Creator:
+  type: entity
+  inheritanceType: SINGLE_TABLE
+  table: 'creator'
+  repositoryClass: App\Repository\CreatorRepository
+  discriminatorColumn:
+      name: discr
+      type: string
+  discriminatorMap:
+      creatorClient: CreatorClient
+      creatorUser: CreatorUser
+      creatorCenter: CreatorCentre
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+      options:
+          unsigned: true
+  manyToOne:
+    document:
+      targetEntity: App\Entity\Document
+      inversedBy: creators
+    user:
+      targetEntity: App\Entity\User
+      inversedBy: creators
+    note:
+      targetEntity: App\Entity\Note
+      inversedBy: creators
+    evenement:
+      targetEntity: App\Entity\Evenement
+      inversedBy: creators
+    contact:
+      targetEntity: App\Entity\Contact
+      inversedBy: creators
+    dossier:
+      targetEntity: App\Entity\Dossier
+      inversedBy: creators
+  lifecycleCallbacks: {  }

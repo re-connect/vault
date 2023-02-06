@@ -1,0 +1,19 @@
+App\Entity\MembreCentre:
+    type: entity
+    table: "membrecentre"
+    repositoryClass: App\Repository\MembreCentreRepository
+    fields:
+        droits:
+            type: array
+    manyToOne:
+        centre:
+            targetEntity: App\Entity\Centre
+            inversedBy: membresCentres
+            joinColumn:
+                nullable: false
+        membre:
+            targetEntity: App\Entity\Membre
+            inversedBy: membresCentres
+            joinColumn:
+                nullable: false
+    lifecycleCallbacks: { }

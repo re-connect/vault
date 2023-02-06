@@ -1,0 +1,30 @@
+{% set rows = [
+    {'name': 'firstname','value': beneficiary.user.prenom, 'step': 1, 'hide': false},
+    {'name': 'lastname','value': beneficiary.user.nom, 'step': 1, 'hide': false },
+    {'name': 'phone','value': beneficiary.user.telephone, 'step': 1, 'hide': false },
+    {'name': 'email','value': beneficiary.user.email, 'step': 1, 'hide': false },
+    {'name': 'secret_question', 'value': beneficiary.questionSecrete, 'step': 3, 'hide': beneficiaryCreationProcess.remotely},
+    {'name': 'secret_answer', 'value': beneficiary.reponseSecrete, 'step':3, 'hide': beneficiaryCreationProcess.remotely},
+    {'name': 'centers', 'value': beneficiary.user.centres, 'step': beneficiaryCreationProcess.remotely ? 2 : 4, 'hide': false}
+] %}
+
+<div class="col-3 d-none d-md-block">
+    {{ include('v2/user_creation/beneficiary/_breadcrumb.html.twig', {step}) }}
+</div>
+<div class="col-12 col-md-6 my-auto">
+    {{ include('v2/user_creation/beneficiary/_step_5_rows.html.twig', {rows: rows}) }}
+    <div class="col-8 mx-auto row mt-5">
+        <div class="col-6 d-grid gap-2">
+            <a href="{{ path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': step - 1}) }}" data-turbo="false"
+               class="btn btn-primary text-white">
+                {{ 'back'|trans }}
+            </a>
+        </div>
+        <div class="col-6 d-grid gap-2">
+            <a href="{{ path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': step + 1}) }}"
+               class="btn btn-blue text-white">
+                {{ 'confirm'|trans }}
+            </a>
+        </div>
+    </div>
+</div>

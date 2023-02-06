@@ -1,0 +1,62 @@
+{% extends 'user/membre-beneficiaire/creationUser_gestionUser_base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block addUserSubtitle %}
+    {{ 'create_new_benef_step2'|trans({'%totalSteps%': '6'})|raw }}
+{% endblock addUserSubtitle %}
+
+{% block creation_addUserContent %}
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_errors(form) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_row(form.user.username) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_label(form.user.plainPassword) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            {{ form_widget(form.user.plainPassword) }}
+            {{ form_errors(form.user.plainPassword) }}
+        </div>
+        <div class="col-md-2" id="divPasswordShow" style="display: none">
+            <button type="button" class="btn btn-blue" aria-label="Left Align" id="buttonPasswordShow">
+               <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            {#    <i class="fa fa-eye" aria-hidden="true"></i>#}
+            </button>
+        </div>
+    </div>
+    <div class="row" id="repeatPasswordDiv" style="display: none;">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="repeatPassword" class="control-label required">{% trans %}registerForm.repeterMotDePasse{% endtrans %}</label>
+                <input class="form-control" type="password" id="repeatPassword" name="repeatPassword">
+                <div class="error" id="password-error"
+                     style="opacity: 0;">{% trans %}registerForm.correspondentPas{% endtrans %}</div>
+            </div>
+        </div>
+    </div>
+{% endblock creation_addUserContent %}
+
+{% block bottomLinks %}
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-2 col-xs-4 col-xs-offset-2">
+            <a href="{{ path('reset_beneficiary_creation') }}" class="btn btn-dark-blue font-size-1">{% trans %}main.annuler{% endtrans %}</a>
+        </div>
+        <div class="col-sm-4 col-xs-4">
+            {{ form_widget(form.submit, {'attr': {'class': 'btn-blue font-size-1'}}) }}
+        </div>
+    </div>
+{% endblock bottomLinks %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('creation_beneficiaire_step_2') }}
+{% endblock javascripts %}

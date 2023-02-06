@@ -1,0 +1,10 @@
+{% extends 'v2/reset_password/reset-password-layout.html.twig' %}
+
+{% block form %}
+    <h3 class="text-primary">{{ 'public_reset_password'|trans }}</h3>
+    <div class="row">
+        <div class="py-3">
+            {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}

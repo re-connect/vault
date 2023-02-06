@@ -1,0 +1,51 @@
+App\Entity\Membre:
+    type: entity
+    table: "membre"
+    repositoryClass: App\Repository\MembreRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        activationSmsCode:
+            type: string
+            nullable: true
+        createdAt:
+            type: datetime
+            column: createdAt
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updatedAt
+            gedmo:
+                timestampable:
+                    on: update
+    oneToOne:
+        user:
+            targetEntity: App\Entity\User
+            cascade: [ "persist", "remove" ]
+            inversedBy: subjectMembre
+            joinColumn:
+                nullable: false
+    oneToMany:
+        membresCentres:
+            targetEntity: App\Entity\MembreCentre
+            cascade: [ "persist", "remove" ]
+            mappedBy: membre
+        consultationsBeneficiaires:
+            targetEntity: App\Entity\ConsultationBeneficiaire
+            cascade: ["remove"]
+            mappedBy: membre
+        evenements:
+            targetEntity: App\Entity\Evenement
+            cascade: [ "persist" ]
+            mappedBy: membre
+        externalLinks:
+            targetEntity: App\Entity\ClientMembre
+            mappedBy: entity
+            cascade: [ "persist", "remove" ]
+            orphanRemoval: true

@@ -1,0 +1,32 @@
+
+
+.btnPickPlImage2{
+    text-transform: uppercase;
+    color: white;
+    -webkit-transition: background-color 0.2s ease;
+    -moz-transition: background-color 0.2s ease;
+    -o-transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    text-align: center;
+    line-height: 242px;
+    height: 242px;
+    display: block;
+}
+.btnPickPlImage2 span{
+    line-height: normal;
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 80px;
+    max-width: 160px;
+}
+
+div.btnPickPlImage2:hover{
+    background: url("images/photo.svg") no-repeat 50% 40% #aaa;
+}
+div.btnPickPlImage2{
+    background: url("images/photo.svg") no-repeat 50% 40% #bbb;
+}
+.dz-preview{
+    display: none;
+}

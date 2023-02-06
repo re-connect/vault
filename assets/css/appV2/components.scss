@@ -1,0 +1,24 @@
+.action-dropdown {
+  width: 160px;
+}
+
+.lang-selector {
+  width: 100px;
+  top: -40px;
+  right: 14px;
+
+  .lang-selector-flag {
+    width: 20px;
+  }
+
+  .lang-selector-list {
+    width: 100px;
+    bottom: 100%;
+  }
+}
+
+.breadcrumb-step {
+  .breadcrumb-icon {
+    right: 12px;
+  }
+}

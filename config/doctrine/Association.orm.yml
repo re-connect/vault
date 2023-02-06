@@ -1,0 +1,49 @@
+App\Entity\Association:
+    type: entity
+    table: "association"
+    repositoryClass: App\Repository\AssociationRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        categorieJuridique:
+            type: string
+            length: 255
+            nullable: true
+        siren:
+            type: string
+            length: 255
+            nullable: true
+        urlSite:
+            type: string
+            length: 255
+            nullable: true
+        createdAt:
+            type: datetime
+            column: createdAt
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updatedAt
+            gedmo:
+                timestampable:
+                    on: update
+    oneToOne:
+        user:
+            targetEntity: App\Entity\User
+            cascade: [ 'persist','remove' ]
+            inversedBy: subjectAssociation
+            nullable: true
+    oneToMany:
+        gestionnaires:
+            targetEntity: App\Entity\Gestionnaire
+            mappedBy: association
+    lifecycleCallbacks: { }

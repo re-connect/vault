@@ -1,0 +1,86 @@
+@function theme-color($key) {
+  @return map-get($theme-colors, $key);
+};
+
+$theme-colors : (
+        "primary" : #203468,
+        "green" : #4db95f,
+        "light-green" : #e9f7ed,
+        "blue" : #47b4d1,
+        "light-blue" : #e5f4f8,
+        "red" : #cb3c53,
+        "grey": #a6aec3,
+        "light-grey" : #cdd1dc,
+);
+
+//Pagination
+$pagination-color: theme-color("primary");
+$pagination-active-bg: theme-color("grey");
+$pagination-hover-color: theme-color("primary");
+
+//Disable bootstrap active && hover && focus style
+a:focus,
+a:active,
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+//---
+
+//Custom switch Inputs
+.form-switch-vault-visibility .form-check-vault-visibility {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e") !important;
+  background-color: theme-color("primary");
+  border-color: theme-color("primary");
+  cursor: pointer;
+}
+.form-check-vault-visibility:checked.form-check-input:checked{
+  background-color: theme-color("green");
+  border-color: theme-color("green");
+}
+//---
+
+//Forms
+$form-label-margin-bottom: 0;
+//---
+
+$hr-opacity: 100%;
+
+.hr-2 {
+  height: 2px !important;
+}
+
+.max-width-lg {
+  max-width: 1080px;
+}
+
+.max-width-md {
+  max-width: 800px;
+}
+
+.z-0 {
+  z-index: 0;
+}
+
+.z-1 {
+  z-index: 1;
+}
+
+.mt-75 {
+  margin-top: 75px;
+}
+
+.hover:hover {
+  background-color: #f5f5f5;
+}

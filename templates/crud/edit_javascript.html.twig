@@ -1,0 +1,67 @@
+{% extends 'SonataAdminBundle:CRUD:base_edit.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.btnUploadFile').unbind('click');
+            $('.btnUploadFile').bind('click', function () {
+                $(this).parent().children('input[type=file]').trigger('click');
+                return false;
+            });
+            $('.vich-file input[type=file]').unbind('change');
+            $('.vich-file input[type=file]').bind('change', function (e) {
+                $(this).parent().children('.filenameLabel').html(e.target.files[0].name);
+            });
+
+            const $mainList = $("#mainList");
+            $mainList.children('li').find('input:first').on('change', function (e, isPageLoad) {
+                const childrenUl = $(this).parents('li:first').find('ul'),
+                    children = childrenUl.find('input'),
+                    childrenDiv = childrenUl.find('div');
+
+                if ($(this).is(':checked')) {
+                    // children.prop('disabled',false);
+                    if (!isPageLoad) {
+                        children.prop('checked', true);
+                        childrenDiv.addClass('checked');
+                    }
+                } else {
+                    // children.prop('disabled',true).prop('checked',false);
+                    children.prop('checked', false);
+                    childrenDiv.removeClass('checked');
+                }
+            });
+            // }).trigger('change', [true]);
+
+            $mainList.children('li').children('ul').children('li').find('input:first').on('change', function (e, isPageLoad) {
+                const parentUl = $(this).parents('li:first').parents('ul:first'),
+                    parentLi = parentUl.parents('li:first'),
+                    parent = parentLi.find('input:first'),
+                    parentDiv = parentLi.find('div:first').find('div:first'),
+                    brothers = parentUl.find('input'),
+                    brothersLength = brothers.length;
+                let brothersCheckCount = 0;
+
+                brothers.each((index, item) => {
+                    if ($(item).is(':checked')) {
+                        brothersCheckCount++;
+                    }
+                });
+                if (brothersLength === brothersCheckCount) {
+                    parent.prop('checked', true);
+                    parentDiv.addClass('checked');
+                }
+
+                if (!$(this).is(':checked')) {
+                    if (!isPageLoad) {
+                        parent.prop('checked', false);
+                        parentDiv.removeClass('checked');
+                    }
+                }
+            });
+            // }).trigger('change', [true]);
+        });
+    </script>
+
+{% endblock %}

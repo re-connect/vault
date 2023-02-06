@@ -1,0 +1,18 @@
+<div class="flash-container z-1" {{ stimulus_controller('flash-message') }}>
+    {% for key, flashMessages in app.session.flashbag.all %}
+        {% for flashMessage in flashMessages %}
+            <div class="row alert alert-dismissible fade show text-white py-1 mt-2 shadow {{ getFlashMessageColor(key) }}"
+                 role="alert"
+                 data-flash-message-target="alert"
+            >
+                <div class="col-10 bold px-4 pt-3">
+                    <small>{{ getFlashMessageTitle(key)|upper }}</small>
+                </div>
+                <a type="button" class="btn-close pe-5" data-bs-dismiss="alert" aria-label="Close"></a>
+                <div class="px-4 pb-3 mt-2">
+                    <small>{{ flashMessage|trans()|raw }}</small>
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>

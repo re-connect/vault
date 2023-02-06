@@ -1,0 +1,125 @@
+{% extends 'user/membre-beneficiaire/creationUser_gestionUser_base.html.twig' %}
+
+{% block addUserSubtitle %}
+    {{ 'create_new_benef_step5'|trans({'%step%': 3, '%totalSteps%': 4})|raw }}
+{% endblock addUserSubtitle %}
+
+{% block creation_addUserContent %}
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 col-xs-12 pb-2 text-primary font-size-1">
+            <div class="row">
+                <div class="col-sm-3 col-xs-3">
+                    <span>{{'surname'|trans}}</span>
+                </div>
+                <div class="col-sm-7 col-xs-7 text-break">
+                    {{ beneficiaire.user.prenom }}
+                </div>
+                <div class="col-sm-2 col-xs-2">
+                    <a href="{{ path('creationBeneficiaireStep1' , {'way':way}) }}">
+                        <i class="fas fa-pencil-alt text-primary" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col-sm-6 col-sm-offset-3 col-xs-12 pb-2 text-primary font-size-1">
+            <div class="row">
+                <div class="col-sm-3 col-xs-3">
+                    <span>{{ 'name'|trans }}</span>
+                </div>
+                <div class="col-sm-7 col-xs-7 text-break">
+                    {{ beneficiaire.user.nom }}
+                </div>
+                <div class="col-sm-2 col-xs-2">
+                    <a href="{{ path('creationBeneficiaireStep1' , {'way':way}) }}">
+                        <i class="fas fa-pencil-alt text-primary" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col-sm-6 col-sm-offset-3 col-xs-12 pb-2 text-primary font-size-1">
+            <div class="row">
+                <div class="col-sm-3 col-xs-3">
+                    <span>{{ 'phone'|trans }}</span>
+                </div>
+                <div class="col-sm-7 col-xs-7">
+                    {{ beneficiaire.user.telephone }}
+                </div>
+                <div class="col-sm-2 col-xs-2">
+                    <a href="{{ path('creationBeneficiaireStep1' , {'way':way}) }}">
+                        <i class="fas fa-pencil-alt text-primary" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col-sm-6 col-sm-offset-3 col-xs-12 pb-2 text-primary font-size-1">
+            <div class="row">
+                <div class="col-sm-3 col-xs-3">
+                    <span>{{ 'email'|trans }}</span>
+                </div>
+                <div class="col-sm-7 col-xs-7">
+                    {{ beneficiaire.user.email }}
+                </div>
+                <div class="col-sm-2 col-xs-2">
+                    <a href="{{ path('creationBeneficiaireStep1' , {'way':way}) }}">
+                        <i class="fas fa-pencil-alt text-primary" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col-sm-6 col-sm-offset-3 col-xs-12 pb-2 text-primary font-size-1">
+            <div class="row">
+                <div class="col-sm-3 col-xs-3">
+                    <span>{{ 'reconnect_center'|trans }}</span>
+                </div>
+                <div class="col-sm-7 col-xs-7 text-break">
+                    {% for benefCentre in beneficiaire.beneficiairesCentres %}
+                        {{ benefCentre.centre.nom }}
+                        {% if not loop.last %}<br/>{% endif %}
+                    {% endfor %}
+                </div>
+                <div class="col-sm-2 col-xs-2">
+                    <a href="{{ path('creationBeneficiaireStep4' , {'way':way}) }}">
+                        <i class="fas fa-pencil-alt text-primary" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-sm-1 col-sm-offset-2 col-xs-2 pl-0 pr-0">
+            <div style="float: left;height: 50px;">
+                <i class="fas fa-mobile-alt text-primary" aria-hidden="true" style="font-size: 50px;height: 10px;vertical-align: middle;"></i>
+{#
+                <i class="fa fa-commenting-o" aria-hidden="true" style="font-size: 30px"></i>
+#}
+            </div>
+        </div>
+        <div class="col-sm-6 col-xs-10 pl-1 pr-1 text-break text-primary font-size-1">
+                {% trans %}membre.creationBeneficiaire.step3.remotely.description{% endtrans %}
+        </div>
+    </div>
+{% endblock creation_addUserContent %}
+
+{% block bottomLinks %}
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-4 col-xs-4 col-xs-offset-2">
+            <a href="{{ path('creationBeneficiaireStep4', {'way':way}) }}"
+               class="btn btn-dark-blue font-size-1">{% trans %}main.retour{% endtrans %}</a>
+        </div>
+        <div class="col-sm-2 col-xs-4">
+            {{ form_widget(form.submit, {'attr': {'class': 'btn-blue font-size-1'}}) }}
+        </div>
+    </div>
+{% endblock bottomLinks %}
+
+{% block mainDiv_creation_addUserContent %}
+    <div style="margin: auto;">
+{% endblock mainDiv_creation_addUserContent %}

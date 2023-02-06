@@ -1,0 +1,51 @@
+
+
+{% extends 'user/gestionUser_base.html.twig' %}
+
+
+{% block addUserSubtitle %}{{ 'membre.doDoAjoutSubject.subtitle'|trans({'%subject%' : subject.user.nom ~ ' ' ~ subject.user.prenom,  }) }}{% endblock addUserSubtitle %}
+
+{% block addUserContent %}   
+	<div class="midMargin text-primary font-size-1-3">{% trans %}membre.doDoAjoutSubject.text{% endtrans %}</div>
+	<ul class="text-primary font-size-1">
+		{% if subject.user.isBeneficiaire and subject.user.telephone is not null and subject.user.telephone != '' %}
+		<li class="smallMargin">&#149;	 {% trans %}membre.doDoAjoutSubject.sendSms{% endtrans %} : 
+{#			{% if subject.user.telephone is not null and subject.user.telephone != '' %}#}
+{#				{% if subject.user.isBeneficiaire %}#}
+					<a class="rp-blue" href="{{ path('re_membre_sendSmsCodeToBenficiaire', {'id' : subject.id })}}">{% trans %}membre.doDoAjoutSubject.cliquerIci{% endtrans %}</a>
+{#				{% else %}#}
+{#					<a href="{{ path('re_membre_sendSmsCodeToMembre', {'id' : subject.id })}}">{% trans %}membre.doDoAjoutSubject.cliquerIci{% endtrans %}</a>#}
+{#				{% endif %}#}
+{#			{% elseif subject.user.isBeneficiaire %}#}
+{#				<span class="red">{{ 'membre.doDoAjoutSubject.renseignerTelephone'|trans({'%link%' : path('re_user_parametres', {'id' : subject.user.id}) })|raw }}</span>#}
+{#			{% endif %}#}
+		</li>
+		{% endif %}
+
+		{% if subject.user.isBeneficiaire %}
+			<li class="smallMargin">&#149;	{% trans %}membre.doDoAjoutSubject.repondreReponseSecrete{% endtrans %} : <a class="rp-blue" href="{{ path('re_membre_questionSecrete', {'id' : subject.id })}}">{% trans %}membre.doDoAjoutSubject.cliquerIci{% endtrans %}</a></li>
+		{% endif %}
+
+		{% if subject.user.isMembre %}
+			<li class="smallMargin">&#149;	{% trans %}membre.doDoAjoutSubject.membreConfirmeraEnConnectant{% endtrans %}
+		{% else %}
+			<li class="smallMargin">&#149;	{% trans %}membre.doDoAjoutSubject.confirmeraEnConnectant{% endtrans %}
+		{% endif %}
+	
+		&nbsp; 
+		{% if subject.user.isBeneficiaire and app.user.isGestionnaire %}
+			<a class="rp-blue" href="{{ path('re_gestionnaire_beneficiaires') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
+			{% elseif subject.user.isBeneficiaire %}
+			<a class="rp-blue" href="{{ path('re_membre_beneficiaires') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
+			{% elseif app.user.isGestionnaire %}
+			<a class="rp-blue" href="{{ path('re_gestionnaire_membres') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
+			{% else %}
+			<a class="rp-blue" href="{{ path('re_membre_membres') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
+		{% endif %}
+
+		</li>
+	</ul>
+
+
+{% endblock addUserContent %}
+

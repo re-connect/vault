@@ -1,0 +1,7 @@
+re_beneficiaire_accueil:
+    path:     /
+    defaults: { _controller: App\Controller\BeneficiaireController::accueil }
+
+re_beneficiaire_setQuestionSecrete:
+    path:     /set-question-secrete
+    defaults: { _controller: App\Controller\BeneficiaireController::setQuestionSecrete }

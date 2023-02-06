@@ -1,0 +1,93 @@
+{% if app.user is defined %}
+    {% set notifications = getNotifications() %}
+    {% if notifications|length > 0 %}
+        {% for notification in notifications %}
+            {% if notification["type"] == constant('App\\Extension\\NotificationExtension::NOTIFICATION_AJOUT_CENTRE') %}
+                <div id="centerNotification" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title text-primary font-size-1-3">
+                                    <div class="mid text-primary barlow-medium bold uppercase">{{ notification["title"] }} </div>
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mid text-primary barlow-medium bold uppercase">{{ notification["centre"].nom }}</div>
+                                <hr class="smallMargin">
+                                <table class="smallPaddingTable uppercase">
+                                    <tr>
+                                        <td><i class="fas fa-home text-primary font-size-1-3"></i></td>
+                                        {% if notification["centre"].adresse is not null %}
+                                            <td class="text-primary">{{ notification["centre"].adresse.nom }}
+                                                <br/>{{ notification["centre"].adresse.codePostal }} {{ notification["centre"].adresse.ville }}
+                                            </td>
+                                        {% endif %}
+                                    </tr>
+                                    {% if notification["centre"].telephone %}
+                                        <tr>
+                                            <td><img src="{{ asset('build/images/icons/phone.png') }}" alt=""></td>
+                                            <td>{{ notification["centre"].telephone }}</td>
+                                        </tr>
+                                    {% endif %}
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                {% if "cancelLink" in notification|keys %}
+                                    <a class="btn btn-dark-blue barlow-medium"
+                                       href="{{ notification["cancelLink"] }}">{% trans %}main.refuser{% endtrans %}</a>
+                                {% endif %}
+                                {% if "okLink" in notification|keys %}
+                                    <a class="btn {{ app.user.isBeneficiaire ?  "btn-green"  : "btn-blue" }} barlow-medium"
+                                       href="{{ notification["okLink"] }}">{% trans %}main.accepter{% endtrans %}</a>
+                                {% endif %}
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            {% else %}
+                <div id="contactNotification" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title text-primary font-size-1-3 barlow-medium bold uppercase">
+                                    <div class="mid">{{ notification["title"] }} </div>
+                                </h4>
+                            </div>
+                            <form method="post" action="{{ notification["okLink"] }}">
+                                <div class="modal-body row">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p class="mid text-primary font-size-1">
+                                                {% trans %}membre.partageContact.text{% endtrans %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-7 col-sm-offset-3">
+                                            <div class="checkbox font-size-1 text-primary">
+                                                <input class="reCheckbox" type="checkbox" name="telephone" checked="checked" id="telephone">
+                                                <label for="telephone">{% trans %}membre.partageContact.ajouterNuméro{% endtrans %}</label>
+                                            </div>
+                                            <div class="checkbox font-size-1 text-primary">
+                                                <input class="reCheckbox" type="checkbox" name="mail" checked="checked" id="mail">
+                                                <label for="mail">{% trans %}membre.partageContact.ajouterMail{% endtrans %}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-dark-blue" data-dismiss="modal">{% trans %}main.refuser{% endtrans %}</button>
+                                    <input class="btn btn-blue" type="submit" value="{% trans %}main.accepter{% endtrans %}"/>
+                                </div>
+                            </form>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endif %}

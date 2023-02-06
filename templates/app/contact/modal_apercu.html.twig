@@ -1,0 +1,34 @@
+<!-- Aperçu modal -->
+<div ng-controller="EntityApercuModalCtrl" class="modal fade bs-apercu-modal" role="dialog"
+     tabindex="-1" aria-labelledby="apercuModalLabel"
+     style="display: none;">
+    <div class="modal-dialog modal-sm" role="document">
+        <div ng-if="isDefined()" class="modal-content text-primary">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                <h4 class="modal-title text-primary font-size-1-3" id="apercuModalLabel">
+                    <span class="text-lowercase">{{ "{{ entity.prenom }}" }}</span>&nbsp;<span class="text-uppercase">{{ "{{ entity.nom }}" }}</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-3">
+                    <div class="col-md-2"><span class="glyphicon glyphicon-earphone" aria-hidden="true" title="{{'phone'|trans}}"></span></div>
+                    <div class="col-md-10 font-size-1">{{ "{{ entity.telephone }}" }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-2"><span class="glyphicon glyphicon-envelope" aria-hidden="true" title="{{ 'email'|trans }}"></span></div>
+                    <div class="col-md-10 font-size-1">{{ "{{ entity.email }}" }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-2"><span class="glyphicon glyphicon-edit" aria-hidden="true" title="{{ 'comment'|trans }}"></span></div>
+                    <div class="col-md-10 font-size-1" style="white-space:pre-wrap;">{{ "{{ entity.commentaire }}" }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"><span class="glyphicon glyphicon-home" aria-hidden="true" title="{{ 'association'|trans }}"></span></div>
+                    <div class="col-md-10 font-size-1">{{ "{{ entity.association }}" }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+App\Entity\Document:
+    type: entity
+    table: "document"
+    repositoryClass: App\Repository\DocumentRepository
+    fields:
+        dateEmission:
+            type: datetime
+            nullable: true
+        extension:
+            type: string
+            length: 255
+            nullable: true
+        taille:
+            type: integer
+            nullable: false
+        # BUCKET
+        objectKey:
+            type: string
+            length: 255
+            nullable: true
+        thumbnailKey:
+            type: string
+            length: 255
+            nullable: true
+        deletedAt:
+            type: datetime
+            nullable: true
+    # ######
+    manyToOne:
+        dossier:
+            targetEntity: App\Entity\Dossier
+            inversedBy: documents
+        beneficiaire:
+            targetEntity: App\Entity\Beneficiaire
+            inversedBy: documents
+            joinColumn:
+                nullable: false
+    oneToMany:
+        creators:
+            targetEntity: App\Entity\Creator
+            cascade: [ "persist", "remove" ]
+            mappedBy: document
+        sharedDocuments:
+            targetEntity: App\Entity\SharedDocument
+            cascade: [ "remove" ]
+            mappedBy: document
+    lifecycleCallbacks: { }

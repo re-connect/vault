@@ -1,0 +1,9 @@
+App\Entity\ClientGestionnaire:
+  type: entity
+  table: null
+  repositoryClass: App\Repository\ClientGestionnaireRepository
+  manyToOne:
+    entity:
+      targetEntity: App\Entity\Gestionnaire
+      inversedBy: externalLinks
+  lifecycleCallbacks: {  }

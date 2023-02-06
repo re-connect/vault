@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block metaTitle %}
+	{% if subject.user.isBeneficiaire %}
+		{% trans %}membre.ajoutBeneficiaire.metaTitle{% endtrans %}
+	{% else %}
+		{% trans %}membre.ajoutMembre.metaTitle{% endtrans %}
+	{% endif %}
+{% endblock metaTitle %}
+
+{% block bodyClass %}greyLightestBlock{% endblock bodyClass %} 
+{% block headerProfilSpacer %}{% endblock headerProfilSpacer%}
+{% block body %}
+	<div class="whiteBlock">
+		<div class="headerProfilSpacer"></div>
+		<h1 class="h1 mt-0 pt-4 center text-primary">
+			{% block addUserTitle %}
+				{% if subject.user.isBeneficiaire %}
+					{{ 'add_new_benef_big_title'|trans|raw }}
+				{% else %}
+					{{ 'add_new_member_big_title'|trans|raw }}
+				{% endif %}
+			{% endblock addUserTitle %}
+		</h1>
+		<br/><br/>
+	</div>
+
+	<div class="{{ app.user.isBeneficiaire ? 'bg-light-green' : 'bg-light-blue'}}" style="min-height: 550px;">
+		<br/>
+		<div class="centeredContainer">
+			<div class="text-primary pb-2">
+				{% if app.user %}
+					<a href="{{ path('re_user_redirectUser') }}" class="floatRight btn {{ app.user.isBeneficiaire ? 'btn-green' : 'btn-blue'}} barlow-medium font-size-1">{{ 'back_home'|trans }}</a>
+				{% endif %}
+				<div style="position:relative; top: 10px; width: 75%;">
+					<i class="fas fa-user-plus font-size-1-3"></i>
+					<span class="font-size-1-3 bold uppercase">
+				 &nbsp; {% block addUserSubtitle %}{% endblock addUserSubtitle %}
+				</span>
+				</div>
+
+			</div>
+				<hr class="bg-primary smallMargin" style="height: 1px;">
+			<br/>
+			{% block addUserContent %}{% endblock addUserContent %}
+		</div>
+	</div>
+{% endblock body %}

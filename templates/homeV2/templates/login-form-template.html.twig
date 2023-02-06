@@ -1,0 +1,35 @@
+<div class="{{ bg_class }} box-shadow-white border-radius-20 p-3 mt-4 mt-md-0">
+    <h6 class="text-white text-center mb-3 lighter font-size-1-2 fw-bold">{{ 'login_form_title'| trans }}</h6>
+    {% for label, messages in app.flashes(['success', 'danger']) %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                <small>{{ message|trans() }}</small>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% if auth_error %}
+        <div class="alert alert-danger">{{ auth_error.messageKey|trans(auth_error.messageData, 'security') }}</div>
+    {% endif %}
+    {{ form_start(form) }}
+    {{ form_row(form._username, {full_name:'_username', value: last_username}) }}
+    <div class="position-relative">
+        {{ form_row(form._password, {full_name:'_password'}) }}
+        <i style="right:3%; top:25%; z-index:2;"
+           class="show-password fas fa-eye position-absolute font-size-1 clickable {{ icon_color }}"></i>
+    </div>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+    <div class="row">
+        <div class="pe-1 col-6 login-form-link">
+            <a class="text-white text-left lighter font-size-1 border-0 w-100 text-decoration-none"
+               href="{{ path('app_forgot_password_request_choose') }}">{{ 'form_forgot_password'| trans }}</a>
+        </div>
+        <div class="col-6">
+            <button name="submitLogin"
+                    class="{{ btn_class }} btn btn-block rounded-3 w-100 lighter font-size-1">{{ 'form_connexion'| trans }}</button>
+        </div>
+    </div>
+    {{ form_end(form, {'render_rest': false}) }}
+</div>

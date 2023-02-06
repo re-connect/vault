@@ -1,0 +1,11 @@
+{# Errors #}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+        {%- for error in errors -%}
+            <div class="w-75 mx-auto alert alert-danger alert-dismissible fade show" role="alert">
+                <small>{{ error.message|trans() }}</small>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>        {%- endfor -%}
+    {%- endif %}
+{%- endblock form_errors %}

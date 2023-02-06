@@ -1,0 +1,30 @@
+{% extends 'user/membre-beneficiaire/creationUser_gestionUser_base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block addUserSubtitle %}
+    {{ 'create_new_benef_step3'|trans({'%totalSteps%': '6'})|raw }}
+{% endblock addUserSubtitle %}
+
+{% block mainDiv_creation_addUserContent %}<div style="max-width: 520px; margin: auto;">{% endblock mainDiv_creation_addUserContent %}
+
+{% block creation_addUserContent %}
+    {{ form_row(form.questionSecrete) }}
+    <div id="lineAutreQuestion" style="display: none;">{{ form_row(form.autreQuestionSecrete) }}</div>
+    {{ form_row(form.reponseSecrete) }}
+{% endblock creation_addUserContent %}
+
+{% block bottomLinks %}
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-2 col-xs-4 col-xs-offset-2">
+            <a href="{{ path('creationBeneficiaireStep2') }}" class="btn btn-dark-blue font-size-1">{% trans %}main.retour{% endtrans %}</a>
+        </div>
+        <div class="col-sm-4 col-xs-4">
+            {{ form_widget(form.submit, {'attr': {'class': 'btn-blue font-size-1'}}) }}
+        </div>
+    </div>
+{% endblock bottomLinks %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('set_question_secrete_etape_3') }}
+{% endblock %}

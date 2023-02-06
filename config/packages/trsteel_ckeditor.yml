@@ -1,0 +1,5 @@
+#trsteel_ckeditor:
+#  filebrowser_image_browse_url:
+#    route: elfinder
+#    route_parameters:
+#      instance: ckeditor

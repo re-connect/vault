@@ -1,0 +1,40 @@
+{% extends 'user/gestionUser_base.html.twig' %}
+
+{% block metaTitle %}{% trans %}user.reinitialiserMdp.metaTitle{% endtrans %}{% endblock metaTitle %}
+{% block addUserTitle %}{% trans %}user.reinitialiserMdp.title{% endtrans %}{% endblock addUserTitle %}
+{% block addUserSubtitle %}{% if userToReset is defined %}{{ 'user.reinitialiserMdp.subtitle'|trans({'%nom%' : userToReset.nom, '%prenom%' : userToReset.prenom}) }}{% endif %}
+{% endblock addUserSubtitle %}
+
+{% block addUserContent %}
+    <ul>
+        {% set atLeastAWay = false %}
+        {% if userToReset.isBeneficiaire and userToReset.subjectBeneficiaire.reponseSecrete is not null %}
+            {% set atLeastAWay = true %}
+            <li class="smallMargin"><a href="{{ path('private_reset_password_question', {'id' : userToReset.id }) }}"
+                                       class="btn btn-blue">{% trans %}user.reinitialiserMdp.questionSecrete{% endtrans %}</a>
+            </li>
+        {% endif %}
+
+        {% if userToReset.email is not null %}
+            {% set atLeastAWay = true %}
+            <li class="smallMargin"><a href="{{ path('private_reset_password_email', {'id' : userToReset.id }) }}"
+                                       class="btn btn-blue">{% trans %}user.reinitialiserMdp.adresseMail{% endtrans %}</a>
+            </li>
+        {% endif %}
+
+        {% if userToReset.telephone is not null %}
+            {% set atLeastAWay = true %}
+            <li class="smallMargin"><a href="{{ path('private_reset_password_sms', {'id' : userToReset.id }) }}"
+                                       class="btn btn-blue">{% trans %}user.reinitialiserMdp.telephone{% endtrans %}</a>
+            </li>
+        {% endif %}
+
+        {% if not atLeastAWay %}
+            <li class="smallMargin">
+                <div class="midMargin text-primary">{% trans %}user.reinitialiserMdp.aucuneMethode{% endtrans %}</div>
+                <a href="{{ path('private_reset_password_random', {'id' : userToReset.id }) }}"
+                   class="btn btn-blue">{% trans %}user.reinitialiserMdp.random{% endtrans %}</a>
+            </li>
+        {% endif %}
+    </ul>
+{% endblock addUserContent %}

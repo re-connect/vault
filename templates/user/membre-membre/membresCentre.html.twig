@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+
+{% block metaTitle %}{% trans %}membre.membres.metaTitle{% endtrans %}{% endblock metaTitle %}  
+{% block body %}
+
+    <div class="" style="min-height: 364px;">
+        <div class="centeredContainer">
+            <a href="{{ app.request.headers.get('referer') }}"
+               class="btn btn-blue floatRight">{% trans %}main.retour{% endtrans %}</a>
+            <h1 class="h1 text-primary">{{ 'member_management_big_title'|trans|raw }}</h1>
+            <div style="padding: 20px 0;">
+                <div id="app" ng-app="app" class="ng-cloak">
+                    <div ng-controller="MembresListCtrl">
+                        <div class="smallMargin">
+                            <div class="floatRight">
+
+                                <select class="text-secondary" ng-model="centreName"
+                                        {% if centre is defined and centre != null %}ng-init="centreName = '{{ centre.nom }}'"{% endif %}>
+                                    <option value=""
+                                            selected>{% trans %}membre.beneficiaires.selectCentre{% endtrans %}</option>
+                                    {% if app.user.isMembre %}
+                                        {% for userCentre in app.user.subject.usersCentres %}
+                                            {% if not app.user.isMembre or (userCentre.droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES")] is defined and userCentre.droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES")]) %}
+                                                <option value="{{ userCentre.centre.nom }}">{{ userCentre.centre.nom }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% elseif app.user.isGestionnaire %}
+                                        {% for centre in app.user.subjectGestionnaire.centres %}
+                                            <option value="{{ centre.nom }}">{{ centre.nom }}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                                &nbsp;
+                                <div class="searchInput">
+                                    <i class="fas fa-search font-size-1 text-secondary"
+                                       style="position:relative; left: 30px;"></i>
+                                    <input class="font-size-1 text-secondary" type="search" ng-model="searchQuery"
+                                           placeholder="{{ 'main.chercher'|trans }}"/>
+                                </div>
+                            </div>
+                            <a href="{{ path('re_membre_ajoutMembreSearch') }}"
+                               class="btn btn-blue barlow-medium font-size-1"><i class="fas fa-user-plus"></i>
+                                &nbsp; {% trans %}membre.membres.ajouterMembre{% endtrans %}</a>
+                            <div class="clearFloat">&nbsp;</div>
+                        </div>
+                        <hr class="smallMargin bg-primary">
+                        <table class="reTable2 table-90">
+                            <tr dir-paginate="membre in membres | filter:centreName  | filter:searchQuery | itemsPerPage: pageSize"
+                                current-page="currentPage" class="animateOpacity">
+                                <td style="padding: 12px 3px; text-align: left; position: relative; width: 60px;">
+                                    <i style="font-size: 3rem !important;" class="fas fa-user text-primary pl-2"
+                                       ng-if="!membre.user.avatar"></i>
+                                    <div class="avatar avatar-big" ng-if="membre.user.avatar">
+                                        <img src="{{ asset('') }}/{{ "{{ membre.user.avatar }}" }}" alt=""/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-primary font-size-1-1 pb-1">
+                                        {{ '{{membre.user.prenom}} <span class="uppercase">{{membre.user.nom}}</span>' }}
+                                    </div>
+                                    <div class="text-secondary font-size-1 lighter">{{ '{{membre.user.username}}' }}</div>
+
+                                </td>
+                                <td ng-if="centreName != null">
+                                    <a title="{% trans %}membre.membres.gestionBeneficiaires{% endtrans %}"
+                                       ng-click="changeRight(membre, '{{ constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES') }}')"
+                                       href="" class="text-secondary">
+                                        <i style="font-size: 2rem;"
+                                           ng-class="{'text-primary':hasRight(membre, '{{ constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES') }}')}"
+                                           class="fas fa-user"></i>
+                                    </a> &nbsp;
+                                    <a title="{% trans %}membre.membres.gestionMembres{% endtrans %}"
+                                       ng-click="changeRight(membre, '{{ constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES') }}')"
+                                       href="" class="text-secondary">
+                                        <i style="font-size: 2rem;"
+                                           ng-class="{'text-primary':hasRight(membre, '{{ constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES') }}')}"
+                                           class="fas fa-user-cog"></i>
+                                    </a> &nbsp;
+                                </td>
+                                <td>
+                                    <div id="menuDropdownMembre" class="dropdown text-right">
+                                        <button type="button"
+                                                class="btn {{ app.user.isBeneficiaire ? 'btn-green' : 'btn-blue' }} dropdown-toggle"
+                                                data-toggle="dropdown"
+                                                aria-expanded="false"><span
+                                                    class="glyphicon glyphicon-option-horizontal"
+                                                    aria-hidden="true"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" style="left: -150px !important;">
+                                            <li>
+                                                <a class="pointer text-primary font-size-1"
+                                                   href={{ '"{{getRoute(\'re_membre_arreterSuiviMembre\', membre.id)}}"' }}>
+                                                    <i class="far fa-times-circle pr-2" aria-hidden="true"></i>
+                                                    {% trans %}membre.membres.arreterSuivi{% endtrans %}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="app-paginationLine">
+                            <div class="floatRight text-primary">
+                                <dir-pagination-controls class="inbl" boundary-links="true"
+                                                         on-page-change="pageChangeHandler(newPageNumber)"
+                                ></dir-pagination-controls>
+                                {% import "app/macros.html.twig" as macros %}
+                                {{ macros.pageSelect() }}
+                            </div>
+                            <div class="clearFloat">&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('membre_centre') }}
+{% endblock javascripts %}

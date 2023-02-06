@@ -1,0 +1,69 @@
+<section class="py-5">
+    <div class="container">
+        <h2 class="h2 text-primary pb-1 text-uppercase text-center">{{ 'home_solutions_list_title'| trans }}</h2>
+        <div class="row py-4">
+            <div class="col-11 col-md-6 px-5">
+                {% set solutions_left = [
+                    {
+                        'img': 'build/images/homeV2/icon_accessibility.png',
+                        'alt_img': 'home_solutions_list_accessible_alt_img',
+                        'title': 'home_solutions_list_accessible_title',
+                        'text':'home_solutions_list_accessible_p'
+                    },
+                    {
+                        'img': 'build/images/homeV2/icon_human.png',
+                        'alt_img': 'home_solutions_list_human_alt_img',
+                        'title': 'home_solutions_list_human_title',
+                        'text':'home_solutions_list_human_p'
+                    },
+                    {
+                        'img': 'build/images/homeV2/icon_solidarity.png',
+                        'alt_img': 'home_solutions_list_solidarity_alt_img',
+                        'title': 'home_solutions_list_solidarity_title',
+                        'text':'home_solutions_list_solidarity_p'
+                    },
+                ] %}
+                {% for solution in solutions_left %}
+                    <article class="d-flex my-3 mx-0 w-100">
+                        <div>
+                            <img class="solutions-list-icon" src="{{ asset(solution.img) }}"
+                                 alt="{{ solution.alt_img| trans }}">
+                        </div>
+                        <div class="ps-3 text-primary">
+                            <h3 class="h3">{{ solution.title| trans }}</h3>
+                            <p>{{ solution.text| trans }}</p>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+            <div class="col-11 col-md-6 px-5">
+                {% set solutions_right = [
+                    {
+                        'img': 'build/images/homeV2/icon_safe.png',
+                        'alt_img': 'home_solutions_list_secure_alt_img',
+                        'title': 'home_solutions_list_secure_title',
+                        'text':'home_solutions_list_secure_p'
+                    },
+                    {
+                        'img': 'build/images/homeV2/icon_evolve.png',
+                        'alt_img': 'home_solutions_list_evolve_alt_img',
+                        'title': 'home_solutions_list_evolve_title',
+                        'text':'home_solutions_list_evolve_p'
+                    }
+                ] %}
+                {% for solution in solutions_right %}
+                    <article class="d-flex my-3 mx-0 w-100">
+                        <div>
+                            <img class="solutions-list-icon" src="{{ asset(solution.img) }}"
+                                 alt="{{ solution.alt_img| trans }}">
+                        </div>
+                        <div class="ps-3 text-primary">
+                            <h3 class="h3">{{ solution.title| trans }}</h3>
+                            <p>{{ solution.text| trans }}</p>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

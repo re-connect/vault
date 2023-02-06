@@ -1,0 +1,8 @@
+App\Entity\Partenaire:
+    properties:
+        nom:
+            - NotBlank: ~
+App\Entity\Annexe:
+    properties:
+        url:
+            - NotBlank: ~

@@ -1,0 +1,38 @@
+App\Entity\AuthCode:
+    type: entity
+    table: authcode
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        token:
+            type: string
+            length: 255
+            colomn: token
+            unique: true
+        expiresAt:
+            type: integer
+            nullable: true
+            colomn: expires_at
+        scope:
+            type: string
+            length: 255
+            colomn: scope
+            nullable: true
+        redirectUri:
+            type: text
+            colomn: redirect_uri
+            nullable: true
+    lifecycleCallbacks: {  }
+    manyToOne:
+        client:
+            targetEntity: App\Entity\Client
+            joinColumn:
+                nullable: false
+        user:
+            targetEntity: App\Entity\User
+            joinColumn:
+                nullable: true

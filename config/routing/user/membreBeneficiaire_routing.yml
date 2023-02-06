@@ -1,0 +1,86 @@
+re_membre_beneficiaires:
+    path: /
+    defaults: { _controller: App\Controller\MembreBeneficiaireController::beneficiaires }
+
+re_membre_arreterSuiviBeneficiaire:
+    path: /{id}/arreter-le-suivi
+    defaults: { _controller: App\Controller\MembreBeneficiaireController::arreterSuiviBeneficiaire }
+    options:
+        expose: true
+    requirements:
+        id: \d{1,10}
+
+# New beneficiary
+creationBeneficiaireStep1:
+    path: /creation-beneficiaire/{way}/etape-1
+    controller: App\Controller\MembreBeneficiaireController::creationBeneficiaireStep1
+    defaults:
+        way: default
+    requirements:
+        way: default|remotely
+
+creationBeneficiaireStep2:
+    path: /creation-beneficiaire/etape-2
+    defaults: { _controller: App\Controller\MembreBeneficiaireController::creationBeneficiaireStep2 }
+
+creationBeneficiaireStep3:
+    path: /creation-beneficiaire/etape-3
+    controller: App\Controller\MembreBeneficiaireController::creationBeneficiaireStep3
+
+creationBeneficiaireStep4:
+    path: /creation-beneficiaire/{way}/etape-4
+    controller: App\Controller\MembreBeneficiaireController::creationBeneficiaireStep4
+    defaults:
+        way: default
+    requirements:
+        way: default|remotely
+
+creationBeneficiaireStep5:
+    path: /creation-beneficiaire/{way}/etape-5
+    controller: App\Controller\MembreBeneficiaireController::creationBeneficiaireStep5
+    defaults:
+        way: default
+    requirements:
+        way: default|remotely
+
+creationBeneficiaireStep6:
+    path: /creation-beneficiaire/{way}/etape-6/{id}
+    controller: App\Controller\MembreBeneficiaireController::creationBeneficiaireStep6
+    defaults:
+        way: default
+    requirements:
+        way: default|remotely
+
+re_membre_ajoutBeneficiaire:
+    path: /ajout-beneficiaire
+    defaults: { _controller: App\Controller\MembreBeneficiaireController::ajoutBeneficiaireSearch }
+
+re_membre_doAjoutBeneficiaire:
+    path: /ajout-beneficiaires/{id}
+    defaults: { _controller: App\Controller\MembreBeneficiaireController::doAjoutBeneficiaire }
+    requirements:
+        id: \d{1,10}
+
+re_membre_doDoAjoutBeneficiaire:
+    path: /ajout-beneficiaires/{id}/termine
+    defaults: { _controller: App\Controller\MembreBeneficiaireController::doDoAjoutBeneficiaire }
+    requirements:
+        id: \d{1,10}
+
+re_membre_questionSecrete:
+    path: /ajout-beneficiaires/{id}/question-secrete
+    defaults: { _controller: App\Controller\MembreBeneficiaireController::questionSecrete }
+    requirements:
+        id: \d{1,10}
+
+re_membre_sendSmsCodeToBenficiaire:
+    path: /ajout-beneficiaires/{id}/envoyer-sms
+    defaults: { _controller: App\Controller\MembreBeneficiaireController::sendSmsCode }
+    requirements:
+        id: \d{1,10}
+
+re_membre_ajoutContactBeneficiaire:
+    path: /ajout-contact-beneficiaire/{id}
+    defaults: { _controller: App\Controller\MembreBeneficiaireController::ajoutContactBeneficiaire }
+    requirements:
+        id: \d{1,10}

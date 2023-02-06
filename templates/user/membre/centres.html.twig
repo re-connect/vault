@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block metaTitle %}{% trans %}membre.centres.metaTitle{% endtrans %}{% endblock metaTitle %}
+
+{% block bodyCentered %}
+
+    <h1 class="h1 center text-primary">{% block title %}{{ 'my_reconnect_centers'|trans|raw }}{% endblock title %}</h1>
+    <br/>
+    <div id="centres">
+        {% for centre in centres %}
+            <div class="centre">
+                <div class="floatLeft">
+                    <div class="smallMap text-right pr-5 pt-4">
+                        <i class="fas fa-hotel text-primary" style="font-size: 80px"></i>
+                    </div>
+                </div>
+                <div class="floatLeft" style="margin-left: 10px;">
+                    <br/>
+                    <div class="mid bold uppercase text-primary font-size-1">{{ centre.nom }}</div>
+                    <div class="text-primary font-size-1">{{ centre.adresse }}</div>
+                    <div class="text-primary font-size-1">{{ centre.telephone }}</div>
+                    <div class="smallMargin">
+                        {% if isGestionnaire %}
+                            <a href="{{ path('re_membre_membresCentre', {'id' : centre.id}) }}"
+                               class="btn btn-blue">{% trans %}membre.centres.voirMembres{% endtrans %}</a>
+                            <a href="{{ path('re_membre_beneficiaires', {'id' : centre.id}) }}"
+                               class="btn btn-blue">{% trans %}membre.centres.voirBeneficiaires{% endtrans %}</a>
+                        {% endif %}
+                        {% if membreCentres %}
+                            {% set droits = membreCentres[centre.id].droits %}
+                            {% if droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES")] is defined and droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES")] %}
+                                <a href="{{ path('re_membre_membresCentre', {'id' : centre.id}) }}"
+                                   class="btn btn-blue">{% trans %}membre.centres.voirMembres{% endtrans %}</a>
+                            {% endif %}
+                            {% if droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES")] is defined and droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES")] %}
+                                <a href="{{ path('re_membre_beneficiaires', {'id' : centre.id}) }}"
+                                   class="btn btn-blue">{% trans %}membre.centres.voirBeneficiaires{% endtrans %}</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="clearFloat">&nbsp;</div>
+                <br/>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock bodyCentered %}
+

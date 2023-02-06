@@ -1,0 +1,48 @@
+App\Entity\Client:
+    type: entity
+    repositoryClass: App\Repository\ClientRepository
+    table: client
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+            nullable: true
+        secret:
+            type: string
+            length: 255
+            column: secret
+        randomId:
+            type: string
+            length: 255
+            column: random_id
+        newClientIdentifier:
+            type: string
+            length: 255
+            nullable: true
+        redirectUris:
+            type: array
+            column: redirect_uris
+        allowedGrantTypes:
+            type: array
+            column: allowed_grant_types
+        dossierNom:
+            type: string
+            column: dossier_nom
+            nullable: true
+        dossierImage:
+            type: string
+            column: dossier_image
+            nullable: true
+        actif:
+            type: boolean
+            options:
+                default: true
+        access:
+            type: array
+    lifecycleCallbacks: { }

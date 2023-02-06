@@ -1,0 +1,7 @@
+# IMPORT
+re_membreBeneficiaire:
+    resource: "membreBeneficiaire_routing.yml"
+    prefix:   beneficiaires/
+re_membreMembre:
+    resource: "membreMembre_routing.yml"
+    prefix:   membres/

@@ -1,0 +1,266 @@
+{% extends 'app/base.html.twig' %}
+
+{% block metaTitle %}{{ 'document.metaTitle'|trans }}{% endblock metaTitle %}
+
+{% block styles %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('document') }}
+{% endblock %}
+
+{% set locale = app.session.get("_locale") ?: 'fr' %}
+
+{% block ajouterBlock %}
+    <a data-toggle="modal" data-target=".bs-new-folder-modal"
+       ng-click="createDossier();"
+       class="btn {{ app.user.isBeneficiaire ? 'btn-green' : 'btn-blue' }} floatRight pointer"
+       style="margin-left: 15px;" id="addFolder" data-id="{{ beneficiaire.id }}">
+        <i class="fas fa-folder-plus align-middle font-size-1-2 pr-1" aria-hidden="true"></i>
+        <span class="font-size-1 barlow-medium"
+              style="position: relative; top: 2px;">{{ 'document.creerUnDossier'|trans }}</span>
+    </a>
+    <a id="select-files"
+       class="btn {{ app.user.isBeneficiaire ? 'btn-green' : 'btn-blue' }} bold floatRight pointer"
+       data-id="{{ beneficiaire.id }}"
+       data-locale="{{ locale }}"
+    >
+        <i class="fas fa-plus-circle align-middle font-size-1-2 pr-1" aria-hidden="true"></i>
+        <span class="font-size-1 barlow-medium"
+              style="position: relative; top: 2px;">{{ 'document.deposerDesFichiers'|trans }}</span></a>
+{% endblock ajouterBlock %}
+
+{% block searchInput %}
+    {{ parent() }}
+    <div id="folderControl" class="inbl text-primary" style="display: none; position: relative; left: 0%;">
+        <i class="fas fa-folder-open "></i>
+        <span class=" bold font-size-1 barlow-medium">{{ 'folder_content'|trans }} {{ '{{ folder.nom }}' }}</span>
+        &nbsp; &nbsp;
+        <i class="fas fa-undo-alt pointer " ng-click="setFolder(parentFolderId)"></i>
+    </div>
+{% endblock %}
+
+{% block angController %}
+<div id="DocumentsListCtrl" ng-controller="DocumentsListCtrl">
+    {% endblock angController %}
+    {% block endAngController %}
+</div>
+{% endblock endAngController %}
+    {% block appBody %}
+        <div id="docList" class="ng-cloak center-block">
+            <div id="alertSuccess" class="alert alert-success" role="alert" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div id="alertSuccessMessage"></div>
+            </div>
+            <div id="alertDanger" class="alert alert-danger" role="alert" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div id="alertDangerMessage">
+                </div>
+            </div>
+            <div ng-if="isLoadedAndEmpty(foldersDocs)">
+                <div class="hugePadding center">
+                    <div class="bigMargin mid">
+                        <p class="text-primary">
+                            {{ 'document.aucunFichier'|trans }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="isLoadedAndNotEmpty(foldersDocs)" class="text-primary">
+                <table class="reTable2 table-100 table" id="appList">
+                    <thead>
+                    <tr>
+                        <th class="bg-secondary border-0" style="width: 10%"></th>
+                        <th class="bg-secondary border-0 font-size-1-3 leftAlign"
+                            style="padding-left: 10px; width: 60%">{{ 'name'|trans }}</th>
+                        <th class="bg-secondary border-0 font-size-1-3" style="width: 10%"></th>
+                        {% if app.user.isBeneficiaire %}
+                            <th ng-if="!isInFolder()" class="center bg-secondary border-0 font-size-1-3 pr-4"
+                                style="width: 10%">{{ 'access'|trans }}</th>
+                        {% endif %}
+                        <th class="center bg-secondary border-0 font-size-1-3"
+                            style="width: 10%">{{ 'donneePersonnelle.list.entete.actions'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="center"
+                        ng-mouseover="activateLine(folderDoc, $event)"
+                        ng-switch="{{ '{{isFolder(folderDoc)}}' }}" class="fileLine animateOpacity"
+                        dir-paginate="folderDoc in foldersDocsFiltered | filter:privacyFilter | filter:searchQuery | itemsPerPage: pageSize"
+                        current-page="currentPage"
+                        data-drag="true" jqyoui-draggable="true"
+                        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
+                        data-drop="{{ '{{isFolder(folderDoc)}}' }}"
+                        jqyoui-droppable="{onDrop:'onDropFile', onOver: 'onOverFile', onOut: 'onOutFile'}"
+                        data-folderDoc="{{ '{{folderDoc}}' }}"
+                    >
+                        {# thumbnail element #}
+                        {# folder #}
+                        <td class="pointer"
+                            ng-click="setFolder(folderDoc.id)" ng-switch-when="true">
+                            <i class="far fa-folder-open" style="font-size:3rem;"></i>
+                        </td>
+                        {# document #}
+                        <td class="pointer" ng-click="openDocument(folderDoc)" ng-switch-default>
+                            <img ng-src="{{ '{{ getThumb(folderDoc)}}' }}" alt=""
+                                 style="max-width: 60px; background: white;"/>
+                        </td>
+                        {# name element #}
+                        {# folder #}
+                        <td class="pointer leftAlign font-size-1-1" ng-click="setFolder(folderDoc.id)"
+                            ng-switch-when="true">
+                            {{ '{{folderDoc.nom}}' }}<br/>
+                            <span class="font-size-1 text-secondary lighter">{{ '{{folderDoc.created_at | date : "dd/MM/yyyy" }}' }}</span>
+                        </td>
+                        {# document #}
+                        <td class="pointer leftAlign font-size-1-1" ng-click="openDocument(folderDoc)"
+                            ng-switch-default>
+                            {{ '{{folderDoc.nom}}' }}<br/>
+                            <span class="font-size-1 text-secondary lighter">{{ '{{folderDoc.created_at | date : "dd/MM/yyyy" }}' }}</span>
+                        </td>
+                        <td>
+                            <div ng-switch-when="true">
+                                <a ng-if="!folderIsEmpty(folderDoc)"
+                                   onclick='mixpanel.track("Télécharger");'
+                                   href="{{ '{{getRoute(\'re_app_dossier_telecharger\', folderDoc.id)}}' }}"
+                                >
+                                    <i class="fas fa-file-download {{ app.user.isBeneficiaire ? 'vault-green' : 'rp-blue' }} font-size-1"
+                                       aria-hidden="true" title="{{ 'document.telecharger'|trans }}"></i>
+                                </a>
+                                <i ng-if="folderIsEmpty(folderDoc)"
+                                   class="fas fa-file-download font-size-1 text-secondary" aria-hidden="true"
+                                   title="{{ 'dossier.vide'|trans }}"></i>
+                            </div>
+                            <a ng-switch-default onclick='mixpanel.track("Télécharger");'
+                               href="{{ '{{getRoute(\'re_app_document_telecharger\', folderDoc.id)}}' }}"
+                            >
+                                <i class="fas fa-file-download {{ app.user.isBeneficiaire ? 'vault-green' : 'rp-blue' }} font-size-1"
+                                   aria-hidden="true" title="{{ 'document.telecharger'|trans }}"></i>
+                            </a>
+                        </td>
+                        {% if app.user.isBeneficiaire %}
+                            {# Modification de l'accessiblité de la donnée #}
+                            <td ng-if="!isInFolder()" class="singleLine pr-4">
+                                <i class="switch-icon font-size-1 fas fa-lock{{ '{{ getLockIconClass(folderDoc) }}' }}"
+                                   title="{{ 'private'|trans }}"></i>
+                                <label class="switch mx-2">
+                                    <input type="checkbox"
+                                           ng-click="toggleAccess(folderDoc)"
+                                           ng-model="folderDoc.b_prive"
+                                           ng-true-value="false" ng-false-value="true"
+                                    >
+                                    <span class="slider round"></span>
+                                </label>
+                                <i class="switch-icon font-size-1 fas fa-share {{ '{{ getShareIconClass(folderDoc) }}' }}"
+                                   title="{{ 'shared'|trans }}"></i>
+                            </td>
+                        {% endif %}
+                        <td>
+                            <div class="dropdown">
+                                <button type="button"
+                                        class="btn {{ app.user.isBeneficiaire ? 'btn-green' : 'btn-blue' }} dropdown-toggle"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"><span
+                                            class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    {% if not app.user.isBeneficiaire %}
+                                        <li>
+                                            <a ng-really-message="{{ 'donneePersonnelle.etesVousSurBasculerEnPrive'|trans }}"
+                                               ng-really-click="toggleAccess(folderDoc)"
+                                               class="pointer text-primary font-size-1">
+                                                <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                                                &nbsp;{{ 'donneePersonnelle.basculerEnPrive'|trans }}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    <li ng-if="folderDoc.isShared">
+                                        <a
+                                                ng-really-message="{{ '{{getShareExpirationMessage(folderDoc)}}' }}"
+                                                ng-really-click="delete(folderDoc)"
+                                                data-message-document="{{ 'delete_currently_shared_document_warning'|trans }}"
+                                                data-message-folder="{{ 'delete_currently_shared_document_warning'|trans }}"
+                                                class="pointer text-primary font-size-1 shared-delete-button"
+                                        >
+                                            <i class="fas fa-trash pr-2"
+                                               aria-hidden="true"></i>&nbsp;{{ 'delete'|trans }}
+                                        </a>
+                                    </li>
+                                    <li ng-if="!folderDoc.isShared">
+                                        <a
+                                                ng-really-message="{{ '{{getMessageDelete(folderDoc)}}' }}"
+                                                ng-really-click="delete(folderDoc)"
+                                                data-message-document="{{ 'modal_message_document_delete'|trans }}"
+                                                data-message-folder="{{ 'modal_message_folder_delete'|trans }}"
+                                                class="pointer text-primary font-size-1 delete-button"
+                                        >
+                                            <i class="fas fa-trash pr-2"
+                                               aria-hidden="true"></i>&nbsp;{{ 'delete'|trans }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="modal" data-target=".bs-rename-modal"
+                                           class="pointer text-primary font-size-1">
+                                            <i class="fas fa-pencil-alt pr-2"
+                                               aria-hidden="true"></i>&nbsp;{{ 'rename'|trans }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="modal"
+                                           data-target=".bs-move-into-folder-modal"
+                                           class="pointer text-primary font-size-1">
+                                            <i class="fas fa-folder-open pr-2"
+                                               aria-hidden="true"></i>&nbsp;{{ 'move'|trans }}
+                                        </a>
+                                    </li>
+                                    <li ng-if="!folderDoc.is_folder">
+                                        <a class="pointer text-primary font-size-1"
+                                           href="/appli/document/{{ '{{folderDoc.id}}' }}/share">
+                                            <i class="fas fa-paper-plane pr-2"
+                                               aria-hidden="true"></i>&nbsp;{{ 'send'|trans }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="modal" data-target=".bs-information-modal"
+                                           class="pointer text-primary font-size-1">
+                                            <i class="fas fa-info-circle pr-2"
+                                               aria-hidden="true"></i>&nbsp;{{ 'document.information'|trans }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div id="app-paginationLine">
+                    <div class="floatRight">
+                        <dir-pagination-controls class="inbl" boundary-links="true"
+                                                 on-page-change="pageChangeHandler(newPageNumber)"
+                        ></dir-pagination-controls>
+                        {% import "app/macros.html.twig" as macros %}
+                        {{ macros.pageSelect() }}
+                    </div>
+                    <div class="clearFloat">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <div class="clearFloat">&nbsp;</div>
+        <iframe src="" frameborder="0" id="iframeprint"></iframe>
+        {{ include('app/document/modal_information.html.twig') }}
+        {{ include('app/document/modal_rename.html.twig') }}
+        {{ include('app/document/modal_move_into_folder.html.twig') }}
+        {{ include('app/dossier/modal_new.html.twig') }}
+        <form class="hidden" action="{{ path('api_document_upload', {beneficiaryId : beneficiaire.id}) }}"
+              enctype="multipart/form-data"
+              id="fileupload"
+              method="POST">
+            <input multiple name="files[]" type="file"/>
+        </form>
+    {% endblock appBody %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('document') }}
+    {% endblock javascripts %}

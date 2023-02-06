@@ -1,0 +1,124 @@
+App\Entity\Beneficiaire:
+    type: entity
+    table: "beneficiaire"
+    repositoryClass: App\Repository\BeneficiaireRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        totalFileSize:
+            type: integer
+            options:
+                default: 0
+        questionSecrete:
+            type: string
+            length: 255
+            nullable: true
+        reponseSecrete:
+            type: string
+            nullable: true
+            length: 255
+        dateNaissance:
+            type: date
+        lieuNaissance:
+            type: string
+            length: 255
+            nullable: true
+        archiveName:
+            type: string
+            length: 255
+            nullable: true
+        activationSmsCode:
+            type: string
+            nullable: true
+        activationSmsCodeLastSend:
+            type: datetime
+            nullable: true
+        isCreating:
+            type: boolean
+        neverClickedMesDocuments:
+            type: boolean
+            options:
+                default: true
+        idRosalie:
+            type: integer
+            nullable: true
+        siSiaoNumber:
+            type: string
+            length: 255
+            nullable: true
+        createdAt:
+            type: datetime
+            column: createdAt
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updatedAt
+            gedmo:
+                timestampable:
+                    on: update
+    oneToMany:
+        documents:
+            targetEntity: App\Entity\Document
+            mappedBy: beneficiaire
+            cascade: [ "persist", "remove" ]
+        dossiers:
+            targetEntity: App\Entity\Dossier
+            mappedBy: beneficiaire
+            cascade: [ "persist", "remove" ]
+        contacts:
+            targetEntity: App\Entity\Contact
+            mappedBy: beneficiaire
+            cascade: [ "persist", "remove" ]
+        notes:
+            targetEntity: App\Entity\Note
+            mappedBy: beneficiaire
+            cascade: [ "persist", "remove" ]
+        evenements:
+            targetEntity: App\Entity\Evenement
+            mappedBy: beneficiaire
+            cascade: [ "persist", "remove" ]
+        beneficiairesCentres:
+            targetEntity: App\Entity\BeneficiaireCentre
+            mappedBy: beneficiaire
+            cascade: [ "persist", "remove" ]
+            orphanRemoval: true
+        consultationsCentre:
+            targetEntity: App\Entity\ConsultationCentre
+            mappedBy: beneficiaire
+            cascade: [ "persist", "remove" ]
+        sms:
+            targetEntity: App\Entity\SMS
+            mappedBy: beneficiaire
+            cascade: [ "persist", "remove" ]
+        consultationsBeneficiaires:
+            targetEntity: App\Entity\ConsultationBeneficiaire
+            mappedBy: beneficiaire
+            cascade: [ "persist", "remove" ]
+        externalLinks:
+            targetEntity: App\Entity\ClientBeneficiaire
+            mappedBy: entity
+            cascade: [ "remove", "persist" ]
+            orphanRemoval: true
+    oneToOne:
+        user:
+            targetEntity: App\Entity\User
+            cascade: [ "persist", "remove" ]
+            inversedBy: subjectBeneficiaire
+            joinColumn:
+                nullable: false
+        creationProcess:
+            targetEntity: App\Entity\Attributes\BeneficiaryCreationProcess
+            joinColumn:
+                onDelete: "SET NULL"
+    manyToOne:
+        creePar:
+            targetEntity: App\Entity\User
+            joinColumn:
+                onDelete: "SET NULL"
+    lifecycleCallbacks: { }

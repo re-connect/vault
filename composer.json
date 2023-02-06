@@ -1,0 +1,155 @@
+{
+  "name": "reconnect/vault",
+  "type": "project",
+  "license": "MIT",
+  "description": "A vault to store any document",
+  "require": {
+    "php": ">=8.1",
+    "ext-ctype": "*",
+    "ext-dom": "*",
+    "ext-fileinfo": "*",
+    "ext-iconv": "*",
+    "ext-imagick": "*",
+    "ext-openssl": "*",
+    "ext-zip": "*",
+    "api-platform/core": "3.0.*",
+    "beberlei/doctrineextensions": "1.3.0",
+    "composer/package-versions-deprecated": "1.11.99.5",
+    "doctrine/annotations": "1.13.*",
+    "doctrine/doctrine-bundle": "2.7.*",
+    "doctrine/doctrine-migrations-bundle": "3.2.*",
+    "friendsofsymfony/ckeditor-bundle": "2.4.*",
+    "friendsofsymfony/jsrouting-bundle": "3.2.*",
+    "friendsofsymfony/rest-bundle": "3.4.*",
+    "gedmo/doctrine-extensions": "3.9.*",
+    "jms/serializer-bundle": "4.0.*",
+    "knplabs/knp-menu-bundle": "3.2.*",
+    "knplabs/knp-paginator-bundle": "5.9.*",
+    "league/csv": "9.8.*",
+    "league/oauth2-server-bundle": "0.4.*",
+    "lexik/jwt-authentication-bundle": "^2.16",
+    "liip/imagine-bundle": "2.9.*",
+    "mailjet/mailjet-apiv3-php": "1.5.*",
+    "nelmio/cors-bundle": "2.2.*",
+    "phpdocumentor/reflection-docblock": "5.3.*",
+    "phpoffice/phpspreadsheet": "1.25.*",
+    "ramsey/uuid": "4.6.*",
+    "reconnect/s3bundle": "1.3.*",
+    "sensio/framework-extra-bundle": "6.2.*",
+    "sonata-project/admin-bundle": "4.21.*",
+    "sonata-project/doctrine-orm-admin-bundle": "4.8.*",
+    "sonata-project/intl-bundle": "3.0.*",
+    "stof/doctrine-extensions-bundle": "1.7.*",
+    "symfony/asset": "6.1.*",
+    "symfony/console": "6.1.*",
+    "symfony/dotenv": "6.1.*",
+    "symfony/expression-language": "6.1.*",
+    "symfony/flex": "2.2.*",
+    "symfony/form": "6.1.*",
+    "symfony/framework-bundle": "6.1.*",
+    "symfony/http-client": "6.1.*",
+    "symfony/http-kernel": "6.1.*",
+    "symfony/intl": "6.1.*",
+    "symfony/mailer": "6.1.*",
+    "symfony/mailjet-mailer": "6.1.*",
+    "symfony/mailjet-notifier": "6.1.*",
+    "symfony/monolog-bundle": "3.8.*",
+    "symfony/notifier": "6.1.*",
+    "symfony/polyfill-apcu": "1.27.*",
+    "symfony/process": "6.1.*",
+    "symfony/property-access": "6.1.*",
+    "symfony/property-info": "6.1.*",
+    "symfony/proxy-manager-bridge": "6.1.*",
+    "symfony/rate-limiter": "6.1.*",
+    "symfony/runtime": "6.1.*",
+    "symfony/security-bundle": "6.1.*",
+    "symfony/serializer": "6.1.*",
+    "symfony/translation": "6.1.*",
+    "symfony/twig-bundle": "6.1.*",
+    "symfony/ux-live-component": "2.6.*",
+    "symfony/ux-turbo": "2.6.*",
+    "symfony/validator": "6.1.*",
+    "symfony/vonage-notifier": "6.1.*",
+    "symfony/web-link": "6.1.*",
+    "symfony/webpack-encore-bundle": "1.16.*",
+    "symfony/yaml": "6.1.*",
+    "symfonycasts/reset-password-bundle": "1.14.*",
+    "twig/extra-bundle": "3.4.*",
+    "twig/intl-extra": "3.4.*",
+    "twig/twig": "3.4.*",
+    "vich/uploader-bundle": "2.0.*"
+  },
+  "require-dev": {
+    "dama/doctrine-test-bundle": "7.1.*",
+    "doctrine/doctrine-fixtures-bundle": "^3.4",
+    "easycorp/easy-deploy-bundle": "dev-master",
+    "fakerphp/faker": "1.20.*",
+    "friendsofphp/php-cs-fixer": "^3.5",
+    "phpstan/phpstan": "^1.3",
+    "phpstan/phpstan-symfony": "^1.0",
+    "symfony/browser-kit": "6.1.*",
+    "symfony/css-selector": "6.1.*",
+    "symfony/debug-bundle": "6.1.*",
+    "symfony/maker-bundle": "v1.48.*",
+    "symfony/phpunit-bridge": "^6.0",
+    "symfony/stopwatch": "6.1.*",
+    "symfony/web-profiler-bundle": "6.1.*",
+    "zenstruck/foundry": "^1.22"
+  },
+  "config": {
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-packages": true,
+    "allow-plugins": {
+      "composer/package-versions-deprecated": true,
+      "symfony/flex": true,
+      "symfony/runtime": true
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "App\\Tests\\": "tests/"
+    }
+  },
+  "replace": {
+    "paragonie/random_compat": "2.*",
+    "symfony/polyfill-ctype": "*",
+    "symfony/polyfill-iconv": "*",
+    "symfony/polyfill-php71": "*",
+    "symfony/polyfill-php70": "*",
+    "symfony/polyfill-php56": "*"
+  },
+  "scripts": {
+    "auto-scripts": {
+      "cache:clear": "symfony-cmd",
+      "assets:install %PUBLIC_DIR%": "symfony-cmd"
+    },
+    "post-install-cmd": [
+      "@auto-scripts"
+    ],
+    "post-update-cmd": [
+      "@auto-scripts"
+    ]
+  },
+  "conflict": {
+    "symfony/symfony": "*"
+  },
+  "extra": {
+    "symfony": {
+      "allow-contrib": true,
+      "require": "6.1.*"
+    }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:re-connect/easy-deploy-bundle.git"
+    }
+  ]
+}

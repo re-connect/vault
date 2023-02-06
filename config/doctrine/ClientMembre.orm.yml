@@ -1,0 +1,8 @@
+App\Entity\ClientMembre:
+  type: entity
+  repositoryClass: App\Repository\ClientMembreRepository
+  manyToOne:
+    entity:
+      targetEntity: App\Entity\Membre
+      inversedBy: externalLinks
+  lifecycleCallbacks: {  }

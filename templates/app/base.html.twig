@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+
+{% block bodyClass %}{{app.user.isBeneficiaire ?  "bg-light-green"  : "bg-light-blue" }}{% endblock bodyClass %}
+
+{% block headerProfilSpacer %}{% endblock headerProfilSpacer %}
+
+{% block body %}
+    <div class="whiteBlock pb-3" id="personalDataBody" data-beneficiaire-id="{{ beneficiaire.id }}" data-turbo="false">
+        <div class="headerProfilSpacer"></div>
+        <div class="centeredContainer">
+            {% if app.user.isBeneficiaire %}
+
+                <div class="row mobileShow">
+                    <div class="col s12">
+                        <nav role="navigation">
+                            <div id="menuToggle">
+                                <!--
+                                A fake / hidden checkbox is used as click reciever,
+                                so you can use the :checked selector on it.
+                                -->
+                                <input type="checkbox"/>
+
+                                <!--
+                                Some spans to act as a hamburger.
+
+                                They are acting like a real hamburger,
+                                not that McDonalds stuff.
+                                -->
+                                <span></span>
+                                <span></span>
+                                <span></span>
+
+                                <!--
+                                Too bad the menu has to be inside of the button
+                                but hey, it's pure CSS magic.
+                                -->
+                                <ul id="menu">
+                                    <li>
+                                        <a class="pl-5 text-primary" href="{{ path('re_app_document_list', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.mesDocuments'|trans }}</a>
+                                    </li>
+                                    <li>
+                                        <a class="pl-5 text-primary" href="{{ path('re_app_evenement_list', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.monCalendrier'|trans }}</a>
+                                    </li>
+                                    <li>
+                                        <a class="pl-5 text-primary" href="{{ path('contact_list', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.mesContacts'|trans}}</a>
+                                    </li>
+                                    <li>
+                                        <a class="pl-5 text-primary" href="{{ path('re_app_note_list', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.mesNotes'|trans}}</a>
+                                    </li>
+                                    <li>
+                                        <a class="pl-5 text-primary" href="{{ path('re_app_centres', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.mesRelaisReconnect'|trans}}</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="mobileHide">
+                    {% set beneficiaire = app.user.subject %}
+                    {% set itemPerLine = 5 %}
+                    {{ knp_menu_render(knp_menu_get('re_user.beneficiaire.menu_renderer', [], {'beneficiaire' : beneficiaire, 'itemPerLine' : itemPerLine}), {'template': 'knp_menu_step.html.twig'}) }}
+                </div>
+            {% else %}
+                <div class="floatRight">{{ knp_menu_render(knp_menu_get('re_user.beneficiaire.menu_renderer', [], {'beneficiaire' : beneficiaire, 'small' : true}), {'template': 'knp_menu_step.html.twig'}) }}</div>
+
+                {% if beneficiaire is defined and beneficiaire is not null and app.user is defined and app.user is not null and not app.user.isBeneficiaire %}
+                    <div id="otherUserMenuContainer">
+                        <div id="otherUserMenu-button" class="text-primary">
+                            <i class="fas fa-user-friends font-size-1-3 pr-2" style="position: relative; top: 5px;"></i>
+                            <div class="inbl mid uppercase bold font-size-1-3" style="position: relative; top: 5px;">{{ beneficiaire.user.prenom }} {{ beneficiaire.user.nom }}</div>
+                            &nbsp; <a href="{{ path('re_membre_beneficiaires') }}"
+                                      class="btn btn-blue font-size-1"> {{ 'donneePersonnelle.quitter'|trans}}</a>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="clearFloat">&nbsp;</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="centeredContainer">
+        <div style="padding: 30px 0;">
+            <div id="app" ng-app="app" class="ng-cloak">
+                {% block angController %}
+                <div>
+                {% endblock angController %}
+
+                    {% block appBodyContainer %}
+                        <div id="appPrivacyLine">
+                            <div {% if not app.user.isBeneficiaire %}ng-init="privacyFilter = {b_prive: false}"{% endif %}>
+                                {% block ajouterBlock %}
+                                    <a class="floatRight bouton greyDarkestLink appPrivacyLine-ajouter"
+                                       id="appPrivacyLine-ajouter"
+                                       href="{% block ajouterLink %}{% endblock ajouterLink %}"
+                                       style="margin-bottom: 7px;">{{ 'donneePersonnelle.ajouter'|trans }}</a>
+                                {% endblock ajouterBlock %}
+                            </div>
+
+                            {% block searchInput %}
+                                <div class="searchInput">
+                                    <i class="fas fa-search font-size-1 text-secondary " style="position:relative; left: 30px;"></i>
+                                    <input class="font-size-1 text-secondary border-blue-secondary" type="search" ng-model="searchQuery"
+                                           placeholder="{{ 'main.chercher'|trans}}"/>
+                                </div>
+                            {% endblock %}
+                        </div>
+                        <hr class="smallMargin bg-primary">
+                        {% block appBody %}
+                        {% endblock appBody %}
+                    {% endblock appBodyContainer %}
+
+                {% block endAngController %}
+                </div>
+                {% endblock endAngController %}
+            </div>
+        </div>
+    </div>
+{% endblock body %}   

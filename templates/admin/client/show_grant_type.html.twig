@@ -1,0 +1,7 @@
+{% extends '@SonataAdmin/CRUD/base_show_field.html.twig' %}
+
+{% block field_value %}
+    {% for grantType in object.allowedGrantTypes %}
+        {{ grantType }} <br/>
+    {% endfor %}
+{% endblock %}

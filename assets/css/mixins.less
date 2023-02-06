@@ -1,0 +1,45 @@
+@primary: #203468;
+@blue-secondary: #A6AEC3;
+@grey: #cdd1dc;
+@vault-green: #4db95f;
+@light-bg-green: #E9F7ED;
+@rp-blue: #47b4d1;
+@light-blue: #E5F4F8;
+
+.transition (@target : all, @length: @hoverTransitionsDuration, @ease: ease) {
+  -webkit-transition: @target @length @ease;
+  -moz-transition: @target @length @ease;
+  -o-transition: @target @length @ease;
+  transition: @target @length @ease;
+}
+
+.truncate (@width : auto) {
+  width: @width;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+}
+
+.limitLines(@nbLines, @lineHeight) {
+  height: @nbLines * @lineHeight;
+  overflow: hidden;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}

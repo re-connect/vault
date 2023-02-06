@@ -1,0 +1,33 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border-bottom border-primary py-2 py-lg-0">
+        <div class="container-fluid">
+            <a target="_self" href="{{ path('re_main_accueil') }}">
+                <img id="logo-header-reconnect" src="{{ asset('build/images/homeV2/logo_reconnect_simple.png') }}"
+                     alt="{{ 'alt_logo_reconnect'| trans }}">
+            </a>
+            <button class="navbar-toggler border border-primary"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav text-center font-size-1-3 d-flex justify-content-around">
+                    <a target="_self" class="nav-item nav-link nav-links px-5"
+                       href="{{ path('re_main_page_vault') }}">{{ 'header_link_cfn'|trans|raw }}</a>
+                    <a target="_self" class="nav-item nav-link nav-links px-5"
+                       href="{{ path('re_main_page_RP') }}">{{ 'header_link_rp'|trans|raw }}</a>
+                    <a target="_self" class="nav-item nav-link nav-links px-5"
+                       href="{{ path('digital_cares') }}">{{ 'digital_cares'|trans|nl2br }}</a>
+                    <a target="_self" class="nav-item nav-link nav-links px-5"
+                       href="{{ path('re_main_accueil') }}#qui-sommes-nous">{{ 'header_link_who_we_are'|trans|raw }}</a>
+                    <a target="_self" class="nav-item nav-link nav-links px-5"
+                       href="{{ path('re_main_contactV2') }}">{{ 'header_link_contact'|trans|raw }}</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

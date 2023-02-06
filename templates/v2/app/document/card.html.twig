@@ -1,0 +1,42 @@
+<tr class="text-primary text-center draggable" data-id="{{ document.id }}" data-type="document">
+    <td class="bg-white borderless text-start align-middle">
+        {{ include('v2/app/document/thumbnail.html.twig', {'document': document}) }}
+    </td>
+    <td class="bg-white borderless text-start align-middle w-100">
+        <a href="{{ document.presignedUrl }}" target="_blank" class="text-decoration-none text-primary d-block">
+            <span class="font-size-1">{{ document.nom }}</span>
+            <br>
+            <span class="text-light-grey">{{ document.createdAt|date('d/m/Y') }}</span>
+        </a>
+    </td>
+    <td class="bg-white borderless align-middle">
+        <a href="{{ path('document_download', {'id': document.id}) }}">
+            <i class="fas fa-file-download text-green"
+               aria-hidden="true" title="{{ 'document.telecharger'|trans }}"></i>
+        </a>
+    </td>
+    <td class="bg-white borderless w-25 align-middle">
+        {{ include('v2/app/common/toggle_visibility_button.html.twig', {
+            'url': path('document_toggle_visibility', {'id': document.id}),
+            'item': document,
+        }) }}
+    </td>
+    <td class="bg-white borderless text-end pe-3 pe-sm-4 align-middle" {{ stimulus_controller('dropdown-menu') }}>
+        <button class="btn btn-green text-white py-0"
+                data-dropdown-menu-target="button"
+                data-action="click->dropdown-menu#toggle"
+        >
+            <i class="fas fa-ellipsis-h"></i>
+        </button>
+        {{ include('v2/app/common/action-dropdown.html.twig', {
+            'editPath': path('document_rename', {'id': document.id}),
+            'detailPath': path('document_detail', {'id': document.id}),
+            'sendPath': path('document_share', {'id': document.id}),
+            'movePath': path('document_tree_view_move', {'id': document.id}),
+            'delete': {
+                'path': path('document_delete', {'id': document.id}),
+                'message': 'modal_message_document_deletev2'|trans({'%name%': document.nom}),
+            },
+        }) }}
+    </td>
+</tr>

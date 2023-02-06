@@ -1,0 +1,41 @@
+{% extends 'app/base.html.twig' %}
+
+{% block metaTitle %}{{ 'centre.metaTitle'|trans }}{% endblock metaTitle %}
+
+{% block appBodyContainer %}
+    <div id="centres">
+        {% if centres|length > 0 %}
+            {% for centre in centres %}
+                <div class="centre">
+                    <div class="floatLeft" style="margin-left: 10px;">
+                        <br/>
+                        <div class="mid bold uppercase text-primary font-size-1-3 py-3">{{ centre.nom }}</div>
+                        <div class="text-primary font-size-1-3 pb-2"><i
+                                    class="fa fa-fw fa-home main font-size-1-3"></i> {{ centre.adresse }}</div>
+                        {% if centre.telephone %}
+                            <div><i class="fa fa-fw fa-phone main font-size-1-3 "></i> {{ centre.telephone }}
+                            </div>{% endif %}
+                        <div class="smallMargin">
+                            <a onclick='mixpanel.track("Quitter centre");'
+                               href="{{ path('re_app_quitterCentre', {'id' : beneficiaire.id, 'centreId' : centre.id}) }}"
+                               class="btn btn-green barlow-medium font-size-1">{{ 'leave_center'|trans }}</a></div>
+                    </div>
+                    <div class="clearFloat">&nbsp;</div>
+                    <br/>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="center mid hugePadding">
+                <img src="{{ asset("build/images/icons/relais_bleu.png") }}" alt=""/>
+                <div class="smallMargin text-primary">
+                    {{ 'center_has_no_info'|trans|raw }}
+                    <i class="icon-partage"></i>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock appBodyContainer %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('base_personal_data') }}
+{% endblock javascripts %}

@@ -1,0 +1,28 @@
+{% extends 'v2/reset_password/reset-password-layout.html.twig' %}
+
+{% block form %}
+    <h3 class="text-primary">{{ 'resetting.public.metaTitle'|trans }}</h3>
+    <div class="py-3 text-primary row">
+        {{ form_start(form) }}
+        <div class="row mb-2">
+            <div class="col-5">
+                {{ form_label(form.plainPassword.first) }}
+                {{ form_errors(form.plainPassword.first) }}
+            </div>
+            <div class="col-6">
+                {{ include('v2/user/strong_password/_strong_password_row.html.twig', {'field' : form.plainPassword.first, 'isBeneficiare': isBeneficiaire, 'hideAndShow': true }) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5">
+                {{ form_label(form.plainPassword.second) }}
+                {{ form_errors(form.plainPassword.second) }}
+            </div>
+            <div class="col-6">
+                {{ form_widget(form.plainPassword.second) }}
+            </div>
+        </div>
+        <button class="btn btn-primary mt-3" type="submit">{{ 'confirm'|trans }}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

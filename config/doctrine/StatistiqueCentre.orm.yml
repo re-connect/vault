@@ -1,0 +1,24 @@
+App\Entity\StatistiqueCentre:
+    type: entity
+    table: "statistiquecentre"
+    repositoryClass: App\Repository\StatistiqueCentreRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        donnees:
+            type: array
+
+    manyToOne:
+        centre:
+            targetEntity: Centre
+            inversedBy: statistiquesCentre
+            joinColumn:
+                nullable: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,36 @@
+App\Entity\DonneePersonnelle:
+  properties:
+    nom:
+      - NotBlank: ~
+    bPrive:
+      - Type: boolean
+
+App\Entity\Contact:
+  properties:
+    prenom:
+      - NotBlank: ~
+    email:
+      - Email: ~
+
+App\Entity\Note:
+  properties:
+    contenu:
+      - NotBlank: ~
+
+App\Entity\Evenement:
+  constraints:
+    - App\Validator\Constraints\Evenement\Entity: ~
+  properties:
+    date:
+      - NotBlank: ~
+      - Type: datetime
+    rappels:
+      - Valid: ~
+
+App\Entity\Rappel:
+  constraints:
+    - App\Validator\Constraints\Rappel\Entity: ~
+  properties:
+    date:
+      - NotBlank: ~
+      - Type: datetime

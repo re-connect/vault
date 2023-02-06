@@ -1,0 +1,39 @@
+{% block checkbox_hierarchy_widget %}
+    {% apply spaceless %}
+        <ul class="listless spaced-listless list-unstyled" id="mainList">
+            {% for choiceOrOptionGroup,children in form.vars.choices %}
+                {% if children is iterable %}
+                    <ul>
+                        {% for child,choiceView in children %}
+                            <li style="list-style: none;">
+                                <label class="checkbox">
+{#                                    {{ dump(form.offsetGet(child)) }}#}
+{#                                    {{ form_widget(child) }}#}
+                                    {{ form_widget(form.offsetGet(child)) }}
+{#                                    {{ form.offsetGet(child).vars.label }}#}
+                                </label>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+
+                    {# If not first loop, close previous <li> #}
+                    {% if not loop.first %}
+                        </li>
+                    {% endif %}
+
+                    <li style="list-style: none;">
+                    <label class="checkbox">
+                        {{ form_widget(form.offsetGet(choiceOrOptionGroup)) }}
+{#                        {{ form.offsetGet(choiceOrOptionGroup).vars.label }}#}
+                    </label>
+                {% endif %}
+
+                {# Last of the loop, there will be an open <li>, close it. #}
+                {% if loop.last %}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endapply %}
+{% endblock %}

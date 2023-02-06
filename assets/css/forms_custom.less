@@ -1,0 +1,229 @@
+/* forms */
+
+label{
+	line-height: 22px;
+}
+
+
+input:not([type="submit"]),
+textarea,
+.select,
+select
+{
+	.asap;
+	display: inline-block;
+	background: fade(white, 80%);
+	padding: 4px 5px;
+	//height: 26px;
+	.small;
+	color: @greyDark;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	//border: 1px solid transparent;
+	-webkit-box-shadow: 0px 0px 0 transparent;
+	-moz-box-shadow: 0px 0px 0 transparent;
+	box-shadow: 0px 0px 0 transparent;
+	.transition(all);
+	//border: 1px solid #eee;
+}
+
+
+input.uncorrect:not([type="submit"]),
+textarea.uncorrect,
+select.uncorrect
+{
+	border: 1px solid #CC2C2C;
+}
+input.correct:not([type="submit"]),
+textarea.correct,
+select.correct
+{
+	border: 1px solid @mainLight;
+}
+
+input:not([type="submit"])::-webkit-input-placeholder, 
+textarea::-webkit-input-placeholder, 
+.select{
+	color: @greyLight;
+}
+
+input:not([type="submit"]),
+textarea,
+select{
+	border: 1px solid fade(@greyLight, 50%);
+}
+
+input:not([type="submit"]):hover,
+textarea:hover,
+select:hover{
+	//border: 1px solid fade(@secondary, 50%);
+	border: 1px solid fade(@mainLight, 50%);
+	background: fade(white, 90%);
+}
+
+input:not([type="submit"]):focus,
+textarea:focus,
+select:focus{
+	-webkit-box-shadow: 0px 0px 0 transparent;
+	-moz-box-shadow: 0px 0px 0 transparent;
+	box-shadow: 0px 0px 0 transparent;
+	//border: 1px solid @secondary;
+	border: 1px solid @mainLight;
+	outline: none;
+	background: fade(white, 100%);
+}
+
+
+input[type="checkbox"]{
+	vertical-align: middle;
+}
+
+input[readonly="readonly"]:not([type="submit"]){
+	background-color: darken(@greyLightest, 5%);
+}
+
+textarea{
+	height: 90px;
+	resize: none;
+}
+.form-100{
+	input:not([type="submit"]),
+	textarea,
+	.select,
+	select{
+		width: 100%;
+	}
+}
+.form-80{
+	input:not([type="submit"]),
+	textarea,
+	.select,
+	select{
+		width: 80%;
+	}
+}
+
+
+.reForm{
+	legend, legend label{
+		.main;
+		.bold;
+		.mid;
+		margin: 10px 0 0;
+	}
+	label{
+		.greyDarkest;
+		.bold;
+	}
+	label.required:after{
+		content: "*";
+		.mid;
+		.red;
+	}
+}
+
+
+.doubleForm{
+	fieldset:first-child{
+		padding-right: 20px;
+	}
+	fieldset:last-child{
+		padding-left: 20px;
+	}
+	fieldset{
+		width: 50%;
+		float: left;
+
+		legend{
+		}
+	}
+	clear:both;
+}
+
+.listForm{
+	ul{
+		li{	
+			>div{
+				margin: 20px 0 10px;
+				label{
+					display: inline-block;
+				}
+
+				.error{
+					display: inline;
+				}
+
+				input{
+
+				}
+				}
+		}
+	}
+}
+
+
+.tableForm{
+	table{
+		.table-100;
+		.smallPaddingTable;
+
+		td, th{
+			padding-top: 5px;
+			padding-bottom: 5px;
+
+
+			input:not([type="submit"]),
+			textarea,
+			.select,
+			select,
+			.reSelectContainer
+			{
+				position: relative;
+				bottom: 3px;
+				float: left;
+				min-width: 150px;
+			}
+
+
+			label{
+				float: left;
+				margin-right: 10px;
+			}
+		}
+		td{
+		}
+	}
+}
+
+.searchInput{
+	.greyDarkestBlock;
+	padding-right: 30px;
+	display: inline-block;
+	input[type=search]{
+		background: white;
+		width: 120px;
+	}
+	background-image: url("../images/icons.png");
+	background-repeat: no-repeat;
+	background-position: 126px -666px;
+}
+
+.searchInput:after{
+	.greyDarkestBlock;
+	width: 20px;
+	height: 20px;
+	.icon-search;
+}
+
+.genemuDatePicker, .datePicker{
+	select{
+		display: inline-block;
+		width: 70px;
+		min-width: 0 !important;
+	}
+	button{
+		padding: 3px 8px;
+		margin-left: 3px;
+	}
+}

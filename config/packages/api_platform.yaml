@@ -1,0 +1,19 @@
+api_platform:
+    title: 'Reconnect API'
+    enable_re_doc: true
+    enable_swagger_ui: false
+    name_converter: 'Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter'
+    mapping:
+        paths: [ '%kernel.project_dir%/src/Entity' ]
+    swagger:
+        versions: [ 3 ]
+    oauth:
+        clientId: '%env(resolve:TEST_OAUTH_CLIENT_ID)%'
+        clientSecret: '%env(resolve:TEST_OAUTH_CLIENT_SECRET)%'
+        flow: clientCredentials
+        enabled: true
+        tokenUrl: '/api/token'
+        authorizationUrl: '/api/authorize'
+        scopes: [ ]
+    defaults:
+        route_prefix: '/v3'

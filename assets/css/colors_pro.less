@@ -1,0 +1,219 @@
+@main:  #4680ff;
+.main{ color: @main; }
+.mainBlock{ background: @main; }
+.mainLink a, a.mainLink{ color: @main; opacity: 0.8; }
+.mainLink a:hover, a.mainLink:hover{ color: @main; opacity: 1;}
+
+@mainLight: #79a3ff;
+.mainLight{ color: @mainLight; }
+.mainLightBlock{ background: @mainLight; }
+.mainLightLink a, a.mainLightLink{ color: @mainLight; opacity: 0.8; }
+.mainLightLink a:hover, a.mainLightLink:hover{ color: @mainLight; opacity: 1;}
+
+@mainLightest: #ededed;
+.mainLightest{ color: @mainLightest; }
+.mainLightestBlock{ background: @mainLightest; }
+.mainLightestLink a, a.mainLightestLink{ color: @mainLightest; opacity: 0.8; }
+.mainLightestLink a:hover, a.mainLightestLink:hover{ color: @mainLightest; opacity: 1;}
+
+
+@mainVeryDark: #255529;
+.mainVeryDark{ color: @mainVeryDark; }
+.mainVeryDarkBlock{ background: @mainVeryDark; }
+.mainVeryDarkLink a, a.mainVeryDarkLink{ color: @mainVeryDark; opacity: 0.8; }
+.mainVeryDarkLink a:hover, a.mainVeryDarkLink:hover{ color: @mainVeryDark; opacity: 1;}
+
+@mainDark: mix(@main, @mainVeryDark, 50%);
+.mainDark{ color: @mainDark; }
+.mainDarkBlock{ background: @mainDark; }
+.mainDarkLink a, a.mainDarkLink{ color: @mainDark; opacity: 0.8; }
+.mainDarkLink a:hover, a.mainDarkLink:hover{ color: @mainDark; opacity: 1;}
+
+@secondary: #ff9999;  
+.secondary{ color: @secondary; }
+.secondaryBlock{ background: @secondary; }
+.secondaryLink a, a.secondaryLink{ color: @secondary; opacity: 0.8; }
+.secondaryLink a:hover, a.secondaryLink:hover{ color: @secondary; opacity: 1;}
+
+@secondaryDark: #cb3c53;
+.secondaryDark{ color: @secondaryDark; }
+.secondaryDarkBlock{ background: @secondaryDark; }
+.secondaryDarkLink a, a.secondaryDarkLink{ color: @secondaryDark; opacity: 0.8; }
+.secondaryDarkLink a:hover, a.secondaryDarkLink:hover{ color: @secondaryDark; opacity: 1;}
+
+
+@tertiary: #E09D54;  
+.tertiary{ color: @tertiary; }
+.tertiaryBlock{ background: @tertiary; }
+.tertiaryLink a, a.tertiaryLink{ color: @tertiary; opacity: 0.8; }
+.tertiaryLink a:hover, a.tertiaryLink:hover{ color: @tertiary; opacity: 1;}
+
+@greyLightest: #eeeeee;
+.greyLightest{ color: @greyLightest; }
+.greyLightestBlock{ background: @greyLightest; }
+.greyLightestLink a, a.greyLightestLink{ color: @greyLightest; opacity: 0.8; }
+.greyLightestLink a:hover, a.greyLightestLink:hover{ color: @greyLightest; opacity: 1;}
+
+@greyLight: #aaa;
+.greyLight{ color: @greyLight; }
+.greyLightItalic{ color: @greyLight; font-style: italic;}
+.greyLightBlock{ background: @greyLight; }
+.greyLightLink a, a.greyLightLink{ color: @greyLight; opacity: 0.8; }
+.greyLightLink a:hover, a.greyLightLink:hover{ color: @greyLight; opacity: 1;}
+
+@grey: #707070;
+.grey{ color: @grey; }
+.greyBlock{ background: @grey; }
+.greyLink a, a.greyLink{ color: @grey; opacity: 0.8; }
+.greyLink a:hover, a.greyLink:hover{ color: @grey; opacity: 1;}
+
+@greyDark: #555;
+.greyDark{ color: @greyDark; }
+.greyDarkBlock{ background: @greyDark; }
+.greyDarkLink a, a.greyDarkLink{ color: @greyDark; opacity: 0.8; }
+.greyDarkLink a:hover, a.greyDarkLink:hover{ color: @greyDark; opacity: 1;}
+
+@greyDarkest: #36322f;
+.greyDarkest{ color: @greyDarkest; }
+.greyDarkestBlock{ background: @greyDarkest; }
+.greyDarkestLink a, a.greyDarkestLink{ color: @greyDarkest; opacity: 0.8; }
+.greyDarkestLink a:hover, a.greyDarkestLink:hover{ color: @greyDarkest; opacity: 1;}
+
+@black: #000;
+.black{ color: @black; }
+.blackBlock{ background: @black; }
+.blackLink a, a.blackLink{ color: @black; opacity: 0.8; }
+.blackLink a:hover, a.blackLink:hover{ color: @black; opacity: 1;}
+
+
+@white: #fff;
+.white{ color: @white; }
+.whiteBlock{ background: @white; }
+.whiteLink a, a.whiteLink{ color: @white; opacity: 0.8; }
+.whiteLink a:hover, a.whiteLink:hover{ color: @white; opacity: 1;}
+
+@whitesmoke: whitesmoke;
+.whitesmokeBlock{ background: @whitesmoke; }
+
+
+
+.pinkHover, .blueHover, .orangeHover, .purpleHover, .lightPinkHover, .lightBlueHover{
+	.transition(color);
+}
+.pinkHoverBlock, .blueHoverBlock, .orangeHoverBlock, .purpleHoverBlock, .lightPinkHoverBlock, .lightBlueHoverBlock{
+	.transition(background);
+}
+
+
+
+@red: #C70404;
+
+@green: @main;
+.green{
+	color: @green;
+}
+.greenBlock{
+	background: @green !important;
+}
+
+@pink: #CB3C53;
+.pink{
+	color: @pink;
+}
+.pinkBlock{
+	background: @pink !important;
+}
+@blue: #0092a7;
+.blue{
+	color: @blue;
+}
+.blueBlock{
+	background: @blue !important;
+}
+@orange: #f18e00;
+.orange{
+	color: @orange;
+}
+.orangeBlock{
+	background: @orange !important;
+}
+@purple: #996c88;
+.purple{
+	color: @purple;
+}
+.purpleBlock{
+	background: @purple !important;
+}
+@lightPink: #e95e27;
+.lightPink{
+	color: @lightPink;
+}
+.lightPinkBlock{
+	background: @lightPink !important;
+}
+@lightBlue: #93cfc9;
+.lightBlue{
+	color: @lightBlue;
+}
+.lightBlueBlock{
+	background: @lightBlue !important;
+}
+
+
+.hoverContainer:hover{
+	.greenHover{
+		color: @green;
+	}
+
+	.greenHoverBlock{
+		background: @green;
+	}
+	.pinkHover{
+		color: @pink;
+	}
+
+	.pinkHoverBlock{
+		background: @pink;
+	}
+
+	.blueHover{
+		color: @blue;
+	}
+
+	.blueHoverBlock{
+		background: @blue;
+	}
+
+	.orangeHover{
+		color: @orange;
+	}
+
+	.orangeHoverBlock{
+		background: @orange;
+	}
+
+	.purpleHover{
+		color: @purple;
+	}
+
+	.purpleHoverBlock{
+		background: @purple;
+	}
+
+	.lightPinkHover{
+		color: @lightPink;
+	}
+
+	.lightPinkHoverBlock{
+		background: @lightPink;
+	}
+
+	.lightBlueHover{
+		color: @lightBlue;
+	}
+
+	.lightBlueHoverBlock{
+		background: @lightBlue;
+	}
+}
+

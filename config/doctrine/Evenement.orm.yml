@@ -1,0 +1,62 @@
+App\Entity\Evenement:
+    type: entity
+    table: "evenement"
+    repositoryClass: App\Repository\EvenementRepository
+    fields:
+        date:
+            type: datetime
+        timezone:
+            type: string
+            length: 255
+            nullable: true
+        lieu:
+            type: string
+            length: 255
+            nullable: true
+        commentaire:
+            type: text
+            nullable: true
+
+        ############################
+        #    A supprimer
+        heureRappel:
+            type: integer
+            nullable: true
+        bEnvoye:
+            type: boolean
+        typeRappels:
+            type: array
+        ############################
+        archive:
+            type: boolean
+            options:
+                default: 0
+    lifecycleCallbacks: { }
+    manyToOne:
+        beneficiaire:
+            targetEntity: App\Entity\Beneficiaire
+            inversedBy: evenements
+            joinColumn:
+                nullable: false
+        membre:
+            targetEntity: App\Entity\Membre
+            inversedBy: evenements
+            joinColumn:
+                onDelete: "SET NULL"
+    ############################
+    #    A supprimer
+    oneToOne:
+        sms:
+            targetEntity: App\Entity\SMS
+            mappedBy: evenement
+    ############################
+
+    oneToMany:
+        creators:
+            targetEntity: App\Entity\Creator
+            cascade: [ "persist", "remove" ]
+            mappedBy: evenement
+        rappels:
+            targetEntity: App\Entity\Rappel
+            cascade: [ "persist", "remove" ]
+            mappedBy: evenement

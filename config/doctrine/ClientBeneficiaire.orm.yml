@@ -1,0 +1,22 @@
+App\Entity\ClientBeneficiaire:
+  type: entity
+  repositoryClass: App\Repository\ClientBeneficiaireRepository
+  fields:
+    membreDistantId:
+      type: integer
+      column: "membre_distant_id"
+      nullable: true
+      options:
+        unsigned: true
+        comment: Identifier of the external initiator member (No entity link).
+  manyToOne:
+    entity:
+      targetEntity: App\Entity\Beneficiaire
+      inversedBy: externalLinks
+  oneToOne:
+    beneficiaireCentre:
+      targetEntity: App\Entity\BeneficiaireCentre
+      inversedBy: externalLink
+      joinColumn:
+        name: 'beneficiaire_centre_id'
+  lifecycleCallbacks: {  }

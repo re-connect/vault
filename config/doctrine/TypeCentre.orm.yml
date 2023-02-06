@@ -1,0 +1,31 @@
+App\Entity\TypeCentre:
+    type: entity
+    table: "typecentre"
+    repositoryClass: App\Repository\TypeCentreRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+            column: createdAt
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updatedAt
+            gedmo:
+                timestampable:
+                    on: update
+    oneToMany:
+        centres:
+            targetEntity: Centre
+            mappedBy: typeCentre
+    lifecycleCallbacks: {  }

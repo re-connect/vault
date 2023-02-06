@@ -1,0 +1,35 @@
+{% extends 'user/membre-beneficiaire/creationUser_gestionUser_base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% form_theme form _self %}
+
+{# Remove label #}
+{% block _re_form_beneficiaire_step1_user_row %}
+    {{- form_widget(form) -}}
+    {{- form_errors(form) -}}
+{% endblock _re_form_beneficiaire_step1_user_row %}
+
+{% block addUserSubtitle %}
+    {{ 'create_new_benef_step1'|trans({'%totalSteps%': totalSteps})|raw }}
+{% endblock addUserSubtitle %}
+
+{% block creation_addUserContent %}
+    {% for flash_message in app.session.flashBag.get('error') %}
+        <div class="alert alert-success">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    {{ form_widget(form.user, {'attr': {'class': 'font-size-1'}}) }}
+    {{ form_row(form.dateNaissance, {'label_attr': {'class': 'font-size-1'}}) }}
+{% endblock creation_addUserContent %}
+
+{% block bottomLinks %}
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-2 col-xs-4 col-xs-offset-2">
+            <a href="{{ path('re_membre_ajoutBeneficiaire') }}" class="btn btn-dark-blue font-size-1">{% trans %}main.retour{% endtrans %}</a>
+        </div>
+        <div class="col-sm-4 col-xs-4">
+            {{ form_widget(form.submit, {'attr': {'class': 'btn-blue font-size-1'}}) }}
+        </div>
+    </div>
+{% endblock bottomLinks %}

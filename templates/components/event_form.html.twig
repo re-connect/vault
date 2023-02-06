@@ -1,0 +1,50 @@
+{% form_theme form 'v2/app/form_themes/personnal_data_theme.html.twig' %}
+
+<div{{ attributes }} data-action="change->live#update">
+    {{ form_start(form) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.lieu) }}
+    {{ form_row(form.commentaire) }}
+    {{ form_label(form.rappels) }}
+    {{ form_errors(form) }}
+    <br>
+    <button id="event_rappels_add" name="event[rappels][add]" data-action="live#action" data-action-name="addCollectionItem(name=event[rappels])" type="button" class="btn btn-green text-white mb-2">
+        {{ 'add_sms_reminder'|trans }}
+    </button>
+    {% for key, itemForm in form.rappels %}
+        {% set hasBeenSent = itemForm.vars['value'].bEnvoye %}
+        <div class="row my-1">
+            <div class="col-5 pe-0">
+                {{ form_widget(itemForm.date.date, {'attr': {'disabled': hasBeenSent}}) }}
+            </div>
+            <div class="col-2 px-0">
+                {{ form_widget(itemForm.date.time.hour, {'attr': {'disabled': hasBeenSent }}) }}
+            </div>
+            <div class="col-2 px-0">
+                {{ form_widget(itemForm.date.time.minute,  {'attr': {'disabled': hasBeenSent }}) }}
+            </div>
+            <div class="col-3 text-center">
+                {% if hasBeenSent %}
+                    <div class="text-center mt-1">
+                        {{ 'sms_sent'|trans }}
+                    </div>
+                {% else %}
+                    <button data-action="live#action"
+                            data-action-name="removeCollectionItem(name=event[rappels], index={{ key }})"
+                            type="button" class="btn btn-red">
+                        <i class="fas fa-times"></i>
+                    </button>
+                {% endif %}
+            </div>
+            {{ form_row(itemForm.timezone) }}
+        </div>
+    {% endfor %}
+    {{ form_row(form.bPrive) }}
+    {% do form.rappels.setRendered %}
+    <div class="row mx-1 mt-2">
+        {{ link(path('event_list', {'id': beneficiary.id}), 'main.retour', 'grey') }}
+        {{ button('submit', 'confirm', 'green') }}
+    </div>
+    {{ form_end(form) }}
+</div>

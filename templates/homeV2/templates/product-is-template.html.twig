@@ -1,0 +1,16 @@
+<section class="py-5">
+    <div class="container">
+        <h2 class="h2 text-primary text-uppercase text-center">{{ section_title| trans }}</h2>
+        <div class="row pt-3 pt-md-4 pb-3">
+            {% for item in product_is %}
+                <article class="offset-1 col-10 offset-md-0 col-md-3 px-5 text-primary my-4 text-center">
+                    {% set icon_path = 'build/images/homeV2/' ~ item.icon_file_name %}
+                    <img class="mx-auto d-block pb-2 product-is-icon" src="{{ asset(icon_path) }}"
+                         alt="{{ item.icon_alt|trans }}">
+                    <h5 class="py-3">{{ item.title |trans }}</h5>
+                    <p class="font-size-1-1">{{ item.text|trans }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>

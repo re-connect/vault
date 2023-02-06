@@ -1,0 +1,56 @@
+{% extends 'homeV2/base.html.twig' %}
+    {% block base_link %}
+        <base target="_blank">
+    {% endblock base_link %}
+    {% block styles %}
+        {{ parent() }}
+        <style>
+            .accordion-item a {
+                color: #28ad7a;
+            }
+        </style>
+    {% endblock %}
+{% block body %}
+    <section class="bg-success mt-5 pt-5 pb-2">
+        <div class="container my-5 py-3 text-primary">
+            <div class="w-50 mx-auto text-center mb-5">
+                <h2 class="h2 py-3 text-uppercase">{{ 'faq_gdpr'|trans }}</h2>
+                {{ 'faq_gdpr_text'|trans|raw }}
+            </div>
+            {% if faqQuestions|length is same as(0) %}
+            <div class="card w-50 mx-auto">
+                <div class="card-body">
+                    <p class="text-center">{{ 'faq_gdpr_no_content'|trans }}</p>
+                </div>
+            </div>
+            {% else %}
+            <div class="accordion w-75 mx-auto" id="faqAccordion">
+                {% for faqQuestion in faqQuestions %}
+                    <div class="accordion-item bg-white my-2 border-0"
+                         style="border-radius:20px;">
+                        <h2 class="accordion-header" id="{{ "heading" ~faqQuestion.id }}">
+                            <button class="accordion-button bg-white border-0 shadow-none collapsed text-primary font-size-1-3"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="{{ "#collapse" ~faqQuestion.id }}"
+                                    aria-expanded="{{ loop.first ? "true" : "false" }}"
+                                    aria-controls="{{ "collapse" ~faqQuestion.id }}"
+                                    style="border-radius:20px;">
+                                {{ faqQuestion.text }}
+                            </button>
+                        </h2>
+                        <div id="{{ "collapse" ~faqQuestion.id }}"
+                             class="accordion-collapse collapse border-0"
+                             aria-labelledby="{{ "heading" ~faqQuestion.id }}"
+                             data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                {{ faqQuestion.answer|raw }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock body %}

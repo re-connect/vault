@@ -1,0 +1,25 @@
+<div class="modal fade" tabindex="-1" aria-hidden="true" {{ stimulus_controller('notification') }}>
+    <div class="modal-dialog">
+        <div class="modal-content text-primary bg-white p-3 rounded">
+            <div class="modal-header">
+                <h4 class="bold">{{ notificationTitle }}</h4>
+            </div>
+            <div class="modal-body">
+                <span>{{ notificationIntro }}</span>
+                <div class="row col-12 col-md-8 offset-md-2 text-start mt-3">
+                    {{ form_start(form, {'attr': {'data-notification-target': 'form'}}) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+            <div class="modal-footer text-end">
+                <button type="button" class="btn btn-primary text-white me-2" data-bs-dismiss="modal" aria-label="Close">
+                    {{ 'main.refuser'|trans }}
+                </button>
+                <button type="button" class="btn btn-blue text-white" data-action="click->notification#submitForm">
+                    {{ 'main.accepter'|trans }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

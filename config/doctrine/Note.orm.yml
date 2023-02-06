@@ -1,0 +1,19 @@
+App\Entity\Note:
+  type: entity
+  table: "note"
+  repositoryClass: App\Repository\NoteRepository
+  fields:
+    contenu:
+      type: text
+  lifecycleCallbacks: {  }
+  manyToOne:
+    beneficiaire:
+      targetEntity: App\Entity\Beneficiaire
+      inversedBy: notes
+      joinColumn:
+        nullable: false
+  oneToMany:
+    creators:
+      targetEntity: App\Entity\Creator
+      cascade: ["persist", "remove"]
+      mappedBy: note

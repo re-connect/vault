@@ -1,0 +1,278 @@
+#app {
+  #appPrivacyLine {
+    width: 100%;
+
+  }
+
+
+  .bouton {
+    padding-left: 29px;
+    padding-top: 2px;
+    display: inline-block;
+    min-height: 25px;
+    min-width: 25px;
+    margin: 0 10px;
+    cursor: pointer;
+    vertical-align: middle;
+    .uppercase;
+    .bold;
+  }
+
+  .bouton.bouton-small {
+    padding: 0;
+    min-height: 15px;
+    min-width: 15px;
+    margin: 0 5px;
+  }
+
+  .bouton.act {
+    color: @main;
+  }
+
+  .bouton:first-child {
+    margin-left: 0;
+  }
+
+  .bouton:last-child {
+    margin-right: 0;
+  }
+
+  .appPrivacyLine-tous {
+    background: url("../images/icons/tous.png") no-repeat;
+  }
+
+  .appPrivacyLine-tous.act {
+    background: url("../images/icons/tous_act.png") no-repeat;
+  }
+
+  .appPrivacyLine-partages {
+    background: url("../images/icons/partages.png") no-repeat;
+  }
+
+  .appPrivacyLine-partages.act {
+    background: url("../images/icons/partages_act.png") no-repeat;
+  }
+
+  .appPrivacyLine-prives {
+    background: url("../images/icons/prives.png") no-repeat;
+  }
+
+  .appPrivacyLine-prives.act {
+    background: url("../images/icons/prives_act.png") no-repeat;
+  }
+
+  .appPrivacyLine-ajouter {
+    background: url("../images/icons/ajouter.png") no-repeat;
+  }
+
+  .appPrivacyLine-imprimer {
+    background: url("../images/icons/imprimer.png") no-repeat;
+  }
+
+  .appPrivacyLine-vueLine {
+    background: url("../images/icons/vueLine.png") no-repeat;
+  }
+
+  .appPrivacyLine-vueLine.act {
+    background: url("../images/icons/vueLine_act.png") no-repeat;
+  }
+
+  .appPrivacyLine-vueGrid {
+    background: url("../images/icons/vueGrid.png") no-repeat;
+  }
+
+  .appPrivacyLine-vueGrid.act {
+    background: url("../images/icons/vueGrid_act.png") no-repeat;
+  }
+
+  #app-paginationLine {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid @main;
+  }
+
+
+  .thumbnail {
+    position: relative;
+    background: white;
+    height: 150px;
+    padding: 8px;
+    width: 100px;
+
+    .imageThumb {
+      width: 80px;
+      height: 80px;
+      text-align: center;
+      float: left;
+      overflow: hidden;
+      margin-bottom: 5px;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+
+    .imageThumb.imageThumb-file {
+      border: 1px solid #eee;
+    }
+
+    .smallShadowed;
+
+    .btnClose {
+      position: absolute;
+      top: -1px;
+      right: 2px;
+      cursor: pointer;
+    }
+
+    .filename {
+      .bold;
+      .small;
+      height: 54px;
+      overflow: hidden;
+    }
+
+    .boutonsDiv {
+      margin-left: 90px;
+      position: relative;
+      top: 5px;
+      left: 7px;
+
+      .bouton {
+        margin: 8px 0;
+        position: relative;
+        left: 2px;
+      }
+    }
+  }
+
+  .fileLine {
+    height: 90px;
+    .transition(background-color);
+    border: 1px solid transparent;
+  }
+
+  #apercu {
+    margin-top: 10px;
+    opacity: 1;
+  }
+
+  .borderRadius {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+  }
+
+  .fileBlock {
+    display: inline-block;
+    width: 102px;
+    margin: 10px 28px;
+    .pointer;
+    .center;
+
+    .apercu {
+      .transition(background-color);
+      background: white;
+      width: 100%;
+      .smallShadowed;
+      padding: 10px;
+      margin: auto;
+      height: 130px;
+      overflow: hidden;
+      .relative;
+
+      img {
+        max-width: 90%;
+        display: inline-block;
+      }
+
+      .editLine {
+        position: absolute;
+        bottom: 3px;
+        left: 32px;
+      }
+    }
+
+    .nom {
+      margin-top: 6px;
+      height: 32px;
+      overflow: hidden;
+      .tiny;
+    }
+  }
+
+  .fileBlock.file-active {
+    .apercu {
+      background: fade(@main, 10%);
+    }
+  }
+
+  .fileBlock.file-hover {
+    .apercu {
+      background: fade(@main, 40%);
+    }
+  }
+
+  .tableLine.tableLine-active {
+    background: fade(@main, 10%);
+  }
+
+  .tableLine.tableLine-hover {
+    background: fade(@main, 40%);
+  }
+
+
+  #apercu {
+    float: left;
+    width: 260px;
+
+    #apercuContainer {
+      width: 100%;
+      border: 1px solid #e5e5e5;
+      max-height: 400px;
+      margin: 10px 0;
+      min-height: 120px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width: @responsiveThirdThresold) {
+      float: none;
+      margin: 10px auto;
+    }
+  }
+
+  #docList, #contactsList, #notesList, #evenementsList {
+    max-width: 800px;
+    //margin-left: 280px;
+
+    @media screen and (max-width: @responsiveThirdThresold) {
+      width: 100%;
+      margin: 10px auto;
+    }
+  }
+
+  .inblChild li {
+    .inbl;
+  }
+}
+
+.d-none {
+  display: none !important;
+}
+
+.not-allowed {
+  cursor: not-allowed;
+}
+
+.background-disabled {
+  background: #e3e7ed;
+}
+
+.disabled {
+  pointer-events: none;
+  background: #e3e7ed;
+}

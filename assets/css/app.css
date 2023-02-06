@@ -1,0 +1,25 @@
+@import './helper/_variables.less';
+@import '~bootstrap';
+@import '~font-awesome';
+
+@import './design.less';
+/*@import './reset.css';*/
+/*@import "./mixins.less";*/
+/*@import "./colors";*/
+/*@import "./fonts";*/
+/*@import "./generalRules";*/
+/*@import "./reconnect";*/
+/*@import "./stickedFooter";*/
+/*@import "./icons";*/
+/*@import "./boutons";*/
+/*@import "./forms";*/
+/*@import "./globalStructure";*/
+/*@import "./pages.less";*/
+/*@import "./cols.less";*/
+/*@import "./slideshow.less";*/
+/*@import "./app.less";*/
+/*@import "./animations.less";*/
+/*@import "./wysiwyg.less";*/
+/*@import "./toggle-switch.less";*/
+/*@import './angular_loading_bar_css.css';*/
+/*@import './menu-toggle.css';*/

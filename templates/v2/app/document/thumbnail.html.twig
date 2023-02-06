@@ -1,0 +1,13 @@
+{% if document.extension in ['doc', 'docx', 'txt', 'odt'] %}
+    {% set url = asset('build/images/icons/word.png') %}
+{% elseif document.extension in ['xls', 'xlsx', 'csv'] %}
+    {% set url = asset('build/images/icons/excel.PNG') %}
+{% endif %}
+
+<div class="d-flex justify-content-center align-items-center rounded thumbnail-size">
+    <a href="{{ document.presignedUrl }}" target="_blank" class="border rounded">
+        <img class="img-fluid bg-white rounded shadow-sm p-1 thumbnail-size " src="{{ document.thumbnailPresignedUrl ?? url ?? '' }}"
+             alt="{{ document.nom }}"
+        />
+    </a>
+</div>

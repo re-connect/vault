@@ -1,0 +1,32 @@
+{% extends 'app/base.html.twig' %}
+
+{% block appBodyContainer %}  
+
+<div style="max-width: 400px; margin: auto;">
+	<h1>test</h1>
+	{% if form.vars.value.id == null%}
+	    <div class="uploader" id="uploader" data-dropzone="1" style="margin-top: 10px; margin-bottom: 10px; background: white; padding: 20px 10px 0px 10px;">
+		<div class="controls" style="margin-bottom: 20px">
+			<a href="" class="pointer" id="btnChooseFile"><span class="btn-alternative">Choisir un fichier </span>&nbsp;  <i class="icon-file"></i></a> &nbsp; &nbsp;  <span class="bold uppercase" id="fileNameHolder">Ou glissez-deposez ici</span>
+			<input type="file" data-files="1" id="btnDeposerFichier-input" data-url="{{ path('re_app_document_upload', {id : beneficiaire.id}) }}"/ style="display: none;">
+			<div id="loadingSpinner" class="spinner" style="height: 30px; text-align: center; margin-top: 7px;">
+				<img src="{{ asset('bundles/punkavefileuploader/images/spinner.gif') }}"  style="display: none;"/> &nbsp;
+			</div>
+		</div>
+		<div class="smallPaddingTable thumbnails relative" data-thumbnails="1"></div>
+	</div>
+	{% else %}  
+		<div class="center">
+			{% if form.vars.value.extension == "pdf" %}
+				<img src="{{ asset('uploads/tmp/'~beneficiaire.archiveName~'/medium/'~form.vars.value.nom~'.png') }}" alt="" style="max-width: 300px;">
+			{% else %}
+				<img src="{{ asset('uploads/tmp/'~beneficiaire.archiveName~'/medium/'~form.vars.value.nom) }}" alt="" style="max-width: 300px;">
+			{% endif %}
+		</div>
+		{{ form(form, {"attr" : {"class" : "reForm tableForm form-100 table-100"}}) }}
+	{% endif %}
+</div>
+<br/>
+
+{% endblock appBodyContainer %}
+

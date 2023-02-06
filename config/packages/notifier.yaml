@@ -1,0 +1,13 @@
+framework:
+    notifier:
+        texter_transports:
+            vonage: '%env(VONAGE_SMS_EU_DSN)%'
+            vonageUS: '%env(VONAGE_SMS_US_DSN)%'
+        #            mailjet: '%env(MAILJET_SMS_DSN)%'
+        channel_policy:
+            urgent: [ 'sms' ]
+            high: [ 'sms' ]
+            medium: [ 'sms' ]
+            low: [ 'sms' ]
+        admin_recipients:
+            - { email: '%env(ADMIN_MAIL)%' }

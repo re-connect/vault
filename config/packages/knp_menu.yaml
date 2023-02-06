@@ -1,0 +1,3 @@
+knp_menu:
+  twig:
+    template: knp_menu.html.twig

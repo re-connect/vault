@@ -1,0 +1,19 @@
+{% extends 'homeV2/base.html.twig' %}
+    {% block title %}{{ 'home_meta_title_digital_cares'| trans }}{% endblock %}
+    {% block meta_title %}{{ 'home_meta_title_digital_cares'| trans }}{% endblock %}
+{% block body %}
+    {{ include('homeV2/sections/digital_cares_section.html.twig') }}
+    {% for feature in features %}
+        {{ include ('homeV2/sections/digital_cares_workshop_section.html.twig',
+            {
+                direction: loop.index is even ? 'row' : 'row-reverse',
+                feature
+            }) }}
+    {% endfor %}
+    {{ include('homeV2/templates/product-is-template.html.twig',{section_title: 'digital_care_is', product_is }) }}
+    {{ include('homeV2/templates/contact-us-template.html.twig', {
+        bg_class: 'bg-yellow',
+        logo_file_name: 'watermark_digital_cares_white.png',
+        logo_alt: 'contact_us_alt_logo_reconnect'
+    }) }}
+{% endblock body %}

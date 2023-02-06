@@ -1,0 +1,29 @@
+{% extends 'v2/pro_standard_layout.html.twig' %}
+{% block title %}
+    {{ 'add_new_beneficiary_title_part_1'|trans }}
+    <span class="text-blue">
+        {{ 'add_new_beneficiary_title_part_2'|trans }}
+    </span>
+{% endblock %}
+{% block subTitle %}{{ 'add_new_beneficiary'|trans|upper }}{% endblock %}
+
+{% block content %}
+    <div class="row mt-3 mt-md-5 pt-md-5 mx-auto">
+        <div class="col-md-6 text-center pe-md-5">
+            <a href="{{ path('affiliate_beneficiary_search') }}"
+               class="btn btn-blue text-white w-100 py-4 font-size-1-2"
+            >
+                <i class="fa fa-search pe-3" aria-hidden="true"></i>
+                {{ 'benef_has_account'|trans }}
+            </a>
+        </div>
+        <div class="col-md-6 text-center ps-md-5 mt-3 mt-md-0">
+            <a href="{{ path('create_beneficiary_home') }}"
+               class="btn btn-blue text-white w-100 py-4 font-size-1-2"
+            >
+                <i class="fa fa-plus pe-2" aria-hidden="true"></i>
+                {{ 'benef_has_no_account'|trans }}
+            </a>
+        </div>
+    </div>
+{% endblock %}

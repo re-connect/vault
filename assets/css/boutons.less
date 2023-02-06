@@ -1,0 +1,139 @@
+.btn, input[type=submit], button{
+	background-color: @main;
+	display: inline-block;
+	padding: 6px 15px;
+	color: white;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border: none;
+	text-shadow: 0px 0px 0px transparent;
+	.transition(all);
+	cursor: pointer;
+	font-size: 15px;
+	.bold;
+	//.uppercase;
+	line-height: 20px;
+	font-family: "asap";
+}
+
+.btn:link, input[type=submit]:link, button:link {
+	text-decoration: none;
+	color: white;
+}
+.btn:visited, input[type=submit]:visited, button:visited {
+	text-decoration: none;
+	color: white;
+}
+
+.btn:hover, input[type=submit]:hover, button:hover{
+	background-color: @mainDark;
+	color: white;
+}
+
+.btn.btn-grey, input[type=submit].btn-grey, button.btn-grey{
+	background: @greyDark;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.btn.btn-grey:hover, input[type=submit].btn-grey:hover, button.btn-grey:hover{
+	background: @greyDarkest;
+}
+
+.btn.btn-passed, input[type=submit].btn-passed, button.btn-passed{
+	background: @mainLightest;
+	text-transform: none;
+	color: @main;
+	text-shadow: none;
+}
+
+.btn.btn-passed:hover, input[type=submit].btn-passed:hover, button.btn-passed:hover{
+	background: darken(@mainLightest, 10%);
+	color: darken(@main, 10%);
+}
+
+.btn.btn-white, input[type=submit].btn-white, button.btn-white{
+	background: @white;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+	.greyDark;
+}
+
+.btn.btn-white:hover, input[type=submit].btn-white:hover, button.btn-white:hover{
+	.greyDarkest;
+}
+
+.btn.btn-inversed, input[type=submit].btn-inversed, button.btn-inversed{
+	background: @main;
+	color: @greyDarkest;
+}
+.btn.btn-inversed:hover, input[type=submit].btn-inversed:hover, button.btn-inversed:hover{
+	color: @greyDark;
+}
+
+.btn-back:before{
+	content: "< ";
+	color: @main;
+}
+
+.btn.btn-small{
+	padding: 4px 8px;
+	.tiny;
+}
+
+.btn-block{
+	display: block !important;
+	width: 100%;
+}
+
+.btn-tiny{
+	//padding: 4px 8px;
+	.tiny;
+	padding: 0px 6px;
+	text-transform: none;
+	font-weight: normal;
+}
+
+.btn.block{
+	display: block;
+}
+
+.btn.btn-secondary{
+	background-color: @main;
+}
+
+.btn.btn-secondary:hover{
+	background-color: @mainDark;
+}
+
+.btn.btn-secondaryLight{
+	background-color: @mainLightest;
+}
+
+.btn.btn-secondaryLight:hover{
+	background-color: darken(@mainLightest, 10%)
+}
+
+.btn-arrow{
+	background: @secondary url("../images/icons/rightArrow.png") no-repeat 95% 15px;
+	padding-right: 40px;
+}
+
+.btn-arrow:hover{
+	background-position: 97% 15px;
+}
+
+.btn:disabled{
+	background: @greyLight;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+	cursor: auto;
+}
+
+.btn-alternative{
+	color: @main;
+	display: inline-block;
+	background: @mainLightest;
+	.bold;
+	.italic;
+	padding: 12px 14px;
+	.rounded(3px);
+}

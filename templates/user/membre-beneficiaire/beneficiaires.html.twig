@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block metaTitle %}{% trans %}membre.beneficiaires.metaTitle{% endtrans %}{% endblock metaTitle %}
+
+{% block body %}
+    <div class="" style="min-height: 364px;">
+        <div class="centeredContainer">
+            <a href="{{ path('re_user_redirectUser') }}"
+               class="btn btn-blue floatRight">{% trans %}main.retour{% endtrans %}</a>
+            <h1 class="h1 text-primary">{{ 'benef_management_title'|trans|raw }}</h1>
+            <div style="padding: 20px 0;">
+                <div id="app" ng-app="app" class="ng-cloak">
+                    <div ng-controller="BeneficiairesListCtrl">
+                        <div class="smallMargin">
+                            <div class="floatRight">
+                                <select class="text-secondary border-blue-secondary" ng-model="centreName"
+                                        {% if centre is defined and centre != null %}ng-init="centreName = '{{ centre.nom }}'"{% endif %}>
+                                    <option value=""
+                                            selected>{% trans %}membre.beneficiaires.selectCentre{% endtrans %}</option>
+                                    {% for handledCentre in app.user.subject.handledCentres %}
+                                        <option value="{{ handledCentre.nom }}">{{ handledCentre.nom }}</option>
+                                    {% endfor %}
+                                </select>
+                                &nbsp;
+                                <div class="searchInput">
+                                    <i class="fas fa-search font-size-1 text-secondary"
+                                       style="position:relative; left: 30px;"></i>
+                                    <input class="font-size-1 text-secondary border-blue-secondary" type="search"
+                                           ng-model="searchQuery"
+                                           placeholder="{{ 'main.chercher'|trans }}"/>
+                                </div>
+                            </div>
+
+                            <a href="{{ path('re_membre_ajoutBeneficiaire') }}"
+                               class="font-size-1 btn btn-blue white"><i class="fas fa-user-plus"></i>
+                                &nbsp; {% trans %}membre.beneficiaires.ajouterBeneficiaire{% endtrans %}</a>
+
+                            <div class="clearFloat">&nbsp;</div>
+                        </div>
+                        <hr class="smallMargin bg-primary">
+
+                        <div ng-if="!hasBeneficiaires()">
+                            <div class="hugePadding center mid">
+                                <div class="smallMargin text-primary font-size-1">{{ 'center_is_empty'|trans }}</div>
+                                <a href="{{ path('re_membre_ajoutBeneficiaire') }}"
+                                   class="font-size-1 btn btn-blue white"><i class="fas fa-user-plus"></i>
+                                    &nbsp; {% trans %}membre.beneficiaires.ajouterBeneficiaire{% endtrans %}</a>
+                            </div>
+                        </div>
+                        <table class="reTable2 table-90" ng-if="hasBeneficiaires()">
+                            <tr style="border: 1px solid red;"
+                                dir-paginate="beneficiaire in beneficiaires  | filter:centreName  | filter:searchQuery | itemsPerPage: pageSize"
+                                current-page="currentPage" class="animateOpacity">
+                                <td style="padding: 12px 3px; text-align: left; position: relative; width: 60px;">
+                                    <a href={{ '"{{getRoute(\'re_app_document_list\', beneficiaire.id)}}"' }}>
+                                        <i style="font-size: 3rem !important;" class="fas fa-user text-primary pl-2"
+                                           ng-if="!beneficiaire.user.avatar"></i>
+                                        {# <img src="{{ asset('build/images/icons/userTarget.png') }}"
+                                             ng-if="!beneficiaire.user.avatar"> #}
+                                        <div class="avatar avatar-big" ng-if="beneficiaire.user.avatar">
+                                            <img ng-src="{{ asset('') }}{{ "{{ beneficiaire.user.avatar }}" }}">
+                                        </div>
+                                    </a>
+                                </td>
+                                <td style="width: 200px;" class="pr-5">
+                                    <a href="{{ '{{getRoute(\'re_app_document_list\', beneficiaire.id)}}' }}"
+                                       class="blackLink">
+                                        <div class="text-primary font-size-1-1 pb-1">
+                                            {{ '{{beneficiaire.user.prenom}} <span class="uppercase">{{beneficiaire.user.nom}}</span>' }}
+                                        </div>
+                                        <div class="text-secondary font-size-1 lighter">{{ '{{beneficiaire.user.username}}' }}</div>
+                                    </a>
+                                </td>
+                                <td id="menuContainerMembre" class="text-center" style="width: 528px;">
+                                    <a href={{ '"{{getRoute(\'re_app_document_list\', beneficiaire.id)}}"' }} class='hoverContainer'
+                                       title="{{ 'benef_new_guide_which_info_icon_1'|trans }}"><img
+                                                style="width: 50px !important;"
+                                                class="hoverImage"
+                                                src="{{ asset('build/images/icons/docs_bleu.png') }}"
+                                                data-acturl="{{ asset('build/images/icons/docs_blanc.png') }}"
+                                                data-width="50"
+                                                alt="{% trans %}membre.beneficiaires.mesDocuments{% endtrans %}"></a>
+                                    <a href={{ '"{{getRoute(\'re_app_evenement_list\', beneficiaire.id)}}"' }} class="hoverContainer"
+                                       title="{{ 'benef_new_guide_which_info_icon_2'|trans }}"><img
+                                                style="width: 45px !important;"
+                                                class="hoverImage"
+                                                src="{{ asset('build/images/icons/rappels_bleu.png') }}"
+                                                data-acturl="{{ asset('build/images/icons/rappels_blanc.png') }}"
+                                                data-width="45"
+                                                alt="{% trans %}membre.beneficiaires.monCalendrier{% endtrans %}"></a>
+                                    <a href={{ '"{{getRoute(\'re_app_contact_list\', beneficiaire.id)}}"' }} class="hoverContainer"
+                                       title="{{ 'benef_new_guide_which_info_icon_3'|trans }}"><img
+                                                style="width: 45px !important;"
+                                                class="hoverImage"
+                                                src="{{ asset('build/images/icons/contacts_bleu.png') }}"
+                                                data-acturl="{{ asset('build/images/icons/contacts_blanc.png') }}"
+                                                data-width="45"
+                                                alt="{% trans %}membre.beneficiaires.mesContacts{% endtrans %}"></a>
+                                    <a href={{ '"{{getRoute(\'re_app_note_list\', beneficiaire.id)}}"' }} class="hoverContainer"
+                                       title="{{ 'benef_new_guide_which_info_icon_4'|trans }}"><img
+                                                style="width: 50px !important;"
+                                                class="hoverImage"
+                                                src="{{ asset('build/images/icons/notes_bleu.png') }}"
+                                                data-acturl="{{ asset('build/images/icons/notes_blanc.png') }}"
+                                                data-width="50"
+                                                alt="{% trans %}membre.beneficiaires.mesNotes{% endtrans %}"></a>
+                                </td>
+                                <td>
+                                    <div id="menuDropdownMembre" class="dropdown text-right">
+                                        <button type="button"
+                                                class="btn {{ app.user.isBeneficiaire ? 'btn-green' : 'btn-blue' }} dropdown-toggle"
+                                                data-toggle="dropdown"
+                                                aria-expanded="false"><span
+                                                    class="glyphicon glyphicon-option-horizontal"
+                                                    aria-hidden="true"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" style="left: -150px !important;">
+                                            <li>
+                                                <a class="pointer text-primary font-size-1"
+                                                   href={{ '"{{getRoute(\'re_membre_arreterSuiviBeneficiaire\', beneficiaire.id)}}"' }}>
+                                                    <i class="far fa-times-circle pr-2" aria-hidden="true"></i>
+                                                    {% trans %}membre.beneficiaires.arreterSuivi{% endtrans %}</a>
+                                            </li>
+                                            <li>
+                                                <a class="pointer text-primary font-size-1"
+                                                   href={{ '"{{getRoute(\'private_reset_password\', beneficiaire.user.id)}}"' }}>
+                                                    <i class="fas fa-redo pr-2" aria-hidden="true"></i>
+                                                    {% trans %}membre.beneficiaires.renouvelerIdentifiants{% endtrans %}
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="app-paginationLine">
+                            <div class="floatRight text-primary" style="display: flex; align-items: center;">
+                                <dir-pagination-controls class="inbl mr-3" boundary-links="true"
+                                                         on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+                                {% import "app/macros.html.twig" as macros %}
+                                {{ macros.pageSelect() }}
+                            </div>
+                            <div class="clearFloat">&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('membre_beneficiaire') }}
+{% endblock javascripts %}

@@ -1,0 +1,30 @@
+App\Entity\UserCentre:
+    type: mappedSuperclass
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        bValid:
+            type: boolean
+        createdAt:
+            type: datetime
+            column: createdAt
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updatedAt
+            gedmo:
+                timestampable:
+                    on: update
+    manyToOne:
+        initiateur:
+            targetEntity: Membre
+            joinColumn:
+                onDelete: "SET NULL"
+
+    lifecycleCallbacks: {  }

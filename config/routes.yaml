@@ -1,0 +1,104 @@
+re_app:
+    resource: "./routing/app/routing.yml"
+    prefix: /appli/
+
+re_main:
+    resource: "routing/main/routing.yml"
+    prefix: /
+
+re_user:
+    resource: "./routing/user/routing.yml"
+    prefix: /
+
+re_beneficiaire:
+    resource: "./routing/user/beneficiaire_routing.yml"
+    prefix: /beneficiaire/
+
+re_membre:
+    resource: "./routing/user/membre_routing.yml"
+    prefix: membre/
+
+re_gestionnaire:
+    resource: "./routing/user/gestionnaire_routing.yml"
+    prefix: /gestionnaire/
+
+re_association:
+    resource: "./routing/user/association_routing.yml"
+    prefix: /association/
+
+re_get_centers:
+    path: /get-centers
+    controller: App\Controller\MainController::getCenters
+
+re.api_rest:
+    type: annotation
+    resource: App\Controller\Rest\APIRestController
+
+re_image2_download:
+    path: /reimage2/download
+    controller: App\Controller\REImage2Controller::download
+    options:
+        expose: true
+
+##### API REST V2 #####
+api_v2_beneficiaire:
+    type: annotation
+    resource: App\Controller\Rest\BeneficiaireRestV2Controller
+
+api_v2_centre:
+    type: annotation
+    resource: App\Controller\Rest\CentreRestV2Controller
+
+api_v2_contact:
+    type: annotation
+    resource: App\Controller\Rest\ContactRestV2Controller
+
+api_v2_document:
+    type: annotation
+    resource: App\Controller\Rest\DocumentRestV2Controller
+
+api_v2_dossier:
+    type: annotation
+    resource: App\Controller\Rest\DossierRestV2Controller
+
+api_v2_evenement:
+    type: annotation
+    resource: App\Controller\Rest\EvenementRestV2Controller
+
+api_v2_membre:
+    type: annotation
+    resource: App\Controller\Rest\MembreRestV2Controller
+
+api_v2_note:
+    type: annotation
+    resource: App\Controller\Rest\NoteRestV2Controller
+
+api_v2_user:
+    type: annotation
+    resource: App\Controller\Rest\UserRestV2Controller
+
+re_rest_public:
+    type: annotation
+    resource: App\Controller\Rest\PublicRestController
+
+api_v3_document:
+    type: annotation
+    resource: App\Controller\Api\DocumentApiController
+
+api_v3_beneficiary:
+    type: annotation
+    resource: App\Controller\Api\BeneficiaryApiController
+
+oauth2:
+    resource: '@LeagueOAuth2ServerBundle/Resources/config/routes.php'
+    type: php
+    prefix: /api
+
+controllers:
+    type: annotation
+    resource: '../src/Controller/'
+
+#Controllers V2
+controllers_v2:
+    type: annotation
+    resource: '../src/ControllerV2/'

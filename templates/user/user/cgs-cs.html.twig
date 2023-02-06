@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block metaTitle %}{{ 'user.cgu.metaTitle'|trans }}{% endblock metaTitle %}
+
+{% block notifications %}{% endblock %}
+
+{% block bodyCentered %}
+    <div id="page-cgu">
+        <h1 class="center h1 text-primary">{{ 'user.cgu.title'|trans }}</h1>
+        <br/>
+        <div id="cgu-text" class="bigMargin midPadding" style="
+   height: 300px; border: 1px solid #ddd; overflow: auto;">
+            {{ 'user.cgu.text'|trans|raw }}
+        </div>
+        <div class="clearFloat">&nbsp;</div>
+        <div class="bigPadding center">
+            {{ form_start(form, {"attr" : {"class" : "reForm font-size-1", "novalidate":"novalidate"}}) }}
+            {{ form_row(form.accept) }}
+            <div class="mb-4">
+                {{ form_errors(form) }}
+            </div>
+            {{ form_row(form.submit, {"attr": {"class" : app.user.isBeneficiaire ?  "btn-green"  : "btn-blue" }} ) }}
+            {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock bodyCentered %}

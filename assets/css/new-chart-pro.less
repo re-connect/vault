@@ -1,0 +1,100 @@
+//Texts
+.rp-blue {
+  color: @rp-blue !important;
+}
+
+//Box-shadow
+.box-shadow-light-blue {
+  -webkit-box-shadow: 0px 1px 8px -2px @light-blue !important;
+  box-shadow: 0px 1px 8px -2px @light-blue !important;
+}
+
+//Buttons
+.btn-blue, button.add-another-collection-widget {
+  background-color: @rp-blue !important;
+  font-family: 'Barlow-Medium', sans-serif !important;
+}
+
+.btn-blue:hover, button.add-another-collection-widget:hover {
+  background-color: #366b94 !important;
+}
+
+//Menu
+.menuLink:hover {
+  background-color: @rp-blue !important;
+}
+
+#menuContainerMembre img {
+  padding: 5px !important;
+  margin: 10px !important;
+  border-radius: 4px !important;
+}
+
+#menuContainerMembre .hoverImage:hover, #menuContainerMembre .hoverImageColored {
+  background-color: @rp-blue !important;
+  border-radius: 4px !important;
+}
+
+#app .tableLine.tableLine-active {
+  background: @light-bg-green !important;
+}
+
+//Modal Forms Inputs
+form input:not([type="submit"]), form textarea, form select {
+  border-radius: 4px !important;
+  padding: 4px 5px !important;
+  border: 1px solid @blue-secondary !important;
+}
+
+form input:not([type="submit"]):hover, form textarea:hover, form select:hover {
+  border: 1px solid @rp-blue !important;
+}
+
+form input:not([type="submit"]):focus, form textarea:focus, form select:focus {
+  -webkit-box-shadow: 0px 1px 8px -2px @rp-blue !important;
+  box-shadow: 0px 1px 8px -2px @rp-blue !important;
+  border: 1px solid @rp-blue !important;
+}
+
+//Tooltip
+.ui-tooltip {
+  background-color: @rp-blue !important;
+}
+
+//Checkbox
+.main {
+  color: @primary !important;
+}
+
+//SearchBar
+.searchInput input:hover, select:hover, select:focus {
+  border: 1px solid @rp-blue !important;
+}
+
+//Pagination
+#app-paginationLine {
+  border-top: 1px solid @primary !important;
+
+  .pagination li {
+    a {
+      border: 1px solid @rp-blue;
+      color: @rp-blue;
+    }
+
+    &.active a {
+      color: white;
+      background-color: @rp-blue;
+    }
+  }
+}
+
+//Responsive
+@media screen and (max-width: 740px) {
+  #menuContainerMembre {
+    display: none !important;
+  }
+
+  #smallMenuContainer {
+    margin-bottom: 15px !important;
+  }
+}

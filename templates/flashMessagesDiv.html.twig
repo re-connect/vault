@@ -1,0 +1,29 @@
+<div id="flashContainer">
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="notification notification-red bigMargin bigPadding">
+            <div class="close">X</div>
+            <div class="bold uppercase barlow-medium">{% trans %}flash.erreur{% endtrans %}</div>
+            <div class="barlow-medium" style="margin-top: 8px;">{{ flashMessage|trans()|raw }}</div>
+        </div>
+    {% endfor %}
+
+    {% for flashMessage in app.session.flashbag.get('danger') %}
+        <div class="notification notification-red bigMargin bigPadding">
+            <div class="close">X</div>
+            <div class="bold uppercase barlow-medium">{% trans %}flash.erreur{% endtrans %}</div>
+            <div class="barlow-medium" style="margin-top: 8px;">{{ flashMessage|trans()|raw }}</div>
+        </div>
+    {% endfor %}
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="notification bg-vault-green white bigMargin bigPadding">
+            <div class="close">X</div>
+            <div class="bold uppercase barlow-medium">
+                {% trans %}flash.operationReussie{% endtrans %}
+            </div>
+            <div class="barlow-medium" style="margin-top: 8px;">
+                {{ flashMessage|trans()|raw }}
+            </div>
+        </div>
+    {% endfor %}
+</div>

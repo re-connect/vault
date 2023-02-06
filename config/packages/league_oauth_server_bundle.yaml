@@ -1,0 +1,25 @@
+league_oauth2_server:
+    authorization_server:
+        private_key: '%kernel.project_dir%/var/oauth/private.key'
+        private_key_passphrase: null
+        encryption_key: '%env(OAUTH_ENCRYPTION_KEY)%'
+
+    resource_server:
+        public_key: '%kernel.project_dir%/var/oauth/public.key'
+
+    persistence:
+        doctrine:
+            entity_manager: default
+
+    scopes:
+        available:
+            - default
+            - beneficiaries
+            - centers
+            - documents
+            - notes
+            - events
+            - contacts
+            - pros
+        default:
+            - default

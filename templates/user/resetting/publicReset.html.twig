@@ -1,0 +1,58 @@
+{% extends 'homeV2/base.html.twig' %}
+
+{% block addUserSubtitle %}{% trans %}user.reinitialiserMdp.reinitialisation{% endtrans %}{% endblock addUserSubtitle %}
+
+{% block bodyCentered %}
+
+    {% block addUserContent %}
+        <section class="bg-green mt-5 py-5 pt-md-5">
+            <div class="container mt-0 py-0 mt-md-3 py-md-3">
+                <div class="row text-center">
+                    <div class="offset-1 offset-md-0 col-10 col-md-4 col-lg-4 mt-md-4">
+                        <img class="img-fluid mt-5" src="{{ asset('build/images/homeV2/logo_vault_white_v2.png') }}"
+                             alt="{{ 'home_our_solutions_alt_logo_cfn' |trans }}">
+                    </div>
+                    <div class="col-12 offset-md-1 col-md-7 offset-lg-2 col-lg-6">
+                        <div style="background-color:#9ee3a9;" class="card border-radius-20 box-shadow-white my-5 py-3">
+                            <h3 class="text-primary">{% trans %}resetting.public.title{% endtrans %}</h3>
+                            {% form_theme reset_form 'form/bootstrap_5_layout.html.twig' %}
+                            {{ form_start(reset_form , {'attr' : {"class" : 'reForm leftAlign'}, 'action' : path(path, {'token': token}), 'method' : 'post' }) }}
+                            {{ form_errors(reset_form.plainPassword.first) }}
+                            <div class="form-group row smallMargin w-100 mx-auto my-2">
+                                <div class="col-5 col-form-label text-primary">
+                                    {{ form_label(reset_form.plainPassword.first) }}
+                                </div>
+                                <div class="col-6 position-relative">
+                                    {{ form_widget(reset_form.plainPassword.first) }}
+                                    <i style="right: 7%; top:31%; z-index:2;"
+                                       class="show-password fas fa-eye position-absolute font-size-1 clickable text-primary"></i>
+                                </div>
+                            </div>
+                            <div class="form-group row smallMargin w-100 mx-auto my-2"
+                                 id="fos_user_resetting_form_plainPassword_second_div">
+                                <div class="col-5 col-form-label text-primary">
+                                    {{ form_label(reset_form.plainPassword.second) }}
+                                </div>
+                                <div class="col-6">
+                                    {{ form_widget(reset_form.plainPassword.second) }}
+                                    {{ form_errors(reset_form.plainPassword.second) }}
+                                </div>
+                            </div>
+                            <div class="form-group row smallMargin w-25 mx-auto">
+                                <div class="col-sm-6 col-sm-offset-6">
+                                    {{ form_widget(reset_form.submitFormReset, {"attr" : {"class" : "btn-primary mt-2 btn"}}) }}
+                                </div>
+                            </div>
+                            {{ form_end(reset_form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock addUserContent %}
+{% endblock bodyCentered %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('reset_password') }}
+{% endblock %}

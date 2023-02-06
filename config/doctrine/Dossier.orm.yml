@@ -1,0 +1,30 @@
+App\Entity\Dossier:
+    type: entity
+    table: "dossier"
+    repositoryClass: App\Repository\DossierRepository
+    manyToOne:
+        beneficiaire:
+            targetEntity: App\Entity\Beneficiaire
+            inversedBy: dossiers
+            joinColumn:
+                nullable: false
+        dossierParent:
+            targetEntity: App\Entity\Dossier
+            inversedBy: sousDossiers
+            joinColumn:
+                name: dossier_parent_id
+                onDelete: SET NULL
+    oneToMany:
+        documents:
+            targetEntity: App\Entity\Document
+            mappedBy: dossier
+            cascade: [ "persist", "remove" ]
+        sousDossiers:
+            targetEntity: App\Entity\Dossier
+            mappedBy: dossierParent
+            cascade: [ "persist", "remove" ]
+        creators:
+            targetEntity: App\Entity\Creator
+            cascade: [ "persist", "remove" ]
+            mappedBy: dossier
+    lifecycleCallbacks: { }

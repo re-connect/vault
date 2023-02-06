@@ -1,0 +1,34 @@
+App\Entity\Adresse:
+    type: entity
+    table: "adresse"
+    repositoryClass: App\Entity\AdresseRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+            nullable: true
+        ville:
+            type: string
+            length: 255
+            nullable: true
+        codePostal:
+            type: string
+            length: 255
+            nullable: true
+        pays:
+            type: string
+            length: 255
+            nullable: true
+        lat:
+            type: float
+            nullable: true
+        lng:
+            type: float
+            nullable: true
+    lifecycleCallbacks: { }

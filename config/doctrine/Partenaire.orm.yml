@@ -1,0 +1,37 @@
+App\Entity\Partenaire:
+    type: entity
+    table: "partenaire"
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        imageName:
+            type: string
+            length: 255
+        link:
+            type: string
+            length: 255
+            nullable: true
+        createdAt:
+            type: datetime
+            column: createdAt
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updatedAt
+            gedmo:
+                timestampable:
+                    on: update
+        canada:
+            type: boolean
+            options:
+                default: false
+    lifecycleCallbacks: { }

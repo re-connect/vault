@@ -1,0 +1,24 @@
+App\Entity\FaqQuestion:
+  type: entity
+  table: "faq_question"
+  repositoryClass: App\Repository\FaqQuestionRepository
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+  fields:
+    text:
+      type: string
+      length: '255'
+      nullable: false
+    answer:
+      type: text
+      nullable: false
+    position:
+      type: integer
+      nullable: true
+    createdAt:
+      type: datetime
+      nullable: false

@@ -1,0 +1,38 @@
+{% set beneficiaire = document.beneficiaire %}
+{% extends 'app/base.html.twig' %}
+
+{% block metaTitle %}{{ 'document.metaTitle'|trans }}{% endblock metaTitle %}
+
+{% block appBodyContainer %}
+    <div class="text-primary">
+        <div class="text-center">
+            <h3 class="h1">
+                <i class="fas fa-paper-plane pl-2"
+                   aria-hidden="true"></i>
+                {{ 'share_document'|trans }}
+            </h3>
+            <p class="font-size-1-1 mt-3"><u>{{ document.nom }}</u></p>
+            <hr/>
+        </div>
+        {% for label, messages in app.flashes(['success', 'danger']) %}
+            {% for message in messages %}
+                <div class="w-75 mx-auto alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                    <small>{{ message }}</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {{ form_start(shareForm) }}
+        <div class="form-group text-primary col-12 col-sm-4 col-sm-offset-4 my-5">
+            {{ form_row(shareForm.email) }}
+            <button type="submit"
+                    class="btn {{ app.user.isBeneficiaire ? 'btn-green' : 'btn-blue' }} floatRight">{{ 'confirm'|trans }}</button>
+            {{ form_end(shareForm) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('base_personal_data') }}
+{% endblock javascripts %}

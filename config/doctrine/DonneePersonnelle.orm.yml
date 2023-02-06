@@ -1,0 +1,33 @@
+App\Entity\DonneePersonnelle:
+    type: mappedSuperclass
+    repositoryClass: App\Repository\DonneePersonnelleRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        bPrive:
+            type: boolean
+        nom:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+            column: createdAt
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updatedAt
+            gedmo:
+                timestampable:
+                    on: update
+    manyToOne:
+        deposePar:
+            targetEntity: App\Entity\User
+            joinColumn:
+                onDelete: "SET NULL"
+    lifecycleCallbacks: {  }

@@ -1,0 +1,50 @@
+{% extends 'user/gestionUser_base.html.twig' %}
+
+{% form_theme form "form/listForm.html.twig" _self %}
+
+{%- block checkbox_row -%}
+    <div class="smallMargin">
+        {{- form_label(form) -}}
+        {{- form_errors(form) -}}
+        {{- form_widget(form) -}}
+    </div>
+{%- endblock checkbox_row -%}
+
+{% block addUserSubtitle %}{% trans %}membre.creationMembre.title{% endtrans %}{% endblock addUserSubtitle %}
+
+{% block addUserContent %}
+    {{ form_start(form, {"attr" : {"class" : "reForm listForm doubleForm form-100 font-size-1", "novalidate" : "novalidate"}}) }}
+    {{ form_errors(form) }}
+    <fieldset>
+{#
+        {{ form_label(form.user) }}
+#}
+        <ul>
+            <li>
+                {{ form_row(form.user.prenom) }}
+            <li>
+                {{ form_row(form.user.nom) }}
+            <li class="pt-3">
+                {{ form_label(form.user.plainPassword) }}
+                {{ form_errors(form.user.plainPassword) }}
+                {{ include('v2/user/strong_password/_strong_password_row.html.twig', {'field' : form.user.plainPassword, 'isBeneficiaire': false, 'hideAndShow': false }) }}
+            <li>
+                {{ form_row(form.user.telephone) }}
+            <li>
+                {{ form_row(form.user.email) }}
+        </ul>
+    </fieldset>
+    <fieldset>
+{#
+        {{ form_label(form.membresCentres) }}
+#}
+        {{ form_widget(form.membresCentres, {'attr': {'class': 'font-size-1 text-primary'}}) }}
+    </fieldset>
+    <div class="clearFloat">&nbsp;</div>
+    <div class="hugePadding center">
+        <a href="{{ path('re_membre_ajoutMembreSearch') }}"
+           class="btn btn-dark-blue font-size-1 mr-2">{% trans %}main.revenirArriere{% endtrans %}</a>
+        {{ form_row(form.submit, {'attr': {'class': 'btn btn-blue font-size-1'}}) }}
+    </div>
+    {{ form_end(form) }}
+{% endblock addUserContent %}

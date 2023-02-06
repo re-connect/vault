@@ -1,0 +1,109 @@
+App\Entity\Centre:
+    type: entity
+    table: "centre"
+    repositoryClass: App\Repository\CentreRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        code:
+            type: string
+            length: 255
+        siret:
+            type: string
+            length: 255
+            nullable: true
+        finess:
+            type: string
+            length: 255
+            nullable: true
+        telephone:
+            type: string
+            length: 255
+            nullable: true
+        budgetAnnuel:
+            type: string
+            length: 255
+            nullable: true
+        justificatifName:
+            type: string
+            length: 255
+            nullable: true
+        smsCount:
+            type: integer
+            nullable: false
+            options:
+                default: 0
+        dateFinCotisation:
+            type: datetime
+            nullable: true
+        createdAt:
+            type: datetime
+            column: createdAt
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updatedAt
+            gedmo:
+                timestampable:
+                    on: update
+        test:
+            type: boolean
+        canada:
+            type: boolean
+            options:
+                default: false
+        region:
+            type: string
+            length: 255
+            nullable: true
+    oneToMany:
+        statistiquesCentre:
+            targetEntity: StatistiqueCentre
+            mappedBy: centre
+            cascade: [ "persist","remove" ]
+        beneficiairesCentres:
+            targetEntity: BeneficiaireCentre
+            mappedBy: centre
+            cascade: [ "persist","remove" ]
+        membresCentres:
+            targetEntity: MembreCentre
+            mappedBy: centre
+            cascade: [ "persist","remove" ]
+        sms:
+            targetEntity: SMS
+            mappedBy: centre
+            cascade: [ "persist","remove" ]
+        consultationsCentre:
+            targetEntity: ConsultationCentre
+            mappedBy: centre
+            cascade: [ "persist","remove" ]
+        externalLinks:
+            targetEntity: App\Entity\ClientCentre
+            mappedBy: entity
+            cascade: [ "persist", "remove" ]
+            orphanRemoval: true
+    manyToOne:
+        gestionnaire:
+            targetEntity: Gestionnaire
+            inversedBy: centres
+            joinColumn:
+                nullable: false
+        typeCentre:
+            targetEntity: TypeCentre
+            inversedBy: centres
+            joinColumn:
+                nullable: true
+    oneToOne:
+        adresse:
+            targetEntity: App\Entity\Adresse
+            cascade: [ "persist", "remove" ]
+    lifecycleCallbacks: { }

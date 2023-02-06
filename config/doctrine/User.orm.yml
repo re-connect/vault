@@ -1,0 +1,182 @@
+App\Entity\User:
+    type: entity
+    table: "user"
+    repositoryClass: App\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        username:
+            type: string
+            length: '180'
+            unique: true
+        usernameCanonical:
+            column: username_canonical
+            type: string
+            length: '180'
+            unique: true
+        email:
+            type: string
+            length: '255'
+            nullable: true
+            unique: true
+        enabled:
+            type: boolean
+        salt:
+            type: string
+            nullable: true
+        password:
+            type: string
+        lastLogin:
+            column: last_login
+            type: datetime
+            nullable: true
+        confirmationToken:
+            column: confirmation_token
+            type: string
+            length: '180'
+            unique: true
+            nullable: true
+        passwordUpdatedAt:
+            column: password_updated_at
+            type: datetime_immutable
+            nullable: true
+        roles:
+            type: array
+        emailCanonical:
+            type: string
+            length: '255'
+            nullable: true
+            unique: true
+        avatar:
+            type: string
+            length: '255'
+            nullable: true
+        prenom:
+            type: string
+            length: '255'
+            nullable: true
+        nom:
+            type: string
+            length: '255'
+            nullable: true
+        birthDate:
+            type: date
+            nullable: true
+        telephone:
+            type: string
+            length: '255'
+            nullable: true
+        telephoneFixe:
+            type: string
+            length: '255'
+            nullable: true
+        firstVisit:
+            type: boolean
+            nullable: false
+            options:
+                default: true
+        bFirstMobileConnexion:
+            type: boolean
+            nullable: false
+            options:
+                default: false
+        bActif:
+            type: boolean
+            nullable: false
+        typeUser:
+            type: string
+            nullable: false
+        privateKey:
+            type: string
+            length: '255'
+            nullable: false
+        lastIp:
+            type: string
+            length: '20'
+            nullable: false
+        lastLang:
+            type: string
+            length: 3
+            nullable: true
+        derniereConnexionAt:
+            type: datetime
+            nullable: true
+        createdAt:
+            type: datetime
+            column: createdAt
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updatedAt
+            gedmo:
+                timestampable:
+                    on: update
+        test:
+            type: boolean
+        canada:
+            type: boolean
+            options:
+                default: false
+        autoLoginToken:
+            type: string
+            length: '36'
+            nullable: true
+        autoLoginTokenDeliveredAt:
+            type: datetime
+            nullable: true
+        fcnToken:
+            type: string
+            length: '255'
+            nullable: true
+        isCreationProcessPending:
+            type: boolean
+            options:
+                default: false
+        disabledAt:
+            type: datetime
+            nullable: true
+    oneToOne:
+        subjectAdministrateur:
+            targetEntity: App\Entity\Administrateur
+            mappedBy: user
+        subjectBeneficiaire:
+            targetEntity: App\Entity\Beneficiaire
+            mappedBy: user
+        subjectMembre:
+            targetEntity: App\Entity\Membre
+            mappedBy: user
+        subjectAssociation:
+            targetEntity: App\Entity\Association
+            mappedBy: user
+        subjectGestionnaire:
+            targetEntity: App\Entity\Gestionnaire
+            mappedBy: user
+        adresse:
+            targetEntity: App\Entity\Adresse
+            cascade: [ "persist", "remove" ]
+    oneToMany:
+        refreshTokens:
+            targetEntity: App\Entity\RefreshToken
+            mappedBy: user
+            cascade: [ "persist", "remove" ]
+        accessTokens:
+            targetEntity: App\Entity\AccessToken
+            mappedBy: user
+            cascade: [ "persist", "remove" ]
+        creators:
+            targetEntity: App\Entity\Creator
+            cascade: [ "persist", "remove" ]
+            mappedBy: user
+            orphanRemoval: true
+    manyToOne:
+        disabledBy:
+            targetEntity: App\Entity\User
+            nullable: true
+    lifecycleCallbacks:
+        preUpdate: [ 'refreshLastPasswordUpdateDate' ]
