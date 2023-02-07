@@ -28,7 +28,7 @@ class NoteController extends AbstractController
     ): Response {
         $searchForm = $this->createForm(SearchType::class);
 
-        return $this->renderForm('v2/app/note/index.html.twig', [
+        return $this->renderForm('v2/vault/note/index.html.twig', [
             'beneficiary' => $beneficiary,
             'notes' => $paginator->create(
                 $this->isLoggedInUser($beneficiary->getUser())
@@ -58,7 +58,7 @@ class NoteController extends AbstractController
         $searchForm = $this->createForm(SearchType::class);
 
         return new JsonResponse([
-            'html' => $this->renderForm('v2/app/note/list.html.twig', [
+            'html' => $this->renderForm('v2/vault/note/_list.html.twig', [
                 'notes' => $paginator->create(
                     $this->isLoggedInUser($beneficiary->getUser())
                         ? $repository->searchByBeneficiary($beneficiary, $word)
@@ -93,7 +93,7 @@ class NoteController extends AbstractController
             return $this->redirectToRoute('note_list', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/app/note/create.html.twig', [
+        return $this->renderForm('v2/vault/note/create.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
         ]);
@@ -103,7 +103,7 @@ class NoteController extends AbstractController
     #[IsGranted('UPDATE', 'note')]
     public function detail(Note $note): Response
     {
-        return $this->render('v2/app/note/detail.html.twig', [
+        return $this->render('v2/vault/note/detail.html.twig', [
             'note' => $note,
             'beneficiary' => $note->getBeneficiaire(),
         ]);
@@ -126,7 +126,7 @@ class NoteController extends AbstractController
             return $this->redirectToRoute('note_list', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/app/note/edit.html.twig', [
+        return $this->renderForm('v2/vault/note/edit.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
         ]);

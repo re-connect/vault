@@ -23,7 +23,7 @@ class RelayController extends AbstractController
     #[Security("is_granted('SELF_EDIT', beneficiary.getUser())")]
     public function relays(Beneficiaire $beneficiary, RelayManager $manager): Response
     {
-        return $this->render('v2/app/relay/index.html.twig', [
+        return $this->render('v2/vault/relay/index.html.twig', [
             'beneficiary' => $beneficiary,
             'relays' => $manager->findPersonalRelays($beneficiary),
             'pendingRelays' => $manager->findPersonalRelays($beneficiary, false),
@@ -105,7 +105,7 @@ class RelayController extends AbstractController
             return $this->redirectToRoute('relay_list', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/app/relay/leave.html.twig', [
+        return $this->renderForm('v2/vault/relay/leave.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
             'relay' => $relay,

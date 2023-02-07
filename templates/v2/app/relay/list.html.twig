@@ -1,8 +1,0 @@
-<div class="container mx-auto w-75">
-    {% for relay in relays %}
-        {{ include('v2/app/relay/card.html.twig', {'relay': relay}) }}
-    {% endfor %}
-    {% for pendingRelay in pendingRelays %}
-        {{ include('v2/app/relay/pending-card.html.twig', {'pendingRelay': pendingRelay}) }}
-    {% endfor %}
-</div>

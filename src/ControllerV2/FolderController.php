@@ -29,7 +29,7 @@ class FolderController extends AbstractController
         $beneficiary = $folder->getBeneficiaire();
         $searchForm = $this->createForm(SearchType::class);
 
-        return $this->renderForm('v2/app/document/index.html.twig', [
+        return $this->renderForm('v2/vault/document/index.html.twig', [
             'beneficiary' => $beneficiary,
             'foldersAndDocuments' => $paginator->create(
                 $this->isLoggedInUser($beneficiary->getUser())
@@ -67,7 +67,7 @@ class FolderController extends AbstractController
             return $this->redirectToRoute('document_list', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/app/folder/create.html.twig', [
+        return $this->renderForm('v2/vault/folder/create.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
             'autocompleteNames' => $manager->getAutocompleteFolderNames(),
@@ -101,7 +101,7 @@ class FolderController extends AbstractController
             );
         }
 
-        return $this->renderForm('v2/app/folder/rename.html.twig', [
+        return $this->renderForm('v2/vault/folder/rename.html.twig', [
             'form' => $form,
             'folder' => $folder,
             'beneficiary' => $folder->getBeneficiaire(),
@@ -183,7 +183,7 @@ class FolderController extends AbstractController
             return $this->redirectToRoute('folder', ['id' => $parentFolder->getId()]);
         }
 
-        return $this->renderForm('v2/app/folder/create.html.twig', [
+        return $this->renderForm('v2/vault/folder/create.html.twig', [
             'form' => $form,
             'beneficiary' => $parentFolder->getBeneficiaire(),
             'autocompleteNames' => $manager->getAutocompleteFolderNames(),
@@ -207,7 +207,7 @@ class FolderController extends AbstractController
     #[IsGranted('UPDATE', 'folder')]
     public function detail(Dossier $folder): Response
     {
-        return $this->render('v2/app/folder/detail.html.twig', [
+        return $this->render('v2/vault/folder/detail.html.twig', [
             'folder' => $folder,
             'beneficiary' => $folder->getBeneficiaire(),
         ]);
@@ -239,7 +239,7 @@ class FolderController extends AbstractController
     #[IsGranted('UPDATE', 'folder')]
     public function treeViewMove(Dossier $folder): Response
     {
-        return $this->render('v2/app/folder/tree_view.html.twig', [
+        return $this->render('v2/vault/folder/tree_view.html.twig', [
             'folders' => $folder->getBeneficiaire()->getRootFolders(),
             'element' => $folder,
             'beneficiary' => $folder->getBeneficiaire(),

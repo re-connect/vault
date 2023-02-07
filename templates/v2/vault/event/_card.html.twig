@@ -1,0 +1,42 @@
+<tr class="text-primary text-center">
+    <td class="bg-white borderless text-start p-0 w-100 me-auto">
+        <a href="{{ path('event_detail', {'id': event.id}) }}" class="text-decoration-none d-block h-100 ps-3 py-2">
+            <span class="bold text-primary">
+                {% if 'now'|date('d/m/Y') == event.date|date('d/m/Y') %}
+                    {{ 'today'|trans }} {{ event.date|date('H:i') }} :
+                {% else %}
+                    {{ event.date|format_datetime() }} :
+                {% endif %}
+                {{ event.nom }}
+            </span>
+            {% for reminder in event.rappels %}
+                <br>
+                <span class="text-light-grey">
+                    {{ 'reminder'|trans }} : {{ reminder.date|format_datetime() }}
+                </span>
+            {% endfor %}
+        </a>
+    </td>
+    <td class="bg-white borderless pt-2 w-25">
+        {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
+            'url': path('event_toggle_visibility', {'id': event.id}),
+            'item': event,
+        }) }}
+    </td>
+    <td class="bg-white borderless pt-2 w-25 pe-3" {{ stimulus_controller('dropdown-menu') }} data-turbo="false">
+        <button class="btn btn-green text-white py-0"
+                data-dropdown-menu-target="button"
+                data-action="click->dropdown-menu#toggle"
+        >
+            <i class="fas fa-ellipsis-h"></i>
+        </button>
+        {{ include('v2/vault/components/_action_dropdown.html.twig', {
+            'editPath': path('event_edit', {'id': event.id}),
+            'detailPath': path('event_detail', {'id': event.id}),
+            'delete': {
+                'path': path('event_delete', {'id': event.id}),
+                'message': 'modal_message_event_deletev2'|trans({'%name%': event.nom}),
+            },
+        }) }}
+    </td>
+</tr>

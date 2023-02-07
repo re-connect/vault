@@ -30,7 +30,7 @@ class DocumentController extends AbstractController
     ): Response {
         $searchForm = $this->createForm(SearchType::class);
 
-        return $this->renderForm('v2/app/document/index.html.twig', [
+        return $this->renderForm('v2/vault/document/index.html.twig', [
             'beneficiary' => $beneficiary,
             'foldersAndDocuments' => $paginator->create(
                 $this->isLoggedInUser($beneficiary->getUser())
@@ -87,7 +87,7 @@ class DocumentController extends AbstractController
         $searchForm = $this->createForm(SearchType::class);
 
         return new JsonResponse([
-            'html' => $this->renderForm('v2/app/document/list.html.twig', [
+            'html' => $this->renderForm('v2/vault/document/_list.html.twig', [
                 'foldersAndDocuments' => $paginator->create(
                     $this->isLoggedInUser($beneficiary->getUser())
                         ? $documentManager->searchFoldersAndDocumentsWithUrl($beneficiary, $word)
@@ -104,7 +104,7 @@ class DocumentController extends AbstractController
     #[IsGranted('UPDATE', 'document')]
     public function detail(Document $document, DocumentManager $manager): Response
     {
-        return $this->render('v2/app/document/detail.html.twig', [
+        return $this->render('v2/vault/document/detail.html.twig', [
             'document' => $manager->getDocumentWithUrl($document),
             'beneficiary' => $document->getBeneficiaire(),
         ]);
@@ -155,7 +155,7 @@ class DocumentController extends AbstractController
             );
         }
 
-        return $this->renderForm('v2/app/document/rename.html.twig', [
+        return $this->renderForm('v2/vault/document/rename.html.twig', [
             'form' => $form,
             'document' => $manager->getDocumentWithUrl($document),
             'beneficiary' => $document->getBeneficiaire(),
@@ -232,7 +232,7 @@ class DocumentController extends AbstractController
     #[IsGranted('UPDATE', 'document')]
     public function treeViewMove(Document $document): Response
     {
-        return $this->render('v2/app/folder/tree_view.html.twig', [
+        return $this->render('v2/vault/folder/tree_view.html.twig', [
             'folders' => $document->getBeneficiaire()->getRootFolders(),
             'element' => $document,
             'beneficiary' => $document->getBeneficiaire(),

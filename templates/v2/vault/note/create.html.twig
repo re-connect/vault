@@ -1,0 +1,12 @@
+{% extends 'v2/vault/standard_layout.html.twig' %}
+
+{% block metas %}
+    <meta name="turbo-cache-control" content="no-preview">
+{% endblock %}
+
+{% block content %}
+    {{ include('v2/vault/form/_personal_data_form.html.twig', {
+        'title': 'donneePersonnelle.ajouter',
+        'cancelPath': path('note_list', {'id': beneficiary.id})
+    }) }}
+{% endblock %}

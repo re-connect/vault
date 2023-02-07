@@ -1,0 +1,18 @@
+{% form_theme form 'v2/vault/form_themes/personnal_data_theme.html.twig' %}
+
+<div class="container row mx-auto my-4">
+    <div class="col-12 col-lg-4 offset-lg-4 text-primary bg-white rounded py-2 shadow">
+        <h4 class="font-size-1-3 text-center mt-1">
+            <i class="{{ icon is defined ? icon : 'fa fa-pencil-alt' }} me-2" aria-hidden="true"></i>
+            {{ title|trans }}
+        </h4>
+        <hr class="text-light-grey">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="row mx-1 mt-2">
+            {{ link(cancelPath, 'main.retour', 'grey') }}
+            {{ button('submit', 'confirm', 'green') }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
