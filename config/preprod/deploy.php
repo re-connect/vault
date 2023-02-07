@@ -8,7 +8,7 @@ return new class() extends DefaultDeployer {
         return $this->getConfigBuilder()
             ->server('vault-pp')
             ->deployDir('/var/www/preprod_coffre_reconnect_fr/www')
-            ->repositoryUrl('git@gitlab.com:re-connect/vault.git')
+            ->repositoryUrl('git@github.com:re-connect/vault.git')
             ->repositoryBranch('master')
             ->remoteComposerBinaryPath('/var/www/preprod_coffre_reconnect_fr/composer.phar')
             ->useSshAgentForwarding(false)
