@@ -17,6 +17,7 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
 {
     public const MEMBER_MAIL = 'v2_test_user_membre@mail.com';
     public const MEMBER_MAIL_WITH_RELAYS = 'v2_test_user_membre_relays@mail.com';
+    public const MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES = 'v2_test_user_membre_relays_shared_with_beneficiaries@mail.com';
     public const MEMBER_PASSWORD_EXPIRED_MAIL = 'v2_test_user_membre_password_expired@mail.com';
     public const MEMBER_PASSWORD_OVERDUE_MAIL = 'v2_test_user_membre_password_overdue@mail.com';
 
@@ -26,6 +27,10 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
         $this->createMember($this->getTestUserWithOverduePassword());
         $this->createMember($this->getTestUserWithExpiredPassword());
         $this->createMember($this->getTestUserWithRelays(), RelayFactory::createMany(4));
+        $this->createMember(
+            $this->getTestUserWithRelaySharedWithBeneficiary(),
+            [RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY])],
+        );
     }
 
     public function getTestUser(): User
@@ -58,12 +63,19 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
         ])->object();
     }
 
+    public function getTestUserWithRelaySharedWithBeneficiary(): User
+    {
+        return UserFactory::createOne([
+            'email' => self::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES,
+        ])->object();
+    }
+
     /** @param array<Centre> $relays */
     public function createMember(User $user, array $relays = []): void
     {
         if (!empty($relays)) {
             MembreFactory::new()
-                ->linkToRelays($relays)
+                ->linkToRelays($relays, true, true)
                 ->withAttributes(['user' => $user])
                 ->create();
 
@@ -71,7 +83,7 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
         }
 
         MembreFactory::new()
-            ->linkToRelays([RelayFactory::findOrCreate(['nom' => RelayFixture::RELAY_NAME])])
+            ->linkToRelays([RelayFactory::findOrCreate(['nom' => RelayFixture::DEFAULT_PRO_RELAY])])
             ->withAttributes(['user' => $user])
             ->create();
     }

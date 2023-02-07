@@ -2,38 +2,39 @@
 
 namespace App\Tests\v2\Controller\EventController;
 
+use App\DataFixtures\v2\BeneficiaryFixture;
+use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\EventFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use App\Tests\v2\Controller\TestRouteInterface;
 
-class ToggleVisibilityTest extends AbstractControllerTest
+class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private KernelBrowser $client;
-    public const URL = '/event/%s/toggle-visibility';
+    private const URL = '/event/%s/toggle-visibility';
 
-    protected function setUp(): void
+    public function provideTestRoute(): ?\Generator
     {
-        parent::setUp();
-        static::ensureKernelShutdown();
-        $this->client = static::createClient();
+        yield 'Should redirect to login when not authenticated' => [self::URL, 302, null, '/login', 'PATCH'];
+        yield 'Should return 204 status code when authenticated as beneficiaire' => [self::URL, 204, BeneficiaryFixture::BENEFICIARY_MAIL, null, 'PATCH'];
+        yield 'Should return 204 status when authenticated as member with relay in common' => [self::URL, 204, MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES, null, 'PATCH'];
+        yield 'Should return 403 status code when authenticated as an other beneficiaire' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS, null, 'PATCH'];
+        yield 'Should return 403 status code when authenticated as member with no relay in common' => [self::URL, 403, MemberFixture::MEMBER_MAIL, null, 'PATCH'];
     }
 
-    public function testToggleVisibility(): void
+    /** @dataProvider provideTestRoute */
+    public function testRoute(string $url, int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = null, string $method = 'GET'): void
     {
-        [$testedBeneficiary, $randomBeneficiary] = BeneficiaireFactory::randomSet(2);
-        $this->client->loginUser($testedBeneficiary->getUser());
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $publicEvent = EventFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        $url = sprintf($url, $publicEvent->getId());
+        $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method, true);
 
-        $testedBeneficiaryEvent = EventFactory::createOne(['bPrive' => false, 'beneficiaire' => $testedBeneficiary])->object();
-        $randomBeneficiaryEvent = EventFactory::createOne(['bPrive' => false, 'beneficiaire' => $randomBeneficiary])->object();
-
-        $this->client->xmlHttpRequest('PATCH', sprintf('/event/%s/toggle-visibility', $randomBeneficiaryEvent->getId()));
-        $this->assertResponseStatusCodeSame(403);
-
-        $this->client->xmlHttpRequest('PATCH', sprintf('/event/%s/toggle-visibility', $testedBeneficiaryEvent->getId()));
-        $this->assertResponseStatusCodeSame(204);
-
-        $updatedContact1 = EventFactory::find($testedBeneficiaryEvent->getId())->object();
-        $this->assertTrue($updatedContact1->getBPrive());
+        // Also check that authorized Pro can't update private data
+        if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
+            $privateEvent = EventFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+            $newUrl = sprintf(self::URL, $privateEvent->getId());
+            $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
+        }
     }
 }

@@ -4,18 +4,16 @@ namespace App\Security\VoterV2;
 
 use App\Entity\Beneficiaire;
 use App\Entity\User;
-use App\Repository\BeneficiaireRepository;
+use App\Security\HelperV2\UserHelper;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class BeneficiaryVoter extends Voter
 {
     public const UPDATE = 'UPDATE';
-    private BeneficiaireRepository $beneficiaryRepository;
 
-    public function __construct(BeneficiaireRepository $beneficiaryRepository)
+    public function __construct(private readonly UserHelper $helper)
     {
-        $this->beneficiaryRepository = $beneficiaryRepository;
     }
 
     protected function supports(string $attribute, $subject): bool
@@ -42,6 +40,7 @@ class BeneficiaryVoter extends Voter
     {
         return match ($user->getTypeUser()) {
             User::USER_TYPE_BENEFICIAIRE => $user->getSubjectBeneficiaire() === $subject,
+            User::USER_TYPE_MEMBRE, User::USER_TYPE_GESTIONNAIRE => $this->helper->canManageBeneficiary($user, $subject),
             default => false,
         };
     }

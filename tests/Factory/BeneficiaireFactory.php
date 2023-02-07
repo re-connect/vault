@@ -3,6 +3,7 @@
 namespace App\Tests\Factory;
 
 use App\Entity\Beneficiaire;
+use App\Entity\Centre;
 use App\Repository\BeneficiaireRepository;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
@@ -66,5 +67,11 @@ final class BeneficiaireFactory extends ModelFactory
     public static function findByEmail(string $email): Beneficiaire|Proxy
     {
         return BeneficiaireFactory::find(['user' => UserFactory::find(['email' => $email])]);
+    }
+
+    /** @param array<Centre> $centres */
+    public function linkToRelays(array $centres): self
+    {
+        return $this->addState(['beneficiairesCentres' => array_map(fn ($centre) => BeneficiaryRelayFactory::createOne(['beneficiaire' => $this, 'centre' => $centre]), $centres)]);
     }
 }

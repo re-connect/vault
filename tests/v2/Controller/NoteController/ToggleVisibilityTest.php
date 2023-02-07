@@ -3,49 +3,40 @@
 namespace App\Tests\v2\Controller\NoteController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
-use App\Entity\User;
+use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\NoteFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use App\Tests\v2\Controller\TestRouteInterface;
 
-class ToggleVisibilityTest extends AbstractControllerTest
+class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const TEST_EMAIL = 'notetest@mail.com';
-    private User $user;
-    private KernelBrowser $client;
+    private const URL = '/note/%s/toggle-visibility';
 
-    protected function setUp(): void
+    public function provideTestRoute(): ?\Generator
     {
-        parent::setUp();
-        static::ensureKernelShutdown();
-        $this->client = static::createClient();
-        $this->user = $this->createTestBeneficiary(self::TEST_EMAIL)->getUser();
+        yield 'Should redirect to login when not authenticated' => [self::URL, 302, null, '/login', 'PATCH'];
+        yield 'Should return 204 status code when authenticated as beneficiaire' => [self::URL, 204, BeneficiaryFixture::BENEFICIARY_MAIL, null, 'PATCH'];
+        yield 'Should return 204 status when authenticated as member with relay in common' => [self::URL, 204, MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES, null, 'PATCH'];
+        yield 'Should return 403 status code when authenticated as an other beneficiaire' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS, null, 'PATCH'];
+        yield 'Should return 403 status code when authenticated as member with no relay in common' => [self::URL, 403, MemberFixture::MEMBER_MAIL, null, 'PATCH'];
     }
 
-    public function testToggleVisibility(): void
+    /** @dataProvider provideTestRoute */
+    public function testRoute(string $url, int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = null, string $method = 'GET'): void
     {
-        // Only testedBeneficiary is logged
-        $this->client->loginUser($this->user);
-        $testedBeneficiary = $this->user->getSubjectBeneficiaire();
-        $randomBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $publicNote = NoteFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
 
-        $testedBeneficiaryNote = NoteFactory::createOne(['beneficiaire' => $testedBeneficiary, 'bPrive' => false])->object();
-        $randomBeneficiaryNote = NoteFactory::createOne(['beneficiaire' => $randomBeneficiary, 'bPrive' => false])->object();
+        $url = sprintf($url, $publicNote->getId());
+        $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : '';
+        $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method, true);
 
-        $em = $this->getEntityManager();
-        $em->persist($testedBeneficiaryNote);
-        $em->persist($randomBeneficiaryNote);
-        $em->flush();
-
-        // testedBeneficiary try to toggle visibility of a contact from another beneficiary
-        $this->client->xmlHttpRequest('PATCH', sprintf('/note/%s/toggle-visibility', $randomBeneficiaryNote->getId()));
-        $this->assertResponseStatusCodeSame(403);
-
-        $this->client->xmlHttpRequest('PATCH', sprintf('/note/%s/toggle-visibility', $testedBeneficiaryNote->getId()));
-        $this->assertResponseStatusCodeSame(204);
-
-        $updatedNote = NoteFactory::find($testedBeneficiaryNote->getId())->object();
-        $this->assertTrue($updatedNote->getBPrive());
+        // Also check that authorized Pro can't update private data
+        if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
+            $newDocument = NoteFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+            $newUrl = sprintf(self::URL, $newDocument->getId());
+            $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
+        }
     }
 }
