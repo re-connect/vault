@@ -25,7 +25,11 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 #[ApiResource(
     shortName: 'beneficiary',
     operations: [
-        new Get(), new Put(), new Patch(), new Delete(), new GetCollection(),
+        new Get(security: "is_granted('READ', object)"),
+        new Delete(security: "is_granted('UPDATE', object)"),
+        new Patch(security: "is_granted('UPDATE', object)"),
+        new Put(security: "is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"),
         new Post(input: BeneficiaryDto::class, processor: BeneficiaryProcessor::class),
     ],
     normalizationContext: ['groups' => ['v3:beneficiary:read', 'v3:user:read', 'v3:center:read', 'timed']],
