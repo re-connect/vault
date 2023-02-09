@@ -1086,7 +1086,7 @@
   dependencies:
     morphdom "^2.6.1"
 
-"@symfony/ux-turbo@file:vendor/symfony/ux-turbo/Resources/assets":
+"@symfony/ux-turbo@file:vendor/symfony/ux-turbo/assets":
   version "0.1.0"
 
 "@symfony/webpack-encore@1.8.1":

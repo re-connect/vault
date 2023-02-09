@@ -12,6 +12,7 @@ use ApiPlatform\Metadata\Put;
 use App\Api\Dto\BeneficiaryDto;
 use App\Api\State\BeneficiaryProcessor;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
+use App\Entity\Interface\ClientResourceInterface;
 use App\Traits\GedmoTimedTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -24,7 +25,11 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 #[ApiResource(
     shortName: 'beneficiary',
     operations: [
-        new Get(), new Put(), new Patch(), new Delete(), new GetCollection(),
+        new Get(security: "is_granted('READ', object)"),
+        new Delete(security: "is_granted('UPDATE', object)"),
+        new Patch(security: "is_granted('UPDATE', object)"),
+        new Put(security: "is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"),
         new Post(input: BeneficiaryDto::class, processor: BeneficiaryProcessor::class),
     ],
     normalizationContext: ['groups' => ['v3:beneficiary:read', 'v3:user:read', 'v3:center:read', 'timed']],
@@ -32,7 +37,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     openapiContext: ['tags' => ['Beneficiaires']],
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
 )]
-class Beneficiaire extends Subject implements UserWithCentresInterface
+class Beneficiaire extends Subject implements UserWithCentresInterface, ClientResourceInterface
 {
     use GedmoTimedTrait;
 
@@ -44,7 +49,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface
     #[Groups(['beneficiary:read'])]
     private ?string $lieuNaissance;
 
-    /** @var Collection<int, BeneficiaireCentre> */
+    /** @var Collection<int, BeneficiaireCentre> $beneficiairesCentres */
     #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
     #[SerializedName('centres')]
     private Collection $beneficiairesCentres;
@@ -225,12 +230,8 @@ class Beneficiaire extends Subject implements UserWithCentresInterface
         return $this->getDocuments()->count();
     }
 
-    /**
-     * @param mixed $dossier
-     *
-     * @return Collection<int, Document>
-     */
-    public function getDocuments(?bool $isBeneficiaire = true, $dossier = null): Collection
+    /** @return Collection<int, Document> */
+    public function getDocuments(?bool $isBeneficiaire = true, mixed $dossier = null): Collection
     {
         $criteria = Criteria::create()->orderBy(['id' => Criteria::DESC]);
         if (!$isBeneficiaire) {
@@ -875,9 +876,11 @@ class Beneficiaire extends Subject implements UserWithCentresInterface
         return $this->externalLinks->exists(fn (int $key, ClientBeneficiaire $link) => $link->getClient() === $client);
     }
 
-    public function getExternalLinkForClient(Client $client): false|ClientBeneficiaire
+    public function getExternalLinkForClient(Client $client): ?ClientBeneficiaire
     {
-        return $this->externalLinks->filter(fn (ClientBeneficiaire $link) => $link->getClient() === $client)->first();
+        $externalLinks = $this->externalLinks->filter(fn (ClientBeneficiaire $link) => $link->getClient() === $client)->first();
+
+        return $externalLinks ?? null;
     }
 
     public function addClientExternalLink(Client $client, string $externalId, string $memberExternalId = null): self

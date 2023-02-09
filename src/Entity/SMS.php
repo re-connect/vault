@@ -106,7 +106,7 @@ class SMS implements \JsonSerializable
      *
      * @return SMS
      */
-    public function setBeneficiaire(Beneficiaire $beneficiaire)
+    public function setBeneficiaire(?Beneficiaire $beneficiaire)
     {
         $this->beneficiaire = $beneficiaire;
 

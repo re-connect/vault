@@ -75,7 +75,9 @@ class MigrateRosalieIdsToSiSiaoIdsCommand extends Command
     private function updateBeneficiary(Beneficiaire $beneficiary, array $records, Client $rosalieClient): void
     {
         if ($externalLink = $beneficiary->getExternalLinkForClient($rosalieClient)) {
-            $beneficiary->setSiSiaoNumber($records[$externalLink->getDistantId()] ?? null);
+            $siSiaoNumber = $records[$externalLink->getDistantId()] ?? null;
+            $externalLink->setDistantId($siSiaoNumber);
+            $beneficiary->setSiSiaoNumber($siSiaoNumber);
         }
     }
 }
