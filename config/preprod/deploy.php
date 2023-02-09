@@ -9,7 +9,7 @@ return new class() extends DefaultDeployer {
             ->server('vault-pp')
             ->deployDir('/var/www/preprod_coffre_reconnect_fr/www')
             ->repositoryUrl('git@github.com:re-connect/vault.git')
-            ->repositoryBranch('master')
+            ->repositoryBranch('main')
             ->remoteComposerBinaryPath('/var/www/preprod_coffre_reconnect_fr/composer.phar')
             ->useSshAgentForwarding(false)
             ->composerOptimizeFlags('--optimize --no-dev --classmap-authoritative')
