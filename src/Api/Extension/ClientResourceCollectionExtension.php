@@ -17,10 +17,12 @@ final class ClientResourceCollectionExtension implements QueryCollectionExtensio
 
     public function applyToCollection(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, Operation $operation = null, array $context = []): void
     {
-        $this->addWhere($queryBuilder, $resourceClass);
+        if (!$this->oauth2Helper->isClientGrantedAllPrivileges()) {
+            $this->addClientExternalLinksFilter($queryBuilder, $resourceClass);
+        }
     }
 
-    private function addWhere(QueryBuilder $queryBuilder, string $resourceClass): void
+    private function addClientExternalLinksFilter(QueryBuilder $queryBuilder, string $resourceClass): void
     {
         if (Beneficiaire::class !== $resourceClass) {
             return;

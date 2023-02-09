@@ -27,12 +27,12 @@ class Oauth2Helper
         return $this->clientRepository->findForNewClientIdentifier($token->getOAuthClientId());
     }
 
+    public function isClientGrantedAllPrivileges(): bool {
+        return $this->authorizationChecker->isGranted('ROLE_OAUTH2_ALL');
+    }
+
     public function canClientAccessRessource(OAuth2Token $token, ClientResourceInterface $resource): bool
     {
-        if ($this->authorizationChecker->isGranted('ROLE_OAUTH2_ALL')) {
-            return true;
-        }
-
-        return $resource->hasExternalLinkForClient($this->getClient($token));
+        return $this->isClientGrantedAllPrivileges() || $resource->hasExternalLinkForClient($this->getClient($token));
     }
 }
