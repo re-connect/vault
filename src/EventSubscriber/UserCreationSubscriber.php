@@ -13,6 +13,7 @@ use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserCreationSubscriber implements EventSubscriberInterface
@@ -39,6 +40,9 @@ class UserCreationSubscriber implements EventSubscriberInterface
         }
     }
 
+    /**
+     * @param LifecycleEventArgs<ObjectManager> $args
+     */
     public function prePersist(LifecycleEventArgs $args): void
     {
         $object = $args->getObject();
@@ -75,6 +79,9 @@ class UserCreationSubscriber implements EventSubscriberInterface
         }
     }
 
+    /**
+     * @param LifecycleEventArgs<ObjectManager> $args
+     */
     public function postPersist(LifecycleEventArgs $args): void
     {
         $object = $args->getObject();
