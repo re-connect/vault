@@ -15,6 +15,7 @@ return new class() extends DefaultDeployer {
             ->composerOptimizeFlags('--optimize --no-dev --classmap-authoritative')
             ->sharedFilesAndDirs([
                 'config/secrets/preprod/preprod.decrypt.private.php',
+                'config/jwt/',
                 '.env',
                 'var/log',
                 'var/sessions',
