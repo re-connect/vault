@@ -10,6 +10,9 @@ parameters:
         - ./src/ListenerV2
         - ./src/RepositoryV2
         - ./src/ManagerV2
+        - ./src/Security/VoterV2
+        - ./src/Security/HelperV2
+        - ./src/EventSubscriber
         - ./src/ServiceV2
     bootstrapFiles:
         - ./vendor/bin/.phpunit/phpunit/vendor/autoload.php
