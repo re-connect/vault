@@ -11,12 +11,18 @@ class UserVoter extends Voter
     public const SELF_EDIT = 'SELF_EDIT';
     public const DELETE_BENEFICIARY = 'DELETE_BENEFICIARY';
 
+    /**
+     * @param object $subject
+     */
     protected function supports(string $attribute, $subject): bool
     {
         return in_array($attribute, [self::SELF_EDIT, self::DELETE_BENEFICIARY])
             && $subject instanceof User;
     }
 
+    /**
+     * @param User $subject
+     */
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();

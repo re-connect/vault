@@ -20,7 +20,7 @@ class MemberBeneficiaryManager
         $this->security = $security;
     }
 
-    public function handleFirstMemberVisit(Beneficiaire $beneficiary)
+    public function handleFirstMemberVisit(Beneficiaire $beneficiary): void
     {
         $user = $this->getUser();
         if (null !== $user && $user->isMembre()) {

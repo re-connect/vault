@@ -224,7 +224,7 @@ class NotificationServiceTest extends AuthenticatedTestCase
         }
     }
 
-    public function testSendFirstLoginSMSSuccessful()
+    public function testSendFirstLoginSMSSuccessful(): void
     {
         $user = $this->beneficiaryUser->getUser();
         $password = 'F4kePassword';

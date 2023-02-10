@@ -50,7 +50,7 @@ class SharedDocumentManager
         list('selector' => $selector, 'user_id' => $userId, 'document_id' => $documentId) = $decodedToken;
         $sharedDocument = $this->repository->findOneBy(['selector' => $selector]);
 
-        if ($errorMessage = $this->getErrorMessage($sharedDocument, $userId, $documentId)) {
+        if ($errorMessage = $this->getErrorMessage($sharedDocument, (int) $userId, (int) $documentId)) {
             $this->addFlashMessage('danger', $errorMessage);
         }
 
@@ -67,6 +67,9 @@ class SharedDocumentManager
         };
     }
 
+    /**
+     * @return string[]
+     */
     private function decodeSharedDocumentToken(string $token): array
     {
         return json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $token)[1]))), true);
