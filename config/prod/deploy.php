@@ -15,6 +15,7 @@ return new class() extends DefaultDeployer {
             ->useSshAgentForwarding(false)
             ->sharedFilesAndDirs([
                 'config/secrets/prod/prod.decrypt.private.php',
+                'config/jwt/',
                 '.env',
                 'var/log',
                 'var/sessions',
