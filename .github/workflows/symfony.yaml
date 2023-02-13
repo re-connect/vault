@@ -40,6 +40,8 @@ jobs:
           mysql password: vault
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Dump routes
+        run:  php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
       - name: Install and build frontend
         run: yarn && yarn dev
 #      - name: Debug env variables
