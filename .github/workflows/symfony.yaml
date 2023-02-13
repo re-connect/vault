@@ -13,6 +13,7 @@ jobs:
   symfony-tests:
     runs-on: ubuntu-latest
     steps:
+      # —— Backend setup 🔧 ——————————————————————————————————————————————————
       - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
         with:
           php-version: '8.1'
@@ -42,10 +43,15 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Dump routes
         run:  php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
+      # —— Check coding standards ✨ ————————————————————————————————————————————————————————————————
+      - name: Check CS
+        run: vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
+      # —— Setup frontend 💄 ——————————————————————————————————————————————————————————————————————
       - name: Install and build frontend
         run: yarn && yarn dev
 #      - name: Debug env variables
 #        run: php bin/console debug:dotenv --env=test
+      # —— Run tests ✅ ——————————————————————————————————————————————————————————————————
       - name: Copy keys
         run: mkdir -p var/oauth && cp tests/keys/* var/oauth
       - name: Run Doctrine Migrations
@@ -58,5 +64,6 @@ jobs:
         run: php bin/console doctrine:fixtures:load --env=test --group=v2 -n
       - name: Run v2 tests
         run: ./vendor/bin/simple-phpunit tests/v2
+      # —— Code static analysis ✨ ——————————————————————————————————————————————————
       - name: Static code analysis
         run: vendor/bin/phpstan analyse -c phpstan.dist.neon
