@@ -16,3 +16,6 @@ api_platform:
         scopes: [ ]
     defaults:
         route_prefix: '/v3'
+    patch_formats:
+        json: [ 'application/json' ]
+        jsonapi: [ 'application/vnd.api+json' ]

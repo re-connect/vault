@@ -2,22 +2,15 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Delete;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
-use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource(
-    operations: [new Get(), new Put(), new Patch(), new Delete(), new GetCollection(), new Post()],
-    normalizationContext: ['groups' => ['v3:note:read']],
-    denormalizationContext: ['groups' => ['v3:note:write']],
-    openapiContext: ['tags' => ['Notes']],
-    security: "is_granted('ROLE_OAUTH2_NOTES')",
-)]
+// #[ApiResource(
+//    operations: [new Get(), new Put(), new Patch(), new Delete(), new GetCollection(), new Post()],
+//    normalizationContext: ['groups' => ['v3:note:read']],
+//    denormalizationContext: ['groups' => ['v3:note:write']],
+//    openapiContext: ['tags' => ['Notes']],
+//    security: "is_granted('ROLE_OAUTH2_NOTES')",
+// )]
 class Note extends DonneePersonnelle
 {
     #[Groups(['read-personal-data', 'write-personal-data', 'v3:note:write', 'v3:note:read'])]

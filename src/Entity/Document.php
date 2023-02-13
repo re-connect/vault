@@ -24,9 +24,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ApiResource(
     operations: [
         new Get(),
-        new Put(),
+//        new Put(),
         new Patch(),
-        new Delete(),
+//        new Delete(),
         new GetCollection(),
         new Post(
             controller: UploadDocumentController::class,

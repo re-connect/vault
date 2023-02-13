@@ -3,12 +3,10 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
 use App\Api\Dto\BeneficiaryDto;
 use App\Api\State\BeneficiaryProcessor;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
@@ -26,9 +24,9 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     shortName: 'beneficiary',
     operations: [
         new Get(security: "is_granted('READ', object)"),
-        new Delete(security: "is_granted('UPDATE', object)"),
+//        new Delete(security: "is_granted('UPDATE', object)"),
         new Patch(security: "is_granted('UPDATE', object)"),
-        new Put(security: "is_granted('UPDATE', object)"),
+//        new Put(security: "is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"),
         new Post(input: BeneficiaryDto::class, processor: BeneficiaryProcessor::class),
     ],
@@ -42,6 +40,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     use GedmoTimedTrait;
 
     #[Groups(['read', 'write', 'beneficiary:read', 'v3:beneficiary:write', 'v3:beneficiary:read'])]
+    #[SerializedName('birthDate')]
     private ?\DateTime $dateNaissance = null;
 
     private bool $neverClickedMesDocuments = true;

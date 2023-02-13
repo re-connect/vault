@@ -39,7 +39,7 @@ class RosalieInteroperabilityController extends AbstractController
         ]);
     }
 
-    #[IsGranted('ROLE_OAUTH2_BENEFICIARIES')]
+    #[IsGranted('ROLE_OAUTH2_SI_SIAO_NUMBERS')]
     #[Route('/api/v3/get-si-siao-numbers', name: 'get_si_siao_numbers', methods: ['GET'])]
     public function getSiSiaoNumbers(BeneficiaireRepository $repository): JsonResponse
     {
