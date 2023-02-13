@@ -26,7 +26,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     operations: [
         new Get(
             security: "is_granted('READ', object)",
-            provider:  BeneficiaryStateProvider::class,
+            provider: BeneficiaryStateProvider::class,
         ),
 //        new Delete(security: "is_granted('UPDATE', object)"),
         new Patch(

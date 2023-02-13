@@ -11,6 +11,7 @@ class EventApiV3Test extends AbstractApiTest
 {
     public function testGetCollection()
     {
+        $this->markTestSkipped('Event api ressource is currently disabled');
         $this->assertEndpoint(
             'rosalie',
             '/events',
@@ -27,6 +28,7 @@ class EventApiV3Test extends AbstractApiTest
 
     public function testGetOne()
     {
+        $this->markTestSkipped('Event api ressource is currently disabled');
         $event = EventFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
         ])->object();
@@ -51,6 +53,7 @@ class EventApiV3Test extends AbstractApiTest
 
     public function testPost()
     {
+        $this->markTestSkipped('Event api ressource is currently disabled');
         $event = [
             'nom' => 'testNom',
             'date' => (new \DateTime('tomorrow', new \DateTimeZone('Europe/Paris')))->format('c'),
@@ -80,6 +83,7 @@ class EventApiV3Test extends AbstractApiTest
 
     public function testPut()
     {
+        $this->markTestSkipped('Event api ressource is currently disabled');
         $note = EventFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
         ])->object();
@@ -109,6 +113,7 @@ class EventApiV3Test extends AbstractApiTest
 
     public function testPatch()
     {
+        $this->markTestSkipped('Event api ressource is currently disabled');
         $event = EventFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
         ])->object();
@@ -138,6 +143,7 @@ class EventApiV3Test extends AbstractApiTest
 
     public function testDelete()
     {
+        $this->markTestSkipped('Event api ressource is currently disabled');
         $event = EventFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
         ])->object();

@@ -11,22 +11,24 @@ class ContactApiV3Test extends AbstractApiTest
 {
     public function testGetCollection()
     {
+        $this->markTestSkipped('Contact api ressource is currently disabled');
         $this->assertEndpoint(
             'rosalie',
             '/contacts',
             'GET',
             200,
             [
-            '@context' => '/api/contexts/Contact',
-            '@id' => '/api/v3/contacts',
-            '@type' => 'hydra:Collection',
-            'hydra:totalItems' => count(ContactFactory::all()),
+                '@context' => '/api/contexts/Contact',
+                '@id' => '/api/v3/contacts',
+                '@type' => 'hydra:Collection',
+                'hydra:totalItems' => count(ContactFactory::all()),
             ]
         );
     }
 
     public function testGetOne()
     {
+        $this->markTestSkipped('Contact api ressource is currently disabled');
         $contact = ContactFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
         ])->object();
@@ -37,20 +39,21 @@ class ContactApiV3Test extends AbstractApiTest
             'GET',
             200,
             [
-            '@context' => '/api/contexts/Contact',
-            '@type' => 'Contact',
-            'nom' => $contact->getNom(),
-            'prenom' => $contact->getPrenom(),
-            'b_prive' => $contact->getBPrive(),
-            'beneficiaire' => sprintf('/api/v3/beneficiaries/%d', $contact->getBeneficiaire()->getId()),
-            'created_at' => $contact->getCreatedAt()->format('c'),
-            'updated_at' => $contact->getUpdatedAt()->format('c'),
+                '@context' => '/api/contexts/Contact',
+                '@type' => 'Contact',
+                'nom' => $contact->getNom(),
+                'prenom' => $contact->getPrenom(),
+                'b_prive' => $contact->getBPrive(),
+                'beneficiaire' => sprintf('/api/v3/beneficiaries/%d', $contact->getBeneficiaire()->getId()),
+                'created_at' => $contact->getCreatedAt()->format('c'),
+                'updated_at' => $contact->getUpdatedAt()->format('c'),
             ]
         );
     }
 
     public function testPost()
     {
+        $this->markTestSkipped('Contact api ressource is currently disabled');
         $contact = [
             'nom' => 'testNom',
             'prenom' => 'testPrenom',
@@ -69,9 +72,9 @@ class ContactApiV3Test extends AbstractApiTest
             'POST',
             201,
             [
-            '@context' => '/api/contexts/Contact',
-            '@type' => 'Contact',
-            ...$contact,
+                '@context' => '/api/contexts/Contact',
+                '@type' => 'Contact',
+                ...$contact,
             ],
             $contact
         );
@@ -79,6 +82,7 @@ class ContactApiV3Test extends AbstractApiTest
 
     public function testPut()
     {
+        $this->markTestSkipped('Contact api ressource is currently disabled');
         $contact = ContactFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
         ])->object();
@@ -107,6 +111,7 @@ class ContactApiV3Test extends AbstractApiTest
 
     public function testPatch()
     {
+        $this->markTestSkipped('Contact api ressource is currently disabled');
         $contact = ContactFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
         ])->object();
@@ -135,6 +140,7 @@ class ContactApiV3Test extends AbstractApiTest
 
     public function testDelete()
     {
+        $this->markTestSkipped('Contact api ressource is currently disabled');
         $contact = ContactFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
         ])->object();
