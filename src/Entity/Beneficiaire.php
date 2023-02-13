@@ -47,7 +47,6 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     use GedmoTimedTrait;
 
     #[Groups(['read', 'write', 'beneficiary:read', 'v3:beneficiary:write', 'v3:beneficiary:read'])]
-    #[SerializedName('birthDate')]
     private ?\DateTime $dateNaissance = null;
 
     private bool $neverClickedMesDocuments = true;
