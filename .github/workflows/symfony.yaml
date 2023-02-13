@@ -40,8 +40,12 @@ jobs:
           mysql password: vault
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Install and build frontend
+        run: yarn && yarn dev
 #      - name: Debug env variables
 #        run: php bin/console debug:dotenv --env=test
+      - name: Copy keys
+        run: mkdir -p var/oauth && cp tests/keys/* var/oauth
       - name: Run Doctrine Migrations
         run: php bin/console doctrine:migrations:migrate -n --env=test
       - name: Load v1 fixtures
