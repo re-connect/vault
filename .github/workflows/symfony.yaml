@@ -65,7 +65,7 @@ jobs:
       - name: Run v2 tests
         run: ./vendor/bin/simple-phpunit tests/v2 --coverage-cobertura=coverage/cobertura-coverage.xml
       - name: Check code coverage
-        run: php phpunit-check-coverage.php coverage/cobertura-coverage.xml 60
+        run: php phpunit-check-coverage.php coverage/cobertura-coverage.xml 70
       # —— Code static analysis ✨ ——————————————————————————————————————————————————
       - name: Static code analysis
         run: vendor/bin/phpstan analyse -c phpstan.dist.neon
