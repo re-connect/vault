@@ -8,7 +8,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\Dto\BeneficiaryDto;
-use App\Api\State\BeneficiaryProcessor;
+use App\Api\State\BeneficiaryStateProcessor;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Traits\GedmoTimedTrait;
@@ -25,10 +25,13 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     operations: [
         new Get(security: "is_granted('READ', object)"),
 //        new Delete(security: "is_granted('UPDATE', object)"),
-        new Patch(security: "is_granted('UPDATE', object)"),
+        new Patch(
+            security: "is_granted('UPDATE', object)",
+            processor: BeneficiaryStateProcessor::class,
+        ),
 //        new Put(security: "is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"),
-        new Post(input: BeneficiaryDto::class, processor: BeneficiaryProcessor::class),
+        new Post(input: BeneficiaryDto::class),
     ],
     normalizationContext: ['groups' => ['v3:beneficiary:read', 'v3:user:read', 'v3:center:read', 'timed']],
     denormalizationContext: ['groups' => ['v3:beneficiary:write', 'v3:user:write']],
@@ -102,7 +105,6 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     private ?string $reponseSecrete = null;
 
     /** @var Collection<ClientBeneficiaire> */
-    #[Groups(['v3:beneficiary:write'])]
     private Collection $externalLinks;
 
     /** @var ?ArrayCollection<int, Centre> */
@@ -112,6 +114,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public ?string $autreQuestionSecrete = '';
 
+    #[Groups(['v3:beneficiary:read', 'v3:beneficiary:write'])]
     public ?string $distantId = '';
 
     private ?BeneficiaryCreationProcess $creationProcess = null;
@@ -915,6 +918,11 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         $this->creationProcess = $beneficiaryCreationProcess;
 
         return $this;
+    }
+
+    public function getDistantId(): ?string
+    {
+        return $this->distantId;
     }
 
     public function setDistantId(?string $distantId): self
