@@ -27,7 +27,8 @@ class Oauth2Helper
         return $this->clientRepository->findForNewClientIdentifier($token->getOAuthClientId());
     }
 
-    public function isClientGrantedAllPrivileges(): bool {
+    public function isClientGrantedAllPrivileges(): bool
+    {
         return $this->authorizationChecker->isGranted('ROLE_OAUTH2_ALL');
     }
 
