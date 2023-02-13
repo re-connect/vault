@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\Dto\BeneficiaryDto;
 use App\Api\State\BeneficiaryStateProcessor;
+use App\Api\State\BeneficiaryStateProvider;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Traits\GedmoTimedTrait;
@@ -23,7 +24,10 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 #[ApiResource(
     shortName: 'beneficiary',
     operations: [
-        new Get(security: "is_granted('READ', object)"),
+        new Get(
+            security: "is_granted('READ', object)",
+            provider:  BeneficiaryStateProvider::class,
+        ),
 //        new Delete(security: "is_granted('UPDATE', object)"),
         new Patch(
             security: "is_granted('UPDATE', object)",
