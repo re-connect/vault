@@ -63,7 +63,9 @@ jobs:
       - name: Load v2 fixtures
         run: php bin/console doctrine:fixtures:load --env=test --group=v2 -n
       - name: Run v2 tests
-        run: ./vendor/bin/simple-phpunit tests/v2
+        run: ./vendor/bin/simple-phpunit tests/v2 --coverage-cobertura=coverage/cobertura-coverage.xml
+      - name: Check code coverage
+        run: php phpunit-check-coverage.php coverage/cobertura-coverage.xml 60
       # —— Code static analysis ✨ ——————————————————————————————————————————————————
       - name: Static code analysis
         run: vendor/bin/phpstan analyse -c phpstan.dist.neon
