@@ -1,5 +1,5 @@
 {% set route = app.request.attributes.get('_route')|split('_') %}
-<li class="col nav-item beneficiary-nav-item">
+<li class="col vault-nav-item beneficiary-nav-item">
     <a href="{{ path(routeName, {'id': beneficiary.id}) }}" class="btn nav-link text-primary px-2
     {{ item|split('-')|filter((i) => i in route ) ? 'current-item' : '' }}"
     >

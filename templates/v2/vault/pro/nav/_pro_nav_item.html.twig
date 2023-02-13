@@ -1,0 +1,11 @@
+{% set route = app.request.attributes.get('_route')|split('_') %}
+<li class="col list-group vault-nav-item pro-nav-item mt-3 mt-sm-0 px-0">
+    <a href="{{ path(routeName, {'id': beneficiary.id}) }}" class="btn nav-link text-primary px-0 mx-auto
+    {{ item|split('-')|filter((i) => i in route ) ? 'current-item' : '' }}" title="{{ title|trans }}"
+    >
+        <img src="{{ asset(image) }}"
+             alt="{{ title|trans }}"
+             class="img-{{ item }}"
+        >
+    </a>
+</li>
