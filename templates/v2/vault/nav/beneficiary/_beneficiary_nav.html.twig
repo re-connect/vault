@@ -33,7 +33,7 @@
         <div class="collapse navbar-collapse ps-4 mt-1 mt-md-0" id="navbarSupportedContent">
             <ul class="nav w-100 row">
                 {% for key, item in itemsList %}
-                    {{ include('v2/vault/beneficiary/nav/_beneficiary_nav_item.html.twig', {
+                    {{ include('v2/vault/nav/beneficiary/_beneficiary_nav_item.html.twig', {
                         'item': key,
                         'title': item.title,
                         'routeName': item.routeName,
