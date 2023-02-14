@@ -1,17 +1,22 @@
 {% if app.environment == 'prod' %}
     <script type="text/javascript">
-        window.$crisp = [];
-        window.CRISP_WEBSITE_ID = "1987e7b5-a8f0-4d34-85c6-17c534e6a36e";
-        (function () {
-            d = document;
-            s = d.createElement("script");
-            s.src = "https://client.crisp.im/l.js";
-            s.async = 1;
-            d.getElementsByTagName("head")[0].appendChild(s);
-        })();
-        {% if app.user %}
-        $crisp.push(["set", "user:email", "{{ app.user.email }}"]);
-        $crisp.push(["set", "user:username", "{{ app.user.username }}"]);
-        {% endif %}
+           window.$crisp = [];
+           window.CRISP_WEBSITE_ID = "{{ crispWebsiteId }}";
+           (function () {
+                  d = document;
+                  s = d.createElement("script");
+                  s.src = "https://client.crisp.im/l.js";
+                  s.async = 1;
+                  d.getElementsByTagName("head")[0].appendChild(s);
+           })();
+           {% if app.user %}
+           $crisp.push(["set", "user:email", "{{ app.user.email }}"]);
+           $crisp.push(["set", "user:username", "{{ app.user.username }}"]);
+           $crisp.push(["set", "user:avatar", "{{ app.user.avatar ? asset(app.user.avatar, null, true) : '' }}"]);
+           $crisp.push(["set", "user:createdAt", "{{ app.user.createdAt|reDate("%Y-%m-%d %H:%M:%S") }}"]);
+           $crisp.push(["set", "user:nom", "{{ app.user.nom }}"]);
+           $crisp.push(["set", "user:prenom", "{{ app.user.prenom }}"]);
+           $crisp.push(["set", "user:telephone", "{{ app.user.telephone }}"]);
+           {% endif %}
     </script>
 {% endif %}
