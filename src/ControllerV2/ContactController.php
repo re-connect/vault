@@ -83,6 +83,7 @@ class ContactController extends AbstractController
         $contact = new Contact($beneficiary);
         $form = $this->createForm(ContactType::class, $contact, [
             'action' => $this->generateUrl('contact_create', ['id' => $beneficiary->getId()]),
+            'private' => $this->getUser() === $beneficiary->getUser(),
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

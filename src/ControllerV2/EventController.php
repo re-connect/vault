@@ -87,6 +87,7 @@ class EventController extends AbstractController
         $event = new Evenement($beneficiary);
         $form = $this->createForm(EventType::class, $event, [
             'action' => $this->generateUrl('event_create', ['id' => $beneficiary->getId()]),
+            'private' => $this->getUser() === $beneficiary->getUser(),
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
