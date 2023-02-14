@@ -21,6 +21,7 @@ class UserColorExtension extends AbstractExtension
             new TwigFunction('getUserBackgroundColor', [$this, 'getUserBackgroundColor']),
             new TwigFunction('getUserButtonColor', [$this, 'getUserButtonColor']),
             new TwigFunction('getUserTextColor', [$this, 'getUserTextColor']),
+            new TwigFunction('getUserThemeColor', [$this, 'getUserThemeColor']),
         ];
     }
 
@@ -46,5 +47,10 @@ class UserColorExtension extends AbstractExtension
     public function getUserTextColor(): string
     {
         return $this->getUserColorClass('text-green', 'text-blue');
+    }
+
+    public function getUserThemeColor(): string
+    {
+        return $this->getUserColorClass('green', 'blue');
     }
 }

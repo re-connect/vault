@@ -11,7 +11,11 @@
         {{ form_widget(form) }}
         <div class="row mx-1 mt-2">
             {{ link(cancelPath, 'main.retour', 'grey') }}
-            {{ button('submit', 'confirm', 'green') }}
+            {{ button(
+                'submit',
+                'confirm',
+                getUserThemeColor(),
+            ) }}
         </div>
         {{ form_end(form) }}
     </div>
