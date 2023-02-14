@@ -34,19 +34,34 @@
         content: url('../../images/icons/relais_blanc.png');
       }
     }
-  }
 
-  .beneficiary-nav-item {
-    img {
-      height: 57px;
+    &.beneficiary-nav-item {
+      img {
+        height: 57px;
+      }
+
+      .nav-link:hover,
+      .current-item {
+        background-color: theme-color('green');
+
+        hr, p {
+          color: white;
+        }
+      }
     }
 
-    .nav-link:hover,
-    .current-item {
-      background-color: theme-color('green');
+    &.pro-nav-item {
+      img {
+        height: 35px;
+      }
 
-      hr, p {
-        color: white;
+      .nav-link:hover,
+      .current-item {
+        background-color: theme-color('blue');
+      }
+
+      a {
+        width: 60px;
       }
     }
   }
