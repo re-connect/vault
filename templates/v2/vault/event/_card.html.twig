@@ -33,6 +33,10 @@
                 'path': path('event_delete', {'id': event.id}),
                 'message': 'modal_message_event_deletev2'|trans({'%name%': event.nom}),
             },
+            'switchPrivate': {
+                'path': path('event_toggle_visibility', {'id': event.id}),
+                'message': 'switch_content_private_confirm'|trans,
+            },
         }) }}
     </td>
 </tr>

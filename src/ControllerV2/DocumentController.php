@@ -117,15 +117,7 @@ class DocumentController extends AbstractController
         $folder = $document->getDossier();
         $manager->delete($document);
 
-        return $this->redirectToRoute($folder
-            ? 'folder'
-            : 'document_list',
-            [
-                'id' => $folder
-                    ? $folder->getId()
-                    : $document->getBeneficiaire()->getId(),
-            ]
-        );
+        return $this->getDocumentPageRedirection($document, $folder);
     }
 
     #[Route(
@@ -151,7 +143,7 @@ class DocumentController extends AbstractController
 
             return $this->redirect($folderId
                 ? $this->generateUrl('folder', ['id' => $folderId])
-                : $this->generateUrl('document_list', ['id' => $document->getBeneficiaire()->getId()])
+                : $this->generateUrl('document_list', ['id' => $document->getBeneficiaireId()])
             );
         }
 
@@ -169,7 +161,7 @@ class DocumentController extends AbstractController
         if (!$response = $manager->downloadDocument($document)) {
             $this->addFlash('danger', 'error_during_download');
 
-            return $this->redirectToRoute('document_list', ['id' => $document->getBeneficiaire()->getId()]);
+            return $this->redirectToRoute('document_list', ['id' => $document->getBeneficiaireId()]);
         }
 
         return $response;
@@ -179,15 +171,17 @@ class DocumentController extends AbstractController
         path: 'document/{id}/toggle-visibility',
         name: 'document_toggle_visibility',
         requirements: ['id' => '\d+'],
-        methods: ['PATCH'],
-        condition: 'request.isXmlHttpRequest()',
+        methods: ['GET', 'PATCH'],
     )]
     #[IsGranted('UPDATE', 'document')]
-    public function toggleVisibility(Document $document, DocumentManager $manager): Response
+    public function toggleVisibility(Request $request, Document $document, DocumentManager $manager): Response
     {
+        $folder = $document->getDossier();
         $manager->toggleVisibility($document);
 
-        return new Response(null, 204);
+        return $request->isXmlHttpRequest()
+            ? new Response(null, 204)
+            : $this->getDocumentPageRedirection($document, $folder);
     }
 
     #[Route(
@@ -212,15 +206,7 @@ class DocumentController extends AbstractController
         $manager->move($document, $folder);
         $destinationFolder = $request->query->get('tree-view') ? $document->getDossier() : $initialParentFolder;
 
-        return $this->redirectToRoute($destinationFolder
-            ? 'folder'
-            : 'document_list',
-            [
-                'id' => $destinationFolder
-                    ? $destinationFolder->getId()
-                    : $document->getBeneficiaire()->getId(),
-            ]
-        );
+        return $this->getDocumentPageRedirection($document, $destinationFolder);
     }
 
     #[Route(
@@ -237,5 +223,12 @@ class DocumentController extends AbstractController
             'element' => $document,
             'beneficiary' => $document->getBeneficiaire(),
         ]);
+    }
+
+    private function getDocumentPageRedirection(Document $document, ?Dossier $folder): Response
+    {
+        return $folder
+            ? $this->redirectToRoute('folder', ['id' => $folder->getId()])
+            : $this->redirectToRoute('document_list', ['id' => $document->getBeneficiaireId()]);
     }
 }

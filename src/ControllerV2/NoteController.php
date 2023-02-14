@@ -140,21 +140,22 @@ class NoteController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'note.bienSupprime');
 
-        return $this->redirectToRoute('note_list', ['id' => $note->getBeneficiaire()->getId()]);
+        return $this->redirectToRoute('note_list', ['id' => $note->getBeneficiaireId()]);
     }
 
     #[Route(
         path: 'note/{id}/toggle-visibility',
         name: 'note_toggle_visibility',
         requirements: ['id' => '\d+'],
-        methods: ['PATCH'],
-        condition: 'request.isXmlHttpRequest()'
+        methods: ['GET', 'PATCH'],
     )]
     #[IsGranted('UPDATE', 'note')]
-    public function toggleVisibility(Note $note, NoteManager $manager): Response
+    public function toggleVisibility(Request $request, Note $note, NoteManager $manager): Response
     {
         $manager->toggleVisibility($note);
 
-        return new Response(null, 204);
+        return $request->isXmlHttpRequest()
+            ? new Response(null, 204)
+            : $this->redirectToRoute('note_list', ['id' => $note->getBeneficiaireId()]);
     }
 }
