@@ -8,7 +8,6 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         googleSiteVerification: '%env(GOOGLE_SITE_VERIFICATION)%'
-        appEnv: '%env(APP_ENV)%'
         crispWebsiteId: '%env(CRISP_WEBSITE_ID)%'
     form_themes:
         - '@VichUploader/Form/fields.html.twig'

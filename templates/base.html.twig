@@ -2,7 +2,7 @@
 <html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8"/>
-    {% if appEnv == 'prod' %}
+    {% if app.environment == 'prod' %}
         <meta name="google-site-verification" content="{{ googleSiteVerification }}">
     {% endif %}
     <title>{% block metaTitle %}{% trans %}home.metaTitleV2{% endtrans %}{% endblock metaTitle %}
@@ -78,7 +78,7 @@
     } %}
 {% endif %}
 <input type="hidden" id="dataUserApp" value="{{ userApp | json_encode }}">
-<input type="hidden" id="appEnv" value="{{ appEnv }}">
+<input type="hidden" id="appEnv" value="{{ app.environment }}">
 
 {% block javascripts %}
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>

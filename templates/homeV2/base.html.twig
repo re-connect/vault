@@ -24,7 +24,7 @@
 
     {% include 'favicons.html.twig' %}
 
-    {% if appEnv == 'prod' %}
+    {% if app.environment == 'prod' %}
         <!-- Matomo -->
         <script type="text/javascript">
                var _paq = window._paq = window._paq || [];
