@@ -18,6 +18,9 @@ jobs:
                 with:
                     php-version: '8.1'
             -   uses: actions/checkout@v3
+            # —— Check coding standards ✨ ————————————————————————————————————————————————————————————————
+            -   name: Check CS
+                run: vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
             -   name: Cache Composer packages
                 id: composer-cache
                 uses: actions/cache@v3
@@ -43,9 +46,6 @@ jobs:
                 run: mkdir -p var/oauth && cp tests/keys/* var/oauth
             -   name: Run Doctrine Migrations
                 run: php bin/console doctrine:migrations:migrate -n --env=test
-            # —— Check coding standards ✨ ————————————————————————————————————————————————————————————————
-            -   name: Check CS
-                run: vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
             # —— Setup frontend 💄 ——————————————————————————————————————————————————————————————————————
             -   name: Install and build frontend
                 run: yarn && yarn dev
