@@ -83,6 +83,7 @@ class NoteController extends AbstractController
         $note = new Note($beneficiary);
         $form = $this->createForm(NoteType::class, $note, [
             'action' => $this->generateUrl('note_create', ['id' => $beneficiary->getId()]),
+            'private' => $this->getUser() === $beneficiary->getUser(),
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

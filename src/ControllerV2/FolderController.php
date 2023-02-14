@@ -58,6 +58,7 @@ class FolderController extends AbstractController
         $folder = (new Dossier())->setBeneficiaire($beneficiary);
         $form = $this->createForm(FolderType::class, $folder, [
             'action' => $this->generateUrl('folder_create', ['id' => $beneficiary->getId()]),
+            'private' => $this->getUser() === $beneficiary->getUser(),
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
