@@ -1,6 +1,6 @@
 framework:
-  default_locale: "%env(locale)%"
+  default_locale: "%env(DEFAULT_LOCALE)%"
   translator:
     default_path: '%kernel.project_dir%/translations'
-    fallbacks: ["%env(locale)%"]
+    fallbacks: ["%env(DEFAULT_LOCALE)%"]
     logging: false

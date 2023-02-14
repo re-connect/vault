@@ -4,11 +4,6 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-    locale: '%env(locale)%'
-    siteName: "%env(siteName)%"
-    timezone: "%env(timezone)%"
-    country: "%env(country)%"
-
     container.dumper.inline_factories: true
 
 services:
@@ -24,13 +19,9 @@ services:
             $bucketEndpoint: '%env(BUCKET_ENDPOINT)%'
             $bucketName: '%env(BUCKET_NAME)%'
             $bucketSecret: '%env(BUCKET_SECRET_KEY)%'
-            $country: '%env(country)%'
             $kernelEnvironment: '%kernel.environment%'
             $kernelProjectDir: '%kernel.project_dir%'
-            $maxIdleTime: '%env(sessionMaxIdleTimeSeconds)%'
             $noReplyMail: 'noreply@reconnect.fr'
-            $siteName: '%env(siteName)%'
-            $upload_tmp_dir: '%env(upload_tmp_dir)%'
             string $rosalieBasicToken: '%env(ROSALIE_BASIC_TOKEN)%'
             string $iOSAppLink: '%env(IOS_APP_LINK)%'
             string $androidAppLink: '%env(ANDROID_APP_LINK)%'
@@ -94,11 +85,6 @@ services:
         autowire: true
         tags:
             - { name: doctrine.event_listener, event: prePersist, method: prePersist }
-
-    App\Listener\SessionIdleListener:
-        autowire: true
-        tags:
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
     App\Listener\DonneePersonnelleListener:
         autowire: true

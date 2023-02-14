@@ -11,20 +11,18 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Class REImage2Controller.
- */
 class REImage2Controller extends AbstractController
 {
     private Imagine $imagine;
+
     private string $upload_tmp_dir;
 
     private Packages $helper;
 
-    public function __construct(Imagine $imagine, $upload_tmp_dir, Packages $helper)
+    public function __construct(Imagine $imagine, Packages $helper)
     {
         $this->imagine = $imagine;
-        $this->upload_tmp_dir = $upload_tmp_dir;
+        $this->upload_tmp_dir = 'uploads/tmpImages/';
         $this->helper = $helper;
     }
 

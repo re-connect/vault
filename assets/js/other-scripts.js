@@ -1,9 +1,9 @@
 const $ = require("jquery");
-const siteName = $("#siteName").val();
+const appEnv = $("#appEnv").val();
 
-if (siteName === "prod") {
-    const userApp = $("#dataUserApp").val();
-    const userAppJSON = $.parseJSON(userApp);
+if (appEnv === "prod") {
+       const userApp = $("#dataUserApp").val();
+       const userAppJSON = $.parseJSON(userApp);
 
     window.$crisp = [];
     window.CRISP_WEBSITE_ID = "1987e7b5-a8f0-4d34-85c6-17c534e6a36e";
