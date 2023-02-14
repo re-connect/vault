@@ -2,6 +2,7 @@
 
 namespace App\ControllerV2;
 
+use App\Api\Manager\ApiClientManager;
 use App\Entity\Beneficiaire;
 use App\Repository\BeneficiaireRepository;
 use App\ServiceV2\RosalieService;
@@ -39,10 +40,10 @@ class RosalieInteroperabilityController extends AbstractController
         ]);
     }
 
-    #[IsGranted('ROLE_OAUTH2_BENEFICIARIES')]
+    #[IsGranted('ROLE_OAUTH2_SI_SIAO_NUMBERS')]
     #[Route('/api/v3/get-si-siao-numbers', name: 'get_si_siao_numbers', methods: ['GET'])]
-    public function getSiSiaoNumbers(BeneficiaireRepository $repository): JsonResponse
+    public function getSiSiaoNumbers(BeneficiaireRepository $repository, ApiClientManager $apiClientManager): JsonResponse
     {
-        return $this->json($repository->getBeneficiariesSiSiaoNumbers());
+        return $this->json($repository->getBeneficiariesSiSiaoNumbers($apiClientManager->getCurrentOldClient()));
     }
 }

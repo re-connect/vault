@@ -151,3 +151,7 @@ services:
     App\DataFixtures\FixturesPurgerFactory:
         tags:
             - { name: 'doctrine.fixtures.purger_factory', alias: 'fixtures_purger' }
+
+    App\Api\State\BeneficiaryStateProvider:
+        bind:
+            $itemProvider: '@api_platform.doctrine.orm.state.item_provider'

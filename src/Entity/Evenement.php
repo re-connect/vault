@@ -15,14 +15,14 @@ use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
-#[ApiResource(
-    shortName: 'Event',
-    operations: [new Get(), new Put(), new Patch(), new Delete(), new GetCollection(), new Post()],
-    normalizationContext: ['groups' => ['v3:event:read']],
-    denormalizationContext: ['groups' => ['v3:event:write']],
-    openapiContext: ['tags' => ['Évènements']],
-    security: "is_granted('ROLE_OAUTH2_EVENTS')",
-)]
+// #[ApiResource(
+//    shortName: 'Event',
+//    operations: [new Get(), new Put(), new Patch(), new Delete(), new GetCollection(), new Post()],
+//    normalizationContext: ['groups' => ['v3:event:read']],
+//    denormalizationContext: ['groups' => ['v3:event:write']],
+//    openapiContext: ['tags' => ['Évènements']],
+//    security: "is_granted('ROLE_OAUTH2_EVENTS')",
+// )]
 class Evenement extends DonneePersonnelle
 {
     public const EVENEMENT_RAPPEL_SMS = 'SMS';

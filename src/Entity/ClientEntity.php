@@ -2,15 +2,12 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Serializer\Annotation\Groups;
-
 abstract class ClientEntity
 {
     protected mixed $entity;
 
     protected ?string $entity_name = null;
 
-    #[Groups(['v3:beneficiary:write'])]
     private null|int|string $distantId;
 
     private ?Client $client;

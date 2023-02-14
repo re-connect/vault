@@ -11,6 +11,7 @@ class NoteApiV3Test extends AbstractApiTest
 {
     public function testGetCollection()
     {
+        $this->markTestSkipped('Notes api ressource is currently disabled');
         $this->assertEndpoint(
             'rosalie',
             '/notes',
@@ -27,6 +28,7 @@ class NoteApiV3Test extends AbstractApiTest
 
     public function testGetOne()
     {
+        $this->markTestSkipped('Notes api ressource is currently disabled');
         $note = NoteFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
         ])->object();
@@ -51,6 +53,7 @@ class NoteApiV3Test extends AbstractApiTest
 
     public function testPost()
     {
+        $this->markTestSkipped('Notes api ressource is currently disabled');
         $note = [
             'nom' => 'testNom',
             'contenu' => 'testContenu',
@@ -79,6 +82,7 @@ class NoteApiV3Test extends AbstractApiTest
 
     public function testPut()
     {
+        $this->markTestSkipped('Notes api ressource is currently disabled');
         $note = NoteFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
         ])->object();
@@ -107,6 +111,7 @@ class NoteApiV3Test extends AbstractApiTest
 
     public function testPatch()
     {
+        $this->markTestSkipped('Notes api ressource is currently disabled');
         $note = NoteFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
         ])->object();
@@ -135,6 +140,7 @@ class NoteApiV3Test extends AbstractApiTest
 
     public function testDelete()
     {
+        $this->markTestSkipped('Notes api ressource is currently disabled');
         $note = NoteFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
         ])->object();

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Beneficiaire;
 use App\Entity\BeneficiaireCentre;
+use App\Entity\Client;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
@@ -122,11 +123,20 @@ class BeneficiaireRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function getBeneficiariesSiSiaoNumbers(): array
+    public function getBeneficiariesSiSiaoNumbers(?Client $client): array
     {
+//        return $this->createQueryBuilder('b')
+//            ->select('b.siSiaoNumber')
+//            ->andWhere('b.siSiaoNumber IS NOT NULL')
+//            ->getQuery()
+//            ->getArrayResult();
         return $this->createQueryBuilder('b')
-            ->select('b.siSiaoNumber')
-            ->andWhere('b.siSiaoNumber IS NOT NULL')
+            ->select('c.distantId')
+            ->join('b.externalLinks', 'c')
+            ->join('c.client', 'client')
+            ->andWhere('client.randomId = :clientId')
+            ->andWhere('c.distantId IS NOT NULL')
+            ->setParameters(['clientId' => $client->getRandomId()])
             ->getQuery()
             ->getArrayResult();
     }
