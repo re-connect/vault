@@ -1,7 +1,9 @@
-.beneficiary-nav {
+@import 'theme';
+
+.vault-nav {
   margin-top: 75px;
 
-  .beneficiary-nav-item {
+  .vault-nav-item {
     p {
       line-height: 25px;
     }
@@ -10,18 +12,8 @@
       border-radius: 15px;
     }
 
-    img {
-      height: 57px;
-    }
-
     .nav-link:hover,
     .current-item {
-      background-color: #4db95f;
-
-      hr, p {
-        color: white;
-      }
-
       .img-document-folder {
         content: url('../../images/icons/docs_blanc.png');
       }
@@ -40,6 +32,21 @@
 
       .img-relay {
         content: url('../../images/icons/relais_blanc.png');
+      }
+    }
+  }
+
+  .beneficiary-nav-item {
+    img {
+      height: 57px;
+    }
+
+    .nav-link:hover,
+    .current-item {
+      background-color: theme-color('green');
+
+      hr, p {
+        color: white;
       }
     }
   }
