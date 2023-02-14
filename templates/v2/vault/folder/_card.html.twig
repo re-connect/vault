@@ -42,6 +42,10 @@
                 'path': path('folder_delete', {'id': folder.id}),
                 'message': deleteMessage|trans({'%name%': folder.nom}),
             },
+            'switchPrivate': {
+                'path': path('folder_toggle_visibility', {'id': folder.id}),
+                'message': 'switch_content_private_confirm'|trans,
+            },
         }) }}
     </td>
 </tr>

@@ -1034,6 +1034,8 @@ submit: Valider
 summary: Récapitulatif
 summary_confirm_information: Récapitulatif, veuillez confirmer les informations enregistrées ci-dessous
 surname: 'Prénom'
+switch_content_private: Basculer en privé
+switch_content_private_confirm: Êtes vous sûr de vouloir basculer ce contenu dans l'espace privé du bénéficiaire ?
 switchUser.btnRevenir: 'Revenir à l''administration'
 switchUser.connecte: 'Vous êtes connecté en tant que <span class="italic">%username%</span>'
 tax: Impôts

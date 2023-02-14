@@ -35,6 +35,10 @@
                 'path': path('contact_delete', {'id': contact.id}),
                 'message': 'modal_message_contact_deletev2'|trans({'%fullName%': contact.fullName}),
             },
+            'switchPrivate': {
+                'path': path('contact_toggle_visibility', {'id': contact.id}),
+                'message': 'switch_content_private_confirm'|trans,
+            },
         }) }}
     </td>
 </tr>

@@ -22,6 +22,10 @@
                 'path': path('note_delete', {'id': note.id}),
                 'message': 'modal_message_note_deletev2'|trans({'%name%': note.nom}),
             },
+            'switchPrivate': {
+                'path': path('note_toggle_visibility', {'id': note.id}),
+                'message': 'switch_content_private_confirm'|trans,
+            },
         }) }}
     </td>
 </tr>

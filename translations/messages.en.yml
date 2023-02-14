@@ -860,6 +860,8 @@ steps_count: Step %step%/%totalSteps%
 summary: Summary
 summary_confirm_information: Summary, please confirm the information below
 surname: First name
+switch_content_private: Switch private
+switch_content_private_confirm: Are you sure you want to switch this element in the private area of the beneficiary ?
 switchUser.btnRevenir: 'Back to Administration'
 switchUser.connecte: 'You are connected as <span class="italic">%username%'
 username: Username

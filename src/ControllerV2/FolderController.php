@@ -90,15 +90,7 @@ class FolderController extends AbstractController
             $em->flush();
             $parentFolder = $folder->getDossierParent();
 
-            return $this->redirectToRoute($parentFolder
-                ? 'folder'
-                : 'document_list',
-                [
-                    'id' => $parentFolder
-                        ? $parentFolder->getId()
-                        : $folder->getBeneficiaire()->getId(),
-                ]
-            );
+            return $this->getFolderPageRedirection($folder, $parentFolder);
         }
 
         return $this->renderForm('v2/vault/folder/rename.html.twig', [
@@ -130,30 +122,24 @@ class FolderController extends AbstractController
         $manager->move($folder, $parentFolder);
         $destinationFolder = $request->query->get('tree-view') ? $folder->getDossierParent() : $initialParentFolder;
 
-        return $this->redirectToRoute($destinationFolder
-            ? 'folder'
-            : 'document_list',
-            [
-                'id' => $destinationFolder
-                    ? $destinationFolder->getId()
-                    : $folder->getBeneficiaire()->getId(),
-            ]
-        );
+        return $this->getFolderPageRedirection($folder, $destinationFolder);
     }
 
     #[Route(
         path: 'folder/{id}/toggle-visibility',
         name: 'folder_toggle_visibility',
         requirements: ['id' => '\d+'],
-        methods: ['PATCH'],
-        condition: 'request.isXmlHttpRequest()',
+        methods: ['GET', 'PATCH'],
     )]
     #[IsGranted('UPDATE', 'folder')]
-    public function toggleVisibility(Dossier $folder, FolderManager $manager): Response
+    public function toggleVisibility(Request $request, Dossier $folder, FolderManager $manager): Response
     {
+        $parentFolder = $folder->getDossierParent();
         $manager->toggleVisibility($folder, !$folder->getBPrive());
 
-        return new Response(null, 204);
+        return $request->isXmlHttpRequest()
+            ? new Response(null, 204)
+            : $this->getFolderPageRedirection($folder, $parentFolder);
     }
 
     #[Route(
@@ -197,10 +183,7 @@ class FolderController extends AbstractController
         $parentFolder = $folder->getDossierParent();
         $manager->delete($folder);
 
-        return $this->redirectToRoute(
-            $parentFolder ? 'folder' : 'document_list',
-            ['id' => $parentFolder ? $parentFolder->getId() : $folder->getBeneficiaire()->getId()],
-        );
+        return $this->getFolderPageRedirection($folder, $parentFolder);
     }
 
     #[Route(path: 'folder/{id}/detail', name: 'folder_detail', requirements: ['id' => '\d+'], methods: ['GET'])]
@@ -221,10 +204,7 @@ class FolderController extends AbstractController
             $this->addFlash('error', 'error_during_download');
             $parentFolder = $folder->getDossierParent();
 
-            return $this->redirectToRoute(
-                $parentFolder ? 'folder' : 'document_list',
-                ['id' => $parentFolder ? $parentFolder->getId() : $folder->getBeneficiaire()->getId()],
-            );
+            return $this->getFolderPageRedirection($folder, $parentFolder);
         }
 
         return $streamedResponse;
@@ -248,5 +228,18 @@ class FolderController extends AbstractController
             'element' => $folder,
             'beneficiary' => $beneficiary,
         ]);
+    }
+
+    private function getFolderPageRedirection(Dossier $folder, ?Dossier $parentFolder): Response
+    {
+        return $this->redirectToRoute($parentFolder
+            ? 'folder'
+            : 'document_list',
+            [
+            'id' => $parentFolder
+                ? $parentFolder->getId()
+                : $folder->getBeneficiaireId(),
+            ],
+        );
     }
 }
