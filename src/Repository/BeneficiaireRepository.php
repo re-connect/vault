@@ -89,16 +89,16 @@ class BeneficiaireRepository extends ServiceEntityRepository
 
     public function countKPI()
     {
-        $qb = $this->createQueryBuilder('b');
-
-        $qb->select('count(b.id)')
+        $qb = $this
+            ->createQueryBuilder('b')
+            ->select('count(b.id)')
             ->join('b.user', 'user')
             ->where('isCreating = false')
-            ->where('user.test = false');
+            ->andWhere('user.test = false');
 
         try {
             return $qb->getQuery()->getSingleScalarResult();
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return 0;
         }
     }
