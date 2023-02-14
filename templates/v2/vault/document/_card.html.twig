@@ -10,24 +10,19 @@
         </a>
     </td>
     <td class="bg-white borderless align-middle">
-        <a href="{{ path('document_download', {'id': document.id}) }}">
-            <i class="fas fa-file-download text-green"
-               aria-hidden="true" title="{{ 'document.telecharger'|trans }}"></i>
-        </a>
-    </td>
-    <td class="bg-white borderless w-25 align-middle">
-        {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
-            'url': path('document_toggle_visibility', {'id': document.id}),
-            'item': document,
+        {{ include('v2/vault/components/_download_folder_document_button.html.twig', {
+            'path': path('document_download', {'id': document.id}),
         }) }}
     </td>
+    {% if app.user.isBeneficiaire %}
+        <td class="bg-white borderless w-25 align-middle">
+            {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
+                'url': path('document_toggle_visibility', {'id': document.id}),
+                'private': document.bPrive,
+            }) }}
+        </td>
+    {% endif %}
     <td class="bg-white borderless text-end pe-3 pe-sm-4 align-middle" {{ stimulus_controller('dropdown-menu') }}>
-        <button class="btn btn-green text-white py-0"
-                data-dropdown-menu-target="button"
-                data-action="click->dropdown-menu#toggle"
-        >
-            <i class="fas fa-ellipsis-h"></i>
-        </button>
         {{ include('v2/vault/components/_action_dropdown.html.twig', {
             'editPath': path('document_rename', {'id': document.id}),
             'detailPath': path('document_detail', {'id': document.id}),

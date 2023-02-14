@@ -17,19 +17,15 @@
             {% endfor %}
         </a>
     </td>
-    <td class="bg-white borderless pt-2 w-25">
-        {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
-            'url': path('event_toggle_visibility', {'id': event.id}),
-            'item': event,
-        }) }}
-    </td>
+    {% if app.user.isBeneficiaire %}
+        <td class="bg-white borderless pt-2 w-25">
+            {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
+                'url': path('event_toggle_visibility', {'id': event.id}),
+                'private': event.bPrive,
+            }) }}
+        </td>
+    {% endif %}
     <td class="bg-white borderless pt-2 w-25 pe-3" {{ stimulus_controller('dropdown-menu') }} data-turbo="false">
-        <button class="btn btn-green text-white py-0"
-                data-dropdown-menu-target="button"
-                data-action="click->dropdown-menu#toggle"
-        >
-            <i class="fas fa-ellipsis-h"></i>
-        </button>
         {{ include('v2/vault/components/_action_dropdown.html.twig', {
             'editPath': path('event_edit', {'id': event.id}),
             'detailPath': path('event_detail', {'id': event.id}),

@@ -5,7 +5,9 @@
         <th class="bg-grey borderless">{{ 'surname'|trans }}</th>
         <th class="bg-grey borderless d-none d-lg-table-cell">{{ 'phone'|trans }}</th>
         <th class="bg-grey borderless d-none d-lg-table-cell">{{ 'email'|trans }}</th>
-        <th class="bg-grey borderless">{{ 'access'|trans }}</th>
+        {% if app.user.isBeneficiaire %}
+            <th class="bg-grey borderless">{{ 'access'|trans }}</th>
+        {% endif %}
         <th class="bg-grey borderless">{{ 'donneePersonnelle.list.entete.actions'|trans }}</th>
     </tr>
     </thead>
