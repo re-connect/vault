@@ -39,21 +39,17 @@ jobs:
                 run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
             -   name: Dump routes
                 run: php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
+            -   name: Copy keys
+                run: mkdir -p var/oauth && cp tests/keys/* var/oauth
+            -   name: Run Doctrine Migrations
+                run: php bin/console doctrine:migrations:migrate -n --env=test
             # —— Check coding standards ✨ ————————————————————————————————————————————————————————————————
             -   name: Check CS
                 run: vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
             # —— Setup frontend 💄 ——————————————————————————————————————————————————————————————————————
             -   name: Install and build frontend
                 run: yarn && yarn dev
-            #      - name: Debug env variables
-            #        run: php bin/console debug:dotenv --env=test
             # —— Run tests ✅ ——————————————————————————————————————————————————————————————————
-            -   name: Copy keys
-                run: mkdir -p var/oauth && cp tests/keys/* var/oauth
-            -   name: Debug dotenv
-                run: php bin/console debug:dotenv --env=test
-            -   name: Run Doctrine Migrations
-                run: php bin/console doctrine:migrations:migrate -n --env=test
             -   name: Load v1 fixtures
                 run: php bin/console doctrine:fixtures:load --env=test --group=v1 -n
             -   name: Run v1 tests
