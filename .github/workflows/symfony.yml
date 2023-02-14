@@ -13,37 +13,59 @@ jobs:
   symfony-tests:
     runs-on: ubuntu-latest
     steps:
-    #  To automatically get bug fixes and new Php versions for shivammathur/setup-php,
-    # change this to (see https://github.com/shivammathur/setup-php#bookmark-versioning):
-    # uses: shivammathur/setup-php@v2
-    - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
-      with:
-        php-version: '8.0'
-    - uses: actions/checkout@v3
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-    - name: Setup MySQL
-      # You may pin to the exact commit or the version.
-      # uses: mirromutth/mysql-action@de1fba8b3f90ce8db80f663a7043be3cf3231248
-      uses: mirromutth/mysql-action@v1.1
-      with:
-        mysql root password: vault
-        mysql database: vault_test
-        mysql user: vault
-        mysql password: vault
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Run Doctrine Migrations
-      uses: everphone-gmbh/doctrine-migrations-action@v0.9
-      with:
-        command: migrations:migrate --env=test
-        db name: vault_test
-        db user: vault
-        db pass: vault
-        db port: 3306
+      # —— Backend setup 🔧 ——————————————————————————————————————————————————
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+      - uses: actions/checkout@v3
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+      - name: Start MariaDB
+        # You may pin to the exact commit or the version.
+        # uses: getong/mariadb-action@acf7bc08e06a9c26e2a534d54284cb9a62697e7d
+        uses: getong/mariadb-action@v1.1
+        with:
+          # MYSQL_ROOT_PASSWORD - root superuser password
+          mysql root password: vault
+          # MYSQL_DATABASE - name for the default database that is created
+          mysql database: vault_test
+          # MYSQL_USER - create the specified user with superuser power for created database
+          mysql user: vault
+          # MYSQL_PASSWORD - specified superuser password which user is power for created database
+          mysql password: vault
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Dump routes
+        run:  php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
+      # —— Check coding standards ✨ ————————————————————————————————————————————————————————————————
+      - name: Check CS
+        run: vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
+      # —— Setup frontend 💄 ——————————————————————————————————————————————————————————————————————
+      - name: Install and build frontend
+        run: yarn && yarn dev
+#      - name: Debug env variables
+#        run: php bin/console debug:dotenv --env=test
+      # —— Run tests ✅ ——————————————————————————————————————————————————————————————————
+      - name: Copy keys
+        run: mkdir -p var/oauth && cp tests/keys/* var/oauth
+      - name: Run Doctrine Migrations
+        run: php bin/console doctrine:migrations:migrate -n --env=test
+      - name: Load v1 fixtures
+        run: php bin/console doctrine:fixtures:load --env=test --group=v1 -n
+      - name: Run v1 tests
+        run: ./vendor/bin/simple-phpunit tests/v1
+      - name: Load v2 fixtures
+        run: php bin/console doctrine:fixtures:load --env=test --group=v2 -n
+      - name: Run v2 tests
+        run: ./vendor/bin/simple-phpunit tests/v2 --coverage-cobertura=coverage/cobertura-coverage.xml
+      - name: Check code coverage
+        run: php phpunit-check-coverage.php coverage/cobertura-coverage.xml 70
+      # —— Code static analysis ✨ ——————————————————————————————————————————————————
+      - name: Static code analysis
+        run: vendor/bin/phpstan analyse -c phpstan.dist.neon
