@@ -15,7 +15,6 @@ require('./select');
 require('./radio');
 require('./hoverImage');
 require('./ies-alert');
-require('./other-scripts');
 
 $(function () {
     const $contactNotification = $('#contactNotification');
