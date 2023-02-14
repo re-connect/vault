@@ -7,11 +7,8 @@ twig:
     debug: "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     globals:
-        siteName: '%env(siteName)%'
-        uploadFolderPrefix: '%env(uploadFolderPrefix)%'
-        lang: '%env(locale)%'
-        google_site_verification: '%env(google_site_verification)%'
-        country: '%env(country)%'
+        googleSiteVerification: '%env(GOOGLE_SITE_VERIFICATION)%'
+        crispWebsiteId: '%env(CRISP_WEBSITE_ID)%'
     form_themes:
         - '@VichUploader/Form/fields.html.twig'
         - 'form/fields.html.twig'

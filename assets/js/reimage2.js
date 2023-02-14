@@ -40,8 +40,6 @@ function attachEventToElement(pickerDivEl){
                 console.log(b);
             }
 
-            //var path = uploadFolderPrefix+"/"+b;
-            //setImage(path, pickerDivEl);
             if(loadingMethodExist){
                 finishLoading($(pickerDivEl))
             }

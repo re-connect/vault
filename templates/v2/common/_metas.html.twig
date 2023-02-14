@@ -1,7 +1,7 @@
 <meta charset="UTF-8"/>
 {% block metas %}{% endblock %}
-    {% if siteName == 'prod' %}
-        <meta name="google-site-verification" content="{{ google_site_verification }}">
+    {% if app == 'prod' %}
+        <meta name="google-site-verification" content="{{ googleSiteVerification }}">
     {% endif %}
 <meta name="description" content="{% block metaDesc %}{{ 'home.metaDescV2'|trans }}{% endblock metaDesc %}"/>
 <meta property="og:image" content="https://www.reconnect.fr{{ asset('build/images/home/background.jpg') }}"/>

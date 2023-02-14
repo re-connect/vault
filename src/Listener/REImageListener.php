@@ -9,13 +9,6 @@ use Symfony\Component\HttpFoundation\File\File;
 
 class REImageListener
 {
-    private string $upload_tmp_dir;
-
-    public function __construct($upload_tmp_dir)
-    {
-        $this->upload_tmp_dir = $upload_tmp_dir;
-    }
-
     public function preUpdate(PreUpdateEventArgs $args)
     {
         $entity = $args->getObject();
@@ -42,7 +35,7 @@ class REImageListener
                 $property = substr(strtolower($m[1]), 0, 1).substr($m[1], 1);
                 $getMethod = 'get'.ucfirst($property);
                 $setMethod = 'set'.ucfirst($property);
-                $uploadDir = $this->upload_tmp_dir;
+                $uploadDir = 'uploads/tmpImages/';
 
                 if (null !== $entity->$getMethod()) {
                     if (!file_exists($entity->$getMethod())) {
