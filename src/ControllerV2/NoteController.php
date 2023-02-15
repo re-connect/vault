@@ -33,7 +33,7 @@ class NoteController extends AbstractController
             'notes' => $paginator->create(
                 $this->isLoggedInUser($beneficiary->getUser())
                     ? $repository->findAllByBeneficiary($beneficiary)
-                    : $repository->findSharedByBeneficiary($beneficiary),
+                    : [],
                 $request->query->getInt('page', 1),
             ),
             'form' => $searchForm,
