@@ -141,3 +141,6 @@ services:
     App\Api\State\BeneficiaryStateProvider:
         bind:
             $itemProvider: '@api_platform.doctrine.orm.state.item_provider'
+    App\Api\State\BeneficiaryStateProcessor:
+        bind:
+            $persistProcessor: '@api_platform.doctrine.orm.state.persist_processor'
