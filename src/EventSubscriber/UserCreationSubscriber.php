@@ -88,7 +88,7 @@ class UserCreationSubscriber implements EventSubscriberInterface
         $client = $this->apiClientManager->getCurrentOldClient();
         $user = $beneficiary->getUser();
 
-        if ($client && Client::CLIENT_ROSALIE_NEW === $client->getNom() && $user?->getTelephone()) {
+        if ($client && Client::CLIENT_ROSALIE === $client->getNom() && $user?->getTelephone()) {
             $this->notificationService->sendVaultCreatedSms($user);
         }
     }
