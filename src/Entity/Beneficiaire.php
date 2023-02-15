@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\Dto\BeneficiaryDto;
+use App\Api\Filters\DistantIdFilter;
 use App\Api\State\BeneficiaryStateProcessor;
 use App\Api\State\BeneficiaryStateProvider;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
@@ -21,6 +23,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /** @ORM\Entity(repositoryClass="App\Repository\BeneficiaireRepository") */
+#[ApiFilter(DistantIdFilter::class, properties: ['distantId'])]
 #[ApiResource(
     shortName: 'beneficiary',
     operations: [
@@ -35,12 +38,13 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
         ),
 //        new Put(security: "is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"),
-        new Post(input: BeneficiaryDto::class),
+        new Post(input: BeneficiaryDto::class, processor: BeneficiaryStateProcessor::class),
     ],
     normalizationContext: ['groups' => ['v3:beneficiary:read', 'v3:user:read', 'v3:center:read', 'timed']],
     denormalizationContext: ['groups' => ['v3:beneficiary:write', 'v3:user:write']],
     openapiContext: ['tags' => ['Beneficiaires']],
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
+    filters: ['offer.date_filter'],
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"
 )]
 class Beneficiaire extends Subject implements UserWithCentresInterface, ClientResourceInterface
 {
@@ -881,8 +885,12 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this->externalLinks->exists(fn (int $key, ClientBeneficiaire $link) => $link->getClient() === $client);
     }
 
-    public function getExternalLinkForClient(Client $client): ?ClientBeneficiaire
+    public function getExternalLinkForClient(?Client $client): ?ClientBeneficiaire
     {
+        if (!$client) {
+            return null;
+        }
+
         $externalLinks = $this->externalLinks->filter(fn (ClientBeneficiaire $link) => $link->getClient() === $client)->first();
 
         return $externalLinks ?? null;

@@ -3,31 +3,33 @@
 namespace App\Api\State;
 
 use ApiPlatform\Metadata\Operation;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
 use ApiPlatform\State\ProcessorInterface;
+use App\Api\Dto\BeneficiaryDto;
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Beneficiaire;
-use Doctrine\ORM\EntityManagerInterface;
 
 class BeneficiaryStateProcessor implements ProcessorInterface
 {
     public function __construct(
         private readonly ApiClientManager $apiClientManager,
-        private readonly EntityManagerInterface $em,
+        private readonly ProcessorInterface $persistProcessor,
     ) {
     }
 
-    public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): void
+    /**
+     * {@inheritDoc}
+     */
+    public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): mixed
     {
-        if (!$data instanceof Beneficiaire) {
-            return;
-        }
-        if (!$apiClient = $this->apiClientManager->getCurrentOldClient()) {
-            return;
+        if ($data instanceof Beneficiaire && $operation instanceof Patch) {
+            $externalLink = $data->getExternalLinkForClient($this->apiClientManager->getCurrentOldClient());
+            $externalLink?->setDistantId($data->getDistantId());
+        } elseif ($data instanceof BeneficiaryDto && $operation instanceof Post) {
+            $data = $data->toBeneficiary();
         }
 
-        if ($externalLink = $data->getExternalLinkForClient($apiClient)) {
-            $externalLink->setDistantId($data->getDistantId());
-            $this->em->flush();
-        }
+        return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
     }
 }
