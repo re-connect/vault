@@ -13,17 +13,22 @@ final class BeneficiaryDto
     #[Assert\Type(\DateTimeInterface::class)]
     #[Groups(['v3:beneficiary:write'])]
     public ?\DateTime $birthDate = null;
+
     #[Assert\NotNull]
     #[Groups(['v3:beneficiary:write'])]
     public ?string $firstName = null;
+
     #[Assert\NotNull]
     #[Groups(['v3:beneficiary:write'])]
     public ?string $lastName = null;
+
     #[Assert\Email]
     #[Groups(['v3:beneficiary:write'])]
     public ?string $email = null;
+
     #[Groups(['v3:beneficiary:write'])]
     public ?string $phone = null;
+
     #[Groups(['v3:beneficiary:write'])]
     public ?string $distantId = null;
 

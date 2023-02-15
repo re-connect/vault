@@ -38,7 +38,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
         ),
 //        new Put(security: "is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"),
-        new Post(input: BeneficiaryDto::class),
+        new Post(input: BeneficiaryDto::class, processor: BeneficiaryStateProcessor::class),
     ],
     normalizationContext: ['groups' => ['v3:beneficiary:read', 'v3:user:read', 'v3:center:read', 'timed']],
     denormalizationContext: ['groups' => ['v3:beneficiary:write', 'v3:user:write']],
