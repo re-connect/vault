@@ -2,20 +2,21 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BeneficiaireCentreRepository")
  */
-// #[ApiResource(
-//    shortName: 'beneficiary_center',
-//    operations: [new Get(), new Put(), new Patch(), new Delete(), new GetCollection(), new Post()],
-//    normalizationContext: ['groups' => ['v3:center:read']],
-//    denormalizationContext: ['groups' => ['v3:center:write']],
-//    openapiContext: ['tags' => ['Centres Beneficiaires']],
-//    security: "is_granted('ROLE_OAUTH2_CENTERS')",
-// )]
+#[ApiResource(
+    shortName: 'beneficiary_center',
+    operations: [],
+    normalizationContext: ['groups' => ['v3:center:read']],
+    denormalizationContext: ['groups' => ['v3:center:write']],
+    openapiContext: ['tags' => ['Centres Beneficiaires']],
+    security: "is_granted('ROLE_OAUTH2_CENTERS')",
+)]
 class BeneficiaireCentre extends UserCentre
 {
     /**

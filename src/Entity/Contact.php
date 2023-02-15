@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-// #[ApiResource(
-//    operations: [new Get(), new Put(), new Patch(), new Delete(), new GetCollection(), new Post()],
-//    normalizationContext: ['groups' => ['v3:contact:read']],
-//    denormalizationContext: ['groups' => ['v3:contact:write']],
-//    openapiContext: ['tags' => ['Contacts']],
-//    security: "is_granted('ROLE_OAUTH2_CENTERS')",
-// )]
+#[ApiResource(
+    operations: [],
+    normalizationContext: ['groups' => ['v3:contact:read']],
+    denormalizationContext: ['groups' => ['v3:contact:write']],
+    openapiContext: ['tags' => ['Contacts']],
+    security: "is_granted('ROLE_OAUTH2_CENTERS')",
+)]
 class Contact extends DonneePersonnelle
 {
     /**
