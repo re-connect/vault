@@ -38,7 +38,7 @@ class EventController extends AbstractController
             'events' => $paginator->create(
                 $this->isLoggedInUser($beneficiary->getUser())
                     ? $repository->findFutureEventsByBeneficiary($beneficiary)
-                    : $repository->findSharedFutureEventsByBeneficiary($beneficiary),
+                    : [],
                 $request->query->getInt('page', 1),
             ),
             'form' => $searchForm,

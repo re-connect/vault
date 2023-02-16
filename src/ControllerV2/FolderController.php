@@ -34,7 +34,7 @@ class FolderController extends AbstractController
             'foldersAndDocuments' => $paginator->create(
                 $this->isLoggedInUser($beneficiary->getUser())
                     ? $documentManager->getAllFoldersAndDocumentsWithUrl($beneficiary, $folder)
-                    : $documentManager->getSharedFoldersAndDocumentsWithUrl($beneficiary, $folder),
+                    : [],
                 $request->query->getInt('page', 1),
             ),
             'currentFolder' => $folder,
@@ -239,10 +239,14 @@ class FolderController extends AbstractController
     #[IsGranted('UPDATE', 'folder')]
     public function treeViewMove(Dossier $folder): Response
     {
+        $beneficiary = $folder->getBeneficiaire();
+
         return $this->render('v2/vault/folder/tree_view.html.twig', [
-            'folders' => $folder->getBeneficiaire()->getRootFolders(),
+            'folders' => $this->isLoggedInUser($beneficiary->getUser())
+                ? $beneficiary->getRootFolders()
+                : [],
             'element' => $folder,
-            'beneficiary' => $folder->getBeneficiaire(),
+            'beneficiary' => $beneficiary,
         ]);
     }
 }
