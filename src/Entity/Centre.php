@@ -3,29 +3,23 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Delete;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
-use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-// #[ApiResource(
-//    shortName: 'center',
-//    operations: [new Get(), new Put(), new Patch(), new Delete(), new GetCollection(), new Post()],
-//    normalizationContext: ['groups' => ['v3:center:read']],
-//    denormalizationContext: ['groups' => ['v3:center:write']],
-//    openapiContext: ['tags' => ['Centres']],
-//    security: "is_granted('ROLE_OAUTH2_CENTERS')",
-// )]
 /**
  * @Vich\Uploadable
  */
+#[ApiResource(
+    shortName: 'center',
+    operations: [],
+    normalizationContext: ['groups' => ['v3:center:read']],
+    denormalizationContext: ['groups' => ['v3:center:write']],
+    openapiContext: ['tags' => ['Centres']],
+    security: "is_granted('ROLE_OAUTH2_CENTERS')",
+)]
 class Centre implements \JsonSerializable
 {
     public const REGIONS = ['Auvergne-Rhône-Alpes', 'Bourgogne-Franche-Comté', 'Bretagne', 'Centre-Val de Loire', 'Corse', 'Grand Est', 'Hauts-de-France', 'Ile-de-France', 'Normandie', 'Nouvelle-Aquitaine', 'Occitanie', 'Pays de la Loire', 'Provence-Alpes-Côte d’Azur', 'Autre'];

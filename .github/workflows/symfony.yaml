@@ -2,9 +2,9 @@ name: Symfony
 
 on:
     push:
-        branches: [ "main" ]
+        branches: [ "main", "development" ]
     pull_request:
-        branches: [ "main" ]
+        branches: [ "main", "development" ]
 
 permissions:
     contents: read
@@ -18,9 +18,6 @@ jobs:
                 with:
                     php-version: '8.1'
             -   uses: actions/checkout@v3
-            # —— Check coding standards ✨ ————————————————————————————————————————————————————————————————
-            -   name: Check CS
-                run: vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
             -   name: Cache Composer packages
                 id: composer-cache
                 uses: actions/cache@v3
@@ -40,6 +37,9 @@ jobs:
                 run: cat .env.ci >> .env.test
             -   name: Install Dependencies
                 run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+            # —— Check coding standards ✨ ————————————————————————————————————————————————————————————————
+            -   name: Check CS
+                run: vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
             -   name: Dump routes
                 run: php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
             -   name: Copy keys

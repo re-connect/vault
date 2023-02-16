@@ -35,7 +35,7 @@ class DocumentController extends AbstractController
             'foldersAndDocuments' => $paginator->create(
                 $this->isLoggedInUser($beneficiary->getUser())
                     ? $documentManager->getAllFoldersAndDocumentsWithUrl($beneficiary)
-                    : $documentManager->getSharedFoldersAndDocumentsWithUrl($beneficiary),
+                    : [],
                 $request->query->getInt('page', 1),
             ),
             'form' => $searchForm,

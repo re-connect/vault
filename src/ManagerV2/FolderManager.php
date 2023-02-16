@@ -90,7 +90,7 @@ class FolderManager
         $options->setZeroHeader(true);
         $zip = new ZipStream($folder->getNom(), $options);
 
-        $folder->getDocuments()
+        $folder->getDocuments($this->getUser() === $folder->getBeneficiaire()->getUser())
             ->filter(
                 fn ($document) => $this->bucketService->getObjectStream($document->getObjectKey())
             )->map(

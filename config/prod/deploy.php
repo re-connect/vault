@@ -9,7 +9,7 @@ return new class() extends DefaultDeployer {
             ->server('vault-prod')
             ->deployDir('/var/www/reconnect_fr/www')
             ->repositoryUrl('git@github.com:re-connect/vault.git')
-            ->repositoryBranch('prod')
+            ->repositoryBranch('main')
             ->remoteComposerBinaryPath('/var/www/reconnect_fr/composer.phar')
             ->composerOptimizeFlags('--optimize --no-dev --classmap-authoritative')
             ->useSshAgentForwarding(false)

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
@@ -11,24 +12,16 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-// #[ApiResource(
-//    shortName: 'folder',
-//    operations: [
-//        new Get(),
-//        new Put(),
-//        new Patch(),
-//        new Delete(),
-//        new GetCollection(),
-//        new Post(),
-//    ],
-//    normalizationContext: ['groups' => ['v3:folder:read']],
-//    denormalizationContext: ['groups' => ['v3:folder:write']],
-//    openapiContext: ['tags' => ['Dossiers']],
-// )]
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DocumentRepository")
  */
+#[ApiResource(
+    shortName: 'folder',
+    operations: [],
+    normalizationContext: ['groups' => ['v3:folder:read']],
+    denormalizationContext: ['groups' => ['v3:folder:write']],
+    openapiContext: ['tags' => ['Dossiers']],
+)]
 class Dossier extends DonneePersonnelle
 {
     final public const AUTOCOMPLETE_NAMES = ['health', 'housing', 'identity', 'tax', 'work'];
