@@ -162,7 +162,7 @@ class EventController extends AbstractController
         $manager->toggleVisibility($event);
 
         return $request->isXmlHttpRequest()
-            ? new Response(null, 204)
+            ? new JsonResponse($event)
             : $this->redirectToRoute('event_list', ['id' => $event->getBeneficiaireId()]);
     }
 }

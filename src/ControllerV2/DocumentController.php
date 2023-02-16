@@ -180,7 +180,7 @@ class DocumentController extends AbstractController
         $manager->toggleVisibility($document);
 
         return $request->isXmlHttpRequest()
-            ? new Response(null, 204)
+            ? new JsonResponse($document)
             : $this->getDocumentPageRedirection($document, $folder);
     }
 

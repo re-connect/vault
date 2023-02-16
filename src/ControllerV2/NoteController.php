@@ -156,7 +156,7 @@ class NoteController extends AbstractController
         $manager->toggleVisibility($note);
 
         return $request->isXmlHttpRequest()
-            ? new Response(null, 204)
+            ? new JsonResponse($note)
             : $this->redirectToRoute('note_list', ['id' => $note->getBeneficiaireId()]);
     }
 }
