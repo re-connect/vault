@@ -43,7 +43,6 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     normalizationContext: ['groups' => ['v3:beneficiary:read', 'v3:user:read', 'v3:center:read', 'timed']],
     denormalizationContext: ['groups' => ['v3:beneficiary:write', 'v3:user:write']],
     openapiContext: ['tags' => ['Beneficiaires']],
-    filters: ['offer.date_filter'],
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"
 )]
 class Beneficiaire extends Subject implements UserWithCentresInterface, ClientResourceInterface

@@ -3,10 +3,16 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
-    operations: [],
+    operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
     normalizationContext: ['groups' => ['v3:note:read']],
     denormalizationContext: ['groups' => ['v3:note:write']],
     openapiContext: ['tags' => ['Notes']],
