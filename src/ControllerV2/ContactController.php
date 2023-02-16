@@ -156,7 +156,7 @@ class ContactController extends AbstractController
         $manager->toggleVisibility($contact);
 
         return $request->isXmlHttpRequest()
-            ? new Response(null, 204)
+            ? new JsonResponse($contact)
             : $this->redirectToRoute('contact_list', ['id' => $contact->getBeneficiaireId()]);
     }
 }
