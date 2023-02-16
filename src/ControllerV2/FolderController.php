@@ -239,10 +239,14 @@ class FolderController extends AbstractController
     #[IsGranted('UPDATE', 'folder')]
     public function treeViewMove(Dossier $folder): Response
     {
+        $beneficiary = $folder->getBeneficiaire();
+
         return $this->render('v2/vault/folder/tree_view.html.twig', [
-            'folders' => $folder->getBeneficiaire()->getRootFolders(),
+            'folders' => $this->isLoggedInUser($beneficiary->getUser())
+                ? $beneficiary->getRootFolders()
+                : [],
             'element' => $folder,
-            'beneficiary' => $folder->getBeneficiaire(),
+            'beneficiary' => $beneficiary,
         ]);
     }
 }
