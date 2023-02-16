@@ -2,24 +2,24 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Traits\GedmoTimedTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-// #[ApiResource(
-//    shortName: 'pro',
-//    operations: [new Get(), new Put(), new Patch(), new Delete(), new GetCollection(), new Post()],
-//    normalizationContext: ['groups' => ['v3:member:read', 'v3:user:read']],
-//    denormalizationContext: ['groups' => ['v3:member:write', 'v3:user:write']],
-//    openapiContext: ['tags' => ['Professionnels']],
-//    security: "is_granted('ROLE_OAUTH2_PROS')",
-// )]
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembreRepository")
  */
+#[ApiResource(
+    shortName: 'pro',
+    operations: [],
+    normalizationContext: ['groups' => ['v3:member:read', 'v3:user:read']],
+    denormalizationContext: ['groups' => ['v3:member:write', 'v3:user:write']],
+    openapiContext: ['tags' => ['Professionnels']],
+    security: "is_granted('ROLE_OAUTH2_PROS')",
+)]
 class Membre extends Subject implements UserWithCentresInterface, UserHandleCentresInterface
 {
     use GedmoTimedTrait;
