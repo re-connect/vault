@@ -24,11 +24,20 @@ class ClientRepository extends ServiceEntityRepository
 
     public function findForNewClient(?ClientEntityInterface $client): ?Client
     {
-        return !$client ? null : $this->findForNewClientIdentifier($client->getIdentifier());
+        if (!$client) {
+            return null;
+        }
+
+        return $this->findForNewClientIdentifier($client->getIdentifier()) ?? $this->findByClientIdentifier($client->getIdentifier());
     }
 
     public function findForNewClientIdentifier(?string $clientId): ?Client
     {
         return !$clientId ? null : $this->findOneBy(['newClientIdentifier' => $clientId]);
+    }
+
+    public function findByClientIdentifier(?string $clientId): ?Client
+    {
+        return !$clientId ? null : $this->findOneBy(['randomId' => $clientId]);
     }
 }
