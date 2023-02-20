@@ -430,6 +430,7 @@ final class BeneficiaireProvider
         $beneficiaireCentre = (new BeneficiaireCentre())->setCentre($centre)->setBValid($forceAccept);
         if ($externalLink) {
             $beneficiaire->addExternalLink($externalLink);
+            $externalLink->setBeneficiaireCentre($beneficiaireCentre);
         }
         $beneficiaire->addBeneficiairesCentre($beneficiaireCentre);
     }
