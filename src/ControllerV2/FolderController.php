@@ -136,12 +136,11 @@ class FolderController extends AbstractController
     #[IsGranted('UPDATE', 'folder')]
     public function toggleVisibility(Request $request, Dossier $folder, FolderManager $manager): Response
     {
-        $parentFolder = $folder->getDossierParent();
         $manager->toggleVisibility($folder, !$folder->getBPrive());
 
         return $request->isXmlHttpRequest()
-            ? new JsonResponse($folder)
-            : $this->getFolderPageRedirection($folder, $parentFolder);
+            ? new JsonResponse($folder, $folder->getDossierParent() ? 403 : 200)
+            : $this->redirectToRoute('document_list', ['id' => $folder->getBeneficiaireId()]);
     }
 
     #[Route(

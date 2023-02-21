@@ -176,12 +176,11 @@ class DocumentController extends AbstractController
     #[IsGranted('UPDATE', 'document')]
     public function toggleVisibility(Request $request, Document $document, DocumentManager $manager): Response
     {
-        $folder = $document->getDossier();
         $manager->toggleVisibility($document);
 
         return $request->isXmlHttpRequest()
-            ? new JsonResponse($document)
-            : $this->getDocumentPageRedirection($document, $folder);
+            ? new JsonResponse($document, $document->getDossier() ? 403 : 200)
+            : $this->redirectToRoute('document_list', ['id' => $document->getBeneficiaireId()]);
     }
 
     #[Route(
