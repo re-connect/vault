@@ -1,3 +1,10 @@
 vich_uploader:
     db_driver: orm
     mappings:
+        annexe_fichier:
+            uri_prefix: "/uploads/annexe"
+            upload_destination: "%kernel.project_dir%/public/uploads/annexe"
+            namer: vich_uploader.namer_origname
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
