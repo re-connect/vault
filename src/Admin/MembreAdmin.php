@@ -111,7 +111,7 @@ class MembreAdmin extends AbstractAdmin
             ])
             ->end();
 
-        if (!$this->isCurrentRoute('create')) {
+        if ($this->isCurrentRoute('edit')) {
             $form
                 ->with('Statut du membre')
                 ->add('user.enabled', ChoiceType::class, [
