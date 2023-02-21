@@ -501,6 +501,7 @@ is_the_beneficiary_present: Is the beneficiary present ?
 is_the_beneficiary_absent: Is the beneficiary absent ?
 innovative_solution_digital_divide: The solution to meet the challenges of the digital divide
 lastname: Lastname
+leave: Leave
 leave_center: Leave this relay
 leave_center_confirm: Are you sure you want to leave this relay?
 leave_center_title: Leave %s
@@ -859,6 +860,8 @@ steps_count: Step %step%/%totalSteps%
 summary: Summary
 summary_confirm_information: Summary, please confirm the information below
 surname: First name
+switch_content_private: Switch private
+switch_content_private_confirm: Are you sure you want to switch this element in the private area of the beneficiary ?
 switchUser.btnRevenir: 'Back to Administration'
 switchUser.connecte: 'You are connected as <span class="italic">%username%'
 username: Username

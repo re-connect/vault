@@ -236,8 +236,10 @@ class DocumentManager
 
     public function toggleVisibility(Document $document): void
     {
-        $document->setBPrive(!$document->getBPrive());
-        $this->em->flush();
+        if (!$document->getDossier()) {
+            $document->setBPrive(!$document->getBPrive());
+            $this->em->flush();
+        }
     }
 
     public function delete(Document $document): void

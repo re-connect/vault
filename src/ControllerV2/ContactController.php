@@ -83,6 +83,7 @@ class ContactController extends AbstractController
         $contact = new Contact($beneficiary);
         $form = $this->createForm(ContactType::class, $contact, [
             'action' => $this->generateUrl('contact_create', ['id' => $beneficiary->getId()]),
+            'private' => $this->getUser() === $beneficiary->getUser(),
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -140,21 +141,22 @@ class ContactController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'contact.bienSupprime');
 
-        return $this->redirectToRoute('contact_list', ['id' => $contact->getBeneficiaire()->getId()]);
+        return $this->redirectToRoute('contact_list', ['id' => $contact->getBeneficiaireId()]);
     }
 
     #[Route(
         path: 'contact/{id}/toggle-visibility',
         name: 'contact_toggle_visibility',
         requirements: ['id' => '\d+'],
-        methods: ['PATCH'],
-        condition: 'request.isXmlHttpRequest()',
+        methods: ['GET', 'PATCH'],
     )]
     #[IsGranted('UPDATE', 'contact')]
-    public function toggleVisibility(Contact $contact, ContactManager $manager): Response
+    public function toggleVisibility(Request $request, Contact $contact, ContactManager $manager): Response
     {
         $manager->toggleVisibility($contact);
 
-        return new Response(null, 204);
+        return $request->isXmlHttpRequest()
+            ? new JsonResponse($contact)
+            : $this->redirectToRoute('contact_list', ['id' => $contact->getBeneficiaireId()]);
     }
 }

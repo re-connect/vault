@@ -33,7 +33,7 @@
             </a>
         </div>
     {% endif %}
-    <button class="btn btn-green text-white"
+    <button class="btn {{ getUserButtonColor() }} text-white"
             {{ stimulus_controller('upload', {
                 'locale': app.session.get("_locale") ?: 'fr',
                 'url': path('document_upload', {'id': beneficiary.id, 'folder': currentFolder.id ?? ''})
@@ -46,7 +46,7 @@
         ? path('folder_create_subfolder', {'id': currentFolder.id})
         : path('folder_create', {'id': beneficiary.id})
     }}"
-       class="btn btn-green text-white ms-2">
+       class="btn {{ getUserButtonColor() }} text-white ms-2">
         <i class="fas fa-folder-plus me-md-1"></i>
         <span class="d-none d-sm-inline">{{ 'document.creerUnDossier'|trans }}</span>
     </a>

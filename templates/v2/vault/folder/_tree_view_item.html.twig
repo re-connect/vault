@@ -6,7 +6,7 @@
             : 'folder_move_to_folder',
             {'id': element.id, 'folderId': folder.id, 'tree-view': true},
         ) }}"
-           class="btn btn-green text-white text-start {{ folder == element ? 'disabled' : '' }}">
+           class="btn {{ getUserButtonColor() }} text-white text-start {{ folder == element ? 'disabled' : '' }}">
             <i class="fa fa-folder-open me-2" aria-hidden="true"></i>
             {{ folder.nom }}
         </a>

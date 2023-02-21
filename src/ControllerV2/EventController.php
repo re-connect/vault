@@ -87,6 +87,7 @@ class EventController extends AbstractController
         $event = new Evenement($beneficiary);
         $form = $this->createForm(EventType::class, $event, [
             'action' => $this->generateUrl('event_create', ['id' => $beneficiary->getId()]),
+            'private' => $this->getUser() === $beneficiary->getUser(),
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -146,21 +147,22 @@ class EventController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'evenement.bienSupprime');
 
-        return $this->redirectToRoute('event_list', ['id' => $event->getBeneficiaire()->getId()]);
+        return $this->redirectToRoute('event_list', ['id' => $event->getBeneficiaireId()]);
     }
 
     #[Route(
         path: 'event/{id}/toggle-visibility',
         name: 'event_toggle_visibility',
         requirements: ['id' => '\d+'],
-        methods: ['PATCH'],
-        condition: 'request.isXmlHttpRequest()',
+        methods: ['GET', 'PATCH'],
     )]
     #[IsGranted('UPDATE', 'event')]
-    public function toggleVisibility(Evenement $event, EventManager $manager): Response
+    public function toggleVisibility(Request $request, Evenement $event, EventManager $manager): Response
     {
         $manager->toggleVisibility($event);
 
-        return new Response(null, 204);
+        return $request->isXmlHttpRequest()
+            ? new JsonResponse($event)
+            : $this->redirectToRoute('event_list', ['id' => $event->getBeneficiaireId()]);
     }
 }

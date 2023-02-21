@@ -3,7 +3,6 @@
 namespace App\ManagerV2;
 
 use App\Entity\Document;
-use App\Entity\DonneePersonnelle;
 use App\Entity\Dossier;
 use App\ServiceV2\BucketService;
 use App\ServiceV2\Traits\UserAwareTrait;
@@ -43,16 +42,21 @@ class FolderManager
         $this->em->flush();
     }
 
-    public function toggleVisibility(Document|Dossier $data, bool $visibility): void
+    public function toggleVisibility(Dossier $folder, bool $visibility): void
+    {
+        if (!$folder->getDossierParent()) {
+            $this->toggleVisibilityRecursively($folder, $visibility);
+        }
+    }
+
+    private function toggleVisibilityRecursively(Document|Dossier $data, bool $visibility): void
     {
         $data->setBPrive($visibility);
 
-        if (DonneePersonnelle::PRIVE === $visibility) {
-            if ($data instanceof Dossier) {
-                $subData = [...$data->getSousDossiers()->toArray(), ...$data->getDocuments()->toArray()];
-                foreach ($subData as $subDatum) {
-                    $this->toggleVisibility($subDatum, $visibility);
-                }
+        if ($data instanceof Dossier) {
+            $subData = [...$data->getSousDossiers()->toArray(), ...$data->getDocuments()->toArray()];
+            foreach ($subData as $subDatum) {
+                $this->toggleVisibilityRecursively($subDatum, $visibility);
             }
         }
 

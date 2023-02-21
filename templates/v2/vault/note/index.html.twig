@@ -18,9 +18,7 @@
 {% endblock %}
 
 {% block actionButtons %}
-    <a href="{{ path('note_create', {'id': beneficiary.id}) }}" class="btn btn-green text-white">
-        <i class="fas fa-plus-circle me-2"></i>{{ 'donneePersonnelle.ajouter'|trans }}
-    </a>
+    {{ include('v2/vault/components/_create_personal_data_button.html.twig', {'path' : path('note_create', {'id': beneficiary.id})}) }}
 {% endblock %}
 
 {% block notifications %}

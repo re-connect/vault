@@ -40,6 +40,26 @@
     }) %}
 {% endif %}
 
+{% if not app.user.isBeneficiaire %}
+    {% set menuItems = menuItems|merge({
+        'switchPrivate': {
+            'icon': 'fa-exclamation-triangle',
+            'message': 'switch_content_private',
+            'path' : switchPrivate.path,
+            'attr' : {
+                'dataAction': 'click->alert#confirm',
+                'dataMessage': switchPrivate.message
+            }
+        }
+    }) %}
+{% endif %}
+
+<button class="btn {{ getUserButtonColor() }} text-white py-0"
+        data-dropdown-menu-target="button"
+        data-action="click->dropdown-menu#toggle"
+>
+    <i class="fas fa-ellipsis-h"></i>
+</button>
 <div class="position-relative d-none" data-dropdown-menu-target="menu"
         {{ stimulus_controller('alert', {
             'confirmButtonText': 'main.accepter'|trans,

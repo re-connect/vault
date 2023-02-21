@@ -1,0 +1,38 @@
+{% set isBeneficiary = app.user.isBeneficiaire %}
+{% set itemsList = {
+    'document-folder': {
+        'title': 'beneficiaire.menu.mesDocuments',
+        'routeName': 're_app_document_list',
+        'image': 'build/images/icons/docs_bleu.png',
+    },
+    'event': {
+        'title': 'beneficiaire.menu.monCalendrier',
+        'routeName': 'event_list',
+        'image': 'build/images/icons/rappels_bleu.png',
+    },
+    'contact': {
+        'title': 'beneficiaire.menu.mesContacts',
+        'routeName': 'contact_list',
+        'image': 'build/images/icons/contacts_bleu.png',
+    },
+    'note': {
+        'title': 'beneficiaire.menu.mesNotes',
+        'routeName': 'note_list',
+        'image': 'build/images/icons/notes_bleu.png',
+    },
+} %}
+{% if isBeneficiary %}
+    {% set itemsList = itemsList|merge({
+        'relay': {
+            'title': 'beneficiaire.menu.mesRelaisReconnect',
+            'routeName': 'relay_list',
+            'image': 'build/images/icons/relais_bleu.png',
+        },
+    }) %}
+{% endif %}
+
+{{ include(isBeneficiary
+    ? 'v2/vault/nav/beneficiary/_beneficiary_nav.html.twig'
+    : 'v2/vault/nav/pro/_pro_nav.html.twig',
+    {itemsList},
+) }}

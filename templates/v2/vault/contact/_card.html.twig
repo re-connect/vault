@@ -19,25 +19,25 @@
             {{ contact.email }}
         </a>
     </td>
-    <td class="bg-white borderless">
-        {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
-            'url': path('contact_toggle_visibility', {'id': contact.id}),
-            'item': contact,
-        }) }}
-    </td>
+    {% if app.user.isBeneficiaire %}
+        <td class="bg-white borderless">
+            {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
+                'url': path('contact_toggle_visibility', {'id': contact.id}),
+                'private': contact.bPrive,
+            }) }}
+        </td>
+    {% endif %}
     <td class="bg-white borderless" {{ stimulus_controller('dropdown-menu') }}>
-        <button class="btn btn-green text-white py-0"
-                data-dropdown-menu-target="button"
-                data-action="click->dropdown-menu#toggle"
-        >
-            <i class="fas fa-ellipsis-h"></i>
-        </button>
         {{ include('v2/vault/components/_action_dropdown.html.twig', {
             'editPath': path('contact_edit', {'id': contact.id}),
             'detailPath': path('contact_detail', {'id': contact.id}),
             'delete': {
                 'path': path('contact_delete', {'id': contact.id}),
                 'message': 'modal_message_contact_deletev2'|trans({'%fullName%': contact.fullName}),
+            },
+            'switchPrivate': {
+                'path': path('contact_toggle_visibility', {'id': contact.id}),
+                'message': 'switch_content_private_confirm'|trans,
             },
         }) }}
     </td>

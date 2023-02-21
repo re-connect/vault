@@ -261,7 +261,7 @@ class Document extends DonneePersonnelle
     public function getDeposeParGetFullName(): string
     {
         $fullname = '';
-        if (false !== ($creatorUser = $this->getCreatorUser())) {
+        if ($creatorUser = $this->getCreatorUser()) {
             $user = $creatorUser->getEntity();
             if (null !== $user) {
                 $fullname = $user->getPrenom().' '.$user->getNom();

@@ -9,7 +9,14 @@
     {{ form_label(form.rappels) }}
     {{ form_errors(form) }}
     <br>
-    <button id="event_rappels_add" name="event[rappels][add]" data-action="live#action" data-action-name="addCollectionItem(name=event[rappels])" type="button" class="btn btn-green text-white mb-2">
+    <button
+            id="event_rappels_add"
+            name="event[rappels][add]"
+            data-action="live#action"
+            data-action-name="addCollectionItem(name=event[rappels])"
+            type="button"
+            class="btn {{ getUserButtonColor() }} text-white mb-2"
+    >
         {{ 'add_sms_reminder'|trans }}
     </button>
     {% for key, itemForm in form.rappels %}
@@ -44,7 +51,7 @@
     {% do form.rappels.setRendered %}
     <div class="row mx-1 mt-2">
         {{ link(path('event_list', {'id': beneficiary.id}), 'main.retour', 'grey') }}
-        {{ button('submit', 'confirm', 'green') }}
+        {{ button('submit', 'confirm', getUserThemeColor()) }}
     </div>
     {{ form_end(form) }}
 </div>
