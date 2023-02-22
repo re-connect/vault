@@ -626,3 +626,63 @@ wrong_current_password: 'Неверный настоящий пароль'
 delete_currently_shared_document_warning: Документ находится в общем доступе еще %daysCount% дней. Если вы удалите его, совместный доступ будет отменен
 sms_sent_failed: Отправка SMS не удалась, пожалуйста, проверьте, действителен ли номер телефона
 yes: Да
+
+header_link_cfn: 'Сейф<span class="d-lg-block"> цифровой</span>'
+header_link_contact: 'Связаться с нами<span class="d-lg-block"></span>'
+header_link_rp: 'Решение<span class="d-lg-block"> Pro</span>'
+header_link_who_we_are: 'Кто мы<span class="d-lg-block">?</span>'
+digital_cares: "Цифровое\nсопровождение"
+
+home_who_we_are_p1: Reconnect - это некоммерческое партнерство, миссия которого заключается в упрощении социальной адаптации людей и облегчении профессионального сопровождения в этом процессе.
+home_who_we_are_p2: Мы считаем, что социальная помощь и цифровые технологии выигрывают, когда работают вместе для обеспечения социальной интеграции уязвимых групп населения.
+home_who_we_are_p3: С 2015 года мы работаем с получателями социальной помощи и профессионалами в этой сфере, создавая решения для удовлетворения их потребностей.
+home_who_we_are_title: Кто мы?
+
+home_solutions_list_title: Наши решения
+home_solutions_list_accessible_p: Интерфейсы наших инструментов разработаны таким образом, чтобы их использование было приятным и интуитивно понятным даже для тех, кто далек от цифровых технологий.
+home_solutions_list_accessible_title: Доступные
+home_solutions_list_evolve_p: Наши решения разработаны совместно с организациями социальной сферы для более эффективного удовлетворения потребностей этого сектора. Ежедневные улучшения основаны на отзывах наших пользователей.
+home_solutions_list_evolve_title: Эволюционирующие
+home_solutions_list_human_p: Наши профессиональные пользователи получают поддержку в использовании наших решений благодаря полному обучению и выделенной онлайн-поддержке.
+home_solutions_list_human_title: Человеческие
+home_solutions_list_secure_p: Безопасность и защита персональных данных наших пользователей - наш главный приоритет. Наши инструменты разработаны и развиваются этично и безопасно. Они соответствуют GDPR.
+home_solutions_list_secure_title: Безопасные
+home_solutions_list_solidarity_alt_img: иконка "солидарные решения"
+home_solutions_list_solidarity_title: Солидарность
+home_our_solutions_title: Наши решения
+home_our_solutions_text_cfn: Инструмент, облегчающий доступ к правам уязвимых населенных групп и социальному сопровождению.
+home_our_solutions_text_rp: Профессиональный инструмент, обеспечивающий непрерывность интеграционных программ.
+innovative_solution_digital_divide: Решение для преодоления цифрового разрыва.
+
+home_reconnect_centers_p: Релей Реконнект - это социальные учреждения, использующие решения Реконнект и сопровождающие пользователей в создании и использовании их цифровой казны.
+home_reconnect_centers_title: Релей Реконнект
+
+home_press_title: Свидетельства
+
+contact_us_title: Хотите узнать больше?
+contact_us_button: Свяжитесь с нами!
+contact_us_title2: Подпишитесь на нашу информационную рассылку!
+
+footer.cgsCs: 'CGS Cloud Solidaire'
+footer.cguReconnect: 'Правила использования сайта'
+footer.cloudSolidaire: 'Облачное солидарное хранилище'
+footer.confidentialiteCs: 'Политика конфиденциальности облачного солидарного хранилища'
+footer.confidentialiteReconnect: 'Политика конфиденциальности сайта'
+footer_CGS_rp: CGS Reconnect Pro
+footer_CGS_vault: CGS цифровой казны
+footer_alt_logo_afnic: логотип afnic
+footer_alt_logo_ffe: логотип фонда "Франция обязуется"
+footer_alt_logo_groupe_sos_solidarite: логотип Groupe SOS Solidarités
+footer_confidentiality_rp: Политика конфиденциальности Reconnect Pro
+footer_confidentiality_vault: Политика конфиденци
+footer_copyright: Reconnect - Все права защищены
+footer_discover_rp: Узнать о Reconnect Pro
+footer_discover_vault: Узнать о цифровом сейфе
+footer_group_sos_text: Reconnect является ассоциацией Groupe SOS Solidarités, одной из девяти деятельностей Groupe SOS, которая занимается включением людей в уязвимом положении.
+footer_partners_text: 'Reconnect поддерживается:'
+
+vault: Цифровой сейф
+contact_page_title: Свяжитесь с нами
+website_CGS: CGS веб-сайта
+website_confidentiality: Политика конфиденциальности веб-сайта
+website_legal: Юридическое уведомление веб-сайта

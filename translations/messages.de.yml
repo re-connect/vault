@@ -685,3 +685,8 @@ your_phone_number: 'Ihre Telefonnummer'
 you_must_provide_phone_number: Du musst eine Telefonnummer angeben
 reminder_sms_content: 'Hallo \nErinnerung an Deinen Termin: %name% \n%date%'
 accompanying_person_propose_cfn_activation: Dein*e Sozialarbeiter*in %person.firstname% %person.lastname% aus der Einrichtung %center% lädt Dich ein, Deine Cloud zu aktivieren.
+
+
+digital_cares: "Die digitale Unterstützung"
+
+contact_us_title2: Abonnieren Sie unseren Newsletter!

@@ -4,3 +4,84 @@ form_forgot_password: زما پاسورډ بیا تنظیم کړئ
 form_login: کاروونکي نوم یا بریښنالیک
 form_password: پاسورډ
 login_form_title: ډیجیټل خوندي ته ډیجیټل خوندي ته لاسرسی
+
+header_link_cfn: 'د دیجیتالي کیسې<span class="d-lg-block"> په بندې</span>'
+header_link_contact: 'زموږ سره<span class="d-lg-block"> اړیکه کړئ</span>'
+header_link_rp: 'د راهنمائي <span class="d-lg-block">حل</span>'
+header_link_who_we_are: 'څه دي<span class="d-lg-block">؟ موږ</span>'
+digital_cares: "د دیجیتالي همکاری"
+
+home_who_we_are_p1: ریکانیکټ د یو غیر مسودمیتوبه راهی ملکي اتحاد دی چې د اجتماعي ورودونکو ترقی په ساده ورکولو او پرفیشنالونو له مخکې په مرسته د دیجیتالي همکاری د ترغیب دی.
+home_who_we_are_p2: موږ د اجتماعي اعمالو او د دیجیتالي لاس راکړو په همداوې لاس کې د ستونزې پر وړه نتونسيزونکي چې په لوبه کې د حل ورکړئ د ورکولو په اړه د بې بدلې پوهایندې وروسته د ګرځنده جامعې په ګواښ کې د شموليتونه.
+home_who_we_are_p3: از سال ۲۰۱۵، با ایجاد راه حل هایی برای پاسخ به نیازهایشان، ما در خدمت گیرندگان و حرفه ای های فعال در زمینه فعالیت های اجتماعی هستیم.
+home_who_we_are_title: څه دي؟ موږ کړي؟
+
+home_solutions_list_title: دا هم دا لري دي
+home_solutions_list_accessible_p: مونږ د اساني په اړه د توانائي ته دي چې د پوهنتونو ته د پورې چلنګونې لپاره هم مخکې او ادراک پرمختللي وکارولی.
+home_solutions_list_accessible_title: دسترسی پیدا کړه
+home_solutions_list_evolve_p: مونږ په خپلو ابزارونو سره کار وکړي چې د عملیاتی تقاضاوونو د خوب د ته د پوهنتونو ته خوښ شوي متناسب شي. د مستقبل د په پرمختللو خوا په توګه هم دا خپلو کارنانو لپاره په مخکې سره ترمنځ شوي نظراتو ته بنسټ وشوي.
+home_solutions_list_evolve_title: اوږدوالي
+home_solutions_list_human_p: داسې چې پوهنتونو له کارولو او د استعمال کولو لپاره مونږ د په کار کې کارنانو ته همداراندې په لانديو کې د راهنمایي او خدماتونو ته د مختصر سره حمایت کولی.
+home_solutions_list_human_title: انساني
+home_solutions_list_secure_p: د مونږ په کار کې مشتریانو د شخصي معلوماتو په امنیت او حفاظت کې ته مونږ د یوازې مهمترین پامو خپل وازمېږي. دا چې دا ابزار اخلاقي او بې امنیتي نه دی، دا هم تصدیق شوي ده چې د RGPD پورې موافقت شوي ده.
+home_solutions_list_secure_title: محفوظ
+home_solutions_list_solidarity_alt_img: د همکاري سولوشنونو په تصویر
+home_solutions_list_solidarity_p: ټوله مونږ دا همداري توګه کار وکولو او دا په توګه چې ټولو ټوله اجتماعي کشورونو لپاره د دې خدمتونو د همدارۍ بریالیتو
+home_solutions_list_solidarity_title: پیوستون 
+
+home_our_solutions_title: د موږ لارښودونه
+home_our_solutions_text_cfn: د اوږدونو له دې وسیله سره لګولو او د زده کولو لپاره مستحکمونه شخصونه پر مختلفه جماعتونو ته د پیدا کولو او ټولنیز شخصونو ته د دې هغه د خدمتونه چې د سمونو لپاره اړتیا دی.
+home_our_solutions_text_rp: د دې وسیله سره کار وکړل شوې کسانو پر جارېدونکونه ته پلټنه شي چې د هغه جارېدونې ترلاسه شوي دې وړانديزې، د توانائي او د خدمتونو ځینې د اوږدونو پرمختګ سره پاتې شي.
+innovative_solution_digital_divide: د ریاستي، خصوصي او اجتماعي مراکزونو ترلاسه کولو لپاره دا وسیله استعمال شي چې د دوی پر خرڅلاو او دوی تمکینو په بدل کې د ټولنیز مراکزونو ته د دې هغه د خدمتونو ترلاسه کولو پلټنه کوو.
+
+home_reconnect_centers_title: 'ری‌لې اتصال'
+home_reconnect_centers_p: '« لس رلی ای ریکنیکټ» د اجتماعي ساختونو دي چې د کارن له خپلواکومې کښې د «ریکنیکټ» حساب پرانستلو او کارولو سره مرسته کوي، کوم په ډیرې حالتونه کې خپل معلوماتو او ضروري اسنادونه اوسندل او د خپلواکومې سرپرستانو سره ورته شي. ».'
+
+home_press_title: د شاهدانونه
+
+contact_us_title: د کتنې مخکښې وکړئ؟
+contact_us_button: موږ سره اړیکه وکړئ!
+contact_us_title2: د ما نیوز لیټر ته اشتراک ورکړئ!
+
+footer.aide: راهنما
+footer.autres: دیگر
+footer.cgsCs: 'CGS Cloud Solidaire'
+footer.cguReconnect: 'CGU site vitrine'
+footer.cgv: CGU
+footer.cloudSolidaire: 'Cloud solidaire'
+footer.commentCaMarche: 'Comment ça marche'
+footer.confidentialiteCs: 'Politique de confidentialité Cloud Solidaire'
+footer.confidentialiteReconnect: 'Politique de confidentialité site vitrine'
+footer.connexion: د ننوتلو اړیکه
+footer.contact: اړیکه
+footer.copyright: '©2021 Reconnect - ټولې حقونه محفوظي'
+footer.deconnexion: د ننول
+footer.devenirUnRelai: 'Devenir un Relais Reconnect'
+footer.faq: پوښتنونه
+footer.groupeSos: 'Groupe SOS'
+footer.inscription: نوملنه
+footer.mentionsLegales: 'Mentions légales'
+footer.modeDemploi: 'Mode d''emploi'
+footer.partenaires: همکاران
+footer.planDuSite: 'Plan du site'
+footer.reconnect: Reconnect
+footer.trouverUnCentreSocial: 'ته کول یو وسله اخلاقي مرکز پیدا کړئ'
+footer.utilisation: کارولو
+footer_CGS_rp: CGS د Reconnect Pro
+footer_CGS_vault: کوفر-فورت د دیجیتل کیفی خوندی د Reconnect
+footer_alt_logo_afnic: لوګو afnic
+footer_alt_logo_ffe: لوګو د فرانسه په پرخاست لاندیس
+footer_alt_logo_groupe_sos_solidarite: لوګو د SOS Solidarités ګروپ
+footer_confidentiality_rp: د Reconnect Pro د پرختنی سياسې
+footer_confidentiality_vault: د کوفر-فورت د دیجیتل کیفی خوندی سياسې
+footer_copyright: Reconnect - ټولې حقونه محفوظي
+footer_discover_rp: د Reconnect Pro لیدلو
+footer_discover_vault: د کوفر-فورت د دیجیتل کیفی خوندی لیدلو
+footer_group_sos_text: Reconnect د SOS Solidarités ګروپ کې د نه لږو کاروونکو ته ورته شوی یوه انجمن دی، چې دا ګروپ SOS کې د نه څلورو نهایت برخهونو ته له لارې کاروي.
+footer_partners_text: 'Reconnect په لارې ده :'
+
+vault: کمپیوټري خزانه
+contact_page_title: مونسان سره اړیکه کړئ
+website_CGS: سایټ د کمپیوټري د امانتونو د سیستم کمک
+website_confidentiality: د سایټ د رازیتو لارښود
+website_legal: قانوني تذکره

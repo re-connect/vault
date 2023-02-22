@@ -631,3 +631,60 @@ wrong_current_password: 'كلمة السر الخاصة بك الحالية خا
 delete_currently_shared_document_warning: تتم مشاركة المستند لمدة %daysCount% يومًا أخرى. إذا قمت بحذف هذا المستند ، فسيتم التراجع عن المشاركة
 sms_sent_failed: فشل إرسال الرسائل القصيرة ، يرجى التحقق من صحة رقم الهاتف
 yes: نعم
+
+header_link_cfn: 'الصندوق الآمن<span class="d-lg-block"> الرقمي</span>'
+header_link_contact: 'اتصل بنا<span class="d-lg-block"></span>'
+header_link_rp: 'الحل<span class="d-lg-block"> المهني</span>'
+header_link_who_we_are: 'من نحن؟<span class="d-lg-block"></span>'
+digital_cares: "الدعم الرقمي\n"
+
+home_who_we_are_p1: ريكونيكت هي جمعية غير هادفة للربح تهدف إلى تسهيل عملية اندماج المجتمعات المحلية وتبسيط الدعم الذي يقدمه المهنيون لهم.
+home_who_we_are_p2: نؤمن بأن العمل الاجتماعي والرقمي يتماشيان مع بعضهما البعض لتحقيق الاندماج الاجتماعي للفئات الأكثر ضعفًا في المجتمعات.
+home_who_we_are_p3: منذ عام 2015، نحن ملتزمون بالمستفيدين والمهنيين في العمل الاجتماعي، ونقدم حلولًا لتلبية احتياجاتهم.
+home_who_we_are_title: "من نحن؟"
+
+home_solutions_list_title: "حلولنا هي"
+home_solutions_list_accessible_p: تم تصميم واجهات أدواتنا بطريقة سهلة وبديهية لجعل استخدامها ممتعًا وسهلًا، حتى بالنسبة لأولئك الذين ليسوا ملمين بالتكنولوجيا الرقمية.
+home_solutions_list_accessible_title: "يمكن الوصول إليها"
+home_solutions_list_evolve_p: تم تطوير حلولنا بالتعاون مع مؤسسات في مجال العمل الاجتماعي لتلبية احتياجات القطاع بشكل أفضل. ويتم تحسينها يوميًا بناءً على تعليقات المستخدمين لدينا.
+home_solutions_list_evolve_title: "تتطور"
+home_solutions_list_human_p: يتلقى مستخدمونا المهنيون الدعم في تبني استخدام حلولنا من خلال تقديم تدريب شامل ودعم عبر الإنترنت.
+home_solutions_list_human_title: "حلول إنسانية"
+home_solutions_list_secure_p: الأمان وحماية البيانات الشخصية لمستخدمينا هي أولويتنا القصوى. تم تصميم وتطوير أدواتنا بطريقة أخلاقية وآمنة وتتوافق مع القوانين الأوروبية لحماية البيانات (RGPD).
+home_solutions_list_secure_title: الأمن
+home_solutions_list_solidarity_alt_img: أيقونة الحلول التضامنية
+home_solutions_list_solidarity_p: تعمل جميع حلولنا بأسعار تضامنية لتوفير خدمة متاحة لجميع الهياكل الاجتماعية.
+home_solutions_list_solidarity_title: التضامنية
+home_our_solutions_title: حلولنا
+home_our_solutions_text_cfn: الأداة التي تسهل الوصول إلى حقوق الفئات الضعيفة والرفقاء الاجتماعيين.
+home_our_solutions_text_rp: الأداة المهنية التي تسمح بضمان استمرار الرحلات الاجتماعية.
+innovative_solution_digital_divide: الحلول لمواجهة تحديات الفجوة الرقمية.
+home_reconnect_centers_p: الـ Relais Reconnect هي الهياكل الاجتماعية التي تستخدم حلول Reconnect وتوفر المساعدة للمستخدمين في إنشاء واستخدام خزانة المعلومات الرقمية الخاصة بهم.
+home_reconnect_centers_title: الـ Relais Reconnect
+
+home_press_title: الشهادات
+
+contact_us_title: هل تريد معرفة المزيد؟
+contact_us_button: تواصل معنا!
+contact_us_title2: اشترك في نشرتنا الإخبارية!
+footer.cgsCs: 'CGS Cloud Solidaire'
+footer.cguReconnect: 'CGU موقع الويب'
+footer.confidentialiteCs: 'سياسة الخصوصية لـ Cloud Solidaire'
+footer.confidentialiteReconnect: 'سياسة الخصوصية لموقع Reconnect'
+footer_CGS_rp: CGS Reconnect Pro
+footer_CGS_vault: CGS الخزنة الرقمية
+footer_alt_logo_afnic: شعار afnic
+footer_alt_logo_ffe: شعار مؤسسة فرنسا تتحرك
+footer_alt_logo_groupe_sos_solidarite: شعار مجموعة SOS للتضامن
+footer_confidentiality_rp: سياسة الخصوصية لـ Reconnect Pro
+footer_confidentiality_vault: سياسة الخصوصية للخزنة الرقمية
+footer_copyright: Reconnect - جميع الحقوق محفوظة
+footer_discover_rp: اكتشاف Reconnect Pro
+footer_discover_vault: اكتشاف الخزنة الرقمية
+footer_group_sos_text: Reconnect هي جزء من جمعية Groupe SOS Solidarités وهي إحدى تسع أنشطة لـ Groupe SOS التي تعمل على إدماج الأشخاص الذين يعانون من ظروف الضعف.
+footer_partners_text: 'تم دعم Reconnect بواسطة:'
+vault: الصندوق الآمن الرقمي
+contact_page_title: اتصل بنا
+website_CGS: CGS لموقع الويب
+website_confidentiality: سياسة الخصوصية للموقع الإلكتروني
+website_legal: الإشعار القانوني للموقع الإلكتروني

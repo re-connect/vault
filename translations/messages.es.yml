@@ -23,3 +23,83 @@ no: No
 tax: Impuestos
 work: Trabajo
 yes: Sí
+
+header_link_cfn: 'La caja fuerte<span class="d-lg-block"> digital</span>'
+header_link_contact: 'Contáctanos<span class="d-lg-block"></span>'
+header_link_rp: 'La Solución<span class="d-lg-block"> Pro</span>'
+header_link_who_we_are: '¿Quiénes<span class="d-lg-block"> somos?</span>'
+digital_cares: "El acompañamiento \n digital"
+
+home_who_we_are_p1: Reconnect es una asociación sin fines de lucro cuya misión es facilitar la progresión de los recorridos de inserción social al tiempo que se simplifica el acompañamiento de los profesionales.
+home_who_we_are_p2: Creemos que la acción social y lo digital ganan al trabajar juntos para permitir la inclusión social de las poblaciones vulnerables.
+home_who_we_are_p3: Desde 2015, nos comprometemos con los beneficiarios y profesionales de la acción social, creando soluciones para responder a sus necesidades.
+home_who_we_are_title: ¿Quiénes somos?
+
+home_solutions_list_title: Nuestras soluciones son
+home_solutions_list_accessible_p: Las interfaces de nuestras herramientas han sido diseñadas para que su uso sea agradable e intuitivo, incluso para personas alejadas de lo digital.
+home_solutions_list_accessible_title: Accesibles
+home_solutions_list_evolve_p: Nuestras soluciones han sido desarrolladas en colaboración con organismos del ámbito social para responder mejor a las necesidades del sector. Las mejoras diarias se basan en los comentarios de nuestros usuarios.
+home_solutions_list_evolve_title: Evolutivas
+home_solutions_list_human_p: Nuestros usuarios profesionales reciben apoyo en la adopción y el uso de nuestras soluciones gracias a una formación completa y un soporte en línea dedicado.
+home_solutions_list_human_title: Humanas
+home_solutions_list_secure_p: La seguridad y protección de los datos personales de nuestros usuarios son nuestra máxima prioridad. Nuestras herramientas están diseñadas y desarrolladas de manera ética y segura. Cumplen con el RGPD.
+home_solutions_list_secure_title: Seguras
+home_solutions_list_solidarity_alt_img: ícono soluciones solidarias
+home_solutions_list_solidarity_p: Todas nuestras soluciones funcionan con una tarifa solidaria para ofrecer un servicio accesible a todas las estructuras sociales.
+home_solutions_list_solidarity_title: Solidarias
+home_our_solutions_title: Nuestras soluciones
+home_our_solutions_text_cfn: La herramienta que facilita el acceso a los derechos de las poblaciones vulnerables y el acompañamiento social.
+home_our_solutions_text_rp: La herramienta profesional que permite garantizar la continuidad de los recorridos de inserción.
+innovative_solution_digital_divide: La solución para abordar los desafíos de la brecha digital.
+
+home_reconnect_centers_p: Los Relais Reconnect son las estructuras sociales que utilizan las soluciones Reconnect y acompañan a los usuarios en la creación y uso de su cofre-fuerte digital.
+home_reconnect_centers_title: Los Relais Reconnect
+
+home_press_title: Testimonios
+
+contact_us_title: ¿Quiere saber más?
+contact_us_button: ¡Contáctenos!
+contact_us_title2: ¡Suscríbase a nuestro boletín informativo!
+
+footer.aide: Ayuda
+footer.autres: Otros
+footer.cgsCs: 'CGS Cloud Solidaire'
+footer.cguReconnect: 'CGU sitio web'
+footer.cgv: CGU
+footer.cloudSolidaire: 'Cloud solidaire'
+footer.commentCaMarche: 'Cómo funciona'
+footer.confidentialiteCs: 'Política de privacidad Cloud Solidaire'
+footer.confidentialiteReconnect: 'Política de privacidad sitio web'
+footer.connexion: Conexión
+footer.contact: Contacto
+footer.copyright: '©2021 Reconnect - Todos los derechos reservados'
+footer.deconnexion: Desconexión
+footer.devenirUnRelai: 'Convertirse en un Relais Reconnect'
+footer.faq: Preguntas frecuentes
+footer.groupeSos: 'Groupe SOS'
+footer.inscription: Inscripción
+footer.mentionsLegales: 'Menciones legales'
+footer.modeDemploi: 'Instrucciones de uso'
+footer.partenaires: Socios
+footer.planDuSite: 'Mapa del sitio'
+footer.reconnect: Reconnect
+footer.trouverUnCentreSocial: 'Encontrar un centro social'
+footer.utilisation: Uso
+footer_CGS_rp: CGS de Reconnect Pro
+footer_CGS_vault: CGS del cofre-fuerte digital
+footer_alt_logo_afnic: logo afnic
+footer_alt_logo_ffe: logo fundación la france s'engage
+footer_alt_logo_groupe_sos_solidarite: logo groupe sos solidarité
+footer_confidentiality_rp: Política de privacidad de Reconnect Pro
+footer_confidentiality_vault: Política de privacidad del cofre-fuerte digital
+footer_copyright: Reconnect - Todos los derechos reservados
+footer_discover_rp: Descubrir Reconnect Pro
+footer_discover_vault: Descubrir el cofre-fuerte digital
+footer_group_sos_text: Reconnect es una asociación de Groupe SOS Solidarités, una de las nueve actividades de Groupe SOS, que actúa por la inclusión de personas en situación de vulnerabilidad.
+footer_partners_text: 'Reconnect es apoyado por:'
+
+vault: Caja fuerte digital
+contact_page_title: Contáctenos
+website_CGS: CGS del sitio web
+website_confidentiality: Política de privacidad del sitio web
+website_legal: Aviso legal del sitio web
