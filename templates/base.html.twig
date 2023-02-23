@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     {% if app.environment == 'prod' %}
+        {{ include('v2/common/_crisp.html.twig') }}
         <meta name="google-site-verification" content="{{ googleSiteVerification }}">
     {% endif %}
     <title>{% block metaTitle %}{% trans %}home.metaTitleV2{% endtrans %}{% endblock metaTitle %}
