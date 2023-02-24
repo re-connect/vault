@@ -1,0 +1,8 @@
+framework:
+    html_sanitizer:
+        sanitizers:
+            app.note_sanitizer:
+                allow_safe_elements: true
+                allow_static_elements: true
+                block_elements:
+                    - script

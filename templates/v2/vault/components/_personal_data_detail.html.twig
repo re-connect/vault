@@ -11,7 +11,7 @@
             <div class="row px-3">
                 {% for label, value in information %}
                     <div class="col-5">{{ label|trans }} :</div>
-                    <div class="col-7">{{ rawValue is defined ? value|raw : value }}</div>
+                    <div class="col-7">{{ readHtml is defined ? value|raw|sanitize_html('app.note_sanitizer') : value }}</div>
                 {% endfor %}
             </div>
             <div class="row mx-1 mt-2">
