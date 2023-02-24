@@ -4,6 +4,7 @@
         'note.contenuLabel': note.contenu,
         'add_date': note.createdAt|format_datetime(),
     },
+    'rawValue': true,
     'editPath': path('note_edit', {'id': note.id}),
     'cancelPath': path('note_list', {'id': beneficiary.id}),
 }) }}
