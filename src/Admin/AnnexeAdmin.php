@@ -39,7 +39,8 @@ final class AnnexeAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->add('url')
+            ->add('url', null, $this->isCurrentRoute('edit') ? ['attr' => [
+                'read_only' => true, ], 'disabled' => true] : [])
             ->add('fichierFile', VichFileType::class, [
                 'required' => false,
                 'label' => 'Fichier',
