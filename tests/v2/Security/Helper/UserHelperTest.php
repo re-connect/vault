@@ -29,7 +29,7 @@ class UserHelperTest extends KernelTestCase
 
     }
 
-    public function testCanManageBeneficiary()
+    public function testCanManageBeneficiary(): void
     {
         // No relay common
         self::assertFalse($this->userHelper->canManageBeneficiary($this->membre->getUser(), $this->beneficiary));

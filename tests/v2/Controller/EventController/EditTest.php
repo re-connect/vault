@@ -68,8 +68,8 @@ class EditTest extends AbstractControllerTest implements TestRouteInterface, Tes
     }
 
     /**
-     * @param array<string, string> $values
-     * @param array<array>          $errors
+     * @param array<string, string>         $values
+     * @param array<array<string, ?string>> $errors
      *
      * @dataProvider provideTestFormIsNotValid
      */
@@ -100,6 +100,9 @@ class EditTest extends AbstractControllerTest implements TestRouteInterface, Tes
         ];
     }
 
+    /**
+     * @return string[]
+     */
     private function getTestValues(): array
     {
         $values = self::FORM_VALUES;

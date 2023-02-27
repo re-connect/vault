@@ -102,15 +102,19 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
 
-    /**  @dataProvider provideTestFormIsValid */
+    /**
+     * @param array<string,string> $values
+     *
+     * @dataProvider provideTestFormIsValid
+     */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
         $this->assertFormIsValid($url, $formSubmit, $values, $email, $redirectUrl);
     }
 
     /**
-     * @param array<string, string> $values
-     * @param array<array>          $errors
+     * @param array<string, string>         $values
+     * @param array<array<string, ?string>> $errors
      *
      * @dataProvider provideTestFormIsNotValid
      */

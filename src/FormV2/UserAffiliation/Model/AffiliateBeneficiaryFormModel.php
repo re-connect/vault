@@ -31,11 +31,17 @@ class AffiliateBeneficiaryFormModel
         return $this;
     }
 
+    /**
+     * @return Collection<int, Centre>
+     */
     public function getRelays(): Collection
     {
         return $this->relays;
     }
 
+    /**
+     * @param Collection<int, Centre> $relays
+     */
     public function setRelays(Collection $relays): self
     {
         $this->relays = $relays;

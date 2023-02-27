@@ -91,8 +91,8 @@ class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInt
     }
 
     /**
-     * @param array<string, string> $values
-     * @param array<array>          $errors
+     * @param array<string, string>         $values
+     * @param array<array<string, ?string>> $errors
      *
      * @dataProvider provideTestFormIsNotValid
      */

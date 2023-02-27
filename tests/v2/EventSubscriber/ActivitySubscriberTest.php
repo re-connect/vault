@@ -14,7 +14,7 @@ use Symfony\Component\Security\Http\Event\LoginSuccessEvent;
 
 class ActivitySubscriberTest extends TestCase
 {
-    public function testEventSubscription()
+    public function testEventSubscription(): void
     {
         $this->assertArrayHasKey(LoginSuccessEvent::class, ActivitySubscriber::getSubscribedEvents());
     }
