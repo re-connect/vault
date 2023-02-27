@@ -1,5 +1,7 @@
 {% extends 'v2/pro_standard_layout.html.twig' %}
-{% form_theme form 'v2/user_creation/form_theme/create_user_form_theme.html.twig' %}
+{% if form %}
+    {% form_theme form 'v2/user_creation/form_theme/create_user_form_theme.html.twig' %}
+{% endif %}
 
 {% block title %}
     {{ 'choose_beneficiary_title_part_1'|trans }}
@@ -16,7 +18,7 @@
 {% endblock %}
 
 {% block content %}
-    {% if formModel.relays|length > 0 %}
+    {% if availableRelays|length > 0 %}
         {{ include('v2/user_affiliation/beneficiary/_relays_form.html.twig') }}
     {% else %}
         <h4 class="text-center my-4">
