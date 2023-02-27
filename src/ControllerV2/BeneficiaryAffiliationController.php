@@ -66,6 +66,7 @@ class BeneficiaryAffiliationController extends AbstractController
 
         $form = $this->createForm(AffiliateBeneficiaryType::class, $affiliateBeneficiaryModel, [
             'action' => $this->generateUrl('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]),
+            'beneficiary' => $beneficiary,
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
