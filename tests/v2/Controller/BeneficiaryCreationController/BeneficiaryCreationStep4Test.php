@@ -32,7 +32,11 @@ class BeneficiaryCreationStep4Test extends AbstractControllerTest implements Tes
         yield 'Should return 403 status code when authenticated as beneficiary' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL];
     }
 
-    /**  @dataProvider provideTestFormIsValid */
+    /**
+     * @param array<string, string> $values
+     *
+     * @dataProvider provideTestFormIsValid
+     */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
         $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object();

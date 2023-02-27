@@ -4,14 +4,18 @@ namespace App\Tests\v2\Controller;
 
 interface TestFormInterface
 {
-    /**  @dataProvider provideTestFormIsValid */
+    /**
+     * @param array<string, string> $values
+     *
+     * @dataProvider provideTestFormIsValid
+     */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void;
 
     public function provideTestFormIsValid(): ?\Generator;
 
     /**
-     * @param array<string, string> $values
-     * @param array<array>          $errors
+     * @param array<string, string>         $values
+     * @param array<array<string, ?string>> $errors
      *
      * @dataProvider provideTestFormIsNotValid
      */

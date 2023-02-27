@@ -51,6 +51,9 @@ class BeneficiaryCreationManager
         }
     }
 
+    /**
+     * @return string[]
+     */
     public function getStepValidationGroup(bool $remotely, int $step): array
     {
         $validationGroup = $remotely ? CreateBeneficiaryType::REMOTELY_STEP_VALIDATION_GROUP : CreateBeneficiaryType::DEFAULT_STEP_VALIDATION_GROUP;

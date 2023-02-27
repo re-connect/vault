@@ -94,8 +94,8 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
     }
 
     /**
-     * @param array<string, string> $values
-     * @param array<array>          $errors
+     * @param array<string, string>         $values
+     * @param array<array<string, ?string>> $errors
      *
      * @dataProvider provideTestFormIsNotValid
      */

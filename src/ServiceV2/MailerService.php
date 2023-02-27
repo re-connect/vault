@@ -22,6 +22,9 @@ class MailerService
         'es' => 3633402,
     ];
 
+    /**
+     * @param string[] $adminMails
+     */
     public function __construct(
         private readonly TranslatorInterface $translator,
         private readonly MailerInterface $mailer,
@@ -49,6 +52,9 @@ class MailerService
         $this->sendTemplate($templateId, $email, $variables);
     }
 
+    /**
+     * @param array<string, ?string> $variables
+     */
     private function sendTemplate(int $id, string $dest, array $variables = []): void
     {
         $body = [

@@ -29,7 +29,7 @@ class UserSettingsType extends AbstractType
         $this->translator = $translator;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         /** @var User $user */
         $user = $this->security->getUser();
