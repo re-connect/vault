@@ -39,17 +39,11 @@ class DocumentManager
     ) {
     }
 
-    /**
-     * @return Document[]
-     */
     public function getAllDocumentsWithUrl(Beneficiaire $beneficiary, ?Dossier $folder = null): array
     {
         return $this->getDocumentsWithUrl($this->repository->findAllByBeneficiary($beneficiary, $folder));
     }
 
-    /**
-     * @return Document[]
-     */
     public function getSharedDocumentsWithUrl(Beneficiaire $beneficiary, ?Dossier $folder = null): array
     {
         return $this->getDocumentsWithUrl($this->repository->findSharedByBeneficiary($beneficiary, $folder));
@@ -194,11 +188,6 @@ class DocumentManager
         return null;
     }
 
-    /**
-     * @param UploadedFile[] $files
-     *
-     * @return Document[]
-     */
     public function uploadFiles(array $files, Beneficiaire $beneficiary, ?Dossier $folder = null): array
     {
         return array_map(fn (UploadedFile $file) => $this->uploadFile($file, $beneficiary, $folder), $files);

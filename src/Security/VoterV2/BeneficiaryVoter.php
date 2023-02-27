@@ -16,18 +16,12 @@ class BeneficiaryVoter extends Voter
     {
     }
 
-    /**
-     * @param object $subject
-     */
     protected function supports(string $attribute, $subject): bool
     {
         return self::UPDATE === $attribute
             && $subject instanceof Beneficiaire;
     }
 
-    /**
-     * @param Beneficiaire $subject
-     */
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
@@ -42,7 +36,7 @@ class BeneficiaryVoter extends Voter
         };
     }
 
-    private function canUpdateBeneficiary(User $user, Beneficiaire $subject): bool
+    private function canUpdateBeneficiary(User $user, $subject): bool
     {
         return match ($user->getTypeUser()) {
             User::USER_TYPE_BENEFICIAIRE => $user->getSubjectBeneficiaire() === $subject,

@@ -9,7 +9,7 @@ use App\Tests\v2\API\v3\AbstractApiTest;
 
 class ContactApiV3Test extends AbstractApiTest
 {
-    public function testGetCollection(): void
+    public function testGetCollection()
     {
         $this->markTestSkipped('Contact api ressource is currently disabled');
         $this->assertEndpoint(
@@ -26,7 +26,7 @@ class ContactApiV3Test extends AbstractApiTest
         );
     }
 
-    public function testGetOne(): void
+    public function testGetOne()
     {
         $this->markTestSkipped('Contact api ressource is currently disabled');
         $contact = ContactFactory::findOrCreate([
@@ -51,7 +51,7 @@ class ContactApiV3Test extends AbstractApiTest
         );
     }
 
-    public function testPost(): void
+    public function testPost()
     {
         $this->markTestSkipped('Contact api ressource is currently disabled');
         $contact = [
@@ -80,7 +80,7 @@ class ContactApiV3Test extends AbstractApiTest
         );
     }
 
-    public function testPut(): void
+    public function testPut()
     {
         $this->markTestSkipped('Contact api ressource is currently disabled');
         $contact = ContactFactory::findOrCreate([
@@ -109,7 +109,7 @@ class ContactApiV3Test extends AbstractApiTest
         );
     }
 
-    public function testPatch(): void
+    public function testPatch()
     {
         $this->markTestSkipped('Contact api ressource is currently disabled');
         $contact = ContactFactory::findOrCreate([
@@ -138,7 +138,7 @@ class ContactApiV3Test extends AbstractApiTest
         );
     }
 
-    public function testDelete(): void
+    public function testDelete()
     {
         $this->markTestSkipped('Contact api ressource is currently disabled');
         $contact = ContactFactory::findOrCreate([
