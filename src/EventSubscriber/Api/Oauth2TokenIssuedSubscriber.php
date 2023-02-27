@@ -23,7 +23,7 @@ class Oauth2TokenIssuedSubscriber implements EventSubscriberInterface
         $this->em = $em;
     }
 
-    public function onAccessTokenIssued(RequestAccessTokenEvent $event): void
+    public function onAccessTokenIssued(RequestAccessTokenEvent $event)
     {
         $userId = $event->getAccessToken()->getUserIdentifier();
         if ($userId) {

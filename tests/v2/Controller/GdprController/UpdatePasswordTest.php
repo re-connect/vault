@@ -116,8 +116,8 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
     }
 
     /**
-     * @param array<string, string>         $values
-     * @param array<array<string, ?string>> $errors
+     * @param array<string, string> $values
+     * @param array<array>          $errors
      *
      * @dataProvider provideTestFormIsNotValid
      */

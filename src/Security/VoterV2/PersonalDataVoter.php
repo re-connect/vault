@@ -18,18 +18,12 @@ class PersonalDataVoter extends Voter
         $this->checker = $checker;
     }
 
-    /**
-     * @param object $subject
-     */
     protected function supports(string $attribute, $subject): bool
     {
         return self::UPDATE === $attribute
             && ($subject instanceof DonneePersonnelle);
     }
 
-    /**
-     * @param DonneePersonnelle $subject
-     */
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();

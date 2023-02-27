@@ -58,8 +58,8 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
     }
 
     /**
-     * @param array<string, string>         $values
-     * @param array<array<string, ?string>> $errors
+     * @param array<string, string> $values
+     * @param array<array>          $errors
      *
      * @dataProvider provideTestFormIsNotValid
      */
@@ -107,9 +107,6 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
         ];
     }
 
-    /**
-     * @return string[]
-     */
     private function getTestValues(): array
     {
         $values = self::FORM_VALUES;

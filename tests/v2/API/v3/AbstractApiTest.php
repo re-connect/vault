@@ -21,9 +21,6 @@ abstract class AbstractApiTest extends ApiTestCase
         $this->client = static::createClient();
     }
 
-    /**
-     * @param array<string, string> $expectedJson
-     */
     public function assertEndpoint(string $clientName, string $endpoint, string $method, int $expectedStatusCode, array $expectedJson = null, mixed $body = null): void
     {
         $this->loginAsClient($clientName);
@@ -55,7 +52,7 @@ abstract class AbstractApiTest extends ApiTestCase
         $this->accessToken = $content['access_token'];
     }
 
-    public function generateUrl(string $url): string
+    public function generateUrl($url): string
     {
         return sprintf('/api/v3%s?access_token=%s', $url, $this->accessToken);
     }

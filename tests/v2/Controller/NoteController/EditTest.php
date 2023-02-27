@@ -105,8 +105,8 @@ class EditTest extends AbstractControllerTest implements TestRouteInterface, Tes
     }
 
     /**
-     * @param array<string, string>         $values
-     * @param array<array<string, ?string>> $errors
+     * @param array<string, string> $values
+     * @param array<array>          $errors
      *
      * @dataProvider provideTestFormIsNotValid
      */
