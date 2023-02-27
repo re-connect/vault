@@ -15,31 +15,24 @@
     </td>
     <td class="bg-white borderless align-middle">
         {% if folder.documents is not empty %}
-            <a href="{{ path('folder_download', {'id': folder.id}) }}">
-                <i class="fas fa-file-download text-green"
-                   aria-hidden="true" title="{{ 'document.telecharger'|trans }}">
-
-                </i>
-            </a>
+            {{ include('v2/vault/components/_download_folder_document_button.html.twig', {
+                'path': path('folder_download', {'id': folder.id}),
+            }) }}
         {% else %}
             <i class="fas fa-file-download text-grey"
                aria-hidden="true" title="{{ 'dossier.vide'|trans }}">
             </i>
         {% endif %}
     </td>
-    <td class="bg-white borderless w-25 align-middle">
-        {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
-            'url': path('folder_toggle_visibility', {'id': folder.id}),
-            'item': folder,
-        }) }}
-    </td>
+    {% if app.user.isBeneficiaire %}
+        <td class="bg-white borderless w-25 align-middle">
+            {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
+                'url': path('folder_toggle_visibility', {'id': folder.id}),
+                'private': folder.bPrive,
+            }) }}
+        </td>
+    {% endif %}
     <td class="bg-white borderless text-end pe-3 pe-sm-4 align-middle" {{ stimulus_controller('dropdown-menu') }}>
-        <button class="btn btn-green text-white py-0"
-                data-dropdown-menu-target="button"
-                data-action="click->dropdown-menu#toggle"
-        >
-            <i class="fas fa-ellipsis-h"></i>
-        </button>
         {% set deleteMessage = folder.hasDocuments ? 'folder_contains_documents_alert' : 'modal_message_folder_deletev2'%}
         {{ include('v2/vault/components/_action_dropdown.html.twig', {
             'editPath': path('folder_rename', {'id': folder.id}),
@@ -48,6 +41,10 @@
             'delete': {
                 'path': path('folder_delete', {'id': folder.id}),
                 'message': deleteMessage|trans({'%name%': folder.nom}),
+            },
+            'switchPrivate': {
+                'path': path('folder_toggle_visibility', {'id': folder.id}),
+                'message': 'switch_content_private_confirm'|trans,
             },
         }) }}
     </td>
