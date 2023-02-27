@@ -31,11 +31,7 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
         yield 'Should return 403 status code when authenticated as beneficiary' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL];
     }
 
-    /**
-     * @param array<string, string> $values
-     *
-     * @dataProvider provideTestFormIsValid
-     */
+    /**  @dataProvider provideTestFormIsValid */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
         $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->object();
@@ -56,9 +52,6 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
     }
 
     /**
-     * @param array<string, string>         $values
-     * @param array<array<string, ?string>> $errors
-     *
      * @dataProvider provideTestFormIsNotValid
      */
     public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void

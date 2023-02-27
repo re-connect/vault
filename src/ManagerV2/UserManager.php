@@ -92,9 +92,6 @@ class UserManager
         return (int) str_replace('-', '', str_replace($baseUsername, '', $username));
     }
 
-    /**
-     * @param User[] $homonyms
-     */
     private function getMaxHomonymIndex(string $baseUsername, array $homonyms): int
     {
         return max(
@@ -102,9 +99,6 @@ class UserManager
         );
     }
 
-    /**
-     * @param User[] $homonyms
-     */
     private function getNextHomonymUsername(string $baseUsername, array $homonyms): string
     {
         return sprintf('%s-%d', $baseUsername, $this->getMaxHomonymIndex($baseUsername, $homonyms) + 1);

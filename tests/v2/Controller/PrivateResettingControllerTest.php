@@ -67,7 +67,7 @@ class PrivateResettingControllerTest extends AuthenticatedTestCase
         self::assertSame($firstPasswordRequest->getId(), $secondPasswordRequest->getId());
     }
 
-    public function testPrivateRequestSms(): void
+    public function testPrivateRequestSms()
     {
         $this->beneficiaryUser->setTelephone('0611111111');
         $this->em->flush();
@@ -107,7 +107,7 @@ class PrivateResettingControllerTest extends AuthenticatedTestCase
         self::assertTrue($this->passwordHasher->isPasswordValid($this->beneficiaryUser, 'newPassword'));
     }
 
-    public function testPrivateRequestQuestion(): void
+    public function testPrivateRequestQuestion()
     {
         $this->beneficiaryUser->getSubjectBeneficiaire()
             ->setQuestionSecrete('Où fait-il le plus beau ?')
@@ -145,7 +145,7 @@ class PrivateResettingControllerTest extends AuthenticatedTestCase
         self::assertTrue($this->passwordHasher->isPasswordValid($this->beneficiaryUser, 'newPassword'));
     }
 
-    public function testPrivateRequestRandom(): void
+    public function testPrivateRequestRandom()
     {
         // Pro reset password with random code and logout
         $this->client->loginUser($this->proUser);

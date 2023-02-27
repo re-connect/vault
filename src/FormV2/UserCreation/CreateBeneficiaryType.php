@@ -135,9 +135,6 @@ class CreateBeneficiaryType extends AbstractType
         ]);
     }
 
-    /**
-     * @param array<string, string> $secretQuestions
-     */
     private function getSecretQuestionDefaultValue(Beneficiaire $beneficiary, array $secretQuestions): string
     {
         if ($beneficiarySecretQuestion = $beneficiary->getQuestionSecrete()) {

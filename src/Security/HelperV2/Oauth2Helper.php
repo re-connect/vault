@@ -21,7 +21,6 @@ class Oauth2Helper
     public function getClient(?OAuth2Token $token = null): ?Client
     {
         if (!$token) {
-            /** @var OAuth2Token $token * */
             $token = $this->tokenStorage->getToken();
         }
 
