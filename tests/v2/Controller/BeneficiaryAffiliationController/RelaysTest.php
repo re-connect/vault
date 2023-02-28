@@ -136,4 +136,33 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
             'div.invalid-feedback',
         ];
     }
+
+    /**
+     * @dataProvider provideTestFormIsNotValidNoRelaysSelected
+     */
+    public function testFormIsNotValidNoRelaysSelected(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
+    {
+        $beneficiary = BeneficiaireFactory::createOne()->object();
+        $url = sprintf($url, $beneficiary->getId());
+        $values = [];
+
+        $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email, $alternateSelector);
+    }
+
+    public function provideTestFormIsNotValidNoRelaysSelected(): ?\Generator
+    {
+        yield 'Should return an error when user select 0 relays' => [
+            self::URL,
+            'affiliate_beneficiary_relays',
+            'submit',
+            self::FORM_VALUES,
+            [
+                [
+                    'message' => 'beneficiary_affiliation_empty_relays',
+                ],
+            ],
+            MemberFixture::MEMBER_MAIL_WITH_RELAYS,
+            'div.invalid-feedback',
+        ];
+    }
 }
