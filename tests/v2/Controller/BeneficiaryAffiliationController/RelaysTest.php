@@ -165,4 +165,18 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
             'div.invalid-feedback',
         ];
     }
+
+    public function testInfoMessageIfNoRelayAvailable(): void
+    {
+        $professional = MembreFactory::createOne()->object();
+        $beneficiary = BeneficiaireFactory::createOne()->object();
+
+        $crawler = $this->assertRoute(
+            sprintf(self::URL, $beneficiary->getId()),
+            200,
+            $professional->getUser()->getEmail(),
+        )->getCrawler();
+
+        self::assertTrue(str_contains($crawler->text(), self::$translator->trans('beneficiary_already_affiliated_to_all_relays')));
+    }
 }
