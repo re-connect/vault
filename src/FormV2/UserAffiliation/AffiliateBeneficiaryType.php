@@ -22,6 +22,8 @@ class AffiliateBeneficiaryType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $beneficiary = $options['beneficiary'];
+
         $builder
             ->add('relays', EntityType::class, [
                 'multiple' => true,
@@ -32,7 +34,7 @@ class AffiliateBeneficiaryType extends AbstractType
                 'data' => null,
             ])
             ->add('secretAnswer', TextType::class, [
-                'label' => false,
+                'label' => $beneficiary?->getQuestionSecrete() ?? false,
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'secret_answer_optional',
@@ -44,6 +46,7 @@ class AffiliateBeneficiaryType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => AffiliateBeneficiaryFormModel::class,
+            'beneficiary' => null,
         ]);
     }
 }

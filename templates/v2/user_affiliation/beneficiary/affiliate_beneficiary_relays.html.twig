@@ -1,5 +1,4 @@
 {% extends 'v2/pro_standard_layout.html.twig' %}
-{% form_theme form 'v2/user_creation/form_theme/create_user_form_theme.html.twig' %}
 
 {% block title %}
     {{ 'choose_beneficiary_title_part_1'|trans }}
@@ -15,22 +14,4 @@
     </a>
 {% endblock %}
 
-{% block content %}
-    {% if formModel.relays|length > 0 %}
-        {{ include('v2/user_affiliation/beneficiary/_relays_form.html.twig') }}
-    {% else %}
-        <h4 class="text-center my-4">
-            {{ 'beneficiary_already_affiliated_to_all_relays'|trans }} :
-        </h4>
-        <div class="mt-2">
-            <ul class="list-group">
-                {% for relay in app.user.centres %}
-                    <li class="mx-auto list-group-item bg-light-blue text-primary border-0">
-                        <i class="fas fa-user me-1"></i>
-                        {{ relay.nom }}
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
-{% endblock %}
+{% block content %}{% endblock %}
