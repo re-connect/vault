@@ -13,7 +13,7 @@
     </span>
 {% endblock %}
 
-{% block home_button %}
+{% block homeButton %}
     {% if beneficiaryCreationProcess.id %}
         {{ include('v2/user_creation/beneficiary/_abort_button.html.twig', {beneficiaryCreationProcess}) }}
     {% else %}
