@@ -35,16 +35,16 @@ class CreateBeneficiaryType extends AbstractType
     {
         $beneficiary = $options['data'];
         $step = $options['step'];
-        $remotely = $beneficiary->getCreationProcess()?->isRemotely();
+        $remotely = $beneficiary->getCreationProcess()?->isRemotely() ?? false;
 
         if ($remotely) {
             match ($step) {
-                default => $this->addStep1Fields($builder),
+                default => $this->addStep1Fields($builder, $remotely),
                 2 => $this->addStep4Fields($builder, $beneficiary),
             };
         } else {
             match ($step) {
-                default => $this->addStep1Fields($builder),
+                default => $this->addStep1Fields($builder, $remotely),
                 2 => $this->addStep2Fields($builder, $beneficiary),
                 3 => $this->addStep3Fields($builder, $beneficiary),
                 4 => $this->addStep4Fields($builder, $beneficiary),
@@ -52,7 +52,7 @@ class CreateBeneficiaryType extends AbstractType
         }
     }
 
-    public function addStep1Fields(FormBuilderInterface $builder): void
+    public function addStep1Fields(FormBuilderInterface $builder, bool $remotely): void
     {
         $builder
             ->add('user', UserInformationType::class, [
@@ -63,6 +63,8 @@ class CreateBeneficiaryType extends AbstractType
                 'label' => 'birthdate',
                 'data' => new \DateTime('01/01/1975'),
             ]);
+
+        $builder->get('user')->get('telephone')->setRequired($remotely);
     }
 
     public function addStep2Fields(FormBuilderInterface $builder, Beneficiaire $beneficiary): void

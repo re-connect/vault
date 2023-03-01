@@ -1,0 +1,6 @@
+@import 'theme';
+
+form.display-required-labels label.required:after{
+    content: "*";
+    color: theme-color('red');
+}
