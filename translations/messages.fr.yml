@@ -1055,7 +1055,7 @@ user_firstVisit_membre_intro: 'Cet outil a pour fonction première la sauvegarde
 user_firstVisit_membre_intro_more: 'L’outil s’inscrit dans le cadre de l’accompagnement et pourra vous permettre d’assister les bénéficiaires dans la sauvegarde de leurs données.'
 user_firstVisit_membre_outro: 'L’équipe de Reconnect vous souhaite la bienvenue sur sa plateforme et une bonne utilisation.'
 user.firstVisit.membre.title: 'Bienvenue sur Reconnect le <span class="main">Cloud Solidaire</span>'
-user_firstVisit_rgpd: 'Lors de votre utilisation du coffre-fort numérique, Reconnect est amenée à traiter des données personnelles vous concernant. Dans ce cadre, vous pouvez accéder à vos données personnelles pour les rectifier, demander leur effacement ou exercer votre droit à la limitation du traitement de ses données. Pour exercer ces droits ou pour toute question sur le traitement de vos données personnelles, il est possible de contacter Reconnect à l’adresse <a href="mailto:%mailRGPD%">%mailRGPD%</a> ou par téléphone au 01 55 28 95 32.'
+user_firstVisit_rgpd: 'Lors de votre utilisation du coffre-fort numérique, Reconnect est amenée à traiter des données personnelles vous concernant. Dans ce cadre, vous pouvez accéder à vos données personnelles pour les rectifier, demander leur effacement ou exercer votre droit à la limitation du traitement de ses données. Pour exercer ces droits ou pour toute question sur le traitement de vos données personnelles, il est possible de contacter Reconnect à l’adresse <a href="mailto:%mailRGPD%">%mailRGPD%</a> ou par téléphone au %phoneNumber%.'
 user_firstVisit_rgpd_more: 'Pour plus d’informations sur le traitement de vos données personnelles, nous vous invitons également à consulter la Politique de Confidentialité du coffre-fort numérique accessible suivant ce lien: <a href="%linkRGPD%">%linkRGPD%</a>'
 user.parametres.changerMotDePasse: 'Modifier votre mot de passe'
 user.parametres.dateNaissanceLabel: 'Date de naissance'
@@ -1117,6 +1117,9 @@ you_can_download_mobile_app: Vous pouvez également télécharger l'application 
 devenirUnRelaiReconnect.creation.success: Le relai a été crée avec succès
 delete_currently_shared_document_warning: Le document est partagé pour encore %daysCount% jours. Si vous supprimez ce document, le partage sera annulé
 sms_sent_failed: L'envoi du SMS a échoué, veuillez vérifier que le numéro de téléphone est valide
+reconnect_contact_mail: contact@reconnect.fr
+reconnect_phone_number: 01 55 28 95 33
+reconnect_rgpd_mail: rgpd@reconnect.fr
 reminder_sms_content: "Bonjour \nRappel RDV : %name% \n%date%"
 add_si_siao_number_intro: "Si vous le désirez, vous pouvez renseigner un numéro SI-SIAO pour ce bénéficiaire : "
 add_si_siao_number: Ajouter numéro SI-SIAO
