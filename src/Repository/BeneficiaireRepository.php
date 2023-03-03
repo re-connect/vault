@@ -55,7 +55,7 @@ class BeneficiaireRepository extends ServiceEntityRepository
             return $this->createQueryBuilder('b')
                 ->join('b.externalLinks', 'c')
                 ->join('c.client', 'client')
-                ->andWhere('(c.distantId = :distantId AND client.randomId = :clientId) OR b.siSiaoNumber = :distantId')
+                ->andWhere('c.distantId = :distantId AND client.randomId = :clientId')
                 ->setParameters([
                     'distantId' => $distantId,
                     'clientId' => $clientIdentifier,
