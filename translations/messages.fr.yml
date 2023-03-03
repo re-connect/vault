@@ -1103,7 +1103,7 @@ user_parameters_title: '<span class="text-primary">Paramètres d''</span><span c
 user_shared_document_with_you: "L'utilisateur %nom% %prenom% souhaite partager ce document avec vous: \"%document%\""
 user_update_password_subtitle: Mot de passe de %subject%
 user_update_password_title: '<span class="text-primary">Renouvellement de </span><span class="rp-blue vault-green">mot de passe</span>'
-username: 'Identifiant'
+username: Nom d'utilisateur
 vault: Coffre-fort numérique
 website_CGS: CGS du site
 website_confidentiality: Politique de confidentialité du site

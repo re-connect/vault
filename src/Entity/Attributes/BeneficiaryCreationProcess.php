@@ -16,7 +16,7 @@ class BeneficiaryCreationProcess
         1 => 'identity',
         2 => 'password',
         3 => 'secret_question',
-        4 => 'centers',
+        4 => 'relays',
         5 => 'summary',
     ];
 
@@ -24,7 +24,7 @@ class BeneficiaryCreationProcess
     public const REMOTELY_TOTAL_FORM_STEPS = 2;
     public const REMOTELY_BREADCRUMB_STEPS = [
         1 => 'identity',
-        2 => 'centers',
+        2 => 'relays',
         3 => 'summary',
     ];
 
