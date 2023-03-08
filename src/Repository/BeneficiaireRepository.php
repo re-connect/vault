@@ -11,6 +11,7 @@ use App\Entity\MembreCentre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -175,7 +176,7 @@ class BeneficiaireRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findByAuthorizedProfessional(Gestionnaire|Membre $professional): array
+    public function findByAuthorizedProfessionalQueryBuilder(Gestionnaire|Membre $professional): QueryBuilder
     {
         $qb = $this->createQueryBuilder('b')
             ->innerJoin('b.beneficiairesCentres', 'bc')
@@ -201,7 +202,30 @@ class BeneficiaireRepository extends ServiceEntityRepository
                 ->setParameter('id', $professional->getId());
         }
 
-        return $qb->orderBy('u.username')
+        return $qb;
+    }
+
+    /**
+     * @return Beneficiaire[]
+     */
+    public function findByAuthorizedProfessional(Gestionnaire|Membre $professional): array
+    {
+        return $this->findByAuthorizedProfessionalQueryBuilder($professional)
+            ->orderBy('u.username')
+            ->getQuery()
+            ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
+            ->getResult();
+    }
+
+    /**
+     * @return Beneficiaire[]
+     */
+    public function filterByAuthorizedProfessional(Gestionnaire|Membre $professional, string $search): array
+    {
+        return $this->findByAuthorizedProfessionalQueryBuilder($professional)
+            ->andWhere('u.username LIKE :search')
+            ->setParameter('search', sprintf('%%%s%%', $search))
+            ->orderBy('u.username')
             ->getQuery()
             ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
             ->getResult();
