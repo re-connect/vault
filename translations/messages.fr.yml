@@ -45,6 +45,7 @@ back: Retour
 back_to_reconnect_admin: Retour à l'accueil
 confirm_beneficiary_creation_cancellation: Êtes vous sûr de vouloir annuler la création de ce bénéficiaire ?
 confirm_beneficiary_creation_remotely: "En cliquant sur confirmer, un SMS sera envoyé au bénéficiaire lui permettant d’activer son compte et de définir son mot de passe et la réponse à sa question secrète. \n Il pourra choisir d’accepter ou non le partage de ses informations avec le(s) relais ci-dessus."
+beneficiaries: Bénéficiaires
 beneficiary_added_to_relays: Les bénéficiaire a été ajouté aux relais selectionnés
 beneficiary_already_affiliated_to_all_relays: Le bénéficiaire est déjà affilié, ou invité, à l'ensemble de vos relais Reconnect
 beneficiary_created_successfully: Le bénéficiaire a bien été créé
@@ -926,6 +927,7 @@ print_account_creation_act: N'oubliez pas d'imprimer l'acte d'ouverture du compt
 postal_code: Code Postal
 previous: 'Précédent'
 private: Privé
+pro_manage_user_title_part_1: Gestion des
 public_reset_password: Je souhaite réinitialiser mon mot de passe
 public_reset_password_SMS_has_been_sent: Un SMS vous a été envoyé il contient un code secret nécessaire pour renouveller votre mot de passe, vous disposez d'un délai de 2 heures
 public_reset_password_SMS_wrong_code: Le Code que vous avez entré ne correspond pas à celui que vous avez reçu par SMS
