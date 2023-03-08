@@ -1099,4 +1099,18 @@ class User extends BaseUser implements \JsonSerializable
     {
         return !preg_match(self::BASE_USERNAME_REGEXP, $this->username);
     }
+
+    /**
+     * @return Collection <int, Centre>
+     */
+    public function getAffiliatedRelaysWithBeneficiaryManagement(): Collection
+    {
+        if ($this->isMembre()) {
+            return $this->getSubjectMembre()->getAffiliatedRelaysWithBeneficiaryManagement();
+        } elseif ($this->isGestionnaire()) {
+            return $this->getSubjectGestionnaire()->getCentres();
+        }
+
+        return new ArrayCollection();
+    }
 }

@@ -11,9 +11,7 @@
 {% endblock %}
 
 {% block actionBar %}
-    <div class="col-3" {{ stimulus_controller('ajax-search', {
-        'url': path('search_beneficiaries')
-    }) }}>
+    <div class="col-3">
         {{ form_start(form) }}
         <div class="input-group rounded-pill border bg-white z-0">
             <i class="fa fa-search text-grey p-2 input-group-text bg-white rounded-pill border-0"></i>

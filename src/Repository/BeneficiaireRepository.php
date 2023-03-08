@@ -220,9 +220,16 @@ class BeneficiaireRepository extends ServiceEntityRepository
     /**
      * @return Beneficiaire[]
      */
-    public function filterByAuthorizedProfessional(Gestionnaire|Membre $professional, string $search): array
+    public function filterByAuthorizedProfessional(Gestionnaire|Membre $professional, string $search, ?string $relayId): array
     {
-        return $this->findByAuthorizedProfessionalQueryBuilder($professional)
+        $qb = $this->findByAuthorizedProfessionalQueryBuilder($professional);
+
+        if ($relayId) {
+            $qb->andWhere('c.id = :relayId')
+                ->setParameter('relayId', $relayId);
+        }
+
+        return $qb
             ->andWhere('u.username LIKE :search')
             ->setParameter('search', sprintf('%%%s%%', $search))
             ->orderBy('u.username')
