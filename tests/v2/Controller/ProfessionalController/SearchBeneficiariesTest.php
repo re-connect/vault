@@ -9,7 +9,7 @@ use App\Tests\v2\Controller\TestRouteInterface;
 
 class SearchBeneficiariesTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const URL = '/professional/beneficiaries/search?word=%s';
+    private const URL = '/professional/beneficiaries/search';
 
     public function provideTestRoute(): ?\Generator
     {
@@ -21,7 +21,24 @@ class SearchBeneficiariesTest extends AbstractControllerTest implements TestRout
     /** @dataProvider provideTestRoute */
     public function testRoute(string $url, int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = null, string $method = 'GET'): void
     {
-        $url = sprintf($url, 'word');
-        $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method, true);
+        self::ensureKernelShutdown();
+        $clientTest = static::createClient();
+
+        if ($userMail) {
+            $user = $this->getTestUserFromDb($userMail);
+            $clientTest->loginUser($user);
+        }
+
+        $clientTest->xmlHttpRequest('POST', $url, [
+            'filter_beneficiary' => [
+                'search' => '',
+                'relay' => '',
+            ],
+        ]);
+
+        $this->assertResponseStatusCodeSame($expectedStatusCode);
+        if ($expectedRedirect) {
+            $this->assertResponseRedirects($expectedRedirect);
+        }
     }
 }

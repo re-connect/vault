@@ -41,7 +41,7 @@ class ProfessionalController extends AbstractController
                 'beneficiaries' => $repository->filterByAuthorizedProfessional(
                     $this->getUser()->getSubject(),
                     $formData['search'],
-                    $formData['relay'] ?? null
+                    $formData['relay'] ?? null,
                 ),
                 'form' => $this->createForm(FilterBeneficiaryType::class, null, [
                     'action' => $this->generateUrl('search_beneficiaries'),
