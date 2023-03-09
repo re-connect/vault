@@ -798,7 +798,9 @@ registerForm.ville: City
 relays: Relays
 reminder: Reminder
 reminder_sms: SMS Reminder
+remove_from_relay: Remove from relay
 rename: Rename
+renew_password: Renew password
 reset_password_requested_by_SMS: Current reset request was made by SMS
 reset_password_requested_by_email: Current reset request was made by email
 resetting.check_email: 'An Email was sent to the entered address. Click on the link in the Email in order to reset your password.'

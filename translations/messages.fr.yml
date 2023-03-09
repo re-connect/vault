@@ -963,7 +963,9 @@ registerForm.username: 'Nom d''utilisateur'
 registerForm.ville: Ville
 reminder: 'Rappel'
 reminder_sms: 'Rappel SMS'
+remove_from_relay: Retirer du relais
 rename: Renommer
+renew_password: Renouveler le mot de passe
 relays: Relais
 reset_password_requested_by_SMS: La demande de réinitialisation actuelle a été effectuée par SMS
 reset_password_requested_by_email: La demande de réinitialisation actuelle a été effectuée par email
