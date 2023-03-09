@@ -1,0 +1,30 @@
+{% set menuItems = {
+    'removeFromRelay': {
+        'icon': 'fa-times-circle',
+        'message': 'remove_from_relay',
+        'path': removeFromRelayPath,
+    },
+    'resetPassword': {
+        'icon': 'fa-redo',
+        'message': 'renew_password',
+        'path': resetPasswordPath,
+    }
+} %}
+
+<button class="btn btn-blue text-white py-0"
+        data-dropdown-menu-target="button"
+        data-action="click->dropdown-menu#toggle"
+>
+    <i class="fas fa-ellipsis-h"></i>
+</button>
+<div class="position-relative d-none" data-dropdown-menu-target="menu">
+    <ul class="action-dropdown shadow border-1 position-absolute z-1 bg-white list-group font-size-1 mt-2 end-0" style="width: 240px">
+        {% for menuItem in menuItems %}
+            <li class="list-group-item hover p-0 border-0 my-1 d-grid gap-2">
+                <a href="{{ menuItem.path }}" class="btn p-0 text-primary text-start ps-3">
+                    <i class="fas {{ menuItem.icon }} pe-2"></i>{{ menuItem.message|trans }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
