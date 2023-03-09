@@ -37,7 +37,7 @@ class ProfessionalController extends AbstractController
         $formData = $request->request->all()['filter_beneficiary'];
 
         return new JsonResponse([
-            'html' => $this->renderForm('v2/professional/beneficiary_list.html.twig', [
+            'html' => $this->renderForm('v2/professional/_beneficiary_list.html.twig', [
                 'beneficiaries' => $repository->filterByAuthorizedProfessional(
                     $this->getUser()->getSubject(),
                     $formData['search'],
