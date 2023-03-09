@@ -11,20 +11,21 @@
 {% endblock %}
 
 {% block actionBar %}
-    <div class="col-3">
-        {{ form_start(form) }}
-        <div class="input-group rounded-pill border bg-white z-0">
-            <i class="fa fa-search text-grey p-2 input-group-text bg-white rounded-pill border-0"></i>
-            {{ form_widget(form.search) }}
-        </div>
-        {{ form_end(form) }}
+    <div class="col-12 col-md-6 col-lg-7 ps-0 mb-2 mb-md-0">
+        <a href="{{ path('affiliate_beneficiary_home') }}" class="btn {{ getUserButtonColor() }} py-1" type="button">
+            <i class="fas fa-user-plus me-2"></i>
+            {{ 'add_new_beneficiary'|trans }}
+        </a>
+    </div>
+    <div class="col-12 col-md-6 col-lg-5">
+        {{ include('v2/professional/_filter_beneficiaries_form.html.twig', {form}) }}
     </div>
 {% endblock %}
 
 {% block content %}
     <div class="max-width-lg px-3 m-auto">
         <div class="list-container">
-            {{ include('v2/professional/beneficiary_list.html.twig', {beneficiaries}) }}
+            {{ include('v2/professional/_beneficiaries_list.html.twig', {beneficiaries}) }}
         </div>
     </div>
 {% endblock %}

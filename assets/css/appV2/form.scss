@@ -4,3 +4,7 @@ form.display-required-labels label.required:after{
     content: "*";
     color: theme-color('red');
 }
+
+input.grey-placeholder::placeholder{
+    color: theme-color('grey');
+}

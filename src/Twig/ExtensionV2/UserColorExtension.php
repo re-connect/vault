@@ -41,7 +41,7 @@ class UserColorExtension extends AbstractExtension
 
     public function getUserButtonColor(): string
     {
-        return $this->getUserColorClass('bg-green', 'bg-blue');
+        return $this->getUserColorClass('bg-green text-white', 'bg-blue text-white');
     }
 
     public function getUserTextColor(): string

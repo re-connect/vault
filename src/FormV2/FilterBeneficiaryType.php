@@ -27,7 +27,6 @@ class FilterBeneficiaryType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'main.chercher',
-                    'class' => 'border-0 rounded-pill p-0',
                     'autofocus' => true,
                 ],
             ])->add('relay', EntityType::class, [
