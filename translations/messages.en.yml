@@ -33,6 +33,7 @@ association.urlLabel: 'Internet site'
 authentification_failure_wrong_credentials: Username or password incorrect
 back_home: 'Back to homepage'
 back: Back
+beneficiaries: Beneficiaries
 beneficiary_already_affiliated_to_all_relays: The beneficiary is already affiliated to your Reconnect relays
 beneficiary_added_to_relays: The beneficiary has been added to selected centers
 beneficiary_created_successfully: Beneficiary created successfully
@@ -95,6 +96,7 @@ choose_beneficiary_secret_question: Please choose beneficiary's secret question
 choose_beneficiary_title_part_1: Choose a
 choose_beneficiary_title_part_2: beneficiary
 choose_picture: Click here to add a picture
+choose_relay: Choose a relay
 city: City
 comment: Comment
 confirm: Confirm
@@ -771,6 +773,7 @@ phone_duplicate: This phone number is linked to multiple Reconnect accounts, ple
 postal_code: Postal Code
 print_account_creation_act: Don't forget to print the Reconnect account creation act, in order to obtain the signature of the beneficiary
 private: Private
+pro_manage_user_title_part_1: Manage
 public_reset_password: I want to reset my password
 public_reset_password_SMS_has_been_sent: An SMS was sent to you containing a secret code to renew your password. It is valid for 2 hours.
 public_reset_password_SMS_wrong_code: The code you entered does not correspond to the one you received by SMS
