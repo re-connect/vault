@@ -10,14 +10,27 @@ use App\Tests\v2\Controller\TestRouteInterface;
 
 class SearchTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const URL = '/beneficiary/%s/events/search?word=%s';
+    private const URL = '/beneficiary/%s/events/search';
 
     /** @dataProvider provideTestRoute */
     public function testRoute(string $url, int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = null, string $method = 'GET'): void
     {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $url = sprintf($url, $beneficiary->getId(), 'word');
-        $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method, true);
+        $url = sprintf($url, $beneficiary->getId());
+
+        $this->assertRoute(
+            $url,
+            $expectedStatusCode,
+            $userMail,
+            $expectedRedirect,
+            'POST',
+            true,
+            [
+                'search' => [
+                    'search' => 'test',
+                ],
+            ]
+        );
     }
 
     public function provideTestRoute(): ?\Generator
