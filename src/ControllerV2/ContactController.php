@@ -26,7 +26,10 @@ class ContactController extends AbstractController
         ContactRepository $repository,
         PaginatorService $paginator,
     ): Response {
-        $searchForm = $this->createForm(SearchType::class);
+        $searchForm = $this->createForm(SearchType::class, null, [
+            'attr' => ['data-controller' => 'ajax-list-filter'],
+            'action' => $this->generateUrl('contact_search', ['id' => $beneficiary->getId()]),
+        ]);
 
         return $this->renderForm('v2/vault/contact/index.html.twig', [
             'beneficiary' => $beneficiary,
@@ -44,7 +47,7 @@ class ContactController extends AbstractController
         path: '/beneficiary/{id}/contacts/search',
         name: 'contact_search',
         requirements: ['id' => '\d+'],
-        methods: ['GET'],
+        methods: ['POST'],
         condition: 'request.isXmlHttpRequest()',
     )]
     #[IsGranted('UPDATE', 'beneficiary')]
@@ -54,15 +57,19 @@ class ContactController extends AbstractController
         ContactRepository $repository,
         PaginatorService $paginator
     ): Response {
-        $word = $request->query->get('word', '');
-        $searchForm = $this->createForm(SearchType::class);
+        $searchForm = $this->createForm(SearchType::class, null, [
+            'attr' => ['data-controller' => 'ajax-list-filter'],
+            'action' => $this->generateUrl('contact_search', ['id' => $beneficiary->getId()]),
+        ])->handleRequest($request);
+
+        $search = $searchForm->get('search')->getData();
 
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/contact/_list.html.twig', [
                 'contacts' => $paginator->create(
                     $this->isLoggedInUser($beneficiary->getUser())
-                        ? $repository->searchByBeneficiary($beneficiary, $word)
-                        : $repository->searchSharedByBeneficiary($beneficiary, $word),
+                        ? $repository->searchByBeneficiary($beneficiary, $search)
+                        : $repository->searchSharedByBeneficiary($beneficiary, $search),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
