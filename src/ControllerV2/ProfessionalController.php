@@ -20,7 +20,7 @@ class ProfessionalController extends AbstractController
             'beneficiaries' => $repository->findByAuthorizedProfessional($this->getUser()->getSubject()),
             'form' => $this->createForm(FilterBeneficiaryType::class, null, [
                 'action' => $this->generateUrl('search_beneficiaries'),
-                'attr' => ['data-controller' => 'ajax-form'],
+                'attr' => ['data-controller' => 'ajax-list-filter'],
             ]),
         ]);
     }
@@ -45,7 +45,7 @@ class ProfessionalController extends AbstractController
                 ),
                 'form' => $this->createForm(FilterBeneficiaryType::class, null, [
                     'action' => $this->generateUrl('search_beneficiaries'),
-                    'attr' => ['data-controller' => 'ajax-form'],
+                    'attr' => ['data-controller' => 'ajax-list-filter'],
                 ]),
             ])->getContent(),
         ]);
