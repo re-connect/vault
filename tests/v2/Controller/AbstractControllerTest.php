@@ -29,7 +29,7 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
         ?string $expectedRedirect = null,
         string $method = 'GET',
         bool $isXmlHttpRequest = false,
-        array $body = []
+        array $body = [],
     ): KernelBrowser {
         self::ensureKernelShutdown();
         $clientTest = static::createClient();

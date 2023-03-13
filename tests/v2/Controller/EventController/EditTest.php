@@ -32,8 +32,15 @@ class EditTest extends AbstractControllerTest implements TestRouteInterface, Tes
     }
 
     /** @dataProvider provideTestRoute */
-    public function testRoute(string $url, int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = null, string $method = 'GET'): void
-    {
+    public function testRoute(
+        string $url,
+        int $expectedStatusCode,
+        ?string $userMail = null,
+        ?string $expectedRedirect = null,
+        string $method = 'GET',
+        bool $isXmlHttpRequest = false,
+        array $body = [],
+    ): void {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
         $publicEvent = EventFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
         $url = sprintf($url, $publicEvent->getId());

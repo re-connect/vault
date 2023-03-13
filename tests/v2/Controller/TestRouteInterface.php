@@ -11,6 +11,7 @@ interface TestRouteInterface
         ?string $userMail = null,
         ?string $expectedRedirect = null,
         string $method = 'GET',
+        bool $isXmlHttpRequest = false,
         array $body = [],
     ): void;
 
