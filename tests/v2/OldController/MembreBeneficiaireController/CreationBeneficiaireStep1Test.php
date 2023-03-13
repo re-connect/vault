@@ -13,8 +13,15 @@ class CreationBeneficiaireStep1Test extends AbstractControllerTest implements Te
     private const URL_REMOTELY = '/membre/beneficiaires/creation-beneficiaire/remotely/etape-1';
 
     /** @dataProvider provideTestRoute */
-    public function testRoute(string $url, int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = null, string $method = 'GET'): void
-    {
+    public function testRoute(
+        string $url,
+        int $expectedStatusCode,
+        ?string $userMail = null,
+        ?string $expectedRedirect = null,
+        string $method = 'GET',
+        bool $isXmlHttpRequest = false,
+        array $body = [],
+    ): void {
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
 
