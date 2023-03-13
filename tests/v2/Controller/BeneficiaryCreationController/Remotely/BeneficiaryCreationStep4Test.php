@@ -17,8 +17,15 @@ class BeneficiaryCreationStep4Test extends AbstractControllerTest implements Tes
     private const URL = '/beneficiary/create/4/%s';
 
     /** @dataProvider provideTestRoute */
-    public function testRoute(string $url, int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = null, string $method = 'GET'): void
-    {
+    public function testRoute(
+        string $url,
+        int $expectedStatusCode,
+        ?string $userMail = null,
+        ?string $expectedRedirect = null,
+        string $method = 'GET',
+        bool $isXmlHttpRequest = false,
+        array $body = [],
+    ): void {
         // We create beneficiary and creation process for each test
         $user = UserFactory::createOne([
             'creators' => [

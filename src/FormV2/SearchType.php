@@ -17,8 +17,7 @@ class SearchType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'main.chercher',
-                    'data-action' => 'input->ajax-search#search',
-                    'class' => 'ajax-search-input border-0 rounded-pill p-0',
+                    'class' => 'border-0 rounded-pill p-0',
                     'autofocus' => true,
                 ],
             ]);
