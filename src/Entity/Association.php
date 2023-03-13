@@ -38,6 +38,11 @@ class Association extends Subject
     private $gestionnaires;
 
     /**
+     * @var Collection Centre
+     */
+    private Collection $centres;
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -241,6 +246,22 @@ class Association extends Subject
     {
         $this->gestionnaires[] = $gestionnaires;
         $gestionnaires->setAssociation($this);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection <int, Centre>
+     */
+    public function getCentre(): Collection
+    {
+        return $this->centres;
+    }
+
+    public function addCentre(Centre $centre): self
+    {
+        $this->centres[] = $centre;
+        $centre->setAssociation($this);
 
         return $this;
     }

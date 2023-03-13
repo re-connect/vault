@@ -45,6 +45,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     private $evenements;
     /** @var Collection */
     private $externalLinks;
+    private ?bool $wasGestionnaire = false;
 
     /**
      * Constructor.
@@ -418,6 +419,18 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
             ->map(
                 fn (MembreCentre $professionalRelay) => $professionalRelay->getCentre(),
             );
+    }
+
+    public function wasGestionnaire(): ?bool
+    {
+        return $this->wasGestionnaire;
+    }
+
+    public function setWasGestionnaire(?bool $wasGestionnaire): self
+    {
+        $this->wasGestionnaire = $wasGestionnaire;
+
+        return $this;
     }
 
     public function __clone()

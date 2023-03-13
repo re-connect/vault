@@ -140,6 +140,7 @@ class Centre implements \JsonSerializable
      */
     private $externalLinks;
     private bool $canada = false;
+    private ?Association $association = null;
 
     #[Groups(['v3:center:read'])]
     public function getDistantIds(): ArrayCollection
@@ -619,6 +620,18 @@ class Centre implements \JsonSerializable
     public function setRegion(?string $region = null): self
     {
         $this->region = $region;
+
+        return $this;
+    }
+
+    public function getAssociation(): ?Association
+    {
+        return $this->association;
+    }
+
+    public function setAssociation(?Association $association): self
+    {
+        $this->association = $association;
 
         return $this;
     }
