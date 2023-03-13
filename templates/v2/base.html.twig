@@ -20,7 +20,7 @@
 <body class="d-flex flex-column">
     {{ include('v2/header/header.html.twig') }}
 
-    <main role="main" class="position-relative {{ getUserBackgroundColor() }} pb-5">
+    <main role="main" class="position-relative {% block bodyColor %}{{ getUserBackgroundColor() }}{% endblock%} pb-5">
         {{ include('v2/flashMessages.html.twig') }}
         {% block notifications %}{% endblock %}
 
