@@ -24,6 +24,10 @@ App\Entity\Membre:
             gedmo:
                 timestampable:
                     on: update
+        wasGestionnaire:
+            type: boolean
+            options:
+                default: false
     oneToOne:
         user:
             targetEntity: App\Entity\User
