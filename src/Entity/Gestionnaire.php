@@ -85,6 +85,21 @@ class Gestionnaire extends Subject implements UserHandleCentresInterface
         return $str;
     }
 
+    public function getCentresIds(): string
+    {
+        /** @var Centre[]|Collection<Centre> $centres */
+        $str = '';
+        $centres = $this->getCentres();
+        foreach ($centres as $centre) {
+            $str .= $centre->getId();
+            if ($centres->last() !== $centre) {
+                $str .= ' / ';
+            }
+        }
+
+        return $str;
+    }
+
     public function getCentres()
     {
         return $this->centres;
