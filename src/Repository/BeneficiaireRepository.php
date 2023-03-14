@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Beneficiaire;
 use App\Entity\BeneficiaireCentre;
+use App\Entity\Centre;
 use App\Entity\Client;
 use App\Entity\Gestionnaire;
 use App\Entity\Membre;
@@ -220,18 +221,21 @@ class BeneficiaireRepository extends ServiceEntityRepository
     /**
      * @return Beneficiaire[]
      */
-    public function filterByAuthorizedProfessional(Gestionnaire|Membre $professional, string $search, ?string $relayId): array
+    public function filterByAuthorizedProfessional(Gestionnaire|Membre $professional, ?string $search, ?Centre $relay): array
     {
         $qb = $this->findByAuthorizedProfessionalQueryBuilder($professional);
 
-        if ($relayId) {
-            $qb->andWhere('c.id = :relayId')
-                ->setParameter('relayId', $relayId);
+        if ($relay) {
+            $qb->andWhere('c = :relay')
+                ->setParameter('relay', $relay);
+        }
+
+        if ($search) {
+            $qb->andWhere('u.username LIKE :search')
+                ->setParameter('search', sprintf('%%%s%%', $search));
         }
 
         return $qb
-            ->andWhere('u.username LIKE :search')
-            ->setParameter('search', sprintf('%%%s%%', $search))
             ->orderBy('u.username')
             ->getQuery()
             ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)

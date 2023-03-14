@@ -22,8 +22,15 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
         self::$dataCollectorTranslator = $container->get(TranslatorInterface::class);
     }
 
-    public function assertRoute(string $url, int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = null, string $method = 'GET', bool $isXmlHttpRequest = false): KernelBrowser
-    {
+    public function assertRoute(
+        string $url,
+        int $expectedStatusCode,
+        ?string $userMail = null,
+        ?string $expectedRedirect = null,
+        string $method = 'GET',
+        bool $isXmlHttpRequest = false,
+        array $body = [],
+    ): KernelBrowser {
         self::ensureKernelShutdown();
         $clientTest = static::createClient();
 
@@ -33,8 +40,8 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
         }
 
         $isXmlHttpRequest
-            ? $clientTest->xmlHttpRequest($method, $url)
-            : $clientTest->request($method, $url);
+            ? $clientTest->xmlHttpRequest($method, $url, $body)
+            : $clientTest->request($method, $url, $body);
 
         $this->assertResponseStatusCodeSame($expectedStatusCode);
         if ($expectedRedirect) {

@@ -28,7 +28,10 @@ class DocumentController extends AbstractController
         DocumentManager $documentManager,
         PaginatorService $paginator,
     ): Response {
-        $searchForm = $this->createForm(SearchType::class);
+        $searchForm = $this->createForm(SearchType::class, null, [
+            'attr' => ['data-controller' => 'ajax-list-filter'],
+            'action' => $this->generateUrl('document_search', ['id' => $beneficiary->getId()]),
+        ]);
 
         return $this->renderForm('v2/vault/document/index.html.twig', [
             'beneficiary' => $beneficiary,
@@ -73,7 +76,7 @@ class DocumentController extends AbstractController
         path: '/beneficiary/{id}/documents/search',
         name: 'document_search',
         requirements: ['id' => '\d+'],
-        methods: ['GET'],
+        methods: ['POST'],
         condition: 'request.isXmlHttpRequest()',
     )]
     #[IsGranted('UPDATE', 'beneficiary')]
@@ -83,15 +86,19 @@ class DocumentController extends AbstractController
         DocumentManager $documentManager,
         PaginatorService $paginator,
     ): JsonResponse {
-        $word = $request->query->get('word', '');
-        $searchForm = $this->createForm(SearchType::class);
+        $searchForm = $this->createForm(SearchType::class, null, [
+            'attr' => ['data-controller' => 'ajax-list-filter'],
+            'action' => $this->generateUrl('document_search', ['id' => $beneficiary->getId()]),
+        ])->handleRequest($request);
+
+        $search = $searchForm->get('search')->getData();
 
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/document/_list.html.twig', [
                 'foldersAndDocuments' => $paginator->create(
                     $this->isLoggedInUser($beneficiary->getUser())
-                        ? $documentManager->searchFoldersAndDocumentsWithUrl($beneficiary, $word)
-                        : $documentManager->searchSharedFoldersAndDocumentsWithUrl($beneficiary, $word),
+                        ? $documentManager->searchFoldersAndDocumentsWithUrl($beneficiary, $search)
+                        : $documentManager->searchSharedFoldersAndDocumentsWithUrl($beneficiary, $search),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
