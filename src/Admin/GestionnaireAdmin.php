@@ -11,10 +11,17 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\AdminType;
+use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\Form\Type\CollectionType;
 
 class GestionnaireAdmin extends AbstractAdmin
 {
+    protected function configureRoutes(RouteCollectionInterface $collection): void
+    {
+        $collection->remove('create');
+        $collection->remove('edit');
+    }
+
     protected function configureFormOptions(array &$formOptions): void
     {
         $formOptions['validation_groups'] = ['password-membre', 'gestionnaire'];
@@ -137,10 +144,12 @@ class GestionnaireAdmin extends AbstractAdmin
             'Prénom' => 'user.prenom',
             'Email' => 'user.email',
             'Téléphone' => 'user.telephone',
-            'Centres' => 'getCentresToString',
+            'Centres' => 'getCentresIds',
             'Date de création' => 'user.createdAt',
             'Dernière connexion' => 'user.derniereConnexionAt',
             'Compte test' => 'user.testToString',
+            'Association' => 'association.id',
+            'User' => 'user.id',
         ];
     }
 }
