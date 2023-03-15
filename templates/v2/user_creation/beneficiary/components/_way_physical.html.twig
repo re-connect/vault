@@ -1,0 +1,7 @@
+{{ include('v2/user_creation/beneficiary/components/_way_card.html.twig', {
+    title: 'is_the_beneficiary_present'|trans,
+    iconName: 'user-shield',
+    helpText: 'beneficiary_will_give_you_secret_information'|trans,
+    buttonPath: path('create_beneficiary', {'step': 1}),
+    buttonText: 'create_reconnect_account_with_beneficiary'|trans,
+}) }}

@@ -40,6 +40,7 @@ beneficiary_created_successfully: Beneficiary created successfully
 beneficiary_created_successfully_wait_activation: The account has been successfully created and is awaiting activation by the beneficiary.
 beneficiary_creation_canceled: Beneficiary creation canceled
 beneficiary_creation_remotely_sms: "Your accompanying person %pro.firstname% %pro.lastname% from organization %center% offers you to activate your Reconnect numeric vault Reconnect \nConnect to www.reconnect.fr \nUsername : %username% \nPassword : %password% \nOr click on the link : %autoLoginLink% \nYou can also download the mobile app : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
+beneficiary_will_give_you_secret_information: The beneficiary will give you the password he wishes to use and a secret question and answer allowing a password reset
 beneficiary_will_receive_sms_account_information: The beneficiary will receive an SMS to activate his account and complete his information
 beneficiaire.menu.mesAides: 'My Aids'
 beneficiaire.menu.mesContacts: 'My Contacts'
