@@ -41,13 +41,10 @@ class GestionnaireAssociationCentreFixture extends Fixture implements DependentF
         $client = $this->manager->getRepository(Client::class)->findOneBy(['nom' => $clientName]);
 
         for ($i = 1; $i <= 7; ++$i) {
-            $gestionnaire = $this->fixtureManager->getNewRandomGestionnaire();
             $association = $this->fixtureManager->getNewRandomAssociation();
-            $gestionnaire->setAssociation($association);
             $centre = $this->fixtureManager->getNewRandomCentre();
-            $gestionnaire->addCentre($centre);
+            $centre->setAssociation($association);
             $this->manager->persist($centre);
-            $this->manager->persist($gestionnaire);
             $this->manager->persist($association);
             $this->manager->flush();
 

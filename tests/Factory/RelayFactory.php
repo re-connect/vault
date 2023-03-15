@@ -40,7 +40,7 @@ final class RelayFactory extends ModelFactory
             'nom' => self::faker()->name(),
             'createdAt' => new \DateTime('now'),
             'updatedAt' => new \DateTime('now'),
-            'gestionnaire' => GestionnaireFactory::new(),
+            'association' => AssociationFactory::new(),
         ];
     }
 
