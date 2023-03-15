@@ -6,7 +6,6 @@ use App\Entity\Adresse;
 use App\Entity\Association;
 use App\Entity\Beneficiaire;
 use App\Entity\Centre;
-use App\Entity\Gestionnaire;
 use App\Entity\Membre;
 use App\Entity\TypeCentre;
 use App\Entity\User;
@@ -118,13 +117,6 @@ class FixtureManager
             ->setCode($this->faker->regexify('[A-Z0-9]{8}'))
             ->setAdresse($this->getNewRandomAdresse())
             ->setTypeCentre($typesCentres[$randomIndex]);
-    }
-
-    public function getNewRandomGestionnaire(): Gestionnaire
-    {
-        $user = $this->getNewRandomUser();
-
-        return (new Gestionnaire())->setUser($user);
     }
 
     public function getNewRandomAssociation(): Association

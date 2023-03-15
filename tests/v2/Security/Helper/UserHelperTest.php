@@ -3,7 +3,6 @@
 namespace App\Tests\v2\Security\Helper;
 
 use App\Entity\Beneficiaire;
-use App\Entity\Gestionnaire;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;
 use App\Security\HelperV2\UserHelper;
@@ -18,14 +17,12 @@ class UserHelperTest extends KernelTestCase
     private ?UserHelper $userHelper;
     private Beneficiaire $beneficiary;
     private ?Membre $membre;
-    private ?Gestionnaire $gestionnaire;
 
     protected function setUp(): void
     {
         $this->userHelper = $this->getContainer()->get(UserHelper::class);
         $this->beneficiary = BeneficiaireFactory::createOne()->object();
         $this->membre = MembreFactory::createOne()->object();
-        $this->gestionnaire = GestionnaireFactory::createOne()->object();
 
     }
 
@@ -33,16 +30,13 @@ class UserHelperTest extends KernelTestCase
     {
         // No relay common
         self::assertFalse($this->userHelper->canManageBeneficiary($this->membre->getUser(), $this->beneficiary));
-        self::assertFalse($this->userHelper->canManageBeneficiary($this->gestionnaire->getUser(), $this->beneficiary));
 
         $relay = RelayFactory::createOne()->object();
         $this->beneficiary->addBeneficiaryRelayForRelay($relay);
         $this->membre->addMembresCentre((new MembreCentre())->setMembre($this->membre)->setCentre($relay));
-        $this->gestionnaire->addCentre($relay);
 
         // Relay common, not accepted affiliation
         self::assertFalse($this->userHelper->canManageBeneficiary($this->membre->getUser(), $this->beneficiary));
-        self::assertTrue($this->userHelper->canManageBeneficiary($this->gestionnaire->getUser(), $this->beneficiary));
 
         $this->membre->getMembresCentres()[0]->setBValid(true)->setDroits();
 

@@ -6,7 +6,6 @@ use App\Entity\Centre;
 use App\Entity\User;
 use App\Form\Type\BeneficiaireParametresType;
 use App\Form\Type\ChangePasswordType;
-use App\Form\Type\GestionnaireParametresType;
 use App\Form\Type\UserWithoutPasswordType;
 use App\Manager\CentreManager;
 use App\Manager\UserManager;
@@ -60,11 +59,6 @@ class UserController extends REController
             $form = $this->createForm(BeneficiaireParametresType::class, $subject);
         } elseif ($user->isMembre() || $user->isAdministrateur()) {
             $form = $this->createForm(UserWithoutPasswordType::class, $user)->remove('adresse');
-        } elseif ($user->isGestionnaire()) {
-            $form = $this->createForm(GestionnaireParametresType::class, $user->getSubject(), [
-                'gestionnaire' => $user->getSubject(),
-            ]);
-            $form->add('submit', SubmitType::class, ['label' => 'confirm', 'attr' => ['class' => 'btn']]);
         } else {
             throw new \RuntimeException('Unhandled user');
         }

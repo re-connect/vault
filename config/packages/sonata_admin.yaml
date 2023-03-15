@@ -12,7 +12,6 @@ sonata_admin:
                 items:
                     - sonata.admin.beneficiaire
                     - sonata.admin.membre
-                    - sonata.admin.gestionnaire
                     - sonata.admin.association
                     - sonata.admin.centre
             doneesPersonnelles:

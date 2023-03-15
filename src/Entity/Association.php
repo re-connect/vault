@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Traits\GedmoTimedTrait;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
@@ -32,10 +31,6 @@ class Association extends Subject
      * @var string
      */
     private $categorieJuridique;
-    /**
-     * @var Collection
-     */
-    private $gestionnaires;
 
     /**
      * @var Collection Centre
@@ -47,7 +42,6 @@ class Association extends Subject
      */
     public function __construct()
     {
-        $this->gestionnaires = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
 //        $this->user = new User();
@@ -148,14 +142,6 @@ class Association extends Subject
         return $this;
     }
 
-    /**
-     * @return Collection|Gestionnaire[]
-     */
-    public function getGestionnaires()
-    {
-        return $this->gestionnaires;
-    }
-
     public function __toString()
     {
         if (!empty($this->getNom())) {
@@ -208,46 +194,8 @@ class Association extends Subject
     {
         if ($this->id) {
             $this->id = null;
-            $gestionnaires = [];
-            foreach ($this->gestionnaires as $gestionnaire) {
-                $gestionnaires[] = clone $gestionnaire;
-                $this->removeGestionnaire($gestionnaire);
-            }
-
-            foreach ($gestionnaires as $gestionnaire) {
-                $this->addGestionnaire($gestionnaire);
-            }
-
             $this->user = clone $this->user;
         }
-    }
-
-    /**
-     * Remove gestionnaires.
-     */
-    public function removeGestionnaire(Gestionnaire $gestionnaire)
-    {
-        $this->gestionnaires->removeElement($gestionnaire);
-
-        if ($this->gestionnaires->contains($gestionnaire)) {
-            $this->gestionnaires->removeElement($gestionnaire);
-            if ($gestionnaire->getAssociation() === $this) {
-                $gestionnaire->setAssociation();
-            }
-        }
-    }
-
-    /**
-     * Add gestionnaires.
-     *
-     * @return Association
-     */
-    public function addGestionnaire(Gestionnaire $gestionnaires)
-    {
-        $this->gestionnaires[] = $gestionnaires;
-        $gestionnaires->setAssociation($this);
-
-        return $this;
     }
 
     /**

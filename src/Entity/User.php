@@ -21,14 +21,12 @@ class User extends BaseUser implements \JsonSerializable
     private const BASE_USERNAME_REGEXP = '/^[a-z\-]+\.[a-z\-]+(\.[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3})?$/';
     public const USER_TYPE_BENEFICIAIRE = 'ROLE_BENEFICIAIRE';
     public const USER_TYPE_MEMBRE = 'ROLE_MEMBRE';
-    public const USER_TYPE_GESTIONNAIRE = 'ROLE_GESTIONNAIRE';
     public const USER_TYPE_ASSOCIATION = 'ROLE_ASSOCIATION';
     public const USER_TYPE_ADMINISTRATEUR = 'ROLE_ADMIN';
 
     public static array $arTypesUser = [
         self::USER_TYPE_BENEFICIAIRE => 'beneficiaire',
         self::USER_TYPE_MEMBRE => 'membre',
-        self::USER_TYPE_GESTIONNAIRE => 'gestionnaire',
         self::USER_TYPE_ASSOCIATION => 'association',
         self::USER_TYPE_ADMINISTRATEUR => 'administrateur',
     ];
@@ -128,9 +126,6 @@ class User extends BaseUser implements \JsonSerializable
 
     /** @var Association */
     private $subjectAssociation;
-
-    /** @var Gestionnaire */
-    private $subjectGestionnaire;
 
     #[Groups(['read', 'user:read', 'v3:user:read'])]
     private ?Adresse $adresse = null;
@@ -374,15 +369,12 @@ class User extends BaseUser implements \JsonSerializable
     }
 
     /**
-     * @return Administrateur|Association|Beneficiaire|Gestionnaire|Membre|null
+     * @return Administrateur|Association|Beneficiaire|Membre|null
      */
     public function getSubject()
     {
         if ($this->isBeneficiaire()) {
             return $this->getSubjectBeneficiaire();
-        }
-        if ($this->isGestionnaire()) {
-            return $this->getSubjectGestionnaire();
         }
         if ($this->isMembre()) {
             return $this->getSubjectMembre();
@@ -427,23 +419,6 @@ class User extends BaseUser implements \JsonSerializable
         return $this;
     }
 
-    public function isGestionnaire(): bool
-    {
-        return self::USER_TYPE_GESTIONNAIRE === $this->typeUser;
-    }
-
-    public function getSubjectGestionnaire(): ?Gestionnaire
-    {
-        return $this->subjectGestionnaire;
-    }
-
-    public function setSubjectGestionnaire(Gestionnaire $subjectGestionnaire = null): self
-    {
-        $this->subjectGestionnaire = $subjectGestionnaire;
-
-        return $this;
-    }
-
     public function isAssociation(): bool
     {
         return self::USER_TYPE_ASSOCIATION == $this->typeUser;
@@ -463,7 +438,7 @@ class User extends BaseUser implements \JsonSerializable
 
     public function hasMemberAccess(): bool
     {
-        return $this->isMembre() || $this->isGestionnaire() || $this->isAdministrateur();
+        return $this->isMembre() || $this->isAdministrateur();
     }
 
     public function isValidUser(): bool
@@ -730,9 +705,6 @@ class User extends BaseUser implements \JsonSerializable
                 case self::USER_TYPE_MEMBRE:
                     $data['membre'] = $this->subjectMembre->jsonSerialize(false);
                     break;
-                case self::USER_TYPE_GESTIONNAIRE:
-                    $data['gestionnaire'] = $this->subjectGestionnaire->jsonSerialize(false);
-                    break;
                 default:
                     break;
             }
@@ -800,10 +772,6 @@ class User extends BaseUser implements \JsonSerializable
                 $data = array_merge($data, $this->subjectMembre->jsonSerializeAPI());
 //                $data['membre'] = $this->subjectMembre->jsonSerialize(false);
                 break;
-            case self::USER_TYPE_GESTIONNAIRE:
-                $data = array_merge($data, $this->subjectGestionnaire->jsonSerializeAPI());
-//                $data['gestionnaire'] = $this->subjectGestionnaire->jsonSerialize(false);
-                break;
             default:
                 break;
         }
@@ -836,9 +804,6 @@ class User extends BaseUser implements \JsonSerializable
                 break;
             case self::USER_TYPE_MEMBRE:
                 $subject = $this->getSubjectMembre();
-                break;
-            case self::USER_TYPE_GESTIONNAIRE:
-                $subject = $this->getSubjectGestionnaire();
                 break;
             default:
                 $subject = null;
@@ -914,7 +879,6 @@ class User extends BaseUser implements \JsonSerializable
             $this->subjectAssociation = null;
             $this->subjectBeneficiaire = null;
             $this->subjectMembre = null;
-            $this->subjectGestionnaire = null;
         }
     }
 
@@ -1107,8 +1071,6 @@ class User extends BaseUser implements \JsonSerializable
     {
         if ($this->isMembre()) {
             return $this->getSubjectMembre()->getAffiliatedRelaysWithBeneficiaryManagement();
-        } elseif ($this->isGestionnaire()) {
-            return $this->getSubjectGestionnaire()->getCentres();
         }
 
         return new ArrayCollection();

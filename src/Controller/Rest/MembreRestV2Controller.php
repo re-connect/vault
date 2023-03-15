@@ -45,9 +45,6 @@ class MembreRestV2Controller extends REController
             if ($user->isMembre()) {
                 $membre = $user->getSubjectMembre();
                 $membresByCentre = $centreProvider->getOtherMembresFromMembre($membre);
-            } elseif ($user->isGestionnaire()) {
-                $gestionnaire = $user->getSubjectGestionnaire();
-                $membresByCentre = $centreProvider->getMembresFromGestionnaire($gestionnaire);
             } else {
                 throw new AccessDeniedException('You must be connected as member or manager.');
             }

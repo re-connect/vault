@@ -93,18 +93,6 @@ services:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
             - [ setUserManager, [ '@App\Manager\UserManager' ] ]
 
-    sonata.admin.gestionnaire:
-        class: App\Admin\GestionnaireAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "Gestionnaires" }
-        arguments:
-            - ~
-            - App\Entity\Gestionnaire
-            - ~
-        calls:
-            - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
-            - [ setUserManager, [ '@App\Manager\UserManager' ] ]
-
     sonata.admin.association:
         class: App\Admin\AssociationAdmin
         tags:
@@ -241,12 +229,6 @@ services:
     reo_auth.admin.client_centre:
         class: App\Admin\ClientEntityAdmin
         arguments: [ ~, App\Entity\ClientCentre, ~ ]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Client }
-
-    reo_auth.admin.client_gestionnaire:
-        class: App\Admin\ClientEntityAdmin
-        arguments: [ ~, App\Entity\ClientGestionnaire, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Client }
 

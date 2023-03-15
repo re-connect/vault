@@ -138,15 +138,6 @@ class UserRestV2Controller extends REController
                     $membreProvider->save($subject, $this->getUser());
 
                     break;
-                case User::USER_TYPE_GESTIONNAIRE:
-                    $gestionnaireProvider->populate($subject);
-
-                    if (null !== $data = $this->restManager->getJsonValidationError($subject, null, ['gestionnaire'])) {
-                        return $this->json($data, Response::HTTP_BAD_REQUEST);
-                    }
-                    $gestionnaireProvider->save($subject, $this->getUser());
-
-                    break;
                 default:
                     break;
             }

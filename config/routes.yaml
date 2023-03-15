@@ -18,10 +18,6 @@ re_membre:
     resource: "./routing/user/membre_routing.yml"
     prefix: membre/
 
-re_gestionnaire:
-    resource: "./routing/user/gestionnaire_routing.yml"
-    prefix: /gestionnaire/
-
 re_association:
     resource: "./routing/user/association_routing.yml"
     prefix: /association/

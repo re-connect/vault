@@ -43,9 +43,6 @@ App\Entity\Association:
             inversedBy: subjectAssociation
             nullable: true
     oneToMany:
-        gestionnaires:
-            targetEntity: App\Entity\Gestionnaire
-            mappedBy: association
         centres:
             targetEntity: App\Entity\Centre
             mappedBy: association

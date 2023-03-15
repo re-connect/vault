@@ -136,7 +136,7 @@
                             </div>
                         </div>
                     {% endif %}
-                    {% if app.user.isMembre or app.user.isGestionnaire %}
+                    {% if app.user.isMembre %}
                         <a href="{{ path("re_membre_centres") }}"
                            class="whiteLink uppercase inbl"><i
                                     class="fas fa-hotel mr-2"></i>{{ 'header.menu.relaisReconnect'|trans }}</a>

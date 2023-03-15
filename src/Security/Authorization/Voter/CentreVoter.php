@@ -73,12 +73,6 @@ class CentreVoter extends Voter
                         }
                     }
                 }
-                if ($user->isGestionnaire()) {
-                    $centres = $this->provider->getCentresFromGestionnaire($user->getSubjectGestionnaire());
-                    if (in_array($subject, $centres)) {
-                        return true;
-                    }
-                }
 
                 break;
         }

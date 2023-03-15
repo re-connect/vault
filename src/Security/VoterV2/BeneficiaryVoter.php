@@ -46,7 +46,7 @@ class BeneficiaryVoter extends Voter
     {
         return match ($user->getTypeUser()) {
             User::USER_TYPE_BENEFICIAIRE => $user->getSubjectBeneficiaire() === $subject,
-            User::USER_TYPE_MEMBRE, User::USER_TYPE_GESTIONNAIRE => $this->helper->canManageBeneficiary($user, $subject),
+            User::USER_TYPE_MEMBRE => $this->helper->canManageBeneficiary($user, $subject),
             default => false,
         };
     }

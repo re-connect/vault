@@ -6,7 +6,6 @@ use App\Entity\Beneficiaire;
 use App\Entity\Centre;
 use App\Entity\Contact;
 use App\Entity\Evenement;
-use App\Entity\Gestionnaire;
 use App\Entity\Membre;
 use App\Entity\Note;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,7 +21,6 @@ class PublicRestController extends AbstractController
     public function index(EntityManagerInterface $em): JsonResponse
     {
         $beneficiaireRepository = $em->getRepository(Beneficiaire::class);
-        $gestionnaireRepository = $em->getRepository(Gestionnaire::class);
         $membreRepository = $em->getRepository(Membre::class);
         $contactRepository = $em->getRepository(Contact::class);
         $noteRepository = $em->getRepository(Note::class);
@@ -31,7 +29,6 @@ class PublicRestController extends AbstractController
 
         return $this->json([
             'beneficiaires' => (int) $beneficiaireRepository->countKPI(),
-            'gestionnaires' => (int) $gestionnaireRepository->countKPI(),
             'membres' => (int) $membreRepository->countKPI(),
             'contacts' => $contactRepository->count([]),
             'notes' => $noteRepository->count([]),
