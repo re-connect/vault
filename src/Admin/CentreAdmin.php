@@ -5,9 +5,7 @@ namespace App\Admin;
 use App\Entity\Association;
 use App\Entity\Centre;
 use App\Entity\CreatorCentre;
-use App\Entity\Gestionnaire;
 use App\Entity\User;
-use App\Form\Type\GestionnaireType;
 use App\Manager\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
@@ -209,7 +207,8 @@ class CentreAdmin extends AbstractAdmin
             ->setPlainPassword($this->userManager->randomPassword())
             ->setNom($associationName)
             ->setTest($isTest)
-            ->setSubjectAssociation($association);
+            ->setSubjectAssociation($association)
+            ->disable(null);
 
         $association->setUser($userAssociation);
         $this->userManager->updatePassword($userAssociation);

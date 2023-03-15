@@ -2,12 +2,15 @@
 
 namespace App\Admin;
 
+use App\Entity\User;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class UserAssociationAdmin extends AbstractAdmin
 {
@@ -38,6 +41,14 @@ class UserAssociationAdmin extends AbstractAdmin
                     'label' => 'Compte test',
                 ]);
         }
+        $form->getFormBuilder()->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+            $data = $event->getData();
+            if (!$data instanceof User || $data->getId()) {
+                return;
+            }
+
+            $data->disable(null);
+        });
     }
 
     protected function configureRoutes(RouteCollectionInterface $collection): void
