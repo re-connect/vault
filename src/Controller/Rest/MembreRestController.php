@@ -31,10 +31,7 @@ class MembreRestController extends AbstractController
     {
         try {
             $user = $this->getUser();
-            if ($user->isGestionnaire()) {
-                $gestionnaire = $user->getSubjectGestionnaire();
-                $membresByCentre = $centreProvider->getMembresFromGestionnaire($gestionnaire);
-            } elseif ($user->isMembre()) {
+            if ($user->isMembre()) {
                 $membre = $user->getSubjectMembre();
                 $membresByCentre = $centreProvider->getOtherMembresFromMembre($membre);
             } else {

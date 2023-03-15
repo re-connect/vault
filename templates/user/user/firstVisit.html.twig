@@ -5,8 +5,6 @@
         {{ 'user.firstVisit.beneficiaire.metaTitle'|trans }}
     {% elseif app.user.isMembre %}
         {{ 'user_firstVisit_membre_metaTitle'|trans }}
-    {% elseif app.user.isGestionnaire %}
-        {{ 'user.firstVisit.gestionnaire.metaTitle'|trans }}
     {% endif %}
 {% endblock metaTitle %}
 
@@ -31,20 +29,6 @@
                 <p class="smallMargin">{{ 'user_firstVisit_rgpd'|trans({'%mailRGPD%' : 'reconnect_rgpd_mail'|trans, '%phoneNumber%': 'reconnect_phone_number'|trans})|raw }}</p>
                 <p class="smallMargin">{{ 'user_firstVisit_rgpd_more'|trans({'%linkRGPD%' : 'https://www.reconnect.fr/annexe/confidentialite-cs'})|raw }}</p>
                 <p class="smallMargin">{{ 'user_firstVisit_membre_outro'|trans }}</p>
-            </div>
-            <div class="clearFloat">&nbsp;</div>
-            <div class="bigPadding center"><a href="{{ path('re_user_cgs') }}"
-                                              class="btn btn-blue font-size-1">{{ 'main.continuer'|trans }}</a></div>
-        {% elseif app.user.isGestionnaire %}
-            <h1 class="center h1 text-primary">{{ 'member_new_guide_title'|trans|raw }}
-            </h1>
-            <br/>
-
-            <div id="firstVisit-image">
-                <img src="{{ asset('build/images/home/background.jpg') }}" alt="">
-            </div>
-            <div class="text-primary font-size-1" id="firstVisit-text">
-                {{ 'user.firstVisit.gestionnaire.text'|trans|raw }}
             </div>
             <div class="clearFloat">&nbsp;</div>
             <div class="bigPadding center"><a href="{{ path('re_user_cgs') }}"

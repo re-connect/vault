@@ -16,7 +16,6 @@ use App\Entity\Creator;
 use App\Entity\Document;
 use App\Entity\Dossier;
 use App\Entity\Evenement;
-use App\Entity\Gestionnaire;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;
 use App\Entity\Note;
@@ -53,7 +52,6 @@ class FixturesPurger implements ORMPurgerInterface
             Centre::class,
             TypeCentre::class,
             Administrateur::class,
-            Gestionnaire::class,
             Association::class,
             Creator::class,
             AccessToken::class,

@@ -5,7 +5,6 @@ namespace App\ManagerV2;
 use App\Entity\Administrateur;
 use App\Entity\Association;
 use App\Entity\Beneficiaire;
-use App\Entity\Gestionnaire;
 use App\Entity\Membre;
 use App\Entity\User;
 use App\Repository\UserRepository;
@@ -80,7 +79,7 @@ class UserManager
         }
     }
 
-    private function removeSubject(Administrateur|Association|Beneficiaire|Gestionnaire|Membre|null $subject): void
+    private function removeSubject(Administrateur|Association|Beneficiaire|Membre|null $subject): void
     {
         if ($subject) {
             $this->em->remove($subject);

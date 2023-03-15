@@ -10,7 +10,6 @@ App\Entity\ClientEntity:
     clientCentre: ClientCentre
     clientMembre: ClientMembre
     clientBeneficiaire: ClientBeneficiaire
-    clientGestionnaire: ClientGestionnaire
   id:
     client:
       associationKey: true

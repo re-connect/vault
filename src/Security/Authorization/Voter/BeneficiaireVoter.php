@@ -70,12 +70,6 @@ class BeneficiaireVoter extends REVoter
                         }
                     }
                 }
-                if ($user->isGestionnaire()) {
-                    $beneficiaires = $this->provider->getBeneficiairesFromGestionnaire($user->getSubjectGestionnaire());
-                    if (self::ASSOCIATION_BENEFICIAIRE === $attribute || in_array($beneficiaire, $beneficiaires, true)) {
-                        return true;
-                    }
-                }
 
                 break;
         }

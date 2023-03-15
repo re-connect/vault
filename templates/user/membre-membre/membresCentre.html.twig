@@ -24,10 +24,6 @@
                                                 <option value="{{ userCentre.centre.nom }}">{{ userCentre.centre.nom }}</option>
                                             {% endif %}
                                         {% endfor %}
-                                    {% elseif app.user.isGestionnaire %}
-                                        {% for centre in app.user.subjectGestionnaire.centres %}
-                                            <option value="{{ centre.nom }}">{{ centre.nom }}</option>
-                                        {% endfor %}
                                     {% endif %}
                                 </select>
                                 &nbsp;

@@ -72,22 +72,6 @@ class UserVoter extends Voter
                         return $this->membreVoter->voteOnAttribute(MembreVoter::GESTION_MEMBRE, $subject->getSubjectMembre(), $token);
                     }
                 }
-                if ($user->isGestionnaire()) {
-                    $beneficiaires = $this->provider->getBeneficiairesFromGestionnaire($user->getSubject());
-                    if (in_array($subject->getSubject(), $beneficiaires)) {
-                        return true;
-                    }
-                    $centres = $this->provider->getCentresFromGestionnaire($user->getSubject());
-                    foreach ($centres as $centre) {
-                        if ($centre->getMembresCentres() && count($centre->getMembresCentres()) > 0) {
-                            foreach ($centre->getMembresCentres() as $membreCentre) {
-                                if ($membreCentre->getMembre()->getId() === $subject->getSubject()->getId()) {
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                }
 
                 break;
         }

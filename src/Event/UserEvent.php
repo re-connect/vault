@@ -22,8 +22,6 @@ final class UserEvent extends REEvent
             $this->type = self::BENEFICIAIRE_CONNECTION;
         } elseif ($user->isMembre()) {
             $this->type = self::MEMBRE_CONNECTION;
-        } elseif ($user->isGestionnaire()) {
-            $this->type = self::GESTIONNAIRE_CONNECTION;
         } elseif ($user->isAssociation()) {
             $this->type = self::ASSOCIATION_CONNECTION;
         } elseif ($user->isAdministrateur()) {

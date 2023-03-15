@@ -56,8 +56,6 @@ final class CentreRestController extends AbstractController
                 $entities = $beneficiaire->getBeneficiairesCentres();
             } elseif ($user->isMembre()) {
                 $entities = $user->getSubjectMembre()->getMembresCentres();
-            } elseif ($user->isGestionnaire()) {
-                $entities = $user->getCentres();
             }
 
             return $this->json($entities->toArray(), Response::HTTP_ACCEPTED);

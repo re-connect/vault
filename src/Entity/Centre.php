@@ -95,10 +95,6 @@ class Centre implements \JsonSerializable
      */
     private $membresCentres;
     /**
-     * @var Gestionnaire
-     */
-    private $gestionnaire;
-    /**
      * @var TypeCentre
      */
     private $typeCentre;
@@ -598,18 +594,6 @@ class Centre implements \JsonSerializable
                 $this->addMembresCentre($membresCentre);
             }
         }
-    }
-
-    public function getGestionnaire(): ?Gestionnaire
-    {
-        return $this->gestionnaire;
-    }
-
-    public function setGestionnaire(Gestionnaire $gestionnaire = null): self
-    {
-        $this->gestionnaire = $gestionnaire;
-
-        return $this;
     }
 
     public function getRegion(): ?string

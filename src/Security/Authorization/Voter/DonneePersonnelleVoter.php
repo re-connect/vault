@@ -99,13 +99,6 @@ class DonneePersonnelleVoter extends REVoter
                         return true;
                     }
                 }
-
-                if ($user->isGestionnaire()) {
-                    $beneficiaires = $this->provider->getBeneficiairesFromGestionnaire($user->getSubjectGestionnaire());
-                    if (in_array($subject->getBeneficiaire(), $beneficiaires)) {
-                        return true;
-                    }
-                }
                 break;
             case self::DONNEEPERSONNELLE_EDIT:
                 if ($user->isBeneficiaire() && $user->getSubjectBeneficiaire() === $subject->getBeneficiaire()) {
@@ -123,13 +116,6 @@ class DonneePersonnelleVoter extends REVoter
                         return true;
                     }
                 }
-
-                if ($user->isGestionnaire()) {
-                    $beneficiaires = $this->provider->getBeneficiairesFromGestionnaire($user->getSubjectGestionnaire());
-                    if (!$originalEntity['bPrive'] && in_array($subject->getBeneficiaire(), $beneficiaires)) {
-                        return true;
-                    }
-                }
                 break;
             case self::DONNEEPERSONNELLE_DELETE:
                 if ($user->isBeneficiaire() && $user->getSubjectBeneficiaire() === $subject->getBeneficiaire()) {
@@ -140,11 +126,6 @@ class DonneePersonnelleVoter extends REVoter
                     if (in_array($subject->getBeneficiaire(), $beneficiaires)) {
                         return true;
                     }
-                } elseif ($user->isGestionnaire()) {
-                    $beneficiaires = $this->provider->getBeneficiairesFromGestionnaire($user->getSubjectGestionnaire());
-                    if (in_array($subject->getBeneficiaire(), $beneficiaires)) {
-                        return true;
-                    }
                 }
                 if ($user->isAdministrateur()) {
                     return true;
@@ -152,9 +133,6 @@ class DonneePersonnelleVoter extends REVoter
                 break;
             case self::DONNEEPERSONNELLE_REPORT_ABUSE:
                 if ($user->isMembre() && !$subject->getBPrive()) {
-                    return true;
-                }
-                if ($user->isGestionnaire() && !$subject->getBPrive()) {
                     return true;
                 }
                 if ($user->isAdministrateur()) {

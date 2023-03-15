@@ -154,9 +154,6 @@ App\Entity\User:
         subjectAssociation:
             targetEntity: App\Entity\Association
             mappedBy: user
-        subjectGestionnaire:
-            targetEntity: App\Entity\Gestionnaire
-            mappedBy: user
         adresse:
             targetEntity: App\Entity\Adresse
             cascade: [ "persist", "remove" ]
