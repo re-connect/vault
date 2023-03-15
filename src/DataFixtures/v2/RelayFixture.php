@@ -3,14 +3,11 @@
 namespace App\DataFixtures\v2;
 
 use App\Tests\Factory\RelayFactory;
-use App\Tests\Factory\UserFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class RelayFixture extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
+class RelayFixture extends Fixture implements FixtureGroupInterface
 {
     public const DEFAULT_PRO_RELAY = 'Centre test pro';
     public const DEFAULT_BENEFICIARY_RELAY = 'Centre test beneficiaire';
@@ -27,7 +24,6 @@ class RelayFixture extends Fixture implements FixtureGroupInterface, DependentFi
     {
         RelayFactory::createOne([
             'nom' => $name,
-            'gestionnaire' => UserFactory::findOrCreate(['email' => GestionnaireFixture::GESTIONNAIRE_MAIL])->getSubjectGestionnaire(),
         ]);
     }
 
@@ -35,11 +31,5 @@ class RelayFixture extends Fixture implements FixtureGroupInterface, DependentFi
     public static function getGroups(): array
     {
         return ['v2'];
-    }
-
-    /** @return array<class-string<FixtureInterface>> */
-    public function getDependencies(): array
-    {
-        return [GestionnaireFixture::class];
     }
 }

@@ -54,13 +54,11 @@ class MailerServiceTest extends WebTestCase
     {
         yield 'Should be sent with beneficiary' => [User::USER_TYPE_BENEFICIAIRE];
         yield 'Should not be sent with member' => [User::USER_TYPE_MEMBRE];
-        yield 'Should not be sent with gestionnaire' => [User::USER_TYPE_GESTIONNAIRE];
     }
 
     public function provideShouldNotSendDuplicateUsernameAlert(): \Generator
     {
         yield 'Should not be sent with beneficiary' => [User::USER_TYPE_BENEFICIAIRE];
         yield 'Should not be sent with member' => [User::USER_TYPE_MEMBRE];
-        yield 'Should not be sent with gestionnaire' => [User::USER_TYPE_GESTIONNAIRE];
     }
 }

@@ -7,7 +7,6 @@ use App\Entity\Membre;
 use App\Entity\MembreCentre;
 use App\Security\HelperV2\UserHelper;
 use App\Tests\Factory\BeneficiaireFactory;
-use App\Tests\Factory\GestionnaireFactory;
 use App\Tests\Factory\MembreFactory;
 use App\Tests\Factory\RelayFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

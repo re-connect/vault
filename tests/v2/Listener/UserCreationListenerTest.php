@@ -39,9 +39,5 @@ class UserCreationListenerTest extends AuthenticatedTestCase
             User::USER_TYPE_MEMBRE,
             '/^[a-z\-]{1,}\.[a-z\-]{1,}(-[1-9]\d*)?$/',
         ];
-        yield 'Should trigger listener with gestionnaire' => [
-            User::USER_TYPE_GESTIONNAIRE,
-            '/^[a-z\-]{1,}\.[a-z\-]{1,}(-[1-9]\d*)?$/',
-        ];
     }
 }
