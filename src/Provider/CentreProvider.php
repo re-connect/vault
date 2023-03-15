@@ -5,7 +5,6 @@ namespace App\Provider;
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Beneficiaire;
 use App\Entity\Centre;
-use App\Entity\Gestionnaire;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;
 use App\Entity\Subject;
@@ -35,10 +34,6 @@ class CentreProvider
             return $user->getSubjectMembre()->getCentres();
         }
 
-        if ($user->isGestionnaire()) {
-            return $user->getSubjectGestionnaire()->getCentres();
-        }
-
         if ($user->isBeneficiaire()) {
             return $user->getSubjectBeneficiaire()->getCentres();
         }
@@ -52,45 +47,6 @@ class CentreProvider
             ->select('c', 'a')
             ->from('App:Centre', 'c')
             ->innerJoin('c.adresse', 'a')
-            ->getQuery()
-            ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
-            ->getResult();
-    }
-
-    /**
-     * @return array
-     */
-    public function getBeneficiairesFromGestionnaire(Gestionnaire $gestionnaire)
-    {
-        return $this->em->createQueryBuilder()
-            ->select('b', 'bc', 'c', 'g', 'u')
-            ->from('App:Beneficiaire', 'b')
-            ->innerJoin('b.beneficiairesCentres', 'bc')
-            ->innerJoin('bc.centre', 'c')
-            ->innerJoin('c.gestionnaire', 'g')
-            ->innerJoin('b.user', 'u')
-            ->where('g.id = '.$gestionnaire->getId())
-            ->andWhere('b.isCreating = FALSE')
-            ->andWhere('bc.bValid = TRUE')
-            ->getQuery()
-            ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
-            ->getResult();
-    }
-
-    /**
-     * @return array
-     */
-    public function getMembresFromGestionnaire(Gestionnaire $gestionnaire)
-    {
-        return $this->em->createQueryBuilder()
-            ->select('m', 'mc', 'c', 'g', 'u')
-            ->from('App:Membre', 'm')
-            ->innerJoin('m.membresCentres', 'mc')
-            ->innerJoin('mc.centre', 'c')
-            ->innerJoin('c.gestionnaire', 'g')
-            ->innerJoin('m.user', 'u')
-            ->where('g.id = '.$gestionnaire->getId())
-            ->andWhere('mc.bValid = TRUE')
             ->getQuery()
             ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
             ->getResult();
@@ -184,9 +140,7 @@ class CentreProvider
      */
     public function getCentresFromUserWithCentre(Subject $subject): array
     {
-        if ($subject instanceof Gestionnaire) {
-            return $this->getCentresFromGestionnaire($subject);
-        } elseif ($subject instanceof Membre) {
+        if ($subject instanceof Membre) {
             return $this->em->createQueryBuilder()
                 ->select('c', 'a', 'bc', 'b', 'u')
                 ->from('App:Centre', 'c')
@@ -301,20 +255,6 @@ class CentreProvider
         }
 
         return $results2;
-    }
-
-    /**
-     * @return Centre[]
-     */
-    public function getCentresFromGestionnaire(Gestionnaire $gestionnaire): array
-    {
-        return $this->em->createQueryBuilder()
-            ->select('c', 'mc')
-            ->from('App:Centre', 'c')
-            ->leftJoin('c.membresCentres', 'mc')
-            ->where('c.gestionnaire = '.$gestionnaire->getId())
-            ->getQuery()
-            ->getResult();
     }
 
     /**

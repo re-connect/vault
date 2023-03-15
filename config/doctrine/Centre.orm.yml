@@ -92,17 +92,11 @@ App\Entity\Centre:
             cascade: [ "persist", "remove" ]
             orphanRemoval: true
     manyToOne:
-        gestionnaire:
-            targetEntity: Gestionnaire
-            inversedBy: centres
-            joinColumn:
-                nullable: true
-                onDelete: "SET NULL"
         association:
             targetEntity: Association
             inversedBy: centres
             joinColumn:
-                nullable: true
+                nullable: false
         typeCentre:
             targetEntity: TypeCentre
             inversedBy: centres

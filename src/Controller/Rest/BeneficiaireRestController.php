@@ -47,8 +47,6 @@ class BeneficiaireRestController extends REController
             $user = $this->getUser();
             if ($user->isMembre()) {
                 $beneficiairesByCentre = $centreProvider->getBeneficiairesFromMembre($user->getSubjectMembre());
-            } elseif ($user->isGestionnaire()) {
-                $beneficiairesByCentre = $centreProvider->getBeneficiairesFromGestionnaire($user->getSubjectGestionnaire());
             } else {
                 throw new \RuntimeException('You must be connected as membre or gestionnaire');
             }
@@ -369,7 +367,7 @@ class BeneficiaireRestController extends REController
     ): Response {
         try {
             $userConnected = $this->getUser();
-            if (!$userConnected->isMembre() && !$userConnected->isGestionnaire() && !$userConnected->isAdministrateur()) {
+            if (!$userConnected->isMembre() && !$userConnected->isAdministrateur()) {
                 throw new AccessDeniedException('Il faut être membre pour accéder à cette fonctionnalité');
             }
 
@@ -426,9 +424,6 @@ class BeneficiaireRestController extends REController
                 $beneficiaireProvider->save($entity, $this->getUser(), $firstCentre);
 
                 $initiateur = $this->getUser()->getSubject();
-                if ($this->getUser()->isGestionnaire()) {
-                    $initiateur = null;
-                }
 
                 if (!empty($request->request->get('re_form_beneficiaire')['centres'])) {
                     foreach ($request->request->get('re_form_beneficiaire')['centres'] as $centreId) {

@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Centre;
-use App\Entity\Gestionnaire;
 use App\Entity\Membre;
 use App\Manager\CentreManager;
 use App\Provider\CentreProvider;
@@ -34,7 +33,6 @@ class MembreController extends AbstractController
             'centres' => $centres,
             'subject' => $subject,
             'membreCentres' => $membreCentresById,
-            'isGestionnaire' => $subject instanceof Gestionnaire,
         ]);
     }
 

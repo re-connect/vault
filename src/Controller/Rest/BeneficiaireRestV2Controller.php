@@ -73,8 +73,8 @@ final class BeneficiaireRestV2Controller extends REController
             $user = $this->getUser();
             if (!$user instanceof User) {
                 throw $this->createAccessDeniedException();
-            } elseif (!$user->isMembre() && !$user->isGestionnaire()) {
-                throw $this->createAccessDeniedException('You must be connected as membre or gestionnaire');
+            } elseif (!$user->isMembre()) {
+                throw $this->createAccessDeniedException('You must be connected as membre');
             }
 
             $beneficiairesByCentre = $user->isMembre()
@@ -104,12 +104,6 @@ final class BeneficiaireRestV2Controller extends REController
 
             if ($user->isMembre()) {
                 $beneficiairesByCentre = $centreProvider->getBeneficiairesFromMembre($user->getSubjectMembre());
-
-                return $this->json($beneficiairesByCentre);
-            }
-
-            if ($user->isGestionnaire()) {
-                $beneficiairesByCentre = $centreProvider->getBeneficiairesFromGestionnaire($user->getSubjectGestionnaire());
 
                 return $this->json($beneficiairesByCentre);
             }
@@ -442,7 +436,7 @@ final class BeneficiaireRestV2Controller extends REController
     ): Response {
         try {
             $userConnected = $this->getUser();
-            if (!$userConnected->isMembre() && !$userConnected->isGestionnaire() && !$userConnected->isAdministrateur()) {
+            if (!$userConnected->isMembre() && !$userConnected->isAdministrateur()) {
                 throw new AccessDeniedException('Il faut être membre pour accéder à cette fonctionnalité');
             }
 
@@ -497,9 +491,6 @@ final class BeneficiaireRestV2Controller extends REController
                 $beneficiaireProvider->save($entity, $this->getUser(), $firstCentre);
 
                 $initiateur = $this->getUser()->getSubject();
-                if ($this->getUser()->isGestionnaire()) {
-                    $initiateur = null;
-                }
 
                 if (!empty($request->request->get('re_form_beneficiaire')['centres'])) {
                     foreach ($request->request->get('re_form_beneficiaire')['centres'] as $centreId) {

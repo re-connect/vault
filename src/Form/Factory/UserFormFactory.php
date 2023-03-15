@@ -2,13 +2,10 @@
 
 namespace App\Form\Factory;
 
-use App\Entity\Association;
 use App\Entity\Beneficiaire;
-use App\Entity\Gestionnaire;
 use App\Entity\Membre;
 use App\Entity\User;
 use App\Form\Type\BeneficiaireType;
-use App\Form\Type\GestionnaireType;
 use App\Form\Type\LoginType;
 use App\Form\Type\MembreType;
 use Symfony\Component\Form\Form;
@@ -48,22 +45,6 @@ class UserFormFactory
             'router' => $router,
             'csrfToken' => $csrfToken,
         ]);
-    }
-
-    /**
-     * @return Form|FormInterface
-     */
-    public function getGestionnaireForm(Gestionnaire $gestionnaire = null)
-    {
-        if (null === $gestionnaire) {
-            $gestionnaire = new Gestionnaire();
-            $user = new User();
-            $association = new Association();
-            $gestionnaire->setAssociation($association);
-            $gestionnaire->setUser($user);
-        }
-
-        return $this->formFactory->create(GestionnaireType::class, $gestionnaire, ['gestionnaire' => $gestionnaire]);
     }
 
     public function getBeneficiaireForm($centres)

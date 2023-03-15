@@ -121,9 +121,6 @@ final class MembreMembreController extends REController
             $this->membreProvider->save($form->getData(), $this->getUser());
 
             $initiateur = $this->getUser()->getSubject();
-            if ($this->getUser()->isGestionnaire()) {
-                $initiateur = null;
-            }
 
             $this->centreManager->associateUserWithCentres($form->getData(), $form->get('membresCentres')['centre']->getData(), $initiateur, $form->get('membresCentres')['droits']->getData(), true);
 
@@ -144,12 +141,7 @@ final class MembreMembreController extends REController
     public function showUsername(User $user): Response
     {
         $centreId = $user->getSubjectMembre()->getMembresCentres()->first()->getCentre()->getId();
-
-        if ($this->getUser()->isGestionnaire()) {
-            $linkToList = $this->generateUrl('re_gestionnaire_membresCentre', ['id' => $centreId]);
-        } else {
-            $linkToList = $this->generateUrl('re_membre_membresCentre', ['id' => $centreId]);
-        }
+        $linkToList = $this->generateUrl('re_membre_membresCentre', ['id' => $centreId]);
 
         return $this->render('user/membre-membre/membre_infos.html.twig', [
             'subject' => $user->getSubject(),

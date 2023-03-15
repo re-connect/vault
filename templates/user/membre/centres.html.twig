@@ -20,12 +20,6 @@
                     <div class="text-primary font-size-1">{{ centre.adresse }}</div>
                     <div class="text-primary font-size-1">{{ centre.telephone }}</div>
                     <div class="smallMargin">
-                        {% if isGestionnaire %}
-                            <a href="{{ path('re_membre_membresCentre', {'id' : centre.id}) }}"
-                               class="btn btn-blue">{% trans %}membre.centres.voirMembres{% endtrans %}</a>
-                            <a href="{{ path('list_beneficiaries', {'id' : centre.id}) }}"
-                               class="btn btn-blue">{% trans %}membre.centres.voirBeneficiaires{% endtrans %}</a>
-                        {% endif %}
                         {% if membreCentres %}
                             {% set droits = membreCentres[centre.id].droits %}
                             {% if droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES")] is defined and droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES")] %}

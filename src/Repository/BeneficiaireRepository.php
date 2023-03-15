@@ -6,7 +6,6 @@ use App\Entity\Beneficiaire;
 use App\Entity\BeneficiaireCentre;
 use App\Entity\Centre;
 use App\Entity\Client;
-use App\Entity\Gestionnaire;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -178,33 +177,26 @@ class BeneficiaireRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findByAuthorizedProfessionalQueryBuilder(Gestionnaire|Membre $professional): QueryBuilder
+    public function findByAuthorizedProfessionalQueryBuilder(Membre $professional): QueryBuilder
     {
         $qb = $this->createQueryBuilder('b')
             ->innerJoin('b.beneficiairesCentres', 'bc')
             ->innerJoin('bc.centre', 'c')
             ->innerJoin('b.user', 'u')
+            ->innerJoin('c.membresCentres', 'mc')
+            ->innerJoin('mc.membre', 'm')
             ->addSelect('u')
             ->addSelect('bc')
             ->addSelect('c')
             ->andWhere('b.isCreating = false')
-            ->andWhere('bc.bValid = true');
-
-        if ($professional instanceof Membre) {
-            $qb->innerJoin('c.membresCentres', 'mc')
-                ->innerJoin('mc.membre', 'm')
-                ->andWhere('m.id = :id')
-                ->andWhere('mc.bValid = true')
-                ->andWhere('mc.droits LIKE :access')
-                ->setParameters([
-                    'id' => $professional->getId(),
-                    'access' => sprintf('%%"%s";b:1%%', MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES),
-                ]);
-        } else {
-            $qb->innerJoin('c.gestionnaire', 'g')
-                ->andWhere('g.id = :id')
-                ->setParameter('id', $professional->getId());
-        }
+            ->andWhere('bc.bValid = true')
+            ->andWhere('m.id = :id')
+            ->andWhere('mc.bValid = true')
+            ->andWhere('mc.droits LIKE :access')
+            ->setParameters([
+                'id' => $professional->getId(),
+                'access' => sprintf('%%"%s";b:1%%', MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES),
+            ]);
 
         return $qb;
     }
@@ -212,7 +204,7 @@ class BeneficiaireRepository extends ServiceEntityRepository
     /**
      * @return Beneficiaire[]
      */
-    public function findByAuthorizedProfessional(Gestionnaire|Membre $professional): array
+    public function findByAuthorizedProfessional(Membre $professional): array
     {
         return $this->findByAuthorizedProfessionalQueryBuilder($professional)
             ->orderBy('u.username')
@@ -224,7 +216,7 @@ class BeneficiaireRepository extends ServiceEntityRepository
     /**
      * @return Beneficiaire[]
      */
-    public function filterByAuthorizedProfessional(Gestionnaire|Membre $professional, ?string $search, ?Centre $relay): array
+    public function filterByAuthorizedProfessional(Membre $professional, ?string $search, ?Centre $relay): array
     {
         $qb = $this->findByAuthorizedProfessionalQueryBuilder($professional);
 

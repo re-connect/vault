@@ -71,16 +71,6 @@ class MembreVoter extends Voter
                         }
                     }
                 }
-                if ($user->isGestionnaire()) {
-                    $centres = $this->provider->getCentresFromUserWithCentre($subject);
-                    foreach ($centres as $centre) {
-                        foreach ($user->getSubjectGestionnaire()->getCentres() as $otherCentre) {
-                            if ($centre == $otherCentre) {
-                                return true;
-                            }
-                        }
-                    }
-                }
 
                 break;
         }

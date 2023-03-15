@@ -387,9 +387,6 @@ final class MembreBeneficiaireController extends REController
         UserCreationController $userCreationController
     ): Response {
         $user = $this->getUser();
-        if ($user->isGestionnaire()) {
-            count($user->getSubject()->getCentres());
-        }
 
         $centresEnCommun = $centreManager->getCentreCommunUserWithCentres($beneficiaire, $user->getSubject());
 

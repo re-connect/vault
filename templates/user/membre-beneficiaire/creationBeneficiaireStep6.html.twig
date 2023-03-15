@@ -30,12 +30,8 @@
 {% endblock creation_addUserContent %}
 
 {% block bottomLinks %}
-    {% set path = path('list_beneficiaries') %}
-    {% if app.user.isGestionnaire %}
-        {% set path = path('re_gestionnaire_beneficiaires') %}
-    {% endif %}
 
-    <a href="{{ path }}"
+    <a href="{{ path('list_beneficiaries') }}"
        class="btn btn-dark-blue font-size-1">{% trans %}membre.creationBeneficiaire.step6.terminer{% endtrans %}</a>
 {% endblock bottomLinks %}
 

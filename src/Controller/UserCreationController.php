@@ -195,9 +195,6 @@ class UserCreationController extends AbstractController
 
             /* Si rien a été associé, on ne retourne pas vers la page de success d'association */
             if (0 === $countAssociate) {
-                if ($this->getUser()->isGestionnaire()) {
-                    return $this->redirect($this->generateUrl('re_gestionnaire_membres'));
-                }
                 if ($subject->getUser()->isBeneficiaire()) {
                     return $this->redirect($this->generateUrl('list_beneficiaries'));
                 }
@@ -264,18 +261,6 @@ class UserCreationController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
         $subjectUser = $subject->getUser();
-        if ($user->isGestionnaire() && $subjectUser->isBeneficiaire()) {
-            $redirectRoute = 're_gestionnaire_beneficiaires';
-            if (false === $this->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $subject)) {
-                throw new AccessDeniedException("Vous n'avez pas le droit d'arrêter le suivi de ce bénéficiaire");
-            }
-        }
-        if ($user->isGestionnaire() && $subjectUser->isMembre()) {
-            $redirectRoute = 're_gestionnaire_membres';
-            if (false === $this->isGranted(MembreVoter::GESTION_MEMBRE, $subject)) {
-                throw new AccessDeniedException("Vous n'avez pas le droit d'arrêter le suivi de ce bénéficiaire");
-            }
-        }
         if ($user->isMembre() && $subjectUser->isBeneficiaire()) {
             $redirectRoute = 'list_beneficiaries';
             if (false === $this->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $subject)) {
