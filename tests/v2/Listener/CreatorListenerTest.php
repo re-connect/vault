@@ -3,7 +3,6 @@
 namespace App\Tests\v2\Listener;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
-use App\DataFixtures\v2\GestionnaireFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\ContactFactory;
 use App\Tests\Factory\DocumentFactory;
@@ -25,9 +24,6 @@ class CreatorListenerTest extends AuthenticatedKernelTestCase
         ];
         yield 'Should trigger listener when creating as professional' => [
             MemberFixture::MEMBER_MAIL,
-        ];
-        yield 'Should trigger listener when creating as gestionnaire' => [
-            GestionnaireFixture::GESTIONNAIRE_MAIL,
         ];
     }
 

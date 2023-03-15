@@ -4,6 +4,7 @@ namespace App\Tests\v2\EventSubscriber\Logs;
 
 use App\Entity\Centre;
 use App\EventSubscriber\Logs\RelaySubscriber;
+use App\Tests\Factory\AssociationFactory;
 use App\Tests\Factory\RelayFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Zenstruck\Foundry\Test\Factories;
@@ -31,7 +32,8 @@ class RelaySubscriberTest extends AbstractLogActivitySubscriberTest implements T
     public function testPostPersist(): void
     {
         $relay = (new Centre())
-            ->setNom('test');
+            ->setNom('test')
+            ->setAssociation(AssociationFactory::random()->object());
 
         $this->em->persist($relay);
         $this->em->flush();
