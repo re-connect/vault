@@ -1,0 +1,37 @@
+{% set itemsList = [
+    {
+        'itemKind': 'document-folder',
+        'title': 'beneficiaire.menu.mesDocuments',
+        'routeName': 're_app_document_list',
+        'image': 'build/images/icons/docs_bleu.png',
+    },
+    {
+        'itemKind': 'event',
+        'title': 'beneficiaire.menu.monCalendrier',
+        'routeName': 'event_list',
+        'image': 'build/images/icons/rappels_bleu.png',
+    },
+    {
+        'itemKind': 'contact',
+        'title': 'beneficiaire.menu.mesContacts',
+        'routeName': 'contact_list',
+        'image': 'build/images/icons/contacts_bleu.png',
+    },
+    {
+        'itemKind': 'note',
+        'title': 'beneficiaire.menu.mesNotes',
+        'routeName': 'note_list',
+        'image': 'build/images/icons/notes_bleu.png',
+    },
+] %}
+
+<ul class="list-group list-group-horizontal vault-nav row col-12 col-lg-8 m-auto">
+    {% for key, item in itemsList %}
+        {{ include('v2/vault/nav/pro/_pro_nav_item.html.twig', {
+            'item': item.itemKind,
+            'title': item.title,
+            'routeName': item.routeName,
+            'image': item.image
+        }) }}
+    {% endfor %}
+</ul>

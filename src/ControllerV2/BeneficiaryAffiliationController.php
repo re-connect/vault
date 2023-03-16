@@ -61,11 +61,18 @@ class BeneficiaryAffiliationController extends AbstractController
         BeneficiaryAffiliationManager $manager,
         TranslatorInterface $translator,
     ): Response {
+        $availableRelaysForAffiliation = $manager->getAvailableRelaysForAffiliation($this->getUser(), $beneficiary);
+
+        if (0 === $availableRelaysForAffiliation->count()) {
+            return $this->render('v2/user_affiliation/beneficiary/_no_relay_available.html.twig');
+        }
+
         $affiliateBeneficiaryModel = (new AffiliateBeneficiaryFormModel())
-            ->setRelays($manager->getAvailableRelaysForAffiliation($this->getUser(), $beneficiary));
+            ->setRelays($availableRelaysForAffiliation);
 
         $form = $this->createForm(AffiliateBeneficiaryType::class, $affiliateBeneficiaryModel, [
             'action' => $this->generateUrl('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]),
+            'beneficiary' => $beneficiary,
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -81,9 +88,10 @@ class BeneficiaryAffiliationController extends AbstractController
             $form->get('secretAnswer')->addError(new FormError($translator->trans('wrong_secret_answer')));
         }
 
-        return $this->renderForm('v2/user_affiliation/beneficiary/affiliate_beneficiary_relays.html.twig', [
-            'form' => $form,
+        return $this->renderForm('v2/user_affiliation/beneficiary/_relays_form.html.twig', [
             'beneficiary' => $beneficiary,
+            'availableRelays' => $availableRelaysForAffiliation,
+            'form' => $form,
             'formModel' => $affiliateBeneficiaryModel,
         ]);
     }

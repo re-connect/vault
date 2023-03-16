@@ -2,7 +2,9 @@
     <thead>
     <tr class="text-primary text-center font-size-1-3">
         <th class="bg-grey borderless text-start ps-md-3">{{ 'note.nomLabel'|trans }}</th>
-        <th class="bg-grey borderless pe-3">{{ 'access'|trans }}</th>
+        {% if app.user.isBeneficiaire %}
+            <th class="bg-grey borderless pe-3">{{ 'access'|trans }}</th>
+        {% endif %}
         <th class="bg-grey borderless pe-3">{{ 'donneePersonnelle.list.entete.actions'|trans }}</th>
     </tr>
     </thead>

@@ -22,8 +22,15 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
         self::$dataCollectorTranslator = $container->get(TranslatorInterface::class);
     }
 
-    public function assertRoute(string $url, int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = null, string $method = 'GET', $isXmlHttpRequest = false): KernelBrowser
-    {
+    public function assertRoute(
+        string $url,
+        int $expectedStatusCode,
+        ?string $userMail = null,
+        ?string $expectedRedirect = null,
+        string $method = 'GET',
+        bool $isXmlHttpRequest = false,
+        array $body = [],
+    ): KernelBrowser {
         self::ensureKernelShutdown();
         $clientTest = static::createClient();
 
@@ -33,8 +40,8 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
         }
 
         $isXmlHttpRequest
-            ? $clientTest->xmlHttpRequest($method, $url)
-            : $clientTest->request($method, $url);
+            ? $clientTest->xmlHttpRequest($method, $url, $body)
+            : $clientTest->request($method, $url, $body);
 
         $this->assertResponseStatusCodeSame($expectedStatusCode);
         if ($expectedRedirect) {
@@ -44,6 +51,9 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
         return $clientTest;
     }
 
+    /**
+     * @param array<string,string> $values
+     */
     public function assertFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
         self::ensureKernelShutdown();
@@ -68,8 +78,8 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
     }
 
     /**
-     * @param array<string, string> $values
-     * @param array<array>          $errors
+     * @param array<string, string>         $values
+     * @param array<array<string, ?string>> $errors
      */
     public function assertFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
@@ -91,6 +101,9 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
         $this->assertRouteSame($route);
     }
 
+    /**
+     * @param array<string, ?string> $error
+     */
     private function getValidationErrorMessage(array $error): string
     {
         return self::$translator->trans(
@@ -107,6 +120,9 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
         return UserFactory::find(['email' => $email])->object();
     }
 
+    /**
+     * @param int[]|string[] $params
+     */
     public function buildUrlString(string $format, array $params): string
     {
         return sprintf($format, ...$params);

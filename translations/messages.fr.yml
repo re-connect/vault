@@ -45,7 +45,8 @@ back: Retour
 back_to_reconnect_admin: Retour à l'accueil
 confirm_beneficiary_creation_cancellation: Êtes vous sûr de vouloir annuler la création de ce bénéficiaire ?
 confirm_beneficiary_creation_remotely: "En cliquant sur confirmer, un SMS sera envoyé au bénéficiaire lui permettant d’activer son compte et de définir son mot de passe et la réponse à sa question secrète. \n Il pourra choisir d’accepter ou non le partage de ses informations avec le(s) relais ci-dessus."
-beneficiary_added_to_relays: Les bénéficiaire a été ajouté aux centres selectionnés
+beneficiaries: Bénéficiaires
+beneficiary_added_to_relays: Les bénéficiaire a été ajouté aux relais selectionnés
 beneficiary_already_affiliated_to_all_relays: Le bénéficiaire est déjà affilié, ou invité, à l'ensemble de vos relais Reconnect
 beneficiary_created_successfully: Le bénéficiaire a bien été créé
 beneficiary_created_successfully_wait_activation: Le compte a bien été créé et est en attente d’activation par le bénéficiaire.
@@ -129,6 +130,7 @@ choose_beneficiary_secret_question: Veuillez choisir la question secrète du bé
 choose_beneficiary_title_part_1: Choisir un
 choose_beneficiary_title_part_2: bénéficiaire
 choose_picture: Cliquez ici pour choisir une image
+choose_relay: Sélectionnez un centre
 city: Ville
 comment: 'Commentaire'
 confirm: Confirmer
@@ -620,6 +622,7 @@ invalid_token: Token invalide, veuillez recommencer l'opération
 is_the_beneficiary_present: Le bénéficiaire est avec vous ?
 is_the_beneficiary_absent: Le bénéficiaire n'est pas avec vous ?
 lastname: Nom
+leave: Quitter
 leave_center: 'Quitter ce centre'
 leave_center_confirm: Êtes-vous sûr de vouloir quitter ce centre ?
 leave_center_title: Quitter le centre %s
@@ -925,6 +928,7 @@ print_account_creation_act: N'oubliez pas d'imprimer l'acte d'ouverture du compt
 postal_code: Code Postal
 previous: 'Précédent'
 private: Privé
+pro_manage_user_title_part_1: Gestion des
 public_reset_password: Je souhaite réinitialiser mon mot de passe
 public_reset_password_SMS_has_been_sent: Un SMS vous a été envoyé il contient un code secret nécessaire pour renouveller votre mot de passe, vous disposez d'un délai de 2 heures
 public_reset_password_SMS_wrong_code: Le Code que vous avez entré ne correspond pas à celui que vous avez reçu par SMS
@@ -959,7 +963,9 @@ registerForm.username: 'Nom d''utilisateur'
 registerForm.ville: Ville
 reminder: 'Rappel'
 reminder_sms: 'Rappel SMS'
+remove_from_relay: Retirer du relais
 rename: Renommer
+renew_password: Renouveler le mot de passe
 relays: Relais
 reset_password_requested_by_SMS: La demande de réinitialisation actuelle a été effectuée par SMS
 reset_password_requested_by_email: La demande de réinitialisation actuelle a été effectuée par email
@@ -1033,6 +1039,8 @@ submit: Valider
 summary: Récapitulatif
 summary_confirm_information: Récapitulatif, veuillez confirmer les informations enregistrées ci-dessous
 surname: 'Prénom'
+switch_content_private: Basculer en privé
+switch_content_private_confirm: Êtes vous sûr de vouloir basculer ce contenu dans l'espace privé du bénéficiaire ?
 switchUser.btnRevenir: 'Revenir à l''administration'
 switchUser.connecte: 'Vous êtes connecté en tant que <span class="italic">%username%</span>'
 tax: Impôts
@@ -1100,7 +1108,7 @@ user_parameters_title: '<span class="text-primary">Paramètres d''</span><span c
 user_shared_document_with_you: "L'utilisateur %nom% %prenom% souhaite partager ce document avec vous: \"%document%\""
 user_update_password_subtitle: Mot de passe de %subject%
 user_update_password_title: '<span class="text-primary">Renouvellement de </span><span class="rp-blue vault-green">mot de passe</span>'
-username: 'Identifiant'
+username: Nom d'utilisateur
 vault: Coffre-fort numérique
 website_CGS: CGS du site
 website_confidentiality: Politique de confidentialité du site

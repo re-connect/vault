@@ -15,8 +15,13 @@ class PaginatorService
         $this->paginator = $paginator;
     }
 
-    public function create(array $list, int $currentPage): PaginationInterface
+    /**
+     * @param object[] $list
+     *
+     * @return PaginationInterface<int, object>
+     */
+    public function create(array $list, int $currentPage, int $limit = self::LIMIT): PaginationInterface
     {
-        return $this->paginator->paginate($list, $currentPage, self::LIMIT);
+        return $this->paginator->paginate($list, $currentPage, $limit);
     }
 }

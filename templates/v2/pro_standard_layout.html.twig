@@ -1,5 +1,4 @@
 {% extends 'v2/base.html.twig' %}
-{% block metaTitle %}{{ 'membre.ajoutBeneficiaire.metaTitle'|trans }}{% endblock metaTitle %}
 
 {% block body %}
     <div class="position-relative bg-white text-center mt-75">
@@ -7,20 +6,9 @@
             {% block title %}{% endblock %}
         </h1>
     </div>
-    <div class="container text-primary mx-auto {{ getUserBackgroundColor() }}">
+    <div class="container text-primary mx-auto {% block bodyColor %}{{ parent() }}{% endblock %}">
         <div class="max-width-lg mx-auto row">
-            <div class="col-8 col-sm-10 px-0 mt-3">
-                <i class="fas fa-user-plus fa-lg me-1"></i>
-                <span class="font-size-1-3 bold">{% block subTitle %}{% endblock %}</span>
-            </div>
-            <div class="col text-end pe-0 mt-4 mt-md-2">
-                {% block backButton %}
-                    <a href="{{ path('re_membre_beneficiaires') }}"
-                       class="btn {{ getUserButtonColor() }} text-white">
-                        {{ 'back_home'|trans }}
-                    </a>
-                {% endblock %}
-            </div>
+            {% block actionBar %}{% endblock %}
             <hr class="hr-2 mt-2 bg-primary mx-auto">
             <div class="container">
                 <div class="max-width-lg mx-auto row">

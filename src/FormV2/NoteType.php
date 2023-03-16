@@ -20,6 +20,10 @@ class NoteType extends AbstractType
             ])
             ->add('contenu', TextareaType::class, [
                 'label' => 'note.contenuLabel',
+                'attr' => [
+                    'class' => 'd-none',
+                    'data-controller' => 'quill-editor',
+                ],
             ])
             ->add('bPrive', ChoiceType::class, [
                 'label' => 'access',

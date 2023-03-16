@@ -26,7 +26,10 @@ class NoteController extends AbstractController
         NoteRepository $repository,
         PaginatorService $paginator,
     ): Response {
-        $searchForm = $this->createForm(SearchType::class);
+        $searchForm = $this->createForm(SearchType::class, null, [
+            'attr' => ['data-controller' => 'ajax-list-filter'],
+            'action' => $this->generateUrl('note_search', ['id' => $beneficiary->getId()]),
+        ]);
 
         return $this->renderForm('v2/vault/note/index.html.twig', [
             'beneficiary' => $beneficiary,
@@ -44,7 +47,7 @@ class NoteController extends AbstractController
         path: '/beneficiary/{id}/notes/search',
         name: 'note_search',
         requirements: ['id' => '\d+'],
-        methods: ['GET'],
+        methods: ['POST'],
         condition: 'request.isXmlHttpRequest()',
     )]
     #[IsGranted('UPDATE', 'beneficiary')]
@@ -54,15 +57,19 @@ class NoteController extends AbstractController
         NoteRepository $repository,
         PaginatorService $paginator
     ): JsonResponse {
-        $word = $request->query->get('word', '');
-        $searchForm = $this->createForm(SearchType::class);
+        $searchForm = $this->createForm(SearchType::class, null, [
+            'attr' => ['data-controller' => 'ajax-list-filter'],
+            'action' => $this->generateUrl('note_search', ['id' => $beneficiary->getId()]),
+        ])->handleRequest($request);
+
+        $search = $searchForm->get('search')->getData();
 
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/note/_list.html.twig', [
                 'notes' => $paginator->create(
                     $this->isLoggedInUser($beneficiary->getUser())
-                        ? $repository->searchByBeneficiary($beneficiary, $word)
-                        : $repository->searchSharedByBeneficiary($beneficiary, $word),
+                        ? $repository->searchByBeneficiary($beneficiary, $search)
+                        : $repository->searchSharedByBeneficiary($beneficiary, $search),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
@@ -83,6 +90,7 @@ class NoteController extends AbstractController
         $note = new Note($beneficiary);
         $form = $this->createForm(NoteType::class, $note, [
             'action' => $this->generateUrl('note_create', ['id' => $beneficiary->getId()]),
+            'private' => $this->getUser() === $beneficiary->getUser(),
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -140,21 +148,22 @@ class NoteController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'note.bienSupprime');
 
-        return $this->redirectToRoute('note_list', ['id' => $note->getBeneficiaire()->getId()]);
+        return $this->redirectToRoute('note_list', ['id' => $note->getBeneficiaireId()]);
     }
 
     #[Route(
         path: 'note/{id}/toggle-visibility',
         name: 'note_toggle_visibility',
         requirements: ['id' => '\d+'],
-        methods: ['PATCH'],
-        condition: 'request.isXmlHttpRequest()'
+        methods: ['GET', 'PATCH'],
     )]
     #[IsGranted('UPDATE', 'note')]
-    public function toggleVisibility(Note $note, NoteManager $manager): Response
+    public function toggleVisibility(Request $request, Note $note, NoteManager $manager): Response
     {
         $manager->toggleVisibility($note);
 
-        return new Response(null, 204);
+        return $request->isXmlHttpRequest()
+            ? new JsonResponse($note)
+            : $this->redirectToRoute('note_list', ['id' => $note->getBeneficiaireId()]);
     }
 }

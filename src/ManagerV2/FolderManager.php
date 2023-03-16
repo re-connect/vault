@@ -112,6 +112,9 @@ class FolderManager
         }
     }
 
+    /**
+     * @return string[]
+     */
     public function getAutocompleteFolderNames(): array
     {
         return array_map(fn ($name) => $this->translator->trans($name), Dossier::AUTOCOMPLETE_NAMES);

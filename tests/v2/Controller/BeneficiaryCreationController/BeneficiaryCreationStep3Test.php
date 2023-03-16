@@ -19,8 +19,15 @@ class BeneficiaryCreationStep3Test extends AbstractControllerTest implements Tes
     ];
 
     /** @dataProvider provideTestRoute */
-    public function testRoute(string $url, int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = null, string $method = 'GET'): void
-    {
+    public function testRoute(
+        string $url,
+        int $expectedStatusCode,
+        ?string $userMail = null,
+        ?string $expectedRedirect = null,
+        string $method = 'GET',
+        bool $isXmlHttpRequest = false,
+        array $body = [],
+    ): void {
         $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->object();
         $url = sprintf($url, $creationProcess->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
@@ -33,7 +40,11 @@ class BeneficiaryCreationStep3Test extends AbstractControllerTest implements Tes
         yield 'Should return 403 status code when authenticated as beneficiary' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL];
     }
 
-    /**  @dataProvider provideTestFormIsValid */
+    /**
+     * @param array<string, string> $values
+     *
+     * @dataProvider provideTestFormIsValid
+     */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
         $firstTranslatedQuestion = array_key_first($this->getTranslatedSecretQuestions());
@@ -109,6 +120,9 @@ class BeneficiaryCreationStep3Test extends AbstractControllerTest implements Tes
         ];
     }
 
+    /**
+     * @return array<string, string>
+     */
     private function getTranslatedSecretQuestions(): array
     {
         $secretQuestions = [];

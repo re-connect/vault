@@ -41,6 +41,9 @@ class AuthenticatedTestCase extends WebTestCase
         return $beneficiary;
     }
 
+    /**
+     * @param string[] $roles
+     */
     public function createTestUser(string $email, array $roles, ?string $typeUser = null): User
     {
         $em = $this->getEntityManager();
@@ -54,6 +57,9 @@ class AuthenticatedTestCase extends WebTestCase
         return $user;
     }
 
+    /**
+     * @param string[] $roles
+     */
     private function getTestUser(string $email, array $roles): User
     {
         return (new User())

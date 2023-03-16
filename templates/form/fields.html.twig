@@ -28,7 +28,7 @@
     {% apply spaceless %}
         <div class="vich-file">
             {{ form_widget(form.file) }}
-            {% if download_uri is defined and object.url is defined  %}
+            {% if download_uri is not null and object.url is not null  %}
                 <a href="" class="btn btnUploadFile">{% trans %}main.modifierFichier{% endtrans %}</a>
                 &nbsp; <span class="filenameLabel"><a
                         href="{{ path('re_admin_annexe', {'url': object.url ? object.url : download_uri })}}">{% trans %}main.voirFichier{% endtrans %}</a></span>

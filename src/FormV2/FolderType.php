@@ -31,7 +31,7 @@ class FolderType extends AbstractType
                         'private' => true,
                         'shared' => false,
                     ],
-                    'data' => true,
+                    'data' => $options['private'],
                 ]);
         }
     }
@@ -41,6 +41,7 @@ class FolderType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Dossier::class,
             'rename_only' => false,
+            'private' => true,
         ]);
     }
 }

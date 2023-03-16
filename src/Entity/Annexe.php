@@ -6,11 +6,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * @Vich\Uploadable
- *
- * @method upload()
- */
+#[Vich\Uploadable]
 class Annexe
 {
     public const SERVER_PATH_TO_IMAGE_FOLDER = 'uploads/annexe';
@@ -24,11 +20,8 @@ class Annexe
      */
     private $url;
 
-    /**
-     * @Vich\UploadableField(mapping="annexe_fichier", fileNameProperty="fichier")
-     *
-     * @var File
-     */
+    /** @var File */
+    #[Vich\UploadableField(mapping: 'annexe_fichier', fileNameProperty: 'fichier')]
     private $fichierFile;
 
     /** @var string */
@@ -51,14 +44,6 @@ class Annexe
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Lifecycle callback to upload the file to the server.
-     */
-    public function lifecycleFileUpload(): void
-    {
-        $this->upload();
     }
 
     /**

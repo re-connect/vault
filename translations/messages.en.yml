@@ -33,6 +33,7 @@ association.urlLabel: 'Internet site'
 authentification_failure_wrong_credentials: Username or password incorrect
 back_home: 'Back to homepage'
 back: Back
+beneficiaries: Beneficiaries
 beneficiary_already_affiliated_to_all_relays: The beneficiary is already affiliated to your Reconnect relays
 beneficiary_added_to_relays: The beneficiary has been added to selected centers
 beneficiary_created_successfully: Beneficiary created successfully
@@ -95,6 +96,7 @@ choose_beneficiary_secret_question: Please choose beneficiary's secret question
 choose_beneficiary_title_part_1: Choose a
 choose_beneficiary_title_part_2: beneficiary
 choose_picture: Click here to add a picture
+choose_relay: Choose a relay
 city: City
 comment: Comment
 confirm: Confirm
@@ -501,6 +503,7 @@ is_the_beneficiary_present: Is the beneficiary present ?
 is_the_beneficiary_absent: Is the beneficiary absent ?
 innovative_solution_digital_divide: The solution to meet the challenges of the digital divide
 lastname: Lastname
+leave: Leave
 leave_center: Leave this relay
 leave_center_confirm: Are you sure you want to leave this relay?
 leave_center_title: Leave %s
@@ -770,6 +773,7 @@ phone_duplicate: This phone number is linked to multiple Reconnect accounts, ple
 postal_code: Postal Code
 print_account_creation_act: Don't forget to print the Reconnect account creation act, in order to obtain the signature of the beneficiary
 private: Private
+pro_manage_user_title_part_1: Manage
 public_reset_password: I want to reset my password
 public_reset_password_SMS_has_been_sent: An SMS was sent to you containing a secret code to renew your password. It is valid for 2 hours.
 public_reset_password_SMS_wrong_code: The code you entered does not correspond to the one you received by SMS
@@ -794,7 +798,9 @@ registerForm.ville: City
 relays: Relays
 reminder: Reminder
 reminder_sms: SMS Reminder
+remove_from_relay: Remove from relay
 rename: Rename
+renew_password: Renew password
 reset_password_requested_by_SMS: Current reset request was made by SMS
 reset_password_requested_by_email: Current reset request was made by email
 resetting.check_email: 'An Email was sent to the entered address. Click on the link in the Email in order to reset your password.'
@@ -859,6 +865,8 @@ steps_count: Step %step%/%totalSteps%
 summary: Summary
 summary_confirm_information: Summary, please confirm the information below
 surname: First name
+switch_content_private: Switch private
+switch_content_private_confirm: Are you sure you want to switch this element in the private area of the beneficiary ?
 switchUser.btnRevenir: 'Back to Administration'
 switchUser.connecte: 'You are connected as <span class="italic">%username%'
 username: Username

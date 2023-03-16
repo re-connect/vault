@@ -1,0 +1,17 @@
+{% extends 'v2/user_affiliation/beneficiary/affiliate_beneficiary_relays.html.twig' %}
+
+{% block content %}
+    <h4 class="text-center my-4">
+        {{ 'beneficiary_already_affiliated_to_all_relays'|trans }} :
+    </h4>
+    <div class="mt-2">
+        <ul class="list-group">
+            {% for relay in app.user.centres %}
+                <li class="mx-auto list-group-item bg-light-blue text-primary border-0">
+                    <i class="fas fa-user me-1"></i>
+                    {{ relay.nom }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

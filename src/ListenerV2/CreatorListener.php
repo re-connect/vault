@@ -6,6 +6,7 @@ use App\Entity\CreatorUser;
 use App\Entity\DonneePersonnelle;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Security;
 
 class CreatorListener
@@ -16,6 +17,9 @@ class CreatorListener
     {
     }
 
+    /**
+     * @param LifecycleEventArgs<ObjectManager> $args
+     */
     public function prePersist(LifecycleEventArgs $args): void
     {
         $user = $this->getUser();

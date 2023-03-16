@@ -9,7 +9,7 @@ use App\Tests\v2\API\v3\AbstractApiTest;
 
 class EventApiV3Test extends AbstractApiTest
 {
-    public function testGetCollection()
+    public function testGetCollection(): void
     {
         $this->markTestSkipped('Event api ressource is currently disabled');
         $this->assertEndpoint(
@@ -26,7 +26,7 @@ class EventApiV3Test extends AbstractApiTest
         );
     }
 
-    public function testGetOne()
+    public function testGetOne(): void
     {
         $this->markTestSkipped('Event api ressource is currently disabled');
         $event = EventFactory::findOrCreate([
@@ -51,7 +51,7 @@ class EventApiV3Test extends AbstractApiTest
         );
     }
 
-    public function testPost()
+    public function testPost(): void
     {
         $this->markTestSkipped('Event api ressource is currently disabled');
         $event = [
@@ -81,7 +81,7 @@ class EventApiV3Test extends AbstractApiTest
         );
     }
 
-    public function testPut()
+    public function testPut(): void
     {
         $this->markTestSkipped('Event api ressource is currently disabled');
         $note = EventFactory::findOrCreate([
@@ -111,7 +111,7 @@ class EventApiV3Test extends AbstractApiTest
         );
     }
 
-    public function testPatch()
+    public function testPatch(): void
     {
         $this->markTestSkipped('Event api ressource is currently disabled');
         $event = EventFactory::findOrCreate([
@@ -141,7 +141,7 @@ class EventApiV3Test extends AbstractApiTest
         );
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $this->markTestSkipped('Event api ressource is currently disabled');
         $event = EventFactory::findOrCreate([

@@ -31,7 +31,10 @@ class EventController extends AbstractController
         EvenementRepository $repository,
         PaginatorService $paginator,
     ): Response {
-        $searchForm = $this->createForm(SearchType::class);
+        $searchForm = $this->createForm(SearchType::class, null, [
+            'attr' => ['data-controller' => 'ajax-list-filter'],
+            'action' => $this->generateUrl('event_search', ['id' => $beneficiary->getId()]),
+        ]);
 
         return $this->renderForm('v2/vault/event/index.html.twig', [
             'beneficiary' => $beneficiary,
@@ -49,7 +52,8 @@ class EventController extends AbstractController
         path: '/beneficiary/{id}/events/search',
         name: 'event_search',
         requirements: ['id' => '\d+'],
-        methods: ['GET'], condition: 'request.isXmlHttpRequest()',
+        methods: ['POST'],
+        condition: 'request.isXmlHttpRequest()',
     )]
     #[IsGranted('UPDATE', 'beneficiary')]
     public function search(
@@ -58,15 +62,19 @@ class EventController extends AbstractController
         EvenementRepository $repository,
         PaginatorService $paginator
     ): Response {
-        $word = $request->query->get('word', '');
-        $searchForm = $this->createForm(SearchType::class);
+        $searchForm = $this->createForm(SearchType::class, null, [
+            'attr' => ['data-controller' => 'ajax-list-filter'],
+            'action' => $this->generateUrl('event_search', ['id' => $beneficiary->getId()]),
+        ])->handleRequest($request);
+
+        $search = $searchForm->get('search')->getData();
 
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/event/_list.html.twig', [
                 'events' => $paginator->create(
                     $this->isLoggedInUser($beneficiary->getUser())
-                        ? $repository->searchFutureEventsByBeneficiary($beneficiary, $word)
-                        : $repository->searchSharedFutureEventsByBeneficiary($beneficiary, $word),
+                        ? $repository->searchFutureEventsByBeneficiary($beneficiary, $search)
+                        : $repository->searchSharedFutureEventsByBeneficiary($beneficiary, $search),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
@@ -87,6 +95,7 @@ class EventController extends AbstractController
         $event = new Evenement($beneficiary);
         $form = $this->createForm(EventType::class, $event, [
             'action' => $this->generateUrl('event_create', ['id' => $beneficiary->getId()]),
+            'private' => $this->getUser() === $beneficiary->getUser(),
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -146,21 +155,22 @@ class EventController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'evenement.bienSupprime');
 
-        return $this->redirectToRoute('event_list', ['id' => $event->getBeneficiaire()->getId()]);
+        return $this->redirectToRoute('event_list', ['id' => $event->getBeneficiaireId()]);
     }
 
     #[Route(
         path: 'event/{id}/toggle-visibility',
         name: 'event_toggle_visibility',
         requirements: ['id' => '\d+'],
-        methods: ['PATCH'],
-        condition: 'request.isXmlHttpRequest()',
+        methods: ['GET', 'PATCH'],
     )]
     #[IsGranted('UPDATE', 'event')]
-    public function toggleVisibility(Evenement $event, EventManager $manager): Response
+    public function toggleVisibility(Request $request, Evenement $event, EventManager $manager): Response
     {
         $manager->toggleVisibility($event);
 
-        return new Response(null, 204);
+        return $request->isXmlHttpRequest()
+            ? new JsonResponse($event)
+            : $this->redirectToRoute('event_list', ['id' => $event->getBeneficiaireId()]);
     }
 }
