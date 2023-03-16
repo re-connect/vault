@@ -25,7 +25,7 @@ admin.title: 'Reconnect <span class="main"> Administration</span>'
 aides.metaTitle: Aids
 alt_logo_reconnect: logo association reconnect
 answer_secret_question: Answer secret question
-answer_secret_question_relay_acception: Once validated, the beneficiary will be invited to join these centers. If you are in the presence of the beneficiary, you can enter the answer to his/her secret question in order to accept the invitation to these centers now.
+answer_secret_question_relay_acception: Once validated, the beneficiary will be invited to join these centers. If you are in the presence of the beneficiary, you can enter the answer to his/her secret question in order to accept the invitation to these centers now. Otherwise, the beneficiary can accept the invitation from his account.
 association.categorie.association: Association
 association.categorie.ccas: 'Communal Centre for Social Action(CCSA)'
 association.categorie.choisir: 'Please select  the category of your association'

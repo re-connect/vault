@@ -32,7 +32,7 @@ aides.metaTitle: Aides
 alt_logo_reconnect: logo association reconnect
 answer: Réponse
 answer_secret_question: Répondre à la question secrète
-answer_secret_question_relay_acception: Une fois validé, le bénéficiaire sera invité à rejoindre ces centres. Si vous êtes en présence du bénéficiaire, vous pouvez entrer la réponse à sa question secrète afin d'accepter l'invitation à ces centres dès maintenant.
+answer_secret_question_relay_acception: Une fois validé, le bénéficiaire sera invité à rejoindre ces centres. Si vous êtes en présence du bénéficiaire, vous pouvez entrer la réponse à sa question secrète afin d'accepter l'invitation à ces centres dès maintenant. Sinon, il pourra accepter l'invitation en se connectant à son compte Reconnect.
 association.categorie.association: Association
 association.categorie.ccas: 'Centre Communal d''Action Social (CCAS)'
 association.categorie.choisir: 'Veuillez choisir la catégorie de votre association'
@@ -46,7 +46,7 @@ back_to_reconnect_admin: Retour à l'accueil
 confirm_beneficiary_creation_cancellation: Êtes vous sûr de vouloir annuler la création de ce bénéficiaire ?
 confirm_beneficiary_creation_remotely: "En cliquant sur confirmer, un SMS sera envoyé au bénéficiaire lui permettant d’activer son compte et de définir son mot de passe et la réponse à sa question secrète. \n Il pourra choisir d’accepter ou non le partage de ses informations avec le(s) relais ci-dessus."
 beneficiaries: Bénéficiaires
-beneficiary_added_to_relays: Les bénéficiaire a été ajouté aux relais selectionnés
+beneficiary_added_to_relays: Le bénéficiaire a été ajouté aux relais selectionnés
 beneficiary_already_affiliated_to_all_relays: Le bénéficiaire est déjà affilié, ou invité, à l'ensemble de vos relais Reconnect
 beneficiary_created_successfully: Le bénéficiaire a bien été créé
 beneficiary_created_successfully_wait_activation: Le compte a bien été créé et est en attente d’activation par le bénéficiaire.
