@@ -4,6 +4,7 @@ namespace App\Command;
 
 use App\Entity\Beneficiaire;
 use App\Entity\Client;
+use App\Entity\ClientBeneficiaire;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\ClientRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -76,8 +77,9 @@ class MigrateRosalieIdsToSiSiaoIdsCommand extends Command
     {
         if ($externalLink = $beneficiary->getExternalLinkForClient($rosalieClient)) {
             $siSiaoNumber = $records[$externalLink->getDistantId()] ?? null;
-            $externalLink->setDistantId($siSiaoNumber);
-            $beneficiary->setSiSiaoNumber($siSiaoNumber);
+            $beneficiary
+                ->addExternalLink(ClientBeneficiaire::createForMember($rosalieClient, $siSiaoNumber, $externalLink->getMembreDistantId()))
+                ->setSiSiaoNumber($siSiaoNumber);
         }
     }
 }
