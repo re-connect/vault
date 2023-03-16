@@ -848,6 +848,7 @@ secret_answer_optional: Secret answer (optional)
 secret_question: Secret question
 search_existing_beneficiary: Search for an existing beneficiary
 send: Send
+sending_sms_account_activation: Sending the SMS for account activation
 settings_saved_successfully: 'Your settings has been registered'
 share_document: Share document
 share_document_error_expired: The validity of the download link has expired, please retry

@@ -1019,6 +1019,7 @@ secret_question: 'Question secrète'
 secret_question_other: 'Autre question secrète'
 search_existing_beneficiary: Rechercher un bénéficiaire existant
 send: Envoyer
+sending_sms_account_activation: Envoi du SMS d'activation du compte
 settings_saved_successfully: 'Vos parametres ont bien été enregistrés'
 setQuestionSecrete.bienSauvegarde: 'Votre question secrete a bien été enregistrée'
 set_secret_question: 'Entrez votre question secrète'

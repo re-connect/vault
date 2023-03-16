@@ -1,11 +1,13 @@
-{% extends 'v2/pro_standard_layout.html.twig' %}
+{% extends 'v2/pro_management_layout.html.twig' %}
 {% block title %}
     {{ include('v2/user_creation/beneficiary/_create_beneficiary_title_default.html.twig') }}
 {% endblock %}
+
+{% set lastStep = beneficiaryCreationProcess.totalSteps %}
 {% block subTitle %}
-    {{ 'steps_count'|trans({'%step%': 6, '%totalSteps%': 6})|upper }}
+    {{ 'steps_count'|trans({'%step%': lastStep, '%totalSteps%': lastStep})|upper }}
     <span class="text-blue">
-        {{ 'terms_of_use'|trans|upper }}
+        {{ beneficiaryCreationProcess.isRemotely ? 'sending_sms_account_activation'|trans|upper : 'terms_of_use'|trans|upper }}
     </span>
 {% endblock %}
 

@@ -61,18 +61,6 @@ class BeneficiaryCreationManager
         return $validationGroup[$step] ?? [];
     }
 
-    public function getStepTitle(int $step): string
-    {
-        return match ($step) {
-            1 => 'fill_beneficiary_identity_information',
-            2 => 'choose_beneficiary_password',
-            3 => 'choose_beneficiary_secret_question',
-            4 => 'choose_beneficiary_centers',
-            5 => 'summary_confirm_information',
-            default => '',
-        };
-    }
-
     public function createOrUpdate(BeneficiaryCreationProcess $creationProcess): void
     {
         $beneficiary = $creationProcess->getBeneficiary();
