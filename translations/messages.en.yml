@@ -376,6 +376,7 @@ form_connexion: Login
 form_forgot_password: I forgot my password or my login
 form_login: Username or Email
 form_password: Password
+generate_password: Generate password
 gestionnaire.centres.btnAjouterUnCentre: 'Add a center'
 gestionnaire.centres.cotisationJusqua: 'Contribution until %dateFin%'
 gestionnaire.centres.cotisationNoneffectuee: 'No realised contribution(disabled center)'

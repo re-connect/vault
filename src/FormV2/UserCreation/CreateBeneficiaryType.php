@@ -45,7 +45,7 @@ class CreateBeneficiaryType extends AbstractType
         } else {
             match ($step) {
                 default => $this->addStep1Fields($builder, $beneficiary, $remotely),
-                2 => $this->addStep2Fields($builder, $beneficiary),
+                2 => $this->addStep2Fields($builder),
                 3 => $this->addStep3Fields($builder, $beneficiary),
                 4 => $this->addStep4Fields($builder, $beneficiary),
             };
@@ -67,7 +67,7 @@ class CreateBeneficiaryType extends AbstractType
         $builder->get('user')->get('telephone')->setRequired($remotely);
     }
 
-    public function addStep2Fields(FormBuilderInterface $builder, Beneficiaire $beneficiary): void
+    public function addStep2Fields(FormBuilderInterface $builder): void
     {
         $builder
             ->add('password', TextType::class, [
