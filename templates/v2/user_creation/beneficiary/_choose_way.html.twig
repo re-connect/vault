@@ -1,28 +1,8 @@
-<div class="row mt-3 mt-lg-5">
-    <div class="col-md-6 text-center">
-        <span class="font-size-1-2">{{ 'is_the_beneficiary_present'|trans }}</span>
-        <a href="{{ path('create_beneficiary', {'step': 1}) }}"
-           class="btn btn-blue text-white mt-3 mt-lg-4 w-100 py-4 font-size-1-2"
-           data-turbo="false"
-        >
-            {{ 'create_reconnect_account_with_beneficiary'|trans }}
-        </a>
+<div class="row mt-3">
+    <div class="col-md-6">
+        {{ include('v2/user_creation/beneficiary/components/_way_physical.html.twig')}}
     </div>
-    <div class="col-md-6 text-center mt-5 mb-3 mt-md-0">
-        <span class="font-size-1-2">{{ 'is_the_beneficiary_absent'|trans }}</span>
-        <a href="{{ path('create_beneficiary', {'step': 1, 'remotely': true}) }}"
-           data-turbo="false"
-           class="btn btn-blue text-white mt-3 mt-lg-4 w-100 py-4 font-size-1-2"
-        >
-            {{ 'create_reconnect_account_remotely'|trans }}
-        </a>
-        <div class="row mt-3 text-start">
-            <div class="col-1 offset-md-2 text-end">
-                <i class="fa fa-mobile-alt fa-2x text-primary mt-2" aria-hidden="true"></i>
-            </div>
-            <div class="col-6 ms-2">
-                <span>{{ 'beneficiary_will_receive_sms_account_information'|trans }}</span>
-            </div>
-        </div>
+    <div class="col-md-6">
+        {{ include('v2/user_creation/beneficiary/components/_way_distant.html.twig')}}
     </div>
 </div>

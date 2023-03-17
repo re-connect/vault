@@ -1,0 +1,7 @@
+{{ include('v2/user_creation/beneficiary/components/_way_card.html.twig', {
+    title: 'is_the_beneficiary_absent'|trans,
+    iconName: 'mobile-alt',
+    helpText: 'beneficiary_will_receive_sms_account_information'|trans,
+    buttonPath: path('create_beneficiary', {'step': 1, 'remotely': true}),
+    buttonText: 'create_reconnect_account_remotely'|trans,
+}) }}
