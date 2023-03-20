@@ -107,6 +107,7 @@ connexionForm.motDePasse: Password
 connexionForm.oublieMdp: 'I forgot my password or my username'
 connexionForm.username: 'User name'
 connexionForm.usernameV2: 'Username or email'
+contacts: Contacts
 contact.ajouter: 'Add a contact'
 contact.associationLabel: Association
 contact.bienEteEnvoye: 'Your Email has been sent.Our team will contact You soon'
@@ -239,6 +240,7 @@ digital_cares_appreciated_training_text: of beneficiaries appreciated the traini
 digital_cares_appreciated_training_title: 98 %
 disabledAt: Disabled at
 disabledBy: Disabled by
+documents: Documents
 document.apercu: Previews
 document.aucunFichier: 'For the moment,there is no folder'
 document.avertissementTaille: 'You soon reach the limit size of your storage space (%space%)'
@@ -326,6 +328,7 @@ evenement.rappelsLabel: Reminders
 evenement.smsContent: 'Relay Reconnect reminder'
 evenement.timeLabel: Time
 event: Event
+events: Events
 event_created: Event created
 event_updated: Event updated
 fill_beneficiary_identity_information: Please fill beneficiary's identity information
@@ -690,10 +693,16 @@ modePaiement.choisisseModePaiement: 'Choose your way of payment'
 modePaiement.flashBienSupprime: 'You removed this element of your purchases'
 modePaiement.recapitulatif: 'Summary of your purchases'
 modePaiement.virement: Transfer
+my_contacts: My Contacts
+my_documents: My Documents
+my_events: My Events
+my_notes: My Notes
+my_relays: My Relays
 move: Move
 name: Name
 no: No
 no_result: No result
+notes: Notes
 note.ajouter: 'Add a note'
 note.bienSauvegarde: 'Your note has been saved'
 note.bienSupprime: 'Your note has been deleted.'

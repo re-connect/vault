@@ -143,6 +143,7 @@ connexionForm.username: 'nom d''utilisateur'
 connexionForm.usernameV2: 'Nom d''utilisateur ou email'
 connect_reconnect_site: Connectez-vous sur www.reconnect.fr
 consult_media: 'Consulter le media'
+contacts: Contacts
 contact.ajouter: 'Ajouter un contact'
 contact.associationLabel: Association
 contact.bienEteEnvoye: 'Votre mail a bien été envoyé. Nos équipes vous recontacteront sous peu.'
@@ -317,6 +318,7 @@ digital_cares_appreciated_training_text: des bénéficiaires qui ont apprécié 
 digital_cares_appreciated_training_title: 98 %
 disabledAt: Désactivé le
 disabledBy: Désactivé par
+documents: Documents
 document.apercu: Aperçus
 document.aucunFichier: 'Il n''y a aucun fichier pour l''instant'
 document.avertissementTaille: 'Vous avez bientôt atteint la taille limite de votre espace de stockage (%taille%)'
@@ -423,6 +425,7 @@ evenement.rappelsLabel: Rappels
 evenement.smsContent: 'Rappel Relais Reconnect'
 evenement.timeLabel: Time
 event: Événement
+events: Événements
 event_created: Événement créé
 event_updated: Événement modifié
 export_title: Statistiques
@@ -842,11 +845,17 @@ modal_message_folder_move_out: Êtes-vous sûr de vouloir sortir le dossier
 modal_message_note_delete: Êtes vous sûr de vouloir supprimer la note
 modal_message_note_deletev2: Êtes vous sûr de vouloir supprimer la note %name% ?
 my_reconnect_centers: 'Mes relais <span class="rp-blue">reconnect</span>'
+my_contacts: Mes Contacts
+my_documents: Mes Documents
+my_events: Mes Rappels
+my_notes: Mes Notes
+my_relays: Mes Relais
 name: 'Nom'
 next: 'Suivant'
 no: Non
 no_result: Aucun résultat
 not_allowed_to_share_this_document: Vous n'êtes pas autorisé à partager ce document
+notes: Notes
 note.ajouter: 'Ajouter une note'
 note.bienSauvegarde: 'Votre note a bien été sauvegardée'
 note.bienSupprime: 'Votre note a bien été supprimée'

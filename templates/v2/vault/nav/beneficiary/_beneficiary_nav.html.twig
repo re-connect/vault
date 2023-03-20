@@ -5,9 +5,9 @@
         </button>
         <div class="collapse navbar-collapse ps-4 mt-1 mt-md-0" id="navbarSupportedContent">
             <ul class="nav w-100 row">
-                {% for key, item in itemsList %}
+                {% for item in getUserNavItems() %}
                     {{ include('v2/vault/nav/beneficiary/_beneficiary_nav_item.html.twig', {
-                        'item': key,
+                        'item': item.itemKind,
                         'title': item.title,
                         'routeName': item.routeName,
                         'image': item.image
