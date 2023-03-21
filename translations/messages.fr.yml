@@ -319,6 +319,9 @@ digital_cares_appreciated_training_text: des bénéficiaires qui ont apprécié 
 digital_cares_appreciated_training_title: 98 %
 disabledAt: Désactivé le
 disabledBy: Désactivé par
+disaffiliate_beneficiary: Le bénéficiaire %beneficiary% a été retiré du relais %relay%
+disaffiliate_beneficiary_title_part_1: Arrêter le suivi d'un
+disaffiliate_beneficiary_title_part_2: Bénéficiaire
 documents: Documents
 document.apercu: Aperçus
 document.aucunFichier: 'Il n''y a aucun fichier pour l''instant'
@@ -1028,6 +1031,7 @@ secret_answer_optional: Réponse secrète (facultatif)
 secret_question: 'Question secrète'
 secret_question_other: 'Autre question secrète'
 search_existing_beneficiary: Rechercher un bénéficiaire existant
+select_relays_for_disaffiliation: Cet utilisateur est lié à plusieurs relais que vous gérez, sélectionnez les relais pour lesquels vous souhaitez arrêter le suivi
 send: Envoyer
 sending_sms_account_activation: Envoi du SMS d'activation du compte
 settings_saved_successfully: 'Vos parametres ont bien été enregistrés'
