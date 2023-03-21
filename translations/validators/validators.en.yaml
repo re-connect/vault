@@ -1,4 +1,5 @@
 beneficiary_affiliation_empty_relays: You must choose at least one relay
+beneficiary_disaffiliation_empty_relays: You must choose at least one relay
 birthdate_not_empty: Birthdate must not be empty
 email_already_in_use: Mail already in use
 firstname_format: 'You can only enter letters, hyphens (-) or apostrophes ('')'

@@ -420,6 +420,14 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
             );
     }
 
+    /**
+     * @return Collection <int, Centre>
+     */
+    public function getManageableRelays(Beneficiaire $beneficiary): Collection
+    {
+        return $this->getAffiliatedRelaysWithBeneficiaryManagement()->filter(fn (Centre $relay) => $beneficiary->getAffiliatedRelays()->contains($relay));
+    }
+
     public function __clone()
     {
         if ($this->id) {

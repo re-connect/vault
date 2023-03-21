@@ -1,4 +1,5 @@
 beneficiary_affiliation_empty_relays: Vous devez choisir au moins un relais auquel affilier le bénéficiaire
+beneficiary_disaffiliation_empty_relays: Vous devez choisir au moins un relais auquel affilier le bénéficiaire
 birthdate_not_empty: La date de naissance ne doit pas être vide
 email_already_in_use: Ce mail est déjà utilisé
 firstname_format: 'Vous ne pouvez entrer que des lettres, tirets (-) ou apostrophes ('')'

@@ -3,8 +3,11 @@
 namespace App\ControllerV2;
 
 use App\Entity\Beneficiaire;
+use App\Entity\Centre;
 use App\FormV2\UserAffiliation\AffiliateBeneficiaryType;
+use App\FormV2\UserAffiliation\DisaffiliateBeneficiaryType;
 use App\FormV2\UserAffiliation\Model\AffiliateBeneficiaryFormModel;
+use App\FormV2\UserAffiliation\Model\DisaffiliateBeneficiaryFormModel;
 use App\FormV2\UserAffiliation\Model\SearchBeneficiaryFormModel;
 use App\FormV2\UserAffiliation\SearchBeneficiaryType;
 use App\ManagerV2\BeneficiaryAffiliationManager;
@@ -54,7 +57,12 @@ class BeneficiaryAffiliationController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/beneficiary/{id}/affiliate/relays', name: 'affiliate_beneficiary_relays', methods: ['GET', 'POST'])]
+    #[Route(
+        path: '/beneficiary/{id}/affiliate/relays',
+        name: 'affiliate_beneficiary_relays',
+        requirements: ['id' => '\d+'],
+        methods: ['GET', 'POST'],
+    )]
     public function relays(
         Request $request,
         Beneficiaire $beneficiary,
@@ -94,5 +102,58 @@ class BeneficiaryAffiliationController extends AbstractController
             'form' => $form,
             'formModel' => $affiliateBeneficiaryModel,
         ]);
+    }
+
+    #[Route(
+        path: '/beneficiary/{id}/disaffiliate',
+        name: 'disaffiliate_beneficiary',
+        requirements: ['id' => '\d+'],
+        methods: ['GET', 'POST'],
+    )]
+    #[IsGranted('UPDATE', 'beneficiary')]
+    public function disaffiliate(
+        Request $request,
+        Beneficiaire $beneficiary,
+        BeneficiaryAffiliationManager $manager,
+        TranslatorInterface $translator,
+    ): Response {
+        $professional = $this->getProfessional();
+        $relays = $professional->getManageableRelays($beneficiary);
+
+        if (1 === $relays->count()) {
+            $relay = $relays->first();
+            $manager->disaffiliateBeneficiary($beneficiary, $relay);
+            $this->generateDisaffiliationFlashMessage($beneficiary, $relay, $translator);
+
+            return $this->redirectToRoute('list_beneficiaries');
+        }
+
+        $formModel = (new DisaffiliateBeneficiaryFormModel())->setRelays($relays);
+        $form = $this->createForm(DisaffiliateBeneficiaryType::class, $formModel)->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($formModel->getRelays() as $relay) {
+                $manager->disaffiliateBeneficiary($beneficiary, $relay);
+                $this->generateDisaffiliationFlashMessage($beneficiary, $relay, $translator);
+            }
+
+            return $this->redirectToRoute('list_beneficiaries');
+        }
+
+        return $this->renderForm('v2/user_affiliation/beneficiary/disaffiliate_beneficiary.html.twig', [
+            'form' => $form,
+            'beneficiary' => $beneficiary,
+        ]);
+    }
+
+    private function generateDisaffiliationFlashMessage(Beneficiaire $beneficiary, Centre $relay, TranslatorInterface $translator): void
+    {
+        $this->addFlash(
+            'success',
+            $translator->trans('disaffiliate_beneficiary', [
+                '%beneficiary%' => $beneficiary->getUser()->getFullName(),
+                '%relay%' => $relay->getNom(),
+            ]),
+        );
     }
 }
