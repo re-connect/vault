@@ -72,7 +72,7 @@ class BeneficiaryCreationController extends AbstractController
         return $this->renderForm('v2/user_creation/beneficiary/create_beneficiary_step.html.twig', [
             'form' => $form,
             'beneficiaryCreationProcess' => $beneficiaryCreationProcess,
-            'stepTitle' => $manager->getStepTitle($step),
+            'stepTitle' => $beneficiaryCreationProcess->getStepTitle($step),
             'beneficiary' => $beneficiary,
             'step' => $step,
         ]);

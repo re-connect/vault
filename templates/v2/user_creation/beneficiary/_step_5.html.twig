@@ -5,7 +5,7 @@
     {'name': 'email','value': beneficiary.user.email, 'step': 1, 'hide': false },
     {'name': 'secret_question', 'value': beneficiary.questionSecrete, 'step': 3, 'hide': beneficiaryCreationProcess.remotely},
     {'name': 'secret_answer', 'value': beneficiary.reponseSecrete, 'step':3, 'hide': beneficiaryCreationProcess.remotely},
-    {'name': 'centers', 'value': beneficiary.user.centres, 'step': beneficiaryCreationProcess.remotely ? 2 : 4, 'hide': false}
+    {'name': 'relays', 'value': beneficiary.user.centres, 'step': beneficiaryCreationProcess.remotely ? 2 : 4, 'hide': false}
 ] %}
 
 <div class="col-3 d-none d-md-block">

@@ -12,6 +12,13 @@ class BeneficiaryCreationProcess
 {
     public const DEFAULT_TOTAL_STEPS = 6;
     public const DEFAULT_TOTAL_FORM_STEPS = 4;
+    public const DEFAULT_STEP_TITLES = [
+        1 => 'fill_beneficiary_identity_information',
+        2 => 'choose_beneficiary_password',
+        3 => 'choose_beneficiary_secret_question',
+        4 => 'choose_beneficiary_centers',
+        5 => 'summary_confirm_information',
+    ];
     public const DEFAULT_BREADCRUMB_STEPS = [
         1 => 'identity',
         2 => 'password',
@@ -22,6 +29,11 @@ class BeneficiaryCreationProcess
 
     public const REMOTELY_TOTAL_STEPS = 4;
     public const REMOTELY_TOTAL_FORM_STEPS = 2;
+    public const REMOTELY_STEP_TITLES = [
+        1 => 'fill_beneficiary_identity_information',
+        2 => 'choose_beneficiary_centers',
+        3 => 'summary_confirm_information',
+    ];
     public const REMOTELY_BREADCRUMB_STEPS = [
         1 => 'identity',
         2 => 'relays',
@@ -69,6 +81,7 @@ class BeneficiaryCreationProcess
     public function setIsCreating(?bool $isCreating): self
     {
         $this->isCreating = $isCreating;
+        $this->beneficiary?->setIsCreating($isCreating);
 
         return $this;
     }
@@ -100,5 +113,14 @@ class BeneficiaryCreationProcess
         return $this->remotely
             ? self::REMOTELY_BREADCRUMB_STEPS
             : self::DEFAULT_BREADCRUMB_STEPS;
+    }
+
+    public function getStepTitle(int $step): string
+    {
+        $titles = $this->isRemotely()
+            ? self::REMOTELY_STEP_TITLES
+            : self::DEFAULT_STEP_TITLES;
+
+        return $titles[$step];
     }
 }

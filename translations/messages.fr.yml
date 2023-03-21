@@ -32,7 +32,7 @@ aides.metaTitle: Aides
 alt_logo_reconnect: logo association reconnect
 answer: Réponse
 answer_secret_question: Répondre à la question secrète
-answer_secret_question_relay_acception: Une fois validé, le bénéficiaire sera invité à rejoindre ces centres. Si vous êtes en présence du bénéficiaire, vous pouvez entrer la réponse à sa question secrète afin d'accepter l'invitation à ces centres dès maintenant.
+answer_secret_question_relay_acception: Une fois validé, le bénéficiaire sera invité à rejoindre ces centres. Si vous êtes en présence du bénéficiaire, vous pouvez entrer la réponse à sa question secrète afin d'accepter l'invitation à ces centres dès maintenant. Sinon, il pourra accepter l'invitation en se connectant à son compte Reconnect.
 association.categorie.association: Association
 association.categorie.ccas: 'Centre Communal d''Action Social (CCAS)'
 association.categorie.choisir: 'Veuillez choisir la catégorie de votre association'
@@ -46,7 +46,7 @@ back_to_reconnect_admin: Retour à l'accueil
 confirm_beneficiary_creation_cancellation: Êtes vous sûr de vouloir annuler la création de ce bénéficiaire ?
 confirm_beneficiary_creation_remotely: "En cliquant sur confirmer, un SMS sera envoyé au bénéficiaire lui permettant d’activer son compte et de définir son mot de passe et la réponse à sa question secrète. \n Il pourra choisir d’accepter ou non le partage de ses informations avec le(s) relais ci-dessus."
 beneficiaries: Bénéficiaires
-beneficiary_added_to_relays: Les bénéficiaire a été ajouté aux relais selectionnés
+beneficiary_added_to_relays: Le bénéficiaire a été ajouté aux relais selectionnés
 beneficiary_already_affiliated_to_all_relays: Le bénéficiaire est déjà affilié, ou invité, à l'ensemble de vos relais Reconnect
 beneficiary_created_successfully: Le bénéficiaire a bien été créé
 beneficiary_created_successfully_wait_activation: Le compte a bien été créé et est en attente d’activation par le bénéficiaire.
@@ -144,6 +144,7 @@ connexionForm.username: 'nom d''utilisateur'
 connexionForm.usernameV2: 'Nom d''utilisateur ou email'
 connect_reconnect_site: Connectez-vous sur www.reconnect.fr
 consult_media: 'Consulter le media'
+contacts: Contacts
 contact.ajouter: 'Ajouter un contact'
 contact.associationLabel: Association
 contact.bienEteEnvoye: 'Votre mail a bien été envoyé. Nos équipes vous recontacteront sous peu.'
@@ -318,6 +319,7 @@ digital_cares_appreciated_training_text: des bénéficiaires qui ont apprécié 
 digital_cares_appreciated_training_title: 98 %
 disabledAt: Désactivé le
 disabledBy: Désactivé par
+documents: Documents
 document.apercu: Aperçus
 document.aucunFichier: 'Il n''y a aucun fichier pour l''instant'
 document.avertissementTaille: 'Vous avez bientôt atteint la taille limite de votre espace de stockage (%taille%)'
@@ -424,6 +426,7 @@ evenement.rappelsLabel: Rappels
 evenement.smsContent: 'Rappel Relais Reconnect'
 evenement.timeLabel: Time
 event: Événement
+events: Événements
 event_created: Événement créé
 event_updated: Événement modifié
 export_title: Statistiques
@@ -489,6 +492,7 @@ form_login: Nom d'utilisateur ou Email
 form_message: 'Votre message'
 form_password: Mot de passe
 gdpr_know_more: En savoir plus sur la conformité RGPD de votre structure
+generate_password: Générer un mot de passe
 gestionnaire.centres.btnAjouterUnCentre: 'Ajouter un centre'
 gestionnaire.centres.cotisationJusqua: 'Cotisation jusqu''au %dateFin%'
 gestionnaire.centres.cotisationNoneffectuee: 'Cotisation non effectuée (centre désactivé)'
@@ -842,11 +846,17 @@ modal_message_folder_move_out: Êtes-vous sûr de vouloir sortir le dossier
 modal_message_note_delete: Êtes vous sûr de vouloir supprimer la note
 modal_message_note_deletev2: Êtes vous sûr de vouloir supprimer la note %name% ?
 my_reconnect_centers: 'Mes relais <span class="rp-blue">reconnect</span>'
+my_contacts: Mes Contacts
+my_documents: Mes Documents
+my_events: Mes Rappels
+my_notes: Mes Notes
+my_relays: Mes Relais
 name: 'Nom'
 next: 'Suivant'
 no: Non
 no_result: Aucun résultat
 not_allowed_to_share_this_document: Vous n'êtes pas autorisé à partager ce document
+notes: Notes
 note.ajouter: 'Ajouter une note'
 note.bienSauvegarde: 'Votre note a bien été sauvegardée'
 note.bienSupprime: 'Votre note a bien été supprimée'
@@ -1019,6 +1029,7 @@ secret_question: 'Question secrète'
 secret_question_other: 'Autre question secrète'
 search_existing_beneficiary: Rechercher un bénéficiaire existant
 send: Envoyer
+sending_sms_account_activation: Envoi du SMS d'activation du compte
 settings_saved_successfully: 'Vos parametres ont bien été enregistrés'
 setQuestionSecrete.bienSauvegarde: 'Votre question secrete a bien été enregistrée'
 set_secret_question: 'Entrez votre question secrète'

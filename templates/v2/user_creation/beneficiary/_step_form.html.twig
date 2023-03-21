@@ -19,7 +19,13 @@
                 'class': 'display-required-labels',
             }
         }) }}
-        {{ form_widget(form) }}
+
+        {% if step == 2 and not beneficiaryCreationProcess.isRemotely %}
+            {{ include('v2/user_creation/components/_generate_password_input.html.twig', {field: form.password}) }}
+        {% else %}
+            {{ form_widget(form) }}
+        {% endif %}
+
         <div class="text-center mt-4 mb-2 row">
             <div class="col-6 d-grid gap-2">
                 <a href="{{ backButtonPath }}" class="btn btn-primary text-white" data-turbo="false">
