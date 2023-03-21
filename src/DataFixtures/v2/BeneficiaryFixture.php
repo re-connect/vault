@@ -28,7 +28,10 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
     {
         $this->createTestBeneficiary(
             $this->getTestUser(self::BENEFICIARY_MAIL),
-            [RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY])]
+            [
+                RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY_1]),
+                RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY_2]),
+            ]
         );
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_SETTINGS));
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_SETTINGS_EDIT));
