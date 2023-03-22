@@ -240,6 +240,10 @@ digital_cares_appreciated_training_text: of beneficiaries appreciated the traini
 digital_cares_appreciated_training_title: 98 %
 disabledAt: Disabled at
 disabledBy: Disabled by
+disaffiliate_beneficiary: The beneficiary %beneficiary% has been removed from the relay %relay%
+disaffiliate_beneficiary_title_part_1: Stop the following of a
+disaffiliate_beneficiary_title_part_2: Beneficiary
+disaffiliate_beneficiary_subtitle: Stop the following of
 documents: Documents
 document.apercu: Previews
 document.aucunFichier: 'For the moment,there is no folder'
@@ -809,6 +813,8 @@ relays: Relays
 reminder: Reminder
 reminder_sms: SMS Reminder
 remove_from_relay: Remove from relay
+remove_from_relay_confirm: Are you sure you want to remove the beneficiary %beneficiary% ?
+remove_from_relay_confirm_relay: Are you sure you want to remove the beneficiary %beneficiary% from the relay %relay% ?
 rename: Rename
 renew_password: Renew password
 reset_password_requested_by_SMS: Current reset request was made by SMS
@@ -856,6 +862,7 @@ secret_answer: Secret answer
 secret_answer_optional: Secret answer (optional)
 secret_question: Secret question
 search_existing_beneficiary: Search for an existing beneficiary
+select_relays_for_disaffiliation: This user is linked to several relays that you manage, please choose relays for which you want to stop the following
 send: Send
 sending_sms_account_activation: Sending the SMS for account activation
 settings_saved_successfully: 'Your settings has been registered'
