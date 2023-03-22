@@ -20,7 +20,10 @@
     </td>
     <td class="border-0 h-100 text-center" {{ stimulus_controller('dropdown-menu') }}>
         {{ include('v2/professional/_action_dropdown.html.twig', {
-            'removeFromRelayPath': path('disaffiliate_beneficiary', {'id': beneficiary.id}),
+            'removeFromRelay': {
+                'path': path('disaffiliate_beneficiary', {'id': beneficiary.id}),
+                'message': 'remove_from_relay_confirm'|trans({'%beneficiairy%': beneficiary.user.fullName})
+            },
             'resetPasswordPath': path('private_reset_password', {'id': beneficiary.user.id}),
         }) }}
     </td>
