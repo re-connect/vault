@@ -3,6 +3,7 @@
 namespace App\ControllerV2;
 
 use App\Entity\Beneficiaire;
+use App\Entity\Centre;
 use App\FormV2\UserAffiliation\AffiliateBeneficiaryType;
 use App\FormV2\UserAffiliation\Model\AffiliateBeneficiaryFormModel;
 use App\FormV2\UserAffiliation\Model\SearchBeneficiaryFormModel;
@@ -10,6 +11,7 @@ use App\FormV2\UserAffiliation\SearchBeneficiaryType;
 use App\ManagerV2\BeneficiaryAffiliationManager;
 use App\ServiceV2\PaginatorService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,7 +56,12 @@ class BeneficiaryAffiliationController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/beneficiary/{id}/affiliate/relays', name: 'affiliate_beneficiary_relays', methods: ['GET', 'POST'])]
+    #[Route(
+        path: '/beneficiary/{id}/affiliate/relays',
+        name: 'affiliate_beneficiary_relays',
+        requirements: ['id' => '\d+'],
+        methods: ['GET', 'POST'],
+    )]
     public function relays(
         Request $request,
         Beneficiaire $beneficiary,
@@ -93,6 +100,49 @@ class BeneficiaryAffiliationController extends AbstractController
             'availableRelays' => $availableRelaysForAffiliation,
             'form' => $form,
             'formModel' => $affiliateBeneficiaryModel,
+        ]);
+    }
+
+    #[Route(
+        path: '/beneficiary/{id}/disaffiliate/{relayId?}',
+        name: 'disaffiliate_beneficiary',
+        requirements: ['id' => '\d+'],
+        methods: ['GET'],
+    )]
+    #[ParamConverter('relay', class: 'App\Entity\Centre', options: ['id' => 'relayId'])]
+    #[IsGranted('UPDATE', 'beneficiary')]
+    public function disaffiliate(
+        Request $request,
+        Beneficiaire $beneficiary,
+        ?Centre $relay,
+        BeneficiaryAffiliationManager $manager,
+        TranslatorInterface $translator,
+    ): Response {
+        if ($relay && $request->isXmlHttpRequest()) {
+            $manager->disaffiliateBeneficiary($beneficiary, $relay);
+
+            return $this->json($beneficiary);
+        }
+
+        $relays = $this->getProfessional()?->getManageableRelays($beneficiary);
+
+        if (1 === $relays->count()) {
+            $uniqueCommonRelay = $relays->first();
+            $manager->disaffiliateBeneficiary($beneficiary, $uniqueCommonRelay);
+            $this->addFlash(
+                'success',
+                $translator->trans('disaffiliate_beneficiary', [
+                    '%beneficiary%' => $beneficiary->getUser()->getFullName(),
+                    '%relay%' => $uniqueCommonRelay->getNom(),
+                ]),
+            );
+
+            return $this->redirectToRoute('list_beneficiaries');
+        }
+
+        return $this->render('v2/user_affiliation/beneficiary/disaffiliate_beneficiary.html.twig', [
+            'beneficiary' => $beneficiary,
+            'relays' => $relays,
         ]);
     }
 }
