@@ -2,7 +2,6 @@
 
 namespace App\ManagerV2;
 
-use App\Entity\Beneficiaire;
 use App\Entity\Centre;
 use App\Entity\User;
 use App\Repository\CentreRepository;
@@ -22,26 +21,34 @@ class RelayManager
     /**
      * @return Centre[]
      */
-    public function findPersonalRelays(Beneficiaire $beneficiary, bool $isValid = true): array
+    public function findPersonalRelays(User $user, bool $isValid = true): array
     {
-        return $this->repository->findPersonalRelays($beneficiary, $isValid);
+        return $this->repository->findPersonalRelays($user, $isValid);
     }
 
-    public function acceptInvitation(Beneficiaire $beneficiary, Centre $relay): void
+    public function acceptInvitation(User $user, Centre $relay): void
     {
-        foreach ($beneficiary->getBeneficiairesCentres() as $beneficiaryRelay) {
-            if ($beneficiaryRelay->getCentre() === $relay) {
-                $beneficiaryRelay->setBValid(true);
+        $userRelays = $user->isBeneficiaire()
+            ? $user->getSubjectBeneficiaire()->getBeneficiairesCentres()
+            : $user->getSubjectMembre()->getMembresCentres();
+
+        foreach ($userRelays as $userRelay) {
+            if ($userRelay->getCentre() === $relay) {
+                $userRelay->setBValid(true);
                 $this->em->flush();
             }
         }
     }
 
-    public function leaveRelay(Beneficiaire $beneficiary, Centre $relay): void
+    public function leaveRelay(User $user, Centre $relay): void
     {
-        foreach ($beneficiary->getBeneficiairesCentres() as $beneficiaryRelay) {
-            if ($beneficiaryRelay->getCentre() === $relay) {
-                $this->em->remove($beneficiaryRelay);
+        $userRelays = $user->isBeneficiaire()
+            ? $user->getSubjectBeneficiaire()->getBeneficiairesCentres()
+            : $user->getSubjectMembre()->getMembresCentres();
+
+        foreach ($userRelays as $userRelay) {
+            if ($userRelay->getCentre() === $relay) {
+                $this->em->remove($userRelay);
                 $this->em->flush();
             }
         }

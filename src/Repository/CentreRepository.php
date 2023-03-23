@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Beneficiaire;
 use App\Entity\Centre;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query;
@@ -73,17 +74,25 @@ class CentreRepository extends ServiceEntityRepository
     /**
      * @return Centre[]
      */
-    public function findPersonalRelays(Beneficiaire $beneficiary, bool $isValid): array
+    public function findPersonalRelays(User $user, bool $isValid): array
     {
-        return $this->createQueryBuilder('c')
-            ->innerJoin('c.beneficiairesCentres', 'bc')
-            ->innerJoin('bc.beneficiaire', 'b')
+        $qb = $this->createQueryBuilder('c');
+
+        if ($user->isBeneficiaire()) {
+            $qb->innerJoin('c.beneficiairesCentres', 'uc')
+                ->innerJoin('uc.beneficiaire', 'u');
+        } else {
+            $qb->innerJoin('c.membresCentres', 'uc')
+                ->innerJoin('uc.membre', 'u');
+        }
+
+        return $qb
             ->leftJoin('c.adresse', 'a')
-            ->addSelect(['bc', 'b', 'a'])
-            ->where('b = :beneficiary')
-            ->andWhere('bc.bValid = :isValid')
+            ->addSelect(['uc', 'u', 'a'])
+            ->where('u = :userSubject')
+            ->andWhere('uc.bValid = :isValid')
             ->setParameters([
-                'beneficiary' => $beneficiary,
+                'userSubject' => $user->getSubject(),
                 'isValid' => $isValid,
             ])
             ->getQuery()
