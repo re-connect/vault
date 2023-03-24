@@ -59,7 +59,7 @@ class SecurityController extends AbstractController
         }
 
         if ($user->isMembre() || $user->isGestionnaire()) {
-            return $this->redirect($this->generateUrl('re_membre_beneficiaires'));
+            return $this->redirect($this->generateUrl('list_beneficiaries'));
         }
         if ($user->isAssociation()) {
             return $this->redirect($this->generateUrl('re_association_accueil'));
