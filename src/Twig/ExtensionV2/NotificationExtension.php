@@ -37,17 +37,16 @@ class NotificationExtension extends AbstractExtension
     public function getRelayInvitationNotifications(Environment $env): ?string
     {
         $user = $this->getUser();
+        $relays = $this->relayRepository->findUserRelays($user, false);
 
-        if ($user && $this->canReceiveNotifications($user)) {
-            if ($relays = $this->relayRepository->findPersonalRelays($user, false)) {
-                return $env->render('v2/notifications/relay_invitation_notification.html.twig', [
-                    'pendingRelays' => $relays,
-                    'user' => $user,
-                ]);
-            }
+        if (0 === count($relays) || !$user || !$this->canReceiveNotifications($user)) {
+            return null;
         }
 
-        return null;
+        return $env->render('v2/notifications/relay_invitation_notification.html.twig', [
+            'pendingRelays' => $relays,
+            'user' => $user,
+        ]);
     }
 
     private function canReceiveNotifications(User $user): bool

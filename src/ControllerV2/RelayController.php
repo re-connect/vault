@@ -6,6 +6,7 @@ use App\Entity\Beneficiaire;
 use App\Entity\Centre;
 use App\Entity\User;
 use App\ManagerV2\RelayManager;
+use App\Repository\CentreRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -22,29 +23,14 @@ class RelayController extends AbstractController
         methods: ['GET'],
     )]
     #[Security("is_granted('SELF_EDIT', beneficiary.getUser())")]
-    public function relays(Beneficiaire $beneficiary, RelayManager $manager): Response
+    public function relays(Beneficiaire $beneficiary, CentreRepository $repository): Response
     {
         $user = $beneficiary->getUser();
 
         return $this->render('v2/vault/relay/index.html.twig', [
             'beneficiary' => $beneficiary,
-            'relays' => $manager->findPersonalRelays($user),
-            'pendingRelays' => $manager->findPersonalRelays($user, false),
-        ]);
-    }
-
-    #[Route(
-        path: '/user/{id}/relay/notification',
-        name: 'relay_notification',
-        requirements: ['id' => '\d+'],
-        methods: ['GET'],
-    )]
-    #[IsGranted('SELF_EDIT', 'user')]
-    public function relayNotification(User $user, RelayManager $manager): Response
-    {
-        return $this->render('v2/notifications/relay_invitation_notification.html.twig', [
-            'pendingRelays' => $manager->findPersonalRelays($user, false),
-            'user' => $user,
+            'relays' => $repository->findUserRelays($user),
+            'pendingRelays' => $repository->findUserRelays($user, false),
         ]);
     }
 

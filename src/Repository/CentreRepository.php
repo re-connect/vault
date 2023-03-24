@@ -74,7 +74,7 @@ class CentreRepository extends ServiceEntityRepository
     /**
      * @return Centre[]
      */
-    public function findPersonalRelays(User $user, bool $isValid): array
+    public function findUserRelays(User $user, bool $isAccepted = true): array
     {
         $qb = $this->createQueryBuilder('c');
 
@@ -90,10 +90,10 @@ class CentreRepository extends ServiceEntityRepository
             ->leftJoin('c.adresse', 'a')
             ->addSelect(['uc', 'u', 'a'])
             ->where('u = :userSubject')
-            ->andWhere('uc.bValid = :isValid')
+            ->andWhere('uc.bValid = :isAccepted')
             ->setParameters([
                 'userSubject' => $user->getSubject(),
-                'isValid' => $isValid,
+                'isAccepted' => $isAccepted,
             ])
             ->getQuery()
             ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)

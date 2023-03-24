@@ -4,53 +4,27 @@ namespace App\ManagerV2;
 
 use App\Entity\Centre;
 use App\Entity\User;
-use App\Repository\CentreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class RelayManager
 {
-    private CentreRepository $repository;
-    private EntityManagerInterface $em;
-
-    public function __construct(CentreRepository $repository, EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em)
     {
-        $this->repository = $repository;
-        $this->em = $em;
-    }
-
-    /**
-     * @return Centre[]
-     */
-    public function findPersonalRelays(User $user, bool $isValid = true): array
-    {
-        return $this->repository->findPersonalRelays($user, $isValid);
     }
 
     public function acceptInvitation(User $user, Centre $relay): void
     {
-        $userRelays = $user->isBeneficiaire()
-            ? $user->getSubjectBeneficiaire()->getBeneficiairesCentres()
-            : $user->getSubjectMembre()->getMembresCentres();
-
-        foreach ($userRelays as $userRelay) {
-            if ($userRelay->getCentre() === $relay) {
-                $userRelay->setBValid(true);
-                $this->em->flush();
-            }
+        if ($subjectRelay = $user->getSubjectRelaysForRelay($relay)) {
+            $subjectRelay->setBValid(true);
+            $this->em->flush();
         }
     }
 
     public function leaveRelay(User $user, Centre $relay): void
     {
-        $userRelays = $user->isBeneficiaire()
-            ? $user->getSubjectBeneficiaire()->getBeneficiairesCentres()
-            : $user->getSubjectMembre()->getMembresCentres();
-
-        foreach ($userRelays as $userRelay) {
-            if ($userRelay->getCentre() === $relay) {
-                $this->em->remove($userRelay);
-                $this->em->flush();
-            }
+        if ($subjectRelay = $user->getSubjectRelaysForRelay($relay)) {
+            $this->em->remove($subjectRelay);
+            $this->em->flush();
         }
     }
 
