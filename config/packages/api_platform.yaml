@@ -7,8 +7,8 @@ api_platform:
     swagger:
         versions: [ 3 ]
     oauth:
-        clientId: '%env(resolve:TEST_OAUTH_CLIENT_ID)%'
-        clientSecret: '%env(resolve:TEST_OAUTH_CLIENT_SECRET)%'
+        clientId: '400b21af37a788c8c85207f99dc18c6d'
+        clientSecret: '39631404b728ae0bcc8afd038a2cefb7e95143508d18cdca333d281410df9a4c5af7b6329edbb7aabae2e7a760b94d3d89305738cfb403899ac4a0d24f6fb116'
         flow: clientCredentials
         enabled: true
         tokenUrl: '/api/token'
