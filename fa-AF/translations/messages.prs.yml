@@ -1,73 +1,71 @@
 security:
   login:
-    username: Username
-    password: Password
-    remember_me: 'Remember me'
-    submit: 'Log in'
+    username: 'Nom d''utilisateur'
+    password: 'Mot de passe'
+    remember_me: 'Se souvenir de moi'
+    submit: Connexion
 profile:
   show:
-    username: Username
-    email: Email
+    username: 'Nom d''utilisateur'
+    email: 'Adresse e-mail'
   edit:
-    submit: Update
+    submit: 'Mettre à jour'
   flash:
-    updated: 'The profile has been updated.'
+    updated: 'Le profil a été mis à jour.'
 change_password:
-  submit: 'Change password'
+  submit: 'Modifier le mot de passe'
   flash:
-    success: 'The password has been changed.'
+    success: 'Le mot de passe a été modifié.'
 registration:
-  check_email: |
-    An email has been sent to %email%. It contains an activation link you must click to activate your account.
-  confirmed: 'Congrats %username%, your account is now activated.'
-  back: 'Back to the originating page.'
-  submit: Register
+  check_email: 'Un e-mail a été envoyé à l''adresse %email%. Il contient un lien d''activation sur lequel il vous faudra cliquer afin d''activer votre compte.'
+  confirmed: 'Félicitations %username%, votre compte est maintenant activé.'
+  back: 'Retour à la page d''origine.'
+  submit: 'Créer un compte'
   flash:
-    user_created: 'The user has been created successfully.'
+    user_created: 'L''utilisateur a été créé avec succès.'
   email:
-    subject: 'Welcome %username%!'
+    subject: 'Bienvenue %username% !'
     message: |
-      Hello %username%!
+      Bonjour %username% !
 
-      To finish activating your account - please visit %confirmationUrl%
+      Pour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%
 
-      This link can only be used once to validate your account.
+      Ce lien ne peut être utilisé qu'une seule fois pour valider votre compte.
 
-      Regards,
-      the Team.
+      Cordialement,
+      L'équipe
 resetting:
   check_email: |
-    An email has been sent. It contains a link you must click to reset your password.
-    Note: You can only request a new password once within %tokenLifetime% hours.
+    Un e-mail a été envoyé. Il contient un lien sur lequel il vous faudra cliquer pour réinitialiser votre mot de passe.
+    Remarque : Vous ne pouvez demander un nouveau mot de passe que toutes les %tokenLifetime% heures.
 
-    If you don't get an email check your spam folder or try again.
+    Si vous ne recevez pas un email, vérifiez votre dossier spam ou essayez à nouveau.
   request:
-    username: 'Username or email address'
-    submit: 'Reset password'
+    username: 'Nom d''utilisateur ou adresse e-mail'
+    submit: 'Réinitialiser le mot de passe'
   reset:
-    submit: 'Change password'
+    submit: 'Modifier le mot de passe'
   flash:
-    success: 'The password has been reset successfully.'
+    success: 'Le mot de passe a été réinitialisé avec succès.'
   email:
-    subject: 'Reset Password'
+    subject: 'Réinitialisation de votre mot de passe'
     message: |
-      Hello %username%!
+      Bonjour %username% !
 
-      To reset your password - please visit %confirmationUrl%
+      Pour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%
 
-      Regards,
-      the Team.
-#Global strings
+      Cordialement,
+      L'équipe
 layout:
-  logout: 'Log out'
-  login: 'Log in'
-  register: Register
-  logged_in_as: 'Logged in as %username%'
+  logout: Déconnexion
+  login: Connexion
+  register: Inscription
+  logged_in_as: 'Connecté en tant que %username%'
 form:
-  username: Username
-  email: Email
-  current_password: 'Current password'
-  password: Password
-  password_confirmation: 'Repeat password'
-  new_password: 'New password'
-  new_password_confirmation: 'Repeat new password'
+  username: 'Nom d''utilisateur'
+  email: 'Adresse e-mail'
+  current_password: 'Mot de passe actuel'
+  password: 'Mot de passe'
+  password_confirmation: 'Répéter le mot de passe'
+  new_password: 'Nouveau mot de passe'
+  new_password_confirmation: 'Répéter le nouveau mot de passe'
