@@ -1,69 +1,73 @@
 security:
   login:
-    username: Benutzername
-    password: Passwort
-    remember_me: 'An mich erinnern'
-    submit: Anmelden
+    username: Username
+    password: Password
+    remember_me: 'Remember me'
+    submit: 'Log in'
 profile:
   show:
-    username: Benutzername
-    email: E-Mail
+    username: Username
+    email: Email
   edit:
-    submit: 'Benutzer aktualisieren'
+    submit: Update
   flash:
-    updated: 'Das Benutzerprofil wurde aktualisiert.'
+    updated: 'The profile has been updated.'
 change_password:
-  submit: 'Passwort ändern'
+  submit: 'Change password'
   flash:
-    success: 'Das Passwort wurde geändert.'
+    success: 'The password has been changed.'
 registration:
-  check_email: 'Eine E-Mail wurde an %email% gesendet. Sie enthält einen Link, den Sie anklicken müssen, um Ihr Benutzerkonto zu bestätigen.'
-  confirmed: 'Glückwunsch %username%, Ihr Benutzerkonto ist jetzt bestätigt.'
-  back: 'Zurück zur ursprünglichen Seite.'
-  submit: Registrieren
+  check_email: |
+    An email has been sent to %email%. It contains an activation link you must click to activate your account.
+  confirmed: 'Congrats %username%, your account is now activated.'
+  back: 'Back to the originating page.'
+  submit: Register
   flash:
-    user_created: 'Der Benutzer wurde erfolgreich erstellt.'
+    user_created: 'The user has been created successfully.'
   email:
-    subject: 'Willkommen %username%!'
+    subject: 'Welcome %username%!'
     message: |
-      Hallo %username%!
+      Hello %username%!
 
-      Besuchen Sie bitte folgende Seite, um Ihr Benutzerkonto zu bestätigen: %confirmationUrl%
+      To finish activating your account - please visit %confirmationUrl%
 
-      Mit besten Grüßen,
-      das Team.
+      This link can only be used once to validate your account.
+
+      Regards,
+      the Team.
 resetting:
   check_email: |
-    Eine E-Mail wurde verschickt. Sie beinhaltet einen Link zum Zurücksetzen des Passwortes.
-    Hinweis: Ein neues Passwort kann nur alle %tokenLifetime% Stunden beantragt werden.
+    An email has been sent. It contains a link you must click to reset your password.
+    Note: You can only request a new password once within %tokenLifetime% hours.
 
-    Eventuell wurde diese E-Mail als Spam markiert, wenn sie nicht angekommen ist.
+    If you don't get an email check your spam folder or try again.
   request:
-    username: 'Benutzername oder E-Mail-Adresse'
-    submit: 'Passwort zurücksetzen'
+    username: 'Username or email address'
+    submit: 'Reset password'
   reset:
-    submit: 'Passwort ändern'
+    submit: 'Change password'
   flash:
-    success: 'Das Passwort wurde erfolgreich zurückgesetzt.'
+    success: 'The password has been reset successfully.'
   email:
-    subject: 'Passwort zurücksetzen'
+    subject: 'Reset Password'
     message: |
-      Hallo %username%!
+      Hello %username%!
 
-      Besuchen Sie bitte folgende Seite, um Ihr Passwort zurückzusetzen: %confirmationUrl%
+      To reset your password - please visit %confirmationUrl%
 
-      Mit besten Grüßen,
-      das Team.
+      Regards,
+      the Team.
+#Global strings
 layout:
-  logout: Abmelden
-  login: Anmelden
-  register: Registrieren
-  logged_in_as: 'Angemeldet als %username%'
+  logout: 'Log out'
+  login: 'Log in'
+  register: Register
+  logged_in_as: 'Logged in as %username%'
 form:
-  username: Benutzername
-  email: E-Mail-Adresse
-  current_password: 'Derzeitiges Passwort'
-  password: Passwort
-  password_confirmation: 'Passwort bestätigen'
-  new_password: 'Neues Passwort'
-  new_password_confirmation: 'Neues Passwort bestätigen'
+  username: Username
+  email: Email
+  current_password: 'Current password'
+  password: Password
+  password_confirmation: 'Repeat password'
+  new_password: 'New password'
+  new_password_confirmation: 'Repeat new password'
