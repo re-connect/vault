@@ -1,4 +1,5 @@
 access: Access
+accept: Accept
 accompanying_person_propose_cfn_activation: Your accompanying person %person.firstname% %person.lastname% from organization %center% offers you to activate your Reconnect numeric vault
 add_date: Added at
 add_new_beneficiary: Add new beneficiary
@@ -56,6 +57,7 @@ beneficiaire.menu2.mesRelaisReconnect: Relays
 beneficiaire.menu2.monCalendrier: Meetings
 bientotDisponible.text: 'To receive more informations about <a class="bold main">Reconnect,The Solidarity Cloud </a> and join the network of <a class="bold main">Reconnect Relays</a>,con tact us by phone at:<a class="bold main"> 01 58 30 55 29</a> <br/> or by Email: <a class="bold main"> contact@reconnect.fr </a>'
 birthdate: Birthdate
+cancel: Cancel
 centers: Centers
 centre.metaTitle: Structures
 centre.nom: Name

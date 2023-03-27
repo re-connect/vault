@@ -23,8 +23,8 @@
 </button>
 <div class="position-relative d-none" data-dropdown-menu-target="menu"
         {{ stimulus_controller('alert', {
-            'confirmButtonText': 'main.accepter'|trans,
-            'cancelButtonText': 'main.annuler'|trans,
+            'confirmButtonText': 'accept'|trans,
+            'cancelButtonText': 'cancel'|trans,
         }) }}>
     <ul class="action-dropdown shadow border-1 position-absolute z-1 bg-white list-group font-size-1 mt-2 end-0" style="width: 240px">
         {% for menuItem in menuItems %}

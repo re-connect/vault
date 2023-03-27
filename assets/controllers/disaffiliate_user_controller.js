@@ -32,11 +32,11 @@ export default class extends Controller {
       ...this.swalOptions,
       preConfirm: () => {
         return axiosInstance.get(this.urlValue)
-          .then(function () {
+          .then(() => {
             this.iconTarget.classList.replace('text-primary', 'text-grey');
             button.classList.replace('btn-red', 'btn-grey')
             button.removeAttribute('data-action');
-          }.bind(this))
+          })
       },
     })
   }
