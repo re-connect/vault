@@ -328,7 +328,14 @@ final class MembreBeneficiaireController extends REController
         if ($this->request->isMethod(Request::METHOD_POST)) {
             if ('remotely' === $way) {
                 try {
-                    $SMSManager->sendSMSBeneficiaryAddremotely($beneficiaire, $this->session->get('autoPassword'));
+                    $password = $this->session->get('autoPassword');
+
+                    $user = $beneficiaire->getUser();
+                    $user->setPlainPassword($password);
+                    $this->userManager->updatePassword($user);
+                    $this->entityManager->flush();
+
+                    $SMSManager->sendSMSBeneficiaryAddremotely($beneficiaire, $password);
                 } catch (Exception) {
                     return $this->render($view, [
                         'beneficiaire' => $beneficiaire,
