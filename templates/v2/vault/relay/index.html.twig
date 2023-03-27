@@ -17,8 +17,3 @@
         {% endblock %}
     </div>
 {% endblock %}
-
-{% block notifications %}
-    {{ render(controller('App\\ControllerV2\\MemberBeneficiaryController::firstMemberVisitNotification', {'id': beneficiary.id})) }}
-    {{ render(controller('App\\ControllerV2\\RelayController::relayNotification', {'id': beneficiary.id})) }}
-{% endblock %}
