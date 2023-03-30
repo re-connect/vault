@@ -1,71 +1,72 @@
 security:
   login:
-    username: 'Nom d''utilisateur'
-    password: 'Mot de passe'
-    remember_me: 'Se souvenir de moi'
-    submit: Connexion
+    username: 'إسم المستخدم'
+    password: 'كلمة المرور'
+    remember_me: 'حفظ البيانات'
+    submit: 'تسجيل دخول'
 profile:
   show:
-    username: 'Nom d''utilisateur'
-    email: 'Adresse e-mail'
+    username: 'إسم المستخدم'
+    email: 'بريد إلكتروني'
   edit:
-    submit: 'Mettre à jour'
+    submit: تحديث
   flash:
-    updated: 'Le profil a été mis à jour.'
+    updated: 'تم تحديث الملف الشخصي'
 change_password:
-  submit: 'Modifier le mot de passe'
+  submit: 'تغيير كلمة المرور'
   flash:
-    success: 'Le mot de passe a été modifié.'
+    success: 'تم تغيير كلمة المرور'
 registration:
-  check_email: 'Un e-mail a été envoyé à l''adresse %email%. Il contient un lien d''activation sur lequel il vous faudra cliquer afin d''activer votre compte.'
-  confirmed: 'Félicitations %username%, votre compte est maintenant activé.'
-  back: 'Retour à la page d''origine.'
-  submit: 'Créer un compte'
+  check_email: 'لقد تم إرسال رسالة إلكترونية إلى %email% تحتوي على رابط يجب إتباعه لتفعيل حسابك الشخصي.'
+  confirmed: 'تهانينا %username%، لقد تم تفعيل حسابك.'
+  back: 'عودة إلى الصفحة الرئيسية'
+  submit: تسجيل
   flash:
-    user_created: 'L''utilisateur a été créé avec succès.'
+    user_created: 'تم إنشاء حسابك بنجاح'
   email:
-    subject: 'Bienvenue %username% !'
+    subject: '%username%! مرحبا'
     message: |
-      Bonjour %username% !
+      مرحبا %username%!
 
-      Pour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%
 
-      Ce lien ne peut être utilisé qu'une seule fois pour valider votre compte.
+       لتفعيل حسابك يرجى إتباع الرابط التالي %confirmationUrl%
 
-      Cordialement,
-      L'équipe
+       الرابط يمكن إستخدامه مرة واحدة فقط لتفعيل حسابك
+
+      شكرا،
+      فريق العمل.
 resetting:
   check_email: |
-    Un e-mail a été envoyé. Il contient un lien sur lequel il vous faudra cliquer pour réinitialiser votre mot de passe.
-    Remarque : Vous ne pouvez demander un nouveau mot de passe que toutes les %tokenLifetime% heures.
+    لقد تم إرسال رسالة إلكترونية تحتوي على رابط يجب الضغط عليه لإعادة ضبط كلمة المرور الخاصة بك.
+    ملحوظة: يمكنك إعادة ضبط كلمة المرور الخاصة بك خلال %tokenLifetime% ساعة
 
-    Si vous ne recevez pas un email, vérifiez votre dossier spam ou essayez à nouveau.
+    يرجى التحقق من ملف السبام إذا لم تستقبل الرسالة الإلكترونية قريبا أو أعد المحاولة
   request:
-    username: 'Nom d''utilisateur ou adresse e-mail'
-    submit: 'Réinitialiser le mot de passe'
+    username: 'إسم المستخدم او البريد الالكتروني'
+    submit: 'إعادة ضبط كلمة المرور'
   reset:
-    submit: 'Modifier le mot de passe'
+    submit: 'تغيير كلمة المرور'
   flash:
-    success: 'Le mot de passe a été réinitialisé avec succès.'
+    success: 'تم إعادة ضبط كلمة المرور بنجاح'
   email:
-    subject: 'Réinitialisation de votre mot de passe'
+    subject: 'إعادة ضبط كلمة المرور'
     message: |
-      Bonjour %username% !
+      مرحبا %username%!
 
-      Pour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%
+      لإعادة ضبط كلمة المرور يرجى إتباع الرابط التالي %confirmationUrl%
 
-      Cordialement,
-      L'équipe
+      شكرا،
+      فريق العمل.
 layout:
-  logout: Déconnexion
-  login: Connexion
-  register: Inscription
-  logged_in_as: 'Connecté en tant que %username%'
+  logout: خروج
+  login: دخول
+  register: تسجيل
+  logged_in_as: 'تم الدخول بإسم %username%'
 form:
-  username: 'Nom d''utilisateur'
-  email: 'Adresse e-mail'
-  current_password: 'Mot de passe actuel'
-  password: 'Mot de passe'
-  password_confirmation: 'Répéter le mot de passe'
-  new_password: 'Nouveau mot de passe'
-  new_password_confirmation: 'Répéter le nouveau mot de passe'
+  username: 'إسم المستخدم'
+  email: 'البريد الإلكتروني'
+  current_password: 'كلمة المرور الحالية'
+  password: 'كلمة المرور'
+  password_confirmation: تأكيد
+  new_password: 'كلمة المرور الجديدة'
+  new_password_confirmation: 'تأكيد كلمة المرور'
