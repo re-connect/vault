@@ -2,7 +2,11 @@
     {
         'icon': 'fa-times-circle',
         'message': 'remove_from_relay',
-        'path': removeFromRelayPath,
+        'path': removeFromRelay.path,
+        'attr' : {
+            'dataAction': 'click->alert#confirm',
+            'dataMessage': removeFromRelay.message
+        }
     },
     {
         'icon': 'fa-redo',
@@ -17,11 +21,19 @@
 >
     <i class="fas fa-ellipsis-h"></i>
 </button>
-<div class="position-relative d-none" data-dropdown-menu-target="menu">
+<div class="position-relative d-none" data-dropdown-menu-target="menu"
+        {{ stimulus_controller('alert', {
+            'confirmButtonText': 'accept'|trans,
+            'cancelButtonText': 'cancel'|trans,
+        }) }}>
     <ul class="action-dropdown shadow border-1 position-absolute z-1 bg-white list-group font-size-1 mt-2 end-0" style="width: 240px">
         {% for menuItem in menuItems %}
             <li class="list-group-item hover p-0 border-0 my-1 d-grid gap-2">
-                <a href="{{ menuItem.path }}" class="btn p-0 text-primary text-start ps-3">
+                <a href="{{ menuItem.path }}" class="btn p-0 text-primary text-start ps-3"
+                        {% if menuItem.attr is defined %}
+                    data-action="{{ menuItem.attr.dataAction }}"
+                    data-message="{{ menuItem.attr.dataMessage }}"
+                        {% endif %}>
                     <i class="fas {{ menuItem.icon }} pe-2"></i>{{ menuItem.message|trans }}
                 </a>
             </li>

@@ -1,4 +1,5 @@
 access: Accès
+accept: Accepter
 accompanying_person_propose_cfn_activation: Votre accompagnant %person.firstname% %person.lastname% de la structure %center% vous propose d'activer votre coffre-fort numérique Reconnect
 add_date: 'Date d''ajout'
 add_new_beneficiary_title_part_1: Ajouter un nouveau
@@ -91,6 +92,7 @@ beneficiary.delete.account: 'Êtes vous sûr de bien vouloir supprimer votre com
 beneficiary_not_found: Aucun bénéficiaire avec l'id %id% n'a été trouvé
 bientotDisponible.text: 'Pour obtenir plus d''informations sur <a class="bold main">Reconnect le cloud solidaire</a> et rejoindre le réseau des <a class="bold main">Relais Reconnect</a>, contactez-nous directement par téléphone au : <a class="bold main">01 58 30 55 29</a> <br/>ou par mail : <a class="bold main">contact@reconnect.fr</a>'
 birthdate: Date de naissance
+cancel: Annuler
 center_has_no_info: 'Aucun Relais n''a accès à vos informations partagées'
 center_is_empty: 'Votre Relais Reconnect est vide'
 centre.metaTitle: Centres
@@ -319,6 +321,10 @@ digital_cares_appreciated_training_text: des bénéficiaires qui ont apprécié 
 digital_cares_appreciated_training_title: 98 %
 disabledAt: Désactivé le
 disabledBy: Désactivé par
+disaffiliate_beneficiary: Le bénéficiaire %beneficiary% a été retiré du relais %relay%
+disaffiliate_beneficiary_title_part_1: Arrêter le suivi d'un
+disaffiliate_beneficiary_title_part_2: Bénéficiaire
+disaffiliate_beneficiary_subtitle: Arrêter le suivi de
 documents: Documents
 document.apercu: Aperçus
 document.aucunFichier: 'Il n''y a aucun fichier pour l''instant'
@@ -975,6 +981,8 @@ registerForm.ville: Ville
 reminder: 'Rappel'
 reminder_sms: 'Rappel SMS'
 remove_from_relay: Retirer du relais
+remove_from_relay_confirm: Êtes vous sûr de vouloir retirer le bénéficiaire %beneficiairy% ?
+remove_from_relay_confirm_relay: Êtes vous sûr de vouloir retirer le bénéficiaire %beneficiairy% du relais %relay% ?
 rename: Renommer
 renew_password: Renouveler le mot de passe
 relays: Relais
@@ -1028,6 +1036,7 @@ secret_answer_optional: Réponse secrète (facultatif)
 secret_question: 'Question secrète'
 secret_question_other: 'Autre question secrète'
 search_existing_beneficiary: Rechercher un bénéficiaire existant
+select_relays_for_disaffiliation: Cet utilisateur est lié à plusieurs relais que vous gérez, sélectionnez les relais pour lesquels vous souhaitez arrêter le suivi
 send: Envoyer
 sending_sms_account_activation: Envoi du SMS d'activation du compte
 settings_saved_successfully: 'Vos parametres ont bien été enregistrés'

@@ -2,6 +2,7 @@
 
 namespace App\ControllerV2;
 
+use App\Entity\Membre;
 use App\Entity\User;
 
 class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
@@ -12,6 +13,11 @@ class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\Abst
         $user = parent::getUser();
 
         return $user;
+    }
+
+    public function getProfessional(): ?Membre
+    {
+        return $this->getUser()?->getSubjectMembre();
     }
 
     protected function isLoggedInUser(User $user): bool
