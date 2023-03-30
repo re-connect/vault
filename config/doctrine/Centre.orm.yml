@@ -96,7 +96,13 @@ App\Entity\Centre:
             targetEntity: Gestionnaire
             inversedBy: centres
             joinColumn:
-                nullable: false
+                nullable: true
+                onDelete: "SET NULL"
+        association:
+            targetEntity: Association
+            inversedBy: centres
+            joinColumn:
+                nullable: true
         typeCentre:
             targetEntity: TypeCentre
             inversedBy: centres

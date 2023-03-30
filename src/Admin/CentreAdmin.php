@@ -5,9 +5,7 @@ namespace App\Admin;
 use App\Entity\Association;
 use App\Entity\Centre;
 use App\Entity\CreatorCentre;
-use App\Entity\Gestionnaire;
 use App\Entity\User;
-use App\Form\Type\GestionnaireType;
 use App\Manager\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
@@ -103,15 +101,6 @@ class CentreAdmin extends AbstractAdmin
         $subject = $this->getSubject();
         if (null === $subject->getId()) {
             $form
-                ->with('Gestionnaire')
-                ->add('gestionnaire', GestionnaireType::class, [
-                    'mapped' => false,
-                    'label' => false,
-                ])
-                ->end();
-            $form->get('gestionnaire')->remove('association');
-
-            $form
                 ->with('Association *')
                 ->add('association', EntityType::class, [
                     'class' => Association::class,
@@ -157,12 +146,9 @@ class CentreAdmin extends AbstractAdmin
                 );
             } else {
                 $isTest = $data->getTest();
-                $gestionnaire = $this->createGestionnaire($event->getForm()->get('gestionnaire')->getData(), $isTest);
-                $gestionnaire->setAssociation($association ?? $this->createUserAssociation($newAssociation, $isTest)->getSubjectAssociation());
+                $data->setAssociation($association ?? $this->createUserAssociation($newAssociation, $isTest)->getSubjectAssociation());
 
-                $this->entityManager->persist($gestionnaire);
                 $this->entityManager->flush();
-                $data->setGestionnaire($gestionnaire);
             }
         });
     }
@@ -182,7 +168,7 @@ class CentreAdmin extends AbstractAdmin
             ->add('test', null, [
                 'label' => 'Compte test',
             ])
-            ->add('gestionnaire.association', null, ['label' => 'Association'])
+            ->add('association', null, ['label' => 'Association'])
             ->add('canada', null, ['label' => 'Canada']);
     }
 
@@ -191,6 +177,7 @@ class CentreAdmin extends AbstractAdmin
         $list
             ->addIdentifier('id', null, ['route' => ['name' => 'edit']])
             ->addIdentifier('nom', null, ['route' => ['name' => 'edit']])
+            ->add('association', null, ['label' => 'Association'])
             ->add('createdAt', null, ['label' => 'Date de création'])
             ->add('canada', null, ['label' => 'Canada'])
             ->add('_action', 'actions', [
@@ -212,17 +199,6 @@ class CentreAdmin extends AbstractAdmin
         ];
     }
 
-    private function createGestionnaire(Gestionnaire $gestionnaire, bool $isTest): Gestionnaire
-    {
-        $user = $gestionnaire->getUser();
-        $user
-            ->setPlainPassword($this->userManager->randomPassword())
-            ->setTest($isTest);
-        $this->userManager->updatePassword($gestionnaire->getUser());
-
-        return $gestionnaire;
-    }
-
     private function createUserAssociation(string $associationName, bool $isTest): User
     {
         $association = (new Association())->setNom($associationName);
@@ -231,7 +207,8 @@ class CentreAdmin extends AbstractAdmin
             ->setPlainPassword($this->userManager->randomPassword())
             ->setNom($associationName)
             ->setTest($isTest)
-            ->setSubjectAssociation($association);
+            ->setSubjectAssociation($association)
+            ->disable();
 
         $association->setUser($userAssociation);
         $this->userManager->updatePassword($userAssociation);
