@@ -920,7 +920,7 @@ class User extends BaseUser implements \JsonSerializable
 
     public function getCreatorUser(): ?CreatorUser
     {
-        $creator = $this->creators->filter(static function ($creator) {
+        $creator = $this->creators?->filter(static function ($creator) {
             return $creator instanceof CreatorUser;
         })->first();
 
@@ -929,7 +929,7 @@ class User extends BaseUser implements \JsonSerializable
 
     public function getCreatorCentre(): ?CreatorCentre
     {
-        $creator = $this->creators->filter(static function ($creator) {
+        $creator = $this->creators?->filter(static function ($creator) {
             return $creator instanceof CreatorCentre;
         })->first();
 
@@ -1131,5 +1131,15 @@ class User extends BaseUser implements \JsonSerializable
             ->first();
 
         return false === $subjectRelay ? null : $subjectRelay;
+    }
+
+    public function hasTestCreatorRelay(): bool
+    {
+        return $this->getCreatorCentre()?->getEntity()?->getTest() ?? false;
+    }
+
+    public function isAffiliatedToTestRelaysOnly(): bool
+    {
+        return !$this->getCentres()->exists(fn (int $key, Centre $centre) => false === $centre->getTest());
     }
 }
