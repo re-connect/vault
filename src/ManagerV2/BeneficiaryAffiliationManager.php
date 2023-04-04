@@ -82,6 +82,7 @@ class BeneficiaryAffiliationManager
                 ->setCentre($relay)
                 ->setBeneficiaire($beneficiary)
                 ->setBValid($accepted);
+            $beneficiary->addBeneficiairesCentre($beneficiaryRelay);
 
             $this->em->persist($beneficiaryRelay);
         }

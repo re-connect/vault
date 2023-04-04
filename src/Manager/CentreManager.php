@@ -60,6 +60,7 @@ class CentreManager
 
         if ($subject->isBeneficiaire()) {
             $userCentre = (new BeneficiaireCentre())->setBeneficiaire($subject);
+            $subject->addBeneficiairesCentre($userCentre);
         } elseif ($subject->isMembre()) {
             $userCentre = (new MembreCentre())->setMembre($subject)->setDroits($arDroits);
         } else {
