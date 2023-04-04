@@ -9,18 +9,12 @@ abstract class UserCentre implements \JsonSerializable
 {
     use GedmoTimedTrait;
 
-    /**
-     * @var int
-     */
-    protected $id;
+    protected ?int $id;
 
     #[Groups(['v3:center:read', 'v3:center:write'])]
     private ?bool $bValid = false;
 
-    /**
-     * @var Membre
-     */
-    private $initiateur;
+    private ?Membre $initiateur;
 
     public function __construct()
     {
@@ -28,51 +22,29 @@ abstract class UserCentre implements \JsonSerializable
         $this->updatedAt = new \DateTime();
     }
 
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * Get bValid.
-     *
-     * @return bool
-     */
-    public function getBValid()
+    public function getBValid(): ?bool
     {
         return $this->bValid;
     }
 
-    /**
-     * Set bValid.
-     *
-     * @param bool $bValid
-     *
-     * @return UserCentre
-     */
-    public function setBValid($bValid)
+    public function setBValid(bool $bValid): static
     {
         $this->bValid = $bValid;
 
         return $this;
     }
 
-    /**
-     * Get initiateur.
-     *
-     * @return Membre
-     */
-    public function getInitiateur()
+    public function getInitiateur(): ?Membre
     {
         return $this->initiateur;
     }
 
-    public function setInitiateur(?Membre $initiateur): self
+    public function setInitiateur(?Membre $initiateur): static
     {
         $this->initiateur = $initiateur;
 
@@ -89,5 +61,5 @@ abstract class UserCentre implements \JsonSerializable
      */
     abstract public function getCentre();
 
-    abstract public function setUser(User $user): self;
+    abstract public function setUser(User $user): static;
 }

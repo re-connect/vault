@@ -103,7 +103,7 @@ class MembreCentre extends UserCentre
         return $this;
     }
 
-    public function setUser(User $user): self
+    public function setUser(User $user): static
     {
         $this->membre = $user->getSubjectMembre();
 

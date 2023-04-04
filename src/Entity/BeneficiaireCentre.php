@@ -113,7 +113,7 @@ class BeneficiaireCentre extends UserCentre
         return $this;
     }
 
-    public function setUser(User $user): self
+    public function setUser(User $user): static
     {
         $this->beneficiaire = $user->getSubjectBeneficiaire();
 
