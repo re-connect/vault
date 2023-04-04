@@ -25,14 +25,14 @@ class SecurityController extends AbstractController
 
     public function loginEnd(Request $request): RedirectResponse
     {
-        $route = match (true) {
-            !$this->getUser() => 're_main_login',
-            !$this->getUser()->isBeneficiaire() && $this->gdprService->isPasswordRenewalDue() => 'app_update_password',
-            !$this->isGranted(User::USER_TYPE_ADMINISTRATEUR) && $request->getSession()->get('_security.main.target_path') => $request->getSession()->get('_security.main.target_path'),
-            default => 're_user_redirectUser',
-        };
+        $targetPath = $request->getSession()->get('_security.main.target_path');
 
-        return $this->redirect($this->generateUrl($route));
+        return $this->redirect(match (true) {
+            !$this->getUser() => $this->generateUrl('re_main_login'),
+            !$this->getUser()->isBeneficiaire() && $this->gdprService->isPasswordRenewalDue() => $this->generateUrl('app_update_password'),
+            !$this->isGranted(User::USER_TYPE_ADMINISTRATEUR) && $targetPath => $targetPath,
+            default => $this->generateUrl('re_user_redirectUser'),
+        });
     }
 
     public function redirectUser(): ?RedirectResponse
