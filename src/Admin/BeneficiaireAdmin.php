@@ -281,8 +281,50 @@ class BeneficiaireAdmin extends AbstractAdmin
             ])
             ->add('user.derniereConnexionAt', DateRangeFilter::class, ['label' => 'Dernière connexion'])
             ->add('createdAt', DateRangeFilter::class, ['label' => 'Créé le'])
-            ->add('user.test', null, [
+            ->add('test', CallbackFilter::class, [
+                'callback' => static function (ProxyQueryInterface $query, string $alias, string $field, FilterData $data): bool {
+                    if (!$data->hasValue()) {
+                        return false;
+                    }
+                    $value = $data->getValue();
+
+                    if ($value) {
+                        $query
+                            ->leftJoin($alias.'.beneficiairesCentres', 'bc')
+                            ->innerJoin('bc.centre', 'c')
+                            ->innerJoin($alias.'.user', 'u')
+                            ->leftJoin(CreatorCentre::class, 'cc', 'WITH', 'u.id = cc.user')
+                            ->join('cc.entity', 'ccc')
+                            ->andWhere('ccc.test = :value')
+                            ->andWhere('c.test = :value')
+                            ->setParameter('value', true);
+                    } else {
+//                        $whereClauseOperator = $value ? 'AND' : 'OR';
+//
+//                        $query
+//                            ->innerJoin($alias.'.beneficiairesCentres', 'bc')
+//                            ->innerJoin('bc.centre', 'c')
+//                            ->innerJoin($alias.'.user', 'u')
+//                            ->innerJoin(CreatorCentre::class, 'cc', 'WITH', 'u.id = cc.user')
+//                            ->innerJoin('cc.entity', 'ccc')
+//                            ->andWhere(sprintf('ccc.test = :value %s c.test = :value', $whereClauseOperator))
+//                            ->setParameter('value', $value);
+                    }
+
+
+
+                    return true;
+                },
                 'label' => 'Compte test',
+                'field_type' => ChoiceType::class,
+                'multiple' => false,
+                'expanded' => true,
+                'field_options' => [
+                    'choices' => [
+                        'Oui' => true,
+                        'Non' => false,
+                    ],
+                ],
             ])
             ->add('user.email', null, ['label' => 'Email'])
             ->add('user.canada', null, ['label' => 'Canada']);
@@ -304,6 +346,7 @@ class BeneficiaireAdmin extends AbstractAdmin
                 'label' => 'Créé par (client)',
             ])
             ->add('createdAt', null, ['label' => 'Date de création'])
+            ->add('user.getTestToString', null, ['label' => 'Test'])
             ->add('user.canada', null, ['label' => 'Canada'])
             ->add('_action', 'actions', [
                 'actions' => [
