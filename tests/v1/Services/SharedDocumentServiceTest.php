@@ -118,7 +118,6 @@ class SharedDocumentServiceTest extends KernelTestCase
             ->setPrenom('Grey')
             ->setUsername('gandalf.grey.28/06/1990')
             ->setPassword('lalilulelo')
-            ->setTest(true)
             ->setTypeUser('ROLE_MEMBRE');
     }
 

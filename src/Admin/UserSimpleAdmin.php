@@ -12,7 +12,6 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\Form\Type\DateTimePickerType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
@@ -61,9 +60,12 @@ class UserSimpleAdmin extends AbstractAdmin
                 'attr' => ['read_only' => true],
                 'disabled' => true,
             ])
-            ->add('test', CheckboxType::class, [
+            ->add('test', null, [
                 'label' => 'Compte test',
                 'required' => false,
+                'disabled' => true,
+                'help' => $this->getSubject()->getTestToString(),
+                'attr' => ['read_only' => true, 'style' => 'display:none'],
             ])
             ->add('resetPasswordRequest', null, [
                 'mapped' => false,

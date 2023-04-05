@@ -169,11 +169,6 @@ class User extends BaseUser implements \JsonSerializable
     private $avatar;
 
     /**
-     * @var bool
-     */
-    private $test = false;
-
-    /**
      * @var string
      */
     private $autoLoginToken;
@@ -626,7 +621,7 @@ class User extends BaseUser implements \JsonSerializable
 
     public function getTestToString(): string
     {
-        return $this->test ? 'Oui' : '';
+        return $this->isTest() ? 'Oui' : 'Non';
     }
 
     public function derniereConnexionAtToString(): ?string
@@ -679,14 +674,7 @@ class User extends BaseUser implements \JsonSerializable
 
     public function isTest(): bool
     {
-        return $this->test;
-    }
-
-    public function setTest(?bool $test = false): self
-    {
-        $this->test = $test;
-
-        return $this;
+        return $this->hasTestCreatorRelay() && $this->isAffiliatedToTestRelaysOnly();
     }
 
     /**
@@ -1131,5 +1119,15 @@ class User extends BaseUser implements \JsonSerializable
             ->first();
 
         return false === $subjectRelay ? null : $subjectRelay;
+    }
+
+    public function hasTestCreatorRelay(): bool
+    {
+        return $this->getCreatorCentre()?->getEntity()?->getTest() ?? false;
+    }
+
+    public function isAffiliatedToTestRelaysOnly(): bool
+    {
+        return !$this->getCentres()?->exists(fn (int $key, ?Centre $centre) => false === $centre?->getTest());
     }
 }

@@ -206,7 +206,6 @@ class CentreAdmin extends AbstractAdmin
         $userAssociation = (new User())
             ->setPlainPassword($this->userManager->randomPassword())
             ->setNom($associationName)
-            ->setTest($isTest)
             ->setSubjectAssociation($association)
             ->disable();
 

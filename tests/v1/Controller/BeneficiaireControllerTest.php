@@ -62,7 +62,7 @@ class BeneficiaireControllerTest extends WebTestCase
     private function createBeneficary(): Beneficiaire
     {
         $beneficiaire = $this->fixtureManager->getNewRandomBeneficiaire($this->userManager);
-        $beneficiaire->getUser()->setTest(true);
+        $beneficiaire->getUser();
 
         $this->em->persist($beneficiaire);
         $this->em->flush();

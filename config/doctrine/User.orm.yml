@@ -117,8 +117,6 @@ App\Entity\User:
             gedmo:
                 timestampable:
                     on: update
-        test:
-            type: boolean
         canada:
             type: boolean
             options:

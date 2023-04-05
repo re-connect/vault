@@ -51,7 +51,6 @@ final class UserFactory extends ModelFactory
             'lastIp' => self::faker()->text(),
             'createdAt' => new \DateTime('now'),
             'updatedAt' => new \DateTime('now'),
-            'test' => self::faker()->boolean(),
             'canada' => false,
             'passwordUpdatedAt' => new \DateTimeImmutable('now'),
             'prenom' => self::faker()->firstName(),
