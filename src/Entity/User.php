@@ -186,6 +186,7 @@ class User extends BaseUser implements \JsonSerializable
     private bool $canada = false;
     private ?string $fcnToken = null;
     private ?bool $isCreationProcessPending = false;
+    private ?string $oldUsername = null;
 
     public function __construct()
     {
@@ -1131,5 +1132,17 @@ class User extends BaseUser implements \JsonSerializable
             ->first();
 
         return false === $subjectRelay ? null : $subjectRelay;
+    }
+
+    public function getOldUsername(): ?string
+    {
+        return $this->oldUsername;
+    }
+
+    public function setOldUsername(?string $oldUsername): self
+    {
+        $this->oldUsername = $oldUsername;
+
+        return $this;
     }
 }

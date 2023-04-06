@@ -81,6 +81,7 @@ class MigrateGestionnaireToMemberCommand extends Command
     private function migrateToMember(Gestionnaire $gestionnaire): void
     {
         $user = $gestionnaire->getUser();
+
         $member = (new Membre())
             ->setCreatedAt($gestionnaire->getCreatedAt())
             ->setWasGestionnaire(true)
