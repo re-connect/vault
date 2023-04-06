@@ -2,6 +2,7 @@
 
 namespace App\FormV2\UserCreation;
 
+use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Beneficiaire;
 use App\Entity\Centre;
 use App\Form\Event\SecretQuestionListener;
@@ -34,26 +35,18 @@ class CreateBeneficiaryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $beneficiary = $options['data'];
-        $step = $options['step'];
-        $remotely = $beneficiary->getCreationProcess()?->isRemotely() ?? false;
 
-        if ($remotely) {
-            match ($step) {
-                default => $this->addStep1Fields($builder, $beneficiary, $remotely),
-                2 => $this->addStep4Fields($builder, $beneficiary),
-            };
-        } else {
-            match ($step) {
-                default => $this->addStep1Fields($builder, $beneficiary, $remotely),
-                2 => $this->addStep2Fields($builder),
-                3 => $this->addStep3Fields($builder, $beneficiary),
-                4 => $this->addStep4Fields($builder, $beneficiary),
-            };
-        }
+        match ($beneficiary->getCreationProcess()?->getCurrentStep() ?? 1) {
+            default => $this->addStep1Fields($builder, $beneficiary),
+            2 => $this->addStep2Fields($builder, $beneficiary),
+            3 => $this->addStep3Fields($builder, $beneficiary),
+            4 => $this->addStep4Fields($builder, $beneficiary),
+        };
     }
 
-    public function addStep1Fields(FormBuilderInterface $builder, ?Beneficiaire $beneficiary, bool $remotely = false): void
+    public function addStep1Fields(FormBuilderInterface $builder, ?Beneficiaire $beneficiary): void
     {
+        $remotely = $beneficiary?->getCreationProcess()?->isRemotely() ?? false;
         $builder
             ->add('user', UserInformationType::class, [
                 'label' => false,
@@ -67,13 +60,17 @@ class CreateBeneficiaryType extends AbstractType
         $builder->get('user')->get('telephone')->setRequired($remotely);
     }
 
-    public function addStep2Fields(FormBuilderInterface $builder): void
+    public function addStep2Fields(FormBuilderInterface $builder, Beneficiaire $beneficiary): void
     {
-        $builder
-            ->add('password', TextType::class, [
-                'property_path' => 'user.plainPassword',
-                'label' => 'password',
-            ]);
+        if ($beneficiary->getCreationProcess()?->isRemotely()) {
+            $this->addStep4Fields($builder, $beneficiary);
+        } else {
+            $builder
+                ->add('password', TextType::class, [
+                    'property_path' => 'user.plainPassword',
+                    'label' => 'password',
+                ]);
+        }
     }
 
     public function addStep3Fields(FormBuilderInterface $builder, Beneficiaire $beneficiary): void
@@ -133,7 +130,6 @@ class CreateBeneficiaryType extends AbstractType
             'data_class' => Beneficiaire::class,
             'validation_groups' => ['beneficiaire'],
             'cascade_validation' => true,
-            'step' => 1,
         ]);
     }
 
@@ -149,5 +145,18 @@ class CreateBeneficiaryType extends AbstractType
         }
 
         return array_key_first($secretQuestions);
+    }
+
+    /** @return string[] */
+    public static function getStepValidationGroup(BeneficiaryCreationProcess $beneficiaryCreationProcess): array
+    {
+        $validationGroup = $beneficiaryCreationProcess->isRemotely()
+            ? self::REMOTELY_STEP_VALIDATION_GROUP
+            : self::DEFAULT_STEP_VALIDATION_GROUP;
+
+        return [
+            'beneficiaire',
+            ...$validationGroup[$beneficiaryCreationProcess->getCurrentStep()] ?? [],
+        ];
     }
 }

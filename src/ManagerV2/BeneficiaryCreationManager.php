@@ -7,7 +7,6 @@ use App\Entity\Beneficiaire;
 use App\Entity\Centre;
 use App\Entity\CreatorCentre;
 use App\Entity\CreatorUser;
-use App\FormV2\UserCreation\CreateBeneficiaryType;
 use App\ServiceV2\NotificationService;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -27,15 +26,20 @@ class BeneficiaryCreationManager
     ) {
     }
 
-    private function createBeneficiary(Beneficiaire $beneficiary): void
+    private function getOrCreateBeneficiary(BeneficiaryCreationProcess $creationProcess): Beneficiaire
     {
-        $user = $beneficiary->getUser();
-        if (!$user->getCreatorUser()) {
-            $user->addCreator((new CreatorUser())->setEntity($this->getUser()));
+        $beneficiary = $creationProcess->getBeneficiary();
+        if (!$beneficiary->getId()) {
+            $user = $beneficiary->getUser();
+            if (!$user->getCreatorUser()) {
+                $user->addCreator((new CreatorUser())->setEntity($this->getUser()));
+            }
+            $user->setPassword($this->userManager->getRandomPassword());
+            $this->em->persist($beneficiary);
+            $this->em->persist($user);
         }
-        $user->setPassword($this->userManager->getRandomPassword());
-        $this->em->persist($beneficiary);
-        $this->em->persist($user);
+
+        return $beneficiary;
     }
 
     public function finishCreation(BeneficiaryCreationProcess $creationProcess): void
@@ -51,22 +55,9 @@ class BeneficiaryCreationManager
         }
     }
 
-    /**
-     * @return string[]
-     */
-    public function getStepValidationGroup(bool $remotely, int $step): array
-    {
-        $validationGroup = $remotely ? CreateBeneficiaryType::REMOTELY_STEP_VALIDATION_GROUP : CreateBeneficiaryType::DEFAULT_STEP_VALIDATION_GROUP;
-
-        return $validationGroup[$step] ?? [];
-    }
-
     public function createOrUpdate(BeneficiaryCreationProcess $creationProcess): void
     {
-        $beneficiary = $creationProcess->getBeneficiary();
-        if (!$beneficiary->getId()) {
-            $this->createBeneficiary($beneficiary);
-        }
+        $beneficiary = $this->getOrCreateBeneficiary($creationProcess);
         $this->em->persist($creationProcess);
         $this->updatePassword($beneficiary);
         $this->updateRelays($beneficiary);
@@ -114,5 +105,18 @@ class BeneficiaryCreationManager
         }
 
         $this->em->flush();
+    }
+
+    public function getOrCreate(?BeneficiaryCreationProcess $creationProcess, bool $remotely = false, int $step = 1): BeneficiaryCreationProcess
+    {
+        if (!$creationProcess) {
+            $creationProcess = BeneficiaryCreationProcess::create($this->getUser(), $remotely);
+            $creationProcess->setCurrentStep($step)->setLastReachedStep($step);
+        } else {
+            $creationProcess->setCurrentStep($step)->setLastReachedStep($step);
+            $this->em->flush();
+        }
+
+        return $creationProcess;
     }
 }

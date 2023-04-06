@@ -1,12 +1,26 @@
 {% set breadCrumbStepNames = beneficiaryCreationProcess.breadCrumbStepNames %}
 
 <div class="mt-3 ps-0 border-start border-primary border-2 breadcrumb-step">
-    {% for breadcrumbStep in 1..breadCrumbStepNames|length %}
-        {% set isDone = step >= breadcrumbStep %}
-        <a href="{{ path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': breadcrumbStep}) }}"
-           class="btn ps-0 py-0 my-4 text-{{ isDone ? 'primary' : 'grey pe-none' }}" data-turbo="false">
-            <i class="fa fa-circle fa-lg text-{{ isDone ? 'primary' : 'grey' }} breadcrumb-icon position-relative"></i>
-            {{ breadCrumbStepNames[breadcrumbStep]|trans }}
+    {% for step in 1..breadCrumbStepNames|length %}
+        {% set color = beneficiaryCreationProcess.getStepColor(step) %}
+        {% set isReached = beneficiaryCreationProcess.isStepReached(step) %}
+        {% set isCurrentStep = beneficiaryCreationProcess.isCurrentStep(step) %}
+        {% set isDone = beneficiaryCreationProcess.isStepDone(step) %}
+        <a href="{{ path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': step}) }}"
+           class="btn ps-0 py-0 my-4
+           text-{{ color }}
+           {{ isReached ? '' : 'pe-none' }}"
+           data-turbo="false">
+            <i class="fa fa-lg breadcrumb-icon position-relative bg-white rounded-circle text-{{ color }}
+                {% if isCurrentStep %}
+                    fa-circle
+                {% elseif isDone  %}
+                    fa-check-circle
+                {% else %}
+                    fa-circle-notch
+                {% endif %}
+            "></i>
+            {{ breadCrumbStepNames[step]|trans }}
         </a>
         <br>
     {% endfor %}

@@ -6,9 +6,9 @@
 
 {% block subTitle %}
     <span class="transform-uppercase">
-        {{ 'steps_count'|trans({'%step%': step, '%totalSteps%': beneficiaryCreationProcess.totalSteps}) }}
+        {{ 'steps_count'|trans({'%step%': beneficiaryCreationProcess.currentStep, '%totalSteps%': beneficiaryCreationProcess.totalSteps}) }}
         <span class="text-blue">
-            {{ stepTitle|trans }}
+            {{ beneficiaryCreationProcess.stepTitle|trans }}
         </span>
     </span>
 {% endblock %}
@@ -29,14 +29,14 @@
         </h5>
     {% endif %}
 
-    {{ step > beneficiaryCreationProcess.totalFormSteps
-    ? include('v2/user_creation/beneficiary/_step_5.html.twig', {beneficiary, step})
-    : include('v2/user_creation/beneficiary/_step_form.html.twig', {beneficiary, step, form}) }}
+    {{ beneficiaryCreationProcess.isStepWithForm
+    ? include('v2/user_creation/beneficiary/_step_form.html.twig', {beneficiary, beneficiaryCreationProcess, form})
+    : include('v2/user_creation/beneficiary/_step_5.html.twig', {beneficiary, beneficiaryCreationProcess}) }}
 
-    {% if step == 3 and beneficiaryCreationProcess.isRemotely %}
+    {% if beneficiaryCreationProcess.isLastRemotelyStep %}
         <div class="mt-5 row">
             <div class="col-sm-1 offset-sm-3 my-auto text-center">
-                <i class="fas fa-4x fa-mobile-alt text-primary" ></i>
+                <i class="fas fa-4x fa-mobile-alt text-primary"></i>
             </div>
             <div class="col-sm-5">
                 <span>
@@ -46,7 +46,7 @@
         </div>
     {% endif %}
 
-    {% if beneficiary.id and beneficiary.user.hasSuffixedUsername and step == 2 %}
+    {% if beneficiary.id and beneficiary.user.hasSuffixedUsername and beneficiaryCreationProcess.isPasswordStep %}
         {{ include('v2/notifications/notification_modal.twig', {
             'title': 'duplicated_username'|trans,
             'content': 'duplicated_username_alert'|trans,
