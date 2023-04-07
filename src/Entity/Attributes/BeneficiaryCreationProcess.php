@@ -195,11 +195,11 @@ class BeneficiaryCreationProcess
         return $nextStep > $this->getTotalSteps() ? $this->getTotalSteps() : $nextStep;
     }
 
-    public function getPreviousStep(): bool
+    public function getPreviousStep(): int
     {
         $previousStep = $this->currentStep - 1;
 
-        return $previousStep < 1 ? 1 : $previousStep;
+        return $previousStep < 0 ? 0 : $previousStep;
     }
 
     public function isLastRemotelyStep(): bool

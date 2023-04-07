@@ -25,7 +25,7 @@ class BeneficiaryCreationController extends AbstractController
     #[Route(
         path: 'beneficiary/create/{step}/{id?}',
         name: 'create_beneficiary',
-        requirements: ['step' => '[1-6]', 'id' => '\d+'],
+        requirements: ['step' => '[0-6]', 'id' => '\d+'],
         methods: ['GET', 'POST'],
     )]
     public function createBeneficiary(
@@ -34,6 +34,9 @@ class BeneficiaryCreationController extends AbstractController
         BeneficiaryCreationManager $manager,
         ?BeneficiaryCreationProcess $creationProcess,
     ): Response {
+        if (0 === $step) {
+            return $this->redirectToRoute('create_beneficiary_home');
+        }
         $creationProcess = $manager->getOrCreate($creationProcess, $request->query->getBoolean('remotely'), $step);
 
         if (!$creationProcess->isCreating()) {

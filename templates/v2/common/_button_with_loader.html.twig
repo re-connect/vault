@@ -1,16 +1,23 @@
-<button
-        {{ stimulus_controller('loader') }}
-        {{ stimulus_action('loader', 'load') }}
-        type="submit" class="btn btn-green text-right text-white"
-        data-turbo="false"
->
-    <span {{ stimulus_target('loader', 'content') }}>{{ text }}</span>
-    <span
-            {{ stimulus_target('loader', 'loadingContent') }}
-            class="spinner-border"
-            style="width: 1rem; height: 1rem;"
-            role="status"
+{% set color = color is defined ? color : 'primary' %}
+{% if href is defined %}
+    <a
+            {{ stimulus_controller('loader') }}
+            {{ stimulus_action('loader', 'load') }}
+            {{ stimulus_target('loader', 'button') }}
+            class="btn btn-{{ color }} text-right text-white"
+            href="{{ href }}"
+            data-turbo="false"
     >
-        <span class="sr-only">Loading...</span>
-    </span>
-</button>
+        {{ include('v2/common/_button_with_loader_content.html.twig', ) }}
+    </a>
+{% else %}
+    <button
+            {{ stimulus_controller('loader') }}
+            {{ stimulus_action('loader', 'load') }}
+            {{ stimulus_target('loader', 'button') }}
+            type="submit" class="btn btn-{{ color }} text-right text-white"
+            data-turbo="false"
+    >
+        {{ include('v2/common/_button_with_loader_content.html.twig', ) }}
+    </button>
+{% endif %}
