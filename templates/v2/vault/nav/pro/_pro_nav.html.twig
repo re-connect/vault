@@ -1,9 +1,9 @@
 <nav class="navbar navbar-light bg-white mx-0 mt-75 vault-nav">
-    <div class="container-fluid max-width-lg px-0 my-1">
-        <div class="col-12 col-md-6 text-primary font-size-1-3 ps-4 ps-lg-2">
+    <div class="container-fluid max-width-lg px-0 my-1 my-auto">
+        <div class="col-12 col-md-6 text-primary font-size-1-3 ps-4 ps-lg-2 d-flex align-items-center">
             <i class="fas fa-user-friends me-2"></i>
             <span class="bold">{{ beneficiary.user.fullName|upper }}</span>
-            <a class="btn btn-blue text-white ms-2 py-1" href="{{ path('re_membre_beneficiaires') }}">
+            <a class="btn btn-blue text-white ms-2 py-1" href="{{ path('re_user_redirectUser') }}">
                 {{ 'leave'|trans }}
             </a>
         </div>

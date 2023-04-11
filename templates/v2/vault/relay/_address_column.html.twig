@@ -1,7 +1,16 @@
 {% if relay.adresse %}
-    <span>{{ relay.adresse.nom }}</span>
-    <br>
-    <span>{{ relay.adresse.ville }} {{ relay.adresse.codePostal }}</span>
-    <br>
-    <span>{{ relay.adresse.pays }}</span>
+    {% if relay.adresse.nom %}
+        <span>{{ relay.adresse.nom }}</span>
+        <br>
+    {% endif %}
+    {% if relay.adresse.ville %}
+        <span>{{ relay.adresse.ville }}</span>
+    {% endif %}
+    {% if relay.adresse.codePostal %}
+        <span>{{ relay.adresse.codePostal }}</span>
+        <br>
+    {% endif %}
+    {% if relay.adresse.pays %}
+        <span>{{ relay.adresse.pays }}</span>
+    {% endif %}
 {% endif %}

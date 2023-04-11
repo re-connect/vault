@@ -812,6 +812,7 @@ registerForm.telephone: 'Phone number'
 registerForm.username: Username
 registerForm.ville: City
 relays: Relays
+relay_has_no_address: The Reconnect relay did not informed any address
 reminder: Reminder
 reminder_sms: SMS Reminder
 remove_from_relay: Remove from relay
