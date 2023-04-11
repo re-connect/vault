@@ -120,9 +120,18 @@ class CreateBeneficiaryType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'choices' => $this->getUser()->getCentres(),
+                'choice_label' => 'nameAndAddress',
                 'class' => Centre::class,
                 'label' => false,
                 'data' => $beneficiary->getCentres(),
+                'row_attr' => ['class' => 'relay-checkboxes'],
+                'label_attr' => [
+                    'for' => 'btn-check-outlined',
+                    'class' => 'btn btn-outline-primary no-hover',
+                ],
+                'choice_attr' => function () {
+                    return ['class' => 'btn-check'];
+                },
             ]);
     }
 

@@ -445,6 +445,11 @@ class Centre implements \JsonSerializable
         return $this;
     }
 
+    public function getNameAndAddress(): string
+    {
+        return sprintf('%s (%s)', $this->nom, $this->getAdresse());
+    }
+
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;

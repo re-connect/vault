@@ -92,16 +92,6 @@ class Adresse implements \JsonSerializable
         );
     }
 
-    public function __toStringWithBL(): string
-    {
-        return sprintf(
-            '%s<br/>%s %s',
-            ucfirst($this->nom),
-            ucfirst($this->ville),
-            $this->codePostal
-        );
-    }
-
     public function getLat(): ?float
     {
         return $this->lat;
