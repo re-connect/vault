@@ -986,6 +986,7 @@ remove_from_relay_confirm_relay: Êtes vous sûr de vouloir retirer le bénéfic
 rename: Renommer
 renew_password: Renouveler le mot de passe
 relays: Relais
+relay_has_no_address: Le relais Reconnect n'a pas renseigné d'adresse
 reset_password_requested_by_SMS: La demande de réinitialisation actuelle a été effectuée par SMS
 reset_password_requested_by_email: La demande de réinitialisation actuelle a été effectuée par email
 resetting.check_email: 'Un e-mail a été envoyé à l''adresse entrée. Il contient un lien sur lequel il vous faudra cliquer afin de réinitialiser votre mot de passe.'
