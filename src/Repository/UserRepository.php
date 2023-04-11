@@ -174,7 +174,8 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
             'SELECT u
                 FROM App\Entity\User u
                 WHERE u.username = :query
-                OR u.email = :query'
+                OR u.email = :query
+                OR u.oldUsername = :query'
         )
             ->setParameter('query', $identifier);
 
