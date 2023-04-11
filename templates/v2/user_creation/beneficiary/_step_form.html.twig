@@ -8,33 +8,36 @@
         {{ form_start(form, {
             'attr': {
                 'data-controller': 'conditional-field',
-                'class': 'display-required-labels h-100 d-flex flex-column justify-content-between',
+                'class': 'display-required-labels h-100',
             }
         }) }}
-
-        {% if beneficiaryCreationProcess.isPasswordStep %}
-            {{ include('v2/user_creation/components/_generate_password_input.html.twig', {field: form.password}) }}
-        {% else %}
-            {{ form_widget(form) }}
-        {% endif %}
-
-        <div class="text-center mt-4 mb-2 row">
-            <div class="col-6 d-grid gap-2">
-                {{ include('v2/common/_button_with_loader.html.twig', {
-                    'text': 'back'|trans,
-                    'href': path('create_beneficiary', {
-                        step: beneficiaryCreationProcess.previousStep,
-                        id: beneficiaryCreationProcess.id,
-                    })
-                }) }}
+        <div class="h-100 d-flex flex-column justify-content-between">
+            <div class="mt-5">
+            {% if beneficiaryCreationProcess.isPasswordStep %}
+                {{ include('v2/user_creation/components/_generate_password_input.html.twig', {field: form.password}) }}
+            {% else %}
+                {{ form_widget(form) }}
+            {% endif %}
             </div>
-            <div class="col-6 d-grid gap-2">
-                {{ include('v2/common/_button_with_loader.html.twig', {
-                    'text': 'confirm'|trans,
-                    'color': 'blue',
-                }) }}
+
+            <div class="text-center mt-4 mb-2 row">
+                <div class="col-6 d-grid gap-2">
+                    {{ include('v2/common/_button_with_loader.html.twig', {
+                        'text': 'back'|trans,
+                        'href': path('create_beneficiary', {
+                            step: beneficiaryCreationProcess.previousStep,
+                            id: beneficiaryCreationProcess.id,
+                        })
+                    }) }}
+                </div>
+                <div class="col-6 d-grid gap-2">
+                    {{ include('v2/common/_button_with_loader.html.twig', {
+                        'text': 'confirm'|trans,
+                        'color': 'blue',
+                    }) }}
+                </div>
+                {{ form_end(form) }}
             </div>
         </div>
-        {{ form_end(form) }}
     </div>
 {% endblock %}
