@@ -90,7 +90,7 @@ class BeneficiaryAffiliationController extends AbstractController
                 $manager->affiliateBeneficiary($beneficiary, $affiliateBeneficiaryModel->getRelays(), $isSecretAnswerValid);
                 $this->addFlash('success', 'beneficiary_added_to_relays');
 
-                return $this->redirectToRoute('re_membre_beneficiaires');
+                return $this->redirectToRoute('list_beneficiaries');
             }
             $form->get('secretAnswer')->addError(new FormError($translator->trans('wrong_secret_answer')));
         }

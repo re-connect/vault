@@ -80,7 +80,7 @@ class REUserMenuBuilder implements ContainerAwareInterface
     {
         $menu = $this->factory->createItem('root');
         $arRoutes = [
-            'membre.menu.gestionBeneficiaires' => ['extras' => ['color' => 'green', 'image' => 'build/images/icons/profil.png', 'imageAct' => 'build/images/icons/profil_act.png'], 'route' => 're_membre_beneficiaires'],
+            'membre.menu.gestionBeneficiaires' => ['extras' => ['color' => 'green', 'image' => 'build/images/icons/profil.png', 'imageAct' => 'build/images/icons/profil_act.png'], 'route' => 'list_beneficiaries'],
             'membre.menu.gestionRelais' => ['extras' => ['color' => 'blue', 'image' => 'build/images/icons/relai.png', 'imageAct' => 'build/images/icons/relai_act2.png'], 'route' => 're_membre_centres'],
         ];
 
