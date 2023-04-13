@@ -1,6 +1,9 @@
 monolog:
     channels:
         - login
+        - personal_data
+        - user
+        - relay
     handlers:
         main:
             type: stream
@@ -24,3 +27,18 @@ monolog:
             type: stream
             path: '%kernel.logs_dir%/activity/login.log'
             channels: [ 'login' ]
+        personal_data:
+            level: debug
+            type: stream
+            path: '%kernel.logs_dir%/activity/personal_data.log'
+            channels: [ 'personal_data' ]
+        user:
+            level: debug
+            type: stream
+            path: '%kernel.logs_dir%/activity/user.log'
+            channels: [ 'user' ]
+        relay:
+            level: debug
+            type: stream
+            path: '%kernel.logs_dir%/activity/relay.log'
+            channels: [ 'relay' ]
