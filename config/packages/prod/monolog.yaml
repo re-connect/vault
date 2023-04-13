@@ -1,6 +1,6 @@
 monolog:
     channels:
-        - activity
+        - login
     handlers:
         main:
             type: fingers_crossed
@@ -19,5 +19,5 @@ monolog:
         activity:
             level: debug
             type: stream
-            path: '%kernel.logs_dir%/activity.log'
-            channels: [ 'activity' ]
+            path: '%kernel.logs_dir%/activity/login.log'
+            channels: [ 'login' ]
