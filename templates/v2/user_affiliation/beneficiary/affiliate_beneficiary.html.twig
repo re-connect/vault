@@ -8,22 +8,24 @@
 {% block subTitle %}{{ 'add_new_beneficiary'|trans|upper }}{% endblock %}
 
 {% block content %}
-    <div class="row mt-3 mt-md-5 pt-md-5 mx-auto">
-        <div class="col-md-6 text-center pe-md-5">
-            <a href="{{ path('affiliate_beneficiary_search') }}"
-               class="btn btn-blue text-white w-100 py-4 font-size-1-2"
-            >
-                <i class="fa fa-search pe-3" aria-hidden="true"></i>
-                {{ 'benef_has_account'|trans }}
-            </a>
+    <div class="row mt-4">
+        <div class="col-12 col-md-6 mt-3 mt-md-0">
+            {{ include('v2/common/_card.html.twig', {
+                title: 'benef_has_account'|trans,
+                iconName: 'search',
+                helpText: 'beneficiary_already_as_account_affiliate'|trans,
+                buttonPath: path('affiliate_beneficiary_search'),
+                buttonText: 'search'|trans,
+            }) }}
         </div>
-        <div class="col-md-6 text-center ps-md-5 mt-3 mt-md-0">
-            <a href="{{ path('create_beneficiary_home') }}"
-               class="btn btn-blue text-white w-100 py-4 font-size-1-2"
-            >
-                <i class="fa fa-plus pe-2" aria-hidden="true"></i>
-                {{ 'benef_has_no_account'|trans }}
-            </a>
+        <div class="col-12 col-md-6 mt-3 mt-md-0">
+            {{ include('v2/common/_card.html.twig', {
+                title: 'benef_has_no_account'|trans,
+                iconName: 'plus',
+                helpText: 'beneficiary_has_no_account_create'|trans,
+                buttonPath: path('create_beneficiary_home'),
+                buttonText: 'create_reconnect_account'|trans,
+            }) }}
         </div>
     </div>
 {% endblock %}

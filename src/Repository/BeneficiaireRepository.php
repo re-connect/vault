@@ -6,7 +6,6 @@ use App\Entity\Beneficiaire;
 use App\Entity\BeneficiaireCentre;
 use App\Entity\Centre;
 use App\Entity\Client;
-use App\Entity\CreatorCentre;
 use App\Entity\Gestionnaire;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;
