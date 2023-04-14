@@ -19,7 +19,7 @@ class BeneficiaryCreationController extends AbstractController
     #[Route(path: '/beneficiary/create', name: 'create_beneficiary_home', methods: ['GET'])]
     public function createBeneficiaryHome(): Response
     {
-        return $this->renderForm('v2/user_creation/beneficiary/create_beneficiary.html.twig');
+        return $this->render('v2/user_creation/beneficiary/create_beneficiary.html.twig');
     }
 
     #[Route(
