@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\v2\EventSubscriber;
+namespace App\Tests\v2\EventSubscriber\Logs;
 
 use App\EventSubscriber\Logs\LoginSubscriber;
 use App\ServiceV2\ActivityLogger;
