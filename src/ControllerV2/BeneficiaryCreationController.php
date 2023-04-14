@@ -49,7 +49,7 @@ class BeneficiaryCreationController extends AbstractController
 
         $beneficiary = $creationProcess->getBeneficiary();
         $form = !$creationProcess->isStepWithForm() ? null : $this->createStepForm($beneficiary, $creationProcess)->handleRequest($request);
-        if ($form && $form->isSubmitted() && $form->isValid()) {
+        if ($form?->isSubmitted() && $form->isValid()) {
             $manager->createOrUpdate($creationProcess);
 
             return $this->redirectToRoute('create_beneficiary', ['step' => $creationProcess->getNextUnfilledStep(), 'id' => $creationProcess->getId()]);

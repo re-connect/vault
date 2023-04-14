@@ -23,15 +23,19 @@
 
 {% block content %}
     {% if beneficiary.username %}
-        <h5 class="my-3">
-            {{ 'username'|trans }} :
-            <span class="transform-uppercase text-blue">{{ beneficiary.username }}</span>
-        </h5>
+        <div class="row">
+            <h5 class="my-3">
+                {{ 'username'|trans }} :
+                <span class="transform-uppercase text-blue">{{ beneficiary.username }}</span>
+            </h5>
+        </div>
     {% endif %}
 
-    {{ beneficiaryCreationProcess.isStepWithForm
-    ? include('v2/user_creation/beneficiary/_step_form.html.twig', {beneficiary, beneficiaryCreationProcess, form})
-    : include('v2/user_creation/beneficiary/_step_5.html.twig', {beneficiary, beneficiaryCreationProcess}) }}
+    <div class="row">
+        {{ beneficiaryCreationProcess.isStepWithForm
+        ? include('v2/user_creation/beneficiary/_step_form.html.twig', {beneficiary, beneficiaryCreationProcess, form})
+        : include('v2/user_creation/beneficiary/_step_5.html.twig', {beneficiary, beneficiaryCreationProcess}) }}
+    </div>
 
     {% if beneficiaryCreationProcess.isLastRemotelyStep %}
         <div class="mt-5 row">
