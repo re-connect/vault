@@ -6,20 +6,22 @@ import {Controller} from '@hotwired/stimulus';
 */
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
-    static targets = ['loadingContent', 'content']
+       static targets = ['loadingContent', 'content', 'button']
 
-    connect() {
-        this.loadingContentTarget.style.display = 'none';
-    }
-
-    load() {
-        if (this.contentTarget.closest('form').checkValidity()) {
-            this.loadingContentTarget.style.display = 'block ';
-            this.contentTarget.style.display = 'none';
-        }
-        setTimeout(() => {
-            this.loadingContentTarget.style.display = 'none ';
-            this.contentTarget.style.display = 'block';
-        }, 2000);
-    }
+       load() {
+              const checkFormValidity = this.buttonTarget.tagName !== 'A';
+              if (!checkFormValidity || this.contentTarget.closest('form').checkValidity()) {
+                     this.buttonTarget.classList.add('disabled');
+                     this.buttonTarget.disabled = 'disabled';
+                     this.loadingContentTarget.style.display = 'inline-block';
+                     this.contentTarget.style.display = 'none';
+              }
+              setTimeout(() => {
+                     this.buttonTarget.disabled = false;
+                     this.buttonTarget.classList.remove('disabled');
+                     this.buttonTarget.dataset.ariaDisabled = 'false';
+                     this.loadingContentTarget.style.display = 'none';
+                     this.contentTarget.style.display = 'inline-block';
+              }, 2000);
+       }
 }

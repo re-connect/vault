@@ -9,7 +9,8 @@
     <div class="col text-end pe-0 mt-4 mt-md-2">
         {% block homeButton %}
             <a href="{{ path('list_beneficiaries') }}"
-               class="btn {{ getUserButtonColor() }} text-white">
+               class="btn btn-link text-primary">
+                <i class="fa fa-chevron-left"></i>
                 {{ 'back_home'|trans }}
             </a>
         {% endblock %}

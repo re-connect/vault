@@ -3,6 +3,7 @@
 namespace App\Entity\Attributes;
 
 use App\Entity\Beneficiaire;
+use App\Entity\User;
 use App\RepositoryV2\BeneficiaryCreationProcessRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -12,6 +13,10 @@ class BeneficiaryCreationProcess
 {
     public const DEFAULT_TOTAL_STEPS = 6;
     public const DEFAULT_TOTAL_FORM_STEPS = 4;
+
+    public const IDENTITY_STEP = 1;
+    public const PASSWORD_STEP = 2;
+    public const SECRET_QUESTION_STEP = 3;
     public const DEFAULT_STEP_TITLES = [
         1 => 'fill_beneficiary_identity_information',
         2 => 'choose_beneficiary_password',
@@ -27,6 +32,9 @@ class BeneficiaryCreationProcess
         5 => 'summary',
     ];
 
+    public const RELAYS_STEP = 4;
+    public const REMOTELY_RELAYS_STEP = 2;
+
     public const REMOTELY_TOTAL_STEPS = 4;
     public const REMOTELY_TOTAL_FORM_STEPS = 2;
     public const REMOTELY_STEP_TITLES = [
@@ -39,6 +47,14 @@ class BeneficiaryCreationProcess
         2 => 'relays',
         3 => 'summary',
     ];
+
+    public static function create(User $user, bool $remotely = false): self
+    {
+        return (new self())
+            ->setIsCreating(true)
+            ->setBeneficiary((new Beneficiaire())->setCreePar($user))
+            ->setRemotely($remotely);
+    }
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -54,6 +70,12 @@ class BeneficiaryCreationProcess
 
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
     private ?bool $remotely = false;
+
+    #[ORM\Column(type: 'integer', options: ['default' => 1])]
+    private ?int $currentStep = 1;
+
+    #[ORM\Column(type: 'integer', options: ['default' => 1])]
+    private ?int $lastReachedStep = 1;
 
     public function getId(): ?int
     {
@@ -76,6 +98,11 @@ class BeneficiaryCreationProcess
     public function getIsCreating(): ?bool
     {
         return $this->isCreating;
+    }
+
+    public function isCreating(): ?bool
+    {
+        return $this->getIsCreating();
     }
 
     public function setIsCreating(?bool $isCreating): self
@@ -103,9 +130,19 @@ class BeneficiaryCreationProcess
         return $this->remotely ? self::REMOTELY_TOTAL_STEPS : self::DEFAULT_TOTAL_STEPS;
     }
 
+    public function isLastStep(): bool
+    {
+        return $this->getTotalSteps() === $this->currentStep;
+    }
+
     public function getTotalFormSteps(): ?int
     {
         return $this->remotely ? self::REMOTELY_TOTAL_FORM_STEPS : self::DEFAULT_TOTAL_FORM_STEPS;
+    }
+
+    public function isStepWithForm(): bool
+    {
+        return $this->getTotalFormSteps() >= $this->currentStep;
     }
 
     public function getBreadCrumbStepNames(): ?array
@@ -115,12 +152,100 @@ class BeneficiaryCreationProcess
             : self::DEFAULT_BREADCRUMB_STEPS;
     }
 
-    public function getStepTitle(int $step): string
+    public function getStepTitle(): string
     {
         $titles = $this->isRemotely()
             ? self::REMOTELY_STEP_TITLES
             : self::DEFAULT_STEP_TITLES;
 
-        return $titles[$step];
+        return $titles[$this->currentStep];
+    }
+
+    public function getCurrentStep(): ?int
+    {
+        return $this->currentStep;
+    }
+
+    public function setCurrentStep(?int $currentStep): self
+    {
+        $this->currentStep = $currentStep;
+
+        return $this;
+    }
+
+    public function isPasswordStep(): bool
+    {
+        return !$this->remotely && self::PASSWORD_STEP === $this->currentStep;
+    }
+
+    public function isIdentityStep(): bool
+    {
+        return self::IDENTITY_STEP === $this->currentStep;
+    }
+
+    public function getRelaysStep(): bool
+    {
+        return $this->remotely ? self::REMOTELY_RELAYS_STEP : self::RELAYS_STEP;
+    }
+
+    public function getNextStep(): int
+    {
+        $nextStep = $this->currentStep + 1;
+
+        return $nextStep > $this->getTotalSteps() ? $this->getTotalSteps() : $nextStep;
+    }
+
+    public function getPreviousStep(): int
+    {
+        $previousStep = $this->currentStep - 1;
+
+        return $previousStep < 0 ? 0 : $previousStep;
+    }
+
+    public function isLastRemotelyStep(): bool
+    {
+        return $this->remotely && $this->isLastStep();
+    }
+
+    public function getLastReachedStep(): ?int
+    {
+        return $this->lastReachedStep;
+    }
+
+    public function setLastReachedStep(?int $lastReachedStep): self
+    {
+        $this->lastReachedStep = max($lastReachedStep, $this->lastReachedStep);
+
+        return $this;
+    }
+
+    public function isCurrentStep(int $step): bool
+    {
+        return $step === $this->currentStep;
+    }
+
+    public function isStepDone(int $step): bool
+    {
+        return $step < $this->lastReachedStep;
+    }
+
+    public function isStepReached(int $step): bool
+    {
+        return $step <= $this->lastReachedStep;
+    }
+
+    public function getStepColor(int $step): string
+    {
+        return match (true) {
+            $this->isCurrentStep($step) || $this->isStepDone($step) || $this->isStepReached($step) => 'primary',
+            default => 'grey'
+        };
+    }
+
+    public function getNextUnfilledStep(): int
+    {
+        return $this->currentStep === $this->lastReachedStep
+            ? $this->getNextStep()
+            : $this->lastReachedStep;
     }
 }

@@ -16,13 +16,16 @@ class UserInformationType extends AbstractType
         $builder
             ->add('prenom', null, [
                 'label' => 'firstname',
+                'row_attr' => ['class' => 'col-6 mt-3'],
             ])
             ->add('nom', null, [
                 'label' => 'lastname',
+                'row_attr' => ['class' => 'col-6 mt-3'],
             ])
             ->add('telephone', null, [
                 'required' => false,
                 'label' => 'phone',
+                'row_attr' => ['class' => 'col-6 mt-3'],
                 'attr' => [
                     'class' => 'intl-tel-input',
                 ],
@@ -30,6 +33,7 @@ class UserInformationType extends AbstractType
             ->addEventSubscriber(new AddFormattedPhoneSubscriber())
             ->add('email', EmailType::class, [
                 'required' => false,
+                'row_attr' => ['class' => 'col-6 mt-3'],
                 'label' => 'email',
             ]);
     }

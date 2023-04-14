@@ -8,6 +8,7 @@ use App\FormV2\UserCreation\CreateBeneficiaryType;
 use App\ManagerV2\BeneficiaryCreationManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,57 +25,40 @@ class BeneficiaryCreationController extends AbstractController
     #[Route(
         path: 'beneficiary/create/{step}/{id?}',
         name: 'create_beneficiary',
-        requirements: ['step' => '[1-6]', 'id' => '\d+'],
+        requirements: ['step' => '[0-6]', 'id' => '\d+'],
         methods: ['GET', 'POST'],
     )]
     public function createBeneficiary(
         Request $request,
         int $step,
-        ?BeneficiaryCreationProcess $beneficiaryCreationProcess,
         BeneficiaryCreationManager $manager,
+        ?BeneficiaryCreationProcess $creationProcess,
     ): Response {
-        if ($beneficiaryCreationProcess && !$beneficiaryCreationProcess->getIsCreating()) {
+        if (0 === $step) {
+            return $this->redirectToRoute('create_beneficiary_home');
+        }
+        $creationProcess = $manager->getOrCreate($creationProcess, $request->query->getBoolean('remotely'), $step);
+
+        if (!$creationProcess->isCreating()) {
             return $this->redirectToRoute('re_membre_beneficiaires');
-        }
-        $beneficiaryCreationProcess = $beneficiaryCreationProcess
-            ?? (new BeneficiaryCreationProcess())
-                ->setIsCreating(true)
-                ->setBeneficiary((new Beneficiaire())
-                ->setCreePar($this->getUser()));
+        } elseif ($creationProcess->isLastStep()) {
+            $manager->finishCreation($creationProcess);
 
-        if ($request->query->getBoolean('remotely') && 1 === $step) {
-            $beneficiaryCreationProcess->setRemotely(true);
+            return $this->redirectToRoute('create_beneficiary_download_terms_of_use', ['id' => $creationProcess->getId()]);
         }
 
-        $beneficiary = $beneficiaryCreationProcess->getBeneficiary();
-        $remotely = $beneficiaryCreationProcess->isRemotely();
-        $isLastStep = $beneficiaryCreationProcess->getTotalSteps() === $step;
-
-        if ($isLastStep) {
-            $manager->finishCreation($beneficiaryCreationProcess);
-
-            return $this->redirectToRoute('create_beneficiary_download_terms_of_use', ['id' => $beneficiaryCreationProcess->getId()]);
-        }
-
-        $isFormStep = $beneficiaryCreationProcess->getTotalFormSteps() >= $step;
-        $form = !$isFormStep ? null : $this->createForm(CreateBeneficiaryType::class, $beneficiary, [
-            'action' => $this->generateUrl('create_beneficiary', ['step' => $step, 'id' => $beneficiaryCreationProcess->getId(), 'remotely' => $remotely]),
-            'validation_groups' => ['beneficiaire', ...$manager->getStepValidationGroup($remotely, $step)],
-            'step' => $step,
-        ])->handleRequest($request);
-
+        $beneficiary = $creationProcess->getBeneficiary();
+        $form = !$creationProcess->isStepWithForm() ? null : $this->createStepForm($beneficiary, $creationProcess)->handleRequest($request);
         if ($form && $form->isSubmitted() && $form->isValid()) {
-            $manager->createOrUpdate($beneficiaryCreationProcess);
+            $manager->createOrUpdate($creationProcess);
 
-            return $this->redirectToRoute('create_beneficiary', ['step' => $step + 1, 'id' => $beneficiaryCreationProcess->getId()]);
+            return $this->redirectToRoute('create_beneficiary', ['step' => $creationProcess->getNextUnfilledStep(), 'id' => $creationProcess->getId()]);
         }
 
         return $this->renderForm('v2/user_creation/beneficiary/create_beneficiary_step.html.twig', [
             'form' => $form,
-            'beneficiaryCreationProcess' => $beneficiaryCreationProcess,
-            'stepTitle' => $beneficiaryCreationProcess->getStepTitle($step),
+            'beneficiaryCreationProcess' => $creationProcess,
             'beneficiary' => $beneficiary,
-            'step' => $step,
         ]);
     }
 
@@ -95,12 +79,24 @@ class BeneficiaryCreationController extends AbstractController
     #[Route(path: 'beneficiary/create/abort/{id<\d+>}', name: 'create_beneficiary_abort', methods: ['GET'])]
     public function abortCreation(BeneficiaryCreationProcess $beneficiaryCreationProcess, EntityManagerInterface $em): Response
     {
-        if ($beneficiaryCreationProcess->getIsCreating()) {
+        if ($beneficiaryCreationProcess->isCreating()) {
             $em->remove($beneficiaryCreationProcess->getBeneficiary());
             $em->flush();
             $this->addFlash('success', 'beneficiary_creation_canceled');
         }
 
         return $this->redirectToRoute('re_membre_beneficiaires');
+    }
+
+    public function createStepForm(Beneficiaire $beneficiary, BeneficiaryCreationProcess $creationProcess): ?FormInterface
+    {
+        return $this->createForm(CreateBeneficiaryType::class, $beneficiary, [
+            'action' => $this->generateUrl('create_beneficiary', [
+                'step' => $creationProcess->getCurrentStep(),
+                'id' => $creationProcess->getId(),
+                'remotely' => $creationProcess->isRemotely(),
+            ]),
+            'validation_groups' => CreateBeneficiaryType::getStepValidationGroup($creationProcess),
+        ]);
     }
 }

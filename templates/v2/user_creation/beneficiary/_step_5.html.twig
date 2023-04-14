@@ -1,27 +1,30 @@
+{% set identityStep = constant('App\\Entity\\Attributes\\BeneficiaryCreationProcess::IDENTITY_STEP') %}
+{% set secretQuestionStep = constant('App\\Entity\\Attributes\\BeneficiaryCreationProcess::SECRET_QUESTION_STEP') %}
 {% set rows = [
-    {'name': 'firstname','value': beneficiary.user.prenom, 'step': 1, 'hide': false},
-    {'name': 'lastname','value': beneficiary.user.nom, 'step': 1, 'hide': false },
-    {'name': 'phone','value': beneficiary.user.telephone, 'step': 1, 'hide': false },
-    {'name': 'email','value': beneficiary.user.email, 'step': 1, 'hide': false },
-    {'name': 'secret_question', 'value': beneficiary.questionSecrete, 'step': 3, 'hide': beneficiaryCreationProcess.remotely},
-    {'name': 'secret_answer', 'value': beneficiary.reponseSecrete, 'step':3, 'hide': beneficiaryCreationProcess.remotely},
-    {'name': 'relays', 'value': beneficiary.user.centres, 'step': beneficiaryCreationProcess.remotely ? 2 : 4, 'hide': false}
+    {'name': 'firstname','value': beneficiary.user.prenom, 'step': identityStep, 'hide': false},
+    {'name': 'lastname','value': beneficiary.user.nom, 'step': identityStep, 'hide': false },
+    {'name': 'phone','value': beneficiary.user.telephone, 'step': identityStep, 'hide': false },
+    {'name': 'email','value': beneficiary.user.email, 'step': identityStep, 'hide': false },
+    {'name': 'secret_question', 'value': beneficiary.questionSecrete, 'step': secretQuestionStep, 'hide': beneficiaryCreationProcess.remotely},
+    {'name': 'secret_answer', 'value': beneficiary.reponseSecrete, 'step':secretQuestionStep, 'hide': beneficiaryCreationProcess.remotely},
+    {'name': 'relays', 'value': beneficiary.user.centres, 'step': beneficiaryCreationProcess.relaysStep, 'hide': false}
 ] %}
 
 <div class="col-3 d-none d-md-block">
-    {{ include('v2/user_creation/beneficiary/_breadcrumb.html.twig', {step}) }}
+    {{ include('v2/user_creation/beneficiary/_breadcrumb.html.twig', {beneficiaryCreationProcess}) }}
 </div>
 <div class="col-12 col-md-6 my-auto">
-    {{ include('v2/user_creation/beneficiary/_step_5_rows.html.twig', {rows: rows}) }}
+    {{ include('v2/user_creation/beneficiary/_step_5_rows.html.twig', {rows}) }}
     <div class="col-8 mx-auto row mt-5">
         <div class="col-6 d-grid gap-2">
-            <a href="{{ path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': step - 1}) }}" data-turbo="false"
+            <a href="{{ path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': beneficiaryCreationProcess.previousStep}) }}"
+               data-turbo="false"
                class="btn btn-primary text-white">
                 {{ 'back'|trans }}
             </a>
         </div>
         <div class="col-6 d-grid gap-2">
-            <a href="{{ path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': step + 1}) }}"
+            <a href="{{ path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': beneficiaryCreationProcess.nextStep}) }}"
                class="btn btn-blue text-white">
                 {{ 'confirm'|trans }}
             </a>

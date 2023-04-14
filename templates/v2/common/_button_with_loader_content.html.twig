@@ -1,0 +1,10 @@
+<span {{ stimulus_target('loader', 'content') }}>{{ text }}</span>
+<span
+    {{ stimulus_target('loader', 'loadingContent') }}
+    class="spinner-border d-none-not-important"
+    style="width: 1rem; height: 1rem;"
+    role="status"
+    style="display: none !important;"
+>
+    <span class="sr-only">Loading...</span>
+</span>

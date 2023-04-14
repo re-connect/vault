@@ -3,10 +3,10 @@
     'cancelButtonText': 'main.annuler'|trans,
 }) }}>
     <a href="{{ path('create_beneficiary_abort', {'id': beneficiaryCreationProcess.id}) }}"
-       class="btn {{ getUserButtonColor() }} text-white"
+       class="btn btn-link text-primary"
        data-action="{{ beneficiary is defined ? 'click->alert#confirm' : '' }}"
        data-message="{{ 'confirm_beneficiary_creation_cancellation'|trans }}"
     >
-        {{ 'back_home'|trans }}
+        <i class="fa fa-chevron-left"></i>{{ 'back_home'|trans }}
     </a>
 </div>

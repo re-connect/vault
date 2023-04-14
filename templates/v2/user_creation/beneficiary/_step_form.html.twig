@@ -1,43 +1,43 @@
 {% form_theme form 'v2/user_creation/form_theme/create_user_form_theme.html.twig' %}
 
-{% if step == 1 %}
-    {% set backButtonPath = beneficiary.id
-        ? path('create_beneficiary_abort', {'id': beneficiaryCreationProcess.id})
-        : path('create_beneficiary_home') %}
-{% else %}
-    {% set backButtonPath = path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': step - 1}) %}
-{% endif %}
-
 {% block content %}
     <div class="col-3 d-none d-md-block">
-        {{ include('v2/user_creation/beneficiary/_breadcrumb.html.twig', {step}) }}
+        {{ include('v2/user_creation/beneficiary/_breadcrumb.html.twig', {beneficiaryCreationProcess}) }}
     </div>
-    <div class="col-md-4 offset-md-1 bold my-auto">
+    <div class="col-12 col-md-8 bold">
         {{ form_start(form, {
             'attr': {
                 'data-controller': 'conditional-field',
-                'class': 'display-required-labels',
+                'class': 'display-required-labels h-100',
             }
         }) }}
-
-        {% if step == 2 and not beneficiaryCreationProcess.isRemotely %}
-            {{ include('v2/user_creation/components/_generate_password_input.html.twig', {field: form.password}) }}
-        {% else %}
-            {{ form_widget(form) }}
-        {% endif %}
-
-        <div class="text-center mt-4 mb-2 row">
-            <div class="col-6 d-grid gap-2">
-                <a href="{{ backButtonPath }}" class="btn btn-primary text-white" data-turbo="false">
-                    {{ 'back'|trans }}
-                </a>
+        <div class="h-100 d-flex flex-column justify-content-between">
+            <div class="mt-5">
+            {% if beneficiaryCreationProcess.isPasswordStep %}
+                {{ include('v2/user_creation/components/_generate_password_input.html.twig', {field: form.password}) }}
+            {% else %}
+                {{ form_widget(form) }}
+            {% endif %}
             </div>
-            <div class="col-6 d-grid gap-2">
-                <button type="submit" class="btn btn-blue text-white" data-turbo="false">
-                    {{ 'confirm'|trans }}
-                </button>
+
+            <div class="text-center mt-4 mb-2 row">
+                <div class="col-6 d-grid gap-2">
+                    {{ include('v2/common/_button_with_loader.html.twig', {
+                        'text': 'back'|trans,
+                        'href': path('create_beneficiary', {
+                            step: beneficiaryCreationProcess.previousStep,
+                            id: beneficiaryCreationProcess.id,
+                        })
+                    }) }}
+                </div>
+                <div class="col-6 d-grid gap-2">
+                    {{ include('v2/common/_button_with_loader.html.twig', {
+                        'text': 'confirm'|trans,
+                        'color': 'blue',
+                    }) }}
+                </div>
+                {{ form_end(form) }}
             </div>
         </div>
-        {{ form_end(form) }}
     </div>
 {% endblock %}
