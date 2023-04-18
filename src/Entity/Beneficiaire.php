@@ -12,6 +12,7 @@ use App\Api\Dto\BeneficiaryDto;
 use App\Api\Filters\DistantIdFilter;
 use App\Api\State\BeneficiaryStateProcessor;
 use App\Api\State\BeneficiaryStateProvider;
+use App\Controller\Api\UnlinkBeneficiaryController;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Traits\GedmoTimedTrait;
@@ -35,6 +36,11 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
         new Patch(
             security: "is_granted('UPDATE', object)",
             processor: BeneficiaryStateProcessor::class,
+        ),
+        new Patch(
+            uriTemplate: '/beneficiaries/{id}/unlink',
+            controller: UnlinkBeneficiaryController::class,
+            security: "is_granted('UPDATE', object)",
         ),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"),
         new Post(input: BeneficiaryDto::class, processor: BeneficiaryStateProcessor::class),
@@ -887,13 +893,17 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function getExternalLinkForClient(?Client $client): ?ClientBeneficiaire
     {
-        if (!$client) {
-            return null;
-        }
+        return !$client
+            ? null
+            : $this->getExternalLinksForClient($client)->first() ?? null;
+    }
 
-        $externalLinks = $this->externalLinks->filter(fn (ClientBeneficiaire $link) => $link->getClient() === $client)->first();
-
-        return $externalLinks ?? null;
+    /** @return ?ArrayCollection<int, ClientBeneficiaire> */
+    public function getExternalLinksForClient(?Client $client): ?ArrayCollection
+    {
+        return !$client
+            ? null
+            : $this->externalLinks->filter(fn (ClientBeneficiaire $link) => $link->getClient() === $client);
     }
 
     public function addClientExternalLink(Client $client, string $externalId, string $memberExternalId = null): self
