@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
@@ -138,6 +139,7 @@ class Centre implements \JsonSerializable
     /**
      * @var Collection|array
      */
+    #[UniqueExternalLink]
     private $externalLinks;
     private bool $canada = false;
     private ?Association $association = null;

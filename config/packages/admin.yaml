@@ -249,9 +249,3 @@ services:
         arguments: [ ~, App\Entity\ClientGestionnaire, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Client }
-
-    reo_auth.validator.constraints.unique_external_link_validator:
-        class: App\Validator\Constraints\UniqueExternalLinkValidator
-        arguments: [ '@doctrine.orm.entity_manager' ]
-        tags:
-            - { name: validator.constraint_validator, alias: reo_auth.validator.constraints.unique_external_link_validator }

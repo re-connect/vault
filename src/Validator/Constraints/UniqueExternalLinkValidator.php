@@ -2,35 +2,43 @@
 
 namespace App\Validator\Constraints;
 
+use App\Api\Dto\BeneficiaryDto;
+use App\Api\Manager\ApiClientManager;
 use App\Entity\ClientBeneficiaire;
-use App\Entity\ClientEntity;
+use App\Repository\BeneficiaireRepository;
+use App\Repository\ClientEntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 class UniqueExternalLinkValidator extends ConstraintValidator
 {
-    private EntityManagerInterface $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
+    public function __construct(
+        private readonly ClientEntityRepository $clientEntityRepository,
+        private readonly BeneficiaireRepository $beneficiaireRepository,
+        private readonly ApiClientManager $apiClientManager,
+    ) {
     }
 
-    /**
-     * Checks if the passed value is valid.
-     *
-     * @param ClientEntity[]|ArrayCollection $value The value that should be validated
-     */
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         if (!$constraint instanceof UniqueExternalLink) {
             throw new UnexpectedTypeException($constraint, UniqueExternalLink::class);
         }
 
         if (null === $value || '' === $value) {
+            return;
+        }
+
+        if ($value instanceof BeneficiaryDto) {
+            if ($this->beneficiaireRepository->findByDistantId($value->distantId, $this->apiClientManager->getCurrentOldClient()->getRandomId())) {
+                $this->context->buildViolation($constraint->messageDistantIdDuplicate)
+                    ->setParameter('{{ string }}', (string) $value->distantId)
+                    ->atPath('external_link')
+                    ->addViolation();
+            }
+
             return;
         }
 
@@ -48,7 +56,7 @@ class UniqueExternalLinkValidator extends ConstraintValidator
                 return;
             }
 
-            $externalLink = $this->entityManager->getRepository(ClientEntity::class)->findOneBy([
+            $externalLink = $this->clientEntityRepository->findOneBy([
                 'client' => $entity->getClient(),
                 'distantId' => $entity->getDistantId(),
                 'entity_name' => $entity->getEntityName(),
