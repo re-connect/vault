@@ -6,7 +6,7 @@ use App\ServiceV2\ActivityLogger;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Http\Event\LoginSuccessEvent;
 
-class ActivitySubscriber implements EventSubscriberInterface
+class LoginSubscriber implements EventSubscriberInterface
 {
     public function __construct(private readonly ActivityLogger $logger)
     {
