@@ -40,7 +40,7 @@ class BeneficiaryCreationController extends AbstractController
         $creationProcess = $manager->getOrCreate($creationProcess, $request->query->getBoolean('remotely'), $step);
 
         if (!$creationProcess->isCreating()) {
-            return $this->redirectToRoute('re_membre_beneficiaires');
+            return $this->redirectToRoute('list_beneficiaries');
         } elseif ($creationProcess->isLastStep()) {
             $manager->finishCreation($creationProcess);
 
@@ -85,7 +85,7 @@ class BeneficiaryCreationController extends AbstractController
             $this->addFlash('success', 'beneficiary_creation_canceled');
         }
 
-        return $this->redirectToRoute('re_membre_beneficiaires');
+        return $this->redirectToRoute('list_beneficiaries');
     }
 
     public function createStepForm(Beneficiaire $beneficiary, BeneficiaryCreationProcess $creationProcess): ?FormInterface

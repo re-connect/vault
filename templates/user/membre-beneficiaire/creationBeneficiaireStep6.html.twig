@@ -30,7 +30,7 @@
 {% endblock creation_addUserContent %}
 
 {% block bottomLinks %}
-    {% set path = path('re_membre_beneficiaires') %}
+    {% set path = path('list_beneficiaries') %}
     {% if app.user.isGestionnaire %}
         {% set path = path('re_gestionnaire_beneficiaires') %}
     {% endif %}

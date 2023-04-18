@@ -136,7 +136,7 @@ final class MembreBeneficiaireController extends REController
                 $centreManager->accepterTousCentreEnCommun($beneficiaire, $this->getUser()->getSubject());
                 $this->session->getFlashBag()->set('success', 'membre.questionSecrete.success');
 
-                return $this->redirect($this->generateUrl('re_membre_beneficiaires'));
+                return $this->redirect($this->generateUrl('list_beneficiaries'));
             }
             $form->get('reponse')->addError(new FormError($this->translator->trans('membre.questionSecrete.mauvaiseReponse')));
         }

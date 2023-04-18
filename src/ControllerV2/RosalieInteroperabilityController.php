@@ -31,7 +31,7 @@ class RosalieInteroperabilityController extends AbstractController
                 $this->addFlash('success', $translator->trans('si_siao_number_found_rosalie'));
             }
 
-            return $this->redirectToRoute('re_membre_beneficiaires');
+            return $this->redirectToRoute('list_beneficiaries');
         }
 
         return $this->renderForm('v2/rosalie/add_si_siao_number.html.twig', [

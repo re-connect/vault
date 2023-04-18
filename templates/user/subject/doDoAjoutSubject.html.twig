@@ -36,7 +36,7 @@
 		{% if subject.user.isBeneficiaire and app.user.isGestionnaire %}
 			<a class="rp-blue" href="{{ path('re_gestionnaire_beneficiaires') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
 			{% elseif subject.user.isBeneficiaire %}
-			<a class="rp-blue" href="{{ path('re_membre_beneficiaires') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
+			<a class="rp-blue" href="{{ path('list_beneficiaries') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
 			{% elseif app.user.isGestionnaire %}
 			<a class="rp-blue" href="{{ path('re_gestionnaire_membres') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
 			{% else %}
