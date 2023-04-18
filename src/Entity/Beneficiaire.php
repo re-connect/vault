@@ -15,6 +15,7 @@ use App\Api\State\BeneficiaryStateProvider;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Traits\GedmoTimedTrait;
+use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
@@ -31,12 +32,10 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
             security: "is_granted('READ', object)",
             provider: BeneficiaryStateProvider::class,
         ),
-//        new Delete(security: "is_granted('UPDATE', object)"),
         new Patch(
             security: "is_granted('UPDATE', object)",
             processor: BeneficiaryStateProcessor::class,
         ),
-//        new Put(security: "is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"),
         new Post(input: BeneficiaryDto::class, processor: BeneficiaryStateProcessor::class),
     ],
@@ -111,6 +110,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     private ?string $reponseSecrete = null;
 
     /** @var Collection<ClientBeneficiaire> */
+    #[UniqueExternalLink]
     private Collection $externalLinks;
 
     /** @var ?ArrayCollection<int, Centre> */

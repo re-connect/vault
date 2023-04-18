@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use App\Traits\GedmoTimedTrait;
+use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -44,6 +45,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     /** @var Collection */
     private $evenements;
     /** @var Collection */
+    #[UniqueExternalLink]
     private $externalLinks;
     private ?bool $wasGestionnaire = false;
 
