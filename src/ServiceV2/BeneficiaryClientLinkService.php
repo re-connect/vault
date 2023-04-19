@@ -21,7 +21,7 @@ class BeneficiaryClientLinkService
     public function linkBeneficiaryToClientWithName(Beneficiaire $beneficiary, string $clientName, string $externalId, ?Centre $relay = null, ?string $memberExternalId = null): void
     {
         if ($client = $this->clientRepository->findOneBy(['nom' => $clientName])) {
-            $this->linkBeneficiaryToClient($beneficiary, $client, $externalId, $memberExternalId);
+            $this->linkBeneficiaryToClient($beneficiary, $client, $externalId, $relay, $memberExternalId);
         }
     }
 

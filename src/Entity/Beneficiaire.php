@@ -40,7 +40,21 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
         new Patch(
             uriTemplate: '/beneficiaries/{id}/unlink',
             controller: UnlinkBeneficiaryController::class,
-            security: "is_granted('UPDATE', object)",
+            openapiContext: [
+                'summary' => 'Unlink a beneficiary from your oauth2 client',
+                'requestBody' => [
+                    'content' => [
+                        'application/json' => [
+                            'schema' => [
+                                'type' => 'object',
+                            ],
+                        ],
+                    ],
+                ],
+                'tags' => ['Beneficiaires'],
+            ],
+            description: 'Unlink a beneficiary from your oauth2 client',
+            security: "is_granted('UPDATE', object)"
         ),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"),
         new Post(input: BeneficiaryDto::class, processor: BeneficiaryStateProcessor::class),
