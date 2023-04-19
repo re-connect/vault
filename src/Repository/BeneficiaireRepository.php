@@ -131,11 +131,11 @@ class BeneficiaireRepository extends ServiceEntityRepository
 
     public function getBeneficiariesSiSiaoNumbers(?Client $client): array
     {
-//        return $this->createQueryBuilder('b')
-//            ->select('b.siSiaoNumber')
-//            ->andWhere('b.siSiaoNumber IS NOT NULL')
-//            ->getQuery()
-//            ->getArrayResult();
+        //        return $this->createQueryBuilder('b')
+        //            ->select('b.siSiaoNumber')
+        //            ->andWhere('b.siSiaoNumber IS NOT NULL')
+        //            ->getQuery()
+        //            ->getArrayResult();
         return $this->createQueryBuilder('b')
             ->select('c.distantId')
             ->join('b.externalLinks', 'c')

@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="position-relative bg-white text-center mt-75">
-        <h1 class="p-3 p-md-4 p-lg-4 text-primary text-uppercase bold">
+        <h1 class="p-3 p-md-3 p-lg-4 text-primary text-uppercase bold">
             {% block title %}{% endblock %}
         </h1>
     </div>
@@ -11,9 +11,7 @@
             {% block actionBar %}{% endblock %}
             <hr class="hr-2 mt-2 bg-primary mx-auto">
             <div class="container">
-                <div class="max-width-lg mx-auto row">
-                    {% block content %}{% endblock %}
-                </div>
+                {% block content %}{% endblock %}
             </div>
         </div>
     </div>
