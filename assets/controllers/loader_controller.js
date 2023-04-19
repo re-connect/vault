@@ -9,12 +9,16 @@ export default class extends Controller {
        static targets = ['loadingContent', 'content', 'button']
 
        load() {
-              const checkFormValidity = this.buttonTarget.tagName !== 'A';
-              if (!checkFormValidity || this.contentTarget.closest('form').checkValidity()) {
+              const hasForm = this.buttonTarget.tagName !== 'A';
+              const form = hasForm ? this.contentTarget.closest('form') : null;
+              if (!hasForm || form.checkValidity()) {
                      this.buttonTarget.classList.add('disabled');
                      this.buttonTarget.disabled = 'disabled';
                      this.loadingContentTarget.style.display = 'inline-block';
                      this.contentTarget.style.display = 'none';
+                     if (form) {
+                            form.submit();
+                     }
               }
               setTimeout(() => {
                      this.buttonTarget.disabled = false;
