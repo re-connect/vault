@@ -417,35 +417,6 @@ app.controller("DocumentsListCtrl", function ($scope, $http, $filter, $location,
         $(".tableLine").removeClass("tableLine-hover");
     };
 
-    $scope.print = function () {
-        if ($scope.currentEntity.url) {
-            if ($scope.currentEntity.extension === "pdf") {
-                $http.get(
-                    $scope.currentEntity.url, {
-                        headers: {
-                            "Content-type": "application/pdf"
-                        },
-                        responseType: "arraybuffer"
-                    }
-                )
-                    .then(response => {
-                        const data = response.data;
-                        const file = new Blob([data], {type: "application/pdf"});
-                        const fileUrl = URL.createObjectURL(file);
-                        const printWindow = window.open(fileUrl);
-                        printWindow.print();
-                    });
-            } else {
-                const url = $scope.currentEntity.url;
-                const iframe = document.getElementById("iframeprint");
-                iframe.src = url;
-
-                iframe.focus();
-                iframe.contentWindow.print();
-            }
-        }
-    };
-
     $scope.getMessageDelete = folderDoc => {
         const $deleteButton = $('.delete-button');
         const deleteMessage = folderDoc.is_folder ? $deleteButton.data('messageFolder') : $deleteButton.data('messageDocument');
