@@ -7,7 +7,18 @@ export default class extends Controller {
   static values = {
     confirmButtonText: String,
     cancelButtonText: String,
+    customClass: Object,
   };
+
+  swalOptionsBase = {
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#4db95f',
+    confirmButtonText: this.confirmButtonTextValue,
+    cancelButtonColor: '#cb3c53',
+    cancelButtonText: this.cancelButtonTextValue,
+    reverseButtons: true,
+  }
 
   confirm(event) {
     event.preventDefault();
@@ -17,17 +28,18 @@ export default class extends Controller {
 
     Swal.fire({
       text: message,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#4db95f',
-      confirmButtonText: this.confirmButtonTextValue,
-      cancelButtonColor: '#cb3c53',
-      cancelButtonText: this.cancelButtonTextValue,
-      reverseButtons: true,
+      ...this.swalOptionsBase,
+      ...this.getCustomClasses(this.customClassValue)
     }).then((result) => {
       if (result.isConfirmed) {
         window.location.replace(url);
       }
     })
+  }
+
+  getCustomClasses(customClass) {
+    return customClass && Object.keys(customClass).length > 0
+      ? {customClass, buttonsStyling: false}
+      : {}
   }
 }

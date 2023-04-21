@@ -25,7 +25,12 @@
         {{ stimulus_controller('alert', {
             'confirmButtonText': 'accept'|trans,
             'cancelButtonText': 'cancel'|trans,
-        }) }}>
+            'customClass': {
+                'cancelButton': 'btn btn-outline-black me-1',
+                'confirmButton': 'btn btn-red text-white ms-1',
+            },
+        }) }}
+>
     <ul class="action-dropdown shadow border-1 position-absolute z-1 bg-white list-group font-size-1 mt-2 end-0" style="width: 240px">
         {% for menuItem in menuItems %}
             <li class="list-group-item hover p-0 border-0 my-1 d-grid gap-2">
