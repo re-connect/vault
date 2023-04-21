@@ -184,6 +184,8 @@ class BeneficiaireRepository extends ServiceEntityRepository
             ->innerJoin('bc.centre', 'c')
             ->innerJoin('b.user', 'u')
             ->addSelect('u')
+            ->addSelect('bc')
+            ->addSelect('c')
             ->andWhere('b.isCreating = false')
             ->andWhere('bc.bValid = true');
 
