@@ -84,7 +84,7 @@ class MigrateRosalieIdsToSiSiaoIdsCommand extends Command
 
         foreach ($oldIdsExternalLinks as $oldLink) {
             $newDistantId = $records[$oldLink->getDistantId()];
-            if (!$externalLinks->exists(fn (ClientBeneficiaire $link) => $newDistantId === $link->getDistantId())) {
+            if (!$externalLinks->exists(fn (int $key, ClientBeneficiaire $link) => $newDistantId === $link->getDistantId())) {
                 $newExternalLink = ClientBeneficiaire::createForMember($rosalieClient, $newDistantId, $oldLink->getMembreDistantId());
                 $beneficiary->addExternalLink($newExternalLink)->setSiSiaoNumber($newDistantId);
             }
