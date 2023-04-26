@@ -23,6 +23,11 @@ abstract class ClientEntity
         $this->entity_name = (new \ReflectionClass($this))->getShortName();
     }
 
+    public function __toString(): string
+    {
+        return $this->getClient()->getNom().': '.$this->getDistantId();
+    }
+
     public function getDistantId(): string
     {
         return (string) $this->distantId;
