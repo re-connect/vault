@@ -1,13 +1,20 @@
 {% if relay.adresse %}
+    {% set ville = relay.adresse.ville %}
+    {% set codePostal = relay.adresse.codePostal %}
     {% if relay.adresse.nom %}
         <span>{{ relay.adresse.nom }}</span>
         <br>
     {% endif %}
-    {% if relay.adresse.ville %}
-        <span>{{ relay.adresse.ville }}</span>
-    {% endif %}
-    {% if relay.adresse.codePostal %}
+    {% if ville and codePostal %}
         <span>{{ relay.adresse.codePostal }}</span>
+        <span>{{ relay.adresse.ville }}</span>
+        <br>
+    {% else %}
+        {% if ville %}
+            <span>{{ relay.adresse.ville }}</span>
+        {% elseif codePostal %}
+            <span>{{ relay.adresse.codePostal }}</span>
+        {% endif %}
         <br>
     {% endif %}
     {% if relay.adresse.pays %}
