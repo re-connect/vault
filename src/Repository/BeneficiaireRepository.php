@@ -137,7 +137,7 @@ class BeneficiaireRepository extends ServiceEntityRepository
         //            ->getQuery()
         //            ->getArrayResult();
         return $this->createQueryBuilder('b')
-            ->select('c.distantId')
+            ->select('b.id, c.distantId')
             ->join('b.externalLinks', 'c')
             ->join('c.client', 'client')
             ->andWhere('client.randomId = :clientId')
