@@ -1,6 +1,5 @@
 import {Controller} from '@hotwired/stimulus'
 import Swal from 'sweetalert2';
-import {visit} from '@hotwired/turbo';
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
@@ -8,6 +7,8 @@ export default class extends Controller {
     confirmButtonText: String,
     cancelButtonText: String,
     customClass: Object,
+    href: String,
+    message: String,
   };
 
   swalOptionsBase = {
@@ -32,7 +33,7 @@ export default class extends Controller {
       ...this.getCustomClasses(this.customClassValue)
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.replace(url);
+        window.location.replace(this.hrefValue);
       }
     })
   }
