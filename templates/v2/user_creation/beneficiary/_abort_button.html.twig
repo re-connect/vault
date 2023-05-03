@@ -1,12 +1,14 @@
-<div {{ stimulus_controller('alert', {
-    'confirmButtonText': 'main.accepter'|trans,
-    'cancelButtonText': 'main.annuler'|trans,
-}) }}>
-    <a href="{{ path('create_beneficiary_abort', {'id': beneficiaryCreationProcess.id}) }}"
-       class="btn btn-link text-primary"
-       data-action="{{ beneficiary is defined ? 'click->alert#confirm' : '' }}"
-       data-message="{{ 'confirm_beneficiary_creation_cancellation'|trans }}"
-    >
-        <i class="fa fa-chevron-left"></i>{{ 'back_home'|trans }}
-    </a>
-</div>
+<a href="{{ path('create_beneficiary_abort', {'id': beneficiaryCreationProcess.id}) }}"
+   class="btn btn-link text-primary"
+        {% if beneficiary is defined %}
+            {{ stimulus_controller('alert', {
+                confirmButtonText: 'accept'|trans,
+                cancelButtonText: 'cancel'|trans,
+                message: 'confirm_beneficiary_creation_cancellation'|trans,
+                href: path('create_beneficiary_abort', {'id': beneficiaryCreationProcess.id})
+            }) }}
+            {{ stimulus_action('alert', 'confirm') }}
+        {% endif %}
+>
+    <i class="fa fa-chevron-left"></i>{{ 'back_home'|trans }}
+</a>

@@ -33,4 +33,5 @@ App\Entity\Rappel:
         sms:
             targetEntity: App\Entity\SMS
             mappedBy: rappel
+            cascade: [ remove ]
     lifecycleCallbacks: { }

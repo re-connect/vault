@@ -1,45 +1,45 @@
 import {Controller} from '@hotwired/stimulus'
 import Swal from 'sweetalert2';
-import {visit} from '@hotwired/turbo';
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
   static values = {
-    confirmButtonText: String,
+    cancelButtonCustomClass: String,
     cancelButtonText: String,
+    confirmButtonCustomClass: String,
+    confirmButtonText: String,
     customClass: Object,
+    href: String,
+    message: String,
   };
 
-  swalOptionsBase = {
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#4db95f',
-    confirmButtonText: this.confirmButtonTextValue,
+  swalDefaultOptions = {
     cancelButtonColor: '#cb3c53',
-    cancelButtonText: this.cancelButtonTextValue,
+    confirmButtonColor: '#4db95f',
+    icon: 'warning',
     reverseButtons: true,
+    showCancelButton: true,
   }
 
   confirm(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const message = element.dataset.message;
-    const url = element.getAttribute('href');
+
+    const customClass = this.cancelButtonCustomClassValue && this.confirmButtonCustomClassValue ? {
+      cancelButton: this.cancelButtonCustomClassValue,
+      confirmButton: this.confirmButtonCustomClassValue,
+      buttonsStyling: false,
+    } : {};
 
     Swal.fire({
-      text: message,
-      ...this.swalOptionsBase,
-      ...this.getCustomClasses(this.customClassValue)
+      text: this.messageValue,
+      ...this.swalDefaultOptions,
+      confirmButtonText: this.confirmButtonTextValue,
+      cancelButtonText: this.cancelButtonTextValue,
+      customClass,
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.replace(url);
+        window.location.replace(this.hrefValue);
       }
     })
-  }
-
-  getCustomClasses(customClass) {
-    return customClass && Object.keys(customClass).length > 0
-      ? {customClass, buttonsStyling: false}
-      : {}
   }
 }
