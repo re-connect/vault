@@ -1,9 +1,11 @@
 {% set address = relay.adresse %}
 {% if address %}
-    <span>{{ address.nom ?? '' }}</span>
-    {% if address.nom %}<br>{% endif %}
-    <span>{{ address.codePostal ?? '' }}</span>
-    <span>{{ address.ville ?? '' }}</span>
-    {% if address.ville or address.codePostal %}<br>{% endif %}
-    <span>{{ address.pays ?? '' }}</span>
+    <span>
+        {{ address.nom ?? '' }}
+        {% if address.nom %}<br>{% endif %}
+        {{ address.codePostal ?? '' }}
+        {{ address.ville ?? '' }}
+        {% if address.ville or address.codePostal %}<br>{% endif %}
+        {{ address.pays ?? '' }}
+    </span>
 {% endif %}
