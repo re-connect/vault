@@ -1,6 +1,6 @@
 <div {{ stimulus_controller('alert', {
-    'confirmButtonText': 'main.accepter'|trans,
-    'cancelButtonText': 'main.annuler'|trans,
+    confirmButtonText: 'accept'|trans,
+    cancelButtonText: 'cancel'|trans,
 }) }}>
     <a href="{{ path('create_beneficiary_abort', {'id': beneficiaryCreationProcess.id}) }}"
        class="btn btn-link text-primary"
