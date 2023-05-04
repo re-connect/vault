@@ -17,9 +17,7 @@
                     <i class="fa fa-hotel fa-2x text-primary mt-2" aria-hidden="true" {{ stimulus_target('disaffiliate-user', 'icon') }}></i>
                 </div>
                 <div class="col-12 col-md-9 mt-4 mt-md-0 pt-2 text-center">
-                    <span>{{ relay.adresse ?? '' }}</span>
-                    <br>
-                    <span>{{ relay.region.nom ?? '' }}</span>
+                    {{ include('v2/vault/relay/_address_column.html.twig', {relay}) }}
                 </div>
             </div>
             <button class="btn btn-red text-white" {{ stimulus_action('disaffiliate-user', 'disaffiliate') }}>
