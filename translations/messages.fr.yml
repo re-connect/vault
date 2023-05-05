@@ -967,6 +967,7 @@ quitterCentre.titre: 'Quitter le centre %s'
 recommonbundle.uploadPhoto: 'Cliquez ici pour choisir une image'
 reconnect_center: 'Relais Reconnect'
 reconnect_center_span: 'Relais <span class="rp-blue">Reconnect</span>'
+rediscover_our_solutions: (re)Découvrez nos solutions
 regions: Régions
 registerForm.adresse: 'Votre adresse personnelle (facultatif)'
 registerForm.codePostal: 'Code postal'
@@ -1061,6 +1062,7 @@ statut.created: Créé
 statut.waiting: 'En attente (cheque/virement)'
 steps_count: Étape %step%/%totalSteps%
 submit: Valider
+subscription_confirmation: Confirmation d'inscription
 summary: Récapitulatif
 summary_confirm_information: Récapitulatif, veuillez confirmer les informations enregistrées ci-dessous
 surname: 'Prénom'
@@ -1070,6 +1072,7 @@ switchUser.btnRevenir: 'Revenir à l''administration'
 switchUser.connecte: 'Vous êtes connecté en tant que <span class="italic">%username%</span>'
 tax: Impôts
 terms_of_use: Charte d'utilisation
+thank_you_for_subscription: Merci pour votre inscription !
 today: 'Aujourd''hui'
 unsupported_file_extension: Erreur %fileName%, le format de fichier n'est pas supporté
 used_available: '%used% utilisé(s) sur %available% disponibles'
@@ -1138,10 +1141,14 @@ website_CGS: CGS du site
 website_confidentiality: Politique de confidentialité du site
 website_legal: Mentions légales
 website_title: 'Reconnect'
+while_waiting_next_newsletter_1: En attendant la prochaine, vous pouvez
+while_waiting_next_newsletter_2: retrouver nos actualités sur nos réseaux sociaux et notre blog !
 work: Emploi
 wrong_current_password: 'Votre mot de passe actuel est faux'
 wrong_secret_answer: La réponse à la question secrète est incorrecte
 you_must_provide_phone_number: Vous devez renseigner le numéro de téléphone
+you_are_now_subscribed_for_newsletter: Vous êtes maintenant inscrit.e sur notre liste d'envoi de newsletter
+you_can_unsubscribe_for_newsletter: Vous pouvez vous désabonner à tout moment de cette liste, grâce au lien que vous trouverez en bas de page de chaque newsletter
 your_email: 'Votre Email'
 your_phone_number: 'Votre numéro de téléphone'
 admin.menu.create_centre: Créer centre

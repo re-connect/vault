@@ -802,6 +802,7 @@ public_reset_password_email_has_been_sent: An email was sent to you with instruc
 public_reset_password_failure_not_in_time: You did not renew your password within the time limit, please try again
 public_reset_password_subtitle: Enter your email address or phone number to start the process
 public_reset_password_success: Your password has been changed, you can now connect to your account
+rediscover_our_solutions: (re)Discover our solutions
 registerForm.adresse: 'Your personal address (optional)'
 registerForm.codePostal: 'Postal code'
 registerForm.email: Email
@@ -885,6 +886,7 @@ statut.confirmed: Confirmed
 statut.created: Created
 statut.waiting: 'Waiting(cheque/bank transfer)'
 steps_count: Step %step%/%totalSteps%
+subscription_confirmation: Subscription confirmation
 summary: Summary
 summary_confirm_information: Summary, please confirm the information below
 surname: First name
@@ -895,6 +897,7 @@ switchUser.connecte: 'You are connected as <span class="italic">%username%'
 username: Username
 tax: Tax
 terms_of_use: Terms of use
+thank_you_for_subscription: Thanks for subscribing
 unsupported_file_extension: Error %fileName%, unsupported file extension
 used_available: '%used% used over %available% available'
 user.cgu.bAccepter: 'I accept the terms of use'
@@ -953,8 +956,12 @@ website_CGS: Terms and conditions of the site
 website_confidentiality: Privacy policy of the site
 website_legal: Legal notice
 yes: Yes
+you_are_now_subscribed_for_newsletter: You are now subscribed to our newsletter
+you_can_unsubscribe_for_newsletter: You can unsubscribe from this list at any time, using the link you will find at the bottom of each newsletter
 you_must_provide_phone_number: You must provide a phone number
 you_can_download_mobile_app: You can also download the mobile app
+while_waiting_next_newsletter_1: While waiting for the next one, you can
+while_waiting_next_newsletter_2: find our news on our social networks and our blog!
 work: Work
 wrong_current_password: 'Your present password is false'
 wrong_secret_answer: Wrong secret answer
