@@ -9,6 +9,7 @@ export default class extends Controller {
     confirmMessage: String,
     confirmButtonText: String,
     cancelButtonText: String,
+    disaffiliatedMessage: String,
   };
   swalOptions = {
     text: this.confirmMessageValue,
@@ -34,7 +35,8 @@ export default class extends Controller {
         return axiosInstance.get(this.urlValue)
           .then(() => {
             this.iconTarget.classList.replace('text-primary', 'text-grey');
-            button.classList.replace('btn-red', 'btn-grey')
+            button.classList.replace('btn-red', 'btn-grey');
+            button.innerHTML = this.disaffiliatedMessageValue
             button.removeAttribute('data-action');
           })
       },
