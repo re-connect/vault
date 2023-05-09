@@ -151,6 +151,7 @@ create_reconnect_account_remotely: Create Reconnect account remotely
 country: Country
 delete: Delete
 delete_your_account: 'If You want to delete Your account click here.'
+delete_currently_shared_document_warning: The document is shared for another %daysCount% days. If you delete it, Users you shared this document with will not be able to see it anymore
 devenirUnRelaiReconnect.accueil.budget0.200000: 'Budget < 200 000 €'
 devenirUnRelaiReconnect.accueil.budget1000000.1500000: '1000 000€ <Budget < 1500 000€'
 devenirUnRelaiReconnect.accueil.budget1500000.2000000: '1500 000€ <Budget <2000 000€'
@@ -880,6 +881,7 @@ share_document_success: An email with a link to download this document has been 
 share_document_with: Recipient's email
 shared: Shared
 sms_sent: SMS sent
+sms_sent_failed: SMS sending failed, please check that the phone number is valid
 status: Status
 statut.abandoned: Dropped
 statut.confirmed: Confirmed
@@ -965,5 +967,3 @@ while_waiting_next_newsletter_2: find our news on our social networks and our bl
 work: Work
 wrong_current_password: 'Your present password is false'
 wrong_secret_answer: Wrong secret answer
-delete_currently_shared_document_warning: The document is shared for another %daysCount% days. If you delete it, the sharing will be cancelled
-sms_sent_failed: SMS sending failed, please check that the phone number is valid
