@@ -2,6 +2,7 @@
 
 {% block title %}{{ 'subscription_confirmation'|trans }}{% endblock %}
 {% block meta_title %}{{ 'subscription_confirmation'|trans }}{% endblock %}
+{% block metas %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block body %}
     {{ include('homeV2/sections/_newsletter_confirmation_section.html.twig') }}
