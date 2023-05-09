@@ -92,7 +92,7 @@ class MainController extends AbstractController
         ]);
     }
 
-    #[Route('/newsletter-confirmation', name: 'newsletter_confirmation')]
+    #[Route('/public/newsletter-confirmation', name: 'newsletter_confirmation')]
     public function newsletterConfirmation(): Response
     {
         return $this->render('homeV2/pages/newsletter_confirmation.html.twig');

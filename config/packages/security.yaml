@@ -64,6 +64,6 @@ security:
                 max_uses: 1
 
     access_control:
-        - { path: ^/($|api/doc|changer-langue|annexe|get-centers|auto-login|login|reset-password|oauth|reconnect-le-coffre-fort-numerique|reconnect-la-solution-pro|nous-contacter|faq-rgpd|public|reinitialiser-mot-de-passe|reconnect-accompagnement-numerique|newsletter-confirmation), roles: PUBLIC_ACCESS }
+        - { path: ^/($|api/doc|changer-langue|annexe|get-centers|auto-login|login|reset-password|oauth|reconnect-le-coffre-fort-numerique|reconnect-la-solution-pro|nous-contacter|faq-rgpd|public|reinitialiser-mot-de-passe|reconnect-accompagnement-numerique|public), roles: PUBLIC_ACCESS }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/(.+), roles: IS_AUTHENTICATED_FULLY }
