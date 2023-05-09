@@ -9,16 +9,7 @@
             <div class="row pb-4">
                 <div class="col-12 offset-md-1 col-md-6 text-center mb-4">
                     <h2 class="h2 text-uppercase py-3 mt-md-4 py-md-4 mt-lg-5 pt-lg-1 pb-lg-5">{{ 'contact_page_title'| trans }}</h2>
-                    <div class="my-3 my-md-0">
-                        <p class="font-size-1-3 my-0">Reconnect</p>
-                        <p class="font-size-1-3 my-0">102c Rue Amelot</p>
-                        <p class="font-size-1-3 my-0">75011 <span class="text-uppercase">Paris</span>
-                        </p>
-                    </div>
-                    <div class="mt-3 mb-4">
-                        <a class="text-white font-size-1-3" href="mailto:{{ 'reconnect_contact_mail'|trans }}">{{ 'reconnect_contact_mail'|trans }}</a>
-                        <p class="font-size-1-3 my-0">{{ 'reconnect_phone_number'|trans }}</p>
-                    </div>
+                    {{ include('homeV2/pages/components/_reconnect_information.html.twig') }}
                 </div>
                 <div class="col-6 offset-3 col-md-4 offset-md-1">
                     <img class="img-fluid w-100" src="{{ asset('build/images/homeV2/watermark_contact.png') }}"
