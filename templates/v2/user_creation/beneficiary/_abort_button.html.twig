@@ -5,7 +5,7 @@
                 confirmButtonText: 'accept'|trans,
                 cancelButtonText: 'cancel'|trans,
                 message: 'confirm_beneficiary_creation_cancellation'|trans,
-                href: path('create_beneficiary_abort', {'id': beneficiaryCreationProcess.id})
+                url: path('create_beneficiary_abort', {'id': beneficiaryCreationProcess.id})
             }) }}
             {{ stimulus_action('alert', 'confirm') }}
         {% endif %}

@@ -820,6 +820,7 @@ relay_has_no_address: The Reconnect relay did not informed any address
 reminder: Reminder
 reminder_sms: SMS Reminder
 remove_from_relay: Remove from relay
+removed_from_relay: Removed from relay
 remove_from_relay_confirm: Are you sure you want to remove the beneficiary %beneficiary% ?
 remove_from_relay_confirm_relay: Are you sure you want to remove the beneficiary %beneficiary% from the relay %relay% ?
 rename: Rename

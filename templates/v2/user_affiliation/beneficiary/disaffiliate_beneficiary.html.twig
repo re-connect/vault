@@ -7,7 +7,7 @@
     </span>
 {% endblock %}
 {% block subTitleIcon %} <i class="fas fa-user-times fa-lg me-1"></i> {% endblock %}
-{% block subTitle %}{{ 'disaffiliate_beneficiary_subtitle'|trans|upper }} {{ beneficiary.user.nom|upper }} {{ beneficiary.user.prenom|upper }} {% endblock %}
+{% block subTitle %}{{ 'disaffiliate_beneficiary_subtitle'|trans|upper }} {{ beneficiary.user.fullName|upper }} {% endblock %}
 
 {% block content %}
     <h5 class="text-center my-4">{{ 'select_relays_for_disaffiliation'|trans }} : </h5>
