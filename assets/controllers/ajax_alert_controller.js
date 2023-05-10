@@ -9,7 +9,8 @@ export default class extends Controller {
     confirmMessage: String,
     confirmButtonText: String,
     cancelButtonText: String,
-    disaffiliatedMessage: String,
+    disableFiredButton: Boolean,
+    updatedButtonMessage: String,
   };
   swalOptions = {
     text: this.confirmMessageValue,
@@ -26,18 +27,23 @@ export default class extends Controller {
     showLoaderOnConfirm: true,
   }
 
-  disaffiliate(event) {
+  alert(event) {
     const button = event.currentTarget;
+    const updatedButtonMessage = this.updatedButtonMessageValue;
 
     Swal.fire({
       ...this.swalOptions,
       preConfirm: () => {
         return axiosInstance.get(this.urlValue)
           .then(() => {
-            this.iconTarget.classList.replace('text-primary', 'text-grey');
-            button.classList.replace('btn-red', 'btn-grey');
-            button.innerHTML = this.disaffiliatedMessageValue
-            button.removeAttribute('data-action');
+            if (updatedButtonMessage) {
+              button.innerHTML = updatedButtonMessage;
+            }
+            if (this.disableFiredButtonValue) {
+              button.removeAttribute('data-action');
+              button.classList.replace('btn-red', 'btn-grey');
+              this.iconTarget.classList.replace('text-primary', 'text-grey');
+            }
           })
       },
     })
