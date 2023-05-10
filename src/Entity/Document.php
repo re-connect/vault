@@ -104,7 +104,7 @@ class Document extends DonneePersonnelle
     private ?int $folderId = null;
 
     #[Groups(['document:read', 'read-personal-data', 'read-personal-data-v2', 'v3:document:read'])]
-    private ?int $deposeParFullName = null;
+    private ?string $deposeParFullName = null;
 
     private ?Collection $sharedDocuments;
 
@@ -383,15 +383,8 @@ class Document extends DonneePersonnelle
         return $this;
     }
 
-    public function getDeposeParFullName(): ?int
+    public function getDeposeParFullName(): ?string
     {
-        return $this->deposeParFullName;
-    }
-
-    public function setDeposeParFullName(?int $deposeParFullName): self
-    {
-        $this->deposeParFullName = $deposeParFullName;
-
-        return $this;
+        return $this->getCreatorUserFullName();
     }
 }
