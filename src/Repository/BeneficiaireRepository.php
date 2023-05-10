@@ -142,6 +142,7 @@ class BeneficiaireRepository extends ServiceEntityRepository
             ->join('c.client', 'client')
             ->andWhere('client.randomId = :clientId')
             ->andWhere('c.distantId IS NOT NULL')
+            ->andWhere("c.distantId LIKE 'SI-%' ")
             ->setParameters(['clientId' => $client->getRandomId()])
             ->getQuery()
             ->getArrayResult();
