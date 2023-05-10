@@ -1,25 +1,18 @@
 import {Controller} from '@hotwired/stimulus'
 import Swal from 'sweetalert2';
+import {getSwalDefaultOptions} from "./helpers/swal_helper";
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
   static values = {
-    cancelButtonCustomClass: String,
-    cancelButtonText: String,
-    confirmButtonCustomClass: String,
-    confirmButtonText: String,
-    customClass: Object,
-    href: String,
+    url: String,
     message: String,
+    confirmButtonText: String,
+    confirmButtonCustomClass: String,
+    cancelButtonText: String,
+    cancelButtonCustomClass: String,
+    customClass: Object,
   };
-
-  swalDefaultOptions = {
-    cancelButtonColor: '#cb3c53',
-    confirmButtonColor: '#4db95f',
-    icon: 'warning',
-    reverseButtons: true,
-    showCancelButton: true,
-  }
 
   confirm(event) {
     event.preventDefault();
@@ -31,14 +24,17 @@ export default class extends Controller {
     } : {};
 
     Swal.fire({
-      text: this.messageValue,
-      ...this.swalDefaultOptions,
-      confirmButtonText: this.confirmButtonTextValue,
-      cancelButtonText: this.cancelButtonTextValue,
+      ...getSwalDefaultOptions(
+        this.messageValue,
+        this.confirmButtonTextValue,
+        this.cancelButtonTextValue
+      ),
+      cancelButtonColor: '#cb3c53',
+      confirmButtonColor: '#4db95f',
       customClass,
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.replace(this.hrefValue);
+        window.location.replace(this.urlValue);
       }
     })
   }
