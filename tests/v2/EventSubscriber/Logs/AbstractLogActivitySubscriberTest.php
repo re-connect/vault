@@ -8,7 +8,7 @@ use App\Tests\Factory\MembreFactory;
 use App\Tests\v2\AuthenticatedKernelTestCase;
 use Doctrine\ORM\Events;
 
-class AbstractLogActivitySubscriberTest extends AuthenticatedKernelTestCase
+abstract class AbstractLogActivitySubscriberTest extends AuthenticatedKernelTestCase
 {
     private ?string $logDir;
     protected ?User $loggedUser;
