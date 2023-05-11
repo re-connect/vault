@@ -431,11 +431,6 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return $this->getAffiliatedRelaysWithBeneficiaryManagement()->filter(fn (Centre $relay) => $beneficiary->getAffiliatedRelays()->contains($relay));
     }
 
-    public function countManageableRelays(Beneficiaire $beneficiary): int
-    {
-        return $this->getManageableRelays($beneficiary)->count();
-    }
-
     public function wasGestionnaire(): ?bool
     {
         return $this->wasGestionnaire;

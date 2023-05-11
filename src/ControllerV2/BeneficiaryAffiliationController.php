@@ -104,45 +104,40 @@ class BeneficiaryAffiliationController extends AbstractController
     }
 
     #[Route(
-        path: '/beneficiary/{id}/disaffiliate/{relayId?}',
-        name: 'disaffiliate_beneficiary',
+        path: '/beneficiary/{id}/disaffiliate/choose-relay',
+        name: 'disaffiliate_beneficiary_relay_choice',
         requirements: ['id' => '\d+'],
         methods: ['GET'],
     )]
-    #[ParamConverter('relay', class: 'App\Entity\Centre', options: ['id' => 'relayId'])]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function disaffiliate(
-        Request $request,
+    public function disaffiliateChooseRelay(
         Beneficiaire $beneficiary,
-        ?Centre $relay,
-        BeneficiaryAffiliationManager $manager,
-        TranslatorInterface $translator,
     ): Response {
-        if ($relay && $request->isXmlHttpRequest()) {
-            $manager->disaffiliateBeneficiary($beneficiary, $relay);
-
-            return $this->json($beneficiary);
-        }
-
-        $relays = $this->getProfessional()?->getManageableRelays($beneficiary);
-
-        if (1 === $relays->count()) {
-            $uniqueCommonRelay = $relays->first();
-            $manager->disaffiliateBeneficiary($beneficiary, $uniqueCommonRelay);
-            $this->addFlash(
-                'success',
-                $translator->trans('disaffiliate_beneficiary', [
-                    '%beneficiary%' => $beneficiary->getUser()->getFullName(),
-                    '%relay%' => $uniqueCommonRelay->getNom(),
-                ]),
-            );
-
+        if (!$this->isGranted('UPDATE', $beneficiary)) {
             return $this->redirectToRoute('list_beneficiaries');
         }
 
         return $this->render('v2/user_affiliation/beneficiary/disaffiliate_beneficiary.html.twig', [
             'beneficiary' => $beneficiary,
-            'relays' => $relays,
+            'relays' => $this->getProfessional()?->getManageableRelays($beneficiary) ?? [],
         ]);
+    }
+
+    #[Route(
+        path: '/beneficiary/{id}/relay/{relayId}/disaffiliate',
+        name: 'disaffiliate_beneficiary',
+        requirements: ['id' => '\d+'],
+        methods: ['GET'],
+        condition: 'request.isXmlHttpRequest()',
+    )]
+    #[ParamConverter('relay', class: 'App\Entity\Centre', options: ['id' => 'relayId'])]
+    #[IsGranted('UPDATE', 'beneficiary')]
+    public function disaffiliateFromRelay(
+        Beneficiaire $beneficiary,
+        ?Centre $relay,
+        BeneficiaryAffiliationManager $manager,
+    ): Response {
+        $manager->disaffiliateBeneficiary($beneficiary, $relay);
+
+        return $this->json($beneficiary);
     }
 }
