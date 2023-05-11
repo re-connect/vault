@@ -104,44 +104,18 @@ class BeneficiaryAffiliationController extends AbstractController
     }
 
     #[Route(
-        path: '/beneficiary/{id}/disaffiliate',
-        name: 'disaffiliate_beneficiary',
-        requirements: ['id' => '\d+'],
-        methods: ['GET'],
-    )]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function disaffiliate(
-        Beneficiaire $beneficiary,
-        BeneficiaryAffiliationManager $manager,
-        TranslatorInterface $translator,
-    ): Response {
-        $relays = $this->getProfessional()?->getManageableRelays($beneficiary);
-
-        if ($relays && 1 === $relays->count()) {
-            $uniqueCommonRelay = $relays->first();
-            $manager->disaffiliateBeneficiary($beneficiary, $uniqueCommonRelay);
-            $this->addFlash(
-                'success',
-                $translator->trans('disaffiliate_beneficiary', [
-                    '%beneficiary%' => $beneficiary->getUser()->getFullName(),
-                    '%relay%' => $uniqueCommonRelay->getNom(),
-                ]),
-            );
-        }
-
-        return $this->redirectToRoute('list_beneficiaries');
-    }
-
-    #[Route(
         path: '/beneficiary/{id}/disaffiliate/choose-relay',
         name: 'disaffiliate_beneficiary_relay_choice',
         requirements: ['id' => '\d+'],
         methods: ['GET'],
     )]
-    #[IsGranted('UPDATE', 'beneficiary')]
     public function disaffiliateChooseRelay(
         Beneficiaire $beneficiary,
     ): Response {
+        if (!$this->isGranted('UPDATE', $beneficiary)) {
+            return $this->redirectToRoute('list_beneficiaries');
+        }
+
         return $this->render('v2/user_affiliation/beneficiary/disaffiliate_beneficiary.html.twig', [
             'beneficiary' => $beneficiary,
             'relays' => $this->getProfessional()?->getManageableRelays($beneficiary) ?? [],
@@ -150,7 +124,7 @@ class BeneficiaryAffiliationController extends AbstractController
 
     #[Route(
         path: '/beneficiary/{id}/relay/{relayId}/disaffiliate',
-        name: 'disaffiliate_beneficiary_relay',
+        name: 'disaffiliate_beneficiary',
         requirements: ['id' => '\d+'],
         methods: ['GET'],
         condition: 'request.isXmlHttpRequest()',

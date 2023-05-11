@@ -1,7 +1,7 @@
 <li class="list-group-item hover p-0 border-0 my-1 d-grid gap-2">
     <a href="{{ item.path }}" class="btn p-0 text-primary text-start ps-3"
             {% if item.confirmAlertMessage is defined %}
-                {% if not app.user.subjectMembre or app.user.subjectMembre.countManageableRelays(beneficiary) == 1 %}
+                {% if not app.user.subjectMembre %}
                     {{ stimulus_controller('alert', {
                         confirmButtonText: 'accept'|trans,
                         cancelButtonText: 'cancel'|trans,
