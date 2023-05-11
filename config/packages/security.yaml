@@ -62,6 +62,7 @@ security:
                 signature_properties: [ 'id' ]
                 lifetime: 1800
                 max_uses: 1
+            access_denied_url: re_user_redirectUser
 
     access_control:
         - { path: ^/($|api/doc|changer-langue|annexe|get-centers|auto-login|login|reset-password|oauth|reconnect-le-coffre-fort-numerique|reconnect-la-solution-pro|nous-contacter|faq-rgpd|public|reinitialiser-mot-de-passe|reconnect-accompagnement-numerique|public), roles: PUBLIC_ACCESS }
