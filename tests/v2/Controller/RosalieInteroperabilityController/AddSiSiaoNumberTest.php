@@ -14,7 +14,7 @@ class AddSiSiaoNumberTest extends AbstractControllerTest
     public function provideTestRoute(): ?\Generator
     {
         yield 'Should redirect to login when not authenticated' => [302, null, '/login'];
-        yield 'Should throw the 403 page' => [403, BeneficiaryFixture::BENEFICIARY_MAIL];
+        yield 'Should redirect when authenticated as beneficiary' => [302, BeneficiaryFixture::BENEFICIARY_MAIL, '/beneficiary/home'];
         yield 'Should return a 200 status on get when authenticated as pro' => [200, MemberFixture::MEMBER_MAIL];
     }
 

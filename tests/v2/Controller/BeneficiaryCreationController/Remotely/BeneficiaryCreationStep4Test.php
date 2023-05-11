@@ -55,6 +55,6 @@ class BeneficiaryCreationStep4Test extends AbstractControllerTest implements Tes
     {
         yield 'Should redirect to login when not authenticated' => [self::URL, 302, null, '/login'];
         yield 'Should return 200 status code when authenticated as professional' => [self::URL, 302, MemberFixture::MEMBER_MAIL_WITH_RELAYS, '/beneficiary/create/download-terms-of-use/%s'];
-        yield 'Should return 403 status code when authenticated as beneficiary' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL];
+        yield 'Should return 302 status code when authenticated as beneficiary' => [self::URL, 302, BeneficiaryFixture::BENEFICIARY_MAIL, '/beneficiary/home'];
     }
 }

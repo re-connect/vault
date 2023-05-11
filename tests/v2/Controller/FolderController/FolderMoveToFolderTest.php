@@ -44,7 +44,7 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
                 $subFolder->getId(),
                 $privateParentFolder->getId(),
             );
-            $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
+            $this->assertRoute($newUrl, 302, $userMail, '/professional/beneficiaries', $method, true);
         }
     }
 
@@ -53,8 +53,8 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
         yield 'Should redirect to login when not authenticated' => [self::URL, 302, null, '/login'];
         yield 'Should redirect after when authenticated as beneficiary' => [self::URL, 302, BeneficiaryFixture::BENEFICIARY_MAIL, '/beneficiary/%s/documents'];
         yield 'Should redirect after when authenticated as member with relay in common' => [self::URL, 302, MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES, '/beneficiary/%s/documents'];
-        yield 'Should return 403 status code when authenticated as an other beneficiaire' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS];
-        yield 'Should return 403 status code when authenticated as member with no relay in common' => [self::URL, 403, MemberFixture::MEMBER_MAIL];
+        yield 'Should redirect when authenticated as an other beneficiaire' => [self::URL, 302, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS, '/beneficiary/home'];
+        yield 'Should redirect when authenticated as member with no relay in common' => [self::URL, 302, MemberFixture::MEMBER_MAIL, '/professional/beneficiaries'];
     }
 
     public function testMoveToFolder(): void
@@ -71,7 +71,7 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
 
         // Tested beneficiary tries to move folder inside random beneficiarie's folder
         $clientTest->request('GET', sprintf(self::URL, $subFolder->getId(), $randomFolder->getId()));
-        self::assertResponseStatusCodeSame(403);
+        self::assertResponseStatusCodeSame(302);
 
         // Then move in a folder that belongs to him
         $clientTest->request('GET', sprintf(self::URL, $subFolder->getId(), $parentFolder->getId()));

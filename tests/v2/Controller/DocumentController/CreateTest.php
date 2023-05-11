@@ -17,8 +17,8 @@ class CreateTest extends AbstractControllerTest
         yield 'Should redirect to login when not authenticated' => [self::URL, 302, null];
         yield 'Should return 201 status code when authenticated as beneficiaire' => [self::URL, 201, BeneficiaryFixture::BENEFICIARY_MAIL];
         yield 'Should return 201 status code when authenticated as member with relay in common' => [self::URL, 201, MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES];
-        yield 'Should return 403 status code when authenticated as an other beneficiaire' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS];
-        yield 'Should return 403 status code when authenticated as member with no relay in common' => [self::URL, 403, MemberFixture::MEMBER_MAIL];
+        yield 'Should redirect when authenticated as an other beneficiaire' => [self::URL, 302, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS, '/beneficiary/home'];
+        yield 'Should redirect when authenticated as member with no relay in common' => [self::URL, 302, MemberFixture::MEMBER_MAIL, '/professional/beneficiaries'];
     }
 
     /** @dataProvider provideTestUploadRoute */

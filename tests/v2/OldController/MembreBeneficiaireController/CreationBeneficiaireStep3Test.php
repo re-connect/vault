@@ -27,7 +27,7 @@ class CreationBeneficiaireStep3Test extends AbstractControllerTest implements Te
     public function provideTestRoute(): ?\Generator
     {
         yield 'Should redirect to login when not authenticated' => [self::URL_DEFAULT, 302, null, '/login'];
-        yield 'Should return 403 status code when authenticated as beneficiaire' => [self::URL_DEFAULT, 403, BeneficiaryFixture::BENEFICIARY_MAIL];
+        yield 'Should redirect when authenticated as beneficiaire' => [self::URL_DEFAULT, 302, BeneficiaryFixture::BENEFICIARY_MAIL, '/beneficiary/home'];
         yield 'Should redirect to step 1 when authenticated as member' => [self::URL_DEFAULT, 302, MemberFixture::MEMBER_MAIL, '/membre/beneficiaires/ajout-beneficiaire'];
     }
 }

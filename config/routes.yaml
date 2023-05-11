@@ -12,7 +12,7 @@ re_user:
 
 re_beneficiaire:
     resource: "./routing/user/beneficiaire_routing.yml"
-    prefix: /beneficiaire/
+    prefix: /beneficiary
 
 re_membre:
     resource: "./routing/user/membre_routing.yml"

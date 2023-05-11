@@ -17,8 +17,8 @@ class SwitchPrivateTest extends AbstractControllerTest
         yield 'Should redirect to login when not authenticated' => [self::URL, 302, null, '/login', 'PATCH'];
         yield 'Should redirect to list when authenticated as beneficiaire' => [self::URL, 302, BeneficiaryFixture::BENEFICIARY_MAIL, '/beneficiary/%s/contacts'];
         yield 'Should redirect to list when authenticated as member with relay in common' => [self::URL, 302, MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES, '/beneficiary/%s/contacts'];
-        yield 'Should return 403 status code when authenticated as an other beneficiaire' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS];
-        yield 'Should return 403 status code when authenticated as member with no relay in common' => [self::URL, 403, MemberFixture::MEMBER_MAIL];
+        yield 'Should redirect when authenticated as an other beneficiaire' => [self::URL, 302, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS, '/beneficiary/home'];
+        yield 'Should redirect when authenticated as member with no relay in common' => [self::URL, 302, MemberFixture::MEMBER_MAIL, '/professional/beneficiaries'];
     }
 
     /** @dataProvider provideTestRoute */
@@ -41,7 +41,7 @@ class SwitchPrivateTest extends AbstractControllerTest
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
             $privateContact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
             $newUrl = sprintf(self::URL, $privateContact->getId());
-            $this->assertRoute($newUrl, 403, $userMail, null, $method);
+            $this->assertRoute($newUrl, 302, $userMail, '/professional/beneficiaries', $method);
         }
     }
 }

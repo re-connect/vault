@@ -36,9 +36,9 @@ class DisaffiliateTest extends AbstractControllerTest implements TestRouteInterf
     public function provideTestRoute(): ?\Generator
     {
         yield 'Should redirect to login when not authenticated' => [self::URL, 302, null, '/login'];
-        yield 'Should return 403 status code when authenticated as beneficiaire' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL];
-        yield 'Should return 200 status code on disaffiliation choice page when authenticated as member' => [self::URL, 200, MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES];
-        yield 'Should return 302 status code when authenticated as member with no relay in common' => [self::URL, 302, MemberFixture::MEMBER_MAIL, '/professional/beneficiaries'];
+        yield 'Should redirect when authenticated as beneficiaire' => [self::URL, 302, BeneficiaryFixture::BENEFICIARY_MAIL, '/beneficiary/home'];
+        yield 'Should return 200 status code on disaffiliation choice page when authenticated as member with at least one relay in common' => [self::URL, 200, MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES];
+        yield 'Should redirect when authenticated as member with no relay in common' => [self::URL, 302, MemberFixture::MEMBER_MAIL, '/professional/beneficiaries'];
     }
 
     public function testDisaffiliateAjaxCall(): void

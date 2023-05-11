@@ -20,8 +20,8 @@ class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteIn
         yield 'Should redirect to login when not authenticated' => [self::URL, 302, null, '/login', 'PATCH'];
         yield 'Should return 200 status code when authenticated as beneficiaire' => [self::URL, 200, BeneficiaryFixture::BENEFICIARY_MAIL, null, 'PATCH'];
         yield 'Should return 200 status when authenticated as member with relay in common' => [self::URL, 200, MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES, null, 'PATCH'];
-        yield 'Should return 403 status code when authenticated as an other beneficiaire' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS, null, 'PATCH'];
-        yield 'Should return 403 status code when authenticated as member with no relay in common' => [self::URL, 403, MemberFixture::MEMBER_MAIL, null, 'PATCH'];
+        yield 'Should redirect when authenticated as an other beneficiaire' => [self::URL, 302, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS, '/beneficiary/home', 'PATCH'];
+        yield 'Should redirect when authenticated as member with no relay in common' => [self::URL, 302, MemberFixture::MEMBER_MAIL, '/professional/beneficiaries', 'PATCH'];
     }
 
     /** @dataProvider provideTestRoute */
@@ -45,7 +45,7 @@ class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteIn
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
             $newDocument = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
             $newUrl = sprintf(self::URL, $newDocument->getId());
-            $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
+            $this->assertRoute($newUrl, 302, $userMail, '/professional/beneficiaries', $method, true);
         }
     }
 }

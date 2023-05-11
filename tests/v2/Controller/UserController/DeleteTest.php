@@ -15,7 +15,7 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
     public function provideTestRoute(): ?\Generator
     {
         yield 'Should redirect to login when not authenticated on delete page' => [self::URL, 302, null, '/login'];
-        yield 'Should not access delete when authenticated as member' => [self::URL, 403, MemberFixture::MEMBER_MAIL];
+        yield 'Should redirect authenticated as member' => [self::URL, 302, MemberFixture::MEMBER_MAIL, '/professional/beneficiaries'];
         yield 'Should access delete when authenticated as beneficiary' => [self::URL, 200, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS];
     }
 
