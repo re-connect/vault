@@ -16,6 +16,8 @@ app.controller("EntityInformationModalCtrl", function ($scope) {
 
     $scope.getStatut = entity => entity.b_prive ? "Privé" : "Partagé";
 
+    $scope.getCreator = entity => capitalizeFirstLetters(entity.depose_par_full_name);
+
     $scope.isDefined = () => (typeof $scope.entity !== "undefined");
 
     $scope.getDocumentsLength = (folderId) => {
@@ -24,6 +26,8 @@ app.controller("EntityInformationModalCtrl", function ($scope) {
             return folderEdit.documents.length;
         }
     };
+
+    const capitalizeFirstLetters = string => string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 });
 
 app.controller("EntityRenameModalCtrl", function ($scope, $http, dataService) {

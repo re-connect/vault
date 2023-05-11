@@ -21,7 +21,7 @@
                 </div>
                 <div ng-if="!entity.is_folder" class="row">
                     <div class="col-md-4 font-size-1">{{ 'added_by'|trans }}&nbsp;:</div>
-                    <div class="col-md-8 font-size-1">{{ "{{ entity.depose_par_full_name }}" }}</div>
+                    <div class="col-md-8 font-size-1">{{ "{{ getCreator(entity) }}" }}</div>
                 </div>
                 <div class="row">
                     <div class="col-md-4 font-size-1">{{ 'add_date'|trans}}&nbsp;:</div>
