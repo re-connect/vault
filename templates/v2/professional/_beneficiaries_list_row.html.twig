@@ -21,7 +21,9 @@
     <td class="border-0 h-100 text-center align-middle" {{ stimulus_controller('dropdown-menu') }}>
         {{ include('v2/professional/_action_dropdown.html.twig', {
             removeFromRelay: {
-                path: path('disaffiliate_beneficiary', {'id': beneficiary.id}),
+                path: app.user.subjectMembre.hasOneManageableRelay(beneficiary)
+                    ? path('disaffiliate_beneficiary', {'id': beneficiary.id})
+                    : path('disaffiliate_beneficiary_relay_choice', {'id': beneficiary.id}),
                 message: 'remove_from_relay_confirm'|trans({'%beneficiairy%': beneficiary.user.fullName})
             },
             resetPasswordPath: path('private_reset_password', {'id': beneficiary.user.id}),
