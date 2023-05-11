@@ -6,12 +6,14 @@
 
 {% block body %}
     {{ include('homeV2/sections/_newsletter_confirmation_section.html.twig') }}
-    {{ include('homeV2/sections/our-solutions-section.html.twig', {
-        background: 'bg-white',
-        vaultBoxShadow: 'box-shadow-light-green',
-        rpBoxShadow: 'box-shadow-light-blue',
-        digitalCaresBoxShadow: 'box-shadow-light-yellow',
-        title: 'rediscover_our_solutions'|trans
-    }) }}
+    <div class="py-4">
+        {{ include('homeV2/sections/our-solutions-section.html.twig', {
+            background: 'bg-white',
+            vaultBoxShadow: 'box-shadow-light-green',
+            rpBoxShadow: 'box-shadow-light-blue',
+            digitalCaresBoxShadow: 'box-shadow-light-yellow',
+            title: 'rediscover_our_solutions'|trans
+        }) }}
+    </div>
     {{ include('homeV2/sections/_newsletter_contact_us_section.html.twig') }}
 {% endblock body %}
