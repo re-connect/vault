@@ -10,7 +10,7 @@
 {% block subTitle %}{{ 'disaffiliate_beneficiary_subtitle'|trans|upper }} {{ beneficiary.user.fullName|upper }} {% endblock %}
 
 {% block content %}
-    <h5 class="text-center my-4">{{ 'select_relays_for_disaffiliation'|trans }} : </h5>
+    <h5 class="text-center my-4 px-3 px-md-5">{{ 'select_relays_for_disaffiliation'|trans }} : </h5>
     <div class="row mt-3 mx-auto">
         {% for relay in relays %}
             {{ include('v2/user_affiliation/beneficiary/_disaffiliate_card.html.twig', {relay}) }}

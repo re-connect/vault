@@ -1050,7 +1050,7 @@ secret_answer_optional: Réponse secrète (facultatif)
 secret_question: 'Question secrète'
 secret_question_other: 'Autre question secrète'
 search_existing_beneficiary: Rechercher un bénéficiaire existant
-select_relays_for_disaffiliation: Cette personne est liée à plusieurs relais que vous gérez, sélectionnez les relais pour lesquels vous souhaitez arrêter le suivi
+select_relays_for_disaffiliation: Cette personne est liée à un ou plusieurs relai(s) que vous gérez, sélectionnez le.les relais pour lesquels vous souhaitez arrêter le suivi
 send: Envoyer
 sending_sms_account_activation: Envoi du SMS d'activation du compte
 settings_saved_successfully: 'Vos parametres ont bien été enregistrés'
