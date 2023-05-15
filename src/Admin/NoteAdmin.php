@@ -33,8 +33,9 @@ class NoteAdmin extends AbstractAdmin
         $form
             ->with('Informations')
             ->add('id', null, ['attr' => ['read_only' => true], 'disabled' => true])
-            ->add('nom')
-            ->add('contenu')
+            ->add('nom', null, [
+                'disabled' => true,
+            ])
             ->add('beneficiaire.user.username', null, [
                 'label' => 'Nom d\'utilisateur',
                 'attr' => ['read_only' => true], 'disabled' => true, ])

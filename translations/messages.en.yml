@@ -1,4 +1,5 @@
 access: Access
+accept: Accept
 accompanying_person_propose_cfn_activation: Your accompanying person %person.firstname% %person.lastname% from organization %center% offers you to activate your Reconnect numeric vault
 add_date: Added at
 add_new_beneficiary: Add new beneficiary
@@ -25,7 +26,7 @@ admin.title: 'Reconnect <span class="main"> Administration</span>'
 aides.metaTitle: Aids
 alt_logo_reconnect: logo association reconnect
 answer_secret_question: Answer secret question
-answer_secret_question_relay_acception: Once validated, the beneficiary will be invited to join these centers. If you are in the presence of the beneficiary, you can enter the answer to his/her secret question in order to accept the invitation to these centers now.
+answer_secret_question_relay_acception: Once validated, the beneficiary will be invited to join these centers. If you are in the presence of the beneficiary, you can enter the answer to his/her secret question in order to accept the invitation to these centers now. Otherwise, the beneficiary can accept the invitation from his account.
 association.categorie.association: Association
 association.categorie.ccas: 'Communal Centre for Social Action(CCSA)'
 association.categorie.choisir: 'Please select  the category of your association'
@@ -39,8 +40,10 @@ beneficiary_added_to_relays: The beneficiary has been added to selected centers
 beneficiary_created_successfully: Beneficiary created successfully
 beneficiary_created_successfully_wait_activation: The account has been successfully created and is awaiting activation by the beneficiary.
 beneficiary_creation_canceled: Beneficiary creation canceled
-beneficiary_creation_remotely_sms: "Your accompanying person %pro.firstname% %pro.lastname% from organization %center% offers you to activate your Reconnect numeric vault Reconnect \nConnect to www.reconnect.fr \nUsername : %username% \nPassword : %password% \nOr click on the link : %autoLoginLink% \nYou can also download the mobile app : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
+beneficiary_creation_remotely_sms: "Your accompanying person %pro.firstname% %pro.lastname% from organization %center% offers you to activate your Reconnect digital vault Reconnect \nConnect to www.reconnect.fr \nUsername : %username% \nPassword : %password% \nOr click on the link : %autoLoginLink% \nYou can also download the mobile app : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
 beneficiary_will_receive_sms_account_information: The beneficiary will receive an SMS to activate his account and complete his information
+beneficiary_already_as_account_affiliate: The beneficiary already has a Reconnect digital vault account. Link this existing account to one of your relays
+beneficiary_has_no_account_create: The beneficiary does not have a Reconnect digital vault account yet. Create this account with the beneficiary or remotely with to his phone number, and link him to one of your relays
 beneficiaire.menu.mesAides: 'My Aids'
 beneficiaire.menu.mesContacts: 'My Contacts'
 beneficiaire.menu.mesDocuments: 'My documents'
@@ -56,6 +59,7 @@ beneficiaire.menu2.mesRelaisReconnect: Relays
 beneficiaire.menu2.monCalendrier: Meetings
 bientotDisponible.text: 'To receive more informations about <a class="bold main">Reconnect,The Solidarity Cloud </a> and join the network of <a class="bold main">Reconnect Relays</a>,con tact us by phone at:<a class="bold main"> 01 58 30 55 29</a> <br/> or by Email: <a class="bold main"> contact@reconnect.fr </a>'
 birthdate: Birthdate
+cancel: Cancel
 centers: Centers
 centre.metaTitle: Structures
 centre.nom: Name
@@ -107,6 +111,7 @@ connexionForm.motDePasse: Password
 connexionForm.oublieMdp: 'I forgot my password or my username'
 connexionForm.username: 'User name'
 connexionForm.usernameV2: 'Username or email'
+contacts: Contacts
 contact.ajouter: 'Add a contact'
 contact.associationLabel: Association
 contact.bienEteEnvoye: 'Your Email has been sent.Our team will contact You soon'
@@ -146,6 +151,7 @@ create_reconnect_account_remotely: Create Reconnect account remotely
 country: Country
 delete: Delete
 delete_your_account: 'If You want to delete Your account click here.'
+delete_currently_shared_document_warning: The document is shared for another %daysCount% days. If you delete it, Users you shared this document with will not be able to see it anymore
 devenirUnRelaiReconnect.accueil.budget0.200000: 'Budget < 200 000 €'
 devenirUnRelaiReconnect.accueil.budget1000000.1500000: '1000 000€ <Budget < 1500 000€'
 devenirUnRelaiReconnect.accueil.budget1500000.2000000: '1500 000€ <Budget <2000 000€'
@@ -239,6 +245,10 @@ digital_cares_appreciated_training_text: of beneficiaries appreciated the traini
 digital_cares_appreciated_training_title: 98 %
 disabledAt: Disabled at
 disabledBy: Disabled by
+disaffiliate_beneficiary_title_part_1: Stop the following of a
+disaffiliate_beneficiary_title_part_2: Beneficiary
+disaffiliate_beneficiary_subtitle: Stop the following of
+documents: Documents
 document.apercu: Previews
 document.aucunFichier: 'For the moment,there is no folder'
 document.avertissementTaille: 'You soon reach the limit size of your storage space (%space%)'
@@ -326,6 +336,7 @@ evenement.rappelsLabel: Reminders
 evenement.smsContent: 'Relay Reconnect reminder'
 evenement.timeLabel: Time
 event: Event
+events: Events
 event_created: Event created
 event_updated: Event updated
 fill_beneficiary_identity_information: Please fill beneficiary's identity information
@@ -376,6 +387,7 @@ form_connexion: Login
 form_forgot_password: I forgot my password or my login
 form_login: Username or Email
 form_password: Password
+generate_password: Generate password
 gestionnaire.centres.btnAjouterUnCentre: 'Add a center'
 gestionnaire.centres.cotisationJusqua: 'Contribution until %dateFin%'
 gestionnaire.centres.cotisationNoneffectuee: 'No realised contribution(disabled center)'
@@ -689,10 +701,16 @@ modePaiement.choisisseModePaiement: 'Choose your way of payment'
 modePaiement.flashBienSupprime: 'You removed this element of your purchases'
 modePaiement.recapitulatif: 'Summary of your purchases'
 modePaiement.virement: Transfer
+my_contacts: My Contacts
+my_documents: My Documents
+my_events: My Events
+my_notes: My Notes
+my_relays: My Relays
 move: Move
 name: Name
 no: No
 no_result: No result
+notes: Notes
 note.ajouter: 'Add a note'
 note.bienSauvegarde: 'Your note has been saved'
 note.bienSupprime: 'Your note has been deleted.'
@@ -784,6 +802,7 @@ public_reset_password_email_has_been_sent: An email was sent to you with instruc
 public_reset_password_failure_not_in_time: You did not renew your password within the time limit, please try again
 public_reset_password_subtitle: Enter your email address or phone number to start the process
 public_reset_password_success: Your password has been changed, you can now connect to your account
+rediscover_our_solutions: (re)Discover our solutions
 registerForm.adresse: 'Your personal address (optional)'
 registerForm.codePostal: 'Postal code'
 registerForm.email: Email
@@ -796,9 +815,13 @@ registerForm.telephone: 'Phone number'
 registerForm.username: Username
 registerForm.ville: City
 relays: Relays
+relay_has_no_address: The Reconnect relay did not informed any address
 reminder: Reminder
 reminder_sms: SMS Reminder
 remove_from_relay: Remove from relay
+removed_from_relay: Removed from relay
+remove_from_relay_confirm: Are you sure you want to remove the beneficiary %beneficiary% ?
+remove_from_relay_confirm_relay: Are you sure you want to remove the beneficiary %beneficiary% from the relay %relay% ?
 rename: Rename
 renew_password: Renew password
 reset_password_requested_by_SMS: Current reset request was made by SMS
@@ -846,7 +869,9 @@ secret_answer: Secret answer
 secret_answer_optional: Secret answer (optional)
 secret_question: Secret question
 search_existing_beneficiary: Search for an existing beneficiary
+select_relays_for_disaffiliation: This user is linked to one or several relays that you manage, please choose relays for which you want to stop the following
 send: Send
+sending_sms_account_activation: Sending the SMS for account activation
 settings_saved_successfully: 'Your settings has been registered'
 share_document: Share document
 share_document_error_expired: The validity of the download link has expired, please retry
@@ -856,12 +881,14 @@ share_document_success: An email with a link to download this document has been 
 share_document_with: Recipient's email
 shared: Shared
 sms_sent: SMS sent
+sms_sent_failed: SMS sending failed, please check that the phone number is valid
 status: Status
 statut.abandoned: Dropped
 statut.confirmed: Confirmed
 statut.created: Created
 statut.waiting: 'Waiting(cheque/bank transfer)'
 steps_count: Step %step%/%totalSteps%
+subscription_confirmation: Subscription confirmation
 summary: Summary
 summary_confirm_information: Summary, please confirm the information below
 surname: First name
@@ -872,6 +899,7 @@ switchUser.connecte: 'You are connected as <span class="italic">%username%'
 username: Username
 tax: Tax
 terms_of_use: Terms of use
+thank_you_for_subscription: Thanks for subscribing
 unsupported_file_extension: Error %fileName%, unsupported file extension
 used_available: '%used% used over %available% available'
 user.cgu.bAccepter: 'I accept the terms of use'
@@ -930,10 +958,12 @@ website_CGS: Terms and conditions of the site
 website_confidentiality: Privacy policy of the site
 website_legal: Legal notice
 yes: Yes
+you_are_now_subscribed_for_newsletter: You are now subscribed to our newsletter
+you_can_unsubscribe_for_newsletter: You can unsubscribe from this list at any time, using the link you will find at the bottom of each newsletter
 you_must_provide_phone_number: You must provide a phone number
 you_can_download_mobile_app: You can also download the mobile app
+while_waiting_next_newsletter_1: While waiting for the next one, you can
+while_waiting_next_newsletter_2: find our news on our social networks and our blog!
 work: Work
 wrong_current_password: 'Your present password is false'
 wrong_secret_answer: Wrong secret answer
-delete_currently_shared_document_warning: The document is shared for another %daysCount% days. If you delete it, the sharing will be cancelled
-sms_sent_failed: SMS sending failed, please check that the phone number is valid

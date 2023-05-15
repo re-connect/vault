@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use App\Traits\GedmoTimedTrait;
+use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -44,7 +45,9 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     /** @var Collection */
     private $evenements;
     /** @var Collection */
+    #[UniqueExternalLink]
     private $externalLinks;
+    private ?bool $wasGestionnaire = false;
 
     /**
      * Constructor.
@@ -418,6 +421,26 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
             ->map(
                 fn (MembreCentre $professionalRelay) => $professionalRelay->getCentre(),
             );
+    }
+
+    /**
+     * @return Collection <int, Centre>
+     */
+    public function getManageableRelays(Beneficiaire $beneficiary): Collection
+    {
+        return $this->getAffiliatedRelaysWithBeneficiaryManagement()->filter(fn (Centre $relay) => $beneficiary->getAffiliatedRelays()->contains($relay));
+    }
+
+    public function wasGestionnaire(): ?bool
+    {
+        return $this->wasGestionnaire;
+    }
+
+    public function setWasGestionnaire(?bool $wasGestionnaire): self
+    {
+        $this->wasGestionnaire = $wasGestionnaire;
+
+        return $this;
     }
 
     public function __clone()

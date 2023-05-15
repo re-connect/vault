@@ -20,11 +20,6 @@ class ClientBeneficiaire extends ClientEntity
         return $this->entity;
     }
 
-    public function __toString(): string
-    {
-        return $this->getClient()->getNom().': '.$this->getDistantId();
-    }
-
     public function getBeneficiaireCentre(): ?BeneficiaireCentre
     {
         return $this->beneficiaireCentre;

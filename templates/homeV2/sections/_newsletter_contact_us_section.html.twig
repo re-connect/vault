@@ -1,0 +1,18 @@
+<section class="py-2 pt-md-4 pb-md-2 bg-primary">
+    <div class="row text-center text-white align-items-center justify-content-center mx-0">
+        <div class="col-md-4 mt-5 mt-md-0 py-2 py-md-4">
+            <img class="img-fluid w-25 mb-3"
+                 src="{{ asset('build/images/homeV2/logo_simple_contact.svg') }}"
+                 alt="{{ 'alt_logo_reconnect'|trans }}">
+            <div class="my-4 my-md-0 mt-2">
+                <a class="h3 text-white"
+                   href="{{ path('re_main_contactV2') }}">
+                    {{ 'contact_us_button'| trans }}
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            {{ include('homeV2/pages/components/_reconnect_information.html.twig') }}
+        </div>
+    </div>
+</section>

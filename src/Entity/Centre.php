@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
@@ -138,8 +139,10 @@ class Centre implements \JsonSerializable
     /**
      * @var Collection|array
      */
+    #[UniqueExternalLink]
     private $externalLinks;
     private bool $canada = false;
+    private ?Association $association = null;
 
     #[Groups(['v3:center:read'])]
     public function getDistantIds(): ArrayCollection
@@ -444,6 +447,11 @@ class Centre implements \JsonSerializable
         return $this;
     }
 
+    public function getNameAndAddress(): string
+    {
+        return sprintf('%s (%s)', $this->nom, $this->getAdresse());
+    }
+
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
@@ -619,6 +627,18 @@ class Centre implements \JsonSerializable
     public function setRegion(?string $region = null): self
     {
         $this->region = $region;
+
+        return $this;
+    }
+
+    public function getAssociation(): ?Association
+    {
+        return $this->association;
+    }
+
+    public function setAssociation(?Association $association): self
+    {
+        $this->association = $association;
 
         return $this;
     }

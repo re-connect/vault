@@ -2,6 +2,7 @@ sonata_admin:
     show_mosaic_button: false
     templates:
         layout: sonata/admin_layout.html.twig
+        list: sonata/base_list.html.twig
     options:
         html5_validate: true
     dashboard:

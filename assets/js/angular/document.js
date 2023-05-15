@@ -16,6 +16,8 @@ app.controller("EntityInformationModalCtrl", function ($scope) {
 
     $scope.getStatut = entity => entity.b_prive ? "Privé" : "Partagé";
 
+    $scope.getCreator = entity => capitalizeFirstLetters(entity.depose_par_full_name);
+
     $scope.isDefined = () => (typeof $scope.entity !== "undefined");
 
     $scope.getDocumentsLength = (folderId) => {
@@ -24,6 +26,8 @@ app.controller("EntityInformationModalCtrl", function ($scope) {
             return folderEdit.documents.length;
         }
     };
+
+    const capitalizeFirstLetters = string => string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 });
 
 app.controller("EntityRenameModalCtrl", function ($scope, $http, dataService) {
@@ -415,35 +419,6 @@ app.controller("DocumentsListCtrl", function ($scope, $http, $filter, $location,
 
     $scope.onOutFile = function () {
         $(".tableLine").removeClass("tableLine-hover");
-    };
-
-    $scope.print = function () {
-        if ($scope.currentEntity.url) {
-            if ($scope.currentEntity.extension === "pdf") {
-                $http.get(
-                    $scope.currentEntity.url, {
-                        headers: {
-                            "Content-type": "application/pdf"
-                        },
-                        responseType: "arraybuffer"
-                    }
-                )
-                    .then(response => {
-                        const data = response.data;
-                        const file = new Blob([data], {type: "application/pdf"});
-                        const fileUrl = URL.createObjectURL(file);
-                        const printWindow = window.open(fileUrl);
-                        printWindow.print();
-                    });
-            } else {
-                const url = $scope.currentEntity.url;
-                const iframe = document.getElementById("iframeprint");
-                iframe.src = url;
-
-                iframe.focus();
-                iframe.contentWindow.print();
-            }
-        }
     };
 
     $scope.getMessageDelete = folderDoc => {

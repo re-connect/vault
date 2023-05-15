@@ -199,7 +199,7 @@ class UserCreationController extends AbstractController
                     return $this->redirect($this->generateUrl('re_gestionnaire_membres'));
                 }
                 if ($subject->getUser()->isBeneficiaire()) {
-                    return $this->redirect($this->generateUrl('re_membre_beneficiaires'));
+                    return $this->redirect($this->generateUrl('list_beneficiaries'));
                 }
 
                 return $this->redirect($this->generateUrl('re_membre_membres'));
@@ -247,7 +247,7 @@ class UserCreationController extends AbstractController
                     return $this->redirect($this->generateUrl('re_membre_membres'));
                 }
 
-                return $this->redirect($this->generateUrl('re_membre_beneficiaires'));
+                return $this->redirect($this->generateUrl('list_beneficiaries'));
             }
 
             $form->get('code')->addError(new FormError($this->translator->trans('membre.sendSmsCode.mauvaiseReponse')));
@@ -277,7 +277,7 @@ class UserCreationController extends AbstractController
             }
         }
         if ($user->isMembre() && $subjectUser->isBeneficiaire()) {
-            $redirectRoute = 're_membre_beneficiaires';
+            $redirectRoute = 'list_beneficiaries';
             if (false === $this->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $subject)) {
                 throw new AccessDeniedException("Vous n'avez pas le droit d'arrêter le suivi de ce bénéficiaire");
             }

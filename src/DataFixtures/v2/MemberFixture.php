@@ -18,6 +18,7 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
     public const MEMBER_MAIL = 'v2_test_user_membre@mail.com';
     public const MEMBER_MAIL_WITH_RELAYS = 'v2_test_user_membre_relays@mail.com';
     public const MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES = 'v2_test_user_membre_relays_shared_with_beneficiaries@mail.com';
+    public const MEMBER_MAIL_WITH_UNIQUE_RELAY_SHARED_WITH_BENEFICIARIES = 'v2_test_user_membre_unique_relay_shared_with_beneficiaries@mail.com';
     public const MEMBER_PASSWORD_EXPIRED_MAIL = 'v2_test_user_membre_password_expired@mail.com';
     public const MEMBER_PASSWORD_OVERDUE_MAIL = 'v2_test_user_membre_password_overdue@mail.com';
 
@@ -28,8 +29,17 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
         $this->createMember($this->getTestUserWithExpiredPassword());
         $this->createMember($this->getTestUserWithRelays(), RelayFactory::createMany(4));
         $this->createMember(
-            $this->getTestUserWithRelaySharedWithBeneficiary(),
-            [RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY])],
+            $this->getTestUserWithRelaysSharedWithBeneficiary(),
+            [
+                RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY_1]),
+                RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY_2]),
+            ],
+        );
+        $this->createMember(
+            $this->getTestUserWithUniqueRelaySharedWithBeneficiary(),
+            [
+                RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY_1]),
+            ],
         );
     }
 
@@ -63,10 +73,17 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
         ])->object();
     }
 
-    public function getTestUserWithRelaySharedWithBeneficiary(): User
+    public function getTestUserWithRelaysSharedWithBeneficiary(): User
     {
         return UserFactory::createOne([
             'email' => self::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES,
+        ])->object();
+    }
+
+    public function getTestUserWithUniqueRelaySharedWithBeneficiary(): User
+    {
+        return UserFactory::createOne([
+            'email' => self::MEMBER_MAIL_WITH_UNIQUE_RELAY_SHARED_WITH_BENEFICIARIES,
         ])->object();
     }
 

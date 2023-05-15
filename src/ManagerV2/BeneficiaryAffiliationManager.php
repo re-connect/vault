@@ -23,6 +23,7 @@ class BeneficiaryAffiliationManager
         private readonly BeneficiaireRepository $beneficiaryRepository,
         private readonly EntityManagerInterface $em,
         private readonly AuthorizationCheckerInterface $authorizationChecker,
+        private readonly RelayManager $relayManager,
         private Security $security,
     ) {
     }
@@ -51,7 +52,7 @@ class BeneficiaryAffiliationManager
 
     public function isSecretAnswerValid(Beneficiaire $beneficiary, ?string $secretAnswer): bool
     {
-        return $secretAnswer === $beneficiary->getReponseSecrete();
+        return strtolower($secretAnswer) === strtolower($beneficiary->getReponseSecrete());
     }
 
     /**
@@ -86,5 +87,10 @@ class BeneficiaryAffiliationManager
         }
 
         $this->em->flush();
+    }
+
+    public function disaffiliateBeneficiary(Beneficiaire $beneficiary, Centre $relay): void
+    {
+        $this->relayManager->removeUserFromRelay($beneficiary->getUser(), $relay);
     }
 }

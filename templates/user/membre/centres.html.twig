@@ -23,7 +23,7 @@
                         {% if isGestionnaire %}
                             <a href="{{ path('re_membre_membresCentre', {'id' : centre.id}) }}"
                                class="btn btn-blue">{% trans %}membre.centres.voirMembres{% endtrans %}</a>
-                            <a href="{{ path('re_membre_beneficiaires', {'id' : centre.id}) }}"
+                            <a href="{{ path('list_beneficiaries', {'id' : centre.id}) }}"
                                class="btn btn-blue">{% trans %}membre.centres.voirBeneficiaires{% endtrans %}</a>
                         {% endif %}
                         {% if membreCentres %}
@@ -33,7 +33,7 @@
                                    class="btn btn-blue">{% trans %}membre.centres.voirMembres{% endtrans %}</a>
                             {% endif %}
                             {% if droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES")] is defined and droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES")] %}
-                                <a href="{{ path('re_membre_beneficiaires', {'id' : centre.id}) }}"
+                                <a href="{{ path('list_beneficiaries', {'id' : centre.id}) }}"
                                    class="btn btn-blue">{% trans %}membre.centres.voirBeneficiaires{% endtrans %}</a>
                             {% endif %}
                         {% endif %}

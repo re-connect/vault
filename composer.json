@@ -5,6 +5,7 @@
   "description": "A vault to store any document",
   "require": {
     "php": ">=8.1",
+    "ext-apcu": "*",
     "ext-ctype": "*",
     "ext-dom": "*",
     "ext-fileinfo": "*",
@@ -51,6 +52,7 @@
     "symfony/http-client": "6.1.*",
     "symfony/http-kernel": "6.1.*",
     "symfony/intl": "6.1.*",
+    "symfony/loco-translation-provider": "6.1.*",
     "symfony/mailer": "6.1.*",
     "symfony/mailjet-mailer": "6.1.*",
     "symfony/mailjet-notifier": "6.1.*",

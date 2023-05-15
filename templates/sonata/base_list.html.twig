@@ -1,0 +1,15 @@
+{% extends "@SonataAdmin/CRUD/base_list.html.twig" %}
+
+{% block batch_actions %}
+    <select name="action" style="width: auto; height: auto" class="form-control">
+        {% for action, options in batchactions %}
+            <option value="{{ action }}">
+                {% if options.translation_domain is defined and options.translation_domain is same as(false) %}
+                    {{ options.label }}
+                {% else %}
+                    {{ options.label|trans({}, options.translation_domain ?? admin.translationDomain) }}
+                {% endif %}
+            </option>
+        {% endfor %}
+    </select>
+{% endblock %}

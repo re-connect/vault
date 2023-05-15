@@ -2,19 +2,22 @@
 
 namespace App\Tests\v2\Service;
 
+use App\Api\Manager\ApiClientManager;
 use App\Repository\ClientRepository;
 use App\ServiceV2\BeneficiaryClientLinkService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class BeneficiaryClientLinkServiceTest extends KernelTestCase
 {
     private ?BeneficiaryClientLinkService $service = null;
-    private ?ClientRepository $clientRepository = null;
 
     protected function setUp(): void
     {
-        $this->clientRepository = $this->createMock(ClientRepository::class);
-        $this->service = new BeneficiaryClientLinkService($this->clientRepository);
+        $clientRepository = $this->createMock(ClientRepository::class);
+        $em = $this->createMock(EntityManagerInterface::class);
+        $apiClientManager = $this->createMock(ApiClientManager::class);
+        $this->service = new BeneficiaryClientLinkService($em, $clientRepository, $apiClientManager);
     }
 
     public function testServiceExists(): void

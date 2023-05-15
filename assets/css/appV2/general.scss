@@ -6,3 +6,7 @@ main {
   min-height: 100%;
   flex: 1;
 }
+
+.no-hover:hover {
+  pointer-events: none;
+}

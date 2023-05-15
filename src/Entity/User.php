@@ -186,6 +186,7 @@ class User extends BaseUser implements \JsonSerializable
     private bool $canada = false;
     private ?string $fcnToken = null;
     private ?bool $isCreationProcessPending = false;
+    private ?string $oldUsername = null;
 
     public function __construct()
     {
@@ -1112,5 +1113,36 @@ class User extends BaseUser implements \JsonSerializable
         }
 
         return new ArrayCollection();
+    }
+
+    /**
+     * @return Collection <int, BeneficiaireCentre|MembreCentre>
+     */
+    public function getSubjectRelays(): Collection
+    {
+        return $this->isBeneficiaire()
+            ? $this->getSubjectBeneficiaire()->getBeneficiairesCentres()
+            : $this->getSubjectMembre()->getMembresCentres();
+    }
+
+    public function getSubjectRelaysForRelay(Centre $relay): BeneficiaireCentre|MembreCentre|null
+    {
+        $subjectRelay = $this->getSubjectRelays()
+            ->filter(fn (BeneficiaireCentre|MembreCentre $subjectRelay) => $subjectRelay->getCentre() === $relay)
+            ->first();
+
+        return false === $subjectRelay ? null : $subjectRelay;
+    }
+
+    public function getOldUsername(): ?string
+    {
+        return $this->oldUsername;
+    }
+
+    public function setOldUsername(?string $oldUsername): self
+    {
+        $this->oldUsername = $oldUsername;
+
+        return $this;
     }
 }

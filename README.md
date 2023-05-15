@@ -4,7 +4,7 @@
 
 To install project, follow these steps :
 
-[Basic Symfony/Mysql project setup steps](https://ambroise.reconnect.fr/books/modes-operatoires/page/installation-projet-symfonymysql)
+[Basic Symfony/Mysql project setup steps](https://github.com/re-connect/symfony-project-setup)
 
 ## Start developing
 

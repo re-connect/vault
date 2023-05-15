@@ -12,9 +12,11 @@ use App\Api\Dto\BeneficiaryDto;
 use App\Api\Filters\DistantIdFilter;
 use App\Api\State\BeneficiaryStateProcessor;
 use App\Api\State\BeneficiaryStateProvider;
+use App\Controller\Api\UnlinkBeneficiaryController;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Traits\GedmoTimedTrait;
+use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
@@ -31,12 +33,29 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
             security: "is_granted('READ', object)",
             provider: BeneficiaryStateProvider::class,
         ),
-//        new Delete(security: "is_granted('UPDATE', object)"),
         new Patch(
             security: "is_granted('UPDATE', object)",
             processor: BeneficiaryStateProcessor::class,
         ),
-//        new Put(security: "is_granted('UPDATE', object)"),
+        new Patch(
+            uriTemplate: '/beneficiaries/{id}/unlink',
+            controller: UnlinkBeneficiaryController::class,
+            openapiContext: [
+                'summary' => 'Unlink a beneficiary from your oauth2 client',
+                'requestBody' => [
+                    'content' => [
+                        'application/json' => [
+                            'schema' => [
+                                'type' => 'object',
+                            ],
+                        ],
+                    ],
+                ],
+                'tags' => ['Beneficiaires'],
+            ],
+            description: 'Unlink a beneficiary from your oauth2 client',
+            security: "is_granted('UPDATE', object)"
+        ),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"),
         new Post(input: BeneficiaryDto::class, processor: BeneficiaryStateProcessor::class),
     ],
@@ -111,6 +130,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     private ?string $reponseSecrete = null;
 
     /** @var Collection<ClientBeneficiaire> */
+    #[UniqueExternalLink]
     private Collection $externalLinks;
 
     /** @var ?ArrayCollection<int, Centre> */
@@ -887,13 +907,17 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function getExternalLinkForClient(?Client $client): ?ClientBeneficiaire
     {
-        if (!$client) {
-            return null;
-        }
+        return !$client
+            ? null
+            : $this->getExternalLinksForClient($client)->first() ?? null;
+    }
 
-        $externalLinks = $this->externalLinks->filter(fn (ClientBeneficiaire $link) => $link->getClient() === $client)->first();
-
-        return $externalLinks ?? null;
+    /** @return ?ArrayCollection<int, ClientBeneficiaire> */
+    public function getExternalLinksForClient(?Client $client): ?ArrayCollection
+    {
+        return !$client
+            ? null
+            : $this->externalLinks->filter(fn (ClientBeneficiaire $link) => $link->getClient() === $client);
     }
 
     public function addClientExternalLink(Client $client, string $externalId, string $memberExternalId = null): self

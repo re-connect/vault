@@ -4,9 +4,11 @@ namespace App\Api\Dto;
 
 use App\Entity\Beneficiaire;
 use App\Entity\User;
+use App\Validator\Constraints\UniqueExternalLink;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[UniqueExternalLink]
 final class BeneficiaryDto
 {
     #[Assert\NotNull]

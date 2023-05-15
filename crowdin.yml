@@ -1,0 +1,3 @@
+files:
+  - source: translations
+    translation: translations/messages.%three_letters_code%.yml

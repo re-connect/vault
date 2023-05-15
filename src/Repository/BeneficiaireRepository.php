@@ -131,17 +131,18 @@ class BeneficiaireRepository extends ServiceEntityRepository
 
     public function getBeneficiariesSiSiaoNumbers(?Client $client): array
     {
-//        return $this->createQueryBuilder('b')
-//            ->select('b.siSiaoNumber')
-//            ->andWhere('b.siSiaoNumber IS NOT NULL')
-//            ->getQuery()
-//            ->getArrayResult();
+        //        return $this->createQueryBuilder('b')
+        //            ->select('b.siSiaoNumber')
+        //            ->andWhere('b.siSiaoNumber IS NOT NULL')
+        //            ->getQuery()
+        //            ->getArrayResult();
         return $this->createQueryBuilder('b')
-            ->select('c.distantId')
+            ->select('b.id, c.distantId')
             ->join('b.externalLinks', 'c')
             ->join('c.client', 'client')
             ->andWhere('client.randomId = :clientId')
             ->andWhere('c.distantId IS NOT NULL')
+            ->andWhere("c.distantId LIKE 'SI-%' ")
             ->setParameters(['clientId' => $client->getRandomId()])
             ->getQuery()
             ->getArrayResult();
@@ -184,6 +185,8 @@ class BeneficiaireRepository extends ServiceEntityRepository
             ->innerJoin('bc.centre', 'c')
             ->innerJoin('b.user', 'u')
             ->addSelect('u')
+            ->addSelect('bc')
+            ->addSelect('c')
             ->andWhere('b.isCreating = false')
             ->andWhere('bc.bValid = true');
 
