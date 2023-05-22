@@ -107,6 +107,10 @@ class PrivateResettingController extends AbstractController
     #[IsGranted('gestion beneficiaire', 'userToReset')]
     public function privateResetPasswordRandom(Request $request, User $userToReset, UserManager $manager): Response
     {
+        if (!$userToReset->isBeneficiaire()) {
+            return $this->redirectToRoute('list_beneficiaries');
+        }
+
         $newPassword = null;
         $form = $this->createFormBuilder()->add('submit', SubmitType::class, [
             'attr' => ['class' => 'btn-green btn-blue'],
