@@ -188,4 +188,14 @@ class Dossier extends DonneePersonnelle
     {
         return $this->documents->count() || $this->sousDossiers->exists(fn (int $key, Dossier $dossier) => $dossier->hasDocuments());
     }
+
+    public function toggleVisibility(): void
+    {
+        $this->setBPrive(!$this->getBPrive());
+
+        $subData = [...$this->getSousDossiers()->toArray(), ...$this->getDocuments()->toArray()];
+        foreach ($subData as $subDatum) {
+            $subDatum->toggleVisibility();
+        }
+    }
 }

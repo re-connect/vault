@@ -137,7 +137,7 @@ class FolderController extends AbstractController
     public function toggleVisibility(Request $request, Dossier $folder, FolderManager $manager): Response
     {
         $parentFolder = $folder->getDossierParent();
-        $manager->toggleVisibility($folder, !$folder->getBPrive());
+        $manager->toggleVisibility($folder);
 
         return $request->isXmlHttpRequest()
             ? new JsonResponse($folder)

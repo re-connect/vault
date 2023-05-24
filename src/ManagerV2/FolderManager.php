@@ -2,7 +2,6 @@
 
 namespace App\ManagerV2;
 
-use App\Entity\Document;
 use App\Entity\Dossier;
 use App\ServiceV2\BucketService;
 use App\ServiceV2\Traits\UserAwareTrait;
@@ -36,23 +35,15 @@ class FolderManager
         } elseif ($parentFolder !== $folder) {
             $parentFolder->addSousDossier($folder);
             $folder->setBPrive($parentFolder->getBPrive() || $folder->getBprive());
-            $this->toggleVisibility($folder, $folder->getBPrive());
+            $this->toggleVisibility($folder);
         }
 
         $this->em->flush();
     }
 
-    public function toggleVisibility(Document|Dossier $data, bool $visibility): void
+    public function toggleVisibility(Dossier $folder): void
     {
-        $data->setBPrive($visibility);
-
-        if ($data instanceof Dossier) {
-            $subData = [...$data->getSousDossiers()->toArray(), ...$data->getDocuments()->toArray()];
-            foreach ($subData as $subDatum) {
-                $this->toggleVisibility($subDatum, $visibility);
-            }
-        }
-
+        $folder->toggleVisibility();
         $this->em->flush();
     }
 
