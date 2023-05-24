@@ -193,9 +193,12 @@ class Dossier extends DonneePersonnelle
     {
         $this->setBPrive(!$this->getBPrive());
 
-        $subData = [...$this->getSousDossiers()->toArray(), ...$this->getDocuments()->toArray()];
-        foreach ($subData as $subDatum) {
-            $subDatum->toggleVisibility();
-        }
+        array_map(
+            fn (DonneePersonnelle $personalData) => $personalData->toggleVisibility(),
+            [
+            ...$this->getSousDossiers()->filter(fn (Dossier $dossier) => $dossier->getBPrive() !== $this->getBPrive())->toArray(),
+            ...$this->getDocuments()->filter(fn (Document $document) => $document->getBPrive() !== $this->getBPrive())->toArray(),
+            ],
+        );
     }
 }

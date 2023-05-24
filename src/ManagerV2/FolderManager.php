@@ -34,8 +34,9 @@ class FolderManager
             $folder->setDossierParent();
         } elseif ($parentFolder !== $folder) {
             $parentFolder->addSousDossier($folder);
-            $folder->setBPrive($parentFolder->getBPrive() || $folder->getBprive());
-            $this->toggleVisibility($folder);
+            if ($folder->getBPrive() !== $parentFolder->getBPrive()) {
+                $this->toggleVisibility($folder);
+            }
         }
 
         $this->em->flush();
