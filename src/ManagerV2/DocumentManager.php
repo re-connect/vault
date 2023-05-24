@@ -247,7 +247,7 @@ class DocumentManager
 
     public function toggleVisibility(Document $document): void
     {
-        $document->setBPrive(!$document->getBPrive());
+        $document->toggleVisibility();
         $this->em->flush();
     }
 

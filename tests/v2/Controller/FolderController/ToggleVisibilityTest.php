@@ -5,6 +5,7 @@ namespace App\Tests\v2\Controller\FolderController;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\BeneficiaireFactory;
+use App\Tests\Factory\DocumentFactory;
 use App\Tests\Factory\FolderFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
@@ -43,5 +44,41 @@ class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteIn
             $newUrl = sprintf(self::URL, $privateFolder->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
         }
+    }
+
+    public function provideTestVisibilityIsToggledRecursively(): ?\Generator
+    {
+        yield 'Toggle visibility should hydrate all childs with private folder' => [true];
+        yield 'Toggle visibility should hydrate all childs with shared folder' => [false];
+    }
+
+    /** @dataProvider provideTestVisibilityIsToggledRecursively */
+    public function testVisibilityIsToggledRecursively(bool $isPrivate): void
+    {
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        // We create 1 folder with 1 child folder that contains 2 documents
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate])->object();
+        $childFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate, 'dossierParent' => $folder])->object();
+        $firstDocument = DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate, 'dossier' => $childFolder])->object();
+        // Second document does not have the same visibility as parent folder, this case should not occur, but we need to make sure that visibility is toggled only if childen visibility is different
+        $secondDocumentWithWrongVisibility = DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => !$isPrivate, 'dossier' => $childFolder])->object();
+
+        $this->assertRoute(
+            sprintf(self::URL, $folder->getId()),
+            200, BeneficiaryFixture::BENEFICIARY_MAIL,
+            null,
+            'PATCH',
+            true,
+        );
+
+        $publicFolderVisibility = FolderFactory::find($folder)->object()->getBprive();
+        $childFolderVisibility = FolderFactory::find($childFolder)->object()->getBprive();
+        $firstDocumentVisibility = DocumentFactory::find($firstDocument)->object()->getBprive();
+        $secondDocumentVisibility = DocumentFactory::find($secondDocumentWithWrongVisibility)->object()->getBprive();
+
+        self::assertEquals(!$isPrivate, $publicFolderVisibility);
+        self::assertEquals($childFolderVisibility, $publicFolderVisibility);
+        self::assertEquals($firstDocumentVisibility, $publicFolderVisibility);
+        self::assertEquals($secondDocumentVisibility, $publicFolderVisibility);
     }
 }

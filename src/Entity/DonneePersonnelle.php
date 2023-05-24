@@ -204,4 +204,9 @@ abstract class DonneePersonnelle implements \JsonSerializable
     {
         return $this->creators;
     }
+
+    public function toggleVisibility(): void
+    {
+        $this->setBPrive(!$this->getBPrive());
+    }
 }
