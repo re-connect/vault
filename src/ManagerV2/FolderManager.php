@@ -3,7 +3,6 @@
 namespace App\ManagerV2;
 
 use App\Entity\Document;
-use App\Entity\DonneePersonnelle;
 use App\Entity\Dossier;
 use App\ServiceV2\BucketService;
 use App\ServiceV2\Traits\UserAwareTrait;
@@ -47,12 +46,10 @@ class FolderManager
     {
         $data->setBPrive($visibility);
 
-        if (DonneePersonnelle::PRIVE === $visibility) {
-            if ($data instanceof Dossier) {
-                $subData = [...$data->getSousDossiers()->toArray(), ...$data->getDocuments()->toArray()];
-                foreach ($subData as $subDatum) {
-                    $this->toggleVisibility($subDatum, $visibility);
-                }
+        if ($data instanceof Dossier) {
+            $subData = [...$data->getSousDossiers()->toArray(), ...$data->getDocuments()->toArray()];
+            foreach ($subData as $subDatum) {
+                $this->toggleVisibility($subDatum, $visibility);
             }
         }
 
