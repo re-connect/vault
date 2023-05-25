@@ -14,14 +14,14 @@
             'path': path('document_download', {'id': document.id}),
         }) }}
     </td>
-    {% if app.user.isBeneficiaire %}
-        <td class="bg-white borderless w-25 align-middle">
+    <td class="bg-white borderless w-25 align-middle">
+        {% if app.user.isBeneficiaire and not document.dossier%}
             {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
                 'url': path('document_toggle_visibility', {'id': document.id}),
                 'private': document.bPrive,
             }) }}
-        </td>
-    {% endif %}
+        {% endif %}
+    </td>
     <td class="bg-white borderless text-end pe-3 pe-sm-4 align-middle" {{ stimulus_controller('dropdown-menu') }}>
         {{ include('v2/vault/components/_action_dropdown.html.twig', {
             'editPath': path('document_rename', {'id': document.id}),

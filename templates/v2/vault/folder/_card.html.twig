@@ -24,14 +24,14 @@
             </i>
         {% endif %}
     </td>
-    {% if app.user.isBeneficiaire %}
-        <td class="bg-white borderless w-25 align-middle">
+    <td class="bg-white borderless w-25 align-middle">
+        {% if app.user.isBeneficiaire and not folder.dossierParent %}
             {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
                 'url': path('folder_toggle_visibility', {'id': folder.id}),
                 'private': folder.bPrive,
             }) }}
-        </td>
-    {% endif %}
+        {% endif %}
+    </td>
     <td class="bg-white borderless text-end pe-3 pe-sm-4 align-middle" {{ stimulus_controller('dropdown-menu') }}>
         {% set deleteMessage = folder.hasDocuments ? 'folder_contains_documents_alert' : 'modal_message_folder_deletev2'%}
         {{ include('v2/vault/components/_action_dropdown.html.twig', {

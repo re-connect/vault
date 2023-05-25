@@ -81,16 +81,24 @@ class DocumentRepository extends ServiceEntityRepository
         return $queryBuilder;
     }
 
-    private function searchByBeneficiaryQueryBuilder(Beneficiaire $beneficiary, ?string $word): QueryBuilder
+    private function searchByBeneficiaryQueryBuilder(Beneficiaire $beneficiary, ?string $word, Dossier $folder = null): QueryBuilder
     {
-        return $this->createQueryBuilder('d')
+        $qb = $this->createQueryBuilder('d')
             ->andWhere('d.beneficiaire = :beneficiary')
-            ->andWhere('d.nom LIKE :word')
-            ->orderBy('d.createdAt', 'DESC')
-            ->setParameters([
-                'beneficiary' => $beneficiary,
-                'word' => sprintf('%%%s%%', $word),
-            ]);
+            ->andWhere('d.nom LIKE :word');
+
+        $parameters = [
+            'beneficiary' => $beneficiary,
+            'word' => sprintf('%%%s%%', $word),
+        ];
+
+        if ($folder) {
+            $qb->andWhere('d.dossier = :folder');
+            $parameters['folder'] = $folder->getId();
+        }
+
+        return $qb->orderBy('d.createdAt', 'DESC')
+            ->setParameters($parameters);
     }
 
     /**
@@ -117,9 +125,9 @@ class DocumentRepository extends ServiceEntityRepository
     /**
      * @return Document[]
      */
-    public function searchByBeneficiary(Beneficiaire $beneficiary, ?string $word): array
+    public function searchByBeneficiary(Beneficiaire $beneficiary, ?string $word, Dossier $folder = null): array
     {
-        return $this->searchByBeneficiaryQueryBuilder($beneficiary, $word)
+        return $this->searchByBeneficiaryQueryBuilder($beneficiary, $word, $folder)
             ->getQuery()
             ->getResult();
     }
@@ -127,9 +135,9 @@ class DocumentRepository extends ServiceEntityRepository
     /**
      * @return Document[]
      */
-    public function searchSharedByBeneficiary(Beneficiaire $beneficiary, ?string $word): array
+    public function searchSharedByBeneficiary(Beneficiaire $beneficiary, ?string $word, Dossier $folder = null): array
     {
-        return $this->searchByBeneficiaryQueryBuilder($beneficiary, $word)
+        return $this->searchByBeneficiaryQueryBuilder($beneficiary, $word, $folder)
             ->andWhere('d.bPrive = FALSE')
             ->getQuery()
             ->getResult();
