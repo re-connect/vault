@@ -114,6 +114,7 @@ class DossierRepository extends ServiceEntityRepository
     public function searchSharedByBeneficiary(Beneficiaire $beneficiary, string $word, Dossier $folder = null): array
     {
         return $this->searchByBeneficiaryQueryBuilder($beneficiary, $word, $folder)
+            ->andWhere('d.bPrive = FALSE')
             ->getQuery()
             ->getResult();
     }
