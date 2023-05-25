@@ -104,37 +104,37 @@ class DocumentManager
     /**
      * @return array<Document|Dossier>
      */
-    public function searchFoldersAndDocumentsWithUrl(Beneficiaire $beneficiary, string $word): array
+    public function searchFoldersAndDocumentsWithUrl(Beneficiaire $beneficiary, ?string $word, Dossier $folder = null): array
     {
         return $word
-            ? [...$this->folderRepository->searchByBeneficiary($beneficiary, $word), ...$this->searchDocumentsWithUrl($beneficiary, $word)]
-            : [...$this->folderRepository->findAllByBeneficiary($beneficiary), ...$this->getAllDocumentsWithUrl($beneficiary)];
+            ? [...$this->folderRepository->searchByBeneficiary($beneficiary, $word, $folder), ...$this->searchDocumentsWithUrl($beneficiary, $word, $folder)]
+            : $this->getAllFoldersAndDocumentsWithUrl($beneficiary, $folder);
     }
 
     /**
      * @return array<Document|Dossier>
      */
-    public function searchSharedFoldersAndDocumentsWithUrl(Beneficiaire $beneficiary, string $word): array
+    public function searchSharedFoldersAndDocumentsWithUrl(Beneficiaire $beneficiary, ?string $word, Dossier $folder = null): array
     {
         return $word
-            ? [...$this->folderRepository->searchSharedByBeneficiary($beneficiary, $word), ...$this->searchSharedDocumentsWithUrl($beneficiary, $word)]
-            : [...$this->folderRepository->findSharedByBeneficiary($beneficiary), ...$this->getSharedDocumentsWithUrl($beneficiary)];
+            ? [...$this->folderRepository->searchSharedByBeneficiary($beneficiary, $word, $folder), ...$this->searchSharedDocumentsWithUrl($beneficiary, $word, $folder)]
+            : $this->getSharedFoldersAndDocumentsWithUrl($beneficiary, $folder);
     }
 
     /**
      * @return Document[]
      */
-    public function searchDocumentsWithUrl(Beneficiaire $beneficiary, ?string $word): array
+    public function searchDocumentsWithUrl(Beneficiaire $beneficiary, ?string $word, Dossier $folder = null): array
     {
-        return $this->getDocumentsWithUrl($this->repository->searchByBeneficiary($beneficiary, $word));
+        return $this->getDocumentsWithUrl($this->repository->searchByBeneficiary($beneficiary, $word, $folder));
     }
 
     /**
      * @return Document[]
      */
-    public function searchSharedDocumentsWithUrl(Beneficiaire $beneficiary, ?string $word): array
+    public function searchSharedDocumentsWithUrl(Beneficiaire $beneficiary, ?string $word, Dossier $folder = null): array
     {
-        return $this->getDocumentsWithUrl($this->repository->searchSharedByBeneficiary($beneficiary, $word));
+        return $this->getDocumentsWithUrl($this->repository->searchSharedByBeneficiary($beneficiary, $word, $folder));
     }
 
     public function hydrateDocumentWithPresignedUrl(Document $document): void
