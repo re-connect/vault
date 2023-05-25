@@ -38,7 +38,7 @@ class FolderController extends AbstractController
             'foldersAndDocuments' => $paginator->create(
                 $this->isLoggedInUser($beneficiary->getUser())
                     ? $documentManager->getAllFoldersAndDocumentsWithUrl($beneficiary, $folder)
-                    : [],
+                    : $documentManager->getSharedFoldersAndDocumentsWithUrl($beneficiary, $folder),
                 $request->query->getInt('page', 1),
             ),
             'currentFolder' => $folder,
@@ -268,7 +268,7 @@ class FolderController extends AbstractController
         return $this->render('v2/vault/folder/tree_view.html.twig', [
             'folders' => $this->isLoggedInUser($beneficiary->getUser())
                 ? $beneficiary->getRootFolders()
-                : [],
+                : $beneficiary->getSharedRootFolders(),
             'element' => $folder,
             'beneficiary' => $beneficiary,
         ]);
