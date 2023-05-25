@@ -1,4 +1,5 @@
 {% for folder in folders %}
+    {% set isSelectedFolder = folder == element %}
     <li class="list-group-item w-100">
         <a href="{{ path(
             element is instanceof ('App\\Entity\\Document')
@@ -6,11 +7,11 @@
             : 'folder_move_to_folder',
             {'id': element.id, 'folderId': folder.id, 'tree-view': true},
         ) }}"
-           class="btn {{ getUserButtonColor() }} text-white text-start {{ folder == element ? 'disabled' : '' }}">
+           class="btn {{ getUserButtonColor() }} text-white text-start {{ isSelectedFolder ? 'disabled' : '' }}">
             <i class="fa fa-folder-open me-2" aria-hidden="true"></i>
             {{ folder.nom }}
         </a>
-        {% if folder.sousDossiers|length > 0 %}
+        {% if folder.sousDossiers|length > 0 and not isSelectedFolder %}
             <ul>
                 {{ include('v2/vault/folder/_tree_view_item.html.twig', {
                     'folders': folder.sousDossiers,

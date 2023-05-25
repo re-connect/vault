@@ -274,7 +274,7 @@ class DocumentManager
             $document->setDossier();
         } else {
             $folder->addDocument($document);
-            $document->setBPrive($folder->getBPrive() || $document->getBprive());
+            $document->setBPrive($folder->getBPrive());
         }
 
         $this->em->flush();
