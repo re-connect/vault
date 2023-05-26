@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use App\Controller\Api\UploadDocumentController;
+use App\Entity\Interface\FolderableEntityInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -54,7 +55,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     openapiContext: ['tags' => ['Documents']],
     security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
 )]
-class Document extends DonneePersonnelle
+class Document extends DonneePersonnelle implements FolderableEntityInterface
 {
     use SoftDeleteableEntity;
 
@@ -386,5 +387,10 @@ class Document extends DonneePersonnelle
     public function getDeposeParFullName(): ?string
     {
         return $this->getCreatorUserFullName();
+    }
+
+    public function hasParentFolder(): bool
+    {
+        return null !== $this->getDossier();
     }
 }

@@ -175,15 +175,14 @@ class FolderController extends AbstractController
         requirements: ['id' => '\d+'],
         methods: ['GET', 'PATCH'],
     )]
-    #[IsGranted('UPDATE', 'folder')]
+    #[IsGranted('TOGGLE_VISIBILITY', 'folder')]
     public function toggleVisibility(Request $request, Dossier $folder, FolderManager $manager): Response
     {
-        $parentFolder = $folder->getDossierParent();
         $manager->toggleVisibility($folder);
 
         return $request->isXmlHttpRequest()
             ? new JsonResponse($folder)
-            : $this->getFolderPageRedirection($folder, $parentFolder);
+            : $this->redirectToRoute('document_list', ['id' => $folder->getBeneficiaireId()]);
     }
 
     #[Route(

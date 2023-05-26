@@ -164,7 +164,7 @@ class EventController extends AbstractController
         requirements: ['id' => '\d+'],
         methods: ['GET', 'PATCH'],
     )]
-    #[IsGranted('UPDATE', 'event')]
+    #[IsGranted('TOGGLE_VISIBILITY', 'event')]
     public function toggleVisibility(Request $request, Evenement $event, EventManager $manager): Response
     {
         $manager->toggleVisibility($event);

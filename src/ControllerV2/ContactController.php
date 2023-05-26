@@ -157,7 +157,7 @@ class ContactController extends AbstractController
         requirements: ['id' => '\d+'],
         methods: ['GET', 'PATCH'],
     )]
-    #[IsGranted('UPDATE', 'contact')]
+    #[IsGranted('TOGGLE_VISIBILITY', 'contact')]
     public function toggleVisibility(Request $request, Contact $contact, ContactManager $manager): Response
     {
         $manager->toggleVisibility($contact);

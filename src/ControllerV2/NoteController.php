@@ -157,7 +157,7 @@ class NoteController extends AbstractController
         requirements: ['id' => '\d+'],
         methods: ['GET', 'PATCH'],
     )]
-    #[IsGranted('UPDATE', 'note')]
+    #[IsGranted('TOGGLE_VISIBILITY', 'note')]
     public function toggleVisibility(Request $request, Note $note, NoteManager $manager): Response
     {
         $manager->toggleVisibility($note);

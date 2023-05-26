@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use App\Entity\Interface\FolderableEntityInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
@@ -28,7 +29,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     denormalizationContext: ['groups' => ['v3:folder:write']],
     openapiContext: ['tags' => ['Dossiers']],
 )]
-class Dossier extends DonneePersonnelle
+class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 {
     final public const AUTOCOMPLETE_NAMES = ['health', 'housing', 'identity', 'tax', 'work'];
     /**
@@ -200,5 +201,10 @@ class Dossier extends DonneePersonnelle
             ...$this->getDocuments()->filter(fn (Document $document) => $document->getBPrive() !== $this->getBPrive())->toArray(),
             ],
         );
+    }
+
+    public function hasParentFolder(): bool
+    {
+        return null !== $this->getDossierParent();
     }
 }
