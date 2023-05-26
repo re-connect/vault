@@ -81,4 +81,25 @@ class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteIn
         self::assertEquals($firstDocumentVisibility, $publicFolderVisibility);
         self::assertEquals($secondDocumentVisibility, $publicFolderVisibility);
     }
+
+    public function provideTestCanNotToggleVisibiltyWithParentFolder(): ?\Generator
+    {
+        yield 'Should return 403 status code when authenticated as beneficiaire and folder has parent folder' => [
+            403,
+            BeneficiaryFixture::BENEFICIARY_MAIL,
+        ];
+        yield 'Should return 403 status code when authenticated as member with relay in common and folder has parent folder' => [
+            403,
+            MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES,
+        ];
+    }
+
+    /** @dataProvider provideTestCanNotToggleVisibiltyWithParentFolder */
+    public function testCanNotToggleVisibiltyWithParentFolder(int $statusCode, string $userMail): void
+    {
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'dossierParent' => FolderFactory::random()])->object();
+
+        $this->assertRoute(sprintf(self::URL, $folder->getId()), $statusCode, $userMail, null, 'PATCH', true);
+    }
 }
