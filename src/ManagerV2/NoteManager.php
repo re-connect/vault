@@ -14,7 +14,7 @@ class NoteManager
 
     public function toggleVisibility(Note $note): void
     {
-        $note->setBPrive(!$note->getBPrive());
+        $note->toggleVisibility();
         $this->em->flush();
     }
 }

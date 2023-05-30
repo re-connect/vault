@@ -14,7 +14,7 @@ class ContactManager
 
     public function toggleVisibility(Contact $contact): void
     {
-        $contact->setBPrive(!$contact->getBPrive());
+        $contact->toggleVisibility();
         $this->em->flush();
     }
 }

@@ -21,7 +21,7 @@ class EventManager
 
     public function toggleVisibility(Evenement $event): void
     {
-        $event->setBPrive(!$event->getBPrive());
+        $event->toggleVisibility();
         $this->em->flush();
     }
 

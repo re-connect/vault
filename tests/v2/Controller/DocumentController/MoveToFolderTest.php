@@ -59,31 +59,46 @@ class MoveToFolderTest extends AbstractControllerTest implements TestRouteInterf
         yield 'Should return 403 status code when authenticated as member with no relay in common' => [self::URL, 403, MemberFixture::MEMBER_MAIL];
     }
 
-    public function testMoveToFolder(): void
+    public function testMoveToWrongBeneficiary(): void
     {
         $clientTest = static::createClient();
-        $user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL])->object();
+        $user = $this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL);
         $clientTest->loginUser($user);
 
         $testedBeneficiary = $user->getSubjectBeneficiaire();
         $randomBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS)->object();
 
         $testedBeneficiaryDocument = DocumentFactory::createOne(['beneficiaire' => $testedBeneficiary, 'bPrive' => false])->object();
-        $testedBeneficiaryFolder = FolderFactory::createOne(['beneficiaire' => $testedBeneficiary, 'bPrive' => true])->object();
         $randomBeneficiaryFolder = FolderFactory::createOne(['beneficiaire' => $randomBeneficiary])->object();
 
         // Tested beneficiary tries to move document inside random beneficiarie's folder
         $clientTest->request('GET', sprintf(self::URL, $testedBeneficiaryDocument->getId(), $randomBeneficiaryFolder->getId()));
         self::assertResponseStatusCodeSame(403);
+    }
 
-        // Then move in a folder that belongs to him
-        $clientTest->request('GET', sprintf(self::URL, $testedBeneficiaryDocument->getId(), $testedBeneficiaryFolder->getId()));
-        $testedBeneficiaryDocument = DocumentFactory::find(['id' => $testedBeneficiaryDocument->getId()]);
-        $testedBeneficiaryFolder = FolderFactory::find(['id' => $testedBeneficiaryFolder->getId()]);
+    public function provideTestMoveToFolder(): ?\Generator
+    {
+        yield 'Shared document should be hydrated with parent visibility' => [false];
+        yield 'Private document should be hydrated with parent visibility' => [true];
+    }
 
-        self::assertEquals($testedBeneficiaryDocument->object()->getDossier()->getId(), $testedBeneficiaryFolder->object()->getId());
-        self::assertTrue($testedBeneficiaryFolder->object()->getbPrive());
-        $testedBeneficiaryDocument->remove();
-        $testedBeneficiaryFolder->remove();
+    /** @dataProvider provideTestMoveToFolder */
+    public function testMoveToFolder(bool $isPrivate): void
+    {
+        $clientTest = static::createClient();
+        $user = $this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $clientTest->loginUser($user);
+        $beneficiary = $user->getSubjectBeneficiaire();
+
+        // Document and destination folder have different visibility
+        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate])->object();
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => !$isPrivate])->object();
+
+        $clientTest->request('GET', sprintf(self::URL, $document->getId(), $folder->getId()));
+        $document = DocumentFactory::find($document)->object();
+        $folder = FolderFactory::find($folder)->object();
+
+        self::assertEquals($folder->getId(), $document->getDossier()->getId());
+        self::assertEquals($folder->getBPrive(), $document->getBprive());
     }
 }

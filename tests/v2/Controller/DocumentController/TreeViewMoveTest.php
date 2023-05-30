@@ -46,23 +46,36 @@ class TreeViewMoveTest extends AbstractControllerTest implements TestRouteInterf
         }
     }
 
-    public function testTreeViewMove(): void
+    public function provideTestTreeViewMove(): ?\Generator
+    {
+        yield 'Shared document should be hydrated with parent visibility' => [false];
+        yield 'Private document should be hydrated with parent visibility' => [true];
+    }
+
+    /** @dataProvider provideTestTreeViewMove */
+    public function testTreeViewMove(bool $isPrivate): void
     {
         $clientTest = static::createClient();
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $clientTest->loginUser($beneficiary->getUser());
-        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary])->object();
+        $user = $this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $clientTest->loginUser($user);
+        $beneficiary = $user->getSubjectBeneficiaire();
+
+        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate])->object();
 
         // We access first folder link in the tree view, and access folderId
         $crawler = $clientTest->request('GET', sprintf(self::URL, $document->getId()));
         $treeViewMoveUri = $crawler->filter('ul.tree-list > li > a')->attr('href');
         $uriToArray = explode('/', $treeViewMoveUri);
         $folderId = end($uriToArray);
+        $folder = FolderFactory::find(['id' => $folderId])->object();
+
+        // We hydrate folder with desired visibility before moving document inside for test purposes
+        $folder->setBprive(!$isPrivate);
 
         $clientTest->request('GET', $treeViewMoveUri);
-        $document = DocumentFactory::find(['id' => $document->getId()])->object();
-        $folder = FolderFactory::find(['id' => $folderId])->object();
-        self::assertSame($document->getDossier(), $folder);
-        $document->setDossier();
+        $document = DocumentFactory::find($document)->object();
+        $folder = FolderFactory::find($folder)->object();
+        self::assertSame($folder, $document->getDossier());
+        self::assertEquals($folder->getBprive(), $document->getBPrive());
     }
 }

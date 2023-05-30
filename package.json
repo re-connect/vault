@@ -38,6 +38,7 @@
     "eslint-plugin-promise": "^5.2.0",
     "file-loader": "^6.0.0",
     "font-awesome": "^4.7.0",
+    "husky": "^8.0.0",
     "intl-tel-input": "^17.0.15",
     "jquery": "^3.5.1",
     "jquery-parallax": "^1.0.1",
@@ -61,7 +62,8 @@
     "dev": "encore dev",
     "lint": "eslint assets/js",
     "watch": "encore dev --watch",
-    "build": "encore production --progress"
+    "build": "encore production --progress",
+    "prepare": "husky install"
   },
   "dependencies": {}
 }

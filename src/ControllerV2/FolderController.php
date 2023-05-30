@@ -28,7 +28,10 @@ class FolderController extends AbstractController
         PaginatorService $paginator,
     ): Response {
         $beneficiary = $folder->getBeneficiaire();
-        $searchForm = $this->createForm(SearchType::class);
+        $searchForm = $this->createForm(SearchType::class, null, [
+            'attr' => ['data-controller' => 'ajax-list-filter'],
+            'action' => $this->generateUrl('folder_search', ['id' => $beneficiary->getId(), 'folderId' => $folder->getId()]),
+        ]);
 
         return $this->renderForm('v2/vault/document/index.html.twig', [
             'beneficiary' => $beneficiary,
@@ -40,6 +43,45 @@ class FolderController extends AbstractController
             ),
             'currentFolder' => $folder,
             'form' => $searchForm,
+        ]);
+    }
+
+    #[Route(
+        path: '/beneficiary/{id}/folder/{folderId}/search',
+        name: 'folder_search',
+        requirements: ['id' => '\d+', 'folderId' => '\d+'],
+        methods: ['POST'],
+        condition: 'request.isXmlHttpRequest()',
+    )]
+    #[ParamConverter('folder', class: 'App\Entity\Dossier', options: ['id' => 'folderId'])]
+    #[IsGranted('UPDATE', 'beneficiary')]
+    public function search(
+        Request $request,
+        Beneficiaire $beneficiary,
+        Dossier $folder,
+        DocumentManager $documentManager,
+        PaginatorService $paginator,
+    ): JsonResponse {
+        $this->denyAccessUnlessGranted('UPDATE', $folder);
+
+        $searchForm = $this->createForm(SearchType::class, null, [
+            'attr' => ['data-controller' => 'ajax-list-filter'],
+            'action' => $this->generateUrl('folder_search', ['id' => $beneficiary->getId(), 'folderId' => $folder->getId()]),
+        ])->handleRequest($request);
+
+        $search = $searchForm->get('search')->getData();
+
+        return new JsonResponse([
+            'html' => $this->renderForm('v2/vault/document/_list.html.twig', [
+                'foldersAndDocuments' => $paginator->create(
+                    $this->isLoggedInUser($beneficiary->getUser())
+                        ? $documentManager->searchFoldersAndDocumentsWithUrl($beneficiary, $search, $folder)
+                        : [],
+                    $request->query->getInt('page', 1),
+                ),
+                'beneficiary' => $beneficiary,
+                'form' => $searchForm,
+            ])->getContent(),
         ]);
     }
 
@@ -137,7 +179,7 @@ class FolderController extends AbstractController
     public function toggleVisibility(Request $request, Dossier $folder, FolderManager $manager): Response
     {
         $parentFolder = $folder->getDossierParent();
-        $manager->toggleVisibility($folder, !$folder->getBPrive());
+        $manager->toggleVisibility($folder);
 
         return $request->isXmlHttpRequest()
             ? new JsonResponse($folder)
