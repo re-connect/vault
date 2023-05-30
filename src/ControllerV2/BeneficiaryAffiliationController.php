@@ -10,6 +10,7 @@ use App\FormV2\UserAffiliation\Model\SearchBeneficiaryFormModel;
 use App\FormV2\UserAffiliation\SearchBeneficiaryType;
 use App\ManagerV2\BeneficiaryAffiliationManager;
 use App\ServiceV2\PaginatorService;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\FormError;
@@ -30,11 +31,11 @@ class BeneficiaryAffiliationController extends AbstractController
     #[Route(path: '/beneficiary/affiliate/search', name: 'affiliate_beneficiary_search', methods: ['GET', 'POST'])]
     public function search(Request $request, BeneficiaryAffiliationManager $manager, PaginatorService $paginator): Response
     {
-        $birthDate = $request->query->get('birthdate');
-        $searchBeneficiaryModel = (new SearchBeneficiaryFormModel())
-            ->setFirstname($request->query->get('firstname'))
-            ->setLastname($request->query->get('lastname'))
-            ->setBirthDate($birthDate ? new \DateTime($birthDate) : null);
+        $searchBeneficiaryModel = (new SearchBeneficiaryFormModel(
+            $request->query->getAlnum('firstname'),
+            $request->query->getAlnum('lastname'),
+            new \DateTime($request->query->getAlnum('birthdate')),
+        ));
 
         $searchForm = $this->createForm(SearchBeneficiaryType::class, $searchBeneficiaryModel, [
             'action' => $this->generateUrl('affiliate_beneficiary_search'),
@@ -42,16 +43,9 @@ class BeneficiaryAffiliationController extends AbstractController
 
         $beneficiaries = $manager->getBeneficiariesFromFormModel($searchBeneficiaryModel);
 
-        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
-            $beneficiaries = $manager->getBeneficiariesFromFormModel($searchBeneficiaryModel);
-        }
-
         return $this->renderForm('v2/user_affiliation/beneficiary/affiliate_beneficiary_search.html.twig', [
             'form' => $searchForm,
-            'beneficiaries' => $paginator->create(
-                $beneficiaries,
-                $request->query->getInt('page', 1),
-            ),
+            'beneficiaries' => $paginator->create($beneficiaries, $request->query->getInt('page', 1)),
             'search' => $searchBeneficiaryModel,
         ]);
     }
@@ -74,8 +68,7 @@ class BeneficiaryAffiliationController extends AbstractController
             return $this->render('v2/user_affiliation/beneficiary/_no_relay_available.html.twig');
         }
 
-        $affiliateBeneficiaryModel = (new AffiliateBeneficiaryFormModel())
-            ->setRelays($availableRelaysForAffiliation);
+        $affiliateBeneficiaryModel = (new AffiliateBeneficiaryFormModel($availableRelaysForAffiliation));
 
         $form = $this->createForm(AffiliateBeneficiaryType::class, $affiliateBeneficiaryModel, [
             'action' => $this->generateUrl('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]),
@@ -109,17 +102,14 @@ class BeneficiaryAffiliationController extends AbstractController
         requirements: ['id' => '\d+'],
         methods: ['GET'],
     )]
-    public function disaffiliateChooseRelay(
-        Beneficiaire $beneficiary,
-    ): Response {
-        if (!$this->isGranted('UPDATE', $beneficiary)) {
-            return $this->redirectToRoute('list_beneficiaries');
-        }
-
-        return $this->render('v2/user_affiliation/beneficiary/disaffiliate_beneficiary.html.twig', [
-            'beneficiary' => $beneficiary,
-            'relays' => $this->getProfessional()?->getManageableRelays($beneficiary) ?? [],
-        ]);
+    public function disaffiliateChooseRelay(Beneficiaire $beneficiary): Response
+    {
+        return !$this->isGranted('UPDATE', $beneficiary)
+            ? $this->redirectToRoute('list_beneficiaries')
+            : $this->render('v2/user_affiliation/beneficiary/disaffiliate_beneficiary.html.twig', [
+                'beneficiary' => $beneficiary,
+                'relays' => $this->getProfessional()?->getManageableRelays($beneficiary) ?: new ArrayCollection([]),
+            ]);
     }
 
     #[Route(

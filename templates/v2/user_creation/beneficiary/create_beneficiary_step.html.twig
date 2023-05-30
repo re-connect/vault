@@ -6,10 +6,8 @@
 
 {% block subTitle %}
     <span class="transform-uppercase">
-        {{ 'steps_count'|trans({'%step%': beneficiaryCreationProcess.currentStep, '%totalSteps%': beneficiaryCreationProcess.totalSteps}) }}
-        <span class="text-blue">
-            {{ beneficiaryCreationProcess.stepTitle|trans }}
-        </span>
+        {{ 'steps_count'|trans({'%step%': beneficiaryCreationProcess.currentStep, '%totalSteps%': beneficiaryCreationProcess.totalSteps}) }} :
+        {{ beneficiaryCreationProcess.stepTitle|trans }}
     </span>
 {% endblock %}
 
