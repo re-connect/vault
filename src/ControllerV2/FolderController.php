@@ -76,7 +76,7 @@ class FolderController extends AbstractController
                 'foldersAndDocuments' => $paginator->create(
                     $this->isLoggedInUser($beneficiary->getUser())
                         ? $documentManager->searchFoldersAndDocumentsWithUrl($beneficiary, $search, $folder)
-                        : $documentManager->searchSharedFoldersAndDocumentsWithUrl($beneficiary, $search, $folder),
+                        : [],
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
