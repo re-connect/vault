@@ -207,4 +207,16 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     {
         return null !== $this->getDossierParent();
     }
+
+    public function move(?Dossier $parentFolder): void
+    {
+        $this->setDossierParent($parentFolder);
+
+        if ($parentFolder && $parentFolder !== $this) {
+            $parentFolder->addSousDossier($this);
+            if ($parentFolder->getBPrive() !== $this->getBPrive()) {
+                $this->toggleVisibility();
+            }
+        }
+    }
 }

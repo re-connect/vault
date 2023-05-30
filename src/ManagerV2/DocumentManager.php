@@ -28,7 +28,6 @@ class DocumentManager
     public function __construct(
         private readonly FlysystemS3Client $s3Client,
         private readonly DocumentRepository $repository,
-        private readonly FolderManager $folderManager,
         private readonly EntityManagerInterface $em,
         private Security $security,
         private readonly LoggerInterface $logger,
@@ -71,17 +70,6 @@ class DocumentManager
         }
 
         return $document;
-    }
-
-    /**
-     * @return array<Document|Dossier>
-     */
-    public function getFoldersAndDocumentsWithUrl(Beneficiaire $beneficiary, Dossier $parentFolder = null, string $search = null): array
-    {
-        return [
-            ...$this->folderManager->getFolders($beneficiary, $parentFolder, $search),
-            ...$this->getDocumentsWithUrl($beneficiary, $parentFolder, $search),
-        ];
     }
 
     public function hydrateDocumentWithPresignedUrl(Document $document): void

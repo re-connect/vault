@@ -6,8 +6,7 @@ use App\Entity\Beneficiaire;
 use App\Entity\Dossier;
 use App\FormV2\FolderType;
 use App\FormV2\SearchType;
-use App\ManagerV2\DocumentManager;
-use App\ManagerV2\FolderableEntityManager;
+use App\ManagerV2\FolderableItemManager;
 use App\ManagerV2\FolderManager;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,7 +24,7 @@ class FolderController extends AbstractController
     public function list(
         Request $request,
         Dossier $folder,
-        DocumentManager $documentManager,
+        FolderableItemManager $manager,
         PaginatorService $paginator,
     ): Response {
         $beneficiary = $folder->getBeneficiaire();
@@ -37,7 +36,7 @@ class FolderController extends AbstractController
         return $this->renderForm('v2/vault/document/index.html.twig', [
             'beneficiary' => $beneficiary,
             'foldersAndDocuments' => $paginator->create(
-                $documentManager->getFoldersAndDocumentsWithUrl($beneficiary, $folder),
+                $manager->getFoldersAndDocumentsWithUrl($beneficiary, $folder),
                 $request->query->getInt('page', 1),
             ),
             'currentFolder' => $folder,
@@ -58,7 +57,7 @@ class FolderController extends AbstractController
         Request $request,
         Beneficiaire $beneficiary,
         Dossier $folder,
-        DocumentManager $documentManager,
+        FolderableItemManager $manager,
         PaginatorService $paginator,
     ): JsonResponse {
         $this->denyAccessUnlessGranted('UPDATE', $folder);
@@ -73,7 +72,7 @@ class FolderController extends AbstractController
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/document/_list.html.twig', [
                 'foldersAndDocuments' => $paginator->create(
-                    $documentManager->getFoldersAndDocumentsWithUrl($beneficiary, $folder, $search),
+                    $manager->getFoldersAndDocumentsWithUrl($beneficiary, $folder, $search),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
@@ -153,7 +152,7 @@ class FolderController extends AbstractController
     public function moveToFolder(
         Request $request,
         Dossier $folder,
-        FolderableEntityManager $manager,
+        FolderableItemManager $manager,
         ?Dossier $parentFolder = null,
     ): Response {
         if ($parentFolder) {
