@@ -4,6 +4,7 @@ namespace App\ManagerV2;
 
 use App\Entity\Beneficiaire;
 use App\Entity\Dossier;
+use App\Repository\DossierRepository;
 use App\ServiceV2\BucketService;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Common\Collections\Collection;
@@ -26,8 +27,22 @@ class FolderManager
         private readonly BucketService $bucketService,
         private readonly LoggerInterface $logger,
         private readonly TranslatorInterface $translator,
+        private readonly DossierRepository $folderRepository,
         private Security $security,
     ) {
+    }
+
+    /**
+     * @return Dossier[]
+     */
+    public function getFolders(Beneficiaire $beneficiary, Dossier $parentFolder = null, string $search = null): array
+    {
+        return $this->folderRepository->findByBeneficiary(
+            $beneficiary,
+            $this->getUser() === $beneficiary->getUser(),
+            $parentFolder,
+            $search,
+        );
     }
 
     public function move(Dossier $folder, ?Dossier $parentFolder): void

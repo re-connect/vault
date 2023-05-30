@@ -95,9 +95,7 @@ class DocumentController extends AbstractController
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/document/_list.html.twig', [
                 'foldersAndDocuments' => $paginator->create(
-                    $this->isLoggedInUser($beneficiary->getUser())
-                        ? $documentManager->searchFoldersAndDocumentsWithUrl($beneficiary, $search)
-                        : [],
+                    $documentManager->getFoldersAndDocumentsWithUrl($beneficiary, null, $search),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
@@ -111,7 +109,7 @@ class DocumentController extends AbstractController
     public function detail(Document $document, DocumentManager $manager): Response
     {
         return $this->render('v2/vault/document/detail.html.twig', [
-            'document' => $manager->getDocumentWithUrl($document),
+            'document' => $document,
             'beneficiary' => $document->getBeneficiaire(),
         ]);
     }
@@ -155,7 +153,7 @@ class DocumentController extends AbstractController
 
         return $this->renderForm('v2/vault/document/rename.html.twig', [
             'form' => $form,
-            'document' => $manager->getDocumentWithUrl($document),
+            'document' => $manager->hydrateDocumentAndThumbnailWithUrl($document),
             'beneficiary' => $document->getBeneficiaire(),
         ]);
     }

@@ -72,9 +72,7 @@ class FolderController extends AbstractController
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/document/_list.html.twig', [
                 'foldersAndDocuments' => $paginator->create(
-                    $this->isLoggedInUser($beneficiary->getUser())
-                        ? $documentManager->searchFoldersAndDocumentsWithUrl($beneficiary, $search, $folder)
-                        : [],
+                    $documentManager->getFoldersAndDocumentsWithUrl($beneficiary, $folder, $search),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
