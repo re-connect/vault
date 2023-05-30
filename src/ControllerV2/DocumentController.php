@@ -8,6 +8,7 @@ use App\Entity\Dossier;
 use App\FormV2\RenameDocumentType;
 use App\FormV2\SearchType;
 use App\ManagerV2\DocumentManager;
+use App\ManagerV2\FolderManager;
 use App\Repository\DossierRepository;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -36,9 +37,7 @@ class DocumentController extends AbstractController
         return $this->renderForm('v2/vault/document/index.html.twig', [
             'beneficiary' => $beneficiary,
             'foldersAndDocuments' => $paginator->create(
-                $this->isLoggedInUser($beneficiary->getUser())
-                    ? $documentManager->getAllFoldersAndDocumentsWithUrl($beneficiary)
-                    : $documentManager->getSharedFoldersAndDocumentsWithUrl($beneficiary),
+                $documentManager->getFoldersAndDocumentsWithUrl($beneficiary),
                 $request->query->getInt('page', 1),
             ),
             'form' => $searchForm,
@@ -222,14 +221,12 @@ class DocumentController extends AbstractController
         methods: ['GET']
     )]
     #[IsGranted('UPDATE', 'document')]
-    public function treeViewMove(Document $document): Response
+    public function treeViewMove(Document $document, FolderManager $folderManager): Response
     {
         $beneficiary = $document->getBeneficiaire();
 
         return $this->render('v2/vault/folder/tree_view.html.twig', [
-            'folders' => $this->isLoggedInUser($beneficiary->getUser())
-                ? $beneficiary->getRootFolders()
-                : $beneficiary->getSharedRootFolders(),
+            'folders' => $folderManager->getRootFolders($beneficiary),
             'element' => $document,
             'beneficiary' => $document->getBeneficiaire(),
         ]);

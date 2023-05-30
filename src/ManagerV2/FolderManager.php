@@ -2,9 +2,11 @@
 
 namespace App\ManagerV2;
 
+use App\Entity\Beneficiaire;
 use App\Entity\Dossier;
 use App\ServiceV2\BucketService;
 use App\ServiceV2\Traits\UserAwareTrait;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\HeaderUtils;
@@ -40,6 +42,16 @@ class FolderManager
         }
 
         $this->em->flush();
+    }
+
+    /**
+     * @return Collection<int, Dossier>
+     */
+    public function getRootFolders(Beneficiaire $beneficiary): Collection
+    {
+        return $this->getUser() === $beneficiary->getUser()
+            ? $beneficiary->getRootFolders()
+            : $beneficiary->getSharedRootFolders();
     }
 
     public function toggleVisibility(Dossier $folder): void
