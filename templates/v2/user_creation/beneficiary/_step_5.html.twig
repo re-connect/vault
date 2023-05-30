@@ -1,13 +1,13 @@
 {% set identityStep = constant('App\\Entity\\Attributes\\BeneficiaryCreationProcess::IDENTITY_STEP') %}
 {% set secretQuestionStep = constant('App\\Entity\\Attributes\\BeneficiaryCreationProcess::SECRET_QUESTION_STEP') %}
 {% set rows = [
-    {'name': 'firstname','value': beneficiary.user.prenom, 'step': identityStep, 'hide': false},
-    {'name': 'lastname','value': beneficiary.user.nom, 'step': identityStep, 'hide': false },
-    {'name': 'phone','value': beneficiary.user.telephone, 'step': identityStep, 'hide': false },
-    {'name': 'email','value': beneficiary.user.email, 'step': identityStep, 'hide': false },
-    {'name': 'secret_question', 'value': beneficiary.questionSecrete, 'step': secretQuestionStep, 'hide': beneficiaryCreationProcess.remotely},
-    {'name': 'secret_answer', 'value': beneficiary.reponseSecrete, 'step':secretQuestionStep, 'hide': beneficiaryCreationProcess.remotely},
-    {'name': 'relays', 'value': beneficiary.user.centres, 'step': beneficiaryCreationProcess.relaysStep, 'hide': false}
+    {name: 'firstname', value: beneficiary.user.prenom, step: identityStep, hide: false},
+    {name: 'lastname', value: beneficiary.user.nom, step: identityStep, hide: false },
+    {name: 'phone', value: beneficiary.user.telephone, step: identityStep, hide: false },
+    {name: 'email', value: beneficiary.user.email, step: identityStep, hide: false },
+    {name: 'secret_question',  value: beneficiary.questionSecrete, step: secretQuestionStep, hide: beneficiaryCreationProcess.remotely},
+    {name: 'secret_answer',  value: beneficiary.reponseSecrete, step:secretQuestionStep, hide: beneficiaryCreationProcess.remotely},
+    {name: 'relays',  value: beneficiary.user.centres, step: beneficiaryCreationProcess.relaysStep, hide: false}
 ] %}
 
 <div class="col-3 d-none d-md-block">

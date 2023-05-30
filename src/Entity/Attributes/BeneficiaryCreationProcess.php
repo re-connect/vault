@@ -13,7 +13,6 @@ class BeneficiaryCreationProcess
 {
     public const DEFAULT_TOTAL_STEPS = 6;
     public const DEFAULT_TOTAL_FORM_STEPS = 4;
-
     public const IDENTITY_STEP = 1;
     public const PASSWORD_STEP = 2;
     public const SECRET_QUESTION_STEP = 3;
@@ -31,7 +30,6 @@ class BeneficiaryCreationProcess
         4 => 'relays',
         5 => 'summary',
     ];
-
     public const RELAYS_STEP = 4;
     public const REMOTELY_RELAYS_STEP = 2;
 
@@ -183,7 +181,7 @@ class BeneficiaryCreationProcess
         return self::IDENTITY_STEP === $this->currentStep;
     }
 
-    public function getRelaysStep(): bool
+    public function getRelaysStep(): int
     {
         return $this->remotely ? self::REMOTELY_RELAYS_STEP : self::RELAYS_STEP;
     }
