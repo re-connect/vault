@@ -31,17 +31,18 @@ class BeneficiaryAffiliationController extends AbstractController
     #[Route(path: '/beneficiary/affiliate/search', name: 'affiliate_beneficiary_search', methods: ['GET', 'POST'])]
     public function search(Request $request, BeneficiaryAffiliationManager $manager, PaginatorService $paginator): Response
     {
+        $birthDate = $request->query->getAlnum('birthdate');
         $searchBeneficiaryModel = (new SearchBeneficiaryFormModel(
             $request->query->getAlnum('firstname'),
             $request->query->getAlnum('lastname'),
-            new \DateTime($request->query->getAlnum('birthdate')),
+            $birthDate ? new \DateTime($request->query->getAlnum('birthdate')) : null,
         ));
 
         $searchForm = $this->createForm(SearchBeneficiaryType::class, $searchBeneficiaryModel, [
             'action' => $this->generateUrl('affiliate_beneficiary_search'),
         ])->handleRequest($request);
 
-        $beneficiaries = $manager->getBeneficiariesFromFormModel($searchBeneficiaryModel);
+        $beneficiaries = $manager->getBeneficiariesFromSearch($searchBeneficiaryModel);
 
         return $this->renderForm('v2/user_affiliation/beneficiary/affiliate_beneficiary_search.html.twig', [
             'form' => $searchForm,

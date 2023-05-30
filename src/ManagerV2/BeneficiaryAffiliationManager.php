@@ -41,7 +41,7 @@ class BeneficiaryAffiliationManager
     /**
      * @return Beneficiaire[]
      */
-    public function getBeneficiariesFromFormModel(SearchBeneficiaryFormModel $formModel): array
+    public function getBeneficiariesFromSearch(SearchBeneficiaryFormModel $formModel): array
     {
         return $this->searchByUsernameInformation(
             $formModel->getFirstname(),

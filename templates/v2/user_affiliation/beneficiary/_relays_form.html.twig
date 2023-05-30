@@ -2,37 +2,42 @@
 {% form_theme form 'v2/user_creation/form_theme/create_user_form_theme.html.twig' %}
 
 {% block content %}
-    <div {{ stimulus_controller('toggle_display') }}>
+    <div>
         <h4 class="text-center mt-4">
             <i class="fas fa-user me-1"></i>
             {{ beneficiary.user.username }}
         </h4>
-        {% if beneficiary.questionSecrete %}
-            <div class="w-75 text-center mx-auto mt-4">
-                <span class="font-size-1-2">{{ 'answer_secret_question_relay_acception'|trans }}</span>
-                <br>
-                <button type="button" class="btn btn-blue text-white rounded-pill shadow-sm mt-3"
-                        {{ stimulus_action('toggle_display', 'toggle') }}
-                >
-                    {{ 'answer_secret_question'|trans }}
-                </button>
-            </div>
-        {% endif %}
-        <div class="row mt-4">
+        <div class="row my-4">
             {{ form_start(form) }}
-            <div class="col-12 col-md-6 col-lg-4 mx-auto bg-white border shadow p-2">
-                <span class="bold">{{ 'relays'|trans }} :</span>
-                {{ form_row(form.relays) }}
-                <div class="my-2 {{ form_errors(form.secretAnswer)|length > 0 ? '' : 'd-none' }}" {{ stimulus_target('toggle_display', 'target') }}>
-                    <span class="bold">{{ form_label(form.secretAnswer) }}</span>
-                    {{ form_widget(form.secretAnswer) }}
-                    {{ form_errors(form.secretAnswer) }}
+            {% if beneficiary.questionSecrete %}
+                <div class="w-75 text-center mx-auto mt-4">
+                    <span class="font-size-1-2">{{ 'answer_secret_question_relay_acception'|trans }}</span>
+                    <br>
+                    <div class="row" {{ stimulus_controller('toggle_display') }}>
+                        <div class="col">
+                            <button type="button" class="btn btn-blue text-white rounded-pill shadow-sm mt-3"
+                                    {{ stimulus_action('toggle_display', 'toggle') }}
+                            >
+                                {{ 'answer_secret_question'|trans }}
+                            </button>
+                        </div>
+                        <div
+                                class="col-6 my-3 {{ form_errors(form.secretAnswer)|length > 0 ? '' : 'd-none' }}"
+                                {{ stimulus_target('toggle_display', 'target') }}
+                        >
+                            <span class="bold">{{ form_label(form.secretAnswer) }}</span>
+                            {{ form_widget(form.secretAnswer) }}
+                            {{ form_errors(form.secretAnswer) }}
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" data-turbo="false" class="btn btn-blue text-white mt-2 w-100">
-                    {{ 'submit'|trans }}
-                </button>
-            </div>
-            {{ form_end(form) }}
+            {% endif %}
         </div>
+        <h4 class="text-center">{{ 'relays'|trans }} :</h4>
+        {{ form_row(form.relays) }}
+        <button type="submit" data-turbo="false" class="btn btn-blue text-white mt-2 w-100">
+            {{ 'submit'|trans }}
+        </button>
     </div>
+    {{ form_end(form) }}
 {% endblock %}
