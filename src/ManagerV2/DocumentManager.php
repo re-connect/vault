@@ -214,16 +214,4 @@ class DocumentManager
             $this->addFlashMessage('danger', 'error');
         }
     }
-
-    public function move(Document $document, ?Dossier $folder): void
-    {
-        if (!$folder) {
-            $document->setDossier();
-        } else {
-            $folder->addDocument($document);
-            $document->setBPrive($folder->getBPrive());
-        }
-
-        $this->em->flush();
-    }
 }

@@ -8,6 +8,7 @@ use App\Entity\Dossier;
 use App\FormV2\RenameDocumentType;
 use App\FormV2\SearchType;
 use App\ManagerV2\DocumentManager;
+use App\ManagerV2\FolderableEntityManager;
 use App\ManagerV2\FolderManager;
 use App\Repository\DossierRepository;
 use App\ServiceV2\PaginatorService;
@@ -199,7 +200,7 @@ class DocumentController extends AbstractController
     public function moveToFolder(
         Request $request,
         Document $document,
-        DocumentManager $manager,
+        FolderableEntityManager $manager,
         ?Dossier $folder,
     ): Response {
         if ($folder) {

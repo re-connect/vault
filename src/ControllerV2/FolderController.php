@@ -7,6 +7,7 @@ use App\Entity\Dossier;
 use App\FormV2\FolderType;
 use App\FormV2\SearchType;
 use App\ManagerV2\DocumentManager;
+use App\ManagerV2\FolderableEntityManager;
 use App\ManagerV2\FolderManager;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -152,7 +153,7 @@ class FolderController extends AbstractController
     public function moveToFolder(
         Request $request,
         Dossier $folder,
-        FolderManager $manager,
+        FolderableEntityManager $manager,
         ?Dossier $parentFolder = null,
     ): Response {
         if ($parentFolder) {

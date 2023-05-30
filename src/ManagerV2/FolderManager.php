@@ -45,20 +45,6 @@ class FolderManager
         );
     }
 
-    public function move(Dossier $folder, ?Dossier $parentFolder): void
-    {
-        if (!$parentFolder) {
-            $folder->setDossierParent();
-        } elseif ($parentFolder !== $folder) {
-            $parentFolder->addSousDossier($folder);
-            if ($folder->getBPrive() !== $parentFolder->getBPrive()) {
-                $this->toggleVisibility($folder);
-            }
-        }
-
-        $this->em->flush();
-    }
-
     /**
      * @return Collection<int, Dossier>
      */
