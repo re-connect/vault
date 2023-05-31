@@ -70,7 +70,7 @@ class FolderController extends AbstractController
     }
 
     #[Route(
-        path: '/folders/{id}/move-to-folder/{folderId?}',
+        path: '/folder/{id}/move-to-folder/{folderId?}',
         name: 'folder_move_to_folder',
         requirements: ['id' => '\d+', 'folderId' => '\d+'],
         options: ['expose' => true],
