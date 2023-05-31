@@ -27,23 +27,19 @@ class ContactRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('c')
             ->andWhere('c.beneficiaire = :beneficiary')
-            ->orderBy('c.createdAt', 'DESC');
-
-        $parameters = [
-            'beneficiary' => $beneficiary,
-        ];
+            ->orderBy('c.createdAt', 'DESC')
+            ->setParameter('beneficiary', $beneficiary);
 
         if ($search) {
-            $qb->andWhere('c.nom LIKE :search OR c.prenom LIKE :search OR c.telephone LIKE :search or c.email LIKE :search');
-            $parameters['search'] = sprintf('%%%s%%', $search);
+            $qb->andWhere('c.nom LIKE :search OR c.prenom LIKE :search OR c.telephone LIKE :search or c.email LIKE :search')
+                ->setParameter('search', sprintf('%%%s%%', $search));
         }
 
         if (!$isOwner) {
             $qb->andWhere('c.bPrive = FALSE');
         }
 
-        return $qb->setParameters($parameters)
-            ->getQuery()
+        return $qb->getQuery()
             ->getResult();
     }
 }

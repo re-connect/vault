@@ -7,7 +7,6 @@ use App\Entity\Note;
 use App\FormV2\NoteType;
 use App\FormV2\SearchType;
 use App\ManagerV2\NoteManager;
-use App\Repository\NoteRepository;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -23,7 +22,7 @@ class NoteController extends AbstractController
     public function list(
         Request $request,
         Beneficiaire $beneficiary,
-        NoteRepository $repository,
+        NoteManager $manager,
         PaginatorService $paginator,
     ): Response {
         $searchForm = $this->createForm(SearchType::class, null, [
@@ -34,9 +33,7 @@ class NoteController extends AbstractController
         return $this->renderForm('v2/vault/note/index.html.twig', [
             'beneficiary' => $beneficiary,
             'notes' => $paginator->create(
-                $this->isLoggedInUser($beneficiary->getUser())
-                    ? $repository->findAllByBeneficiary($beneficiary)
-                    : $repository->findSharedByBeneficiary($beneficiary),
+                $manager->getNotes($beneficiary),
                 $request->query->getInt('page', 1),
             ),
             'form' => $searchForm,
@@ -54,7 +51,7 @@ class NoteController extends AbstractController
     public function search(
         Beneficiaire $beneficiary,
         Request $request,
-        NoteRepository $repository,
+        NoteManager $manager,
         PaginatorService $paginator
     ): JsonResponse {
         $searchForm = $this->createForm(SearchType::class, null, [
@@ -67,9 +64,7 @@ class NoteController extends AbstractController
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/note/_list.html.twig', [
                 'notes' => $paginator->create(
-                    $this->isLoggedInUser($beneficiary->getUser())
-                        ? $repository->searchByBeneficiary($beneficiary, $search)
-                        : $repository->searchSharedByBeneficiary($beneficiary, $search),
+                    $manager->getNotes($beneficiary, $search),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,

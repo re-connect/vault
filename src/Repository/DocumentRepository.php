@@ -70,20 +70,17 @@ class DocumentRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('d')
             ->andWhere('d.beneficiaire = :beneficiary')
-            ->orderBy('d.createdAt', 'DESC');
-
-        $parameters = [
-            'beneficiary' => $beneficiary,
-        ];
+            ->orderBy('d.createdAt', 'DESC')
+            ->setParameter('beneficiary', $beneficiary);
 
         if ($search) {
-            $qb->andWhere('d.nom LIKE :search');
-            $parameters['search'] = sprintf('%%%s%%', $search);
+            $qb->andWhere('d.nom LIKE :search')
+                ->setParameter('search', sprintf('%%%s%%', $search));
         }
 
         if ($folder) {
-            $qb->andWhere('d.dossier = :folder');
-            $parameters['folder'] = $folder;
+            $qb->andWhere('d.dossier = :folder')
+                ->setParameter('folder', $folder);
         } else {
             // We want to fetch only root documents when we are not searching and we are not inside a folder
             if (!$search) {
@@ -95,8 +92,7 @@ class DocumentRepository extends ServiceEntityRepository
             $qb->andWhere('d.bPrive = FALSE');
         }
 
-        return $qb->setParameters($parameters)
-            ->getQuery()
+        return $qb->getQuery()
             ->getResult();
     }
 }

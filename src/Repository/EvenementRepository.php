@@ -29,24 +29,20 @@ class EvenementRepository extends ServiceEntityRepository
             ->leftJoin('e.rappels', 'r')
             ->andWhere('e.beneficiaire = :beneficiary')
             ->andWhere('e.date > :date')
-            ->orderBy('e.date', 'ASC');
-
-        $parameters = [
-            'beneficiary' => $beneficiary,
-            'date' => new \DateTime(),
-        ];
+            ->orderBy('e.date', 'ASC')
+            ->setParameter('beneficiary', $beneficiary)
+            ->setParameter('date', new \DateTime());
 
         if ($search) {
-            $qb->andWhere('e.nom LIKE :search OR e.commentaire LIKE :search OR e.date LIKE :search');
-            $parameters['search'] = sprintf('%%%s%%', $search);
+            $qb->andWhere('e.nom LIKE :search OR e.commentaire LIKE :search OR e.date LIKE :search')
+                ->setParameter('search', sprintf('%%%s%%', $search));
         }
 
         if (!$isOwner) {
             $qb->andWhere('e.bPrive = FALSE');
         }
 
-        return $qb->setParameters($parameters)
-            ->getQuery()
+        return $qb->getQuery()
             ->getResult();
     }
 }
