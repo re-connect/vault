@@ -1,3 +1,4 @@
+{% set step = row.step is defined ? row.step : constant('App\\Entity\\Attributes\\BeneficiaryCreationProcess::IDENTITY_STEP') %}
 <ul class="list-group">
     <li class="row">
         <div class="col-3 mt-2 bold">
@@ -14,7 +15,7 @@
             {% endif %}
         </div>
         <div class="col-2 mt-2 text-end">
-            <a href="{{ path('create_beneficiary', {'step': row.step, 'id': beneficiaryCreationProcess.id}) }}" data-turbo="false">
+            <a href="{{ path('create_beneficiary', {step, id: beneficiaryCreationProcess.id}) }}" data-turbo="false">
                 <i class="fas fa-pencil-alt text-primary"></i>
             </a>
         </div>

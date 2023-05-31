@@ -4,12 +4,11 @@ namespace App\FormV2\UserAffiliation\Model;
 
 class SearchBeneficiaryFormModel
 {
-    private ?string $firstname = '';
-    private ?string $lastname = '';
-    private ?\DateTime $birthDate = null;
-
-    public function __construct()
-    {
+    public function __construct(
+        private ?string $firstname = '',
+        private ?string $lastname = '',
+        private ?\DateTime $birthDate = null
+    ) {
     }
 
     public function getFirstname(): ?string

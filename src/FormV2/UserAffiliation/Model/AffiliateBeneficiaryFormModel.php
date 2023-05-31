@@ -19,9 +19,10 @@ class AffiliateBeneficiaryFormModel
     )]
     private Collection $relays;
 
-    public function __construct()
+    /** @param ?ArrayCollection<int, Centre> $relays */
+    public function __construct(?ArrayCollection $relays = null)
     {
-        $this->relays = new ArrayCollection();
+        $this->relays = $relays ?: new ArrayCollection();
     }
 
     public function getSecretAnswer(): ?string
