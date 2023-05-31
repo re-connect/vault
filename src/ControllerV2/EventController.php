@@ -2,12 +2,9 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Beneficiaire;
 use App\Entity\Evenement;
 use App\FormV2\EventType;
-use App\FormV2\SearchType;
 use App\ManagerV2\EventManager;
-use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,97 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class EventController extends AbstractController
 {
-    #[Route(
-        path: '/beneficiary/{id}/events',
-        name: 'event_list',
-        requirements: ['id' => '\d+'],
-        methods: ['GET'],
-    )]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function list(
-        Request $request,
-        Beneficiaire $beneficiary,
-        EventManager $manager,
-        PaginatorService $paginator,
-    ): Response {
-        $searchForm = $this->createForm(SearchType::class, null, [
-            'attr' => ['data-controller' => 'ajax-list-filter'],
-            'action' => $this->generateUrl('event_search', ['id' => $beneficiary->getId()]),
-        ]);
-
-        return $this->renderForm('v2/vault/event/index.html.twig', [
-            'beneficiary' => $beneficiary,
-            'events' => $paginator->create(
-                $manager->getEvents($beneficiary),
-                $request->query->getInt('page', 1),
-            ),
-            'form' => $searchForm,
-        ]);
-    }
-
-    #[Route(
-        path: '/beneficiary/{id}/events/search',
-        name: 'event_search',
-        requirements: ['id' => '\d+'],
-        methods: ['POST'],
-        condition: 'request.isXmlHttpRequest()',
-    )]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function search(
-        Request $request,
-        Beneficiaire $beneficiary,
-        EventManager $manager,
-        PaginatorService $paginator
-    ): Response {
-        $searchForm = $this->createForm(SearchType::class, null, [
-            'attr' => ['data-controller' => 'ajax-list-filter'],
-            'action' => $this->generateUrl('event_search', ['id' => $beneficiary->getId()]),
-        ])->handleRequest($request);
-
-        $search = $searchForm->get('search')->getData();
-
-        return new JsonResponse([
-            'html' => $this->renderForm('v2/vault/event/_list.html.twig', [
-                'events' => $paginator->create(
-                    $manager->getEvents($beneficiary, $search),
-                    $request->query->getInt('page', 1),
-                ),
-                'beneficiary' => $beneficiary,
-                'form' => $searchForm,
-            ])->getContent(),
-        ]);
-    }
-
-    #[Route(
-        path: '/beneficiary/{id}/event/create',
-        name: 'event_create',
-        requirements: ['id' => '\d+'],
-        methods: ['GET', 'POST'],
-    )]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function create(Request $request, Beneficiaire $beneficiary, EntityManagerInterface $em): Response
-    {
-        $event = new Evenement($beneficiary);
-        $form = $this->createForm(EventType::class, $event, [
-            'action' => $this->generateUrl('event_create', ['id' => $beneficiary->getId()]),
-            'private' => $this->getUser() === $beneficiary->getUser(),
-        ])->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($event);
-            $em->flush();
-            $this->addFlash('success', 'event_created');
-
-            return $this->redirectToRoute('event_list', ['id' => $beneficiary->getId()]);
-        }
-
-        return $this->renderForm('v2/vault/event/form.html.twig', [
-            'form' => $form,
-            'beneficiary' => $beneficiary,
-            'event' => $event,
-        ]);
-    }
-
     #[Route(path: '/event/{id}/edit', name: 'event_edit', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     #[IsGranted('UPDATE', 'event')]
     public function edit(Request $request, Evenement $event, EventManager $manager): Response

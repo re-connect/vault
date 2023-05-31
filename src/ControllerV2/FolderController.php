@@ -2,7 +2,6 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Beneficiaire;
 use App\Entity\Dossier;
 use App\FormV2\FolderType;
 use App\FormV2\SearchType;
@@ -41,76 +40,6 @@ class FolderController extends AbstractController
             ),
             'currentFolder' => $folder,
             'form' => $searchForm,
-        ]);
-    }
-
-    #[Route(
-        path: '/beneficiary/{id}/folder/{folderId}/search',
-        name: 'folder_search',
-        requirements: ['id' => '\d+', 'folderId' => '\d+'],
-        methods: ['POST'],
-        condition: 'request.isXmlHttpRequest()',
-    )]
-    #[ParamConverter('folder', class: 'App\Entity\Dossier', options: ['id' => 'folderId'])]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function search(
-        Request $request,
-        Beneficiaire $beneficiary,
-        Dossier $folder,
-        FolderableItemManager $manager,
-        PaginatorService $paginator,
-    ): JsonResponse {
-        $this->denyAccessUnlessGranted('UPDATE', $folder);
-
-        $searchForm = $this->createForm(SearchType::class, null, [
-            'attr' => ['data-controller' => 'ajax-list-filter'],
-            'action' => $this->generateUrl('folder_search', ['id' => $beneficiary->getId(), 'folderId' => $folder->getId()]),
-        ])->handleRequest($request);
-
-        $search = $searchForm->get('search')->getData();
-
-        return new JsonResponse([
-            'html' => $this->renderForm('v2/vault/document/_list.html.twig', [
-                'foldersAndDocuments' => $paginator->create(
-                    $manager->getFoldersAndDocumentsWithUrl($beneficiary, $folder, $search),
-                    $request->query->getInt('page', 1),
-                ),
-                'beneficiary' => $beneficiary,
-                'form' => $searchForm,
-            ])->getContent(),
-        ]);
-    }
-
-    #[Route(
-        path: 'beneficiary/{id}/folder/create',
-        name: 'folder_create',
-        requirements: ['id' => '\d+'],
-        methods: ['GET', 'POST'],
-    )]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function create(
-        Request $request,
-        Beneficiaire $beneficiary,
-        EntityManagerInterface $em,
-        FolderManager $manager
-    ): Response {
-        $folder = (new Dossier())->setBeneficiaire($beneficiary);
-        $form = $this->createForm(FolderType::class, $folder, [
-            'action' => $this->generateUrl('folder_create', ['id' => $beneficiary->getId()]),
-            'private' => $this->getUser() === $beneficiary->getUser(),
-        ])->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($folder);
-            $em->flush();
-
-            return $this->redirectToRoute('document_list', ['id' => $beneficiary->getId()]);
-        }
-
-        return $this->renderForm('v2/vault/folder/create.html.twig', [
-            'form' => $form,
-            'beneficiary' => $beneficiary,
-            'autocompleteNames' => $manager->getAutocompleteFolderNames(),
         ]);
     }
 
