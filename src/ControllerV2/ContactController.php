@@ -7,7 +7,6 @@ use App\Entity\Contact;
 use App\FormV2\ContactType;
 use App\FormV2\SearchType;
 use App\ManagerV2\ContactManager;
-use App\Repository\ContactRepository;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -23,7 +22,7 @@ class ContactController extends AbstractController
     public function list(
         Request $request,
         Beneficiaire $beneficiary,
-        ContactRepository $repository,
+        ContactManager $manager,
         PaginatorService $paginator,
     ): Response {
         $searchForm = $this->createForm(SearchType::class, null, [
@@ -34,9 +33,7 @@ class ContactController extends AbstractController
         return $this->renderForm('v2/vault/contact/index.html.twig', [
             'beneficiary' => $beneficiary,
             'contacts' => $paginator->create(
-                $this->isLoggedInUser($beneficiary->getUser())
-                    ? $repository->findAllByBeneficiary($beneficiary)
-                    : $repository->findSharedByBeneficiary($beneficiary),
+                $manager->getContacts($beneficiary),
                 $request->query->getInt('page', 1),
             ),
             'form' => $searchForm,
@@ -54,7 +51,7 @@ class ContactController extends AbstractController
     public function search(
         Beneficiaire $beneficiary,
         Request $request,
-        ContactRepository $repository,
+        ContactManager $manager,
         PaginatorService $paginator
     ): Response {
         $searchForm = $this->createForm(SearchType::class, null, [
@@ -67,9 +64,7 @@ class ContactController extends AbstractController
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/contact/_list.html.twig', [
                 'contacts' => $paginator->create(
-                    $this->isLoggedInUser($beneficiary->getUser())
-                        ? $repository->searchByBeneficiary($beneficiary, $search)
-                        : $repository->searchSharedByBeneficiary($beneficiary, $search),
+                    $manager->getContacts($beneficiary, $search),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
