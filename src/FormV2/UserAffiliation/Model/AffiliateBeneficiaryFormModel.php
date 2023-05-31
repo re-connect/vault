@@ -19,6 +19,7 @@ class AffiliateBeneficiaryFormModel
     )]
     private Collection $relays;
 
+    /** @param ?ArrayCollection<int, Centre> $relays */
     public function __construct(?ArrayCollection $relays = null)
     {
         $this->relays = $relays ?: new ArrayCollection();
