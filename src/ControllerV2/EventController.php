@@ -7,7 +7,6 @@ use App\Entity\Evenement;
 use App\FormV2\EventType;
 use App\FormV2\SearchType;
 use App\ManagerV2\EventManager;
-use App\Repository\EvenementRepository;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -28,7 +27,7 @@ class EventController extends AbstractController
     public function list(
         Request $request,
         Beneficiaire $beneficiary,
-        EvenementRepository $repository,
+        EventManager $manager,
         PaginatorService $paginator,
     ): Response {
         $searchForm = $this->createForm(SearchType::class, null, [
@@ -39,9 +38,7 @@ class EventController extends AbstractController
         return $this->renderForm('v2/vault/event/index.html.twig', [
             'beneficiary' => $beneficiary,
             'events' => $paginator->create(
-                $this->isLoggedInUser($beneficiary->getUser())
-                    ? $repository->findFutureEventsByBeneficiary($beneficiary)
-                    : $repository->findSharedFutureEventsByBeneficiary($beneficiary),
+                $manager->getEvents($beneficiary),
                 $request->query->getInt('page', 1),
             ),
             'form' => $searchForm,
@@ -59,7 +56,7 @@ class EventController extends AbstractController
     public function search(
         Request $request,
         Beneficiaire $beneficiary,
-        EvenementRepository $repository,
+        EventManager $manager,
         PaginatorService $paginator
     ): Response {
         $searchForm = $this->createForm(SearchType::class, null, [
@@ -72,9 +69,7 @@ class EventController extends AbstractController
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/event/_list.html.twig', [
                 'events' => $paginator->create(
-                    $this->isLoggedInUser($beneficiary->getUser())
-                        ? $repository->searchFutureEventsByBeneficiary($beneficiary, $search)
-                        : $repository->searchSharedFutureEventsByBeneficiary($beneficiary, $search),
+                    $manager->getEvents($beneficiary, $search),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
