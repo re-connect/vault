@@ -9,7 +9,6 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -64,81 +63,39 @@ class DocumentRepository extends ServiceEntityRepository
         return parent::findBy($criteria, ['id' => Criteria::DESC]);
     }
 
-    private function findByBeneficiaryQueryBuilder(Beneficiaire $beneficiary, ?Dossier $folder): QueryBuilder
-    {
-        $queryBuilder = $this->createQueryBuilder('d')
-            ->andWhere('d.beneficiaire = :beneficiary')
-            ->setParameter('beneficiary', $beneficiary)
-            ->orderBy('d.createdAt', 'DESC');
-
-        if ($folder) {
-            $queryBuilder->andWhere('d.dossier = :folder')
-                ->setParameter('folder', $folder);
-        } else {
-            $queryBuilder->andWhere('d.dossier IS NULL');
-        }
-
-        return $queryBuilder;
-    }
-
-    private function searchByBeneficiaryQueryBuilder(Beneficiaire $beneficiary, ?string $word, Dossier $folder = null): QueryBuilder
+    /**
+     * @return Document[]
+     */
+    public function findByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, Dossier $folder = null, string $search = null): array
     {
         $qb = $this->createQueryBuilder('d')
             ->andWhere('d.beneficiaire = :beneficiary')
-            ->andWhere('d.nom LIKE :word');
+            ->orderBy('d.createdAt', 'DESC');
 
         $parameters = [
             'beneficiary' => $beneficiary,
-            'word' => sprintf('%%%s%%', $word),
         ];
+
+        if ($search) {
+            $qb->andWhere('d.nom LIKE :search');
+            $parameters['search'] = sprintf('%%%s%%', $search);
+        }
 
         if ($folder) {
             $qb->andWhere('d.dossier = :folder');
-            $parameters['folder'] = $folder->getId();
+            $parameters['folder'] = $folder;
+        } else {
+            // We want to fetch only root documents when we are not searching and we are not inside a folder
+            if (!$search) {
+                $qb->andWhere('d.dossier IS NULL');
+            }
         }
 
-        return $qb->orderBy('d.createdAt', 'DESC')
-            ->setParameters($parameters);
-    }
+        if (!$isOwner) {
+            $qb->andWhere('d.bPrive = FALSE');
+        }
 
-    /**
-     * @return Document[]
-     */
-    public function findAllByBeneficiary(Beneficiaire $beneficiary, ?Dossier $folder = null): array
-    {
-        return $this->findByBeneficiaryQueryBuilder($beneficiary, $folder)
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @return Document[]
-     */
-    public function findSharedByBeneficiary(Beneficiaire $beneficiary, ?Dossier $folder = null): array
-    {
-        return $this->findByBeneficiaryQueryBuilder($beneficiary, $folder)
-            ->andWhere('d.bPrive = FALSE')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @return Document[]
-     */
-    public function searchByBeneficiary(Beneficiaire $beneficiary, ?string $word, Dossier $folder = null): array
-    {
-        return $this->searchByBeneficiaryQueryBuilder($beneficiary, $word, $folder)
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @return Document[]
-     */
-    public function searchSharedByBeneficiary(Beneficiaire $beneficiary, ?string $word, Dossier $folder = null): array
-    {
-        return $this->searchByBeneficiaryQueryBuilder($beneficiary, $word, $folder)
-            ->andWhere('d.bPrive = FALSE')
+        return $qb->setParameters($parameters)
             ->getQuery()
             ->getResult();
     }

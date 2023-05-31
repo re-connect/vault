@@ -2,9 +2,12 @@
 
 namespace App\ManagerV2;
 
+use App\Entity\Beneficiaire;
 use App\Entity\Dossier;
+use App\Repository\DossierRepository;
 use App\ServiceV2\BucketService;
 use App\ServiceV2\Traits\UserAwareTrait;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\HeaderUtils;
@@ -24,22 +27,32 @@ class FolderManager
         private readonly BucketService $bucketService,
         private readonly LoggerInterface $logger,
         private readonly TranslatorInterface $translator,
+        private readonly DossierRepository $folderRepository,
         private Security $security,
     ) {
     }
 
-    public function move(Dossier $folder, ?Dossier $parentFolder): void
+    /**
+     * @return Dossier[]
+     */
+    public function getFolders(Beneficiaire $beneficiary, Dossier $parentFolder = null, string $search = null): array
     {
-        if (!$parentFolder) {
-            $folder->setDossierParent();
-        } elseif ($parentFolder !== $folder) {
-            $parentFolder->addSousDossier($folder);
-            if ($folder->getBPrive() !== $parentFolder->getBPrive()) {
-                $this->toggleVisibility($folder);
-            }
-        }
+        return $this->folderRepository->findByBeneficiary(
+            $beneficiary,
+            $this->getUser() === $beneficiary->getUser(),
+            $parentFolder,
+            $search,
+        );
+    }
 
-        $this->em->flush();
+    /**
+     * @return Collection<int, Dossier>
+     */
+    public function getRootFolders(Beneficiaire $beneficiary): Collection
+    {
+        return $this->getUser() === $beneficiary->getUser()
+            ? $beneficiary->getRootFolders()
+            : $beneficiary->getSharedRootFolders();
     }
 
     public function toggleVisibility(Dossier $folder): void

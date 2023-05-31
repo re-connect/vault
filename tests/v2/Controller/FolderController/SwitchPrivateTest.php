@@ -45,4 +45,23 @@ class SwitchPrivateTest extends AbstractControllerTest implements TestRouteInter
             $this->assertRoute($newUrl, 403, $userMail, null, $method);
         }
     }
+
+    public function provideTestCanNotSwitchPrivateWithParentFolder(): ?\Generator
+    {
+        yield 'Should return 403 status code when authenticated as beneficiaire and folder has parent folder' => [
+            BeneficiaryFixture::BENEFICIARY_MAIL,
+        ];
+        yield 'Should return 403 status code when authenticated as member with relay in common and folder has parent folder' => [
+            MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES,
+        ];
+    }
+
+    /** @dataProvider provideTestCanNotSwitchPrivateWithParentFolder */
+    public function testCanNotSwitchPrivateWithParentFolder(string $userMail): void
+    {
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'dossierParent' => FolderFactory::random()])->object();
+
+        $this->assertRoute(sprintf(self::URL, $folder->getId()), 403, $userMail);
+    }
 }

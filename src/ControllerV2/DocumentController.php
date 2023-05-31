@@ -8,6 +8,8 @@ use App\Entity\Dossier;
 use App\FormV2\RenameDocumentType;
 use App\FormV2\SearchType;
 use App\ManagerV2\DocumentManager;
+use App\ManagerV2\FolderableItemManager;
+use App\ManagerV2\FolderManager;
 use App\Repository\DossierRepository;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,7 +27,7 @@ class DocumentController extends AbstractController
     public function list(
         Request $request,
         Beneficiaire $beneficiary,
-        DocumentManager $documentManager,
+        FolderableItemManager $manager,
         PaginatorService $paginator,
     ): Response {
         $searchForm = $this->createForm(SearchType::class, null, [
@@ -36,9 +38,7 @@ class DocumentController extends AbstractController
         return $this->renderForm('v2/vault/document/index.html.twig', [
             'beneficiary' => $beneficiary,
             'foldersAndDocuments' => $paginator->create(
-                $this->isLoggedInUser($beneficiary->getUser())
-                    ? $documentManager->getAllFoldersAndDocumentsWithUrl($beneficiary)
-                    : [],
+                $manager->getFoldersAndDocumentsWithUrl($beneficiary),
                 $request->query->getInt('page', 1),
             ),
             'form' => $searchForm,
@@ -83,7 +83,7 @@ class DocumentController extends AbstractController
     public function search(
         Request $request,
         Beneficiaire $beneficiary,
-        DocumentManager $documentManager,
+        FolderableItemManager $manager,
         PaginatorService $paginator,
     ): JsonResponse {
         $searchForm = $this->createForm(SearchType::class, null, [
@@ -96,9 +96,7 @@ class DocumentController extends AbstractController
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/document/_list.html.twig', [
                 'foldersAndDocuments' => $paginator->create(
-                    $this->isLoggedInUser($beneficiary->getUser())
-                        ? $documentManager->searchFoldersAndDocumentsWithUrl($beneficiary, $search)
-                        : [],
+                    $manager->getFoldersAndDocumentsWithUrl($beneficiary, null, $search),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
@@ -112,7 +110,7 @@ class DocumentController extends AbstractController
     public function detail(Document $document, DocumentManager $manager): Response
     {
         return $this->render('v2/vault/document/detail.html.twig', [
-            'document' => $manager->getDocumentWithUrl($document),
+            'document' => $document,
             'beneficiary' => $document->getBeneficiaire(),
         ]);
     }
@@ -156,7 +154,7 @@ class DocumentController extends AbstractController
 
         return $this->renderForm('v2/vault/document/rename.html.twig', [
             'form' => $form,
-            'document' => $manager->getDocumentWithUrl($document),
+            'document' => $manager->hydrateDocumentAndThumbnailWithUrl($document),
             'beneficiary' => $document->getBeneficiaire(),
         ]);
     }
@@ -180,15 +178,14 @@ class DocumentController extends AbstractController
         requirements: ['id' => '\d+'],
         methods: ['GET', 'PATCH'],
     )]
-    #[IsGranted('UPDATE', 'document')]
+    #[IsGranted('TOGGLE_VISIBILITY', 'document')]
     public function toggleVisibility(Request $request, Document $document, DocumentManager $manager): Response
     {
-        $folder = $document->getDossier();
         $manager->toggleVisibility($document);
 
         return $request->isXmlHttpRequest()
             ? new JsonResponse($document)
-            : $this->getDocumentPageRedirection($document, $folder);
+            : $this->redirectToRoute('document_list', ['id' => $document->getBeneficiaireId()]);
     }
 
     #[Route(
@@ -203,7 +200,7 @@ class DocumentController extends AbstractController
     public function moveToFolder(
         Request $request,
         Document $document,
-        DocumentManager $manager,
+        FolderableItemManager $manager,
         ?Dossier $folder,
     ): Response {
         if ($folder) {
@@ -223,10 +220,12 @@ class DocumentController extends AbstractController
         methods: ['GET']
     )]
     #[IsGranted('UPDATE', 'document')]
-    public function treeViewMove(Document $document): Response
+    public function treeViewMove(Document $document, FolderManager $folderManager): Response
     {
+        $beneficiary = $document->getBeneficiaire();
+
         return $this->render('v2/vault/folder/tree_view.html.twig', [
-            'folders' => $document->getBeneficiaire()->getRootFolders(),
+            'folders' => $folderManager->getRootFolders($beneficiary),
             'element' => $document,
             'beneficiary' => $document->getBeneficiaire(),
         ]);
