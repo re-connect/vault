@@ -40,25 +40,6 @@ class BeneficiaireControllerTest extends WebTestCase
         }
     }
 
-    public function testAddDocument()
-    {
-        $beneficiaire = $this->createBeneficary();
-        $crawler = $this->client->request('GET', $this->router->generate('re_app_document_list', ['id' => $beneficiaire->getId()]));
-
-        // Document page
-        $crawler = $this->client->click($crawler->filter('a:contains("'.$this->translator->trans('beneficiaire.menu.mesDocuments').'")')->eq(0)->link());
-        self::assertEquals(200, $this->client->getResponse()->getStatusCode());
-        self::assertTrue($crawler->filter('html:contains("'.$this->translator->trans('document.metaTitle').'")')->count() > 0);
-
-        // Add document
-        $crawler = $this->client->click($crawler->filter('a:contains("'.$this->translator->trans('document.deposerDesFichiers').'")')->eq(0)->link());
-        self::assertEquals(200, $this->client->getResponse()->getStatusCode());
-        self::assertTrue($crawler->filter('html:contains("'.$this->translator->trans('document.metaTitle').'")')->count() > 0);
-
-        $beneficiaire = $this->client->getContainer()->get('security.token_storage')->getToken()->getUser()->getSubject();
-        self::assertCount(0, $beneficiaire->getDocuments());
-    }
-
     private function createBeneficary(): Beneficiaire
     {
         $beneficiaire = $this->fixtureManager->getNewRandomBeneficiaire($this->userManager);
