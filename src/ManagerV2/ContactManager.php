@@ -27,7 +27,7 @@ class ContactManager
     {
         return $this->repository->findByBeneficiary(
             $beneficiary,
-            $this->getUser() === $beneficiary->getUser(),
+            $this->isLoggedInUser($beneficiary->getUser()),
             $search,
         );
     }

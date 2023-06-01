@@ -34,7 +34,7 @@ class EventManager
     {
         return $this->eventRepository->findFutureEventsByBeneficiary(
             $beneficiary,
-            $this->getUser() === $beneficiary->getUser(),
+            $this->isLoggedInUser($beneficiary->getUser()),
             $search
         );
     }

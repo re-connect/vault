@@ -19,4 +19,9 @@ trait UserAwareTrait
 
         return $user;
     }
+
+    protected function isLoggedInUser(User $user): bool
+    {
+        return $this->getUser() === $user;
+    }
 }
