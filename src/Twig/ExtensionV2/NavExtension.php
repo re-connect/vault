@@ -33,7 +33,7 @@ class NavExtension extends AbstractExtension
             [
                 'itemKind' => 'document-folder',
                 'title' => $isBeneficiary ? 'my_documents' : 'documents',
-                'routeName' => 're_app_document_list',
+                'routeName' => 'list_documents',
                 'image' => 'build/images/icons/docs_bleu.png',
             ],
             [
