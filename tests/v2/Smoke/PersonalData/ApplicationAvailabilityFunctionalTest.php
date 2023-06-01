@@ -11,6 +11,12 @@ use App\Tests\v2\Smoke\AbstractSmokeTest;
 
 class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->client->loginUser($this->beneficiary->getUser());
+    }
+
     /**
      * @dataProvider contactsUrlProvider
      */

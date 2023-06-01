@@ -9,9 +9,15 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
     /**
      * @dataProvider beneficiaryUrlProvider
      */
-    public function testBeneficiaryPages(string $url): void
+    public function testBeneficiaryPages(string $url, bool $beneficiaryOnly = false): void
     {
+        $this->client->loginUser($this->beneficiary->getUser());
         $this->assertRoute(sprintf($url, $this->beneficiary->getId()));
+
+        if (!$beneficiaryOnly) {
+            $this->client->loginUser($this->professional->getUser());
+            $this->assertRoute(sprintf($url, $this->beneficiary->getId()));
+        }
     }
 
     public function beneficiaryUrlProvider(): \Generator
@@ -24,8 +30,8 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
         yield ['/beneficiary/%d/event/create'];
         yield ['/beneficiary/%d/documents'];
         yield ['/beneficiary/%d/folder/create'];
-        yield ['/beneficiary/%d/relays'];
+        yield ['/beneficiary/%d/relays', true];
         yield ['/user/settings'];
-        yield ['/user/delete'];
+        yield ['/user/delete', true];
     }
 }
