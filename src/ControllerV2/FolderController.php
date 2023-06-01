@@ -4,7 +4,7 @@ namespace App\ControllerV2;
 
 use App\Entity\Dossier;
 use App\FormV2\FolderType;
-use App\FormV2\SearchType;
+use App\FormV2\Search\SearchType;
 use App\ManagerV2\FolderableItemManager;
 use App\ManagerV2\FolderManager;
 use App\ServiceV2\PaginatorService;

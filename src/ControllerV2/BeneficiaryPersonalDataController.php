@@ -12,7 +12,8 @@ use App\FormV2\ContactType;
 use App\FormV2\EventType;
 use App\FormV2\FolderType;
 use App\FormV2\NoteType;
-use App\FormV2\SearchType;
+use App\FormV2\Search\SearchFormModel;
+use App\FormV2\Search\SearchType;
 use App\ManagerV2\ContactManager;
 use App\ManagerV2\DocumentManager;
 use App\ManagerV2\EventManager;
@@ -67,16 +68,16 @@ class BeneficiaryPersonalDataController extends AbstractController
         NoteManager $manager,
         PaginatorService $paginator
     ): JsonResponse {
+        $search = new SearchFormModel();
         $searchForm = $this->getSearchForm(
             $this->generateUrl('search_notes', ['id' => $beneficiary->getId()]),
+            $search,
         )->handleRequest($request);
-
-        $search = $searchForm->get('search')->getData();
 
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/note/_list.html.twig', [
                 'notes' => $paginator->create(
-                    $manager->getNotes($beneficiary, $search),
+                    $manager->getNotes($beneficiary, $search->getSearch()),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
@@ -149,16 +150,16 @@ class BeneficiaryPersonalDataController extends AbstractController
         ContactManager $manager,
         PaginatorService $paginator
     ): Response {
+        $search = new SearchFormModel();
         $searchForm = $this->getSearchForm(
             $this->generateUrl('search_contacts', ['id' => $beneficiary->getId()]),
+            $search,
         )->handleRequest($request);
-
-        $search = $searchForm->get('search')->getData();
 
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/contact/_list.html.twig', [
                 'contacts' => $paginator->create(
-                    $manager->getContacts($beneficiary, $search),
+                    $manager->getContacts($beneficiary, $search->getSearch()),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
@@ -236,16 +237,16 @@ class BeneficiaryPersonalDataController extends AbstractController
         EventManager $manager,
         PaginatorService $paginator
     ): Response {
+        $search = new SearchFormModel();
         $searchForm = $this->getSearchForm(
             $this->generateUrl('search_events', ['id' => $beneficiary->getId()]),
+            $search,
         )->handleRequest($request);
-
-        $search = $searchForm->get('search')->getData();
 
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/event/_list.html.twig', [
                 'events' => $paginator->create(
-                    $manager->getEvents($beneficiary, $search),
+                    $manager->getEvents($beneficiary, $search->getSearch()),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
@@ -346,16 +347,16 @@ class BeneficiaryPersonalDataController extends AbstractController
         FolderableItemManager $manager,
         PaginatorService $paginator,
     ): JsonResponse {
+        $search = new SearchFormModel();
         $searchForm = $this->getSearchForm(
             $this->generateUrl('search_documents', ['id' => $beneficiary->getId()]),
+            $search,
         )->handleRequest($request);
-
-        $search = $searchForm->get('search')->getData();
 
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/document/_list.html.twig', [
                 'foldersAndDocuments' => $paginator->create(
-                    $manager->getFoldersAndDocumentsWithUrl($beneficiary, null, $search),
+                    $manager->getFoldersAndDocumentsWithUrl($beneficiary, null, $search->getSearch()),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
@@ -382,16 +383,16 @@ class BeneficiaryPersonalDataController extends AbstractController
     ): JsonResponse {
         $this->denyAccessUnlessGranted('UPDATE', $parentFolder);
 
+        $search = new SearchFormModel();
         $searchForm = $this->getSearchForm(
             $this->generateUrl('search_folders', ['id' => $beneficiary->getId(), 'parentFolderId' => $parentFolder->getId()]),
+            $search,
         )->handleRequest($request);
-
-        $search = $searchForm->get('search')->getData();
 
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/document/_list.html.twig', [
                 'foldersAndDocuments' => $paginator->create(
-                    $manager->getFoldersAndDocumentsWithUrl($beneficiary, $parentFolder, $search),
+                    $manager->getFoldersAndDocumentsWithUrl($beneficiary, $parentFolder, $search->getSearch()),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
@@ -434,17 +435,17 @@ class BeneficiaryPersonalDataController extends AbstractController
         ]);
     }
 
-    private function getSearchForm(string $url): FormInterface
+    private function getSearchForm(string $url, SearchFormModel $formModel = null): FormInterface
     {
-        return $this->createForm(SearchType::class, null, [
+        return $this->createForm(SearchType::class, $formModel, [
             'attr' => ['data-controller' => 'ajax-list-filter'],
             'action' => $url,
         ]);
     }
 
-    private function getCreateForm(string $type, DonneePersonnelle $entity, string $url): FormInterface
+    private function getCreateForm(string $formTypeClassName, DonneePersonnelle $entity, string $url): FormInterface
     {
-        return $this->createForm($type, $entity, [
+        return $this->createForm($formTypeClassName, $entity, [
             'action' => $url,
             'private' => $this->isLoggedInUser($entity->getBeneficiaire()->getUser()),
         ]);
