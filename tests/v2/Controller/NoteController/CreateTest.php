@@ -11,7 +11,7 @@ use App\Tests\v2\Controller\TestRouteInterface;
 
 class CreateTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
-    private const URL = '/beneficiary/%s/note/create';
+    private const URL = '/beneficiary/%s/notes/create';
     private const FORM_VALUES = [
         'note[nom]' => 'Mot de passe CAF',
         'note[contenu]' => 'motDePasseCaf',
@@ -44,7 +44,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
 
         yield 'Should return an error when name is empty' => [
             self::URL,
-            'note_create',
+            'create_note',
             'confirm',
             $values,
             [
@@ -62,7 +62,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
 
         yield 'Should return an error when content is empty' => [
             self::URL,
-            'note_create',
+            'create_note',
             'confirm',
             $values,
             [

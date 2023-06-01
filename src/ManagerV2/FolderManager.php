@@ -39,7 +39,7 @@ class FolderManager
     {
         return $this->folderRepository->findByBeneficiary(
             $beneficiary,
-            $this->getUser() === $beneficiary->getUser(),
+            $this->isLoggedInUser($beneficiary->getUser()),
             $parentFolder,
             $search,
         );

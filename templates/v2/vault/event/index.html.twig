@@ -12,11 +12,11 @@
 
 {% block searchform %}
     {{ include('v2/vault/components/_search_input.html.twig', {
-        'routeName': 'event_search',
+        'routeName': 'search_events',
         'beneficiaryId': beneficiary.id,
     }) }}
 {% endblock %}
 
 {% block actionButtons %}
-    {{ include('v2/vault/components/_create_personal_data_button.html.twig', {'path' : path('event_create', {'id': beneficiary.id})}) }}
+    {{ include('v2/vault/components/_create_personal_data_button.html.twig', {'path' : path('create_event', {'id': beneficiary.id})}) }}
 {% endblock %}

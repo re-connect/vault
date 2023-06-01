@@ -11,7 +11,7 @@ use App\Tests\v2\Controller\TestRouteInterface;
 
 class CreateTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
-    private const URL = '/beneficiary/%s/folder/create';
+    private const URL = '/beneficiary/%s/folders/create';
     private const FORM_VALUES = [
         'folder[nom]' => 'Emploi',
     ];
@@ -43,7 +43,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
 
         yield 'Should return an error when nom is empty' => [
             self::URL,
-            'folder_create',
+            'create_folder',
             'confirm',
             $values,
             [

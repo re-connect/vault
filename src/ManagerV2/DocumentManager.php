@@ -45,7 +45,7 @@ class DocumentManager
         return $this->hydrateDocumentsAndThumbnailWithUrl(
             $this->repository->findByBeneficiary(
                 $beneficiary,
-                $this->getUser() === $beneficiary->getUser(),
+                $this->isLoggedInUser($beneficiary->getUser()),
                 $folder,
                 $search,
             )

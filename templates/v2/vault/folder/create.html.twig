@@ -9,7 +9,7 @@
         {{ include('v2/vault/form/_personal_data_form.html.twig', {
             'title': 'document.creerUnDossier',
             'icon' : 'fas fa-folder-plus',
-            'cancelPath': path('document_list', {'id': beneficiary.id}),
+            'cancelPath': path('list_documents', {'id': beneficiary.id}),
         }) }}
     </div>
 {% endblock %}

@@ -2,13 +2,9 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Beneficiaire;
 use App\Entity\Note;
 use App\FormV2\NoteType;
-use App\FormV2\SearchType;
 use App\ManagerV2\NoteManager;
-use App\Repository\NoteRepository;
-use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,95 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class NoteController extends AbstractController
 {
-    #[Route(path: '/beneficiary/{id}/notes', name: 'note_list', requirements: ['id' => '\d+'], methods: ['GET'])]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function list(
-        Request $request,
-        Beneficiaire $beneficiary,
-        NoteRepository $repository,
-        PaginatorService $paginator,
-    ): Response {
-        $searchForm = $this->createForm(SearchType::class, null, [
-            'attr' => ['data-controller' => 'ajax-list-filter'],
-            'action' => $this->generateUrl('note_search', ['id' => $beneficiary->getId()]),
-        ]);
-
-        return $this->renderForm('v2/vault/note/index.html.twig', [
-            'beneficiary' => $beneficiary,
-            'notes' => $paginator->create(
-                $this->isLoggedInUser($beneficiary->getUser())
-                    ? $repository->findAllByBeneficiary($beneficiary)
-                    : $repository->findSharedByBeneficiary($beneficiary),
-                $request->query->getInt('page', 1),
-            ),
-            'form' => $searchForm,
-        ]);
-    }
-
-    #[Route(
-        path: '/beneficiary/{id}/notes/search',
-        name: 'note_search',
-        requirements: ['id' => '\d+'],
-        methods: ['POST'],
-        condition: 'request.isXmlHttpRequest()',
-    )]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function search(
-        Beneficiaire $beneficiary,
-        Request $request,
-        NoteRepository $repository,
-        PaginatorService $paginator
-    ): JsonResponse {
-        $searchForm = $this->createForm(SearchType::class, null, [
-            'attr' => ['data-controller' => 'ajax-list-filter'],
-            'action' => $this->generateUrl('note_search', ['id' => $beneficiary->getId()]),
-        ])->handleRequest($request);
-
-        $search = $searchForm->get('search')->getData();
-
-        return new JsonResponse([
-            'html' => $this->renderForm('v2/vault/note/_list.html.twig', [
-                'notes' => $paginator->create(
-                    $this->isLoggedInUser($beneficiary->getUser())
-                        ? $repository->searchByBeneficiary($beneficiary, $search)
-                        : $repository->searchSharedByBeneficiary($beneficiary, $search),
-                    $request->query->getInt('page', 1),
-                ),
-                'beneficiary' => $beneficiary,
-                'form' => $searchForm,
-            ])->getContent(),
-        ]);
-    }
-
-    #[Route(
-        path: '/beneficiary/{id}/note/create',
-        name: 'note_create',
-        requirements: ['id' => '\d+'],
-        methods: ['GET', 'POST'],
-    )]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function create(Beneficiaire $beneficiary, Request $request, EntityManagerInterface $em): Response
-    {
-        $note = new Note($beneficiary);
-        $form = $this->createForm(NoteType::class, $note, [
-            'action' => $this->generateUrl('note_create', ['id' => $beneficiary->getId()]),
-            'private' => $this->getUser() === $beneficiary->getUser(),
-        ])->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($note);
-            $em->flush();
-            $this->addFlash('success', 'note_created');
-
-            return $this->redirectToRoute('note_list', ['id' => $beneficiary->getId()]);
-        }
-
-        return $this->renderForm('v2/vault/note/create.html.twig', [
-            'form' => $form,
-            'beneficiary' => $beneficiary,
-        ]);
-    }
-
     #[Route(path: '/note/{id}/detail', name: 'note_detail', requirements: ['id' => '\d+'], methods: ['GET'])]
     #[IsGranted('UPDATE', 'note')]
     public function detail(Note $note): Response
@@ -131,7 +38,7 @@ class NoteController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'note_updated');
 
-            return $this->redirectToRoute('note_list', ['id' => $beneficiary->getId()]);
+            return $this->redirectToRoute('list_notes', ['id' => $beneficiary->getId()]);
         }
 
         return $this->renderForm('v2/vault/note/edit.html.twig', [
@@ -148,7 +55,7 @@ class NoteController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'note.bienSupprime');
 
-        return $this->redirectToRoute('note_list', ['id' => $note->getBeneficiaireId()]);
+        return $this->redirectToRoute('list_notes', ['id' => $note->getBeneficiaireId()]);
     }
 
     #[Route(
@@ -164,6 +71,6 @@ class NoteController extends AbstractController
 
         return $request->isXmlHttpRequest()
             ? new JsonResponse($note)
-            : $this->redirectToRoute('note_list', ['id' => $note->getBeneficiaireId()]);
+            : $this->redirectToRoute('list_notes', ['id' => $note->getBeneficiaireId()]);
     }
 }

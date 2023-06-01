@@ -9,6 +9,6 @@
         'title': 'rename',
         'cancelPath': folder.dossierParent
         ? path('folder', {'id': folder.dossierParent.id})
-        : path('document_list', {'id': folder.beneficiaire.id})
+        : path('list_documents', {'id': folder.beneficiaire.id})
     }) }}
 {% endblock %}

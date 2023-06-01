@@ -50,7 +50,7 @@
     {{ form_row(form.bPrive) }}
     {% do form.rappels.setRendered %}
     <div class="row mx-1 mt-2">
-        {{ link(path('event_list', {'id': beneficiary.id}), 'main.retour', 'grey') }}
+        {{ link(path('list_events', {'id': beneficiary.id}), 'main.retour', 'grey') }}
         {{ button('submit', 'confirm', getUserThemeColor()) }}
     </div>
     {{ form_end(form) }}

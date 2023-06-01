@@ -11,7 +11,7 @@ use App\Tests\v2\Controller\TestRouteInterface;
 
 class CreateTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
-    public const URL = '/beneficiary/%s/event/create';
+    public const URL = '/beneficiary/%s/events/create';
 
     private const FORM_VALUES = [
         'event[nom]' => 'RDV CAF',
@@ -83,7 +83,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
         $values['event[nom]'] = '';
         yield 'Should return an error when nom is empty' => [
             self::URL,
-            'event_create',
+            'create_event',
             'confirm',
             $values,
             [
@@ -100,7 +100,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
         $values['event[date]'] = (new \DateTime('yesterday'))->format('Y-m-d H:i:s');
         yield 'Should return an error when date is in the past' => [
             self::URL,
-            'event_create',
+            'create_event',
             'confirm',
             $values,
             [

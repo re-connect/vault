@@ -12,7 +12,7 @@ use App\Tests\v2\Controller\TestRouteInterface;
 
 class FolderMoveToFolderTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const URL = '/folders/%s/move-to-folder/%s';
+    private const URL = '/folder/%s/move-to-folder/%s';
 
     /** @dataProvider provideTestRoute */
     public function testRoute(
