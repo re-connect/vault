@@ -29,7 +29,7 @@ class FolderController extends AbstractController
         $beneficiary = $folder->getBeneficiaire();
         $searchForm = $this->createForm(SearchType::class, null, [
             'attr' => ['data-controller' => 'ajax-list-filter'],
-            'action' => $this->generateUrl('folder_search', ['id' => $beneficiary->getId(), 'folderId' => $folder->getId()]),
+            'action' => $this->generateUrl('search_folders', ['id' => $beneficiary->getId(), 'parentFolderId' => $folder->getId()]),
         ]);
 
         return $this->renderForm('v2/vault/document/index.html.twig', [
@@ -107,7 +107,7 @@ class FolderController extends AbstractController
 
         return $request->isXmlHttpRequest()
             ? new JsonResponse($folder)
-            : $this->redirectToRoute('document_list', ['id' => $folder->getBeneficiaireId()]);
+            : $this->redirectToRoute('list_documents', ['id' => $folder->getBeneficiaireId()]);
     }
 
     #[Route(
@@ -200,6 +200,6 @@ class FolderController extends AbstractController
     {
         return $parentFolder
             ? $this->redirectToRoute('folder', ['id' => $parentFolder->getId()])
-            : $this->redirectToRoute('document_list', ['id' => $folder->getBeneficiaireId()]);
+            : $this->redirectToRoute('list_documents', ['id' => $folder->getBeneficiaireId()]);
     }
 }

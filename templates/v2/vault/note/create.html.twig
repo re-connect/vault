@@ -7,6 +7,6 @@
 {% block content %}
     {{ include('v2/vault/form/_personal_data_form.html.twig', {
         'title': 'donneePersonnelle.ajouter',
-        'cancelPath': path('note_list', {'id': beneficiary.id})
+        'cancelPath': path('list_notes', {'id': beneficiary.id})
     }) }}
 {% endblock %}

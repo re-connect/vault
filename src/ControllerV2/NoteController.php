@@ -38,7 +38,7 @@ class NoteController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'note_updated');
 
-            return $this->redirectToRoute('note_list', ['id' => $beneficiary->getId()]);
+            return $this->redirectToRoute('list_notes', ['id' => $beneficiary->getId()]);
         }
 
         return $this->renderForm('v2/vault/note/edit.html.twig', [
@@ -55,7 +55,7 @@ class NoteController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'note.bienSupprime');
 
-        return $this->redirectToRoute('note_list', ['id' => $note->getBeneficiaireId()]);
+        return $this->redirectToRoute('list_notes', ['id' => $note->getBeneficiaireId()]);
     }
 
     #[Route(
@@ -71,6 +71,6 @@ class NoteController extends AbstractController
 
         return $request->isXmlHttpRequest()
             ? new JsonResponse($note)
-            : $this->redirectToRoute('note_list', ['id' => $note->getBeneficiaireId()]);
+            : $this->redirectToRoute('list_notes', ['id' => $note->getBeneficiaireId()]);
     }
 }

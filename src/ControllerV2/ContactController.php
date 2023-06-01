@@ -38,7 +38,7 @@ class ContactController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'contact_updated');
 
-            return $this->redirectToRoute('contact_list', ['id' => $beneficiary->getId()]);
+            return $this->redirectToRoute('list_contacts', ['id' => $beneficiary->getId()]);
         }
 
         return $this->renderForm('v2/vault/contact/edit.html.twig', [
@@ -55,7 +55,7 @@ class ContactController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'contact.bienSupprime');
 
-        return $this->redirectToRoute('contact_list', ['id' => $contact->getBeneficiaireId()]);
+        return $this->redirectToRoute('list_contacts', ['id' => $contact->getBeneficiaireId()]);
     }
 
     #[Route(
@@ -71,6 +71,6 @@ class ContactController extends AbstractController
 
         return $request->isXmlHttpRequest()
             ? new JsonResponse($contact)
-            : $this->redirectToRoute('contact_list', ['id' => $contact->getBeneficiaireId()]);
+            : $this->redirectToRoute('list_contacts', ['id' => $contact->getBeneficiaireId()]);
     }
 }

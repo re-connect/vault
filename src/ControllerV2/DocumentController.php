@@ -61,7 +61,7 @@ class DocumentController extends AbstractController
 
             return $this->redirect($folderId
                 ? $this->generateUrl('folder', ['id' => $folderId])
-                : $this->generateUrl('document_list', ['id' => $document->getBeneficiaireId()])
+                : $this->generateUrl('list_documents', ['id' => $document->getBeneficiaireId()])
             );
         }
 
@@ -79,7 +79,7 @@ class DocumentController extends AbstractController
         if (!$response = $manager->downloadDocument($document)) {
             $this->addFlash('danger', 'error_during_download');
 
-            return $this->redirectToRoute('document_list', ['id' => $document->getBeneficiaireId()]);
+            return $this->redirectToRoute('list_documents', ['id' => $document->getBeneficiaireId()]);
         }
 
         return $response;
@@ -98,7 +98,7 @@ class DocumentController extends AbstractController
 
         return $request->isXmlHttpRequest()
             ? new JsonResponse($document)
-            : $this->redirectToRoute('document_list', ['id' => $document->getBeneficiaireId()]);
+            : $this->redirectToRoute('list_documents', ['id' => $document->getBeneficiaireId()]);
     }
 
     #[Route(
@@ -148,6 +148,6 @@ class DocumentController extends AbstractController
     {
         return $folder
             ? $this->redirectToRoute('folder', ['id' => $folder->getId()])
-            : $this->redirectToRoute('document_list', ['id' => $document->getBeneficiaireId()]);
+            : $this->redirectToRoute('list_documents', ['id' => $document->getBeneficiaireId()]);
     }
 }

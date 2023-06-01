@@ -33,7 +33,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/beneficiary')]
 class BeneficiaryPersonalDataController extends AbstractController
 {
-    #[Route(path: '/{id}/notes', name: 'note_list', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route(path: '/{id}/notes', name: 'list_notes', requirements: ['id' => '\d+'], methods: ['GET'])]
     #[IsGranted('UPDATE', 'beneficiary')]
     public function listNotes(
         Request $request,
@@ -48,14 +48,14 @@ class BeneficiaryPersonalDataController extends AbstractController
                 $request->query->getInt('page', 1),
             ),
             'form' => $this->getSearchForm(
-                $this->generateUrl('note_search', ['id' => $beneficiary->getId()]),
+                $this->generateUrl('search_notes', ['id' => $beneficiary->getId()]),
             )->handleRequest($request),
         ]);
     }
 
     #[Route(
         path: '/{id}/notes/search',
-        name: 'note_search',
+        name: 'search_notes',
         requirements: ['id' => '\d+'],
         methods: ['POST'],
         condition: 'request.isXmlHttpRequest()',
@@ -68,7 +68,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         PaginatorService $paginator
     ): JsonResponse {
         $searchForm = $this->getSearchForm(
-            $this->generateUrl('note_search', ['id' => $beneficiary->getId()]),
+            $this->generateUrl('search_notes', ['id' => $beneficiary->getId()]),
         )->handleRequest($request);
 
         $search = $searchForm->get('search')->getData();
@@ -86,8 +86,8 @@ class BeneficiaryPersonalDataController extends AbstractController
     }
 
     #[Route(
-        path: '/{id}/note/create',
-        name: 'note_create',
+        path: '/{id}/notes/create',
+        name: 'create_note',
         requirements: ['id' => '\d+'],
         methods: ['GET', 'POST'],
     )]
@@ -98,7 +98,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         $form = $this->getCreateForm(
             NoteType::class,
             $note,
-            $this->generateUrl('note_create', ['id' => $beneficiary->getId()])
+            $this->generateUrl('create_note', ['id' => $beneficiary->getId()])
         )->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -106,7 +106,7 @@ class BeneficiaryPersonalDataController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'note_created');
 
-            return $this->redirectToRoute('note_list', ['id' => $beneficiary->getId()]);
+            return $this->redirectToRoute('list_notes', ['id' => $beneficiary->getId()]);
         }
 
         return $this->renderForm('v2/vault/note/create.html.twig', [
@@ -115,7 +115,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/contacts', name: 'contact_list', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route(path: '/{id}/contacts', name: 'list_contacts', requirements: ['id' => '\d+'], methods: ['GET'])]
     #[IsGranted('UPDATE', 'beneficiary')]
     public function listContacts(
         Request $request,
@@ -130,14 +130,14 @@ class BeneficiaryPersonalDataController extends AbstractController
                 $request->query->getInt('page', 1),
             ),
             'form' => $this->getSearchForm(
-                $this->generateUrl('contact_search', ['id' => $beneficiary->getId()]),
+                $this->generateUrl('search_contacts', ['id' => $beneficiary->getId()]),
             )->handleRequest($request),
         ]);
     }
 
     #[Route(
         path: '/{id}/contacts/search',
-        name: 'contact_search',
+        name: 'search_contacts',
         requirements: ['id' => '\d+'],
         methods: ['POST'],
         condition: 'request.isXmlHttpRequest()',
@@ -150,7 +150,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         PaginatorService $paginator
     ): Response {
         $searchForm = $this->getSearchForm(
-            $this->generateUrl('contact_search', ['id' => $beneficiary->getId()]),
+            $this->generateUrl('search_contacts', ['id' => $beneficiary->getId()]),
         )->handleRequest($request);
 
         $search = $searchForm->get('search')->getData();
@@ -168,8 +168,8 @@ class BeneficiaryPersonalDataController extends AbstractController
     }
 
     #[Route(
-        path: '/{id}/contact/create',
-        name: 'contact_create',
+        path: '/{id}/contacts/create',
+        name: 'create_contact',
         requirements: ['id' => '\d+'],
         methods: ['GET', 'POST'],
     )]
@@ -180,7 +180,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         $form = $this->getCreateForm(
             ContactType::class,
             $contact,
-            $this->generateUrl('contact_create', ['id' => $beneficiary->getId()])
+            $this->generateUrl('create_contact', ['id' => $beneficiary->getId()])
         )->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -188,7 +188,7 @@ class BeneficiaryPersonalDataController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'contact_created');
 
-            return $this->redirectToRoute('contact_list', ['id' => $beneficiary->getId()]);
+            return $this->redirectToRoute('list_contacts', ['id' => $beneficiary->getId()]);
         }
 
         return $this->renderForm('v2/vault/contact/create.html.twig', [
@@ -199,7 +199,7 @@ class BeneficiaryPersonalDataController extends AbstractController
 
     #[Route(
         path: '/{id}/events',
-        name: 'event_list',
+        name: 'list_events',
         requirements: ['id' => '\d+'],
         methods: ['GET'],
     )]
@@ -217,14 +217,14 @@ class BeneficiaryPersonalDataController extends AbstractController
                 $request->query->getInt('page', 1),
             ),
             'form' => $this->getSearchForm(
-                $this->generateUrl('event_search', ['id' => $beneficiary->getId()]),
+                $this->generateUrl('search_events', ['id' => $beneficiary->getId()]),
             )->handleRequest($request),
         ]);
     }
 
     #[Route(
         path: '/{id}/events/search',
-        name: 'event_search',
+        name: 'search_events',
         requirements: ['id' => '\d+'],
         methods: ['POST'],
         condition: 'request.isXmlHttpRequest()',
@@ -237,7 +237,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         PaginatorService $paginator
     ): Response {
         $searchForm = $this->getSearchForm(
-            $this->generateUrl('event_search', ['id' => $beneficiary->getId()]),
+            $this->generateUrl('search_events', ['id' => $beneficiary->getId()]),
         )->handleRequest($request);
 
         $search = $searchForm->get('search')->getData();
@@ -255,8 +255,8 @@ class BeneficiaryPersonalDataController extends AbstractController
     }
 
     #[Route(
-        path: '/{id}/event/create',
-        name: 'event_create',
+        path: '/{id}/events/create',
+        name: 'create_event',
         requirements: ['id' => '\d+'],
         methods: ['GET', 'POST'],
     )]
@@ -267,7 +267,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         $form = $this->getCreateForm(
             EventType::class,
             $event,
-            $this->generateUrl('event_create', ['id' => $beneficiary->getId()])
+            $this->generateUrl('create_event', ['id' => $beneficiary->getId()])
         )->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -275,7 +275,7 @@ class BeneficiaryPersonalDataController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'event_created');
 
-            return $this->redirectToRoute('event_list', ['id' => $beneficiary->getId()]);
+            return $this->redirectToRoute('list_events', ['id' => $beneficiary->getId()]);
         }
 
         return $this->renderForm('v2/vault/event/form.html.twig', [
@@ -285,7 +285,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/documents', name: 'document_list', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route(path: '/{id}/documents', name: 'list_documents', requirements: ['id' => '\d+'], methods: ['GET'])]
     #[IsGranted('UPDATE', 'beneficiary')]
     public function listDocuments(
         Request $request,
@@ -300,14 +300,14 @@ class BeneficiaryPersonalDataController extends AbstractController
                 $request->query->getInt('page', 1),
             ),
             'form' => $this->getSearchForm(
-                $this->generateUrl('document_search', ['id' => $beneficiary->getId()]),
+                $this->generateUrl('search_documents', ['id' => $beneficiary->getId()]),
             )->handleRequest($request),
         ]);
     }
 
     #[Route(
         path: '/{id}/documents/upload',
-        name: 'document_upload',
+        name: 'upload_document',
         requirements: ['id' => '\d+'],
         methods: ['POST'],
     )]
@@ -334,7 +334,7 @@ class BeneficiaryPersonalDataController extends AbstractController
 
     #[Route(
         path: '/{id}/documents/search',
-        name: 'document_search',
+        name: 'search_documents',
         requirements: ['id' => '\d+'],
         methods: ['POST'],
         condition: 'request.isXmlHttpRequest()',
@@ -347,7 +347,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         PaginatorService $paginator,
     ): JsonResponse {
         $searchForm = $this->getSearchForm(
-            $this->generateUrl('document_search', ['id' => $beneficiary->getId()]),
+            $this->generateUrl('search_documents', ['id' => $beneficiary->getId()]),
         )->handleRequest($request);
 
         $search = $searchForm->get('search')->getData();
@@ -365,25 +365,25 @@ class BeneficiaryPersonalDataController extends AbstractController
     }
 
     #[Route(
-        path: '/{id}/folder/{folderId}/search',
-        name: 'folder_search',
+        path: '/{id}/folder/{parentFolderId}/search',
+        name: 'search_folders',
         requirements: ['id' => '\d+', 'folderId' => '\d+'],
         methods: ['POST'],
         condition: 'request.isXmlHttpRequest()',
     )]
-    #[ParamConverter('folder', class: 'App\Entity\Dossier', options: ['id' => 'folderId'])]
+    #[ParamConverter('parentFolder', class: 'App\Entity\Dossier', options: ['id' => 'parentFolderId'])]
     #[IsGranted('UPDATE', 'beneficiary')]
     public function searchFolders(
         Request $request,
         Beneficiaire $beneficiary,
-        Dossier $folder,
+        Dossier $parentFolder,
         FolderableItemManager $manager,
         PaginatorService $paginator,
     ): JsonResponse {
-        $this->denyAccessUnlessGranted('UPDATE', $folder);
+        $this->denyAccessUnlessGranted('UPDATE', $parentFolder);
 
         $searchForm = $this->getSearchForm(
-            $this->generateUrl('folder_search', ['id' => $beneficiary->getId(), 'folderId' => $folder->getId()]),
+            $this->generateUrl('search_folders', ['id' => $beneficiary->getId(), 'parentFolderId' => $parentFolder->getId()]),
         )->handleRequest($request);
 
         $search = $searchForm->get('search')->getData();
@@ -391,7 +391,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         return new JsonResponse([
             'html' => $this->renderForm('v2/vault/document/_list.html.twig', [
                 'foldersAndDocuments' => $paginator->create(
-                    $manager->getFoldersAndDocumentsWithUrl($beneficiary, $folder, $search),
+                    $manager->getFoldersAndDocumentsWithUrl($beneficiary, $parentFolder, $search),
                     $request->query->getInt('page', 1),
                 ),
                 'beneficiary' => $beneficiary,
@@ -401,8 +401,8 @@ class BeneficiaryPersonalDataController extends AbstractController
     }
 
     #[Route(
-        path: '/{id}/folder/create',
-        name: 'folder_create',
+        path: '/{id}/folders/create',
+        name: 'create_folder',
         requirements: ['id' => '\d+'],
         methods: ['GET', 'POST'],
     )]
@@ -417,14 +417,14 @@ class BeneficiaryPersonalDataController extends AbstractController
         $form = $this->getCreateForm(
             FolderType::class,
             $folder,
-            $this->generateUrl('folder_create', ['id' => $beneficiary->getId()]),
+            $this->generateUrl('create_folder', ['id' => $beneficiary->getId()]),
         )->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($folder);
             $em->flush();
 
-            return $this->redirectToRoute('document_list', ['id' => $beneficiary->getId()]);
+            return $this->redirectToRoute('list_documents', ['id' => $beneficiary->getId()]);
         }
 
         return $this->renderForm('v2/vault/folder/create.html.twig', [

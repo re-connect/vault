@@ -13,7 +13,7 @@
 {% block searchform %}
     <div>
         {{ include('v2/vault/components/_search_input.html.twig', {
-            'routeName': 'document_search',
+            'routeName': 'search_documents',
             'beneficiaryId': beneficiary.id,
         }) }}
     </div>
@@ -26,7 +26,7 @@
             <span class="d-none d-md-inline">{{ 'folder_content'|trans }} {{ currentFolder.nom }}</span>
             <a class="btn" href="{{ currentFolder.dossierParent
                 ? path('folder', {'id': currentFolder.dossierParent.id})
-                : path('document_list', {'id': beneficiary.id})
+                : path('list_documents', {'id': beneficiary.id})
             }}"
             >
                 <i class="fas fa-undo-alt pointer text-primary"></i>
@@ -36,7 +36,7 @@
     <button class="btn {{ getUserButtonColor() }} text-white"
             {{ stimulus_controller('upload', {
                 'locale': app.session.get("_locale") ?: 'fr',
-                'url': path('document_upload', {'id': beneficiary.id, 'folder': currentFolder.id ?? ''})
+                'url': path('upload_document', {'id': beneficiary.id, 'folder': currentFolder.id ?? ''})
             }) }}
     >
         <i class="fas fa-plus-circle me-md-1"></i>
@@ -44,7 +44,7 @@
     </button>
     <a href="{{ currentFolder is defined
         ? path('folder_create_subfolder', {'id': currentFolder.id})
-        : path('folder_create', {'id': beneficiary.id})
+        : path('create_folder', {'id': beneficiary.id})
     }}"
        class="btn {{ getUserButtonColor() }} text-white ms-2">
         <i class="fas fa-folder-plus me-md-1"></i>

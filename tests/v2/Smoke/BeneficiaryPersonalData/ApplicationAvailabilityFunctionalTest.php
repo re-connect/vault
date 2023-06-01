@@ -23,13 +23,13 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
     public function beneficiaryUrlProvider(): \Generator
     {
         yield ['/beneficiary/%d/contacts'];
-        yield ['/beneficiary/%d/contact/create'];
+        yield ['/beneficiary/%d/contacts/create'];
         yield ['/beneficiary/%d/notes'];
-        yield ['/beneficiary/%d/note/create'];
+        yield ['/beneficiary/%d/notes/create'];
         yield ['/beneficiary/%d/events'];
-        yield ['/beneficiary/%d/event/create'];
+        yield ['/beneficiary/%d/events/create'];
         yield ['/beneficiary/%d/documents'];
-        yield ['/beneficiary/%d/folder/create'];
+        yield ['/beneficiary/%d/folders/create'];
         yield ['/beneficiary/%d/relays', true];
         yield ['/user/settings'];
         yield ['/user/delete', true];

@@ -19,7 +19,7 @@
                 'reminders': event.rappels
             }) }}
             <div class="row mx-1 mt-2">
-                {{ link(path('event_list', {'id': beneficiary.id}), 'main.retour', 'grey') }}
+                {{ link(path('list_events', {'id': beneficiary.id}), 'main.retour', 'grey') }}
                 {{ link(path('event_edit', {'id': event.id}), 'main.modifier', getUserThemeColor(), 'fa fa-pencil-alt') }}
             </div>
         </div>

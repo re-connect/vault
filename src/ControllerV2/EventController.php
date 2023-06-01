@@ -28,7 +28,7 @@ class EventController extends AbstractController
             $manager->updateReminders($event);
             $this->addFlash('success', 'event_updated');
 
-            return $this->redirectToRoute('event_list', ['id' => $beneficiary->getId()]);
+            return $this->redirectToRoute('list_events', ['id' => $beneficiary->getId()]);
         }
 
         return $this->renderForm('v2/vault/event/form.html.twig', [
@@ -56,7 +56,7 @@ class EventController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'evenement.bienSupprime');
 
-        return $this->redirectToRoute('event_list', ['id' => $event->getBeneficiaireId()]);
+        return $this->redirectToRoute('list_events', ['id' => $event->getBeneficiaireId()]);
     }
 
     #[Route(
@@ -72,6 +72,6 @@ class EventController extends AbstractController
 
         return $request->isXmlHttpRequest()
             ? new JsonResponse($event)
-            : $this->redirectToRoute('event_list', ['id' => $event->getBeneficiaireId()]);
+            : $this->redirectToRoute('list_events', ['id' => $event->getBeneficiaireId()]);
     }
 }

@@ -30,7 +30,7 @@
             <div class="row mx-1 mt-2">
                 {{ link(document.dossier
                     ? path('folder', {'id': document.dossier.id})
-                    : path('document_list', {'id': document.beneficiaire.id}),
+                    : path('list_documents', {'id': document.beneficiaire.id}),
                     'main.retour',
                     'grey',
                 ) }}

@@ -8,6 +8,6 @@
     'editPath': path('document_rename', {'id': document.id}),
     'cancelPath': document.dossier
         ? path('folder', {'id': document.dossier.id})
-        : path('document_list', {'id': document.beneficiaire.id}),
+        : path('list_documents', {'id': document.beneficiaire.id}),
     'isDocument': true,
 }) }}
