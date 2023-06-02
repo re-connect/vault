@@ -1,6 +1,6 @@
-authentification_failure_wrong_credentials: غلط پاسورډ یا غلط کارن نوم
-form_connexion: ننوتل يا کنيکټ کيدل
-form_forgot_password: زما پاسورډ بیا تنظیم کړئ
-form_login: کاروونکي نوم یا بریښنالیک
-form_password: پاسورډ
-login_form_title: ډیجیټل خوندي ته ډیجیټل خوندي ته لاسرسی
+authentification_failure_wrong_credentials: رمز عبور یا نام کاربری درست نیست
+form_connexion: وارد شدن
+form_forgot_password: رمز عبور یا نام کاربری خود را فراموش کرده ام.
+form_login: نام کاربری   یا  آدرس ایمیل
+form_password: کلمه عبور
+login_form_title: دسترسی به گاوصندوق دیجیتالی
