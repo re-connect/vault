@@ -1,21 +1,21 @@
 fos_user:
   username:
-    already_used: 'Le nom d''utilisateur est déjà utilisé.'
-    blank: 'Entrez un nom d''utilisateur s''il vous plait.'
-    short: 'Le nom d''utilisateur est trop court.'
-    long: 'Le nom d''utilisateur est trop long.'
+    already_used: 'Username già in uso.'
+    blank: 'Si prega di inserire un username.'
+    short: 'Username troppo breve.'
+    long: 'Username troppo lungo.'
   email:
-    already_used: 'L''adresse e-mail est déjà utilisée.'
-    blank: 'Entrez une adresse e-mail s''il vous plait.'
-    short: 'L''adresse e-mail est trop courte.'
-    long: 'L''adresse e-mail est trop longue.'
-    invalid: 'L''adresse e-mail est invalide.'
+    already_used: 'Email già in uso.'
+    blank: 'Si prega di inserire una email.'
+    short: 'Email troppo breve.'
+    long: 'Email troppo lunga.'
+    invalid: 'Email non valida.'
   password:
-    blank: 'Entrez un mot de passe s''il vous plait.'
-    short: 'Le mot de passe est trop court.'
-    mismatch: 'Les deux mots de passe ne sont pas identiques.'
+    blank: 'Si prega di inserire una password.'
+    short: 'Password troppo breve.'
+    mismatch: 'Le due password non coincidono.'
   new_password:
-    blank: 'Entrez un nouveau mot de passe s''il vous plait.'
-    short: 'Le nouveau mot de passe est trop court.'
+    blank: 'Si prega di inserire nuovamente la password.'
+    short: 'Nuova password troppo breve.'
   current_password:
-    invalid: 'Le mot de passe est invalide.'
+    invalid: 'Password non valida.'
