@@ -1,71 +1,71 @@
 security:
   login:
-    username: 'Nombre de usuario'
-    password: Contraseña
-    remember_me: Recordar
-    submit: Entrar
+    username: 'Nom d''utilisateur'
+    password: 'Mot de passe'
+    remember_me: 'Se souvenir de moi'
+    submit: Connexion
 profile:
   show:
-    username: 'Nombre de usuario'
-    email: Email
+    username: 'Nom d''utilisateur'
+    email: 'Adresse e-mail'
   edit:
-    submit: 'Actualizar usuario'
+    submit: 'Mettre à jour'
   flash:
-    updated: 'El perfil ha sido actualizado.'
+    updated: 'Le profil a été mis à jour.'
 change_password:
-  submit: 'Cambiar contraseña'
+  submit: 'Modifier le mot de passe'
   flash:
-    success: 'La contraseña se ha cambiado con éxito.'
+    success: 'Le mot de passe a été modifié.'
 registration:
-  check_email: 'Se ha enviado un correo electrónico a %email%. Contiene un enlace de activación al que debes acceder para activar tu cuenta.'
-  confirmed: 'Felicidades %username%, tu cuenta está ahora confirmada.'
-  back: 'Volver a la página original.'
-  submit: Registrar
+  check_email: 'Un e-mail a été envoyé à l''adresse %email%. Il contient un lien d''activation sur lequel il vous faudra cliquer afin d''activer votre compte.'
+  confirmed: 'Félicitations %username%, votre compte est maintenant activé.'
+  back: 'Retour à la page d''origine.'
+  submit: 'Créer un compte'
   flash:
-    user_created: 'El usuario se ha creado satisfactoriamente.'
+    user_created: 'L''utilisateur a été créé avec succès.'
   email:
-    subject: '¡Bienvenido %username%!'
+    subject: 'Bienvenue %username% !'
     message: |
-      ¡Hola %username%!
+      Bonjour %username% !
 
-      Para completar la validación de tu cuenta, por favor visita %confirmationUrl%
+      Pour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%
 
-      Este enlace sólo puede utilizarse una vez para validar tu cuenta.
+      Ce lien ne peut être utilisé qu'une seule fois pour valider votre compte.
 
-      Atentamente,
-      el Equipo.
+      Cordialement,
+      L'équipe
 resetting:
   check_email: |
-    Se ha enviado un correo electrónico a tu cuenta de correo. Contiene un enlace de activación al que debes acceder para restablecer tu contraseña.
-    Nota: Solo se puede solicitar una nueva contraseña cada %tokenLifetime% horas.
+    Un e-mail a été envoyé. Il contient un lien sur lequel il vous faudra cliquer pour réinitialiser votre mot de passe.
+    Remarque : Vous ne pouvez demander un nouveau mot de passe que toutes les %tokenLifetime% heures.
 
-    Si no recibes un correo electrónico, comprueba tu carpeta de correo no deseado o inténtalo de nuevo.
+    Si vous ne recevez pas un email, vérifiez votre dossier spam ou essayez à nouveau.
   request:
-    username: 'Nombre de usuario o correo electrónico'
-    submit: 'Restablecer contraseña'
+    username: 'Nom d''utilisateur ou adresse e-mail'
+    submit: 'Réinitialiser le mot de passe'
   reset:
-    submit: 'Cambiar contraseña'
+    submit: 'Modifier le mot de passe'
   flash:
-    success: 'La contraseña se ha cambiado con éxito.'
+    success: 'Le mot de passe a été réinitialisé avec succès.'
   email:
-    subject: 'Restablecer Contraseña'
+    subject: 'Réinitialisation de votre mot de passe'
     message: |
-      ¡Hola %username%!
+      Bonjour %username% !
 
-      Para restablecer tu contraseña, por favor visita %confirmationUrl%
+      Pour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%
 
-      Atentamente,
-      el Equipo.
+      Cordialement,
+      L'équipe
 layout:
-  logout: Salir
-  login: Entrar
-  register: Registrar
-  logged_in_as: 'Identificado como %username%'
+  logout: Déconnexion
+  login: Connexion
+  register: Inscription
+  logged_in_as: 'Connecté en tant que %username%'
 form:
-  username: 'Nombre de usuario'
-  email: Email
-  current_password: 'Contraseña actual'
-  password: Contraseña
-  password_confirmation: 'Repita la contraseña'
-  new_password: 'Nueva contraseña'
-  new_password_confirmation: 'Repita la contraseña'
+  username: 'Nom d''utilisateur'
+  email: 'Adresse e-mail'
+  current_password: 'Mot de passe actuel'
+  password: 'Mot de passe'
+  password_confirmation: 'Répéter le mot de passe'
+  new_password: 'Nouveau mot de passe'
+  new_password_confirmation: 'Répéter le nouveau mot de passe'
