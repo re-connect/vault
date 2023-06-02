@@ -61,6 +61,9 @@ beneficiary_will_give_you_secret_answer: Le bénéficiaire vous fournira la rép
 beneficiary_will_give_you_secret_information: "Le bénéficiaire vous communiquera le mot de passe qu'il désire utiliser ainsi qu'une question et réponse secrète permettant de réinitialiser son mot de passe"
 beneficiary_already_as_account_affiliate: 'Le bénéficiaire a déjà un compte sur le coffre-fort numérique Reconnect, liez ce compte existant à un de vos relais'
 beneficiary_has_no_account_create: "Le bénéficiaire n'as pas encore de compte sur le coffre-fort numérique Reconnect, créez ce compte avec le bénéficiaire ou à distance grâce à son numéro de téléphone, et reliez le à un de vos relais"
+beneficiary_has_no_email: Le bénéficiaire n'a pas renseigné d'adresse email
+beneficiary_has_no_secret_answer: Le bénéficiaire n'a pas renseigné de réponse secrète
+beneficiary_has_no_phone_number: Le bénéficiaire n'a pas renseigné de numéro de téléphone
 beneficiary_will_receive_email_reset_request: Le bénéficiaire recevra un email lui permettant de réinitialiser son mot de passe directement
 beneficiary_will_receive_sms_account_information: 'Il recevra un sms pour activer son compte et compléter ses informations'
 beneficiary_will_receive_sms_reset_request: Le bénéficiaire recevra un code par SMS afin de réinitialiser son mot de passe

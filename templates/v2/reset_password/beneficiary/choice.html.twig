@@ -6,7 +6,7 @@
 
 {% block content %}
     {% if beneficiary.reponseSecrete or beneficiary.user.telephone or beneficiary.user.email %}
-        {{ include('v2/reset_password/beneficiary/_choice_cards.html.twig') }}
+        {{ include('v2/reset_password/beneficiary/_choice_cards.html.twig', {beneficiary}) }}
     {% else %}
         <div class="mt-5 text-center font-size-1-2">
             <p>{{ 'reset_password_no_way'|trans }}</p>

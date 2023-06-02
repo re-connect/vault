@@ -47,6 +47,9 @@ beneficiary_will_receive_sms_account_information: 'The beneficiary will receive 
 beneficiary_will_receive_sms_reset_request: The beneficiary will receive a code by SMS in order to reset his password
 beneficiary_already_as_account_affiliate: 'The beneficiary already has a Reconnect digital vault account. Link this existing account to one of your relays'
 beneficiary_has_no_account_create: 'The beneficiary does not have a Reconnect digital vault account yet. Create this account with the beneficiary or remotely with to his phone number, and link him to one of your relays'
+beneficiary_has_no_email: The beneficiary does not have email address
+beneficiary_has_no_secret_answer: The beneficiary does not have secret answer
+beneficiary_has_no_phone_number: The beneficiary does not have phone number
 beneficiaire.menu.mesAides: 'My Aids'
 beneficiaire.menu.mesContacts: 'My Contacts'
 beneficiaire.menu.mesDocuments: 'My documents'
