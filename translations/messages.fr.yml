@@ -235,7 +235,7 @@ devenirUnRelaiReconnect.accueil.budget200000.500000: '200 000€ < Budget < 500 
 devenirUnRelaiReconnect.accueil.budget2000000.plus: 'Budget > 2 000 000€'
 devenirUnRelaiReconnect.accueil.budget500000.1000000: '500 000€ < Budget < 1000 000€'
 devenirUnRelaiReconnect.accueil.budgetParAn: 'soit %amount% €/an'
-devenirUnRelaiReconnect.accueil.budgetParMois: €/mois
+devenirUnRelaiReconnect.accueil.budgetParMois: '€/mois'
 devenirUnRelaiReconnect.accueil.budgetText: "<p class=\"smallMargin\">Reconnect est un projet associatif, proposé gratuitement aux usagers. Cependant, comme toute plateforme numérique, il engendre des coûts : gestion et développement de l’outil, aide à l’utilisation, diffusion, stockage de données, etc.</p> <p class=\"smallMargin\">Reconnect compte sur la participation des structures sociales pour proposer aux personnes en situation précaire et aux travailleurs sociaux les outils les plus adaptés à leurs besoins. En devenant un Relais Reconnect, vous êtes solidaire de la pérennité de ce projet. </p>\n"
 devenirUnRelaiReconnect.accueil.combienCaCoute: 'combien <br/>ça coûte ?'
 devenirUnRelaiReconnect.accueil.combienCaCouteTxt: 'Pour que les structures sociales de toutes tailles puissent souscrire à Reconnect, le montant de l’abonnement varie en fonction de leur budget annuel.'
@@ -946,7 +946,7 @@ password_renewal_due: Votre mot de passe est sur le point d'expirer. Veuillez ch
 password_updated_successfully: 'Votre mot de passe a bien été modifié'
 password_valid: Mot de passe valide
 phone: 'Téléphone'
-phone_does_not_exist: Aucun utilisateur avec ce numéro de téléphone n'a été trouvé
+phone_does_not_exist: Aucun utilisateur avec numéro de téléphone n'a été trouvé
 phone_duplicate: Ce numéro de téléphone correspond à plusieurs comptes Reconnect, merci de contacter le support si vous ne parvenez pas à vous connecter
 print_account_creation_act: N'oubliez pas d'imprimer l'acte d'ouverture du compte Reconnect afin d'obtenir la signature du bénéficiaire
 postal_code: Code Postal
@@ -1009,7 +1009,7 @@ resetting.etesVousSur: 'Êtes vous sûr de vouloir réinitialiser le mot de pass
 resetting.flash.success: 'Le mot de passe a été réinitialisé avec succès'
 resetting.password_already_requested: 'Un nouveau mot de passe a déjà été demandé pour cet utilisateur dans les dernières 24 heures.'
 resetting.public.existePas: 'Aucun utilisateur avec cet email n''a été trouvé'
-resetting.public.existePasPhone: Aucun utilisateur avec ce numéro de téléphone n'a été trouvé
+resetting.public.existePasPhone: Aucun utilisateur avec numéro de téléphone n'a été trouvé
 resetting.public.metaTitle: 'Réinitialisation du mot de passe'
 resetting.public.text: 'Veuillez saisir votre adresse e-mail.'
 resetting.public.textEmail: 'Réinitialisation par email'
