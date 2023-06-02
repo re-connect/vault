@@ -137,7 +137,7 @@ class ResettingService
             $this->addFlashMessage(
                 'danger',
                 0 === $usersCount
-                    ? 'resetting.public.existePasPhone'
+                    ? 'phone_does_not_exist'
                     : 'phone_duplicate'
             );
 
