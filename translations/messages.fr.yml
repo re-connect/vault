@@ -1006,6 +1006,7 @@ relays: Relais
 relay_has_no_address: "Le relais Reconnect n'a pas renseigné d'adresse"
 reset: Réinitialisation
 reset_a_password: Réinitialiser un mot de passe
+reset_password_no_way: Le bénéficiaire n’a pas indiqué de numéro de téléphone, ni d’adresse e-mail, ni de réponse à la question secrète. Pour réinitialiser son mot de passe, merci de contacter le support, nous vous aiderons dans les plus brefs délais.
 reset_beneficiary_password: Réinitialisation du mot de passe de %username%
 reset_password_requested_by_SMS: 'La demande de réinitialisation actuelle a été effectuée par SMS'
 reset_password_requested_by_email: 'La demande de réinitialisation actuelle a été effectuée par email'

@@ -830,6 +830,7 @@ rename: Rename
 renew_password: 'Renew password'
 reset: Reset
 reset_a_password: Reset a password
+reset_password_no_way: The beneficiary did not provide a phone number, email address, or answer the secret question. To reset the password, please contact support and we will help you as soon as possible
 reset_beneficiary_password: Reset password of %username%
 reset_password_requested_by_SMS: 'Current reset request was made by SMS'
 reset_password_requested_by_email: 'Current reset request was made by email'
