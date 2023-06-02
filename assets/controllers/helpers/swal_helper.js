@@ -3,12 +3,16 @@ export const getSwalDefaultOptions = (message, confirmButtonText, cancelButtonTe
     text: message,
     confirmButtonText: confirmButtonText,
     cancelButtonText: cancelButtonText,
-    icon: 'warning',
+    iconHtml: '<i class="fas fa-exclamation-triangle text-primary"></i>',
     reverseButtons: true,
     showCancelButton: true,
+    buttonsStyling: false,
+    showLoaderOnConfirm: true,
     customClass: {
       cancelButton: 'btn btn-outline-black me-1',
-      confirmButton: 'btn btn-red text-white ms-1'
+      confirmButton: 'btn btn-red text-white ms-1',
+      icon: 'border-0',
+      htmlContainer: 'text-primary'
     }
   }
 }

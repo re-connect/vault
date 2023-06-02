@@ -24,8 +24,6 @@ export default class extends Controller {
         this.confirmButtonTextValue,
         this.cancelButtonTextValue
       ),
-      buttonsStyling: false,
-      showLoaderOnConfirm: true,
       preConfirm: () => axiosInstance.get(this.urlValue)
         .then(() => {
           if (updatedButtonMessage) {
