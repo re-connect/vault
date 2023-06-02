@@ -1,14 +1,969 @@
-beneficiary_affiliation_empty_relays: You must choose at least one relay
-birthdate_not_empty: Birthdate must not be empty
-email_already_in_use: Mail already in use
-firstname_format: 'You can only enter letters, hyphens (-) or apostrophes ('')'
-firstname_not_empty: Firstname must not be empty
-form_validation_no_password: Password must not be empty
-lastname_format: 'You can only enter letters, hyphens (-) or apostrophes ('')'
-lastname_not_empty: Lastname must not be empty
-mail_not_empty: Mail must not be empty
-phone_not_empty: Phone must not be empty
-secret_question_not_empty: Secret question must not be empty
-secret_answer_not_empty: Secret answer must not be empty
-username_already_in_use: Username already in use
-username_not_valid: Username invalid
+access: Access
+accept: Accept
+accompanying_person_propose_cfn_activation: Your accompanying person %person.firstname% %person.lastname% from organization %center% offers you to activate your Reconnect numeric vault
+add_date: Added at
+add_new_beneficiary: Add new beneficiary
+add_sms_reminder: Add SMS reminder
+added_by: Added by
+admin.bienvenue: 'Welcome to your Reconnect Administration'
+admin.centres.benéficiaires: Beneficiaries
+admin.centres.historique: Historical
+admin.centres.membres: Members
+admin.centres.nom: Name
+admin.centres.smsEnvoyes: 'Sent SMSs'
+admin.centres.statistiques.dateJour: 'Day date'
+admin.centres.statistiques.nbBeneficiaires: 'Beneficiaries number'
+admin.centres.statistiques.nbMembres: 'Members number'
+admin.centres.statistiques.smsEnvoyes: 'Sent SMS number'
+admin.centres.statistiques.title: 'Statistics by each center'
+admin.centres.voir: See
+admin.menu.accueil: 'Home page'
+admin.menu.centres: Centers
+admin.menu.dashboard: 'Data base'
+admin.menu.traduction: Translation
+admin.metaTitle: 'Reconnect Administration'
+admin.title: 'Reconnect <span class="main"> Administration</span>'
+aides.metaTitle: Aids
+alt_logo_reconnect: logo association reconnect
+answer_secret_question: Answer secret question
+answer_secret_question_relay_acception: Once validated, the beneficiary will be invited to join these centers. If you are in the presence of the beneficiary, you can enter the answer to his/her secret question in order to accept the invitation to these centers now. Otherwise, the beneficiary can accept the invitation from his account.
+association.categorie.association: Association
+association.categorie.ccas: 'Communal Centre for Social Action(CCSA)'
+association.categorie.choisir: 'Please select  the category of your association'
+association.urlLabel: 'Internet site'
+authentification_failure_wrong_credentials: Username or password incorrect
+back_home: 'Back to homepage'
+back: Back
+beneficiaries: Beneficiaries
+beneficiary_already_affiliated_to_all_relays: The beneficiary is already affiliated to your Reconnect relays
+beneficiary_added_to_relays: The beneficiary has been added to selected centers
+beneficiary_created_successfully: Beneficiary created successfully
+beneficiary_created_successfully_wait_activation: The account has been successfully created and is awaiting activation by the beneficiary.
+beneficiary_creation_canceled: Beneficiary creation canceled
+beneficiary_creation_remotely_sms: "Your accompanying person %pro.firstname% %pro.lastname% from organization %center% offers you to activate your Reconnect digital vault Reconnect \nConnect to www.reconnect.fr \nUsername : %username% \nPassword : %password% \nOr click on the link : %autoLoginLink% \nYou can also download the mobile app : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
+beneficiary_will_receive_sms_account_information: The beneficiary will receive an SMS to activate his account and complete his information
+beneficiary_already_as_account_affiliate: The beneficiary already has a Reconnect digital vault account. Link this existing account to one of your relays
+beneficiary_has_no_account_create: The beneficiary does not have a Reconnect digital vault account yet. Create this account with the beneficiary or remotely with to his phone number, and link him to one of your relays
+beneficiaire.menu.mesAides: 'My Aids'
+beneficiaire.menu.mesContacts: 'My Contacts'
+beneficiaire.menu.mesDocuments: 'My documents'
+beneficiaire.menu.mesNotes: 'My notes'
+beneficiaire.menu.mesRelaisReconnect: 'My Relays'
+beneficiaire.menu.monCalendrier: 'My appointments'
+beneficiaire.menu.parametres: Parameters
+beneficiaire.menu2.mesAides: Aids
+beneficiaire.menu2.mesContacts: Contacts
+beneficiaire.menu2.mesDocuments: Documents
+beneficiaire.menu2.mesNotes: Notes
+beneficiaire.menu2.mesRelaisReconnect: Relays
+beneficiaire.menu2.monCalendrier: Meetings
+bientotDisponible.text: 'To receive more informations about <a class="bold main">Reconnect,The Solidarity Cloud </a> and join the network of <a class="bold main">Reconnect Relays</a>,con tact us by phone at:<a class="bold main"> 01 58 30 55 29</a> <br/> or by Email: <a class="bold main"> contact@reconnect.fr </a>'
+birthdate: Birthdate
+cancel: Cancel
+centers: Centers
+centre.metaTitle: Structures
+centre.nom: Name
+centre.ville: City
+centre.vousAvezBienQuitte: 'You left this center'
+confirm_beneficiary_creation_remotely: "By clicking on confirm, an SMS will be sent to the beneficiary allowing him to activate his account and define his password and the answer to his secret question.\nHe can choose whether or not to accept the sharing of his information with the relay(s) above."
+confirm_beneficiary_creation_cancellation: Are you sure you want to cancel beneficiary creation ?
+cfn_accessible_tool_alt_img: an accessible tool
+cfn_accessible_tool_p: The digital safe has been designed to be accessible to as many people as possible. It is quick and intuitive to use, even for people who are not familiar with digital technology. Creating an account does not require a phone number or email address. The tool is translated into several languages and our mobile application allows it to be accessible from a computer or a phone.
+cfn_accessible_tool_title: An accessible tool
+cfn_complete_secure_alt_img: a complete and secured storage tool
+cfn_complete_secure_p: The digital safe allows you to keep digital copies of administrative files, to save events with an SMS reminder system, to keep a contact list and useful notes.
+cfn_complete_secure_title: A complete and secured storage tool
+cfn_interface_social_workers_alt_img: professional interface social support
+cfn_interface_social_workers_p: From this interface, a professional can find all the safes linked to his structure, feed them and check on the shared information. They can also create a safe at the request of a supported person.
+cfn_interface_social_workers_title: An interface for social support workers
+cfn_page_hero_text: The tool that facilitates access to rights for vulnerable populations and social support
+cfn_social_care_alt_img: a tool for social support
+cfn_social_care_p: 'The section called "Mes Relais" allows the safe to be linked to the support organizations attended by the beneficiary. Each of the information stored in the safe can then be shared or not with the professionals who support him/her. At any time, the beneficiary can choose to break this link.'
+cfn_social_care_title: A tool for social support
+cfn_vault_easy_access_alt_img: easier access to rights
+cfn_vault_easy_access_p: The digital safe allows to fight against the lacks of progress due to the loss of information. The integration process is thus made smoother.
+cfn_vault_easy_access_title: Easier access to rights
+cfn_vault_exchange_info_alt_img: facilitated information exchange
+cfn_vault_exchange_info_p: The digital safe is a tool that encourages exchanges between the person being supported and the organization. It allows the beneficiary to become an actor in the progression of his own path.
+cfn_vault_exchange_info_title: A facilitated exchange of information with caregivers
+cfn_vault_is_safe_alt_img: security information
+cfn_vault_is_safe_p: The digital safe is an ethical and secured tool. It is compliant with the RGPD law. The protection of our users' personal data is our top priority.
+cfn_vault_is_safe_title: security information
+cfn_vault_is_title: The digital safe is
+cfn_vault_is_satisfying_alt_img: Professionals are very satisfied by the training
+cfn_vault_is_satisfying_p: of professionals are very satisfied by the training
+cfn_vault_is_satisfying_title: 95%
+choose: Choose
+choose_beneficiary_centers: Please choose beneficiary's Reconnect relays
+choose_beneficiary_password: Please choose beneficiary's password
+choose_beneficiary_secret_question: Please choose beneficiary's secret question
+choose_beneficiary_title_part_1: Choose a
+choose_beneficiary_title_part_2: beneficiary
+choose_picture: Click here to add a picture
+choose_relay: Choose a relay
+city: City
+comment: Comment
+confirm: Confirm
+connexionForm.connexion: Connection
+connexionForm.erreurIdentifiants: 'You entered an unknown username/ password'
+connexionForm.inactif: 'You have been deconnected after a period of inactivity.'
+connexionForm.motDePasse: Password
+connexionForm.oublieMdp: 'I forgot my password or my username'
+connexionForm.username: 'User name'
+connexionForm.usernameV2: 'Username or email'
+contacts: Contacts
+contact.ajouter: 'Add a contact'
+contact.associationLabel: Association
+contact.bienEteEnvoye: 'Your Email has been sent.Our team will contact You soon'
+contact.bienSauvegarde: 'Your contact has been saved'
+contact.bienSupprime: 'Your contact has been deleted'
+contact.btnEnvoyerMessage: 'Send message'
+contact.cantDisplay: 'You do not have the rights to show the contacts of this beneficiary'
+contact.cantEdit: 'You do not have the right to edit this contact'
+contact.commentaireLabel: Comment
+contact.contenuError: 'The content of your message is empty.'
+contact.contenuLabel: 'Content of your message'
+contact.emailLabel: 'Your Email address'
+contact.emptyData: 'There is no contact yet. Click "Add" to create one.'
+contact.mailError: 'The format of your Email address is incorect'
+contact.metaTitle: Contact
+contact.nomLabel: 'Last name'
+contact.partage: Shared
+contact.prenomLabel: 'First name'
+contact.supprimer: Delete
+contact.telephoneLabel: 'Mobile phone'
+contact.text: 'Write us for any help request,information or problems while using Reconnect'
+contact.title: 'Contact the Reconnect <span class="main"> team </span>'
+contact_created: Contact created
+connect_reconnect_site: Connect to www.reconnect.fr
+contact_page_offices_contact: Are we not settled in your area?
+contact_page_offices_title: Contact our branches
+contact_page_title: Contact us
+contact_updated: Contact updated
+contact_us_button: Contact us !
+contact_us_title: Do you want to know more?
+content: Content
+create_new_beneficiary: Create new beneficiary
+create_new_beneficiary_title_part_1: Create new
+create_new_beneficiary_title_part_2: beneficiary
+create_reconnect_account_with_beneficiary: Create Reconnect account with beneficiary
+create_reconnect_account_remotely: Create Reconnect account remotely
+country: Country
+delete: Delete
+delete_your_account: 'If You want to delete Your account click here.'
+delete_currently_shared_document_warning: The document is shared for another %daysCount% days. If you delete it, Users you shared this document with will not be able to see it anymore
+devenirUnRelaiReconnect.accueil.budget0.200000: 'Budget < 200 000 €'
+devenirUnRelaiReconnect.accueil.budget1000000.1500000: '1000 000€ <Budget < 1500 000€'
+devenirUnRelaiReconnect.accueil.budget1500000.2000000: '1500 000€ <Budget <2000 000€'
+devenirUnRelaiReconnect.accueil.budget200000.500000: '200 000€ < Budget < 500 000 €'
+devenirUnRelaiReconnect.accueil.budget2000000.plus: 'Budget > 2 000 000 €'
+devenirUnRelaiReconnect.accueil.budget500000.1000000: '500 000€ <Budget < 1000 000€'
+devenirUnRelaiReconnect.accueil.budgetParAn: 'It is to say %amount% €/year'
+devenirUnRelaiReconnect.accueil.budgetParMois: '€/month'
+devenirUnRelaiReconnect.accueil.budgetText: '<p class="smallMargins">Reconnect is an associative project,freely proposed to its users.However,like all online platforms,it generates costs: administration and development of the device,assistance for the usage,distribution,data storage,etc.</p> <p class="smallMargins">Reconnect counts on the participation of the social structures in order to offer to the people in extreme poverty and to the social workers the device the best adapted to their needs.By becoming a Reconnect Relay,you are sympathetic to the sustainability of this project. </p>'
+devenirUnRelaiReconnect.accueil.combienCaCoute: 'How does <br/> this cost?'
+devenirUnRelaiReconnect.accueil.combienCaCouteTxt: 'In order to all the social structures of every sizes can subscribe to Reconnect,the subscription sum varies according to their annual budget.'
+devenirUnRelaiReconnect.accueil.jinscrisMaStructure: 'I sign up my center'
+devenirUnRelaiReconnect.accueil.metaDesc: 'Sign up your association and mark out your Reconnect relays'
+devenirUnRelaiReconnect.accueil.metaTitle: 'Become a Reconnect Relay'
+devenirUnRelaiReconnect.accueil.queFaitRelai: 'What does <br/> a Reconnect Center?'
+devenirUnRelaiReconnect.accueil.queFaitRelaiTxt: 'The Reconnect Center helps the persons in extreme poverty in order to create and use their Reconnect accounts.The Reconnect Relay can also fill up the users accounts with vital informations.'
+devenirUnRelaiReconnect.accueil.quelEquipement: 'What type of equipment <br/>does a Reconnect Center need?'
+devenirUnRelaiReconnect.accueil.quelEquipementTxt: 'A Reconnect Center needs an Internet connection,a personal computer,a scanner or a camera in order to be able to copy the essential documents.'
+devenirUnRelaiReconnect.accueil.quiPeutDevenirRelai: 'Who can become<br/>a Reconnect Center?'
+devenirUnRelaiReconnect.accueil.quiPeutDevenirRelaiTxt: 'All social structures which accompany the persons in extreme poverty can contact Reconnect and become a Relay'
+devenirUnRelaiReconnect.accueil.voirMontantParticipation: 'See the amount of investments'
+devenirUnRelaiReconnect.identification.associationLabel: 'Your organization'
+devenirUnRelaiReconnect.identification.associationNomLabel: Name
+devenirUnRelaiReconnect.identification.associationPasswordLabel: 'Password for the association'
+devenirUnRelaiReconnect.identification.associationUsernameLabel: 'Username for the association'
+devenirUnRelaiReconnect.identification.categorieJuridiqueLabel: 'Legal category'
+devenirUnRelaiReconnect.identification.connecteAvecAutreCompte: 'You are logged in to a Reconnect account which is not an administrator account. <br/> You must < a href ="%link%"> log out </a> if You want to subscribe a structure.'
+devenirUnRelaiReconnect.identification.connectezVous: 'Login using your credentials to continue to register'
+devenirUnRelaiReconnect.identification.credentialsLabel: 'Your organization´s data connection'
+devenirUnRelaiReconnect.identification.jaiDejaEffectueLaPremiereEtape: 'If You have already made the first step,click here'
+devenirUnRelaiReconnect.identification.metaDesc: 'Please enter your personal information'
+devenirUnRelaiReconnect.identification.metaTitle: Identification
+devenirUnRelaiReconnect.identification.sirenLabel: Siren
+devenirUnRelaiReconnect.identification.urlSiteLabel: 'Url website'
+devenirUnRelaiReconnect.identification.userLabel: You
+devenirUnRelaiReconnect.inscriptionCentres.ajouterUneStructureSupplémentaire: 'Add a structure'
+devenirUnRelaiReconnect.inscriptionCentres.auMoinsUnCentre: 'You must add at least one of your centers to continue the process'
+devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.0-1000: 'From 0 to 1.000€'
+devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.1000-5000: 'From 1.000 to 5.000€'
+devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.10000-50000: 'From 10.000 to 50.000€'
+devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.250000-500000: 'From 250.000 to 500.000€'
+devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.5000-10000: 'From 5.000 to 10.000€'
+devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.50000-250000: 'From 50.000 to 250.000€'
+devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.plus500000: 'More than 500.000€'
+devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuelLabel: 'Annual budget'
+devenirUnRelaiReconnect.inscriptionCentres.finessFormatErreur: 'The format of your Finess number is invalid'
+devenirUnRelaiReconnect.inscriptionCentres.finessLabel: Finess
+devenirUnRelaiReconnect.inscriptionCentres.justificatifFileLabel: 'Attach a proof'
+devenirUnRelaiReconnect.inscriptionCentres.nomLabel: Name
+devenirUnRelaiReconnect.inscriptionCentres.siretFormatErreur: 'The format of your Siret number is invalid'
+devenirUnRelaiReconnect.inscriptionCentres.siretLabel: Siret
+devenirUnRelaiReconnect.inscriptionCentres.supprimerCeCentre: 'Delete this center'
+devenirUnRelaiReconnect.inscriptionCentres.telephoneLabel: 'Telephone number'
+devenirUnRelaiReconnect.inscriptionCentres.typeCentreLabel: 'Center type'
+devenirUnRelaiReconnect.menu.confirmation: Confirmation
+devenirUnRelaiReconnect.menu.identification: Identification
+devenirUnRelaiReconnect.menu.inscriptionStructures: 'Establishment records'
+devenirUnRelaiReconnect.menu.paiement: Payment
+devenirUnRelaiReconnect.menu.recapitulatif: Recapitulative
+devenirUnRelaiReconnect.recapitulatif.centre: Center
+devenirUnRelaiReconnect.recapitulatif.prixDuCentre: 'Center price'
+devenirUnRelaiReconnect.recapitulatif.prixTotal: 'Total price'
+devenirUnRelaiReconnect.recapitulatif.vosCentres: 'Your establishments'
+devenirUnRelaiReconnect.recapitulatif.votreIdentite: 'Your identity'
+digital_cares: "Digital \n cares"
+digital_care_is: Digital care is
+digital_cares_acquire_skills_img_alt: Helps to develop skills
+digital_cares_acquire_skills_text: of beneficiaries feel that workshops have helped them to acquire skills
+digital_cares_acquire_skills_title: 90 %
+digital_cares_dynamic_workshop_img_alt: Dynamic workshops
+digital_cares_dynamic_workshop_text: of beneficiaries appreciated the dynamics of the workshops
+digital_cares_dynamic_workshop_title: 89 %
+digital_cares_knowledge_img_alt: Carry out the learned actions
+digital_cares_knowledge_text: of beneficiaries feel able to perform the learned actions
+digital_cares_knowledge_title: 84 %
+digital_cares_improve_reintegration_pathways_img_alt: Support to improve integration pathways
+digital_cares_improve_reintegration_pathways_text: Digital workshops are part of the overall support of the beneficiaries, and meet a need for training in the use of digital technology, to facilitate their social and professional integration.
+digital_cares_improve_reintegration_pathways_title: A support to improve integration pathways
+digital_cares_logo_alt: Digital cares logo
+digital_cares_participatory_content_img_alt: Playful and participatory content
+digital_cares_participatory_content_text: Our workshops contain a theoretical and practical dimension to facilitate the assimilation of information. The sessions are built using a "gamified" methodology that facilitates attention and improves attractiveness. We pay particular attention to the immediate practical application of the proposed training.
+digital_cares_participatory_content_title: Playful and participatory contents
+digital_cares_personalized_alt: Customised and personalised support
+digital_cares_personalized_text: Contents and presentation materials are prepared in advance by the Reconnect team, according to the themes identified by the professionals of the structure, and to the needs of the public. Reconnect's approach to digital mediation is to continuously adapt to the levels and needs of beneficiaries.
+digital_cares_personalized_title: A customised and personalised support
+digital_cares_scalable_content_img_alt: Evolving contents according to feedback from the field
+digital_cares_scalable_content_text: Beneficiaries are asked to measure their progress and to evaluate the training, in order to develop our content. This approach is coupled with a monitoring of new developments in the digital inclusion sector to ensure that our content best meets the needs of the beneficiaries.
+digital_cares_scalable_content_title: Evolving contents according to feedback from the field
+digital_cares_appreciated_training_img_alt: Appreciated training
+digital_cares_appreciated_training_text: of beneficiaries appreciated the training
+digital_cares_appreciated_training_title: 98 %
+disabledAt: Disabled at
+disabledBy: Disabled by
+disaffiliate_beneficiary_title_part_1: Stop the following of a
+disaffiliate_beneficiary_title_part_2: Beneficiary
+disaffiliate_beneficiary_subtitle: Stop the following of
+documents: Documents
+document.apercu: Previews
+document.aucunFichier: 'For the moment,there is no folder'
+document.avertissementTaille: 'You soon reach the limit size of your storage space (%space%)'
+document.bienSauvegarde: 'Your document has been saved.<br><b> Do not forget to delete the folder of your workplace.'
+document.bienSupprime: 'Your documents has been deleted.'
+document.categorie2: Category
+document.categorie: 'Select a category'
+document.choisirFichier: 'Select a folder'
+document.contenuLabel: Content
+document.contient: Contains
+document.creerUnDossier: 'Create a folder'
+document.dateDeDepot: 'Date of upload'
+document.dateEmissionLabel: 'Issue date'
+document.deposerDesFichiers: 'Deposit of files'
+document.dossier: Folder
+document.envoyerEmail: 'Send by Email'
+document.envoyerParEmail.bienEnvoyeParMail: 'Your document has been sent by Email'
+document.envoyerParEmail.dossierVide: 'The folder You want to send by Email is empty'
+document.envoyerParEmail.emailLabel: 'Email receiver'
+document.fichier: Folders
+document.imprimer: Print
+document.metaTitle: Documents
+document.modifier: Modify
+document.nom: 'Last name'
+document.nomLabel: 'Last name'
+document.ouGlissezDeposer: 'Or drag-fill here'
+document.partage: Share
+document.plusDespace: 'You cannot upload this folder because You have not enough storing space'
+document.supprimer: Delete
+document.telecharger: Download
+document.type2: Type
+document.type: Type
+document.typeDocument: 'Document type'
+document.valableJusqua: 'Valid until'
+document.validite.expire: Expired
+document.validite.inconnu: Unknown
+document.validite.title: Validity
+document.validite.validXAnd: 'This type of document is valid %aAnsValid%ans'
+document.validite.valide: Valid
+donneePersonnelle.ajouteElementTitle: 'Add an element'
+donneePersonnelle.ajouter: Add
+donneePersonnelle.cantDelete: 'You do not have the right to delete this information'
+donneePersonnelle.cantDisplay: 'You do not have the right to show the informations of this beneficiary.'
+donneePersonnelle.cantEdit: 'You do not have the right to edit this information'
+donneePersonnelle.cantReportAbuse: 'You do not have the right to signal this information as abusiv'
+donneePersonnelle.etesVousSurSignalerCommeAbusif: 'Are You sure You want to signal this content as abusiv?'
+donneePersonnelle.imprimer: Print
+donneePersonnelle.partage: Shared
+donneePersonnelle.partages: 'Share with my contacts'
+donneePersonnelle.prive: Privat
+donneePersonnelle.prives: Privat
+donneePersonnelle.public: Public
+donneePersonnelle.quitter: Leave
+donneePersonnelle.signalerCommeAbusif: 'Signal as abusiv'
+donneePersonnelle.tous: All
+donneePersonnelle.vue: View
+dossier.ajouter: 'Add a folder'
+dossier.vide: empty
+download: Download
+duplicated_username: Duplicated username
+duplicated_username_alert: There is already a Reconnect account with this name, first name and date of birth. If it is not the accompanied beneficiary, you can resume the creation and a -1 will be added to its username.
+download_training_catalogue: Download the training catalogue
+edit: Edit
+email: Email
+email_or_phone: Email or phone number
+enabled: Enabled
+error: Error
+evenement.ajouter: 'Add an event'
+evenement.bienSauvegarde: 'Your event has been saved'
+evenement.bienSupprime: 'Your event has been deleted'
+evenement.cantDisplay: 'You do not have the right to show this events of this beneficiary'
+evenement.cantEdit: 'You do not have the right to edit this event'
+evenement.commentaireLabel: Message
+evenement.contenuLabel: Contain
+evenement.dateLabel: Date
+evenement.emptyData: 'There are no events at this time. Click "Add" to create one.'
+evenement.errorSpecifierHeureRappel: 'You must specify the number of hours before sending your reminder'
+evenement.heureRappelLabel: 'Number of hours before sending the reminder'
+evenement.lieuLabel: Place
+evenement.mailContent: 'You receive this Email thanks to your request of receiving a Relay Reconnect reminder by Email for your meeting of %date%. Click <a href="%link%">here</a> to see the detail of this meeting.'
+evenement.mailTitle: 'Reminder of your meeting'
+evenement.metaTitle: Events
+evenement.nomLabel: Title
+evenement.rappelsLabel: Reminders
+evenement.smsContent: 'Relay Reconnect reminder'
+evenement.timeLabel: Time
+event: Event
+events: Events
+event_created: Event created
+event_updated: Event updated
+fill_beneficiary_identity_information: Please fill beneficiary's identity information
+firstname: Firstname
+flash.erreur: Error!
+flash.operationReussie: 'Succesful operation'
+folder.isSubFolder: 'The destination folder is a subfolder of the one to be moved.'
+folder_contains_documents_alert: The folder %name% contains documents, if you delete it, you also delete all the documents it contains. Are you sure you want to delete this folder and all the documents it contains?
+folder_content: 'Folder:'
+folder_created: Folder created
+folders.notSameBeneficiaire: 'The files do not belong to the same beneficiary.'
+footer.aide: Help
+footer.autres: Others
+footer.cgv: 'General Terms and Conditions of Use'
+footer.commentCaMarche: 'How it works'
+footer.connexion: Connection
+footer.contact: Contact
+footer.copyright: '©2021 Reconnect -All rights reserved'
+footer.deconnexion: Disconnection
+footer.devenirUnRelai: 'Become a Reconnect Centre'
+footer.faq: FAQ
+footer.groupeSos: 'Groupe SOS'
+footer.inscription: Registration
+footer.mentionsLegales: 'Legal mentions'
+footer.modeDemploi: 'Instructions for use'
+footer.partenaires: Partners
+footer.planDuSite: 'Site map'
+footer.reconnect: Reconnect
+footer.trouverUnCentreSocial: 'Find a social centre'
+footer.utilisation: Use
+footer_CGS_rp: CGS of Reconnect Pro
+footer_CGS_vault: CGS of the digital safe
+footer_alt_logo_afnic: logo afnic
+footer_confidentiality_rp: Reconnect Pro Privacy Policy
+footer_confidentiality_vault: Digital safe privacy policy
+footer_copyright: Reconnect - All rights reserved
+footer_discover_rp: Learn about Reconnect Pro
+footer_discover_vault: Learn about the digital safe
+footer_group_sos_text: Reconnect is an association of the GROUPE SOS Solidarités, one of the nine sectors of the GROUPE SOS, the leading social enterprise in Europe
+footer_partners_text: 'Reconnect is supported by:'
+form.validation.noPassword: 'You must choose a password'
+form.validation.tooShort: 'Your password should be at least {{ limit }} characters'
+form.validation.passwordFormat: 'Your password must contain only letters and numbers.'
+form.validation.mismatch: Passwords mismatch
+form.validation.phoneFormat: 'Your phone number has an unknown format.'
+form.validation.sirenFormat: 'The format of your SIren number is invalid.'
+form_connexion: Login
+form_forgot_password: I forgot my password or my login
+form_login: Username or Email
+form_password: Password
+generate_password: Generate password
+gestionnaire.centres.btnAjouterUnCentre: 'Add a center'
+gestionnaire.centres.cotisationJusqua: 'Contribution until %dateFin%'
+gestionnaire.centres.cotisationNoneffectuee: 'No realised contribution(disabled center)'
+gestionnaire.centres.cotiserPourCeCentre: Contribute
+gestionnaire.centres.fairePassation: 'Do the procurement'
+gestionnaire.centres.metaTitle: 'Reconnect Relays'
+gestionnaire.centres.noCentres: 'You did not register yet a Reconnect Relay. <br/> Click below to register a new Reconnect Relay'
+gestionnaire.centres.rechargeSms: 'Buy a SMS recharge'
+gestionnaire.centres.renouveller: Renew
+gestionnaire.centres.statistiquesCentre: 'Center´s statistics'
+gestionnaire.centres.title: 'Reconnect <span class="main">Relays</span>'
+gestionnaire.centres.voirBeneficiaires: 'See the beneficiaries'
+gestionnaire.centres.voirMembres: 'See the members'
+gestionnaire.envoyerCentreAGestionnaire.emailLabel: 'Email address:'
+gestionnaire.envoyerCentreAGestionnaire.metaTitle: 'Send to an administrator'
+gestionnaire.envoyerCentreAGestionnaire.pasGestionnaire: 'The entered Email belongs to a Reconnect user,but it is not an administrator of this center'
+gestionnaire.envoyerCentreAGestionnaire.subtitle: 'Allow to another administrator to manage this center.Please insert Their Email address'
+gestionnaire.envoyerCentreAGestionnaire.success: 'The center was transfered to this administrator.'
+gestionnaire.envoyerCentreAGestionnaire.title: 'Send to an administrator'
+gestionnaire.menu.gestionBeneficiaires: 'Beneficiaries management'
+gestionnaire.menu.gestionMembres: 'Members management'
+gestionnaire.menu.gestionRelais: 'Reconnect Relays management'
+gestionnaire.menu.usagers: Users
+header.logo: 'Reconnect, The Social Cloud'
+header.menu.commentCaMarche: 'How does this <br/>work?'
+header.menu.connection: Connection
+header.menu.deconnection: Disconnect
+header.menu.devenirUnRelaiReconnect: 'Become a Reconnect<br/>Center'
+header.menu.fermer: Close
+header.menu.ilsParlentDeReconnect: 'What they say about us'
+header.menu.leBlog: 'The blog'
+header.menu.lesRelaisReconnect: 'The Reconnect <br/>Centers'
+header.menu.parametres: Parameters
+header.menu.quiSommesNous: 'Who are <br/>We?'
+header.menu.rajouterEspace: 'Add space'
+header.menu.utiliseSurDisponible: '%used %used on %available %available'
+header_link_cfn: 'The digital<span class="d-lg-block"> safe</span>'
+header_link_contact: 'Contact<span class="d-lg-block"> us</span>'
+header_link_rp: 'The pro<span class="d-lg-block"> solution</span>'
+header_link_who_we_are: 'Who we<span class="d-lg-block"> are</span>'
+health: Health
+home.catchPrase: '"An online Storage and Sharing platform to boost social care"'
+home.commentCaMarche: 'How does it work?'
+home.commentCaMarcheContent.fermer: Close
+home.commentCaMarcheContent.text1: 'Coping with extreme poverty and high mobility, the homeless are facing the issue of keeping their documents safe, which is essential in order to obtain social benefits.'
+home.commentCaMarcheContent.text2: 'Reconnect allows to safely store the copy of all essential documents, scanned or pictured, as well as contacts, appointments and memos. In case of losing the original documents, the consequences are thus limited.'
+home.commentCaMarcheContent.text3: 'The Reconnect Centres support the users in the creation and management of their Reconnect account.'
+home.commentCaMarcheContent.text4: 'The creation of a Reconnect account is freely offered to people living in extreme poverty in the Reconnect Centres.'
+home.commentCaMarcheContent.text5: 'Reconnect adapts to the wants and needs of its users, who are free to choose whether or not they want to share their data and documents with social workers.'
+home.commentCaMarcheContent.text6: 'The user can access his account without being affiliated to a Reconnect Centre. If he decides to quit his centre, he will be able to benefit from his Reconnect devices for an unlimited period of time. If he chooses a new centre, he will again be able to share his essential documents.'
+home.commentCaMarcheContent.text7: 'Reconnect is a device meant to last, which adapts to the social background of everyone. By using Reconnect, social actors can accompany people living in extreme poverty toward the autonomous usage of a digital tool.'
+home.commentCaMarcheContent.text8: 'Storing and sharing information and documents online. <br/> Reminder of memos and events via SMS.<br/> Simulation of the social rights for which the users are eligible and automatic creation of an administrative record from the available documents in the safe.'
+home.commentCaMarcheContent.title1: 'An answer for the needs of homeless people'
+home.commentCaMarcheContent.title2: 'An online safe deposit'
+home.commentCaMarcheContent.title3: 'An accompaniment  of Reconnect Centres'
+home.commentCaMarcheContent.title4: 'A service offered to people living in extremely precarious conditions'
+home.commentCaMarcheContent.title5: 'A private and shareable space'
+home.commentCaMarcheContent.title6: 'A permanent access'
+home.commentCaMarcheContent.title7: 'A step-by-step accompaniment'
+home.commentCaMarcheContent.title8: 'Innovative tools'
+home.commentCaMarcheWhiteContent.text1: '1.&nbsp;  Open an account in a <span class="scrollToCarte main bold pointer">Reconnect Centre</span>'
+home.commentCaMarcheWhiteContent.text2: '2.&nbsp; Back up your most important files'
+home.commentCaMarcheWhiteContent.text3: '3.&nbsp; Share your key documents to speed up your administrative and social procedures'
+home.commentCaMarcheWhiteContent.text4: '4.&nbsp; Get an easier access to your social rights'
+home.devenirUnRelaiReconnect: 'Become a Reconnect Centre'
+home.enSavoirPlus: 'Learn more'
+home.facebook: Facebook
+home.ilsParlentDeReconnect: 'What they say about us'
+home.jaccedealt: 'Access my rights'
+home.jePartageAlt: 'Share my informations'
+home.jeStockeAlt: 'Store my informations'
+home.leBlog: 'The Blog'
+home.leCloudSolidaire: 'Reconnect,The Social Cloud'
+home.lesRelais: 'The Reconnect Centres'
+home.lesRelaisTxt: 'Reconnect Centres are social care structures. They help their beneficiaries create and use a Reconnect account. They facilitate the secured sharing of key information and documents between beneficiaries and their social advisers to boost administrative and social procedures.'
+home.lireLarticle: 'Read the article'
+home.metaDesc: TheSocialCloud
+home.metaTitle: 'Reconnect, The Social Cloud'
+home.nousSuivre: 'Follow us'
+home.oublieIdentifiant: 'I forgot my password or my username'
+home.ouvreCompteAlt: 'Create an account'
+home.ouvrirUnCompte: 'Open a Reconnect Account'
+home.partenaires: Partners
+home.quiSommesNous: 'Who are We?'
+home.quiSommesNousTxt: 'Reconnect is a project led by <a class="bold main"href="http://www.groupe-sos.org/solidarites">Groupe SOS Solidarity</a>. With <b>2500 employees</b> and <b>106 care facilities </b>specialized in the sectors of <b>addiction conselling</b>, <b>socially-cohesive housing</b>, and <b>services for handicapped people</b>, Groupe SOS Solidarity’s involvement towards social innovation is a strong asset for the development of Reconnect. For the prevailing interest of its end-users, Reconnect aims at being available in as many social care services as possible, regardless of their size or their location.'
+home.twitter: Twitter
+home_meta_desc_v2: Digital technology for inclusion and social action
+home_meta_title_contact: Reconnect - Contact us
+home_meta_title_digital_cares: Reconnect - Digital cares
+home_meta_title_rp: Reconnect - The social monitoring software
+home_meta_title_vault: Reconnect - The digital safe
+home_our_solutions_CTA: Know more
+home_our_solutions_alt_logo_cfn: reconnect digital safe logo
+home_our_solutions_alt_logo_rp: reconnect pro logo
+home_our_solutions_text_cfn: The tool that facilitates access to rights for vulnerable populations and social support
+home_our_solutions_text_rp: The business tool that ensures the continuity of social integration pathways
+home_our_solutions_title: Our solutions
+home_press_title: Testimonials
+home_reconnect_centers_p: '"Relais Reconnect" are the social structures that use the Reconnect solutions and support users in the creation and use of their digital safe.'
+home_reconnect_centers_title: The Reconnect Relays
+home_solutions_list_accessible_alt_img: icon accessible solutions
+home_solutions_list_accessible_p: The interfaces of our tools have been designed to be pleasant and intuitive to use, even for people who are not familiar with digital technology.
+home_solutions_list_accessible_title: Accessible
+home_solutions_list_evolve_alt_img: icon scalable solutions
+home_solutions_list_evolve_p: Our solutions are designed in partnership with social action organizations in order to best meet the needs of the sector. The changes we make on a daily basis are based on feedback from our users.
+home_solutions_list_evolve_title: Evolutive
+home_solutions_list_human_alt_img: icone human solutions
+home_solutions_list_human_p: Our professional users are accompanied in the handling and use of our solutions thanks to a complete training and a dedicated online support.
+home_solutions_list_human_title: Human
+home_solutions_list_secure_alt_img: icone secure solutions
+home_solutions_list_secure_p: The security and protection of our users' personal data are our top priority. Our tools are designed and developed in an ethical and secured way. They are RGPD compliant.
+home_solutions_list_secure_title: Secure
+home_solutions_list_solidarity_alt_img: icone solidarity solution
+home_solutions_list_solidarity_p: All our solutions work with a solidarity rate in order to offer a service accessible to all social structures.
+home_solutions_list_solidarity_title: Solidarity
+home_solutions_list_title: Our solutions are
+home_who_we_are_alt_img: reconnect who are we
+home_who_we_are_p1: Reconnect is a non-profit association of which mission is to facilitate the progression of social integration while simplifying the support of professionals.
+home_who_we_are_p2: We believe that social action and digital benefit from working more together in order to enable the social inclusion of vulnerable populations.
+home_who_we_are_p3: Since 2015, we have been committed to beneficiaries and social action professionals, creating solutions to meet their needs.
+home_who_we_are_title: Who are we?
+housing: Housing
+identity: Identity
+is_the_beneficiary_present: Is the beneficiary present ?
+is_the_beneficiary_absent: Is the beneficiary absent ?
+innovative_solution_digital_divide: The solution to meet the challenges of the digital divide
+lastname: Lastname
+leave: Leave
+leave_center: Leave this relay
+leave_center_confirm: Are you sure you want to leave this relay?
+leave_center_title: Leave %s
+location: Location
+login_form_title: Access to the digital safe
+mail_subject_reset_password: RECONNECT - Reset your password
+mail_subject_share_document: RECONNECT - Document sharing
+mail_reset_password_title: Reset your password
+mail_reset_password_content_1: We have just received a request to reset the password of your digital safe by Reconnect. If you didn’t ask for it, please ignore this email and your password will remain the same.
+mail_reset_password_content_2: Else, please, click on the link below to reset your password, this link is available for 24 hours.
+mail_shared_document_title: Document sharing
+mail_shared_document_content_1: Someone would like to shate with you a document from its digital safe by Reconnect.
+mail_shared_document_content_2: To download this document, please click on the link (available for 7 days)
+mail_shared_document_content_3: "CONFIDENTIALITY: This email (as well as any attached documents) is strictly for the use of the person or entity to whom it is addressed and may contain privileged and confidential information. Any disclosure, distribution or copying of this email and its documents is strictly prohibited. If you have received this e-mail by error, please notify us immediately, destroy all copies and delete it from your computer system."
+main.accepter: Accept
+main.adresse.rue: Street
+main.annuler: Cancel
+main.chercher: Search
+main.choisir: Select
+main.connexion: Connection
+main.continuer: Continue
+main.error.defaultSubTitle: 'This error was just made:'
+main.error.defaultTitle: 'An error has occurred!'
+main.error.error403SubTitle: 'It seems that you don''t have the rights to realize this action:'
+main.error.error403Title: 'Forbidden action'
+main.error.error404SubTitle: 'Impossible to find the requested page'
+main.error.error404Title: 'Unavailable element'
+main.etapeSuivante: Next
+main.etesVousSur: 'Are you sure?'
+main.metaAppend: Reconnect
+main.modifier: Edit
+main.modifierFichier: 'Edit the file'
+main.neSaitPlus: 'Do not know anymore'
+main.non: 'No'
+main.notAvailableFeature: 'This function is not available yet. Please,try later!'
+main.oui: 'Yes'
+main.parPage: 'By page'
+main.pasLesDroits: 'You don''t have the rights to access this page'
+main.refuser: Decline
+main.retour: Back
+main.revenirArriere: 'Back to the previous page'
+main.selectionner: Select
+main.supprimer: Delete
+main.uploaderFichier: 'Choose a file'
+main.voirFichier: 'See the file'
+membre.ajoutBeneficiaire.aucunUtilisateurTrouve: 'No Reconnect beneficiary account matches your search'
+membre.ajoutBeneficiaire.centres: 'Reconnect Relays'
+membre.ajoutBeneficiaire.creerCompte.subTitle.remotely: remotely
+membre.ajoutBeneficiaire.creerCompte: 'Create a Reconnect account'
+membre.ajoutBeneficiaire.dateNaissanceLabel: 'Date of birth'
+membre.ajoutBeneficiaire.metaTitle: 'Add a new beneficiary'
+membre.ajoutBeneficiaire.nePossedePasCompte: 'The beneficiary does not have a Reconnect account'
+membre.ajoutBeneficiaire.nomLabel: 'Last name'
+membre.ajoutBeneficiaire.possedeCompte: 'The beneficiary has a Reconnect account'
+membre.ajoutBeneficiaire.prenomLabel: 'First name'
+membre.ajoutBeneficiaire.subtitle: 'Adding of a new beneficiary'
+membre.ajoutBeneficiaire.title: 'Add a new <span class="main">beneficiary </span>'
+membre.ajoutMembre.aucunUtilisateurTrouve: 'No Reconnect member account corresponds to your research'
+membre.ajoutMembre.centres: Centers
+membre.ajoutMembre.creerCompte: 'Create a Reconnect account'
+membre.ajoutMembre.metaTitle: 'Add a new member'
+membre.ajoutMembre.nePossedePasCompte: 'The member does not have a Reconnect account'
+membre.ajoutMembre.nomLabel: 'Last name'
+membre.ajoutMembre.possedeCompte: 'The member has a Reconnect account'
+membre.ajoutMembre.prenomLabel: 'First name'
+membre.ajoutMembre.subtitle: 'Adding a new member'
+membre.ajoutMembre.title: 'Add a new <span class="main"> member </span>'
+membre.arreterSuivi.metaTitle: 'Stop the following of an user'
+membre.arreterSuivi.subtitle: 'Stop the following of %subject%'
+membre.arreterSuivi.success: 'You stopped the following of this user in this center'
+membre.arreterSuivi.text: 'This user belongs to several centers that you manage, select the centers where stop following'
+membre.arreterSuivi.title: 'Stop the following of a <span class="main"> user </span>'
+membre.beneficiaires.aides: Aids
+membre.beneficiaires.ajouterBeneficiaire: 'Add a new beneficiary'
+membre.beneficiaires.arreterSuivi: 'Stop sharing'
+membre.beneficiaires.arreterSuiviEtesVousSur: 'You will delete the account of %nom%'
+membre.beneficiaires.btnDetails: Details
+membre.beneficiaires.centres: Centers
+membre.beneficiaires.mesContacts: Contacts
+membre.beneficiaires.mesDocuments: Documents
+membre.beneficiaires.mesNotes: Notes
+membre.beneficiaires.metaTitle: 'Management of beneficiaires'
+membre.beneficiaires.monCalendrier: Calendar
+membre.beneficiaires.noBeneficiairesInCentre: 'There is no beneficiary in this center'
+membre.beneficiaires.nom: 'Last name'
+membre.beneficiaires.nonValide: Non-validates
+membre.beneficiaires.prenom: 'First name'
+membre.beneficiaires.renouvelerIdentifiants: 'Reset my password'
+membre.beneficiaires.selectCentre: 'Choose a center'
+membre.beneficiaires.title: 'Management of <span class="main"> beneficiaires </span>'
+membre.beneficiaires.valide: Validated
+membre.centres.metaTitle: 'My Reconnect Relays'
+membre.centres.quitterCentre: 'Leave this center'
+membre.centres.title: 'My Reconnect Relays'
+membre.centres.voirBeneficiaires: 'See the beneficiaries'
+membre.centres.voirMembres: 'See the members'
+membre.centres.vousAvezBienQuitte: 'You left this center'
+membre.creationBeneficiaire.metaTitle: 'Create a beneficiary'
+membre.creationBeneficiaire.questionsSecretes.q1: 'Which is the first name of the beneficiary´s mother?'
+membre.creationBeneficiaire.questionsSecretes.q2: 'Which is the name of the beneficiary´s pet?'
+membre.creationBeneficiaire.questionsSecretes.q3: 'What is the name of the favourite street of the beneficiary?'
+membre.creationBeneficiaire.questionsSecretes.q4: 'Which highschool institution does the beneficiary remember They attended?'
+membre.creationBeneficiaire.questionsSecretes.q5: 'Which is the nickname of the beneficiary?'
+membre.creationBeneficiaire.questionsSecretes.q6: Other
+membre.creationBeneficiaire.step1.subtitle: '<span class="main"> Step 1/%totalSteps% </span> &nbsp; Please provide the beneficiary´s identity'
+membre.creationBeneficiaire.step2.subtitle: '<span class="main"> Step 2/6 </span> &nbsp; Please chhose the username and password of the beneficiary'
+membre.creationBeneficiaire.step3.subtitle: '<span class="main">Step 3/6 </span>&nbsp;Please choose the secret question of the beneficiary'
+membre.creationBeneficiaire.step4.subtitle: '<span class="main">Step %step%/%totalSteps%</span>&nbsp;Please choose the Reconnect Relay(s) of the beneficiary'
+membre.creationBeneficiaire.step5.subtitle: '<span class="main"> Step %step%/%totalSteps%</span>&nbsp;Summary,please confirm the registered informations above'
+membre.creationBeneficiaire.step6.content: 'Do not forget to print the Open Reconnect Account file in order to receive the beneficiary''s signature'
+membre.creationBeneficiaire.step6.subtitle: '<span class="main"> Step 6/6 </span>&nbsp; Use map'
+membre.creationBeneficiaire.step6.telecharger: Download
+membre.creationBeneficiaire.step6.terminer: Finish
+membre.creationBeneficiaire.subtitle: 'Step 1/5 Please provide the identity of the beneficiary'
+membre.creationBeneficiaire.success: 'The beneficiary has been created'
+membre.creationBeneficiaire.title: 'Create a <span class="main"> beneficiary </span>'
+membre.creationMembre.membreEmailConstraint: 'If the member has the right of managing other members,They must provide their Email address.'
+membre.creationMembre.success: 'The member has been created'
+membre.creationMembre.title: 'Member creation'
+membre.doAjoutSubject.btnAjouter: Add
+membre.doAjoutSubject.centres: 'Your centers'
+membre.doAjoutSubject.subtitle: 'Choose the centers to add the user'
+membre.doDoAjoutSubject.cliquerIci: 'Click here'
+membre.doDoAjoutSubject.confirmeraEnConnectant: 'The user will confirm Your add request by connecting to its Reconnect account'
+membre.doDoAjoutSubject.membreConfirmeraEnConnectant: 'The member will valid your add request by connecting to its Reconnect account'
+membre.doDoAjoutSubject.renseignerTelephone: '(You must provide your mobile phone by clicking <a href="%link%> here </a>'
+membre.doDoAjoutSubject.repondreReponseSecrete: 'The user will provide You the answer to its secret question'
+membre.doDoAjoutSubject.sendSms: 'The user will provide You a code received by SMS'
+membre.doDoAjoutSubject.subtitle: 'Add demand sent to %subject%'
+membre.doDoAjoutSubject.termine: Finish
+membre.doDoAjoutSubject.text: 'In order to obtain confirmation from the user, select a procedure among those presented below'
+membre.droits.gestionBeneficiaires: 'Beneficiaries management'
+membre.droits.gestionMembres: 'Members management'
+membre.droits.gestionPaiement: 'Payment management'
+membre.membres.aides: Aids
+membre.membres.ajouterMembre: 'Add a new member'
+membre.membres.arreterSuivi: Delete
+membre.membres.btnDetails: Details
+membre.membres.centres: Centers
+membre.membres.gestionBeneficiaires: 'Beneficiaries management'
+membre.membres.gestionMembres: 'Members management'
+membre.membres.gestionPaiement: 'Payment management'
+membre.membres.mesContacts: 'My contacts'
+membre.membres.mesDocuments: 'My documents'
+membre.membres.mesNotes: 'My Notes'
+membre.membres.metaTitle: 'Members management'
+membre.membres.monCalendrier: 'My calendar'
+membre.membres.noBeneficiairesInCentre: 'There is no beneficiary in this center'
+membre.membres.nom: 'Last name'
+membre.membres.nonValide: Non-validated
+membre.membres.prenom: 'First name'
+membre.membres.renouvelerIdentifiants: 'Reset my password'
+membre.membres.selectCentre: 'Select a center'
+membre.membres.title: 'Management <span class="main"> members </span>'
+membre.membres.valide: Validated
+membre.menu.gestionBeneficiaires: Beneficiaires
+membre.menu.gestionRelais: 'My Reconnect Relays'
+membre.partageContact.ajouterMail: 'Add an Email address'
+membre.partageContact.ajouterNuméro: 'Add my phone number'
+membre.partageContact.success: 'Your contact has been added in the contact list of the beneficiary'
+membre.partageContact.text: You consult for the first time the shared elements of this user. Do You agree that yout contact be added to the shared contacts list of this user?
+membre.partageContact.title: 'Share your contact'
+membre.questionSecrete.label: 'You must answer to the following question:'
+membre.questionSecrete.mauvaiseReponse: 'This is not the right answer to the secret question'
+membre.questionSecrete.metaTitle: 'Add a new beneficiary'
+membre.questionSecrete.subtitle: 'Answer to the secret question'
+membre.questionSecrete.success: 'The processing of this center has been confirmed.'
+membre.questionSecrete.title: 'Add a new <span class="main"> beneficiary </span>'
+membre.resettingBeneficiairePassword.erreur: 'This is not the answer to the secret question'
+membre.resettingBeneficiairePassword.success: 'The password has been reset.'
+membre.resettingBeneficiairePassword.title: 'Reset of the password of %username%'
+membre.sendSmsCode.codeLabel: 'Enter the code received by SMS'
+membre.sendSmsCode.mauvaiseReponse: 'Wrong code'
+membre.sendSmsCode.smsMessage: 'To confirm your addition please send to your Reconnect Relays the validation code'
+membre.sendSmsCode.subtitle: 'Validation by receiving a SMS code'
+membre.sendSmsCode.success: 'The managing of this center has been confirmed'
+membre.sendSmsCode.text: 'A SMS containing the code has just been sent to the phone number (%phone%)'
+membre.supprimerMembreDuCentre.etesVousSur: 'Are You sure You want to delete the member of this center?'
+membre.supprimerMembreDuCentre.success: 'You deleted the member of this center'
+modePaiement.carteBancaire: 'Bank card'
+modePaiement.cheque: 'Bank cheque'
+modePaiement.choisisseModePaiement: 'Choose your way of payment'
+modePaiement.flashBienSupprime: 'You removed this element of your purchases'
+modePaiement.recapitulatif: 'Summary of your purchases'
+modePaiement.virement: Transfer
+my_contacts: My Contacts
+my_documents: My Documents
+my_events: My Events
+my_notes: My Notes
+my_relays: My Relays
+move: Move
+name: Name
+no: No
+no_result: No result
+notes: Notes
+note.ajouter: 'Add a note'
+note.bienSauvegarde: 'Your note has been saved'
+note.bienSupprime: 'Your note has been deleted.'
+note.contenuLabel: 'Note content'
+note.date: Date
+note.emptyData: 'There are no notes yet. Click "Add" to create one.'
+note.metaTitle: Notes
+note.nom: Name
+note.nomLabel: Title
+note.supprimer: Delete
+note_created: Note created
+note_updated: Note updated
+number_of_docs: Number of documents
+ouvrirUnCompte.btn1: 'See the map of Reconnect Centers'
+ouvrirUnCompte.btn2: 'Become a Reconnect Relay'
+ouvrirUnCompte.metaTitle: 'Open a Reconnect account'
+ouvrirUnCompte.retourEnArriere: 'Back to the previous page'
+ouvrirUnCompte.text1: 'Feel free to talk about Reconnect to your social referents, they can assist you in creating and using your account'
+ouvrirUnCompte.text2: 'You want to set up <br/> Reconnect to your structure <br/> <br/>'
+ouvrirUnCompte.title1: 'You are applying to <br/>a social support'
+ouvrirUnCompte.title2: 'You are <br/> a social worker'
+ouvrirUnCompte.title: 'Open a Reconnect <span class="main">account </span>'
+paiement.btnPaiementSecurise: 'Click here to pay'
+paiement.centreConcerne: 'Concerned center'
+paiement.error.err00001: 'The connection to the authorization center has failed or an internal error has occured'
+paiement.error.err00003: 'Paybox Error'
+paiement.error.err00004: 'Carrier number or invalid security code.'
+paiement.error.err00006: 'Access denied or website / rank / incorrect ID.'
+paiement.error.err00008: 'Incorrect validity end date'
+paiement.error.err00009: 'Error creating a subscription.'
+paiement.error.err00010: 'Unknown currency'
+paiement.error.err00011: 'Incorrect sum'
+paiement.error.err00015: 'Payment already made'
+paiement.error.err00021: 'Unauthorized bank card'
+paiement.error.err00029: 'Unapproapiate bank card'
+paiement.error.err00030: 'Waiting time > 15 min'
+paiement.error.err001xx: 'Refused payment by the authorization center'
+paiement.metaTitle: Payment
+paiement.nomProduit: 'Product name'
+paiement.panierIntrouvable: 'Unable to retrieve the purchases,please restart the payment process'
+paiement.prix: Price
+paiement.text2: 'You will be redirected to our secured payment platform'
+paiement.text: 'You are willing to make a payment of %montant% euros. <br/> Here is Your summary of your purchases'
+paiement.title: Payment
+paiementCheque.adresse: 'Street, City, Postal code,Country'
+paiementCheque.metaTitle: 'Cheque payment'
+paiementCheque.text2: 'In order to confirm your payment,please click below. Once your cheque received,You will receive a mail confirmation which will enclose your payment receipt. The structure will appear in your user account.'
+paiementCheque.text: 'In order to confirm your payment,please inquire as entitled: ENTITLED , <br/> in the command of : COMMAND. <br/> At the end,please send it to the following addres'
+paiementCheque.title: 'Cheque payment'
+paiementRetour.abandonMessage: 'You cancelled your payment'
+paiementRetour.errorMessage: 'Your payment was not completed,You have not been charged. <br/> <br/> Please start again the payment process. <br/> <br/> The error sent by the payment system is the following:'
+paiementRetour.retourSurMonCompte: 'Go to my account'
+paiementRetour.successMessage: 'Your payment has been confirmed. You will receive by Email the details of payment'
+paiementRetour.waitingMessage: 'Your payment has been confirmed. <br/> You will receive in few days the confirmation mail after receiving your payment.'
+paiementVirement.adresse: 'Street, city,postal code, Country'
+paiementVirement.metaTitle: 'Payment by transfer'
+paiementVirement.text2: 'In order to confirm your payment,please click below. Once your cheque received,You will receive a mail confirmation which will enclose your payment receipt. The structure will appear in your user account.'
+paiementVirement.text: 'In order to confirm your transfer,please introduce this following text: TODOPL LIBELLE'
+paiementVirement.title: 'Payment by transfer'
+or_click_link: Or click on the link
+password: Password
+password_criterion_length: 8 characters
+password_criterion_special: Special character
+password_criterion_number: Number
+password_criterion_uppercase: Uppercase
+password_criterion_lowercase: Lowercase
+password_expired: Your password has expired. Please enter a new password.
+password_help: The password must be at least 8 characters long and fulfill at least 4 of the 5 criteria below
+password_help_criteria: The password must fulfill {{ atLeast }} of {{ total }} criteria below
+password_invalid: Invalid password
+password_new_should_be_different_from_current: Your new password must be different from your current password.
+password_renewal_due: Your password is about to expire. Please enter a new password.
+password_updated_successfully: 'Your password has been changed.'
+password_valid: Valid password
+phone: Phone
+phone_does_not_exist: No users with phone numbers were found
+phone_duplicate: This phone number is linked to multiple Reconnect accounts, please contact support if you are unable to log in
+postal_code: Postal Code
+print_account_creation_act: Don't forget to print the Reconnect account creation act, in order to obtain the signature of the beneficiary
+private: Private
+pro_manage_user_title_part_1: Manage
+public_reset_password: I want to reset my password
+public_reset_password_SMS_has_been_sent: An SMS was sent to you containing a secret code to renew your password. It is valid for 2 hours.
+public_reset_password_SMS_wrong_code: The code you entered does not correspond to the one you received by SMS
+public_reset_password_SMS_your_code: Your code received by SMS
+public_reset_password_already_requested: You have already tried to renew your password less than 24 hours ago.
+public_reset_password_email_duplicate: This email address is linked to several Reconnect accounts, please contact support if you are unable to log in
+public_reset_password_email_has_been_sent: An email was sent to you with instructions to renew your password. It is valid for 24 hours.
+public_reset_password_failure_not_in_time: You did not renew your password within the time limit, please try again
+public_reset_password_subtitle: Enter your email address or phone number to start the process
+public_reset_password_success: Your password has been changed, you can now connect to your account
+rediscover_our_solutions: (re)Discover our solutions
+registerForm.adresse: 'Your personal address (optional)'
+registerForm.codePostal: 'Postal code'
+registerForm.email: Email
+registerForm.motDePasse: Password
+registerForm.nom: 'Last name'
+registerForm.pays: Country
+registerForm.prenom: 'First name'
+registerForm.rue: Street
+registerForm.telephone: 'Phone number'
+registerForm.username: Username
+registerForm.ville: City
+relays: Relays
+relay_has_no_address: The Reconnect relay did not informed any address
+reminder: Reminder
+reminder_sms: SMS Reminder
+remove_from_relay: Remove from relay
+removed_from_relay: Removed from relay
+remove_from_relay_confirm: Are you sure you want to remove the beneficiary %beneficiary% ?
+remove_from_relay_confirm_relay: Are you sure you want to remove the beneficiary %beneficiary% from the relay %relay% ?
+rename: Rename
+renew_password: Renew password
+reset_password_requested_by_SMS: Current reset request was made by SMS
+reset_password_requested_by_email: Current reset request was made by email
+resetting.check_email: 'An Email was sent to the entered address. Click on the link in the Email in order to reset your password.'
+resetting.email.message: 'Hi %username% To reset Your password,thank You to go to %confirmationUrl% Best regards, the Reconnect team'
+resetting.email.subject: 'Reset your password'
+resetting.etesVousSur: 'Are you sure you want to reset the password of %last name% %first name% ?'
+resetting.flash.success: 'The password has been changed.'
+resetting.password_already_requested: 'A new password has been requested for this user in the last 24 hours.'
+resetting.public.existePas: 'No user with whis Email has been found'
+resetting.public.metaTitle: 'Reset Password'
+resetting.public.text: 'Please enter your Email address'
+resetting.public.title: '<span class="main">Password</span> reset'
+resetting.public.votreEmail: 'Your Email'
+resetting.reset.submit: 'Change password'
+rp_is_adaptable_alt_img: Adaptable to your needs
+rp_is_adaptable_p: The configuration allows you to meet the specific needs of your organization's operations.
+rp_is_adaptable_title: Adaptable to your needs
+rp_is_satisfying_alt_img: Professionals are very satisfied by the training
+rp_is_satisfying_p: of professionals are very satisfied by the training
+rp_is_satisfying_title: 80%
+rp_is_simple_alt_img: simple and pleasant tool
+rp_is_simple_p: The ergonomics have been particularly worked out so that the handling is very simple and allows you to focus on the support.
+rp_is_simple_title: A simple and pleasant tool
+rp_is_specific_alt_img: specifically for social action
+rp_is_specific_p: The co-design with structures of the sector allows us to respond to the specificities of the activities.
+rp_is_specific_title: Specifically designed for social action
+rp_is_title: The Pro Solution is
+rp_page_hero_text: The business tool that ensures the continuity of the integration process
+rp_page_housing_management_alt_img: centralized accommodation management
+rp_page_housing_management_p: Follow in real time the number of places available in your structure and find the occupants of each accommodation.
+rp_page_housing_management_title: Centralized accommodation management
+rp_page_info_transmission_alt_img: simplified transmission of information
+rp_page_info_transmission_p: Notify the members of your team concerned by the progress of a person's situation. In the event of a replacement, quickly find an overview of the current steps in progress and of the next steps for your beneficiaries.
+rp_page_info_transmission_title: Simplified transmission of information within the team
+rp_page_stats_automation_alt_img: automated statistics
+rp_page_stats_automation_p: Analyze the statistical data related to your activity and increase the impact of your support tenfold.
+rp_page_stats_automation_title: Automated statistics of your activity
+rp_page_user_file_alt_img: complete user file
+rp_page_user_file_p: 'Find all the information necessary to accompany your beneficiaries: consult the history of their journey, update their situation, record your meetings reports, schedule reminders for the next deadlines, find the documents and useful contacts...'
+rp_page_user_file_title: A complete user file
+search: Rechercher
+secret_answer: Secret answer
+secret_answer_optional: Secret answer (optional)
+secret_question: Secret question
+search_existing_beneficiary: Search for an existing beneficiary
+select_relays_for_disaffiliation: This user is linked to one or several relays that you manage, please choose relays for which you want to stop the following
+send: Send
+sending_sms_account_activation: Sending the SMS for account activation
+settings_saved_successfully: 'Your settings has been registered'
+share_document: Share document
+share_document_error_expired: The validity of the download link has expired, please retry
+share_document_error_no_shared_document: No document has been shared
+share_document_error_not_found: No beneficiary found
+share_document_success: An email with a link to download this document has been sent to the email address provided
+share_document_with: Recipient's email
+shared: Shared
+sms_sent: SMS sent
+sms_sent_failed: SMS sending failed, please check that the phone number is valid
+status: Status
+statut.abandoned: Dropped
+statut.confirmed: Confirmed
+statut.created: Created
+statut.waiting: 'Waiting(cheque/bank transfer)'
+steps_count: Step %step%/%totalSteps%
+subscription_confirmation: Subscription confirmation
+summary: Summary
+summary_confirm_information: Summary, please confirm the information below
+surname: First name
+switch_content_private: Switch private
+switch_content_private_confirm: Are you sure you want to switch this element in the private area of the beneficiary ?
+switchUser.btnRevenir: 'Back to Administration'
+switchUser.connecte: 'You are connected as <span class="italic">%username%'
+username: Username
+tax: Tax
+terms_of_use: Terms of use
+thank_you_for_subscription: Thanks for subscribing
+unsupported_file_extension: Error %fileName%, unsupported file extension
+used_available: '%used% used over %available% available'
+user.cgu.bAccepter: 'I accept the terms of use'
+user.cgu.metaTitle: 'General conditions of use'
+user.cgu.mustAccept: 'You must accept the terms of use'
+user.cgu.title: 'General conditions of use'
+user.firstVisit.beneficiaire.metaTitle: 'Welcome to Reconnect,The Solidarity Cloud'
+user.firstVisit.beneficiaire.text: '<p class="smallMargin"> This device will allow You to save all Your personal informations(documents,meetings,contacts,notes,etc.) </p> <p class="smallMargin"> You are the only authorized person to provide and save Your personal information or to delete it. </p> <p class= "smallMargin"> Do not hesitate to contact the Reconnect Relays team in order to accompany You during your usage of the application. </p> <pclass= "smallMargin"> The Reconnect team welcomes You to itss platform and wishes You a good use of the application'
+user.firstVisit.beneficiaire.title: 'Welcome to Reconnect the <span class="main"> Solidarity Cloud </span>'
+user.firstVisit.gestionnaire.metaTitle: 'Welcome to Reconnect,The Solidarity Cloud'
+user.firstVisit.gestionnaire.text: '<p class="smallMargin">Thank You for choosing the "Reconnect-The Solidarity Cloud" solution. </p> <p class="smallMargin"> The device will allow to the teams of your establishments to accompany the beneficiaries in the use of their Reconnect account. </p> <p class="smallMargin"> Do not hesitate in contacting the Reconnect team for any particular information </p> <p class="smallMargin"> The Reconnect team welcomes You to its platform and wishes You a good use of it. </p>'
+user.firstVisit.gestionnaire.title: 'Welcome to Reconnect,the <span class="main"> Solidarity Cloud </span>'
+user.firstVisit.membre.metaTitle: 'Welcome to Reconnect,The Solidarity Cloud'
+user.firstVisit.membre.text: '<p class="smallMargin"> The main function of this device is to save the personal informations of the supported people. </p> <p class="smallMargin">The tool is part of the accompaniment and will allow You to attend the beneficiaries in safeguarding their data. </p> <p class="smallMargin"> The Reconnect team welcomes You to its platform and wishes You a good use </p>'
+user.firstVisit.membre.title: 'Welcome to Reconnect,the <span class="main"> Solidarity Cloud </span>'
+user.parametres.changerMotDePasse: 'Change your password'
+user.parametres.dateNaissanceLabel: 'Date of birth'
+user.parametres.enregister: 'Register my changes'
+user.parametres.lieuNaissanceLabel: 'Place of birth'
+user.parametres.mdpActuel: 'Your present password'
+user.parametres.metaTitle: 'User´s settings'
+user.parametres.nouveauMotDePasse: 'Your new password'
+user.parametres.nouveauMotDePasseConfirm: 'Confirmation of the new password'
+user.parametres.questionSecreteLabel: 'Secret question'
+user.parametres.reponseSecreteLabel: 'Secrete answer'
+user.parametres.subtitle: 'Subject %settings%'
+user.parametres.title: 'User''s <span class="main"> settings </span>'
+user.parametres.userLabel: User
+user.pendingCentre.flashAccepter: 'You accepted  the association to the center'
+user.pendingCentre.flashRefuser: 'You denied the association to the center.'
+user.pendingCentre.title: 'A Reconnect Center wishes to add you'
+user.reinitialiserMdp.adresseMail: 'Reset with the Email address'
+user.reinitialiserMdp.aucuneMethode: 'It is impossible to reset the password for this user.The user did not provide the Email or the phone number'
+user.reinitialiserMdp.emailEnvoye: 'The Email has been sent.'
+user.reinitialiserMdp.errorCode: 'The code is incorrect.'
+user.reinitialiserMdp.metaTitle: 'Reset password'
+user.reinitialiserMdp.questionSecrete: 'Reset with a secret question'
+user.reinitialiserMdp.reinitialisation: Reset
+user.reinitialiserMdp.smsCodeLabel: 'Code received by SMS'
+user.reinitialiserMdp.smsCodeSent: 'The code has been sent by SMS to the user phone number (%phone%),please enter it in the top field to reset your password.'
+user.reinitialiserMdp.smsDejaReset: 'You have already tried to reset your password in the last 24 hours.'
+user.reinitialiserMdp.smsMessage: 'The code to reset your password is %code%'
+user.reinitialiserMdp.subtitle: 'Reset password of % lastname% %first name%'
+user.reinitialiserMdp.telephone: 'Reset by SMS or by Phone'
+user.reinitialiserMdp.title: 'Reset password'
+user.supprimerCompte.etesVousSurs: 'Are You sure You want to delete Your accunt?'
+user.supprimerCompte.success: 'The account has been deleted.'
+user_error_disabled_account: Your account is disabled, please contact support.
+user_parameters_subtitle: '%subject%''s settings'
+user_parameters_title: '<span class="text-primary">User''s </span><span class="rp-blue vault-green">settings</span>'
+user_update_password_subtitle: '%subject% password'
+user_update_password_title: '<span class="text-primary">New </span><span class="rp-blue vault-green">password</span>'
+vault: The digital safe
+verbatim_content_1: The digital safe is very easy to use! I have several beneficiaries who can barely read and write, I think even they will be able to use it.
+website_CGS: Terms and conditions of the site
+website_confidentiality: Privacy policy of the site
+website_legal: Legal notice
+yes: Yes
+you_are_now_subscribed_for_newsletter: You are now subscribed to our newsletter
+you_can_unsubscribe_for_newsletter: You can unsubscribe from this list at any time, using the link you will find at the bottom of each newsletter
+you_must_provide_phone_number: You must provide a phone number
+you_can_download_mobile_app: You can also download the mobile app
+while_waiting_next_newsletter_1: While waiting for the next one, you can
+while_waiting_next_newsletter_2: find our news on our social networks and our blog!
+work: Work
+wrong_current_password: 'Your present password is false'
+wrong_secret_answer: Wrong secret answer
