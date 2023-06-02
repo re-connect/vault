@@ -1,93 +1,92 @@
 security:
   login:
-    username: 'إسم المستخدم'
-    password: 'كلمة المرور'
-    remember_me: 'حفظ البيانات'
-    submit: 'تسجيل دخول'
+    username: 'Nombre de usuario'
+    password: Contraseña
+    remember_me: Recordar
+    submit: Entrar
 profile:
   show:
-    username: 'إسم المستخدم'
-    email: 'بريد إلكتروني'
+    username: 'Nombre de usuario'
+    email: Email
   edit:
-    submit: تحديث
+    submit: 'Actualizar usuario'
   flash:
-    updated: 'تم تحديث الملف الشخصي'
+    updated: 'El perfil ha sido actualizado.'
 change_password:
-  submit: 'تغيير كلمة المرور'
+  submit: 'Cambiar contraseña'
   flash:
-    success: 'تم تغيير كلمة المرور'
+    success: 'La contraseña se ha cambiado con éxito.'
 registration:
-  check_email: 'لقد تم إرسال رسالة إلكترونية إلى %email% تحتوي على رابط يجب إتباعه لتفعيل حسابك الشخصي.'
-  confirmed: 'تهانينا %username%، لقد تم تفعيل حسابك.'
-  back: 'عودة إلى الصفحة الرئيسية'
-  submit: تسجيل
+  check_email: 'Se ha enviado un correo electrónico a %email%. Contiene un enlace de activación al que debes acceder para activar tu cuenta.'
+  confirmed: 'Felicidades %username%, tu cuenta está ahora confirmada.'
+  back: 'Volver a la página original.'
+  submit: Registrar
   flash:
-    user_created: 'تم إنشاء حسابك بنجاح'
+    user_created: 'El usuario se ha creado satisfactoriamente.'
   email:
-    subject: '%username%! مرحبا'
+    subject: '¡Bienvenido %username%!'
     message: |
-      مرحبا %username%!
+      ¡Hola %username%!
 
+      Para completar la validación de tu cuenta, por favor visita %confirmationUrl%
 
-       لتفعيل حسابك يرجى إتباع الرابط التالي %confirmationUrl%
+      Este enlace sólo puede utilizarse una vez para validar tu cuenta.
 
-       الرابط يمكن إستخدامه مرة واحدة فقط لتفعيل حسابك
-
-      شكرا،
-      فريق العمل.
+      Atentamente,
+      el Equipo.
 resetting:
   check_email: |
-    لقد تم إرسال رسالة إلكترونية تحتوي على رابط يجب الضغط عليه لإعادة ضبط كلمة المرور الخاصة بك.
-    ملحوظة: يمكنك إعادة ضبط كلمة المرور الخاصة بك خلال %tokenLifetime% ساعة
+    Se ha enviado un correo electrónico a tu cuenta de correo. Contiene un enlace de activación al que debes acceder para restablecer tu contraseña.
+    Nota: Solo se puede solicitar una nueva contraseña cada %tokenLifetime% horas.
 
-    يرجى التحقق من ملف السبام إذا لم تستقبل الرسالة الإلكترونية قريبا أو أعد المحاولة
+    Si no recibes un correo electrónico, comprueba tu carpeta de correo no deseado o inténtalo de nuevo.
   request:
-    username: 'إسم المستخدم او البريد الالكتروني'
-    submit: 'إعادة ضبط كلمة المرور'
+    username: 'Nombre de usuario o correo electrónico'
+    submit: 'Restablecer contraseña'
   reset:
-    submit: 'تغيير كلمة المرور'
+    submit: 'Cambiar contraseña'
   flash:
-    success: 'تم إعادة ضبط كلمة المرور بنجاح'
+    success: 'La contraseña se ha cambiado con éxito.'
   email:
-    subject: 'إعادة ضبط كلمة المرور'
+    subject: 'Restablecer Contraseña'
     message: |
-      مرحبا %username%!
+      ¡Hola %username%!
 
-      لإعادة ضبط كلمة المرور يرجى إتباع الرابط التالي %confirmationUrl%
+      Para restablecer tu contraseña, por favor visita %confirmationUrl%
 
-      شكرا،
-      فريق العمل.
+      Atentamente,
+      el Equipo.
 layout:
-  logout: خروج
-  login: دخول
-  register: تسجيل
-  logged_in_as: 'تم الدخول بإسم %username%'
+  logout: Salir
+  login: Entrar
+  register: Registrar
+  logged_in_as: 'Identificado como %username%'
 form:
-  username: 'إسم المستخدم'
-  email: 'البريد الإلكتروني'
-  current_password: 'كلمة المرور الحالية'
-  password: 'كلمة المرور'
-  password_confirmation: تأكيد
-  new_password: 'كلمة المرور الجديدة'
-  new_password_confirmation: 'تأكيد كلمة المرور'
+  username: 'Nombre de usuario'
+  email: Email
+  current_password: 'Contraseña actual'
+  password: Contraseña
+  password_confirmation: 'Repita la contraseña'
+  new_password: 'Nueva contraseña'
+  new_password_confirmation: 'Repita la contraseña'
 fos_user:
   username:
-    already_used: 'الإسم المختار مسجل مسبقا'
-    blank: 'يرجى تعيين إسم المستخدم'
-    short: ' إسم المستخدم قصير جدا'
-    long: ' إسم المستخدم طويل جدا'
+    already_used: 'El nombre de usuario ya está en uso.'
+    blank: 'Por favor, ingrese un nombre de usuario.'
+    short: 'El nombre de usuario es demasiado corto.'
+    long: 'El nombre de usuario es demasiado largo.'
   email:
-    already_used: 'البريد الإلكتروني مسجل مسبقا'
-    blank: 'يرجى تعين البريد الإلكتروني'
-    short: ' البريد الإلكتروني قصير'
-    long: ' البريد الإلكتروني طويل'
-    invalid: 'البريد الإلكتروني غير صحيح'
+    already_used: 'La dirección de correo ya está en uso.'
+    blank: 'Por favor, ingrese una dirección de correo.'
+    short: 'La dirección de correo es demasiado corta.'
+    long: 'La dirección de correo es demasiado larga.'
+    invalid: 'La dirección de correo no es válida.'
   password:
-    blank: 'يرجى تعيين كلمة المرور'
-    short: 'كلمة المرور قصيرة'
-    mismatch: 'كلمة المرور المدخلة غير مطابقة للكلمة الأصلية'
+    blank: 'Por favor, ingrese una contraseña.'
+    short: 'La contraseña es demasiado corta.'
+    mismatch: 'Las dos contraseñas no coinciden.'
   new_password:
-    blank: 'يرجى تعيين كلمة مرور جديدة'
-    short: ' كلمة المرور الجديدة قصيرة'
+    blank: 'Por favor, ingrese una nueva contraseña.'
+    short: 'La nueva contraseña es demasiado corta.'
   current_password:
-    invalid: 'كلمة المرور المدخلة غير صحيحة'
+    invalid: 'La contraseña ingresada no es válida.'
