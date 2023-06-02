@@ -1,21 +1,21 @@
 fos_user:
   username:
-    already_used: 'Dieser Benutzername wird bereits verwendet.'
-    blank: 'Bitte geben Sie einen Benutzernamen an.'
-    short: 'Dieser Benutzername ist zu kurz.'
-    long: 'Dieser Benutzername ist zu lang.'
+    already_used: 'The username is already used.'
+    blank: 'Please enter a username.'
+    short: 'The username is too short.'
+    long: 'The username is too long.'
   email:
-    already_used: 'Diese E-Mail-Adresse wird bereits verwendet.'
-    blank: 'Bitte geben Sie eine E-Mail-Adresse an.'
-    short: 'Diese E-Mail-Adresse ist zu kurz.'
-    long: 'Diese E-Mail-Adresse ist zu lang.'
-    invalid: 'Diese E-Mail-Adresse ist ungültig.'
+    already_used: 'The email is already used.'
+    blank: 'Please enter an email.'
+    short: 'The email is too short.'
+    long: 'The email is too long.'
+    invalid: 'The email is not valid.'
   password:
-    blank: 'Bitte geben Sie ein Passwort an.'
-    short: 'Das Passwort ist zu kurz.'
-    mismatch: 'Die Passwörter stimmen nicht überein.'
+    blank: 'Please enter a password.'
+    short: 'The password is too short.'
+    mismatch: 'The entered passwords don''t match.'
   new_password:
-    blank: 'Bitte geben Sie ein neues Passwort an.'
-    short: 'Das neue Passwort ist zu kurz.'
+    blank: 'Please enter a new password.'
+    short: 'The new password is too short.'
   current_password:
-    invalid: 'Das angegebene Passwort ist ungültig.'
+    invalid: 'The entered password is invalid.'
