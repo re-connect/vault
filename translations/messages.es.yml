@@ -1,25 +1,10 @@
-authentification_failure_wrong_credentials: Nombre de usuario o contraseña incorrectos
-disabledAt: Desactivado el
-disabledBy: Desactivado por
-enabled: Activo
-form_connexion: Login
-form_forgot_password: Restablecer la contraseña
-form_login: Nombre de usuario o Correo electrónico
-form_password: Contraseña
-health: Salud
-housing: Casa
-identity: Identidad
-login_form_title: Acceso a la caja fuerte digital
-mail_subject_reset_password: RECONNECT - Restablecer la contraseña
-mail_subject_share_document: RECONNECT - Compartir un documento
-mail_reset_password_title: Restablecer la contraseña
-mail_reset_password_content_1: Recibimos una solicitud para restablecer la contraseña de su caja fuerte digital de Reconnect. Si no lo has solicitado, por favor, ignora este correo y su contraseña seguirá siendo la misma.
-mail_reset_password_content_2: De lo contrario, por favor, haga clic en el siguiente enlace para restablecer su contraseña, Este enlace está disponible durante 24 horas.
-mail_shared_document_title: Compartir un documento
-mail_shared_document_content_1: Alguien compartir con usted un documento de su caja fuerte digital de Reconnect.
-mail_shared_document_content_2: Para descargar este documento, clicar en este enlace (disponible durante 7 días)
-mail_shared_document_content_3: "CONFIDENCIALIDAD: Este correo electrónico (así como cualquier documento adjunto) es estrictamente para el uso de la persona o entidad a quien se envía y puede contener información privilegiada y confidencial. Queda estrictamente prohibida la divulgación, distribución o copia de este correo electrónico y sus documentos. Si ha recibido este correo electrónico por error, notifíquenoslo inmediatamente, destruya todas las copias y bórrelo de su sistema informático"
-no: No
-tax: Impuestos
-work: Trabajo
-yes: Sí
+birthdate_not_empty: Das Feld "Geburtsdatum" darf nicht leer sein
+email_already_in_use: Diese E-Mailadresse wird bereits verwendet
+firstname_not_empty: Das Feld "Vorname" darf nicht leer sein
+lastname_not_empty: Das Feld "Name" darf nicht leer sein
+mail_not_empty: Das Feld "E-Mail-Adresse" darf nicht leer sein
+phone_not_empty: Das Feld "Telefonnummer" darf nicht leer sein
+secret_answer_not_empty: Die Antwort auf die Sicherheitsfrage darf nicht leer sein
+secret_question_not_empty: Die Sicherheitsfrage darf nicht leer sein
+username_already_in_use: Nutzername Dieser Nutzername wird bereits verwendet
+username_not_valid: Das Feld "Anmeldename" darf nicht leer sein
