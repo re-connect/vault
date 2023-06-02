@@ -1,25 +1,92 @@
-authentification_failure_wrong_credentials: Nombre de usuario o contraseña incorrectos
-disabledAt: Desactivado el
-disabledBy : Desactivado por
-enabled: Activo
-form_connexion: Login
-form_forgot_password: Restablecer la contraseña
-form_login: Nombre de usuario o Correo electrónico
-form_password: Contraseña
-health: Salud
-housing: Casa
-identity: Identidad
-login_form_title: Acceso a la caja fuerte digital
-mail_subject_reset_password: RECONNECT - Restablecer la contraseña
-mail_subject_share_document: RECONNECT - Compartir un documento
-mail_reset_password_title: Restablecer la contraseña
-mail_reset_password_content_1: Recibimos una solicitud para restablecer la contraseña de su caja fuerte digital de Reconnect. Si no lo has solicitado, por favor, ignora este correo y su contraseña seguirá siendo la misma.
-mail_reset_password_content_2: De lo contrario, por favor, haga clic en el siguiente enlace para restablecer su contraseña, Este enlace está disponible durante 24 horas.
-mail_shared_document_title: Compartir un documento
-mail_shared_document_content_1: Alguien compartir con usted un documento de su caja fuerte digital de Reconnect.
-mail_shared_document_content_2: Para descargar este documento, clicar en este enlace (disponible durante 7 días)
-mail_shared_document_content_3: "CONFIDENCIALIDAD: Este correo electrónico (así como cualquier documento adjunto) es estrictamente para el uso de la persona o entidad a quien se envía y puede contener información privilegiada y confidencial. Queda estrictamente prohibida la divulgación, distribución o copia de este correo electrónico y sus documentos. Si ha recibido este correo electrónico por error, notifíquenoslo inmediatamente, destruya todas las copias y bórrelo de su sistema informático"
-no: No
-tax: Impuestos
-work: Trabajo
-yes: Sí
+security:
+  login:
+    username: 'Nombre de usuario'
+    password: Contraseña
+    remember_me: Recordar
+    submit: Entrar
+profile:
+  show:
+    username: 'Nombre de usuario'
+    email: Email
+  edit:
+    submit: 'Actualizar usuario'
+  flash:
+    updated: 'El perfil ha sido actualizado.'
+change_password:
+  submit: 'Cambiar contraseña'
+  flash:
+    success: 'La contraseña se ha cambiado con éxito.'
+registration:
+  check_email: 'Se ha enviado un correo electrónico a %email%. Contiene un enlace de activación al que debes acceder para activar tu cuenta.'
+  confirmed: 'Felicidades %username%, tu cuenta está ahora confirmada.'
+  back: 'Volver a la página original.'
+  submit: Registrar
+  flash:
+    user_created: 'El usuario se ha creado satisfactoriamente.'
+  email:
+    subject: '¡Bienvenido %username%!'
+    message: |
+      ¡Hola %username%!
+
+      Para completar la validación de tu cuenta, por favor visita %confirmationUrl%
+
+      Este enlace sólo puede utilizarse una vez para validar tu cuenta.
+
+      Atentamente,
+      el Equipo.
+resetting:
+  check_email: |
+    Se ha enviado un correo electrónico a tu cuenta de correo. Contiene un enlace de activación al que debes acceder para restablecer tu contraseña.
+    Nota: Solo se puede solicitar una nueva contraseña cada %tokenLifetime% horas.
+
+    Si no recibes un correo electrónico, comprueba tu carpeta de correo no deseado o inténtalo de nuevo.
+  request:
+    username: 'Nombre de usuario o correo electrónico'
+    submit: 'Restablecer contraseña'
+  reset:
+    submit: 'Cambiar contraseña'
+  flash:
+    success: 'La contraseña se ha cambiado con éxito.'
+  email:
+    subject: 'Restablecer Contraseña'
+    message: |
+      ¡Hola %username%!
+
+      Para restablecer tu contraseña, por favor visita %confirmationUrl%
+
+      Atentamente,
+      el Equipo.
+layout:
+  logout: Salir
+  login: Entrar
+  register: Registrar
+  logged_in_as: 'Identificado como %username%'
+form:
+  username: 'Nombre de usuario'
+  email: Email
+  current_password: 'Contraseña actual'
+  password: Contraseña
+  password_confirmation: 'Repita la contraseña'
+  new_password: 'Nueva contraseña'
+  new_password_confirmation: 'Repita la contraseña'
+fos_user:
+  username:
+    already_used: 'El nombre de usuario ya está en uso.'
+    blank: 'Por favor, ingrese un nombre de usuario.'
+    short: 'El nombre de usuario es demasiado corto.'
+    long: 'El nombre de usuario es demasiado largo.'
+  email:
+    already_used: 'La dirección de correo ya está en uso.'
+    blank: 'Por favor, ingrese una dirección de correo.'
+    short: 'La dirección de correo es demasiado corta.'
+    long: 'La dirección de correo es demasiado larga.'
+    invalid: 'La dirección de correo no es válida.'
+  password:
+    blank: 'Por favor, ingrese una contraseña.'
+    short: 'La contraseña es demasiado corta.'
+    mismatch: 'Las dos contraseñas no coinciden.'
+  new_password:
+    blank: 'Por favor, ingrese una nueva contraseña.'
+    short: 'La nueva contraseña es demasiado corta.'
+  current_password:
+    invalid: 'La contraseña ingresada no es válida.'
