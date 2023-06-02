@@ -41,7 +41,10 @@ beneficiary_created_successfully: 'Beneficiary created successfully'
 beneficiary_created_successfully_wait_activation: 'The account has been successfully created and is awaiting activation by the beneficiary.'
 beneficiary_creation_canceled: 'Beneficiary creation canceled'
 beneficiary_creation_remotely_sms: "Your accompanying person %pro.firstname% %pro.lastname% from organization %center% offers you to activate your Reconnect digital vault Reconnect \nConnect to www.reconnect.fr \nUsername : %username% \nPassword : %password% \nOr click on the link : %autoLoginLink% \nYou can also download the mobile app : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
+beneficiary_will_give_you_secret_answer: The beneficiary will give you the answer of his secret question
+beneficiary_will_receive_email_reset_request: The beneficiary will receive an email in order to reset his password
 beneficiary_will_receive_sms_account_information: 'The beneficiary will receive an SMS to activate his account and complete his information'
+beneficiary_will_receive_sms_reset_request: The beneficiary will receive a code by SMS in order to reset his password
 beneficiary_already_as_account_affiliate: 'The beneficiary already has a Reconnect digital vault account. Link this existing account to one of your relays'
 beneficiary_has_no_account_create: 'The beneficiary does not have a Reconnect digital vault account yet. Create this account with the beneficiary or remotely with to his phone number, and link him to one of your relays'
 beneficiaire.menu.mesAides: 'My Aids'
@@ -101,6 +104,7 @@ choose_beneficiary_title_part_1: 'Choose a'
 choose_beneficiary_title_part_2: beneficiary
 choose_picture: 'Click here to add a picture'
 choose_relay: 'Choose a relay'
+choose_reset_password_method: Choose reset password method
 city: City
 comment: Comment
 confirm: Confirm
@@ -824,6 +828,9 @@ remove_from_relay_confirm: 'Are you sure you want to remove the beneficiary %ben
 remove_from_relay_confirm_relay: 'Are you sure you want to remove the beneficiary %beneficiary% from the relay %relay% ?'
 rename: Rename
 renew_password: 'Renew password'
+reset: Reset
+reset_a_password: Reset a password
+reset_beneficiary_password: Reset password of %username%
 reset_password_requested_by_SMS: 'Current reset request was made by SMS'
 reset_password_requested_by_email: 'Current reset request was made by email'
 resetting.check_email: 'An Email was sent to the entered address. Click on the link in the Email in order to reset your password.'
@@ -880,6 +887,7 @@ share_document_error_not_found: 'No beneficiary found'
 share_document_success: 'An email with a link to download this document has been sent to the email address provided'
 share_document_with: "Recipient's email"
 shared: Shared
+sms: SMS
 sms_sent: 'SMS sent'
 sms_sent_failed: 'SMS sending failed, please check that the phone number is valid'
 status: Status

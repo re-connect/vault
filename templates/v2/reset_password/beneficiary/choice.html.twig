@@ -1,0 +1,38 @@
+{% extends 'v2/pro_management_layout.html.twig' %}
+
+{% block title %}{{ 'reset_a_password'|trans }}{% endblock %}
+{% block subTitle %}{{ 'reset_beneficiary_password'|trans({'%username%': beneficiary.fullName})|upper }}{% endblock %}
+{% block subTitleIcon %}<i class="fas fa-redo fa-lg me-1"></i>{% endblock %}
+
+{% block content %}
+    <h4 class="text-center mt-4 mb-5">{{ 'choose_reset_password_method'|trans }} :</h4>
+    <div class="row mt-4">
+        <div class="col-12 col-md-4 mt-3 mt-md-0">
+            {{ include('v2/common/_card.html.twig', {
+                title: 'secret_question'|trans,
+                iconName: 'user-lock',
+                helpText: 'beneficiary_will_give_you_secret_answer'|trans,
+                buttonPath: "#",
+                buttonText: 'reset'|trans,
+            }) }}
+        </div>
+        <div class="col-12 col-md-4 mt-3 mt-md-0">
+            {{ include('v2/common/_card.html.twig', {
+                title: 'email'|trans,
+                iconName: 'envelope',
+                helpText: 'beneficiary_will_receive_email_reset_request'|trans,
+                buttonPath: "#",
+                buttonText: 'reset'|trans,
+            }) }}
+        </div>
+        <div class="col-12 col-md-4 mt-3 mt-md-0">
+            {{ include('v2/common/_card.html.twig', {
+                title: 'sms'|trans,
+                iconName: 'mobile-alt',
+                helpText: 'beneficiary_will_receive_sms_reset_request'|trans,
+                buttonPath: "#",
+                buttonText: 'reset'|trans,
+            }) }}
+        </div>
+    </div>
+{% endblock %}
