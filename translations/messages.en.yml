@@ -1,628 +1,94 @@
-authentification_failure_wrong_credentials: логин или пароль неверен
-form_connexion: войти
-form_forgot_password: Сбросить пароль
-form_login: логин или пароль
-form_password: пароль
-login_form_title: Доступ в цифровой сейф
-admin.bienvenue: 'Добро пожаловать в вашу администрацию Reconnect'
-admin.centres.benéficiaires: Получатели
-admin.centres.historique: История
-admin.centres.membres: Члены
-admin.centres.nom: Название
-admin.centres.smsEnvoyes: 'Отправленные смс-сообщения'
-admin.centres.statistiques.dateJour: 'Текущая дата'
-admin.centres.statistiques.nbBeneficiaires: 'Количество получателей'
-admin.centres.statistiques.nbMembres: 'Количество членов'
-admin.centres.statistiques.smsEnvoyes: 'Количество посланных смс-сообщений'
-admin.centres.statistiques.title: 'Статистика центров'
-admin.centres.voir: Открыть
-admin.menu.accueil: 'Главная страница'
-admin.menu.centres: Центр
-admin.menu.dashboard: 'База данных'
-admin.menu.traduction: Перевод
-admin.metaTitle: 'Администрация Reconnect'
-admin.title: 'Директоров, <span class="main"> Повторное подключение</span>'
-aides.metaTitle: Пособия
-association.categorie.association: Ассоциация
-association.categorie.ccas: 'Муниципальный центр социального обслуживания (CCAS)'
-association.categorie.choisir: 'Выберите категорию ассоциации'
-association.urlLabel: 'Интернет сайт'
-back_home: 'Вернуться в главное меню'
-beneficiaire.menu.mesAides: 'Мои пособия'
-beneficiaire.menu.mesContacts: 'Мои контакты'
-beneficiaire.menu.mesDocuments: 'Мои документы'
-beneficiaire.menu.mesNotes: 'Мои Заметки'
-beneficiaire.menu.mesRelaisReconnect: 'Мои Посредники'
-beneficiaire.menu.monCalendrier: 'Мои записи на приём'
-beneficiaire.menu.parametres: Настройки
-beneficiaire.menu2.mesAides: Пособия
-beneficiaire.menu2.mesContacts: Контакты
-beneficiaire.menu2.mesDocuments: Документы
-beneficiaire.menu2.mesNotes: Заметки
-beneficiaire.menu2.mesRelaisReconnect: Посредник
-beneficiaire.menu2.monCalendrier: 'Запись на приём'
-bientotDisponible.text: 'Дополнительные сведения о <a class="bold main"> Reconnect солидарности облако</a> и присоединиться к сети <a class="bold main"> Реле переподключение</a>, свяжитесь с нами напрямую по телефону: <a class="bold main"> 01 58 30 55 29</a> <br/> или по электронной почте: <a class="bold main"> contact@reconnect.fr</a>'
-centre.metaTitle: Центры
-centre.nom: Название
-centre.ville: Город
-centre.vousAvezBienQuitte: 'Вы успешно вышли из центра'
-confirm: Подтвердить
-connexionForm.connexion: Вход
-connexionForm.erreurIdentifiants: 'Вы ввели неверное имя пользователя/пароль'
-connexionForm.inactif: 'Ваша сессия была закрыта после определённого периода неактивности'
-connexionForm.motDePasse: Пароль
-connexionForm.oublieMdp: 'Забыли пароль или логин?'
-connexionForm.username: 'Имя пользователя'
-contact.ajouter: 'Добавить контакт'
-contact.associationLabel: Ассоциация
-contact.bienEteEnvoye: 'Сообщение отправлено. Наша команда свяжется с вами в ближайшее время.'
-contact.bienSauvegarde: 'Контакт успешно сохранён'
-contact.bienSupprime: 'Контакт успешно удалён'
-contact.btnEnvoyerMessage: 'Отправить сообщение'
-contact.cantDisplay: 'У вас нет права доступа к контактам этого получателя'
-contact.cantEdit: 'У вас нет права редактировать этот контакт'
-contact.commentaireLabel: Комментарий
-contact.contenuError: 'Поле сообщения пустое'
-contact.contenuLabel: 'Ваше сообщение'
-contact.emailLabel: 'Электронная почта'
-contact.emptyData: 'Там еще нет контакта. Нажмите «Добавить», чтобы создать его.'
-contact.mailError: 'Неверный формат электронной почты'
-contact.metaTitle: Контакт
-contact.nomLabel: Фамилия
-contact.partage: 'Коллективного пользования'
-contact.prenomLabel: Имя
-contact.supprimer: Удалить
-contact.telephoneLabel: 'Номер телефона'
-contact.text: 'Пишите нам, если вам нужна помощь, если у вас есть вопросы или проблемы с использованием Reconnect'
-contact.title: 'Связаться с командой Reconnect'
-delete_your_account: 'Если вы хотите удалить свой аккаунт, нажмите здесь'
-devenirUnRelaiReconnect.accueil.budget0.200000: 'Бюджет < 200 000€'
-devenirUnRelaiReconnect.accueil.budget1000000.1500000: '1000 000€ < Бюджет < 1500 000'
-devenirUnRelaiReconnect.accueil.budget1500000.2000000: '1500 000€ < Бюджет < 2000 000€'
-devenirUnRelaiReconnect.accueil.budget200000.500000: '200 000€ < Бюджет < 500 000€'
-devenirUnRelaiReconnect.accueil.budget2000000.plus: 'Бюджет > 2 000 000€'
-devenirUnRelaiReconnect.accueil.budget500000.1000000: '500 000€ < Бюджет < 1 000 000€'
-devenirUnRelaiReconnect.accueil.budgetParAn: '€ в год'
-devenirUnRelaiReconnect.accueil.budgetParMois: '€ в месяц'
-devenirUnRelaiReconnect.accueil.budgetText: 'Reconnect - это общественный проект, который является бесплатным для пользователей. Однако, как всякая цифровая платформа, он влечет за собой определённые затраты, такие как: управление и разработка инструмента, помощь в использовании, распространении, хранении данных и тд. Reconnect рассчитывает на участие социальных структур, чтобы обеспечить сервис, максимально отвечающий потребностям лиц, находящихся в трудной ситуации. Став Посредником Reconnect, вы участвуете в обеспечении поддержки этого проекта.'
-devenirUnRelaiReconnect.accueil.combienCaCouteTxt: 'Для того, чтобы социальные структуры всех размеров могли зарегистрироваться в Reconnect, стоимость подписки варьируется в зависимости от их годового бюджета'
-devenirUnRelaiReconnect.accueil.jinscrisMaStructure: 'Зарегистрировать мою структуру'
-devenirUnRelaiReconnect.accueil.metaDesc: 'Зарегистрируйте вашу ассоциацию и укажите вашего посредника Reconnect'
-devenirUnRelaiReconnect.accueil.metaTitle: 'Стать Посредником Reconnect'
-devenirUnRelaiReconnect.accueil.queFaitRelai: 'Чем занимается Посредник Reconnect?'
-devenirUnRelaiReconnect.accueil.queFaitRelaiTxt: 'Посредник Reconnect помогает лицам в трудной ситуации создать и пользоваться аккаунтом Reconnect. Он может добавлять важную информацию в аккаунт пользователей.'
-devenirUnRelaiReconnect.accueil.quelEquipement: 'Какое оборудование <br/> реле снова нужно?'
-devenirUnRelaiReconnect.accueil.quelEquipementTxt: 'Посредник Reconnect необходимо подключение к Интернет, компьютер, а также сканер или фотоаппарат, чтобы делать копии основных докуентов.'
-devenirUnRelaiReconnect.accueil.quiPeutDevenirRelai: 'Кто может стать Посредником Reconnect?'
-devenirUnRelaiReconnect.accueil.quiPeutDevenirRelaiTxt: 'Все социальные структуры, оказывающие услуги по социальному сопровождению лиц, находящихся в трудной ситуации, могут зарегистрироваться в Reconnect и стать Посредником.'
-devenirUnRelaiReconnect.accueil.voirMontantParticipation: 'Посмотреть стоимость участия'
-devenirUnRelaiReconnect.identification.associationLabel: 'Ваш организм'
-devenirUnRelaiReconnect.identification.associationNomLabel: Имя
-devenirUnRelaiReconnect.identification.associationPasswordLabel: 'Пароль для организации'
-devenirUnRelaiReconnect.identification.associationUsernameLabel: 'Имя пользователя для Ассоциации'
-devenirUnRelaiReconnect.identification.categorieJuridiqueLabel: 'Правовая категория'
-devenirUnRelaiReconnect.identification.connecteAvecAutreCompte: 'Вы вошли в учётную запись, которая не является учётной записью администратора. Вы должны выйти, если хотите зарегистрировать структуру'
-devenirUnRelaiReconnect.identification.connectezVous: 'Введите имени пользователя и пароль, чтобы продолжить регистрацию'
-devenirUnRelaiReconnect.identification.credentialsLabel: 'Данные для входа в учётную запись вашего организма'
-devenirUnRelaiReconnect.identification.jaiDejaEffectueLaPremiereEtape: 'Если вы уже выполнили первый этап, нажмите сюда'
-devenirUnRelaiReconnect.identification.metaDesc: 'Укажите ваши личные данные'
-devenirUnRelaiReconnect.identification.metaTitle: Идентификация
-devenirUnRelaiReconnect.identification.sirenLabel: 'Номер Siren'
-devenirUnRelaiReconnect.identification.urlSiteLabel: 'Url веб-сайта'
-devenirUnRelaiReconnect.identification.userLabel: Вы
-devenirUnRelaiReconnect.inscriptionCentres.ajouterUneStructureSupplémentaire: 'Добавить дополнительную структуру'
-devenirUnRelaiReconnect.inscriptionCentres.auMoinsUnCentre: 'Для продолжения процесса вы должны добавить как минмум один из ваших центров'
-devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.0-1000: 'от 0 до 1000€'
-devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.1000-5000: 'от 1000 до 5000€'
-devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.10000-50000: 'от 10000 до 50000€'
-devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.250000-500000: 'от 250000 до 500000€'
-devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.5000-10000: 'от 5000 до 10000€'
-devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.50000-250000: 'от 50000 до 250000€'
-devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.plus500000: 'более 500000€'
-devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuelLabel: 'Годовой бюджет'
-devenirUnRelaiReconnect.inscriptionCentres.finessFormatErreur: 'Недействительный формат номера finess'
-devenirUnRelaiReconnect.inscriptionCentres.finessLabel: 'Номер Finess'
-devenirUnRelaiReconnect.inscriptionCentres.justificatifFileLabel: 'Прикрепить подтвердающий документ'
-devenirUnRelaiReconnect.inscriptionCentres.nomLabel: Название
-devenirUnRelaiReconnect.inscriptionCentres.siretFormatErreur: 'Недействительный формат номера siret'
-devenirUnRelaiReconnect.inscriptionCentres.siretLabel: 'Номер Siret'
-devenirUnRelaiReconnect.inscriptionCentres.supprimerCeCentre: 'Удалить этот центр'
-devenirUnRelaiReconnect.inscriptionCentres.telephoneLabel: Телефон
-devenirUnRelaiReconnect.inscriptionCentres.typeCentreLabel: 'Тип центра'
-devenirUnRelaiReconnect.menu.confirmation: Подтверждение
-devenirUnRelaiReconnect.menu.identification: Идентификация
-devenirUnRelaiReconnect.menu.inscriptionStructures: 'Регистрация учреждений'
-devenirUnRelaiReconnect.menu.paiement: Оплата
-devenirUnRelaiReconnect.menu.recapitulatif: 'Сводная таблица'
-devenirUnRelaiReconnect.recapitulatif.centre: Центр
-devenirUnRelaiReconnect.recapitulatif.prixDuCentre: 'Стоимость центра'
-devenirUnRelaiReconnect.recapitulatif.prixTotal: 'Общая стоимость'
-devenirUnRelaiReconnect.recapitulatif.vosCentres: 'Ваши учреждения'
-devenirUnRelaiReconnect.recapitulatif.votreIdentite: 'Ваши данные'
-disabledAt: Отключено на
-disabledBy: отключено
-document.apercu: Просмотр
-document.aucunFichier: 'На данный момент нет ни одного элемента'
-document.avertissementTaille: 'Вы скоро достигнете лимита объёма хранения данных (% размер %)'
-document.bienSauvegarde: 'Документ резервного копирования. <br>, <b>Не забудьте удалить файл с вашей рабочей станции</b>'
-document.bienSupprime: 'Документ успешно удалён'
-document.categorie: 'Выбрать категорию'
-document.categorie2: 'Категория:'
-document.choisirFichier: 'Выбрать файл'
-document.contenuLabel: Содержание
-document.contient: 'Содержит :'
-document.creerUnDossier: 'Создать досье'
-document.dateDeDepot: 'Дата подачи'
-document.dateEmissionLabel: 'Дата выдачи'
-document.deposerDesFichiers: 'Загрузить файлы'
-document.dossier: Папка
-document.envoyerEmail: 'Отправить по электронной почте'
-document.envoyerParEmail.bienEnvoyeParMail: 'Документ успешно отправлен по электронной почте'
-document.envoyerParEmail.dossierVide: 'Папка, которую вы хотите отправить по электронной почте, пуста'
-document.envoyerParEmail.emailLabel: 'Электронный адрес получателя'
-document.fichier: Файлы
-document.imprimer: Печать
-document.metaTitle: Документы
-document.modifier: Изменить
-document.nom: 'Название :'
-document.nomLabel: Название
-document.ouGlissezDeposer: 'Или перетащите сюда'
-document.partage: Обмен
-document.plusDespace: 'Вы не можете загрузить этот файл, так как у вас недостаточно свободного места'
-document.supprimer: Удалить
-document.telecharger: Загрузить
-document.type: Тип
-document.type2: 'Тип :'
-document.typeDocument: 'Тип документа'
-document.valableJusqua: 'Действителен до :'
-document.validite.expire: Недействительный
-document.validite.inconnu: Неизвестный
-document.validite.title: 'Срок действия'
-document.validite.valide: Действительный
-document.validite.validXAnd: 'Этот тип документов является допустимым % nAnsValid % лет'
-donneePersonnelle.ajouteElementTitle: 'Добавить элемент'
-donneePersonnelle.ajouter: Добавить
-donneePersonnelle.cantDelete: 'У вас нет прав удалять эту информацию'
-donneePersonnelle.cantDisplay: 'У вас нет прав доступа к данным этого получателя'
-donneePersonnelle.cantEdit: 'У вас нет права редактировать эту информацию'
-donneePersonnelle.cantReportAbuse: 'У вас нет права отметить эту информацию как некорректную'
-donneePersonnelle.etesVousSurSignalerCommeAbusif: 'Вы действительно хотите сообщить о некорректном содержании?'
-donneePersonnelle.imprimer: Печать
-donneePersonnelle.partage: 'Коллективного пользования'
-donneePersonnelle.partages: 'Доступный моим посредникам'
-donneePersonnelle.prive: Личный
-donneePersonnelle.prives: Личные
-donneePersonnelle.public: Общедоступный
-donneePersonnelle.quitter: Выход
-donneePersonnelle.signalerCommeAbusif: 'Отметить как некорректный'
-donneePersonnelle.tous: Все
-donneePersonnelle.vue: Вид
-dossier.vide: 'Папка пуста'
-enabled: активный
-error: Ошибка
-evenement.ajouter: 'Добавить событие'
-evenement.bienSauvegarde: 'Ваш элемент успешно сохранён'
-evenement.bienSupprime: 'Ваш элемент успешно удалён'
-evenement.cantDisplay: 'У вас нет прав доступа к событиям этого получателя'
-evenement.cantEdit: 'У вас нет прав редактировать этот документ'
-evenement.commentaireLabel: Сообщение
-evenement.contenuLabel: Содержание
-evenement.dateLabel: Дата
-evenement.emptyData: 'На данный момент нет событий. Нажмите «Добавить», чтобы создать его.'
-evenement.errorSpecifierHeureRappel: 'Вы должны уточнить, за сколько часов вам отправить напоминание'
-evenement.heureRappelLabel: 'Напоминание, за сколько часов до события'
-evenement.lieuLabel: Место
-evenement.mailContent: 'Вы получили это сообщение, потому что вы попросили прислать вам напоминание о записи на приём на вашу электронную почту от Посредника Reconnect. Нажмите сюда, чтобы увидеть детали встречи'
-evenement.mailTitle: 'Напоминание о записи на приём'
-evenement.metaTitle: События
-evenement.nomLabel: Заголовок
-evenement.rappelsLabel: Напомиание
-evenement.smsContent: 'Напоминание от Посредника Reconnect'
-evenement.timeLabel: Время
-flash.erreur: Ошибка
-flash.operationReussie: 'Действие успешно выполнено'
-footer.aide: Помощь
-footer.autres: Разное
-footer.cgv: 'Общие правила пользования'
-footer.commentCaMarche: 'Как это работает'
-footer.connexion: Вход
-footer.contact: Контакты
-footer.copyright: '©2021 Reconnect – Все права защищены'
-footer.deconnexion: Выход
-footer.devenirUnRelai: 'Стать Посредником Reconnect'
-footer.faq: 'Часто задаваемые вопросы'
-footer.groupeSos: 'Группа SOS'
-footer.inscription: Регистрация
-footer.mentionsLegales: 'Юридическая информация'
-footer.modeDemploi: 'Инструкция по использованию'
-footer.partenaires: Партнёры
-footer.planDuSite: 'Карта сайта'
-footer.trouverUnCentreSocial: 'Найти социальный центр'
-footer.utilisation: Пользование
-form.validation.noPassword: 'Вы должны выбрать пароль'
-form.validation.passwordFormat: 'Ваш пароль может содержать только буквы и цифры'
-form.validation.phoneFormat: 'Незвестный формат номера телефона'
-form.validation.sirenFormat: 'Неверный формат номера Siren'
-gestionnaire.centres.btnAjouterUnCentre: 'Добавить центр'
-gestionnaire.centres.cotisationJusqua: 'Вклад в % dateFin %'
-gestionnaire.centres.cotisationNoneffectuee: 'Взнос не произведён (центр неактивный)'
-gestionnaire.centres.cotiserPourCeCentre: 'Оплатить взно'
-gestionnaire.centres.fairePassation: 'Передать полномочия'
-gestionnaire.centres.metaTitle: 'Посредник Reconnect'
-gestionnaire.centres.noCentres: 'Вы зарегистрировали не реле повторного соединения. <br/> Нажмите ниже, чтобы зарегистрировать новое реле повторного соединения.'
-gestionnaire.centres.rechargeSms: 'Пополнить счёт по смс'
-gestionnaire.centres.statistiquesCentre: 'Статистика центра'
-gestionnaire.centres.title: 'Отель Relais <span class="main"> переподключение</span>'
-gestionnaire.centres.voirBeneficiaires: 'Открыть список получателей'
-gestionnaire.centres.voirMembres: 'Открыть список членов'
-gestionnaire.envoyerCentreAGestionnaire.emailLabel: 'Адрес электронной почты :'
-gestionnaire.envoyerCentreAGestionnaire.metaTitle: 'Переслать администратору'
-gestionnaire.envoyerCentreAGestionnaire.pasGestionnaire: 'Указанный электронный адрес принадлежит пользователю Reconnect, который не является администратором центра'
-gestionnaire.envoyerCentreAGestionnaire.subtitle: 'Разрешить другому администратору управлять центром. Укажите его адрес электронной почты:'
-gestionnaire.envoyerCentreAGestionnaire.success: 'Центр был успешно передан этому администратору'
-gestionnaire.envoyerCentreAGestionnaire.title: 'Переслать администратору'
-gestionnaire.menu.gestionBeneficiaires: 'Управление получателями'
-gestionnaire.menu.gestionMembres: 'Управление членами'
-gestionnaire.menu.gestionRelais: 'Управление Посредниками Reconnect'
-gestionnaire.menu.usagers: Пользователи
-header.menu.commentCaMarche: 'Как это работает?'
-header.menu.connection: Вход
-header.menu.deconnection: Выход
-header.menu.devenirUnRelaiReconnect: 'Стать посредником Reconnect'
-header.menu.fermer: Закрыть
-header.menu.ilsParlentDeReconnect: 'О нас рассказывают'
-header.menu.leBlog: Блог
-header.menu.lesRelaisReconnect: 'Посредники Reconnect'
-header.menu.parametres: Настройки
-header.menu.quiSommesNous: 'О нас'
-header.menu.rajouterEspace: 'Увеличить объём'
-header.menu.utiliseSurDisponible: 'Использовать на свободных'
-home.catchPrase: '«Безопасная платформа для хранения и обмена данными, упрощающая процедуры социального сопровождения»'
-home.commentCaMarche: 'Как это работает?'
-home.commentCaMarcheContent.fermer: Закрыть
-home.commentCaMarcheContent.text1: 'В силу трудной жизненной ситуации и большой мобильности, лица без определённого места жительства сталкиваются с трудностями хранения своих документов, которые необходимы для получения социальной помощи.'
-home.commentCaMarcheContent.text2: 'Reconnect обеспечивает безопасное хранение сканированных или фото- копий или всех необходимых документов, а также контактов, записей на приём и напоминаний. Это позволит избежать последствий в случае потери документов.'
-home.commentCaMarcheContent.text3: 'Посредники Reconnect помогают пользователям создавать и управлять аккаунтами Reconnect.'
-home.commentCaMarcheContent.text4: 'Создание аккаунта Reconnect для лиц в трудной ситуации осуществляется бесплатно в Структурах Посредниках Reconnect.'
-home.commentCaMarcheContent.text5: 'Reconnect учитывает желания и потребности пользователей, у которых есть выбор, делиться или нет своими данными и документами с социальными структурами.'
-home.commentCaMarcheContent.text6: 'Пользователь может самостоятельно осуществлять вход в свой аккаунт, без помощи посредника Reconnect. Если он решает отказаться от услуг посредника, он может продолжать пользоваться инструментами Reconnect на протяженнии ограниченного промежутка времени. Если он обратится к новому посреднику, он сможет снова делиться с ним основными документами.'
-home.commentCaMarcheContent.text7: 'Reconnect это сервис, который предоставляется на несколько лет и учитывает социальные потребности каждого пользователя, в зависимости от его ситуации. С помощью Reconnect социальные структуры помогают лицам, находящимся в трудной ситуации, самостоятельно использовать цифровой сервис.'
-home.commentCaMarcheContent.text8: 'Хранение и обмен информацией и необходимыми документами онлайн. Смс-напоминания про записи на приём и мероприятия. Расчёт размера социальных выплат, на которые пользователи имеют право, а также автоматическое создание административного досье из документов, размещённых в сейфе.'
-home.commentCaMarcheContent.title1: 'Помощь лицам без определённого места жительства'
-home.commentCaMarcheContent.title2: 'Виртуальный сейф'
-home.commentCaMarcheContent.title3: 'Помощь Посредников Reconnect'
-home.commentCaMarcheContent.title4: 'Бесплатная услуга для лиц в трудной ситуации'
-home.commentCaMarcheContent.title5: 'Личный кабинет с возможностью совместного доступа'
-home.commentCaMarcheContent.title6: 'Беспрерывный доступ'
-home.commentCaMarcheContent.title7: 'Пошаговое сопровождение'
-home.commentCaMarcheContent.title8: 'Инновационные сервисы'
-home.commentCaMarcheWhiteContent.text1: 'Я создаю профиль Reconnect у Посредника Reconnect'
-home.commentCaMarcheWhiteContent.text2: 'Я храню копию моих важных документов'
-home.commentCaMarcheWhiteContent.text3: 'Я делюсь своими данными для ускорения моих процедур'
-home.commentCaMarcheWhiteContent.text4: 'Я упрощаю доступ к моим правам'
-home.devenirUnRelaiReconnect: 'Стать посредником Reconnect'
-home.enSavoirPlus: Подробнее
-home.facebook: Facebook
-home.ilsParlentDeReconnect: 'О Reconnect рассказывают'
-home.jaccedealt: 'Узнать мои права'
-home.jePartageAlt: 'Делиться моими данными'
-home.jeStockeAlt: 'Хранить мои данные'
-home.leBlog: Блог
-home.lesRelais: 'Посредники Reconnect'
-home.lesRelaisTxt: '«Посредники Reconnect – это социальные структуры, которые помогают пользователям создать и пользоваться аккаунтом Reconnect, в котором они могут хранить свои данные и необходимые документы, а также делиться ими со своими социальными консультантами».'
-home.lireLarticle: 'Читать статью'
-home.nousSuivre: 'Мы в социальных сетях'
-home.oublieIdentifiant: 'Забыли пароль или имя пользователя ?'
-home.ouvreCompteAlt: 'Как это работает?'
-home.ouvrirUnCompte: 'Создать профиль'
-home.partenaires: Партнёры
-home.quiSommesNous: 'О нас'
-home.quiSommesNousTxt: 'Reconnect – это проект Группы SOS. Насчитывая на сегодняшний день 2500 сотрудников и 106 учреждений, к компетенции которых относятся такие области деятельности, как борьба с зависимостями, солидарное жильё, помощь в лечении и помощь инвалидам, Группа SOS Солидарность представляет собой идеальную опытную площадку для этих инноваций. В интересах своих получателей, Группа хочет распространить свою деятельность на всех cубъектов социальной деятельности.'
-home.twitter: Twitter
-main.accepter: Согласиться
-main.adresse.rue: Улица
-main.annuler: Отменить
-main.chercher: Искать
-main.choisir: Выбрать
-main.connexion: Вход
-main.continuer: Пролоджить
-main.error.defaultSubTitle: 'Произошла следующая ошибка :'
-main.error.defaultTitle: 'Произошла ошибка !'
-main.error.error403SubTitle: 'Кажется, вы не имеете права выполнить это действие :'
-main.error.error403Title: 'Действие запрещено'
-main.error.error404SubTitle: 'Невозможно найти запрашиваемую страницу :'
-main.error.error404Title: 'Элемент не найден'
-main.etapeSuivante: 'Следующий этап'
-main.etesVousSur: 'На странице'
-main.metaAppend: Reconnect
-main.modifier: Изменить
-main.modifierFichier: 'Изменить файл'
-main.neSaitPlus: 'Я не знаю'
-main.non: Нет
-main.notAvailableFeature: 'Этот сервис ещё не доступен, работоспособность будет восстановлена в ближайшее время !'
-main.oui: Да
-main.parPage: 'На странице'
-main.pasLesDroits: 'У вас нету прав доступа к этой странице'
-main.refuser: Отказаться
-main.retour: Назад
-main.revenirArriere: 'Вернуться назад'
-main.selectionner: Выбрать
-main.supprimer: Удалить
-main.uploaderFichier: 'Выбрать файл'
-main.voirFichier: 'Открыть файл'
-membre.ajoutBeneficiaire.aucunUtilisateurTrouve: 'Аккаунт получателя Reconnect, соотвествующий вашему поиску, не найден'
-membre.ajoutBeneficiaire.centres: 'Посредник Reconnect'
-membre.ajoutBeneficiaire.creerCompte: 'Создать аккаунт Reconnect'
-membre.ajoutBeneficiaire.dateNaissanceLabel: 'Дата рождения'
-membre.ajoutBeneficiaire.metaTitle: 'Добавить нового пользователя'
-membre.ajoutBeneficiaire.nePossedePasCompte: 'У пользователя нет аккаунта Reconnect'
-membre.ajoutBeneficiaire.nomLabel: Фамилия
-membre.ajoutBeneficiaire.possedeCompte: 'У пользователя есть аккаунт Reconnect'
-membre.ajoutBeneficiaire.prenomLabel: Имя
-membre.ajoutBeneficiaire.subtitle: 'Добавить нового пользователя'
-membre.ajoutBeneficiaire.title: 'Добавление нового <span class="main"> получателя</span>'
-membre.ajoutMembre.aucunUtilisateurTrouve: 'Аккаунт члена Reconnect, соответствующий вашему запросу, не найден'
-membre.ajoutMembre.centres: Центры
-membre.ajoutMembre.creerCompte: 'Создать аккаунт Reconnect'
-membre.ajoutMembre.metaTitle: 'Добавить нового члена'
-membre.ajoutMembre.nePossedePasCompte: 'У члена нет аккаунта Reconnect'
-membre.ajoutMembre.nomLabel: Фамилия
-membre.ajoutMembre.possedeCompte: 'У члена есть аккаунт Reconnect'
-membre.ajoutMembre.prenomLabel: Имя
-membre.ajoutMembre.subtitle: 'Добавить нового члена'
-membre.ajoutMembre.title: 'Добавление нового <span class="main"> члена</span>'
-membre.arreterSuivi.metaTitle: 'Остановить сопровождение получателя'
-membre.arreterSuivi.subtitle: 'Остановить отслеживание тема %'
-membre.arreterSuivi.success: 'Вы успешно основили сопровождение этого пользователя в центре'
-membre.arreterSuivi.text: 'Этот получатель прикреплён к нескольким центрам, которыми вы управляете, выберите центр, в котором нужно остановить сопровождение'
-membre.arreterSuivi.title: 'Остановить отслеживание <span class="main"> пользователя</span>'
-membre.beneficiaires.aides: Пособия
-membre.beneficiaires.ajouterBeneficiaire: 'Добавить нового получателя'
-membre.beneficiaires.arreterSuivi: 'Закончить обмен'
-membre.beneficiaires.arreterSuiviEtesVousSur: 'Вы прекращаете сопровождение %Имя%'
-membre.beneficiaires.btnDetails: Детали
-membre.beneficiaires.centres: Центры
-membre.beneficiaires.mesContacts: Контакты
-membre.beneficiaires.mesDocuments: Документы
-membre.beneficiaires.mesNotes: Заметки
-membre.beneficiaires.metaTitle: 'Управление получателями'
-membre.beneficiaires.monCalendrier: Календарь
-membre.beneficiaires.noBeneficiairesInCentre: 'В этом центре нету получателей'
-membre.beneficiaires.nom: Фамилия
-membre.beneficiaires.nonValide: 'Не подтверждено'
-membre.beneficiaires.prenom: Имя
-membre.beneficiaires.renouvelerIdentifiants: 'Изменить пароль'
-membre.beneficiaires.selectCentre: 'Выбрать цент'
-membre.beneficiaires.title: 'Управление получателями'
-membre.beneficiaires.valide: Подтверждено
-membre.centres.metaTitle: 'Мой Посредник Reconnect'
-membre.centres.quitterCentre: 'Выйти из этого центра'
-membre.centres.title: 'Мой Посредник Reconnect'
-membre.centres.voirBeneficiaires: 'Открыть список получателей'
-membre.centres.voirMembres: 'Открыть список членов'
-membre.centres.vousAvezBienQuitte: 'Вы успешно вышли из центра'
-membre.creationBeneficiaire.metaTitle: 'Создание получателя'
-membre.creationBeneficiaire.questionsSecretes.q1: 'Имя матери получателя'
-membre.creationBeneficiaire.questionsSecretes.q2: 'Кличка домашнего животного получателя'
-membre.creationBeneficiaire.questionsSecretes.q3: 'Название любимой улицы получателя'
-membre.creationBeneficiaire.questionsSecretes.q4: 'Общеобразовательное заведение, которое посещал получатель'
-membre.creationBeneficiaire.questionsSecretes.q5: 'Прозвище получателя'
-membre.creationBeneficiaire.questionsSecretes.q6: Другой
-membre.creationBeneficiaire.step1.subtitle: '<span class="main"> Шаг 1 6</span>, пожалуйста, заполните личность бенефициара'
-membre.creationBeneficiaire.step2.subtitle: '<span class="main">Шаг 2/6</span>, пожалуйста, выберите идентификатор и пароль бенефициара'
-membre.creationBeneficiaire.step3.subtitle: '<span class="main"> Шаг 3/6</span>, пожалуйста, выберите секретный вопрос бенефициара'
-membre.creationBeneficiaire.step4.subtitle: '<span class="main"> Шаг %step%/%totalSteps%</span>, пожалуйста, выберите реле повторного соединения бенефициара'
-membre.creationBeneficiaire.step5.subtitle: '<span class="main"> Шаг %step%/%totalSteps%</span> резюме, пожалуйста, подтвердите информацию ниже'
-membre.creationBeneficiaire.step6.content: 'Не забудьте распечатать акт о создании аккаунта Reconnect для получения подписи получателя'
-membre.creationBeneficiaire.step6.subtitle: '<span class="main"> Шаг 6 из 6</span> условия использования'
-membre.creationBeneficiaire.step6.telecharger: Загрузить
-membre.creationBeneficiaire.step6.terminer: Завершить
-membre.creationBeneficiaire.subtitle: 'Этап 1 из 5: Укажите личность получателя'
-membre.creationBeneficiaire.success: 'Получатель успешно создан'
-membre.creationBeneficiaire.title: 'Создание <span class="main"> бенефициара</span>'
-membre.creationMembre.membreEmailConstraint: 'Если у члена есть право управлять другими членами, он обязательно должен указать свой адрес электронной почты.'
-membre.creationMembre.success: 'Член успешно создан'
-membre.creationMembre.title: 'Создание члена'
-membre.doAjoutSubject.btnAjouter: Добавить
-membre.doAjoutSubject.centres: 'Ваши центры'
-membre.doAjoutSubject.subtitle: 'Выберите центр, в какой вы хотите добавить пользователя'
-membre.doDoAjoutSubject.cliquerIci: 'Нажмите тут'
-membre.doDoAjoutSubject.confirmeraEnConnectant: 'Пользователь подтвердит ваш запрос на добавление при входе в аккаунт'
-membre.doDoAjoutSubject.membreConfirmeraEnConnectant: 'Член примет ваш запрос на добавление  при входе в аккаунт'
-membre.doDoAjoutSubject.renseignerTelephone: '(Вы должны заполнить в вашем телефоне нажав <a href="%link%"> здесь</a>)'
-membre.doDoAjoutSubject.repondreReponseSecrete: 'Пользователь предоставит вам ответ на секретный вопрос'
-membre.doDoAjoutSubject.sendSms: 'Пользователь предоставит вам код, который получит по смс'
-membre.doDoAjoutSubject.subtitle: 'Запрос, отправленный на тему %'
-membre.doDoAjoutSubject.termine: Завершить
-membre.doDoAjoutSubject.text: 'Для получения подтверждения пользователя выберите одну из следующих процедур :'
-membre.droits.gestionBeneficiaires: 'Управление получателями'
-membre.droits.gestionMembres: 'Управление членами'
-membre.droits.gestionPaiement: 'Управление платежами'
-membre.membres.aides: Пособия
-membre.membres.ajouterMembre: 'Добавить нового члена'
-membre.membres.arreterSuivi: Удалить
-membre.membres.btnDetails: Детали
-membre.membres.centres: Центры
-membre.membres.gestionBeneficiaires: 'Управление получателями'
-membre.membres.gestionMembres: 'Управление членами'
-membre.membres.gestionPaiement: 'Управление платежами'
-membre.membres.mesContacts: 'Мои контакты'
-membre.membres.mesDocuments: 'Мои документы'
-membre.membres.mesNotes: 'Мои Заметки'
-membre.membres.metaTitle: 'Управление членами'
-membre.membres.monCalendrier: 'Мой календарь'
-membre.membres.noBeneficiairesInCentre: 'В этом центре нету получателей'
-membre.membres.nom: Фамилия
-membre.membres.nonValide: 'Не подтверждено'
-membre.membres.prenom: Имя
-membre.membres.renouvelerIdentifiants: 'Сменить парол'
-membre.membres.selectCentre: 'Выбрать центр'
-membre.membres.title: '<span class="main"> члены</span> управления'
-membre.membres.valide: Подтверждено
-membre.menu.gestionBeneficiaires: Получатели
-membre.menu.gestionRelais: 'Мои Посредники Reconnect'
-membre.partageContact.ajouterMail: 'Добавить адрес электронной почты'
-membre.partageContact.ajouterNuméro: 'Добавить номер телефона'
-membre.partageContact.success: 'Ваши контактные данные добавлены в список контактов получателя'
-membre.partageContact.text: 'Вы впервые открываете элементы, которыми поделился этот пользователь. Вы соглашаетесь с тем, что ваши контактные данные будут добавлены в список контактов этого пользователя?'
-membre.partageContact.title: 'Поделиться контактом'
-membre.questionSecrete.label: 'Вам нужно ответить на следующий вопрос :'
-membre.questionSecrete.mauvaiseReponse: 'Это не ответ на секретный вопрос'
-membre.questionSecrete.metaTitle: 'Добавить нового получателя'
-membre.questionSecrete.subtitle: 'Ответить на секретный вопрос'
-membre.questionSecrete.success: 'Управление этим центром подверждено'
-membre.questionSecrete.title: 'Добавление нового <span class="main"> получателя</span>'
-membre.resettingBeneficiairePassword.erreur: 'Это не ответ на секретный вопрос'
-membre.resettingBeneficiairePassword.success: 'Пароль успешно восстановлен'
-membre.resettingBeneficiairePassword.title: 'Сброс пароля % username %'
-membre.sendSmsCode.codeLabel: 'Введите код из смс-сообщения'
-membre.sendSmsCode.mauvaiseReponse: 'Неверный код'
-membre.sendSmsCode.smsMessage: 'Для подтверждения добавления сообщите код подтверждения вашему Посреднику Reconnect'
-membre.sendSmsCode.subtitle: 'Подтверждение с помощью кода из смс-сообщения'
-membre.sendSmsCode.success: 'Управление этим центром подверждено'
-membre.sendSmsCode.text: 'На ваш телефон отправлено смс-сообщение с кодом'
-membre.supprimerMembreDuCentre.etesVousSur: 'Вы уверены, что хотите удалить члена этого центра?'
-membre.supprimerMembreDuCentre.success: 'Вы успешно удалили члена этого центра'
-modePaiement.carteBancaire: 'Банковская карт'
-modePaiement.cheque: Чек
-modePaiement.choisisseModePaiement: 'Выберите способ оплаты'
-modePaiement.flashBienSupprime: 'Элемент успешно удалён из корзины'
-modePaiement.recapitulatif: 'Сводный чек-лист вашей корзины'
-modePaiement.virement: Перевод
-no: Нет
-note.ajouter: 'Добавить заметку'
-note.bienSauvegarde: 'Ваша заметка успешно сохранена'
-note.bienSupprime: 'Ваша заметка успешно удалена'
-note.contenuLabel: 'Содержание заметки'
-note.date: Дата
-note.emptyData: 'Еще нет заметок. Нажмите «Добавить», чтобы создать его.'
-note.metaTitle: Заметки
-note.nom: Имя
-note.nomLabel: Заголовок
-note.supprimer: Удалить
-ouvrirUnCompte.btn1: 'Ознакомьтесь с картой Посредников Reconnect'
-ouvrirUnCompte.btn2: 'Стать посредником Reconnect'
-ouvrirUnCompte.metaTitle: 'Создать аккаунт Reconnect'
-ouvrirUnCompte.retourEnArriere: 'Вернуться назад'
-ouvrirUnCompte.text1: 'Расскажите вашим социальным консультантам о Reconnect, они смогут помочь вам создать и пользоваться вашим аккаунтом.'
-ouvrirUnCompte.text2: 'Необходимо реализовать <br/> повторно подключить на вашей структуре <br/> <br/>'
-ouvrirUnCompte.title: 'Учетная запись, <span class="main"> Повторное подключение</span>'
-ouvrirUnCompte.title1: 'Вы находитесь в подходе <br/> социальной поддержки'
-ouvrirUnCompte.title2: 'Вы <br/> социальный актер'
-paiement.btnPaiementSecurise: 'Для оплаты нажмите здесь'
-paiement.centreConcerne: Центр-получатель
-paiement.error.err00001: 'Не удалось установить соединение с центром авторизации или произошла внутренняя системная ошибка.'
-paiement.error.err00003: 'Ошибка Paybox'
-paiement.error.err00004: 'Неверный номер карты или визуальной криптограммы.'
-paiement.error.err00006: 'Доступ закрыт или неверный сайт/ряд/имя пользователя'
-paiement.error.err00008: 'Неверная дата окончания срока действия.'
-paiement.error.err00009: 'Ошибка при создании подписки.'
-paiement.error.err00010: 'Неизвестная валюта.'
-paiement.error.err00011: 'Неправильная сумма.'
-paiement.error.err00015: 'Оплата уже произведена.'
-paiement.error.err00021: 'Неразрешённая карта.'
-paiement.error.err00029: 'Неподходящая карта.'
-paiement.error.err00030: 'Время ожидания > 15 мин.'
-paiement.error.err001xx: 'Платёж отклонён центром авторизации.'
-paiement.metaTitle: Оплата
-paiement.nomProduit: 'Название товара'
-paiement.panierIntrouvable: 'Невозможно вернуться к содержимому корзины, начните процесс оплаты заново'
-paiement.prix: Цена
-paiement.text: 'Вы собираетесь произвести платёж в размере        евро. Сводный чек-лист вашей корзины:'
-paiement.text2: 'Вы будете перенаправлены на нашу платформу защищенных платежей :'
-paiement.title: Оплата
-paiementCheque.adresse: 'Улица, город индекс, Страна'
-paiementCheque.metaTitle: 'Оплата чеком'
-paiementCheque.text: 'Для подтверждения вашего платежа, пожалуйста, заполните как название: НАЗВАНИЕ, <br/> в порядке по: ЗАКАЗ. <br/> Наконец отправьте его по следующему адресу:'
-paiementCheque.text2: 'Для подтверждения оплаты нажмите здесь.  Как только мы получим ваш чек, мы отправим вам имейл с подверждением и квитанцией об оплате. После этого Центр появится в вашем аккаунте.'
-paiementCheque.title: 'Оплата чеком'
-paiementRetour.abandonMessage: 'Вы отменили платёж.'
-paiementRetour.errorMessage: 'Ваш платеж не может быть завершена, вы не было предъявлено обвинение. <br/> Пожалуйста, начните процесс оплаты. <br/> <br/> Ошибка платежной системы является следующее:'
-paiementRetour.retourSurMonCompte: 'Войти в мой аккаунт'
-paiementRetour.successMessage: 'Ваш платёж подтверждён. Мы отправим вам имейл со сводным чек-листом оплаты.'
-paiementRetour.waitingMessage: 'Ваш платеж был подтвержден. <br/> В течение нескольких дней вы получите e-mail подтверждением получения вашего платежа.'
-paiementVirement.adresse: 'Улица, город индекс Страна'
-paiementVirement.metaTitle: 'Оплата банковским переводом'
-paiementVirement.text: 'Для подтверждения перевода укажите в названии : TODOPL НАЗВАНИЕ'
-paiementVirement.text2: 'Для подтверждения оплаты нажмите здесь. Как только мы получим ваш перевод, мы отправим вам имейл с подверждением и квитанцией об оплате. После этого Центр появится в вашем аккаунте.'
-paiementVirement.title: 'Оплата банковским переводом'
-password_updated_successfully: 'Пароль успешно изменён'
-registerForm.adresse: 'Ваш личный адрес (необязательно)'
-registerForm.codePostal: Индекс
-registerForm.email: 'Электронная почта'
-registerForm.motDePasse: Пароль
-registerForm.nom: Фамилия
-registerForm.pays: Страна
-registerForm.prenom: Имя
-registerForm.rue: Улица
-registerForm.telephone: Телефон
-registerForm.username: 'Имя пользователя'
-registerForm.ville: Город
-resetting.check_email: 'На указанный адрес было отправлено сообщение со ссылкой, на которую вам надо нажать для восстановления пароля.'
-resetting.email.message: 'Здравствуйте, % username %! Чтобы сбросить свой пароль, пожалуйста перейдите на % confirmationUrl % с уважением, команда.'
-resetting.email.subject: 'Восстановления пароля'
-resetting.etesVousSur: 'Вы уверены, что вы хотите сбросить пароль % prenom % nom %?'
-resetting.flash.success: 'Пароль успешно восстановлён'
-resetting.password_already_requested: 'Этот пользователь уже запрашивал новый пароль за последние 24 часа.'
-resetting.public.existePas: 'Пользователь с таким адресом электронной почты не обнаружен'
-resetting.public.metaTitle: 'Восстановление пароля'
-resetting.public.text: 'Укажите ваш адрес электронной почты.'
-resetting.public.title: '<span class="main">Réinitialisation </span>du mot de passe'
-resetting.public.votreEmail: 'Ваш адрес электронной почты'
-resetting.reset.submit: 'Изменить пароль'
-settings_saved_successfully: 'Ваши настройки успешно сохранены'
-statut.abandoned: 'Операция отменена'
-statut.confirmed: 'Операция подтверждена'
-statut.created: Создано
-statut.waiting: 'Ожидание оплаты (чек/перевод)'
-switchUser.btnRevenir: 'Вернуться на страницу администрации'
-switchUser.connecte: 'Вы вошли как <span class="italic"> % username %</span>'
-user.cgu.bAccepter: 'Я согласен с условиями пользования'
-user.cgu.metaTitle: 'Общие условия использования'
-user.cgu.mustAccept: 'Вы должны принять условия пользования'
-user.cgu.title: 'Общие условия использования'
-user.firstVisit.beneficiaire.metaTitle: 'Добро пожаловать в Reconnect le Cloud Solidaire'
-user.firstVisit.beneficiaire.text: 'Этот сервис поможет вам сохранить все ваши личные данные (документы, записи на приём, контакты, заметки и тд.). Все сохранённые вами данные принадлежат вам и только вы можете укончательно их удалить. Вы можете попросить социальных работников Посредников Reconnect помочь вам в пользовании сервисом. Команда Reconnect приветствует вас на платформе и желает вам успешной работы.'
-user.firstVisit.beneficiaire.title: 'Добро пожаловать в Reconnect le Cloud Solidaire'
-user.firstVisit.gestionnaire.metaTitle: 'Добро пожаловать в Reconnect le Cloud Solidaire'
-user.firstVisit.gestionnaire.text: 'Спасибо за выбор «Reconnect - le Cloud Solidaire». Этот сервис позволит коммандам ваших учреждений помогать получателям в использовании их аккаунта Reconnect. Для дополнительной информации свяжитесь с Reconnect. Комманда Reconnect приветствует вас на платформе и желает успешной работы.'
-user.firstVisit.gestionnaire.title: 'Добро пожаловать в Reconnect le Cloud Solidaire'
-user.firstVisit.membre.metaTitle: 'Добро пожаловать в Reconnect le Cloud Solidaire'
-user.firstVisit.membre.text: 'Основной функцией этого сервиса является хранение личной информации получателей. Сервис является частью социального сопровождения и позволяет вам помогать получателям сохранять их данные. Команда Reconnect приветствует вас на платформе и желает вам успешной работы.'
-user.firstVisit.membre.title: 'Добро пожаловать в Reconnect le Cloud Solidaire'
-user.parametres.changerMotDePasse: 'Изменить пароль'
-user.parametres.dateNaissanceLabel: 'Дата рождения'
-user.parametres.enregister: 'Сохранить изменения'
-user.parametres.lieuNaissanceLabel: 'Место рождения'
-user.parametres.mdpActuel: 'Настоящий пароль'
-user.parametres.metaTitle: 'Настройки пользователя'
-user.parametres.nouveauMotDePasse: 'Новый пароль'
-user.parametres.nouveauMotDePasseConfirm: 'Подтверждение нового пароля'
-user.parametres.questionSecreteLabel: 'Секретный вопрос'
-user.parametres.reponseSecreteLabel: 'Секретный ответ'
-user.parametres.subtitle: 'Настройки %subject%'
-user.parametres.title: 'Настройки пользователя'
-user.parametres.userLabel: Пользователь
-user.pendingCentre.flashAccepter: 'Вы согласились присоединиться к центру'
-user.pendingCentre.flashRefuser: 'Вы отказались присоединиться к центру'
-user.pendingCentre.title: 'Посредник Reconnect хочет вас добавить'
-user.reinitialiserMdp.adresseMail: 'Восстановить с помощью электронной почты'
-user.reinitialiserMdp.aucuneMethode: 'Невозможно восстановить пароль для этого пользоателя, он не ввёл ни свой адрес электронной почты, ни номер телефона'
-user.reinitialiserMdp.emailEnvoye: 'Письмо отправлено'
-user.reinitialiserMdp.errorCode: 'Неверный код'
-user.reinitialiserMdp.metaTitle: 'Восстановить пароль'
-user.reinitialiserMdp.questionSecrete: 'Восстановить с помощью секретного вопроса'
-user.reinitialiserMdp.reinitialisation: Восстановление
-user.reinitialiserMdp.smsCodeLabel: 'Код, полученный по смс'
-user.reinitialiserMdp.smsCodeSent: 'На ваш номер телефона пользователя было отправлено смс-сообщение с кодом (номер телефона), введите его в поле сверху, чтобы восстановить ваш пароль.'
-user.reinitialiserMdp.smsDejaReset: 'Вы уже совершали попытку восстановления пароля за последние 24 часа'
-user.reinitialiserMdp.smsMessage: 'Код для восстановления вашего пароля Reconnect :'
-user.reinitialiserMdp.subtitle: 'Восстановить пароль'
-user.reinitialiserMdp.telephone: 'Восстановить с помощью смс-сообщения'
-user.reinitialiserMdp.title: 'Восстановить пароль'
-user.supprimerCompte.etesVousSurs: 'Вы точно хотите удалить ваш аккаунт?'
-user.supprimerCompte.success: 'Аккаунт успешно удалён'
-wrong_current_password: 'Неверный настоящий пароль'
-delete_currently_shared_document_warning: Документ находится в общем доступе еще %daysCount% дней. Если вы удалите его, совместный доступ будет отменен
-sms_sent_failed: Отправка SMS не удалась, пожалуйста, проверьте, действителен ли номер телефона
-yes: Да
+security:
+  login:
+    username: Username
+    password: Password
+    remember_me: 'Remember me'
+    submit: 'Log in'
+profile:
+  show:
+    username: Username
+    email: Email
+  edit:
+    submit: Update
+  flash:
+    updated: 'The profile has been updated.'
+change_password:
+  submit: 'Change password'
+  flash:
+    success: 'The password has been changed.'
+registration:
+  check_email: |
+    An email has been sent to %email%. It contains an activation link you must click to activate your account.
+  confirmed: 'Congrats %username%, your account is now activated.'
+  back: 'Back to the originating page.'
+  submit: Register
+  flash:
+    user_created: 'The user has been created successfully.'
+  email:
+    subject: 'Welcome %username%!'
+    message: |
+      Hello %username%!
+
+      To finish activating your account - please visit %confirmationUrl%
+
+      This link can only be used once to validate your account.
+
+      Regards,
+      the Team.
+resetting:
+  check_email: |
+    An email has been sent. It contains a link you must click to reset your password.
+    Note: You can only request a new password once within %tokenLifetime% hours.
+
+    If you don't get an email check your spam folder or try again.
+  request:
+    username: 'Username or email address'
+    submit: 'Reset password'
+  reset:
+    submit: 'Change password'
+  flash:
+    success: 'The password has been reset successfully.'
+  email:
+    subject: 'Reset Password'
+    message: |
+      Hello %username%!
+
+      To reset your password - please visit %confirmationUrl%
+
+      Regards,
+      the Team.
+#Global strings
+layout:
+  logout: 'Log out'
+  login: 'Log in'
+  register: Register
+  logged_in_as: 'Logged in as %username%'
+form:
+  username: Username
+  email: Email
+  current_password: 'Current password'
+  password: Password
+  password_confirmation: 'Repeat password'
+  new_password: 'New password'
+  new_password_confirmation: 'Repeat new password'
+fos_user:
+  username:
+    already_used: 'The username is already used.'
+    blank: 'Please enter a username.'
+    short: 'The username is too short.'
+    long: 'The username is too long.'
+  email:
+    already_used: 'The email is already used.'
+    blank: 'Please enter an email.'
+    short: 'The email is too short.'
+    long: 'The email is too long.'
+    invalid: 'The email is not valid.'
+  password:
+    blank: 'Please enter a password.'
+    short: 'The password is too short.'
+    mismatch: 'The entered passwords don''t match.'
+  new_password:
+    blank: 'Please enter a new password.'
+    short: 'The new password is too short.'
+  current_password:
+    invalid: 'The entered password is invalid.'
