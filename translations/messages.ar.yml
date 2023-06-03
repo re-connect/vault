@@ -7,222 +7,219 @@
     <body>
       <trans-unit id="cMU.0rQ" resname="security.login.username">
         <source>security.login.username</source>
-        <target state="needs-translation">إسم المستخدم</target>
+        <target state="needs-translation">Benutzername</target>
       </trans-unit>
       <trans-unit id="N_kLMwm" resname="security.login.password">
         <source>security.login.password</source>
-        <target state="needs-translation">كلمة المرور</target>
+        <target state="needs-translation">Passwort</target>
       </trans-unit>
       <trans-unit id="8DSptbg" resname="security.login.remember_me">
         <source>security.login.remember_me</source>
-        <target state="needs-translation">حفظ البيانات</target>
+        <target state="needs-translation">An mich erinnern</target>
       </trans-unit>
       <trans-unit id="tuAV77Z" resname="security.login.submit">
         <source>security.login.submit</source>
-        <target state="needs-translation">تسجيل دخول</target>
+        <target state="needs-translation">Anmelden</target>
       </trans-unit>
       <trans-unit id="7g9SaRk" resname="profile.show.username">
         <source>profile.show.username</source>
-        <target state="needs-translation">إسم المستخدم</target>
+        <target state="needs-translation">Benutzername</target>
       </trans-unit>
       <trans-unit id="AaZaMf7" resname="profile.show.email">
         <source>profile.show.email</source>
-        <target state="needs-translation">بريد إلكتروني</target>
+        <target state="needs-translation">E-Mail</target>
       </trans-unit>
       <trans-unit id="ci5Tbzf" resname="profile.edit.submit">
         <source>profile.edit.submit</source>
-        <target state="needs-translation">تحديث</target>
+        <target state="needs-translation">Benutzer aktualisieren</target>
       </trans-unit>
       <trans-unit id="C2lNaG." resname="profile.flash.updated">
         <source>profile.flash.updated</source>
-        <target state="needs-translation">تم تحديث الملف الشخصي</target>
+        <target state="needs-translation">Das Benutzerprofil wurde aktualisiert.</target>
       </trans-unit>
       <trans-unit id="agwdlwc" resname="change_password.submit">
         <source>change_password.submit</source>
-        <target state="needs-translation">تغيير كلمة المرور</target>
+        <target state="needs-translation">Passwort ändern</target>
       </trans-unit>
       <trans-unit id="SFo6Y3." resname="change_password.flash.success">
         <source>change_password.flash.success</source>
-        <target state="needs-translation">تم تغيير كلمة المرور</target>
+        <target state="needs-translation">Das Passwort wurde geändert.</target>
       </trans-unit>
       <trans-unit id=".ndupSK" resname="registration.check_email">
         <source>registration.check_email</source>
-        <target state="needs-translation">لقد تم إرسال رسالة إلكترونية إلى %email% تحتوي على رابط يجب إتباعه لتفعيل حسابك الشخصي.</target>
+        <target state="needs-translation">Eine E-Mail wurde an %email% gesendet. Sie enthält einen Link, den Sie anklicken müssen, um Ihr Benutzerkonto zu bestätigen.</target>
       </trans-unit>
       <trans-unit id="B.ZozIs" resname="registration.confirmed">
         <source>registration.confirmed</source>
-        <target state="needs-translation">تهانينا %username%، لقد تم تفعيل حسابك.</target>
+        <target state="needs-translation">Glückwunsch %username%, Ihr Benutzerkonto ist jetzt bestätigt.</target>
       </trans-unit>
       <trans-unit id="_wd.d62" resname="registration.back">
         <source>registration.back</source>
-        <target state="needs-translation">عودة إلى الصفحة الرئيسية</target>
+        <target state="needs-translation">Zurück zur ursprünglichen Seite.</target>
       </trans-unit>
       <trans-unit id="hmX3IJA" resname="registration.submit">
         <source>registration.submit</source>
-        <target state="needs-translation">تسجيل</target>
+        <target state="needs-translation">Registrieren</target>
       </trans-unit>
       <trans-unit id="by9ThPc" resname="registration.flash.user_created">
         <source>registration.flash.user_created</source>
-        <target state="needs-translation">تم إنشاء حسابك بنجاح</target>
+        <target state="needs-translation">Der Benutzer wurde erfolgreich erstellt.</target>
       </trans-unit>
       <trans-unit id="N.aTMve" resname="registration.email.subject">
         <source>registration.email.subject</source>
-        <target state="needs-translation">%username%! مرحبا</target>
+        <target state="needs-translation">Willkommen %username%!</target>
       </trans-unit>
       <trans-unit id="hN23SFM" resname="registration.email.message">
         <source>registration.email.message</source>
-        <target state="needs-translation">مرحبا %username%!
+        <target state="needs-translation">Hallo %username%!
 
+Besuchen Sie bitte folgende Seite, um Ihr Benutzerkonto zu bestätigen: %confirmationUrl%
 
- لتفعيل حسابك يرجى إتباع الرابط التالي %confirmationUrl%
-
- الرابط يمكن إستخدامه مرة واحدة فقط لتفعيل حسابك
-
-شكرا،
-فريق العمل.
+Mit besten Grüßen,
+das Team.
 </target>
       </trans-unit>
       <trans-unit id="_cY.wHP" resname="resetting.check_email">
         <source>resetting.check_email</source>
-        <target state="needs-translation">لقد تم إرسال رسالة إلكترونية تحتوي على رابط يجب الضغط عليه لإعادة ضبط كلمة المرور الخاصة بك.
-ملحوظة: يمكنك إعادة ضبط كلمة المرور الخاصة بك خلال %tokenLifetime% ساعة
+        <target state="needs-translation">Eine E-Mail wurde verschickt. Sie beinhaltet einen Link zum Zurücksetzen des Passwortes.
+Hinweis: Ein neues Passwort kann nur alle %tokenLifetime% Stunden beantragt werden.
 
-يرجى التحقق من ملف السبام إذا لم تستقبل الرسالة الإلكترونية قريبا أو أعد المحاولة
+Eventuell wurde diese E-Mail als Spam markiert, wenn sie nicht angekommen ist.
 </target>
       </trans-unit>
       <trans-unit id="f5J.GZt" resname="resetting.request.username">
         <source>resetting.request.username</source>
-        <target state="needs-translation">إسم المستخدم او البريد الالكتروني</target>
+        <target state="needs-translation">Benutzername oder E-Mail-Adresse</target>
       </trans-unit>
       <trans-unit id="55aST1i" resname="resetting.request.submit">
         <source>resetting.request.submit</source>
-        <target state="needs-translation">إعادة ضبط كلمة المرور</target>
+        <target state="needs-translation">Passwort zurücksetzen</target>
       </trans-unit>
       <trans-unit id="KsNOzZz" resname="resetting.reset.submit">
         <source>resetting.reset.submit</source>
-        <target state="needs-translation">تغيير كلمة المرور</target>
+        <target state="needs-translation">Passwort ändern</target>
       </trans-unit>
       <trans-unit id="TUD.2.O" resname="resetting.flash.success">
         <source>resetting.flash.success</source>
-        <target state="needs-translation">تم إعادة ضبط كلمة المرور بنجاح</target>
+        <target state="needs-translation">Das Passwort wurde erfolgreich zurückgesetzt.</target>
       </trans-unit>
       <trans-unit id="Redv4tu" resname="resetting.email.subject">
         <source>resetting.email.subject</source>
-        <target state="needs-translation">إعادة ضبط كلمة المرور</target>
+        <target state="needs-translation">Passwort zurücksetzen</target>
       </trans-unit>
       <trans-unit id="Lm8o8Qg" resname="resetting.email.message">
         <source>resetting.email.message</source>
-        <target state="needs-translation">مرحبا %username%!
+        <target state="needs-translation">Hallo %username%!
 
-لإعادة ضبط كلمة المرور يرجى إتباع الرابط التالي %confirmationUrl%
+Besuchen Sie bitte folgende Seite, um Ihr Passwort zurückzusetzen: %confirmationUrl%
 
-شكرا،
-فريق العمل.
+Mit besten Grüßen,
+das Team.
 </target>
       </trans-unit>
       <trans-unit id="7oF7jXj" resname="layout.logout">
         <source>layout.logout</source>
-        <target state="needs-translation">خروج</target>
+        <target state="needs-translation">Abmelden</target>
       </trans-unit>
       <trans-unit id="J.8npBV" resname="layout.login">
         <source>layout.login</source>
-        <target state="needs-translation">دخول</target>
+        <target state="needs-translation">Anmelden</target>
       </trans-unit>
       <trans-unit id="sLu8MAv" resname="layout.register">
         <source>layout.register</source>
-        <target state="needs-translation">تسجيل</target>
+        <target state="needs-translation">Registrieren</target>
       </trans-unit>
       <trans-unit id="BW_lWYD" resname="layout.logged_in_as">
         <source>layout.logged_in_as</source>
-        <target state="needs-translation">تم الدخول بإسم %username%</target>
+        <target state="needs-translation">Angemeldet als %username%</target>
       </trans-unit>
       <trans-unit id="B0VCgO_" resname="form.username">
         <source>form.username</source>
-        <target state="needs-translation">إسم المستخدم</target>
+        <target state="needs-translation">Benutzername</target>
       </trans-unit>
       <trans-unit id="3IGOm9D" resname="form.email">
         <source>form.email</source>
-        <target state="needs-translation">البريد الإلكتروني</target>
+        <target state="needs-translation">E-Mail-Adresse</target>
       </trans-unit>
       <trans-unit id="IY9XZs0" resname="form.current_password">
         <source>form.current_password</source>
-        <target state="needs-translation">كلمة المرور الحالية</target>
+        <target state="needs-translation">Derzeitiges Passwort</target>
       </trans-unit>
       <trans-unit id="yjqmSBK" resname="form.password">
         <source>form.password</source>
-        <target state="needs-translation">كلمة المرور</target>
+        <target state="needs-translation">Passwort</target>
       </trans-unit>
       <trans-unit id="Y4Q7qvl" resname="form.password_confirmation">
         <source>form.password_confirmation</source>
-        <target state="needs-translation">تأكيد</target>
+        <target state="needs-translation">Passwort bestätigen</target>
       </trans-unit>
       <trans-unit id="JTbuLK0" resname="form.new_password">
         <source>form.new_password</source>
-        <target state="needs-translation">كلمة المرور الجديدة</target>
+        <target state="needs-translation">Neues Passwort</target>
       </trans-unit>
       <trans-unit id="hdTL88S" resname="form.new_password_confirmation">
         <source>form.new_password_confirmation</source>
-        <target state="needs-translation">تأكيد كلمة المرور</target>
+        <target state="needs-translation">Neues Passwort bestätigen</target>
       </trans-unit>
       <trans-unit id="3gsm.Dj" resname="fos_user.username.already_used">
         <source>fos_user.username.already_used</source>
-        <target state="needs-translation">الإسم المختار مسجل مسبقا</target>
+        <target state="needs-translation">Dieser Benutzername wird bereits verwendet.</target>
       </trans-unit>
       <trans-unit id="jtmA7tx" resname="fos_user.username.blank">
         <source>fos_user.username.blank</source>
-        <target state="needs-translation">يرجى تعيين إسم المستخدم</target>
+        <target state="needs-translation">Bitte geben Sie einen Benutzernamen an.</target>
       </trans-unit>
       <trans-unit id="ypasfnh" resname="fos_user.username.short">
         <source>fos_user.username.short</source>
-        <target state="needs-translation"> إسم المستخدم قصير جدا</target>
+        <target state="needs-translation">Dieser Benutzername ist zu kurz.</target>
       </trans-unit>
       <trans-unit id="VVzgoob" resname="fos_user.username.long">
         <source>fos_user.username.long</source>
-        <target state="needs-translation"> إسم المستخدم طويل جدا</target>
+        <target state="needs-translation">Dieser Benutzername ist zu lang.</target>
       </trans-unit>
       <trans-unit id="vqk8sdH" resname="fos_user.email.already_used">
         <source>fos_user.email.already_used</source>
-        <target state="needs-translation">البريد الإلكتروني مسجل مسبقا</target>
+        <target state="needs-translation">Diese E-Mail-Adresse wird bereits verwendet.</target>
       </trans-unit>
       <trans-unit id="g72C3vn" resname="fos_user.email.blank">
         <source>fos_user.email.blank</source>
-        <target state="needs-translation">يرجى تعين البريد الإلكتروني</target>
+        <target state="needs-translation">Bitte geben Sie eine E-Mail-Adresse an.</target>
       </trans-unit>
       <trans-unit id="9GR5Mk6" resname="fos_user.email.short">
         <source>fos_user.email.short</source>
-        <target state="needs-translation"> البريد الإلكتروني قصير</target>
+        <target state="needs-translation">Diese E-Mail-Adresse ist zu kurz.</target>
       </trans-unit>
       <trans-unit id="Y1eOW4z" resname="fos_user.email.long">
         <source>fos_user.email.long</source>
-        <target state="needs-translation"> البريد الإلكتروني طويل</target>
+        <target state="needs-translation">Diese E-Mail-Adresse ist zu lang.</target>
       </trans-unit>
       <trans-unit id="lRE_vn_" resname="fos_user.email.invalid">
         <source>fos_user.email.invalid</source>
-        <target state="needs-translation">البريد الإلكتروني غير صحيح</target>
+        <target state="needs-translation">Diese E-Mail-Adresse ist ungültig.</target>
       </trans-unit>
       <trans-unit id="Zrr5_qX" resname="fos_user.password.blank">
         <source>fos_user.password.blank</source>
-        <target state="needs-translation">يرجى تعيين كلمة المرور</target>
+        <target state="needs-translation">Bitte geben Sie ein Passwort an.</target>
       </trans-unit>
       <trans-unit id="2k0f5kz" resname="fos_user.password.short">
         <source>fos_user.password.short</source>
-        <target state="needs-translation">كلمة المرور قصيرة</target>
+        <target state="needs-translation">Das Passwort ist zu kurz.</target>
       </trans-unit>
       <trans-unit id="G6rntWw" resname="fos_user.password.mismatch">
         <source>fos_user.password.mismatch</source>
-        <target state="needs-translation">كلمة المرور المدخلة غير مطابقة للكلمة الأصلية</target>
+        <target state="needs-translation">Die Passwörter stimmen nicht überein.</target>
       </trans-unit>
       <trans-unit id="p9q.ZOD" resname="fos_user.new_password.blank">
         <source>fos_user.new_password.blank</source>
-        <target state="needs-translation">يرجى تعيين كلمة مرور جديدة</target>
+        <target state="needs-translation">Bitte geben Sie ein neues Passwort an.</target>
       </trans-unit>
       <trans-unit id="aM77hCJ" resname="fos_user.new_password.short">
         <source>fos_user.new_password.short</source>
-        <target state="needs-translation"> كلمة المرور الجديدة قصيرة</target>
+        <target state="needs-translation">Das neue Passwort ist zu kurz.</target>
       </trans-unit>
       <trans-unit id="HCwhShp" resname="fos_user.current_password.invalid">
         <source>fos_user.current_password.invalid</source>
-        <target state="needs-translation">كلمة المرور المدخلة غير صحيحة</target>
+        <target state="needs-translation">Das angegebene Passwort ist ungültig.</target>
       </trans-unit>
     </body>
   </file>
