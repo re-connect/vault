@@ -1,6 +1,34 @@
-authentification_failure_wrong_credentials: رمز عبور یا نام کاربری درست نیست
-form_connexion: وارد شدن
-form_forgot_password: رمز عبور یا نام کاربری خود را فراموش کرده ام.
-form_login: نام کاربری   یا  آدرس ایمیل
-form_password: کلمه عبور
-login_form_title: دسترسی به گاوصندوق دیجیتالی
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="fa-AF" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="qzPSXSv" resname="authentification_failure_wrong_credentials" approved="yes">
+        <source>authentification_failure_wrong_credentials</source>
+        <target state="final">رمز عبور یا نام کاربری درست نیست</target>
+      </trans-unit>
+      <trans-unit id="rtfhvh0" resname="form_connexion" approved="yes">
+        <source>form_connexion</source>
+        <target state="final">وارد شدن</target>
+      </trans-unit>
+      <trans-unit id="Fxi_CPB" resname="form_forgot_password" approved="yes">
+        <source>form_forgot_password</source>
+        <target state="final">رمز عبور یا نام کاربری خود را فراموش کرده ام.</target>
+      </trans-unit>
+      <trans-unit id="2UXKonp" resname="form_login" approved="yes">
+        <source>form_login</source>
+        <target state="final">نام کاربری   یا  آدرس ایمیل</target>
+      </trans-unit>
+      <trans-unit id=".jAC5W1" resname="form_password" approved="yes">
+        <source>form_password</source>
+        <target state="final">کلمه عبور</target>
+      </trans-unit>
+      <trans-unit id="iOZMbG8" resname="login_form_title" approved="yes">
+        <source>login_form_title</source>
+        <target state="final">دسترسی به گاوصندوق دیجیتالی</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
