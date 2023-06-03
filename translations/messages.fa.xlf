@@ -5,29 +5,29 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="qzPSXSv" resname="authentification_failure_wrong_credentials" approved="yes">
+      <trans-unit id="qzPSXSv" resname="authentification_failure_wrong_credentials">
         <source>authentification_failure_wrong_credentials</source>
-        <target state="final">رمز عبور یا نام کاربری درست نیست</target>
+        <target state="needs-translation">غلط پاسورډ یا غلط کارن نوم</target>
       </trans-unit>
-      <trans-unit id="rtfhvh0" resname="form_connexion" approved="yes">
+      <trans-unit id="rtfhvh0" resname="form_connexion">
         <source>form_connexion</source>
-        <target state="final">وارد شدن</target>
+        <target state="needs-translation">ننوتل يا کنيکټ کيدل</target>
       </trans-unit>
-      <trans-unit id="Fxi_CPB" resname="form_forgot_password" approved="yes">
+      <trans-unit id="Fxi_CPB" resname="form_forgot_password">
         <source>form_forgot_password</source>
-        <target state="final">رمز عبور یا نام کاربری خود را فراموش کرده ام.</target>
+        <target state="needs-translation">زما پاسورډ بیا تنظیم کړئ</target>
       </trans-unit>
-      <trans-unit id="2UXKonp" resname="form_login" approved="yes">
+      <trans-unit id="2UXKonp" resname="form_login">
         <source>form_login</source>
-        <target state="final">نام کاربری   یا  آدرس ایمیل</target>
+        <target state="needs-translation">کاروونکي نوم یا بریښنالیک</target>
       </trans-unit>
-      <trans-unit id=".jAC5W1" resname="form_password" approved="yes">
+      <trans-unit id=".jAC5W1" resname="form_password">
         <source>form_password</source>
-        <target state="final">کلمه عبور</target>
+        <target state="needs-translation">پاسورډ</target>
       </trans-unit>
-      <trans-unit id="iOZMbG8" resname="login_form_title" approved="yes">
+      <trans-unit id="iOZMbG8" resname="login_form_title">
         <source>login_form_title</source>
-        <target state="final">دسترسی به گاوصندوق دیجیتالی</target>
+        <target state="needs-translation">ډیجیټل خوندي ته ډیجیټل خوندي ته لاسرسی</target>
       </trans-unit>
     </body>
   </file>
