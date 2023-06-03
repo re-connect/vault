@@ -7,23 +7,23 @@
     <body>
       <trans-unit id="cMU.0rQ" resname="security.login.username">
         <source>security.login.username</source>
-        <target state="needs-translation">Username</target>
+        <target state="needs-translation">Nombre de usuario</target>
       </trans-unit>
       <trans-unit id="N_kLMwm" resname="security.login.password">
         <source>security.login.password</source>
-        <target state="needs-translation">Password</target>
+        <target state="needs-translation">Contraseña</target>
       </trans-unit>
       <trans-unit id="8DSptbg" resname="security.login.remember_me">
         <source>security.login.remember_me</source>
-        <target state="needs-translation">Remember me</target>
+        <target state="needs-translation">Recordar</target>
       </trans-unit>
       <trans-unit id="tuAV77Z" resname="security.login.submit">
         <source>security.login.submit</source>
-        <target state="needs-translation">Log in</target>
+        <target state="needs-translation">Entrar</target>
       </trans-unit>
       <trans-unit id="7g9SaRk" resname="profile.show.username">
         <source>profile.show.username</source>
-        <target state="needs-translation">Username</target>
+        <target state="needs-translation">Nombre de usuario</target>
       </trans-unit>
       <trans-unit id="AaZaMf7" resname="profile.show.email">
         <source>profile.show.email</source>
@@ -31,114 +31,113 @@
       </trans-unit>
       <trans-unit id="ci5Tbzf" resname="profile.edit.submit">
         <source>profile.edit.submit</source>
-        <target state="needs-translation">Update</target>
+        <target state="needs-translation">Actualizar usuario</target>
       </trans-unit>
       <trans-unit id="C2lNaG." resname="profile.flash.updated">
         <source>profile.flash.updated</source>
-        <target state="needs-translation">The profile has been updated.</target>
+        <target state="needs-translation">El perfil ha sido actualizado.</target>
       </trans-unit>
       <trans-unit id="agwdlwc" resname="change_password.submit">
         <source>change_password.submit</source>
-        <target state="needs-translation">Change password</target>
+        <target state="needs-translation">Cambiar contraseña</target>
       </trans-unit>
       <trans-unit id="SFo6Y3." resname="change_password.flash.success">
         <source>change_password.flash.success</source>
-        <target state="needs-translation">The password has been changed.</target>
+        <target state="needs-translation">La contraseña se ha cambiado con éxito.</target>
       </trans-unit>
       <trans-unit id=".ndupSK" resname="registration.check_email">
         <source>registration.check_email</source>
-        <target state="needs-translation">An email has been sent to %email%. It contains an activation link you must click to activate your account.
-</target>
+        <target state="needs-translation">Se ha enviado un correo electrónico a %email%. Contiene un enlace de activación al que debes acceder para activar tu cuenta.</target>
       </trans-unit>
       <trans-unit id="B.ZozIs" resname="registration.confirmed">
         <source>registration.confirmed</source>
-        <target state="needs-translation">Congrats %username%, your account is now activated.</target>
+        <target state="needs-translation">Felicidades %username%, tu cuenta está ahora confirmada.</target>
       </trans-unit>
       <trans-unit id="_wd.d62" resname="registration.back">
         <source>registration.back</source>
-        <target state="needs-translation">Back to the originating page.</target>
+        <target state="needs-translation">Volver a la página original.</target>
       </trans-unit>
       <trans-unit id="hmX3IJA" resname="registration.submit">
         <source>registration.submit</source>
-        <target state="needs-translation">Register</target>
+        <target state="needs-translation">Registrar</target>
       </trans-unit>
       <trans-unit id="by9ThPc" resname="registration.flash.user_created">
         <source>registration.flash.user_created</source>
-        <target state="needs-translation">The user has been created successfully.</target>
+        <target state="needs-translation">El usuario se ha creado satisfactoriamente.</target>
       </trans-unit>
       <trans-unit id="N.aTMve" resname="registration.email.subject">
         <source>registration.email.subject</source>
-        <target state="needs-translation">Welcome %username%!</target>
+        <target state="needs-translation">¡Bienvenido %username%!</target>
       </trans-unit>
       <trans-unit id="hN23SFM" resname="registration.email.message">
         <source>registration.email.message</source>
-        <target state="needs-translation">Hello %username%!
+        <target state="needs-translation">¡Hola %username%!
 
-To finish activating your account - please visit %confirmationUrl%
+Para completar la validación de tu cuenta, por favor visita %confirmationUrl%
 
-This link can only be used once to validate your account.
+Este enlace sólo puede utilizarse una vez para validar tu cuenta.
 
-Regards,
-the Team.
+Atentamente,
+el Equipo.
 </target>
       </trans-unit>
       <trans-unit id="_cY.wHP" resname="resetting.check_email">
         <source>resetting.check_email</source>
-        <target state="needs-translation">An email has been sent. It contains a link you must click to reset your password.
-Note: You can only request a new password once within %tokenLifetime% hours.
+        <target state="needs-translation">Se ha enviado un correo electrónico a tu cuenta de correo. Contiene un enlace de activación al que debes acceder para restablecer tu contraseña.
+Nota: Solo se puede solicitar una nueva contraseña cada %tokenLifetime% horas.
 
-If you don't get an email check your spam folder or try again.
+Si no recibes un correo electrónico, comprueba tu carpeta de correo no deseado o inténtalo de nuevo.
 </target>
       </trans-unit>
       <trans-unit id="f5J.GZt" resname="resetting.request.username">
         <source>resetting.request.username</source>
-        <target state="needs-translation">Username or email address</target>
+        <target state="needs-translation">Nombre de usuario o correo electrónico</target>
       </trans-unit>
       <trans-unit id="55aST1i" resname="resetting.request.submit">
         <source>resetting.request.submit</source>
-        <target state="needs-translation">Reset password</target>
+        <target state="needs-translation">Restablecer contraseña</target>
       </trans-unit>
       <trans-unit id="KsNOzZz" resname="resetting.reset.submit">
         <source>resetting.reset.submit</source>
-        <target state="needs-translation">Change password</target>
+        <target state="needs-translation">Cambiar contraseña</target>
       </trans-unit>
       <trans-unit id="TUD.2.O" resname="resetting.flash.success">
         <source>resetting.flash.success</source>
-        <target state="needs-translation">The password has been reset successfully.</target>
+        <target state="needs-translation">La contraseña se ha cambiado con éxito.</target>
       </trans-unit>
       <trans-unit id="Redv4tu" resname="resetting.email.subject">
         <source>resetting.email.subject</source>
-        <target state="needs-translation">Reset Password</target>
+        <target state="needs-translation">Restablecer Contraseña</target>
       </trans-unit>
       <trans-unit id="Lm8o8Qg" resname="resetting.email.message">
         <source>resetting.email.message</source>
-        <target state="needs-translation">Hello %username%!
+        <target state="needs-translation">¡Hola %username%!
 
-To reset your password - please visit %confirmationUrl%
+Para restablecer tu contraseña, por favor visita %confirmationUrl%
 
-Regards,
-the Team.
+Atentamente,
+el Equipo.
 </target>
       </trans-unit>
       <trans-unit id="7oF7jXj" resname="layout.logout">
         <source>layout.logout</source>
-        <target state="needs-translation">Log out</target>
+        <target state="needs-translation">Salir</target>
       </trans-unit>
       <trans-unit id="J.8npBV" resname="layout.login">
         <source>layout.login</source>
-        <target state="needs-translation">Log in</target>
+        <target state="needs-translation">Entrar</target>
       </trans-unit>
       <trans-unit id="sLu8MAv" resname="layout.register">
         <source>layout.register</source>
-        <target state="needs-translation">Register</target>
+        <target state="needs-translation">Registrar</target>
       </trans-unit>
       <trans-unit id="BW_lWYD" resname="layout.logged_in_as">
         <source>layout.logged_in_as</source>
-        <target state="needs-translation">Logged in as %username%</target>
+        <target state="needs-translation">Identificado como %username%</target>
       </trans-unit>
       <trans-unit id="B0VCgO_" resname="form.username">
         <source>form.username</source>
-        <target state="needs-translation">Username</target>
+        <target state="needs-translation">Nombre de usuario</target>
       </trans-unit>
       <trans-unit id="3IGOm9D" resname="form.email">
         <source>form.email</source>
@@ -146,83 +145,83 @@ the Team.
       </trans-unit>
       <trans-unit id="IY9XZs0" resname="form.current_password">
         <source>form.current_password</source>
-        <target state="needs-translation">Current password</target>
+        <target state="needs-translation">Contraseña actual</target>
       </trans-unit>
       <trans-unit id="yjqmSBK" resname="form.password">
         <source>form.password</source>
-        <target state="needs-translation">Password</target>
+        <target state="needs-translation">Contraseña</target>
       </trans-unit>
       <trans-unit id="Y4Q7qvl" resname="form.password_confirmation">
         <source>form.password_confirmation</source>
-        <target state="needs-translation">Repeat password</target>
+        <target state="needs-translation">Repita la contraseña</target>
       </trans-unit>
       <trans-unit id="JTbuLK0" resname="form.new_password">
         <source>form.new_password</source>
-        <target state="needs-translation">New password</target>
+        <target state="needs-translation">Nueva contraseña</target>
       </trans-unit>
       <trans-unit id="hdTL88S" resname="form.new_password_confirmation">
         <source>form.new_password_confirmation</source>
-        <target state="needs-translation">Repeat new password</target>
+        <target state="needs-translation">Repita la contraseña</target>
       </trans-unit>
       <trans-unit id="3gsm.Dj" resname="fos_user.username.already_used">
         <source>fos_user.username.already_used</source>
-        <target state="needs-translation">The username is already used.</target>
+        <target state="needs-translation">El nombre de usuario ya está en uso.</target>
       </trans-unit>
       <trans-unit id="jtmA7tx" resname="fos_user.username.blank">
         <source>fos_user.username.blank</source>
-        <target state="needs-translation">Please enter a username.</target>
+        <target state="needs-translation">Por favor, ingrese un nombre de usuario.</target>
       </trans-unit>
       <trans-unit id="ypasfnh" resname="fos_user.username.short">
         <source>fos_user.username.short</source>
-        <target state="needs-translation">The username is too short.</target>
+        <target state="needs-translation">El nombre de usuario es demasiado corto.</target>
       </trans-unit>
       <trans-unit id="VVzgoob" resname="fos_user.username.long">
         <source>fos_user.username.long</source>
-        <target state="needs-translation">The username is too long.</target>
+        <target state="needs-translation">El nombre de usuario es demasiado largo.</target>
       </trans-unit>
       <trans-unit id="vqk8sdH" resname="fos_user.email.already_used">
         <source>fos_user.email.already_used</source>
-        <target state="needs-translation">The email is already used.</target>
+        <target state="needs-translation">La dirección de correo ya está en uso.</target>
       </trans-unit>
       <trans-unit id="g72C3vn" resname="fos_user.email.blank">
         <source>fos_user.email.blank</source>
-        <target state="needs-translation">Please enter an email.</target>
+        <target state="needs-translation">Por favor, ingrese una dirección de correo.</target>
       </trans-unit>
       <trans-unit id="9GR5Mk6" resname="fos_user.email.short">
         <source>fos_user.email.short</source>
-        <target state="needs-translation">The email is too short.</target>
+        <target state="needs-translation">La dirección de correo es demasiado corta.</target>
       </trans-unit>
       <trans-unit id="Y1eOW4z" resname="fos_user.email.long">
         <source>fos_user.email.long</source>
-        <target state="needs-translation">The email is too long.</target>
+        <target state="needs-translation">La dirección de correo es demasiado larga.</target>
       </trans-unit>
       <trans-unit id="lRE_vn_" resname="fos_user.email.invalid">
         <source>fos_user.email.invalid</source>
-        <target state="needs-translation">The email is not valid.</target>
+        <target state="needs-translation">La dirección de correo no es válida.</target>
       </trans-unit>
       <trans-unit id="Zrr5_qX" resname="fos_user.password.blank">
         <source>fos_user.password.blank</source>
-        <target state="needs-translation">Please enter a password.</target>
+        <target state="needs-translation">Por favor, ingrese una contraseña.</target>
       </trans-unit>
       <trans-unit id="2k0f5kz" resname="fos_user.password.short">
         <source>fos_user.password.short</source>
-        <target state="needs-translation">The password is too short.</target>
+        <target state="needs-translation">La contraseña es demasiado corta.</target>
       </trans-unit>
       <trans-unit id="G6rntWw" resname="fos_user.password.mismatch">
         <source>fos_user.password.mismatch</source>
-        <target state="needs-translation">The entered passwords don't match.</target>
+        <target state="needs-translation">Las dos contraseñas no coinciden.</target>
       </trans-unit>
       <trans-unit id="p9q.ZOD" resname="fos_user.new_password.blank">
         <source>fos_user.new_password.blank</source>
-        <target state="needs-translation">Please enter a new password.</target>
+        <target state="needs-translation">Por favor, ingrese una nueva contraseña.</target>
       </trans-unit>
       <trans-unit id="aM77hCJ" resname="fos_user.new_password.short">
         <source>fos_user.new_password.short</source>
-        <target state="needs-translation">The new password is too short.</target>
+        <target state="needs-translation">La nueva contraseña es demasiado corta.</target>
       </trans-unit>
       <trans-unit id="HCwhShp" resname="fos_user.current_password.invalid">
         <source>fos_user.current_password.invalid</source>
-        <target state="needs-translation">The entered password is invalid.</target>
+        <target state="needs-translation">La contraseña ingresada no es válida.</target>
       </trans-unit>
     </body>
   </file>
