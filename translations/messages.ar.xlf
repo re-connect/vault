@@ -5,223 +5,2537 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="cMU.0rQ" resname="security.login.username">
-        <source>security.login.username</source>
-        <target state="needs-translation">Имя пользователя</target>
+      <trans-unit id="tLaNto5" resname="admin.bienvenue" approved="yes">
+        <source>admin.bienvenue</source>
+        <target state="final">اهلا بك على صفحة ادارة ريكونيكت</target>
       </trans-unit>
-      <trans-unit id="N_kLMwm" resname="security.login.password">
-        <source>security.login.password</source>
-        <target state="needs-translation">Пароль</target>
+      <trans-unit id="QM_fv7v" resname="admin.centres.benéficiaires" approved="yes">
+        <source>admin.centres.benéficiaires</source>
+        <target state="final">المستفيدون</target>
       </trans-unit>
-      <trans-unit id="8DSptbg" resname="security.login.remember_me">
-        <source>security.login.remember_me</source>
-        <target state="needs-translation">Запомнить меня</target>
+      <trans-unit id="zAv9_wP" resname="admin.centres.historique" approved="yes">
+        <source>admin.centres.historique</source>
+        <target state="final">تاريخ الاتصالات</target>
       </trans-unit>
-      <trans-unit id="tuAV77Z" resname="security.login.submit">
-        <source>security.login.submit</source>
-        <target state="needs-translation">Войти</target>
+      <trans-unit id="F29FiBV" resname="admin.centres.membres" approved="yes">
+        <source>admin.centres.membres</source>
+        <target state="final">الاعضاء</target>
       </trans-unit>
-      <trans-unit id="7g9SaRk" resname="profile.show.username">
-        <source>profile.show.username</source>
-        <target state="needs-translation">Имя пользователя</target>
+      <trans-unit id="NlJlbqe" resname="admin.centres.nom" approved="yes">
+        <source>admin.centres.nom</source>
+        <target state="final">الاسم</target>
       </trans-unit>
-      <trans-unit id="AaZaMf7" resname="profile.show.email">
-        <source>profile.show.email</source>
-        <target state="needs-translation">Электронная почта</target>
+      <trans-unit id="aJ_Fynk" resname="admin.centres.smsEnvoyes" approved="yes">
+        <source>admin.centres.smsEnvoyes</source>
+        <target state="final">الرسائل النصية القصيرة المرسلة</target>
       </trans-unit>
-      <trans-unit id="ci5Tbzf" resname="profile.edit.submit">
-        <source>profile.edit.submit</source>
-        <target state="needs-translation">Обновить</target>
+      <trans-unit id="FqrCP7H" resname="admin.centres.statistiques.dateJour" approved="yes">
+        <source>admin.centres.statistiques.dateJour</source>
+        <target state="final">تاريخ اليوم</target>
       </trans-unit>
-      <trans-unit id="C2lNaG." resname="profile.flash.updated">
-        <source>profile.flash.updated</source>
-        <target state="needs-translation">Профиль пользователя обновлен.</target>
+      <trans-unit id="krCko8_" resname="admin.centres.statistiques.nbBeneficiaires" approved="yes">
+        <source>admin.centres.statistiques.nbBeneficiaires</source>
+        <target state="final">عدد المستفيدين</target>
       </trans-unit>
-      <trans-unit id="agwdlwc" resname="change_password.submit">
-        <source>change_password.submit</source>
-        <target state="needs-translation">Изменить пароль</target>
+      <trans-unit id="GG5lctO" resname="admin.centres.statistiques.nbMembres" approved="yes">
+        <source>admin.centres.statistiques.nbMembres</source>
+        <target state="final">عدد الاعضاء</target>
       </trans-unit>
-      <trans-unit id="SFo6Y3." resname="change_password.flash.success">
-        <source>change_password.flash.success</source>
-        <target state="needs-translation">Пароль изменен.</target>
+      <trans-unit id="1TDm4FA" resname="admin.centres.statistiques.smsEnvoyes" approved="yes">
+        <source>admin.centres.statistiques.smsEnvoyes</source>
+        <target state="final">عدد الرسائل النصية القصيرة المرسلة</target>
       </trans-unit>
-      <trans-unit id=".ndupSK" resname="registration.check_email">
-        <source>registration.check_email</source>
-        <target state="needs-translation">Письмо отправлено на адрес %email%. В нём содержится ссылка, по которой вы можете подтвердить свою регистрацию.</target>
+      <trans-unit id="sWmF_QG" resname="admin.centres.statistiques.title" approved="yes">
+        <source>admin.centres.statistiques.title</source>
+        <target state="final">الاحصاءات المتعلقة بكل مركز</target>
       </trans-unit>
-      <trans-unit id="B.ZozIs" resname="registration.confirmed">
-        <source>registration.confirmed</source>
-        <target state="needs-translation">Поздравляем %username%, ваш аккаунт подтвержден.</target>
+      <trans-unit id="Du1KuWs" resname="admin.centres.voir" approved="yes">
+        <source>admin.centres.voir</source>
+        <target state="final">رؤية</target>
       </trans-unit>
-      <trans-unit id="_wd.d62" resname="registration.back">
-        <source>registration.back</source>
-        <target state="needs-translation">Вернуться на предыдущую страницу.</target>
+      <trans-unit id="2i.Q2p_" resname="admin.menu.accueil" approved="yes">
+        <source>admin.menu.accueil</source>
+        <target state="final">الصفحة الرئيسية</target>
       </trans-unit>
-      <trans-unit id="hmX3IJA" resname="registration.submit">
-        <source>registration.submit</source>
-        <target state="needs-translation">Зарегистрироваться</target>
+      <trans-unit id="4Twh68c" resname="admin.menu.centres" approved="yes">
+        <source>admin.menu.centres</source>
+        <target state="final">مراكز</target>
       </trans-unit>
-      <trans-unit id="by9ThPc" resname="registration.flash.user_created">
-        <source>registration.flash.user_created</source>
-        <target state="needs-translation">Пользователь успешно создан.</target>
+      <trans-unit id="iJAhVXd" resname="admin.menu.dashboard" approved="yes">
+        <source>admin.menu.dashboard</source>
+        <target state="final">قاعدة معطيات</target>
       </trans-unit>
-      <trans-unit id="N.aTMve" resname="registration.email.subject">
-        <source>registration.email.subject</source>
-        <target state="needs-translation">Добро пожаловать, %username%!</target>
+      <trans-unit id="gtlQqwH" resname="admin.menu.traduction" approved="yes">
+        <source>admin.menu.traduction</source>
+        <target state="final">ترجمة</target>
       </trans-unit>
-      <trans-unit id="hN23SFM" resname="registration.email.message">
-        <source>registration.email.message</source>
-        <target state="needs-translation">Приветствуем, %username%!
-
-Для подтверждения вашей регистрации, пройдите по ссылке %confirmationUrl%
-
-Эта ссылка может быть использована только единожды для подтверждения вашей учетной записи.
-
-С наилучшими пожеланиями,
-команда сайта.
-</target>
+      <trans-unit id="O3NlccA" resname="admin.metaTitle" approved="yes">
+        <source>admin.metaTitle</source>
+        <target state="final">ادارة ريكونيكت</target>
       </trans-unit>
-      <trans-unit id="_cY.wHP" resname="resetting.check_email">
+      <trans-unit id="XneOvFD" resname="admin.title" approved="yes">
+        <source>admin.title</source>
+        <target state="final">ادارة (فئة العمر/ريكونيكت)</target>
+      </trans-unit>
+      <trans-unit id="6NrhaR7" resname="aides.metaTitle" approved="yes">
+        <source>aides.metaTitle</source>
+        <target state="final">ادوات المساعدة</target>
+      </trans-unit>
+      <trans-unit id="2VSY8.g" resname="association.categorie.association" approved="yes">
+        <source>association.categorie.association</source>
+        <target state="final">المؤسسة</target>
+      </trans-unit>
+      <trans-unit id="T5DVOK4" resname="association.categorie.ccas" approved="yes">
+        <source>association.categorie.ccas</source>
+        <target state="final">المركز الشعبي للعمل الاجتماعي</target>
+      </trans-unit>
+      <trans-unit id="y5Qqdrw" resname="association.categorie.choisir" approved="yes">
+        <source>association.categorie.choisir</source>
+        <target state="final">يرجى اختيار فئة مؤسستك</target>
+      </trans-unit>
+      <trans-unit id="QCNK8Tt" resname="association.urlLabel" approved="yes">
+        <source>association.urlLabel</source>
+        <target state="final">موقع الانترنيت</target>
+      </trans-unit>
+      <trans-unit id="qzPSXSv" resname="authentification_failure_wrong_credentials" approved="yes">
+        <source>authentification_failure_wrong_credentials</source>
+        <target state="final">اسم المستخدم أو كلمة السر غير صحيحة</target>
+      </trans-unit>
+      <trans-unit id="4YZuZg7" resname="back_home" approved="yes">
+        <source>back_home</source>
+        <target state="final">العودة الى الصفحة الرئيسية</target>
+      </trans-unit>
+      <trans-unit id="cpMXuES" resname="beneficiaire.menu.mesAides" approved="yes">
+        <source>beneficiaire.menu.mesAides</source>
+        <target state="final">نقطة المناوبة</target>
+      </trans-unit>
+      <trans-unit id="HPfw1BJ" resname="beneficiaire.menu.mesContacts" approved="yes">
+        <source>beneficiaire.menu.mesContacts</source>
+        <target state="final">ادوات العون الخاصة بي</target>
+      </trans-unit>
+      <trans-unit id="qJM0Ov1" resname="beneficiaire.menu.mesDocuments" approved="yes">
+        <source>beneficiaire.menu.mesDocuments</source>
+        <target state="final">مواعيدي</target>
+      </trans-unit>
+      <trans-unit id="1xUovPD" resname="beneficiaire.menu.mesNotes" approved="yes">
+        <source>beneficiaire.menu.mesNotes</source>
+        <target state="final">وثائق</target>
+      </trans-unit>
+      <trans-unit id="UbazuvB" resname="beneficiaire.menu.mesRelaisReconnect" approved="yes">
+        <source>beneficiaire.menu.mesRelaisReconnect</source>
+        <target state="final">ملاحظاتي</target>
+      </trans-unit>
+      <trans-unit id="g9AfBix" resname="beneficiaire.menu.monCalendrier" approved="yes">
+        <source>beneficiaire.menu.monCalendrier</source>
+        <target state="final">القيم المدخلة في الكمبيوتر</target>
+      </trans-unit>
+      <trans-unit id="mFYZ6GP" resname="beneficiaire.menu.parametres" approved="yes">
+        <source>beneficiaire.menu.parametres</source>
+        <target state="final">المعارف</target>
+      </trans-unit>
+      <trans-unit id="Gf9_9yj" resname="beneficiaire.menu2.mesAides" approved="yes">
+        <source>beneficiaire.menu2.mesAides</source>
+        <target state="final">ادارة المستفيدين</target>
+      </trans-unit>
+      <trans-unit id=".qSoreT" resname="beneficiaire.menu2.mesContacts" approved="yes">
+        <source>beneficiaire.menu2.mesContacts</source>
+        <target state="final">ادوات العون</target>
+      </trans-unit>
+      <trans-unit id="HzUw6dN" resname="beneficiaire.menu2.mesDocuments" approved="yes">
+        <source>beneficiaire.menu2.mesDocuments</source>
+        <target state="final">المواعيد</target>
+      </trans-unit>
+      <trans-unit id="FuothF9" resname="beneficiaire.menu2.mesNotes" approved="yes">
+        <source>beneficiaire.menu2.mesNotes</source>
+        <target state="final">نقاط المناوبة  لريكونيكت الخاصة بي</target>
+      </trans-unit>
+      <trans-unit id="qgjaerC" resname="beneficiaire.menu2.mesRelaisReconnect" approved="yes">
+        <source>beneficiaire.menu2.mesRelaisReconnect</source>
+        <target state="final">الملاحظات</target>
+      </trans-unit>
+      <trans-unit id="r88xj0v" resname="beneficiaire.menu2.monCalendrier" approved="yes">
+        <source>beneficiaire.menu2.monCalendrier</source>
+        <target state="final">المستفيدين</target>
+      </trans-unit>
+      <trans-unit id="QPJVz6X" resname="bientotDisponible.text" approved="yes">
+        <source>bientotDisponible.text</source>
+        <target state="final">للحصول على المزيد من المعلومات حول ريكونيكت كلاود التضامن و الالتحاق بالشبكات يرجى الاتصال بنا مباشرة عبر الهاتف رقم: 0158305529 او عبر البريد الالكتروني على العنوان التالي: contact@reconnect.fr</target>
+      </trans-unit>
+      <trans-unit id="RuWSgET" resname="centre.metaTitle" approved="yes">
+        <source>centre.metaTitle</source>
+        <target state="final">المراكز</target>
+      </trans-unit>
+      <trans-unit id="zVXxYXv" resname="centre.nom" approved="yes">
+        <source>centre.nom</source>
+        <target state="final">الاسم</target>
+      </trans-unit>
+      <trans-unit id="cpOgM7L" resname="centre.ville" approved="yes">
+        <source>centre.ville</source>
+        <target state="final">المدينة</target>
+      </trans-unit>
+      <trans-unit id="4XjTXke" resname="centre.vousAvezBienQuitte" approved="yes">
+        <source>centre.vousAvezBienQuitte</source>
+        <target state="final">انت غادرت المركز*</target>
+      </trans-unit>
+      <trans-unit id="PyZ8KrQ" resname="confirm" approved="yes">
+        <source>confirm</source>
+        <target state="final">تأكيد</target>
+      </trans-unit>
+      <trans-unit id="2SJWDeG" resname="connexionForm.connexion" approved="yes">
+        <source>connexionForm.connexion</source>
+        <target state="final">الاتصال</target>
+      </trans-unit>
+      <trans-unit id="U4Za9A0" resname="connexionForm.erreurIdentifiants" approved="yes">
+        <source>connexionForm.erreurIdentifiants</source>
+        <target state="final">لقد ادخلت اسم مستخدم خاطئ او كلمة سر خاطئة</target>
+      </trans-unit>
+      <trans-unit id="Tlza..p" resname="connexionForm.inactif" approved="yes">
+        <source>connexionForm.inactif</source>
+        <target state="final">تم قطع الاتصال بعد مدة من غير استعمال</target>
+      </trans-unit>
+      <trans-unit id="ujSP4OI" resname="connexionForm.motDePasse" approved="yes">
+        <source>connexionForm.motDePasse</source>
+        <target state="final">كلمة السر</target>
+      </trans-unit>
+      <trans-unit id="G7Gm97I" resname="connexionForm.oublieMdp" approved="yes">
+        <source>connexionForm.oublieMdp</source>
+        <target state="final">نسيت كلمة السر او كلمة التعريف</target>
+      </trans-unit>
+      <trans-unit id="em7h68v" resname="connexionForm.username" approved="yes">
+        <source>connexionForm.username</source>
+        <target state="final">اسم المستخدم</target>
+      </trans-unit>
+      <trans-unit id="se8xO5g" resname="contact.ajouter" approved="yes">
+        <source>contact.ajouter</source>
+        <target state="final">اضافة عنوان معرفة</target>
+      </trans-unit>
+      <trans-unit id="tuvW91w" resname="contact.associationLabel" approved="yes">
+        <source>contact.associationLabel</source>
+        <target state="final">المؤسسة</target>
+      </trans-unit>
+      <trans-unit id="Mpuc6SF" resname="contact.bienEteEnvoye" approved="yes">
+        <source>contact.bienEteEnvoye</source>
+        <target state="final">تم ارسال رسالتك الالكترونية. ستتصل فرقنا بك بعد قليل</target>
+      </trans-unit>
+      <trans-unit id="zkHNnhI" resname="contact.bienSauvegarde" approved="yes">
+        <source>contact.bienSauvegarde</source>
+        <target state="final">لقد تم حفظ عنوان المعرفة</target>
+      </trans-unit>
+      <trans-unit id="fqPD1LA" resname="contact.bienSupprime" approved="yes">
+        <source>contact.bienSupprime</source>
+        <target state="final">لقد تم الغاء عنوان هذه المعرفة</target>
+      </trans-unit>
+      <trans-unit id="N3Gx4p8" resname="contact.btnEnvoyerMessage" approved="yes">
+        <source>contact.btnEnvoyerMessage</source>
+        <target state="final">ابعث رسالتك</target>
+      </trans-unit>
+      <trans-unit id="kCmLuyl" resname="contact.cantDisplay" approved="yes">
+        <source>contact.cantDisplay</source>
+        <target state="final">لا يحق لك عرض معارف هذا المستفيد</target>
+      </trans-unit>
+      <trans-unit id="q0nLB2b" resname="contact.commentaireLabel" approved="yes">
+        <source>contact.commentaireLabel</source>
+        <target state="final">تعليقات</target>
+      </trans-unit>
+      <trans-unit id="IiU3phj" resname="contact.contenuError" approved="yes">
+        <source>contact.contenuError</source>
+        <target state="final">رسالتك خالية من المضمون</target>
+      </trans-unit>
+      <trans-unit id="RxLgRI4" resname="contact.contenuLabel" approved="yes">
+        <source>contact.contenuLabel</source>
+        <target state="final">مضمون رسالتك</target>
+      </trans-unit>
+      <trans-unit id="IHBjApQ" resname="contact.emailLabel" approved="yes">
+        <source>contact.emailLabel</source>
+        <target state="final">عنوانك الالكتروني</target>
+      </trans-unit>
+      <trans-unit id="xbTOLBb" resname="contact.emptyData" approved="yes">
+        <source>contact.emptyData</source>
+        <target state="final">لا يوجد اتصال حتى الان. انقر فوق "إضافة" لإنشاء واحد.</target>
+      </trans-unit>
+      <trans-unit id="vE6bW29" resname="contact.mailError" approved="yes">
+        <source>contact.mailError</source>
+        <target state="final">ان شكل عنوانك الالكتروني غير صالح</target>
+      </trans-unit>
+      <trans-unit id="xZf59lQ" resname="contact.metaTitle" approved="yes">
+        <source>contact.metaTitle</source>
+        <target state="final">المعارف</target>
+      </trans-unit>
+      <trans-unit id="6gM15zD" resname="contact.nomLabel" approved="yes">
+        <source>contact.nomLabel</source>
+        <target state="final">اسم العائلة</target>
+      </trans-unit>
+      <trans-unit id="uNe.88T" resname="contact.partage" approved="yes">
+        <source>contact.partage</source>
+        <target state="final">مشترك</target>
+      </trans-unit>
+      <trans-unit id="bjY_ESX" resname="contact.prenomLabel" approved="yes">
+        <source>contact.prenomLabel</source>
+        <target state="final">الاسم</target>
+      </trans-unit>
+      <trans-unit id="s_lncKK" resname="contact.supprimer" approved="yes">
+        <source>contact.supprimer</source>
+        <target state="final">الغاء</target>
+      </trans-unit>
+      <trans-unit id="ae5F5ws" resname="contact.telephoneLabel" approved="yes">
+        <source>contact.telephoneLabel</source>
+        <target state="final">رقم الهاتف</target>
+      </trans-unit>
+      <trans-unit id="glRIc1N" resname="contact.text" approved="yes">
+        <source>contact.text</source>
+        <target state="final">ابعث لنا رسالة اذا اردت أي مساعدة او معلومات او باسم العائلة لأي مشكلة تواجهها عند استعمال ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="V6An5qD" resname="contact.title" approved="yes">
+        <source>contact.title</source>
+        <target state="final">اتصل بفريق ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="rD43hKi" resname="delete_your_account" approved="yes">
+        <source>delete_your_account</source>
+        <target state="final">اذا اردت الغاء حسابك انقر هنا</target>
+      </trans-unit>
+      <trans-unit id="6G6qoUb" resname="devenirUnRelaiReconnect.accueil.budget0.200000" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budget0.200000</source>
+        <target state="final">ميزانية اقل من 200000 يورو</target>
+      </trans-unit>
+      <trans-unit id="WfqrbAt" resname="devenirUnRelaiReconnect.accueil.budget1000000.1500000" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budget1000000.1500000</source>
+        <target state="final">ميزانية بين 1000000 و 1500000 يورو</target>
+      </trans-unit>
+      <trans-unit id="Fc3l2o2" resname="devenirUnRelaiReconnect.accueil.budget1500000.2000000" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budget1500000.2000000</source>
+        <target state="final">ميزانية بين 1500000 و 2000000 يورو</target>
+      </trans-unit>
+      <trans-unit id="3ldh5LN" resname="devenirUnRelaiReconnect.accueil.budget200000.500000" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budget200000.500000</source>
+        <target state="final">ميزانية بين 200000 و 500000 يورو</target>
+      </trans-unit>
+      <trans-unit id="Hq6bhuM" resname="devenirUnRelaiReconnect.accueil.budget2000000.plus" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budget2000000.plus</source>
+        <target state="final">ميزانية فوق 2000000 يورو</target>
+      </trans-unit>
+      <trans-unit id="tz966Fc" resname="devenirUnRelaiReconnect.accueil.budget500000.1000000" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budget500000.1000000</source>
+        <target state="final">ميزانية  بين 500000 و 1000000 يورو</target>
+      </trans-unit>
+      <trans-unit id="lJfBSbe" resname="devenirUnRelaiReconnect.accueil.budgetParAn" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budgetParAn</source>
+        <target state="final">أي % من المبلغ % يورو بالشهر</target>
+      </trans-unit>
+      <trans-unit id="v_O3hOa" resname="devenirUnRelaiReconnect.accueil.budgetParMois" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budgetParMois</source>
+        <target state="final">يورو بالشهر</target>
+      </trans-unit>
+      <trans-unit id="jji881F" resname="devenirUnRelaiReconnect.accueil.budgetText" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budgetText</source>
+        <target state="final">ريكونيكت هو مشروع اطلقته المؤسسات الاجتماعية و تعرضه على المستخدمين بشكل مجاني. و لكنه  يولد تكاليف مثل أي منصة رقمية اخرى مثل تلك المتعلقة  بادارة الاداة و تطويرها، و المساعدة في استعمالها، و نشرها، و تخزين البيانات الخ... يعتمد موقع ريكونيكت على اشتراكات المؤسسات و البنى الاجتماعية  لتقديم للأشخاص المشردين و العاملين الاجتماعيين الادوات الاكثر توافقا مع احتياجاتهم. بكونكم نقطة المناوبة  لريكونيكت  وانتم متضامنون مع استدامة هذا المشروع.</target>
+      </trans-unit>
+      <trans-unit id="w2_3MYz" resname="devenirUnRelaiReconnect.accueil.combienCaCoute" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.combienCaCoute</source>
+        <target state="final">ما هو الثمن؟</target>
+      </trans-unit>
+      <trans-unit id="Bk01VqT" resname="devenirUnRelaiReconnect.accueil.combienCaCouteTxt" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.combienCaCouteTxt</source>
+        <target state="final">يختلف مبلغ الاشتراك وقفا للميزانية السنوبة ل نقطة المناوبة و ذلك من اجل فتح مجال الاشتراك في ريكونيكت  للبنى او المؤسسات الاجتماعية من جميع الاحجام</target>
+      </trans-unit>
+      <trans-unit id="sDcG0v1" resname="devenirUnRelaiReconnect.accueil.jinscrisMaStructure" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.jinscrisMaStructure</source>
+        <target state="final">اسجل مؤسستي</target>
+      </trans-unit>
+      <trans-unit id="W94.bt8" resname="devenirUnRelaiReconnect.accueil.metaDesc" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.metaDesc</source>
+        <target state="final">سجل مؤسستك و صنف نقاط المناوبة  لريكونيكت التابعة لك</target>
+      </trans-unit>
+      <trans-unit id="SslHMFW" resname="devenirUnRelaiReconnect.accueil.metaTitle" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.metaTitle</source>
+        <target state="final">العب دور نقطة المناوبة  لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="lGRQ8mz" resname="devenirUnRelaiReconnect.accueil.queFaitRelai" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.queFaitRelai</source>
+        <target state="final">ما هو دور نقطة المناوبة؟</target>
+      </trans-unit>
+      <trans-unit id="0CvvC.l" resname="devenirUnRelaiReconnect.accueil.queFaitRelaiTxt" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.queFaitRelaiTxt</source>
+        <target state="final">ترافق نقطة المناوبة  لريكونيكت الاشخاص المشردين لفتح حسابهم على موقع ريكونيكت و استعماله .يمكنها ايضا ادخال المعلومات الاساسية في حساب المستخدمين.</target>
+      </trans-unit>
+      <trans-unit id="Z4RBw4Y" resname="devenirUnRelaiReconnect.accueil.quelEquipement" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.quelEquipement</source>
+        <target state="final">ما هي المعدات التي تحتاجها نقطة المناوبة  لريكونيكت؟</target>
+      </trans-unit>
+      <trans-unit id="2mgi2oU" resname="devenirUnRelaiReconnect.accueil.quelEquipementTxt" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.quelEquipementTxt</source>
+        <target state="final">تحتاج نقطة المناوبة  لريكونيكت لأتصال بالإنترنيت، و كومبيوتر، و ماسح ضوئي او آلة تصوير من اجل نسخ الوثائق الاساسية.</target>
+      </trans-unit>
+      <trans-unit id="_OUxIwp" resname="devenirUnRelaiReconnect.accueil.quiPeutDevenirRelai" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.quiPeutDevenirRelai</source>
+        <target state="final">من يمكنه ان يصبح نقطة تناوب ريكونيكت ؟</target>
+      </trans-unit>
+      <trans-unit id="pyEbbbb" resname="devenirUnRelaiReconnect.accueil.quiPeutDevenirRelaiTxt" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.quiPeutDevenirRelaiTxt</source>
+        <target state="final">يمكن جميع البنى او المؤسسات الاجتماعية التي ترافق الاشخاص المشردين ان تتسجل في ريكونيكت  و ان تصبح نقاط مناوبة لهذا الموقع</target>
+      </trans-unit>
+      <trans-unit id="D9wUr4e" resname="devenirUnRelaiReconnect.accueil.voirMontantParticipation" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.voirMontantParticipation</source>
+        <target state="final">رؤية حصيلة الاشتراكات</target>
+      </trans-unit>
+      <trans-unit id="CKwWut." resname="devenirUnRelaiReconnect.identification.associationLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.associationLabel</source>
+        <target state="final">مؤسستك</target>
+      </trans-unit>
+      <trans-unit id="HElPn6h" resname="devenirUnRelaiReconnect.identification.associationNomLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.associationNomLabel</source>
+        <target state="final">الاسم</target>
+      </trans-unit>
+      <trans-unit id="YFuLaj8" resname="devenirUnRelaiReconnect.identification.associationPasswordLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.associationPasswordLabel</source>
+        <target state="final">كلمة سر المؤسسة</target>
+      </trans-unit>
+      <trans-unit id="w.Hd4iw" resname="devenirUnRelaiReconnect.identification.associationUsernameLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.associationUsernameLabel</source>
+        <target state="final">اسم المستخدم للمؤسسة</target>
+      </trans-unit>
+      <trans-unit id="60UvjHj" resname="devenirUnRelaiReconnect.identification.categorieJuridiqueLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.categorieJuridiqueLabel</source>
+        <target state="final">الفئة القانونية</target>
+      </trans-unit>
+      <trans-unit id="Doq3vtb" resname="devenirUnRelaiReconnect.identification.connecteAvecAutreCompte" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.connecteAvecAutreCompte</source>
+        <target state="final">انت تتصل بحساب ريكونيكت ليس حساب شخص اداري. يجب قطع الاتصال اذا اردت تسجيل بنية او مؤسسة.</target>
+      </trans-unit>
+      <trans-unit id="7Zs3cVc" resname="devenirUnRelaiReconnect.identification.connectezVous" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.connectezVous</source>
+        <target state="final">اتصل باستخدام بيانات الاعتماد الخاصة بك لمتابعة تسجيلك</target>
+      </trans-unit>
+      <trans-unit id="uZaZyiA" resname="devenirUnRelaiReconnect.identification.credentialsLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.credentialsLabel</source>
+        <target state="final">بيانات اتصال مؤسستك</target>
+      </trans-unit>
+      <trans-unit id="NIEsBVC" resname="devenirUnRelaiReconnect.identification.jaiDejaEffectueLaPremiereEtape" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.jaiDejaEffectueLaPremiereEtape</source>
+        <target state="final">اذا كنت قد قطعت المرحلة الاولى انقر هنا</target>
+      </trans-unit>
+      <trans-unit id=".GoXtdX" resname="devenirUnRelaiReconnect.identification.metaDesc" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.metaDesc</source>
+        <target state="final">يرجى تسجيل المعلومات الخاصة بك</target>
+      </trans-unit>
+      <trans-unit id="X3ZyiEm" resname="devenirUnRelaiReconnect.identification.metaTitle" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.metaTitle</source>
+        <target state="final">تعريف</target>
+      </trans-unit>
+      <trans-unit id="WmqXCje" resname="devenirUnRelaiReconnect.identification.sirenLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.sirenLabel</source>
+        <target state="final">سيرين (رقم التعريف الاداري)</target>
+      </trans-unit>
+      <trans-unit id="r8xACR9" resname="devenirUnRelaiReconnect.identification.urlSiteLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.urlSiteLabel</source>
+        <target state="final">رابط موقع الانترنيت</target>
+      </trans-unit>
+      <trans-unit id="JQPc5V2" resname="devenirUnRelaiReconnect.identification.userLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.userLabel</source>
+        <target state="final">انت</target>
+      </trans-unit>
+      <trans-unit id="fDNH0hn" resname="devenirUnRelaiReconnect.inscriptionCentres.ajouterUneStructureSupplémentaire" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.ajouterUneStructureSupplémentaire</source>
+        <target state="final">اضف بنية او مؤسسة اخرى</target>
+      </trans-unit>
+      <trans-unit id="Vi4eOKj" resname="devenirUnRelaiReconnect.inscriptionCentres.auMoinsUnCentre" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.auMoinsUnCentre</source>
+        <target state="final">عليك ان تضيف واحد من مراكزك لمتابعة العملية</target>
+      </trans-unit>
+      <trans-unit id="BTTYNgE" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.0-1000" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.0-1000</source>
+        <target state="final">من 0 الى 100 يورو</target>
+      </trans-unit>
+      <trans-unit id="5z8i3Lz" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.1000-5000" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.1000-5000</source>
+        <target state="final">من 1000 الى 5000 يورو</target>
+      </trans-unit>
+      <trans-unit id="fzLCF_X" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.10000-50000" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.10000-50000</source>
+        <target state="final">من 10000 الى 50000 يورو</target>
+      </trans-unit>
+      <trans-unit id="RxaUBIo" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.250000-500000" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.250000-500000</source>
+        <target state="final">من 250000 الى 500000 يورو</target>
+      </trans-unit>
+      <trans-unit id="AaMYSPD" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.5000-10000" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.5000-10000</source>
+        <target state="final">من 5000 الى 10000 يورو</target>
+      </trans-unit>
+      <trans-unit id="09w6XbA" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.50000-250000" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.50000-250000</source>
+        <target state="final">من 50000 الى 250000 يورو</target>
+      </trans-unit>
+      <trans-unit id="w_F_JYQ" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.plus500000" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.plus500000</source>
+        <target state="final">اكثر من 500000 يورو</target>
+      </trans-unit>
+      <trans-unit id="HS8Pz6d" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuelLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuelLabel</source>
+        <target state="final">الميزانية السنوية</target>
+      </trans-unit>
+      <trans-unit id="2jE5NkJ" resname="devenirUnRelaiReconnect.inscriptionCentres.finessFormatErreur" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.finessFormatErreur</source>
+        <target state="final">ان شكل رقم الفينس غير صالح</target>
+      </trans-unit>
+      <trans-unit id="YhKBCtB" resname="devenirUnRelaiReconnect.inscriptionCentres.finessLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.finessLabel</source>
+        <target state="final">الفينس</target>
+      </trans-unit>
+      <trans-unit id="CAEpLdI" resname="devenirUnRelaiReconnect.inscriptionCentres.justificatifFileLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.justificatifFileLabel</source>
+        <target state="final">ارفاق الاثبات</target>
+      </trans-unit>
+      <trans-unit id="FtfMX.o" resname="devenirUnRelaiReconnect.inscriptionCentres.nomLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.nomLabel</source>
+        <target state="final">الاسم</target>
+      </trans-unit>
+      <trans-unit id="AtIXCaO" resname="devenirUnRelaiReconnect.inscriptionCentres.siretFormatErreur" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.siretFormatErreur</source>
+        <target state="final">ان شكل رقم سيريت (رقم تعريف المؤسسات) غير صالح</target>
+      </trans-unit>
+      <trans-unit id="W2_ryno" resname="devenirUnRelaiReconnect.inscriptionCentres.siretLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.siretLabel</source>
+        <target state="final">سيريت (رقم تعريف المؤسسات)</target>
+      </trans-unit>
+      <trans-unit id="f0dv.HJ" resname="devenirUnRelaiReconnect.inscriptionCentres.supprimerCeCentre" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.supprimerCeCentre</source>
+        <target state="final">ازالة هذا المركز</target>
+      </trans-unit>
+      <trans-unit id=".v3dCfb" resname="devenirUnRelaiReconnect.inscriptionCentres.telephoneLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.telephoneLabel</source>
+        <target state="final">رقم الهاتف</target>
+      </trans-unit>
+      <trans-unit id="Z0QQ7xr" resname="devenirUnRelaiReconnect.inscriptionCentres.typeCentreLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.typeCentreLabel</source>
+        <target state="final">نوع المركز</target>
+      </trans-unit>
+      <trans-unit id="6a2gJ7_" resname="devenirUnRelaiReconnect.menu.confirmation" approved="yes">
+        <source>devenirUnRelaiReconnect.menu.confirmation</source>
+        <target state="final">تأكيد</target>
+      </trans-unit>
+      <trans-unit id="Qvgv5c8" resname="devenirUnRelaiReconnect.menu.identification" approved="yes">
+        <source>devenirUnRelaiReconnect.menu.identification</source>
+        <target state="final">التعريف</target>
+      </trans-unit>
+      <trans-unit id="0jNeN0J" resname="devenirUnRelaiReconnect.menu.inscriptionStructures" approved="yes">
+        <source>devenirUnRelaiReconnect.menu.inscriptionStructures</source>
+        <target state="final">تسجيل المؤسسات</target>
+      </trans-unit>
+      <trans-unit id="9RAA2k1" resname="devenirUnRelaiReconnect.menu.paiement" approved="yes">
+        <source>devenirUnRelaiReconnect.menu.paiement</source>
+        <target state="final">دفع</target>
+      </trans-unit>
+      <trans-unit id="v43KUr2" resname="devenirUnRelaiReconnect.menu.recapitulatif" approved="yes">
+        <source>devenirUnRelaiReconnect.menu.recapitulatif</source>
+        <target state="final">ملخص</target>
+      </trans-unit>
+      <trans-unit id="1bKCwC7" resname="devenirUnRelaiReconnect.recapitulatif.centre" approved="yes">
+        <source>devenirUnRelaiReconnect.recapitulatif.centre</source>
+        <target state="final">المركز</target>
+      </trans-unit>
+      <trans-unit id="HF8EQDB" resname="devenirUnRelaiReconnect.recapitulatif.prixDuCentre" approved="yes">
+        <source>devenirUnRelaiReconnect.recapitulatif.prixDuCentre</source>
+        <target state="final">ثمن المركز</target>
+      </trans-unit>
+      <trans-unit id="mQmhy3." resname="devenirUnRelaiReconnect.recapitulatif.prixTotal" approved="yes">
+        <source>devenirUnRelaiReconnect.recapitulatif.prixTotal</source>
+        <target state="final">الثمن الاجمالي</target>
+      </trans-unit>
+      <trans-unit id="ifjDiCa" resname="devenirUnRelaiReconnect.recapitulatif.vosCentres" approved="yes">
+        <source>devenirUnRelaiReconnect.recapitulatif.vosCentres</source>
+        <target state="final">مؤسساتك</target>
+      </trans-unit>
+      <trans-unit id="vBnMGpy" resname="devenirUnRelaiReconnect.recapitulatif.votreIdentite" approved="yes">
+        <source>devenirUnRelaiReconnect.recapitulatif.votreIdentite</source>
+        <target state="final">هويتك</target>
+      </trans-unit>
+      <trans-unit id="uDR65W2" resname="disabledAt" approved="yes">
+        <source>disabledAt</source>
+        <target state="final">تعطيل في</target>
+      </trans-unit>
+      <trans-unit id="_O2hEWd" resname="disabledBy" approved="yes">
+        <source>disabledBy</source>
+        <target state="final">معطل بواسطة</target>
+      </trans-unit>
+      <trans-unit id="tRVIYEw" resname="document.apercu" approved="yes">
+        <source>document.apercu</source>
+        <target state="final">معاينات</target>
+      </trans-unit>
+      <trans-unit id="Rmc8us0" resname="document.aucunFichier" approved="yes">
+        <source>document.aucunFichier</source>
+        <target state="final">لا يوجد أي ملف في الوقت الحاضر</target>
+      </trans-unit>
+      <trans-unit id="LvoFLVw" resname="document.avertissementTaille" approved="yes">
+        <source>document.avertissementTaille</source>
+        <target state="final">ستصل قريبا الى الحد الاقصى لحجم مساحة التخزين الخاصة بك (الحجم)</target>
+      </trans-unit>
+      <trans-unit id="BSjMOwL" resname="document.bienSauvegarde" approved="yes">
+        <source>document.bienSauvegarde</source>
+        <target state="final">لقد تم حفظ وثيقتك. لا تنسى الغاء الملف من الكمبيوتر</target>
+      </trans-unit>
+      <trans-unit id="XLUN1E5" resname="document.bienSupprime" approved="yes">
+        <source>document.bienSupprime</source>
+        <target state="final">لقد تم الغاء وثيقتك</target>
+      </trans-unit>
+      <trans-unit id="M8ak2x2" resname="document.categorie2" approved="yes">
+        <source>document.categorie2</source>
+        <target state="final">الفئة:</target>
+      </trans-unit>
+      <trans-unit id="sb7hg7t" resname="document.categorie" approved="yes">
+        <source>document.categorie</source>
+        <target state="final">اختر فئة</target>
+      </trans-unit>
+      <trans-unit id="1z76nwp" resname="document.choisirFichier" approved="yes">
+        <source>document.choisirFichier</source>
+        <target state="final">اختيار ملف</target>
+      </trans-unit>
+      <trans-unit id="x1xiZXD" resname="document.contenuLabel" approved="yes">
+        <source>document.contenuLabel</source>
+        <target state="final">محتوى</target>
+      </trans-unit>
+      <trans-unit id="2vBKhxN" resname="document.contient" approved="yes">
+        <source>document.contient</source>
+        <target state="final">يحتوي على:</target>
+      </trans-unit>
+      <trans-unit id="YTREaY9" resname="document.creerUnDossier" approved="yes">
+        <source>document.creerUnDossier</source>
+        <target state="final">انشاء ملف</target>
+      </trans-unit>
+      <trans-unit id="2ybSwuJ" resname="document.dateDeDepot" approved="yes">
+        <source>document.dateDeDepot</source>
+        <target state="final">تاريخ الايداع</target>
+      </trans-unit>
+      <trans-unit id="uNRQN.j" resname="document.dateEmissionLabel" approved="yes">
+        <source>document.dateEmissionLabel</source>
+        <target state="final">تاريخ الاصدار</target>
+      </trans-unit>
+      <trans-unit id="Toe4Am2" resname="document.deposerDesFichiers" approved="yes">
+        <source>document.deposerDesFichiers</source>
+        <target state="final">ايداع ملفات</target>
+      </trans-unit>
+      <trans-unit id="JQ9Gs8l" resname="document.dossier" approved="yes">
+        <source>document.dossier</source>
+        <target state="final">مجلد</target>
+      </trans-unit>
+      <trans-unit id="Jrm8Zlq" resname="document.envoyerEmail" approved="yes">
+        <source>document.envoyerEmail</source>
+        <target state="final">ارسال عبر البريد الالكتروني</target>
+      </trans-unit>
+      <trans-unit id="dK70d2f" resname="document.envoyerParEmail.bienEnvoyeParMail" approved="yes">
+        <source>document.envoyerParEmail.bienEnvoyeParMail</source>
+        <target state="final">لقد تم ارسال ملفك عبر البريد الالكتروني</target>
+      </trans-unit>
+      <trans-unit id="EcuvApZ" resname="document.envoyerParEmail.dossierVide" approved="yes">
+        <source>document.envoyerParEmail.dossierVide</source>
+        <target state="final">ان الملف الذي تريد ارساله عبر البريد الالكتروني فارغ</target>
+      </trans-unit>
+      <trans-unit id="aFdpY7P" resname="document.envoyerParEmail.emailLabel" approved="yes">
+        <source>document.envoyerParEmail.emailLabel</source>
+        <target state="final">العنوان الالكتروني للمرسل اليه</target>
+      </trans-unit>
+      <trans-unit id="5dYeeKY" resname="document.fichier" approved="yes">
+        <source>document.fichier</source>
+        <target state="final">ملفات</target>
+      </trans-unit>
+      <trans-unit id="H2HAkSD" resname="document.imprimer" approved="yes">
+        <source>document.imprimer</source>
+        <target state="final">طباعة</target>
+      </trans-unit>
+      <trans-unit id="bkDm4IA" resname="document.metaTitle" approved="yes">
+        <source>document.metaTitle</source>
+        <target state="final">وثائق</target>
+      </trans-unit>
+      <trans-unit id="KpTEPGO" resname="document.modifier" approved="yes">
+        <source>document.modifier</source>
+        <target state="final">تعديل</target>
+      </trans-unit>
+      <trans-unit id="jgt06Bj" resname="document.nom" approved="yes">
+        <source>document.nom</source>
+        <target state="final">الاسم:</target>
+      </trans-unit>
+      <trans-unit id="1PO0O6Y" resname="document.nomLabel" approved="yes">
+        <source>document.nomLabel</source>
+        <target state="final">الاسم</target>
+      </trans-unit>
+      <trans-unit id="1A0XAII" resname="document.ouGlissezDeposer" approved="yes">
+        <source>document.ouGlissezDeposer</source>
+        <target state="final">او اسحب و ضع هنا</target>
+      </trans-unit>
+      <trans-unit id="jLiTHhT" resname="document.partage" approved="yes">
+        <source>document.partage</source>
+        <target state="final">مشاركة</target>
+      </trans-unit>
+      <trans-unit id="OSE7X2h" resname="document.plusDespace" approved="yes">
+        <source>document.plusDespace</source>
+        <target state="final">لا يمكنك تحميل هذا الملف اذ ان مساحة التخزين الخاصة بك ليست كافية</target>
+      </trans-unit>
+      <trans-unit id="tRu1x.a" resname="document.supprimer" approved="yes">
+        <source>document.supprimer</source>
+        <target state="final">الغاء</target>
+      </trans-unit>
+      <trans-unit id="PHseq_W" resname="document.telecharger" approved="yes">
+        <source>document.telecharger</source>
+        <target state="final">تحميل</target>
+      </trans-unit>
+      <trans-unit id="NV0B8Mc" resname="document.type2" approved="yes">
+        <source>document.type2</source>
+        <target state="final">النوع</target>
+      </trans-unit>
+      <trans-unit id="bpvQxPh" resname="document.type" approved="yes">
+        <source>document.type</source>
+        <target state="final">نوع</target>
+      </trans-unit>
+      <trans-unit id="iYtZhkQ" resname="document.typeDocument" approved="yes">
+        <source>document.typeDocument</source>
+        <target state="final">نوع الوثيقة</target>
+      </trans-unit>
+      <trans-unit id="isXM5lQ" resname="document.valableJusqua" approved="yes">
+        <source>document.valableJusqua</source>
+        <target state="final">ساري المفعول حتى:</target>
+      </trans-unit>
+      <trans-unit id="SMVltk1" resname="document.validite.expire" approved="yes">
+        <source>document.validite.expire</source>
+        <target state="final">منتهي الصلاحية</target>
+      </trans-unit>
+      <trans-unit id="QEyVzNo" resname="document.validite.inconnu" approved="yes">
+        <source>document.validite.inconnu</source>
+        <target state="final">مجهول</target>
+      </trans-unit>
+      <trans-unit id="3JLrD90" resname="document.validite.title" approved="yes">
+        <source>document.validite.title</source>
+        <target state="final">صلاحية</target>
+      </trans-unit>
+      <trans-unit id="h1LYVyG" resname="document.validite.validXAnd" approved="yes">
+        <source>document.validite.validXAnd</source>
+        <target state="final">تجري صلاحية هذا النوع من الوثائق  .... سنة</target>
+      </trans-unit>
+      <trans-unit id="kvWVAUj" resname="document.validite.valide" approved="yes">
+        <source>document.validite.valide</source>
+        <target state="final">صالح</target>
+      </trans-unit>
+      <trans-unit id="zGk9flL" resname="donneePersonnelle.ajouteElementTitle" approved="yes">
+        <source>donneePersonnelle.ajouteElementTitle</source>
+        <target state="final">اضافة عنصر</target>
+      </trans-unit>
+      <trans-unit id="XWhbXlR" resname="donneePersonnelle.ajouter" approved="yes">
+        <source>donneePersonnelle.ajouter</source>
+        <target state="final">اضافة</target>
+      </trans-unit>
+      <trans-unit id="M4oEiHg" resname="donneePersonnelle.cantDelete" approved="yes">
+        <source>donneePersonnelle.cantDelete</source>
+        <target state="final">لا يحق لك الغاء هذه البيانات</target>
+      </trans-unit>
+      <trans-unit id="GKHmQ1j" resname="donneePersonnelle.cantDisplay" approved="yes">
+        <source>donneePersonnelle.cantDisplay</source>
+        <target state="final">لا يحق لك عرض بيانات هذا المستفيد</target>
+      </trans-unit>
+      <trans-unit id="UfbRXgl" resname="donneePersonnelle.cantEdit" approved="yes">
+        <source>donneePersonnelle.cantEdit</source>
+        <target state="final">لا يحق لك تعديل هذه البيانات</target>
+      </trans-unit>
+      <trans-unit id="K5or0xx" resname="donneePersonnelle.cantReportAbuse" approved="yes">
+        <source>donneePersonnelle.cantReportAbuse</source>
+        <target state="final">لا يحق لك الاشارة بأن هذه البيانات خاطئة</target>
+      </trans-unit>
+      <trans-unit id="TspoTFc" resname="donneePersonnelle.etesVousSurSignalerCommeAbusif" approved="yes">
+        <source>donneePersonnelle.etesVousSurSignalerCommeAbusif</source>
+        <target state="final">هل تريد حقا الاشارة الى هذا الخطأ؟</target>
+      </trans-unit>
+      <trans-unit id="YEQ9oYh" resname="donneePersonnelle.imprimer" approved="yes">
+        <source>donneePersonnelle.imprimer</source>
+        <target state="final">طباعة</target>
+      </trans-unit>
+      <trans-unit id="KvJrfOZ" resname="donneePersonnelle.partage" approved="yes">
+        <source>donneePersonnelle.partage</source>
+        <target state="final">مشترك</target>
+      </trans-unit>
+      <trans-unit id="0i09AOy" resname="donneePersonnelle.partages" approved="yes">
+        <source>donneePersonnelle.partages</source>
+        <target state="final">مشتركة مع نقاط المناوبة التي ترافقني</target>
+      </trans-unit>
+      <trans-unit id="__2WcZk" resname="donneePersonnelle.prive" approved="yes">
+        <source>donneePersonnelle.prive</source>
+        <target state="final">خاص</target>
+      </trans-unit>
+      <trans-unit id="lVvJHu_" resname="donneePersonnelle.prives" approved="yes">
+        <source>donneePersonnelle.prives</source>
+        <target state="final">خاصة</target>
+      </trans-unit>
+      <trans-unit id="IA9jjpB" resname="donneePersonnelle.public" approved="yes">
+        <source>donneePersonnelle.public</source>
+        <target state="final">عمومي</target>
+      </trans-unit>
+      <trans-unit id="msz46SJ" resname="donneePersonnelle.quitter" approved="yes">
+        <source>donneePersonnelle.quitter</source>
+        <target state="final">مغادرة</target>
+      </trans-unit>
+      <trans-unit id="iNpZLe_" resname="donneePersonnelle.signalerCommeAbusif" approved="yes">
+        <source>donneePersonnelle.signalerCommeAbusif</source>
+        <target state="final">الاشارة الى خطأ</target>
+      </trans-unit>
+      <trans-unit id="xU3lSWr" resname="donneePersonnelle.tous" approved="yes">
+        <source>donneePersonnelle.tous</source>
+        <target state="final">الجميع</target>
+      </trans-unit>
+      <trans-unit id="AM8r9Fa" resname="donneePersonnelle.vue" approved="yes">
+        <source>donneePersonnelle.vue</source>
+        <target state="final">مرئية</target>
+      </trans-unit>
+      <trans-unit id="XEidPmU" resname="dossier.vide" approved="yes">
+        <source>dossier.vide</source>
+        <target state="final">المجلد فارغ</target>
+      </trans-unit>
+      <trans-unit id="_5z3Vga" resname="enabled" approved="yes">
+        <source>enabled</source>
+        <target state="final">نشط</target>
+      </trans-unit>
+      <trans-unit id="ygD8z7Q" resname="error" approved="yes">
+        <source>error</source>
+        <target state="final">خطأ</target>
+      </trans-unit>
+      <trans-unit id="VfBiwdF" resname="evenement.ajouter" approved="yes">
+        <source>evenement.ajouter</source>
+        <target state="final">اضافة حدث</target>
+      </trans-unit>
+      <trans-unit id="AT6atVn" resname="evenement.bienSauvegarde" approved="yes">
+        <source>evenement.bienSauvegarde</source>
+        <target state="final">لقد تم حفظ الحدث</target>
+      </trans-unit>
+      <trans-unit id="DfFlnt5" resname="evenement.bienSupprime" approved="yes">
+        <source>evenement.bienSupprime</source>
+        <target state="final">لفد تم الغاء الحدث</target>
+      </trans-unit>
+      <trans-unit id="G2UJ.Ov" resname="evenement.cantDisplay" approved="yes">
+        <source>evenement.cantDisplay</source>
+        <target state="final">لا يحق لك عرض الاحداث الخاصة بهذا المستفيد</target>
+      </trans-unit>
+      <trans-unit id="7qrr3E1" resname="evenement.cantEdit" approved="yes">
+        <source>evenement.cantEdit</source>
+        <target state="final">لا يحق لك تعديل هذا الحدث</target>
+      </trans-unit>
+      <trans-unit id="WlyoNfq" resname="evenement.commentaireLabel" approved="yes">
+        <source>evenement.commentaireLabel</source>
+        <target state="final">الرسالة</target>
+      </trans-unit>
+      <trans-unit id="MAOonyO" resname="evenement.contenuLabel" approved="yes">
+        <source>evenement.contenuLabel</source>
+        <target state="final">المحتوى</target>
+      </trans-unit>
+      <trans-unit id="ypN.oVa" resname="evenement.dateLabel" approved="yes">
+        <source>evenement.dateLabel</source>
+        <target state="final">التاريخ</target>
+      </trans-unit>
+      <trans-unit id="vMFoaJr" resname="evenement.emptyData" approved="yes">
+        <source>evenement.emptyData</source>
+        <target state="final">لا توجد أحداث في هذا الوقت. انقر فوق "إضافة" لإنشاء واحد.</target>
+      </trans-unit>
+      <trans-unit id="6ywBrZ3" resname="evenement.errorSpecifierHeureRappel" approved="yes">
+        <source>evenement.errorSpecifierHeureRappel</source>
+        <target state="final">عليك ان تحدد عدد الساعات قبل ارسال التذكير الخاص بك</target>
+      </trans-unit>
+      <trans-unit id="faNBe34" resname="evenement.heureRappelLabel" approved="yes">
+        <source>evenement.heureRappelLabel</source>
+        <target state="final">عدد الساعات قبل ارسال التذكير</target>
+      </trans-unit>
+      <trans-unit id="UDuhsid" resname="evenement.lieuLabel" approved="yes">
+        <source>evenement.lieuLabel</source>
+        <target state="final">الموقع</target>
+      </trans-unit>
+      <trans-unit id="7C9OjJ." resname="evenement.mailContent" approved="yes">
+        <source>evenement.mailContent</source>
+        <target state="final">انت تتلقى هذه الرسالة الالكترونية لأنك طلبت سابقا ان بتم ارسال رسالة الكترونية من قبل نقطة المناوبة  لريكونيكت لتذكيرك بالموعد نهار ... انقر هنا لمعرفة تفاصيل هذا الموعد</target>
+      </trans-unit>
+      <trans-unit id="loptky9" resname="evenement.mailTitle" approved="yes">
+        <source>evenement.mailTitle</source>
+        <target state="final">التذكير بموعدك</target>
+      </trans-unit>
+      <trans-unit id="5hkExxW" resname="evenement.metaTitle" approved="yes">
+        <source>evenement.metaTitle</source>
+        <target state="final">احداث</target>
+      </trans-unit>
+      <trans-unit id="Zou4Pd8" resname="evenement.nomLabel" approved="yes">
+        <source>evenement.nomLabel</source>
+        <target state="final">العنوان</target>
+      </trans-unit>
+      <trans-unit id="bsbCX10" resname="evenement.rappelsLabel" approved="yes">
+        <source>evenement.rappelsLabel</source>
+        <target state="final">اشعارات التذكير</target>
+      </trans-unit>
+      <trans-unit id="Gxlr9aH" resname="evenement.smsContent" approved="yes">
+        <source>evenement.smsContent</source>
+        <target state="final">تذكير من قبل نقطة المناوبة  لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="W7wV6Bq" resname="evenement.timeLabel" approved="yes">
+        <source>evenement.timeLabel</source>
+        <target state="final">الساعة</target>
+      </trans-unit>
+      <trans-unit id="I4USARC" resname="flash.erreur" approved="yes">
+        <source>flash.erreur</source>
+        <target state="final">خطأ</target>
+      </trans-unit>
+      <trans-unit id="Mk2hXEX" resname="footer.aide" approved="yes">
+        <source>footer.aide</source>
+        <target state="final">اداة مساعدة</target>
+      </trans-unit>
+      <trans-unit id="VC8Dt3m" resname="footer.autres" approved="yes">
+        <source>footer.autres</source>
+        <target state="final">امور اخرى</target>
+      </trans-unit>
+      <trans-unit id="Nn6zbc2" resname="footer.cgv" approved="yes">
+        <source>footer.cgv</source>
+        <target state="final">CGU</target>
+      </trans-unit>
+      <trans-unit id="9oTyHxH" resname="footer.commentCaMarche" approved="yes">
+        <source>footer.commentCaMarche</source>
+        <target state="final">كيفية التشغيل</target>
+      </trans-unit>
+      <trans-unit id="dQUUGKO" resname="footer.connexion" approved="yes">
+        <source>footer.connexion</source>
+        <target state="final">اتصال</target>
+      </trans-unit>
+      <trans-unit id="o1lfBeo" resname="footer.contact" approved="yes">
+        <source>footer.contact</source>
+        <target state="final">المعرفة</target>
+      </trans-unit>
+      <trans-unit id="GceQhC6" resname="footer.copyright" approved="yes">
+        <source>footer.copyright</source>
+        <target state="final">©2021 Reconnect جميع الحقوق محفوظة</target>
+      </trans-unit>
+      <trans-unit id="4SgJqaG" resname="footer.deconnexion" approved="yes">
+        <source>footer.deconnexion</source>
+        <target state="final">قطع الاتصال</target>
+      </trans-unit>
+      <trans-unit id="Ab2qGZa" resname="footer.devenirUnRelai" approved="yes">
+        <source>footer.devenirUnRelai</source>
+        <target state="final">العب دور نقطة مناوبة  لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="KDVgOp5" resname="footer.faq" approved="yes">
+        <source>footer.faq</source>
+        <target state="final">الاسئلة الشائعة</target>
+      </trans-unit>
+      <trans-unit id="jGiTQGM" resname="footer.groupeSos" approved="yes">
+        <source>footer.groupeSos</source>
+        <target state="final">مجموعة  النجدة SOS</target>
+      </trans-unit>
+      <trans-unit id="ob_QTDi" resname="footer.inscription" approved="yes">
+        <source>footer.inscription</source>
+        <target state="final">تسجيل</target>
+      </trans-unit>
+      <trans-unit id="eVn8s0t" resname="footer.mentionsLegales" approved="yes">
+        <source>footer.mentionsLegales</source>
+        <target state="final">تنبيه قانوني</target>
+      </trans-unit>
+      <trans-unit id="5cfbPbQ" resname="footer.modeDemploi" approved="yes">
+        <source>footer.modeDemploi</source>
+        <target state="final">تعليمات</target>
+      </trans-unit>
+      <trans-unit id="eJjF8gW" resname="footer.partenaires" approved="yes">
+        <source>footer.partenaires</source>
+        <target state="final">الشركاء</target>
+      </trans-unit>
+      <trans-unit id="cgr4zlC" resname="footer.planDuSite" approved="yes">
+        <source>footer.planDuSite</source>
+        <target state="final">خريطة الموقع</target>
+      </trans-unit>
+      <trans-unit id="uaewnEz" resname="footer.reconnect" approved="yes">
+        <source>footer.reconnect</source>
+        <target state="final">ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="cWc0rpm" resname="footer.trouverUnCentreSocial" approved="yes">
+        <source>footer.trouverUnCentreSocial</source>
+        <target state="final">ايجاد مركز اجتماعي</target>
+      </trans-unit>
+      <trans-unit id="iQFKHJD" resname="footer.utilisation" approved="yes">
+        <source>footer.utilisation</source>
+        <target state="final">استعمال</target>
+      </trans-unit>
+      <trans-unit id="I6LbSvp" resname="form.validation.noPassword" approved="yes">
+        <source>form.validation.noPassword</source>
+        <target state="final">عليك ان تختار كلمة سر</target>
+      </trans-unit>
+      <trans-unit id="dqEIVrd" resname="form.validation.passwordFormat" approved="yes">
+        <source>form.validation.passwordFormat</source>
+        <target state="final">يجب ان تحتوي كلمة السر على حروف و ارقام</target>
+      </trans-unit>
+      <trans-unit id="Z18hW3z" resname="form.validation.phoneFormat" approved="yes">
+        <source>form.validation.phoneFormat</source>
+        <target state="final">ان شكل رقم هاتفك مجهول</target>
+      </trans-unit>
+      <trans-unit id="oOK91pf" resname="form.validation.sirenFormat" approved="yes">
+        <source>form.validation.sirenFormat</source>
+        <target state="final">ان شكل رقم السيرين غير صالح</target>
+      </trans-unit>
+      <trans-unit id="rtfhvh0" resname="form_connexion" approved="yes">
+        <source>form_connexion</source>
+        <target state="final">تسجيل دخول</target>
+      </trans-unit>
+      <trans-unit id="Fxi_CPB" resname="form_forgot_password" approved="yes">
+        <source>form_forgot_password</source>
+        <target state="final">إعادة ضبط كلمة السر</target>
+      </trans-unit>
+      <trans-unit id="2UXKonp" resname="form_login" approved="yes">
+        <source>form_login</source>
+        <target state="final">اسم المستخدم أو كلمة المرور</target>
+      </trans-unit>
+      <trans-unit id=".jAC5W1" resname="form_password" approved="yes">
+        <source>form_password</source>
+        <target state="final">كلمة السر</target>
+      </trans-unit>
+      <trans-unit id=".SmBMIU" resname="gestionnaire.centres.btnAjouterUnCentre" approved="yes">
+        <source>gestionnaire.centres.btnAjouterUnCentre</source>
+        <target state="final">اضافة مركز</target>
+      </trans-unit>
+      <trans-unit id="G11SkwU" resname="gestionnaire.centres.cotisationJusqua" approved="yes">
+        <source>gestionnaire.centres.cotisationJusqua</source>
+        <target state="final">المساهمة حتى (التاريخ)</target>
+      </trans-unit>
+      <trans-unit id="XolpKvs" resname="gestionnaire.centres.cotisationNoneffectuee" approved="yes">
+        <source>gestionnaire.centres.cotisationNoneffectuee</source>
+        <target state="final">لم تتم المساهمة (تم الغاء المركز)</target>
+      </trans-unit>
+      <trans-unit id="des0F7w" resname="gestionnaire.centres.cotiserPourCeCentre" approved="yes">
+        <source>gestionnaire.centres.cotiserPourCeCentre</source>
+        <target state="final">دفع المساهمة</target>
+      </trans-unit>
+      <trans-unit id="T2BE92r" resname="gestionnaire.centres.fairePassation" approved="yes">
+        <source>gestionnaire.centres.fairePassation</source>
+        <target state="final">القيام بالتسليم</target>
+      </trans-unit>
+      <trans-unit id="8vpfIA2" resname="gestionnaire.centres.metaTitle" approved="yes">
+        <source>gestionnaire.centres.metaTitle</source>
+        <target state="final">نقاط المناوبة  لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="sM9XE0S" resname="gestionnaire.centres.noCentres" approved="yes">
+        <source>gestionnaire.centres.noCentres</source>
+        <target state="final">لم تسجل بعد أي نقطة مناوبة  لريكونيكت. انقر ادناه لتسجيل نقطة تناوب ريكونيكت.</target>
+      </trans-unit>
+      <trans-unit id="ckall9c" resname="gestionnaire.centres.rechargeSms" approved="yes">
+        <source>gestionnaire.centres.rechargeSms</source>
+        <target state="final">شراء امداد لأرسال رسائل خطية قصيرة</target>
+      </trans-unit>
+      <trans-unit id="iYIPLIk" resname="gestionnaire.centres.renouveller" approved="yes">
+        <source>gestionnaire.centres.renouveller</source>
+        <target state="final">التجديد</target>
+      </trans-unit>
+      <trans-unit id="9H_XWhs" resname="gestionnaire.centres.statistiquesCentre" approved="yes">
+        <source>gestionnaire.centres.statistiquesCentre</source>
+        <target state="final">احصاءات المركز</target>
+      </trans-unit>
+      <trans-unit id="NL5iGt1" resname="gestionnaire.centres.title" approved="yes">
+        <source>gestionnaire.centres.title</source>
+        <target state="final">نقاط المناوبة  لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="BjliXdO" resname="gestionnaire.centres.voirBeneficiaires" approved="yes">
+        <source>gestionnaire.centres.voirBeneficiaires</source>
+        <target state="final">رؤية المستفيدين</target>
+      </trans-unit>
+      <trans-unit id="j_45fGE" resname="gestionnaire.centres.voirMembres" approved="yes">
+        <source>gestionnaire.centres.voirMembres</source>
+        <target state="final">رؤية الاعضاء</target>
+      </trans-unit>
+      <trans-unit id="P6NPvjQ" resname="gestionnaire.envoyerCentreAGestionnaire.emailLabel" approved="yes">
+        <source>gestionnaire.envoyerCentreAGestionnaire.emailLabel</source>
+        <target state="final">العنوان الالكتروني:</target>
+      </trans-unit>
+      <trans-unit id="dYrd7NY" resname="gestionnaire.envoyerCentreAGestionnaire.metaTitle" approved="yes">
+        <source>gestionnaire.envoyerCentreAGestionnaire.metaTitle</source>
+        <target state="final">الارسال الى احد المديرين</target>
+      </trans-unit>
+      <trans-unit id="pd6Nydl" resname="gestionnaire.envoyerCentreAGestionnaire.pasGestionnaire" approved="yes">
+        <source>gestionnaire.envoyerCentreAGestionnaire.pasGestionnaire</source>
+        <target state="final">العنوان الالكتروني الذي تم ادخاله هو عنوان احد مستفيدي ريكونيكت و ليس عنوان احد مديري مركز</target>
+      </trans-unit>
+      <trans-unit id="4BXSSr8" resname="gestionnaire.envoyerCentreAGestionnaire.subtitle" approved="yes">
+        <source>gestionnaire.envoyerCentreAGestionnaire.subtitle</source>
+        <target state="final">تخويل مدير آخر لإدارة هذا المركز. يرجى ادخال عنوانه الالكتروني:</target>
+      </trans-unit>
+      <trans-unit id="agu_efU" resname="gestionnaire.envoyerCentreAGestionnaire.success" approved="yes">
+        <source>gestionnaire.envoyerCentreAGestionnaire.success</source>
+        <target state="final">لقد تم تحويل المركز الى هذا المدير</target>
+      </trans-unit>
+      <trans-unit id="PuNp1CG" resname="gestionnaire.envoyerCentreAGestionnaire.title" approved="yes">
+        <source>gestionnaire.envoyerCentreAGestionnaire.title</source>
+        <target state="final">الارسال الى احد المديرين</target>
+      </trans-unit>
+      <trans-unit id="UDL.mSY" resname="gestionnaire.menu.gestionBeneficiaires" approved="yes">
+        <source>gestionnaire.menu.gestionBeneficiaires</source>
+        <target state="final">ادارة المستخدمين</target>
+      </trans-unit>
+      <trans-unit id="e_ep2j_" resname="gestionnaire.menu.gestionMembres" approved="yes">
+        <source>gestionnaire.menu.gestionMembres</source>
+        <target state="final">ادارة الاعضاء</target>
+      </trans-unit>
+      <trans-unit id="HqWljn8" resname="gestionnaire.menu.gestionRelais" approved="yes">
+        <source>gestionnaire.menu.gestionRelais</source>
+        <target state="final">ادارة نقاط المناوبة  لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="5Zdd4pN" resname="gestionnaire.menu.usagers" approved="yes">
+        <source>gestionnaire.menu.usagers</source>
+        <target state="final">المستخدمين</target>
+      </trans-unit>
+      <trans-unit id="YrN.vhM" resname="header.logo" approved="yes">
+        <source>header.logo</source>
+        <target state="final">ريكونيكت كلاود التضامن</target>
+      </trans-unit>
+      <trans-unit id="z3vjO0v" resname="header.menu.commentCaMarche" approved="yes">
+        <source>header.menu.commentCaMarche</source>
+        <target state="final">كيفية التشغيل</target>
+      </trans-unit>
+      <trans-unit id="waRCm6X" resname="header.menu.connection" approved="yes">
+        <source>header.menu.connection</source>
+        <target state="final">اتصا</target>
+      </trans-unit>
+      <trans-unit id="b_HhidU" resname="header.menu.deconnection" approved="yes">
+        <source>header.menu.deconnection</source>
+        <target state="final">قطع الاتصال</target>
+      </trans-unit>
+      <trans-unit id="XFbFoW9" resname="header.menu.devenirUnRelaiReconnect" approved="yes">
+        <source>header.menu.devenirUnRelaiReconnect</source>
+        <target state="final">العب دور نقطة مناوبة  لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="WNcNKls" resname="header.menu.fermer" approved="yes">
+        <source>header.menu.fermer</source>
+        <target state="final">اقفال</target>
+      </trans-unit>
+      <trans-unit id="ck3q6WK" resname="header.menu.ilsParlentDeReconnect" approved="yes">
+        <source>header.menu.ilsParlentDeReconnect</source>
+        <target state="final">يتكلمون عن ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="LMDLqv9" resname="header.menu.leBlog" approved="yes">
+        <source>header.menu.leBlog</source>
+        <target state="final">سجل الويب</target>
+      </trans-unit>
+      <trans-unit id="TrgnMtS" resname="header.menu.lesRelaisReconnect" approved="yes">
+        <source>header.menu.lesRelaisReconnect</source>
+        <target state="final">نقاط مناوبة لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="_At1QJd" resname="header.menu.parametres" approved="yes">
+        <source>header.menu.parametres</source>
+        <target state="final">القيم الدخلة في الكمبيوتر</target>
+      </trans-unit>
+      <trans-unit id="rg0zEf_" resname="header.menu.quiSommesNous" approved="yes">
+        <source>header.menu.quiSommesNous</source>
+        <target state="final">من نحن</target>
+      </trans-unit>
+      <trans-unit id="H4ZA7St" resname="header.menu.rajouterEspace" approved="yes">
+        <source>header.menu.rajouterEspace</source>
+        <target state="final">اضافة فضاء</target>
+      </trans-unit>
+      <trans-unit id="xXak2YD" resname="header.menu.utiliseSurDisponible" approved="yes">
+        <source>header.menu.utiliseSurDisponible</source>
+        <target state="final">% من الفضاء المستعمل من اصل% متوفر</target>
+      </trans-unit>
+      <trans-unit id="RdYQ_cT" resname="home.catchPrase" approved="yes">
+        <source>home.catchPrase</source>
+        <target state="final">"موقع التخزين و المشاركة المؤمن والذي يسهل معاملات المرافقة الاجتماعية"</target>
+      </trans-unit>
+      <trans-unit id="1GU8.NZ" resname="home.commentCaMarche" approved="yes">
+        <source>home.commentCaMarche</source>
+        <target state="final">كيفية التشغيل</target>
+      </trans-unit>
+      <trans-unit id="._p7t9z" resname="home.commentCaMarcheContent.fermer" approved="yes">
+        <source>home.commentCaMarcheContent.fermer</source>
+        <target state="final">اقفال</target>
+      </trans-unit>
+      <trans-unit id="WNMqZ7D" resname="home.commentCaMarcheContent.text1" approved="yes">
+        <source>home.commentCaMarcheContent.text1</source>
+        <target state="final">في حالات عدم الاستقرار و التنقل الدائم، يصعب على الاشخاص المشردين المحافظة على اوراقهم الشخصية التي يحتاجونها للحصول على المساعدات الاجتماعية.</target>
+      </trans-unit>
+      <trans-unit id="z.8O51k" resname="home.commentCaMarcheContent.text2" approved="yes">
+        <source>home.commentCaMarcheContent.text2</source>
+        <target state="final">يسمح موقع ريكونيكت تخزين نسخ ممسوحة ضوئيا او مصورة عن جميع الاوراق الشخصية الاساسية بكل امان، يمكن ايضا تخزين اسماء اشخاص و تفاصيلهم و مواعيد و مذكرات. عندئذ ستكون عواقب فقدان النسخ الاصلية محدودة.</target>
+      </trans-unit>
+      <trans-unit id="UHRkd.E" resname="home.commentCaMarcheContent.text3" approved="yes">
+        <source>home.commentCaMarcheContent.text3</source>
+        <target state="final">ترافق نقاط المناوبة لريكونيكت  المستخدمين في عملية  فتح حساب ريكونيكت و ادارته.</target>
+      </trans-unit>
+      <trans-unit id="z3sL4K8" resname="home.commentCaMarcheContent.text4" approved="yes">
+        <source>home.commentCaMarcheContent.text4</source>
+        <target state="final">ان فتح حساب ريكونيكت مجاني للأشخاص المشردين في نقاط المناوبة  لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="_Ha8lja" resname="home.commentCaMarcheContent.text5" approved="yes">
+        <source>home.commentCaMarcheContent.text5</source>
+        <target state="final">يتناسب ريكونيكت مع رغبات  مستخدميه و حاجاتهم فهم الذين يقررون مشاركة المعلومات و الوثائق الخاصة بهم مع العاملين الاجتماعيين.</target>
+      </trans-unit>
+      <trans-unit id="bqryTym" resname="home.commentCaMarcheContent.text6" approved="yes">
+        <source>home.commentCaMarcheContent.text6</source>
+        <target state="final">يمكن للمستخدم الاتصال بحسابه بمفرده خارج نقطة المنوبة لريكونيكت. اذا قرر الرحيل من نقطة المناوبة التابعة لها يمكنه الاستفادة من ادوات ريكونيكت لأجل غير مسمى. اذا ذهب الى نقطة مناوبة جديدة فيمكنه ان يشارك اوراقه الشخصية الاساسية مع هذه النقطة.</target>
+      </trans-unit>
+      <trans-unit id="B34vZvA" resname="home.commentCaMarcheContent.text7" approved="yes">
+        <source>home.commentCaMarcheContent.text7</source>
+        <target state="final">ريكونيكت اداة يتم استعمالها على المدى الطويل و هي تتناسب مع المسيرة الاجتماعية الخاصة بكل شخص. عبر استعمال ريكونيكت يرافق العاملون الاجتماعيون الاشخاص المشردين حتى يتمكنوا من استعمال مستقل لأداة رقمية.</target>
+      </trans-unit>
+      <trans-unit id="EraO.rY" resname="home.commentCaMarcheContent.text8" approved="yes">
+        <source>home.commentCaMarcheContent.text8</source>
+        <target state="final">تخزين و مشاركة معلومات و وثائق اساسية على الانترنيت. تذكير المواعيد و الاحداث عبر رسالة نصية قصيرة. محاولة صياغة الحقوق الاجتماعية التي يمكن للمستخدمين ان يستفيدوا منها و انشاء تلقائي للملف الاداري على اساس الوثائق المتوفرة في خزنة الودائع.</target>
+      </trans-unit>
+      <trans-unit id="N1uXqXl" resname="home.commentCaMarcheContent.title1" approved="yes">
+        <source>home.commentCaMarcheContent.title1</source>
+        <target state="final">اجابة لاحتياجات المشردين</target>
+      </trans-unit>
+      <trans-unit id="wbkoE76" resname="home.commentCaMarcheContent.title2" approved="yes">
+        <source>home.commentCaMarcheContent.title2</source>
+        <target state="final">خزنة ودائع على الانترنيت</target>
+      </trans-unit>
+      <trans-unit id=".c1WfhS" resname="home.commentCaMarcheContent.title3" approved="yes">
+        <source>home.commentCaMarcheContent.title3</source>
+        <target state="final">مرافقة من قبل نقاط المناوبة لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="BfCrq51" resname="home.commentCaMarcheContent.title4" approved="yes">
+        <source>home.commentCaMarcheContent.title4</source>
+        <target state="final">خدمة تقدم للأشخاص المشردين.</target>
+      </trans-unit>
+      <trans-unit id="iX8E8iO" resname="home.commentCaMarcheContent.title5" approved="yes">
+        <source>home.commentCaMarcheContent.title5</source>
+        <target state="final">فضاء خاص يمكن المشاركة به</target>
+      </trans-unit>
+      <trans-unit id="SdsF2sA" resname="home.commentCaMarcheContent.title6" approved="yes">
+        <source>home.commentCaMarcheContent.title6</source>
+        <target state="final">اتصال مستمر</target>
+      </trans-unit>
+      <trans-unit id="JGVPq0u" resname="home.commentCaMarcheContent.title7" approved="yes">
+        <source>home.commentCaMarcheContent.title7</source>
+        <target state="final">مرافقة خلال كل مرحلة</target>
+      </trans-unit>
+      <trans-unit id="NZ70Zvb" resname="home.commentCaMarcheContent.title8" approved="yes">
+        <source>home.commentCaMarcheContent.title8</source>
+        <target state="final">ادوات مبتكرة</target>
+      </trans-unit>
+      <trans-unit id="CObOX1w" resname="home.commentCaMarcheWhiteContent.text1" approved="yes">
+        <source>home.commentCaMarcheWhiteContent.text1</source>
+        <target state="final">افتح حساب ريكونيكت عبر نقطة مناوبة  لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="nLA.vA5" resname="home.commentCaMarcheWhiteContent.text2" approved="yes">
+        <source>home.commentCaMarcheWhiteContent.text2</source>
+        <target state="final">اخزن نسخة عن مستنداتي الهامة</target>
+      </trans-unit>
+      <trans-unit id="3pdGuJC" resname="home.commentCaMarcheWhiteContent.text3" approved="yes">
+        <source>home.commentCaMarcheWhiteContent.text3</source>
+        <target state="final">اجعل المعلومات الخاصة بي مشتركة لتسريع معاملاتي</target>
+      </trans-unit>
+      <trans-unit id="rnZoJ8." resname="home.commentCaMarcheWhiteContent.text4" approved="yes">
+        <source>home.commentCaMarcheWhiteContent.text4</source>
+        <target state="final">اسهل الحصول على حقوقي</target>
+      </trans-unit>
+      <trans-unit id="QV53da8" resname="home.devenirUnRelaiReconnect" approved="yes">
+        <source>home.devenirUnRelaiReconnect</source>
+        <target state="final">العب دور نقطة مناوبة  لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="jayLjSw" resname="home.enSavoirPlus" approved="yes">
+        <source>home.enSavoirPlus</source>
+        <target state="final">اقرأ المزيد</target>
+      </trans-unit>
+      <trans-unit id="jF9UWnn" resname="home.facebook" approved="yes">
+        <source>home.facebook</source>
+        <target state="final">فايسبوك</target>
+      </trans-unit>
+      <trans-unit id="nT6MzgD" resname="home.ilsParlentDeReconnect" approved="yes">
+        <source>home.ilsParlentDeReconnect</source>
+        <target state="final">يتكلمون عن ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="v0R87kq" resname="home.jaccedealt" approved="yes">
+        <source>home.jaccedealt</source>
+        <target state="final">الحصول على حقوقي</target>
+      </trans-unit>
+      <trans-unit id="mgRPHXM" resname="home.jePartageAlt" approved="yes">
+        <source>home.jePartageAlt</source>
+        <target state="final">مشاركة المعلومات الخاصة بي</target>
+      </trans-unit>
+      <trans-unit id="Yrnlsyk" resname="home.jeStockeAlt" approved="yes">
+        <source>home.jeStockeAlt</source>
+        <target state="final">تخزين المعلومات الخاصة بي</target>
+      </trans-unit>
+      <trans-unit id="_a_PTp6" resname="home.leBlog" approved="yes">
+        <source>home.leBlog</source>
+        <target state="final">سجل الويب</target>
+      </trans-unit>
+      <trans-unit id="JLekJCa" resname="home.leCloudSolidaire" approved="yes">
+        <source>home.leCloudSolidaire</source>
+        <target state="final">ريكونيكت كلاود التضامن</target>
+      </trans-unit>
+      <trans-unit id="3ZxUre_" resname="home.lesRelais" approved="yes">
+        <source>home.lesRelais</source>
+        <target state="final">نقاط المناوبة  لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="XECSBm3" resname="home.lesRelaisTxt" approved="yes">
+        <source>home.lesRelaisTxt</source>
+        <target state="final">ان نقاط التناوب  لريكونيكت هي بنى او مؤسسات اجتماعية ترافق مستخدمي الموقع في فتح حسابهم و استعماله، و هي تسمح لهم بتخزين المعلومات الخاصة بهم و الوثائق الاساسية و مشاركتها مع العاملين الاجتماعيين."</target>
+      </trans-unit>
+      <trans-unit id="GsH7wAy" resname="home.lireLarticle" approved="yes">
+        <source>home.lireLarticle</source>
+        <target state="final">قراءة المقال</target>
+      </trans-unit>
+      <trans-unit id="4Ld93np" resname="home.metaDesc" approved="yes">
+        <source>home.metaDesc</source>
+        <target state="final">كلاود التضامن</target>
+      </trans-unit>
+      <trans-unit id="70eUQRe" resname="home.metaTitle" approved="yes">
+        <source>home.metaTitle</source>
+        <target state="final">ريكونيكت كلاود التضامن</target>
+      </trans-unit>
+      <trans-unit id="CXXK74p" resname="home.nousSuivre" approved="yes">
+        <source>home.nousSuivre</source>
+        <target state="final">تابعنا</target>
+      </trans-unit>
+      <trans-unit id="b9fRzs9" resname="home.oublieIdentifiant" approved="yes">
+        <source>home.oublieIdentifiant</source>
+        <target state="final">نسيت كلمة السر او كلمة التعريف</target>
+      </trans-unit>
+      <trans-unit id="y8G_7Ph" resname="home.ouvreCompteAlt" approved="yes">
+        <source>home.ouvreCompteAlt</source>
+        <target state="final">فتح حساب</target>
+      </trans-unit>
+      <trans-unit id="Rs0AoKU" resname="home.ouvrirUnCompte" approved="yes">
+        <source>home.ouvrirUnCompte</source>
+        <target state="final">فتح حساب</target>
+      </trans-unit>
+      <trans-unit id="8d37wZx" resname="home.partenaires" approved="yes">
+        <source>home.partenaires</source>
+        <target state="final">الشركاء</target>
+      </trans-unit>
+      <trans-unit id="BUELbF_" resname="home.quiSommesNous" approved="yes">
+        <source>home.quiSommesNous</source>
+        <target state="final">من نحن؟</target>
+      </trans-unit>
+      <trans-unit id="_juzWBy" resname="home.quiSommesNousTxt" approved="yes">
+        <source>home.quiSommesNousTxt</source>
+        <target state="final">ريكونيكت هو مشروع تقوده مجموعة النجدة . SOS تضم مجموعة النجدة اليوم 2500 موظفا و 106 مؤسسة في القطاعات التالية: الإدمان و مساكن التضامن و المرافقة الصحية و الإعاقة و تشكل هذه المجموعة حقل تجارب مثالي لهذا الابتكار. و ترغب هذه المجموعة ايضا في توسيع مشروعها ليشمل مجمل الفاعلين في حقل العمل الاجتماعي.</target>
+      </trans-unit>
+      <trans-unit id="zTGP.9D" resname="home.twitter" approved="yes">
+        <source>home.twitter</source>
+        <target state="final">تويتر</target>
+      </trans-unit>
+      <trans-unit id="iOZMbG8" resname="login_form_title" approved="yes">
+        <source>login_form_title</source>
+        <target state="final">الوصول إلى الخزنة الرقمية</target>
+      </trans-unit>
+      <trans-unit id="9u0F.ZC" resname="main.accepter" approved="yes">
+        <source>main.accepter</source>
+        <target state="final">قبول</target>
+      </trans-unit>
+      <trans-unit id="j2KcfQT" resname="main.adresse.rue" approved="yes">
+        <source>main.adresse.rue</source>
+        <target state="final">مشاهدة الملف</target>
+      </trans-unit>
+      <trans-unit id="WwXGzDr" resname="main.annuler" approved="yes">
+        <source>main.annuler</source>
+        <target state="final">الغاء</target>
+      </trans-unit>
+      <trans-unit id="xtx5eDG" resname="main.chercher" approved="yes">
+        <source>main.chercher</source>
+        <target state="final">بحث</target>
+      </trans-unit>
+      <trans-unit id="6_aAnp5" resname="main.choisir" approved="yes">
+        <source>main.choisir</source>
+        <target state="final">اختيار</target>
+      </trans-unit>
+      <trans-unit id="n2waT4W" resname="main.connexion" approved="yes">
+        <source>main.connexion</source>
+        <target state="final">شارع</target>
+      </trans-unit>
+      <trans-unit id="XguWo0I" resname="main.continuer" approved="yes">
+        <source>main.continuer</source>
+        <target state="final">متابعة</target>
+      </trans-unit>
+      <trans-unit id=".Qjev8W" resname="main.error.defaultSubTitle" approved="yes">
+        <source>main.error.defaultSubTitle</source>
+        <target state="final">الخطأ التالي حدث لتوه :</target>
+      </trans-unit>
+      <trans-unit id="A6Nkyvr" resname="main.error.defaultTitle" approved="yes">
+        <source>main.error.defaultTitle</source>
+        <target state="final">حدث خطأ ما</target>
+      </trans-unit>
+      <trans-unit id="cK1Gz8Q" resname="main.error.error403SubTitle" approved="yes">
+        <source>main.error.error403SubTitle</source>
+        <target state="final">يبدو انه ليس لك الحق بالقيام بهذا العمل :</target>
+      </trans-unit>
+      <trans-unit id="TMsz6jl" resname="main.error.error403Title" approved="yes">
+        <source>main.error.error403Title</source>
+        <target state="final">عمل محظور</target>
+      </trans-unit>
+      <trans-unit id="uP8eSOE" resname="main.error.error404SubTitle" approved="yes">
+        <source>main.error.error404SubTitle</source>
+        <target state="final">مستحيل ايجاد الصفحة المطلوبة</target>
+      </trans-unit>
+      <trans-unit id="Ay_FxRd" resname="main.error.error404Title" approved="yes">
+        <source>main.error.error404Title</source>
+        <target state="final">العنصر غير موجود</target>
+      </trans-unit>
+      <trans-unit id="p.1MXMd" resname="main.etapeSuivante" approved="yes">
+        <source>main.etapeSuivante</source>
+        <target state="final">المرحلة التالية</target>
+      </trans-unit>
+      <trans-unit id="skuZx4s" resname="main.etesVousSur" approved="yes">
+        <source>main.etesVousSur</source>
+        <target state="final">هل انت اكيد(ة) ؟</target>
+      </trans-unit>
+      <trans-unit id="r.tlXRH" resname="main.metaAppend" approved="yes">
+        <source>main.metaAppend</source>
+        <target state="final">ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="6HXjpia" resname="main.modifier" approved="yes">
+        <source>main.modifier</source>
+        <target state="final">تعديل</target>
+      </trans-unit>
+      <trans-unit id="HwjrzQ7" resname="main.modifierFichier" approved="yes">
+        <source>main.modifierFichier</source>
+        <target state="final">اختيار ملف</target>
+      </trans-unit>
+      <trans-unit id="HIXpjni" resname="main.neSaitPlus" approved="yes">
+        <source>main.neSaitPlus</source>
+        <target state="final">لا اعرف</target>
+      </trans-unit>
+      <trans-unit id="1uovh55" resname="main.non" approved="yes">
+        <source>main.non</source>
+        <target state="final">لا</target>
+      </trans-unit>
+      <trans-unit id="Rfkkb8l" resname="main.notAvailableFeature" approved="yes">
+        <source>main.notAvailableFeature</source>
+        <target state="final">ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="7SVu4X6" resname="main.oui" approved="yes">
+        <source>main.oui</source>
+        <target state="final">نعم</target>
+      </trans-unit>
+      <trans-unit id="ATY.DFf" resname="main.parPage" approved="yes">
+        <source>main.parPage</source>
+        <target state="final">في كل الصفحة</target>
+      </trans-unit>
+      <trans-unit id="9Jx521." resname="main.pasLesDroits" approved="yes">
+        <source>main.pasLesDroits</source>
+        <target state="final">لا تملك الحقوق لمشاهدة هذه الصفحة</target>
+      </trans-unit>
+      <trans-unit id="3zF7cCh" resname="main.refuser" approved="yes">
+        <source>main.refuser</source>
+        <target state="final">رفض</target>
+      </trans-unit>
+      <trans-unit id="2uiF87h" resname="main.retour" approved="yes">
+        <source>main.retour</source>
+        <target state="final">عودة</target>
+      </trans-unit>
+      <trans-unit id="QsozHc6" resname="main.revenirArriere" approved="yes">
+        <source>main.revenirArriere</source>
+        <target state="final">العودة الى الوراء</target>
+      </trans-unit>
+      <trans-unit id="ZvGDoIL" resname="main.selectionner" approved="yes">
+        <source>main.selectionner</source>
+        <target state="final">لا اعرف</target>
+      </trans-unit>
+      <trans-unit id="aYP0xkP" resname="main.supprimer" approved="yes">
+        <source>main.supprimer</source>
+        <target state="final">الغاء</target>
+      </trans-unit>
+      <trans-unit id="aBmo4TR" resname="main.uploaderFichier" approved="yes">
+        <source>main.uploaderFichier</source>
+        <target state="final">تحديد</target>
+      </trans-unit>
+      <trans-unit id="1XKTX5v" resname="main.voirFichier" approved="yes">
+        <source>main.voirFichier</source>
+        <target state="final">تعديل ملف</target>
+      </trans-unit>
+      <trans-unit id="EDzd0LP" resname="membre.ajoutBeneficiaire.aucunUtilisateurTrouve" approved="yes">
+        <source>membre.ajoutBeneficiaire.aucunUtilisateurTrouve</source>
+        <target state="final">حساب ريكونيكت الذي تبحث عنه غير موجود</target>
+      </trans-unit>
+      <trans-unit id="cSz1L6i" resname="membre.ajoutBeneficiaire.centres" approved="yes">
+        <source>membre.ajoutBeneficiaire.centres</source>
+        <target state="final">نقطة المناوبة  لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="BOtwSks" resname="membre.ajoutBeneficiaire.creerCompte" approved="yes">
+        <source>membre.ajoutBeneficiaire.creerCompte</source>
+        <target state="final">فتح حساب ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="hFUr.pN" resname="membre.ajoutBeneficiaire.dateNaissanceLabel" approved="yes">
+        <source>membre.ajoutBeneficiaire.dateNaissanceLabel</source>
+        <target state="final">تاريخ الولادة</target>
+      </trans-unit>
+      <trans-unit id="Nhva6eC" resname="membre.ajoutBeneficiaire.metaTitle" approved="yes">
+        <source>membre.ajoutBeneficiaire.metaTitle</source>
+        <target state="final">اضف مستفيد جديد</target>
+      </trans-unit>
+      <trans-unit id="6i8BQrm" resname="membre.ajoutBeneficiaire.nePossedePasCompte" approved="yes">
+        <source>membre.ajoutBeneficiaire.nePossedePasCompte</source>
+        <target state="final">المستفيد لا يملك حساب ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="6DYyF0t" resname="membre.ajoutBeneficiaire.nomLabel" approved="yes">
+        <source>membre.ajoutBeneficiaire.nomLabel</source>
+        <target state="final">اسم العائلة</target>
+      </trans-unit>
+      <trans-unit id="kqLjXaV" resname="membre.ajoutBeneficiaire.possedeCompte" approved="yes">
+        <source>membre.ajoutBeneficiaire.possedeCompte</source>
+        <target state="final">المستفيد يملك حساب ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="CQ.118m" resname="membre.ajoutBeneficiaire.prenomLabel" approved="yes">
+        <source>membre.ajoutBeneficiaire.prenomLabel</source>
+        <target state="final">الاسم</target>
+      </trans-unit>
+      <trans-unit id="MIrFgrC" resname="membre.ajoutBeneficiaire.subtitle" approved="yes">
+        <source>membre.ajoutBeneficiaire.subtitle</source>
+        <target state="final">اضافة مستفيد جديد</target>
+      </trans-unit>
+      <trans-unit id="XpzbMrp" resname="membre.ajoutBeneficiaire.title" approved="yes">
+        <source>membre.ajoutBeneficiaire.title</source>
+        <target state="final">اضف مستفيد جديد</target>
+      </trans-unit>
+      <trans-unit id="MEM.3iP" resname="membre.ajoutMembre.aucunUtilisateurTrouve" approved="yes">
+        <source>membre.ajoutMembre.aucunUtilisateurTrouve</source>
+        <target state="final">ان حساب ريكونيكت الذي تبحث عنه غير موجود</target>
+      </trans-unit>
+      <trans-unit id="94CLmRU" resname="membre.ajoutMembre.centres" approved="yes">
+        <source>membre.ajoutMembre.centres</source>
+        <target state="final">المراكز</target>
+      </trans-unit>
+      <trans-unit id="UE29KoB" resname="membre.ajoutMembre.creerCompte" approved="yes">
+        <source>membre.ajoutMembre.creerCompte</source>
+        <target state="final">فتح حساب ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="KqnHrga" resname="membre.ajoutMembre.metaTitle" approved="yes">
+        <source>membre.ajoutMembre.metaTitle</source>
+        <target state="final">اضافة عضو جديد</target>
+      </trans-unit>
+      <trans-unit id="0zNYOIy" resname="membre.ajoutMembre.nePossedePasCompte" approved="yes">
+        <source>membre.ajoutMembre.nePossedePasCompte</source>
+        <target state="final">العضو لا يملك حساب ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="OBIjv0e" resname="membre.ajoutMembre.nomLabel" approved="yes">
+        <source>membre.ajoutMembre.nomLabel</source>
+        <target state="final">الاسم</target>
+      </trans-unit>
+      <trans-unit id="OejiKfK" resname="membre.ajoutMembre.possedeCompte" approved="yes">
+        <source>membre.ajoutMembre.possedeCompte</source>
+        <target state="final">العضو يملك حساب ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="R2vRnsw" resname="membre.ajoutMembre.prenomLabel" approved="yes">
+        <source>membre.ajoutMembre.prenomLabel</source>
+        <target state="final">اسم العائلة</target>
+      </trans-unit>
+      <trans-unit id="cJyG_pU" resname="membre.ajoutMembre.subtitle" approved="yes">
+        <source>membre.ajoutMembre.subtitle</source>
+        <target state="final">اضافة عضو جديد</target>
+      </trans-unit>
+      <trans-unit id="u.x7FVu" resname="membre.ajoutMembre.title" approved="yes">
+        <source>membre.ajoutMembre.title</source>
+        <target state="final">اضافة عضو جديد</target>
+      </trans-unit>
+      <trans-unit id="D3VI6I7" resname="membre.arreterSuivi.metaTitle" approved="yes">
+        <source>membre.arreterSuivi.metaTitle</source>
+        <target state="final">وضع حد لمرافقة مستخدم</target>
+      </trans-unit>
+      <trans-unit id="Kx6OaCw" resname="membre.arreterSuivi.subtitle" approved="yes">
+        <source>membre.arreterSuivi.subtitle</source>
+        <target state="final">وضع حد لمرافقة ....</target>
+      </trans-unit>
+      <trans-unit id="tOPKxNv" resname="membre.arreterSuivi.success" approved="yes">
+        <source>membre.arreterSuivi.success</source>
+        <target state="final">لقد تم وضع حد لمرافقة هذا المستخدم في هذا المركز</target>
+      </trans-unit>
+      <trans-unit id="qg1wpS0" resname="membre.arreterSuivi.text" approved="yes">
+        <source>membre.arreterSuivi.text</source>
+        <target state="final">هذا المستخدم ينتمي الى عدد من المراكز التي تديرها، اختر المراكز حيث تريد وضع حد للمرافقة فيها</target>
+      </trans-unit>
+      <trans-unit id="AEzpcuD" resname="membre.arreterSuivi.title" approved="yes">
+        <source>membre.arreterSuivi.title</source>
+        <target state="final">وضع حد لمرافقة مستخدم</target>
+      </trans-unit>
+      <trans-unit id="7DjbnYB" resname="membre.beneficiaires.aides" approved="yes">
+        <source>membre.beneficiaires.aides</source>
+        <target state="final">ادوات العون</target>
+      </trans-unit>
+      <trans-unit id="uwOl8u1" resname="membre.beneficiaires.ajouterBeneficiaire" approved="yes">
+        <source>membre.beneficiaires.ajouterBeneficiaire</source>
+        <target state="final">اضف مستفيد جديد</target>
+      </trans-unit>
+      <trans-unit id="LG0oRqS" resname="membre.beneficiaires.arreterSuivi" approved="yes">
+        <source>membre.beneficiaires.arreterSuivi</source>
+        <target state="final">انهاء المشاركة</target>
+      </trans-unit>
+      <trans-unit id="rEvhczm" resname="membre.beneficiaires.arreterSuiviEtesVousSur" approved="yes">
+        <source>membre.beneficiaires.arreterSuiviEtesVousSur</source>
+        <target state="final">ستضع حد لمرافقة (الاسم)</target>
+      </trans-unit>
+      <trans-unit id="F9BBB06" resname="membre.beneficiaires.btnDetails" approved="yes">
+        <source>membre.beneficiaires.btnDetails</source>
+        <target state="final">تفاصيل</target>
+      </trans-unit>
+      <trans-unit id="ihvbklF" resname="membre.beneficiaires.centres" approved="yes">
+        <source>membre.beneficiaires.centres</source>
+        <target state="final">المراكز</target>
+      </trans-unit>
+      <trans-unit id="t6ENNRe" resname="membre.beneficiaires.mesContacts" approved="yes">
+        <source>membre.beneficiaires.mesContacts</source>
+        <target state="final">المعارف</target>
+      </trans-unit>
+      <trans-unit id="QR6_ZiT" resname="membre.beneficiaires.mesDocuments" approved="yes">
+        <source>membre.beneficiaires.mesDocuments</source>
+        <target state="final">لوثائق</target>
+      </trans-unit>
+      <trans-unit id="N6YHt4T" resname="membre.beneficiaires.mesNotes" approved="yes">
+        <source>membre.beneficiaires.mesNotes</source>
+        <target state="final">الملاحظات</target>
+      </trans-unit>
+      <trans-unit id="ogaa3Qm" resname="membre.beneficiaires.metaTitle" approved="yes">
+        <source>membre.beneficiaires.metaTitle</source>
+        <target state="final">ادارة المستفيدين</target>
+      </trans-unit>
+      <trans-unit id="TyqJWwl" resname="membre.beneficiaires.monCalendrier" approved="yes">
+        <source>membre.beneficiaires.monCalendrier</source>
+        <target state="final">جدول المواعيد</target>
+      </trans-unit>
+      <trans-unit id="bO5BssT" resname="membre.beneficiaires.noBeneficiairesInCentre" approved="yes">
+        <source>membre.beneficiaires.noBeneficiairesInCentre</source>
+        <target state="final">ليس هناك أي مستفيد في هذا المركز</target>
+      </trans-unit>
+      <trans-unit id="8u68eY5" resname="membre.beneficiaires.nom" approved="yes">
+        <source>membre.beneficiaires.nom</source>
+        <target state="final">اسم العائلة</target>
+      </trans-unit>
+      <trans-unit id="HNn.szN" resname="membre.beneficiaires.nonValide" approved="yes">
+        <source>membre.beneficiaires.nonValide</source>
+        <target state="final">غير موافق عليه</target>
+      </trans-unit>
+      <trans-unit id="cNkEPiE" resname="membre.beneficiaires.prenom" approved="yes">
+        <source>membre.beneficiaires.prenom</source>
+        <target state="final">الاسم</target>
+      </trans-unit>
+      <trans-unit id="LAQp625" resname="membre.beneficiaires.renouvelerIdentifiants" approved="yes">
+        <source>membre.beneficiaires.renouvelerIdentifiants</source>
+        <target state="final">تجديد كلمة السر</target>
+      </trans-unit>
+      <trans-unit id="HNwHful" resname="membre.beneficiaires.selectCentre" approved="yes">
+        <source>membre.beneficiaires.selectCentre</source>
+        <target state="final">اختر مركزا</target>
+      </trans-unit>
+      <trans-unit id="5skLLX3" resname="membre.beneficiaires.title" approved="yes">
+        <source>membre.beneficiaires.title</source>
+        <target state="final">ادارة المستفيدين</target>
+      </trans-unit>
+      <trans-unit id="xQuki8T" resname="membre.beneficiaires.valide" approved="yes">
+        <source>membre.beneficiaires.valide</source>
+        <target state="final">موافق عليه</target>
+      </trans-unit>
+      <trans-unit id="3LvPbJE" resname="membre.centres.metaTitle" approved="yes">
+        <source>membre.centres.metaTitle</source>
+        <target state="final">نقاط المناوبة  لريكونيكت الخاصة بي</target>
+      </trans-unit>
+      <trans-unit id="zdckvD8" resname="membre.centres.quitterCentre" approved="yes">
+        <source>membre.centres.quitterCentre</source>
+        <target state="final">معادرة هذا المركز</target>
+      </trans-unit>
+      <trans-unit id="8jeaF8k" resname="membre.centres.title" approved="yes">
+        <source>membre.centres.title</source>
+        <target state="final">نقاط المناوبة  لريكونيكت الخاصة بي</target>
+      </trans-unit>
+      <trans-unit id="Tc8qRfl" resname="membre.centres.voirBeneficiaires" approved="yes">
+        <source>membre.centres.voirBeneficiaires</source>
+        <target state="final">رؤية المستفيدين</target>
+      </trans-unit>
+      <trans-unit id="xHsVt6R" resname="membre.centres.voirMembres" approved="yes">
+        <source>membre.centres.voirMembres</source>
+        <target state="final">رؤية الاعضاء</target>
+      </trans-unit>
+      <trans-unit id="qzLMLJy" resname="membre.centres.vousAvezBienQuitte" approved="yes">
+        <source>membre.centres.vousAvezBienQuitte</source>
+        <target state="final">لقد غادرت المركز</target>
+      </trans-unit>
+      <trans-unit id="VerQtMo" resname="membre.creationBeneficiaire.metaTitle" approved="yes">
+        <source>membre.creationBeneficiaire.metaTitle</source>
+        <target state="final">فتح حساب لمستفيد</target>
+      </trans-unit>
+      <trans-unit id="cQjdhnY" resname="membre.creationBeneficiaire.questionsSecretes.q1" approved="yes">
+        <source>membre.creationBeneficiaire.questionsSecretes.q1</source>
+        <target state="final">ما هو اسم والدة المستفيد؟</target>
+      </trans-unit>
+      <trans-unit id="Wefqdi1" resname="membre.creationBeneficiaire.questionsSecretes.q2" approved="yes">
+        <source>membre.creationBeneficiaire.questionsSecretes.q2</source>
+        <target state="final">ما هو اسم الحيوان الأليف الذي يملكه المستفيد؟</target>
+      </trans-unit>
+      <trans-unit id=".hYzGvZ" resname="membre.creationBeneficiaire.questionsSecretes.q3" approved="yes">
+        <source>membre.creationBeneficiaire.questionsSecretes.q3</source>
+        <target state="final">ما هو اسم شارع المستفيد المفضل؟</target>
+      </trans-unit>
+      <trans-unit id="vGEo_m8" resname="membre.creationBeneficiaire.questionsSecretes.q4" approved="yes">
+        <source>membre.creationBeneficiaire.questionsSecretes.q4</source>
+        <target state="final">ما هو اسم المدرسة الثانوية التي ذهب اليها المستفيد؟</target>
+      </trans-unit>
+      <trans-unit id="wsoW3j4" resname="membre.creationBeneficiaire.questionsSecretes.q5" approved="yes">
+        <source>membre.creationBeneficiaire.questionsSecretes.q5</source>
+        <target state="final">ما هو لقب المستفيد؟</target>
+      </trans-unit>
+      <trans-unit id="IgVKY82" resname="membre.creationBeneficiaire.questionsSecretes.q6" approved="yes">
+        <source>membre.creationBeneficiaire.questionsSecretes.q6</source>
+        <target state="final">أي معلومات اخرى</target>
+      </trans-unit>
+      <trans-unit id="RK63ZeX" resname="membre.creationBeneficiaire.step1.subtitle" approved="yes">
+        <source>membre.creationBeneficiaire.step1.subtitle</source>
+        <target state="final">المرحلة رقم1 /.5 يرجى ادخال هوية المستفيد</target>
+      </trans-unit>
+      <trans-unit id="aCmABoR" resname="membre.creationBeneficiaire.step2.subtitle" approved="yes">
+        <source>membre.creationBeneficiaire.step2.subtitle</source>
+        <target state="final">المرحلة رقم 2/6 يرجى اختيار كلمة التعريف و كلمة سرالمستفيد</target>
+      </trans-unit>
+      <trans-unit id="AdX4I8H" resname="membre.creationBeneficiaire.step3.subtitle" approved="yes">
+        <source>membre.creationBeneficiaire.step3.subtitle</source>
+        <target state="final">المرحلة رقم 3/6 يرجى اختيار السؤال السري للمستفيد</target>
+      </trans-unit>
+      <trans-unit id="PEQ3Avu" resname="membre.creationBeneficiaire.step4.subtitle" approved="yes">
+        <source>membre.creationBeneficiaire.step4.subtitle</source>
+        <target state="final">المرحلة رقم %step%/%totalSteps% يرجى اختيار نقطة المنوبة  لريكونيكت التابع لها المستفيد</target>
+      </trans-unit>
+      <trans-unit id="1sD7riR" resname="membre.creationBeneficiaire.step5.subtitle" approved="yes">
+        <source>membre.creationBeneficiaire.step5.subtitle</source>
+        <target state="final">المرحلة %step%/%totalSteps% ملخص، يرجى التأكد من المعلومات المسجلة</target>
+      </trans-unit>
+      <trans-unit id="TRig3jU" resname="membre.creationBeneficiaire.step6.content" approved="yes">
+        <source>membre.creationBeneficiaire.step6.content</source>
+        <target state="final">عليك طباعة عقد فتح حساب ريكونيكت كي تحصل على امضاء المستفيد</target>
+      </trans-unit>
+      <trans-unit id="INmrpHp" resname="membre.creationBeneficiaire.step6.subtitle" approved="yes">
+        <source>membre.creationBeneficiaire.step6.subtitle</source>
+        <target state="final">المرحلة 6/6 سياسة الاستعمال</target>
+      </trans-unit>
+      <trans-unit id="h5Up7T6" resname="membre.creationBeneficiaire.step6.telecharger" approved="yes">
+        <source>membre.creationBeneficiaire.step6.telecharger</source>
+        <target state="final">تحميل</target>
+      </trans-unit>
+      <trans-unit id="9kQcFkO" resname="membre.creationBeneficiaire.step6.terminer" approved="yes">
+        <source>membre.creationBeneficiaire.step6.terminer</source>
+        <target state="final">انتهاء</target>
+      </trans-unit>
+      <trans-unit id="6.3pJz4" resname="membre.creationBeneficiaire.subtitle" approved="yes">
+        <source>membre.creationBeneficiaire.subtitle</source>
+        <target state="final">المرحلة رقم 1/5 يرجى ادخال هوية المستفيد</target>
+      </trans-unit>
+      <trans-unit id="kH8xSt0" resname="membre.creationBeneficiaire.success" approved="yes">
+        <source>membre.creationBeneficiaire.success</source>
+        <target state="final">لقد تم فتح حساب المستفيد</target>
+      </trans-unit>
+      <trans-unit id="6BRGkmW" resname="membre.creationBeneficiaire.title" approved="yes">
+        <source>membre.creationBeneficiaire.title</source>
+        <target state="final">فتح حساب لمستفيد</target>
+      </trans-unit>
+      <trans-unit id="OFKPRAn" resname="membre.creationMembre.membreEmailConstraint" approved="yes">
+        <source>membre.creationMembre.membreEmailConstraint</source>
+        <target state="final">اذا كان للعضو الحق بإدارة الاعضاء عليه و لا البد ان يسجل عنوانه الالكتروني</target>
+      </trans-unit>
+      <trans-unit id="HqvYZ7u" resname="membre.creationMembre.success" approved="yes">
+        <source>membre.creationMembre.success</source>
+        <target state="final">تم انشاء حساب للعضو</target>
+      </trans-unit>
+      <trans-unit id="CWvOVEF" resname="membre.creationMembre.title" approved="yes">
+        <source>membre.creationMembre.title</source>
+        <target state="final">فتح حساب لعضو</target>
+      </trans-unit>
+      <trans-unit id="wpQ.BoI" resname="membre.doAjoutSubject.btnAjouter" approved="yes">
+        <source>membre.doAjoutSubject.btnAjouter</source>
+        <target state="final">اضافة</target>
+      </trans-unit>
+      <trans-unit id="JUg0PEM" resname="membre.doAjoutSubject.centres" approved="yes">
+        <source>membre.doAjoutSubject.centres</source>
+        <target state="final">مراكزك</target>
+      </trans-unit>
+      <trans-unit id="0xyCK2Y" resname="membre.doAjoutSubject.subtitle" approved="yes">
+        <source>membre.doAjoutSubject.subtitle</source>
+        <target state="final">اختر مراكز لإضافة المستخدم</target>
+      </trans-unit>
+      <trans-unit id="gaiBCHP" resname="membre.doDoAjoutSubject.cliquerIci" approved="yes">
+        <source>membre.doDoAjoutSubject.cliquerIci</source>
+        <target state="final">انقر هنا</target>
+      </trans-unit>
+      <trans-unit id="AW9TPYC" resname="membre.doDoAjoutSubject.confirmeraEnConnectant" approved="yes">
+        <source>membre.doDoAjoutSubject.confirmeraEnConnectant</source>
+        <target state="final">سيؤكد المستخدم طلبك لإضافته عبر اتصاله بحساب ريكونيكت الخاص به</target>
+      </trans-unit>
+      <trans-unit id="VqNrOnO" resname="membre.doDoAjoutSubject.membreConfirmeraEnConnectant" approved="yes">
+        <source>membre.doDoAjoutSubject.membreConfirmeraEnConnectant</source>
+        <target state="final">سيوافق العضو على طلبك لإضافته عبر اتصاله بحساب ريكونيكت الخاص به</target>
+      </trans-unit>
+      <trans-unit id="tc5q.dD" resname="membre.doDoAjoutSubject.renseignerTelephone" approved="yes">
+        <source>membre.doDoAjoutSubject.renseignerTelephone</source>
+        <target state="final">(يجب تسجيل رقم هاتفك عبر النقر هنا)</target>
+      </trans-unit>
+      <trans-unit id="2ViN6s1" resname="membre.doDoAjoutSubject.repondreReponseSecrete" approved="yes">
+        <source>membre.doDoAjoutSubject.repondreReponseSecrete</source>
+        <target state="final">سيرسل لكم المستخدم اجابته على السؤال السري</target>
+      </trans-unit>
+      <trans-unit id="6pVNa8o" resname="membre.doDoAjoutSubject.sendSms" approved="yes">
+        <source>membre.doDoAjoutSubject.sendSms</source>
+        <target state="final">سيرسل المستخدم لكم الرمز بالحروف و الارقام الذي سيتلقاه عبر رسالة نصية قصيرة</target>
+      </trans-unit>
+      <trans-unit id="Ia0rn7i" resname="membre.doDoAjoutSubject.subtitle" approved="yes">
+        <source>membre.doDoAjoutSubject.subtitle</source>
+        <target state="final">طلب اضافة مرسل الى</target>
+      </trans-unit>
+      <trans-unit id="vpxbA4q" resname="membre.doDoAjoutSubject.termine" approved="yes">
+        <source>membre.doDoAjoutSubject.termine</source>
+        <target state="final">انتهاء</target>
+      </trans-unit>
+      <trans-unit id="9GEH_Hh" resname="membre.doDoAjoutSubject.text" approved="yes">
+        <source>membre.doDoAjoutSubject.text</source>
+        <target state="final">من اجل طلب التأكيد من قبل المستخدم، يرجى اختيار احدى الإجراءات المذكورة ادناه:</target>
+      </trans-unit>
+      <trans-unit id="ZwiL4jn" resname="membre.droits.gestionBeneficiaires" approved="yes">
+        <source>membre.droits.gestionBeneficiaires</source>
+        <target state="final">ادارة المستفيدين</target>
+      </trans-unit>
+      <trans-unit id="gGOPxT2" resname="membre.droits.gestionMembres" approved="yes">
+        <source>membre.droits.gestionMembres</source>
+        <target state="final">ادارة الاعضاء</target>
+      </trans-unit>
+      <trans-unit id="kUTi6za" resname="membre.droits.gestionPaiement" approved="yes">
+        <source>membre.droits.gestionPaiement</source>
+        <target state="final">ادارة المدفوعات</target>
+      </trans-unit>
+      <trans-unit id="KaUj_pT" resname="membre.membres.aides" approved="yes">
+        <source>membre.membres.aides</source>
+        <target state="final">ادوات المساعدة</target>
+      </trans-unit>
+      <trans-unit id="6lu7nSQ" resname="membre.membres.ajouterMembre" approved="yes">
+        <source>membre.membres.ajouterMembre</source>
+        <target state="final">اضافة عضو جديد</target>
+      </trans-unit>
+      <trans-unit id="pY2iEs9" resname="membre.membres.arreterSuivi" approved="yes">
+        <source>membre.membres.arreterSuivi</source>
+        <target state="final">الغاء</target>
+      </trans-unit>
+      <trans-unit id="YWpJMNO" resname="membre.membres.btnDetails" approved="yes">
+        <source>membre.membres.btnDetails</source>
+        <target state="final">تفاصيل</target>
+      </trans-unit>
+      <trans-unit id="gAy8K0f" resname="membre.membres.centres" approved="yes">
+        <source>membre.membres.centres</source>
+        <target state="final">المراكز</target>
+      </trans-unit>
+      <trans-unit id="5mXhkvo" resname="membre.membres.gestionBeneficiaires" approved="yes">
+        <source>membre.membres.gestionBeneficiaires</source>
+        <target state="final">ادارة المستفيدين</target>
+      </trans-unit>
+      <trans-unit id="98StX78" resname="membre.membres.gestionMembres" approved="yes">
+        <source>membre.membres.gestionMembres</source>
+        <target state="final">ادارة الاعضاء</target>
+      </trans-unit>
+      <trans-unit id="2XgB9Na" resname="membre.membres.gestionPaiement" approved="yes">
+        <source>membre.membres.gestionPaiement</source>
+        <target state="final">ادارة المدفوعات</target>
+      </trans-unit>
+      <trans-unit id="pBKO3HM" resname="membre.membres.mesContacts" approved="yes">
+        <source>membre.membres.mesContacts</source>
+        <target state="final">معارفي</target>
+      </trans-unit>
+      <trans-unit id="iZ5NWSj" resname="membre.membres.mesDocuments" approved="yes">
+        <source>membre.membres.mesDocuments</source>
+        <target state="final">وثائقي</target>
+      </trans-unit>
+      <trans-unit id="I2nYQT5" resname="membre.membres.mesNotes" approved="yes">
+        <source>membre.membres.mesNotes</source>
+        <target state="final">ملاحظاتي</target>
+      </trans-unit>
+      <trans-unit id="YBgrH8y" resname="membre.membres.metaTitle" approved="yes">
+        <source>membre.membres.metaTitle</source>
+        <target state="final">ادارة الأعضاء</target>
+      </trans-unit>
+      <trans-unit id="vMAYyTR" resname="membre.membres.monCalendrier" approved="yes">
+        <source>membre.membres.monCalendrier</source>
+        <target state="final">جدول اعمالي</target>
+      </trans-unit>
+      <trans-unit id="2YIb6Ez" resname="membre.membres.noBeneficiairesInCentre" approved="yes">
+        <source>membre.membres.noBeneficiairesInCentre</source>
+        <target state="final">لا يوجد أي مستفيد في هذا المركز</target>
+      </trans-unit>
+      <trans-unit id="NtGjsoD" resname="membre.membres.nom" approved="yes">
+        <source>membre.membres.nom</source>
+        <target state="final">الاسم</target>
+      </trans-unit>
+      <trans-unit id="6CwjcIK" resname="membre.membres.nonValide" approved="yes">
+        <source>membre.membres.nonValide</source>
+        <target state="final">لم تتم الموافقة عليه</target>
+      </trans-unit>
+      <trans-unit id="Vem83ET" resname="membre.membres.prenom" approved="yes">
+        <source>membre.membres.prenom</source>
+        <target state="final">اسم العائلة</target>
+      </trans-unit>
+      <trans-unit id="UOxvGPF" resname="membre.membres.renouvelerIdentifiants" approved="yes">
+        <source>membre.membres.renouvelerIdentifiants</source>
+        <target state="final">تجديد كلمة السر</target>
+      </trans-unit>
+      <trans-unit id="ehZnQUB" resname="membre.membres.selectCentre" approved="yes">
+        <source>membre.membres.selectCentre</source>
+        <target state="final">اختر مركز</target>
+      </trans-unit>
+      <trans-unit id="_2JZXHR" resname="membre.membres.title" approved="yes">
+        <source>membre.membres.title</source>
+        <target state="final">ادارة الأعضاء</target>
+      </trans-unit>
+      <trans-unit id="liN8KDB" resname="membre.membres.valide" approved="yes">
+        <source>membre.membres.valide</source>
+        <target state="final">تمت الموافقة عليه</target>
+      </trans-unit>
+      <trans-unit id="uclivc9" resname="membre.menu.gestionBeneficiaires" approved="yes">
+        <source>membre.menu.gestionBeneficiaires</source>
+        <target state="final">ادارة المستفيدين</target>
+      </trans-unit>
+      <trans-unit id="zsPXXVC" resname="membre.menu.gestionRelais" approved="yes">
+        <source>membre.menu.gestionRelais</source>
+        <target state="final">نقاط المناوبة  لريكونيكت الخاصة بي</target>
+      </trans-unit>
+      <trans-unit id="EWAVy.x" resname="membre.partageContact.ajouterMail" approved="yes">
+        <source>membre.partageContact.ajouterMail</source>
+        <target state="final">اضافة عنواني الالكتروني</target>
+      </trans-unit>
+      <trans-unit id="yo4fkJL" resname="membre.partageContact.ajouterNuméro" approved="yes">
+        <source>membre.partageContact.ajouterNuméro</source>
+        <target state="final">اضافة رقم هاتفي</target>
+      </trans-unit>
+      <trans-unit id="DUQA_N3" resname="membre.partageContact.success" approved="yes">
+        <source>membre.partageContact.success</source>
+        <target state="final">تمت اضافة اسمك على لائحة معارف المستفيد</target>
+      </trans-unit>
+      <trans-unit id="G0IuYr7" resname="membre.partageContact.text" approved="yes">
+        <source>membre.partageContact.text</source>
+        <target state="final">انت ترى لأول مرة العناصر المشتركة مع المستخدم.  هل توافق على زيادة اسمك على لائحة المعارف المشتركة مع المستخدم؟</target>
+      </trans-unit>
+      <trans-unit id="m5kbdrL" resname="membre.partageContact.title" approved="yes">
+        <source>membre.partageContact.title</source>
+        <target state="final">مشاركة معارفك</target>
+      </trans-unit>
+      <trans-unit id="VOTyvsi" resname="membre.questionSecrete.label" approved="yes">
+        <source>membre.questionSecrete.label</source>
+        <target state="final">عليك الإجابة على السؤال التالي:</target>
+      </trans-unit>
+      <trans-unit id="YCHmFt1" resname="membre.questionSecrete.mauvaiseReponse" approved="yes">
+        <source>membre.questionSecrete.mauvaiseReponse</source>
+        <target state="final">هذه الإجابة لا تتناسب مع السؤال السري</target>
+      </trans-unit>
+      <trans-unit id="qcCS.zb" resname="membre.questionSecrete.metaTitle" approved="yes">
+        <source>membre.questionSecrete.metaTitle</source>
+        <target state="final">اضافة مستفيد جديد</target>
+      </trans-unit>
+      <trans-unit id=".eX7EmC" resname="membre.questionSecrete.subtitle" approved="yes">
+        <source>membre.questionSecrete.subtitle</source>
+        <target state="final">الإجابة على السؤال السري</target>
+      </trans-unit>
+      <trans-unit id="5KmCQZ3" resname="membre.questionSecrete.success" approved="yes">
+        <source>membre.questionSecrete.success</source>
+        <target state="final">لقد تم تأكيد الادارة من قبل هذا المركز</target>
+      </trans-unit>
+      <trans-unit id="aeJ1zvP" resname="membre.questionSecrete.title" approved="yes">
+        <source>membre.questionSecrete.title</source>
+        <target state="final">اضافة مستفيد جديد</target>
+      </trans-unit>
+      <trans-unit id="heuiM4o" resname="membre.resettingBeneficiairePassword.erreur" approved="yes">
+        <source>membre.resettingBeneficiairePassword.erreur</source>
+        <target state="final">هذه الاجابة لا تنطبق مع السؤال السري</target>
+      </trans-unit>
+      <trans-unit id="CFiE_1l" resname="membre.resettingBeneficiairePassword.success" approved="yes">
+        <source>membre.resettingBeneficiairePassword.success</source>
+        <target state="final">لقد تمت اعادة تعيين كلمة السر</target>
+      </trans-unit>
+      <trans-unit id="51EL00T" resname="membre.resettingBeneficiairePassword.title" approved="yes">
+        <source>membre.resettingBeneficiairePassword.title</source>
+        <target state="final">اعادة تعيين كلمة سر (الشخص المعني)</target>
+      </trans-unit>
+      <trans-unit id="h_kZmq_" resname="membre.sendSmsCode.codeLabel" approved="yes">
+        <source>membre.sendSmsCode.codeLabel</source>
+        <target state="final">ادخل الرمز بالحروف و الارقام الذي ارسل اليك عبر رسالة نصية قصيرة</target>
+      </trans-unit>
+      <trans-unit id="NAwphG4" resname="membre.sendSmsCode.mauvaiseReponse" approved="yes">
+        <source>membre.sendSmsCode.mauvaiseReponse</source>
+        <target state="final">ان الرمز بالحروف و الارقام خاطئ</target>
+      </trans-unit>
+      <trans-unit id="tK00eYq" resname="membre.sendSmsCode.smsMessage" approved="yes">
+        <source>membre.sendSmsCode.smsMessage</source>
+        <target state="final">من اجل تأكيد اضافة الشخص يرجى ارسال رمز التحقق بالحروف و الارقام الى نقطة مناوبة ريكونيكت الخاصة بك</target>
+      </trans-unit>
+      <trans-unit id="kh8s.7J" resname="membre.sendSmsCode.subtitle" approved="yes">
+        <source>membre.sendSmsCode.subtitle</source>
+        <target state="final">الموافقة عبر ارسال الرمز بالحروف و الارقام عبر رسالة نصية قصيرة</target>
+      </trans-unit>
+      <trans-unit id="KmmAn8c" resname="membre.sendSmsCode.success" approved="yes">
+        <source>membre.sendSmsCode.success</source>
+        <target state="final">تم التحقق من الادارة من قبل هذا المركز</target>
+      </trans-unit>
+      <trans-unit id="te3EkLf" resname="membre.sendSmsCode.text" approved="yes">
+        <source>membre.sendSmsCode.text</source>
+        <target state="final">تم ارسال الرمز بالحروف و الارقام عبر رسالة نصية قصيرة على الهاتف رقم (رقم الهاتف)</target>
+      </trans-unit>
+      <trans-unit id="0YiUq25" resname="membre.supprimerMembreDuCentre.etesVousSur" approved="yes">
+        <source>membre.supprimerMembreDuCentre.etesVousSur</source>
+        <target state="final">هل تريد فعلا ان تلغي العضو من هذا المركز؟</target>
+      </trans-unit>
+      <trans-unit id="qHF066D" resname="membre.supprimerMembreDuCentre.success" approved="yes">
+        <source>membre.supprimerMembreDuCentre.success</source>
+        <target state="final">لقد تم الغاء مركز هذا العضو</target>
+      </trans-unit>
+      <trans-unit id="rSAqvq5" resname="modePaiement.carteBancaire" approved="yes">
+        <source>modePaiement.carteBancaire</source>
+        <target state="final">بطاقة ائتمان</target>
+      </trans-unit>
+      <trans-unit id="hetKHpw" resname="modePaiement.cheque" approved="yes">
+        <source>modePaiement.cheque</source>
+        <target state="final">شيك</target>
+      </trans-unit>
+      <trans-unit id="NDixb77" resname="modePaiement.choisisseModePaiement" approved="yes">
+        <source>modePaiement.choisisseModePaiement</source>
+        <target state="final">اختر طريقة الدفع</target>
+      </trans-unit>
+      <trans-unit id=".Y85Wc8" resname="modePaiement.flashBienSupprime" approved="yes">
+        <source>modePaiement.flashBienSupprime</source>
+        <target state="final">قمت بحذف العنصر من عربة التسويق</target>
+      </trans-unit>
+      <trans-unit id="anbpOTf" resname="modePaiement.recapitulatif" approved="yes">
+        <source>modePaiement.recapitulatif</source>
+        <target state="final">ملخص عربتك للتسوق</target>
+      </trans-unit>
+      <trans-unit id="imDBNIR" resname="modePaiement.virement" approved="yes">
+        <source>modePaiement.virement</source>
+        <target state="final">حوالة مصرفية</target>
+      </trans-unit>
+      <trans-unit id="k5Apjz_" resname="no" approved="yes">
+        <source>no</source>
+        <target state="final">لا</target>
+      </trans-unit>
+      <trans-unit id="XBqC9Xt" resname="note.ajouter" approved="yes">
+        <source>note.ajouter</source>
+        <target state="final">اضافة ملاحظة</target>
+      </trans-unit>
+      <trans-unit id="yrssKSx" resname="note.bienSauvegarde" approved="yes">
+        <source>note.bienSauvegarde</source>
+        <target state="final">لقد تم حفظ ملاحظاتك</target>
+      </trans-unit>
+      <trans-unit id="Q0NLvB8" resname="note.bienSupprime" approved="yes">
+        <source>note.bienSupprime</source>
+        <target state="final">لقد تم الغاء ملاحظاتك</target>
+      </trans-unit>
+      <trans-unit id="IR4fZRm" resname="note.contenuLabel" approved="yes">
+        <source>note.contenuLabel</source>
+        <target state="final">محتوى الملاحظات</target>
+      </trans-unit>
+      <trans-unit id="OcNz8Gg" resname="note.date" approved="yes">
+        <source>note.date</source>
+        <target state="final">التاريخ</target>
+      </trans-unit>
+      <trans-unit id="hOL4awb" resname="note.emptyData" approved="yes">
+        <source>note.emptyData</source>
+        <target state="final">لا توجد ملاحظات حتى الان. انقر فوق "إضافة" لإنشاء واحد.</target>
+      </trans-unit>
+      <trans-unit id="Lwz6aT_" resname="note.metaTitle" approved="yes">
+        <source>note.metaTitle</source>
+        <target state="final">ملاحظات</target>
+      </trans-unit>
+      <trans-unit id="1hJZhT9" resname="note.nom" approved="yes">
+        <source>note.nom</source>
+        <target state="final">الاسم</target>
+      </trans-unit>
+      <trans-unit id="SuDc_vg" resname="note.nomLabel" approved="yes">
+        <source>note.nomLabel</source>
+        <target state="final">عنوان</target>
+      </trans-unit>
+      <trans-unit id="yzE9a_O" resname="note.supprimer" approved="yes">
+        <source>note.supprimer</source>
+        <target state="final">الغاء</target>
+      </trans-unit>
+      <trans-unit id="j7ym0A0" resname="ouvrirUnCompte.btn1" approved="yes">
+        <source>ouvrirUnCompte.btn1</source>
+        <target state="final">راجع خارطة تواجد نقاط المناوبة  لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="VVMdlJK" resname="ouvrirUnCompte.btn2" approved="yes">
+        <source>ouvrirUnCompte.btn2</source>
+        <target state="final">العب دور نقطة مناوبة  لريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="1ug4X7a" resname="ouvrirUnCompte.metaTitle" approved="yes">
+        <source>ouvrirUnCompte.metaTitle</source>
+        <target state="final">فتح حساب ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="m9yyw0d" resname="ouvrirUnCompte.retourEnArriere" approved="yes">
+        <source>ouvrirUnCompte.retourEnArriere</source>
+        <target state="final">الرجوع الى الوراء</target>
+      </trans-unit>
+      <trans-unit id="I4IhvTk" resname="ouvrirUnCompte.text1" approved="yes">
+        <source>ouvrirUnCompte.text1</source>
+        <target state="final">يرجى التحدث عن ريكونيكت مع الاشخاص الذين يرافقونك داخل المؤسسة الاجتماعية كي يساعدونك في انشاء حسابك و استخدامه</target>
+      </trans-unit>
+      <trans-unit id="QGM3VIU" resname="ouvrirUnCompte.text2" approved="yes">
+        <source>ouvrirUnCompte.text2</source>
+        <target state="final">انت ترغب باستخدام ريكونيكت في مؤسستك</target>
+      </trans-unit>
+      <trans-unit id="I7zQfQU" resname="ouvrirUnCompte.title1" approved="yes">
+        <source>ouvrirUnCompte.title1</source>
+        <target state="final">انت في عملية مرافقة اجتماعية</target>
+      </trans-unit>
+      <trans-unit id="yL_Xeva" resname="ouvrirUnCompte.title2" approved="yes">
+        <source>ouvrirUnCompte.title2</source>
+        <target state="final">انت عامل اجتماعي</target>
+      </trans-unit>
+      <trans-unit id="J1YVucg" resname="ouvrirUnCompte.title" approved="yes">
+        <source>ouvrirUnCompte.title</source>
+        <target state="final">فتح حساب ريكونيكت</target>
+      </trans-unit>
+      <trans-unit id="ghdxH0w" resname="paiement.btnPaiementSecurise" approved="yes">
+        <source>paiement.btnPaiementSecurise</source>
+        <target state="final">انقر هنا للدفع</target>
+      </trans-unit>
+      <trans-unit id="t_dZasM" resname="paiement.centreConcerne" approved="yes">
+        <source>paiement.centreConcerne</source>
+        <target state="final">المركز المعني</target>
+      </trans-unit>
+      <trans-unit id="h9hzOhi" resname="paiement.error.err00001" approved="yes">
+        <source>paiement.error.err00001</source>
+        <target state="final">فشل الاتصال بمركز الترخيص او حدث خطأ</target>
+      </trans-unit>
+      <trans-unit id="zqgDS84" resname="paiement.error.err00003" approved="yes">
+        <source>paiement.error.err00003</source>
+        <target state="final">خطأ من البايبوكس</target>
+      </trans-unit>
+      <trans-unit id="LgD1Sob" resname="paiement.error.err00004" approved="yes">
+        <source>paiement.error.err00004</source>
+        <target state="final">ان رقم الحامل او الرسالة الشفرية  البصرية غير صالحة</target>
+      </trans-unit>
+      <trans-unit id="pCtBm0j" resname="paiement.error.err00006" approved="yes">
+        <source>paiement.error.err00006</source>
+        <target state="final">الوصول الى الموقع/الرتبة/كلمة التعريف مرفوض او خاظئ</target>
+      </trans-unit>
+      <trans-unit id="H4Z30Kf" resname="paiement.error.err00008" approved="yes">
+        <source>paiement.error.err00008</source>
+        <target state="final">تاريخ انتهاء الصلاحية خاطئ</target>
+      </trans-unit>
+      <trans-unit id="UVavpH8" resname="paiement.error.err00009" approved="yes">
+        <source>paiement.error.err00009</source>
+        <target state="final">خطأ في انشاء اشتراك</target>
+      </trans-unit>
+      <trans-unit id="H5hwUrA" resname="paiement.error.err00010" approved="yes">
+        <source>paiement.error.err00010</source>
+        <target state="final">عملة مجهولة</target>
+      </trans-unit>
+      <trans-unit id="bWT0uHw" resname="paiement.error.err00011" approved="yes">
+        <source>paiement.error.err00011</source>
+        <target state="final">المبلغ خاطئ</target>
+      </trans-unit>
+      <trans-unit id="2VZGPNZ" resname="paiement.error.err00015" approved="yes">
+        <source>paiement.error.err00015</source>
+        <target state="final">تم الدفع سابقا</target>
+      </trans-unit>
+      <trans-unit id="M8H2BN7" resname="paiement.error.err00021" approved="yes">
+        <source>paiement.error.err00021</source>
+        <target state="final">بطاقة الائتمان غير مسموح بها</target>
+      </trans-unit>
+      <trans-unit id=".CTsA6h" resname="paiement.error.err00029" approved="yes">
+        <source>paiement.error.err00029</source>
+        <target state="final">بطاقة الائتمان غير مطابقة</target>
+      </trans-unit>
+      <trans-unit id="ZPpNQbZ" resname="paiement.error.err00030" approved="yes">
+        <source>paiement.error.err00030</source>
+        <target state="final">وقت الانتظار اقل من 15 دقيقة</target>
+      </trans-unit>
+      <trans-unit id="VIY3glI" resname="paiement.error.err001xx" approved="yes">
+        <source>paiement.error.err001xx</source>
+        <target state="final">رفض مركز الترخيص الدفع</target>
+      </trans-unit>
+      <trans-unit id="I4aBjF3" resname="paiement.metaTitle" approved="yes">
+        <source>paiement.metaTitle</source>
+        <target state="final">دفع</target>
+      </trans-unit>
+      <trans-unit id="AX5pr95" resname="paiement.nomProduit" approved="yes">
+        <source>paiement.nomProduit</source>
+        <target state="final">اسم المنتوج</target>
+      </trans-unit>
+      <trans-unit id="aArVkLs" resname="paiement.panierIntrouvable" approved="yes">
+        <source>paiement.panierIntrouvable</source>
+        <target state="final">من المستحيل استعادة مضمون عربة التسويق، يرجى اعادة عملية الدفع</target>
+      </trans-unit>
+      <trans-unit id="aCqNVmZ" resname="paiement.prix" approved="yes">
+        <source>paiement.prix</source>
+        <target state="final">الثمن</target>
+      </trans-unit>
+      <trans-unit id="Bae3xlb" resname="paiement.text2" approved="yes">
+        <source>paiement.text2</source>
+        <target state="final">سيتم توجيهك نحو منصة الدفع المؤمنة</target>
+      </trans-unit>
+      <trans-unit id="MajXQZt" resname="paiement.text" approved="yes">
+        <source>paiement.text</source>
+        <target state="final">انك على وشك دفع مبلغ باليورو. هذا هو ملخص مضمون عربتك للتسويق</target>
+      </trans-unit>
+      <trans-unit id="9EazmjQ" resname="paiement.title" approved="yes">
+        <source>paiement.title</source>
+        <target state="final">دفع</target>
+      </trans-unit>
+      <trans-unit id="_XllsPM" resname="paiementCheque.adresse" approved="yes">
+        <source>paiementCheque.adresse</source>
+        <target state="final">الشارع، المدينة و رقمها البريدي و البلد</target>
+      </trans-unit>
+      <trans-unit id="XBcTNpr" resname="paiementCheque.metaTitle" approved="yes">
+        <source>paiementCheque.metaTitle</source>
+        <target state="final">الدفع بالشيك</target>
+      </trans-unit>
+      <trans-unit id="1qnGqxu" resname="paiementCheque.text2" approved="yes">
+        <source>paiementCheque.text2</source>
+        <target state="final">لاثبات تسديد المبلغ انقر هنا. عندما يصل الشيك للمستحق ستتلقى رسالة الكترونية تحتوي على ايصال بالملغ لتأكيد دفعك. عندئذ سيظهر في حساب المستخدم الخاص بك.</target>
+      </trans-unit>
+      <trans-unit id="Qio4F.7" resname="paiementCheque.text" approved="yes">
+        <source>paiementCheque.text</source>
+        <target state="final">لتثبيت  تسديد المبلغ الرجاء وضع العنوان و المستحق له و ارساله الى العنوان التالي</target>
+      </trans-unit>
+      <trans-unit id="ydaYege" resname="paiementCheque.title" approved="yes">
+        <source>paiementCheque.title</source>
+        <target state="final">الدفع بالشيك</target>
+      </trans-unit>
+      <trans-unit id="LBpv4xy" resname="paiementRetour.abandonMessage" approved="yes">
+        <source>paiementRetour.abandonMessage</source>
+        <target state="final">لقد الغيت دفعك</target>
+      </trans-unit>
+      <trans-unit id="lHY2oPK" resname="paiementRetour.errorMessage" approved="yes">
+        <source>paiementRetour.errorMessage</source>
+        <target state="final">لم تنتهي عملية الدفع و لم يتم سحب المبلغ من حسابك. الرجاء اعادة عملية الدفع. ان الخطأ الذي ارسله نظام الدفع هو التالي:</target>
+      </trans-unit>
+      <trans-unit id="P19FN56" resname="paiementRetour.retourSurMonCompte" approved="yes">
+        <source>paiementRetour.retourSurMonCompte</source>
+        <target state="final">العودة الى حسابي.</target>
+      </trans-unit>
+      <trans-unit id="ByGY1Xj" resname="paiementRetour.successMessage" approved="yes">
+        <source>paiementRetour.successMessage</source>
+        <target state="final">تم اثبات تسديدك للمبلغ ستتلقى رسالة الكترونية تتضمن ملخص دفعك</target>
+      </trans-unit>
+      <trans-unit id="CNHV11D" resname="paiementRetour.waitingMessage" approved="yes">
+        <source>paiementRetour.waitingMessage</source>
+        <target state="final">لقد تم اثبات تسديدك للمبلغ. ستتلقى بعد بضعة ايام رسالة الكترونية للتأكيد عند استلام دفعك</target>
+      </trans-unit>
+      <trans-unit id="sxjOD2y" resname="paiementVirement.adresse" approved="yes">
+        <source>paiementVirement.adresse</source>
+        <target state="final">الشارع، المدينة و رقمها البريدي و البلد</target>
+      </trans-unit>
+      <trans-unit id="GWUNOnD" resname="paiementVirement.metaTitle" approved="yes">
+        <source>paiementVirement.metaTitle</source>
+        <target state="final">الدفع بتحويل مصرفي</target>
+      </trans-unit>
+      <trans-unit id="nMch.Mc" resname="paiementVirement.text2" approved="yes">
+        <source>paiementVirement.text2</source>
+        <target state="final">لاثبات تسديد المبلغ انقر هنا. عندما يصل الشيك للمستحق ستتلقى رسالة الكترونية تحتوي على اصال بالملغ لإثبات  تسديدك للمبلغ. عندئذ سيظهر في حساب المستخدم الخاص بك.</target>
+      </trans-unit>
+      <trans-unit id="Ty43mAe" resname="paiementVirement.text" approved="yes">
+        <source>paiementVirement.text</source>
+        <target state="final">لاثبات تحويلك المصرفي يرجى الاشارة الى العنوان التالي تودوبل العنوان:</target>
+      </trans-unit>
+      <trans-unit id="asv1tGO" resname="paiementVirement.title" approved="yes">
+        <source>paiementVirement.title</source>
+        <target state="final">الدفع بتحويل مصرفي</target>
+      </trans-unit>
+      <trans-unit id="pii0Wz9" resname="password_updated_successfully" approved="yes">
+        <source>password_updated_successfully</source>
+        <target state="final">تم تغيير كلمة السر الخاصة بك</target>
+      </trans-unit>
+      <trans-unit id="cl.lD7Z" resname="registerForm.adresse" approved="yes">
+        <source>registerForm.adresse</source>
+        <target state="final">عنوانك الشخصي (اختياري)</target>
+      </trans-unit>
+      <trans-unit id="nDXk0GQ" resname="registerForm.codePostal" approved="yes">
+        <source>registerForm.codePostal</source>
+        <target state="final">الرقم البريدي</target>
+      </trans-unit>
+      <trans-unit id="NeKB.1Z" resname="registerForm.email" approved="yes">
+        <source>registerForm.email</source>
+        <target state="final">عنوان البريد الالكتروني</target>
+      </trans-unit>
+      <trans-unit id="mfJmP6r" resname="registerForm.motDePasse" approved="yes">
+        <source>registerForm.motDePasse</source>
+        <target state="final">كلمة السر</target>
+      </trans-unit>
+      <trans-unit id="jiUGw7f" resname="registerForm.nom" approved="yes">
+        <source>registerForm.nom</source>
+        <target state="final">اسم العائلة</target>
+      </trans-unit>
+      <trans-unit id="HBapNqj" resname="registerForm.pays" approved="yes">
+        <source>registerForm.pays</source>
+        <target state="final">البلد</target>
+      </trans-unit>
+      <trans-unit id="PD_erKd" resname="registerForm.prenom" approved="yes">
+        <source>registerForm.prenom</source>
+        <target state="final">الاسم</target>
+      </trans-unit>
+      <trans-unit id="41WXFAG" resname="registerForm.rue" approved="yes">
+        <source>registerForm.rue</source>
+        <target state="final">الشارع</target>
+      </trans-unit>
+      <trans-unit id="v8gwHKV" resname="registerForm.telephone" approved="yes">
+        <source>registerForm.telephone</source>
+        <target state="final">رقم الهاتف</target>
+      </trans-unit>
+      <trans-unit id="abH3mmp" resname="registerForm.username" approved="yes">
+        <source>registerForm.username</source>
+        <target state="final">اسم المستخدم</target>
+      </trans-unit>
+      <trans-unit id="eJZ.zXT" resname="registerForm.ville" approved="yes">
+        <source>registerForm.ville</source>
+        <target state="final">المدينة</target>
+      </trans-unit>
+      <trans-unit id="_cY.wHP" resname="resetting.check_email" approved="yes">
         <source>resetting.check_email</source>
-        <target state="needs-translation">Письмо отправлено. Оно содержит ссылку, при переходе по которой ваш пароль будет сброшен.
-Заметьте, вы сможете запросить новый пароль только через %tokenLifetime% часов.
-
-Если вы не получили письмо, проверьте папку Спам или попробуйте снова.
-</target>
+        <target state="final">لقد تم ارسال رسالة الكترونية الى العنوان الالكتروني المسجل. تحتوي هذه الرسالة على رابط انترنيت  عليك ان تنقر عليه لاعادة تعيين كلمة السر.</target>
       </trans-unit>
-      <trans-unit id="f5J.GZt" resname="resetting.request.username">
-        <source>resetting.request.username</source>
-        <target state="needs-translation">Имя пользователя или электронная почта</target>
-      </trans-unit>
-      <trans-unit id="55aST1i" resname="resetting.request.submit">
-        <source>resetting.request.submit</source>
-        <target state="needs-translation">Сбросить пароль</target>
-      </trans-unit>
-      <trans-unit id="KsNOzZz" resname="resetting.reset.submit">
-        <source>resetting.reset.submit</source>
-        <target state="needs-translation">Изменить пароль</target>
-      </trans-unit>
-      <trans-unit id="TUD.2.O" resname="resetting.flash.success">
-        <source>resetting.flash.success</source>
-        <target state="needs-translation">Пароль успешно сброшен.</target>
-      </trans-unit>
-      <trans-unit id="Redv4tu" resname="resetting.email.subject">
-        <source>resetting.email.subject</source>
-        <target state="needs-translation">Сброс пароля</target>
-      </trans-unit>
-      <trans-unit id="Lm8o8Qg" resname="resetting.email.message">
+      <trans-unit id="Lm8o8Qg" resname="resetting.email.message" approved="yes">
         <source>resetting.email.message</source>
-        <target state="needs-translation">Приветствуем, %username%!
-
-Для сброса пароля, пожалуйста, пройдите по ссылке %confirmationUrl%
-
-С наилучшими пожеланиями,
-команда сайта.
-</target>
+        <target state="final">صباح الخير من اجل اعادة تعيين كلمة السر يرجى العودة الى... من قبل الفريق</target>
       </trans-unit>
-      <trans-unit id="7oF7jXj" resname="layout.logout">
-        <source>layout.logout</source>
-        <target state="needs-translation">Выход</target>
+      <trans-unit id="Redv4tu" resname="resetting.email.subject" approved="yes">
+        <source>resetting.email.subject</source>
+        <target state="final">اعادة تعيين كلمة السر الخاصة بك</target>
       </trans-unit>
-      <trans-unit id="J.8npBV" resname="layout.login">
-        <source>layout.login</source>
-        <target state="needs-translation">Вход</target>
+      <trans-unit id="GXvlkn9" resname="resetting.etesVousSur" approved="yes">
+        <source>resetting.etesVousSur</source>
+        <target state="final">هل تريد حقا اعادة تعيين كلمة السر الخاصة ب (اسم المستخدم)</target>
       </trans-unit>
-      <trans-unit id="sLu8MAv" resname="layout.register">
-        <source>layout.register</source>
-        <target state="needs-translation">Регистрация</target>
+      <trans-unit id="TUD.2.O" resname="resetting.flash.success" approved="yes">
+        <source>resetting.flash.success</source>
+        <target state="final">لقد تمت اعادة تعيين كلمة السر</target>
       </trans-unit>
-      <trans-unit id="BW_lWYD" resname="layout.logged_in_as">
-        <source>layout.logged_in_as</source>
-        <target state="needs-translation">Вы вошли как %username%</target>
+      <trans-unit id="gORugrW" resname="resetting.password_already_requested" approved="yes">
+        <source>resetting.password_already_requested</source>
+        <target state="final">لقد تم طلب كلمة سر لهذا المستخدم خلال الاربع و عشرين ساعة الماضية</target>
       </trans-unit>
-      <trans-unit id="B0VCgO_" resname="form.username">
-        <source>form.username</source>
-        <target state="needs-translation">Имя пользователя</target>
+      <trans-unit id="cJcEHb0" resname="resetting.public.existePas" approved="yes">
+        <source>resetting.public.existePas</source>
+        <target state="final">لا يوجد أي مستخدم على هذا العنوان الإلكتروني</target>
       </trans-unit>
-      <trans-unit id="3IGOm9D" resname="form.email">
-        <source>form.email</source>
-        <target state="needs-translation">Электронная почта</target>
+      <trans-unit id="94kx2UE" resname="resetting.public.metaTitle" approved="yes">
+        <source>resetting.public.metaTitle</source>
+        <target state="final">اعادة تعيين كلمة السر</target>
       </trans-unit>
-      <trans-unit id="IY9XZs0" resname="form.current_password">
-        <source>form.current_password</source>
-        <target state="needs-translation">Текущий пароль</target>
+      <trans-unit id="aEz2tnh" resname="resetting.public.text" approved="yes">
+        <source>resetting.public.text</source>
+        <target state="final">يرجى ادخال عنوانك الالكتروني</target>
       </trans-unit>
-      <trans-unit id="yjqmSBK" resname="form.password">
-        <source>form.password</source>
-        <target state="needs-translation">Пароль</target>
+      <trans-unit id="Yy6ekzo" resname="resetting.public.title" approved="yes">
+        <source>resetting.public.title</source>
+        <target state="final">اعادة تعيين كلمة السر</target>
       </trans-unit>
-      <trans-unit id="Y4Q7qvl" resname="form.password_confirmation">
-        <source>form.password_confirmation</source>
-        <target state="needs-translation">Подтвердите пароль</target>
+      <trans-unit id="7_F9gPI" resname="resetting.public.votreEmail" approved="yes">
+        <source>resetting.public.votreEmail</source>
+        <target state="final">عنوانك الالكتروني</target>
       </trans-unit>
-      <trans-unit id="JTbuLK0" resname="form.new_password">
-        <source>form.new_password</source>
-        <target state="needs-translation">Новый пароль</target>
+      <trans-unit id="KsNOzZz" resname="resetting.reset.submit" approved="yes">
+        <source>resetting.reset.submit</source>
+        <target state="final">تغيير كلمة السر</target>
       </trans-unit>
-      <trans-unit id="hdTL88S" resname="form.new_password_confirmation">
-        <source>form.new_password_confirmation</source>
-        <target state="needs-translation">Подтвердите пароль</target>
+      <trans-unit id="ROv_hfT" resname="settings_saved_successfully" approved="yes">
+        <source>settings_saved_successfully</source>
+        <target state="final">تم تسجيل قيمك المدخلة في الكمبيوتر</target>
       </trans-unit>
-      <trans-unit id="3gsm.Dj" resname="fos_user.username.already_used">
-        <source>fos_user.username.already_used</source>
-        <target state="needs-translation">Логин уже используется.</target>
+      <trans-unit id="lh.ilcF" resname="statut.abandoned" approved="yes">
+        <source>statut.abandoned</source>
+        <target state="final">ترك</target>
       </trans-unit>
-      <trans-unit id="jtmA7tx" resname="fos_user.username.blank">
-        <source>fos_user.username.blank</source>
-        <target state="needs-translation">Пожалуйста, укажите логин.</target>
+      <trans-unit id="2B1sPM6" resname="statut.confirmed" approved="yes">
+        <source>statut.confirmed</source>
+        <target state="final">تثبيت</target>
       </trans-unit>
-      <trans-unit id="ypasfnh" resname="fos_user.username.short">
-        <source>fos_user.username.short</source>
-        <target state="needs-translation">Логин слишком короткий.</target>
+      <trans-unit id="GebE.u7" resname="statut.created" approved="yes">
+        <source>statut.created</source>
+        <target state="final">تم الانشاء</target>
       </trans-unit>
-      <trans-unit id="VVzgoob" resname="fos_user.username.long">
-        <source>fos_user.username.long</source>
-        <target state="needs-translation">Логин слишком длинный.</target>
+      <trans-unit id="i1hSZVg" resname="statut.waiting" approved="yes">
+        <source>statut.waiting</source>
+        <target state="final">في انتظار (الشيك/الحوالة المصرفية)</target>
       </trans-unit>
-      <trans-unit id="vqk8sdH" resname="fos_user.email.already_used">
-        <source>fos_user.email.already_used</source>
-        <target state="needs-translation">Email уже используется.</target>
+      <trans-unit id="r7T5f8g" resname="switchUser.btnRevenir" approved="yes">
+        <source>switchUser.btnRevenir</source>
+        <target state="final">العودة الى صفحة ادارة الموقع</target>
       </trans-unit>
-      <trans-unit id="g72C3vn" resname="fos_user.email.blank">
-        <source>fos_user.email.blank</source>
-        <target state="needs-translation">Пожалуйста, укажите Ваш email.</target>
+      <trans-unit id="AKuUPR9" resname="switchUser.connecte" approved="yes">
+        <source>switchUser.connecte</source>
+        <target state="final">انت تتصل بصفتك</target>
       </trans-unit>
-      <trans-unit id="9GR5Mk6" resname="fos_user.email.short">
-        <source>fos_user.email.short</source>
-        <target state="needs-translation">Email слишком короткий.</target>
+      <trans-unit id="5iOf34Y" resname="user.cgu.bAccepter" approved="yes">
+        <source>user.cgu.bAccepter</source>
+        <target state="final">نقاط المناوبة الخاصة بي</target>
       </trans-unit>
-      <trans-unit id="Y1eOW4z" resname="fos_user.email.long">
-        <source>fos_user.email.long</source>
-        <target state="needs-translation">Email слишком длинный.</target>
+      <trans-unit id="YvoXAoV" resname="user.cgu.metaTitle" approved="yes">
+        <source>user.cgu.metaTitle</source>
+        <target state="final">انا اوافق على شروط الاستعمال</target>
       </trans-unit>
-      <trans-unit id="lRE_vn_" resname="fos_user.email.invalid">
-        <source>fos_user.email.invalid</source>
-        <target state="needs-translation">Email в неправильном формате.</target>
+      <trans-unit id="mSVLeHs" resname="user.cgu.mustAccept" approved="yes">
+        <source>user.cgu.mustAccept</source>
+        <target state="final">معارفي</target>
       </trans-unit>
-      <trans-unit id="Zrr5_qX" resname="fos_user.password.blank">
-        <source>fos_user.password.blank</source>
-        <target state="needs-translation">Пожалуйста, укажите пароль.</target>
+      <trans-unit id="DaO2WI1" resname="user.cgu.title" approved="yes">
+        <source>user.cgu.title</source>
+        <target state="final">عليك ان توافق على شروط الاستعمال</target>
       </trans-unit>
-      <trans-unit id="2k0f5kz" resname="fos_user.password.short">
-        <source>fos_user.password.short</source>
-        <target state="needs-translation">Пароль слишком короткий.</target>
+      <trans-unit id="QzHdPao" resname="user.firstVisit.beneficiaire.metaTitle" approved="yes">
+        <source>user.firstVisit.beneficiaire.metaTitle</source>
+        <target state="final">اهلا بك في موقع ريكونيكت كلاود التضامن</target>
       </trans-unit>
-      <trans-unit id="G6rntWw" resname="fos_user.password.mismatch">
-        <source>fos_user.password.mismatch</source>
-        <target state="needs-translation">Введенные пароли не совпадают.</target>
+      <trans-unit id="KAN9nI0" resname="user.firstVisit.beneficiaire.text" approved="yes">
+        <source>user.firstVisit.beneficiaire.text</source>
+        <target state="final">ستمكنك هذه الاداة من حفظ مجمل معلوماتك الشخصية (مثل الوثائق و المواعيد و عناوين معارفك و مختلف الملاحظات الخاصة بك الخ..).ان كل البيانات التي تحفظها هي ملكك  و لا يحق لأي شخص آخر غيرك الغائها بشكل نهائي. لا تتردد في الطلب من العاملين الاجتماعيين في نقاط المناوبة لريكونيكت مرافقتك في استخدام هذا الموقع. ان فريق ريكونيكت يرحب بك على منصته و يتمنى لك حسن استخدامها.</target>
       </trans-unit>
-      <trans-unit id="p9q.ZOD" resname="fos_user.new_password.blank">
-        <source>fos_user.new_password.blank</source>
-        <target state="needs-translation">Пожалуйста, укажите новый пароль.</target>
+      <trans-unit id="Q9U3B8o" resname="user.firstVisit.beneficiaire.title" approved="yes">
+        <source>user.firstVisit.beneficiaire.title</source>
+        <target state="final">اهلا بك في موقع ريكونيكت كلاود التضامن</target>
       </trans-unit>
-      <trans-unit id="aM77hCJ" resname="fos_user.new_password.short">
-        <source>fos_user.new_password.short</source>
-        <target state="needs-translation">Новый пароль слишком короткий.</target>
+      <trans-unit id="E_mfh_2" resname="user.firstVisit.gestionnaire.metaTitle" approved="yes">
+        <source>user.firstVisit.gestionnaire.metaTitle</source>
+        <target state="final">اهلا بك في موقع ريكونيكت كلاود التضامن</target>
       </trans-unit>
-      <trans-unit id="HCwhShp" resname="fos_user.current_password.invalid">
-        <source>fos_user.current_password.invalid</source>
-        <target state="needs-translation">Вы неправильно ввели Ваш текущий пароль.</target>
+      <trans-unit id="nYHtYHK" resname="user.firstVisit.gestionnaire.text" approved="yes">
+        <source>user.firstVisit.gestionnaire.text</source>
+        <target state="final">شكرا لاختيارك حل ريكونيكت كلاود التضامن، ستسمح هذه الاداة للفرق التابعة لمؤسساتكم مرافقة المستفيدين في مجال استخدام حسابهم على منصة ريكونيكت. لا تتردد في الاتصال بريكونيكت لكل طلب معلومات. ان فريق ريكونيكت يرحب بك على منصته و يتمنى لك حسن استخدامها.</target>
+      </trans-unit>
+      <trans-unit id="XXU5rOq" resname="user.firstVisit.gestionnaire.title" approved="yes">
+        <source>user.firstVisit.gestionnaire.title</source>
+        <target state="final">اهلا بك في موقع ريكونيكت كلاود التضامن</target>
+      </trans-unit>
+      <trans-unit id="OC7fIq6" resname="user.firstVisit.membre.metaTitle" approved="yes">
+        <source>user.firstVisit.membre.metaTitle</source>
+        <target state="final">اهلا بك في موقع ريكونيكت كلاود التضامن</target>
+      </trans-unit>
+      <trans-unit id="cP0a8vd" resname="user.firstVisit.membre.text" approved="yes">
+        <source>user.firstVisit.membre.text</source>
+        <target state="final">ان الوظيفة الاساسية لهذه الاداة هي حفظ المعلومات الشخصية الخاصة بالأشخاص المرافقين. تندرج هذه الأداة في اطار المرافقة  و هي ستسمح لك مساعدة المستفيدين على حفظ بياناتهم. ان فريق ريكونيكت يرحب بك على منصته و يتمنى لك حسن استخدامها.</target>
+      </trans-unit>
+      <trans-unit id=".kB103K" resname="user.firstVisit.membre.title" approved="yes">
+        <source>user.firstVisit.membre.title</source>
+        <target state="final">اهلا بك في موقع ريكونيكت كلاود التضامن</target>
+      </trans-unit>
+      <trans-unit id="nhtSAB4" resname="user.parametres.changerMotDePasse" approved="yes">
+        <source>user.parametres.changerMotDePasse</source>
+        <target state="final">تغيير كلمة السر الخاصة بك</target>
+      </trans-unit>
+      <trans-unit id="VxHaqiA" resname="user.parametres.dateNaissanceLabel" approved="yes">
+        <source>user.parametres.dateNaissanceLabel</source>
+        <target state="final">تاريخ الولادة</target>
+      </trans-unit>
+      <trans-unit id="QUUMY9Y" resname="user.parametres.enregister" approved="yes">
+        <source>user.parametres.enregister</source>
+        <target state="final">تسجيل التعديلات</target>
+      </trans-unit>
+      <trans-unit id="CfDPllu" resname="user.parametres.lieuNaissanceLabel" approved="yes">
+        <source>user.parametres.lieuNaissanceLabel</source>
+        <target state="final">موقع الولادة</target>
+      </trans-unit>
+      <trans-unit id="qniAE7X" resname="user.parametres.mdpActuel" approved="yes">
+        <source>user.parametres.mdpActuel</source>
+        <target state="final">كلمة السر الخاصة بك الحالية</target>
+      </trans-unit>
+      <trans-unit id="evS1vft" resname="user.parametres.metaTitle" approved="yes">
+        <source>user.parametres.metaTitle</source>
+        <target state="final">قيم المستخدم المدخلة  في الكمبيوتر</target>
+      </trans-unit>
+      <trans-unit id="9YPJiru" resname="user.parametres.nouveauMotDePasse" approved="yes">
+        <source>user.parametres.nouveauMotDePasse</source>
+        <target state="final">كلمة السر الخاصة بك الجديدة</target>
+      </trans-unit>
+      <trans-unit id="6LhlLuJ" resname="user.parametres.nouveauMotDePasseConfirm" approved="yes">
+        <source>user.parametres.nouveauMotDePasseConfirm</source>
+        <target state="final">تأكيد كلمة السر الجديدة</target>
+      </trans-unit>
+      <trans-unit id="6o8.eDl" resname="user.parametres.questionSecreteLabel" approved="yes">
+        <source>user.parametres.questionSecreteLabel</source>
+        <target state="final">السؤال السري</target>
+      </trans-unit>
+      <trans-unit id="67GIshH" resname="user.parametres.reponseSecreteLabel" approved="yes">
+        <source>user.parametres.reponseSecreteLabel</source>
+        <target state="final">الاجابة السرية</target>
+      </trans-unit>
+      <trans-unit id="1gXd9l6" resname="user.parametres.subtitle" approved="yes">
+        <source>user.parametres.subtitle</source>
+        <target state="final">قيم (اسم الشخص) المدخلة في الكمبيوتر</target>
+      </trans-unit>
+      <trans-unit id="TMImok_" resname="user.parametres.title" approved="yes">
+        <source>user.parametres.title</source>
+        <target state="final">قيم المستخدم المدخلة  في الكمبيوتر</target>
+      </trans-unit>
+      <trans-unit id="rokhSbj" resname="user.parametres.userLabel" approved="yes">
+        <source>user.parametres.userLabel</source>
+        <target state="final">المستخدم</target>
+      </trans-unit>
+      <trans-unit id="0eKVE5q" resname="user.pendingCentre.flashAccepter" approved="yes">
+        <source>user.pendingCentre.flashAccepter</source>
+        <target state="final">انت وافقت على الانضمام الى المركز</target>
+      </trans-unit>
+      <trans-unit id="8mNFOqy" resname="user.pendingCentre.flashRefuser" approved="yes">
+        <source>user.pendingCentre.flashRefuser</source>
+        <target state="final">انت رفضت الانضمام الى المركز</target>
+      </trans-unit>
+      <trans-unit id="S1MRhUO" resname="user.pendingCentre.title" approved="yes">
+        <source>user.pendingCentre.title</source>
+        <target state="final">ترغب نقطة مناوبة لريكونيكت بإضافتك</target>
+      </trans-unit>
+      <trans-unit id="wYWsTgl" resname="user.reinitialiserMdp.adresseMail" approved="yes">
+        <source>user.reinitialiserMdp.adresseMail</source>
+        <target state="final">اعادة التعيين مع العنوان الالكتروني</target>
+      </trans-unit>
+      <trans-unit id="gyz22DC" resname="user.reinitialiserMdp.aucuneMethode" approved="yes">
+        <source>user.reinitialiserMdp.aucuneMethode</source>
+        <target state="final">من المستحيل اعادة تعيين كلمة السر لهذا المستخدم، فهو لم يعط عنوانه الالكتروني و لا رقم هاتفه</target>
+      </trans-unit>
+      <trans-unit id=".hdbAYt" resname="user.reinitialiserMdp.emailEnvoye" approved="yes">
+        <source>user.reinitialiserMdp.emailEnvoye</source>
+        <target state="final">تم ارسال الرسالة الكترونية</target>
+      </trans-unit>
+      <trans-unit id="uKEBDqA" resname="user.reinitialiserMdp.errorCode" approved="yes">
+        <source>user.reinitialiserMdp.errorCode</source>
+        <target state="final">ان رمز الحروف و الارقام خاطئ</target>
+      </trans-unit>
+      <trans-unit id="F5j3oeb" resname="user.reinitialiserMdp.metaTitle" approved="yes">
+        <source>user.reinitialiserMdp.metaTitle</source>
+        <target state="final">اعادة تعيين كلمة السر</target>
+      </trans-unit>
+      <trans-unit id="cRbPplm" resname="user.reinitialiserMdp.questionSecrete" approved="yes">
+        <source>user.reinitialiserMdp.questionSecrete</source>
+        <target state="final">اعادة التعيين مع السؤال السري</target>
+      </trans-unit>
+      <trans-unit id="vP9oA7Z" resname="user.reinitialiserMdp.reinitialisation" approved="yes">
+        <source>user.reinitialiserMdp.reinitialisation</source>
+        <target state="final">اعادة تعيين</target>
+      </trans-unit>
+      <trans-unit id="6ae2r8i" resname="user.reinitialiserMdp.smsCodeLabel" approved="yes">
+        <source>user.reinitialiserMdp.smsCodeLabel</source>
+        <target state="final">رمز الحروف و الارقام تم ارساله عبر رسالة نصية قصيرة</target>
+      </trans-unit>
+      <trans-unit id="91Zfr5B" resname="user.reinitialiserMdp.smsCodeSent" approved="yes">
+        <source>user.reinitialiserMdp.smsCodeSent</source>
+        <target state="final">تم ارسال رمز الحروف و الارقام عبر رسالة نصية قصيرة على هاتف المستخدم يرجى ادخاله في المجال اعلاه لإعادة تعيين كلمة السر الخاصة بك.</target>
+      </trans-unit>
+      <trans-unit id="A3D9n2Q" resname="user.reinitialiserMdp.smsDejaReset" approved="yes">
+        <source>user.reinitialiserMdp.smsDejaReset</source>
+        <target state="final">لقد حاولت اعادة تعيين كلمة السر الخاصة بك خلال الاربع و عشرين ساعة الماضية</target>
+      </trans-unit>
+      <trans-unit id="g9cLHn5" resname="user.reinitialiserMdp.smsMessage" approved="yes">
+        <source>user.reinitialiserMdp.smsMessage</source>
+        <target state="final">ان رمز الحروف و الارقام لإعادة تعيين كلمة سر ريكونيكت الخاصة بك هو</target>
+      </trans-unit>
+      <trans-unit id="MwsUOVo" resname="user.reinitialiserMdp.subtitle" approved="yes">
+        <source>user.reinitialiserMdp.subtitle</source>
+        <target state="final">اعادة تعيين كلمة السر التابعة ل</target>
+      </trans-unit>
+      <trans-unit id="Nrn87pt" resname="user.reinitialiserMdp.telephone" approved="yes">
+        <source>user.reinitialiserMdp.telephone</source>
+        <target state="final">اعادة التعيين مع رسالة نصية قصيرة على الهاتف النقال</target>
+      </trans-unit>
+      <trans-unit id="EaHD1gq" resname="user.reinitialiserMdp.title" approved="yes">
+        <source>user.reinitialiserMdp.title</source>
+        <target state="final">اعادة تعيين كلمة السر</target>
+      </trans-unit>
+      <trans-unit id="5K7WAvi" resname="user.supprimerCompte.etesVousSurs" approved="yes">
+        <source>user.supprimerCompte.etesVousSurs</source>
+        <target state="final">هل تريد حقا الغاء حسابك؟</target>
+      </trans-unit>
+      <trans-unit id="TOZli2_" resname="user.supprimerCompte.success" approved="yes">
+        <source>user.supprimerCompte.success</source>
+        <target state="final">تم الغاء الحساب</target>
+      </trans-unit>
+      <trans-unit id="Q3FGGfU" resname="wrong_current_password" approved="yes">
+        <source>wrong_current_password</source>
+        <target state="final">كلمة السر الخاصة بك الحالية خاطئة</target>
+      </trans-unit>
+      <trans-unit id="O5X03_0" resname="delete_currently_shared_document_warning" approved="yes">
+        <source>delete_currently_shared_document_warning</source>
+        <target state="final">تتم مشاركة المستند لمدة %daysCount% يومًا أخرى. إذا قمت بحذف هذا المستند ، فسيتم التراجع عن المشاركة</target>
+      </trans-unit>
+      <trans-unit id="Kk.wjLq" resname="sms_sent_failed" approved="yes">
+        <source>sms_sent_failed</source>
+        <target state="final">فشل إرسال الرسائل القصيرة ، يرجى التحقق من صحة رقم الهاتف</target>
+      </trans-unit>
+      <trans-unit id="inmIkP6" resname="yes" approved="yes">
+        <source>yes</source>
+        <target state="final">نعم</target>
       </trans-unit>
     </body>
   </file>
