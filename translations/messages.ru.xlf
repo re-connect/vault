@@ -5,29 +5,2517 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="qzPSXSv" resname="authentification_failure_wrong_credentials">
+      <trans-unit id="qzPSXSv" resname="authentification_failure_wrong_credentials" approved="yes">
         <source>authentification_failure_wrong_credentials</source>
-        <target state="needs-translation">غلط پاسورډ یا غلط کارن نوم</target>
+        <target state="final">логин или пароль неверен</target>
       </trans-unit>
-      <trans-unit id="rtfhvh0" resname="form_connexion">
+      <trans-unit id="rtfhvh0" resname="form_connexion" approved="yes">
         <source>form_connexion</source>
-        <target state="needs-translation">ننوتل يا کنيکټ کيدل</target>
+        <target state="final">войти</target>
       </trans-unit>
-      <trans-unit id="Fxi_CPB" resname="form_forgot_password">
+      <trans-unit id="Fxi_CPB" resname="form_forgot_password" approved="yes">
         <source>form_forgot_password</source>
-        <target state="needs-translation">زما پاسورډ بیا تنظیم کړئ</target>
+        <target state="final">Сбросить пароль</target>
       </trans-unit>
-      <trans-unit id="2UXKonp" resname="form_login">
+      <trans-unit id="2UXKonp" resname="form_login" approved="yes">
         <source>form_login</source>
-        <target state="needs-translation">کاروونکي نوم یا بریښنالیک</target>
+        <target state="final">логин или пароль</target>
       </trans-unit>
-      <trans-unit id=".jAC5W1" resname="form_password">
+      <trans-unit id=".jAC5W1" resname="form_password" approved="yes">
         <source>form_password</source>
-        <target state="needs-translation">پاسورډ</target>
+        <target state="final">пароль</target>
       </trans-unit>
-      <trans-unit id="iOZMbG8" resname="login_form_title">
+      <trans-unit id="iOZMbG8" resname="login_form_title" approved="yes">
         <source>login_form_title</source>
-        <target state="needs-translation">ډیجیټل خوندي ته ډیجیټل خوندي ته لاسرسی</target>
+        <target state="final">Доступ в цифровой сейф</target>
+      </trans-unit>
+      <trans-unit id="tLaNto5" resname="admin.bienvenue" approved="yes">
+        <source>admin.bienvenue</source>
+        <target state="final">Добро пожаловать в вашу администрацию Reconnect</target>
+      </trans-unit>
+      <trans-unit id="QM_fv7v" resname="admin.centres.benéficiaires" approved="yes">
+        <source>admin.centres.benéficiaires</source>
+        <target state="final">Получатели</target>
+      </trans-unit>
+      <trans-unit id="zAv9_wP" resname="admin.centres.historique" approved="yes">
+        <source>admin.centres.historique</source>
+        <target state="final">История</target>
+      </trans-unit>
+      <trans-unit id="F29FiBV" resname="admin.centres.membres" approved="yes">
+        <source>admin.centres.membres</source>
+        <target state="final">Члены</target>
+      </trans-unit>
+      <trans-unit id="NlJlbqe" resname="admin.centres.nom" approved="yes">
+        <source>admin.centres.nom</source>
+        <target state="final">Название</target>
+      </trans-unit>
+      <trans-unit id="aJ_Fynk" resname="admin.centres.smsEnvoyes" approved="yes">
+        <source>admin.centres.smsEnvoyes</source>
+        <target state="final">Отправленные смс-сообщения</target>
+      </trans-unit>
+      <trans-unit id="FqrCP7H" resname="admin.centres.statistiques.dateJour" approved="yes">
+        <source>admin.centres.statistiques.dateJour</source>
+        <target state="final">Текущая дата</target>
+      </trans-unit>
+      <trans-unit id="krCko8_" resname="admin.centres.statistiques.nbBeneficiaires" approved="yes">
+        <source>admin.centres.statistiques.nbBeneficiaires</source>
+        <target state="final">Количество получателей</target>
+      </trans-unit>
+      <trans-unit id="GG5lctO" resname="admin.centres.statistiques.nbMembres" approved="yes">
+        <source>admin.centres.statistiques.nbMembres</source>
+        <target state="final">Количество членов</target>
+      </trans-unit>
+      <trans-unit id="1TDm4FA" resname="admin.centres.statistiques.smsEnvoyes" approved="yes">
+        <source>admin.centres.statistiques.smsEnvoyes</source>
+        <target state="final">Количество посланных смс-сообщений</target>
+      </trans-unit>
+      <trans-unit id="sWmF_QG" resname="admin.centres.statistiques.title" approved="yes">
+        <source>admin.centres.statistiques.title</source>
+        <target state="final">Статистика центров</target>
+      </trans-unit>
+      <trans-unit id="Du1KuWs" resname="admin.centres.voir" approved="yes">
+        <source>admin.centres.voir</source>
+        <target state="final">Открыть</target>
+      </trans-unit>
+      <trans-unit id="2i.Q2p_" resname="admin.menu.accueil" approved="yes">
+        <source>admin.menu.accueil</source>
+        <target state="final">Главная страница</target>
+      </trans-unit>
+      <trans-unit id="4Twh68c" resname="admin.menu.centres" approved="yes">
+        <source>admin.menu.centres</source>
+        <target state="final">Центр</target>
+      </trans-unit>
+      <trans-unit id="iJAhVXd" resname="admin.menu.dashboard" approved="yes">
+        <source>admin.menu.dashboard</source>
+        <target state="final">База данных</target>
+      </trans-unit>
+      <trans-unit id="gtlQqwH" resname="admin.menu.traduction" approved="yes">
+        <source>admin.menu.traduction</source>
+        <target state="final">Перевод</target>
+      </trans-unit>
+      <trans-unit id="O3NlccA" resname="admin.metaTitle" approved="yes">
+        <source>admin.metaTitle</source>
+        <target state="final">Администрация Reconnect</target>
+      </trans-unit>
+      <trans-unit id="XneOvFD" resname="admin.title" approved="yes">
+        <source>admin.title</source>
+        <target state="final"><![CDATA[Директоров, <span class="main"> Повторное подключение</span>]]></target>
+      </trans-unit>
+      <trans-unit id="6NrhaR7" resname="aides.metaTitle" approved="yes">
+        <source>aides.metaTitle</source>
+        <target state="final">Пособия</target>
+      </trans-unit>
+      <trans-unit id="2VSY8.g" resname="association.categorie.association" approved="yes">
+        <source>association.categorie.association</source>
+        <target state="final">Ассоциация</target>
+      </trans-unit>
+      <trans-unit id="T5DVOK4" resname="association.categorie.ccas" approved="yes">
+        <source>association.categorie.ccas</source>
+        <target state="final">Муниципальный центр социального обслуживания (CCAS)</target>
+      </trans-unit>
+      <trans-unit id="y5Qqdrw" resname="association.categorie.choisir" approved="yes">
+        <source>association.categorie.choisir</source>
+        <target state="final">Выберите категорию ассоциации</target>
+      </trans-unit>
+      <trans-unit id="QCNK8Tt" resname="association.urlLabel" approved="yes">
+        <source>association.urlLabel</source>
+        <target state="final">Интернет сайт</target>
+      </trans-unit>
+      <trans-unit id="4YZuZg7" resname="back_home" approved="yes">
+        <source>back_home</source>
+        <target state="final">Вернуться в главное меню</target>
+      </trans-unit>
+      <trans-unit id="cpMXuES" resname="beneficiaire.menu.mesAides" approved="yes">
+        <source>beneficiaire.menu.mesAides</source>
+        <target state="final">Мои пособия</target>
+      </trans-unit>
+      <trans-unit id="HPfw1BJ" resname="beneficiaire.menu.mesContacts" approved="yes">
+        <source>beneficiaire.menu.mesContacts</source>
+        <target state="final">Мои контакты</target>
+      </trans-unit>
+      <trans-unit id="qJM0Ov1" resname="beneficiaire.menu.mesDocuments" approved="yes">
+        <source>beneficiaire.menu.mesDocuments</source>
+        <target state="final">Мои документы</target>
+      </trans-unit>
+      <trans-unit id="1xUovPD" resname="beneficiaire.menu.mesNotes" approved="yes">
+        <source>beneficiaire.menu.mesNotes</source>
+        <target state="final">Мои Заметки</target>
+      </trans-unit>
+      <trans-unit id="UbazuvB" resname="beneficiaire.menu.mesRelaisReconnect" approved="yes">
+        <source>beneficiaire.menu.mesRelaisReconnect</source>
+        <target state="final">Мои Посредники</target>
+      </trans-unit>
+      <trans-unit id="g9AfBix" resname="beneficiaire.menu.monCalendrier" approved="yes">
+        <source>beneficiaire.menu.monCalendrier</source>
+        <target state="final">Мои записи на приём</target>
+      </trans-unit>
+      <trans-unit id="mFYZ6GP" resname="beneficiaire.menu.parametres" approved="yes">
+        <source>beneficiaire.menu.parametres</source>
+        <target state="final">Настройки</target>
+      </trans-unit>
+      <trans-unit id="Gf9_9yj" resname="beneficiaire.menu2.mesAides" approved="yes">
+        <source>beneficiaire.menu2.mesAides</source>
+        <target state="final">Пособия</target>
+      </trans-unit>
+      <trans-unit id=".qSoreT" resname="beneficiaire.menu2.mesContacts" approved="yes">
+        <source>beneficiaire.menu2.mesContacts</source>
+        <target state="final">Контакты</target>
+      </trans-unit>
+      <trans-unit id="HzUw6dN" resname="beneficiaire.menu2.mesDocuments" approved="yes">
+        <source>beneficiaire.menu2.mesDocuments</source>
+        <target state="final">Документы</target>
+      </trans-unit>
+      <trans-unit id="FuothF9" resname="beneficiaire.menu2.mesNotes" approved="yes">
+        <source>beneficiaire.menu2.mesNotes</source>
+        <target state="final">Заметки</target>
+      </trans-unit>
+      <trans-unit id="qgjaerC" resname="beneficiaire.menu2.mesRelaisReconnect" approved="yes">
+        <source>beneficiaire.menu2.mesRelaisReconnect</source>
+        <target state="final">Посредник</target>
+      </trans-unit>
+      <trans-unit id="r88xj0v" resname="beneficiaire.menu2.monCalendrier" approved="yes">
+        <source>beneficiaire.menu2.monCalendrier</source>
+        <target state="final">Запись на приём</target>
+      </trans-unit>
+      <trans-unit id="QPJVz6X" resname="bientotDisponible.text" approved="yes">
+        <source>bientotDisponible.text</source>
+        <target state="final"><![CDATA[Дополнительные сведения о <a class="bold main"> Reconnect солидарности облако</a> и присоединиться к сети <a class="bold main"> Реле переподключение</a>, свяжитесь с нами напрямую по телефону: <a class="bold main"> 01 58 30 55 29</a> <br/> или по электронной почте: <a class="bold main"> contact@reconnect.fr</a>]]></target>
+      </trans-unit>
+      <trans-unit id="RuWSgET" resname="centre.metaTitle" approved="yes">
+        <source>centre.metaTitle</source>
+        <target state="final">Центры</target>
+      </trans-unit>
+      <trans-unit id="zVXxYXv" resname="centre.nom" approved="yes">
+        <source>centre.nom</source>
+        <target state="final">Название</target>
+      </trans-unit>
+      <trans-unit id="cpOgM7L" resname="centre.ville" approved="yes">
+        <source>centre.ville</source>
+        <target state="final">Город</target>
+      </trans-unit>
+      <trans-unit id="4XjTXke" resname="centre.vousAvezBienQuitte" approved="yes">
+        <source>centre.vousAvezBienQuitte</source>
+        <target state="final">Вы успешно вышли из центра</target>
+      </trans-unit>
+      <trans-unit id="PyZ8KrQ" resname="confirm" approved="yes">
+        <source>confirm</source>
+        <target state="final">Подтвердить</target>
+      </trans-unit>
+      <trans-unit id="2SJWDeG" resname="connexionForm.connexion" approved="yes">
+        <source>connexionForm.connexion</source>
+        <target state="final">Вход</target>
+      </trans-unit>
+      <trans-unit id="U4Za9A0" resname="connexionForm.erreurIdentifiants" approved="yes">
+        <source>connexionForm.erreurIdentifiants</source>
+        <target state="final">Вы ввели неверное имя пользователя/пароль</target>
+      </trans-unit>
+      <trans-unit id="Tlza..p" resname="connexionForm.inactif" approved="yes">
+        <source>connexionForm.inactif</source>
+        <target state="final">Ваша сессия была закрыта после определённого периода неактивности</target>
+      </trans-unit>
+      <trans-unit id="ujSP4OI" resname="connexionForm.motDePasse" approved="yes">
+        <source>connexionForm.motDePasse</source>
+        <target state="final">Пароль</target>
+      </trans-unit>
+      <trans-unit id="G7Gm97I" resname="connexionForm.oublieMdp" approved="yes">
+        <source>connexionForm.oublieMdp</source>
+        <target state="final">Забыли пароль или логин?</target>
+      </trans-unit>
+      <trans-unit id="em7h68v" resname="connexionForm.username" approved="yes">
+        <source>connexionForm.username</source>
+        <target state="final">Имя пользователя</target>
+      </trans-unit>
+      <trans-unit id="se8xO5g" resname="contact.ajouter" approved="yes">
+        <source>contact.ajouter</source>
+        <target state="final">Добавить контакт</target>
+      </trans-unit>
+      <trans-unit id="tuvW91w" resname="contact.associationLabel" approved="yes">
+        <source>contact.associationLabel</source>
+        <target state="final">Ассоциация</target>
+      </trans-unit>
+      <trans-unit id="Mpuc6SF" resname="contact.bienEteEnvoye" approved="yes">
+        <source>contact.bienEteEnvoye</source>
+        <target state="final">Сообщение отправлено. Наша команда свяжется с вами в ближайшее время.</target>
+      </trans-unit>
+      <trans-unit id="zkHNnhI" resname="contact.bienSauvegarde" approved="yes">
+        <source>contact.bienSauvegarde</source>
+        <target state="final">Контакт успешно сохранён</target>
+      </trans-unit>
+      <trans-unit id="fqPD1LA" resname="contact.bienSupprime" approved="yes">
+        <source>contact.bienSupprime</source>
+        <target state="final">Контакт успешно удалён</target>
+      </trans-unit>
+      <trans-unit id="N3Gx4p8" resname="contact.btnEnvoyerMessage" approved="yes">
+        <source>contact.btnEnvoyerMessage</source>
+        <target state="final">Отправить сообщение</target>
+      </trans-unit>
+      <trans-unit id="kCmLuyl" resname="contact.cantDisplay" approved="yes">
+        <source>contact.cantDisplay</source>
+        <target state="final">У вас нет права доступа к контактам этого получателя</target>
+      </trans-unit>
+      <trans-unit id="DbsyZtJ" resname="contact.cantEdit" approved="yes">
+        <source>contact.cantEdit</source>
+        <target state="final">У вас нет права редактировать этот контакт</target>
+      </trans-unit>
+      <trans-unit id="q0nLB2b" resname="contact.commentaireLabel" approved="yes">
+        <source>contact.commentaireLabel</source>
+        <target state="final">Комментарий</target>
+      </trans-unit>
+      <trans-unit id="IiU3phj" resname="contact.contenuError" approved="yes">
+        <source>contact.contenuError</source>
+        <target state="final">Поле сообщения пустое</target>
+      </trans-unit>
+      <trans-unit id="RxLgRI4" resname="contact.contenuLabel" approved="yes">
+        <source>contact.contenuLabel</source>
+        <target state="final">Ваше сообщение</target>
+      </trans-unit>
+      <trans-unit id="IHBjApQ" resname="contact.emailLabel" approved="yes">
+        <source>contact.emailLabel</source>
+        <target state="final">Электронная почта</target>
+      </trans-unit>
+      <trans-unit id="xbTOLBb" resname="contact.emptyData" approved="yes">
+        <source>contact.emptyData</source>
+        <target state="final">Там еще нет контакта. Нажмите «Добавить», чтобы создать его.</target>
+      </trans-unit>
+      <trans-unit id="vE6bW29" resname="contact.mailError" approved="yes">
+        <source>contact.mailError</source>
+        <target state="final">Неверный формат электронной почты</target>
+      </trans-unit>
+      <trans-unit id="xZf59lQ" resname="contact.metaTitle" approved="yes">
+        <source>contact.metaTitle</source>
+        <target state="final">Контакт</target>
+      </trans-unit>
+      <trans-unit id="6gM15zD" resname="contact.nomLabel" approved="yes">
+        <source>contact.nomLabel</source>
+        <target state="final">Фамилия</target>
+      </trans-unit>
+      <trans-unit id="uNe.88T" resname="contact.partage" approved="yes">
+        <source>contact.partage</source>
+        <target state="final">Коллективного пользования</target>
+      </trans-unit>
+      <trans-unit id="bjY_ESX" resname="contact.prenomLabel" approved="yes">
+        <source>contact.prenomLabel</source>
+        <target state="final">Имя</target>
+      </trans-unit>
+      <trans-unit id="s_lncKK" resname="contact.supprimer" approved="yes">
+        <source>contact.supprimer</source>
+        <target state="final">Удалить</target>
+      </trans-unit>
+      <trans-unit id="ae5F5ws" resname="contact.telephoneLabel" approved="yes">
+        <source>contact.telephoneLabel</source>
+        <target state="final">Номер телефона</target>
+      </trans-unit>
+      <trans-unit id="glRIc1N" resname="contact.text" approved="yes">
+        <source>contact.text</source>
+        <target state="final">Пишите нам, если вам нужна помощь, если у вас есть вопросы или проблемы с использованием Reconnect</target>
+      </trans-unit>
+      <trans-unit id="V6An5qD" resname="contact.title" approved="yes">
+        <source>contact.title</source>
+        <target state="final">Связаться с командой Reconnect</target>
+      </trans-unit>
+      <trans-unit id="rD43hKi" resname="delete_your_account" approved="yes">
+        <source>delete_your_account</source>
+        <target state="final">Если вы хотите удалить свой аккаунт, нажмите здесь</target>
+      </trans-unit>
+      <trans-unit id="6G6qoUb" resname="devenirUnRelaiReconnect.accueil.budget0.200000" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budget0.200000</source>
+        <target state="final"><![CDATA[Бюджет < 200 000€]]></target>
+      </trans-unit>
+      <trans-unit id="WfqrbAt" resname="devenirUnRelaiReconnect.accueil.budget1000000.1500000" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budget1000000.1500000</source>
+        <target state="final"><![CDATA[1000 000€ < Бюджет < 1500 000]]></target>
+      </trans-unit>
+      <trans-unit id="Fc3l2o2" resname="devenirUnRelaiReconnect.accueil.budget1500000.2000000" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budget1500000.2000000</source>
+        <target state="final"><![CDATA[1500 000€ < Бюджет < 2000 000€]]></target>
+      </trans-unit>
+      <trans-unit id="3ldh5LN" resname="devenirUnRelaiReconnect.accueil.budget200000.500000" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budget200000.500000</source>
+        <target state="final"><![CDATA[200 000€ < Бюджет < 500 000€]]></target>
+      </trans-unit>
+      <trans-unit id="Hq6bhuM" resname="devenirUnRelaiReconnect.accueil.budget2000000.plus" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budget2000000.plus</source>
+        <target state="final"><![CDATA[Бюджет > 2 000 000€]]></target>
+      </trans-unit>
+      <trans-unit id="tz966Fc" resname="devenirUnRelaiReconnect.accueil.budget500000.1000000" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budget500000.1000000</source>
+        <target state="final"><![CDATA[500 000€ < Бюджет < 1 000 000€]]></target>
+      </trans-unit>
+      <trans-unit id="lJfBSbe" resname="devenirUnRelaiReconnect.accueil.budgetParAn" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budgetParAn</source>
+        <target state="final">€ в год</target>
+      </trans-unit>
+      <trans-unit id="v_O3hOa" resname="devenirUnRelaiReconnect.accueil.budgetParMois" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budgetParMois</source>
+        <target state="final">€ в месяц</target>
+      </trans-unit>
+      <trans-unit id="jji881F" resname="devenirUnRelaiReconnect.accueil.budgetText" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.budgetText</source>
+        <target state="final">Reconnect - это общественный проект, который является бесплатным для пользователей. Однако, как всякая цифровая платформа, он влечет за собой определённые затраты, такие как: управление и разработка инструмента, помощь в использовании, распространении, хранении данных и тд. Reconnect рассчитывает на участие социальных структур, чтобы обеспечить сервис, максимально отвечающий потребностям лиц, находящихся в трудной ситуации. Став Посредником Reconnect, вы участвуете в обеспечении поддержки этого проекта.</target>
+      </trans-unit>
+      <trans-unit id="Bk01VqT" resname="devenirUnRelaiReconnect.accueil.combienCaCouteTxt" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.combienCaCouteTxt</source>
+        <target state="final">Для того, чтобы социальные структуры всех размеров могли зарегистрироваться в Reconnect, стоимость подписки варьируется в зависимости от их годового бюджета</target>
+      </trans-unit>
+      <trans-unit id="sDcG0v1" resname="devenirUnRelaiReconnect.accueil.jinscrisMaStructure" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.jinscrisMaStructure</source>
+        <target state="final">Зарегистрировать мою структуру</target>
+      </trans-unit>
+      <trans-unit id="W94.bt8" resname="devenirUnRelaiReconnect.accueil.metaDesc" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.metaDesc</source>
+        <target state="final">Зарегистрируйте вашу ассоциацию и укажите вашего посредника Reconnect</target>
+      </trans-unit>
+      <trans-unit id="SslHMFW" resname="devenirUnRelaiReconnect.accueil.metaTitle" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.metaTitle</source>
+        <target state="final">Стать Посредником Reconnect</target>
+      </trans-unit>
+      <trans-unit id="lGRQ8mz" resname="devenirUnRelaiReconnect.accueil.queFaitRelai" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.queFaitRelai</source>
+        <target state="final">Чем занимается Посредник Reconnect?</target>
+      </trans-unit>
+      <trans-unit id="0CvvC.l" resname="devenirUnRelaiReconnect.accueil.queFaitRelaiTxt" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.queFaitRelaiTxt</source>
+        <target state="final">Посредник Reconnect помогает лицам в трудной ситуации создать и пользоваться аккаунтом Reconnect. Он может добавлять важную информацию в аккаунт пользователей.</target>
+      </trans-unit>
+      <trans-unit id="Z4RBw4Y" resname="devenirUnRelaiReconnect.accueil.quelEquipement" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.quelEquipement</source>
+        <target state="final"><![CDATA[Какое оборудование <br/> реле снова нужно?]]></target>
+      </trans-unit>
+      <trans-unit id="2mgi2oU" resname="devenirUnRelaiReconnect.accueil.quelEquipementTxt" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.quelEquipementTxt</source>
+        <target state="final">Посредник Reconnect необходимо подключение к Интернет, компьютер, а также сканер или фотоаппарат, чтобы делать копии основных докуентов.</target>
+      </trans-unit>
+      <trans-unit id="_OUxIwp" resname="devenirUnRelaiReconnect.accueil.quiPeutDevenirRelai" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.quiPeutDevenirRelai</source>
+        <target state="final">Кто может стать Посредником Reconnect?</target>
+      </trans-unit>
+      <trans-unit id="pyEbbbb" resname="devenirUnRelaiReconnect.accueil.quiPeutDevenirRelaiTxt" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.quiPeutDevenirRelaiTxt</source>
+        <target state="final">Все социальные структуры, оказывающие услуги по социальному сопровождению лиц, находящихся в трудной ситуации, могут зарегистрироваться в Reconnect и стать Посредником.</target>
+      </trans-unit>
+      <trans-unit id="D9wUr4e" resname="devenirUnRelaiReconnect.accueil.voirMontantParticipation" approved="yes">
+        <source>devenirUnRelaiReconnect.accueil.voirMontantParticipation</source>
+        <target state="final">Посмотреть стоимость участия</target>
+      </trans-unit>
+      <trans-unit id="CKwWut." resname="devenirUnRelaiReconnect.identification.associationLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.associationLabel</source>
+        <target state="final">Ваш организм</target>
+      </trans-unit>
+      <trans-unit id="HElPn6h" resname="devenirUnRelaiReconnect.identification.associationNomLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.associationNomLabel</source>
+        <target state="final">Имя</target>
+      </trans-unit>
+      <trans-unit id="YFuLaj8" resname="devenirUnRelaiReconnect.identification.associationPasswordLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.associationPasswordLabel</source>
+        <target state="final">Пароль для организации</target>
+      </trans-unit>
+      <trans-unit id="w.Hd4iw" resname="devenirUnRelaiReconnect.identification.associationUsernameLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.associationUsernameLabel</source>
+        <target state="final">Имя пользователя для Ассоциации</target>
+      </trans-unit>
+      <trans-unit id="60UvjHj" resname="devenirUnRelaiReconnect.identification.categorieJuridiqueLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.categorieJuridiqueLabel</source>
+        <target state="final">Правовая категория</target>
+      </trans-unit>
+      <trans-unit id="Doq3vtb" resname="devenirUnRelaiReconnect.identification.connecteAvecAutreCompte" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.connecteAvecAutreCompte</source>
+        <target state="final">Вы вошли в учётную запись, которая не является учётной записью администратора. Вы должны выйти, если хотите зарегистрировать структуру</target>
+      </trans-unit>
+      <trans-unit id="7Zs3cVc" resname="devenirUnRelaiReconnect.identification.connectezVous" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.connectezVous</source>
+        <target state="final">Введите имени пользователя и пароль, чтобы продолжить регистрацию</target>
+      </trans-unit>
+      <trans-unit id="uZaZyiA" resname="devenirUnRelaiReconnect.identification.credentialsLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.credentialsLabel</source>
+        <target state="final">Данные для входа в учётную запись вашего организма</target>
+      </trans-unit>
+      <trans-unit id="NIEsBVC" resname="devenirUnRelaiReconnect.identification.jaiDejaEffectueLaPremiereEtape" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.jaiDejaEffectueLaPremiereEtape</source>
+        <target state="final">Если вы уже выполнили первый этап, нажмите сюда</target>
+      </trans-unit>
+      <trans-unit id=".GoXtdX" resname="devenirUnRelaiReconnect.identification.metaDesc" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.metaDesc</source>
+        <target state="final">Укажите ваши личные данные</target>
+      </trans-unit>
+      <trans-unit id="X3ZyiEm" resname="devenirUnRelaiReconnect.identification.metaTitle" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.metaTitle</source>
+        <target state="final">Идентификация</target>
+      </trans-unit>
+      <trans-unit id="WmqXCje" resname="devenirUnRelaiReconnect.identification.sirenLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.sirenLabel</source>
+        <target state="final">Номер Siren</target>
+      </trans-unit>
+      <trans-unit id="r8xACR9" resname="devenirUnRelaiReconnect.identification.urlSiteLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.urlSiteLabel</source>
+        <target state="final">Url веб-сайта</target>
+      </trans-unit>
+      <trans-unit id="JQPc5V2" resname="devenirUnRelaiReconnect.identification.userLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.identification.userLabel</source>
+        <target state="final">Вы</target>
+      </trans-unit>
+      <trans-unit id="fDNH0hn" resname="devenirUnRelaiReconnect.inscriptionCentres.ajouterUneStructureSupplémentaire" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.ajouterUneStructureSupplémentaire</source>
+        <target state="final">Добавить дополнительную структуру</target>
+      </trans-unit>
+      <trans-unit id="Vi4eOKj" resname="devenirUnRelaiReconnect.inscriptionCentres.auMoinsUnCentre" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.auMoinsUnCentre</source>
+        <target state="final">Для продолжения процесса вы должны добавить как минмум один из ваших центров</target>
+      </trans-unit>
+      <trans-unit id="BTTYNgE" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.0-1000" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.0-1000</source>
+        <target state="final">от 0 до 1000€</target>
+      </trans-unit>
+      <trans-unit id="5z8i3Lz" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.1000-5000" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.1000-5000</source>
+        <target state="final">от 1000 до 5000€</target>
+      </trans-unit>
+      <trans-unit id="fzLCF_X" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.10000-50000" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.10000-50000</source>
+        <target state="final">от 10000 до 50000€</target>
+      </trans-unit>
+      <trans-unit id="RxaUBIo" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.250000-500000" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.250000-500000</source>
+        <target state="final">от 250000 до 500000€</target>
+      </trans-unit>
+      <trans-unit id="AaMYSPD" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.5000-10000" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.5000-10000</source>
+        <target state="final">от 5000 до 10000€</target>
+      </trans-unit>
+      <trans-unit id="09w6XbA" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.50000-250000" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.50000-250000</source>
+        <target state="final">от 50000 до 250000€</target>
+      </trans-unit>
+      <trans-unit id="w_F_JYQ" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.plus500000" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuel.plus500000</source>
+        <target state="final">более 500000€</target>
+      </trans-unit>
+      <trans-unit id="HS8Pz6d" resname="devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuelLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuelLabel</source>
+        <target state="final">Годовой бюджет</target>
+      </trans-unit>
+      <trans-unit id="2jE5NkJ" resname="devenirUnRelaiReconnect.inscriptionCentres.finessFormatErreur" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.finessFormatErreur</source>
+        <target state="final">Недействительный формат номера finess</target>
+      </trans-unit>
+      <trans-unit id="YhKBCtB" resname="devenirUnRelaiReconnect.inscriptionCentres.finessLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.finessLabel</source>
+        <target state="final">Номер Finess</target>
+      </trans-unit>
+      <trans-unit id="CAEpLdI" resname="devenirUnRelaiReconnect.inscriptionCentres.justificatifFileLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.justificatifFileLabel</source>
+        <target state="final">Прикрепить подтвердающий документ</target>
+      </trans-unit>
+      <trans-unit id="FtfMX.o" resname="devenirUnRelaiReconnect.inscriptionCentres.nomLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.nomLabel</source>
+        <target state="final">Название</target>
+      </trans-unit>
+      <trans-unit id="AtIXCaO" resname="devenirUnRelaiReconnect.inscriptionCentres.siretFormatErreur" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.siretFormatErreur</source>
+        <target state="final">Недействительный формат номера siret</target>
+      </trans-unit>
+      <trans-unit id="W2_ryno" resname="devenirUnRelaiReconnect.inscriptionCentres.siretLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.siretLabel</source>
+        <target state="final">Номер Siret</target>
+      </trans-unit>
+      <trans-unit id="f0dv.HJ" resname="devenirUnRelaiReconnect.inscriptionCentres.supprimerCeCentre" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.supprimerCeCentre</source>
+        <target state="final">Удалить этот центр</target>
+      </trans-unit>
+      <trans-unit id=".v3dCfb" resname="devenirUnRelaiReconnect.inscriptionCentres.telephoneLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.telephoneLabel</source>
+        <target state="final">Телефон</target>
+      </trans-unit>
+      <trans-unit id="Z0QQ7xr" resname="devenirUnRelaiReconnect.inscriptionCentres.typeCentreLabel" approved="yes">
+        <source>devenirUnRelaiReconnect.inscriptionCentres.typeCentreLabel</source>
+        <target state="final">Тип центра</target>
+      </trans-unit>
+      <trans-unit id="6a2gJ7_" resname="devenirUnRelaiReconnect.menu.confirmation" approved="yes">
+        <source>devenirUnRelaiReconnect.menu.confirmation</source>
+        <target state="final">Подтверждение</target>
+      </trans-unit>
+      <trans-unit id="Qvgv5c8" resname="devenirUnRelaiReconnect.menu.identification" approved="yes">
+        <source>devenirUnRelaiReconnect.menu.identification</source>
+        <target state="final">Идентификация</target>
+      </trans-unit>
+      <trans-unit id="0jNeN0J" resname="devenirUnRelaiReconnect.menu.inscriptionStructures" approved="yes">
+        <source>devenirUnRelaiReconnect.menu.inscriptionStructures</source>
+        <target state="final">Регистрация учреждений</target>
+      </trans-unit>
+      <trans-unit id="9RAA2k1" resname="devenirUnRelaiReconnect.menu.paiement" approved="yes">
+        <source>devenirUnRelaiReconnect.menu.paiement</source>
+        <target state="final">Оплата</target>
+      </trans-unit>
+      <trans-unit id="v43KUr2" resname="devenirUnRelaiReconnect.menu.recapitulatif" approved="yes">
+        <source>devenirUnRelaiReconnect.menu.recapitulatif</source>
+        <target state="final">Сводная таблица</target>
+      </trans-unit>
+      <trans-unit id="1bKCwC7" resname="devenirUnRelaiReconnect.recapitulatif.centre" approved="yes">
+        <source>devenirUnRelaiReconnect.recapitulatif.centre</source>
+        <target state="final">Центр</target>
+      </trans-unit>
+      <trans-unit id="HF8EQDB" resname="devenirUnRelaiReconnect.recapitulatif.prixDuCentre" approved="yes">
+        <source>devenirUnRelaiReconnect.recapitulatif.prixDuCentre</source>
+        <target state="final">Стоимость центра</target>
+      </trans-unit>
+      <trans-unit id="mQmhy3." resname="devenirUnRelaiReconnect.recapitulatif.prixTotal" approved="yes">
+        <source>devenirUnRelaiReconnect.recapitulatif.prixTotal</source>
+        <target state="final">Общая стоимость</target>
+      </trans-unit>
+      <trans-unit id="ifjDiCa" resname="devenirUnRelaiReconnect.recapitulatif.vosCentres" approved="yes">
+        <source>devenirUnRelaiReconnect.recapitulatif.vosCentres</source>
+        <target state="final">Ваши учреждения</target>
+      </trans-unit>
+      <trans-unit id="vBnMGpy" resname="devenirUnRelaiReconnect.recapitulatif.votreIdentite" approved="yes">
+        <source>devenirUnRelaiReconnect.recapitulatif.votreIdentite</source>
+        <target state="final">Ваши данные</target>
+      </trans-unit>
+      <trans-unit id="uDR65W2" resname="disabledAt" approved="yes">
+        <source>disabledAt</source>
+        <target state="final">Отключено на</target>
+      </trans-unit>
+      <trans-unit id="_O2hEWd" resname="disabledBy" approved="yes">
+        <source>disabledBy</source>
+        <target state="final">отключено</target>
+      </trans-unit>
+      <trans-unit id="tRVIYEw" resname="document.apercu" approved="yes">
+        <source>document.apercu</source>
+        <target state="final">Просмотр</target>
+      </trans-unit>
+      <trans-unit id="Rmc8us0" resname="document.aucunFichier" approved="yes">
+        <source>document.aucunFichier</source>
+        <target state="final">На данный момент нет ни одного элемента</target>
+      </trans-unit>
+      <trans-unit id="LvoFLVw" resname="document.avertissementTaille" approved="yes">
+        <source>document.avertissementTaille</source>
+        <target state="final">Вы скоро достигнете лимита объёма хранения данных (% размер %)</target>
+      </trans-unit>
+      <trans-unit id="BSjMOwL" resname="document.bienSauvegarde" approved="yes">
+        <source>document.bienSauvegarde</source>
+        <target state="final"><![CDATA[Документ резервного копирования. <br>, <b>Не забудьте удалить файл с вашей рабочей станции</b>]]></target>
+      </trans-unit>
+      <trans-unit id="XLUN1E5" resname="document.bienSupprime" approved="yes">
+        <source>document.bienSupprime</source>
+        <target state="final">Документ успешно удалён</target>
+      </trans-unit>
+      <trans-unit id="sb7hg7t" resname="document.categorie" approved="yes">
+        <source>document.categorie</source>
+        <target state="final">Выбрать категорию</target>
+      </trans-unit>
+      <trans-unit id="M8ak2x2" resname="document.categorie2" approved="yes">
+        <source>document.categorie2</source>
+        <target state="final">Категория:</target>
+      </trans-unit>
+      <trans-unit id="1z76nwp" resname="document.choisirFichier" approved="yes">
+        <source>document.choisirFichier</source>
+        <target state="final">Выбрать файл</target>
+      </trans-unit>
+      <trans-unit id="x1xiZXD" resname="document.contenuLabel" approved="yes">
+        <source>document.contenuLabel</source>
+        <target state="final">Содержание</target>
+      </trans-unit>
+      <trans-unit id="2vBKhxN" resname="document.contient" approved="yes">
+        <source>document.contient</source>
+        <target state="final">Содержит :</target>
+      </trans-unit>
+      <trans-unit id="YTREaY9" resname="document.creerUnDossier" approved="yes">
+        <source>document.creerUnDossier</source>
+        <target state="final">Создать досье</target>
+      </trans-unit>
+      <trans-unit id="2ybSwuJ" resname="document.dateDeDepot" approved="yes">
+        <source>document.dateDeDepot</source>
+        <target state="final">Дата подачи</target>
+      </trans-unit>
+      <trans-unit id="uNRQN.j" resname="document.dateEmissionLabel" approved="yes">
+        <source>document.dateEmissionLabel</source>
+        <target state="final">Дата выдачи</target>
+      </trans-unit>
+      <trans-unit id="Toe4Am2" resname="document.deposerDesFichiers" approved="yes">
+        <source>document.deposerDesFichiers</source>
+        <target state="final">Загрузить файлы</target>
+      </trans-unit>
+      <trans-unit id="JQ9Gs8l" resname="document.dossier" approved="yes">
+        <source>document.dossier</source>
+        <target state="final">Папка</target>
+      </trans-unit>
+      <trans-unit id="Jrm8Zlq" resname="document.envoyerEmail" approved="yes">
+        <source>document.envoyerEmail</source>
+        <target state="final">Отправить по электронной почте</target>
+      </trans-unit>
+      <trans-unit id="dK70d2f" resname="document.envoyerParEmail.bienEnvoyeParMail" approved="yes">
+        <source>document.envoyerParEmail.bienEnvoyeParMail</source>
+        <target state="final">Документ успешно отправлен по электронной почте</target>
+      </trans-unit>
+      <trans-unit id="EcuvApZ" resname="document.envoyerParEmail.dossierVide" approved="yes">
+        <source>document.envoyerParEmail.dossierVide</source>
+        <target state="final">Папка, которую вы хотите отправить по электронной почте, пуста</target>
+      </trans-unit>
+      <trans-unit id="aFdpY7P" resname="document.envoyerParEmail.emailLabel" approved="yes">
+        <source>document.envoyerParEmail.emailLabel</source>
+        <target state="final">Электронный адрес получателя</target>
+      </trans-unit>
+      <trans-unit id="5dYeeKY" resname="document.fichier" approved="yes">
+        <source>document.fichier</source>
+        <target state="final">Файлы</target>
+      </trans-unit>
+      <trans-unit id="H2HAkSD" resname="document.imprimer" approved="yes">
+        <source>document.imprimer</source>
+        <target state="final">Печать</target>
+      </trans-unit>
+      <trans-unit id="bkDm4IA" resname="document.metaTitle" approved="yes">
+        <source>document.metaTitle</source>
+        <target state="final">Документы</target>
+      </trans-unit>
+      <trans-unit id="KpTEPGO" resname="document.modifier" approved="yes">
+        <source>document.modifier</source>
+        <target state="final">Изменить</target>
+      </trans-unit>
+      <trans-unit id="jgt06Bj" resname="document.nom" approved="yes">
+        <source>document.nom</source>
+        <target state="final">Название :</target>
+      </trans-unit>
+      <trans-unit id="1PO0O6Y" resname="document.nomLabel" approved="yes">
+        <source>document.nomLabel</source>
+        <target state="final">Название</target>
+      </trans-unit>
+      <trans-unit id="1A0XAII" resname="document.ouGlissezDeposer" approved="yes">
+        <source>document.ouGlissezDeposer</source>
+        <target state="final">Или перетащите сюда</target>
+      </trans-unit>
+      <trans-unit id="jLiTHhT" resname="document.partage" approved="yes">
+        <source>document.partage</source>
+        <target state="final">Обмен</target>
+      </trans-unit>
+      <trans-unit id="OSE7X2h" resname="document.plusDespace" approved="yes">
+        <source>document.plusDespace</source>
+        <target state="final">Вы не можете загрузить этот файл, так как у вас недостаточно свободного места</target>
+      </trans-unit>
+      <trans-unit id="tRu1x.a" resname="document.supprimer" approved="yes">
+        <source>document.supprimer</source>
+        <target state="final">Удалить</target>
+      </trans-unit>
+      <trans-unit id="PHseq_W" resname="document.telecharger" approved="yes">
+        <source>document.telecharger</source>
+        <target state="final">Загрузить</target>
+      </trans-unit>
+      <trans-unit id="bpvQxPh" resname="document.type" approved="yes">
+        <source>document.type</source>
+        <target state="final">Тип</target>
+      </trans-unit>
+      <trans-unit id="NV0B8Mc" resname="document.type2" approved="yes">
+        <source>document.type2</source>
+        <target state="final">Тип :</target>
+      </trans-unit>
+      <trans-unit id="iYtZhkQ" resname="document.typeDocument" approved="yes">
+        <source>document.typeDocument</source>
+        <target state="final">Тип документа</target>
+      </trans-unit>
+      <trans-unit id="isXM5lQ" resname="document.valableJusqua" approved="yes">
+        <source>document.valableJusqua</source>
+        <target state="final">Действителен до :</target>
+      </trans-unit>
+      <trans-unit id="SMVltk1" resname="document.validite.expire" approved="yes">
+        <source>document.validite.expire</source>
+        <target state="final">Недействительный</target>
+      </trans-unit>
+      <trans-unit id="QEyVzNo" resname="document.validite.inconnu" approved="yes">
+        <source>document.validite.inconnu</source>
+        <target state="final">Неизвестный</target>
+      </trans-unit>
+      <trans-unit id="3JLrD90" resname="document.validite.title" approved="yes">
+        <source>document.validite.title</source>
+        <target state="final">Срок действия</target>
+      </trans-unit>
+      <trans-unit id="kvWVAUj" resname="document.validite.valide" approved="yes">
+        <source>document.validite.valide</source>
+        <target state="final">Действительный</target>
+      </trans-unit>
+      <trans-unit id="h1LYVyG" resname="document.validite.validXAnd" approved="yes">
+        <source>document.validite.validXAnd</source>
+        <target state="final">Этот тип документов является допустимым % nAnsValid % лет</target>
+      </trans-unit>
+      <trans-unit id="zGk9flL" resname="donneePersonnelle.ajouteElementTitle" approved="yes">
+        <source>donneePersonnelle.ajouteElementTitle</source>
+        <target state="final">Добавить элемент</target>
+      </trans-unit>
+      <trans-unit id="XWhbXlR" resname="donneePersonnelle.ajouter" approved="yes">
+        <source>donneePersonnelle.ajouter</source>
+        <target state="final">Добавить</target>
+      </trans-unit>
+      <trans-unit id="M4oEiHg" resname="donneePersonnelle.cantDelete" approved="yes">
+        <source>donneePersonnelle.cantDelete</source>
+        <target state="final">У вас нет прав удалять эту информацию</target>
+      </trans-unit>
+      <trans-unit id="GKHmQ1j" resname="donneePersonnelle.cantDisplay" approved="yes">
+        <source>donneePersonnelle.cantDisplay</source>
+        <target state="final">У вас нет прав доступа к данным этого получателя</target>
+      </trans-unit>
+      <trans-unit id="UfbRXgl" resname="donneePersonnelle.cantEdit" approved="yes">
+        <source>donneePersonnelle.cantEdit</source>
+        <target state="final">У вас нет права редактировать эту информацию</target>
+      </trans-unit>
+      <trans-unit id="K5or0xx" resname="donneePersonnelle.cantReportAbuse" approved="yes">
+        <source>donneePersonnelle.cantReportAbuse</source>
+        <target state="final">У вас нет права отметить эту информацию как некорректную</target>
+      </trans-unit>
+      <trans-unit id="TspoTFc" resname="donneePersonnelle.etesVousSurSignalerCommeAbusif" approved="yes">
+        <source>donneePersonnelle.etesVousSurSignalerCommeAbusif</source>
+        <target state="final">Вы действительно хотите сообщить о некорректном содержании?</target>
+      </trans-unit>
+      <trans-unit id="YEQ9oYh" resname="donneePersonnelle.imprimer" approved="yes">
+        <source>donneePersonnelle.imprimer</source>
+        <target state="final">Печать</target>
+      </trans-unit>
+      <trans-unit id="KvJrfOZ" resname="donneePersonnelle.partage" approved="yes">
+        <source>donneePersonnelle.partage</source>
+        <target state="final">Коллективного пользования</target>
+      </trans-unit>
+      <trans-unit id="0i09AOy" resname="donneePersonnelle.partages" approved="yes">
+        <source>donneePersonnelle.partages</source>
+        <target state="final">Доступный моим посредникам</target>
+      </trans-unit>
+      <trans-unit id="__2WcZk" resname="donneePersonnelle.prive" approved="yes">
+        <source>donneePersonnelle.prive</source>
+        <target state="final">Личный</target>
+      </trans-unit>
+      <trans-unit id="lVvJHu_" resname="donneePersonnelle.prives" approved="yes">
+        <source>donneePersonnelle.prives</source>
+        <target state="final">Личные</target>
+      </trans-unit>
+      <trans-unit id="IA9jjpB" resname="donneePersonnelle.public" approved="yes">
+        <source>donneePersonnelle.public</source>
+        <target state="final">Общедоступный</target>
+      </trans-unit>
+      <trans-unit id="msz46SJ" resname="donneePersonnelle.quitter" approved="yes">
+        <source>donneePersonnelle.quitter</source>
+        <target state="final">Выход</target>
+      </trans-unit>
+      <trans-unit id="iNpZLe_" resname="donneePersonnelle.signalerCommeAbusif" approved="yes">
+        <source>donneePersonnelle.signalerCommeAbusif</source>
+        <target state="final">Отметить как некорректный</target>
+      </trans-unit>
+      <trans-unit id="xU3lSWr" resname="donneePersonnelle.tous" approved="yes">
+        <source>donneePersonnelle.tous</source>
+        <target state="final">Все</target>
+      </trans-unit>
+      <trans-unit id="AM8r9Fa" resname="donneePersonnelle.vue" approved="yes">
+        <source>donneePersonnelle.vue</source>
+        <target state="final">Вид</target>
+      </trans-unit>
+      <trans-unit id="XEidPmU" resname="dossier.vide" approved="yes">
+        <source>dossier.vide</source>
+        <target state="final">Папка пуста</target>
+      </trans-unit>
+      <trans-unit id="_5z3Vga" resname="enabled" approved="yes">
+        <source>enabled</source>
+        <target state="final">активный</target>
+      </trans-unit>
+      <trans-unit id="ygD8z7Q" resname="error" approved="yes">
+        <source>error</source>
+        <target state="final">Ошибка</target>
+      </trans-unit>
+      <trans-unit id="VfBiwdF" resname="evenement.ajouter" approved="yes">
+        <source>evenement.ajouter</source>
+        <target state="final">Добавить событие</target>
+      </trans-unit>
+      <trans-unit id="AT6atVn" resname="evenement.bienSauvegarde" approved="yes">
+        <source>evenement.bienSauvegarde</source>
+        <target state="final">Ваш элемент успешно сохранён</target>
+      </trans-unit>
+      <trans-unit id="DfFlnt5" resname="evenement.bienSupprime" approved="yes">
+        <source>evenement.bienSupprime</source>
+        <target state="final">Ваш элемент успешно удалён</target>
+      </trans-unit>
+      <trans-unit id="G2UJ.Ov" resname="evenement.cantDisplay" approved="yes">
+        <source>evenement.cantDisplay</source>
+        <target state="final">У вас нет прав доступа к событиям этого получателя</target>
+      </trans-unit>
+      <trans-unit id="7qrr3E1" resname="evenement.cantEdit" approved="yes">
+        <source>evenement.cantEdit</source>
+        <target state="final">У вас нет прав редактировать этот документ</target>
+      </trans-unit>
+      <trans-unit id="WlyoNfq" resname="evenement.commentaireLabel" approved="yes">
+        <source>evenement.commentaireLabel</source>
+        <target state="final">Сообщение</target>
+      </trans-unit>
+      <trans-unit id="MAOonyO" resname="evenement.contenuLabel" approved="yes">
+        <source>evenement.contenuLabel</source>
+        <target state="final">Содержание</target>
+      </trans-unit>
+      <trans-unit id="ypN.oVa" resname="evenement.dateLabel" approved="yes">
+        <source>evenement.dateLabel</source>
+        <target state="final">Дата</target>
+      </trans-unit>
+      <trans-unit id="vMFoaJr" resname="evenement.emptyData" approved="yes">
+        <source>evenement.emptyData</source>
+        <target state="final">На данный момент нет событий. Нажмите «Добавить», чтобы создать его.</target>
+      </trans-unit>
+      <trans-unit id="6ywBrZ3" resname="evenement.errorSpecifierHeureRappel" approved="yes">
+        <source>evenement.errorSpecifierHeureRappel</source>
+        <target state="final">Вы должны уточнить, за сколько часов вам отправить напоминание</target>
+      </trans-unit>
+      <trans-unit id="faNBe34" resname="evenement.heureRappelLabel" approved="yes">
+        <source>evenement.heureRappelLabel</source>
+        <target state="final">Напоминание, за сколько часов до события</target>
+      </trans-unit>
+      <trans-unit id="UDuhsid" resname="evenement.lieuLabel" approved="yes">
+        <source>evenement.lieuLabel</source>
+        <target state="final">Место</target>
+      </trans-unit>
+      <trans-unit id="7C9OjJ." resname="evenement.mailContent" approved="yes">
+        <source>evenement.mailContent</source>
+        <target state="final">Вы получили это сообщение, потому что вы попросили прислать вам напоминание о записи на приём на вашу электронную почту от Посредника Reconnect. Нажмите сюда, чтобы увидеть детали встречи</target>
+      </trans-unit>
+      <trans-unit id="loptky9" resname="evenement.mailTitle" approved="yes">
+        <source>evenement.mailTitle</source>
+        <target state="final">Напоминание о записи на приём</target>
+      </trans-unit>
+      <trans-unit id="5hkExxW" resname="evenement.metaTitle" approved="yes">
+        <source>evenement.metaTitle</source>
+        <target state="final">События</target>
+      </trans-unit>
+      <trans-unit id="Zou4Pd8" resname="evenement.nomLabel" approved="yes">
+        <source>evenement.nomLabel</source>
+        <target state="final">Заголовок</target>
+      </trans-unit>
+      <trans-unit id="bsbCX10" resname="evenement.rappelsLabel" approved="yes">
+        <source>evenement.rappelsLabel</source>
+        <target state="final">Напомиание</target>
+      </trans-unit>
+      <trans-unit id="Gxlr9aH" resname="evenement.smsContent" approved="yes">
+        <source>evenement.smsContent</source>
+        <target state="final">Напоминание от Посредника Reconnect</target>
+      </trans-unit>
+      <trans-unit id="W7wV6Bq" resname="evenement.timeLabel" approved="yes">
+        <source>evenement.timeLabel</source>
+        <target state="final">Время</target>
+      </trans-unit>
+      <trans-unit id="I4USARC" resname="flash.erreur" approved="yes">
+        <source>flash.erreur</source>
+        <target state="final">Ошибка</target>
+      </trans-unit>
+      <trans-unit id="uYP4nxt" resname="flash.operationReussie" approved="yes">
+        <source>flash.operationReussie</source>
+        <target state="final">Действие успешно выполнено</target>
+      </trans-unit>
+      <trans-unit id="Mk2hXEX" resname="footer.aide" approved="yes">
+        <source>footer.aide</source>
+        <target state="final">Помощь</target>
+      </trans-unit>
+      <trans-unit id="VC8Dt3m" resname="footer.autres" approved="yes">
+        <source>footer.autres</source>
+        <target state="final">Разное</target>
+      </trans-unit>
+      <trans-unit id="Nn6zbc2" resname="footer.cgv" approved="yes">
+        <source>footer.cgv</source>
+        <target state="final">Общие правила пользования</target>
+      </trans-unit>
+      <trans-unit id="9oTyHxH" resname="footer.commentCaMarche" approved="yes">
+        <source>footer.commentCaMarche</source>
+        <target state="final">Как это работает</target>
+      </trans-unit>
+      <trans-unit id="dQUUGKO" resname="footer.connexion" approved="yes">
+        <source>footer.connexion</source>
+        <target state="final">Вход</target>
+      </trans-unit>
+      <trans-unit id="o1lfBeo" resname="footer.contact" approved="yes">
+        <source>footer.contact</source>
+        <target state="final">Контакты</target>
+      </trans-unit>
+      <trans-unit id="GceQhC6" resname="footer.copyright" approved="yes">
+        <source>footer.copyright</source>
+        <target state="final">©2021 Reconnect – Все права защищены</target>
+      </trans-unit>
+      <trans-unit id="4SgJqaG" resname="footer.deconnexion" approved="yes">
+        <source>footer.deconnexion</source>
+        <target state="final">Выход</target>
+      </trans-unit>
+      <trans-unit id="Ab2qGZa" resname="footer.devenirUnRelai" approved="yes">
+        <source>footer.devenirUnRelai</source>
+        <target state="final">Стать Посредником Reconnect</target>
+      </trans-unit>
+      <trans-unit id="KDVgOp5" resname="footer.faq" approved="yes">
+        <source>footer.faq</source>
+        <target state="final">Часто задаваемые вопросы</target>
+      </trans-unit>
+      <trans-unit id="jGiTQGM" resname="footer.groupeSos" approved="yes">
+        <source>footer.groupeSos</source>
+        <target state="final">Группа SOS</target>
+      </trans-unit>
+      <trans-unit id="ob_QTDi" resname="footer.inscription" approved="yes">
+        <source>footer.inscription</source>
+        <target state="final">Регистрация</target>
+      </trans-unit>
+      <trans-unit id="eVn8s0t" resname="footer.mentionsLegales" approved="yes">
+        <source>footer.mentionsLegales</source>
+        <target state="final">Юридическая информация</target>
+      </trans-unit>
+      <trans-unit id="5cfbPbQ" resname="footer.modeDemploi" approved="yes">
+        <source>footer.modeDemploi</source>
+        <target state="final">Инструкция по использованию</target>
+      </trans-unit>
+      <trans-unit id="eJjF8gW" resname="footer.partenaires" approved="yes">
+        <source>footer.partenaires</source>
+        <target state="final">Партнёры</target>
+      </trans-unit>
+      <trans-unit id="cgr4zlC" resname="footer.planDuSite" approved="yes">
+        <source>footer.planDuSite</source>
+        <target state="final">Карта сайта</target>
+      </trans-unit>
+      <trans-unit id="cWc0rpm" resname="footer.trouverUnCentreSocial" approved="yes">
+        <source>footer.trouverUnCentreSocial</source>
+        <target state="final">Найти социальный центр</target>
+      </trans-unit>
+      <trans-unit id="iQFKHJD" resname="footer.utilisation" approved="yes">
+        <source>footer.utilisation</source>
+        <target state="final">Пользование</target>
+      </trans-unit>
+      <trans-unit id="I6LbSvp" resname="form.validation.noPassword" approved="yes">
+        <source>form.validation.noPassword</source>
+        <target state="final">Вы должны выбрать пароль</target>
+      </trans-unit>
+      <trans-unit id="dqEIVrd" resname="form.validation.passwordFormat" approved="yes">
+        <source>form.validation.passwordFormat</source>
+        <target state="final">Ваш пароль может содержать только буквы и цифры</target>
+      </trans-unit>
+      <trans-unit id="Z18hW3z" resname="form.validation.phoneFormat" approved="yes">
+        <source>form.validation.phoneFormat</source>
+        <target state="final">Незвестный формат номера телефона</target>
+      </trans-unit>
+      <trans-unit id="oOK91pf" resname="form.validation.sirenFormat" approved="yes">
+        <source>form.validation.sirenFormat</source>
+        <target state="final">Неверный формат номера Siren</target>
+      </trans-unit>
+      <trans-unit id=".SmBMIU" resname="gestionnaire.centres.btnAjouterUnCentre" approved="yes">
+        <source>gestionnaire.centres.btnAjouterUnCentre</source>
+        <target state="final">Добавить центр</target>
+      </trans-unit>
+      <trans-unit id="G11SkwU" resname="gestionnaire.centres.cotisationJusqua" approved="yes">
+        <source>gestionnaire.centres.cotisationJusqua</source>
+        <target state="final">Вклад в % dateFin %</target>
+      </trans-unit>
+      <trans-unit id="XolpKvs" resname="gestionnaire.centres.cotisationNoneffectuee" approved="yes">
+        <source>gestionnaire.centres.cotisationNoneffectuee</source>
+        <target state="final">Взнос не произведён (центр неактивный)</target>
+      </trans-unit>
+      <trans-unit id="des0F7w" resname="gestionnaire.centres.cotiserPourCeCentre" approved="yes">
+        <source>gestionnaire.centres.cotiserPourCeCentre</source>
+        <target state="final">Оплатить взно</target>
+      </trans-unit>
+      <trans-unit id="T2BE92r" resname="gestionnaire.centres.fairePassation" approved="yes">
+        <source>gestionnaire.centres.fairePassation</source>
+        <target state="final">Передать полномочия</target>
+      </trans-unit>
+      <trans-unit id="8vpfIA2" resname="gestionnaire.centres.metaTitle" approved="yes">
+        <source>gestionnaire.centres.metaTitle</source>
+        <target state="final">Посредник Reconnect</target>
+      </trans-unit>
+      <trans-unit id="sM9XE0S" resname="gestionnaire.centres.noCentres" approved="yes">
+        <source>gestionnaire.centres.noCentres</source>
+        <target state="final"><![CDATA[Вы зарегистрировали не реле повторного соединения. <br/> Нажмите ниже, чтобы зарегистрировать новое реле повторного соединения.]]></target>
+      </trans-unit>
+      <trans-unit id="ckall9c" resname="gestionnaire.centres.rechargeSms" approved="yes">
+        <source>gestionnaire.centres.rechargeSms</source>
+        <target state="final">Пополнить счёт по смс</target>
+      </trans-unit>
+      <trans-unit id="9H_XWhs" resname="gestionnaire.centres.statistiquesCentre" approved="yes">
+        <source>gestionnaire.centres.statistiquesCentre</source>
+        <target state="final">Статистика центра</target>
+      </trans-unit>
+      <trans-unit id="NL5iGt1" resname="gestionnaire.centres.title" approved="yes">
+        <source>gestionnaire.centres.title</source>
+        <target state="final"><![CDATA[Отель Relais <span class="main"> переподключение</span>]]></target>
+      </trans-unit>
+      <trans-unit id="BjliXdO" resname="gestionnaire.centres.voirBeneficiaires" approved="yes">
+        <source>gestionnaire.centres.voirBeneficiaires</source>
+        <target state="final">Открыть список получателей</target>
+      </trans-unit>
+      <trans-unit id="j_45fGE" resname="gestionnaire.centres.voirMembres" approved="yes">
+        <source>gestionnaire.centres.voirMembres</source>
+        <target state="final">Открыть список членов</target>
+      </trans-unit>
+      <trans-unit id="P6NPvjQ" resname="gestionnaire.envoyerCentreAGestionnaire.emailLabel" approved="yes">
+        <source>gestionnaire.envoyerCentreAGestionnaire.emailLabel</source>
+        <target state="final">Адрес электронной почты :</target>
+      </trans-unit>
+      <trans-unit id="dYrd7NY" resname="gestionnaire.envoyerCentreAGestionnaire.metaTitle" approved="yes">
+        <source>gestionnaire.envoyerCentreAGestionnaire.metaTitle</source>
+        <target state="final">Переслать администратору</target>
+      </trans-unit>
+      <trans-unit id="pd6Nydl" resname="gestionnaire.envoyerCentreAGestionnaire.pasGestionnaire" approved="yes">
+        <source>gestionnaire.envoyerCentreAGestionnaire.pasGestionnaire</source>
+        <target state="final">Указанный электронный адрес принадлежит пользователю Reconnect, который не является администратором центра</target>
+      </trans-unit>
+      <trans-unit id="4BXSSr8" resname="gestionnaire.envoyerCentreAGestionnaire.subtitle" approved="yes">
+        <source>gestionnaire.envoyerCentreAGestionnaire.subtitle</source>
+        <target state="final">Разрешить другому администратору управлять центром. Укажите его адрес электронной почты:</target>
+      </trans-unit>
+      <trans-unit id="agu_efU" resname="gestionnaire.envoyerCentreAGestionnaire.success" approved="yes">
+        <source>gestionnaire.envoyerCentreAGestionnaire.success</source>
+        <target state="final">Центр был успешно передан этому администратору</target>
+      </trans-unit>
+      <trans-unit id="PuNp1CG" resname="gestionnaire.envoyerCentreAGestionnaire.title" approved="yes">
+        <source>gestionnaire.envoyerCentreAGestionnaire.title</source>
+        <target state="final">Переслать администратору</target>
+      </trans-unit>
+      <trans-unit id="UDL.mSY" resname="gestionnaire.menu.gestionBeneficiaires" approved="yes">
+        <source>gestionnaire.menu.gestionBeneficiaires</source>
+        <target state="final">Управление получателями</target>
+      </trans-unit>
+      <trans-unit id="e_ep2j_" resname="gestionnaire.menu.gestionMembres" approved="yes">
+        <source>gestionnaire.menu.gestionMembres</source>
+        <target state="final">Управление членами</target>
+      </trans-unit>
+      <trans-unit id="HqWljn8" resname="gestionnaire.menu.gestionRelais" approved="yes">
+        <source>gestionnaire.menu.gestionRelais</source>
+        <target state="final">Управление Посредниками Reconnect</target>
+      </trans-unit>
+      <trans-unit id="5Zdd4pN" resname="gestionnaire.menu.usagers" approved="yes">
+        <source>gestionnaire.menu.usagers</source>
+        <target state="final">Пользователи</target>
+      </trans-unit>
+      <trans-unit id="z3vjO0v" resname="header.menu.commentCaMarche" approved="yes">
+        <source>header.menu.commentCaMarche</source>
+        <target state="final">Как это работает?</target>
+      </trans-unit>
+      <trans-unit id="waRCm6X" resname="header.menu.connection" approved="yes">
+        <source>header.menu.connection</source>
+        <target state="final">Вход</target>
+      </trans-unit>
+      <trans-unit id="b_HhidU" resname="header.menu.deconnection" approved="yes">
+        <source>header.menu.deconnection</source>
+        <target state="final">Выход</target>
+      </trans-unit>
+      <trans-unit id="XFbFoW9" resname="header.menu.devenirUnRelaiReconnect" approved="yes">
+        <source>header.menu.devenirUnRelaiReconnect</source>
+        <target state="final">Стать посредником Reconnect</target>
+      </trans-unit>
+      <trans-unit id="WNcNKls" resname="header.menu.fermer" approved="yes">
+        <source>header.menu.fermer</source>
+        <target state="final">Закрыть</target>
+      </trans-unit>
+      <trans-unit id="ck3q6WK" resname="header.menu.ilsParlentDeReconnect" approved="yes">
+        <source>header.menu.ilsParlentDeReconnect</source>
+        <target state="final">О нас рассказывают</target>
+      </trans-unit>
+      <trans-unit id="LMDLqv9" resname="header.menu.leBlog" approved="yes">
+        <source>header.menu.leBlog</source>
+        <target state="final">Блог</target>
+      </trans-unit>
+      <trans-unit id="TrgnMtS" resname="header.menu.lesRelaisReconnect" approved="yes">
+        <source>header.menu.lesRelaisReconnect</source>
+        <target state="final">Посредники Reconnect</target>
+      </trans-unit>
+      <trans-unit id="_At1QJd" resname="header.menu.parametres" approved="yes">
+        <source>header.menu.parametres</source>
+        <target state="final">Настройки</target>
+      </trans-unit>
+      <trans-unit id="rg0zEf_" resname="header.menu.quiSommesNous" approved="yes">
+        <source>header.menu.quiSommesNous</source>
+        <target state="final">О нас</target>
+      </trans-unit>
+      <trans-unit id="H4ZA7St" resname="header.menu.rajouterEspace" approved="yes">
+        <source>header.menu.rajouterEspace</source>
+        <target state="final">Увеличить объём</target>
+      </trans-unit>
+      <trans-unit id="xXak2YD" resname="header.menu.utiliseSurDisponible" approved="yes">
+        <source>header.menu.utiliseSurDisponible</source>
+        <target state="final">Использовать на свободных</target>
+      </trans-unit>
+      <trans-unit id="RdYQ_cT" resname="home.catchPrase" approved="yes">
+        <source>home.catchPrase</source>
+        <target state="final">«Безопасная платформа для хранения и обмена данными, упрощающая процедуры социального сопровождения»</target>
+      </trans-unit>
+      <trans-unit id="1GU8.NZ" resname="home.commentCaMarche" approved="yes">
+        <source>home.commentCaMarche</source>
+        <target state="final">Как это работает?</target>
+      </trans-unit>
+      <trans-unit id="._p7t9z" resname="home.commentCaMarcheContent.fermer" approved="yes">
+        <source>home.commentCaMarcheContent.fermer</source>
+        <target state="final">Закрыть</target>
+      </trans-unit>
+      <trans-unit id="WNMqZ7D" resname="home.commentCaMarcheContent.text1" approved="yes">
+        <source>home.commentCaMarcheContent.text1</source>
+        <target state="final">В силу трудной жизненной ситуации и большой мобильности, лица без определённого места жительства сталкиваются с трудностями хранения своих документов, которые необходимы для получения социальной помощи.</target>
+      </trans-unit>
+      <trans-unit id="z.8O51k" resname="home.commentCaMarcheContent.text2" approved="yes">
+        <source>home.commentCaMarcheContent.text2</source>
+        <target state="final">Reconnect обеспечивает безопасное хранение сканированных или фото- копий или всех необходимых документов, а также контактов, записей на приём и напоминаний. Это позволит избежать последствий в случае потери документов.</target>
+      </trans-unit>
+      <trans-unit id="UHRkd.E" resname="home.commentCaMarcheContent.text3" approved="yes">
+        <source>home.commentCaMarcheContent.text3</source>
+        <target state="final">Посредники Reconnect помогают пользователям создавать и управлять аккаунтами Reconnect.</target>
+      </trans-unit>
+      <trans-unit id="z3sL4K8" resname="home.commentCaMarcheContent.text4" approved="yes">
+        <source>home.commentCaMarcheContent.text4</source>
+        <target state="final">Создание аккаунта Reconnect для лиц в трудной ситуации осуществляется бесплатно в Структурах Посредниках Reconnect.</target>
+      </trans-unit>
+      <trans-unit id="_Ha8lja" resname="home.commentCaMarcheContent.text5" approved="yes">
+        <source>home.commentCaMarcheContent.text5</source>
+        <target state="final">Reconnect учитывает желания и потребности пользователей, у которых есть выбор, делиться или нет своими данными и документами с социальными структурами.</target>
+      </trans-unit>
+      <trans-unit id="bqryTym" resname="home.commentCaMarcheContent.text6" approved="yes">
+        <source>home.commentCaMarcheContent.text6</source>
+        <target state="final">Пользователь может самостоятельно осуществлять вход в свой аккаунт, без помощи посредника Reconnect. Если он решает отказаться от услуг посредника, он может продолжать пользоваться инструментами Reconnect на протяженнии ограниченного промежутка времени. Если он обратится к новому посреднику, он сможет снова делиться с ним основными документами.</target>
+      </trans-unit>
+      <trans-unit id="B34vZvA" resname="home.commentCaMarcheContent.text7" approved="yes">
+        <source>home.commentCaMarcheContent.text7</source>
+        <target state="final">Reconnect это сервис, который предоставляется на несколько лет и учитывает социальные потребности каждого пользователя, в зависимости от его ситуации. С помощью Reconnect социальные структуры помогают лицам, находящимся в трудной ситуации, самостоятельно использовать цифровой сервис.</target>
+      </trans-unit>
+      <trans-unit id="EraO.rY" resname="home.commentCaMarcheContent.text8" approved="yes">
+        <source>home.commentCaMarcheContent.text8</source>
+        <target state="final">Хранение и обмен информацией и необходимыми документами онлайн. Смс-напоминания про записи на приём и мероприятия. Расчёт размера социальных выплат, на которые пользователи имеют право, а также автоматическое создание административного досье из документов, размещённых в сейфе.</target>
+      </trans-unit>
+      <trans-unit id="N1uXqXl" resname="home.commentCaMarcheContent.title1" approved="yes">
+        <source>home.commentCaMarcheContent.title1</source>
+        <target state="final">Помощь лицам без определённого места жительства</target>
+      </trans-unit>
+      <trans-unit id="wbkoE76" resname="home.commentCaMarcheContent.title2" approved="yes">
+        <source>home.commentCaMarcheContent.title2</source>
+        <target state="final">Виртуальный сейф</target>
+      </trans-unit>
+      <trans-unit id=".c1WfhS" resname="home.commentCaMarcheContent.title3" approved="yes">
+        <source>home.commentCaMarcheContent.title3</source>
+        <target state="final">Помощь Посредников Reconnect</target>
+      </trans-unit>
+      <trans-unit id="BfCrq51" resname="home.commentCaMarcheContent.title4" approved="yes">
+        <source>home.commentCaMarcheContent.title4</source>
+        <target state="final">Бесплатная услуга для лиц в трудной ситуации</target>
+      </trans-unit>
+      <trans-unit id="iX8E8iO" resname="home.commentCaMarcheContent.title5" approved="yes">
+        <source>home.commentCaMarcheContent.title5</source>
+        <target state="final">Личный кабинет с возможностью совместного доступа</target>
+      </trans-unit>
+      <trans-unit id="SdsF2sA" resname="home.commentCaMarcheContent.title6" approved="yes">
+        <source>home.commentCaMarcheContent.title6</source>
+        <target state="final">Беспрерывный доступ</target>
+      </trans-unit>
+      <trans-unit id="JGVPq0u" resname="home.commentCaMarcheContent.title7" approved="yes">
+        <source>home.commentCaMarcheContent.title7</source>
+        <target state="final">Пошаговое сопровождение</target>
+      </trans-unit>
+      <trans-unit id="NZ70Zvb" resname="home.commentCaMarcheContent.title8" approved="yes">
+        <source>home.commentCaMarcheContent.title8</source>
+        <target state="final">Инновационные сервисы</target>
+      </trans-unit>
+      <trans-unit id="CObOX1w" resname="home.commentCaMarcheWhiteContent.text1" approved="yes">
+        <source>home.commentCaMarcheWhiteContent.text1</source>
+        <target state="final">Я создаю профиль Reconnect у Посредника Reconnect</target>
+      </trans-unit>
+      <trans-unit id="nLA.vA5" resname="home.commentCaMarcheWhiteContent.text2" approved="yes">
+        <source>home.commentCaMarcheWhiteContent.text2</source>
+        <target state="final">Я храню копию моих важных документов</target>
+      </trans-unit>
+      <trans-unit id="3pdGuJC" resname="home.commentCaMarcheWhiteContent.text3" approved="yes">
+        <source>home.commentCaMarcheWhiteContent.text3</source>
+        <target state="final">Я делюсь своими данными для ускорения моих процедур</target>
+      </trans-unit>
+      <trans-unit id="rnZoJ8." resname="home.commentCaMarcheWhiteContent.text4" approved="yes">
+        <source>home.commentCaMarcheWhiteContent.text4</source>
+        <target state="final">Я упрощаю доступ к моим правам</target>
+      </trans-unit>
+      <trans-unit id="QV53da8" resname="home.devenirUnRelaiReconnect" approved="yes">
+        <source>home.devenirUnRelaiReconnect</source>
+        <target state="final">Стать посредником Reconnect</target>
+      </trans-unit>
+      <trans-unit id="jayLjSw" resname="home.enSavoirPlus" approved="yes">
+        <source>home.enSavoirPlus</source>
+        <target state="final">Подробнее</target>
+      </trans-unit>
+      <trans-unit id="jF9UWnn" resname="home.facebook">
+        <source>home.facebook</source>
+        <target state="needs-translation">Facebook</target>
+      </trans-unit>
+      <trans-unit id="nT6MzgD" resname="home.ilsParlentDeReconnect" approved="yes">
+        <source>home.ilsParlentDeReconnect</source>
+        <target state="final">О Reconnect рассказывают</target>
+      </trans-unit>
+      <trans-unit id="v0R87kq" resname="home.jaccedealt" approved="yes">
+        <source>home.jaccedealt</source>
+        <target state="final">Узнать мои права</target>
+      </trans-unit>
+      <trans-unit id="mgRPHXM" resname="home.jePartageAlt" approved="yes">
+        <source>home.jePartageAlt</source>
+        <target state="final">Делиться моими данными</target>
+      </trans-unit>
+      <trans-unit id="Yrnlsyk" resname="home.jeStockeAlt" approved="yes">
+        <source>home.jeStockeAlt</source>
+        <target state="final">Хранить мои данные</target>
+      </trans-unit>
+      <trans-unit id="_a_PTp6" resname="home.leBlog" approved="yes">
+        <source>home.leBlog</source>
+        <target state="final">Блог</target>
+      </trans-unit>
+      <trans-unit id="3ZxUre_" resname="home.lesRelais" approved="yes">
+        <source>home.lesRelais</source>
+        <target state="final">Посредники Reconnect</target>
+      </trans-unit>
+      <trans-unit id="XECSBm3" resname="home.lesRelaisTxt" approved="yes">
+        <source>home.lesRelaisTxt</source>
+        <target state="final">«Посредники Reconnect – это социальные структуры, которые помогают пользователям создать и пользоваться аккаунтом Reconnect, в котором они могут хранить свои данные и необходимые документы, а также делиться ими со своими социальными консультантами».</target>
+      </trans-unit>
+      <trans-unit id="GsH7wAy" resname="home.lireLarticle" approved="yes">
+        <source>home.lireLarticle</source>
+        <target state="final">Читать статью</target>
+      </trans-unit>
+      <trans-unit id="CXXK74p" resname="home.nousSuivre" approved="yes">
+        <source>home.nousSuivre</source>
+        <target state="final">Мы в социальных сетях</target>
+      </trans-unit>
+      <trans-unit id="b9fRzs9" resname="home.oublieIdentifiant" approved="yes">
+        <source>home.oublieIdentifiant</source>
+        <target state="final">Забыли пароль или имя пользователя ?</target>
+      </trans-unit>
+      <trans-unit id="y8G_7Ph" resname="home.ouvreCompteAlt" approved="yes">
+        <source>home.ouvreCompteAlt</source>
+        <target state="final">Как это работает?</target>
+      </trans-unit>
+      <trans-unit id="Rs0AoKU" resname="home.ouvrirUnCompte" approved="yes">
+        <source>home.ouvrirUnCompte</source>
+        <target state="final">Создать профиль</target>
+      </trans-unit>
+      <trans-unit id="8d37wZx" resname="home.partenaires" approved="yes">
+        <source>home.partenaires</source>
+        <target state="final">Партнёры</target>
+      </trans-unit>
+      <trans-unit id="BUELbF_" resname="home.quiSommesNous" approved="yes">
+        <source>home.quiSommesNous</source>
+        <target state="final">О нас</target>
+      </trans-unit>
+      <trans-unit id="_juzWBy" resname="home.quiSommesNousTxt" approved="yes">
+        <source>home.quiSommesNousTxt</source>
+        <target state="final">Reconnect – это проект Группы SOS. Насчитывая на сегодняшний день 2500 сотрудников и 106 учреждений, к компетенции которых относятся такие области деятельности, как борьба с зависимостями, солидарное жильё, помощь в лечении и помощь инвалидам, Группа SOS Солидарность представляет собой идеальную опытную площадку для этих инноваций. В интересах своих получателей, Группа хочет распространить свою деятельность на всех cубъектов социальной деятельности.</target>
+      </trans-unit>
+      <trans-unit id="zTGP.9D" resname="home.twitter">
+        <source>home.twitter</source>
+        <target state="needs-translation">Twitter</target>
+      </trans-unit>
+      <trans-unit id="9u0F.ZC" resname="main.accepter" approved="yes">
+        <source>main.accepter</source>
+        <target state="final">Согласиться</target>
+      </trans-unit>
+      <trans-unit id="j2KcfQT" resname="main.adresse.rue" approved="yes">
+        <source>main.adresse.rue</source>
+        <target state="final">Улица</target>
+      </trans-unit>
+      <trans-unit id="WwXGzDr" resname="main.annuler" approved="yes">
+        <source>main.annuler</source>
+        <target state="final">Отменить</target>
+      </trans-unit>
+      <trans-unit id="xtx5eDG" resname="main.chercher" approved="yes">
+        <source>main.chercher</source>
+        <target state="final">Искать</target>
+      </trans-unit>
+      <trans-unit id="6_aAnp5" resname="main.choisir" approved="yes">
+        <source>main.choisir</source>
+        <target state="final">Выбрать</target>
+      </trans-unit>
+      <trans-unit id="n2waT4W" resname="main.connexion" approved="yes">
+        <source>main.connexion</source>
+        <target state="final">Вход</target>
+      </trans-unit>
+      <trans-unit id="XguWo0I" resname="main.continuer" approved="yes">
+        <source>main.continuer</source>
+        <target state="final">Пролоджить</target>
+      </trans-unit>
+      <trans-unit id=".Qjev8W" resname="main.error.defaultSubTitle" approved="yes">
+        <source>main.error.defaultSubTitle</source>
+        <target state="final">Произошла следующая ошибка :</target>
+      </trans-unit>
+      <trans-unit id="A6Nkyvr" resname="main.error.defaultTitle" approved="yes">
+        <source>main.error.defaultTitle</source>
+        <target state="final">Произошла ошибка !</target>
+      </trans-unit>
+      <trans-unit id="cK1Gz8Q" resname="main.error.error403SubTitle" approved="yes">
+        <source>main.error.error403SubTitle</source>
+        <target state="final">Кажется, вы не имеете права выполнить это действие :</target>
+      </trans-unit>
+      <trans-unit id="TMsz6jl" resname="main.error.error403Title" approved="yes">
+        <source>main.error.error403Title</source>
+        <target state="final">Действие запрещено</target>
+      </trans-unit>
+      <trans-unit id="uP8eSOE" resname="main.error.error404SubTitle" approved="yes">
+        <source>main.error.error404SubTitle</source>
+        <target state="final">Невозможно найти запрашиваемую страницу :</target>
+      </trans-unit>
+      <trans-unit id="Ay_FxRd" resname="main.error.error404Title" approved="yes">
+        <source>main.error.error404Title</source>
+        <target state="final">Элемент не найден</target>
+      </trans-unit>
+      <trans-unit id="p.1MXMd" resname="main.etapeSuivante" approved="yes">
+        <source>main.etapeSuivante</source>
+        <target state="final">Следующий этап</target>
+      </trans-unit>
+      <trans-unit id="skuZx4s" resname="main.etesVousSur" approved="yes">
+        <source>main.etesVousSur</source>
+        <target state="final">На странице</target>
+      </trans-unit>
+      <trans-unit id="r.tlXRH" resname="main.metaAppend">
+        <source>main.metaAppend</source>
+        <target state="needs-translation">Reconnect</target>
+      </trans-unit>
+      <trans-unit id="6HXjpia" resname="main.modifier" approved="yes">
+        <source>main.modifier</source>
+        <target state="final">Изменить</target>
+      </trans-unit>
+      <trans-unit id="HwjrzQ7" resname="main.modifierFichier" approved="yes">
+        <source>main.modifierFichier</source>
+        <target state="final">Изменить файл</target>
+      </trans-unit>
+      <trans-unit id="HIXpjni" resname="main.neSaitPlus" approved="yes">
+        <source>main.neSaitPlus</source>
+        <target state="final">Я не знаю</target>
+      </trans-unit>
+      <trans-unit id="1uovh55" resname="main.non" approved="yes">
+        <source>main.non</source>
+        <target state="final">Нет</target>
+      </trans-unit>
+      <trans-unit id="Rfkkb8l" resname="main.notAvailableFeature" approved="yes">
+        <source>main.notAvailableFeature</source>
+        <target state="final">Этот сервис ещё не доступен, работоспособность будет восстановлена в ближайшее время !</target>
+      </trans-unit>
+      <trans-unit id="7SVu4X6" resname="main.oui" approved="yes">
+        <source>main.oui</source>
+        <target state="final">Да</target>
+      </trans-unit>
+      <trans-unit id="ATY.DFf" resname="main.parPage" approved="yes">
+        <source>main.parPage</source>
+        <target state="final">На странице</target>
+      </trans-unit>
+      <trans-unit id="9Jx521." resname="main.pasLesDroits" approved="yes">
+        <source>main.pasLesDroits</source>
+        <target state="final">У вас нету прав доступа к этой странице</target>
+      </trans-unit>
+      <trans-unit id="3zF7cCh" resname="main.refuser" approved="yes">
+        <source>main.refuser</source>
+        <target state="final">Отказаться</target>
+      </trans-unit>
+      <trans-unit id="2uiF87h" resname="main.retour" approved="yes">
+        <source>main.retour</source>
+        <target state="final">Назад</target>
+      </trans-unit>
+      <trans-unit id="QsozHc6" resname="main.revenirArriere" approved="yes">
+        <source>main.revenirArriere</source>
+        <target state="final">Вернуться назад</target>
+      </trans-unit>
+      <trans-unit id="ZvGDoIL" resname="main.selectionner" approved="yes">
+        <source>main.selectionner</source>
+        <target state="final">Выбрать</target>
+      </trans-unit>
+      <trans-unit id="aYP0xkP" resname="main.supprimer" approved="yes">
+        <source>main.supprimer</source>
+        <target state="final">Удалить</target>
+      </trans-unit>
+      <trans-unit id="aBmo4TR" resname="main.uploaderFichier" approved="yes">
+        <source>main.uploaderFichier</source>
+        <target state="final">Выбрать файл</target>
+      </trans-unit>
+      <trans-unit id="1XKTX5v" resname="main.voirFichier" approved="yes">
+        <source>main.voirFichier</source>
+        <target state="final">Открыть файл</target>
+      </trans-unit>
+      <trans-unit id="EDzd0LP" resname="membre.ajoutBeneficiaire.aucunUtilisateurTrouve" approved="yes">
+        <source>membre.ajoutBeneficiaire.aucunUtilisateurTrouve</source>
+        <target state="final">Аккаунт получателя Reconnect, соотвествующий вашему поиску, не найден</target>
+      </trans-unit>
+      <trans-unit id="cSz1L6i" resname="membre.ajoutBeneficiaire.centres" approved="yes">
+        <source>membre.ajoutBeneficiaire.centres</source>
+        <target state="final">Посредник Reconnect</target>
+      </trans-unit>
+      <trans-unit id="BOtwSks" resname="membre.ajoutBeneficiaire.creerCompte" approved="yes">
+        <source>membre.ajoutBeneficiaire.creerCompte</source>
+        <target state="final">Создать аккаунт Reconnect</target>
+      </trans-unit>
+      <trans-unit id="hFUr.pN" resname="membre.ajoutBeneficiaire.dateNaissanceLabel" approved="yes">
+        <source>membre.ajoutBeneficiaire.dateNaissanceLabel</source>
+        <target state="final">Дата рождения</target>
+      </trans-unit>
+      <trans-unit id="Nhva6eC" resname="membre.ajoutBeneficiaire.metaTitle" approved="yes">
+        <source>membre.ajoutBeneficiaire.metaTitle</source>
+        <target state="final">Добавить нового пользователя</target>
+      </trans-unit>
+      <trans-unit id="6i8BQrm" resname="membre.ajoutBeneficiaire.nePossedePasCompte" approved="yes">
+        <source>membre.ajoutBeneficiaire.nePossedePasCompte</source>
+        <target state="final">У пользователя нет аккаунта Reconnect</target>
+      </trans-unit>
+      <trans-unit id="6DYyF0t" resname="membre.ajoutBeneficiaire.nomLabel" approved="yes">
+        <source>membre.ajoutBeneficiaire.nomLabel</source>
+        <target state="final">Фамилия</target>
+      </trans-unit>
+      <trans-unit id="kqLjXaV" resname="membre.ajoutBeneficiaire.possedeCompte" approved="yes">
+        <source>membre.ajoutBeneficiaire.possedeCompte</source>
+        <target state="final">У пользователя есть аккаунт Reconnect</target>
+      </trans-unit>
+      <trans-unit id="CQ.118m" resname="membre.ajoutBeneficiaire.prenomLabel" approved="yes">
+        <source>membre.ajoutBeneficiaire.prenomLabel</source>
+        <target state="final">Имя</target>
+      </trans-unit>
+      <trans-unit id="MIrFgrC" resname="membre.ajoutBeneficiaire.subtitle" approved="yes">
+        <source>membre.ajoutBeneficiaire.subtitle</source>
+        <target state="final">Добавить нового пользователя</target>
+      </trans-unit>
+      <trans-unit id="XpzbMrp" resname="membre.ajoutBeneficiaire.title" approved="yes">
+        <source>membre.ajoutBeneficiaire.title</source>
+        <target state="final"><![CDATA[Добавление нового <span class="main"> получателя</span>]]></target>
+      </trans-unit>
+      <trans-unit id="MEM.3iP" resname="membre.ajoutMembre.aucunUtilisateurTrouve" approved="yes">
+        <source>membre.ajoutMembre.aucunUtilisateurTrouve</source>
+        <target state="final">Аккаунт члена Reconnect, соответствующий вашему запросу, не найден</target>
+      </trans-unit>
+      <trans-unit id="94CLmRU" resname="membre.ajoutMembre.centres" approved="yes">
+        <source>membre.ajoutMembre.centres</source>
+        <target state="final">Центры</target>
+      </trans-unit>
+      <trans-unit id="UE29KoB" resname="membre.ajoutMembre.creerCompte" approved="yes">
+        <source>membre.ajoutMembre.creerCompte</source>
+        <target state="final">Создать аккаунт Reconnect</target>
+      </trans-unit>
+      <trans-unit id="KqnHrga" resname="membre.ajoutMembre.metaTitle" approved="yes">
+        <source>membre.ajoutMembre.metaTitle</source>
+        <target state="final">Добавить нового члена</target>
+      </trans-unit>
+      <trans-unit id="0zNYOIy" resname="membre.ajoutMembre.nePossedePasCompte" approved="yes">
+        <source>membre.ajoutMembre.nePossedePasCompte</source>
+        <target state="final">У члена нет аккаунта Reconnect</target>
+      </trans-unit>
+      <trans-unit id="OBIjv0e" resname="membre.ajoutMembre.nomLabel" approved="yes">
+        <source>membre.ajoutMembre.nomLabel</source>
+        <target state="final">Фамилия</target>
+      </trans-unit>
+      <trans-unit id="OejiKfK" resname="membre.ajoutMembre.possedeCompte" approved="yes">
+        <source>membre.ajoutMembre.possedeCompte</source>
+        <target state="final">У члена есть аккаунт Reconnect</target>
+      </trans-unit>
+      <trans-unit id="R2vRnsw" resname="membre.ajoutMembre.prenomLabel" approved="yes">
+        <source>membre.ajoutMembre.prenomLabel</source>
+        <target state="final">Имя</target>
+      </trans-unit>
+      <trans-unit id="cJyG_pU" resname="membre.ajoutMembre.subtitle" approved="yes">
+        <source>membre.ajoutMembre.subtitle</source>
+        <target state="final">Добавить нового члена</target>
+      </trans-unit>
+      <trans-unit id="u.x7FVu" resname="membre.ajoutMembre.title" approved="yes">
+        <source>membre.ajoutMembre.title</source>
+        <target state="final"><![CDATA[Добавление нового <span class="main"> члена</span>]]></target>
+      </trans-unit>
+      <trans-unit id="D3VI6I7" resname="membre.arreterSuivi.metaTitle" approved="yes">
+        <source>membre.arreterSuivi.metaTitle</source>
+        <target state="final">Остановить сопровождение получателя</target>
+      </trans-unit>
+      <trans-unit id="Kx6OaCw" resname="membre.arreterSuivi.subtitle" approved="yes">
+        <source>membre.arreterSuivi.subtitle</source>
+        <target state="final">Остановить отслеживание тема %</target>
+      </trans-unit>
+      <trans-unit id="tOPKxNv" resname="membre.arreterSuivi.success" approved="yes">
+        <source>membre.arreterSuivi.success</source>
+        <target state="final">Вы успешно основили сопровождение этого пользователя в центре</target>
+      </trans-unit>
+      <trans-unit id="qg1wpS0" resname="membre.arreterSuivi.text" approved="yes">
+        <source>membre.arreterSuivi.text</source>
+        <target state="final">Этот получатель прикреплён к нескольким центрам, которыми вы управляете, выберите центр, в котором нужно остановить сопровождение</target>
+      </trans-unit>
+      <trans-unit id="AEzpcuD" resname="membre.arreterSuivi.title" approved="yes">
+        <source>membre.arreterSuivi.title</source>
+        <target state="final"><![CDATA[Остановить отслеживание <span class="main"> пользователя</span>]]></target>
+      </trans-unit>
+      <trans-unit id="7DjbnYB" resname="membre.beneficiaires.aides" approved="yes">
+        <source>membre.beneficiaires.aides</source>
+        <target state="final">Пособия</target>
+      </trans-unit>
+      <trans-unit id="uwOl8u1" resname="membre.beneficiaires.ajouterBeneficiaire" approved="yes">
+        <source>membre.beneficiaires.ajouterBeneficiaire</source>
+        <target state="final">Добавить нового получателя</target>
+      </trans-unit>
+      <trans-unit id="LG0oRqS" resname="membre.beneficiaires.arreterSuivi" approved="yes">
+        <source>membre.beneficiaires.arreterSuivi</source>
+        <target state="final">Закончить обмен</target>
+      </trans-unit>
+      <trans-unit id="rEvhczm" resname="membre.beneficiaires.arreterSuiviEtesVousSur" approved="yes">
+        <source>membre.beneficiaires.arreterSuiviEtesVousSur</source>
+        <target state="final">Вы прекращаете сопровождение %Имя%</target>
+      </trans-unit>
+      <trans-unit id="F9BBB06" resname="membre.beneficiaires.btnDetails" approved="yes">
+        <source>membre.beneficiaires.btnDetails</source>
+        <target state="final">Детали</target>
+      </trans-unit>
+      <trans-unit id="ihvbklF" resname="membre.beneficiaires.centres" approved="yes">
+        <source>membre.beneficiaires.centres</source>
+        <target state="final">Центры</target>
+      </trans-unit>
+      <trans-unit id="t6ENNRe" resname="membre.beneficiaires.mesContacts" approved="yes">
+        <source>membre.beneficiaires.mesContacts</source>
+        <target state="final">Контакты</target>
+      </trans-unit>
+      <trans-unit id="QR6_ZiT" resname="membre.beneficiaires.mesDocuments" approved="yes">
+        <source>membre.beneficiaires.mesDocuments</source>
+        <target state="final">Документы</target>
+      </trans-unit>
+      <trans-unit id="N6YHt4T" resname="membre.beneficiaires.mesNotes" approved="yes">
+        <source>membre.beneficiaires.mesNotes</source>
+        <target state="final">Заметки</target>
+      </trans-unit>
+      <trans-unit id="ogaa3Qm" resname="membre.beneficiaires.metaTitle" approved="yes">
+        <source>membre.beneficiaires.metaTitle</source>
+        <target state="final">Управление получателями</target>
+      </trans-unit>
+      <trans-unit id="TyqJWwl" resname="membre.beneficiaires.monCalendrier" approved="yes">
+        <source>membre.beneficiaires.monCalendrier</source>
+        <target state="final">Календарь</target>
+      </trans-unit>
+      <trans-unit id="bO5BssT" resname="membre.beneficiaires.noBeneficiairesInCentre" approved="yes">
+        <source>membre.beneficiaires.noBeneficiairesInCentre</source>
+        <target state="final">В этом центре нету получателей</target>
+      </trans-unit>
+      <trans-unit id="8u68eY5" resname="membre.beneficiaires.nom" approved="yes">
+        <source>membre.beneficiaires.nom</source>
+        <target state="final">Фамилия</target>
+      </trans-unit>
+      <trans-unit id="HNn.szN" resname="membre.beneficiaires.nonValide" approved="yes">
+        <source>membre.beneficiaires.nonValide</source>
+        <target state="final">Не подтверждено</target>
+      </trans-unit>
+      <trans-unit id="cNkEPiE" resname="membre.beneficiaires.prenom" approved="yes">
+        <source>membre.beneficiaires.prenom</source>
+        <target state="final">Имя</target>
+      </trans-unit>
+      <trans-unit id="LAQp625" resname="membre.beneficiaires.renouvelerIdentifiants" approved="yes">
+        <source>membre.beneficiaires.renouvelerIdentifiants</source>
+        <target state="final">Изменить пароль</target>
+      </trans-unit>
+      <trans-unit id="HNwHful" resname="membre.beneficiaires.selectCentre" approved="yes">
+        <source>membre.beneficiaires.selectCentre</source>
+        <target state="final">Выбрать цент</target>
+      </trans-unit>
+      <trans-unit id="5skLLX3" resname="membre.beneficiaires.title" approved="yes">
+        <source>membre.beneficiaires.title</source>
+        <target state="final">Управление получателями</target>
+      </trans-unit>
+      <trans-unit id="xQuki8T" resname="membre.beneficiaires.valide" approved="yes">
+        <source>membre.beneficiaires.valide</source>
+        <target state="final">Подтверждено</target>
+      </trans-unit>
+      <trans-unit id="3LvPbJE" resname="membre.centres.metaTitle" approved="yes">
+        <source>membre.centres.metaTitle</source>
+        <target state="final">Мой Посредник Reconnect</target>
+      </trans-unit>
+      <trans-unit id="zdckvD8" resname="membre.centres.quitterCentre" approved="yes">
+        <source>membre.centres.quitterCentre</source>
+        <target state="final">Выйти из этого центра</target>
+      </trans-unit>
+      <trans-unit id="8jeaF8k" resname="membre.centres.title" approved="yes">
+        <source>membre.centres.title</source>
+        <target state="final">Мой Посредник Reconnect</target>
+      </trans-unit>
+      <trans-unit id="Tc8qRfl" resname="membre.centres.voirBeneficiaires" approved="yes">
+        <source>membre.centres.voirBeneficiaires</source>
+        <target state="final">Открыть список получателей</target>
+      </trans-unit>
+      <trans-unit id="xHsVt6R" resname="membre.centres.voirMembres" approved="yes">
+        <source>membre.centres.voirMembres</source>
+        <target state="final">Открыть список членов</target>
+      </trans-unit>
+      <trans-unit id="qzLMLJy" resname="membre.centres.vousAvezBienQuitte" approved="yes">
+        <source>membre.centres.vousAvezBienQuitte</source>
+        <target state="final">Вы успешно вышли из центра</target>
+      </trans-unit>
+      <trans-unit id="VerQtMo" resname="membre.creationBeneficiaire.metaTitle" approved="yes">
+        <source>membre.creationBeneficiaire.metaTitle</source>
+        <target state="final">Создание получателя</target>
+      </trans-unit>
+      <trans-unit id="cQjdhnY" resname="membre.creationBeneficiaire.questionsSecretes.q1" approved="yes">
+        <source>membre.creationBeneficiaire.questionsSecretes.q1</source>
+        <target state="final">Имя матери получателя</target>
+      </trans-unit>
+      <trans-unit id="Wefqdi1" resname="membre.creationBeneficiaire.questionsSecretes.q2" approved="yes">
+        <source>membre.creationBeneficiaire.questionsSecretes.q2</source>
+        <target state="final">Кличка домашнего животного получателя</target>
+      </trans-unit>
+      <trans-unit id=".hYzGvZ" resname="membre.creationBeneficiaire.questionsSecretes.q3" approved="yes">
+        <source>membre.creationBeneficiaire.questionsSecretes.q3</source>
+        <target state="final">Название любимой улицы получателя</target>
+      </trans-unit>
+      <trans-unit id="vGEo_m8" resname="membre.creationBeneficiaire.questionsSecretes.q4" approved="yes">
+        <source>membre.creationBeneficiaire.questionsSecretes.q4</source>
+        <target state="final">Общеобразовательное заведение, которое посещал получатель</target>
+      </trans-unit>
+      <trans-unit id="wsoW3j4" resname="membre.creationBeneficiaire.questionsSecretes.q5" approved="yes">
+        <source>membre.creationBeneficiaire.questionsSecretes.q5</source>
+        <target state="final">Прозвище получателя</target>
+      </trans-unit>
+      <trans-unit id="IgVKY82" resname="membre.creationBeneficiaire.questionsSecretes.q6" approved="yes">
+        <source>membre.creationBeneficiaire.questionsSecretes.q6</source>
+        <target state="final">Другой</target>
+      </trans-unit>
+      <trans-unit id="RK63ZeX" resname="membre.creationBeneficiaire.step1.subtitle" approved="yes">
+        <source>membre.creationBeneficiaire.step1.subtitle</source>
+        <target state="final"><![CDATA[<span class="main"> Шаг 1 6</span>, пожалуйста, заполните личность бенефициара]]></target>
+      </trans-unit>
+      <trans-unit id="aCmABoR" resname="membre.creationBeneficiaire.step2.subtitle" approved="yes">
+        <source>membre.creationBeneficiaire.step2.subtitle</source>
+        <target state="final"><![CDATA[<span class="main">Шаг 2/6</span>, пожалуйста, выберите идентификатор и пароль бенефициара]]></target>
+      </trans-unit>
+      <trans-unit id="AdX4I8H" resname="membre.creationBeneficiaire.step3.subtitle" approved="yes">
+        <source>membre.creationBeneficiaire.step3.subtitle</source>
+        <target state="final"><![CDATA[<span class="main"> Шаг 3/6</span>, пожалуйста, выберите секретный вопрос бенефициара]]></target>
+      </trans-unit>
+      <trans-unit id="PEQ3Avu" resname="membre.creationBeneficiaire.step4.subtitle" approved="yes">
+        <source>membre.creationBeneficiaire.step4.subtitle</source>
+        <target state="final"><![CDATA[<span class="main"> Шаг %step%/%totalSteps%</span>, пожалуйста, выберите реле повторного соединения бенефициара]]></target>
+      </trans-unit>
+      <trans-unit id="1sD7riR" resname="membre.creationBeneficiaire.step5.subtitle" approved="yes">
+        <source>membre.creationBeneficiaire.step5.subtitle</source>
+        <target state="final"><![CDATA[<span class="main"> Шаг %step%/%totalSteps%</span> резюме, пожалуйста, подтвердите информацию ниже]]></target>
+      </trans-unit>
+      <trans-unit id="TRig3jU" resname="membre.creationBeneficiaire.step6.content" approved="yes">
+        <source>membre.creationBeneficiaire.step6.content</source>
+        <target state="final">Не забудьте распечатать акт о создании аккаунта Reconnect для получения подписи получателя</target>
+      </trans-unit>
+      <trans-unit id="INmrpHp" resname="membre.creationBeneficiaire.step6.subtitle" approved="yes">
+        <source>membre.creationBeneficiaire.step6.subtitle</source>
+        <target state="final"><![CDATA[<span class="main"> Шаг 6 из 6</span> условия использования]]></target>
+      </trans-unit>
+      <trans-unit id="h5Up7T6" resname="membre.creationBeneficiaire.step6.telecharger" approved="yes">
+        <source>membre.creationBeneficiaire.step6.telecharger</source>
+        <target state="final">Загрузить</target>
+      </trans-unit>
+      <trans-unit id="9kQcFkO" resname="membre.creationBeneficiaire.step6.terminer" approved="yes">
+        <source>membre.creationBeneficiaire.step6.terminer</source>
+        <target state="final">Завершить</target>
+      </trans-unit>
+      <trans-unit id="6.3pJz4" resname="membre.creationBeneficiaire.subtitle" approved="yes">
+        <source>membre.creationBeneficiaire.subtitle</source>
+        <target state="final">Этап 1 из 5: Укажите личность получателя</target>
+      </trans-unit>
+      <trans-unit id="kH8xSt0" resname="membre.creationBeneficiaire.success" approved="yes">
+        <source>membre.creationBeneficiaire.success</source>
+        <target state="final">Получатель успешно создан</target>
+      </trans-unit>
+      <trans-unit id="6BRGkmW" resname="membre.creationBeneficiaire.title" approved="yes">
+        <source>membre.creationBeneficiaire.title</source>
+        <target state="final"><![CDATA[Создание <span class="main"> бенефициара</span>]]></target>
+      </trans-unit>
+      <trans-unit id="OFKPRAn" resname="membre.creationMembre.membreEmailConstraint" approved="yes">
+        <source>membre.creationMembre.membreEmailConstraint</source>
+        <target state="final">Если у члена есть право управлять другими членами, он обязательно должен указать свой адрес электронной почты.</target>
+      </trans-unit>
+      <trans-unit id="HqvYZ7u" resname="membre.creationMembre.success" approved="yes">
+        <source>membre.creationMembre.success</source>
+        <target state="final">Член успешно создан</target>
+      </trans-unit>
+      <trans-unit id="CWvOVEF" resname="membre.creationMembre.title" approved="yes">
+        <source>membre.creationMembre.title</source>
+        <target state="final">Создание члена</target>
+      </trans-unit>
+      <trans-unit id="wpQ.BoI" resname="membre.doAjoutSubject.btnAjouter" approved="yes">
+        <source>membre.doAjoutSubject.btnAjouter</source>
+        <target state="final">Добавить</target>
+      </trans-unit>
+      <trans-unit id="JUg0PEM" resname="membre.doAjoutSubject.centres" approved="yes">
+        <source>membre.doAjoutSubject.centres</source>
+        <target state="final">Ваши центры</target>
+      </trans-unit>
+      <trans-unit id="0xyCK2Y" resname="membre.doAjoutSubject.subtitle" approved="yes">
+        <source>membre.doAjoutSubject.subtitle</source>
+        <target state="final">Выберите центр, в какой вы хотите добавить пользователя</target>
+      </trans-unit>
+      <trans-unit id="gaiBCHP" resname="membre.doDoAjoutSubject.cliquerIci" approved="yes">
+        <source>membre.doDoAjoutSubject.cliquerIci</source>
+        <target state="final">Нажмите тут</target>
+      </trans-unit>
+      <trans-unit id="AW9TPYC" resname="membre.doDoAjoutSubject.confirmeraEnConnectant" approved="yes">
+        <source>membre.doDoAjoutSubject.confirmeraEnConnectant</source>
+        <target state="final">Пользователь подтвердит ваш запрос на добавление при входе в аккаунт</target>
+      </trans-unit>
+      <trans-unit id="VqNrOnO" resname="membre.doDoAjoutSubject.membreConfirmeraEnConnectant" approved="yes">
+        <source>membre.doDoAjoutSubject.membreConfirmeraEnConnectant</source>
+        <target state="final">Член примет ваш запрос на добавление  при входе в аккаунт</target>
+      </trans-unit>
+      <trans-unit id="tc5q.dD" resname="membre.doDoAjoutSubject.renseignerTelephone" approved="yes">
+        <source>membre.doDoAjoutSubject.renseignerTelephone</source>
+        <target state="final"><![CDATA[(Вы должны заполнить в вашем телефоне нажав <a href="%link%"> здесь</a>)]]></target>
+      </trans-unit>
+      <trans-unit id="2ViN6s1" resname="membre.doDoAjoutSubject.repondreReponseSecrete" approved="yes">
+        <source>membre.doDoAjoutSubject.repondreReponseSecrete</source>
+        <target state="final">Пользователь предоставит вам ответ на секретный вопрос</target>
+      </trans-unit>
+      <trans-unit id="6pVNa8o" resname="membre.doDoAjoutSubject.sendSms" approved="yes">
+        <source>membre.doDoAjoutSubject.sendSms</source>
+        <target state="final">Пользователь предоставит вам код, который получит по смс</target>
+      </trans-unit>
+      <trans-unit id="Ia0rn7i" resname="membre.doDoAjoutSubject.subtitle" approved="yes">
+        <source>membre.doDoAjoutSubject.subtitle</source>
+        <target state="final">Запрос, отправленный на тему %</target>
+      </trans-unit>
+      <trans-unit id="vpxbA4q" resname="membre.doDoAjoutSubject.termine" approved="yes">
+        <source>membre.doDoAjoutSubject.termine</source>
+        <target state="final">Завершить</target>
+      </trans-unit>
+      <trans-unit id="9GEH_Hh" resname="membre.doDoAjoutSubject.text" approved="yes">
+        <source>membre.doDoAjoutSubject.text</source>
+        <target state="final">Для получения подтверждения пользователя выберите одну из следующих процедур :</target>
+      </trans-unit>
+      <trans-unit id="ZwiL4jn" resname="membre.droits.gestionBeneficiaires" approved="yes">
+        <source>membre.droits.gestionBeneficiaires</source>
+        <target state="final">Управление получателями</target>
+      </trans-unit>
+      <trans-unit id="gGOPxT2" resname="membre.droits.gestionMembres" approved="yes">
+        <source>membre.droits.gestionMembres</source>
+        <target state="final">Управление членами</target>
+      </trans-unit>
+      <trans-unit id="kUTi6za" resname="membre.droits.gestionPaiement" approved="yes">
+        <source>membre.droits.gestionPaiement</source>
+        <target state="final">Управление платежами</target>
+      </trans-unit>
+      <trans-unit id="KaUj_pT" resname="membre.membres.aides" approved="yes">
+        <source>membre.membres.aides</source>
+        <target state="final">Пособия</target>
+      </trans-unit>
+      <trans-unit id="6lu7nSQ" resname="membre.membres.ajouterMembre" approved="yes">
+        <source>membre.membres.ajouterMembre</source>
+        <target state="final">Добавить нового члена</target>
+      </trans-unit>
+      <trans-unit id="pY2iEs9" resname="membre.membres.arreterSuivi" approved="yes">
+        <source>membre.membres.arreterSuivi</source>
+        <target state="final">Удалить</target>
+      </trans-unit>
+      <trans-unit id="YWpJMNO" resname="membre.membres.btnDetails" approved="yes">
+        <source>membre.membres.btnDetails</source>
+        <target state="final">Детали</target>
+      </trans-unit>
+      <trans-unit id="gAy8K0f" resname="membre.membres.centres" approved="yes">
+        <source>membre.membres.centres</source>
+        <target state="final">Центры</target>
+      </trans-unit>
+      <trans-unit id="5mXhkvo" resname="membre.membres.gestionBeneficiaires" approved="yes">
+        <source>membre.membres.gestionBeneficiaires</source>
+        <target state="final">Управление получателями</target>
+      </trans-unit>
+      <trans-unit id="98StX78" resname="membre.membres.gestionMembres" approved="yes">
+        <source>membre.membres.gestionMembres</source>
+        <target state="final">Управление членами</target>
+      </trans-unit>
+      <trans-unit id="2XgB9Na" resname="membre.membres.gestionPaiement" approved="yes">
+        <source>membre.membres.gestionPaiement</source>
+        <target state="final">Управление платежами</target>
+      </trans-unit>
+      <trans-unit id="pBKO3HM" resname="membre.membres.mesContacts" approved="yes">
+        <source>membre.membres.mesContacts</source>
+        <target state="final">Мои контакты</target>
+      </trans-unit>
+      <trans-unit id="iZ5NWSj" resname="membre.membres.mesDocuments" approved="yes">
+        <source>membre.membres.mesDocuments</source>
+        <target state="final">Мои документы</target>
+      </trans-unit>
+      <trans-unit id="I2nYQT5" resname="membre.membres.mesNotes" approved="yes">
+        <source>membre.membres.mesNotes</source>
+        <target state="final">Мои Заметки</target>
+      </trans-unit>
+      <trans-unit id="YBgrH8y" resname="membre.membres.metaTitle" approved="yes">
+        <source>membre.membres.metaTitle</source>
+        <target state="final">Управление членами</target>
+      </trans-unit>
+      <trans-unit id="vMAYyTR" resname="membre.membres.monCalendrier" approved="yes">
+        <source>membre.membres.monCalendrier</source>
+        <target state="final">Мой календарь</target>
+      </trans-unit>
+      <trans-unit id="2YIb6Ez" resname="membre.membres.noBeneficiairesInCentre" approved="yes">
+        <source>membre.membres.noBeneficiairesInCentre</source>
+        <target state="final">В этом центре нету получателей</target>
+      </trans-unit>
+      <trans-unit id="NtGjsoD" resname="membre.membres.nom" approved="yes">
+        <source>membre.membres.nom</source>
+        <target state="final">Фамилия</target>
+      </trans-unit>
+      <trans-unit id="6CwjcIK" resname="membre.membres.nonValide" approved="yes">
+        <source>membre.membres.nonValide</source>
+        <target state="final">Не подтверждено</target>
+      </trans-unit>
+      <trans-unit id="Vem83ET" resname="membre.membres.prenom" approved="yes">
+        <source>membre.membres.prenom</source>
+        <target state="final">Имя</target>
+      </trans-unit>
+      <trans-unit id="UOxvGPF" resname="membre.membres.renouvelerIdentifiants" approved="yes">
+        <source>membre.membres.renouvelerIdentifiants</source>
+        <target state="final">Сменить парол</target>
+      </trans-unit>
+      <trans-unit id="ehZnQUB" resname="membre.membres.selectCentre" approved="yes">
+        <source>membre.membres.selectCentre</source>
+        <target state="final">Выбрать центр</target>
+      </trans-unit>
+      <trans-unit id="_2JZXHR" resname="membre.membres.title" approved="yes">
+        <source>membre.membres.title</source>
+        <target state="final"><![CDATA[<span class="main"> члены</span> управления]]></target>
+      </trans-unit>
+      <trans-unit id="liN8KDB" resname="membre.membres.valide" approved="yes">
+        <source>membre.membres.valide</source>
+        <target state="final">Подтверждено</target>
+      </trans-unit>
+      <trans-unit id="uclivc9" resname="membre.menu.gestionBeneficiaires" approved="yes">
+        <source>membre.menu.gestionBeneficiaires</source>
+        <target state="final">Получатели</target>
+      </trans-unit>
+      <trans-unit id="zsPXXVC" resname="membre.menu.gestionRelais" approved="yes">
+        <source>membre.menu.gestionRelais</source>
+        <target state="final">Мои Посредники Reconnect</target>
+      </trans-unit>
+      <trans-unit id="EWAVy.x" resname="membre.partageContact.ajouterMail" approved="yes">
+        <source>membre.partageContact.ajouterMail</source>
+        <target state="final">Добавить адрес электронной почты</target>
+      </trans-unit>
+      <trans-unit id="yo4fkJL" resname="membre.partageContact.ajouterNuméro" approved="yes">
+        <source>membre.partageContact.ajouterNuméro</source>
+        <target state="final">Добавить номер телефона</target>
+      </trans-unit>
+      <trans-unit id="DUQA_N3" resname="membre.partageContact.success" approved="yes">
+        <source>membre.partageContact.success</source>
+        <target state="final">Ваши контактные данные добавлены в список контактов получателя</target>
+      </trans-unit>
+      <trans-unit id="G0IuYr7" resname="membre.partageContact.text" approved="yes">
+        <source>membre.partageContact.text</source>
+        <target state="final">Вы впервые открываете элементы, которыми поделился этот пользователь. Вы соглашаетесь с тем, что ваши контактные данные будут добавлены в список контактов этого пользователя?</target>
+      </trans-unit>
+      <trans-unit id="m5kbdrL" resname="membre.partageContact.title" approved="yes">
+        <source>membre.partageContact.title</source>
+        <target state="final">Поделиться контактом</target>
+      </trans-unit>
+      <trans-unit id="VOTyvsi" resname="membre.questionSecrete.label" approved="yes">
+        <source>membre.questionSecrete.label</source>
+        <target state="final">Вам нужно ответить на следующий вопрос :</target>
+      </trans-unit>
+      <trans-unit id="YCHmFt1" resname="membre.questionSecrete.mauvaiseReponse" approved="yes">
+        <source>membre.questionSecrete.mauvaiseReponse</source>
+        <target state="final">Это не ответ на секретный вопрос</target>
+      </trans-unit>
+      <trans-unit id="qcCS.zb" resname="membre.questionSecrete.metaTitle" approved="yes">
+        <source>membre.questionSecrete.metaTitle</source>
+        <target state="final">Добавить нового получателя</target>
+      </trans-unit>
+      <trans-unit id=".eX7EmC" resname="membre.questionSecrete.subtitle" approved="yes">
+        <source>membre.questionSecrete.subtitle</source>
+        <target state="final">Ответить на секретный вопрос</target>
+      </trans-unit>
+      <trans-unit id="5KmCQZ3" resname="membre.questionSecrete.success" approved="yes">
+        <source>membre.questionSecrete.success</source>
+        <target state="final">Управление этим центром подверждено</target>
+      </trans-unit>
+      <trans-unit id="aeJ1zvP" resname="membre.questionSecrete.title" approved="yes">
+        <source>membre.questionSecrete.title</source>
+        <target state="final"><![CDATA[Добавление нового <span class="main"> получателя</span>]]></target>
+      </trans-unit>
+      <trans-unit id="heuiM4o" resname="membre.resettingBeneficiairePassword.erreur" approved="yes">
+        <source>membre.resettingBeneficiairePassword.erreur</source>
+        <target state="final">Это не ответ на секретный вопрос</target>
+      </trans-unit>
+      <trans-unit id="CFiE_1l" resname="membre.resettingBeneficiairePassword.success" approved="yes">
+        <source>membre.resettingBeneficiairePassword.success</source>
+        <target state="final">Пароль успешно восстановлен</target>
+      </trans-unit>
+      <trans-unit id="51EL00T" resname="membre.resettingBeneficiairePassword.title" approved="yes">
+        <source>membre.resettingBeneficiairePassword.title</source>
+        <target state="final">Сброс пароля % username %</target>
+      </trans-unit>
+      <trans-unit id="h_kZmq_" resname="membre.sendSmsCode.codeLabel" approved="yes">
+        <source>membre.sendSmsCode.codeLabel</source>
+        <target state="final">Введите код из смс-сообщения</target>
+      </trans-unit>
+      <trans-unit id="NAwphG4" resname="membre.sendSmsCode.mauvaiseReponse" approved="yes">
+        <source>membre.sendSmsCode.mauvaiseReponse</source>
+        <target state="final">Неверный код</target>
+      </trans-unit>
+      <trans-unit id="tK00eYq" resname="membre.sendSmsCode.smsMessage" approved="yes">
+        <source>membre.sendSmsCode.smsMessage</source>
+        <target state="final">Для подтверждения добавления сообщите код подтверждения вашему Посреднику Reconnect</target>
+      </trans-unit>
+      <trans-unit id="kh8s.7J" resname="membre.sendSmsCode.subtitle" approved="yes">
+        <source>membre.sendSmsCode.subtitle</source>
+        <target state="final">Подтверждение с помощью кода из смс-сообщения</target>
+      </trans-unit>
+      <trans-unit id="KmmAn8c" resname="membre.sendSmsCode.success" approved="yes">
+        <source>membre.sendSmsCode.success</source>
+        <target state="final">Управление этим центром подверждено</target>
+      </trans-unit>
+      <trans-unit id="te3EkLf" resname="membre.sendSmsCode.text" approved="yes">
+        <source>membre.sendSmsCode.text</source>
+        <target state="final">На ваш телефон отправлено смс-сообщение с кодом</target>
+      </trans-unit>
+      <trans-unit id="0YiUq25" resname="membre.supprimerMembreDuCentre.etesVousSur" approved="yes">
+        <source>membre.supprimerMembreDuCentre.etesVousSur</source>
+        <target state="final">Вы уверены, что хотите удалить члена этого центра?</target>
+      </trans-unit>
+      <trans-unit id="qHF066D" resname="membre.supprimerMembreDuCentre.success" approved="yes">
+        <source>membre.supprimerMembreDuCentre.success</source>
+        <target state="final">Вы успешно удалили члена этого центра</target>
+      </trans-unit>
+      <trans-unit id="rSAqvq5" resname="modePaiement.carteBancaire" approved="yes">
+        <source>modePaiement.carteBancaire</source>
+        <target state="final">Банковская карт</target>
+      </trans-unit>
+      <trans-unit id="hetKHpw" resname="modePaiement.cheque" approved="yes">
+        <source>modePaiement.cheque</source>
+        <target state="final">Чек</target>
+      </trans-unit>
+      <trans-unit id="NDixb77" resname="modePaiement.choisisseModePaiement" approved="yes">
+        <source>modePaiement.choisisseModePaiement</source>
+        <target state="final">Выберите способ оплаты</target>
+      </trans-unit>
+      <trans-unit id=".Y85Wc8" resname="modePaiement.flashBienSupprime" approved="yes">
+        <source>modePaiement.flashBienSupprime</source>
+        <target state="final">Элемент успешно удалён из корзины</target>
+      </trans-unit>
+      <trans-unit id="anbpOTf" resname="modePaiement.recapitulatif" approved="yes">
+        <source>modePaiement.recapitulatif</source>
+        <target state="final">Сводный чек-лист вашей корзины</target>
+      </trans-unit>
+      <trans-unit id="imDBNIR" resname="modePaiement.virement" approved="yes">
+        <source>modePaiement.virement</source>
+        <target state="final">Перевод</target>
+      </trans-unit>
+      <trans-unit id="k5Apjz_" resname="no" approved="yes">
+        <source>no</source>
+        <target state="final">Нет</target>
+      </trans-unit>
+      <trans-unit id="XBqC9Xt" resname="note.ajouter" approved="yes">
+        <source>note.ajouter</source>
+        <target state="final">Добавить заметку</target>
+      </trans-unit>
+      <trans-unit id="yrssKSx" resname="note.bienSauvegarde" approved="yes">
+        <source>note.bienSauvegarde</source>
+        <target state="final">Ваша заметка успешно сохранена</target>
+      </trans-unit>
+      <trans-unit id="Q0NLvB8" resname="note.bienSupprime" approved="yes">
+        <source>note.bienSupprime</source>
+        <target state="final">Ваша заметка успешно удалена</target>
+      </trans-unit>
+      <trans-unit id="IR4fZRm" resname="note.contenuLabel" approved="yes">
+        <source>note.contenuLabel</source>
+        <target state="final">Содержание заметки</target>
+      </trans-unit>
+      <trans-unit id="OcNz8Gg" resname="note.date" approved="yes">
+        <source>note.date</source>
+        <target state="final">Дата</target>
+      </trans-unit>
+      <trans-unit id="hOL4awb" resname="note.emptyData" approved="yes">
+        <source>note.emptyData</source>
+        <target state="final">Еще нет заметок. Нажмите «Добавить», чтобы создать его.</target>
+      </trans-unit>
+      <trans-unit id="Lwz6aT_" resname="note.metaTitle" approved="yes">
+        <source>note.metaTitle</source>
+        <target state="final">Заметки</target>
+      </trans-unit>
+      <trans-unit id="1hJZhT9" resname="note.nom" approved="yes">
+        <source>note.nom</source>
+        <target state="final">Имя</target>
+      </trans-unit>
+      <trans-unit id="SuDc_vg" resname="note.nomLabel" approved="yes">
+        <source>note.nomLabel</source>
+        <target state="final">Заголовок</target>
+      </trans-unit>
+      <trans-unit id="yzE9a_O" resname="note.supprimer" approved="yes">
+        <source>note.supprimer</source>
+        <target state="final">Удалить</target>
+      </trans-unit>
+      <trans-unit id="j7ym0A0" resname="ouvrirUnCompte.btn1" approved="yes">
+        <source>ouvrirUnCompte.btn1</source>
+        <target state="final">Ознакомьтесь с картой Посредников Reconnect</target>
+      </trans-unit>
+      <trans-unit id="VVMdlJK" resname="ouvrirUnCompte.btn2" approved="yes">
+        <source>ouvrirUnCompte.btn2</source>
+        <target state="final">Стать посредником Reconnect</target>
+      </trans-unit>
+      <trans-unit id="1ug4X7a" resname="ouvrirUnCompte.metaTitle" approved="yes">
+        <source>ouvrirUnCompte.metaTitle</source>
+        <target state="final">Создать аккаунт Reconnect</target>
+      </trans-unit>
+      <trans-unit id="m9yyw0d" resname="ouvrirUnCompte.retourEnArriere" approved="yes">
+        <source>ouvrirUnCompte.retourEnArriere</source>
+        <target state="final">Вернуться назад</target>
+      </trans-unit>
+      <trans-unit id="I4IhvTk" resname="ouvrirUnCompte.text1" approved="yes">
+        <source>ouvrirUnCompte.text1</source>
+        <target state="final">Расскажите вашим социальным консультантам о Reconnect, они смогут помочь вам создать и пользоваться вашим аккаунтом.</target>
+      </trans-unit>
+      <trans-unit id="QGM3VIU" resname="ouvrirUnCompte.text2" approved="yes">
+        <source>ouvrirUnCompte.text2</source>
+        <target state="final"><![CDATA[Необходимо реализовать <br/> повторно подключить на вашей структуре <br/> <br/>]]></target>
+      </trans-unit>
+      <trans-unit id="J1YVucg" resname="ouvrirUnCompte.title" approved="yes">
+        <source>ouvrirUnCompte.title</source>
+        <target state="final"><![CDATA[Учетная запись, <span class="main"> Повторное подключение</span>]]></target>
+      </trans-unit>
+      <trans-unit id="I7zQfQU" resname="ouvrirUnCompte.title1" approved="yes">
+        <source>ouvrirUnCompte.title1</source>
+        <target state="final"><![CDATA[Вы находитесь в подходе <br/> социальной поддержки]]></target>
+      </trans-unit>
+      <trans-unit id="yL_Xeva" resname="ouvrirUnCompte.title2" approved="yes">
+        <source>ouvrirUnCompte.title2</source>
+        <target state="final"><![CDATA[Вы <br/> социальный актер]]></target>
+      </trans-unit>
+      <trans-unit id="ghdxH0w" resname="paiement.btnPaiementSecurise" approved="yes">
+        <source>paiement.btnPaiementSecurise</source>
+        <target state="final">Для оплаты нажмите здесь</target>
+      </trans-unit>
+      <trans-unit id="t_dZasM" resname="paiement.centreConcerne" approved="yes">
+        <source>paiement.centreConcerne</source>
+        <target state="final">Центр-получатель</target>
+      </trans-unit>
+      <trans-unit id="h9hzOhi" resname="paiement.error.err00001" approved="yes">
+        <source>paiement.error.err00001</source>
+        <target state="final">Не удалось установить соединение с центром авторизации или произошла внутренняя системная ошибка.</target>
+      </trans-unit>
+      <trans-unit id="zqgDS84" resname="paiement.error.err00003" approved="yes">
+        <source>paiement.error.err00003</source>
+        <target state="final">Ошибка Paybox</target>
+      </trans-unit>
+      <trans-unit id="LgD1Sob" resname="paiement.error.err00004" approved="yes">
+        <source>paiement.error.err00004</source>
+        <target state="final">Неверный номер карты или визуальной криптограммы.</target>
+      </trans-unit>
+      <trans-unit id="pCtBm0j" resname="paiement.error.err00006" approved="yes">
+        <source>paiement.error.err00006</source>
+        <target state="final">Доступ закрыт или неверный сайт/ряд/имя пользователя</target>
+      </trans-unit>
+      <trans-unit id="H4Z30Kf" resname="paiement.error.err00008" approved="yes">
+        <source>paiement.error.err00008</source>
+        <target state="final">Неверная дата окончания срока действия.</target>
+      </trans-unit>
+      <trans-unit id="UVavpH8" resname="paiement.error.err00009" approved="yes">
+        <source>paiement.error.err00009</source>
+        <target state="final">Ошибка при создании подписки.</target>
+      </trans-unit>
+      <trans-unit id="H5hwUrA" resname="paiement.error.err00010" approved="yes">
+        <source>paiement.error.err00010</source>
+        <target state="final">Неизвестная валюта.</target>
+      </trans-unit>
+      <trans-unit id="bWT0uHw" resname="paiement.error.err00011" approved="yes">
+        <source>paiement.error.err00011</source>
+        <target state="final">Неправильная сумма.</target>
+      </trans-unit>
+      <trans-unit id="2VZGPNZ" resname="paiement.error.err00015" approved="yes">
+        <source>paiement.error.err00015</source>
+        <target state="final">Оплата уже произведена.</target>
+      </trans-unit>
+      <trans-unit id="M8H2BN7" resname="paiement.error.err00021" approved="yes">
+        <source>paiement.error.err00021</source>
+        <target state="final">Неразрешённая карта.</target>
+      </trans-unit>
+      <trans-unit id=".CTsA6h" resname="paiement.error.err00029" approved="yes">
+        <source>paiement.error.err00029</source>
+        <target state="final">Неподходящая карта.</target>
+      </trans-unit>
+      <trans-unit id="ZPpNQbZ" resname="paiement.error.err00030" approved="yes">
+        <source>paiement.error.err00030</source>
+        <target state="final"><![CDATA[Время ожидания > 15 мин.]]></target>
+      </trans-unit>
+      <trans-unit id="VIY3glI" resname="paiement.error.err001xx" approved="yes">
+        <source>paiement.error.err001xx</source>
+        <target state="final">Платёж отклонён центром авторизации.</target>
+      </trans-unit>
+      <trans-unit id="I4aBjF3" resname="paiement.metaTitle" approved="yes">
+        <source>paiement.metaTitle</source>
+        <target state="final">Оплата</target>
+      </trans-unit>
+      <trans-unit id="AX5pr95" resname="paiement.nomProduit" approved="yes">
+        <source>paiement.nomProduit</source>
+        <target state="final">Название товара</target>
+      </trans-unit>
+      <trans-unit id="aArVkLs" resname="paiement.panierIntrouvable" approved="yes">
+        <source>paiement.panierIntrouvable</source>
+        <target state="final">Невозможно вернуться к содержимому корзины, начните процесс оплаты заново</target>
+      </trans-unit>
+      <trans-unit id="aCqNVmZ" resname="paiement.prix" approved="yes">
+        <source>paiement.prix</source>
+        <target state="final">Цена</target>
+      </trans-unit>
+      <trans-unit id="MajXQZt" resname="paiement.text" approved="yes">
+        <source>paiement.text</source>
+        <target state="final">Вы собираетесь произвести платёж в размере        евро. Сводный чек-лист вашей корзины:</target>
+      </trans-unit>
+      <trans-unit id="Bae3xlb" resname="paiement.text2" approved="yes">
+        <source>paiement.text2</source>
+        <target state="final">Вы будете перенаправлены на нашу платформу защищенных платежей :</target>
+      </trans-unit>
+      <trans-unit id="9EazmjQ" resname="paiement.title" approved="yes">
+        <source>paiement.title</source>
+        <target state="final">Оплата</target>
+      </trans-unit>
+      <trans-unit id="_XllsPM" resname="paiementCheque.adresse" approved="yes">
+        <source>paiementCheque.adresse</source>
+        <target state="final">Улица, город индекс, Страна</target>
+      </trans-unit>
+      <trans-unit id="XBcTNpr" resname="paiementCheque.metaTitle" approved="yes">
+        <source>paiementCheque.metaTitle</source>
+        <target state="final">Оплата чеком</target>
+      </trans-unit>
+      <trans-unit id="Qio4F.7" resname="paiementCheque.text" approved="yes">
+        <source>paiementCheque.text</source>
+        <target state="final"><![CDATA[Для подтверждения вашего платежа, пожалуйста, заполните как название: НАЗВАНИЕ, <br/> в порядке по: ЗАКАЗ. <br/> Наконец отправьте его по следующему адресу:]]></target>
+      </trans-unit>
+      <trans-unit id="1qnGqxu" resname="paiementCheque.text2" approved="yes">
+        <source>paiementCheque.text2</source>
+        <target state="final">Для подтверждения оплаты нажмите здесь.  Как только мы получим ваш чек, мы отправим вам имейл с подверждением и квитанцией об оплате. После этого Центр появится в вашем аккаунте.</target>
+      </trans-unit>
+      <trans-unit id="ydaYege" resname="paiementCheque.title" approved="yes">
+        <source>paiementCheque.title</source>
+        <target state="final">Оплата чеком</target>
+      </trans-unit>
+      <trans-unit id="LBpv4xy" resname="paiementRetour.abandonMessage" approved="yes">
+        <source>paiementRetour.abandonMessage</source>
+        <target state="final">Вы отменили платёж.</target>
+      </trans-unit>
+      <trans-unit id="lHY2oPK" resname="paiementRetour.errorMessage" approved="yes">
+        <source>paiementRetour.errorMessage</source>
+        <target state="final"><![CDATA[Ваш платеж не может быть завершена, вы не было предъявлено обвинение. <br/> Пожалуйста, начните процесс оплаты. <br/> <br/> Ошибка платежной системы является следующее:]]></target>
+      </trans-unit>
+      <trans-unit id="P19FN56" resname="paiementRetour.retourSurMonCompte" approved="yes">
+        <source>paiementRetour.retourSurMonCompte</source>
+        <target state="final">Войти в мой аккаунт</target>
+      </trans-unit>
+      <trans-unit id="ByGY1Xj" resname="paiementRetour.successMessage" approved="yes">
+        <source>paiementRetour.successMessage</source>
+        <target state="final">Ваш платёж подтверждён. Мы отправим вам имейл со сводным чек-листом оплаты.</target>
+      </trans-unit>
+      <trans-unit id="CNHV11D" resname="paiementRetour.waitingMessage" approved="yes">
+        <source>paiementRetour.waitingMessage</source>
+        <target state="final"><![CDATA[Ваш платеж был подтвержден. <br/> В течение нескольких дней вы получите e-mail подтверждением получения вашего платежа.]]></target>
+      </trans-unit>
+      <trans-unit id="sxjOD2y" resname="paiementVirement.adresse" approved="yes">
+        <source>paiementVirement.adresse</source>
+        <target state="final">Улица, город индекс Страна</target>
+      </trans-unit>
+      <trans-unit id="GWUNOnD" resname="paiementVirement.metaTitle" approved="yes">
+        <source>paiementVirement.metaTitle</source>
+        <target state="final">Оплата банковским переводом</target>
+      </trans-unit>
+      <trans-unit id="Ty43mAe" resname="paiementVirement.text" approved="yes">
+        <source>paiementVirement.text</source>
+        <target state="final">Для подтверждения перевода укажите в названии : TODOPL НАЗВАНИЕ</target>
+      </trans-unit>
+      <trans-unit id="nMch.Mc" resname="paiementVirement.text2" approved="yes">
+        <source>paiementVirement.text2</source>
+        <target state="final">Для подтверждения оплаты нажмите здесь. Как только мы получим ваш перевод, мы отправим вам имейл с подверждением и квитанцией об оплате. После этого Центр появится в вашем аккаунте.</target>
+      </trans-unit>
+      <trans-unit id="asv1tGO" resname="paiementVirement.title" approved="yes">
+        <source>paiementVirement.title</source>
+        <target state="final">Оплата банковским переводом</target>
+      </trans-unit>
+      <trans-unit id="pii0Wz9" resname="password_updated_successfully" approved="yes">
+        <source>password_updated_successfully</source>
+        <target state="final">Пароль успешно изменён</target>
+      </trans-unit>
+      <trans-unit id="cl.lD7Z" resname="registerForm.adresse" approved="yes">
+        <source>registerForm.adresse</source>
+        <target state="final">Ваш личный адрес (необязательно)</target>
+      </trans-unit>
+      <trans-unit id="nDXk0GQ" resname="registerForm.codePostal" approved="yes">
+        <source>registerForm.codePostal</source>
+        <target state="final">Индекс</target>
+      </trans-unit>
+      <trans-unit id="NeKB.1Z" resname="registerForm.email" approved="yes">
+        <source>registerForm.email</source>
+        <target state="final">Электронная почта</target>
+      </trans-unit>
+      <trans-unit id="mfJmP6r" resname="registerForm.motDePasse" approved="yes">
+        <source>registerForm.motDePasse</source>
+        <target state="final">Пароль</target>
+      </trans-unit>
+      <trans-unit id="jiUGw7f" resname="registerForm.nom" approved="yes">
+        <source>registerForm.nom</source>
+        <target state="final">Фамилия</target>
+      </trans-unit>
+      <trans-unit id="HBapNqj" resname="registerForm.pays" approved="yes">
+        <source>registerForm.pays</source>
+        <target state="final">Страна</target>
+      </trans-unit>
+      <trans-unit id="PD_erKd" resname="registerForm.prenom" approved="yes">
+        <source>registerForm.prenom</source>
+        <target state="final">Имя</target>
+      </trans-unit>
+      <trans-unit id="41WXFAG" resname="registerForm.rue" approved="yes">
+        <source>registerForm.rue</source>
+        <target state="final">Улица</target>
+      </trans-unit>
+      <trans-unit id="v8gwHKV" resname="registerForm.telephone" approved="yes">
+        <source>registerForm.telephone</source>
+        <target state="final">Телефон</target>
+      </trans-unit>
+      <trans-unit id="abH3mmp" resname="registerForm.username" approved="yes">
+        <source>registerForm.username</source>
+        <target state="final">Имя пользователя</target>
+      </trans-unit>
+      <trans-unit id="eJZ.zXT" resname="registerForm.ville" approved="yes">
+        <source>registerForm.ville</source>
+        <target state="final">Город</target>
+      </trans-unit>
+      <trans-unit id="_cY.wHP" resname="resetting.check_email" approved="yes">
+        <source>resetting.check_email</source>
+        <target state="final">На указанный адрес было отправлено сообщение со ссылкой, на которую вам надо нажать для восстановления пароля.</target>
+      </trans-unit>
+      <trans-unit id="Lm8o8Qg" resname="resetting.email.message" approved="yes">
+        <source>resetting.email.message</source>
+        <target state="final">Здравствуйте, % username %! Чтобы сбросить свой пароль, пожалуйста перейдите на % confirmationUrl % с уважением, команда.</target>
+      </trans-unit>
+      <trans-unit id="Redv4tu" resname="resetting.email.subject" approved="yes">
+        <source>resetting.email.subject</source>
+        <target state="final">Восстановления пароля</target>
+      </trans-unit>
+      <trans-unit id="GXvlkn9" resname="resetting.etesVousSur" approved="yes">
+        <source>resetting.etesVousSur</source>
+        <target state="final">Вы уверены, что вы хотите сбросить пароль % prenom % nom %?</target>
+      </trans-unit>
+      <trans-unit id="TUD.2.O" resname="resetting.flash.success" approved="yes">
+        <source>resetting.flash.success</source>
+        <target state="final">Пароль успешно восстановлён</target>
+      </trans-unit>
+      <trans-unit id="gORugrW" resname="resetting.password_already_requested" approved="yes">
+        <source>resetting.password_already_requested</source>
+        <target state="final">Этот пользователь уже запрашивал новый пароль за последние 24 часа.</target>
+      </trans-unit>
+      <trans-unit id="cJcEHb0" resname="resetting.public.existePas" approved="yes">
+        <source>resetting.public.existePas</source>
+        <target state="final">Пользователь с таким адресом электронной почты не обнаружен</target>
+      </trans-unit>
+      <trans-unit id="94kx2UE" resname="resetting.public.metaTitle" approved="yes">
+        <source>resetting.public.metaTitle</source>
+        <target state="final">Восстановление пароля</target>
+      </trans-unit>
+      <trans-unit id="aEz2tnh" resname="resetting.public.text" approved="yes">
+        <source>resetting.public.text</source>
+        <target state="final">Укажите ваш адрес электронной почты.</target>
+      </trans-unit>
+      <trans-unit id="Yy6ekzo" resname="resetting.public.title" approved="yes">
+        <source>resetting.public.title</source>
+        <target state="final"><![CDATA[<span class="main">Réinitialisation </span>du mot de passe]]></target>
+      </trans-unit>
+      <trans-unit id="7_F9gPI" resname="resetting.public.votreEmail" approved="yes">
+        <source>resetting.public.votreEmail</source>
+        <target state="final">Ваш адрес электронной почты</target>
+      </trans-unit>
+      <trans-unit id="KsNOzZz" resname="resetting.reset.submit" approved="yes">
+        <source>resetting.reset.submit</source>
+        <target state="final">Изменить пароль</target>
+      </trans-unit>
+      <trans-unit id="ROv_hfT" resname="settings_saved_successfully" approved="yes">
+        <source>settings_saved_successfully</source>
+        <target state="final">Ваши настройки успешно сохранены</target>
+      </trans-unit>
+      <trans-unit id="lh.ilcF" resname="statut.abandoned" approved="yes">
+        <source>statut.abandoned</source>
+        <target state="final">Операция отменена</target>
+      </trans-unit>
+      <trans-unit id="2B1sPM6" resname="statut.confirmed" approved="yes">
+        <source>statut.confirmed</source>
+        <target state="final">Операция подтверждена</target>
+      </trans-unit>
+      <trans-unit id="GebE.u7" resname="statut.created" approved="yes">
+        <source>statut.created</source>
+        <target state="final">Создано</target>
+      </trans-unit>
+      <trans-unit id="i1hSZVg" resname="statut.waiting" approved="yes">
+        <source>statut.waiting</source>
+        <target state="final">Ожидание оплаты (чек/перевод)</target>
+      </trans-unit>
+      <trans-unit id="r7T5f8g" resname="switchUser.btnRevenir" approved="yes">
+        <source>switchUser.btnRevenir</source>
+        <target state="final">Вернуться на страницу администрации</target>
+      </trans-unit>
+      <trans-unit id="AKuUPR9" resname="switchUser.connecte" approved="yes">
+        <source>switchUser.connecte</source>
+        <target state="final"><![CDATA[Вы вошли как <span class="italic"> % username %</span>]]></target>
+      </trans-unit>
+      <trans-unit id="5iOf34Y" resname="user.cgu.bAccepter" approved="yes">
+        <source>user.cgu.bAccepter</source>
+        <target state="final">Я согласен с условиями пользования</target>
+      </trans-unit>
+      <trans-unit id="YvoXAoV" resname="user.cgu.metaTitle" approved="yes">
+        <source>user.cgu.metaTitle</source>
+        <target state="final">Общие условия использования</target>
+      </trans-unit>
+      <trans-unit id="mSVLeHs" resname="user.cgu.mustAccept" approved="yes">
+        <source>user.cgu.mustAccept</source>
+        <target state="final">Вы должны принять условия пользования</target>
+      </trans-unit>
+      <trans-unit id="DaO2WI1" resname="user.cgu.title" approved="yes">
+        <source>user.cgu.title</source>
+        <target state="final">Общие условия использования</target>
+      </trans-unit>
+      <trans-unit id="QzHdPao" resname="user.firstVisit.beneficiaire.metaTitle" approved="yes">
+        <source>user.firstVisit.beneficiaire.metaTitle</source>
+        <target state="final">Добро пожаловать в Reconnect le Cloud Solidaire</target>
+      </trans-unit>
+      <trans-unit id="KAN9nI0" resname="user.firstVisit.beneficiaire.text" approved="yes">
+        <source>user.firstVisit.beneficiaire.text</source>
+        <target state="final">Этот сервис поможет вам сохранить все ваши личные данные (документы, записи на приём, контакты, заметки и тд.). Все сохранённые вами данные принадлежат вам и только вы можете укончательно их удалить. Вы можете попросить социальных работников Посредников Reconnect помочь вам в пользовании сервисом. Команда Reconnect приветствует вас на платформе и желает вам успешной работы.</target>
+      </trans-unit>
+      <trans-unit id="Q9U3B8o" resname="user.firstVisit.beneficiaire.title" approved="yes">
+        <source>user.firstVisit.beneficiaire.title</source>
+        <target state="final">Добро пожаловать в Reconnect le Cloud Solidaire</target>
+      </trans-unit>
+      <trans-unit id="E_mfh_2" resname="user.firstVisit.gestionnaire.metaTitle" approved="yes">
+        <source>user.firstVisit.gestionnaire.metaTitle</source>
+        <target state="final">Добро пожаловать в Reconnect le Cloud Solidaire</target>
+      </trans-unit>
+      <trans-unit id="nYHtYHK" resname="user.firstVisit.gestionnaire.text" approved="yes">
+        <source>user.firstVisit.gestionnaire.text</source>
+        <target state="final">Спасибо за выбор «Reconnect - le Cloud Solidaire». Этот сервис позволит коммандам ваших учреждений помогать получателям в использовании их аккаунта Reconnect. Для дополнительной информации свяжитесь с Reconnect. Комманда Reconnect приветствует вас на платформе и желает успешной работы.</target>
+      </trans-unit>
+      <trans-unit id="XXU5rOq" resname="user.firstVisit.gestionnaire.title" approved="yes">
+        <source>user.firstVisit.gestionnaire.title</source>
+        <target state="final">Добро пожаловать в Reconnect le Cloud Solidaire</target>
+      </trans-unit>
+      <trans-unit id="OC7fIq6" resname="user.firstVisit.membre.metaTitle" approved="yes">
+        <source>user.firstVisit.membre.metaTitle</source>
+        <target state="final">Добро пожаловать в Reconnect le Cloud Solidaire</target>
+      </trans-unit>
+      <trans-unit id="cP0a8vd" resname="user.firstVisit.membre.text" approved="yes">
+        <source>user.firstVisit.membre.text</source>
+        <target state="final">Основной функцией этого сервиса является хранение личной информации получателей. Сервис является частью социального сопровождения и позволяет вам помогать получателям сохранять их данные. Команда Reconnect приветствует вас на платформе и желает вам успешной работы.</target>
+      </trans-unit>
+      <trans-unit id=".kB103K" resname="user.firstVisit.membre.title" approved="yes">
+        <source>user.firstVisit.membre.title</source>
+        <target state="final">Добро пожаловать в Reconnect le Cloud Solidaire</target>
+      </trans-unit>
+      <trans-unit id="nhtSAB4" resname="user.parametres.changerMotDePasse" approved="yes">
+        <source>user.parametres.changerMotDePasse</source>
+        <target state="final">Изменить пароль</target>
+      </trans-unit>
+      <trans-unit id="VxHaqiA" resname="user.parametres.dateNaissanceLabel" approved="yes">
+        <source>user.parametres.dateNaissanceLabel</source>
+        <target state="final">Дата рождения</target>
+      </trans-unit>
+      <trans-unit id="QUUMY9Y" resname="user.parametres.enregister" approved="yes">
+        <source>user.parametres.enregister</source>
+        <target state="final">Сохранить изменения</target>
+      </trans-unit>
+      <trans-unit id="CfDPllu" resname="user.parametres.lieuNaissanceLabel" approved="yes">
+        <source>user.parametres.lieuNaissanceLabel</source>
+        <target state="final">Место рождения</target>
+      </trans-unit>
+      <trans-unit id="qniAE7X" resname="user.parametres.mdpActuel" approved="yes">
+        <source>user.parametres.mdpActuel</source>
+        <target state="final">Настоящий пароль</target>
+      </trans-unit>
+      <trans-unit id="evS1vft" resname="user.parametres.metaTitle" approved="yes">
+        <source>user.parametres.metaTitle</source>
+        <target state="final">Настройки пользователя</target>
+      </trans-unit>
+      <trans-unit id="9YPJiru" resname="user.parametres.nouveauMotDePasse" approved="yes">
+        <source>user.parametres.nouveauMotDePasse</source>
+        <target state="final">Новый пароль</target>
+      </trans-unit>
+      <trans-unit id="6LhlLuJ" resname="user.parametres.nouveauMotDePasseConfirm" approved="yes">
+        <source>user.parametres.nouveauMotDePasseConfirm</source>
+        <target state="final">Подтверждение нового пароля</target>
+      </trans-unit>
+      <trans-unit id="6o8.eDl" resname="user.parametres.questionSecreteLabel" approved="yes">
+        <source>user.parametres.questionSecreteLabel</source>
+        <target state="final">Секретный вопрос</target>
+      </trans-unit>
+      <trans-unit id="67GIshH" resname="user.parametres.reponseSecreteLabel" approved="yes">
+        <source>user.parametres.reponseSecreteLabel</source>
+        <target state="final">Секретный ответ</target>
+      </trans-unit>
+      <trans-unit id="1gXd9l6" resname="user.parametres.subtitle" approved="yes">
+        <source>user.parametres.subtitle</source>
+        <target state="final">Настройки %subject%</target>
+      </trans-unit>
+      <trans-unit id="TMImok_" resname="user.parametres.title" approved="yes">
+        <source>user.parametres.title</source>
+        <target state="final">Настройки пользователя</target>
+      </trans-unit>
+      <trans-unit id="rokhSbj" resname="user.parametres.userLabel" approved="yes">
+        <source>user.parametres.userLabel</source>
+        <target state="final">Пользователь</target>
+      </trans-unit>
+      <trans-unit id="0eKVE5q" resname="user.pendingCentre.flashAccepter" approved="yes">
+        <source>user.pendingCentre.flashAccepter</source>
+        <target state="final">Вы согласились присоединиться к центру</target>
+      </trans-unit>
+      <trans-unit id="8mNFOqy" resname="user.pendingCentre.flashRefuser" approved="yes">
+        <source>user.pendingCentre.flashRefuser</source>
+        <target state="final">Вы отказались присоединиться к центру</target>
+      </trans-unit>
+      <trans-unit id="S1MRhUO" resname="user.pendingCentre.title" approved="yes">
+        <source>user.pendingCentre.title</source>
+        <target state="final">Посредник Reconnect хочет вас добавить</target>
+      </trans-unit>
+      <trans-unit id="wYWsTgl" resname="user.reinitialiserMdp.adresseMail" approved="yes">
+        <source>user.reinitialiserMdp.adresseMail</source>
+        <target state="final">Восстановить с помощью электронной почты</target>
+      </trans-unit>
+      <trans-unit id="gyz22DC" resname="user.reinitialiserMdp.aucuneMethode" approved="yes">
+        <source>user.reinitialiserMdp.aucuneMethode</source>
+        <target state="final">Невозможно восстановить пароль для этого пользоателя, он не ввёл ни свой адрес электронной почты, ни номер телефона</target>
+      </trans-unit>
+      <trans-unit id=".hdbAYt" resname="user.reinitialiserMdp.emailEnvoye" approved="yes">
+        <source>user.reinitialiserMdp.emailEnvoye</source>
+        <target state="final">Письмо отправлено</target>
+      </trans-unit>
+      <trans-unit id="uKEBDqA" resname="user.reinitialiserMdp.errorCode" approved="yes">
+        <source>user.reinitialiserMdp.errorCode</source>
+        <target state="final">Неверный код</target>
+      </trans-unit>
+      <trans-unit id="F5j3oeb" resname="user.reinitialiserMdp.metaTitle" approved="yes">
+        <source>user.reinitialiserMdp.metaTitle</source>
+        <target state="final">Восстановить пароль</target>
+      </trans-unit>
+      <trans-unit id="cRbPplm" resname="user.reinitialiserMdp.questionSecrete" approved="yes">
+        <source>user.reinitialiserMdp.questionSecrete</source>
+        <target state="final">Восстановить с помощью секретного вопроса</target>
+      </trans-unit>
+      <trans-unit id="vP9oA7Z" resname="user.reinitialiserMdp.reinitialisation" approved="yes">
+        <source>user.reinitialiserMdp.reinitialisation</source>
+        <target state="final">Восстановление</target>
+      </trans-unit>
+      <trans-unit id="6ae2r8i" resname="user.reinitialiserMdp.smsCodeLabel" approved="yes">
+        <source>user.reinitialiserMdp.smsCodeLabel</source>
+        <target state="final">Код, полученный по смс</target>
+      </trans-unit>
+      <trans-unit id="91Zfr5B" resname="user.reinitialiserMdp.smsCodeSent" approved="yes">
+        <source>user.reinitialiserMdp.smsCodeSent</source>
+        <target state="final">На ваш номер телефона пользователя было отправлено смс-сообщение с кодом (номер телефона), введите его в поле сверху, чтобы восстановить ваш пароль.</target>
+      </trans-unit>
+      <trans-unit id="A3D9n2Q" resname="user.reinitialiserMdp.smsDejaReset" approved="yes">
+        <source>user.reinitialiserMdp.smsDejaReset</source>
+        <target state="final">Вы уже совершали попытку восстановления пароля за последние 24 часа</target>
+      </trans-unit>
+      <trans-unit id="g9cLHn5" resname="user.reinitialiserMdp.smsMessage" approved="yes">
+        <source>user.reinitialiserMdp.smsMessage</source>
+        <target state="final">Код для восстановления вашего пароля Reconnect :</target>
+      </trans-unit>
+      <trans-unit id="MwsUOVo" resname="user.reinitialiserMdp.subtitle" approved="yes">
+        <source>user.reinitialiserMdp.subtitle</source>
+        <target state="final">Восстановить пароль</target>
+      </trans-unit>
+      <trans-unit id="Nrn87pt" resname="user.reinitialiserMdp.telephone" approved="yes">
+        <source>user.reinitialiserMdp.telephone</source>
+        <target state="final">Восстановить с помощью смс-сообщения</target>
+      </trans-unit>
+      <trans-unit id="EaHD1gq" resname="user.reinitialiserMdp.title" approved="yes">
+        <source>user.reinitialiserMdp.title</source>
+        <target state="final">Восстановить пароль</target>
+      </trans-unit>
+      <trans-unit id="5K7WAvi" resname="user.supprimerCompte.etesVousSurs" approved="yes">
+        <source>user.supprimerCompte.etesVousSurs</source>
+        <target state="final">Вы точно хотите удалить ваш аккаунт?</target>
+      </trans-unit>
+      <trans-unit id="TOZli2_" resname="user.supprimerCompte.success" approved="yes">
+        <source>user.supprimerCompte.success</source>
+        <target state="final">Аккаунт успешно удалён</target>
+      </trans-unit>
+      <trans-unit id="Q3FGGfU" resname="wrong_current_password" approved="yes">
+        <source>wrong_current_password</source>
+        <target state="final">Неверный настоящий пароль</target>
+      </trans-unit>
+      <trans-unit id="O5X03_0" resname="delete_currently_shared_document_warning" approved="yes">
+        <source>delete_currently_shared_document_warning</source>
+        <target state="final">Документ находится в общем доступе еще %daysCount% дней. Если вы удалите его, совместный доступ будет отменен</target>
+      </trans-unit>
+      <trans-unit id="Kk.wjLq" resname="sms_sent_failed" approved="yes">
+        <source>sms_sent_failed</source>
+        <target state="final">Отправка SMS не удалась, пожалуйста, проверьте, действителен ли номер телефона</target>
+      </trans-unit>
+      <trans-unit id="inmIkP6" resname="yes" approved="yes">
+        <source>yes</source>
+        <target state="final">Да</target>
       </trans-unit>
     </body>
   </file>
