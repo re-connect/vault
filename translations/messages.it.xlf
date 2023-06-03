@@ -5,223 +5,49 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="cMU.0rQ" resname="security.login.username">
-        <source>security.login.username</source>
-        <target state="needs-translation">Username</target>
+      <trans-unit id="qzPSXSv" resname="authentification_failure_wrong_credentials" approved="yes">
+        <source>authentification_failure_wrong_credentials</source>
+        <target state="final">Password o nome utente non corretti</target>
       </trans-unit>
-      <trans-unit id="N_kLMwm" resname="security.login.password">
-        <source>security.login.password</source>
-        <target state="needs-translation">Password</target>
-      </trans-unit>
-      <trans-unit id="8DSptbg" resname="security.login.remember_me" approved="yes">
-        <source>security.login.remember_me</source>
-        <target state="final">Ricordami</target>
-      </trans-unit>
-      <trans-unit id="tuAV77Z" resname="security.login.submit" approved="yes">
-        <source>security.login.submit</source>
+      <trans-unit id="rtfhvh0" resname="form_connexion" approved="yes">
+        <source>form_connexion</source>
         <target state="final">Login</target>
       </trans-unit>
-      <trans-unit id="7g9SaRk" resname="profile.show.username">
-        <source>profile.show.username</source>
-        <target state="needs-translation">Username</target>
+      <trans-unit id="Fxi_CPB" resname="form_forgot_password" approved="yes">
+        <source>form_forgot_password</source>
+        <target state="final">Reimpostare la mia password</target>
       </trans-unit>
-      <trans-unit id="AaZaMf7" resname="profile.show.email">
-        <source>profile.show.email</source>
-        <target state="needs-translation">Email</target>
+      <trans-unit id="2UXKonp" resname="form_login" approved="yes">
+        <source>form_login</source>
+        <target state="final">Nome utente o E-mail</target>
       </trans-unit>
-      <trans-unit id="ci5Tbzf" resname="profile.edit.submit" approved="yes">
-        <source>profile.edit.submit</source>
-        <target state="final">Aggiorna</target>
-      </trans-unit>
-      <trans-unit id="C2lNaG." resname="profile.flash.updated" approved="yes">
-        <source>profile.flash.updated</source>
-        <target state="final">Il profilo è stato aggiornato.</target>
-      </trans-unit>
-      <trans-unit id="agwdlwc" resname="change_password.submit" approved="yes">
-        <source>change_password.submit</source>
-        <target state="final">Cambia password</target>
-      </trans-unit>
-      <trans-unit id="SFo6Y3." resname="change_password.flash.success" approved="yes">
-        <source>change_password.flash.success</source>
-        <target state="final">La password è stata cambiata.</target>
-      </trans-unit>
-      <trans-unit id=".ndupSK" resname="registration.check_email" approved="yes">
-        <source>registration.check_email</source>
-        <target state="final">Un'email è stata inviata a %email%. Contiene il link d'attivazione che devi utilizzare per attivare il tuo account.</target>
-      </trans-unit>
-      <trans-unit id="B.ZozIs" resname="registration.confirmed" approved="yes">
-        <source>registration.confirmed</source>
-        <target state="final">Congratulazioni %username%, il tuo account è confermato.</target>
-      </trans-unit>
-      <trans-unit id="_wd.d62" resname="registration.back" approved="yes">
-        <source>registration.back</source>
-        <target state="final">Torna alla pagina d'origine.</target>
-      </trans-unit>
-      <trans-unit id="hmX3IJA" resname="registration.submit" approved="yes">
-        <source>registration.submit</source>
-        <target state="final">Registra</target>
-      </trans-unit>
-      <trans-unit id="by9ThPc" resname="registration.flash.user_created" approved="yes">
-        <source>registration.flash.user_created</source>
-        <target state="final">Utente creato con successo.</target>
-      </trans-unit>
-      <trans-unit id="N.aTMve" resname="registration.email.subject" approved="yes">
-        <source>registration.email.subject</source>
-        <target state="final">Benvenuto %username%!</target>
-      </trans-unit>
-      <trans-unit id="hN23SFM" resname="registration.email.message">
-        <source>registration.email.message</source>
-        <target state="needs-translation">Ciao %username%!
-
-Per terminare la validazione del tuo account visita %confirmationUrl%
-
-Questo link può essere utilizzato solo una volta per verificare il tuo account.
-
-Saluti,
-il Team.
-</target>
-      </trans-unit>
-      <trans-unit id="_cY.wHP" resname="resetting.check_email">
-        <source>resetting.check_email</source>
-        <target state="needs-translation">È stata inviata un'email con il link d'attivazione che devi utilizzare per il reset della password.
-Nota: è possibile richiedere una password entro %tokenLifetime% ore.
-
-Se non ricevi un'email verifica la cartella di spam o riprova.
-</target>
-      </trans-unit>
-      <trans-unit id="f5J.GZt" resname="resetting.request.username" approved="yes">
-        <source>resetting.request.username</source>
-        <target state="final">Username o indirizzo email</target>
-      </trans-unit>
-      <trans-unit id="55aST1i" resname="resetting.request.submit" approved="yes">
-        <source>resetting.request.submit</source>
-        <target state="final">Password reset</target>
-      </trans-unit>
-      <trans-unit id="KsNOzZz" resname="resetting.reset.submit" approved="yes">
-        <source>resetting.reset.submit</source>
-        <target state="final">Cambia password</target>
-      </trans-unit>
-      <trans-unit id="TUD.2.O" resname="resetting.flash.success" approved="yes">
-        <source>resetting.flash.success</source>
-        <target state="final">La password è stata resettata.</target>
-      </trans-unit>
-      <trans-unit id="Redv4tu" resname="resetting.email.subject" approved="yes">
-        <source>resetting.email.subject</source>
-        <target state="final">Password reset</target>
-      </trans-unit>
-      <trans-unit id="Lm8o8Qg" resname="resetting.email.message">
-        <source>resetting.email.message</source>
-        <target state="needs-translation">Ciao %username%!
-
-Per resettare la password visita %confirmationUrl%
-
-Saluti,
-il Team.
-</target>
-      </trans-unit>
-      <trans-unit id="7oF7jXj" resname="layout.logout" approved="yes">
-        <source>layout.logout</source>
-        <target state="final">Logout</target>
-      </trans-unit>
-      <trans-unit id="J.8npBV" resname="layout.login" approved="yes">
-        <source>layout.login</source>
-        <target state="final">Login</target>
-      </trans-unit>
-      <trans-unit id="sLu8MAv" resname="layout.register" approved="yes">
-        <source>layout.register</source>
-        <target state="final">Registra</target>
-      </trans-unit>
-      <trans-unit id="BW_lWYD" resname="layout.logged_in_as" approved="yes">
-        <source>layout.logged_in_as</source>
-        <target state="final">Collegato come %username%</target>
-      </trans-unit>
-      <trans-unit id="B0VCgO_" resname="form.username">
-        <source>form.username</source>
-        <target state="needs-translation">Username</target>
-      </trans-unit>
-      <trans-unit id="3IGOm9D" resname="form.email">
-        <source>form.email</source>
-        <target state="needs-translation">Email</target>
-      </trans-unit>
-      <trans-unit id="IY9XZs0" resname="form.current_password" approved="yes">
-        <source>form.current_password</source>
-        <target state="final">Password corrente</target>
-      </trans-unit>
-      <trans-unit id="yjqmSBK" resname="form.password">
-        <source>form.password</source>
+      <trans-unit id=".jAC5W1" resname="form_password">
+        <source>form_password</source>
         <target state="needs-translation">Password</target>
       </trans-unit>
-      <trans-unit id="Y4Q7qvl" resname="form.password_confirmation" approved="yes">
-        <source>form.password_confirmation</source>
-        <target state="final">Ripeti password</target>
+      <trans-unit id="YkhOIqa" resname="health" approved="yes">
+        <source>health</source>
+        <target state="final">Salute</target>
       </trans-unit>
-      <trans-unit id="JTbuLK0" resname="form.new_password" approved="yes">
-        <source>form.new_password</source>
-        <target state="final">Nuova password</target>
+      <trans-unit id="0AXWxFm" resname="housing" approved="yes">
+        <source>housing</source>
+        <target state="final">Alloggio</target>
       </trans-unit>
-      <trans-unit id="hdTL88S" resname="form.new_password_confirmation" approved="yes">
-        <source>form.new_password_confirmation</source>
-        <target state="final">Ripeti password</target>
+      <trans-unit id="aJ9qYnO" resname="identity" approved="yes">
+        <source>identity</source>
+        <target state="final">Identità</target>
       </trans-unit>
-      <trans-unit id="3gsm.Dj" resname="fos_user.username.already_used" approved="yes">
-        <source>fos_user.username.already_used</source>
-        <target state="final">Username già in uso.</target>
+      <trans-unit id="iOZMbG8" resname="login_form_title" approved="yes">
+        <source>login_form_title</source>
+        <target state="final">Accesso alla cassaforte digitale</target>
       </trans-unit>
-      <trans-unit id="jtmA7tx" resname="fos_user.username.blank" approved="yes">
-        <source>fos_user.username.blank</source>
-        <target state="final">Si prega di inserire un username.</target>
+      <trans-unit id="H.wEBrm" resname="tax" approved="yes">
+        <source>tax</source>
+        <target state="final">Imposta</target>
       </trans-unit>
-      <trans-unit id="ypasfnh" resname="fos_user.username.short" approved="yes">
-        <source>fos_user.username.short</source>
-        <target state="final">Username troppo breve.</target>
-      </trans-unit>
-      <trans-unit id="VVzgoob" resname="fos_user.username.long" approved="yes">
-        <source>fos_user.username.long</source>
-        <target state="final">Username troppo lungo.</target>
-      </trans-unit>
-      <trans-unit id="vqk8sdH" resname="fos_user.email.already_used" approved="yes">
-        <source>fos_user.email.already_used</source>
-        <target state="final">Email già in uso.</target>
-      </trans-unit>
-      <trans-unit id="g72C3vn" resname="fos_user.email.blank" approved="yes">
-        <source>fos_user.email.blank</source>
-        <target state="final">Si prega di inserire una email.</target>
-      </trans-unit>
-      <trans-unit id="9GR5Mk6" resname="fos_user.email.short" approved="yes">
-        <source>fos_user.email.short</source>
-        <target state="final">Email troppo breve.</target>
-      </trans-unit>
-      <trans-unit id="Y1eOW4z" resname="fos_user.email.long" approved="yes">
-        <source>fos_user.email.long</source>
-        <target state="final">Email troppo lunga.</target>
-      </trans-unit>
-      <trans-unit id="lRE_vn_" resname="fos_user.email.invalid" approved="yes">
-        <source>fos_user.email.invalid</source>
-        <target state="final">Email non valida.</target>
-      </trans-unit>
-      <trans-unit id="Zrr5_qX" resname="fos_user.password.blank" approved="yes">
-        <source>fos_user.password.blank</source>
-        <target state="final">Si prega di inserire una password.</target>
-      </trans-unit>
-      <trans-unit id="2k0f5kz" resname="fos_user.password.short" approved="yes">
-        <source>fos_user.password.short</source>
-        <target state="final">Password troppo breve.</target>
-      </trans-unit>
-      <trans-unit id="G6rntWw" resname="fos_user.password.mismatch" approved="yes">
-        <source>fos_user.password.mismatch</source>
-        <target state="final">Le due password non coincidono.</target>
-      </trans-unit>
-      <trans-unit id="p9q.ZOD" resname="fos_user.new_password.blank" approved="yes">
-        <source>fos_user.new_password.blank</source>
-        <target state="final">Si prega di inserire nuovamente la password.</target>
-      </trans-unit>
-      <trans-unit id="aM77hCJ" resname="fos_user.new_password.short" approved="yes">
-        <source>fos_user.new_password.short</source>
-        <target state="final">Nuova password troppo breve.</target>
-      </trans-unit>
-      <trans-unit id="HCwhShp" resname="fos_user.current_password.invalid" approved="yes">
-        <source>fos_user.current_password.invalid</source>
-        <target state="final">Password non valida.</target>
+      <trans-unit id="AOE_169" resname="work" approved="yes">
+        <source>work</source>
+        <target state="final">Lavoro</target>
       </trans-unit>
     </body>
   </file>
