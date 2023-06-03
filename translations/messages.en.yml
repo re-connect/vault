@@ -833,7 +833,7 @@ resetting.etesVousSur: 'Are you sure you want to reset the password of %last nam
 resetting.flash.success: 'The password has been changed.'
 resetting.password_already_requested: 'A new password has been requested for this user in the last 24 hours.'
 resetting.public.existePas: 'No user with whis Email has been found'
-resetting.public.metaTitle: 'Password reset'
+resetting.public.metaTitle: 'Password Reset'
 resetting.public.text: 'Please enter your Email address'
 resetting.public.title: '<span class="main">Password</span> reset'
 resetting.public.votreEmail: 'Your Email'
