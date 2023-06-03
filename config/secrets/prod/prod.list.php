@@ -12,6 +12,7 @@ return [
     'BUCKET_SECRET' => null,
     'BUCKET_SECRET_KEY' => null,
     'CRISP_WEBSITE_ID' => null,
+    'CROWDIN_DSN' => null,
     'DATABASE_URL' => null,
     'GOOGLE_SITE_VERIFICATION' => null,
     'JWT_PASSPHRASE' => null,

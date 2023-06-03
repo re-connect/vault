@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="prs" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="qzPSXSv" resname="authentification_failure_wrong_credentials">
+        <source>authentification_failure_wrong_credentials</source>
+        <target>رمز عبور یا نام کاربری درست نیست</target>
+      </trans-unit>
+      <trans-unit id="rtfhvh0" resname="form_connexion">
+        <source>form_connexion</source>
+        <target>وارد شدن</target>
+      </trans-unit>
+      <trans-unit id="Fxi_CPB" resname="form_forgot_password">
+        <source>form_forgot_password</source>
+        <target>رمز عبور یا نام کاربری خود را فراموش کرده ام.</target>
+      </trans-unit>
+      <trans-unit id="2UXKonp" resname="form_login">
+        <source>form_login</source>
+        <target>نام کاربری   یا  آدرس ایمیل</target>
+      </trans-unit>
+      <trans-unit id=".jAC5W1" resname="form_password">
+        <source>form_password</source>
+        <target>کلمه عبور</target>
+      </trans-unit>
+      <trans-unit id="iOZMbG8" resname="login_form_title">
+        <source>login_form_title</source>
+        <target>دسترسی به گاوصندوق دیجیتالی</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
