@@ -5,49 +5,29 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="qzPSXSv" resname="authentification_failure_wrong_credentials" approved="yes">
+      <trans-unit id="qzPSXSv" resname="authentification_failure_wrong_credentials">
         <source>authentification_failure_wrong_credentials</source>
-        <target state="final">Password o nome utente non corretti</target>
+        <target state="needs-translation">رمز عبور یا نام کاربری درست نیست</target>
       </trans-unit>
-      <trans-unit id="rtfhvh0" resname="form_connexion" approved="yes">
+      <trans-unit id="rtfhvh0" resname="form_connexion">
         <source>form_connexion</source>
-        <target state="final">Login</target>
+        <target state="needs-translation">وارد شدن</target>
       </trans-unit>
-      <trans-unit id="Fxi_CPB" resname="form_forgot_password" approved="yes">
+      <trans-unit id="Fxi_CPB" resname="form_forgot_password">
         <source>form_forgot_password</source>
-        <target state="final">Reimpostare la mia password</target>
+        <target state="needs-translation">رمز عبور یا نام کاربری خود را فراموش کرده ام.</target>
       </trans-unit>
-      <trans-unit id="2UXKonp" resname="form_login" approved="yes">
+      <trans-unit id="2UXKonp" resname="form_login">
         <source>form_login</source>
-        <target state="final">Nome utente o E-mail</target>
+        <target state="needs-translation">نام کاربری   یا  آدرس ایمیل</target>
       </trans-unit>
       <trans-unit id=".jAC5W1" resname="form_password">
         <source>form_password</source>
-        <target state="needs-translation">Password</target>
+        <target state="needs-translation">کلمه عبور</target>
       </trans-unit>
-      <trans-unit id="YkhOIqa" resname="health" approved="yes">
-        <source>health</source>
-        <target state="final">Salute</target>
-      </trans-unit>
-      <trans-unit id="0AXWxFm" resname="housing" approved="yes">
-        <source>housing</source>
-        <target state="final">Alloggio</target>
-      </trans-unit>
-      <trans-unit id="aJ9qYnO" resname="identity" approved="yes">
-        <source>identity</source>
-        <target state="final">Identità</target>
-      </trans-unit>
-      <trans-unit id="iOZMbG8" resname="login_form_title" approved="yes">
+      <trans-unit id="iOZMbG8" resname="login_form_title">
         <source>login_form_title</source>
-        <target state="final">Accesso alla cassaforte digitale</target>
-      </trans-unit>
-      <trans-unit id="H.wEBrm" resname="tax" approved="yes">
-        <source>tax</source>
-        <target state="final">Imposta</target>
-      </trans-unit>
-      <trans-unit id="AOE_169" resname="work" approved="yes">
-        <source>work</source>
-        <target state="final">Lavoro</target>
+        <target state="needs-translation">دسترسی به گاوصندوق دیجیتالی</target>
       </trans-unit>
     </body>
   </file>
