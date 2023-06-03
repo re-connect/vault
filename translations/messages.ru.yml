@@ -1,93 +1,92 @@
 security:
   login:
-    username: Username
-    password: Password
-    remember_me: Ricordami
-    submit: Login
+    username: 'Имя пользователя'
+    password: Пароль
+    remember_me: 'Запомнить меня'
+    submit: Войти
 profile:
   show:
-    username: Username
-    email: Email
+    username: 'Имя пользователя'
+    email: 'Электронная почта'
   edit:
-    submit: Aggiorna
+    submit: Обновить
   flash:
-    updated: 'Il profilo è stato aggiornato.'
+    updated: 'Профиль пользователя обновлен.'
 change_password:
-  submit: 'Cambia password'
+  submit: 'Изменить пароль'
   flash:
-    success: 'La password è stata cambiata.'
+    success: 'Пароль изменен.'
 registration:
-  check_email: 'Un''email è stata inviata a %email%. Contiene il link d''attivazione che devi utilizzare per attivare il tuo account.'
-  confirmed: 'Congratulazioni %username%, il tuo account è confermato.'
-  back: 'Torna alla pagina d''origine.'
-  submit: Registra
+  check_email: 'Письмо отправлено на адрес %email%. В нём содержится ссылка, по которой вы можете подтвердить свою регистрацию.'
+  confirmed: 'Поздравляем %username%, ваш аккаунт подтвержден.'
+  back: 'Вернуться на предыдущую страницу.'
+  submit: Зарегистрироваться
   flash:
-    user_created: 'Utente creato con successo.'
+    user_created: 'Пользователь успешно создан.'
   email:
-    subject: 'Benvenuto %username%!'
+    subject: 'Добро пожаловать, %username%!'
     message: |
-      Ciao %username%!
+      Приветствуем, %username%!
 
-      Per terminare la validazione del tuo account visita %confirmationUrl%
+      Для подтверждения вашей регистрации, пройдите по ссылке %confirmationUrl%
 
-      Questo link può essere utilizzato solo una volta per verificare il tuo account.
+      Эта ссылка может быть использована только единожды для подтверждения вашей учетной записи.
 
-      Saluti,
-      il Team.
+      С наилучшими пожеланиями,
+      команда сайта.
 resetting:
   check_email: |
-    È stata inviata un'email con il link d'attivazione che devi utilizzare per il reset della password.
-    Nota: è possibile richiedere una password entro %tokenLifetime% ore.
+    Письмо отправлено. Оно содержит ссылку, при переходе по которой ваш пароль будет сброшен.
+    Заметьте, вы сможете запросить новый пароль только через %tokenLifetime% часов.
 
-    Se non ricevi un'email verifica la cartella di spam o riprova.
+    Если вы не получили письмо, проверьте папку Спам или попробуйте снова.
   request:
-    username: 'Username o indirizzo email'
-    submit: 'Password reset'
+    username: 'Имя пользователя или электронная почта'
+    submit: 'Сбросить пароль'
   reset:
-    submit: 'Cambia password'
+    submit: 'Изменить пароль'
   flash:
-    success: 'La password è stata resettata.'
+    success: 'Пароль успешно сброшен.'
   email:
-    subject: 'Password reset'
+    subject: 'Сброс пароля'
     message: |
-      Ciao %username%!
+      Приветствуем, %username%!
 
-      Per resettare la password visita %confirmationUrl%
+      Для сброса пароля, пожалуйста, пройдите по ссылке %confirmationUrl%
 
-      Saluti,
-      il Team.
-#Global strings
+      С наилучшими пожеланиями,
+      команда сайта.
 layout:
-  logout: Logout
-  login: Login
-  register: Registra
-  logged_in_as: 'Collegato come %username%'
+  logout: Выход
+  login: Вход
+  register: Регистрация
+  logged_in_as: 'Вы вошли как %username%'
 form:
-  username: Username
-  email: Email
-  current_password: 'Password corrente'
-  password: Password
-  password_confirmation: 'Ripeti password'
-  new_password: 'Nuova password'
-  new_password_confirmation: 'Ripeti password'
+  username: 'Имя пользователя'
+  email: 'Электронная почта'
+  current_password: 'Текущий пароль'
+  password: Пароль
+  password_confirmation: 'Подтвердите пароль'
+  new_password: 'Новый пароль'
+  new_password_confirmation: 'Подтвердите пароль'
 fos_user:
   username:
-    already_used: 'Username già in uso.'
-    blank: 'Si prega di inserire un username.'
-    short: 'Username troppo breve.'
-    long: 'Username troppo lungo.'
+    already_used: 'Логин уже используется.'
+    blank: 'Пожалуйста, укажите логин.'
+    short: 'Логин слишком короткий.'
+    long: 'Логин слишком длинный.'
   email:
-    already_used: 'Email già in uso.'
-    blank: 'Si prega di inserire una email.'
-    short: 'Email troppo breve.'
-    long: 'Email troppo lunga.'
-    invalid: 'Email non valida.'
+    already_used: 'Email уже используется.'
+    blank: 'Пожалуйста, укажите Ваш email.'
+    short: 'Email слишком короткий.'
+    long: 'Email слишком длинный.'
+    invalid: 'Email в неправильном формате.'
   password:
-    blank: 'Si prega di inserire una password.'
-    short: 'Password troppo breve.'
-    mismatch: 'Le due password non coincidono.'
+    blank: 'Пожалуйста, укажите пароль.'
+    short: 'Пароль слишком короткий.'
+    mismatch: 'Введенные пароли не совпадают.'
   new_password:
-    blank: 'Si prega di inserire nuovamente la password.'
-    short: 'Nuova password troppo breve.'
+    blank: 'Пожалуйста, укажите новый пароль.'
+    short: 'Новый пароль слишком короткий.'
   current_password:
-    invalid: 'Password non valida.'
+    invalid: 'Вы неправильно ввели Ваш текущий пароль.'
