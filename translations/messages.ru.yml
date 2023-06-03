@@ -1,92 +1,93 @@
 security:
   login:
-    username: 'Nom d''utilisateur'
-    password: 'Mot de passe'
-    remember_me: 'Se souvenir de moi'
-    submit: Connexion
+    username: Username
+    password: Password
+    remember_me: Ricordami
+    submit: Login
 profile:
   show:
-    username: 'Nom d''utilisateur'
-    email: 'Adresse e-mail'
+    username: Username
+    email: Email
   edit:
-    submit: 'Mettre à jour'
+    submit: Aggiorna
   flash:
-    updated: 'Le profil a été mis à jour.'
+    updated: 'Il profilo è stato aggiornato.'
 change_password:
-  submit: 'Modifier le mot de passe'
+  submit: 'Cambia password'
   flash:
-    success: 'Le mot de passe a été modifié.'
+    success: 'La password è stata cambiata.'
 registration:
-  check_email: 'Un e-mail a été envoyé à l''adresse %email%. Il contient un lien d''activation sur lequel il vous faudra cliquer afin d''activer votre compte.'
-  confirmed: 'Félicitations %username%, votre compte est maintenant activé.'
-  back: 'Retour à la page d''origine.'
-  submit: 'Créer un compte'
+  check_email: 'Un''email è stata inviata a %email%. Contiene il link d''attivazione che devi utilizzare per attivare il tuo account.'
+  confirmed: 'Congratulazioni %username%, il tuo account è confermato.'
+  back: 'Torna alla pagina d''origine.'
+  submit: Registra
   flash:
-    user_created: 'L''utilisateur a été créé avec succès.'
+    user_created: 'Utente creato con successo.'
   email:
-    subject: 'Bienvenue %username% !'
+    subject: 'Benvenuto %username%!'
     message: |
-      Bonjour %username% !
+      Ciao %username%!
 
-      Pour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%
+      Per terminare la validazione del tuo account visita %confirmationUrl%
 
-      Ce lien ne peut être utilisé qu'une seule fois pour valider votre compte.
+      Questo link può essere utilizzato solo una volta per verificare il tuo account.
 
-      Cordialement,
-      L'équipe
+      Saluti,
+      il Team.
 resetting:
   check_email: |
-    Un e-mail a été envoyé. Il contient un lien sur lequel il vous faudra cliquer pour réinitialiser votre mot de passe.
-    Remarque : Vous ne pouvez demander un nouveau mot de passe que toutes les %tokenLifetime% heures.
+    È stata inviata un'email con il link d'attivazione che devi utilizzare per il reset della password.
+    Nota: è possibile richiedere una password entro %tokenLifetime% ore.
 
-    Si vous ne recevez pas un email, vérifiez votre dossier spam ou essayez à nouveau.
+    Se non ricevi un'email verifica la cartella di spam o riprova.
   request:
-    username: 'Nom d''utilisateur ou adresse e-mail'
-    submit: 'Réinitialiser le mot de passe'
+    username: 'Username o indirizzo email'
+    submit: 'Password reset'
   reset:
-    submit: 'Modifier le mot de passe'
+    submit: 'Cambia password'
   flash:
-    success: 'Le mot de passe a été réinitialisé avec succès.'
+    success: 'La password è stata resettata.'
   email:
-    subject: 'Réinitialisation de votre mot de passe'
+    subject: 'Password reset'
     message: |
-      Bonjour %username% !
+      Ciao %username%!
 
-      Pour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%
+      Per resettare la password visita %confirmationUrl%
 
-      Cordialement,
-      L'équipe
+      Saluti,
+      il Team.
+#Global strings
 layout:
-  logout: Déconnexion
-  login: Connexion
-  register: Inscription
-  logged_in_as: 'Connecté en tant que %username%'
+  logout: Logout
+  login: Login
+  register: Registra
+  logged_in_as: 'Collegato come %username%'
 form:
-  username: 'Nom d''utilisateur'
-  email: 'Adresse e-mail'
-  current_password: 'Mot de passe actuel'
-  password: 'Mot de passe'
-  password_confirmation: 'Répéter le mot de passe'
-  new_password: 'Nouveau mot de passe'
-  new_password_confirmation: 'Répéter le nouveau mot de passe'
+  username: Username
+  email: Email
+  current_password: 'Password corrente'
+  password: Password
+  password_confirmation: 'Ripeti password'
+  new_password: 'Nuova password'
+  new_password_confirmation: 'Ripeti password'
 fos_user:
   username:
-    already_used: 'Le nom d''utilisateur est déjà utilisé.'
-    blank: 'Entrez un nom d''utilisateur s''il vous plait.'
-    short: 'Le nom d''utilisateur est trop court.'
-    long: 'Le nom d''utilisateur est trop long.'
+    already_used: 'Username già in uso.'
+    blank: 'Si prega di inserire un username.'
+    short: 'Username troppo breve.'
+    long: 'Username troppo lungo.'
   email:
-    already_used: 'L''adresse e-mail est déjà utilisée.'
-    blank: 'Entrez une adresse e-mail s''il vous plait.'
-    short: 'L''adresse e-mail est trop courte.'
-    long: 'L''adresse e-mail est trop longue.'
-    invalid: 'L''adresse e-mail est invalide.'
+    already_used: 'Email già in uso.'
+    blank: 'Si prega di inserire una email.'
+    short: 'Email troppo breve.'
+    long: 'Email troppo lunga.'
+    invalid: 'Email non valida.'
   password:
-    blank: 'Entrez un mot de passe s''il vous plait.'
-    short: 'Le mot de passe est trop court.'
-    mismatch: 'Les deux mots de passe ne sont pas identiques.'
+    blank: 'Si prega di inserire una password.'
+    short: 'Password troppo breve.'
+    mismatch: 'Le due password non coincidono.'
   new_password:
-    blank: 'Entrez un nouveau mot de passe s''il vous plait.'
-    short: 'Le nouveau mot de passe est trop court.'
+    blank: 'Si prega di inserire nuovamente la password.'
+    short: 'Nuova password troppo breve.'
   current_password:
-    invalid: 'Le mot de passe est invalide.'
+    invalid: 'Password non valida.'
