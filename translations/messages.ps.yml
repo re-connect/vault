@@ -1,94 +1,92 @@
 security:
   login:
-    username: Username
-    password: Password
-    remember_me: 'Remember me'
-    submit: 'Log in'
+    username: 'Nombre de usuario'
+    password: Contraseña
+    remember_me: Recordar
+    submit: Entrar
 profile:
   show:
-    username: Username
+    username: 'Nombre de usuario'
     email: Email
   edit:
-    submit: Update
+    submit: 'Actualizar usuario'
   flash:
-    updated: 'The profile has been updated.'
+    updated: 'El perfil ha sido actualizado.'
 change_password:
-  submit: 'Change password'
+  submit: 'Cambiar contraseña'
   flash:
-    success: 'The password has been changed.'
+    success: 'La contraseña se ha cambiado con éxito.'
 registration:
-  check_email: |
-    An email has been sent to %email%. It contains an activation link you must click to activate your account.
-  confirmed: 'Congrats %username%, your account is now activated.'
-  back: 'Back to the originating page.'
-  submit: Register
+  check_email: 'Se ha enviado un correo electrónico a %email%. Contiene un enlace de activación al que debes acceder para activar tu cuenta.'
+  confirmed: 'Felicidades %username%, tu cuenta está ahora confirmada.'
+  back: 'Volver a la página original.'
+  submit: Registrar
   flash:
-    user_created: 'The user has been created successfully.'
+    user_created: 'El usuario se ha creado satisfactoriamente.'
   email:
-    subject: 'Welcome %username%!'
+    subject: '¡Bienvenido %username%!'
     message: |
-      Hello %username%!
+      ¡Hola %username%!
 
-      To finish activating your account - please visit %confirmationUrl%
+      Para completar la validación de tu cuenta, por favor visita %confirmationUrl%
 
-      This link can only be used once to validate your account.
+      Este enlace sólo puede utilizarse una vez para validar tu cuenta.
 
-      Regards,
-      the Team.
+      Atentamente,
+      el Equipo.
 resetting:
   check_email: |
-    An email has been sent. It contains a link you must click to reset your password.
-    Note: You can only request a new password once within %tokenLifetime% hours.
+    Se ha enviado un correo electrónico a tu cuenta de correo. Contiene un enlace de activación al que debes acceder para restablecer tu contraseña.
+    Nota: Solo se puede solicitar una nueva contraseña cada %tokenLifetime% horas.
 
-    If you don't get an email check your spam folder or try again.
+    Si no recibes un correo electrónico, comprueba tu carpeta de correo no deseado o inténtalo de nuevo.
   request:
-    username: 'Username or email address'
-    submit: 'Reset password'
+    username: 'Nombre de usuario o correo electrónico'
+    submit: 'Restablecer contraseña'
   reset:
-    submit: 'Change password'
+    submit: 'Cambiar contraseña'
   flash:
-    success: 'The password has been reset successfully.'
+    success: 'La contraseña se ha cambiado con éxito.'
   email:
-    subject: 'Reset Password'
+    subject: 'Restablecer Contraseña'
     message: |
-      Hello %username%!
+      ¡Hola %username%!
 
-      To reset your password - please visit %confirmationUrl%
+      Para restablecer tu contraseña, por favor visita %confirmationUrl%
 
-      Regards,
-      the Team.
-#Global strings
+      Atentamente,
+      el Equipo.
 layout:
-  logout: 'Log out'
-  login: 'Log in'
-  register: Register
-  logged_in_as: 'Logged in as %username%'
+  logout: Salir
+  login: Entrar
+  register: Registrar
+  logged_in_as: 'Identificado como %username%'
 form:
-  username: Username
+  username: 'Nombre de usuario'
   email: Email
-  current_password: 'Current password'
-  password: Password
-  password_confirmation: 'Repeat password'
-  new_password: 'New password'
-  new_password_confirmation: 'Repeat new password'
+  current_password: 'Contraseña actual'
+  password: Contraseña
+  password_confirmation: 'Repita la contraseña'
+  new_password: 'Nueva contraseña'
+  new_password_confirmation: 'Repita la contraseña'
 fos_user:
   username:
-    already_used: 'The username is already used.'
-    blank: 'Please enter a username.'
-    short: 'The username is too short.'
-    long: 'The username is too long.'
+    already_used: 'El nombre de usuario ya está en uso.'
+    blank: 'Por favor, ingrese un nombre de usuario.'
+    short: 'El nombre de usuario es demasiado corto.'
+    long: 'El nombre de usuario es demasiado largo.'
   email:
-    already_used: 'The email is already used.'
-    blank: 'Please enter an email.'
-    short: 'The email is too short.'
-    long: 'The email is too long.'
-    invalid: 'The email is not valid.'
+    already_used: 'La dirección de correo ya está en uso.'
+    blank: 'Por favor, ingrese una dirección de correo.'
+    short: 'La dirección de correo es demasiado corta.'
+    long: 'La dirección de correo es demasiado larga.'
+    invalid: 'La dirección de correo no es válida.'
   password:
-    blank: 'Please enter a password.'
-    short: 'The password is too short.'
-    mismatch: 'The entered passwords don''t match.'
+    blank: 'Por favor, ingrese una contraseña.'
+    short: 'La contraseña es demasiado corta.'
+    mismatch: 'Las dos contraseñas no coinciden.'
   new_password:
-    blank: 'Please enter a new password.'
-    short: 'The new password is too short.'
+    blank: 'Por favor, ingrese una nueva contraseña.'
+    short: 'La nueva contraseña es demasiado corta.'
   current_password:
-    invalid: 'The entered password is invalid.'
+    invalid: 'La contraseña ingresada no es válida.'
