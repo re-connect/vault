@@ -1,0 +1,93 @@
+security:
+  login:
+    username: 'إسم المستخدم'
+    password: 'كلمة المرور'
+    remember_me: 'حفظ البيانات'
+    submit: 'تسجيل دخول'
+profile:
+  show:
+    username: 'إسم المستخدم'
+    email: 'بريد إلكتروني'
+  edit:
+    submit: تحديث
+  flash:
+    updated: 'تم تحديث الملف الشخصي'
+change_password:
+  submit: 'تغيير كلمة المرور'
+  flash:
+    success: 'تم تغيير كلمة المرور'
+registration:
+  check_email: 'لقد تم إرسال رسالة إلكترونية إلى %email% تحتوي على رابط يجب إتباعه لتفعيل حسابك الشخصي.'
+  confirmed: 'تهانينا %username%، لقد تم تفعيل حسابك.'
+  back: 'عودة إلى الصفحة الرئيسية'
+  submit: تسجيل
+  flash:
+    user_created: 'تم إنشاء حسابك بنجاح'
+  email:
+    subject: '%username%! مرحبا'
+    message: |
+      مرحبا %username%!
+
+
+       لتفعيل حسابك يرجى إتباع الرابط التالي %confirmationUrl%
+
+       الرابط يمكن إستخدامه مرة واحدة فقط لتفعيل حسابك
+
+      شكرا،
+      فريق العمل.
+resetting:
+  check_email: |
+    لقد تم إرسال رسالة إلكترونية تحتوي على رابط يجب الضغط عليه لإعادة ضبط كلمة المرور الخاصة بك.
+    ملحوظة: يمكنك إعادة ضبط كلمة المرور الخاصة بك خلال %tokenLifetime% ساعة
+
+    يرجى التحقق من ملف السبام إذا لم تستقبل الرسالة الإلكترونية قريبا أو أعد المحاولة
+  request:
+    username: 'إسم المستخدم او البريد الالكتروني'
+    submit: 'إعادة ضبط كلمة المرور'
+  reset:
+    submit: 'تغيير كلمة المرور'
+  flash:
+    success: 'تم إعادة ضبط كلمة المرور بنجاح'
+  email:
+    subject: 'إعادة ضبط كلمة المرور'
+    message: |
+      مرحبا %username%!
+
+      لإعادة ضبط كلمة المرور يرجى إتباع الرابط التالي %confirmationUrl%
+
+      شكرا،
+      فريق العمل.
+layout:
+  logout: خروج
+  login: دخول
+  register: تسجيل
+  logged_in_as: 'تم الدخول بإسم %username%'
+form:
+  username: 'إسم المستخدم'
+  email: 'البريد الإلكتروني'
+  current_password: 'كلمة المرور الحالية'
+  password: 'كلمة المرور'
+  password_confirmation: تأكيد
+  new_password: 'كلمة المرور الجديدة'
+  new_password_confirmation: 'تأكيد كلمة المرور'
+fos_user:
+  username:
+    already_used: 'الإسم المختار مسجل مسبقا'
+    blank: 'يرجى تعيين إسم المستخدم'
+    short: ' إسم المستخدم قصير جدا'
+    long: ' إسم المستخدم طويل جدا'
+  email:
+    already_used: 'البريد الإلكتروني مسجل مسبقا'
+    blank: 'يرجى تعين البريد الإلكتروني'
+    short: ' البريد الإلكتروني قصير'
+    long: ' البريد الإلكتروني طويل'
+    invalid: 'البريد الإلكتروني غير صحيح'
+  password:
+    blank: 'يرجى تعيين كلمة المرور'
+    short: 'كلمة المرور قصيرة'
+    mismatch: 'كلمة المرور المدخلة غير مطابقة للكلمة الأصلية'
+  new_password:
+    blank: 'يرجى تعيين كلمة مرور جديدة'
+    short: ' كلمة المرور الجديدة قصيرة'
+  current_password:
+    invalid: 'كلمة المرور المدخلة غير صحيحة'
