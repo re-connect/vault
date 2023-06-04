@@ -1,5 +1,5 @@
 files:
-  - source: translations
+  - source: translations/*.yml
     translation: /translations/messages.%two_letters_code%.yml
   - source: /translations/FosUserBundle
     translation: /translations/FosUserBundle/FosUserBundle.%two_letters_code%.yml
