@@ -1,6 +1,6 @@
-authentification_failure_wrong_credentials: 'رمز عبور یا نام کاربری درست نیست'
-form_connexion: 'وارد شدن'
-form_forgot_password: 'رمز عبور یا نام کاربری خود را فراموش کرده ام.'
-form_login: 'نام کاربری   یا  آدرس ایمیل'
-form_password: 'کلمه عبور'
-login_form_title: 'دسترسی به گاوصندوق دیجیتالی'
+authentification_failure_wrong_credentials: رمز عبور یا نام کاربری درست نیست
+form_connexion: وارد شدن
+form_forgot_password: رمز عبور یا نام کاربری خود را فراموش کرده ام.
+form_login: نام کاربری   یا  آدرس ایمیل
+form_password: کلمه عبور
+login_form_title: دسترسی به گاوصندوق دیجیتالی
