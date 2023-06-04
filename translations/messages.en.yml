@@ -1,14 +1,6 @@
-beneficiary_affiliation_empty_relays: You must choose at least one relay
-birthdate_not_empty: Birthdate must not be empty
-email_already_in_use: Mail already in use
-firstname_format: 'You can only enter letters, hyphens (-) or apostrophes ('')'
-firstname_not_empty: Firstname must not be empty
-form_validation_no_password: Password must not be empty
-lastname_format: 'You can only enter letters, hyphens (-) or apostrophes ('')'
-lastname_not_empty: Lastname must not be empty
-mail_not_empty: Mail must not be empty
-phone_not_empty: Phone must not be empty
-secret_question_not_empty: Secret question must not be empty
-secret_answer_not_empty: Secret answer must not be empty
-username_already_in_use: Username already in use
-username_not_valid: Username invalid
+authentification_failure_wrong_credentials: رمز عبور یا نام کاربری درست نیست
+form_connexion: وارد شدن
+form_forgot_password: رمز عبور یا نام کاربری خود را فراموش کرده ام.
+form_login: نام کاربری   یا  آدرس ایمیل
+form_password: کلمه عبور
+login_form_title: دسترسی به گاوصندوق دیجیتالی
