@@ -1,9 +1,9 @@
-authentification_failure_wrong_credentials: логин или пароль неверен
+authentification_failure_wrong_credentials: 'логин или пароль неверен'
 form_connexion: войти
-form_forgot_password: Сбросить пароль
-form_login: логин или пароль
+form_forgot_password: 'Сбросить пароль'
+form_login: 'логин или пароль'
 form_password: пароль
-login_form_title: Доступ в цифровой сейф
+login_form_title: 'Доступ в цифровой сейф'
 admin.bienvenue: 'Добро пожаловать в вашу администрацию Reconnect'
 admin.centres.benéficiaires: Получатели
 admin.centres.historique: История
@@ -139,7 +139,7 @@ devenirUnRelaiReconnect.recapitulatif.prixDuCentre: 'Стоимость цент
 devenirUnRelaiReconnect.recapitulatif.prixTotal: 'Общая стоимость'
 devenirUnRelaiReconnect.recapitulatif.vosCentres: 'Ваши учреждения'
 devenirUnRelaiReconnect.recapitulatif.votreIdentite: 'Ваши данные'
-disabledAt: Отключено на
+disabledAt: 'Отключено на'
 disabledBy: отключено
 document.apercu: Просмотр
 document.aucunFichier: 'На данный момент нет ни одного элемента'
@@ -489,7 +489,7 @@ modePaiement.choisisseModePaiement: 'Выберите способ оплаты'
 modePaiement.flashBienSupprime: 'Элемент успешно удалён из корзины'
 modePaiement.recapitulatif: 'Сводный чек-лист вашей корзины'
 modePaiement.virement: Перевод
-no: Нет
+'no': Нет
 note.ajouter: 'Добавить заметку'
 note.bienSauvegarde: 'Ваша заметка успешно сохранена'
 note.bienSupprime: 'Ваша заметка успешно удалена'
@@ -623,6 +623,6 @@ user.reinitialiserMdp.title: 'Восстановить пароль'
 user.supprimerCompte.etesVousSurs: 'Вы точно хотите удалить ваш аккаунт?'
 user.supprimerCompte.success: 'Аккаунт успешно удалён'
 wrong_current_password: 'Неверный настоящий пароль'
-delete_currently_shared_document_warning: Документ находится в общем доступе еще %daysCount% дней. Если вы удалите его, совместный доступ будет отменен
-sms_sent_failed: Отправка SMS не удалась, пожалуйста, проверьте, действителен ли номер телефона
-yes: Да
+delete_currently_shared_document_warning: 'Документ находится в общем доступе еще %daysCount% дней. Если вы удалите его, совместный доступ будет отменен'
+sms_sent_failed: 'Отправка SMS не удалась, пожалуйста, проверьте, действителен ли номер телефона'
+'yes': Да
