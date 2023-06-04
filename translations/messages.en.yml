@@ -159,7 +159,7 @@ devenirUnRelaiReconnect.accueil.budget200000.500000: '200 000€ < Budget < 500 
 devenirUnRelaiReconnect.accueil.budget2000000.plus: 'Budget > 2 000 000 €'
 devenirUnRelaiReconnect.accueil.budget500000.1000000: '500 000€ <Budget < 1000 000€'
 devenirUnRelaiReconnect.accueil.budgetParAn: 'It is to say %amount% €/year'
-devenirUnRelaiReconnect.accueil.budgetParMois: €/month
+devenirUnRelaiReconnect.accueil.budgetParMois: '€/month'
 devenirUnRelaiReconnect.accueil.budgetText: '<p class="smallMargins">Reconnect is an associative project,freely proposed to its users.However,like all online platforms,it generates costs: administration and development of the device,assistance for the usage,distribution,data storage,etc.</p> <p class="smallMargins">Reconnect counts on the participation of the social structures in order to offer to the people in extreme poverty and to the social workers the device the best adapted to their needs.By becoming a Reconnect Relay,you are sympathetic to the sustainability of this project. </p>'
 devenirUnRelaiReconnect.accueil.combienCaCoute: 'How does <br/> this cost?'
 devenirUnRelaiReconnect.accueil.combienCaCouteTxt: 'In order to all the social structures of every sizes can subscribe to Reconnect,the subscription sum varies according to their annual budget.'
