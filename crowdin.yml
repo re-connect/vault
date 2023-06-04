@@ -2,6 +2,6 @@ files:
   - source: translations/*.yml
     translation: /translations/messages.%two_letters_code%.yml
   - source: /translations/FosUserBundle
-    translation: /translations/FosUserBundle/FosUserBundle.%two_letters_code%.yml
+    translation: /translations/FosUserBundle/FOSUserBundle.%two_letters_code%.yml
   - source: translations/validators
     translation: /translations/validators/validators.%two_letters_code%.yml
