@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\v2\Controller\BeneficiaryResetPassword;
+namespace App\Tests\v2\Controller\BeneficiaryResetPasswordController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
