@@ -1,0 +1,15 @@
+{% extends 'v2/pro_management_layout.html.twig' %}
+
+{% block title %}{{ 'reset_a_password'|trans }}{% endblock %}
+{% block subTitle %}{{ 'reset_beneficiary_password'|trans({'%username%': beneficiary.fullName})|upper }}{% endblock %}
+{% block subTitleIcon %}<i class="fas fa-redo fa-lg me-1"></i>{% endblock %}
+
+{% block content %}
+    {% if beneficiary.reponseSecrete or beneficiary.user.telephone or beneficiary.user.email %}
+        {{ include('v2/reset_password/beneficiary/_choice_cards.html.twig', {beneficiary}) }}
+    {% else %}
+        <div class="mt-5 text-center font-size-1-2">
+            <p>{{ 'reset_password_no_way'|trans }}</p>
+        </div>
+    {% endif %}
+{% endblock %}

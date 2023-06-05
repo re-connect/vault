@@ -57,10 +57,16 @@ beneficiary_created_successfully_wait_activation: 'Le compte a bien été créé
 beneficiary_creation_canceled: 'Annulation de la création du bénéficiaire'
 beneficiary_creation_client_sms: "Votre compte Coffre-fort Reconnect a été crée crée.\nvotre identifiant est %username%, vous pouvez vous connecter en cliquant sur le lien ci-dessous : %autoLoginLink% \nVous pouvez également télécharger l'application mobile : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
 beneficiary_creation_remotely_sms: "Votre accompagnant %pro.firstname% %pro.lastname% de la structure %center% vous propose d'activer votre coffre-fort numérique Reconnect \nConnectez-vous sur www.reconnect.fr \nIdentifiant : %username% \nMot de passe : %password% \nOu cliquez sur le lien : %autoLoginLink% \nVous pouvez également télécharger l'application mobile : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
+beneficiary_will_give_you_secret_answer: Le bénéficiaire vous fournira la réponse à sa question secrète
 beneficiary_will_give_you_secret_information: "Le bénéficiaire vous communiquera le mot de passe qu'il désire utiliser ainsi qu'une question et réponse secrète permettant de réinitialiser son mot de passe"
 beneficiary_already_as_account_affiliate: 'Le bénéficiaire a déjà un compte sur le coffre-fort numérique Reconnect, liez ce compte existant à un de vos relais'
 beneficiary_has_no_account_create: "Le bénéficiaire n'as pas encore de compte sur le coffre-fort numérique Reconnect, créez ce compte avec le bénéficiaire ou à distance grâce à son numéro de téléphone, et reliez le à un de vos relais"
+beneficiary_has_no_email: Le bénéficiaire n'a pas renseigné d'adresse email
+beneficiary_has_no_secret_answer: Le bénéficiaire n'a pas renseigné de réponse secrète
+beneficiary_has_no_phone_number: Le bénéficiaire n'a pas renseigné de numéro de téléphone
+beneficiary_will_receive_email_reset_request: Le bénéficiaire recevra un email lui permettant de réinitialiser son mot de passe directement
 beneficiary_will_receive_sms_account_information: 'Il recevra un sms pour activer son compte et compléter ses informations'
+beneficiary_will_receive_sms_reset_request: Le bénéficiaire recevra un code par SMS afin de réinitialiser son mot de passe
 benef_has_account: 'Le bénéficiaire possède un compte Reconnect'
 benef_has_no_account: 'Le bénéficiaire ne possède pas de compte Reconnect'
 benef_management_title: 'Gestion des <span class="rp-blue">bénéficiaires</span>'
@@ -139,6 +145,7 @@ choose_beneficiary_title_part_1: 'Choisir un'
 choose_beneficiary_title_part_2: bénéficiaire
 choose_picture: 'Cliquez ici pour choisir une image'
 choose_relay: 'Sélectionnez un centre'
+choose_reset_password_method: Veuillez choisir la méthode de réinitialisation du mot de passe
 city: Ville
 comment: Commentaire
 confirm: Confirmer
@@ -1000,6 +1007,10 @@ rename: Renommer
 renew_password: 'Renouveler le mot de passe'
 relays: Relais
 relay_has_no_address: "Le relais Reconnect n'a pas renseigné d'adresse"
+reset: Réinitialisation
+reset_a_password: Réinitialiser un mot de passe
+reset_password_no_way: Le bénéficiaire n’a pas indiqué de numéro de téléphone, ni d’adresse e-mail, ni de réponse à la question secrète. Pour réinitialiser son mot de passe, merci de contacter le support, nous vous aiderons dans les plus brefs délais.
+reset_beneficiary_password: Réinitialisation du mot de passe de %username%
 reset_password_requested_by_SMS: 'La demande de réinitialisation actuelle a été effectuée par SMS'
 reset_password_requested_by_email: 'La demande de réinitialisation actuelle a été effectuée par email'
 resetting.check_email: "Un e-mail a été envoyé à l'adresse entrée. Il contient un lien sur lequel il vous faudra cliquer afin de réinitialiser votre mot de passe."
@@ -1065,6 +1076,7 @@ share_document_with: 'Email du destinataire'
 shared: Partagé
 si_siao_number_found_rosalie: 'Numéro SI-SIAO trouvé dans Rosalie, liaison effectuée'
 si_siao_number: 'Numéro SI-SIAO'
+sms: SMS
 sms_sent: 'SMS envoyé'
 status: Statut
 statut.abandoned: Abandonné
