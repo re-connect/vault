@@ -18,7 +18,7 @@
             title: 'email'|trans,
             iconName: 'envelope',
             helpText: 'beneficiary_will_receive_email_reset_request'|trans,
-            buttonPath: "#",
+            buttonPath: path('reset_password_beneficiary_email', {id: beneficiary.id}),
             buttonText: 'reset'|trans,
             isDisabled: hasNoEmail,
             tooltipMessage: hasNoEmail ? 'beneficiary_has_no_email'|trans : null,
