@@ -235,7 +235,7 @@ devenirUnRelaiReconnect.accueil.budget200000.500000: '200 000€ < Budget < 500 
 devenirUnRelaiReconnect.accueil.budget2000000.plus: 'Budget > 2 000 000€'
 devenirUnRelaiReconnect.accueil.budget500000.1000000: '500 000€ < Budget < 1000 000€'
 devenirUnRelaiReconnect.accueil.budgetParAn: 'soit %amount% €/an'
-devenirUnRelaiReconnect.accueil.budgetParMois: €/mois
+devenirUnRelaiReconnect.accueil.budgetParMois: '€/mois'
 devenirUnRelaiReconnect.accueil.budgetText: "<p class=\"smallMargin\">Reconnect est un projet associatif, proposé gratuitement aux usagers. Cependant, comme toute plateforme numérique, il engendre des coûts : gestion et développement de l’outil, aide à l’utilisation, diffusion, stockage de données, etc.</p> <p class=\"smallMargin\">Reconnect compte sur la participation des structures sociales pour proposer aux personnes en situation précaire et aux travailleurs sociaux les outils les plus adaptés à leurs besoins. En devenant un Relais Reconnect, vous êtes solidaire de la pérennité de ce projet. </p>\n"
 devenirUnRelaiReconnect.accueil.combienCaCoute: 'combien <br/>ça coûte ?'
 devenirUnRelaiReconnect.accueil.combienCaCouteTxt: 'Pour que les structures sociales de toutes tailles puissent souscrire à Reconnect, le montant de l’abonnement varie en fonction de leur budget annuel.'

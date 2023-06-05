@@ -1,10 +1,14 @@
+beneficiary_affiliation_empty_relays: Vous devez choisir au moins un relais auquel affilier le bénéficiaire
 birthdate_not_empty: Das Feld "Geburtsdatum" darf nicht leer sein
 email_already_in_use: Diese E-Mailadresse wird bereits verwendet
+firstname_format: 'Vous ne pouvez entrer que des lettres, tirets (-) ou apostrophes ('')'
 firstname_not_empty: Das Feld "Vorname" darf nicht leer sein
+form_validation_no_password: Vous devez choisir un mot de passe
+lastname_format: 'Vous ne pouvez entrer que des lettres, tirets (-) ou apostrophes ('')'
 lastname_not_empty: Das Feld "Name" darf nicht leer sein
 mail_not_empty: Das Feld "E-Mail-Adresse" darf nicht leer sein
 phone_not_empty: Das Feld "Telefonnummer" darf nicht leer sein
-secret_answer_not_empty: Die Antwort auf die Sicherheitsfrage darf nicht leer sein
 secret_question_not_empty: Die Sicherheitsfrage darf nicht leer sein
+secret_answer_not_empty: Die Antwort auf die Sicherheitsfrage darf nicht leer sein
 username_already_in_use: Nutzername Dieser Nutzername wird bereits verwendet
 username_not_valid: Das Feld "Anmeldename" darf nicht leer sein
