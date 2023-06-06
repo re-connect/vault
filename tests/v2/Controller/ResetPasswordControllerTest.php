@@ -76,7 +76,7 @@ class ResetPasswordControllerTest extends AuthenticatedTestCase
         $crawler = $this->client->request('GET', '/reset-password/sms');
         $form = $crawler->selectButton('Confirmer')->form();
         $form->setValues([
-            'reset_password_request_form[telephone]' => $this->user->getTelephone(),
+            'reset_password_request_form[phone]' => $this->user->getTelephone(),
         ]);
         $this->client->submit($form);
 
@@ -93,7 +93,7 @@ class ResetPasswordControllerTest extends AuthenticatedTestCase
         $crawler = $this->client->request('GET', '/reset-password/sms');
         $form = $crawler->selectButton('Confirmer')->form();
         $form->setValues([
-            'reset_password_request_form[telephone]' => $this->user->getTelephone(),
+            'reset_password_request_form[phone]' => $this->user->getTelephone(),
         ]);
         $this->client->submit($form);
         self::assertResponseStatusCodeSame(200);
@@ -105,7 +105,7 @@ class ResetPasswordControllerTest extends AuthenticatedTestCase
         // Same user try to request password by sms directly
         $form = $crawler->selectButton('Confirmer')->form();
         $form->setValues([
-            'reset_password_request_form[telephone]' => $this->user->getTelephone(),
+            'reset_password_request_form[phone]' => $this->user->getTelephone(),
         ]);
         $crawler = $this->client->submit($form);
 
