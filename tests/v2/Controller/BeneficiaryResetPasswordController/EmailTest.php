@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Tests\v2\Controller\BeneficiaryResetPassword;
+namespace App\Tests\v2\Controller\BeneficiaryResetPasswordController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
-use App\Repository\BeneficiaireRepository;
-use App\Security\HelperV2\UserHelper;
 use App\Tests\Factory\BeneficiaireFactory;
+use App\Tests\Factory\MembreFactory;
+use App\Tests\Factory\ResetPasswordRequestFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 
-class ChoiceTest extends AbstractControllerTest implements TestRouteInterface
+class EmailTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const URL = '/beneficiary/%s/reset-password';
+    private const URL = '/beneficiary/%s/reset-password/email';
 
     public function provideTestRoute(): ?\Generator
     {
@@ -36,5 +36,21 @@ class ChoiceTest extends AbstractControllerTest implements TestRouteInterface
         $url = sprintf(self::URL, $beneficiary->getId());
 
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
+    }
+
+    public function testResetPasswordRequestIsSend(): void
+    {
+        $client = self::createClient();
+        $client->loginUser(MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES)->object()->getUser());
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $client->request('GET', sprintf(self::URL, $beneficiary->getId()));
+
+        // Check request is created with correct user
+        $resetPasswordRequest = ResetPasswordRequestFactory::last()->object();
+        self::assertEquals($beneficiary->getUser()->getId(), $resetPasswordRequest->getUser()->getId());
+
+        // Check that password request is not SMS request
+        self::assertNull($resetPasswordRequest->getSmsCode());
+        self::assertNull($resetPasswordRequest->getSmsToken());
     }
 }
