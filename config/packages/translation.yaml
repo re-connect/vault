@@ -1,11 +1,15 @@
 framework:
-  default_locale: "%env(DEFAULT_LOCALE)%"
-  translator:
-    default_path: '%kernel.project_dir%/translations'
-    fallbacks: ["%env(DEFAULT_LOCALE)%"]
-    logging: false
-    providers:
-      crowdin:
-        dsn: '%env(CROWDIN_DSN)%'
-        domains: [ 'messages', 'validators', 'FOSUserBundle' ]
-        locales: [ 'ar', 'de', 'en', 'es', 'fr', 'it', 'prs', 'ps', 'ru' ]
+    default_locale: "%env(DEFAULT_LOCALE)%"
+    translator:
+        default_path: '%kernel.project_dir%/translations'
+        fallbacks: [ "%env(DEFAULT_LOCALE)%" ]
+        logging: false
+        providers:
+            crowdin:
+                dsn: '%env(CROWDIN_DSN)%'
+                domains: [ 'messages', 'validators', 'FOSUserBundle' ]
+                locales: [ 'ar', 'de', 'en', 'es', 'fr', 'it', 'prs', 'ps', 'ru' ]
+#           loco:
+#               dsn: '%env(LOCO_DSN)%'
+#           lokalise:
+#               dsn: '%env(LOKALISE_DSN)%'
