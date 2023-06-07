@@ -3,7 +3,9 @@
 namespace App\ServiceV2;
 
 use App\Entity\Annotations\ResetPasswordRequest;
+use App\Entity\Beneficiaire;
 use App\Entity\User;
+use App\ManagerV2\UserManager;
 use App\RepositoryV2\ResetPasswordRequestRepository;
 use App\Service\TokenGeneratorInterface;
 use App\ServiceV2\Traits\SessionsAwareTrait;
@@ -27,6 +29,7 @@ class ResettingService
         private readonly EntityManagerInterface $em,
         private readonly NotificationService $notificator,
         private readonly ResetPasswordHelperInterface $resetPasswordHelper,
+        private readonly UserManager $userManager,
         private RequestStack $requestStack,
     ) {
     }
@@ -85,6 +88,14 @@ class ResettingService
     public function removePasswordRequest(ResetPasswordRequest $request): void
     {
         $this->repository->removeResetPasswordRequest($request);
+    }
+
+    public function resetPassword(ResetPasswordRequest $request, string $password): void
+    {
+        /** @var User $userToReset * */
+        $userToReset = $request->getUser();
+        $this->removePasswordRequest($request);
+        $this->userManager->updatePassword($userToReset, $password);
     }
 
     public function isRequestingBySMS(?User $user): bool
@@ -170,6 +181,58 @@ class ResettingService
             } catch (\Exception) {
                 return null;
             }
+        }
+
+        return null;
+    }
+
+    public function processSendingBeneficiaryPasswordResetSms(Beneficiaire $beneficiary): void
+    {
+        $user = $beneficiary->getUser();
+
+        try {
+            // in order to create request
+            $this->resetPasswordHelper->generateResetToken($user);
+        } catch (TooManyPasswordRequestsException) {
+            return;
+        } catch (ResetPasswordExceptionInterface) {
+            $this->addFlashMessage('danger', 'error');
+
+            return;
+        }
+
+        $this->generateSmsCodeAndToken($user);
+        $smsCode = $this->getSmsCode($user);
+        if ($smsCode) {
+            try {
+                $this->handleSmsSend($user, $smsCode);
+                $this->addFlashMessage('success', 'beneficiary_reset_password_SMS_has_been_sent');
+            } catch (\Exception) {
+                $this->addFlashMessage('danger', 'error');
+
+                return;
+            }
+        }
+    }
+
+    public function isRequestingByEmail(?User $user): bool
+    {
+        if (!$user) {
+            return false;
+        }
+        $requests = $this->repository->findBy(['user' => $user]);
+
+        return 0 < count($requests) && null === $requests[0]->getSmsCode();
+    }
+
+    public function getErrorMessage(Beneficiaire $beneficiary): ?string
+    {
+        $user = $beneficiary->getUser();
+
+        if (!$user->getTelephone()) {
+            return 'beneficiary_has_no_phone_number';
+        } elseif ($this->isRequestingByEmail($user)) {
+            return 'beneficiary_reset_password_already_requested_by_email';
         }
 
         return null;
