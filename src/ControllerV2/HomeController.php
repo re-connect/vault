@@ -11,17 +11,12 @@ class HomeController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function renderBeneficiaryNav(?Beneficiaire $beneficiary): Response
     {
-        $user = $this->getUser();
-        if ($subjectBeneficiary = $user->getSubjectBeneficiaire()) {
-            $beneficiary = $subjectBeneficiary;
-
-            return $this->render('v2/vault/nav/beneficiary/_beneficiary_nav.html.twig', [
-                'beneficiary' => $beneficiary,
-            ]);
+        if ($subjectBeneficiary = $this->getUser()?->getSubjectBeneficiaire()) {
+            return $this->render('v2/vault/nav/beneficiary/_beneficiary_nav.html.twig', ['beneficiary' => $subjectBeneficiary]);
+        } elseif ($beneficiary) {
+            return $this->render('v2/vault/nav/pro/_pro_nav.html.twig', ['beneficiary' => $beneficiary]);
         }
 
-        return $user->getSubjectMembre() && $beneficiary
-            ? $this->render('v2/vault/nav/pro/_pro_nav.html.twig', ['beneficiary' => $beneficiary])
-            : $this->render('void.html.twig');
+        return $this->render('void.html.twig');
     }
 }
