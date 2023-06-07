@@ -36,8 +36,6 @@ Encore
   .addEntry('set_question_secrete', './assets/js/set-question-secrete.js')
   .addEntry('set_question_secrete_etape_3', './assets/js/set-question-secrete-etape-3.js')
 
-  .addStyleEntry('style', './assets/css/style.scss')
-
   // New Home
   .addEntry('homeV2', './assets/js/homeV2/app.js')
   .addStyleEntry('homeV2style', './assets/css/homeV2/main.scss')
