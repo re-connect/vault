@@ -1,6 +1,6 @@
 {% extends 'v2/base.html.twig' %}
 
 {% block body %}
-    {{ include('v2/vault/nav/_nav.html.twig') }}
+    {{ render(controller('App\\ControllerV2\\HomeController::renderBeneficiaryNav', {beneficiary: beneficiary ?: null})) }}
     {% block content %}{% endblock %}
 {% endblock %}
