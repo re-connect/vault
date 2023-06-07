@@ -30,7 +30,7 @@
             title: 'sms'|trans,
             iconName: 'mobile-alt',
             helpText: 'beneficiary_will_receive_sms_reset_request'|trans,
-            buttonPath: "#",
+            buttonPath: path('reset_password_beneficiary_sms', {id: beneficiary.id}),
             buttonText: 'reset'|trans,
             isDisabled: hasNoPhoneNumber,
             tooltipMessage: hasNoPhoneNumber ? 'beneficiary_has_no_phone_number'|trans : null,

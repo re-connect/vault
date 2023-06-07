@@ -35,6 +35,7 @@ authentification_failure_wrong_credentials: 'Username or password incorrect'
 back_home: 'Back to homepage'
 back: Back
 beneficiaries: Beneficiaries
+beneficiary_already_as_account_affiliate: 'The beneficiary already has a Reconnect digital vault account. Link this existing account to one of your relays'
 beneficiary_already_affiliated_to_all_relays: 'The beneficiary is already affiliated to your Reconnect relays'
 beneficiary_added_to_relays: 'The beneficiary has been added to selected centers'
 beneficiary_created_successfully: 'Beneficiary created successfully'
@@ -52,7 +53,6 @@ beneficiary_will_give_you_secret_answer: The beneficiary will give you the answe
 beneficiary_will_receive_email_reset_request: The beneficiary will receive an email in order to reset his password
 beneficiary_will_receive_sms_account_information: 'The beneficiary will receive an SMS to activate his account and complete his information'
 beneficiary_will_receive_sms_reset_request: The beneficiary will receive a code by SMS in order to reset his password
-beneficiary_already_as_account_affiliate: 'The beneficiary already has a Reconnect digital vault account. Link this existing account to one of your relays'
 beneficiaire.menu.mesAides: 'My Aids'
 beneficiaire.menu.mesContacts: 'My Contacts'
 beneficiaire.menu.mesDocuments: 'My documents'
