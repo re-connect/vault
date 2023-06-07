@@ -63,7 +63,7 @@ class MemberBeneficiaryController extends AbstractController
             ]);
         }
 
-        return $this->renderForm('v2/notifications/first_visit_notifications.html.twig', [
+        return $this->render('v2/notifications/first_visit_notifications.html.twig', [
             'isFirstVisit' => $isFirstVisit,
             'firstVisitForm' => $firstVisitForm,
         ]);

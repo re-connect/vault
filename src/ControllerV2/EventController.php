@@ -31,7 +31,7 @@ class EventController extends AbstractController
             return $this->redirectToRoute('list_events', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/vault/event/form.html.twig', [
+        return $this->render('v2/vault/event/form.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
             'event' => $event,

@@ -59,7 +59,7 @@ class UserController extends AbstractController
             }
         }
 
-        return $this->renderForm('v2/user/settings.html.twig', [
+        return $this->render('v2/user/settings.html.twig', [
             'userForm' => $userForm,
             'passwordForm' => $passwordForm,
         ]);
@@ -84,7 +84,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('re_main_login');
         }
 
-        return $this->renderForm('v2/user/delete.html.twig', [
+        return $this->render('v2/user/delete.html.twig', [
             'submitForm' => $form,
         ]);
     }

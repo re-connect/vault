@@ -25,7 +25,7 @@ class ExportController extends AbstractController
             return $service->saveExport($exportModel);
         }
 
-        return $this->renderForm('admin/export/index.html.twig', [
+        return $this->render('admin/export/index.html.twig', [
             'form' => $form,
         ]);
     }

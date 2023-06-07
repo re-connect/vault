@@ -41,7 +41,7 @@ class NoteController extends AbstractController
             return $this->redirectToRoute('list_notes', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/vault/note/edit.html.twig', [
+        return $this->render('v2/vault/note/edit.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
         ]);

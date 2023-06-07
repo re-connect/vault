@@ -42,7 +42,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         NoteManager $manager,
         PaginatorService $paginator,
     ): Response {
-        return $this->renderForm('v2/vault/note/index.html.twig', [
+        return $this->render('v2/vault/note/index.html.twig', [
             'beneficiary' => $beneficiary,
             'notes' => $paginator->create(
                 $manager->getNotes($beneficiary),
@@ -75,7 +75,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         )->handleRequest($request);
 
         return new JsonResponse([
-            'html' => $this->renderForm('v2/vault/note/_list.html.twig', [
+            'html' => $this->render('v2/vault/note/_list.html.twig', [
                 'notes' => $paginator->create(
                     $manager->getNotes($beneficiary, $search->getSearch()),
                     $request->query->getInt('page', 1),
@@ -110,7 +110,7 @@ class BeneficiaryPersonalDataController extends AbstractController
             return $this->redirectToRoute('list_notes', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/vault/note/create.html.twig', [
+        return $this->render('v2/vault/note/create.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
         ]);
@@ -124,7 +124,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         ContactManager $manager,
         PaginatorService $paginator,
     ): Response {
-        return $this->renderForm('v2/vault/contact/index.html.twig', [
+        return $this->render('v2/vault/contact/index.html.twig', [
             'beneficiary' => $beneficiary,
             'contacts' => $paginator->create(
                 $manager->getContacts($beneficiary),
@@ -157,7 +157,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         )->handleRequest($request);
 
         return new JsonResponse([
-            'html' => $this->renderForm('v2/vault/contact/_list.html.twig', [
+            'html' => $this->render('v2/vault/contact/_list.html.twig', [
                 'contacts' => $paginator->create(
                     $manager->getContacts($beneficiary, $search->getSearch()),
                     $request->query->getInt('page', 1),
@@ -192,7 +192,7 @@ class BeneficiaryPersonalDataController extends AbstractController
             return $this->redirectToRoute('list_contacts', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/vault/contact/create.html.twig', [
+        return $this->render('v2/vault/contact/create.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
         ]);
@@ -211,7 +211,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         EventManager $manager,
         PaginatorService $paginator,
     ): Response {
-        return $this->renderForm('v2/vault/event/index.html.twig', [
+        return $this->render('v2/vault/event/index.html.twig', [
             'beneficiary' => $beneficiary,
             'events' => $paginator->create(
                 $manager->getEvents($beneficiary),
@@ -244,7 +244,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         )->handleRequest($request);
 
         return new JsonResponse([
-            'html' => $this->renderForm('v2/vault/event/_list.html.twig', [
+            'html' => $this->render('v2/vault/event/_list.html.twig', [
                 'events' => $paginator->create(
                     $manager->getEvents($beneficiary, $search->getSearch()),
                     $request->query->getInt('page', 1),
@@ -279,7 +279,7 @@ class BeneficiaryPersonalDataController extends AbstractController
             return $this->redirectToRoute('list_events', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/vault/event/form.html.twig', [
+        return $this->render('v2/vault/event/form.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
             'event' => $event,
@@ -294,7 +294,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         FolderableItemManager $manager,
         PaginatorService $paginator,
     ): Response {
-        return $this->renderForm('v2/vault/document/index.html.twig', [
+        return $this->render('v2/vault/document/index.html.twig', [
             'beneficiary' => $beneficiary,
             'foldersAndDocuments' => $paginator->create(
                 $manager->getFoldersAndDocumentsWithUrl($beneficiary),
@@ -354,7 +354,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         )->handleRequest($request);
 
         return new JsonResponse([
-            'html' => $this->renderForm('v2/vault/document/_list.html.twig', [
+            'html' => $this->render('v2/vault/document/_list.html.twig', [
                 'foldersAndDocuments' => $paginator->create(
                     $manager->getFoldersAndDocumentsWithUrl($beneficiary, null, $search->getSearch()),
                     $request->query->getInt('page', 1),
@@ -390,7 +390,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         )->handleRequest($request);
 
         return new JsonResponse([
-            'html' => $this->renderForm('v2/vault/document/_list.html.twig', [
+            'html' => $this->render('v2/vault/document/_list.html.twig', [
                 'foldersAndDocuments' => $paginator->create(
                     $manager->getFoldersAndDocumentsWithUrl($beneficiary, $parentFolder, $search->getSearch()),
                     $request->query->getInt('page', 1),
@@ -428,7 +428,7 @@ class BeneficiaryPersonalDataController extends AbstractController
             return $this->redirectToRoute('list_documents', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/vault/folder/create.html.twig', [
+        return $this->render('v2/vault/folder/create.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
             'autocompleteNames' => $manager->getAutocompleteFolderNames(),
