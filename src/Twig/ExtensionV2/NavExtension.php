@@ -60,7 +60,7 @@ class NavExtension extends AbstractExtension
             $navItems[] = [
                 'itemKind' => 'relays',
                 'title' => 'my_relays',
-                'routeName' => 'list_relays',
+                'routeName' => 'my_relays',
                 'image' => 'build/images/icons/relais_bleu.png',
             ];
         }

@@ -7,10 +7,10 @@
             <ul class="nav w-100 row">
                 {% for item in getUserNavItems() %}
                     {{ include('v2/vault/nav/beneficiary/_beneficiary_nav_item.html.twig', {
-                        'item': item.itemKind,
-                        'title': item.title,
-                        'routeName': item.routeName,
-                        'image': item.image
+                        item: item.itemKind,
+                        title: item.title,
+                        routeName: item.routeName,
+                        image: item.image
                     }) }}
                 {% endfor %}
             </ul>

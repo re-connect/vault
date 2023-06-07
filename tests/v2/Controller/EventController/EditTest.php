@@ -4,7 +4,6 @@ namespace App\Tests\v2\Controller\EventController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
-use App\Entity\Beneficiaire;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\EventFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;

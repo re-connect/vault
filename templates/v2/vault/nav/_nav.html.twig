@@ -1,6 +1,6 @@
-{% set isBeneficiary = app.user.isBeneficiaire %}
+{% if app.user.isBeneficiaire %}
+    {{ include('v2/vault/nav/beneficiary/_beneficiary_nav.html.twig') }}
+{% else %}
+    {{ include('v2/vault/nav/pro/_pro_nav.html.twig') }}
+{% endif %}
 
-{{ include(isBeneficiary
-    ? 'v2/vault/nav/beneficiary/_beneficiary_nav.html.twig'
-    : 'v2/vault/nav/pro/_pro_nav.html.twig',
-) }}

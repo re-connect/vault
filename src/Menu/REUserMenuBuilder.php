@@ -61,7 +61,7 @@ class REUserMenuBuilder implements ContainerAwareInterface
             ];
 
             if ($user->isBeneficiaire()) {
-                $arRoutes['beneficiaire.'.$menuTrad.'.mesRelaisReconnect'] = ['extras' => ['color' => 'blue', 'image' => 'build/images/icons/relais_bleu.png', 'imageAct' => 'build/images/icons/relais_blanc.png'], 'route' => 'list_relays', 'routeParameters' => ['id' => $beneficiaireId]];
+                $arRoutes['beneficiaire.'.$menuTrad.'.mesRelaisReconnect'] = ['extras' => ['color' => 'blue', 'image' => 'build/images/icons/relais_bleu.png', 'imageAct' => 'build/images/icons/relais_blanc.png'], 'route' => 'my_relays'];
             }
 
             if (array_key_exists('itemPerLine', $options)) {

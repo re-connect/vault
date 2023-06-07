@@ -26,7 +26,6 @@ class UserHelperTest extends KernelTestCase
         $this->beneficiary = BeneficiaireFactory::createOne()->object();
         $this->membre = MembreFactory::createOne()->object();
         $this->gestionnaire = GestionnaireFactory::createOne()->object();
-
     }
 
     public function testCanManageBeneficiary(): void

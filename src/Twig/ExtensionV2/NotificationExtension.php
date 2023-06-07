@@ -2,12 +2,9 @@
 
 namespace App\Twig\ExtensionV2;
 
-use App\Entity\User;
-use App\Repository\CentreRepository;
+use App\ManagerV2\RelayManager;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bundle\SecurityBundle\Security;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -17,10 +14,8 @@ class NotificationExtension extends AbstractExtension
     use UserAwareTrait;
 
     public function __construct(
-        private readonly CentreRepository $relayRepository,
-        private readonly AuthorizationCheckerInterface $authorizationChecker,
+        private readonly RelayManager $relayManager,
         private Security $security,
-        private RequestStack $requestStack,
     ) {
     }
 
@@ -36,21 +31,8 @@ class NotificationExtension extends AbstractExtension
 
     public function getRelayInvitationNotifications(Environment $env): ?string
     {
-        $user = $this->getUser();
-        $relays = $this->relayRepository->findUserRelays($user, false);
-
-        if (0 === count($relays) || !$user || !$this->canReceiveNotifications($user)) {
-            return null;
-        }
-
         return $env->render('v2/notifications/relay_invitation_notification.html.twig', [
-            'pendingRelays' => $relays,
-            'user' => $user,
+            'relay' => $this->relayManager->getFirstPendingRelay($this->getUser()),
         ]);
-    }
-
-    private function canReceiveNotifications(User $user): bool
-    {
-        return $user->isBeneficiaire() || $user->isMembre();
     }
 }

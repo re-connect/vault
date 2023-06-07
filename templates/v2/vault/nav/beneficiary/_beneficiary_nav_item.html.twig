@@ -1,6 +1,6 @@
 {% set route = app.request.attributes.get('_route')|split('_') %}
 <li class="col vault-nav-item beneficiary-nav-item">
-    <a href="{{ path(routeName, {'id': beneficiary.id}) }}" class="btn nav-link text-primary px-2
+    <a href="{{ path(routeName, {id: beneficiary.id}) }}" class="btn nav-link text-primary px-2
     {{ item|split('-')|filter((i) => i in route ) ? 'current-item' : '' }}"
     >
         <img src="{{ asset(image) }}"

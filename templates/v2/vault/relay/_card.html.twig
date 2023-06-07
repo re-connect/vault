@@ -4,7 +4,7 @@
         <i class="fa fa-home text-green me-1"></i>
         {{ include('v2/vault/relay/_address.html.twig', {relay}) }}
     </p>
-    <a href="{{ path('relay_leave', {'id': beneficiary.id, 'relayId': relay.id}) }}" class="btn btn-primary text-white text-center mt-2 col mx-1">
+    <a href="{{ path('leave_relay', {id: relay.id}) }}" class="btn btn-primary text-white text-center mt-2 col mx-1">
         <i class="fa fa-times text-white me-1"></i>
         {{ 'leave_center'|trans }}
     </a>
