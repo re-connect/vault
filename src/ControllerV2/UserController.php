@@ -79,7 +79,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userManager->remove($user);
             $request->getSession()->invalidate();
-            $tokenStorage->setToken();
+            $tokenStorage->setToken(null);
 
             return $this->redirectToRoute('re_main_login');
         }
