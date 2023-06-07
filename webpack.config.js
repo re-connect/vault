@@ -8,8 +8,12 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
-  .setOutputPath('public/build/')
-  .setPublicPath('/build')
+    // directory where compiled assets will be stored
+    .setOutputPath('public/build/')
+    // public path used by the web server to access the output path
+    .setPublicPath('/build')
+    // only needed for CDN's or subdirectory deploy
+    //.setManifestKeyPrefix('build/')
 
   .addEntry('app', './assets/js/app.js')
   .addEntry('app_pro', './assets/js/app-pro.js')
@@ -51,10 +55,16 @@ Encore
   .enableSourceMaps(Encore.isDevServer())
   .enableVersioning(!Encore.isDevServer())
 
-  .configureBabelPresetEnv((config) => {
-    config.useBuiltIns = 'usage';
-    config.corejs = 3;
-  })
+    // configure Babel
+    // .configureBabel((config) => {
+    //     config.plugins.push('@babel/a-babel-plugin');
+    // })
+
+    // enables and configure @babel/preset-env polyfills
+    .configureBabelPresetEnv((config) => {
+        config.useBuiltIns = 'usage';
+        config.corejs = '3.23';
+    })
 
   .copyFiles([
     { from: './assets/images', to: 'images/[path][name].[hash:8].[ext]' },
