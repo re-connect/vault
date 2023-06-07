@@ -69,13 +69,13 @@
 {% set userApp = {} %}
 {% if app.user %}
     {% set userApp = {
-        "email" : app.user.email,
-        "username": app.user.username,
-        "avatar": app.user.avatar ? asset(app.user.avatar, null, true) : '',
-        "createdAt": app.user.createdAt|reDate("%Y-%m-%d %H:%M:%S"),
-        "nom": app.user.nom,
-        "prenom": app.user.prenom,
-        "telephone": app.user.telephone
+        email : app.user.email,
+        username: app.user.username,
+        avatar: app.user.avatar ? asset(app.user.avatar, null, true) : '',
+        createdAt: app.user.createdAt|reDate("%Y-%m-%d %H:%M:%S"),
+        nom: app.user.nom,
+        prenom: app.user.prenom,
+        telephone: app.user.telephone
     } %}
 {% endif %}
 <input type="hidden" id="dataUserApp" value="{{ userApp | json_encode }}">
@@ -87,9 +87,6 @@
     {{ encore_entry_script_tags('app') }}
 {% endblock javascripts %}
 
-
 {% block stylesheets %}
-    {{ encore_entry_link_tags('style') }}
 {% endblock %}
-
 </html>
