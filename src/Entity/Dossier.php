@@ -41,7 +41,9 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     private ?string $dossierImage = null;
     /**
      * @Groups({ "read-personal-data", "read-personal-data-v2", "write-personal-data-v2" })
+     *
      * @ManyToOne(targetEntity="App\Entity\Dossier", inversedBy="sousDossiers")
+     *
      * @JoinColumn(name="dossier_parent_id")
      */
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]

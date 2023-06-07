@@ -15,6 +15,7 @@ class ExportController extends AbstractController
 {
     /**
      * @Route("/admin/exports", name="exports")
+     *
      * @IsGranted("ROLE_ADMIN")
      */
     public function export(Request $request, ExportService $service): Response

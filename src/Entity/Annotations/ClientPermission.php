@@ -8,19 +8,23 @@ use League\Bundle\OAuth2ServerBundle\Model\Client;
 
 /**
  * @ORM\Entity(repositoryClass=ClientPermissionRepository::class)
+ *
  * @ORM\Table(name="client_permission")
  */
 class ClientPermission
 {
     /**
      * @ORM\Id
+     *
      * @ORM\GeneratedValue
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=Client::class)
+     *
      * @ORM\JoinColumn(nullable=false, referencedColumnName="identifier")
      */
     private Client $client;
