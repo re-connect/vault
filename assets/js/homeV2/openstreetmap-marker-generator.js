@@ -1,6 +1,10 @@
 $(document).ready(($) => {
 
-    const map = L.map('reconnect-centers-map').setView([46.9, 1.4519], 5);
+    if (!document.getElementById('reconnect-centers-map')) {
+        return;
+    }
+    const map = L.map('reconnect-centers-map');
+    map.setView([46.9, 1.4519], 5);
     const greenIcon = L.icon({
         iconUrl: $('#reconnect-centers-map').data('marker'),
         iconSize: [25, 40],
