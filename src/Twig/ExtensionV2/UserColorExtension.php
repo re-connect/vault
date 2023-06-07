@@ -3,7 +3,7 @@
 namespace App\Twig\ExtensionV2;
 
 use App\ServiceV2\Traits\UserAwareTrait;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 

@@ -15,6 +15,7 @@ class ExportController extends AbstractController
 {
     /**
      * @Route("/admin/exports", name="exports")
+     *
      * @IsGranted("ROLE_ADMIN")
      */
     public function export(Request $request, ExportService $service): Response
@@ -25,7 +26,7 @@ class ExportController extends AbstractController
             return $service->saveExport($exportModel);
         }
 
-        return $this->renderForm('admin/export/index.html.twig', [
+        return $this->render('admin/export/index.html.twig', [
             'form' => $form,
         ]);
     }

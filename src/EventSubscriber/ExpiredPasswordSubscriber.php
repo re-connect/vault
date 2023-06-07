@@ -4,11 +4,11 @@ namespace App\EventSubscriber;
 
 use App\ServiceV2\GdprService;
 use App\ServiceV2\Traits\UserAwareTrait;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\Security\Core\Security;
 
 class ExpiredPasswordSubscriber implements EventSubscriberInterface
 {

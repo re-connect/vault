@@ -106,7 +106,7 @@ final class MembreBeneficiaireController extends REController
             }
         }
 
-        return $this->renderForm('user/membre-beneficiaire/ajoutBeneficiaireSearch.html.twig', [
+        return $this->render('user/membre-beneficiaire/ajoutBeneficiaireSearch.html.twig', [
             'form' => $form,
             'foundUsers' => $foundUsers,
         ]);

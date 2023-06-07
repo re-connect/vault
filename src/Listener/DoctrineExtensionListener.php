@@ -4,7 +4,7 @@ namespace App\Listener;
 
 use Gedmo\Loggable\LoggableListener;
 use Gedmo\Translatable\TranslatableListener;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class DoctrineExtensionListener
 {

@@ -11,7 +11,7 @@ use App\ServiceV2\NotificationService;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class BeneficiaryCreationManager
 {

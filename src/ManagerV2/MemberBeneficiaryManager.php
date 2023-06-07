@@ -6,7 +6,7 @@ use App\Entity\Beneficiaire;
 use App\Entity\ConsultationBeneficiaire;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class MemberBeneficiaryManager
 {

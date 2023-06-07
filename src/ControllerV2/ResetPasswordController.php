@@ -44,7 +44,7 @@ class ResetPasswordController extends AbstractController
             );
         }
 
-        return $this->renderForm('v2/reset_password/public/request.html.twig', ['form' => $form]);
+        return $this->render('v2/reset_password/public/request.html.twig', ['form' => $form]);
     }
 
     #[Route(path: '/sms', name: 'app_forgot_password_sms_request', methods: ['GET', 'POST'])]
@@ -68,7 +68,7 @@ class ResetPasswordController extends AbstractController
             }
         }
 
-        return $this->renderForm('v2/reset_password/public/request.html.twig', [
+        return $this->render('v2/reset_password/public/request.html.twig', [
             'form' => $form,
         ]);
     }
@@ -98,7 +98,7 @@ class ResetPasswordController extends AbstractController
             $this->addFlash('danger', 'public_reset_password_SMS_wrong_code');
         }
 
-        return $this->renderForm('v2/reset_password/public/request.html.twig', [
+        return $this->render('v2/reset_password/public/request.html.twig', [
             'form' => $form,
         ]);
     }
@@ -145,7 +145,7 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('re_main_login');
         }
 
-        return $this->renderForm('v2/reset_password/public/reset.html.twig', [
+        return $this->render('v2/reset_password/public/reset.html.twig', [
             'form' => $form,
             'isBeneficiaire' => $user->isBeneficiaire(),
         ]);
@@ -190,7 +190,7 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('re_main_login');
         }
 
-        return $this->renderForm('v2/reset_password/public/reset.html.twig', [
+        return $this->render('v2/reset_password/public/reset.html.twig', [
             'form' => $form,
             'isBeneficiaire' => $user->isBeneficiaire(),
         ]);

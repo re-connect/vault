@@ -91,7 +91,7 @@ class RelayController extends AbstractController
             return $this->redirectToRoute('list_relays', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/vault/relay/leave.html.twig', [
+        return $this->render('v2/vault/relay/leave.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
             'relay' => $relay,

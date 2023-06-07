@@ -55,7 +55,7 @@ class BeneficiaryCreationController extends AbstractController
             return $this->redirectToRoute('create_beneficiary', ['step' => $creationProcess->getNextUnfilledStep(), 'id' => $creationProcess->getId()]);
         }
 
-        return $this->renderForm('v2/user_creation/beneficiary/create_beneficiary_step.html.twig', [
+        return $this->render('v2/user_creation/beneficiary/create_beneficiary_step.html.twig', [
             'form' => $form,
             'beneficiaryCreationProcess' => $creationProcess,
             'beneficiary' => $beneficiary,

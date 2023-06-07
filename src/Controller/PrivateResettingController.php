@@ -76,7 +76,7 @@ class PrivateResettingController extends AbstractController
             $this->addFlash('error', 'public_reset_password_SMS_wrong_code');
         }
 
-        return $this->renderForm('user/resetting/private/sms.html.twig', [
+        return $this->render('user/resetting/private/sms.html.twig', [
             'userToReset' => $userToReset,
             'form' => $form,
         ]);
@@ -97,7 +97,7 @@ class PrivateResettingController extends AbstractController
             return $this->redirectToRoute('private_reset_password', ['id' => $userToReset->getId()]);
         }
 
-        return $this->renderForm('user/resetting/private/question.html.twig', [
+        return $this->render('user/resetting/private/question.html.twig', [
             'userToReset' => $userToReset,
             'form' => $form,
         ]);
@@ -123,7 +123,7 @@ class PrivateResettingController extends AbstractController
             $this->addFlash('success', 'public_reset_password_success');
         }
 
-        return $this->renderForm('user/resetting/private/random.html.twig', [
+        return $this->render('user/resetting/private/random.html.twig', [
             'userToReset' => $userToReset,
             'form' => $form,
             'newPassword' => $newPassword,

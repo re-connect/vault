@@ -19,7 +19,7 @@ class ProfessionalController extends AbstractController
     #[IsGranted('ROLE_MEMBRE')]
     public function listBeneficiaries(Request $request, BeneficiaireRepository $repository, PaginatorService $paginator): Response
     {
-        return $this->renderForm('v2/professional/beneficiaries.html.twig', [
+        return $this->render('v2/professional/beneficiaries.html.twig', [
             'beneficiaries' => $paginator->create(
                 $repository->findByAuthorizedProfessional($this->getUser()->getSubject()),
                 $request->query->getInt('page', 1),
@@ -47,7 +47,7 @@ class ProfessionalController extends AbstractController
         ])->handleRequest($request);
 
         return new JsonResponse([
-            'html' => $this->renderForm('v2/professional/_beneficiaries_list.html.twig', [
+            'html' => $this->render('v2/professional/_beneficiaries_list.html.twig', [
                 'beneficiaries' => $paginator->create(
                     $repository->filterByAuthorizedProfessional(
                         $this->getUser()->getSubject(),
