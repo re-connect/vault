@@ -12,7 +12,7 @@ use App\ServiceV2\MailerService;
 use App\ServiceV2\Traits\SessionsAwareTrait;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class SharedDocumentManager
 {

@@ -11,7 +11,7 @@ use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Doctrine\Persistence\ObjectManager;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class PersonalDataSubscriber implements EventSubscriberInterface, LogActivitySubscriberInterface
 {
