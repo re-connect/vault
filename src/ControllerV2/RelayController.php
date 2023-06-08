@@ -17,12 +17,8 @@ class RelayController extends AbstractController
     #[Route(path: '/mine', name: 'my_relays', methods: ['GET'])]
     public function relays(CentreRepository $repository): Response
     {
-        $user = $this->getUser();
-
         return $this->render('v2/vault/relay/index.html.twig', [
-            'beneficiary' => $user->getSubjectBeneficiaire(),
-            'relays' => $repository->findUserRelays($user),
-            'pendingRelays' => $repository->findUserRelays($user, false),
+            'relays' => $repository->findUserRelays($this->getUser()),
         ]);
     }
 

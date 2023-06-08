@@ -5,12 +5,13 @@
 {% block content %}
     <div class="max-width-lg mt-4 m-auto">
         {% block list %}
-            {{ relays is not empty or pendingRelays is not empty
-            ? include('v2/vault/relay/_list.html.twig', {relays, pendingRelays})
-            : include('v2/vault/components/_empty_list_content.html.twig', {
-                message: 'center_has_no_info'|trans,
-                img : asset('build/images/icons/relais_bleu.png')
-            }) }}
+            {{ relays is not empty
+                ? include('v2/vault/relay/_list.html.twig', {relays})
+                : include('v2/vault/components/_empty_list_content.html.twig', {
+                    message: 'center_has_no_info'|trans,
+                    img : asset('build/images/icons/relais_bleu.png')
+                })
+            }}
         {% endblock %}
     </div>
 {% endblock %}
