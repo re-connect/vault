@@ -1,24 +1,51 @@
 {% set menuItems = [
-    {icon: 'fa-trash', message: 'delete', path: delete.path, confirmAlertMessage: delete.message},
-    {icon: 'fa-pencil-alt', message: 'document' in editPath or 'folder' in editPath ? 'rename' : 'edit', path: editPath},
-    {icon: 'fa-info-circle', message: 'donneePersonnelle.information', path: detailPath},
+    {
+        icon: 'trash',
+        message: 'delete'|trans,
+        path: delete.path,
+        confirmAlertMessage: delete.message,
+    },
+    {
+        icon: 'pencil-alt',
+        message: 'document' in editPath or 'folder' in editPath ? 'rename'|trans : 'edit'|trans,
+        path: editPath,
+    },
+    {
+        icon: 'info-circle',
+        message: 'donneePersonnelle.information'|trans,
+        path: detailPath,
+    },
 ] %}
 
 {% if sendPath is defined %}
     {% set menuItems = menuItems|merge([
-        { icon: 'fa-paper-plane', message: 'send', path: sendPath },
+        {
+            icon:'paper-plane',
+            message: 'send'|trans,
+            path: sendPath,
+        },
     ]) %}
 {% endif %}
 
 {% if movePath is defined %}
     {% set menuItems = menuItems|merge([
-        {  icon: 'fa-folder-open', message: 'move', path : movePath},
+        {
+            icon: 'folder-open',
+            message: 'move'|trans,
+            path: movePath,
+        },
     ]) %}
 {% endif %}
 
 {% if not app.user.isBeneficiaire and switchPrivate %}
     {% set menuItems = menuItems|merge([
-        { icon: 'fa-exclamation-triangle', message: 'switch_content_private', path : switchPrivate.path,confirmAlertMessage: switchPrivate.message},
+        {
+            icon: 'exclamation-triangle',
+            message: 'switch_content_private'|trans,
+            path: switchPrivate.path,
+            confirmAlertMessage: switchPrivate.message,
+            confirmButtonText: 'accept'|trans,
+        },
     ]) %}
 {% endif %}
 
