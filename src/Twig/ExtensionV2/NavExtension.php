@@ -31,25 +31,25 @@ class NavExtension extends AbstractExtension
         $isBeneficiary = $user->isBeneficiaire();
         $navItems = [
             [
-                'itemKind' => 'document-folder',
+                'itemKind' => 'documents-folders',
                 'title' => $isBeneficiary ? 'my_documents' : 'documents',
                 'routeName' => 'list_documents',
                 'image' => 'build/images/icons/docs_bleu.png',
             ],
             [
-                'itemKind' => 'event',
+                'itemKind' => 'events',
                 'title' => $isBeneficiary ? 'my_events' : 'events',
                 'routeName' => 'list_events',
                 'image' => 'build/images/icons/rappels_bleu.png',
             ],
             [
-                'itemKind' => 'contact',
+                'itemKind' => 'contacts',
                 'title' => $isBeneficiary ? 'my_contacts' : 'contacts',
                 'routeName' => 'list_contacts',
                 'image' => 'build/images/icons/contacts_bleu.png',
             ],
             [
-                'itemKind' => 'note',
+                'itemKind' => 'notes',
                 'title' => $isBeneficiary ? 'my_notes' : 'notes',
                 'routeName' => 'list_notes',
                 'image' => 'build/images/icons/notes_bleu.png',
@@ -58,7 +58,7 @@ class NavExtension extends AbstractExtension
 
         if ($isBeneficiary) {
             $navItems[] = [
-                'itemKind' => 'relay',
+                'itemKind' => 'relays',
                 'title' => 'my_relays',
                 'routeName' => 'list_relays',
                 'image' => 'build/images/icons/relais_bleu.png',
