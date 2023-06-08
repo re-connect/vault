@@ -1,0 +1,9 @@
+{% extends 'v2/common/_modal.html.twig' %}
+
+{% block title %}
+    {{ notification.title|trans }}
+{% endblock %}
+
+{% block body %}
+    {{ notification.content|trans }}
+{% endblock %}

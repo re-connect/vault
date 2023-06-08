@@ -4,6 +4,7 @@ namespace App\ManagerV2;
 
 use App\Entity\Centre;
 use App\Entity\User;
+use App\Entity\UserCentre;
 use App\Repository\CentreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -52,7 +53,7 @@ class RelayManager
             : $this->relayRepository->findUserRelays($user, false);
     }
 
-    public function getFirstPendingRelay(?User $user): ?Centre
+    public function getFirstPendingRelay(?User $user): ?UserCentre
     {
         $relays = $this->getPendingRelays($user);
 

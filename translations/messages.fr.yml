@@ -1180,3 +1180,5 @@ your_phone_number: 'Votre numéro de téléphone'
 you_can_download_mobile_app: "Vous pouvez également télécharger l'application mobile"
 sms_sent_failed: "L'envoi du SMS a échoué, veuillez vérifier que le numéro de téléphone est valide"
 'yes': Oui
+missing_secret_question: Question secrète non renseignée
+missing_secret_question_text: Afin de faciliter la réinitialisation de votre mot de pas en cas de perte, veuillez renseigner une question secrète

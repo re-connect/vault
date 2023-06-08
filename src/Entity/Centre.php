@@ -147,7 +147,7 @@ class Centre implements \JsonSerializable
     #[Groups(['v3:center:read'])]
     public function getDistantIds(): ArrayCollection
     {
-        return !$this->externalLinks ? new ArrayCollection([]) : $this->externalLinks->map(fn(ClientCentre $clientCentre) => $clientCentre->getDistantId());
+        return !$this->externalLinks ? new ArrayCollection([]) : $this->externalLinks->map(fn (ClientCentre $clientCentre) => $clientCentre->getDistantId());
     }
 
     public function __construct()
