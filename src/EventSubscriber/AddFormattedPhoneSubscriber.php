@@ -24,9 +24,10 @@ class AddFormattedPhoneSubscriber implements EventSubscriberInterface
         }
 
         // If the form contains an intl-form-input field, it will have an additional 'formatted-number' field
-        // We get its data, and hydrate it into the 'telephone' field
+        // We get its data, and hydrate it into the new 'phone' field, or old 'telephone' field
         if (isset($user['formatted-number'])) {
-            $user['telephone'] = $user['formatted-number'];
+            $field = array_key_exists('phone', $user) ? 'phone' : 'telephone';
+            $user[$field] = $user['formatted-number'];
             unset($user['formatted-number']);
             $event->setData($user);
         }

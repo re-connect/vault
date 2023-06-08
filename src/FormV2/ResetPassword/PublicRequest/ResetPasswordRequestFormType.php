@@ -1,11 +1,10 @@
 <?php
 
-namespace App\FormV2;
+namespace App\FormV2\ResetPassword\PublicRequest;
 
 use App\EventSubscriber\AddFormattedPhoneSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,10 +16,10 @@ class ResetPasswordRequestFormType extends AbstractType
     {
         if ($options['sms']) {
             $builder
-                ->add('telephone', TelType::class, [
+                ->add('phone', TelType::class, [
                     'label' => 'resetting.public.textPhone',
                     'label_attr' => [
-                        'class' => 'w-75 text-primary mt-1 mb-3',
+                        'class' => 'w-75 mt-1 mb-3',
                     ],
                     'attr' => [
                         'class' => 'mb-4 intl-tel-input',
@@ -40,23 +39,21 @@ class ResetPasswordRequestFormType extends AbstractType
                     ],
                     'label' => 'resetting.public.text',
                     'label_attr' => [
-                        'class' => 'w-75 text-primary mt-1 mb-3',
+                        'class' => 'w-75 mt-1 mb-3',
                     ],
                     'attr' => [
-                        'class' => 'w-50 mx-auto text-primary mb-2',
+                        'class' => 'w-50 mx-auto mb-2',
                         'placeholder' => 'email',
                     ],
                 ]);
         }
-        $builder
-            ->add('submitFormReset', SubmitType::class, [
-                'label' => 'confirm',
-                'attr' => ['class' => 'btn btn-primary mt-3'],
-            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['sms' => false]);
+        $resolver->setDefaults([
+            'data_class' => ResetPasswordRequestFormModel::class,
+            'sms' => false,
+        ]);
     }
 }
