@@ -10,25 +10,29 @@
       border-radius: 15px;
     }
 
+    .nav-link {
+      padding: 0.5rem 1rem;
+    }
+
     .nav-link:hover,
     .current-item {
-      .img-document-folder {
+      .img-documents-folders {
         content: url('../../images/icons/docs_blanc.png');
       }
 
-      .img-contact {
+      .img-contacts {
         content: url('../../images/icons/contacts_blanc.png');
       }
 
-      .img-event {
+      .img-events {
         content: url('../../images/icons/rappels_blanc.png');
       }
 
-      .img-note {
+      .img-notes {
         content: url('../../images/icons/notes_blanc.png');
       }
 
-      .img-relay {
+      .img-relays {
         content: url('../../images/icons/relais_blanc.png');
       }
     }
