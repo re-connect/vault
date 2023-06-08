@@ -27,7 +27,7 @@
                 </div>
                 <div class="modal-footer text-end">
                     <a href="{{ path('relay_deny', {'id': user.id, 'relayId': pendingRelay.id}) }}"
-                       class="btn btn-outline-black me-2">
+                       class="btn btn-light-black text-decoration-underline me-2">
                         {{ 'main.refuser'|trans }}
                     </a>
                     <a href="{{ path('relay_accept', {'id': user.id, 'relayId': pendingRelay.id}) }}"

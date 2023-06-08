@@ -1,14 +1,14 @@
 <li class="list-group-item hover p-0 border-0 my-1 d-grid gap-2">
     <a href="{{ item.path }}" class="btn p-0 text-primary text-start ps-3"
             {% if item.confirmAlertMessage is defined %}
-                    {{ stimulus_controller('alert', {
-                        confirmButtonText: 'accept'|trans,
-                        cancelButtonText: 'cancel'|trans,
-                        message: item.confirmAlertMessage,
-                        url: item.path,
-                        }) }}
-                    {{ stimulus_action('alert', 'confirm') }}
+                {{ stimulus_controller('alert', {
+                    confirmButtonText: item.confirmButtonText is defined ? item.confirmButtonText : 'delete'|trans,
+                    cancelButtonText: 'cancel'|trans,
+                    message: item.confirmAlertMessage,
+                    url: item.path,
+                }) }}
+                {{ stimulus_action('alert', 'confirm') }}
             {% endif %}>
-        <i class="fas {{ item.icon }} pe-2"></i>{{ menuItem.message|trans }}
+        <i class="fas fa-{{ item.icon }} pe-2"></i>{{ menuItem.message }}
     </a>
 </li>
