@@ -15,11 +15,11 @@ class RelayUniqueValidator extends ConstraintValidator
     public function validate(mixed $value, Constraint $constraint)
     {
         $duplicates = $this->getDuplicates($value);
-        foreach ($duplicates as $duplicate) {
-            $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ relay }}', $duplicate)
-                ->addViolation();
-        }
+        array_map(fn ($duplicate) => $this->context->buildViolation($constraint->message)
+            ->setParameter('{{ relay }}', $duplicate)
+            ->addViolation(),
+            $duplicates,
+        );
     }
 
     /**
