@@ -4,8 +4,6 @@ namespace App\Tests\v2\Controller\BeneficiaryResetPasswordController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
-use App\Repository\BeneficiaireRepository;
-use App\Security\HelperV2\UserHelper;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;

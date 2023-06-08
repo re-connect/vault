@@ -5,9 +5,7 @@ namespace App\Tests\v2\Controller\BeneficiaryAffiliationController;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\BeneficiaireFactory;
-use App\Tests\Factory\MembreFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
-use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
 
 class DisaffiliateTest extends AbstractControllerTest implements TestRouteInterface

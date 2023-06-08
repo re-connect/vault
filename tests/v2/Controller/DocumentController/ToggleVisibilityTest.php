@@ -4,13 +4,11 @@ namespace App\Tests\v2\Controller\DocumentController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
-use App\Entity\User;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\DocumentFactory;
 use App\Tests\Factory\FolderFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
 class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteInterface
 {
