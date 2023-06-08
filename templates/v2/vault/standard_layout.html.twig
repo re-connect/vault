@@ -1,6 +1,7 @@
 {% extends 'v2/base.html.twig' %}
 
 {% block body %}
-    {{ render(controller('App\\ControllerV2\\HomeController::renderBeneficiaryNav', {beneficiary: beneficiary ?: null})) }}
+    {% set beneficiary = beneficiary is defined ? beneficiary : null %}
+    {{ render(controller('App\\ControllerV2\\HomeController::renderBeneficiaryNav', {beneficiary})) }}
     {% block content %}{% endblock %}
 {% endblock %}
