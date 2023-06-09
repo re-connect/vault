@@ -22,10 +22,7 @@
 
 <main role="main" class="position-relative {% block bodyColor %}{{ getUserBackgroundColor() }}{% endblock %} pb-5">
     {{ include('v2/flashMessages.html.twig') }}
-    {% block notifications %}
-        {{ getRelayInvitationNotifications() }}
-        {{ include('v2/common/_notifications.html.twig') }}
-    {% endblock %}
+    {% block notifications %}{{ include('v2/common/_notifications.html.twig') }}{% endblock %}
 
     {% block body %}{% endblock body %}
 </main>

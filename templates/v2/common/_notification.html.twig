@@ -4,6 +4,23 @@
     {{ notification.title|trans }}
 {% endblock %}
 
-{% block body %}
-    {{ notification.content|trans }}
+{% block subtitle %}
+    {{ notification.subtitle|trans }}
+{% endblock %}
+
+{% block content %}
+    {{ notification.content|raw }}
+{% endblock %}
+
+{% block icon %}
+    <i class="fa fa-hotel text-primary me-1"></i>
+{% endblock %}
+
+{% block footer %}
+    {% for action in notification.actions %}
+        <a href="{{ action.path }}"
+           class="btn btn-{{ action.color }} me-2 text-{{ action.color == 'light' ? 'decoration-underline' : 'white' }}">
+            {{ action.label|trans }}
+        </a>
+    {% endfor %}
 {% endblock %}

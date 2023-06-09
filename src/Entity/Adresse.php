@@ -86,8 +86,19 @@ class Adresse implements \JsonSerializable
         return sprintf(
             '%s %s %s %s',
             $this->nom,
-            $this->ville,
             $this->codePostal,
+            $this->ville,
+            $this->pays
+        );
+    }
+
+    public function toHTML(): string
+    {
+        return sprintf(
+            '%s <br/>%s %s <br/>%s',
+            $this->nom,
+            $this->codePostal,
+            $this->ville,
             $this->pays
         );
     }
