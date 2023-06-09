@@ -31,7 +31,7 @@ class SharedDocumentController extends AbstractController
                 $request->getLocale(),
             );
 
-            return $this->redirectToRoute('document_list', ['id' => $document->getBeneficiaire()->getId()]);
+            return $this->redirectToRoute('list_documents', ['id' => $document->getBeneficiaire()->getId()]);
         }
 
         return $this->renderForm('v2/vault/document/share.html.twig', [

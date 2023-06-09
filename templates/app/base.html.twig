@@ -36,19 +36,19 @@
                                 -->
                                 <ul id="menu">
                                     <li>
-                                        <a class="pl-5 text-primary" href="{{ path('re_app_document_list', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.mesDocuments'|trans }}</a>
+                                        <a class="pl-5 text-primary" href="{{ path('list_documents', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.mesDocuments'|trans }}</a>
                                     </li>
                                     <li>
-                                        <a class="pl-5 text-primary" href="{{ path('re_app_evenement_list', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.monCalendrier'|trans }}</a>
+                                        <a class="pl-5 text-primary" href="{{ path('list_events', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.monCalendrier'|trans }}</a>
                                     </li>
                                     <li>
-                                        <a class="pl-5 text-primary" href="{{ path('contact_list', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.mesContacts'|trans}}</a>
+                                        <a class="pl-5 text-primary" href="{{ path('list_contacts', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.mesContacts'|trans}}</a>
                                     </li>
                                     <li>
-                                        <a class="pl-5 text-primary" href="{{ path('re_app_note_list', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.mesNotes'|trans}}</a>
+                                        <a class="pl-5 text-primary" href="{{ path('list_notes', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.mesNotes'|trans}}</a>
                                     </li>
                                     <li>
-                                        <a class="pl-5 text-primary" href="{{ path('re_app_centres', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.mesRelaisReconnect'|trans}}</a>
+                                        <a class="pl-5 text-primary" href="{{ path('list_relays', {'id': beneficiaire.id }) }}">{{ 'beneficiaire.menu.mesRelaisReconnect'|trans}}</a>
                                     </li>
                                 </ul>
 

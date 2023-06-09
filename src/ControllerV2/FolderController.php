@@ -2,11 +2,10 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Beneficiaire;
 use App\Entity\Dossier;
 use App\FormV2\FolderType;
-use App\FormV2\SearchType;
-use App\ManagerV2\DocumentManager;
+use App\FormV2\Search\SearchType;
+use App\ManagerV2\FolderableItemManager;
 use App\ManagerV2\FolderManager;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,97 +23,23 @@ class FolderController extends AbstractController
     public function list(
         Request $request,
         Dossier $folder,
-        DocumentManager $documentManager,
+        FolderableItemManager $manager,
         PaginatorService $paginator,
     ): Response {
         $beneficiary = $folder->getBeneficiaire();
         $searchForm = $this->createForm(SearchType::class, null, [
             'attr' => ['data-controller' => 'ajax-list-filter'],
-            'action' => $this->generateUrl('folder_search', ['id' => $beneficiary->getId(), 'folderId' => $folder->getId()]),
+            'action' => $this->generateUrl('search_folders', ['id' => $beneficiary->getId(), 'parentFolderId' => $folder->getId()]),
         ]);
 
         return $this->renderForm('v2/vault/document/index.html.twig', [
             'beneficiary' => $beneficiary,
             'foldersAndDocuments' => $paginator->create(
-                $this->isLoggedInUser($beneficiary->getUser())
-                    ? $documentManager->getAllFoldersAndDocumentsWithUrl($beneficiary, $folder)
-                    : [],
+                $manager->getFoldersAndDocumentsWithUrl($beneficiary, $folder),
                 $request->query->getInt('page', 1),
             ),
             'currentFolder' => $folder,
             'form' => $searchForm,
-        ]);
-    }
-
-    #[Route(
-        path: '/beneficiary/{id}/folder/{folderId}/search',
-        name: 'folder_search',
-        requirements: ['id' => '\d+', 'folderId' => '\d+'],
-        methods: ['POST'],
-        condition: 'request.isXmlHttpRequest()',
-    )]
-    #[ParamConverter('folder', class: 'App\Entity\Dossier', options: ['id' => 'folderId'])]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function search(
-        Request $request,
-        Beneficiaire $beneficiary,
-        Dossier $folder,
-        DocumentManager $documentManager,
-        PaginatorService $paginator,
-    ): JsonResponse {
-        $this->denyAccessUnlessGranted('UPDATE', $folder);
-
-        $searchForm = $this->createForm(SearchType::class, null, [
-            'attr' => ['data-controller' => 'ajax-list-filter'],
-            'action' => $this->generateUrl('folder_search', ['id' => $beneficiary->getId(), 'folderId' => $folder->getId()]),
-        ])->handleRequest($request);
-
-        $search = $searchForm->get('search')->getData();
-
-        return new JsonResponse([
-            'html' => $this->renderForm('v2/vault/document/_list.html.twig', [
-                'foldersAndDocuments' => $paginator->create(
-                    $this->isLoggedInUser($beneficiary->getUser())
-                        ? $documentManager->searchFoldersAndDocumentsWithUrl($beneficiary, $search, $folder)
-                        : [],
-                    $request->query->getInt('page', 1),
-                ),
-                'beneficiary' => $beneficiary,
-                'form' => $searchForm,
-            ])->getContent(),
-        ]);
-    }
-
-    #[Route(
-        path: 'beneficiary/{id}/folder/create',
-        name: 'folder_create',
-        requirements: ['id' => '\d+'],
-        methods: ['GET', 'POST'],
-    )]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function create(
-        Request $request,
-        Beneficiaire $beneficiary,
-        EntityManagerInterface $em,
-        FolderManager $manager
-    ): Response {
-        $folder = (new Dossier())->setBeneficiaire($beneficiary);
-        $form = $this->createForm(FolderType::class, $folder, [
-            'action' => $this->generateUrl('folder_create', ['id' => $beneficiary->getId()]),
-            'private' => $this->getUser() === $beneficiary->getUser(),
-        ])->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($folder);
-            $em->flush();
-
-            return $this->redirectToRoute('document_list', ['id' => $beneficiary->getId()]);
-        }
-
-        return $this->renderForm('v2/vault/folder/create.html.twig', [
-            'form' => $form,
-            'beneficiary' => $beneficiary,
-            'autocompleteNames' => $manager->getAutocompleteFolderNames(),
         ]);
     }
 
@@ -145,7 +70,7 @@ class FolderController extends AbstractController
     }
 
     #[Route(
-        path: '/folders/{id}/move-to-folder/{folderId?}',
+        path: '/folder/{id}/move-to-folder/{folderId?}',
         name: 'folder_move_to_folder',
         requirements: ['id' => '\d+', 'folderId' => '\d+'],
         options: ['expose' => true],
@@ -156,7 +81,7 @@ class FolderController extends AbstractController
     public function moveToFolder(
         Request $request,
         Dossier $folder,
-        FolderManager $manager,
+        FolderableItemManager $manager,
         ?Dossier $parentFolder = null,
     ): Response {
         if ($parentFolder) {
@@ -175,15 +100,14 @@ class FolderController extends AbstractController
         requirements: ['id' => '\d+'],
         methods: ['GET', 'PATCH'],
     )]
-    #[IsGranted('UPDATE', 'folder')]
+    #[IsGranted('TOGGLE_VISIBILITY', 'folder')]
     public function toggleVisibility(Request $request, Dossier $folder, FolderManager $manager): Response
     {
-        $parentFolder = $folder->getDossierParent();
         $manager->toggleVisibility($folder);
 
         return $request->isXmlHttpRequest()
             ? new JsonResponse($folder)
-            : $this->getFolderPageRedirection($folder, $parentFolder);
+            : $this->redirectToRoute('list_documents', ['id' => $folder->getBeneficiaireId()]);
     }
 
     #[Route(
@@ -261,14 +185,12 @@ class FolderController extends AbstractController
         methods: ['GET'],
     )]
     #[IsGranted('UPDATE', 'folder')]
-    public function treeViewMove(Dossier $folder): Response
+    public function treeViewMove(Dossier $folder, FolderManager $folderManager): Response
     {
         $beneficiary = $folder->getBeneficiaire();
 
         return $this->render('v2/vault/folder/tree_view.html.twig', [
-            'folders' => $this->isLoggedInUser($beneficiary->getUser())
-                ? $beneficiary->getRootFolders()
-                : [],
+            'folders' => $folderManager->getRootFolders($beneficiary),
             'element' => $folder,
             'beneficiary' => $beneficiary,
         ]);
@@ -278,6 +200,6 @@ class FolderController extends AbstractController
     {
         return $parentFolder
             ? $this->redirectToRoute('folder', ['id' => $parentFolder->getId()])
-            : $this->redirectToRoute('document_list', ['id' => $folder->getBeneficiaireId()]);
+            : $this->redirectToRoute('list_documents', ['id' => $folder->getBeneficiaireId()]);
     }
 }

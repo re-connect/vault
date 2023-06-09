@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Beneficiaire;
 use App\Entity\Note;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,64 +20,26 @@ class NoteRepository extends ServiceEntityRepository
         parent::__construct($registry, Note::class);
     }
 
-    private function findByBeneficiaryQueryBuilder(Beneficiaire $beneficiary): QueryBuilder
+    /**
+     * @return Note[]
+     */
+    public function findByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, string $search = null): array
     {
-        return $this->createQueryBuilder('n')
+        $qb = $this->createQueryBuilder('n')
             ->andWhere('n.beneficiaire = :beneficiary')
-            ->setParameter('beneficiary', $beneficiary)
-            ->orderBy('n.createdAt', 'DESC');
-    }
+            ->orderBy('n.createdAt', 'DESC')
+            ->setParameter('beneficiary', $beneficiary);
 
-    private function searchByBeneficiaryQueryBuilder(Beneficiaire $beneficiary, ?string $word): QueryBuilder
-    {
-        return $this->createQueryBuilder('n')
-            ->andWhere('n.beneficiaire = :beneficiary')
-            ->andWhere('n.nom LIKE :word OR n.contenu LIKE :word')
-            ->setParameters([
-                'beneficiary' => $beneficiary,
-                'word' => sprintf('%%%s%%', $word),
-            ])->orderBy('n.createdAt', 'DESC');
-    }
+        if ($search) {
+            $qb->andWhere('n.nom LIKE :search OR n.contenu LIKE :search')
+                ->setParameter('search', sprintf('%%%s%%', $search));
+        }
 
-    /**
-     * @return Note[]
-     */
-    public function findAllByBeneficiary(Beneficiaire $beneficiary): array
-    {
-        return $this->findByBeneficiaryQueryBuilder($beneficiary)
-            ->getQuery()
-            ->getResult();
-    }
+        if (!$isOwner) {
+            $qb->andWhere('n.bPrive = FALSE');
+        }
 
-    /**
-     * @return Note[]
-     */
-    public function findSharedByBeneficiary(Beneficiaire $beneficiary): array
-    {
-        return $this->findByBeneficiaryQueryBuilder($beneficiary)
-            ->andWhere('n.bPrive = FALSE')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @return Note[]
-     */
-    public function searchByBeneficiary(Beneficiaire $beneficiary, ?string $word): array
-    {
-        return $this->searchByBeneficiaryQueryBuilder($beneficiary, $word)
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @return Note[]
-     */
-    public function searchSharedByBeneficiary(Beneficiaire $beneficiary, ?string $word): array
-    {
-        return $this->searchByBeneficiaryQueryBuilder($beneficiary, $word)
-            ->andWhere('n.bPrive = FALSE')
-            ->getQuery()
+        return $qb->getQuery()
             ->getResult();
     }
 }

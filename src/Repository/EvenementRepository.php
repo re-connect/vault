@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Beneficiaire;
 use App\Entity\Evenement;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,73 +20,29 @@ class EvenementRepository extends ServiceEntityRepository
         parent::__construct($registry, Evenement::class);
     }
 
-    private function findFutureEventsByBeneficiaryQueryBuilder(Beneficiaire $beneficiary): QueryBuilder
+    /**
+     * @return Evenement[]
+     */
+    public function findFutureEventsByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, string $search = null): array
     {
-        return $this->createQueryBuilder('e')
+        $qb = $this->createQueryBuilder('e')
             ->leftJoin('e.rappels', 'r')
             ->andWhere('e.beneficiaire = :beneficiary')
             ->andWhere('e.date > :date')
             ->orderBy('e.date', 'ASC')
-            ->setParameters([
-                'beneficiary' => $beneficiary,
-                'date' => new \DateTime(),
-            ]);
-    }
+            ->setParameter('beneficiary', $beneficiary)
+            ->setParameter('date', new \DateTime());
 
-    private function searchFutureEventsByBeneficiaryQueryBuilder(Beneficiaire $beneficiary, ?string $word): QueryBuilder
-    {
-        return $this->createQueryBuilder('e')
-            ->leftJoin('e.rappels', 'r')
-            ->andWhere('e.beneficiaire = :beneficiary')
-            ->andWhere('e.nom LIKE :word OR e.commentaire LIKE :word OR e.date LIKE :word')
-            ->andWhere('e.date > :date')
-            ->orderBy('e.date', 'ASC')
-            ->setParameters([
-                'beneficiary' => $beneficiary,
-                'word' => sprintf('%%%s%%', $word),
-                'date' => new \DateTime(),
-            ]);
-    }
+        if ($search) {
+            $qb->andWhere('e.nom LIKE :search OR e.commentaire LIKE :search OR e.date LIKE :search')
+                ->setParameter('search', sprintf('%%%s%%', $search));
+        }
 
-    /**
-     * @return Evenement[]
-     */
-    public function findFutureEventsByBeneficiary(Beneficiaire $beneficiary): array
-    {
-        return $this->findFutureEventsByBeneficiaryQueryBuilder($beneficiary)
-            ->getQuery()
-            ->getResult();
-    }
+        if (!$isOwner) {
+            $qb->andWhere('e.bPrive = FALSE');
+        }
 
-    /**
-     * @return Evenement[]
-     */
-    public function findSharedFutureEventsByBeneficiary(Beneficiaire $beneficiary): array
-    {
-        return $this->findFutureEventsByBeneficiaryQueryBuilder($beneficiary)
-            ->andWhere('e.bPrive = FALSE')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @return Evenement[]
-     */
-    public function searchFutureEventsByBeneficiary(Beneficiaire $beneficiary, string $word): array
-    {
-        return $this->searchFutureEventsByBeneficiaryQueryBuilder($beneficiary, $word)
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @return Evenement[]
-     */
-    public function searchSharedFutureEventsByBeneficiary(Beneficiaire $beneficiary, string $word): array
-    {
-        return $this->searchFutureEventsByBeneficiaryQueryBuilder($beneficiary, $word)
-            ->andWhere('e.bPrive = FALSE')
-            ->getQuery()
+        return $qb->getQuery()
             ->getResult();
     }
 }

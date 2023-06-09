@@ -6,10 +6,8 @@
 
 {% block subTitle %}
     <span class="transform-uppercase">
-        {{ 'steps_count'|trans({'%step%': beneficiaryCreationProcess.currentStep, '%totalSteps%': beneficiaryCreationProcess.totalSteps}) }}
-        <span class="text-blue">
-            {{ beneficiaryCreationProcess.stepTitle|trans }}
-        </span>
+        {{ 'steps_count'|trans({'%step%': beneficiaryCreationProcess.currentStep, '%totalSteps%': beneficiaryCreationProcess.totalSteps}) }} :
+        {{ beneficiaryCreationProcess.stepTitle|trans }}
     </span>
 {% endblock %}
 
@@ -43,9 +41,7 @@
                 <i class="fas fa-4x fa-mobile-alt text-primary"></i>
             </div>
             <div class="col-sm-5">
-                <span>
-                    {{ 'confirm_beneficiary_creation_remotely'|trans|nl2br }}
-                </span>
+                <span>{{ 'confirm_beneficiary_creation_remotely'|trans|nl2br }}</span>
             </div>
         </div>
     {% endif %}

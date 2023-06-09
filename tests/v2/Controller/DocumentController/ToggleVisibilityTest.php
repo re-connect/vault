@@ -7,6 +7,7 @@ use App\DataFixtures\v2\MemberFixture;
 use App\Entity\User;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\DocumentFactory;
+use App\Tests\Factory\FolderFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -47,5 +48,24 @@ class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteIn
             $newUrl = sprintf(self::URL, $newDocument->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
         }
+    }
+
+    public function provideTestCanNotToggleVisibiltyWithParentFolder(): ?\Generator
+    {
+        yield 'Should return 403 status code when authenticated as beneficiaire and document has parent folder' => [
+            BeneficiaryFixture::BENEFICIARY_MAIL,
+        ];
+        yield 'Should return 403 status code when authenticated as member with relay in common and document has parent folder' => [
+            MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES,
+        ];
+    }
+
+    /** @dataProvider provideTestCanNotToggleVisibiltyWithParentFolder */
+    public function testCanNotToggleVisibiltyWithParentFolder(string $userMail): void
+    {
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'dossier' => FolderFactory::random()])->object();
+
+        $this->assertRoute(sprintf(self::URL, $document->getId()), 403, $userMail, null, 'PATCH', true);
     }
 }

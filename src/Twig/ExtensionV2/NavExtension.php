@@ -33,25 +33,25 @@ class NavExtension extends AbstractExtension
             [
                 'itemKind' => 'document-folder',
                 'title' => $isBeneficiary ? 'my_documents' : 'documents',
-                'routeName' => 're_app_document_list',
+                'routeName' => 'list_documents',
                 'image' => 'build/images/icons/docs_bleu.png',
             ],
             [
                 'itemKind' => 'event',
                 'title' => $isBeneficiary ? 'my_events' : 'events',
-                'routeName' => 'event_list',
+                'routeName' => 'list_events',
                 'image' => 'build/images/icons/rappels_bleu.png',
             ],
             [
                 'itemKind' => 'contact',
                 'title' => $isBeneficiary ? 'my_contacts' : 'contacts',
-                'routeName' => 'contact_list',
+                'routeName' => 'list_contacts',
                 'image' => 'build/images/icons/contacts_bleu.png',
             ],
             [
                 'itemKind' => 'note',
                 'title' => $isBeneficiary ? 'my_notes' : 'notes',
-                'routeName' => 'note_list',
+                'routeName' => 'list_notes',
                 'image' => 'build/images/icons/notes_bleu.png',
             ],
         ];
@@ -60,7 +60,7 @@ class NavExtension extends AbstractExtension
             $navItems[] = [
                 'itemKind' => 'relay',
                 'title' => 'my_relays',
-                'routeName' => 'relay_list',
+                'routeName' => 'list_relays',
                 'image' => 'build/images/icons/relais_bleu.png',
             ];
         }

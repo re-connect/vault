@@ -2,21 +2,41 @@
 
 namespace App\ManagerV2;
 
+use App\Entity\Beneficiaire;
 use App\Entity\Evenement;
 use App\Entity\Rappel;
+use App\Repository\EvenementRepository;
 use App\Repository\RappelRepository;
 use App\ServiceV2\NotificationService;
+use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Security\Core\Security;
 
 class EventManager
 {
+    use UserAwareTrait;
+
     public function __construct(
         private readonly EntityManagerInterface $em,
         private readonly NotificationService $notificator,
         private readonly RappelRepository $reminderRepository,
+        private readonly EvenementRepository $eventRepository,
         private readonly LoggerInterface $logger,
+        private Security $security
     ) {
+    }
+
+    /**
+     * @return Evenement[]
+     */
+    public function getEvents(Beneficiaire $beneficiary, string $search = null): array
+    {
+        return $this->eventRepository->findFutureEventsByBeneficiary(
+            $beneficiary,
+            $this->isLoggedInUser($beneficiary->getUser()),
+            $search
+        );
     }
 
     public function toggleVisibility(Evenement $event): void

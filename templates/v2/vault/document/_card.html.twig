@@ -32,7 +32,9 @@
                 'path': path('document_delete', {'id': document.id}),
                 'message': 'modal_message_document_deletev2'|trans({'%name%': document.nom}),
             },
-            'switchPrivate': {
+            'switchPrivate': document.dossier
+            ? null
+            : {
                 'path': path('document_toggle_visibility', {'id': document.id}),
                 'message': 'switch_content_private_confirm'|trans,
             },

@@ -29,8 +29,10 @@ span.spinner-border.d-none-not-important {
 
 .relay-checkboxes > div {
   display: flex;
+  justify-content: center;
 
   .form-check {
+    max-width: 300px;
     cursor: pointer;
     flex-grow: 1;
     padding: 15px;
@@ -49,5 +51,12 @@ span.spinner-border.d-none-not-important {
         display: block;
       }
     }
+  }
+}
+
+.rounded-card {
+  border-radius: 0.5rem;
+  .card-header {
+    border-radius: 0.5rem 0.5rem 0 0;
   }
 }

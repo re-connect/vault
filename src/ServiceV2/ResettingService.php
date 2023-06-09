@@ -4,7 +4,6 @@ namespace App\ServiceV2;
 
 use App\Entity\Annotations\ResetPasswordRequest;
 use App\Entity\User;
-use App\Manager\MailManager;
 use App\RepositoryV2\ResetPasswordRequestRepository;
 use App\Service\TokenGeneratorInterface;
 use App\ServiceV2\Traits\SessionsAwareTrait;
@@ -22,7 +21,7 @@ class ResettingService
     use SessionsAwareTrait;
 
     public function __construct(
-        private readonly MailManager $mailManager,
+        private readonly MailerService $mailerService,
         private readonly ResetPasswordRequestRepository $repository,
         private readonly TokenGeneratorInterface $tokenGenerator,
         private readonly EntityManagerInterface $em,
@@ -34,7 +33,7 @@ class ResettingService
 
     public function handleEmailSend(User $user, ResetPasswordToken $token, string $locale): void
     {
-        $this->mailManager->sendResettingEmailMessageV2($user, $token, $locale);
+        $this->mailerService->sendResettingEmailMessage($user, $token, $locale);
     }
 
     public function generateSmsCodeAndToken(User $user): void
@@ -137,7 +136,7 @@ class ResettingService
             $this->addFlashMessage(
                 'danger',
                 0 === $usersCount
-                    ? 'resetting.public.existePasPhone'
+                    ? 'phone_does_not_exist'
                     : 'phone_duplicate'
             );
 

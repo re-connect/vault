@@ -1,0 +1,39 @@
+<h4 class="text-center mt-4 mb-5">{{ 'choose_reset_password_method'|trans }} :</h4>
+<div class="row mt-4">
+    <div class="col-12 col-md-4 mt-3 mt-md-0">
+        {% set hasNoSecretAnswer = beneficiary.reponseSecrete == null %}
+        {{ include('v2/common/_card.html.twig', {
+            title: 'secret_question'|trans,
+            iconName: 'user-lock',
+            helpText: 'beneficiary_will_give_you_secret_answer'|trans,
+            buttonPath: "#",
+            buttonText: 'reset'|trans,
+            isDisabled: hasNoSecretAnswer,
+            tooltipMessage: hasNoSecretAnswer ? 'beneficiary_has_no_secret_answer'|trans : null,
+        }) }}
+    </div>
+    <div class="col-12 col-md-4 mt-3 mt-md-0">
+        {% set hasNoEmail = beneficiary.user.email == null %}
+        {{ include('v2/common/_card.html.twig', {
+            title: 'email'|trans,
+            iconName: 'envelope',
+            helpText: 'beneficiary_will_receive_email_reset_request'|trans,
+            buttonPath: path('reset_password_beneficiary_email', {id: beneficiary.id}),
+            buttonText: 'reset'|trans,
+            isDisabled: hasNoEmail,
+            tooltipMessage: hasNoEmail ? 'beneficiary_has_no_email'|trans : null,
+        }) }}
+    </div>
+    <div class="col-12 col-md-4 mt-3 mt-md-0">
+        {% set hasNoPhoneNumber = beneficiary.user.telephone == null %}
+        {{ include('v2/common/_card.html.twig', {
+            title: 'sms'|trans,
+            iconName: 'mobile-alt',
+            helpText: 'beneficiary_will_receive_sms_reset_request'|trans,
+            buttonPath: "#",
+            buttonText: 'reset'|trans,
+            isDisabled: hasNoPhoneNumber,
+            tooltipMessage: hasNoPhoneNumber ? 'beneficiary_has_no_phone_number'|trans : null,
+        }) }}
+    </div>
+</div>

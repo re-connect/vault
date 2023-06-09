@@ -6,7 +6,6 @@ use App\Entity\Beneficiaire;
 use App\Entity\Document;
 use App\Entity\Dossier;
 use App\Repository\DocumentRepository;
-use App\Repository\DossierRepository;
 use App\ServiceV2\BucketService;
 use App\ServiceV2\Traits\SessionsAwareTrait;
 use App\ServiceV2\Traits\UserAwareTrait;
@@ -29,7 +28,6 @@ class DocumentManager
     public function __construct(
         private readonly FlysystemS3Client $s3Client,
         private readonly DocumentRepository $repository,
-        private readonly DossierRepository $folderRepository,
         private readonly EntityManagerInterface $em,
         private Security $security,
         private readonly LoggerInterface $logger,
@@ -42,17 +40,16 @@ class DocumentManager
     /**
      * @return Document[]
      */
-    public function getAllDocumentsWithUrl(Beneficiaire $beneficiary, ?Dossier $folder = null): array
+    public function getDocumentsWithUrl(Beneficiaire $beneficiary, Dossier $folder = null, string $search = null): array
     {
-        return $this->getDocumentsWithUrl($this->repository->findAllByBeneficiary($beneficiary, $folder));
-    }
-
-    /**
-     * @return Document[]
-     */
-    public function getSharedDocumentsWithUrl(Beneficiaire $beneficiary, ?Dossier $folder = null): array
-    {
-        return $this->getDocumentsWithUrl($this->repository->findSharedByBeneficiary($beneficiary, $folder));
+        return $this->hydrateDocumentsAndThumbnailWithUrl(
+            $this->repository->findByBeneficiary(
+                $beneficiary,
+                $this->isLoggedInUser($beneficiary->getUser()),
+                $folder,
+                $search,
+            )
+        );
     }
 
     /**
@@ -60,16 +57,12 @@ class DocumentManager
      *
      * @return Document[]
      */
-    public function getDocumentsWithUrl(array $documents): array
+    public function hydrateDocumentsAndThumbnailWithUrl(array $documents): array
     {
-        foreach ($documents as $document) {
-            $this->getDocumentWithUrl($document);
-        }
-
-        return $documents;
+        return array_map(fn (Document $document) => $this->hydrateDocumentAndThumbnailWithUrl($document), $documents);
     }
 
-    public function getDocumentWithUrl(Document $document): Document
+    public function hydrateDocumentAndThumbnailWithUrl(Document $document): Document
     {
         $document->setPresignedUrl($this->s3Client->getPresignedUrl($document->getObjectKey()));
         if ($document->getThumbnailKey()) {
@@ -77,64 +70,6 @@ class DocumentManager
         }
 
         return $document;
-    }
-
-    /**
-     * @return array<Document|Dossier>
-     */
-    public function getAllFoldersAndDocumentsWithUrl(Beneficiaire $beneficiary, ?Dossier $parentFolder = null): array
-    {
-        return [
-            ...$this->folderRepository->findAllByBeneficiary($beneficiary, $parentFolder),
-            ...$this->getAllDocumentsWithUrl($beneficiary, $parentFolder),
-        ];
-    }
-
-    /**
-     * @return array<Document|Dossier>
-     */
-    public function getSharedFoldersAndDocumentsWithUrl(Beneficiaire $beneficiary, ?Dossier $parentFolder = null): array
-    {
-        return [
-            ...$this->folderRepository->findSharedByBeneficiary($beneficiary, $parentFolder),
-            ...$this->getSharedDocumentsWithUrl($beneficiary, $parentFolder),
-        ];
-    }
-
-    /**
-     * @return array<Document|Dossier>
-     */
-    public function searchFoldersAndDocumentsWithUrl(Beneficiaire $beneficiary, ?string $word, Dossier $folder = null): array
-    {
-        return $word
-            ? [...$this->folderRepository->searchByBeneficiary($beneficiary, $word, $folder), ...$this->searchDocumentsWithUrl($beneficiary, $word, $folder)]
-            : $this->getAllFoldersAndDocumentsWithUrl($beneficiary, $folder);
-    }
-
-    /**
-     * @return array<Document|Dossier>
-     */
-    public function searchSharedFoldersAndDocumentsWithUrl(Beneficiaire $beneficiary, ?string $word, Dossier $folder = null): array
-    {
-        return $word
-            ? [...$this->folderRepository->searchSharedByBeneficiary($beneficiary, $word, $folder), ...$this->searchSharedDocumentsWithUrl($beneficiary, $word, $folder)]
-            : $this->getSharedFoldersAndDocumentsWithUrl($beneficiary, $folder);
-    }
-
-    /**
-     * @return Document[]
-     */
-    public function searchDocumentsWithUrl(Beneficiaire $beneficiary, ?string $word, Dossier $folder = null): array
-    {
-        return $this->getDocumentsWithUrl($this->repository->searchByBeneficiary($beneficiary, $word, $folder));
-    }
-
-    /**
-     * @return Document[]
-     */
-    public function searchSharedDocumentsWithUrl(Beneficiaire $beneficiary, ?string $word, Dossier $folder = null): array
-    {
-        return $this->getDocumentsWithUrl($this->repository->searchSharedByBeneficiary($beneficiary, $word, $folder));
     }
 
     public function hydrateDocumentWithPresignedUrl(Document $document): void
@@ -266,17 +201,5 @@ class DocumentManager
         } catch (\Exception $e) {
             $this->addFlashMessage('danger', 'error');
         }
-    }
-
-    public function move(Document $document, ?Dossier $folder): void
-    {
-        if (!$folder) {
-            $document->setDossier();
-        } else {
-            $folder->addDocument($document);
-            $document->setBPrive($folder->getBPrive());
-        }
-
-        $this->em->flush();
     }
 }

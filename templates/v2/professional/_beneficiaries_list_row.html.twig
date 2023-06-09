@@ -1,13 +1,13 @@
 <tr class="text-primary align-middle bg-white">
     <td class="border-0 p-0 h-100 text-center align-middle">
-        <a href="{{ path('re_app_document_list', {'id': beneficiary.id}) }}"
+        <a href="{{ path('list_documents', {'id': beneficiary.id}) }}"
            class="text-decoration-none h-100 py-2"
         >
             <i class="fas fa-user fa-3x text-primary"></i>
         </a>
     </td>
     <td class="border-0 h-100 w-25 text-start align-middle">
-        <a href="{{ path('re_app_document_list', {'id': beneficiary.id}) }}"
+        <a href="{{ path('list_documents', {'id': beneficiary.id}) }}"
            class="text-decoration-none text-primary h-100"
         >
             <span>{{ beneficiary.user.prenom|capitalize }} {{ beneficiary.user.nom|upper }}</span>

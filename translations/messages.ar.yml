@@ -21,7 +21,7 @@ association.categorie.association: المؤسسة
 association.categorie.ccas: 'المركز الشعبي للعمل الاجتماعي'
 association.categorie.choisir: 'يرجى اختيار فئة مؤسستك'
 association.urlLabel: 'موقع الانترنيت'
-authentification_failure_wrong_credentials: اسم المستخدم أو كلمة السر غير صحيحة
+authentification_failure_wrong_credentials: 'اسم المستخدم أو كلمة السر غير صحيحة'
 back_home: 'العودة الى الصفحة الرئيسية'
 beneficiaire.menu.mesAides: 'نقطة المناوبة'
 beneficiaire.menu.mesContacts: 'ادوات العون الخاصة بي'
@@ -134,8 +134,8 @@ devenirUnRelaiReconnect.recapitulatif.prixDuCentre: 'ثمن المركز'
 devenirUnRelaiReconnect.recapitulatif.prixTotal: 'الثمن الاجمالي'
 devenirUnRelaiReconnect.recapitulatif.vosCentres: مؤسساتك
 devenirUnRelaiReconnect.recapitulatif.votreIdentite: هويتك
-disabledAt: تعطيل في
-disabledBy: معطل بواسطة
+disabledAt: 'تعطيل في'
+disabledBy: 'معطل بواسطة'
 document.apercu: معاينات
 document.aucunFichier: 'لا يوجد أي ملف في الوقت الحاضر'
 document.avertissementTaille: 'ستصل قريبا الى الحد الاقصى لحجم مساحة التخزين الخاصة بك (الحجم)'
@@ -238,10 +238,10 @@ form.validation.noPassword: 'عليك ان تختار كلمة سر'
 form.validation.passwordFormat: 'يجب ان تحتوي كلمة السر على حروف و ارقام'
 form.validation.phoneFormat: 'ان شكل رقم هاتفك مجهول'
 form.validation.sirenFormat: 'ان شكل رقم السيرين غير صالح'
-form_connexion: تسجيل دخول
-form_forgot_password: إعادة ضبط كلمة السر
-form_login: اسم المستخدم أو كلمة المرور
-form_password: كلمة السر
+form_connexion: 'تسجيل دخول'
+form_forgot_password: 'إعادة ضبط كلمة السر'
+form_login: 'اسم المستخدم أو كلمة المرور'
+form_password: 'كلمة السر'
 gestionnaire.centres.btnAjouterUnCentre: 'اضافة مركز'
 gestionnaire.centres.cotisationJusqua: 'المساهمة حتى (التاريخ)'
 gestionnaire.centres.cotisationNoneffectuee: 'لم تتم المساهمة (تم الغاء المركز)'
@@ -323,7 +323,7 @@ home.partenaires: الشركاء
 home.quiSommesNous: 'من نحن؟'
 home.quiSommesNousTxt: 'ريكونيكت هو مشروع تقوده مجموعة النجدة . SOS تضم مجموعة النجدة اليوم 2500 موظفا و 106 مؤسسة في القطاعات التالية: الإدمان و مساكن التضامن و المرافقة الصحية و الإعاقة و تشكل هذه المجموعة حقل تجارب مثالي لهذا الابتكار. و ترغب هذه المجموعة ايضا في توسيع مشروعها ليشمل مجمل الفاعلين في حقل العمل الاجتماعي.'
 home.twitter: تويتر
-login_form_title: الوصول إلى الخزنة الرقمية
+login_form_title: 'الوصول إلى الخزنة الرقمية'
 main.accepter: قبول
 main.adresse.rue: 'مشاهدة الملف'
 main.annuler: الغاء
@@ -494,7 +494,7 @@ modePaiement.choisisseModePaiement: 'اختر طريقة الدفع'
 modePaiement.flashBienSupprime: 'قمت بحذف العنصر من عربة التسويق'
 modePaiement.recapitulatif: 'ملخص عربتك للتسوق'
 modePaiement.virement: 'حوالة مصرفية'
-no: لا
+'no': لا
 note.ajouter: 'اضافة ملاحظة'
 note.bienSauvegarde: 'لقد تم حفظ ملاحظاتك'
 note.bienSupprime: 'لقد تم الغاء ملاحظاتك'
@@ -628,6 +628,6 @@ user.reinitialiserMdp.title: 'اعادة تعيين كلمة السر'
 user.supprimerCompte.etesVousSurs: 'هل تريد حقا الغاء حسابك؟'
 user.supprimerCompte.success: 'تم الغاء الحساب'
 wrong_current_password: 'كلمة السر الخاصة بك الحالية خاطئة'
-delete_currently_shared_document_warning: تتم مشاركة المستند لمدة %daysCount% يومًا أخرى. إذا قمت بحذف هذا المستند ، فسيتم التراجع عن المشاركة
-sms_sent_failed: فشل إرسال الرسائل القصيرة ، يرجى التحقق من صحة رقم الهاتف
-yes: نعم
+delete_currently_shared_document_warning: 'تتم مشاركة المستند لمدة %daysCount% يومًا أخرى. إذا قمت بحذف هذا المستند ، فسيتم التراجع عن المشاركة'
+sms_sent_failed: 'فشل إرسال الرسائل القصيرة ، يرجى التحقق من صحة رقم الهاتف'
+'yes': نعم

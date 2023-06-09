@@ -18,7 +18,7 @@ class RelayController extends AbstractController
 {
     #[Route(
         path: '/beneficiary/{id}/relays',
-        name: 'relay_list',
+        name: 'list_relays',
         requirements: ['id' => '\d+'],
         methods: ['GET'],
     )]
@@ -88,7 +88,7 @@ class RelayController extends AbstractController
             $manager->leaveRelay($beneficiary->getUser(), $relay);
             $this->addFlash('success', 'centre.vousAvezBienQuitte');
 
-            return $this->redirectToRoute('relay_list', ['id' => $beneficiary->getId()]);
+            return $this->redirectToRoute('list_relays', ['id' => $beneficiary->getId()]);
         }
 
         return $this->renderForm('v2/vault/relay/leave.html.twig', [

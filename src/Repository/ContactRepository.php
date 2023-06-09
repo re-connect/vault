@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Beneficiaire;
 use App\Entity\Contact;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,65 +20,26 @@ class ContactRepository extends ServiceEntityRepository
         parent::__construct($registry, Contact::class);
     }
 
-    private function findByBeneficiaryQueryBuilder(Beneficiaire $beneficiary): QueryBuilder
+    /**
+     * @return Contact[]
+     */
+    public function findByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, string $search = null): array
     {
-        return $this->createQueryBuilder('c')
+        $qb = $this->createQueryBuilder('c')
             ->andWhere('c.beneficiaire = :beneficiary')
-            ->setParameter('beneficiary', $beneficiary)
-            ->orderBy('c.createdAt', 'DESC');
-    }
-
-    private function searchByBeneficiaryQueryBuilder(Beneficiaire $beneficiary, ?string $word): QueryBuilder
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.beneficiaire = :beneficiary')
-            ->andWhere('c.nom LIKE :word OR c.prenom LIKE :word OR c.telephone LIKE :word or c.email LIKE :word')
             ->orderBy('c.createdAt', 'DESC')
-            ->setParameters([
-                'beneficiary' => $beneficiary,
-                'word' => sprintf('%%%s%%', $word),
-            ]);
-    }
+            ->setParameter('beneficiary', $beneficiary);
 
-    /**
-     * @return Contact[]
-     */
-    public function findAllByBeneficiary(Beneficiaire $beneficiary): array
-    {
-        return $this->findByBeneficiaryQueryBuilder($beneficiary)
-            ->getQuery()
-            ->getResult();
-    }
+        if ($search) {
+            $qb->andWhere('c.nom LIKE :search OR c.prenom LIKE :search OR c.telephone LIKE :search or c.email LIKE :search')
+                ->setParameter('search', sprintf('%%%s%%', $search));
+        }
 
-    /**
-     * @return Contact[]
-     */
-    public function findSharedByBeneficiary(Beneficiaire $beneficiary): array
-    {
-        return $this->findByBeneficiaryQueryBuilder($beneficiary)
-            ->andWhere('c.bPrive = FALSE')
-            ->getQuery()
-            ->getResult();
-    }
+        if (!$isOwner) {
+            $qb->andWhere('c.bPrive = FALSE');
+        }
 
-    /**
-     * @return Contact[]
-     */
-    public function searchByBeneficiary(Beneficiaire $beneficiary, ?string $word): array
-    {
-        return $this->searchByBeneficiaryQueryBuilder($beneficiary, $word)
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @return Contact[]
-     */
-    public function searchSharedByBeneficiary(Beneficiaire $beneficiary, ?string $word): array
-    {
-        return $this->searchByBeneficiaryQueryBuilder($beneficiary, $word)
-            ->andWhere('c.bPrive = FALSE')
-            ->getQuery()
+        return $qb->getQuery()
             ->getResult();
     }
 }

@@ -42,7 +42,9 @@
                 'path': path('folder_delete', {'id': folder.id}),
                 'message': deleteMessage|trans({'%name%': folder.nom}),
             },
-            'switchPrivate': {
+            'switchPrivate': folder.dossierParent
+            ? null
+            : {
                 'path': path('folder_toggle_visibility', {'id': folder.id}),
                 'message': 'switch_content_private_confirm'|trans,
             },

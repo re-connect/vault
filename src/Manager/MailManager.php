@@ -7,12 +7,10 @@ use App\Entity\Dossier;
 use App\Provider\DocumentProvider;
 use Mailjet\Client;
 use Mailjet\Resources;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
 
 class MailManager
 {
@@ -22,18 +20,10 @@ class MailManager
         'en' => 3633387,
         'es' => 3633402,
     ];
-    private const RESET_PASSWORD_MAIL_TEMPLATE_ID = [
-        'fr' => 1553981,
-        'de' => 3616070,
-        'en' => 3633288,
-        'es' => 3633322,
-    ];
     private Client $mailjet;
     private DocumentProvider $documentProvider;
     private Security $security;
     private DocumentManager $documentManager;
-    private RouterInterface $router;
-    private TranslatorInterface $translator;
 
     public function __construct(
         $apikey,
@@ -151,19 +141,5 @@ class MailManager
             'Base64Content' => $b64dataContent,
         ];
         $this->sendTemplate(1552248, $dest, $variables, $attachment);
-    }
-
-    public function sendResettingEmailMessageV2(UserInterface $user, ResetPasswordToken $resetToken, string $locale = 'fr'): void
-    {
-        $templateId = self::RESET_PASSWORD_MAIL_TEMPLATE_ID[$locale] ?? self::RESET_PASSWORD_MAIL_TEMPLATE_ID['fr'];
-        $url = $this->router->generate('app_reset_password_email', [
-            'token' => $resetToken->getToken(),
-        ], UrlGeneratorInterface::ABSOLUTE_URL);
-        $variables = [
-            'SUBJECT_RESET_PASSWORD' => $this->translator->trans('mail_subject_reset_password'),
-            'MC_PREVIEW_TEXT' => '',
-            'RE_URL_RESET' => $url,
-        ];
-        $this->sendTemplate($templateId, $user->getEmail(), $variables);
     }
 }

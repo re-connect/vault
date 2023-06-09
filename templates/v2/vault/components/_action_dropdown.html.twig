@@ -1,7 +1,7 @@
 {% set menuItems = [
     {icon: 'fa-trash', message: 'delete', path: delete.path, confirmAlertMessage: delete.message},
-    {icon: 'fa-pencil-alt',message: 'document' in editPath or 'folder' in editPath ? 'rename' : 'edit',path: editPath},
-    {icon: 'fa-info-circle',message: 'donneePersonnelle.information',path: detailPath},
+    {icon: 'fa-pencil-alt', message: 'document' in editPath or 'folder' in editPath ? 'rename' : 'edit', path: editPath},
+    {icon: 'fa-info-circle', message: 'donneePersonnelle.information', path: detailPath},
 ] %}
 
 {% if sendPath is defined %}
@@ -16,9 +16,9 @@
     ]) %}
 {% endif %}
 
-{% if not app.user.isBeneficiaire %}
+{% if not app.user.isBeneficiaire and switchPrivate %}
     {% set menuItems = menuItems|merge([
-        { icon: 'fa-exclamation-triangle',message: 'switch_content_private',path : switchPrivate.path,confirmAlertMessage: switchPrivate.message},
+        { icon: 'fa-exclamation-triangle', message: 'switch_content_private', path : switchPrivate.path,confirmAlertMessage: switchPrivate.message},
     ]) %}
 {% endif %}
 
