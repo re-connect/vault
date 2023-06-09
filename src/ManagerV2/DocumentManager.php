@@ -92,7 +92,7 @@ class DocumentManager
             ->setNom($fileName)
             ->setBeneficiaire($beneficiary)
             ->setDossier($folder)
-            ->setBPrive($user?->isBeneficiaire() || $folder?->getBPrive());
+            ->setBPrive($folder ? $folder->getBPrive() : $user?->isBeneficiaire());
 
         try {
             $thumbnailKey = $this->s3Client->generateThumbnail($file);
