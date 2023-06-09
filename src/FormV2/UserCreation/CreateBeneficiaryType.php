@@ -5,7 +5,6 @@ namespace App\FormV2\UserCreation;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Beneficiaire;
 use App\Entity\Centre;
-use App\Form\Event\SecretQuestionListener;
 use App\FormV2\UserInformationType;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Common\Collections\Collection;
@@ -13,12 +12,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CreateBeneficiaryType extends AbstractType
 {
@@ -28,7 +24,7 @@ class CreateBeneficiaryType extends AbstractType
     public const REMOTELY_STEP_VALIDATION_GROUP = [1 => ['beneficiaire-remotely']];
 
     public function __construct(
-        private readonly TranslatorInterface $translator,
+        private readonly SecretQuestionType $secretQuestionType,
         private Security $security,
     ) {
     }
@@ -41,10 +37,8 @@ class CreateBeneficiaryType extends AbstractType
 
         match ($creationProcess?->getCurrentStep() ?? 1) {
             default => $this->addIdentityFields($builder, $beneficiary->getDateNaissance(), $creationProcess?->isRemotely()),
-            2 => $creationProcess?->isRemotely()
-                ? $this->addRelaysFields($builder, $beneficiary->getCentres())
-                : $this->addPasswordFields($builder),
-            3 => $this->addSecretQuestionFields($builder, $beneficiary),
+            2 => $this->addStep2Fields($builder, $beneficiary, $creationProcess->isRemotely()),
+            3 => $this->secretQuestionType->addFields($builder, $beneficiary),
             4 => $this->addRelaysFields($builder, $beneficiary->getCentres()),
         };
     }
@@ -75,40 +69,6 @@ class CreateBeneficiaryType extends AbstractType
             ]);
     }
 
-    public function addSecretQuestionFields(FormBuilderInterface $builder, Beneficiaire $beneficiary): void
-    {
-        $secretQuestions = $this->getSecretQuestions();
-        $builder
-            ->add('questionSecreteChoice', ChoiceType::class, [
-                'required' => true,
-                'label' => 'secret_question',
-                'choices' => $secretQuestions,
-                'data' => $this->getSecretQuestionDefaultValue($beneficiary, $secretQuestions),
-                'mapped' => false,
-                'attr' => [
-                    'data-conditional-field-target' => 'conditionalField',
-                    'data-conditional-value' => array_key_last($secretQuestions),
-                    'data-action' => 'conditional-field#update',
-                ],
-            ])
-            ->add('questionSecrete', HiddenType::class, [
-                'required' => true,
-                'label' => 'user.parametres.questionSecreteLabel',
-            ])
-            ->add('autreQuestionSecrete', TextType::class, [
-                'required' => false,
-                'label' => 'secret_question_other',
-                'mapped' => false,
-                'row_attr' => [
-                    'data-conditional-field-target' => 'conditionedField',
-                ],
-            ])
-            ->add('reponseSecrete', TextType::class, [
-                'label' => 'user.parametres.reponseSecreteLabel',
-            ])
-            ->addEventSubscriber(new SecretQuestionListener($this->translator));
-    }
-
     /** @param Collection<int, Centre> $relays */
     public function addRelaysFields(FormBuilderInterface $builder, Collection $relays): void
     {
@@ -136,18 +96,6 @@ class CreateBeneficiaryType extends AbstractType
         ]);
     }
 
-    /** @param array<string, string> $secretQuestions */
-    private function getSecretQuestionDefaultValue(Beneficiaire $beneficiary, array $secretQuestions): string
-    {
-        if ($beneficiarySecretQuestion = $beneficiary->getQuestionSecrete()) {
-            return array_key_exists($beneficiarySecretQuestion, $secretQuestions)
-                ? $beneficiarySecretQuestion
-                : $secretQuestions[$this->translator->trans('membre.creationBeneficiaire.questionsSecretes.q9')];
-        }
-
-        return array_key_first($secretQuestions);
-    }
-
     /** @return string[] */
     public static function getStepValidationGroup(BeneficiaryCreationProcess $beneficiaryCreationProcess): array
     {
@@ -161,14 +109,12 @@ class CreateBeneficiaryType extends AbstractType
         ];
     }
 
-    /** @return array<string, string> */
-    public function getSecretQuestions(): array
+    private function addStep2Fields(FormBuilderInterface $builder, Beneficiaire $beneficiary, bool $isRemotely): void
     {
-        $secretQuestions = [];
-        foreach (Beneficiaire::getArQuestionsSecrete() as $key => $value) {
-            $secretQuestions[$this->translator->trans($key)] = $this->translator->trans($value);
+        if ($isRemotely) {
+            $this->addRelaysFields($builder, $beneficiary->getCentres());
+        } else {
+            $this->addPasswordFields($builder);
         }
-
-        return $secretQuestions;
     }
 }

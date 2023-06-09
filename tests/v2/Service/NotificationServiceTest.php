@@ -21,6 +21,7 @@ use Zenstruck\Foundry\Test\Factories;
 class NotificationServiceTest extends AuthenticatedTestCase
 {
     use Factories;
+
     private Beneficiaire $beneficiaryUser;
     private EntityManagerInterface $em;
     private NotificationService $notificationService;
