@@ -6,14 +6,19 @@ use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Entity\Beneficiaire;
 use App\Entity\Evenement;
 use App\Entity\Rappel;
+use App\Manager\SecretQuestionManager;
+use App\ManagerV2\RelayManager;
 use App\ServiceV2\NotificationService;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\v2\AuthenticatedTestCase;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Notifier\TexterInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Zenstruck\Foundry\Test\Factories;
@@ -43,14 +48,24 @@ class NotificationServiceTest extends AuthenticatedTestCase
         $requestStackMock = $this->createMock(RequestStack::class);
         $loginLinkHandlerMock = $this->createMock(LoginLinkHandlerInterface::class);
         $this->texterMock = $this->createMock(TexterInterface::class);
+        $routerMock = $this->createMock(RouterInterface::class);
+        $security = $this->createMock(Security::class);
+        $secretQuestionManager = $this->createMock(SecretQuestionManager::class);
+        $relayManager = $this->createMock(RelayManager::class);
+        $formFactory = $this->createMock(FormFactoryInterface::class);
 
         $this->notificationService = new NotificationService(
             $this->translatorMock,
             $this->loggerMock,
             $this->texterMock,
             $this->em,
+            $routerMock,
             $requestStackMock,
+            $security,
             $loginLinkHandlerMock,
+            $secretQuestionManager,
+            $relayManager,
+            $formFactory,
             $this->IOSAppLink,
             $this->androidAppLink,
         );

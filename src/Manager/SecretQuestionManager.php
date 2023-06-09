@@ -2,6 +2,7 @@
 
 namespace App\Manager;
 
+use App\Entity\Beneficiaire;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bundle\SecurityBundle\Security;
 
@@ -13,10 +14,13 @@ class SecretQuestionManager
     {
     }
 
-    public function currentBeneficiaryMissesSecretQuestion(): bool
+    public function beneficiaryMissesSecretQuestion(?Beneficiaire $beneficiary): bool
     {
-        $beneficiary = $this->getUser()?->getSubjectBeneficiaire();
-
         return $beneficiary && !$beneficiary->getQuestionSecrete();
+    }
+
+    public function getCurrentBeneficiary(): ?Beneficiaire
+    {
+        return $this->getUser()?->getSubjectBeneficiaire();
     }
 }
