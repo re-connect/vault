@@ -9,11 +9,19 @@
 {% endblock %}
 
 {% block content %}
-    {{ notification.content|raw }}
+    {{ notification.content|trans|raw }}
+    {% if notification.form is defined and notification.form %}
+        {% set form = notification.form %}
+        <br/><br/>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="text-end">{{ include('v2/common/_button.html.twig') }}</div>
+        {{ form_end(form) }}
+    {% endif %}
 {% endblock %}
 
 {% block icon %}
-    <i class="fa fa-hotel text-primary me-1"></i>
+    <i class="fa fa-question-circle text-primary me-1"></i>
 {% endblock %}
 
 {% block footer %}
