@@ -28,7 +28,7 @@ class FolderManager
         private readonly LoggerInterface $logger,
         private readonly TranslatorInterface $translator,
         private readonly DossierRepository $folderRepository,
-        private Security $security,
+        private readonly Security $security,
     ) {
     }
 

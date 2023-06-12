@@ -24,7 +24,7 @@ class BeneficiaryAffiliationManager
         private readonly EntityManagerInterface $em,
         private readonly AuthorizationCheckerInterface $authorizationChecker,
         private readonly RelayManager $relayManager,
-        private Security $security,
+        private readonly Security $security,
     ) {
     }
 

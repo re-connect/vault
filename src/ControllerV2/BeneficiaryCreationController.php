@@ -14,16 +14,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[IsGranted('ROLE_MEMBRE')]
+#[Route(path: '/beneficiary/create')]
 class BeneficiaryCreationController extends AbstractController
 {
-    #[Route(path: '/beneficiary/create', name: 'create_beneficiary_home', methods: ['GET'])]
+    #[Route(path: '', name: 'create_beneficiary_home', methods: ['GET'])]
     public function createBeneficiaryHome(): Response
     {
         return $this->render('v2/user_creation/beneficiary/create_beneficiary.html.twig');
     }
 
     #[Route(
-        path: 'beneficiary/create/{step}/{id?}',
+        path: '/{step}/{id?}',
         name: 'create_beneficiary',
         requirements: ['step' => '[0-6]', 'id' => '\d+'],
         methods: ['GET', 'POST'],
@@ -63,7 +64,7 @@ class BeneficiaryCreationController extends AbstractController
     }
 
     #[Route(
-        path: 'beneficiary/create/download-terms-of-use/{id<\d+>}',
+        path: '/download-terms-of-use/{id<\d+>}',
         name: 'create_beneficiary_download_terms_of_use',
         methods: ['GET'],
     )]
@@ -76,7 +77,7 @@ class BeneficiaryCreationController extends AbstractController
         ]);
     }
 
-    #[Route(path: 'beneficiary/create/abort/{id<\d+>}', name: 'create_beneficiary_abort', methods: ['GET'])]
+    #[Route(path: '/abort/{id<\d+>}', name: 'create_beneficiary_abort', methods: ['GET'])]
     public function abortCreation(BeneficiaryCreationProcess $beneficiaryCreationProcess, EntityManagerInterface $em): Response
     {
         if ($beneficiaryCreationProcess->isCreating()) {

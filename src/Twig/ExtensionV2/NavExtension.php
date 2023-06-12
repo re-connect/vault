@@ -11,7 +11,7 @@ class NavExtension extends AbstractExtension
 {
     use UserAwareTrait;
 
-    public function __construct(private Security $security)
+    public function __construct(private readonly Security $security)
     {
     }
 
@@ -60,7 +60,7 @@ class NavExtension extends AbstractExtension
             $navItems[] = [
                 'itemKind' => 'relays',
                 'title' => 'my_relays',
-                'routeName' => 'list_relays',
+                'routeName' => 'my_relays',
                 'image' => 'build/images/icons/relais_bleu.png',
             ];
         }

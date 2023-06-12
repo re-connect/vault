@@ -29,7 +29,7 @@ class DocumentManager
         private readonly FlysystemS3Client $s3Client,
         private readonly DocumentRepository $repository,
         private readonly EntityManagerInterface $em,
-        private Security $security,
+        private readonly Security $security,
         private readonly LoggerInterface $logger,
         private RequestStack $requestStack,
         private readonly TranslatorInterface $translator,

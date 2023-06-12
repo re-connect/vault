@@ -6,6 +6,7 @@ use App\Entity\Beneficiaire;
 use App\Entity\User;
 use App\EventSubscriber\AddFormattedPhoneSubscriber;
 use App\Form\Event\SecretQuestionListener;
+use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
@@ -19,20 +20,18 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UserSettingsType extends AbstractType
 {
-    private Security $security;
+    use UserAwareTrait;
     private const NAME_REGEX = "^[a-zA-ZáàâäãåąçčćęéèêëėįíìîïłńñóòôöõøšúùûüųýÿżźžÁÀÂÄÃÅĄÇČĆĘÉÈÊËĖÍÌÎÏŁĮŃÑÓÒÔÖÕØŠÚÙÛÜŲÝŸŽ \-']+$";
-    private TranslatorInterface $translator;
 
-    public function __construct(Security $security, TranslatorInterface $translator)
-    {
-        $this->security = $security;
-        $this->translator = $translator;
+    public function __construct(
+        private readonly Security $security,
+        private readonly TranslatorInterface $translator,
+    ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        /** @var User $user */
-        $user = $this->security->getUser();
+        $user = $this->getUser();
 
         $builder
             ->add('prenom', null, [

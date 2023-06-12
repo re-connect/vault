@@ -19,8 +19,11 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class Authenticator extends AbstractLoginFormAuthenticator
 {
-    public function __construct(private RouterInterface $router, private EntityManagerInterface $em, private EventDispatcherInterface $eventDispatcher)
-    {
+    public function __construct(
+        private readonly RouterInterface $router,
+        private readonly EntityManagerInterface $em,
+        private readonly EventDispatcherInterface $eventDispatcher
+    ) {
     }
 
     protected function getLoginUrl(Request $request): string

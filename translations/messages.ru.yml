@@ -483,12 +483,6 @@ membre.sendSmsCode.success: 'Управление этим центром под
 membre.sendSmsCode.text: 'На ваш телефон отправлено смс-сообщение с кодом'
 membre.supprimerMembreDuCentre.etesVousSur: 'Вы уверены, что хотите удалить члена этого центра?'
 membre.supprimerMembreDuCentre.success: 'Вы успешно удалили члена этого центра'
-modePaiement.carteBancaire: 'Банковская карт'
-modePaiement.cheque: Чек
-modePaiement.choisisseModePaiement: 'Выберите способ оплаты'
-modePaiement.flashBienSupprime: 'Элемент успешно удалён из корзины'
-modePaiement.recapitulatif: 'Сводный чек-лист вашей корзины'
-modePaiement.virement: Перевод
 'no': Нет
 note.ajouter: 'Добавить заметку'
 note.bienSauvegarde: 'Ваша заметка успешно сохранена'

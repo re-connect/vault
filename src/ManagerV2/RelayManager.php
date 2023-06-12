@@ -4,15 +4,17 @@ namespace App\ManagerV2;
 
 use App\Entity\Centre;
 use App\Entity\User;
+use App\Entity\UserCentre;
+use App\Repository\CentreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class RelayManager
 {
-    public function __construct(private readonly EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em, private readonly CentreRepository $relayRepository)
     {
     }
 
-    public function acceptInvitation(User $user, Centre $relay): void
+    public function acceptRelay(User $user, Centre $relay): void
     {
         if ($subjectRelay = $user->getSubjectRelaysForRelay($relay)) {
             $subjectRelay->setBValid(true);
@@ -41,5 +43,13 @@ class RelayManager
     {
         $this->em->persist(User::createUserRelay($user, $relay));
         $this->em->flush();
+    }
+
+    /** @return UserCentre[] */
+    public function getPendingRelays(?User $user): array
+    {
+        return !$user || !($user->isBeneficiaire() || $user->isMembre())
+            ? []
+            : $this->relayRepository->findUserRelays($user, false);
     }
 }

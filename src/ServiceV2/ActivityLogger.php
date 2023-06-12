@@ -11,8 +11,11 @@ class ActivityLogger
 {
     use UserAwareTrait;
 
-    public function __construct(private readonly LoggerInterface $loginLogger, private Security $security, private readonly EntityManagerInterface $em)
-    {
+    public function __construct(
+        private readonly LoggerInterface $loginLogger,
+        private readonly Security $security,
+        private readonly EntityManagerInterface $em,
+    ) {
     }
 
     public function logLogin(): void

@@ -1,0 +1,34 @@
+{% extends 'v2/common/_modal.html.twig' %}
+
+{% block title %}
+    {{ notification.title|trans }}
+{% endblock %}
+
+{% block subtitle %}
+    {{ notification.subtitle|trans }}
+{% endblock %}
+
+{% block content %}
+    {{ notification.content|trans|raw }}
+    {% if notification.form is defined and notification.form %}
+        {% set form = notification.form %}
+        <br/><br/>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="text-end">{{ include('v2/common/_button.html.twig') }}</div>
+        {{ form_end(form) }}
+    {% endif %}
+{% endblock %}
+
+{% block icon %}
+    <i class="fa fa-question-circle text-primary me-1"></i>
+{% endblock %}
+
+{% block footer %}
+    {% for action in notification.actions %}
+        <a href="{{ action.path }}"
+           class="btn btn-{{ action.color }} me-2 text-{{ action.color == 'light' ? 'decoration-underline' : 'white' }}">
+            {{ action.label|trans }}
+        </a>
+    {% endfor %}
+{% endblock %}

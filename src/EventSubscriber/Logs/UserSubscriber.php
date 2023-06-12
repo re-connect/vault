@@ -19,7 +19,7 @@ class UserSubscriber implements EventSubscriberInterface, LogActivitySubscriberI
 
     private const USER_NAME = 'User';
 
-    public function __construct(private readonly LoggerInterface $userLogger, private Security $security)
+    public function __construct(private readonly LoggerInterface $userLogger, private readonly Security $security)
     {
     }
 

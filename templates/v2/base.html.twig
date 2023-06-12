@@ -18,15 +18,15 @@
     {{ include('favicons.html.twig') }}
 </head>
 <body class="d-flex flex-column">
-    {{ include('v2/header/header.html.twig') }}
+{{ include('v2/header/header.html.twig') }}
 
-    <main role="main" class="position-relative {% block bodyColor %}{{ getUserBackgroundColor() }}{% endblock%} pb-5">
-        {{ include('v2/flashMessages.html.twig') }}
-        {% block notifications %}{{ getRelayInvitationNotifications() }}{% endblock %}
+<main role="main" class="position-relative {% block bodyColor %}{{ getUserBackgroundColor() }}{% endblock %} pb-5">
+    {{ include('v2/flashMessages.html.twig') }}
+    {% block notifications %}{{ include('v2/common/_notifications.html.twig') }}{% endblock %}
 
-        {% block body %}{% endblock body %}
-    </main>
+    {% block body %}{% endblock body %}
+</main>
 
-    {{ include('v2/footer.html.twig') }}
+{{ include('v2/footer.html.twig') }}
 </body>
 </html>

@@ -15,8 +15,8 @@ class ContactManager
 
     public function __construct(
         private readonly EntityManagerInterface $em,
-        private ContactRepository $repository,
-        private Security $security,
+        private readonly ContactRepository $repository,
+        private readonly Security $security,
     ) {
     }
 

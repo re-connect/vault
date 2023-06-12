@@ -2,55 +2,23 @@
 
 namespace App\Twig\ExtensionV2;
 
-use App\Entity\User;
-use App\Repository\CentreRepository;
-use App\ServiceV2\Traits\UserAwareTrait;
-use Symfony\Bundle\SecurityBundle\Security;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use Twig\Environment;
+use App\ServiceV2\NotificationService;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class NotificationExtension extends AbstractExtension
 {
-    use UserAwareTrait;
-
-    public function __construct(
-        private readonly CentreRepository $relayRepository,
-        private readonly AuthorizationCheckerInterface $authorizationChecker,
-        private Security $security,
-        private RequestStack $requestStack,
-    ) {
+    public function __construct(private readonly NotificationService $service)
+    {
     }
 
     public function getFunctions(): array
     {
-        return [
-            new TwigFunction('getRelayInvitationNotifications', [$this, 'getRelayInvitationNotifications'], [
-                'is_safe' => ['html'],
-                'needs_environment' => true,
-            ]),
-        ];
+        return [new TwigFunction('getUserNotifications', [$this, 'getUserNotifications'])];
     }
 
-    public function getRelayInvitationNotifications(Environment $env): ?string
+    public function getUserNotifications(): array
     {
-        $user = $this->getUser();
-        $relays = $this->relayRepository->findUserRelays($user, false);
-
-        if (0 === count($relays) || !$user || !$this->canReceiveNotifications($user)) {
-            return null;
-        }
-
-        return $env->render('v2/notifications/relay_invitation_notification.html.twig', [
-            'pendingRelays' => $relays,
-            'user' => $user,
-        ]);
-    }
-
-    private function canReceiveNotifications(User $user): bool
-    {
-        return $user->isBeneficiaire() || $user->isMembre();
+        return $this->service->getUserNotifications();
     }
 }

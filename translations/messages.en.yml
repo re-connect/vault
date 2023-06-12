@@ -705,12 +705,8 @@ membre.sendSmsCode.success: 'The managing of this center has been confirmed'
 membre.sendSmsCode.text: 'A SMS containing the code has just been sent to the phone number (%phone%)'
 membre.supprimerMembreDuCentre.etesVousSur: 'Are You sure You want to delete the member of this center?'
 membre.supprimerMembreDuCentre.success: 'You deleted the member of this center'
-modePaiement.carteBancaire: 'Bank card'
-modePaiement.cheque: 'Bank cheque'
-modePaiement.choisisseModePaiement: 'Choose your way of payment'
-modePaiement.flashBienSupprime: 'You removed this element of your purchases'
-modePaiement.recapitulatif: 'Summary of your purchases'
-modePaiement.virement: Transfer
+missing_secret_question: Secret question is missing
+missing_secret_question_text: To ease password reset in case of lost, please fill a secret question
 my_contacts: 'My Contacts'
 my_documents: 'My Documents'
 my_events: 'My Events'

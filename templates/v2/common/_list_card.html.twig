@@ -1,0 +1,20 @@
+<div class="card shadow mt-3 text-{{ disabled ? 'grey' : 'primary' }} ">
+    <h5 class="card-header p-3 text-center bg-primary text-white">{{ title }}</h5>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <i class="fa fa-{{ icon }} fa-2x"></i>
+            </div>
+            <div class="col">
+                {{ content }}
+            </div>
+            <div class="col text-end">
+                    <a href="{{ action }}"
+                       class="btn btn-red text-white">
+                        <i class="fa fa-times me-1"></i>
+                        {{ actionLabel }}
+                    </a>
+            </div>
+        </div>
+    </div>
+</div>

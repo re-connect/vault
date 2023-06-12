@@ -19,7 +19,7 @@ class RelaySubscriber implements EventSubscriberInterface, LogActivitySubscriber
 
     private const RELAY_NAME = 'Relay';
 
-    public function __construct(private readonly LoggerInterface $relayLogger, private Security $security)
+    public function __construct(private readonly LoggerInterface $relayLogger, private readonly Security $security)
     {
     }
 

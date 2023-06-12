@@ -7,7 +7,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 
 trait UserAwareTrait
 {
-    private Security $security;
+    private readonly Security $security;
 
     protected function getUser(): ?User
     {

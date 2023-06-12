@@ -11,11 +11,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecretQuestionListener implements EventSubscriberInterface
 {
-    private TranslatorInterface $translator;
-
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(private readonly TranslatorInterface $translator)
     {
-        $this->translator = $translator;
     }
 
     public static function getSubscribedEvents(): array
@@ -26,7 +23,7 @@ class SecretQuestionListener implements EventSubscriberInterface
         ];
     }
 
-    public function onPostSetData(PostSetDataEvent $event)
+    public function onPostSetData(PostSetDataEvent $event): void
     {
         $data = $event->getData();
         $form = $event->getForm();
@@ -48,7 +45,7 @@ class SecretQuestionListener implements EventSubscriberInterface
         }
     }
 
-    public function onPreSubmit(PreSubmitEvent $event)
+    public function onPreSubmit(PreSubmitEvent $event): void
     {
         $data = $event->getData();
         $secretQuestionChoice = $data['questionSecreteChoice'];
