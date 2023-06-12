@@ -8,7 +8,6 @@ use App\Repository\CentreRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: '/relays')]
 class RelayController extends AbstractController
@@ -21,7 +20,7 @@ class RelayController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/accept', name: 'accept_relay', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route(path: '/{id<\d+>}/accept', name: 'accept_relay', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function acceptRelay(Request $request, Centre $relay, RelayManager $manager): Response
     {
         $manager->acceptRelay($this->getUser(), $relay);
@@ -30,7 +29,7 @@ class RelayController extends AbstractController
         return $this->redirect($request->headers->get('referer'));
     }
 
-    #[Route(path: '/{id}/deny', name: 'deny_relay', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route(path: '/{id<\d+>}/deny', name: 'deny_relay', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function denyInvitation(Request $request, Centre $relay, RelayManager $manager): Response
     {
         $manager->leaveRelay($this->getUser(), $relay);
@@ -39,7 +38,7 @@ class RelayController extends AbstractController
         return $this->redirect($request->headers->get('referer'));
     }
 
-    #[Route(path: '/{id}/leave', name: 'leave_relay', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
+    #[Route(path: '/{id<\d+>}/leave', name: 'leave_relay', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     public function leave(Request $request, Centre $relay, RelayManager $manager): Response
     {
         $form = $this->createFormBuilder()

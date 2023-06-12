@@ -15,11 +15,10 @@ class ExpiredPasswordSubscriber implements EventSubscriberInterface
     use UserAwareTrait;
 
     public function __construct(
-        private readonly Security        $security,
-        private readonly GdprService     $gdprService,
+        private readonly Security $security,
+        private readonly GdprService $gdprService,
         private readonly RouterInterface $router,
-    )
-    {
+    ) {
     }
 
     public function checkPasswordExpiration(RequestEvent $event): void

@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BeneficiaryController extends AbstractController
 {
     #[IsGranted('UPDATE', 'beneficiary')]
-    #[Route(path: '/{id}/set_secret_question', name: 'set_secret_question', methods: ['POST'])]
+    #[Route(path: '/{id<\d+>}/set_secret_question', name: 'set_secret_question', methods: ['POST'])]
     public function setSecretQuestion(Request $request, Beneficiaire $beneficiary, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(SecretQuestionType::class, $beneficiary, [

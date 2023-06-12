@@ -167,6 +167,7 @@ class NotificationService
         }
     }
 
+    /** @return Notification[] */
     public function getUserNotifications(): array
     {
         return [
@@ -175,6 +176,7 @@ class NotificationService
         ];
     }
 
+    /** @return Notification[] */
     private function getRelayInvitationNotifications(): array
     {
         return array_map(

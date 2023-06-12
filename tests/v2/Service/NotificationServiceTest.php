@@ -5,6 +5,7 @@ namespace App\Tests\v2\Service;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Entity\Beneficiaire;
 use App\Entity\Evenement;
+use App\Entity\Rappel;
 use App\Helper\SecretQuestionsHelper;
 use App\ManagerV2\RelayManager;
 use App\ServiceV2\NotificationService;

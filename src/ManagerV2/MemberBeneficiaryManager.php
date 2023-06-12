@@ -14,9 +14,8 @@ class MemberBeneficiaryManager
 
     public function __construct(
         private readonly EntityManagerInterface $em,
-        private readonly Security               $security,
-    )
-    {
+        private readonly Security $security,
+    ) {
     }
 
     public function handleFirstMemberVisit(Beneficiaire $beneficiary): void

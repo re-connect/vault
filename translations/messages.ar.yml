@@ -488,12 +488,6 @@ membre.sendSmsCode.success: 'تم التحقق من الادارة من قبل �
 membre.sendSmsCode.text: 'تم ارسال الرمز بالحروف و الارقام عبر رسالة نصية قصيرة على الهاتف رقم (رقم الهاتف)'
 membre.supprimerMembreDuCentre.etesVousSur: 'هل تريد فعلا ان تلغي العضو من هذا المركز؟'
 membre.supprimerMembreDuCentre.success: 'لقد تم الغاء مركز هذا العضو'
-modePaiement.carteBancaire: 'بطاقة ائتمان'
-modePaiement.cheque: شيك
-modePaiement.choisisseModePaiement: 'اختر طريقة الدفع'
-modePaiement.flashBienSupprime: 'قمت بحذف العنصر من عربة التسويق'
-modePaiement.recapitulatif: 'ملخص عربتك للتسوق'
-modePaiement.virement: 'حوالة مصرفية'
 'no': لا
 note.ajouter: 'اضافة ملاحظة'
 note.bienSauvegarde: 'لقد تم حفظ ملاحظاتك'
