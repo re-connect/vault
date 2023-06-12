@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use App\Traits\GedmoTimedTrait;
+use App\Validator\Constraints as CustomAssert;
 use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -35,6 +36,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
      * @var Collection|MembreCentre[]
      */
     #[Groups(['v3:member:read'])]
+    #[CustomAssert\RelayUnique]
     private $membresCentres;
     /** @var string */
     private $activationSmsCode;
