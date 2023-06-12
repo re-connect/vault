@@ -8,9 +8,9 @@ use App\Entity\Rappel;
 use App\Entity\User;
 use App\Entity\UserCentre;
 use App\FormV2\UserCreation\SecretQuestionType;
+use App\Helper\SecretQuestionsHelper;
 use App\HelperEntity\Notification;
 use App\HelperEntity\NotificationAction;
-use App\Manager\SecretQuestionManager;
 use App\ManagerV2\RelayManager;
 use App\ServiceV2\Traits\SessionsAwareTrait;
 use App\ServiceV2\Traits\UserAwareTrait;
@@ -39,7 +39,7 @@ class NotificationService
         private RequestStack $requestStack,
         private readonly Security $security,
         private readonly LoginLinkHandlerInterface $loginLinkHandler,
-        private readonly SecretQuestionManager $secretQuestionManager,
+        private readonly SecretQuestionsHelper $secretQuestionsHelper,
         private readonly RelayManager $relayManager,
         private readonly FormFactoryInterface $formFactory,
         private readonly string $iOSAppLink,
@@ -202,8 +202,8 @@ class NotificationService
     private function getMissingSecretQuestionNotification(): array
     {
         $notifications = [];
-        $beneficiary = $this->secretQuestionManager->getCurrentBeneficiary();
-        if ($this->secretQuestionManager->beneficiaryMissesSecretQuestion($beneficiary)) {
+        $beneficiary = $this->secretQuestionsHelper->getCurrentBeneficiary();
+        if ($this->secretQuestionsHelper->beneficiaryMissesSecretQuestion($beneficiary)) {
             $form = $this->formFactory->create(SecretQuestionType::class, $beneficiary, [
                 'action' => $this->router->generate('set_secret_question', ['id' => $beneficiary->getId()]),
             ]);

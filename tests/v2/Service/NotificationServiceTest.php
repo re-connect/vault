@@ -5,8 +5,7 @@ namespace App\Tests\v2\Service;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Entity\Beneficiaire;
 use App\Entity\Evenement;
-use App\Entity\Rappel;
-use App\Manager\SecretQuestionManager;
+use App\Helper\SecretQuestionsHelper;
 use App\ManagerV2\RelayManager;
 use App\ServiceV2\NotificationService;
 use App\Tests\Factory\BeneficiaireFactory;
@@ -50,7 +49,7 @@ class NotificationServiceTest extends AuthenticatedTestCase
         $this->texterMock = $this->createMock(TexterInterface::class);
         $routerMock = $this->createMock(RouterInterface::class);
         $security = $this->createMock(Security::class);
-        $secretQuestionManager = $this->createMock(SecretQuestionManager::class);
+        $secretQuestionHelper = $this->createMock(SecretQuestionsHelper::class);
         $relayManager = $this->createMock(RelayManager::class);
         $formFactory = $this->createMock(FormFactoryInterface::class);
 
@@ -63,7 +62,7 @@ class NotificationServiceTest extends AuthenticatedTestCase
             $requestStackMock,
             $security,
             $loginLinkHandlerMock,
-            $secretQuestionManager,
+            $secretQuestionHelper,
             $relayManager,
             $formFactory,
             $this->IOSAppLink,

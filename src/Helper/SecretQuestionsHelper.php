@@ -4,12 +4,18 @@ namespace App\Helper;
 
 use App\Entity\Beneficiaire;
 use App\Form\Event\SecretQuestionListener;
+use App\ServiceV2\Traits\UserAwareTrait;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecretQuestionsHelper
 {
-    public function __construct(private readonly TranslatorInterface $translator)
-    {
+    use UserAwareTrait;
+
+    public function __construct(
+        private readonly TranslatorInterface $translator,
+        private readonly Security $security,
+    ) {
     }
 
     /** @return array<string, string> */
@@ -38,5 +44,15 @@ class SecretQuestionsHelper
     public function createSecretQuestionListener(): SecretQuestionListener
     {
         return new SecretQuestionListener($this->translator);
+    }
+
+    public function beneficiaryMissesSecretQuestion(?Beneficiaire $beneficiary): bool
+    {
+        return $beneficiary && !$beneficiary->getQuestionSecrete();
+    }
+
+    public function getCurrentBeneficiary(): ?Beneficiaire
+    {
+        return $this->getUser()?->getSubjectBeneficiaire();
     }
 }
