@@ -26,7 +26,7 @@ class SharedDocumentManager
         private readonly UserRepository $userRepository,
         private readonly DocumentRepository $documentRepository,
         private RequestStack $requestStack,
-        private Security $security,
+        private readonly Security $security,
     ) {
     }
 

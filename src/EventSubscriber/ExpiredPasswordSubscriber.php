@@ -14,14 +14,12 @@ class ExpiredPasswordSubscriber implements EventSubscriberInterface
 {
     use UserAwareTrait;
 
-    private GdprService $gdprService;
-    private RouterInterface $router;
-
-    public function __construct(Security $security, GdprService $gdprService, RouterInterface $router)
+    public function __construct(
+        private readonly Security        $security,
+        private readonly GdprService     $gdprService,
+        private readonly RouterInterface $router,
+    )
     {
-        $this->security = $security;
-        $this->gdprService = $gdprService;
-        $this->router = $router;
     }
 
     public function checkPasswordExpiration(RequestEvent $event): void

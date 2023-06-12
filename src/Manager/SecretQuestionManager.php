@@ -10,7 +10,7 @@ class SecretQuestionManager
 {
     use UserAwareTrait;
 
-    public function __construct(private Security $security)
+    public function __construct(private readonly Security $security)
     {
     }
 

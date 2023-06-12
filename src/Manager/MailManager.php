@@ -19,21 +19,15 @@ class MailManager
         'es' => 3633402,
     ];
     private Client $mailjet;
-    private DocumentProvider $documentProvider;
-    private Security $security;
-    private DocumentManager $documentManager;
 
     public function __construct(
         $apikey,
         $apisecret,
-        Security $security,
-        DocumentProvider $documentProvider,
-        DocumentManager $documentManager,
+        private readonly Security $security,
+        private readonly DocumentProvider $documentProvider,
+        private readonly DocumentManager $documentManager,
     ) {
         $this->mailjet = new Client($apikey, $apisecret, true, ['version' => 'v3.1']);
-        $this->documentProvider = $documentProvider;
-        $this->documentManager = $documentManager;
-        $this->security = $security;
     }
 
     private function sendTemplate($id, $dest, $variables = [], $attachment = null)

@@ -19,7 +19,7 @@ class PersonalDataSubscriber implements EventSubscriberInterface, LogActivitySub
 
     private const PERSONAL_DATA_NAME = 'Personal data';
 
-    public function __construct(private readonly LoggerInterface $personalDataLogger, private Security $security)
+    public function __construct(private readonly LoggerInterface $personalDataLogger, private readonly Security $security)
     {
     }
 

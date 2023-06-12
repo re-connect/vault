@@ -37,7 +37,7 @@ class NotificationService
         private readonly EntityManagerInterface $em,
         private readonly RouterInterface $router,
         private RequestStack $requestStack,
-        private Security $security,
+        private readonly Security $security,
         private readonly LoginLinkHandlerInterface $loginLinkHandler,
         private readonly SecretQuestionManager $secretQuestionManager,
         private readonly RelayManager $relayManager,

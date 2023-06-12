@@ -16,7 +16,7 @@ class NoteManager
     public function __construct(
         private readonly EntityManagerInterface $em,
         private readonly NoteRepository $repository,
-        private Security $security,
+        private readonly Security $security,
     ) {
     }
 

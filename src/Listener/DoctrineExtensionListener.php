@@ -8,18 +8,11 @@ use Symfony\Bundle\SecurityBundle\Security;
 
 class DoctrineExtensionListener
 {
-    private Security $security;
-    private TranslatableListener $translatableListener;
-    private LoggableListener $loggableListener;
-
     public function __construct(
-        Security $security,
-        TranslatableListener $translatableListener,
-        LoggableListener $loggableListener
+        private readonly Security $security,
+        private readonly TranslatableListener $translatableListener,
+        private readonly LoggableListener $loggableListener
     ) {
-        $this->security = $security;
-        $this->translatableListener = $translatableListener;
-        $this->loggableListener = $loggableListener;
     }
 
     public function onLateKernelRequest($event)

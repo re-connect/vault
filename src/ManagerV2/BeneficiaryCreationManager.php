@@ -19,7 +19,7 @@ class BeneficiaryCreationManager
 
     public function __construct(
         private readonly UserManager $userManager,
-        private Security $security,
+        private readonly Security $security,
         private readonly EntityManagerInterface $em,
         private readonly RelayManager $relayManager,
         private readonly NotificationService $notificator,
