@@ -1,5 +1,5 @@
 {% extends 'v2/reset_password/beneficiary/reset_password_layout.html.twig' %}
-{% form_theme form 'v2/user_creation/form_theme/create_user_form_theme.html.twig' %}
+{% form_theme form 'v2/form_theme/create_user_form_theme.html.twig' %}
 
 {% block homeButton %}
     <a href="{{ path('reset_password_beneficiary', {id: beneficiary.id}) }}"
