@@ -12,7 +12,7 @@ use App\Tests\v2\Controller\TestRouteInterface;
 
 class EmailTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const URL = '/beneficiary/%s/reset-password/email';
+    private const URL = '/beneficiaries/%s/reset-password/email';
 
     public function provideTestRoute(): ?\Generator
     {

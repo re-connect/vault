@@ -13,7 +13,7 @@ use App\Tests\v2\Controller\TestRouteInterface;
 
 class SecretAnswerTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
-    private const URL = '/beneficiary/%s/reset-password/secret-answer';
+    private const URL = '/beneficiaries/%s/reset-password/secret-answer';
     private const FORM_VALUES = [
         'reset_password_secret_answer[secretAnswer]' => '',
         'reset_password_secret_answer[password][plainPassword][first]' => '',

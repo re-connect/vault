@@ -12,7 +12,7 @@ use App\Tests\v2\Controller\TestRouteInterface;
 
 class SMSTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const URL = '/beneficiary/%s/reset-password/sms';
+    private const URL = '/beneficiaries/%s/reset-password/sms';
 
     public function provideTestRoute(): ?\Generator
     {
