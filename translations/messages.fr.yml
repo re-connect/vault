@@ -846,12 +846,8 @@ membre.sendSmsCode.text: "Un sms contenant le code vient d'être envoyé sur le 
 membre.supprimerMembreDuCentre.etesVousSur: 'Êtes vous sûrs de bien vouloir supprimer le membre de ce centre ?'
 membre.supprimerMembreDuCentre.success: 'Vous avez bien supprimé le centre de ce membre'
 message: Message
-modePaiement.carteBancaire: 'Carte bancaire'
-modePaiement.cheque: Chèque
-modePaiement.choisisseModePaiement: 'Choisissez votre mode de paiement'
-modePaiement.flashBienSupprime: "Vous avez bien supprimé l'element du panier"
-modePaiement.recapitulatif: 'Récapitulatif de votre panier'
-modePaiement.virement: Virement
+missing_secret_question: Question secrète non renseignée
+missing_secret_question_text: Afin de faciliter la réinitialisation de votre mot de pas en cas de perte, veuillez renseigner une question secrète
 move: Déplacer
 modal_message_contact_delete: 'Êtes vous sûr de vouloir supprimer le contact'
 modal_message_contact_deletev2: 'Êtes vous sûr de vouloir supprimer le contact %fullName% ?'
