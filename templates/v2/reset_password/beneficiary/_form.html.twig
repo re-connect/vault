@@ -1,0 +1,15 @@
+{% if formTitle is defined %}
+    <h4 class="text-center mt-4">{{ formTitle }}</h4>
+{% endif %}
+
+<div class="col-12 col-md-6 col-lg-4 mx-auto mt-5">
+    {{ form_start(form) }}
+    {{ form_row(formField) }}
+    {{ form_label(form.password.plainPassword.first) }}
+    {{ include('v2/common/_hide_show_password_input.html.twig', {field : form.password.plainPassword.first, hideAndShow: true, isBeneficiaire: true}) }}
+    {{ form_row(form.password.plainPassword.second) }}
+    <div class="d-grid gap-2 mt-3">
+        {{ include('v2/common/_button_with_loader.html.twig', {text: 'confirm'|trans, color: 'blue' }) }}
+    </div>
+    {{ form_end(form) }}
+</div>

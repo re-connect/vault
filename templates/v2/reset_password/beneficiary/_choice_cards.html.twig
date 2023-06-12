@@ -6,7 +6,7 @@
             title: 'secret_question'|trans,
             iconName: 'user-lock',
             helpText: 'beneficiary_will_give_you_secret_answer'|trans,
-            buttonPath: "#",
+            buttonPath: path('reset_password_beneficiary_secret_answer', {id: beneficiary.id}),
             buttonText: 'reset'|trans,
             isDisabled: hasNoSecretAnswer,
             tooltipMessage: hasNoSecretAnswer ? 'beneficiary_has_no_secret_answer'|trans : null,
