@@ -17,7 +17,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class BeneficiaryResetPasswordController extends AbstractController
 {
     #[IsGranted('UPDATE', 'beneficiary')]
-    #[Route(path: '/beneficiary/{id}/reset-password', name: 'reset_password_beneficiary', methods: ['GET'])]
+    #[Route(path: '/beneficiary/{id<\d+>}/reset-password', name: 'reset_password_beneficiary', methods: ['GET'])]
     public function choice(Beneficiaire $beneficiary): Response
     {
         return $this->render('v2/reset_password/beneficiary/choice.html.twig', [
@@ -26,7 +26,7 @@ class BeneficiaryResetPasswordController extends AbstractController
     }
 
     #[IsGranted('UPDATE', 'beneficiary')]
-    #[Route(path: '/beneficiary/{id}/reset-password/email', name: 'reset_password_beneficiary_email', methods: ['GET'])]
+    #[Route(path: '/beneficiary/{id<\d+>}/reset-password/email', name: 'reset_password_beneficiary_email', methods: ['GET'])]
     public function resetEmail(Request $request, Beneficiaire $beneficiary, ResettingService $service): Response
     {
         if ($email = $beneficiary->getUser()->getEmail()) {
@@ -41,7 +41,7 @@ class BeneficiaryResetPasswordController extends AbstractController
     }
 
     #[IsGranted('UPDATE', 'beneficiary')]
-    #[Route(path: '/beneficiary/{id}/reset-password/sms', name: 'reset_password_beneficiary_sms', methods: ['GET', 'POST'])]
+    #[Route(path: '/beneficiary/{id<\d+>}/reset-password/sms', name: 'reset_password_beneficiary_sms', methods: ['GET', 'POST'])]
     public function resetSMS(
         Request $request,
         Beneficiaire $beneficiary,
