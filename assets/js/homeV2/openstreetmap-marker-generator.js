@@ -16,7 +16,7 @@ $(document).ready(($) => {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">Les contributeurs d’OpenStreetMap</a>'
     }).addTo(map);
 
-    $.get('/get-centers', (data) => {
+    $.get('/public/get-centers', (data) => {
         const centers = data[0];
         getPopupTemplate(centers);
     });

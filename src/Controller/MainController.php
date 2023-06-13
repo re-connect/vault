@@ -169,9 +169,7 @@ class MainController extends AbstractController
         return $this->redirect($this->generateUrl('re_user_redirectUser'));
     }
 
-    /**
-     * @Route("/public/resetting-mail-translation", name="/resetting_mail_translation", methods={"GET"})
-     */
+    #[Route('/public/resetting-mail-translation', name: 'resetting_mail_translation', methods: ['GET'])]
     public function resettingMailTranslation(Request $request, TranslatorInterface $translator, LanguageService $languageService): Response
     {
         if ($lang = $request->query->get('lang')) {
@@ -184,9 +182,7 @@ class MainController extends AbstractController
         return $this->render('homeV2/pages/mail-translation/resetting-password.html.twig');
     }
 
-    /**
-     * @Route("/public/shared-document-mail-translation", name="/shared_document_mail_translation", methods={"GET"})
-     */
+    #[Route('/public/shared-document-mail-translation', name: 'shared_document_mail_translation', methods: ['GET'])]
     public function sharedDocumentMailTranslation(Request $request, TranslatorInterface $translator, LanguageService $languageService): Response
     {
         if ($lang = $request->query->get('lang')) {
@@ -199,7 +195,7 @@ class MainController extends AbstractController
         return $this->render('homeV2/pages/mail-translation/shared-document.html.twig');
     }
 
-    /** @Route("/public/get-mailjet-form", name="get_mailjet_form", methods={"GET"}) */
+    #[Route('/public/get-mailjet-form', name: 'get_mailjet_form', methods: ['GET'])]
     public function getMailjetForm(): Response
     {
         return new Response(file_get_contents('https://xzk0s.mjt.lu/wgt/xzk0s/54y/form?c=2e04c0ed'));
