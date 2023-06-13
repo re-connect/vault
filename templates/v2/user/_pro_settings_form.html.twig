@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+<div class="row bold">
+    {{ include('v2/user/_settings_form_block.html.twig', {
+        title: 'Informations',
+        leftColumnFields: [form.prenom, form.username, form.email],
+        rightColumnFields: [form.nom, form.telephone],
+    }) }}
+    <div class="col-12 col-md-6 d-grid mt-3 mx-auto">
+        {{ include('v2/common/_button_with_loader.html.twig', {text: 'submit'|trans, color: getUserThemeColor()}) }}
+    </div>
+</div>
+{{ form_end(form) }}

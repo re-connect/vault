@@ -16,9 +16,10 @@
 {% block content %}
     <div class="container w-75 justify-content-center">
         {{ include( app.user.isBeneficiaire
-            ? 'v2/user/user_beneficiary_settings_form.html.twig'
-            : 'v2/user/user_settings_form.html.twig'
-            , {'settingsForm': userForm}) }}
+            ? 'v2/user/_beneficiary_settings_form.html.twig'
+            : 'v2/user/_pro_settings_form.html.twig',
+            {form: userForm},
+        ) }}
     </div>
     <div class="text-primary pb-2 row mt-4">
         <div class="col pt-2 font-size-1-3">
