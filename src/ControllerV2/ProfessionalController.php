@@ -11,11 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route(path: '/professional')]
 class ProfessionalController extends AbstractController
 {
     private const PAGINATION_RESULTS_LIMIT = 10;
 
-    #[Route(path: '/professional/beneficiaries', name: 'list_beneficiaries', methods: ['GET'])]
+    #[Route(path: '/beneficiaries', name: 'list_beneficiaries', methods: ['GET'])]
     #[IsGranted('ROLE_MEMBRE')]
     public function listBeneficiaries(Request $request, BeneficiaireRepository $repository, PaginatorService $paginator): Response
     {
@@ -33,7 +34,7 @@ class ProfessionalController extends AbstractController
     }
 
     #[Route(
-        path: '/professional/beneficiaries/search',
+        path: '/beneficiaries/search',
         name: 'search_beneficiaries',
         methods: ['POST'],
         condition: 'request.isXmlHttpRequest()',
