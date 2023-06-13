@@ -1,39 +1,39 @@
-{{ form_start(settingsForm, {'attr': {'class' : 'reForm'}}) }}
+{{ form_start(form, {'attr': {'class' : 'reForm'}}) }}
 <div class="row text-primary font-size-1 pt-3">
     <div class="col-sm-6 col-lg-3 offset-xl-1 col-xl-3 pt-1 bold mb-md-2">
-        {{ form_label(settingsForm.username) }}
+        {{ form_label(form.username) }}
     </div>
     <div class="col-sm-6 col-md-6 col-xl-5 offset-xl-2 mt-2 mt-sm-0">
-        {{ form_errors(settingsForm.username) }}
-        {{ form_widget(settingsForm.username) }}
+        {{ form_errors(form.username) }}
+        {{ form_widget(form.username) }}
     </div>
     <div class="col-sm-6 col-lg-3 offset-xl-1 col-xl-3 pt-1 mt-2 bold">
-        {{ form_label(settingsForm.prenom) }}
+        {{ form_label(form.prenom) }}
     </div>
     <div class="col-sm-6 col-md-6 col-xl-5 offset-xl-2 mt-2">
-        {{ form_errors(settingsForm.prenom) }}
-        {{ form_widget(settingsForm.prenom) }}
+        {{ form_errors(form.prenom) }}
+        {{ form_widget(form.prenom) }}
     </div>
     <div class="col-sm-6 col-lg-3 offset-xl-1 col-xl-3 pt-1 mt-2 bold">
-        {{ form_label(settingsForm.nom) }}
+        {{ form_label(form.nom) }}
     </div>
     <div class="col-sm-6 col-md-6 col-xl-5 offset-xl-2 mt-2">
-        {{ form_errors(settingsForm.nom) }}
-        {{ form_widget(settingsForm.nom) }}
+        {{ form_errors(form.nom) }}
+        {{ form_widget(form.nom) }}
     </div>
     <div class="col-sm-6 col-lg-3 offset-xl-1 col-xl-3 pt-1 mt-2 bold">
-        {{ form_label(settingsForm.telephone) }}
+        {{ form_label(form.telephone) }}
     </div>
     <div class="col-sm-6 col-md-6 col-xl-5 offset-xl-2 mt-2">
-        {{ form_errors(settingsForm.telephone) }}
-        {{ form_widget(settingsForm.telephone) }}
+        {{ form_errors(form.telephone) }}
+        {{ form_widget(form.telephone) }}
     </div>
     <div class="col-sm-6 col-lg-3 offset-xl-1 col-xl-3 pt-1 mt-2 bold">
-        {{ form_label(settingsForm.email) }}
+        {{ form_label(form.email) }}
     </div>
     <div class="col-sm-6 col-md-6 col-xl-5 offset-xl-2 mt-2">
-        {{ form_errors(settingsForm.email) }}
-        {{ form_widget(settingsForm.email) }}
+        {{ form_errors(form.email) }}
+        {{ form_widget(form.email) }}
     </div>
     <div class="col-sm-5 offset-sm-6 mt-3">
         <button class="btn btn-blue text-white">
@@ -41,4 +41,4 @@
         </button>
     </div>
 </div>
-{{ form_end(settingsForm) }}
+{{ form_end(form) }}

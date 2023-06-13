@@ -1,0 +1,23 @@
+{{ form_start(form, {attr: {class: 'display-required-labels'}}) }}
+    <div class="row bold">
+            {{ include('v2/user/_settings_form_block.html.twig', {
+                title: 'Informations',
+                leftColumnFields: [form.prenom, form.telephone],
+                rightColumnFields: [form.nom, form.email],
+                fullWidthColumnFields: [form.dateNaissance],
+            }) }}
+            {{ include('v2/user/_settings_form_block.html.twig', {
+                title: 'Coordonnées',
+                leftColumnFields: [form.adresse.nom, form.adresse.ville],
+                rightColumnFields: [form.adresse.codePostal, form.adresse.pays],
+            }) }}
+            {{ include('v2/user/_settings_form_block.html.twig', {
+                title: 'Question secrète',
+                leftColumnFields: [form.questionSecreteChoice, form.autreQuestionSecrete],
+                rightColumnFields: [form.reponseSecrete],
+            }) }}
+        <div class="col-12 col-md-6 d-grid mt-3 mx-auto">
+            {{ include('v2/common/_button_with_loader.html.twig', {text: 'submit'|trans, color: getUserThemeColor()}) }}
+        </div>
+    </div>
+{{ form_end(form) }}
