@@ -1073,6 +1073,8 @@ share_document_error_not_found: 'Aucun bénéficiaire ou document trouvé'
 share_document_success: "Un email avec un lien valable 7 jours et permettant de télécharger ce document a été envoyé à l'adresse mail renseignée."
 share_document_with: 'Email du destinataire'
 shared: Partagé
+show_beneficiaries: Voir les bénéficiaires
+show_professionals: Voir les professionnels
 si_siao_number_found_rosalie: 'Numéro SI-SIAO trouvé dans Rosalie, liaison effectuée'
 si_siao_number: 'Numéro SI-SIAO'
 sms: SMS

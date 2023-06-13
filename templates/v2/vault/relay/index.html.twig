@@ -2,6 +2,7 @@
     ? 'v2/vault/list_container_layout.html.twig'
     : 'v2/pro_standard_layout.html.twig' %}
 
+{% block delimiter %}{% endblock %}
 {% block metaTitle %}{{ 'centre.metaTitle'|trans }}{% endblock metaTitle %}
 {% block title %}{{ 'my_relays'|trans }}{% endblock title %}
 
@@ -12,7 +13,7 @@
             ? include('v2/vault/relay/_list.html.twig', {relays})
             : include('v2/vault/components/_empty_list_content.html.twig', {
                 message: 'center_has_no_info'|trans,
-                img : asset('build/images/icons/relais_bleu.png')
+                img : asset('build/images/icons/relais_bleu.png'),
             }) }}
         {% endblock %}
     </div>
