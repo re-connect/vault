@@ -1155,6 +1155,8 @@ user_not_found: "Aucun utilisateur n'a été trouvé"
 user_parameters_subtitle: 'Paramètres de %subject%'
 user_parameters_title: '<span class="text-primary">Paramètres d''</span><span class="rp-blue vault-green">utilisateur</span>'
 user_shared_document_with_you: 'L''utilisateur %nom% %prenom% souhaite partager ce document avec vous: "%document%"'
+user_settings_title_1: Paramètres d'
+user_settings_title_2: Utilisateur
 user_update_password_subtitle: 'Mot de passe de %subject%'
 user_update_password_title: '<span class="text-primary">Renouvellement de </span><span class="rp-blue vault-green">mot de passe</span>'
 username: "Nom d'utilisateur"

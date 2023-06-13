@@ -961,6 +961,8 @@ user.supprimerCompte.success: 'The account has been deleted.'
 user_error_disabled_account: 'Your account is disabled, please contact support.'
 user_parameters_subtitle: "%subject%'s settings"
 user_parameters_title: '<span class="text-primary">User''s </span><span class="rp-blue vault-green">settings</span>'
+user_settings_title_1: User's
+user_settings_title_2: Settings
 user_update_password_subtitle: '%subject% password'
 user_update_password_title: '<span class="text-primary">New </span><span class="rp-blue vault-green">password</span>'
 vault: 'The digital safe'
