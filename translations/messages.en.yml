@@ -712,6 +712,8 @@ my_documents: 'My Documents'
 my_events: 'My Events'
 my_notes: 'My Notes'
 my_relays: 'My Relays'
+my_relays_title_1: My relays
+my_relays_title_2: Reconnect
 move: Move
 name: Name
 'no': 'No'

@@ -870,6 +870,8 @@ my_documents: 'Mes Documents'
 my_events: 'Mes Rappels'
 my_notes: 'Mes Notes'
 my_relays: 'Mes Relais'
+my_relays_title_1: Mes relais
+my_relays_title_2: Reconnect
 name: Nom
 next: Suivant
 'no': Non
