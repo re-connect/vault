@@ -23,7 +23,7 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
     {
         yield 'Should redirect when passwords match with required criteria' => [
             self::URL,
-            'confirm',
+            'submit',
             [
                 'change_password_form[plainPassword][first]' => '123456Aa',
                 'change_password_form[plainPassword][second]' => '123456Aa',
@@ -42,7 +42,7 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
         yield 'Should return an error if passwords does not match' => [
             self::URL,
             'app_update_password',
-            'confirm',
+            'submit',
             $values,
             [
                 [
@@ -59,7 +59,7 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
         yield 'Should return an error if password is too short' => [
             self::URL,
             'app_update_password',
-            'confirm',
+            'submit',
             $values,
             [
                 [
@@ -76,7 +76,7 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
         yield 'Should return an error if password does not meet characters requirements' => [
             self::URL,
             'app_update_password',
-            'confirm',
+            'submit',
             $values,
             [
                 [
