@@ -43,8 +43,9 @@ export default class extends Controller {
     })
 
     const toggleDroppableClasses = () => {
-      document.getElementsByClassName('current-droppable').forEach(
-        el => el.classList.toggle('current-droppable')
+      Array.prototype.forEach.call(
+        document.getElementsByClassName('current-droppable'),
+          el => el.classList.toggle('current-droppable'),
       );
     }
   }
