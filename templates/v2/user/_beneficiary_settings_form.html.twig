@@ -1,4 +1,9 @@
-{{ form_start(form, {attr: {class: 'display-required-labels'}}) }}
+{% form_theme form 'v2/form_theme/create_user_form_theme.html.twig' %}
+
+{{ form_start(form, {attr: {
+    'class': 'display-required-labels',
+    'data-controller': 'conditional-field',
+}}) }}
     <div class="row bold">
             {{ include('v2/user/_settings_form_block.html.twig', {
                 title: 'Informations',
@@ -13,10 +18,10 @@
             }) }}
             {{ include('v2/user/_settings_form_block.html.twig', {
                 title: 'Question secrète',
-                leftColumnFields: [form.questionSecreteChoice, form.autreQuestionSecrete],
-                rightColumnFields: [form.reponseSecrete],
+                leftColumnFields: [form.secretQuestion.questionSecreteChoice, form.secretQuestion.autreQuestionSecrete],
+                rightColumnFields: [form.secretQuestion.reponseSecrete],
             }) }}
-        <div class="col-12 col-md-6 d-grid mt-3 mx-auto">
+        <div class="col-12 col-md-6 d-grid mt-5 mx-auto">
             {{ include('v2/common/_button_with_loader.html.twig', {text: 'submit'|trans, color: getUserThemeColor()}) }}
         </div>
     </div>

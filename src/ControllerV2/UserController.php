@@ -3,7 +3,7 @@
 namespace App\ControllerV2;
 
 use App\FormV2\ChangePasswordFormType;
-use App\FormV2\UserSettingsType;
+use App\FormV2\Settings\UserSettingsType;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormError;
@@ -26,10 +26,6 @@ class UserController extends AbstractController
     ): Response {
         $user = $this->getUser();
 
-        if (!$this->isGranted('SELF_EDIT', $user)) {
-            throw new AccessDeniedException();
-        }
-
         $userForm = $this->createForm(UserSettingsType::class, $user)->handleRequest($request);
 
         $passwordForm = $this->createForm(ChangePasswordFormType::class, null, [
@@ -37,13 +33,11 @@ class UserController extends AbstractController
             'isBeneficiaire' => $user->isBeneficiaire(),
         ])->handleRequest($request);
 
-        if ($userForm->isSubmitted()) {
-            if ($userForm->isValid()) {
-                $em->flush();
-                $this->addFlash('success', 'settings_saved_successfully');
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+            $em->flush();
+            $this->addFlash('success', 'settings_saved_successfully');
 
-                return $this->redirectToRoute('user_settings');
-            }
+            return $this->redirectToRoute('user_settings');
         }
 
         if ($passwordForm->isSubmitted()) {

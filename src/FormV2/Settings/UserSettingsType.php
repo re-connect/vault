@@ -1,38 +1,33 @@
 <?php
 
-namespace App\FormV2;
+namespace App\FormV2\Settings;
 
-use App\Entity\Beneficiaire;
 use App\Entity\User;
 use App\EventSubscriber\AddFormattedPhoneSubscriber;
-use App\Form\Event\SecretQuestionListener;
+use App\FormV2\AddressType;
+use App\FormV2\UserCreation\SecretQuestionType;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UserSettingsType extends AbstractType
 {
-    use UserAwareTrait;
     private const NAME_REGEX = "^[a-zA-ZáàâäãåąçčćęéèêëėįíìîïłńñóòôöõøšúùûüųýÿżźžÁÀÂÄÃÅĄÇČĆĘÉÈÊËĖÍÌÎÏŁĮŃÑÓÒÔÖÕØŠÚÙÛÜŲÝŸŽ \-']+$";
+    use UserAwareTrait;
 
     public function __construct(
         private readonly Security $security,
-        private readonly TranslatorInterface $translator,
+        private readonly SecretQuestionType $secretQuestionType,
     ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $user = $this->getUser();
-
         $builder
             ->add('prenom', null, [
                 'label' => 'registerForm.prenom',
@@ -59,12 +54,7 @@ class UserSettingsType extends AbstractType
                 'label' => 'registerForm.email',
             ]);
 
-        if ($user->isBeneficiaire()) {
-            $secretQuestions = [];
-            foreach (Beneficiaire::getArQuestionsSecrete() as $key => $value) {
-                $secretQuestions[$this->translator->trans($key)] = $this->translator->trans($value);
-            }
-
+        if ($this->getUser()->isBeneficiaire()) {
             $builder
                 ->add('adresse', AddressType::class, [
                     'required' => false,
@@ -75,29 +65,12 @@ class UserSettingsType extends AbstractType
                     'required' => false,
                     'label' => 'user.parametres.dateNaissanceLabel',
                 ])
-                ->add('questionSecreteChoice', ChoiceType::class, [
-                    'required' => true,
-                    'label' => 'secret_question',
-                    'choices' => $secretQuestions,
-                    'mapped' => false,
-                ])
-                ->add('questionSecrete', HiddenType::class, [
-                    'required' => true,
-                    'property_path' => 'subjectBeneficiaire.questionSecrete',
-                    'label' => 'user.parametres.questionSecreteLabel',
-                ])
-                ->add('autreQuestionSecrete', TextType::class, [
-                    'property_path' => 'subjectBeneficiaire.autreQuestionSecrete',
-                    'required' => false,
-                    'label' => 'secret_question_other',
-                    'mapped' => false,
-                ])
-                ->add('reponseSecrete', TextType::class, [
-                    'property_path' => 'subjectBeneficiaire.reponseSecrete',
-                    'label' => 'user.parametres.reponseSecreteLabel',
-                ])
-                ->addEventSubscriber(new SecretQuestionListener($this->translator));
-        } elseif ($user->hasMemberAccess()) {
+                ->add('secretQuestion', SecretQuestionType::class, [
+                    'property_path' => 'subjectBeneficiaire',
+                    'label' => false,
+                    'data' => $this->getUser()->getSubjectBeneficiaire(),
+                ]);
+        } else {
             $builder
                 ->add('username', TextType::class, [
                     'label' => 'registerForm.username',
