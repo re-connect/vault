@@ -10,7 +10,7 @@ use App\Tests\v2\Controller\TestRouteInterface;
 
 class ChoiceTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const URL = '/beneficiary/%s/reset-password';
+    private const URL = '/beneficiaries/%s/reset-password';
 
     public function provideTestRoute(): ?\Generator
     {
