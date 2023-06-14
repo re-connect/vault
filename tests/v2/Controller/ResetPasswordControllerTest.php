@@ -14,6 +14,8 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class ResetPasswordControllerTest extends AuthenticatedTestCase
 {
+    private const RESET_EMAIL_URL = '/public/reset-password/email';
+    private const RESET_SMS_URL = '/public/reset-password/sms';
     private KernelBrowser $client;
     private ResetPasswordRequestRepository $resetPasswordRequestRepository;
     private User $user;
@@ -44,7 +46,7 @@ class ResetPasswordControllerTest extends AuthenticatedTestCase
     public function testPublicRequestEmail(): void
     {
         // A user request reset password by email
-        $crawler = $this->client->request('GET', '/reset-password/email');
+        $crawler = $this->client->request('GET', self::RESET_EMAIL_URL);
         self::assertResponseStatusCodeSame(200);
         $form = $crawler->selectButton('Confirmer')->form();
         $form->setValues([
@@ -73,7 +75,7 @@ class ResetPasswordControllerTest extends AuthenticatedTestCase
         self::assertSame($firstPasswordRequest, $secondPasswordRequest);
 
         // Same user try to request password by sms directly
-        $crawler = $this->client->request('GET', '/reset-password/sms');
+        $crawler = $this->client->request('GET', self::RESET_SMS_URL);
         $form = $crawler->selectButton('Confirmer')->form();
         $form->setValues([
             'reset_password_request_form[phone]' => $this->user->getTelephone(),
@@ -90,7 +92,7 @@ class ResetPasswordControllerTest extends AuthenticatedTestCase
     public function testPublicRequestSms(): void
     {
         $this->client->followRedirects();
-        $crawler = $this->client->request('GET', '/reset-password/sms');
+        $crawler = $this->client->request('GET', self::RESET_SMS_URL);
         $form = $crawler->selectButton('Confirmer')->form();
         $form->setValues([
             'reset_password_request_form[phone]' => $this->user->getTelephone(),

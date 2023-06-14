@@ -24,13 +24,12 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
         yield ['/nous-contacter'];
         yield ['/reconnect-le-coffre-fort-numerique'];
         yield ['/faq-rgpd'];
-        yield ['/login'];
-        yield ['/reset-password/choose'];
-        yield ['/reset-password/email'];
-        yield ['/reset-password/sms'];
-        yield ['/reset-password/check-sms'];
-        yield ['/reset-password/reset/sms/{token}'];
-        yield ['/reset-password/reset/email/{token}'];
+        yield ['/public/reset-password/choose'];
+        yield ['/public/reset-password/email'];
+        yield ['/public/reset-password/sms'];
+        yield ['/public/reset-password/check-sms'];
+        yield ['/public/reset-password/reset/sms/{token}'];
+        yield ['/public/reset-password/reset/email/{token}'];
         yield ['/logout'];
     }
 }
