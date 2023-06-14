@@ -23,7 +23,7 @@ class ListBeneficiariesTest extends AbstractControllerTest implements TestRouteI
         $this->repository = $container->get(BeneficiaireRepository::class);
     }
 
-    private const URL = '/professional/beneficiaries';
+    private const URL = '/beneficiaries';
 
     public function provideTestRoute(): ?\Generator
     {

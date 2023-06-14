@@ -65,7 +65,7 @@ class SecretAnswerTest extends AbstractControllerTest implements TestRouteInterf
             'confirm',
             $values,
             MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES,
-            '/professional/beneficiaries',
+            '/beneficiaries',
         ];
     }
 
