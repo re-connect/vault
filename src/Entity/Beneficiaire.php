@@ -389,6 +389,12 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     }
 
     /** @return Collection<int, BeneficiaireCentre> */
+    public function getUserCentres(): Collection
+    {
+        return $this->getBeneficiairesCentres();
+    }
+
+    /** @return Collection<int, BeneficiaireCentre> */
     public function getUsersCentres(): Collection
     {
         return $this->getBeneficiairesCentres();
