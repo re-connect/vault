@@ -3,6 +3,7 @@ accept: Accept
 accompanying_person_propose_cfn_activation: 'Your accompanying person %person.firstname% %person.lastname% from organization %center% offers you to activate your Reconnect numeric vault'
 add_date: 'Added at'
 add_new_beneficiary: 'Add new beneficiary'
+add_new_professional: Add new professional
 add_sms_reminder: 'Add SMS reminder'
 added_by: 'Added by'
 admin.bienvenue: 'Welcome to your Reconnect Administration'

@@ -10,6 +10,15 @@
     </span>
 {% endblock %}
 
+{% block addSubjectButton %}
+    <div class="col-12 col-md-6 col-lg-7 ps-0 mb-2 mb-md-0">
+        <a href="{{ path('re_membre_ajoutMembreSearch') }}" class="btn {{ getUserButtonColor() }} py-1" type="button">
+            <i class="fas fa-user-plus me-2"></i>
+            {{ 'add_new_professional'|trans }}
+        </a>
+    </div>
+{% endblock %}
+
 {% block list %}
     {{ include('v2/professional/_professionals_list.html.twig', {professionals}) }}
 {% endblock %}

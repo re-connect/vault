@@ -2,7 +2,8 @@
 
 namespace App\ControllerV2;
 
-use App\FormV2\FilterBeneficiaryType;
+use App\FormV2\FilterUser\FilterUserFormModel;
+use App\FormV2\FilterUser\FilterUserType;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\MembreRepository;
 use App\ServiceV2\PaginatorService;
@@ -26,9 +27,10 @@ class ProfessionalController extends AbstractController
                 $request->query->getInt('page', 1),
                 self::PAGINATION_RESULTS_LIMIT,
             ),
-            'form' => $this->createForm(FilterBeneficiaryType::class, null, [
+            'form' => $this->createForm(FilterUserType::class, null, [
                 'action' => $this->generateUrl('search_beneficiaries'),
                 'attr' => ['data-controller' => 'ajax-list-filter'],
+                'relays' => $this->getUser()->getSubjectMembre()->getAffiliatedRelaysWithBeneficiaryManagement(),
             ]),
         ]);
     }
@@ -42,9 +44,11 @@ class ProfessionalController extends AbstractController
     #[IsGranted('ROLE_MEMBRE')]
     public function searchBeneficiaries(Request $request, BeneficiaireRepository $repository, PaginatorService $paginator): Response
     {
-        $form = $this->createForm(FilterBeneficiaryType::class, null, [
+        $formModel = new FilterUserFormModel();
+        $form = $this->createForm(FilterUserType::class, $formModel, [
             'action' => $this->generateUrl('search_beneficiaries'),
             'attr' => ['data-controller' => 'ajax-list-filter'],
+            'relays' => $this->getUser()->getSubjectMembre()->getAffiliatedRelaysWithBeneficiaryManagement(),
         ])->handleRequest($request);
 
         return new JsonResponse([
@@ -52,8 +56,8 @@ class ProfessionalController extends AbstractController
                 'beneficiaries' => $paginator->create(
                     $repository->filterByAuthorizedProfessional(
                         $this->getUser()->getSubject(),
-                        $form->get('search')->getData(),
-                        $form->get('relay')->getData(),
+                        $formModel->search,
+                        $formModel->relay,
                     ),
                     $request->query->getInt('page', 1),
                     self::PAGINATION_RESULTS_LIMIT,
@@ -73,7 +77,43 @@ class ProfessionalController extends AbstractController
                 $request->query->getInt('page', 1),
                 self::PAGINATION_RESULTS_LIMIT,
             ),
-            'form' => $this->createForm(FilterBeneficiaryType::class),
+            'form' => $this->createForm(FilterUserType::class, null, [
+                'action' => $this->generateUrl('search_professionals'),
+                'attr' => ['data-controller' => 'ajax-list-filter'],
+                'relays' => $this->getUser()->getSubjectMembre()->getAffiliatedRelaysWithProfessionalManagement(),
+            ]),
+        ]);
+    }
+
+    #[Route(
+        path: '/professionals/search',
+        name: 'search_professionals',
+        methods: ['POST'],
+        condition: 'request.isXmlHttpRequest()',
+    )]
+    #[IsGranted('ROLE_MEMBRE')]
+    public function searchProfessionals(Request $request, MembreRepository $repository, PaginatorService $paginator): Response
+    {
+        $formModel = new FilterUserFormModel();
+        $form = $this->createForm(FilterUserType::class, $formModel, [
+            'action' => $this->generateUrl('search_professionals'),
+            'attr' => ['data-controller' => 'ajax-list-filter'],
+            'relays' => $this->getUser()->getSubjectMembre()->getAffiliatedRelaysWithProfessionalManagement(),
+        ])->handleRequest($request);
+
+        return new JsonResponse([
+            'html' => $this->render('v2/professional/_professionals_list.html.twig', [
+                'professionals' => $paginator->create(
+                    $repository->findByAuthorizedProfessional(
+                        $this->getUser()->getSubject(),
+                        $formModel->search,
+                        $formModel->relay,
+                    ),
+                    $request->query->getInt('page', 1),
+                    self::PAGINATION_RESULTS_LIMIT,
+                ),
+                'form' => $form,
+            ])->getContent(),
         ]);
     }
 }
