@@ -747,7 +747,7 @@ class User extends BaseUser implements \JsonSerializable
         return $this->adresse;
     }
 
-    public function setAdresse(?Adresse $adresse = null): self
+    public function setAdresse(Adresse $adresse = null): self
     {
         $this->adresse = $adresse;
 
@@ -786,24 +786,24 @@ class User extends BaseUser implements \JsonSerializable
 
         switch ($this->typeUser) {
             case self::USER_TYPE_BENEFICIAIRE:
-//                $data = array_merge($data , [
-//                   'id' => $this->subjectBeneficiaire->getId(),
-//                   'date_naissance' => $this->subjectBeneficiaire->getDateNaissance()->format(DateTime::W3C),
-//                   'total_file_size' => $this->subjectBeneficiaire->getTotalFileSize(),
-//                   'centres' => $this->subjectBeneficiaire->getCentreNoms()->toArray(),
-//                   'question_secrete' => $this->subjectBeneficiaire->getQuestionSecrete(),
-//               ]);
+                //                $data = array_merge($data , [
+                //                   'id' => $this->subjectBeneficiaire->getId(),
+                //                   'date_naissance' => $this->subjectBeneficiaire->getDateNaissance()->format(DateTime::W3C),
+                //                   'total_file_size' => $this->subjectBeneficiaire->getTotalFileSize(),
+                //                   'centres' => $this->subjectBeneficiaire->getCentreNoms()->toArray(),
+                //                   'question_secrete' => $this->subjectBeneficiaire->getQuestionSecrete(),
+                //               ]);
 
                 $data = array_merge($data, $this->subjectBeneficiaire->jsonSerializeAPI());
-//                $data['beneficiaire'] = $this->subjectBeneficiaire->jsonSerialize(false);
+                //                $data['beneficiaire'] = $this->subjectBeneficiaire->jsonSerialize(false);
                 break;
             case self::USER_TYPE_MEMBRE:
                 $data = array_merge($data, $this->subjectMembre->jsonSerializeAPI());
-//                $data['membre'] = $this->subjectMembre->jsonSerialize(false);
+                //                $data['membre'] = $this->subjectMembre->jsonSerialize(false);
                 break;
             case self::USER_TYPE_GESTIONNAIRE:
                 $data = array_merge($data, $this->subjectGestionnaire->jsonSerializeAPI());
-//                $data['gestionnaire'] = $this->subjectGestionnaire->jsonSerialize(false);
+                //                $data['gestionnaire'] = $this->subjectGestionnaire->jsonSerialize(false);
                 break;
             default:
                 break;
@@ -967,7 +967,7 @@ class User extends BaseUser implements \JsonSerializable
         return $this->autoLoginToken;
     }
 
-    public function setAutoLoginToken(?string $autoLoginToken = null): self
+    public function setAutoLoginToken(string $autoLoginToken = null): self
     {
         $this->autoLoginToken = $autoLoginToken;
 
@@ -991,7 +991,7 @@ class User extends BaseUser implements \JsonSerializable
         return $this->fcnToken;
     }
 
-    public function setFcnToken(?string $fcnToken = null): self
+    public function setFcnToken(string $fcnToken = null): self
     {
         $this->fcnToken = $fcnToken;
 
@@ -1050,7 +1050,7 @@ class User extends BaseUser implements \JsonSerializable
     {
         $subject = $this->getSubject();
 
-        if (!$subject instanceof UserWithCentresInterface) {
+        if ($subject instanceof UserWithCentresInterface) {
             return $subject->getUsersCentres();
         }
 
@@ -1160,6 +1160,6 @@ class User extends BaseUser implements \JsonSerializable
 
     public function hasDroit(string $droit): bool
     {
-        return $this->getUserCentres()->exists(fn (UserCentre $userCentre) => $userCentre->hasDroit($droit));
+        return $this->getUserCentres()->exists(fn (int $index, UserCentre $userCentre) => $userCentre->hasDroit($droit));
     }
 }
