@@ -8,12 +8,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ResetPasswordSecretAnswerFormModel
 {
     #[Assert\Expression(
-        'this.beneficiary.getReponseSecrete() == this.secretAnswer',
+        'this.beneficiary.getReponseSecreteToLowerCase() == this.getSecretAnswerToLowerCase()',
         message: 'secret_answer_mismatch'
     )]
     public ?string $secretAnswer = '';
 
     public function __construct(public readonly Beneficiaire $beneficiary)
     {
+    }
+
+    public function getSecretAnswerToLowerCase(): string
+    {
+        return strtolower($this->secretAnswer);
     }
 }

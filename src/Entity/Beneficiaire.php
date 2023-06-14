@@ -183,6 +183,11 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this->reponseSecrete;
     }
 
+    public function getReponseSecreteToLowerCase(): ?string
+    {
+        return strtolower($this->reponseSecrete);
+    }
+
     public function setReponseSecrete(?string $reponseSecrete): Beneficiaire
     {
         $this->reponseSecrete = $reponseSecrete;
