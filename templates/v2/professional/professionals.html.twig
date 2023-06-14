@@ -1,4 +1,4 @@
-{% extends 'v2/pro_standard_layout.html.twig' %}
+{% extends 'v2/users_list/list_subjects_layout.html.twig' %}
 {% block metaTitle %}{{ 'membre.membres.gestionMembres'|trans }}{% endblock %}
 
 {% block title %}
@@ -8,4 +8,8 @@
     <span class="text-blue">
         {{ 'professionals'|trans }}
     </span>
+{% endblock %}
+
+{% block list %}
+    {{ include('v2/professional/_professionals_list.html.twig', {professionals}) }}
 {% endblock %}
