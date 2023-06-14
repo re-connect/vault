@@ -15,7 +15,7 @@ class ResetPasswordSmsFormType extends AbstractType
         $builder
             ->add('smsCode', TextType::class, [
                 'required' => true,
-                'label' => 'public_reset_password_SMS_your_code',
+                'label' => 'beneficiary_reset_password_SMS_code',
             ])
             ->add('password', ChangePasswordFormType::class, [
                 'isBeneficiaire' => true,
