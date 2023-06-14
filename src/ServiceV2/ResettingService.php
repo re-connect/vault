@@ -215,6 +215,25 @@ class ResettingService
         }
     }
 
+    public function processSendingBeneficiaryPasswordResetEmail(Beneficiaire $beneficiary): void
+    {
+        $user = $beneficiary->getUser();
+
+        try {
+            $resetToken = $this->resetPasswordHelper->generateResetToken($user);
+            $this->handleEmailSend($user, $resetToken, $user->getLastLang());
+            $this->requestStack->getCurrentRequest()->getSession()->set('ResetPasswordPublicToken', $resetToken);
+            $this->addFlashMessage('success', 'beneficiary_reset_password_email_has_been_sent');
+        } catch (TooManyPasswordRequestsException) {
+            $this->addFlashMessage('danger', 'beneficiary_reset_password_already_requested');
+            if ($this->isRequestingBySMS($user)) {
+                $this->addFlashMessage('danger', 'reset_password_requested_by_SMS');
+            }
+        } catch (ResetPasswordExceptionInterface) {
+            $this->addFlashMessage('danger', 'error');
+        }
+    }
+
     public function isRequestingByEmail(?User $user): bool
     {
         if (!$user) {

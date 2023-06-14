@@ -46,6 +46,8 @@ beneficiary_has_no_account_create: 'The beneficiary does not have a Reconnect di
 beneficiary_has_no_email: The beneficiary does not have email address
 beneficiary_has_no_secret_answer: The beneficiary does not have secret answer
 beneficiary_has_no_phone_number: The beneficiary does not have phone number
+beneficiary_reset_password_email_has_been_sent: An email was sent to the beneficiary with instructions to renew the password
+beneficiary_reset_password_already_requested: A reset password request has already been made for this beneficiary by sms
 beneficiary_reset_password_already_requested_by_email: A reset password request has already been made for this beneficiary by email
 beneficiary_reset_password_SMS_has_been_sent: An SMS was sent to the beneficiary, containing a secret code to renew his password
 beneficiary_reset_password_success: Password updated for beneficiary %fullName%

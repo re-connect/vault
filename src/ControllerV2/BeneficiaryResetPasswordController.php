@@ -33,8 +33,8 @@ class BeneficiaryResetPasswordController extends AbstractController
     #[Route(path: '/{id<\d+>}/reset-password/email', name: 'reset_password_beneficiary_email', methods: ['GET'])]
     public function resetEmail(Request $request, Beneficiaire $beneficiary, ResettingService $service): Response
     {
-        if ($email = $beneficiary->getUser()->getEmail()) {
-            $service->processSendingPasswordResetEmail($email, $request->getLocale());
+        if ($beneficiary->getUser()->getEmail()) {
+            $service->processSendingBeneficiaryPasswordResetEmail($beneficiary);
         } else {
             $this->addFlash('error', 'beneficiary_has_no_email');
         }
