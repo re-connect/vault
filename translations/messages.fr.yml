@@ -57,16 +57,19 @@ beneficiary_created_successfully_wait_activation: 'Le compte a bien été créé
 beneficiary_creation_canceled: 'Annulation de la création du bénéficiaire'
 beneficiary_creation_client_sms: "Votre compte Coffre-fort Reconnect a été crée crée.\nvotre identifiant est %username%, vous pouvez vous connecter en cliquant sur le lien ci-dessous : %autoLoginLink% \nVous pouvez également télécharger l'application mobile : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
 beneficiary_creation_remotely_sms: "Votre accompagnant %pro.firstname% %pro.lastname% de la structure %center% vous propose d'activer votre coffre-fort numérique Reconnect \nConnectez-vous sur www.reconnect.fr \nIdentifiant : %username% \nMot de passe : %password% \nOu cliquez sur le lien : %autoLoginLink% \nVous pouvez également télécharger l'application mobile : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
-beneficiary_will_give_you_secret_answer: Le bénéficiaire vous fournira la réponse à sa question secrète
+beneficiary_will_give_you_secret_answer: Le bénéficiaire vous fournira la réponse à sa question secrète afin de réinitialiser son mot de passe
 beneficiary_will_give_you_secret_information: "Le bénéficiaire vous communiquera le mot de passe qu'il désire utiliser ainsi qu'une question et réponse secrète permettant de réinitialiser son mot de passe"
 beneficiary_already_as_account_affiliate: 'Le bénéficiaire a déjà un compte sur le coffre-fort numérique Reconnect, liez ce compte existant à un de vos relais'
 beneficiary_has_no_account_create: "Le bénéficiaire n'as pas encore de compte sur le coffre-fort numérique Reconnect, créez ce compte avec le bénéficiaire ou à distance grâce à son numéro de téléphone, et reliez le à un de vos relais"
 beneficiary_has_no_email: Le bénéficiaire n'a pas renseigné d'adresse email
 beneficiary_has_no_secret_answer: Le bénéficiaire n'a pas renseigné de réponse secrète
 beneficiary_has_no_phone_number: Le bénéficiaire n'a pas renseigné de numéro de téléphone
+beneficiary_reset_password_already_requested: Une demande de réinitialisation du mot de passe a déjà été effectuée pour ce bénéficiaire
 beneficiary_reset_password_already_requested_by_email: Une demande de réinitialisation du mot de passe a déjà été effectuée pour ce bénéficiaire par email
+beneficiary_reset_password_SMS_code: Code reçu par SMS
 beneficiary_reset_password_SMS_has_been_sent: Un SMS a été envoyé au bénéficiaire, il contient un code secret nécessaire pour renouveller son mot de passe
 beneficiary_reset_password_success: Le mot de passe du bénéficiaire %fullName% a bien été mis à jour
+beneficiary_reset_password_email_has_been_sent: Un email a été envoyé au bénéficiaire avec des instructions pour renouveller son mot de passe
 beneficiary_will_receive_email_reset_request: Le bénéficiaire recevra un email lui permettant de réinitialiser son mot de passe directement
 beneficiary_will_receive_sms_account_information: 'Il recevra un sms pour activer son compte et compléter ses informations'
 beneficiary_will_receive_sms_reset_request: Le bénéficiaire recevra un code par SMS afin de réinitialiser son mot de passe
