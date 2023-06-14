@@ -964,6 +964,7 @@ postal_code: 'Code Postal'
 previous: Précédent
 private: Privé
 pro_manage_user_title_part_1: 'Gestion des'
+professionals: Professionnels
 public_reset_password: 'Je souhaite réinitialiser mon mot de passe'
 public_reset_password_SMS_has_been_sent: "Un SMS vous a été envoyé il contient un code secret nécessaire pour renouveller votre mot de passe, vous disposez d'un délai de 2 heures"
 public_reset_password_SMS_wrong_code: 'Le Code que vous avez entré ne correspond pas à celui que vous avez reçu par SMS'

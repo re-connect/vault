@@ -1,0 +1,18 @@
+{% extends 'v2/pro_standard_layout.html.twig' %}
+
+{% block bodyColor %}'bg-white'{% endblock %}
+
+{% block actionBar %}
+    {% block addSubjectButton %}{% endblock %}
+    <div class="col-12 col-md-6 col-lg-5">
+        {{ include('v2/users_list/components/_filter_subjects_form.html.twig', {form}) }}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="px-3 m-auto">
+        <div class="list-container">
+            {% block list %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
