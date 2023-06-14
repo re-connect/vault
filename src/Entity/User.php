@@ -1157,4 +1157,9 @@ class User extends BaseUser implements \JsonSerializable
 
         return $this;
     }
+
+    public function hasDroit(string $droit): bool
+    {
+        return $this->getUserCentres()->exists(fn (UserCentre $userCentre) => $userCentre->hasDroit($droit));
+    }
 }

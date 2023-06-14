@@ -79,12 +79,7 @@ class MembreCentre extends UserCentre
         return $this;
     }
 
-    /**
-     * Get droits.
-     *
-     * @return array
-     */
-    public function getDroits()
+    public function getDroits(): array
     {
         return $this->droits;
     }
