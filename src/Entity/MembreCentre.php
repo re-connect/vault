@@ -116,6 +116,12 @@ class MembreCentre extends UserCentre
             && true === $this->getDroits()[self::TYPEDROIT_GESTION_BENEFICIAIRES];
     }
 
+    public function canManageProfessionals(): bool
+    {
+        return array_key_exists(self::TYPEDROIT_GESTION_MEMBRES, $this->getDroits())
+            && true === $this->getDroits()[self::TYPEDROIT_GESTION_MEMBRES];
+    }
+
     /**
      * Specify data which should be serialized to JSON.
      *

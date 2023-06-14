@@ -712,6 +712,8 @@ my_documents: 'My Documents'
 my_events: 'My Events'
 my_notes: 'My Notes'
 my_relays: 'My Relays'
+my_relays_title_1: My relays
+my_relays_title_2: Reconnect
 move: Move
 name: Name
 'no': 'No'
@@ -890,6 +892,8 @@ share_document_error_not_found: 'No beneficiary found'
 share_document_success: 'An email with a link to download this document has been sent to the email address provided'
 share_document_with: "Recipient's email"
 shared: Shared
+show_beneficiaries: Show beneficiaries
+show_professionals: Show professionals
 sms: SMS
 sms_sent: 'SMS sent'
 sms_sent_failed: 'SMS sending failed, please check that the phone number is valid'
