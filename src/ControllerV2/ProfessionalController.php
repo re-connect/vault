@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/professional')]
+#[IsGranted('ROLE_MEMBRE')]
 class ProfessionalController extends AbstractController
 {
     private const PAGINATION_RESULTS_LIMIT = 10;
 
     #[Route(path: '/beneficiaries', name: 'list_beneficiaries', methods: ['GET'])]
-    #[IsGranted('ROLE_MEMBRE')]
     public function listBeneficiaries(Request $request, BeneficiaireRepository $repository, PaginatorService $paginator): Response
     {
         return $this->render('v2/professional/beneficiaries.html.twig', [
@@ -39,7 +39,6 @@ class ProfessionalController extends AbstractController
         methods: ['POST'],
         condition: 'request.isXmlHttpRequest()',
     )]
-    #[IsGranted('ROLE_MEMBRE')]
     public function searchBeneficiaries(Request $request, BeneficiaireRepository $repository, PaginatorService $paginator): Response
     {
         $form = $this->createForm(FilterBeneficiaryType::class, null, [
