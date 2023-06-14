@@ -803,6 +803,7 @@ postal_code: 'Postal Code'
 print_account_creation_act: "Don't forget to print the Reconnect account creation act, in order to obtain the signature of the beneficiary"
 private: Private
 pro_manage_user_title_part_1: Manage
+professionals: Professionals
 public_reset_password: 'I want to reset my password'
 public_reset_password_SMS_has_been_sent: 'An SMS was sent to you containing a secret code to renew your password. It is valid for 2 hours.'
 public_reset_password_SMS_wrong_code: 'The code you entered does not correspond to the one you received by SMS'

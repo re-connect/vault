@@ -20,7 +20,7 @@ class ProfessionalController extends AbstractController
     #[Route(path: '/beneficiaries', name: 'list_beneficiaries', methods: ['GET'])]
     public function listBeneficiaries(Request $request, BeneficiaireRepository $repository, PaginatorService $paginator): Response
     {
-        return $this->render('v2/professional/beneficiaries.html.twig', [
+        return $this->render('v2/professional/beneficiaries/beneficiaries.html.twig', [
             'beneficiaries' => $paginator->create(
                 $repository->findByAuthorizedProfessional($this->getUser()->getSubject()),
                 $request->query->getInt('page', 1),
@@ -47,7 +47,7 @@ class ProfessionalController extends AbstractController
         ])->handleRequest($request);
 
         return new JsonResponse([
-            'html' => $this->render('v2/professional/_beneficiaries_list.html.twig', [
+            'html' => $this->render('v2/professional/beneficiaries/_beneficiaries_list.html.twig', [
                 'beneficiaries' => $paginator->create(
                     $repository->filterByAuthorizedProfessional(
                         $this->getUser()->getSubject(),
