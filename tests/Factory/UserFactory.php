@@ -49,6 +49,7 @@ final class UserFactory extends ModelFactory
             'bActif' => true,
             'typeUser' => 'ROLE_BENEFICIAIRE',
             'lastIp' => self::faker()->text(),
+            'lastLang' => self::faker()->languageCode(),
             'createdAt' => new \DateTime('now'),
             'updatedAt' => new \DateTime('now'),
             'test' => self::faker()->boolean(),

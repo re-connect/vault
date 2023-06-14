@@ -31,10 +31,11 @@ class BeneficiaryResetPasswordController extends AbstractController
 
     #[IsGranted('UPDATE', 'beneficiary')]
     #[Route(path: '/{id<\d+>}/reset-password/email', name: 'reset_password_beneficiary_email', methods: ['GET'])]
-    public function resetEmail(Request $request, Beneficiaire $beneficiary, ResettingService $service): Response
+    public function resetEmail(Beneficiaire $beneficiary, ResettingService $service): Response
     {
-        if ($beneficiary->getUser()->getEmail()) {
-            $service->processSendingBeneficiaryPasswordResetEmail($beneficiary);
+        $user = $beneficiary->getUser();
+        if ($user->getEmail()) {
+            $service->processSendingUserPasswordResetEmail($user);
         } else {
             $this->addFlash('error', 'beneficiary_has_no_email');
         }
@@ -59,7 +60,7 @@ class BeneficiaryResetPasswordController extends AbstractController
         }
 
         $userToReset = $beneficiary->getUser();
-        $service->processSendingBeneficiaryPasswordResetSms($beneficiary);
+        $service->processSendingUserPasswordResetSms($userToReset);
 
         $formModel = new ResetPasswordSmsFormModel();
         $form = $this->createForm(ResetPasswordSmsFormType::class, $formModel, [

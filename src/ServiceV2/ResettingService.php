@@ -186,10 +186,8 @@ class ResettingService
         return null;
     }
 
-    public function processSendingBeneficiaryPasswordResetSms(Beneficiaire $beneficiary): void
+    public function processSendingUserPasswordResetSms(User $user): void
     {
-        $user = $beneficiary->getUser();
-
         try {
             // in order to create request
             $this->resetPasswordHelper->generateResetToken($user);
@@ -215,10 +213,8 @@ class ResettingService
         }
     }
 
-    public function processSendingBeneficiaryPasswordResetEmail(Beneficiaire $beneficiary): void
+    public function processSendingUserPasswordResetEmail(User $user): void
     {
-        $user = $beneficiary->getUser();
-
         try {
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
             $this->handleEmailSend($user, $resetToken, $user->getLastLang());
