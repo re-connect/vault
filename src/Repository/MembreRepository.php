@@ -63,4 +63,25 @@ class MembreRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @return Membre[]
+     */
+    public function findByAuthorizedProfessional(Membre $professional): array
+    {
+        return $this->createQueryBuilder('m')
+            ->innerJoin('m.membresCentres', 'bc')
+            ->innerJoin('bc.centre', 'c')
+            ->innerJoin('m.user', 'u')
+            ->andWhere('c IN (:relays)')
+            ->andWhere('bc.bValid = true')
+            ->andWhere('m != :professional')
+            ->orderBy('u.username')
+            ->setParameters([
+                'relays' => $professional->getAffiliatedRelaysWithProfessionalManagement()->toArray(),
+                'professional' => $professional,
+            ])
+            ->getQuery()
+            ->getResult();
+    }
 }

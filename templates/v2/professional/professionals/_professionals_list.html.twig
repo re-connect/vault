@@ -1,0 +1,11 @@
+{% extends 'v2/professional/_subjects_list.html.twig' %}
+
+{% block listRows %}
+    {% for professional in professionals %}
+        {{ include('v2/professional/professionals/_professional_list_row.html.twig', {professional}) }}
+    {% endfor %}
+{% endblock %}
+
+{% block pagination %}
+    {{ knp_pagination_render(professionals) }}
+{% endblock %}

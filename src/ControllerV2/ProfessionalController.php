@@ -4,6 +4,7 @@ namespace App\ControllerV2;
 
 use App\FormV2\FilterBeneficiaryType;
 use App\Repository\BeneficiaireRepository;
+use App\Repository\MembreRepository;
 use App\ServiceV2\PaginatorService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -59,6 +60,19 @@ class ProfessionalController extends AbstractController
                 ),
                 'form' => $form,
             ])->getContent(),
+        ]);
+    }
+
+    #[Route(path: '/professionals', name: 'list_professionals', methods: ['GET'])]
+    public function listProfessionals(Request $request, MembreRepository $repository, PaginatorService $paginator): Response
+    {
+        return $this->render('v2/professional/professionals/professionals.html.twig', [
+            'professionals' => $paginator->create(
+                $repository->findByAuthorizedProfessional($this->getUser()->getSubject()),
+                $request->query->getInt('page', 1),
+                self::PAGINATION_RESULTS_LIMIT,
+            ),
+            'form' => $this->createForm(FilterBeneficiaryType::class),
         ]);
     }
 }

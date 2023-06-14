@@ -1,0 +1,22 @@
+<tr class="text-primary align-middle bg-white">
+    <td class="border-0 p-0 h-100 text-center align-middle">
+            <i class="fas fa-user fa-3x text-primary"></i>
+    </td>
+    <td class="border-0 h-100 w-25 text-start bold align-middle">
+            <span>{{ professional.user.prenom|capitalize }} {{ professional.user.nom|upper }}</span>
+            <br>
+            <span class="text-grey">{{ professional.user.username }}</span>
+    </td>
+    <td class="border-0 h-100 text-center d-none d-md-table-cell align-middle px-5">
+{#        {{ include('v2/professional/beneficiaries/_personal_data_row.html.twig') }}#}
+    </td>
+    <td class="border-0 h-100 text-center align-middle" {{ stimulus_controller('dropdown-menu') }}>
+{#        {{ include('v2/professional/beneficiaries/_action_dropdown.html.twig', {#}
+{#            removeFromRelay: {#}
+{#                path: path('disaffiliate_beneficiary_relay_choice', {'id': beneficiary.id}),#}
+{#                message: 'remove_from_relay_confirm'|trans({'%beneficiairy%': beneficiary.user.fullName})#}
+{#            },#}
+{#            resetPasswordPath: path('private_reset_password', {'id': beneficiary.user.id}),#}
+{#        }) }}#}
+    </td>
+</tr>
