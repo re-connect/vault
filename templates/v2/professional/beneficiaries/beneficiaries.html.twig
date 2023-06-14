@@ -20,14 +20,14 @@
         </a>
     </div>
     <div class="col-12 col-md-6 col-lg-5">
-        {{ include('v2/professional/_filter_beneficiaries_form.html.twig', {form}) }}
+        {{ include('v2/professional/beneficiaries/_filter_beneficiaries_form.html.twig', {form}) }}
     </div>
 {% endblock %}
 
 {% block content %}
     <div class="px-3 m-auto">
         <div class="list-container">
-            {{ include('v2/professional/_beneficiaries_list.html.twig', {beneficiaries}) }}
+            {{ include('v2/professional/beneficiaries/_beneficiaries_list.html.twig', {beneficiaries}) }}
         </div>
     </div>
 {% endblock %}
