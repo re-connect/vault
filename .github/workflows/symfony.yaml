@@ -12,11 +12,16 @@ permissions:
 jobs:
     symfony-tests:
         runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php-versions:
+                  [ "8.1", "8.2" ]
+        name: PHP ${{ matrix.php-versions }} Test on ubuntu-latest
         steps:
             # —— Backend setup 🔧 ——————————————————————————————————————————————————
             -   uses: shivammathur/setup-php@v2
                 with:
-                    php-version: '8.1'
+                    php-version: ${{ matrix.php-versions }}
             -   uses: actions/checkout@v3
             -   name: Cache Composer packages
                 id: composer-cache
