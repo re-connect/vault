@@ -18,7 +18,7 @@ use SymfonyCasts\Bundle\ResetPassword\Exception\ExpiredResetPasswordTokenExcepti
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
-#[Route(path: '/reset-password')]
+#[Route(path: '/public/reset-password')]
 class ResetPasswordController extends AbstractController
 {
     use ResetPasswordControllerTrait;

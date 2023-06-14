@@ -11,6 +11,6 @@ export default class extends Controller {
   select(event) {
     const origin = window.location.origin;
     const lang = event.currentTarget.dataset.lang;
-    visit(`${origin}/changer-langue/${lang}`);
+    visit(`${origin}/public/changer-langue/${lang}`);
   }
 }
