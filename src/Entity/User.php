@@ -1045,6 +1045,18 @@ class User extends BaseUser implements \JsonSerializable
         return $this->getSubject()?->getDefaultUserName() ?? sprintf('%s.%s', $this->getSluggedLastname(), $this->getSluggedFirstName());
     }
 
+    /** @return Collection<int, UserCentre> */
+    public function getUserCentres(): Collection
+    {
+        $subject = $this->getSubject();
+
+        if (!$subject instanceof UserWithCentresInterface) {
+            return $subject->getUsersCentres();
+        }
+
+        return new ArrayCollection();
+    }
+
     /** @return Collection<int, BeneficiaireCentre|MembreCentre> */
     public function getUserRelays(): Collection
     {

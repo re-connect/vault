@@ -165,6 +165,12 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return false;
     }
 
+    /** @return Collection<int, MembreCentre> */
+    public function getUserCentres(): Collection
+    {
+        return $this->getMembresCentres();
+    }
+
     public function getUserCentre(Centre $centre)
     {
         foreach ($this->getMembresCentres() as $membreCentre) {
