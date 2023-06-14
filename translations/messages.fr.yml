@@ -57,7 +57,7 @@ beneficiary_created_successfully_wait_activation: 'Le compte a bien été créé
 beneficiary_creation_canceled: 'Annulation de la création du bénéficiaire'
 beneficiary_creation_client_sms: "Votre compte Coffre-fort Reconnect a été crée crée.\nvotre identifiant est %username%, vous pouvez vous connecter en cliquant sur le lien ci-dessous : %autoLoginLink% \nVous pouvez également télécharger l'application mobile : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
 beneficiary_creation_remotely_sms: "Votre accompagnant %pro.firstname% %pro.lastname% de la structure %center% vous propose d'activer votre coffre-fort numérique Reconnect \nConnectez-vous sur www.reconnect.fr \nIdentifiant : %username% \nMot de passe : %password% \nOu cliquez sur le lien : %autoLoginLink% \nVous pouvez également télécharger l'application mobile : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
-beneficiary_will_give_you_secret_answer: Le bénéficiaire vous fournira la réponse à sa question secrète
+beneficiary_will_give_you_secret_answer: Le bénéficiaire vous fournira la réponse à sa question secrète afin de réinitialiser son mot de passe
 beneficiary_will_give_you_secret_information: "Le bénéficiaire vous communiquera le mot de passe qu'il désire utiliser ainsi qu'une question et réponse secrète permettant de réinitialiser son mot de passe"
 beneficiary_already_as_account_affiliate: 'Le bénéficiaire a déjà un compte sur le coffre-fort numérique Reconnect, liez ce compte existant à un de vos relais'
 beneficiary_has_no_account_create: "Le bénéficiaire n'as pas encore de compte sur le coffre-fort numérique Reconnect, créez ce compte avec le bénéficiaire ou à distance grâce à son numéro de téléphone, et reliez le à un de vos relais"

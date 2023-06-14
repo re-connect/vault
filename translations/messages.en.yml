@@ -49,7 +49,7 @@ beneficiary_has_no_phone_number: The beneficiary does not have phone number
 beneficiary_reset_password_already_requested_by_email: A reset password request has already been made for this beneficiary by email
 beneficiary_reset_password_SMS_has_been_sent: An SMS was sent to the beneficiary, containing a secret code to renew his password
 beneficiary_reset_password_success: Password updated for beneficiary %fullName%
-beneficiary_will_give_you_secret_answer: The beneficiary will give you the answer of his secret question
+beneficiary_will_give_you_secret_answer: The beneficiary will give you the answer of his secret question in order to reset the password
 beneficiary_will_receive_email_reset_request: The beneficiary will receive an email in order to reset his password
 beneficiary_will_receive_sms_account_information: 'The beneficiary will receive an SMS to activate his account and complete his information'
 beneficiary_will_receive_sms_reset_request: The beneficiary will receive a code by SMS in order to reset his password
