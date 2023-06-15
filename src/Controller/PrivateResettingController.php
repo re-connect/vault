@@ -14,7 +14,6 @@ use App\ServiceV2\ResettingService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -100,33 +99,6 @@ class PrivateResettingController extends AbstractController
         return $this->render('user/resetting/private/question.html.twig', [
             'userToReset' => $userToReset,
             'form' => $form,
-        ]);
-    }
-
-    #[Route(path: '/user/{id}/reset-password/random', name: 'private_reset_password_random', methods: ['GET', 'POST'])]
-    #[IsGranted('gestion beneficiaire', 'userToReset')]
-    public function privateResetPasswordRandom(Request $request, User $userToReset, UserManager $manager): Response
-    {
-        if (!$userToReset->isBeneficiaire()) {
-            return $this->redirectToRoute('list_beneficiaries');
-        }
-
-        $newPassword = null;
-        $form = $this->createFormBuilder()->add('submit', SubmitType::class, [
-            'attr' => ['class' => 'btn-green btn-blue'],
-            'label' => 'user.reinitialiserMdp.reinitialisation',
-        ])->getForm()->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $newPassword = $manager->randomPassword();
-            $manager->changePassword($userToReset, $newPassword);
-            $this->addFlash('success', 'public_reset_password_success');
-        }
-
-        return $this->render('user/resetting/private/random.html.twig', [
-            'userToReset' => $userToReset,
-            'form' => $form,
-            'newPassword' => $newPassword,
         ]);
     }
 
