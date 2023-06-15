@@ -1,4 +1,4 @@
-beneficiary_affiliation_empty_relays: Vous devez choisir au moins un relais auquel affilier le bénéficiaire
+beneficiary_affiliation_empty_relays: Sie müssen mindestens eine Weiterleitung auswählen, um den Begünstigten zu verbinden
 birthdate_not_empty: Das Feld "Geburtsdatum" darf nicht leer sein
 email_already_in_use: Diese E-Mailadresse wird bereits verwendet
 firstname_format: 'Vous ne pouvez entrer que des lettres, tirets (-) ou apostrophes ('')'
