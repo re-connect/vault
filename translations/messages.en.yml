@@ -888,6 +888,7 @@ secret_answer: 'Secret answer'
 secret_answer_optional: 'Secret answer (optional)'
 secret_question: 'Secret question'
 search_existing_beneficiary: 'Search for an existing beneficiary'
+search_member: Search for an existing professional
 search_member_help: You can search for an existing professional and invite him to join your relays
 select_relays_for_disaffiliation: 'This user is linked to one or several relays that you manage, please choose relays for which you want to stop the following'
 send: Send
