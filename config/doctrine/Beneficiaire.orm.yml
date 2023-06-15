@@ -114,6 +114,7 @@ App\Entity\Beneficiaire:
                 nullable: false
         creationProcess:
             targetEntity: App\Entity\Attributes\BeneficiaryCreationProcess
+            mappedBy: beneficiary
             joinColumn:
                 onDelete: "SET NULL"
     manyToOne:
