@@ -15,8 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfessionalController extends AbstractController
 {
-    private const PAGINATION_RESULTS_LIMIT = 10;
-
     #[Route(path: '/beneficiaries', name: 'list_beneficiaries', methods: ['GET'])]
     #[IsGranted('ROLE_MEMBRE')]
     public function listBeneficiaries(Request $request, BeneficiaireRepository $repository, PaginatorService $paginator): Response
@@ -25,12 +23,12 @@ class ProfessionalController extends AbstractController
             'beneficiaries' => $paginator->create(
                 $repository->findByAuthorizedProfessional($this->getUser()->getSubject()),
                 $request->query->getInt('page', 1),
-                self::PAGINATION_RESULTS_LIMIT,
+                PaginatorService::LIST_USER_LIMIT,
             ),
             'form' => $this->createForm(FilterUserType::class, null, [
                 'action' => $this->generateUrl('search_beneficiaries'),
                 'attr' => ['data-controller' => 'ajax-list-filter'],
-                'relays' => $this->getUser()->getSubjectMembre()->getAffiliatedRelaysWithBeneficiaryManagement(),
+                'relays' => $this->getUser()->getAffiliatedRelaysWithBeneficiaryManagement(),
             ]),
         ]);
     }
@@ -48,7 +46,7 @@ class ProfessionalController extends AbstractController
         $form = $this->createForm(FilterUserType::class, $formModel, [
             'action' => $this->generateUrl('search_beneficiaries'),
             'attr' => ['data-controller' => 'ajax-list-filter'],
-            'relays' => $this->getUser()->getSubjectMembre()->getAffiliatedRelaysWithBeneficiaryManagement(),
+            'relays' => $this->getUser()->getAffiliatedRelaysWithBeneficiaryManagement(),
         ])->handleRequest($request);
 
         return new JsonResponse([
@@ -60,7 +58,7 @@ class ProfessionalController extends AbstractController
                         $formModel->relay,
                     ),
                     $request->query->getInt('page', 1),
-                    self::PAGINATION_RESULTS_LIMIT,
+                    PaginatorService::LIST_USER_LIMIT,
                 ),
                 'form' => $form,
             ])->getContent(),
@@ -75,12 +73,12 @@ class ProfessionalController extends AbstractController
             'professionals' => $paginator->create(
                 $repository->findByAuthorizedProfessional($this->getUser()->getSubject()),
                 $request->query->getInt('page', 1),
-                self::PAGINATION_RESULTS_LIMIT,
+                PaginatorService::LIST_USER_LIMIT,
             ),
             'form' => $this->createForm(FilterUserType::class, null, [
                 'action' => $this->generateUrl('search_professionals'),
                 'attr' => ['data-controller' => 'ajax-list-filter'],
-                'relays' => $this->getUser()->getSubjectMembre()->getAffiliatedRelaysWithProfessionalManagement(),
+                'relays' => $this->getUser()->getAffiliatedRelaysWithProfessionalManagement(),
             ]),
         ]);
     }
@@ -98,7 +96,7 @@ class ProfessionalController extends AbstractController
         $form = $this->createForm(FilterUserType::class, $formModel, [
             'action' => $this->generateUrl('search_professionals'),
             'attr' => ['data-controller' => 'ajax-list-filter'],
-            'relays' => $this->getUser()->getSubjectMembre()->getAffiliatedRelaysWithProfessionalManagement(),
+            'relays' => $this->getUser()->getAffiliatedRelaysWithProfessionalManagement(),
         ])->handleRequest($request);
 
         return new JsonResponse([
@@ -110,7 +108,7 @@ class ProfessionalController extends AbstractController
                         $formModel->relay,
                     ),
                     $request->query->getInt('page', 1),
-                    self::PAGINATION_RESULTS_LIMIT,
+                    PaginatorService::LIST_USER_LIMIT,
                 ),
                 'form' => $form,
             ])->getContent(),
