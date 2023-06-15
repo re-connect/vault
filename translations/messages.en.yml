@@ -857,6 +857,7 @@ resetting.public.text: 'Please enter your Email address'
 resetting.public.title: '<span class="main">Password</span> reset'
 resetting.public.votreEmail: 'Your Email'
 resetting.reset.submit: 'Change password'
+results: Results
 rp_is_adaptable_alt_img: 'Adaptable to your needs'
 rp_is_adaptable_p: "The configuration allows you to meet the specific needs of your organization's operations."
 rp_is_adaptable_title: 'Adaptable to your needs'

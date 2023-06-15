@@ -27,8 +27,3 @@ form.display-required-labels label.required:after {
 input.grey-placeholder::placeholder {
   color: theme-color('grey');
 }
-
-.gray-search-form-container input {
-  background-color: theme-color('light-blue') !important;
-  padding-left: 1rem !important;
-}

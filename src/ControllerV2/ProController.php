@@ -4,7 +4,9 @@ namespace App\ControllerV2;
 
 use App\FormV2\Search\SearchFormModel;
 use App\FormV2\Search\SearchType;
+use App\Repository\MembreRepository;
 use App\Security\VoterV2\ProVoter;
+use App\ServiceV2\PaginatorService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,9 +28,9 @@ class ProController extends AbstractController
 
     #[Route(path: '/search', name: 'search_pro', methods: ['GET', 'POST'])]
     #[IsGranted(ProVoter::MANAGE)]
-    public function searchPros(Request $request): Response
+    public function searchPros(Request $request, MembreRepository $repository, PaginatorService $paginator): Response
     {
-        $search = new SearchFormModel($request->query->getAlpha('q'));
+        $search = new SearchFormModel($request->query->get('q'));
         $form = $this->createForm(SearchType::class, $search, [
             'action' => $this->generateUrl('search_pro'),
         ])->handleRequest($request);
@@ -37,6 +39,13 @@ class ProController extends AbstractController
             return $this->redirectToRoute('search_pro', ['q' => $search->getSearch()]);
         }
 
-        return $this->render('v2/pro/search.html.twig', ['form' => $form]);
+        $pros = $paginator->create(
+            $repository->search($search->getSearch()),
+            $request->query->getInt('page', $request->query->getInt('page', 1)),
+        );
+
+        return $request->isXmlHttpRequest()
+            ? $this->render('v2/pro/_search_results_card.html.twig', ['pros' => $pros])
+            : $this->render('v2/pro/search.html.twig', ['form' => $form, 'pros' => $pros]);
     }
 }

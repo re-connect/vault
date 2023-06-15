@@ -1,0 +1,20 @@
+{% extends 'v2/common/_card.html.twig' %}
+
+{% set title='results'|trans %}
+
+{% block customContent %}
+    {% if pros|length == 0 %}
+        {% include 'v2/common/_no_results.html.twig' %}
+    {% else %}
+        <ul class="list-group mb-3">
+            {% for pro in pros %}
+                {% set user = pro.user %}
+                <li class="list-group-item d-flex justify-content-between align-items-center text-primary">
+                    {{ user.fullName }}
+                    <a class="btn btn-sm btn-blue text-white">{{ 'add'|trans }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        {{ knp_pagination_render(pros) }}
+    {% endif %}
+{% endblock %}

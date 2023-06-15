@@ -1,4 +1,5 @@
 {% if pageCount > 1 %}
+    {% set id = id is defined ? id : null %}
     <nav>
         {% set classAlign = (align is not defined) ? '' : align=='center' ? ' justify-content-center' : (align=='right' ? ' justify-content-end' : '') %}
         {% set classSize = (size is not defined) ? '' : size=='large' ? ' pagination-lg' : (size=='small' ? ' pagination-sm' : '') %}

@@ -233,7 +233,7 @@ create_new_benef_step4: '<span class="rp-blue text-blue">Étape 4/%totalSteps%</
 create_new_benef_step5: '<span class="rp-blue text-blue">Étape %step%/%totalSteps%</span>&nbsp; Récapitulatif, veuillez confirmer les informations enregistrées ci-dessous'
 create_new_benef_step6: '<span class="rp-blue text-blue">Étape %step%/%totalSteps%</span>&nbsp; Charte d''utilisation'
 create_professional_help: Créez un compte professionnel sur Reconnect et invitez le à rejoindre vos relais
-create_account: Créez un compte
+create_account: Créer un compte
 country: Pays
 data: Données
 database: 'Base de données'
@@ -790,7 +790,7 @@ membre.creationBeneficiaire.success: 'Le bénéficiaire a bien été créé'
 membre.creationBeneficiaire.title: 'Création d''un <span class="main">beneficiaire</span>'
 membre.creationMembre.membreEmailConstraint: 'Si le membre possède le droit de gestion des membres, il doit obligatoirement renseigner son adresse email.'
 membre.creationMembre.success: 'Le membre a bien été créé'
-membre.creationMembre.title: 'Création de membre'
+membre.creationMembre.title: Ajouter un membre
 membre.doAjoutSubject.btnAjouter: Ajouter
 membre.doAjoutSubject.centres: 'Vos centres'
 membre.doAjoutSubject.subtitle: "Choisissez les centres auxquels ajouter l'utilisateur"
@@ -1037,6 +1037,7 @@ resetting.public.title: '<span class="main">Réinitialisation </span>du mot de p
 resetting.public.votreEmail: 'Votre email'
 resetting.public.votreTelephone: 'Votre numéro de téléphone'
 resetting.reset.submit: 'Modifier le mot de passe'
+results: Résultats
 rp_is_adaptable_alt_img: 'adaptable aux besoins'
 rp_is_adaptable_p: 'Le paramétrage permet de répondre aux besoins propres du fonctionnement de votre structure.'
 rp_is_adaptable_title: 'Adaptable à vos besoins'
