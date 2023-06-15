@@ -52,7 +52,7 @@ class ProfessionalController extends AbstractController
         return new JsonResponse([
             'html' => $this->render('v2/professional/_beneficiaries_list.html.twig', [
                 'beneficiaries' => $paginator->create(
-                    $repository->filterByAuthorizedProfessional(
+                    $repository->findByAuthorizedProfessional(
                         $this->getUser()->getSubject(),
                         $formModel->search,
                         $formModel->relay,
