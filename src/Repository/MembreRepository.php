@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Centre;
 use App\Entity\Membre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
@@ -61,6 +62,37 @@ class MembreRepository extends ServiceEntityRepository
             ->andWhere('client.randomId = :clientId')
             ->setParameters(['clientId' => $clientIdentifier])
             ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Membre[]
+     */
+    public function findByAuthorizedProfessional(Membre $professional, string $search = null, Centre $relay = null): array
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->innerJoin('m.membresCentres', 'bc')
+            ->innerJoin('bc.centre', 'c')
+            ->innerJoin('m.user', 'u')
+            ->andWhere('bc.bValid = true')
+            ->andWhere('m != :professional')
+            ->orderBy('u.username')
+            ->setParameter('professional', $professional);
+
+        if ($relay) {
+            $qb->andWhere('c = :relay')
+                ->setParameter('relay', $relay);
+        } else {
+            $qb->andWhere('c IN (:relays)')
+                ->setParameter('relays', $professional->getAffiliatedRelaysWithProfessionalManagement()->toArray());
+        }
+
+        if ($search) {
+            $qb->andWhere('u.username LIKE :search')
+                ->setParameter('search', sprintf('%%%s%%', $search));
+        }
+
+        return $qb->getQuery()
             ->getResult();
     }
 }

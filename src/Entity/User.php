@@ -1120,8 +1120,18 @@ class User extends BaseUser implements \JsonSerializable
     {
         if ($this->isMembre()) {
             return $this->getSubjectMembre()->getAffiliatedRelaysWithBeneficiaryManagement();
-        } elseif ($this->isGestionnaire()) {
-            return $this->getSubjectGestionnaire()->getCentres();
+        }
+
+        return new ArrayCollection();
+    }
+
+    /**
+     * @return Collection <int, Centre>
+     */
+    public function getAffiliatedRelaysWithProfessionalManagement(): Collection
+    {
+        if ($this->isMembre()) {
+            return $this->getSubjectMembre()->getAffiliatedRelaysWithProfessionalManagement();
         }
 
         return new ArrayCollection();

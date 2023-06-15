@@ -25,6 +25,6 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
         yield ['/beneficiary/create'];
         yield ['/beneficiary/affiliate'];
         yield ['/beneficiary/affiliate/search'];
-        yield ['/professional/beneficiaries'];
+        yield ['/beneficiaries'];
     }
 }

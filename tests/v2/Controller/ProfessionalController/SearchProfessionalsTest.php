@@ -7,9 +7,9 @@ use App\DataFixtures\v2\MemberFixture;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 
-class SearchBeneficiariesTest extends AbstractControllerTest implements TestRouteInterface
+class SearchProfessionalsTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const URL = '/beneficiaries/search';
+    private const URL = '/professionals/search';
 
     public function provideTestRoute(): ?\Generator
     {
@@ -36,7 +36,7 @@ class SearchBeneficiariesTest extends AbstractControllerTest implements TestRout
             'POST',
             true,
             [
-                'filter_beneficiary' => [
+                'filter_professionals' => [
                     'search' => 'test',
                     'relay' => '1',
                 ],

@@ -14,6 +14,7 @@ use App\Validator\Constraints as CustomAssert;
 use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -421,11 +422,38 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     /**
      * @return Collection <int, Centre>
      */
+    public function getAffiliatedRelays(): ReadableCollection
+    {
+        return $this->getMembresCentres()
+            ->filter(
+                fn (MembreCentre $professionalRelay) => $professionalRelay->getBValid(),
+            )
+            ->map(
+                fn (MembreCentre $professionalRelay) => $professionalRelay->getCentre(),
+            );
+    }
+
+    /**
+     * @return Collection <int, Centre>
+     */
     public function getAffiliatedRelaysWithBeneficiaryManagement(): Collection
     {
         return $this->getMembresCentres()
             ->filter(
-                fn (MembreCentre $professionalRelay) => true === $professionalRelay->getBValid() && $professionalRelay->canManageBeneficiaries())
+                fn (MembreCentre $professionalRelay) => $professionalRelay->getBValid() && $professionalRelay->canManageBeneficiaries())
+            ->map(
+                fn (MembreCentre $professionalRelay) => $professionalRelay->getCentre(),
+            );
+    }
+
+    /**
+     * @return Collection <int, Centre>
+     */
+    public function getAffiliatedRelaysWithProfessionalManagement(): Collection
+    {
+        return $this->getMembresCentres()
+            ->filter(
+                fn (MembreCentre $professionalRelay) => $professionalRelay->getBValid() && $professionalRelay->canManageProfessionals())
             ->map(
                 fn (MembreCentre $professionalRelay) => $professionalRelay->getCentre(),
             );

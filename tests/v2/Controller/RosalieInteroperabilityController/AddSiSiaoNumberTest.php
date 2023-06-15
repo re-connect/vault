@@ -36,6 +36,6 @@ class AddSiSiaoNumberTest extends AbstractControllerTest
         $this->assertSelectorTextContains('h2', $beneficiary->getFullName());
 
         $client->submitForm('Ajouter', ['form[number]' => 'XXXXXXXX']);
-        $this->assertResponseRedirects('/professional/beneficiaries');
+        $this->assertResponseRedirects('/beneficiaries');
     }
 }

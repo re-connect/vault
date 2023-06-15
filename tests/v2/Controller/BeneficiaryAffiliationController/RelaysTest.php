@@ -76,7 +76,7 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
             'submit',
             self::FORM_VALUES,
             MemberFixture::MEMBER_MAIL_WITH_RELAYS,
-            '/professional/beneficiaries',
+            '/beneficiaries',
         ];
     }
 
@@ -94,7 +94,7 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
             'affiliate_beneficiary[secretAnswer]' => '',
         ];
 
-        $this->assertFormIsValid($url, 'submit', $values, MemberFixture::MEMBER_MAIL_WITH_RELAYS, '/professional/beneficiaries');
+        $this->assertFormIsValid($url, 'submit', $values, MemberFixture::MEMBER_MAIL_WITH_RELAYS, '/beneficiaries');
 
         $this->assertCount(3, $beneficiary->getCentres());
         for ($i = 0; $i < 3; ++$i) {

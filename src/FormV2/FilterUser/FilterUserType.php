@@ -1,6 +1,6 @@
 <?php
 
-namespace App\FormV2;
+namespace App\FormV2\FilterUser;
 
 use App\Entity\Centre;
 use App\ServiceV2\Traits\UserAwareTrait;
@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FilterBeneficiaryType extends AbstractType
+class FilterUserType extends AbstractType
 {
     use UserAwareTrait;
 
@@ -35,12 +35,14 @@ class FilterBeneficiaryType extends AbstractType
                 'label' => false,
                 'placeholder' => 'choose_relay',
                 'required' => false,
-                'choices' => $this->getUser()?->getAffiliatedRelaysWithBeneficiaryManagement()?->toArray(),
+                'choices' => $options['relays'],
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([]);
+        $resolver->setDefaults([
+            'relays' => null,
+        ]);
     }
 }
