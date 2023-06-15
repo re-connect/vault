@@ -4,7 +4,7 @@ namespace App\Tests\v2\Smoke\Professional;
 
 use App\Tests\v2\Smoke\AbstractSmokeTest;
 
-class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
+class ProApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
 {
     protected function setUp(): void
     {
@@ -17,7 +17,7 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
      */
     public function testProfessionalPages(string $url): void
     {
-        $this->assertRoute(sprintf($url, $this->beneficiary->getId()));
+        $this->assertRoute($url);
     }
 
     public function professionalUrlProvider(): \Generator
@@ -26,5 +26,6 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
         yield ['/beneficiary/affiliate'];
         yield ['/beneficiary/affiliate/search'];
         yield ['/beneficiaries'];
+        yield ['/pro/create/home'];
     }
 }
