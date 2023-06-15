@@ -162,6 +162,8 @@ create_new_beneficiary_title_part_1: 'Create new'
 create_new_beneficiary_title_part_2: beneficiary
 create_reconnect_account_with_beneficiary: 'Create Reconnect account with beneficiary'
 create_reconnect_account_remotely: 'Create Reconnect account remotely'
+create_professional_help: Create a professional account on Reconnect and invite him to join your relays
+create_account: Create an account
 country: Country
 delete: Delete
 delete_your_account: 'If You want to delete Your account click here.'
@@ -886,6 +888,7 @@ secret_answer: 'Secret answer'
 secret_answer_optional: 'Secret answer (optional)'
 secret_question: 'Secret question'
 search_existing_beneficiary: 'Search for an existing beneficiary'
+search_member_help: You can search for an existing professional and invite him to join your relays
 select_relays_for_disaffiliation: 'This user is linked to one or several relays that you manage, please choose relays for which you want to stop the following'
 send: Send
 sending_sms_account_activation: 'Sending the SMS for account activation'

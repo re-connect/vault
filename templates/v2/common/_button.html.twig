@@ -1,6 +1,8 @@
 {% set color = color is defined ? color : 'green' %}
 {% set type = type is defined ? type : 'submit' %}
 {% set message = message is defined ? message : 'submit' %}
-<button class="btn btn-{{ color }} text-white text-center mt-2 col mx-1" type="{{ type }}">
+{% set textColor = 'outline' in color ? '' : 'text-white' %}
+
+<button class="btn btn-{{ color }} {{ textColor }} text-center mt-2 col mx-1" type="{{ type }}">
     {{ message|trans }}
 </button>

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
@@ -1057,6 +1058,12 @@ class User extends BaseUser implements \JsonSerializable
         return new ArrayCollection();
     }
 
+    /** @return ReadableCollection<int, UserCentre> */
+    public function getValidUserCentres(): ReadableCollection
+    {
+        return $this->getUserCentres()->filter(fn (UserCentre $userCentre) => true === $userCentre->getBValid());
+    }
+
     /** @return Collection<int, BeneficiaireCentre|MembreCentre> */
     public function getUserRelays(): Collection
     {
@@ -1170,6 +1177,6 @@ class User extends BaseUser implements \JsonSerializable
 
     public function hasDroit(string $droit): bool
     {
-        return $this->getUserCentres()->exists(fn (int $index, UserCentre $userCentre) => $userCentre->hasDroit($droit));
+        return $this->getValidUserCentres()->exists(fn (int $index, UserCentre $userCentre) => $userCentre->hasDroit($droit));
     }
 }

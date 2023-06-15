@@ -1,12 +1,13 @@
 {% set isDisabled = isDisabled is defined and isDisabled %}
 {% set cardColor = isDisabled ? 'grey' : 'primary' %}
+{% set buttonText = buttonText is defined ? buttonText : 'submit'|trans %}
 
 <div class="card rounded-card h-100"
-     {% if tooltipMessage is defined and tooltipMessage %}
-         data-toggle="tooltip"
-         data-placement="top"
-         title="{{ tooltipMessage }}"
-     {% endif %}
+        {% if tooltipMessage is defined and tooltipMessage %}
+            data-toggle="tooltip"
+            data-placement="top"
+            title="{{ tooltipMessage }}"
+        {% endif %}
 >
     <h5 class="card-header bg-{{ cardColor }} text-white p-3 text-center">{{ title }}</h5>
     <div class="card-body flex-column d-flex justify-content-between">
@@ -18,12 +19,21 @@
                 <span class="text-{{ cardColor }}">{{ helpText }}</span>
             </div>
         </div>
-        {% if not isDisabled %}
+        {% if cardForm is defined %}
+            <div class="row text-end">
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-12 col-md-8 pt-2 d-flex gray-search-form-container">
+                        {{ form_widget(form.search) }}
+                    </div>
+                    {{ include('v2/common/_button.html.twig', {message: buttonText, color: 'outline-primary'}) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        {% endif %}
+        {% if not isDisabled and buttonPath is defined %}
             <div class="row px-5 mt-4">
-                <a href="{{ buttonPath }}"
-                   data-turbo="false"
-                   class="btn btn-outline-primary "
-                >
+                <a href="{{ buttonPath }}" data-turbo="false" class="btn btn-outline-primary">
                     {{ buttonText }}
                 </a>
             </div>

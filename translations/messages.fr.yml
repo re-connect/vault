@@ -232,6 +232,8 @@ create_new_benef_step3: '<span class="rp-blue text-blue">Étape 3/%totalSteps%</
 create_new_benef_step4: '<span class="rp-blue text-blue">Étape 4/%totalSteps%</span>&nbsp; Veuillez choisir le/les Relais Reconnect du bénéficiaire'
 create_new_benef_step5: '<span class="rp-blue text-blue">Étape %step%/%totalSteps%</span>&nbsp; Récapitulatif, veuillez confirmer les informations enregistrées ci-dessous'
 create_new_benef_step6: '<span class="rp-blue text-blue">Étape %step%/%totalSteps%</span>&nbsp; Charte d''utilisation'
+create_professional_help: Créez un compte professionnel sur Reconnect et invitez le à rejoindre vos relais
+create_account: Créez un compte
 country: Pays
 data: Données
 database: 'Base de données'
@@ -1067,6 +1069,7 @@ secret_answer_optional: 'Réponse secrète (facultatif)'
 secret_question: 'Question secrète'
 secret_question_other: 'Autre question secrète'
 search_existing_beneficiary: 'Rechercher un bénéficiaire existant'
+search_member_help: Vous pouvez rechercher un membre existant afin de lui envoyer une invitation à rejoindre vos relais
 select_relays_for_disaffiliation: 'Cette personne est liée à un ou plusieurs relai(s) que vous gérez, sélectionnez le.les relais pour lesquels vous souhaitez arrêter le suivi'
 send: Envoyer
 sending_sms_account_activation: "Envoi du SMS d'activation du compte"
