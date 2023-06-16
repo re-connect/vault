@@ -1,15 +1,15 @@
 {% extends 'v2/pro_standard_layout.html.twig' %}
-{% block metaTitle %}{{ 'membre.creationMembre.title'|trans }}{% endblock %}
+{% block metaTitle %}{{ 'create_member'|trans }}{% endblock %}
 
 {% block title %}
-    <span class="text-blue">{{ 'membre.creationMembre.title'|trans }}</span>
+    <span class="text-blue">{{ 'create_member'|trans }}</span>
 {% endblock %}
 
 {% block delimiter %}{% endblock %}
 
 {% block content %}
-    <div class="row" {{ stimulus_controller('ajax-search', {url: path('search_pro')}) }}>
-        <div class="col-12 col-md-8 offset-md-2 mt-2">
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2 mt-2" {{ stimulus_controller('ajax-search', {url: path('search_pro')}) }}>
             {{ form_start(form) }}
             {{ form_widget(form.search, {attr: {
                 class: '',

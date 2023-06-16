@@ -37,7 +37,7 @@ class CentreType extends AbstractType
         }
 
         $builder
-            ->add('nom', null, ['label' => 'devenirUnRelaiReconnect.inscriptionCentres.nomLabel'])
+            ->add('nom', null, ['label' => 'name'])
             ->add('siret', null, ['label' => 'devenirUnRelaiReconnect.inscriptionCentres.siretLabel'])
             ->add('finess', null, ['label' => 'devenirUnRelaiReconnect.inscriptionCentres.finessLabel'])
             ->add('telephone', null, ['label' => 'devenirUnRelaiReconnect.inscriptionCentres.telephoneLabel'])

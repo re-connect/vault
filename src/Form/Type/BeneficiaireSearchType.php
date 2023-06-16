@@ -22,8 +22,8 @@ class BeneficiaireSearchType extends AbstractType
 //        }
 
         $builder
-            ->add('nom', null, ['required' => false, 'label' => 'membre.ajoutBeneficiaire.nomLabel'])
-            ->add('prenom', null, ['required' => false, 'label' => 'membre.ajoutBeneficiaire.prenomLabel'])
+            ->add('nom', null, ['required' => false, 'label' => 'name'])
+            ->add('prenom', null, ['required' => false, 'label' => 'firstname'])
 //            ->add('dateNaissance', DateType::class, ['required' => false, 'label' => 'membre.ajoutBeneficiaire.dateNaissanceLabel', 'attr' => ['class' => 'datePicker'], 'years' => $years])
             ->add('dateNaissance', BirthdayType::class, ['required' => false, 'label' => 'membre.ajoutBeneficiaire.dateNaissanceLabel', 'attr' => ['class' => 'datePicker']])
             ->add('rechercher', SubmitType::class, ['label' => 'search']);

@@ -35,13 +35,13 @@ class UserSettingsType extends AbstractType
 
         $builder
             ->add('prenom', null, [
-                'label' => 'registerForm.prenom',
+                'label' => 'firstname',
                 'attr' => [
                     'pattern' => self::NAME_REGEX,
                 ],
             ])
             ->add('nom', null, [
-                'label' => 'registerForm.nom',
+                'label' => 'name',
                 'attr' => [
                     'pattern' => self::NAME_REGEX,
                 ],

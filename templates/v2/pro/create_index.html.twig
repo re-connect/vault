@@ -1,8 +1,8 @@
 {% extends 'v2/pro_standard_layout.html.twig' %}
-{% block metaTitle %}{{ 'membre.creationMembre.title'|trans }}{% endblock %}
+{% block metaTitle %}{{ 'create_member'|trans }}{% endblock %}
 
 {% block title %}
-    <span class="text-blue">{{ 'membre.creationMembre.title'|trans }}</span>
+    <span class="text-blue">{{ 'create_member'|trans }}</span>
 {% endblock %}
 
 {% block delimiter %}{% endblock %}
@@ -14,7 +14,7 @@
         </div>
         <div class="col-12 col-md-6 mt-2">
             {{ include('v2/common/_card.html.twig', {
-                title: 'membre.ajoutMembre.nePossedePasCompte'|trans,
+                title: 'member_do_not_have_account'|trans,
                 iconName: 'user-plus',
                 helpText: 'create_professional_help'|trans,
                 buttonPath: '#',
