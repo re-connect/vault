@@ -101,11 +101,11 @@ class MembreRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('m')
             ->join('m.user', 'u');
 
-        $words = explode(' ', $search);
-
-        foreach ($words as $word) {
-            $qb->andWhere("CONCAT(u.prenom, ' ', u.nom, ' ', u.email) LIKE :search")
-                ->setParameter('search', sprintf('%%%s%%', $word));
+        if ($search) {
+            foreach (explode(' ', $search) as $word) {
+                $qb->andWhere("CONCAT(u.prenom, ' ', u.nom, ' ', u.email) LIKE :search")
+                    ->setParameter('search', sprintf('%%%s%%', $word));
+            }
         }
 
         return $qb->getQuery()->getResult();

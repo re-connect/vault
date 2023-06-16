@@ -33,8 +33,8 @@ class ProControllerTest extends AbstractControllerTest implements TestRouteInter
     {
         yield 'Should redirect to login when not authenticated' => [self::HOME_URL, 302, null, '/login'];
         yield 'Should return 200 status code when authenticated as member' => [self::HOME_URL, 200, MemberFixture::MEMBER_MAIL_WITH_RELAYS];
-        yield 'Should return 403 status code when authenticated as member without permissions' => [self::HOME_URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL];
-        yield 'Should return 403 status code when authenticated as beneficiary' => [self::HOME_URL, 403, MemberFixture::MEMBER_MAIL];
+        yield 'Should return 403 status code when authenticated as member without permissions' => [self::HOME_URL, 403, MemberFixture::MEMBER_MAIL];
+        yield 'Should return 403 status code when authenticated as beneficiary' => [self::HOME_URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL];
     }
 
     /**  @dataProvider provideTestFormIsValid */
@@ -51,13 +51,6 @@ class ProControllerTest extends AbstractControllerTest implements TestRouteInter
             ['search[search]' => 'gollum'],
             MemberFixture::MEMBER_MAIL_WITH_RELAYS,
             sprintf('%s?q=%s', self::SEARCH_URL, 'gollum'),
-        ];
-        yield 'Search submit search should redirect to search' => [
-            self::SEARCH_URL,
-            'search',
-            ['search[search]' => 'Gandalf'],
-            MemberFixture::MEMBER_MAIL_WITH_RELAYS,
-            sprintf('%s?q=%s', self::SEARCH_URL, 'Gandalf'),
         ];
     }
 }
