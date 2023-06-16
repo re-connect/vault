@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
@@ -1057,7 +1058,27 @@ class User extends BaseUser implements \JsonSerializable
         return new ArrayCollection();
     }
 
-    /** @return Collection<int, BeneficiaireCentre|MembreCentre> */
+    /** @return ReadableCollection<int, UserCentre> */
+    public function getValidUserCentres(): ReadableCollection
+    {
+        return $this->getUserCentres()->filter(fn (UserCentre $userCentre) => $userCentre->getBValid());
+    }
+
+    /** @return ReadableCollection<int, Centre> */
+    public function getRelays(): ReadableCollection
+    {
+        return $this->getUserRelays()
+            ->map(fn (UserCentre $userCentre) => $userCentre->getCentre());
+    }
+
+    /** @return ReadableCollection<int, Centre> */
+    public function getValidRelays(): ReadableCollection
+    {
+        return $this->getValidUserCentres()
+            ->map(fn (UserCentre $userCentre) => $userCentre->getCentre());
+    }
+
+    /** @return Collection<int, UserCentre> */
     public function getUserRelays(): Collection
     {
         return $this->isBeneficiaire()
@@ -1065,14 +1086,14 @@ class User extends BaseUser implements \JsonSerializable
             : $this->getSubjectMembre()->getMembresCentres();
     }
 
-    public function getUserRelay(Centre $relay): BeneficiaireCentre|MembreCentre|null
+    public function getUserRelay(Centre $relay): ?UserCentre
     {
-        $userRelays = $this->getUserRelays()->filter(fn (BeneficiaireCentre|MembreCentre $userRelay) => $userRelay->getCentre() === $relay);
+        $userRelays = $this->getUserRelays()->filter(fn (UserCentre $userRelay) => $userRelay->getCentre() === $relay);
 
         return $userRelays->first() ?? null;
     }
 
-    public static function createUserRelay(User $user, Centre $relay): BeneficiaireCentre|MembreCentre
+    public static function createUserRelay(User $user, Centre $relay): UserCentre
     {
         $userRelay = $user->isBeneficiaire() ? new BeneficiaireCentre() : new MembreCentre();
 
@@ -1137,9 +1158,7 @@ class User extends BaseUser implements \JsonSerializable
         return new ArrayCollection();
     }
 
-    /**
-     * @return Collection <int, BeneficiaireCentre|MembreCentre>
-     */
+    /** @return Collection <int, UserCentre> */
     public function getSubjectRelays(): Collection
     {
         return $this->isBeneficiaire()
@@ -1147,13 +1166,16 @@ class User extends BaseUser implements \JsonSerializable
             : $this->getSubjectMembre()->getMembresCentres();
     }
 
-    public function getSubjectRelaysForRelay(Centre $relay): BeneficiaireCentre|MembreCentre|null
+    public function isLinkedToRelay(Centre $relay): bool
     {
-        $subjectRelay = $this->getSubjectRelays()
-            ->filter(fn (BeneficiaireCentre|MembreCentre $subjectRelay) => $subjectRelay->getCentre() === $relay)
-            ->first();
+        return null !== $this->getSubjectRelaysForRelay($relay);
+    }
 
-        return false === $subjectRelay ? null : $subjectRelay;
+    public function getSubjectRelaysForRelay(Centre $relay): UserCentre|null
+    {
+        return $this->getSubjectRelays()
+            ->filter(fn (UserCentre $subjectRelay) => $subjectRelay->getCentre() === $relay)
+            ->first() ?: null;
     }
 
     public function getOldUsername(): ?string
@@ -1170,6 +1192,6 @@ class User extends BaseUser implements \JsonSerializable
 
     public function hasDroit(string $droit): bool
     {
-        return $this->getUserCentres()->exists(fn (int $index, UserCentre $userCentre) => $userCentre->hasDroit($droit));
+        return $this->getValidUserCentres()->exists(fn (int $index, UserCentre $userCentre) => $userCentre->hasDroit($droit));
     }
 }

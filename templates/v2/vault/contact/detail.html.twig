@@ -1,7 +1,7 @@
 {{ include('v2/vault/components/_personal_data_detail.html.twig', {
     'information': {
-        'contact.nomLabel': contact.nom,
-        'contact.prenomLabel': contact.prenom,
+        'name': contact.nom,
+        'firstname': contact.prenom,
         'add_date': contact.createdAt|format_datetime(),
         'contact.telephoneLabel': contact.telephone,
         'email': contact.email,

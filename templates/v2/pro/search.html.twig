@@ -1,0 +1,25 @@
+{% extends 'v2/pro_standard_layout.html.twig' %}
+{% block metaTitle %}{{ 'create_member'|trans }}{% endblock %}
+
+{% block title %}
+    <span class="text-blue">{{ 'create_member'|trans }}</span>
+{% endblock %}
+
+{% block delimiter %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2 mt-2" {{ stimulus_controller('ajax-search', {url: path('search_pro')}) }}>
+            {{ form_start(form) }}
+            {{ form_widget(form.search, {attr: {
+                class: '',
+                'data-ajax-search-target' : 'input',
+                'data-action' : 'ajax-search#search',
+            }}) }}
+            {{ form_end(form) }}
+            <div class="mt-3" {{ stimulus_target('ajax-search', 'results') }}>
+                {{ include('v2/pro/_search_results_card.html.twig', {pros}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

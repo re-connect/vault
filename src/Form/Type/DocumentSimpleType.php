@@ -19,7 +19,7 @@ class DocumentSimpleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', TextType::class, ['label' => 'document.nomLabel'])
+            ->add('nom', TextType::class, ['label' => 'name'])
             ->add('bPrive', ChoiceType::class, [
                 'label' => 'donneePersonnelle.form.access.label',
                 'required' => true,

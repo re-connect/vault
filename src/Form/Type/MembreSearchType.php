@@ -15,8 +15,8 @@ class MembreSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', null, ['required' => false, 'label' => 'membre.ajoutBeneficiaire.nomLabel'])
-            ->add('prenom', null, ['required' => false, 'label' => 'membre.ajoutBeneficiaire.prenomLabel'])
+            ->add('nom', null, ['required' => false, 'label' => 'name'])
+            ->add('prenom', null, ['required' => false, 'label' => 'firstname'])
             ->add('rechercher', SubmitType::class);
     }
 

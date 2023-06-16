@@ -144,7 +144,6 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     #[Groups(['v3:beneficiary:read', 'v3:beneficiary:write'])]
     public ?string $distantId = '';
 
-    #[ORM\OneToOne(mappedBy: 'beneficiary', targetEntity: BeneficiaryCreationProcess::class)]
     private ?BeneficiaryCreationProcess $creationProcess = null;
 
     public function __construct()

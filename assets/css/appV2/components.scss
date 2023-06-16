@@ -31,31 +31,32 @@ span.spinner-border.d-none-not-important {
   display: flex;
   justify-content: center;
 
-  .form-check {
-    max-width: 300px;
+  cursor: pointer;
+  flex-grow: 1;
+
+  label {
     cursor: pointer;
-    flex-grow: 1;
-    padding: 15px;
+    width: 100%;
+    min-height: 100px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-color: gray;
+    color: gray;
 
-    label {
-      cursor: pointer;
-      width: 100%;
-      min-height: 100px;
-
-      &:after {
-        font-family: "Font Awesome 5 Free", 'Open Sans', sans-serif;
-        margin-top: 1rem;
-        font-weight: 900;
-        content: "\f594";
-        font-size: 30px;
-        display: block;
-      }
+    &:after {
+      font-family: "Font Awesome 6 Free", 'Open Sans', sans-serif;
+      margin-top: 1rem;
+      font-weight: 900;
+      content: "\f594";
+      font-size: 30px;
+      display: block;
     }
   }
 }
 
 .rounded-card {
   border-radius: 0.5rem;
+
   .card-header {
     border-radius: 0.5rem 0.5rem 0 0;
   }

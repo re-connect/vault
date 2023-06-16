@@ -17,8 +17,8 @@ class ContactSimpleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', null, ['label' => 'contact.nomLabel', 'label_attr' => ['class' => 'font-size-1']])
-            ->add('prenom', null, ['label' => 'contact.prenomLabel', 'label_attr' => ['class' => 'font-size-1']])
+            ->add('nom', null, ['label' => 'name', 'label_attr' => ['class' => 'font-size-1']])
+            ->add('prenom', null, ['label' => 'firstname', 'label_attr' => ['class' => 'font-size-1']])
             ->add('telephone', null, ['label' => 'contact.telephoneLabel', 'required' => false, 'label_attr' => ['class' => 'font-size-1']])
             ->add('email', EmailType::class, ['label' => 'email', 'required' => false, 'label_attr' => ['class' => 'font-size-1']])
             ->add('commentaire', TextareaType::class, ['label' => 'contact.commentaireLabel', 'required' => false, 'label_attr' => ['class' => 'font-size-1']])

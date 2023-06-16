@@ -193,7 +193,7 @@ class CommonExtension extends AbstractExtension
         }
         setlocale(LC_TIME, 'fr_FR.ISO-8859-1', 'fra');
 
-        return utf8_encode(date($format, $d));
+        return mb_convert_encoding(date($format, $d), 'UTF-8', 'ISO-8859-1');
     }
 
     public function timeAgo($date)

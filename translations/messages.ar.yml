@@ -1,8 +1,10 @@
+'no': لا
+'yes': نعم
+add_member: 'اضافة عضو جديد'
 admin.bienvenue: 'اهلا بك على صفحة ادارة ريكونيكت'
 admin.centres.benéficiaires: المستفيدون
 admin.centres.historique: 'تاريخ الاتصالات'
 admin.centres.membres: الاعضاء
-admin.centres.nom: الاسم
 admin.centres.smsEnvoyes: 'الرسائل النصية القصيرة المرسلة'
 admin.centres.statistiques.dateJour: 'تاريخ اليوم'
 admin.centres.statistiques.nbBeneficiaires: 'عدد المستفيدين'
@@ -38,7 +40,6 @@ beneficiaire.menu2.mesRelaisReconnect: الملاحظات
 beneficiaire.menu2.monCalendrier: المستفيدين
 bientotDisponible.text: 'للحصول على المزيد من المعلومات حول ريكونيكت كلاود التضامن و الالتحاق بالشبكات يرجى الاتصال بنا مباشرة عبر الهاتف رقم: 0158305529 او عبر البريد الالكتروني على العنوان التالي: contact@reconnect.fr'
 centre.metaTitle: المراكز
-centre.nom: الاسم
 centre.ville: المدينة
 centre.vousAvezBienQuitte: 'انت غادرت المركز*'
 confirm: تأكيد
@@ -62,13 +63,13 @@ contact.emailLabel: 'عنوانك الالكتروني'
 contact.emptyData: 'لا يوجد اتصال حتى الان. انقر فوق "إضافة" لإنشاء واحد.'
 contact.mailError: 'ان شكل عنوانك الالكتروني غير صالح'
 contact.metaTitle: المعارف
-contact.nomLabel: 'اسم العائلة'
 contact.partage: مشترك
-contact.prenomLabel: الاسم
 contact.supprimer: الغاء
 contact.telephoneLabel: 'رقم الهاتف'
 contact.text: 'ابعث لنا رسالة اذا اردت أي مساعدة او معلومات او باسم العائلة لأي مشكلة تواجهها عند استعمال ريكونيكت'
 contact.title: 'اتصل بفريق ريكونيكت'
+create_member: 'فتح حساب لعضو'
+delete_currently_shared_document_warning: 'تتم مشاركة المستند لمدة %daysCount% يومًا أخرى. إذا قمت بحذف هذا المستند ، فسيتم التراجع عن المشاركة'
 delete_your_account: 'اذا اردت الغاء حسابك انقر هنا'
 devenirUnRelaiReconnect.accueil.budget0.200000: 'ميزانية اقل من 200000 يورو'
 devenirUnRelaiReconnect.accueil.budget1000000.1500000: 'ميزانية بين 1000000 و 1500000 يورو'
@@ -92,7 +93,6 @@ devenirUnRelaiReconnect.accueil.quiPeutDevenirRelai: 'من يمكنه ان يص�
 devenirUnRelaiReconnect.accueil.quiPeutDevenirRelaiTxt: 'يمكن جميع البنى او المؤسسات الاجتماعية التي ترافق الاشخاص المشردين ان تتسجل في ريكونيكت  و ان تصبح نقاط مناوبة لهذا الموقع'
 devenirUnRelaiReconnect.accueil.voirMontantParticipation: 'رؤية حصيلة الاشتراكات'
 devenirUnRelaiReconnect.identification.associationLabel: مؤسستك
-devenirUnRelaiReconnect.identification.associationNomLabel: الاسم
 devenirUnRelaiReconnect.identification.associationPasswordLabel: 'كلمة سر المؤسسة'
 devenirUnRelaiReconnect.identification.associationUsernameLabel: 'اسم المستخدم للمؤسسة'
 devenirUnRelaiReconnect.identification.categorieJuridiqueLabel: 'الفئة القانونية'
@@ -118,7 +118,6 @@ devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuelLabel: 'الميزاني�
 devenirUnRelaiReconnect.inscriptionCentres.finessFormatErreur: 'ان شكل رقم الفينس غير صالح'
 devenirUnRelaiReconnect.inscriptionCentres.finessLabel: الفينس
 devenirUnRelaiReconnect.inscriptionCentres.justificatifFileLabel: 'ارفاق الاثبات'
-devenirUnRelaiReconnect.inscriptionCentres.nomLabel: الاسم
 devenirUnRelaiReconnect.inscriptionCentres.siretFormatErreur: 'ان شكل رقم سيريت (رقم تعريف المؤسسات) غير صالح'
 devenirUnRelaiReconnect.inscriptionCentres.siretLabel: 'سيريت (رقم تعريف المؤسسات)'
 devenirUnRelaiReconnect.inscriptionCentres.supprimerCeCentre: 'ازالة هذا المركز'
@@ -160,7 +159,6 @@ document.imprimer: طباعة
 document.metaTitle: وثائق
 document.modifier: تعديل
 document.nom: 'الاسم:'
-document.nomLabel: الاسم
 document.ouGlissezDeposer: 'او اسحب و ضع هنا'
 document.partage: مشاركة
 document.plusDespace: 'لا يمكنك تحميل هذا الملف اذ ان مساحة التخزين الخاصة بك ليست كافية'
@@ -355,27 +353,22 @@ main.selectionner: 'لا اعرف'
 main.supprimer: الغاء
 main.uploaderFichier: تحديد
 main.voirFichier: 'تعديل ملف'
+member_do_not_have_account: 'العضو لا يملك حساب ريكونيكت'
+member_has_account: 'العضو يملك حساب ريكونيكت'
+member_successfully_created: 'تم انشاء حساب للعضو'
 membre.ajoutBeneficiaire.aucunUtilisateurTrouve: 'حساب ريكونيكت الذي تبحث عنه غير موجود'
 membre.ajoutBeneficiaire.centres: 'نقطة المناوبة  لريكونيكت'
 membre.ajoutBeneficiaire.creerCompte: 'فتح حساب ريكونيكت'
 membre.ajoutBeneficiaire.dateNaissanceLabel: 'تاريخ الولادة'
 membre.ajoutBeneficiaire.metaTitle: 'اضف مستفيد جديد'
 membre.ajoutBeneficiaire.nePossedePasCompte: 'المستفيد لا يملك حساب ريكونيكت'
-membre.ajoutBeneficiaire.nomLabel: 'اسم العائلة'
 membre.ajoutBeneficiaire.possedeCompte: 'المستفيد يملك حساب ريكونيكت'
-membre.ajoutBeneficiaire.prenomLabel: الاسم
 membre.ajoutBeneficiaire.subtitle: 'اضافة مستفيد جديد'
 membre.ajoutBeneficiaire.title: 'اضف مستفيد جديد'
 membre.ajoutMembre.aucunUtilisateurTrouve: 'ان حساب ريكونيكت الذي تبحث عنه غير موجود'
 membre.ajoutMembre.centres: المراكز
 membre.ajoutMembre.creerCompte: 'فتح حساب ريكونيكت'
-membre.ajoutMembre.metaTitle: 'اضافة عضو جديد'
-membre.ajoutMembre.nePossedePasCompte: 'العضو لا يملك حساب ريكونيكت'
-membre.ajoutMembre.nomLabel: الاسم
-membre.ajoutMembre.possedeCompte: 'العضو يملك حساب ريكونيكت'
-membre.ajoutMembre.prenomLabel: 'اسم العائلة'
 membre.ajoutMembre.subtitle: 'اضافة عضو جديد'
-membre.ajoutMembre.title: 'اضافة عضو جديد'
 membre.arreterSuivi.metaTitle: 'وضع حد لمرافقة مستخدم'
 membre.arreterSuivi.subtitle: 'وضع حد لمرافقة ....'
 membre.arreterSuivi.success: 'لقد تم وضع حد لمرافقة هذا المستخدم في هذا المركز'
@@ -393,9 +386,7 @@ membre.beneficiaires.mesNotes: الملاحظات
 membre.beneficiaires.metaTitle: 'ادارة المستفيدين'
 membre.beneficiaires.monCalendrier: 'جدول المواعيد'
 membre.beneficiaires.noBeneficiairesInCentre: 'ليس هناك أي مستفيد في هذا المركز'
-membre.beneficiaires.nom: 'اسم العائلة'
 membre.beneficiaires.nonValide: 'غير موافق عليه'
-membre.beneficiaires.prenom: الاسم
 membre.beneficiaires.renouvelerIdentifiants: 'تجديد كلمة السر'
 membre.beneficiaires.selectCentre: 'اختر مركزا'
 membre.beneficiaires.title: 'ادارة المستفيدين'
@@ -425,9 +416,6 @@ membre.creationBeneficiaire.step6.terminer: انتهاء
 membre.creationBeneficiaire.subtitle: 'المرحلة رقم 1/5 يرجى ادخال هوية المستفيد'
 membre.creationBeneficiaire.success: 'لقد تم فتح حساب المستفيد'
 membre.creationBeneficiaire.title: 'فتح حساب لمستفيد'
-membre.creationMembre.membreEmailConstraint: 'اذا كان للعضو الحق بإدارة الاعضاء عليه و لا البد ان يسجل عنوانه الالكتروني'
-membre.creationMembre.success: 'تم انشاء حساب للعضو'
-membre.creationMembre.title: 'فتح حساب لعضو'
 membre.doAjoutSubject.btnAjouter: اضافة
 membre.doAjoutSubject.centres: مراكزك
 membre.doAjoutSubject.subtitle: 'اختر مراكز لإضافة المستخدم'
@@ -444,7 +432,6 @@ membre.droits.gestionBeneficiaires: 'ادارة المستفيدين'
 membre.droits.gestionMembres: 'ادارة الاعضاء'
 membre.droits.gestionPaiement: 'ادارة المدفوعات'
 membre.membres.aides: 'ادوات المساعدة'
-membre.membres.ajouterMembre: 'اضافة عضو جديد'
 membre.membres.arreterSuivi: الغاء
 membre.membres.btnDetails: تفاصيل
 membre.membres.centres: المراكز
@@ -457,9 +444,7 @@ membre.membres.mesNotes: ملاحظاتي
 membre.membres.metaTitle: 'ادارة الأعضاء'
 membre.membres.monCalendrier: 'جدول اعمالي'
 membre.membres.noBeneficiairesInCentre: 'لا يوجد أي مستفيد في هذا المركز'
-membre.membres.nom: الاسم
 membre.membres.nonValide: 'لم تتم الموافقة عليه'
-membre.membres.prenom: 'اسم العائلة'
 membre.membres.renouvelerIdentifiants: 'تجديد كلمة السر'
 membre.membres.selectCentre: 'اختر مركز'
 membre.membres.title: 'ادارة الأعضاء'
@@ -488,7 +473,6 @@ membre.sendSmsCode.success: 'تم التحقق من الادارة من قبل �
 membre.sendSmsCode.text: 'تم ارسال الرمز بالحروف و الارقام عبر رسالة نصية قصيرة على الهاتف رقم (رقم الهاتف)'
 membre.supprimerMembreDuCentre.etesVousSur: 'هل تريد فعلا ان تلغي العضو من هذا المركز؟'
 membre.supprimerMembreDuCentre.success: 'لقد تم الغاء مركز هذا العضو'
-'no': لا
 note.ajouter: 'اضافة ملاحظة'
 note.bienSauvegarde: 'لقد تم حفظ ملاحظاتك'
 note.bienSupprime: 'لقد تم الغاء ملاحظاتك'
@@ -496,7 +480,6 @@ note.contenuLabel: 'محتوى الملاحظات'
 note.date: التاريخ
 note.emptyData: 'لا توجد ملاحظات حتى الان. انقر فوق "إضافة" لإنشاء واحد.'
 note.metaTitle: ملاحظات
-note.nom: الاسم
 note.nomLabel: عنوان
 note.supprimer: الغاء
 ouvrirUnCompte.btn1: 'راجع خارطة تواجد نقاط المناوبة  لريكونيكت'
@@ -550,9 +533,7 @@ registerForm.adresse: 'عنوانك الشخصي (اختياري)'
 registerForm.codePostal: 'الرقم البريدي'
 registerForm.email: 'عنوان البريد الالكتروني'
 registerForm.motDePasse: 'كلمة السر'
-registerForm.nom: 'اسم العائلة'
 registerForm.pays: البلد
-registerForm.prenom: الاسم
 registerForm.rue: الشارع
 registerForm.telephone: 'رقم الهاتف'
 registerForm.username: 'اسم المستخدم'
@@ -570,6 +551,7 @@ resetting.public.title: 'اعادة تعيين كلمة السر'
 resetting.public.votreEmail: 'عنوانك الالكتروني'
 resetting.reset.submit: 'تغيير كلمة السر'
 settings_saved_successfully: 'تم تسجيل قيمك المدخلة في الكمبيوتر'
+sms_sent_failed: 'فشل إرسال الرسائل القصيرة ، يرجى التحقق من صحة رقم الهاتف'
 statut.abandoned: ترك
 statut.confirmed: تثبيت
 statut.created: 'تم الانشاء'
@@ -622,6 +604,3 @@ user.reinitialiserMdp.title: 'اعادة تعيين كلمة السر'
 user.supprimerCompte.etesVousSurs: 'هل تريد حقا الغاء حسابك؟'
 user.supprimerCompte.success: 'تم الغاء الحساب'
 wrong_current_password: 'كلمة السر الخاصة بك الحالية خاطئة'
-delete_currently_shared_document_warning: 'تتم مشاركة المستند لمدة %daysCount% يومًا أخرى. إذا قمت بحذف هذا المستند ، فسيتم التراجع عن المشاركة'
-sms_sent_failed: 'فشل إرسال الرسائل القصيرة ، يرجى التحقق من صحة رقم الهاتف'
-'yes': نعم

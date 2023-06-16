@@ -25,8 +25,8 @@ class UserType extends AbstractType
                     'autocomplete' => 'new-password',
                 ],
             ])
-            ->add('prenom', null, ['label' => 'registerForm.prenom'])
-            ->add('nom', null, ['label' => 'registerForm.nom'])
+            ->add('prenom', null, ['label' => 'firstname'])
+            ->add('nom', null, ['label' => 'name'])
             ->add('telephone', null, [
                 'required' => false,
                 'label' => 'telephone',

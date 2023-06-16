@@ -92,7 +92,22 @@ class MembreRepository extends ServiceEntityRepository
                 ->setParameter('search', sprintf('%%%s%%', $search));
         }
 
-        return $qb->getQuery()
-            ->getResult();
+        return $qb->getQuery()->getResult();
+    }
+
+    /** @return Membre[] */
+    public function search(?string $search = ''): array
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->join('m.user', 'u');
+
+        if ($search) {
+            foreach (explode(' ', $search) as $word) {
+                $qb->andWhere("CONCAT(u.prenom, ' ', u.nom, ' ', u.email) LIKE :search")
+                    ->setParameter('search', sprintf('%%%s%%', $word));
+            }
+        }
+
+        return $qb->getQuery()->getResult();
     }
 }

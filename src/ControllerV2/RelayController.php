@@ -20,7 +20,7 @@ class RelayController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id<\d+>}/accept', name: 'accept_relay', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route(path: '/{id<\d+>}/accept', name: 'accept_relay', methods: ['GET'])]
     public function acceptRelay(Request $request, Centre $relay, RelayManager $manager): Response
     {
         $manager->acceptRelay($this->getUser(), $relay);
@@ -29,7 +29,7 @@ class RelayController extends AbstractController
         return $this->redirect($request->headers->get('referer'));
     }
 
-    #[Route(path: '/{id<\d+>}/deny', name: 'deny_relay', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route(path: '/{id<\d+>}/deny', name: 'deny_relay', methods: ['GET'])]
     public function denyInvitation(Request $request, Centre $relay, RelayManager $manager): Response
     {
         $manager->leaveRelay($this->getUser(), $relay);

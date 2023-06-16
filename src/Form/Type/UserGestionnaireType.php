@@ -13,8 +13,8 @@ class UserGestionnaireType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', null, ['required' => true, 'label' => 'devenirUnRelaiReconnect.accueil.nomLbl'])
-            ->add('prenom', null, ['required' => true, 'label' => 'devenirUnRelaiReconnect.accueil.prenomLbl'])
+            ->add('nom', null, ['required' => true, 'label' => 'name'])
+            ->add('prenom', null, ['required' => true, 'label' => 'firstname'])
             ->add('email', EmailType::class, ['required' => true, 'label' => 'devenirUnRelaiReconnect.accueil.emailLbl']);
     }
 
