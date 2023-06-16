@@ -7,6 +7,7 @@ $form-label-margin-bottom: 0;
     background-color: theme-color("primary");
     border-color: theme-color("primary");
     cursor: pointer;
+    -webkit-appearance: none;
 }
 .form-check-vault-visibility:checked.form-check-input:checked{
     background-color: theme-color("green");
