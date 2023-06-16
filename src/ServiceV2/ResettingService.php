@@ -217,7 +217,7 @@ class ResettingService
     {
         try {
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
-            $this->handleEmailSend($user, $resetToken, $user->getLastLang());
+            $this->handleEmailSend($user, $resetToken, $user->getLastLang() ?? $this->requestStack->getCurrentRequest()->getLocale());
             $this->requestStack->getCurrentRequest()->getSession()->set('ResetPasswordPublicToken', $resetToken);
             $this->addFlashMessage('success', 'beneficiary_reset_password_email_has_been_sent');
         } catch (TooManyPasswordRequestsException) {
