@@ -1,0 +1,22 @@
+{% extends 'v2/pro_standard_layout.html.twig' %}
+{% block metaTitle %}{{ 'invite_user_to_relay'|trans }}{% endblock %}
+{% form_theme form 'v2/form_theme/create_user_form_theme.html.twig' %}
+
+{% block title %}
+    <span class="text-blue">{{ 'invite_user_to_relay'|trans }}</span>
+{% endblock %}
+
+{% block delimiter %}{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-12 mt-3">
+            {{ form(form) }}
+        </div>
+        <div class="col-12 mt-3 text-end">
+            {{ include('v2/common/_button.html.twig') }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

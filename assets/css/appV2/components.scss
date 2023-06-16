@@ -31,15 +31,17 @@ span.spinner-border.d-none-not-important {
   display: flex;
   justify-content: center;
 
-  max-width: 300px;
   cursor: pointer;
   flex-grow: 1;
-  padding: 15px;
 
   label {
     cursor: pointer;
     width: 100%;
     min-height: 100px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-color: gray;
+    color: gray;
 
     &:after {
       font-family: "Font Awesome 6 Free", 'Open Sans', sans-serif;

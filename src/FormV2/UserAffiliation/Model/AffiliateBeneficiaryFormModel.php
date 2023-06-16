@@ -10,17 +10,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 class AffiliateBeneficiaryFormModel
 {
     private ?string $secretAnswer = '';
+
     /**
      * @var Collection<int, Centre>
      */
-    #[Assert\Count(
-        min: 1,
-        minMessage: 'beneficiary_affiliation_empty_relays'
-    )]
+    #[Assert\Count(min: 1, minMessage: 'beneficiary_affiliation_empty_relays')]
     private Collection $relays;
 
     /** @param ?ArrayCollection<int, Centre> $relays */
-    public function __construct(?ArrayCollection $relays = null)
+    public function __construct(ArrayCollection $relays = null)
     {
         $this->relays = $relays ?: new ArrayCollection();
     }
