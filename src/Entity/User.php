@@ -1061,10 +1061,24 @@ class User extends BaseUser implements \JsonSerializable
     /** @return ReadableCollection<int, UserCentre> */
     public function getValidUserCentres(): ReadableCollection
     {
-        return $this->getUserCentres()->filter(fn (UserCentre $userCentre) => true === $userCentre->getBValid());
+        return $this->getUserCentres()->filter(fn (UserCentre $userCentre) => $userCentre->getBValid());
     }
 
-    /** @return Collection<int, BeneficiaireCentre|MembreCentre> */
+    /** @return ReadableCollection<int, Centre> */
+    public function getRelays(): ReadableCollection
+    {
+        return $this->getUserRelays()
+            ->map(fn (UserCentre $userCentre) => $userCentre->getCentre());
+    }
+
+    /** @return ReadableCollection<int, Centre> */
+    public function getValidRelays(): ReadableCollection
+    {
+        return $this->getValidUserCentres()
+            ->map(fn (UserCentre $userCentre) => $userCentre->getCentre());
+    }
+
+    /** @return Collection<int, UserCentre> */
     public function getUserRelays(): Collection
     {
         return $this->isBeneficiaire()
@@ -1072,14 +1086,14 @@ class User extends BaseUser implements \JsonSerializable
             : $this->getSubjectMembre()->getMembresCentres();
     }
 
-    public function getUserRelay(Centre $relay): BeneficiaireCentre|MembreCentre|null
+    public function getUserRelay(Centre $relay): ?UserCentre
     {
-        $userRelays = $this->getUserRelays()->filter(fn (BeneficiaireCentre|MembreCentre $userRelay) => $userRelay->getCentre() === $relay);
+        $userRelays = $this->getUserRelays()->filter(fn (UserCentre $userRelay) => $userRelay->getCentre() === $relay);
 
         return $userRelays->first() ?? null;
     }
 
-    public static function createUserRelay(User $user, Centre $relay): BeneficiaireCentre|MembreCentre
+    public static function createUserRelay(User $user, Centre $relay): UserCentre
     {
         $userRelay = $user->isBeneficiaire() ? new BeneficiaireCentre() : new MembreCentre();
 
@@ -1144,9 +1158,7 @@ class User extends BaseUser implements \JsonSerializable
         return new ArrayCollection();
     }
 
-    /**
-     * @return Collection <int, BeneficiaireCentre|MembreCentre>
-     */
+    /** @return Collection <int, UserCentre> */
     public function getSubjectRelays(): Collection
     {
         return $this->isBeneficiaire()
@@ -1154,10 +1166,10 @@ class User extends BaseUser implements \JsonSerializable
             : $this->getSubjectMembre()->getMembresCentres();
     }
 
-    public function getSubjectRelaysForRelay(Centre $relay): BeneficiaireCentre|MembreCentre|null
+    public function getSubjectRelaysForRelay(Centre $relay): UserCentre|null
     {
         $subjectRelay = $this->getSubjectRelays()
-            ->filter(fn (BeneficiaireCentre|MembreCentre $subjectRelay) => $subjectRelay->getCentre() === $relay)
+            ->filter(fn (UserCentre $subjectRelay) => $subjectRelay->getCentre() === $relay)
             ->first();
 
         return false === $subjectRelay ? null : $subjectRelay;
