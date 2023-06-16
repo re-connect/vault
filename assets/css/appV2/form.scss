@@ -1,5 +1,22 @@
 @import 'theme';
 
+$form-label-margin-bottom: 0;
+
+.form-switch-vault-visibility .form-check-vault-visibility {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e") !important;
+    background-color: theme-color("primary");
+    border-color: theme-color("primary");
+    cursor: pointer;
+}
+.form-check-vault-visibility:checked.form-check-input:checked{
+    background-color: theme-color("green");
+    border-color: theme-color("green");
+}
+
+.form-select.grey {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23a6aec3' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
 form.display-required-labels label.required:after{
     content: "*";
     color: theme-color('red');

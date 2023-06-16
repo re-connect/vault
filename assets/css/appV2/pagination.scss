@@ -1,3 +1,9 @@
+@import 'theme.scss';
+
+$pagination-color: theme-color("primary");
+$pagination-active-bg: theme-color("grey");
+$pagination-hover-color: theme-color("primary");
+
 .page-link.active, .active > .page-link {
   border-color: inherit;
 }
