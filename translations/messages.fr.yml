@@ -68,9 +68,9 @@ beneficiary_has_no_phone_number: Le bénéficiaire n'a pas renseigné de numéro
 beneficiary_reset_password_already_requested: Une demande de réinitialisation du mot de passe a déjà été effectuée pour ce bénéficiaire
 beneficiary_reset_password_already_requested_by_email: Une demande de réinitialisation du mot de passe a déjà été effectuée pour ce bénéficiaire par email
 beneficiary_reset_password_SMS_code: Code reçu par SMS
-beneficiary_reset_password_SMS_has_been_sent: Un SMS a été envoyé au bénéficiaire, il contient un code secret nécessaire pour renouveller son mot de passe
+beneficiary_reset_password_SMS_has_been_sent: Un SMS a été envoyé au bénéficiaire, il contient un code secret nécessaire pour renouveler son mot de passe
 beneficiary_reset_password_success: Le mot de passe du bénéficiaire %fullName% a bien été mis à jour
-beneficiary_reset_password_email_has_been_sent: Un email a été envoyé au bénéficiaire avec des instructions pour renouveller son mot de passe
+beneficiary_reset_password_email_has_been_sent: Un email a été envoyé au bénéficiaire avec des instructions pour renouveler son mot de passe
 beneficiary_will_receive_email_reset_request: Le bénéficiaire recevra un email lui permettant de réinitialiser son mot de passe directement
 beneficiary_will_receive_sms_account_information: 'Il recevra un sms pour activer son compte et compléter ses informations'
 beneficiary_will_receive_sms_reset_request: Le bénéficiaire recevra un code par SMS afin de réinitialiser son mot de passe
