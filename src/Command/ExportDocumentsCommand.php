@@ -47,14 +47,14 @@ class ExportDocumentsCommand extends Command
         foreach ($this->getDocumentsForPeriod($startDate, $endDate) as $document) {
             $data[] = [
                 $document->getNom(),
-                $document->getBeneficiaireId(),
-                $document->getCreatorUser()?->getEntity()?->getId(),
+                $document->getBeneficiaire()?->getUsername(),
+                $document->getCreatorUser()?->getEntity()?->getUsername(),
                 $document->getCreatorClient()?->getEntity()?->getNom(),
                 $document->getCreatedAt()->format('d/m/Y'),
             ];
         }
 
-        $header = ['Nom du document', 'Bénéficiaire (id)', 'Créé par (user id)', 'Créé par (client)', 'Date de création'];
+        $header = ['Nom du document', 'Bénéficiaire', 'Créé par', 'Créé par (client)', 'Date de création'];
         $title = sprintf('export-documents-%s-%s', $startDateToString, $endDateToString);
         $sheetIntro = sprintf('Export de documents sur la période du %s au %s', $startDateToString, $endDateToString);
 
