@@ -12,12 +12,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ExportService
 {
-    private EntityManagerInterface $em;
     private const EXPORT_COLUMNS = [
         'Filtres',
         'Bénéficiaires',
@@ -30,9 +31,11 @@ class ExportService
         'Documents provenants de x CFN',
     ];
 
-    public function __construct(EntityManagerInterface $em)
-    {
-        $this->em = $em;
+    public function __construct(
+        private readonly EntityManagerInterface $em,
+        private readonly string $kernelProjectDir,
+        private readonly LoggerInterface $logger,
+    ) {
     }
 
     public function saveExport(ExportModel $exportModel): StreamedResponse
@@ -165,6 +168,30 @@ class ExportService
         $response->headers->set('Content-Disposition', $dispositionHeader);
 
         return $response;
+    }
+
+    public function exportDataToXlsx(string $title, string $intro, array $header, array $data, SymfonyStyle $io = null): void
+    {
+        $spreadsheet = new Spreadsheet();
+        $spreadsheet->getProperties()->setTitle($title);
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheetIntro = [$intro];
+        $sheet->fromArray([$sheetIntro, [], $header, ...$data]);
+        $sheet->setAutoFilter(sprintf('A3:%s3', $sheet->getHighestColumn()));
+
+        $this->saveFileToDisk($spreadsheet, $io);
+    }
+
+    private function saveFileToDisk(Spreadsheet $spreadsheet, SymfonyStyle $io = null): void
+    {
+        $filePath = sprintf('%s/var/export/%s.xlsx', $this->kernelProjectDir, $spreadsheet->getProperties()->getTitle());
+
+        try {
+            (new Xlsx($spreadsheet))->save($filePath);
+        } catch (\Exception $exception) {
+            $errorMessage = sprintf('Error saving file %s to disk : %s', $filePath, $exception->getMessage());
+            $io ? $io->error($errorMessage) : $this->logger->error($errorMessage);
+        }
     }
 
     private function addFiltersToQb(ExportModel $exportModel, QueryBuilder $queryBuilder, array &$parameters, $filter): void

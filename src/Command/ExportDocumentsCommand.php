@@ -3,9 +3,8 @@
 namespace App\Command;
 
 use App\Entity\Document;
+use App\Service\ExportService;
 use Doctrine\ORM\EntityManagerInterface;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -21,7 +20,7 @@ class ExportDocumentsCommand extends Command
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
-        private readonly string $kernelProjectDir,
+        private readonly ExportService $exportService,
         string $name = null,
     ) {
         parent::__construct($name);
@@ -43,7 +42,6 @@ class ExportDocumentsCommand extends Command
         $startDateToString = $startDate->format('dmY');
         $endDateToString = $endDate->format('dmY');
 
-        $header = ['Nom du document', 'Bénéficiaire (id)', 'Créé par (user id)', 'Créé par (client)', 'Date de création'];
         $data = [];
 
         foreach ($this->getDocumentsForPeriod($startDate, $endDate) as $document) {
@@ -56,25 +54,19 @@ class ExportDocumentsCommand extends Command
             ];
         }
 
+        $header = ['Nom du document', 'Bénéficiaire (id)', 'Créé par (user id)', 'Créé par (client)', 'Date de création'];
         $title = sprintf('export-documents-%s-%s', $startDateToString, $endDateToString);
-        $spreadSheet = new Spreadsheet();
-        $spreadSheet->getProperties()->setTitle($title);
-        $sheet = $spreadSheet->getActiveSheet();
-        $sheetIntro = [sprintf('Export de documents sur la période du %s au %s', $startDateToString, $endDateToString)];
-        $sheet->fromArray([$sheetIntro, [], $header, ...$data]);
-        $sheet->setAutoFilter(sprintf('A3:%s3', $sheet->getHighestColumn()));
-        $filePath = sprintf('%s/var/export/%s.xlsx', $this->kernelProjectDir, $title);
+        $sheetIntro = sprintf('Export de documents sur la période du %s au %s', $startDateToString, $endDateToString);
 
-        try {
-            $io->info('Exporting documents...');
-            (new Xlsx($spreadSheet))->save($filePath);
-        } catch (\Exception) {
-            $io->error('Error exporting documents');
+        $this->exportService->exportDataToXlsx(
+            $title,
+            $sheetIntro,
+            $header,
+            $data,
+            $io,
+        );
 
-            return Command::FAILURE;
-        }
-
-        $io->success(sprintf('You can find export at path %s', $filePath));
+        $io->success('Documents exported');
 
         return Command::SUCCESS;
     }
