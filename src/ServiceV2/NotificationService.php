@@ -192,7 +192,7 @@ class NotificationService
         return new Notification(
             'user.pendingCentre.title',
             $relay->getNom(),
-            $relay->getAdresse()->toHTML(),
+            $relay->getAdresse()?->toHTML() ?? $this->translator->trans('relay_has_no_address'),
             [
                 new NotificationAction('main.refuser', $this->router->generate('deny_relay', ['id' => $relay->getId()]), 'light'),
                 new NotificationAction('accept', $this->router->generate('accept_relay', ['id' => $relay->getId()]), 'green'),
