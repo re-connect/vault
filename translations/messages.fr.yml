@@ -1087,6 +1087,7 @@ tax: Impôts
 terms_of_use: "Charte d'utilisation"
 thank_you_for_subscription: 'Merci pour votre inscription !'
 today: "Aujourd'hui"
+toggle: Basculer
 unsupported_file_extension: "Erreur %fileName%, le format de fichier n'est pas supporté"
 used_available: '%used% utilisé(s) sur %available% disponibles'
 user.cgu.bAccepter: "J'accepte les conditions d'utilisation"
