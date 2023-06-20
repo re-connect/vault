@@ -17,17 +17,17 @@ export default class extends Controller {
 
   toggleBadgeColor = (validCriteria) => (target) => {
     const isValid = validCriteria.includes(target.dataset.criterionName)
-    target.classList.toggle('bg-success', isValid);
-    target.classList.toggle('bg-danger', !isValid);
+    target.classList.toggle('bg-green', isValid);
+    target.classList.toggle('bg-red', !isValid);
   }
 
   toggleContainerVisibility(value) {
-    this.widgetTarget.classList.toggle('hidden', !value || value.length === 0)
+    this.widgetTarget.classList.toggle('d-none', !value || value.length === 0)
   }
 
   toggleIsValidText(isPasswordStrong) {
-    this.validTextTarget.classList.toggle('hidden', !isPasswordStrong);
-    this.invalidTextTarget.classList.toggle('hidden', isPasswordStrong);
+    this.validTextTarget.classList.toggle('d-none', !isPasswordStrong);
+    this.invalidTextTarget.classList.toggle('d-none', isPasswordStrong);
   }
 
   enableDisableForm(isPasswordStrong) {
