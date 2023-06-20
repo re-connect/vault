@@ -33,8 +33,11 @@
                         {% endif %}
                         <div class="col-12 mt-2">
                             <a href="{{ path('user_settings') }}"
-                               class="text-white text-decoration-none"><i
-                                        class="fas fa-cog me-1"></i>{{ 'header.menu.parametres'|trans|upper }}</a>
+                               class="text-white text-decoration-none"
+                               data-turbo="false"
+                            >
+                                <i class="fas fa-cog me-1"></i>{{ 'header.menu.parametres'|trans|upper }}
+                            </a>
                         </div>
                         <div class="col-12 text-end">
                             <a href="{{ path('app_logout') }}"
