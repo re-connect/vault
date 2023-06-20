@@ -188,6 +188,7 @@ contact.telephoneLabel: Téléphone
 contact.text: "Ecrivez nous pour toute demande d'aide, d'information, problèmes rencontrés avec l'utilisation de Reconnect"
 contact.title: 'Contactez l''équipe <span class="main">Reconnect</span>'
 contact_created: 'Contact créé'
+contact_detail: Coordonnées
 contact_page_form_title: '(Formulaire à remplir)'
 contact_page_offices_city_aquitaine: Bordeaux
 contact_page_offices_city_aura: Lyon
@@ -645,11 +646,13 @@ home_who_we_are_p3: "Depuis 2015, nous nous engageons auprès des bénéficiaire
 home_who_we_are_title: 'Qui sommes-nous ?'
 housing: Logement
 identity: Identité
+information: Informations
 innovative_solution_digital_divide: 'La solution pour répondre aux enjeux de la fracture numérique'
 invalid_token: "Token invalide, veuillez recommencer l'opération"
 invite_user_to_relay: Inviter l'utilisateur à un relai
 is_the_beneficiary_absent: "Le bénéficiaire n'est pas avec vous ?"
 is_the_beneficiary_present: 'Le bénéficiaire est avec vous ?'
+lastname: Nom
 leave: Quitter
 leave_center: 'Quitter ce centre'
 leave_center_confirm: 'Êtes-vous sûr de vouloir quitter ce centre ?'
@@ -1147,6 +1150,8 @@ user_not_found: "Aucun utilisateur n'a été trouvé"
 user_parameters_subtitle: 'Paramètres de %subject%'
 user_parameters_title: '<span class="text-primary">Paramètres d''</span><span class="rp-blue vault-green">utilisateur</span>'
 user_shared_document_with_you: 'L''utilisateur %nom% %prenom% souhaite partager ce document avec vous: "%document%"'
+user_settings_title_1: Paramètres d'
+user_settings_title_2: Utilisateur
 user_update_password_subtitle: 'Mot de passe de %subject%'
 user_update_password_title: '<span class="text-primary">Renouvellement de </span><span class="rp-blue vault-green">mot de passe</span>'
 username: "Nom d'utilisateur"

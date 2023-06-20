@@ -22,9 +22,9 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
         'user_settings[dateNaissance][day]' => '1',
         'user_settings[dateNaissance][month]' => '1',
         'user_settings[dateNaissance][year]' => '1995',
-        'user_settings[questionSecreteChoice]' => 'Quel est le prénom de la mère du bénéficiaire ?',
-        'user_settings[autreQuestionSecrete]' => '',
-        'user_settings[reponseSecrete]' => 'Maman',
+        'user_settings[secretQuestion][questionSecreteChoice]' => 'Quel est le prénom de la mère du bénéficiaire ?',
+        'user_settings[secretQuestion][autreQuestionSecrete]' => '',
+        'user_settings[secretQuestion][reponseSecrete]' => 'Maman',
     ];
 
     public function provideTestRoute(): ?\Generator
@@ -38,7 +38,7 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
     {
         yield 'Should refresh when form is correct' => [
             self::URL,
-            'user.parametres.enregister',
+            'submit',
            self::FORM_VALUES,
             BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS_EDIT,
             self::URL,
@@ -52,7 +52,7 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
         yield 'Should return an error if lastname is empty' => [
             self::URL,
             'user_settings',
-            'user.parametres.enregister',
+            'submit',
             $values,
             [
                 [
@@ -61,6 +61,7 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
                 ],
             ],
             BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS,
+            'div.invalid-feedback',
         ];
 
         $values = self::FORM_VALUES;
@@ -68,7 +69,7 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
         yield 'Should return an error if firstname is empty' => [
             self::URL,
             'user_settings',
-            'user.parametres.enregister',
+            'submit',
           $values,
             [
                 [
@@ -77,6 +78,7 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
                 ],
             ],
             BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS,
+            'div.invalid-feedback',
         ];
 
         $values = self::FORM_VALUES;
@@ -84,7 +86,7 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
         yield 'Should return an error if email address is not correct' => [
             self::URL,
             'user_settings',
-            'user.parametres.enregister',
+            'submit',
             $values,
             [
                 [
@@ -93,6 +95,7 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
                 ],
             ],
             BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS,
+            'div.invalid-feedback',
         ];
     }
 
@@ -127,6 +130,6 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
      */
     public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
-        $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email);
+        $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email, $alternateSelector);
     }
 }
