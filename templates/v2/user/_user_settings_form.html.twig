@@ -13,14 +13,14 @@
     }) }}
     {% if form.adresse is defined %}
         {{ include('v2/user/_settings_form_block.html.twig', {
-            title: 'Coordonnées',
+            title: 'contact_detail'|trans,
             leftColumnFields: [form.adresse.nom, form.adresse.ville],
             rightColumnFields: [form.adresse.codePostal, form.adresse.pays],
         }) }}
     {% endif %}
     {% if form.secretQuestion is defined %}
         {{ include('v2/user/_settings_form_block.html.twig', {
-            title: 'Question secrète',
+            title: 'secret_question'|trans,
             leftColumnFields: [form.secretQuestion.questionSecreteChoice, form.secretQuestion.autreQuestionSecrete],
             rightColumnFields: [form.secretQuestion.reponseSecrete],
         }) }}
