@@ -66,11 +66,13 @@ class ExportDocumentsCommand extends Command
         $title = sprintf('export-documents-%s-%s', $startDateToString, $endDateToString);
         $sheetIntro = sprintf('Export de documents sur la période du %s au %s', $startDateToString, $endDateToString);
 
-        $this->exportService->exportDataToXlsx(
-            $title,
-            $sheetIntro,
-            $header,
-            $data,
+        $this->exportService->saveFileToDisk(
+            $this->exportService->exportDataToXlsx(
+                $title,
+                $sheetIntro,
+                $header,
+                $data,
+            ),
             $io,
         );
 

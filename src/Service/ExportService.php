@@ -40,7 +40,14 @@ class ExportService
 
     public function saveExport(ExportModel $exportModel): StreamedResponse
     {
-        return $this->getStreamedResponse($this->createExportSpreadSheet($exportModel, self::EXPORT_COLUMNS, $this->getExportSheetData($exportModel)));
+        return $this->getStreamedResponse(
+            $this->exportDataToXlsx(
+                sprintf('export_cfn_%s.xlsx', (new \DateTime())->format('d-m-Y')),
+                $this->getSheetIntro($exportModel),
+                self::EXPORT_COLUMNS,
+                $this->getExportSheetData($exportModel),
+            )
+        );
     }
 
     private function getExportSheetData(ExportModel $exportModel): array
@@ -126,38 +133,36 @@ class ExportService
             ->andWhere('i.createdAt < :endDate');
     }
 
-    private function createExportSpreadSheet(ExportModel $exportModel, $exportSheetHeader, $exportSheetData): Spreadsheet
+    public function exportDataToXlsx(string $title, string $intro, array $header, array $data): Xlsx
     {
         $spreadsheet = new Spreadsheet();
+        $spreadsheet->getProperties()->setTitle($title);
         $sheet = $spreadsheet->getActiveSheet();
-        $sheetIntro = $this->getSheetIntro($exportModel);
-        $sheet->fromArray([$sheetIntro, [], $exportSheetHeader, ...$exportSheetData], null, 'A1', true);
+        $sheetIntro = [$intro];
+        $sheet->fromArray([$sheetIntro, [], $header, ...$data]);
+        $sheet->setAutoFilter(sprintf('A3:%s3', $sheet->getHighestColumn()));
         for ($i = 'A'; $i <= $sheet->getHighestColumn(); ++$i) {
             $sheet->getColumnDimension($i)->setAutoSize(true);
         }
 
-        return $spreadsheet;
+        return new Xlsx($spreadsheet);
     }
 
-    private function getSheetIntro(ExportModel $exportModel): array
+    private function getSheetIntro(ExportModel $exportModel): string
     {
-        return [
-            'Éléments créés',
-            sprintf(
-                'du %s au %s',
-                $exportModel->getStartDate()->format('d-m-Y'),
-                $exportModel->getEndDate()->format('d-m-Y')
-            ),
-        ];
+        return sprintf(
+            'Éléments créés du %s au %s',
+            $exportModel->getStartDate()->format('d-m-Y'),
+            $exportModel->getEndDate()->format('d-m-Y')
+        );
     }
 
-    private function getStreamedResponse(Spreadsheet $spreadsheet): StreamedResponse
+    private function getStreamedResponse(Xlsx $xlsx): StreamedResponse
     {
-        $fileName = sprintf('export_cfn_%s.xlsx', (new \DateTime())->format('d-m-Y'));
-        $writer = new Xlsx($spreadsheet);
+        $fileName = $xlsx->getSpreadsheet()->getProperties()->getTitle();
         $response = new StreamedResponse(
-            function () use ($writer) {
-                $writer->save('php://output');
+            function () use ($xlsx) {
+                $xlsx->save('php://output');
             }
         );
         $dispositionHeader = $response->headers->makeDisposition(
@@ -170,24 +175,12 @@ class ExportService
         return $response;
     }
 
-    public function exportDataToXlsx(string $title, string $intro, array $header, array $data, SymfonyStyle $io = null): void
+    public function saveFileToDisk(Xlsx $xlsx, SymfonyStyle $io = null): void
     {
-        $spreadsheet = new Spreadsheet();
-        $spreadsheet->getProperties()->setTitle($title);
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheetIntro = [$intro];
-        $sheet->fromArray([$sheetIntro, [], $header, ...$data]);
-        $sheet->setAutoFilter(sprintf('A3:%s3', $sheet->getHighestColumn()));
-
-        $this->saveFileToDisk($spreadsheet, $io);
-    }
-
-    private function saveFileToDisk(Spreadsheet $spreadsheet, SymfonyStyle $io = null): void
-    {
-        $filePath = sprintf('%s/var/export/%s.xlsx', $this->kernelProjectDir, $spreadsheet->getProperties()->getTitle());
+        $filePath = sprintf('%s/var/export/%s.xlsx', $this->kernelProjectDir, $xlsx->getSpreadsheet()->getProperties()->getTitle());
 
         try {
-            (new Xlsx($spreadsheet))->save($filePath);
+            $xlsx->save($filePath);
         } catch (\Exception $exception) {
             $errorMessage = sprintf('Error saving file %s to disk : %s', $filePath, $exception->getMessage());
             $io ? $io->error($errorMessage) : $this->logger->error($errorMessage);
