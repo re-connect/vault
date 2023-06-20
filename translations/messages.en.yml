@@ -148,6 +148,7 @@ contact.telephoneLabel: 'Mobile phone'
 contact.text: 'Write us for any help request,information or problems while using Reconnect'
 contact.title: 'Contact the Reconnect <span class="main"> team </span>'
 contact_created: 'Contact created'
+contact_detail: Contact details
 contact_page_offices_contact: 'Are we not settled in your area?'
 contact_page_offices_title: 'Contact our branches'
 contact_page_title: 'Contact us'
@@ -524,6 +525,7 @@ home_who_we_are_p3: 'Since 2015, we have been committed to beneficiaries and soc
 home_who_we_are_title: 'Who are we?'
 housing: Housing
 identity: Identity
+information: Information
 innovative_solution_digital_divide: 'The solution to meet the challenges of the digital divide'
 invite_user_to_relay: Invite user to relay
 is_the_beneficiary_absent: 'Is the beneficiary absent ?'
@@ -904,6 +906,7 @@ switch_content_private_confirm: 'Are you sure you want to switch this element in
 tax: Tax
 terms_of_use: 'Terms of use'
 thank_you_for_subscription: 'Thanks for subscribing'
+toggle: Toggle
 unsupported_file_extension: 'Error %fileName%, unsupported file extension'
 used_available: '%used% used over %available% available'
 user.cgu.bAccepter: 'I accept the terms of use'
@@ -954,6 +957,8 @@ user.supprimerCompte.success: 'The account has been deleted.'
 user_error_disabled_account: 'Your account is disabled, please contact support.'
 user_parameters_subtitle: "%subject%'s settings"
 user_parameters_title: '<span class="text-primary">User''s </span><span class="rp-blue vault-green">settings</span>'
+user_settings_title_1: User's
+user_settings_title_2: Settings
 user_update_password_subtitle: '%subject% password'
 user_update_password_title: '<span class="text-primary">New </span><span class="rp-blue vault-green">password</span>'
 username: Username
