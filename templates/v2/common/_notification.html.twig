@@ -21,13 +21,16 @@
 {% endblock %}
 
 {% block icon %}
-    <i class="fa fa-question-circle text-primary me-1"></i>
+    {% if notification.icon is defined %}
+        <i class="fa fa-{{ notification.icon }} fa-2x text-primary me-1"></i>
+    {% endif %}
 {% endblock %}
 
 {% block footer %}
     {% for action in notification.actions %}
+        {% set color = action.color %}
         <a href="{{ action.path }}"
-           class="btn btn-{{ action.color }} me-2 text-{{ action.color == 'light' ? 'decoration-underline' : 'white' }}">
+           class="btn btn-{{ color ?? getUserThemeColor() }} me-2 text-{{ color == 'light' ? 'decoration-underline' : 'white' }}">
             {{ action.label|trans }}
         </a>
     {% endfor %}

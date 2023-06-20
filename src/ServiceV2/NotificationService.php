@@ -192,10 +192,11 @@ class NotificationService
         return new Notification(
             'user.pendingCentre.title',
             $relay->getNom(),
+            'hotel',
             $relay->getAdresse()?->toHTML() ?? $this->translator->trans('relay_has_no_address'),
             [
                 new NotificationAction('main.refuser', $this->router->generate('deny_relay', ['id' => $relay->getId()]), 'light'),
-                new NotificationAction('accept', $this->router->generate('accept_relay', ['id' => $relay->getId()]), 'green'),
+                new NotificationAction('accept', $this->router->generate('accept_relay', ['id' => $relay->getId()])),
             ],
         );
     }
@@ -213,6 +214,7 @@ class NotificationService
             $notifications[] = new Notification(
                 'missing_secret_question',
                 '',
+                null,
                 'missing_secret_question_text',
                 [],
                 $form->createView(),
