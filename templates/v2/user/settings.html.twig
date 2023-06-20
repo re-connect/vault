@@ -1,6 +1,5 @@
 {% extends 'v2/management_layout.html.twig' %}
 {% block metaTitle %}{{ 'user.parametres.metaTitle'|trans }}{% endblock metaTitle %}
-{% form_theme userForm 'v2/form_theme/create_user_form_theme.html.twig' %}
 
 {% block title %}
     {{ 'user_settings_title_1'|trans }}
@@ -15,10 +14,7 @@
 
 {% block content %}
     <div class="container w-75 justify-content-center">
-        {{ include( app.user.isBeneficiaire
-            ? 'v2/user/user_beneficiary_settings_form.html.twig'
-            : 'v2/user/user_settings_form.html.twig'
-            , {'settingsForm': userForm}) }}
+        {{ include('v2/user/_user_settings_form.html.twig', {'form': userForm}) }}
     </div>
     <div class="text-primary pb-2 row mt-4">
         <div class="col pt-2">

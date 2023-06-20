@@ -1,0 +1,32 @@
+{% form_theme form 'v2/form_theme/create_user_form_theme.html.twig' %}
+{{ form_start(form, {attr: {
+    class: 'display-required-labels',
+    'data-controller': 'conditional-field',
+}}) }}
+{% set isPro = is_granted(('ROLE_MEMBRE')) %}
+<div class="row bold">
+    {{ include('v2/user/_settings_form_block.html.twig', {
+        title: isPro ? null : 'information'|trans,
+        leftColumnFields: [form.prenom, form.telephone],
+        rightColumnFields: [form.nom, form.email],
+        fullWidthColumnFields: [isPro ? form.username : form.dateNaissance],
+    }) }}
+    {% if form.adresse is defined %}
+        {{ include('v2/user/_settings_form_block.html.twig', {
+            title: 'Coordonnées',
+            leftColumnFields: [form.adresse.nom, form.adresse.ville],
+            rightColumnFields: [form.adresse.codePostal, form.adresse.pays],
+        }) }}
+    {% endif %}
+    {% if form.secretQuestion is defined %}
+        {{ include('v2/user/_settings_form_block.html.twig', {
+            title: 'Question secrète',
+            leftColumnFields: [form.secretQuestion.questionSecreteChoice, form.secretQuestion.autreQuestionSecrete],
+            rightColumnFields: [form.secretQuestion.reponseSecrete],
+        }) }}
+    {% endif %}
+    <div class="col-12 col-md-4 d-grid mt-3 mx-auto">
+        {{ include('v2/common/_button_with_loader.html.twig', {text: 'submit'|trans, color: getUserThemeColor()}) }}
+    </div>
+</div>
+{{ form_end(form) }}
