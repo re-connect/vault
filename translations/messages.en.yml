@@ -904,6 +904,7 @@ switch_content_private_confirm: 'Are you sure you want to switch this element in
 tax: Tax
 terms_of_use: 'Terms of use'
 thank_you_for_subscription: 'Thanks for subscribing'
+toggle: Toggle
 unsupported_file_extension: 'Error %fileName%, unsupported file extension'
 used_available: '%used% used over %available% available'
 user.cgu.bAccepter: 'I accept the terms of use'
