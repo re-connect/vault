@@ -5,6 +5,7 @@ namespace App\Command;
 use App\Entity\Document;
 use App\Service\ExportService;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityNotFoundException;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -45,10 +46,17 @@ class ExportDocumentsCommand extends Command
         $data = [];
 
         foreach ($this->getDocumentsForPeriod($startDate, $endDate) as $document) {
+            try {
+                $creatorUsername = $document->getCreatorUser()?->getEntity()?->getUsername();
+            } catch (EntityNotFoundException $e) {
+                $io->info($e->getMessage());
+                $creatorUsername = null;
+            }
+
             $data[] = [
                 $document->getNom(),
                 $document->getBeneficiaire()?->getUsername(),
-                $document->getCreatorUser()?->getEntity()?->getUsername(),
+                $creatorUsername,
                 $document->getCreatorClient()?->getEntity()?->getNom(),
                 $document->getCreatedAt()->format('d/m/Y'),
             ];
