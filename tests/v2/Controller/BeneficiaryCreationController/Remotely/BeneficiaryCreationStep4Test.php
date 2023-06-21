@@ -41,7 +41,7 @@ class BeneficiaryCreationStep4Test extends AbstractControllerTest implements Tes
         ])->object();
 
         $url = sprintf($url, $creationProcess->getId());
-        $expectedRedirect = sprintf($expectedRedirect, $creationProcess->getId());
+        $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $creationProcess->getId()) : null;
         $client = $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 
         $client->request('GET', sprintf('/beneficiary/create/4/%s', $creationProcess->getId()));
