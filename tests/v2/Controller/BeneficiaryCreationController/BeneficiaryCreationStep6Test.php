@@ -24,7 +24,7 @@ class BeneficiaryCreationStep6Test extends AbstractControllerTest implements Tes
     ): void {
         $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->object();
         $url = sprintf($url, $creationProcess->getId());
-        $expectedRedirect = sprintf($expectedRedirect, $creationProcess->getId());
+        $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $creationProcess->getId()) : null;
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
 
