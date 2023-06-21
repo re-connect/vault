@@ -123,7 +123,6 @@ connect_reconnect_site: 'Connect to www.reconnect.fr'
 connexionForm.connexion: Connection
 connexionForm.erreurIdentifiants: 'You entered an unknown username/ password'
 connexionForm.inactif: 'You have been deconnected after a period of inactivity.'
-connexionForm.motDePasse: Password
 connexionForm.oublieMdp: 'I forgot my password or my username'
 connexionForm.username: 'User name'
 connexionForm.usernameV2: 'Username or email'
@@ -399,7 +398,6 @@ form.validation.tooShort: 'Your password should be at least {{ limit }} characte
 form_connexion: Login
 form_forgot_password: 'I forgot my password or my login'
 form_login: 'Username or Email'
-form_password: Password
 generate_password: 'Generate password'
 gestionnaire.centres.btnAjouterUnCentre: 'Add a center'
 gestionnaire.centres.cotisationJusqua: 'Contribution until %dateFin%'
@@ -804,11 +802,9 @@ rediscover_our_solutions: '(re)Discover our solutions'
 registerForm.adresse: 'Your personal address (optional)'
 registerForm.codePostal: 'Postal code'
 registerForm.email: Email
-registerForm.motDePasse: Password
 registerForm.pays: Country
 registerForm.rue: Street
 registerForm.telephone: 'Phone number'
-registerForm.username: Username
 registerForm.ville: City
 relay_has_no_address: 'The Reconnect relay did not informed any address'
 relays: Relays

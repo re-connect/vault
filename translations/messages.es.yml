@@ -5,7 +5,6 @@ enabled: Activo
 form_connexion: Login
 form_forgot_password: 'Restablecer la contraseña'
 form_login: 'Nombre de usuario o Correo electrónico'
-form_password: Contraseña
 health: Salud
 housing: Casa
 identity: Identidad

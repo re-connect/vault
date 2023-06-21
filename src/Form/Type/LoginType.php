@@ -21,7 +21,7 @@ class LoginType extends AbstractType
 
         $builder
             ->add('_username', null, ['label' => 'connexionForm.usernameV2'])
-            ->add('_password', PasswordType::class, ['label' => 'connexionForm.motDePasse'])
+            ->add('_password', PasswordType::class, ['label' => 'password'])
             ->add('_remember_me', HiddenType::class, ['data' => true])
             ->add('_csrf_token', HiddenType::class, ['data' => $options['csrfToken']])
             ->add('_submit', SubmitType::class, ['label' => 'connexionForm.connexion']);

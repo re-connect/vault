@@ -87,7 +87,6 @@ confirm: Bestätigen
 connexionForm.connexion: Verbinden
 connexionForm.erreurIdentifiants: 'Benutzername oder Passwort falsch'
 connexionForm.inactif: 'Du wurdest wegen Inaktivität abgemeldet'
-connexionForm.motDePasse: Passwort
 connexionForm.oublieMdp: 'Ich habe mein Passwort oder Anmeldenamen vergessen'
 connexionForm.username: Anmeldename
 connexionForm.usernameV2: 'Anmeldename oder E-Mail'
@@ -260,7 +259,6 @@ form_connexion: Verbindung
 form_forgot_password: 'Ich habe mein Passwort oder meinen Benutzernamen vergessen'
 form_login: 'Benutzername oder E-Mail'
 form_message: 'Ihre Nachricht'
-form_password: Passwort
 form.validation.noPassword: 'Du musst ein Passwort festlegen'
 form.validation.passwordFormat: 'Dein Passwort darf nur Buchstaben und Zahlen enthalten'
 form.validation.phoneFormat: 'Deine Telefonnummer hat ein ungültiges Format'
@@ -542,10 +540,8 @@ reconnect_center_span: 'Reconnect <span class="rp-blue">Einrichtung</span>'
 registerForm.adresse: 'Deine private Adresse (optional)'
 registerForm.correspondentPas: 'Die Passwörter stimmen nicht überein'
 registerForm.email: E-Mail-Adresse
-registerForm.motDePasse: Passwort
 registerForm.repeterMotDePasse: 'Passwort bestätigen'
 registerForm.telephone: Telefon
-registerForm.username: Anmeldename
 reminder: Erinnerung
 reminder_sms: SMS-Erinnerung
 rename: Umbenennen
