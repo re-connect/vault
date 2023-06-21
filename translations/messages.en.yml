@@ -262,8 +262,8 @@ digital_cares_scalable_content_title: 'Evolving contents according to feedback f
 disabledAt: 'Disabled at'
 disabledBy: 'Disabled by'
 disaffiliate_beneficiary_subtitle: 'Stop the following of'
-disaffiliate_beneficiary_title_part_1: 'Stop the following of a'
-disaffiliate_beneficiary_title_part_2: Beneficiary
+disaffiliate_user_title_part_1: 'Stop the following of a'
+disaffiliate_user_title_part_2: User
 document.apercu: Previews
 document.aucunFichier: 'For the moment,there is no folder'
 document.avertissementTaille: 'You soon reach the limit size of your storage space (%space%)'
@@ -819,7 +819,7 @@ reminder: Reminder
 reminder_sms: 'SMS Reminder'
 remove_from_relay: 'Remove from relay'
 remove_from_relay_confirm: 'Are you sure you want to remove the beneficiary %beneficiary% ?'
-remove_from_relay_confirm_relay: 'Are you sure you want to remove the beneficiary %beneficiary% from the relay %relay% ?'
+remove_from_relay_confirm_relay: Are you sure you want to remove the user %user% from the relay %relay% ?
 removed_from_relay: 'Removed from relay'
 rename: Rename
 renew_password: 'Renew password'
