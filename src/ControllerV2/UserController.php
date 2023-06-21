@@ -31,10 +31,6 @@ class UserController extends AbstractController
     ): Response {
         $user = $this->getUser();
 
-        if (!$this->isGranted('SELF_EDIT', $user)) {
-            throw new AccessDeniedException();
-        }
-
         $userForm = $this->createForm(UserSettingsType::class, $user)->handleRequest($request);
 
         $passwordForm = $this->createForm(ChangePasswordFormType::class, null, [
@@ -75,7 +71,7 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
 
-        if (!$this->isGranted('DELETE_BENEFICIARY', $user)) {
+        if (!$this->isGranted('SELF_DELETE', $user)) {
             throw new AccessDeniedException();
         }
 
