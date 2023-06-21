@@ -426,6 +426,10 @@ class User extends BaseUser implements \JsonSerializable
     {
         $this->subjectBeneficiaire = $subjectBeneficiaire;
 
+        if ($subjectBeneficiaire) {
+            $this->typeUser = self::USER_TYPE_BENEFICIAIRE;
+        }
+
         return $this;
     }
 
@@ -486,6 +490,10 @@ class User extends BaseUser implements \JsonSerializable
     public function setSubjectMembre(Membre $subjectMembre = null): self
     {
         $this->subjectMembre = $subjectMembre;
+
+        if ($subjectMembre) {
+            $this->typeUser = self::USER_TYPE_MEMBRE;
+        }
 
         return $this;
     }
