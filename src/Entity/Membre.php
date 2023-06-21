@@ -73,6 +73,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     {
         $this->user = $user;
         $this->user->setTypeUser(User::USER_TYPE_MEMBRE);
+        $this->user->setSubjectMembre($this);
 
         return $this;
     }
