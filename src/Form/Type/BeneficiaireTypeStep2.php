@@ -24,7 +24,7 @@ class BeneficiaireTypeStep2 extends AbstractType
         $autoPassword = $options['autoPassword'];
         $options = [];
         $options['data'] = $autoPassword;
-        $options['label'] = 'registerForm.motDePasse';
+        $options['label'] = 'password';
         $builder->get('user')->add('plainPassword', TextType::class, $options); // replace the field
 
         $field = $builder->get('user')->get('username');

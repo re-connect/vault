@@ -16,7 +16,7 @@ class SearchBeneficiaryType extends AbstractType
         $builder
             ->add('lastname', TextType::class, [
                 'required' => false,
-                'label' => 'lastname',
+                'label' => 'name',
             ])
             ->add('firstname', TextType::class, [
                 'required' => false,

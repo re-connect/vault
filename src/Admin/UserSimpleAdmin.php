@@ -45,7 +45,7 @@ class UserSimpleAdmin extends AbstractAdmin
             ->add('plainPassword', RepeatedType::class, [
                 'required' => false,
                 'type' => PasswordType::class,
-                'first_options' => ['label' => 'form_password', 'attr' => ['autocomplete' => 'off']],
+                'first_options' => ['label' => 'password', 'attr' => ['autocomplete' => 'off']],
                 'second_options' => ['label' => 'Confirmer le mot de passe', 'attr' => ['autocomplete' => 'off']],
                 'invalid_message' => 'fos_user.password.mismatch',
             ])

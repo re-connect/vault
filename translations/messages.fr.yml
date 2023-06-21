@@ -163,7 +163,6 @@ connect_reconnect_site: 'Connectez-vous sur www.reconnect.fr'
 connexionForm.connexion: Connexion
 connexionForm.erreurIdentifiants: "Vous avez entré un mauvais nom d'utilisateur/mot de passe"
 connexionForm.inactif: "Vous avez été deconnecté après une période d'inactivité"
-connexionForm.motDePasse: 'Mot de passe'
 connexionForm.oublieMdp: "J'ai oublié mon mot de passe ou mes identifiants"
 connexionForm.username: "nom d'utilisateur"
 connexionForm.usernameV2: "Nom d'utilisateur ou email"
@@ -273,7 +272,7 @@ devenirUnRelaiReconnect.accueil.telephoneLbl: Téléphone
 devenirUnRelaiReconnect.accueil.voirMontantParticipation: 'Voir le montant des participations'
 devenirUnRelaiReconnect.confirmation.texte: 'Nos équipes vous contacteront sous peu pour finaliser votre inscription'
 devenirUnRelaiReconnect.confirmation.titre: 'Inscription réussie'
-devenirUnRelaiReconnect.creation.success: 'Le relai a été crée avec succès'
+devenirUnRelaiReconnect.creation.success: 'Le relais a été crée avec succès'
 devenirUnRelaiReconnect.identification.associationLabel: 'Votre organisme'
 devenirUnRelaiReconnect.identification.associationPasswordLabel: "Mot de passe pour l'association"
 devenirUnRelaiReconnect.identification.associationUsernameLabel: "Nom d'utilisateur pour l'association"
@@ -515,7 +514,6 @@ form_connexion: Connexion
 form_forgot_password: "J'ai oublié mon mot de passe ou mon identifiant"
 form_login: "Nom d'utilisateur ou Email"
 form_message: 'Votre message'
-form_password: 'Mot de passe'
 gdpr_know_more: 'En savoir plus sur la conformité RGPD de votre structure'
 generate_password: 'Générer un mot de passe'
 gestionnaire.centres.btnAjouterUnCentre: 'Ajouter un centre'
@@ -524,7 +522,7 @@ gestionnaire.centres.cotisationNoneffectuee: 'Cotisation non effectuée (centre 
 gestionnaire.centres.cotiserPourCeCentre: Cotiser
 gestionnaire.centres.fairePassation: 'Faire la passation'
 gestionnaire.centres.metaTitle: 'Relais Reconnect'
-gestionnaire.centres.noCentres: "Vous n'avez encore enregistré aucun Relais Reconnect.<br/>Cliquez ci-dessous pour enregistrer un nouveau Relai Reconnect."
+gestionnaire.centres.noCentres: "Vous n'avez encore enregistré aucun Relais Reconnect.<br/>Cliquez ci-dessous pour enregistrer un nouveau Relais Reconnect."
 gestionnaire.centres.rechargeSms: 'Acheter une recharge sms'
 gestionnaire.centres.renouveller: Renouveler
 gestionnaire.centres.statistiquesCentre: 'Statistiques du centre'
@@ -978,12 +976,10 @@ registerForm.adresse: 'Votre adresse personnelle (facultatif)'
 registerForm.codePostal: 'Code postal'
 registerForm.correspondentPas: 'Les mots de passe ne correspondent pas'
 registerForm.email: Email
-registerForm.motDePasse: 'Mot de passe'
 registerForm.pays: Pays
 registerForm.repeterMotDePasse: 'Confirmez le mot de passe'
 registerForm.rue: Rue
 registerForm.telephone: Téléphone
-registerForm.username: "Nom d'utilisateur"
 registerForm.ville: Ville
 relay_has_no_address: "Le relais Reconnect n'a pas renseigné d'adresse"
 relays: Relais
