@@ -66,10 +66,7 @@ class BeneficiaryCreationManager
 
     private function updatePassword(Beneficiaire $beneficiary): void
     {
-        $user = $beneficiary->getUser();
-        if ($password = $user->getPlainPassword()) {
-            $this->userManager->updatePassword($user, $password);
-        }
+        $this->userManager->updatePasswordWithPlain($beneficiary->getUser());
     }
 
     private function updateRelays(Beneficiaire $beneficiary): void
