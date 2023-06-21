@@ -27,23 +27,23 @@ class UserHelperTest extends KernelTestCase
     public function testCanManageBeneficiary(): void
     {
         // No relay common
-        self::assertFalse($this->userHelper->canManageBeneficiary($this->membre->getUser(), $this->beneficiary));
+        self::assertFalse($this->userHelper->canUpdateBeneficiary($this->membre->getUser(), $this->beneficiary));
 
         $relay = RelayFactory::createOne()->object();
         $this->beneficiary->addBeneficiaryRelayForRelay($relay);
         $this->membre->addMembresCentre((new MembreCentre())->setMembre($this->membre)->setCentre($relay));
 
         // Relay common, not accepted affiliation
-        self::assertFalse($this->userHelper->canManageBeneficiary($this->membre->getUser(), $this->beneficiary));
+        self::assertFalse($this->userHelper->canUpdateBeneficiary($this->membre->getUser(), $this->beneficiary));
 
         $this->membre->getMembresCentres()[0]->setBValid(true)->setDroits();
 
         // Relay common, accepted affiliation, no rights
-        self::assertFalse($this->userHelper->canManageBeneficiary($this->membre->getUser(), $this->beneficiary));
+        self::assertFalse($this->userHelper->canUpdateBeneficiary($this->membre->getUser(), $this->beneficiary));
 
         $this->membre->getMembresCentres()[0]->setDroits([MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES => true]);
 
         // Relays common, accepted affiliation, has rights
-        self::assertTrue($this->userHelper->canManageBeneficiary($this->membre->getUser(), $this->beneficiary));
+        self::assertTrue($this->userHelper->canUpdateBeneficiary($this->membre->getUser(), $this->beneficiary));
     }
 }
