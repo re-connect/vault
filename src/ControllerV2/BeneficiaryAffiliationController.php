@@ -96,39 +96,4 @@ class BeneficiaryAffiliationController extends AbstractController
             'formModel' => $affiliateBeneficiaryModel,
         ]);
     }
-
-    #[Route(
-        path: '/beneficiary/{id}/disaffiliate/choose-relay',
-        name: 'disaffiliate_beneficiary_relay_choice',
-        requirements: ['id' => '\d+'],
-        methods: ['GET'],
-    )]
-    public function disaffiliateChooseRelay(Beneficiaire $beneficiary): Response
-    {
-        return !$this->isGranted('UPDATE', $beneficiary)
-            ? $this->redirectToRoute('list_beneficiaries')
-            : $this->render('v2/user_affiliation/beneficiary/disaffiliate_beneficiary.html.twig', [
-                'beneficiary' => $beneficiary,
-                'relays' => $this->getProfessional()?->getManageableRelays($beneficiary) ?: new ArrayCollection([]),
-            ]);
-    }
-
-    #[Route(
-        path: '/beneficiary/{id}/relay/{relayId}/disaffiliate',
-        name: 'disaffiliate_beneficiary',
-        requirements: ['id' => '\d+'],
-        methods: ['GET'],
-        condition: 'request.isXmlHttpRequest()',
-    )]
-    #[ParamConverter('relay', class: 'App\Entity\Centre', options: ['id' => 'relayId'])]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function disaffiliateFromRelay(
-        Beneficiaire $beneficiary,
-        ?Centre $relay,
-        BeneficiaryAffiliationManager $manager,
-    ): Response {
-        $manager->disaffiliateBeneficiary($beneficiary, $relay);
-
-        return $this->json($beneficiary);
-    }
 }

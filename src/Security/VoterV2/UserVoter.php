@@ -32,7 +32,7 @@ class UserVoter extends Voter
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
-        if (!$user instanceof User || $user !== $subject) {
+        if (!$user instanceof User) {
             return false;
         }
 
