@@ -1,0 +1,19 @@
+{% extends 'v2/pro_standard_layout.html.twig' %}
+{% block metaTitle %}{{ 'create_member'|trans }}{% endblock %}
+
+{% block title %}
+    <span class="text-blue">{{ 'create_member'|trans }}</span>
+{% endblock %}
+
+{% block delimiter %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 mt-2">
+            {{ include('v2/common/_card_with_form.html.twig', {
+                title: 'create_account'|trans,
+                form,
+            }) }}
+        </div>
+    </div>
+{% endblock %}
