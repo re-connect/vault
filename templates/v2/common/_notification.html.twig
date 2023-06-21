@@ -21,8 +21,10 @@
 {% endblock %}
 
 {% block icon %}
-    {% if notification.icon is defined %}
-        <i class="fa fa-{{ notification.icon }} fa-2x text-primary me-1"></i>
+    {% if notification.icon is defined and notification.icon %}
+        <div class="col-2 me-1 my-auto">
+            <i class="fa fa-{{ notification.icon }} fa-2x text-primary me-1"></i>
+        </div>
     {% endif %}
 {% endblock %}
 

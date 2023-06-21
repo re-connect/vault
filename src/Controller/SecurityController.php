@@ -51,7 +51,7 @@ class SecurityController extends AbstractController
         }
 
         if ($user->isBeneficiaire()) {
-            if (null === $user->getSubjectBeneficiaire()->getQuestionSecrete() || null === $user->getSubjectBeneficiaire()->getReponseSecrete()) {
+            if ((!$user->getSubjectBeneficiaire()->getQuestionSecrete() || !$user->getSubjectBeneficiaire()->getReponseSecrete()) && $user->getFirstVisit()) {
                 return $this->redirect($this->generateUrl('re_beneficiaire_setQuestionSecrete'));
             }
 
