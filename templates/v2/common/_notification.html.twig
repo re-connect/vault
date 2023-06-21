@@ -11,9 +11,9 @@
 {% block content %}
     {{ notification.content|trans|raw }}
     {% if notification.form is defined and notification.form %}
-        {% set form = notification.form %}
+        {% set form = notification.form.formView %}
         <br/><br/>
-        {{ form_start(form) }}
+        {{ form_start(form, {'attr': {'data-controller': notification.form.stimulusControllers}}) }}
         {{ form_widget(form) }}
         <div class="text-end">{{ include('v2/common/_button.html.twig') }}</div>
         {{ form_end(form) }}

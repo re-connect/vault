@@ -498,6 +498,7 @@ member_management_big_title: 'Mitarbeiter*in <span class="rp-blue">verwalten</sp
 member_new_guide_title: 'Willkommen bei Reconnect <span class="rp-blue">- Der Cloud für wohnungslose Menschen</span>'
 member_reset_password_wrong_answer: 'Die eingegebene Antwort ist falsch.'
 member_reset_password_no_rights: 'Sie dürfen das Passwort dieses Kontos nicht zurücksetzen.'
+missing_secret_question_text: Sie haben noch keine geheime Frage und Antwort eingegeben. Das können Sie unten tun
 name: Name
 next: Weiter
 'no': Nein

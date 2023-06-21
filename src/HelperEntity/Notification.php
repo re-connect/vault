@@ -2,8 +2,6 @@
 
 namespace App\HelperEntity;
 
-use Symfony\Component\Form\FormView;
-
 class Notification
 {
     /** @param NotificationAction[] $actions */
@@ -13,7 +11,7 @@ class Notification
         public readonly ?string $icon = null,
         public readonly string $content = '',
         public readonly array $actions = [],
-        public readonly ?FormView $form = null,
+        public readonly ?NotificationForm $form = null,
     ) {
     }
 }

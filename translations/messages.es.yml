@@ -19,7 +19,8 @@ mail_shared_document_title: 'Compartir un documento'
 mail_shared_document_content_1: 'Alguien compartir con usted un documento de su caja fuerte digital de Reconnect.'
 mail_shared_document_content_2: 'Para descargar este documento, clicar en este enlace (disponible durante 7 días)'
 mail_shared_document_content_3: 'CONFIDENCIALIDAD: Este correo electrónico (así como cualquier documento adjunto) es estrictamente para el uso de la persona o entidad a quien se envía y puede contener información privilegiada y confidencial. Queda estrictamente prohibida la divulgación, distribución o copia de este correo electrónico y sus documentos. Si ha recibido este correo electrónico por error, notifíquenoslo inmediatamente, destruya todas las copias y bórrelo de su sistema informático'
-'no': 'No'
+missing_secret_question_text: No ha introducido una pregunta y respuesta secretas, puede hacerlo abajo
+no: 'No'
 tax: Impuestos
 work: Trabajo
-'yes': Sí
+yes: Sí

@@ -119,7 +119,7 @@ comment: Comment
 confirm: Confirm
 confirm_beneficiary_creation_cancellation: 'Are you sure you want to cancel beneficiary creation ?'
 confirm_beneficiary_creation_remotely: "By clicking on confirm, an SMS will be sent to the beneficiary allowing him to activate his account and define his password and the answer to his secret question.\nHe can choose whether or not to accept the sharing of his information with the relay(s) above."
-confirm_new_password: Confirmer votre nouveau mot de passe
+confirm_new_password: Confirm new password
 connect_reconnect_site: 'Connect to www.reconnect.fr'
 connexionForm.connexion: Connection
 connexionForm.erreurIdentifiants: 'You entered an unknown username/ password'
@@ -700,7 +700,7 @@ membre.sendSmsCode.text: 'A SMS containing the code has just been sent to the ph
 membre.supprimerMembreDuCentre.etesVousSur: 'Are You sure You want to delete the member of this center?'
 membre.supprimerMembreDuCentre.success: 'You deleted the member of this center'
 missing_secret_question: Secret question is missing
-missing_secret_question_text: To ease password reset in case of lost, please fill a secret question
+missing_secret_question_text: You have not yet entered a secret question and answer, you can do so below
 move: Move
 my_contacts: 'My Contacts'
 my_documents: 'My Documents'
@@ -977,4 +977,4 @@ you_are_now_subscribed_for_newsletter: 'You are now subscribed to our newsletter
 you_can_download_mobile_app: 'You can also download the mobile app'
 you_can_unsubscribe_for_newsletter: 'You can unsubscribe from this list at any time, using the link you will find at the bottom of each newsletter'
 you_must_provide_phone_number: 'You must provide a phone number'
-your_new_password: Votre nouveau mot de passe
+your_new_password: Your new password

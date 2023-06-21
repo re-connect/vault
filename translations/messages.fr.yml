@@ -158,7 +158,7 @@ comment: Commentaire
 confirm: Confirmer
 confirm_beneficiary_creation_cancellation: 'Êtes vous sûr de vouloir annuler la création de ce bénéficiaire ?'
 confirm_beneficiary_creation_remotely: "En cliquant sur confirmer, un SMS sera envoyé au bénéficiaire lui permettant d’activer son compte et de définir son mot de passe et la réponse à sa question secrète. \n Il pourra choisir d’accepter ou non le partage de ses informations avec le(s) relais ci-dessus."
-confirm_new_password: Confirmer votre nouveau mot de passe
+confirm_new_password: Confirmez votre nouveau mot de passe
 connect_reconnect_site: 'Connectez-vous sur www.reconnect.fr'
 connexionForm.connexion: Connexion
 connexionForm.erreurIdentifiants: "Vous avez entré un mauvais nom d'utilisateur/mot de passe"
@@ -838,7 +838,7 @@ membre.supprimerMembreDuCentre.etesVousSur: 'Êtes vous sûrs de bien vouloir su
 membre.supprimerMembreDuCentre.success: 'Vous avez bien supprimé le centre de ce membre'
 message: Message
 missing_secret_question: Question secrète non renseignée
-missing_secret_question_text: Afin de faciliter la réinitialisation de votre mot de pas en cas de perte, veuillez renseigner une question secrète
+missing_secret_question_text: Vous n’avez pas encore renseigné de question et réponse secrète, vous pouvez le faire ci-dessous
 modal_message_contact_delete: 'Êtes vous sûr de vouloir supprimer le contact'
 modal_message_contact_deletev2: 'Êtes vous sûr de vouloir supprimer le contact %fullName% ?'
 modal_message_document_delete: 'Êtes vous sûr de vouloir supprimer le document'
