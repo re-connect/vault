@@ -46,12 +46,12 @@ class SecurityController extends AbstractController
         if ($user->isAdministrateur()) {
             return $this->redirect($this->generateUrl('sonata_admin_dashboard'));
         }
-        if ($user->getFirstVisit()) {
+        if ($user->isFirstVisit()) {
             return $this->redirect($this->generateUrl('re_user_firstVisit'));
         }
 
         if ($user->isBeneficiaire()) {
-            if (null === $user->getSubjectBeneficiaire()->getQuestionSecrete() || null === $user->getSubjectBeneficiaire()->getReponseSecrete()) {
+            if ((!$user->getSubjectBeneficiaire()->getQuestionSecrete() || !$user->getSubjectBeneficiaire()->getReponseSecrete()) && $user->isFirstVisit()) {
                 return $this->redirect($this->generateUrl('re_beneficiaire_setQuestionSecrete'));
             }
 

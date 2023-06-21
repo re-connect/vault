@@ -507,7 +507,7 @@ class User extends BaseUser implements \JsonSerializable
         return $this;
     }
 
-    public function getFirstVisit(): bool
+    public function isFirstVisit(): bool
     {
         return $this->firstVisit;
     }
