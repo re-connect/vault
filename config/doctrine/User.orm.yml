@@ -153,9 +153,11 @@ App\Entity\User:
         subjectBeneficiaire:
             targetEntity: App\Entity\Beneficiaire
             mappedBy: user
+            cascade: [ "persist" ]
         subjectMembre:
             targetEntity: App\Entity\Membre
             mappedBy: user
+            cascade: [ "persist" ]
         subjectAssociation:
             targetEntity: App\Entity\Association
             mappedBy: user
