@@ -4,18 +4,25 @@ namespace App\Security\VoterV2;
 
 use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class UserVoter extends Voter
 {
-    public const SELF_DELETE = 'SELF_DELETE';
+    public const DELETE = 'DELETE';
+    public const UPDATE = 'UPDATE';
+
+    public function __construct(
+        private readonly AuthorizationCheckerInterface $authorizationChecker,
+    ) {
+    }
 
     /**
      * @param object $subject
      */
     protected function supports(string $attribute, $subject): bool
     {
-        return in_array($attribute, [self::SELF_DELETE])
+        return in_array($attribute, [self::DELETE, self::UPDATE])
             && $subject instanceof User;
     }
 
@@ -30,13 +37,31 @@ class UserVoter extends Voter
         }
 
         return match ($attribute) {
-            self::SELF_DELETE => $this->canSelfDelete($user, $subject),
+            self::DELETE => $this->canDelete($user, $subject),
+            self::UPDATE => $this->canUpdate($user, $subject),
             default => false,
         };
     }
 
-    private function canSelfDelete(User $user, User $subject): bool
+    private function canDelete(User $user, User $subject): bool
     {
         return $user === $subject && $user->isBeneficiaire();
+    }
+
+    private function canUpdate(User $user, User $subject): bool
+    {
+        if ($user->isBeneficiaire()) {
+            return $user === $subject;
+        }
+
+        if ($user->isMembre()) {
+            return match ($subject->getTypeUser()) {
+                User::USER_TYPE_MEMBRE => $this->authorizationChecker->isGranted('UPDATE', $subject->getSubjectMembre()),
+                User::USER_TYPE_BENEFICIAIRE => $this->authorizationChecker->isGranted('UPDATE', $subject->getSubjectBeneficiaire()),
+                default => false,
+            };
+        }
+
+        return false;
     }
 }

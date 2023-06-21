@@ -71,7 +71,7 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
 
-        if (!$this->isGranted('SELF_DELETE', $user)) {
+        if (!$this->isGranted('DELETE', $user)) {
             throw new AccessDeniedException();
         }
 
