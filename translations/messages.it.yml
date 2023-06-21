@@ -7,5 +7,6 @@ health: Salute
 housing: Alloggio
 identity: Identità
 login_form_title: 'Accesso alla cassaforte digitale'
+missing_secret_question_text: Non avete ancora inserito una domanda e una risposta segreta, potete farlo qui di seguito
 tax: Imposta
 work: Lavoro

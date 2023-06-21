@@ -11,6 +11,7 @@ use App\FormV2\UserCreation\SecretQuestionType;
 use App\Helper\SecretQuestionsHelper;
 use App\HelperEntity\Notification;
 use App\HelperEntity\NotificationAction;
+use App\HelperEntity\NotificationForm;
 use App\ManagerV2\RelayManager;
 use App\ServiceV2\Traits\SessionsAwareTrait;
 use App\ServiceV2\Traits\UserAwareTrait;
@@ -217,7 +218,7 @@ class NotificationService
                 null,
                 'missing_secret_question_text',
                 [],
-                $form->createView(),
+                new NotificationForm($form->createView(), 'conditional-field'),
             );
         }
 
