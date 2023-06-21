@@ -8,7 +8,7 @@ use App\Entity\User;
 
 class UserHelper
 {
-    public function canManageBeneficiary(User $user, Beneficiaire $beneficiary): bool
+    public function canUpdateBeneficiary(User $user, Beneficiaire $beneficiary): bool
     {
         return 0 < count(array_intersect(
             $user->getAffiliatedRelaysWithBeneficiaryManagement()->toArray(),
@@ -16,7 +16,7 @@ class UserHelper
         ));
     }
 
-    public function canManageProfessional(User $user, Membre $professional): bool
+    public function canUpdateProfessional(User $user, Membre $professional): bool
     {
         return 0 < count(array_intersect(
             $user->getAffiliatedRelaysWithProfessionalManagement()->toArray(),

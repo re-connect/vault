@@ -53,7 +53,7 @@ class ListProfessionalsTest extends AbstractControllerTest implements TestRouteI
         // We check that all fetched professionals can be managed by the professional
         foreach ($professionals as $professional) {
             $professional = MembreFactory::find($professional->getId())->object();
-            self::assertTrue($this->userHelper->canManageProfessional($proUser, $professional));
+            self::assertTrue($this->userHelper->canUpdateProfessional($proUser, $professional));
         }
     }
 }
