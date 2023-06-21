@@ -23,7 +23,7 @@ class LoginTypeV2 extends AbstractType
             ->add('_password', PasswordType::class, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'form_password',
+                    'placeholder' => 'password',
                     'class' => 'mb-3 py-1 text-primary lighter fw-bold login-form-password-input',
                 ],
             ])

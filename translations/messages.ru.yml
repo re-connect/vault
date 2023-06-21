@@ -46,7 +46,7 @@ confirm: Подтвердить
 connexionForm.connexion: Вход
 connexionForm.erreurIdentifiants: 'Вы ввели неверное имя пользователя/пароль'
 connexionForm.inactif: 'Ваша сессия была закрыта после определённого периода неактивности'
-connexionForm.motDePasse: Пароль
+password: Пароль
 connexionForm.oublieMdp: 'Забыли пароль или логин?'
 connexionForm.username: 'Имя пользователя'
 contact.ajouter: 'Добавить контакт'
@@ -239,7 +239,6 @@ form.validation.sirenFormat: 'Неверный формат номера Siren'
 form_connexion: войти
 form_forgot_password: 'Сбросить пароль'
 form_login: 'логин или пароль'
-form_password: пароль
 gestionnaire.centres.btnAjouterUnCentre: 'Добавить центр'
 gestionnaire.centres.cotisationJusqua: 'Вклад в % dateFin %'
 gestionnaire.centres.cotisationNoneffectuee: 'Взнос не произведён (центр неактивный)'
@@ -527,11 +526,9 @@ password_updated_successfully: 'Пароль успешно изменён'
 registerForm.adresse: 'Ваш личный адрес (необязательно)'
 registerForm.codePostal: Индекс
 registerForm.email: 'Электронная почта'
-registerForm.motDePasse: Пароль
 registerForm.pays: Страна
 registerForm.rue: Улица
 registerForm.telephone: Телефон
-registerForm.username: 'Имя пользователя'
 registerForm.ville: Город
 resetting.check_email: 'На указанный адрес было отправлено сообщение со ссылкой, на которую вам надо нажать для восстановления пароля.'
 resetting.email.message: 'Здравствуйте, % username %! Чтобы сбросить свой пароль, пожалуйста перейдите на % confirmationUrl % с уважением, команда.'

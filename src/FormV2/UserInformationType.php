@@ -19,7 +19,7 @@ class UserInformationType extends AbstractType
                 'row_attr' => ['class' => 'col-6 mt-3'],
             ])
             ->add('nom', null, [
-                'label' => 'lastname',
+                'label' => 'name',
                 'row_attr' => ['class' => 'col-6 mt-3'],
             ])
             ->add('telephone', null, [
