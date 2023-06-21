@@ -1,8 +1,8 @@
 <div class="col-md-4 col-lg-3 mb-4"
         {{ stimulus_controller('ajax-alert', {
-            'url': path('disaffiliate_beneficiary', {'id': beneficiary.id, 'relayId': relay.id}),
+            'url': path('disaffiliate_user', {'id': user.id, 'relayId': relay.id}),
             'message': 'remove_from_relay_confirm_relay'|trans({
-                '%beneficiairy%': beneficiary.user.fullName,
+                '%user%': user.fullName,
                 '%relay%': relay.nom
             }),
             'confirmButtonText': 'remove_from_relay'|trans,
