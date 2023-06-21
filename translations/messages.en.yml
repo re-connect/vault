@@ -119,6 +119,7 @@ comment: Comment
 confirm: Confirm
 confirm_beneficiary_creation_cancellation: 'Are you sure you want to cancel beneficiary creation ?'
 confirm_beneficiary_creation_remotely: "By clicking on confirm, an SMS will be sent to the beneficiary allowing him to activate his account and define his password and the answer to his secret question.\nHe can choose whether or not to accept the sharing of his information with the relay(s) above."
+confirm_new_password: Confirmer votre nouveau mot de passe
 connect_reconnect_site: 'Connect to www.reconnect.fr'
 connexionForm.connexion: Connection
 connexionForm.erreurIdentifiants: 'You entered an unknown username/ password'
@@ -976,3 +977,4 @@ you_are_now_subscribed_for_newsletter: 'You are now subscribed to our newsletter
 you_can_download_mobile_app: 'You can also download the mobile app'
 you_can_unsubscribe_for_newsletter: 'You can unsubscribe from this list at any time, using the link you will find at the bottom of each newsletter'
 you_must_provide_phone_number: 'You must provide a phone number'
+your_new_password: Votre nouveau mot de passe

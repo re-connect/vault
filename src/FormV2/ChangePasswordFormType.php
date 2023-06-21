@@ -58,7 +58,7 @@ class ChangePasswordFormType extends AbstractType
                 'type' => PasswordType::class,
                 'first_options' => [
                     'constraints' => $isBeneficiaire ? $constraintsBeneficiaire : $constraintsMembre,
-                    'label' => 'password',
+                    'label' => 'your_new_password',
                     'attr' => [
                         'autocomplete' => 'new-password',
                         'data-password-strength-target' => 'input',
@@ -66,7 +66,7 @@ class ChangePasswordFormType extends AbstractType
                     ],
                 ],
                 'second_options' => [
-                    'label' => 'password_confirm',
+                    'label' => 'confirm_new_password',
                 ],
                 'invalid_message' => $this->translator->trans('form.validation.mismatch'),
                 // Instead of being set onto the object directly,
