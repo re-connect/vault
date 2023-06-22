@@ -110,7 +110,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('list_professionals');
         }
 
-        return $this->render('v2/user/invite.html.twig', ['form' => $form]);
+        return $this->render('v2/user/affiliation/invite.html.twig', ['form' => $form]);
     }
 
     #[Route(
@@ -122,7 +122,7 @@ class UserController extends AbstractController
     #[IsGranted('UPDATE', 'user')]
     public function disaffiliateChooseRelay(User $user): Response
     {
-        return $this->render('v2/user_affiliation/beneficiary/disaffiliate_beneficiary.html.twig', [
+        return $this->render('v2/user/disaffiliation/disaffiliate.html.twig', [
             'user' => $user,
             'relays' => $this->getProfessional()?->getManageableRelays($user),
         ]);
