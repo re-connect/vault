@@ -1158,6 +1158,17 @@ class User extends BaseUser implements \JsonSerializable
         return new ArrayCollection();
     }
 
+    public function getAffiliatedRelays(): Collection
+    {
+        if ($this->isBeneficiaire()) {
+            return $this->getSubjectBeneficiaire()->getAffiliatedRelays();
+        } elseif ($this->isMembre()) {
+            return $this->getSubjectMembre()->getAffiliatedRelays();
+        }
+
+        return new ArrayCollection();
+    }
+
     /** @return Collection <int, UserCentre> */
     public function getSubjectRelays(): Collection
     {
