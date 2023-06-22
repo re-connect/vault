@@ -1,7 +1,19 @@
 {% set menuItems = [
-    { icon: 'times-circle', message: 'remove_from_relay'|trans, path: removeFromRelay.path},
-    { icon: 'redo', message: 'renew_password'|trans, path: resetPasswordPath,},
+    {
+        icon: 'times-circle',
+        message: 'remove_from_relay'|trans,
+        path: removeFromRelay.path
+    },
 ] %}
+{% if resetPasswordPath is defined %}
+    {% set menuItems = menuItems|merge([
+        {
+            icon: 'redo',
+            message: 'renew_password'|trans,
+            path: resetPasswordPath
+        },
+    ]) %}
+{% endif %}
 <button class="btn btn-blue text-white py-0"
         {{ stimulus_target('dropdown-menu', 'button') }}
         {{ stimulus_action('dropdown-menu', 'toggle') }}
