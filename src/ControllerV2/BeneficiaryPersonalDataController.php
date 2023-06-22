@@ -55,7 +55,7 @@ class BeneficiaryPersonalDataController extends AbstractController
                 'form' => $this->getSearchForm(
                     $this->generateUrl('list_notes', ['id' => $beneficiary->getId()]),
                     $formModel,
-                )->handleRequest($request),
+                ),
             ],
         );
     }
@@ -112,7 +112,7 @@ class BeneficiaryPersonalDataController extends AbstractController
                 'form' => $this->getSearchForm(
                     $this->generateUrl('list_contacts', ['id' => $beneficiary->getId()]),
                     $formModel,
-                )->handleRequest($request),
+                ),
             ],
         );
     }
@@ -174,7 +174,7 @@ class BeneficiaryPersonalDataController extends AbstractController
                 'form' => $this->getSearchForm(
                     $this->generateUrl('list_events', ['id' => $beneficiary->getId()]),
                     $formModel,
-                )->handleRequest($request),
+                ),
             ],
         );
     }
@@ -232,7 +232,7 @@ class BeneficiaryPersonalDataController extends AbstractController
                 'form' => $this->getSearchForm(
                     $this->generateUrl('list_documents', ['id' => $beneficiary->getId()]),
                     $formModel,
-                )->handleRequest($request),
+                ),
             ],
         );
     }
