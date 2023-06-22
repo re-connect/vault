@@ -124,7 +124,7 @@ class UserController extends AbstractController
     {
         return $this->render('v2/user_affiliation/beneficiary/disaffiliate_beneficiary.html.twig', [
             'user' => $user,
-            'relays' => $this->getProfessional()?->getManageableRelays($user->getSubject()) ?: new ArrayCollection([]),
+            'relays' => $this->getProfessional()?->getManageableRelays($user),
         ]);
     }
 
