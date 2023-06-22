@@ -112,7 +112,7 @@ class MainController extends AbstractController
 
     public function getCenters(CentreProvider $provider): Response
     {
-        return new JsonResponse([$provider->getAllCentresWithAddress()], 200);
+        return new JsonResponse([$provider->getAllCentresWithAddress()], Response::HTTP_OK);
     }
 
     public function changeLang($lang, Request $request, EntityManagerInterface $em): RedirectResponse

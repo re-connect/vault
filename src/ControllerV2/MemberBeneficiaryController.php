@@ -27,7 +27,7 @@ class MemberBeneficiaryController extends AbstractController
     {
         $user = $this->getUser();
         if (!$user->isMembre()) {
-            return new JsonResponse(null, 401);
+            return new JsonResponse(null, Response::HTTP_UNAUTHORIZED);
         }
 
         $formData = $request->request->all()['first_member_visit'];
@@ -41,7 +41,7 @@ class MemberBeneficiaryController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'membre.partageContact.success');
 
-        return new JsonResponse(null, 201);
+        return new JsonResponse(null, Response::HTTP_CREATED);
     }
 
     public function firstMemberVisitNotification(?Beneficiaire $beneficiary, MemberBeneficiaryManager $memberBeneficiaryManager): Response

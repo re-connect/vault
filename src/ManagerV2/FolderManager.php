@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\HeaderUtils;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use ZipStream\Exception\OverflowException;
@@ -75,7 +76,7 @@ class FolderManager
             ? null
             : new StreamedResponse(
                 fn () => $this->createZipFromFolder($folder),
-                200,
+                Response::HTTP_OK,
                 [
                     'Content-Type' => 'application/zip',
                     'Content-Disposition' => HeaderUtils::makeDisposition(

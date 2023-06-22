@@ -251,7 +251,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         DossierRepository $folderRepository
     ): Response {
         if (!$files = $request->files->get('files')) {
-            return new Response(null, 400);
+            return new Response(null, Response::HTTP_BAD_REQUEST);
         }
         $folderId = $request->query->get('folder');
 
@@ -261,7 +261,7 @@ class BeneficiaryPersonalDataController extends AbstractController
             $folderId ? $folderRepository->find($folderId) : null
         );
 
-        return new Response(null, 201);
+        return new Response(null, Response::HTTP_CREATED);
     }
 
     #[Route(
