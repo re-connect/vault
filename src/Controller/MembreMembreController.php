@@ -132,9 +132,11 @@ final class MembreMembreController extends REController
             return $this->redirect($this->generateUrl('re_membre_show_username', ['id' => $user->getId()]));
         }
 
+        $formData = $form->getData();
+
         return $this->render('user/membre-membre/creationMembre.html.twig', [
             'form' => $form,
-            'subject' => $form->getData(),
+            'subject' => $formData,
         ]);
     }
 
