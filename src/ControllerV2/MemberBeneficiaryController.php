@@ -7,11 +7,11 @@ use App\Entity\Contact;
 use App\FormV2\FirstMemberVisitType;
 use App\ManagerV2\MemberBeneficiaryManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class MemberBeneficiaryController extends AbstractController
 {

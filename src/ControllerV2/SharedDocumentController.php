@@ -6,11 +6,11 @@ use App\Entity\Document;
 use App\ManagerV2\DocumentManager;
 use App\ManagerV2\SharedDocumentManager;
 use App\Service\LanguageService;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class SharedDocumentController extends AbstractController
 {

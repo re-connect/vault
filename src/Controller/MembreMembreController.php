@@ -13,11 +13,11 @@ use App\Provider\CentreProvider;
 use App\Provider\MembreProvider;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[IsGranted('ROLE_MEMBRE')]
@@ -133,7 +133,7 @@ final class MembreMembreController extends REController
         }
 
         return $this->render('user/membre-membre/creationMembre.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'subject' => $form->getData(),
         ]);
     }
