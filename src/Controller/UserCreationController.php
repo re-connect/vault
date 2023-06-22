@@ -213,7 +213,7 @@ class UserCreationController extends AbstractController
 
         return $this->render($template, [
             'subject' => $subject,
-            'form' => $form->createView(),
+            'form' => $form,
             'way' => $way,
         ]);
     }
@@ -255,7 +255,7 @@ class UserCreationController extends AbstractController
 
         return $this->render('user/subject/sendSmsCode.html.twig', [
             'subject' => $subject,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -342,7 +342,7 @@ class UserCreationController extends AbstractController
         return $this->render('user/subject/arreterSuiviSubject.html.twig', [
             'subject' => $subject,
             'centresEnCommun' => $centresEnCommun,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
 
 //        return $this->redirect($this->generateUrl($redirectRoute, []));

@@ -79,7 +79,7 @@ class DossierController extends AbstractController
         }
 
         return $this->render('app/donnee-personnelle/form.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'autocompleteFolderNames' => $autocompleteFolderNames,
         ], $response);
     }
@@ -113,7 +113,7 @@ class DossierController extends AbstractController
         }
 
         return $this->render('app/donnee-personnelle/form.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ], $response);
     }
 }

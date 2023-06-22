@@ -75,13 +75,13 @@ final class MembreMembreController extends REController
             }
 
             return $this->render('user/membre-membre/ajoutMembreSearch.html.twig', [
-                'form' => $form->createView(),
+                'form' => $form,
                 'foundUsers' => $foundUsers,
             ]);
         }
 
         return $this->render('user/membre-membre/ajoutMembreSearch.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

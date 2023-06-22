@@ -53,7 +53,7 @@ class MainController extends AbstractController
 
         return $this->render('homeV2/pages/index.html.twig', [
             'host' => $request->headers->get('host'),
-            'form' => $form->createView(),
+            'form' => $form,
             'verbatims' => $verbatims,
             'last_username' => $authenticationUtils->getLastUsername(),
             'auth_error' => $authenticationUtils->getLastAuthenticationError(),
@@ -67,7 +67,7 @@ class MainController extends AbstractController
         ]);
 
         return $this->render('homeV2/pages/page-vault.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'features' => HomeProvider::VAULT_FEATURES_CONTENT,
             'product_is' => HomeProvider::VAULT_IS_CONTENT,
             'last_username' => $authenticationUtils->getLastUsername(),
