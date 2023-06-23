@@ -46,7 +46,6 @@ confirm: تأكيد
 connexionForm.connexion: الاتصال
 connexionForm.erreurIdentifiants: 'لقد ادخلت اسم مستخدم خاطئ او كلمة سر خاطئة'
 connexionForm.inactif: 'تم قطع الاتصال بعد مدة من غير استعمال'
-connexionForm.motDePasse: 'كلمة السر'
 connexionForm.oublieMdp: 'نسيت كلمة السر او كلمة التعريف'
 connexionForm.username: 'اسم المستخدم'
 contact.ajouter: 'اضافة عنوان معرفة'
@@ -239,7 +238,6 @@ form.validation.sirenFormat: 'ان شكل رقم السيرين غير صالح'
 form_connexion: 'تسجيل دخول'
 form_forgot_password: 'إعادة ضبط كلمة السر'
 form_login: 'اسم المستخدم أو كلمة المرور'
-form_password: 'كلمة السر'
 gestionnaire.centres.btnAjouterUnCentre: 'اضافة مركز'
 gestionnaire.centres.cotisationJusqua: 'المساهمة حتى (التاريخ)'
 gestionnaire.centres.cotisationNoneffectuee: 'لم تتم المساهمة (تم الغاء المركز)'
@@ -532,11 +530,9 @@ password_updated_successfully: 'تم تغيير كلمة السر الخاصة �
 registerForm.adresse: 'عنوانك الشخصي (اختياري)'
 registerForm.codePostal: 'الرقم البريدي'
 registerForm.email: 'عنوان البريد الالكتروني'
-registerForm.motDePasse: 'كلمة السر'
 registerForm.pays: البلد
 registerForm.rue: الشارع
 registerForm.telephone: 'رقم الهاتف'
-registerForm.username: 'اسم المستخدم'
 registerForm.ville: المدينة
 resetting.check_email: 'لقد تم ارسال رسالة الكترونية الى العنوان الالكتروني المسجل. تحتوي هذه الرسالة على رابط انترنيت  عليك ان تنقر عليه لاعادة تعيين كلمة السر.'
 resetting.email.message: 'صباح الخير من اجل اعادة تعيين كلمة السر يرجى العودة الى... من قبل الفريق'
