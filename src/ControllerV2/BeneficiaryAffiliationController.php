@@ -3,16 +3,13 @@
 namespace App\ControllerV2;
 
 use App\Entity\Beneficiaire;
-use App\Entity\Centre;
 use App\FormV2\UserAffiliation\AffiliateBeneficiaryType;
 use App\FormV2\UserAffiliation\Model\AffiliateBeneficiaryFormModel;
 use App\FormV2\UserAffiliation\Model\SearchBeneficiaryFormModel;
 use App\FormV2\UserAffiliation\SearchBeneficiaryType;
 use App\ManagerV2\BeneficiaryAffiliationManager;
 use App\ServiceV2\PaginatorService;
-use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

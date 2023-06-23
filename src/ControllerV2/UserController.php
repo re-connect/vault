@@ -10,8 +10,6 @@ use App\FormV2\UserAffiliation\Model\AffiliateUserModel;
 use App\FormV2\UserSettingsType;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
-use App\Security\VoterV2\ProVoter;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\FormError;
