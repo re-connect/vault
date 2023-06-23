@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Tests\v2\Controller\ProfessionalController;
+namespace App\Tests\v2\Controller\ProController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 
-class SearchProfessionalsTest extends AbstractControllerTest implements TestRouteInterface
+class FilterProsTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const URL = '/professionals/search';
+    private const URL = '/pro/filter';
 
     public function provideTestRoute(): ?\Generator
     {
