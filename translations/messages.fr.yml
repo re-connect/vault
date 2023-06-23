@@ -345,8 +345,8 @@ digital_cares_scalable_content_title: 'Des contenus évolutifs en fonction des r
 disabledAt: 'Désactivé le'
 disabledBy: 'Désactivé par'
 disaffiliate_beneficiary_subtitle: 'Arrêter le suivi de'
-disaffiliate_beneficiary_title_part_1: "Arrêter le suivi d'un"
-disaffiliate_beneficiary_title_part_2: Bénéficiaire
+disaffiliate_user_title_part_1: "Arrêter le suivi d'un"
+disaffiliate_user_title_part_2: Utilisateur
 document.apercu: Aperçus
 document.aucunFichier: "Il n'y a aucun fichier pour l'instant"
 document.avertissementTaille: 'Vous avez bientôt atteint la taille limite de votre espace de stockage (%taille%)'
@@ -992,7 +992,7 @@ reminder_sms: 'Rappel SMS'
 reminder_sms_content: "Bonjour \nRappel RDV : %name% \n%date%"
 remove_from_relay: 'Retirer du relais'
 remove_from_relay_confirm: 'Êtes vous sûr de vouloir retirer le bénéficiaire %beneficiairy% ?'
-remove_from_relay_confirm_relay: 'Êtes vous sûr de vouloir retirer le bénéficiaire %beneficiairy% du relais %relay% ?'
+remove_from_relay_confirm_relay: Êtes vous sûr de vouloir retirer l'utilisateur %user% du relais %relay% ?
 removed_from_relay: Retiré
 rename: Renommer
 renew_password: 'Renouveler le mot de passe'
