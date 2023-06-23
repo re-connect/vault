@@ -16,6 +16,8 @@ class RelayFixture extends Fixture implements FixtureGroupInterface, DependentFi
     public const DEFAULT_BENEFICIARY_RELAY = 'Centre test beneficiaire';
     public const SHARED_PRO_BENEFICIARY_RELAY_1 = 'Centre test pro + beneficiaire 1';
     public const SHARED_PRO_BENEFICIARY_RELAY_2 = 'Centre test pro + beneficiaire 2';
+    public const SHARED_PRO_PRO_RELAY_1 = 'Centre test pro + pro 1';
+    public const SHARED_PRO_PRO_RELAY_2 = 'Centre test pro + pro 2';
 
     public function load(ObjectManager $manager)
     {
@@ -23,6 +25,8 @@ class RelayFixture extends Fixture implements FixtureGroupInterface, DependentFi
         $this->createTestRelay(self::DEFAULT_BENEFICIARY_RELAY);
         $this->createTestRelay(self::SHARED_PRO_BENEFICIARY_RELAY_1);
         $this->createTestRelay(self::SHARED_PRO_BENEFICIARY_RELAY_2);
+        $this->createTestRelay(self::SHARED_PRO_PRO_RELAY_1);
+        $this->createTestRelay(self::SHARED_PRO_PRO_RELAY_2);
     }
 
     private function createTestRelay(string $name): void
