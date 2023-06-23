@@ -20,8 +20,7 @@ class ProVoter extends Voter
 
     protected function supports(string $attribute, $subject): bool
     {
-        return in_array($attribute, [self::MANAGE, self::UPDATE])
-            && (!$subject || $subject instanceof Membre);
+        return self::MANAGE === $attribute || (self::UPDATE === $attribute && $subject instanceof Membre);
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool

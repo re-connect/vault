@@ -10,6 +10,7 @@ use App\FormV2\UserAffiliation\Model\AffiliateUserModel;
 use App\FormV2\UserSettingsType;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
+use App\Security\VoterV2\ProVoter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -119,6 +120,7 @@ class UserController extends AbstractController
         requirements: ['id' => '\d+'],
         methods: ['GET'],
     )]
+    #[IsGranted('ROLE_MEMBRE')]
     #[IsGranted('UPDATE', 'user')]
     public function disaffiliateChooseRelay(User $user): Response
     {
@@ -136,6 +138,7 @@ class UserController extends AbstractController
         condition: 'request.isXmlHttpRequest()',
     )]
     #[ParamConverter('relay', class: 'App\Entity\Centre', options: ['id' => 'relayId'])]
+    #[IsGranted('ROLE_MEMBRE')]
     #[IsGranted('UPDATE', 'user')]
     public function disaffiliateFromRelay(
         User $user,
