@@ -460,11 +460,17 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     }
 
     /**
-     * @return Collection <int, Centre>
+     * @return ReadableCollection <int, Centre>
      */
-    public function getManageableRelays(Beneficiaire $beneficiary): Collection
+    public function getManageableRelays(User $user): ReadableCollection
     {
-        return $this->getAffiliatedRelaysWithBeneficiaryManagement()->filter(fn (Centre $relay) => $beneficiary->getAffiliatedRelays()->contains($relay));
+        if ($user->isBeneficiaire()) {
+            return $this->getAffiliatedRelaysWithBeneficiaryManagement()->filter(fn (Centre $relay) => $user->getAffiliatedRelays()->contains($relay));
+        } elseif ($user->isMembre()) {
+            return $this->getAffiliatedRelaysWithProfessionalManagement()->filter(fn (Centre $relay) => $user->getAffiliatedRelays()->contains($relay));
+        }
+
+        return new ArrayCollection();
     }
 
     public function wasGestionnaire(): ?bool

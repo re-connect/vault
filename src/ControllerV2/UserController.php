@@ -2,6 +2,7 @@
 
 namespace App\ControllerV2;
 
+use App\Entity\Centre;
 use App\Entity\User;
 use App\FormV2\ChangePasswordFormType;
 use App\FormV2\UserAffiliation\AffiliateUserType;
@@ -10,6 +11,7 @@ use App\FormV2\UserSettingsType;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,10 +32,6 @@ class UserController extends AbstractController
         TranslatorInterface $translator,
     ): Response {
         $user = $this->getUser();
-
-        if (!$this->isGranted('SELF_EDIT', $user)) {
-            throw new AccessDeniedException();
-        }
 
         $userForm = $this->createForm(UserSettingsType::class, $user)->handleRequest($request);
 
@@ -75,7 +73,7 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
 
-        if (!$this->isGranted('DELETE_BENEFICIARY', $user)) {
+        if (!$this->isGranted('DELETE', $user)) {
             throw new AccessDeniedException();
         }
 
@@ -111,6 +109,42 @@ class UserController extends AbstractController
             return $this->redirectToRoute('list_professionals');
         }
 
-        return $this->render('v2/user/invite.html.twig', ['form' => $form]);
+        return $this->render('v2/user/affiliation/invite.html.twig', ['form' => $form]);
+    }
+
+    #[Route(
+        path: '/{id}/disaffiliate/choose-relay',
+        name: 'disaffiliate_relay_choice',
+        requirements: ['id' => '\d+'],
+        methods: ['GET'],
+    )]
+    #[IsGranted('ROLE_MEMBRE')]
+    #[IsGranted('UPDATE', 'user')]
+    public function disaffiliateChooseRelay(User $user): Response
+    {
+        return $this->render('v2/user/disaffiliation/disaffiliate.html.twig', [
+            'user' => $user,
+            'relays' => $this->getProfessional()?->getManageableRelays($user),
+        ]);
+    }
+
+    #[Route(
+        path: '/{id}/relay/{relayId}/disaffiliate',
+        name: 'disaffiliate_user',
+        requirements: ['id' => '\d+'],
+        methods: ['GET'],
+        condition: 'request.isXmlHttpRequest()',
+    )]
+    #[ParamConverter('relay', class: 'App\Entity\Centre', options: ['id' => 'relayId'])]
+    #[IsGranted('ROLE_MEMBRE')]
+    #[IsGranted('UPDATE', 'user')]
+    public function disaffiliateFromRelay(
+        User $user,
+        Centre $relay,
+        RelayManager $manager,
+    ): Response {
+        $manager->removeUserFromRelay($user, $relay);
+
+        return $this->json($user);
     }
 }

@@ -149,16 +149,3 @@ re_app_contact_edit:
     options:
         expose: true
 
-# CENTER
-re_app_centres:
-    path: /beneficiaire/{id}/centre
-    controller: App\Controller\CentreController::centres
-    requirements:
-        id: \d{1,10}
-
-re_app_quitterCentre:
-    path: /beneficiaire/{id}/quitter-centre/{centreId}
-    controller: App\Controller\CentreController::quitterCentre
-    requirements:
-        id: \d{1,10}
-        centreId: \d{1,10}
