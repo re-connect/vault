@@ -9,14 +9,7 @@
         </div>
         <div class="col-12 col-md-6 col-lg-4">
             <ul class="list-group list-group-horizontal row">
-                {% for item in getUserNavItems() %}
-                    {{ include('v2/vault/nav/pro/_pro_nav_item.html.twig', {
-                        'item': item.itemKind,
-                        'title': item.title,
-                        'routeName': item.routeName,
-                        'image': item.image
-                    }) }}
-                {% endfor %}
+                {{ include('v2/vault/nav/_nav_items.html.twig', {beneficiary}) }}
             </ul>
         </div>
     </div>

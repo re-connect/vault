@@ -1,6 +1,6 @@
 {{ include('v2/vault/components/_personal_data_detail.html.twig', {
     'information': {
-        'document.nomLabel': document.nom,
+        'name': document.nom,
         'status': (document.bPrive ? 'private' : 'shared')|trans,
         'added_by': document.getCreatorUserFullName|upper,
         'add_date': document.createdAt|format_datetime(),

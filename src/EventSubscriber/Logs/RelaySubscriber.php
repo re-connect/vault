@@ -11,7 +11,7 @@ use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Doctrine\Persistence\ObjectManager;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class RelaySubscriber implements EventSubscriberInterface, LogActivitySubscriberInterface
 {
@@ -19,7 +19,7 @@ class RelaySubscriber implements EventSubscriberInterface, LogActivitySubscriber
 
     private const RELAY_NAME = 'Relay';
 
-    public function __construct(private readonly LoggerInterface $relayLogger, private Security $security)
+    public function __construct(private readonly LoggerInterface $relayLogger, private readonly Security $security)
     {
     }
 

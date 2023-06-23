@@ -38,7 +38,7 @@ class BeneficiaireController extends REController
             return $this->redirect($this->generateUrl('re_user_redirectUser'));
         }
 
-        return $this->renderForm('user/beneficiaire/set-question-secrete.html.twig', [
+        return $this->render('user/beneficiaire/set-question-secrete.html.twig', [
             'form' => $form,
             'beneficiaire' => $beneficiary,
         ]);

@@ -1,6 +1,10 @@
 $(document).ready(($) => {
 
-    const map = L.map('reconnect-centers-map').setView([46.9, 1.4519], 5);
+    if (!document.getElementById('reconnect-centers-map')) {
+        return;
+    }
+    const map = L.map('reconnect-centers-map');
+    map.setView([46.9, 1.4519], 5);
     const greenIcon = L.icon({
         iconUrl: $('#reconnect-centers-map').data('marker'),
         iconSize: [25, 40],
@@ -12,7 +16,7 @@ $(document).ready(($) => {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">Les contributeurs d’OpenStreetMap</a>'
     }).addTo(map);
 
-    $.get('/get-centers', (data) => {
+    $.get('/public/get-centers', (data) => {
         const centers = data[0];
         getPopupTemplate(centers);
     });

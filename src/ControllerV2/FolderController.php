@@ -32,7 +32,7 @@ class FolderController extends AbstractController
             'action' => $this->generateUrl('search_folders', ['id' => $beneficiary->getId(), 'parentFolderId' => $folder->getId()]),
         ]);
 
-        return $this->renderForm('v2/vault/document/index.html.twig', [
+        return $this->render('v2/vault/document/index.html.twig', [
             'beneficiary' => $beneficiary,
             'foldersAndDocuments' => $paginator->create(
                 $manager->getFoldersAndDocumentsWithUrl($beneficiary, $folder),
@@ -62,7 +62,7 @@ class FolderController extends AbstractController
             return $this->getFolderPageRedirection($folder, $parentFolder);
         }
 
-        return $this->renderForm('v2/vault/folder/rename.html.twig', [
+        return $this->render('v2/vault/folder/rename.html.twig', [
             'form' => $form,
             'folder' => $folder,
             'beneficiary' => $folder->getBeneficiaire(),
@@ -137,7 +137,7 @@ class FolderController extends AbstractController
             return $this->redirectToRoute('folder', ['id' => $parentFolder->getId()]);
         }
 
-        return $this->renderForm('v2/vault/folder/create.html.twig', [
+        return $this->render('v2/vault/folder/create.html.twig', [
             'form' => $form,
             'beneficiary' => $parentFolder->getBeneficiaire(),
             'autocompleteNames' => $manager->getAutocompleteFolderNames(),

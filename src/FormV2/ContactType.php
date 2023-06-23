@@ -16,10 +16,10 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, [
-                'label' => 'contact.nomLabel',
+                'label' => 'name',
             ])
             ->add('prenom', TextType::class, [
-                'label' => 'contact.prenomLabel',
+                'label' => 'firstname',
             ])
             ->add('telephone', TextType::class, [
                 'label' => 'contact.telephoneLabel',

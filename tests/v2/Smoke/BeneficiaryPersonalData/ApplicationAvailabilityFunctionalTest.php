@@ -30,7 +30,7 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
         yield ['/beneficiary/%d/events/create'];
         yield ['/beneficiary/%d/documents'];
         yield ['/beneficiary/%d/folders/create'];
-        yield ['/beneficiary/%d/relays', true];
+        yield ['/relays/mine', true];
         yield ['/user/settings'];
         yield ['/user/delete', true];
     }

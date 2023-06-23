@@ -31,9 +31,9 @@
 
         {% if not atLeastAWay %}
             <li class="smallMargin">
-                <div class="midMargin text-primary">{% trans %}user.reinitialiserMdp.aucuneMethode{% endtrans %}</div>
-                <a href="{{ path('private_reset_password_random', {'id' : userToReset.id }) }}"
-                   class="btn btn-blue">{% trans %}user.reinitialiserMdp.random{% endtrans %}</a>
+                <div class="midMargin text-primary">
+                    <p>{{ 'reset_password_no_way'|trans }}</p>
+                </div>
             </li>
         {% endif %}
     </ul>

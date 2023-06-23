@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
@@ -506,7 +507,7 @@ class User extends BaseUser implements \JsonSerializable
         return $this;
     }
 
-    public function getFirstVisit(): bool
+    public function isFirstVisit(): bool
     {
         return $this->firstVisit;
     }
@@ -747,7 +748,7 @@ class User extends BaseUser implements \JsonSerializable
         return $this->adresse;
     }
 
-    public function setAdresse(?Adresse $adresse = null): self
+    public function setAdresse(Adresse $adresse = null): self
     {
         $this->adresse = $adresse;
 
@@ -786,24 +787,24 @@ class User extends BaseUser implements \JsonSerializable
 
         switch ($this->typeUser) {
             case self::USER_TYPE_BENEFICIAIRE:
-//                $data = array_merge($data , [
-//                   'id' => $this->subjectBeneficiaire->getId(),
-//                   'date_naissance' => $this->subjectBeneficiaire->getDateNaissance()->format(DateTime::W3C),
-//                   'total_file_size' => $this->subjectBeneficiaire->getTotalFileSize(),
-//                   'centres' => $this->subjectBeneficiaire->getCentreNoms()->toArray(),
-//                   'question_secrete' => $this->subjectBeneficiaire->getQuestionSecrete(),
-//               ]);
+                //                $data = array_merge($data , [
+                //                   'id' => $this->subjectBeneficiaire->getId(),
+                //                   'date_naissance' => $this->subjectBeneficiaire->getDateNaissance()->format(DateTime::W3C),
+                //                   'total_file_size' => $this->subjectBeneficiaire->getTotalFileSize(),
+                //                   'centres' => $this->subjectBeneficiaire->getCentreNoms()->toArray(),
+                //                   'question_secrete' => $this->subjectBeneficiaire->getQuestionSecrete(),
+                //               ]);
 
                 $data = array_merge($data, $this->subjectBeneficiaire->jsonSerializeAPI());
-//                $data['beneficiaire'] = $this->subjectBeneficiaire->jsonSerialize(false);
+                //                $data['beneficiaire'] = $this->subjectBeneficiaire->jsonSerialize(false);
                 break;
             case self::USER_TYPE_MEMBRE:
                 $data = array_merge($data, $this->subjectMembre->jsonSerializeAPI());
-//                $data['membre'] = $this->subjectMembre->jsonSerialize(false);
+                //                $data['membre'] = $this->subjectMembre->jsonSerialize(false);
                 break;
             case self::USER_TYPE_GESTIONNAIRE:
                 $data = array_merge($data, $this->subjectGestionnaire->jsonSerializeAPI());
-//                $data['gestionnaire'] = $this->subjectGestionnaire->jsonSerialize(false);
+                //                $data['gestionnaire'] = $this->subjectGestionnaire->jsonSerialize(false);
                 break;
             default:
                 break;
@@ -967,7 +968,7 @@ class User extends BaseUser implements \JsonSerializable
         return $this->autoLoginToken;
     }
 
-    public function setAutoLoginToken(?string $autoLoginToken = null): self
+    public function setAutoLoginToken(string $autoLoginToken = null): self
     {
         $this->autoLoginToken = $autoLoginToken;
 
@@ -991,7 +992,7 @@ class User extends BaseUser implements \JsonSerializable
         return $this->fcnToken;
     }
 
-    public function setFcnToken(?string $fcnToken = null): self
+    public function setFcnToken(string $fcnToken = null): self
     {
         $this->fcnToken = $fcnToken;
 
@@ -1045,7 +1046,39 @@ class User extends BaseUser implements \JsonSerializable
         return $this->getSubject()?->getDefaultUserName() ?? sprintf('%s.%s', $this->getSluggedLastname(), $this->getSluggedFirstName());
     }
 
-    /** @return Collection<int, BeneficiaireCentre|MembreCentre> */
+    /** @return Collection<int, UserCentre> */
+    public function getUserCentres(): Collection
+    {
+        $subject = $this->getSubject();
+
+        if ($subject instanceof UserWithCentresInterface) {
+            return $subject->getUsersCentres();
+        }
+
+        return new ArrayCollection();
+    }
+
+    /** @return ReadableCollection<int, UserCentre> */
+    public function getValidUserCentres(): ReadableCollection
+    {
+        return $this->getUserCentres()->filter(fn (UserCentre $userCentre) => $userCentre->getBValid());
+    }
+
+    /** @return ReadableCollection<int, Centre> */
+    public function getRelays(): ReadableCollection
+    {
+        return $this->getUserRelays()
+            ->map(fn (UserCentre $userCentre) => $userCentre->getCentre());
+    }
+
+    /** @return ReadableCollection<int, Centre> */
+    public function getValidRelays(): ReadableCollection
+    {
+        return $this->getValidUserCentres()
+            ->map(fn (UserCentre $userCentre) => $userCentre->getCentre());
+    }
+
+    /** @return Collection<int, UserCentre> */
     public function getUserRelays(): Collection
     {
         return $this->isBeneficiaire()
@@ -1053,14 +1086,14 @@ class User extends BaseUser implements \JsonSerializable
             : $this->getSubjectMembre()->getMembresCentres();
     }
 
-    public function getUserRelay(Centre $relay): BeneficiaireCentre|MembreCentre|null
+    public function getUserRelay(Centre $relay): ?UserCentre
     {
-        $userRelays = $this->getUserRelays()->filter(fn (BeneficiaireCentre|MembreCentre $userRelay) => $userRelay->getCentre() === $relay);
+        $userRelays = $this->getUserRelays()->filter(fn (UserCentre $userRelay) => $userRelay->getCentre() === $relay);
 
         return $userRelays->first() ?? null;
     }
 
-    public static function createUserRelay(User $user, Centre $relay): BeneficiaireCentre|MembreCentre
+    public static function createUserRelay(User $user, Centre $relay): UserCentre
     {
         $userRelay = $user->isBeneficiaire() ? new BeneficiaireCentre() : new MembreCentre();
 
@@ -1108,16 +1141,24 @@ class User extends BaseUser implements \JsonSerializable
     {
         if ($this->isMembre()) {
             return $this->getSubjectMembre()->getAffiliatedRelaysWithBeneficiaryManagement();
-        } elseif ($this->isGestionnaire()) {
-            return $this->getSubjectGestionnaire()->getCentres();
         }
 
         return new ArrayCollection();
     }
 
     /**
-     * @return Collection <int, BeneficiaireCentre|MembreCentre>
+     * @return Collection <int, Centre>
      */
+    public function getAffiliatedRelaysWithProfessionalManagement(): Collection
+    {
+        if ($this->isMembre()) {
+            return $this->getSubjectMembre()->getAffiliatedRelaysWithProfessionalManagement();
+        }
+
+        return new ArrayCollection();
+    }
+
+    /** @return Collection <int, UserCentre> */
     public function getSubjectRelays(): Collection
     {
         return $this->isBeneficiaire()
@@ -1125,13 +1166,16 @@ class User extends BaseUser implements \JsonSerializable
             : $this->getSubjectMembre()->getMembresCentres();
     }
 
-    public function getSubjectRelaysForRelay(Centre $relay): BeneficiaireCentre|MembreCentre|null
+    public function isLinkedToRelay(Centre $relay): bool
     {
-        $subjectRelay = $this->getSubjectRelays()
-            ->filter(fn (BeneficiaireCentre|MembreCentre $subjectRelay) => $subjectRelay->getCentre() === $relay)
-            ->first();
+        return null !== $this->getSubjectRelaysForRelay($relay);
+    }
 
-        return false === $subjectRelay ? null : $subjectRelay;
+    public function getSubjectRelaysForRelay(Centre $relay): UserCentre|null
+    {
+        return $this->getSubjectRelays()
+            ->filter(fn (UserCentre $subjectRelay) => $subjectRelay->getCentre() === $relay)
+            ->first() ?: null;
     }
 
     public function getOldUsername(): ?string
@@ -1144,5 +1188,10 @@ class User extends BaseUser implements \JsonSerializable
         $this->oldUsername = $oldUsername;
 
         return $this;
+    }
+
+    public function hasDroit(string $droit): bool
+    {
+        return $this->getValidUserCentres()->exists(fn (int $index, UserCentre $userCentre) => $userCentre->hasDroit($droit));
     }
 }

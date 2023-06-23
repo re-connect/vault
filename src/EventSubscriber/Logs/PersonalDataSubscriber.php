@@ -11,7 +11,7 @@ use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Doctrine\Persistence\ObjectManager;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class PersonalDataSubscriber implements EventSubscriberInterface, LogActivitySubscriberInterface
 {
@@ -19,7 +19,7 @@ class PersonalDataSubscriber implements EventSubscriberInterface, LogActivitySub
 
     private const PERSONAL_DATA_NAME = 'Personal data';
 
-    public function __construct(private readonly LoggerInterface $personalDataLogger, private Security $security)
+    public function __construct(private readonly LoggerInterface $personalDataLogger, private readonly Security $security)
     {
     }
 

@@ -1,14 +1,14 @@
-<table class="table table-100 spaced-table mb-0 h-100 bg-white">
-    <tbody>
+{% extends 'v2/users_list/_subjects_list.html.twig' %}
+
+{% block listRows %}
     {% for beneficiary in beneficiaries %}
         {{ include('v2/professional/_beneficiaries_list_row.html.twig', {beneficiary}) }}
     {% endfor %}
-    </tbody>
-</table>
-<hr>
-<div class="d-flex justify-content-end mt-4">
+{% endblock %}
+
+{% block pagination %}
     {{ knp_pagination_render(beneficiaries, 'v2/vault/components/_pagination.html.twig', {}, {
         'routeName': 'search_beneficiaries',
         'id': null
     }) }}
-</div>
+{% endblock %}

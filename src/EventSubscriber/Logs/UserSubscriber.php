@@ -11,7 +11,7 @@ use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Doctrine\Persistence\ObjectManager;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class UserSubscriber implements EventSubscriberInterface, LogActivitySubscriberInterface
 {
@@ -19,7 +19,7 @@ class UserSubscriber implements EventSubscriberInterface, LogActivitySubscriberI
 
     private const USER_NAME = 'User';
 
-    public function __construct(private readonly LoggerInterface $userLogger, private Security $security)
+    public function __construct(private readonly LoggerInterface $userLogger, private readonly Security $security)
     {
     }
 

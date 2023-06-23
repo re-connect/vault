@@ -44,7 +44,7 @@ class BeneficiaryAffiliationController extends AbstractController
 
         $beneficiaries = $manager->getBeneficiariesFromSearch($searchBeneficiaryModel);
 
-        return $this->renderForm('v2/user_affiliation/beneficiary/affiliate_beneficiary_search.html.twig', [
+        return $this->render('v2/user_affiliation/beneficiary/affiliate_beneficiary_search.html.twig', [
             'form' => $searchForm,
             'beneficiaries' => $paginator->create($beneficiaries, $request->query->getInt('page', 1)),
             'search' => $searchBeneficiaryModel,
@@ -89,7 +89,7 @@ class BeneficiaryAffiliationController extends AbstractController
             $form->get('secretAnswer')->addError(new FormError($translator->trans('wrong_secret_answer')));
         }
 
-        return $this->renderForm('v2/user_affiliation/beneficiary/_relays_form.html.twig', [
+        return $this->render('v2/user_affiliation/beneficiary/_relays_form.html.twig', [
             'beneficiary' => $beneficiary,
             'availableRelays' => $availableRelaysForAffiliation,
             'form' => $form,

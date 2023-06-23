@@ -5,12 +5,12 @@ namespace App\Security;
 use App\Entity\User;
 use App\Event\UserEvent;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
@@ -19,8 +19,11 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class Authenticator extends AbstractLoginFormAuthenticator
 {
-    public function __construct(private RouterInterface $router, private EntityManagerInterface $em, private EventDispatcherInterface $eventDispatcher)
-    {
+    public function __construct(
+        private readonly RouterInterface $router,
+        private readonly EntityManagerInterface $em,
+        private readonly EventDispatcherInterface $eventDispatcher
+    ) {
     }
 
     protected function getLoginUrl(Request $request): string

@@ -6,18 +6,16 @@ use App\Entity\Beneficiaire;
 use App\Entity\ConsultationBeneficiaire;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class MemberBeneficiaryManager
 {
     use UserAwareTrait;
-    private EntityManagerInterface $em;
-    private Security $security;
 
-    public function __construct(EntityManagerInterface $em, Security $security)
-    {
-        $this->em = $em;
-        $this->security = $security;
+    public function __construct(
+        private readonly EntityManagerInterface $em,
+        private readonly Security $security,
+    ) {
     }
 
     public function handleFirstMemberVisit(Beneficiaire $beneficiary): void
@@ -47,7 +45,7 @@ class MemberBeneficiaryManager
                 ->getQuery();
             try {
                 $result = $query->getSingleScalarResult();
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 $result = count($query->getResult());
             }
 

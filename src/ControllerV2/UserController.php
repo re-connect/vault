@@ -2,8 +2,12 @@
 
 namespace App\ControllerV2;
 
+use App\Entity\User;
 use App\FormV2\ChangePasswordFormType;
+use App\FormV2\UserAffiliation\AffiliateUserType;
+use App\FormV2\UserAffiliation\Model\AffiliateUserModel;
 use App\FormV2\UserSettingsType;
+use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormError;
@@ -12,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route(path: '/user')]
@@ -59,7 +64,7 @@ class UserController extends AbstractController
             }
         }
 
-        return $this->renderForm('v2/user/settings.html.twig', [
+        return $this->render('v2/user/settings.html.twig', [
             'userForm' => $userForm,
             'passwordForm' => $passwordForm,
         ]);
@@ -79,13 +84,33 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userManager->remove($user);
             $request->getSession()->invalidate();
-            $tokenStorage->setToken();
+            $tokenStorage->setToken(null);
 
             return $this->redirectToRoute('re_main_login');
         }
 
-        return $this->renderForm('v2/user/delete.html.twig', [
+        return $this->render('v2/user/delete.html.twig', [
             'submitForm' => $form,
         ]);
+    }
+
+    #[IsGranted('ROLE_MEMBRE')]
+    #[Route(path: '/{id<\d+>}/invite', name: 'invite_user', methods: [Request::METHOD_GET, 'POST'])]
+    public function inviteUser(Request $request, User $user, RelayManager $manager): Response
+    {
+        $relays = new AffiliateUserModel($user->getRelays());
+        $loggedInUserRelays = $this->getUser()->getValidRelays();
+        $form = $this->createForm(AffiliateUserType::class, $relays, [
+            'action' => $this->generateUrl('invite_user', ['id' => $user->getId()]),
+            'available_relays' => $loggedInUserRelays,
+        ])->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->updateUserRelays($user, $relays->relays, $loggedInUserRelays);
+
+            return $this->redirectToRoute('list_professionals');
+        }
+
+        return $this->render('v2/user/invite.html.twig', ['form' => $form]);
     }
 }

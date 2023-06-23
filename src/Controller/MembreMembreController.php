@@ -127,7 +127,7 @@ final class MembreMembreController extends REController
 
             $this->centreManager->associateUserWithCentres($form->getData(), $form->get('membresCentres')['centre']->getData(), $initiateur, $form->get('membresCentres')['droits']->getData(), true);
 
-            $this->successFlashTranslate('membre.creationMembre.success');
+            $this->successFlashTranslate('member_successfully_created');
 
             return $this->redirect($this->generateUrl('re_membre_show_username', ['id' => $user->getId()]));
         }

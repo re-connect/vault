@@ -34,7 +34,7 @@ class RosalieInteroperabilityController extends AbstractController
             return $this->redirectToRoute('list_beneficiaries');
         }
 
-        return $this->renderForm('v2/rosalie/add_si_siao_number.html.twig', [
+        return $this->render('v2/rosalie/add_si_siao_number.html.twig', [
             'beneficiary' => $beneficiary,
             'form' => $form,
         ]);

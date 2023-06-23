@@ -20,6 +20,7 @@ use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
@@ -143,7 +144,6 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     #[Groups(['v3:beneficiary:read', 'v3:beneficiary:write'])]
     public ?string $distantId = '';
 
-    #[ORM\OneToOne(mappedBy: 'beneficiary', targetEntity: BeneficiaryCreationProcess::class)]
     private ?BeneficiaryCreationProcess $creationProcess = null;
 
     public function __construct()
@@ -181,6 +181,11 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     public function getReponseSecrete(): ?string
     {
         return $this->reponseSecrete;
+    }
+
+    public function getReponseSecreteToLowerCase(): ?string
+    {
+        return strtolower($this->reponseSecrete);
     }
 
     public function setReponseSecrete(?string $reponseSecrete): Beneficiaire
@@ -381,6 +386,12 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         }
 
         return null;
+    }
+
+    /** @return Collection<int, BeneficiaireCentre> */
+    public function getUserCentres(): Collection
+    {
+        return $this->getBeneficiairesCentres();
     }
 
     /** @return Collection<int, BeneficiaireCentre> */
@@ -991,7 +1002,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     /**
      * @return Collection <int, Centre>
      */
-    public function getAffiliatedRelays(): Collection
+    public function getAffiliatedRelays(): ReadableCollection
     {
         return $this->getBeneficiairesCentres()
             ->filter(

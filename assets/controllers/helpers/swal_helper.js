@@ -9,7 +9,7 @@ export const getSwalDefaultOptions = (message, confirmButtonText, cancelButtonTe
     buttonsStyling: false,
     showLoaderOnConfirm: true,
     customClass: {
-      cancelButton: 'btn btn-outline-black me-1',
+      cancelButton: 'btn btn-light-black text-decoration-underline me-1',
       confirmButton: 'btn btn-red text-white ms-1',
       icon: 'border-0',
       htmlContainer: 'text-primary'

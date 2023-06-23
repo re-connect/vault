@@ -1,0 +1,14 @@
+{% extends 'v2/users_list/_subjects_list.html.twig' %}
+
+{% block listRows %}
+    {% for professional in professionals %}
+        {{ include('v2/professional/_professional_list_row.html.twig', {professional}) }}
+    {% endfor %}
+{% endblock %}
+
+{% block pagination %}
+    {{ knp_pagination_render(professionals, 'v2/vault/components/_pagination.html.twig', {}, {
+        'routeName': 'search_professionals',
+        'id': null
+    }) }}
+{% endblock %}

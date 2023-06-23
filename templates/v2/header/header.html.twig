@@ -8,19 +8,19 @@
             </div>
             <div class="col-11 col-lg-6 d-flex align-items-center justify-content-end pb-1 position-relative">
                 <div {{ stimulus_controller('dropdown-menu', {toggleClasses: ['fa-chevron-up', 'fa-chevron-down']}) }}
-                    {{ stimulus_action('dropdown-menu', 'toggle', 'click') }}
+                        {{ stimulus_action('dropdown-menu', 'toggle', 'click') }}
                 >
-                    <div class="btn btn-white text-primary">
-                        <i class="far fa-user fa-lg font-size-1-3 me-2"></i>
+                    <button class="btn border-0 text-primary">
+                        <i class="far fa-user fa-lg font-size-1-3 align-baseline me-2"></i>
                         <span class="font-size-1-3 bold">{{ app.user.prenom|upper }} {{ app.user.nom|upper }}</span>
-                    </div>
-                    <i class="fas fa-chevron-down font-size-1-3 text-primary btn p-0"
-                            {{ stimulus_target('dropdown-menu', 'button') }}
-                    >
-                    </i>
+                        <i class="fas fa-chevron-down align-baseline font-size-1-3 text-primary ms-2"
+                                {{ stimulus_target('dropdown-menu', 'button') }}
+                        >
+                        </i>
+                    </button>
                     <div class="user-menu position-absolute rounded shadow bg-primary text-white text-left d-none p-2"
                             {{ stimulus_target('dropdown-menu', 'menu') }}
-                         >
+                    >
                         {% if app.user.isBeneficiaire %}
                             {{ include('v2/header/available_capacity_progress_bar.html.twig') }}
                         {% else %}
@@ -33,8 +33,11 @@
                         {% endif %}
                         <div class="col-12 mt-2">
                             <a href="{{ path('user_settings') }}"
-                               class="text-white text-decoration-none"><i
-                                        class="fas fa-cog me-1"></i>{{ 'header.menu.parametres'|trans|upper }}</a>
+                               class="text-white text-decoration-none"
+                               data-turbo="false"
+                            >
+                                <i class="fas fa-cog me-1"></i>{{ 'header.menu.parametres'|trans|upper }}
+                            </a>
                         </div>
                         <div class="col-12 text-end">
                             <a href="{{ path('app_logout') }}"

@@ -10,6 +10,7 @@ use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestTrait;
 
 /**
  * @ORM\Entity(repositoryClass=ResetPasswordRequestRepository::class)
+ *
  * @ORM\Table(name="reset_password_request")
  */
 class ResetPasswordRequest implements ResetPasswordRequestInterface
@@ -18,13 +19,16 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
 
     /**
      * @ORM\Id
+     *
      * @ORM\GeneratedValue
+     *
      * @ORM\Column(type="integer")
      */
     private ?int $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
+     *
      * @ORM\JoinColumn(nullable=false)
      */
     private ?User $user;

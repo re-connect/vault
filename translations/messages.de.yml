@@ -55,7 +55,6 @@ benef_new_guide_accept_button: '<span class="text-uppercase lighter">Akzeptieren
 center_has_no_info: 'Keine Einrichtung kann auf Ihre Daten zugreifen'
 center_is_empty: 'Zu Ihrer Einrichtung existieren keine verknüpften Konten'
 centre.metaTitle: Einrichtungen
-centre.nom: 'Name der Einrichtung'
 centre.ville: Stadt
 centre.vousAvezBienQuitte: 'Du hast die Einrichtung verlassen'
 cfn_accessible_tool_alt_img: 'Ein leicht zugängliches Tool'
@@ -107,9 +106,7 @@ contact.emailLabel: 'Deine E-Mail-Adresse'
 contact.emptyData: 'Du hast noch keine Kontakte. Klicke auf "Hinzufügen", um einen zu erstellen.'
 contact.mailError: 'Deine E-Mail-Adresse hat das falsche Format.'
 contact.metaTitle: Kontakt
-contact.nomLabel: Name
 contact.partage: freigegeben
-contact.prenomLabel: Vorname
 contact.supprimer: Entfernen
 contact.telephoneLabel: Telefonnummer
 contact.text: 'Schreib uns, wenn Du Infos möchtest oder Hilfe bei der Nutzung benötigst.'
@@ -174,13 +171,11 @@ document.fichier: Dokumente
 document.imprimer: Drucken
 document.information: Informationen
 document.list.entete.acces: Freigabe
-document.list.entete.nom: Dateiname
 document.metaTitle: Dokumente
 document.modal.move.documents: Dokumente
 document.modifier: Bearbeiten
 document.move: Verschieben
 document.nom: Dokumentenname
-document.nomLabel: Dokumentenname
 document.ouGlissezDeposer: 'Oder per Drag & Drop hierher verschieben.'
 document.partage: Freigeben
 document.plusDespace: 'Du kannst diese Datei nicht hochladen, weil nicht mehr genug Speicherplatz vorhanden ist'
@@ -372,21 +367,15 @@ membre.ajoutBeneficiaire.creerCompte: 'Ein Konto erstellen'
 membre.ajoutBeneficiaire.dateNaissanceLabel: Geburtsdatum
 membre.ajoutBeneficiaire.metaTitle: 'Klient*in hinzufügen'
 membre.ajoutBeneficiaire.nePossedePasCompte: 'Der/die Klient*in hat noch kein Konto'
-membre.ajoutBeneficiaire.nomLabel: Name
 membre.ajoutBeneficiaire.possedeCompte: 'Der/die Klient*in hat bereits ein Konto'
-membre.ajoutBeneficiaire.prenomLabel: Vorname
 membre.ajoutBeneficiaire.subtitle: 'Klient*in hinzufügen'
 membre.ajoutBeneficiaire.title: 'Klient*in <span class="main">hinzufügen</span>'
 membre.ajoutMembre.aucunUtilisateurTrouve: 'Es wurde kein Konto zu Deiner Suche gefunden'
 membre.ajoutMembre.centres: Einrichtungen
 membre.ajoutMembre.creerCompte: 'Ein Konto erstellen'
-membre.ajoutMembre.metaTitle: 'Nutzer*in neu anlegen'
-membre.ajoutMembre.nePossedePasCompte: 'Klient*in hat noch kein Konto'
-membre.ajoutMembre.nomLabel: Name
-membre.ajoutMembre.possedeCompte: 'Klient*in Hat bereits ein Konto'
-membre.ajoutMembre.prenomLabel: Vorname
+member_do_not_have_account: 'Klient*in hat noch kein Konto'
+member_has_account: 'Klient*in Hat bereits ein Konto'
 membre.ajoutMembre.subtitle: 'Nutzer*in neu anlegen'
-membre.ajoutMembre.title: 'Nutzer*in <span class="main">anlegen</span>'
 membre.arreterSuivi.metaTitle: 'Nutzer*in nicht mehr folgen'
 membre.arreterSuivi.subtitle: '%subject% nicht mehr folgen'
 membre.arreterSuivi.success: 'Das war erfolgreich. Du folgst dem/der Nutzer*in nun nicht mehr.'
@@ -403,9 +392,7 @@ membre.beneficiaires.mesDocuments: Dokumente
 membre.beneficiaires.mesNotes: Notizen
 membre.beneficiaires.metaTitle: 'Verwaltung von Klient*innen'
 membre.beneficiaires.noBeneficiairesInCentre: 'Es gibt keine Klient*innen in dieser Einrichtung'
-membre.beneficiaires.nom: Name
 membre.beneficiaires.nonValide: 'Nicht bestätigt'
-membre.beneficiaires.prenom: Vorname
 membre.beneficiaires.renouvelerIdentifiants: 'Passwort zurücksetzen'
 membre.beneficiaires.selectCentre: 'Einrichtung auswählen'
 membre.beneficiaires.title: 'Verwaltung der <span class="main">Klient*innen</span>'
@@ -437,9 +424,8 @@ membre.creationBeneficiaire.step6.terminer: 'Vorgang abschließen'
 membre.creationBeneficiaire.subtitle: 'Schritt 1/5 Allgemeine persönliche Daten'
 membre.creationBeneficiaire.success: 'Der/die Klient*in wurde angelegt'
 membre.creationBeneficiaire.title: 'Klient*in <span class="main">erstellen</span>'
-membre.creationMembre.membreEmailConstraint: 'Da der Account zur Verwaltung von Nutzer*in dient muss eine E-Mail-Adresse angegeben werden'
-membre.creationMembre.success: 'Account erfolgreich angelegt.'
-membre.creationMembre.title: 'Account anlegen'
+member_successfully_created: 'Account erfolgreich angelegt.'
+create_member: 'Account anlegen'
 membre.doAjoutSubject.btnAjouter: Hinzufügen
 membre.doAjoutSubject.centres: 'Deine Einrichtungen'
 membre.doAjoutSubject.subtitle: 'Wähl die Einrichtungen, mit denen der Account verbunden werden soll.'
@@ -455,7 +441,7 @@ membre.doDoAjoutSubject.text: 'Bitte wählen Sie, wie der/die Nutzer*in die Anfr
 membre.droits.gestionBeneficiaires: 'Klient*innen Verwaltung'
 membre.droits.gestionMembres: 'Nutzer*innen Verwaltung'
 membre.membres.aides: Hilfe
-membre.membres.ajouterMembre: 'Nutzer*in neu anlegen'
+add_member: 'Nutzer*in neu anlegen'
 membre.membres.arreterSuivi: Entfernen
 membre.membres.btnDetails: Details
 membre.membres.centres: Einrichtungen
@@ -466,9 +452,7 @@ membre.membres.mesDocuments: 'Meine Dokumente'
 membre.membres.mesNotes: 'Meine Notizen'
 membre.membres.metaTitle: 'Nutzer*innen Verwaltung'
 membre.membres.noBeneficiairesInCentre: 'In der Einrichtung sind keine Klient*innen hinterlegt'
-membre.membres.nom: Name
 membre.membres.nonValide: 'Nicht bestätigt'
-membre.membres.prenom: Vorname
 membre.membres.renouvelerIdentifiants: 'Passwort zurücksetzen'
 membre.membres.selectCentre: 'Einrichtung auswählen'
 membre.membres.title: 'Verwaltung von <span class="main">Klient*innen</span>'
@@ -514,6 +498,7 @@ member_management_big_title: 'Mitarbeiter*in <span class="rp-blue">verwalten</sp
 member_new_guide_title: 'Willkommen bei Reconnect <span class="rp-blue">- Der Cloud für wohnungslose Menschen</span>'
 member_reset_password_wrong_answer: 'Die eingegebene Antwort ist falsch.'
 member_reset_password_no_rights: 'Sie dürfen das Passwort dieses Kontos nicht zurücksetzen.'
+missing_secret_question_text: Sie haben noch keine geheime Frage und Antwort eingegeben. Das können Sie unten tun
 name: Name
 next: Weiter
 'no': Nein
@@ -525,7 +510,6 @@ note.contenuLabel: Beschreibung
 note.date: 'Datum und Uhrzeit'
 note.emptyData: 'Es sind noch keine Notizen hinterlegt. Klicke auf "Hinzufügen" um eine Notiz zu erstellen.'
 note.metaTitle: Notizen
-note.nom: Name
 note.nomLabel: Betreff
 note.supprimer: Löschen
 number_of_docs: 'Anzahl Dokumente'
@@ -560,8 +544,6 @@ registerForm.adresse: 'Deine private Adresse (optional)'
 registerForm.correspondentPas: 'Die Passwörter stimmen nicht überein'
 registerForm.email: E-Mail-Adresse
 registerForm.motDePasse: Passwort
-registerForm.nom: Name
-registerForm.prenom: Vorname
 registerForm.repeterMotDePasse: 'Passwort bestätigen'
 registerForm.telephone: Telefon
 registerForm.username: Anmeldename
@@ -620,7 +602,6 @@ share_document_error_expired: 'Der Link ist nicht mehr gültig, bitte wiederhole
 share_document_error_no_shared_document: 'Dokument konnte nicht geteilt werden'
 shared: Freigegeben
 status: Status
-surname: Vorname
 tax: Steuern
 today: Heute
 username: Benutzername

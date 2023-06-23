@@ -6,26 +6,43 @@ use App\Entity\Beneficiaire;
 use App\Entity\Evenement;
 use App\Entity\Rappel;
 use App\Entity\User;
+use App\Entity\UserCentre;
+use App\FormV2\UserCreation\SecretQuestionType;
+use App\Helper\SecretQuestionsHelper;
+use App\HelperEntity\Notification;
+use App\HelperEntity\NotificationAction;
+use App\HelperEntity\NotificationForm;
+use App\ManagerV2\RelayManager;
 use App\ServiceV2\Traits\SessionsAwareTrait;
+use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Notifier\Message\SmsMessage;
 use Symfony\Component\Notifier\TexterInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class NotificationService
 {
     use SessionsAwareTrait;
+    use UserAwareTrait;
 
     public function __construct(
         private readonly TranslatorInterface $translator,
         private readonly LoggerInterface $logger,
         private readonly TexterInterface $texter,
         private readonly EntityManagerInterface $em,
+        private readonly RouterInterface $router,
         private RequestStack $requestStack,
+        private readonly Security $security,
         private readonly LoginLinkHandlerInterface $loginLinkHandler,
+        private readonly SecretQuestionsHelper $secretQuestionsHelper,
+        private readonly RelayManager $relayManager,
+        private readonly FormFactoryInterface $formFactory,
         private readonly string $iOSAppLink,
         private readonly string $androidAppLink,
     ) {
@@ -149,5 +166,62 @@ class NotificationService
         } catch (\Exception $e) {
             $this->logger->error(sprintf('%s. Cause: %s', $this->translator->trans('sms_sent_failed'), $e->getMessage()));
         }
+    }
+
+    /** @return Notification[] */
+    public function getUserNotifications(): array
+    {
+        return [
+            ...$this->getMissingSecretQuestionNotification(),
+            ...$this->getRelayInvitationNotifications(),
+        ];
+    }
+
+    /** @return Notification[] */
+    private function getRelayInvitationNotifications(): array
+    {
+        return array_map(
+            [$this, 'createRelayInvitationNotification'],
+            $this->relayManager->getPendingRelays($this->getUser())
+        );
+    }
+
+    private function createRelayInvitationNotification(UserCentre $userCentre): Notification
+    {
+        $relay = $userCentre->getCentre();
+
+        return new Notification(
+            'user.pendingCentre.title',
+            $relay->getNom(),
+            'hotel',
+            $relay->getAdresse()?->toHTML() ?? $this->translator->trans('relay_has_no_address'),
+            [
+                new NotificationAction('main.refuser', $this->router->generate('deny_relay', ['id' => $relay->getId()]), 'light'),
+                new NotificationAction('accept', $this->router->generate('accept_relay', ['id' => $relay->getId()])),
+            ],
+        );
+    }
+
+    /** @return Notification[] */
+    private function getMissingSecretQuestionNotification(): array
+    {
+        $notifications = [];
+        $beneficiary = $this->secretQuestionsHelper->getCurrentBeneficiary();
+        if ($this->secretQuestionsHelper->beneficiaryMissesSecretQuestion($beneficiary)) {
+            $form = $this->formFactory->create(SecretQuestionType::class, $beneficiary, [
+                'action' => $this->router->generate('set_secret_question', ['id' => $beneficiary->getId()]),
+            ]);
+
+            $notifications[] = new Notification(
+                'missing_secret_question',
+                '',
+                null,
+                'missing_secret_question_text',
+                [],
+                new NotificationForm($form->createView(), 'conditional-field'),
+            );
+        }
+
+        return $notifications;
     }
 }

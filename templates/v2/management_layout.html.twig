@@ -1,0 +1,16 @@
+{% extends 'v2/standard_layout.html.twig' %}
+{% block metaTitle %}{{ 'membre.ajoutBeneficiaire.metaTitle'|trans }}{% endblock metaTitle %}
+
+{% block actionBar %}
+    <div class="d-flex">
+    <div class="flex-grow-1 px-0 mt-3">
+        {% block subTitleIcon %}<i class="fas fa-user-plus fa-lg me-1"></i>{% endblock %}
+        <span class="font-size-1-3 bold">{% block subTitle %}{% endblock %}</span>
+    </div>
+    <div class="flex-grow-0 text-end pe-0 mt-4 mt-md-2">
+        {% block backButton %}
+            {{ include('v2/common/_back_button.html.twig') }}
+        {% endblock %}
+    </div>
+    </div>
+{% endblock %}

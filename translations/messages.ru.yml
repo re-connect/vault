@@ -1,14 +1,10 @@
-authentification_failure_wrong_credentials: 'логин или пароль неверен'
-form_connexion: войти
-form_forgot_password: 'Сбросить пароль'
-form_login: 'логин или пароль'
-form_password: пароль
-login_form_title: 'Доступ в цифровой сейф'
+'no': Нет
+'yes': Да
+add_member: 'Добавить нового члена'
 admin.bienvenue: 'Добро пожаловать в вашу администрацию Reconnect'
 admin.centres.benéficiaires: Получатели
 admin.centres.historique: История
 admin.centres.membres: Члены
-admin.centres.nom: Название
 admin.centres.smsEnvoyes: 'Отправленные смс-сообщения'
 admin.centres.statistiques.dateJour: 'Текущая дата'
 admin.centres.statistiques.nbBeneficiaires: 'Количество получателей'
@@ -27,6 +23,7 @@ association.categorie.association: Ассоциация
 association.categorie.ccas: 'Муниципальный центр социального обслуживания (CCAS)'
 association.categorie.choisir: 'Выберите категорию ассоциации'
 association.urlLabel: 'Интернет сайт'
+authentification_failure_wrong_credentials: 'логин или пароль неверен'
 back_home: 'Вернуться в главное меню'
 beneficiaire.menu.mesAides: 'Мои пособия'
 beneficiaire.menu.mesContacts: 'Мои контакты'
@@ -43,7 +40,6 @@ beneficiaire.menu2.mesRelaisReconnect: Посредник
 beneficiaire.menu2.monCalendrier: 'Запись на приём'
 bientotDisponible.text: 'Дополнительные сведения о <a class="bold main"> Reconnect солидарности облако</a> и присоединиться к сети <a class="bold main"> Реле переподключение</a>, свяжитесь с нами напрямую по телефону: <a class="bold main"> 01 58 30 55 29</a> <br/> или по электронной почте: <a class="bold main"> contact@reconnect.fr</a>'
 centre.metaTitle: Центры
-centre.nom: Название
 centre.ville: Город
 centre.vousAvezBienQuitte: 'Вы успешно вышли из центра'
 confirm: Подтвердить
@@ -68,13 +64,13 @@ contact.emailLabel: 'Электронная почта'
 contact.emptyData: 'Там еще нет контакта. Нажмите «Добавить», чтобы создать его.'
 contact.mailError: 'Неверный формат электронной почты'
 contact.metaTitle: Контакт
-contact.nomLabel: Фамилия
 contact.partage: 'Коллективного пользования'
-contact.prenomLabel: Имя
 contact.supprimer: Удалить
 contact.telephoneLabel: 'Номер телефона'
 contact.text: 'Пишите нам, если вам нужна помощь, если у вас есть вопросы или проблемы с использованием Reconnect'
 contact.title: 'Связаться с командой Reconnect'
+create_member: 'Создание члена'
+delete_currently_shared_document_warning: 'Документ находится в общем доступе еще %daysCount% дней. Если вы удалите его, совместный доступ будет отменен'
 delete_your_account: 'Если вы хотите удалить свой аккаунт, нажмите здесь'
 devenirUnRelaiReconnect.accueil.budget0.200000: 'Бюджет < 200 000€'
 devenirUnRelaiReconnect.accueil.budget1000000.1500000: '1000 000€ < Бюджет < 1500 000'
@@ -97,7 +93,6 @@ devenirUnRelaiReconnect.accueil.quiPeutDevenirRelai: 'Кто может стат
 devenirUnRelaiReconnect.accueil.quiPeutDevenirRelaiTxt: 'Все социальные структуры, оказывающие услуги по социальному сопровождению лиц, находящихся в трудной ситуации, могут зарегистрироваться в Reconnect и стать Посредником.'
 devenirUnRelaiReconnect.accueil.voirMontantParticipation: 'Посмотреть стоимость участия'
 devenirUnRelaiReconnect.identification.associationLabel: 'Ваш организм'
-devenirUnRelaiReconnect.identification.associationNomLabel: Имя
 devenirUnRelaiReconnect.identification.associationPasswordLabel: 'Пароль для организации'
 devenirUnRelaiReconnect.identification.associationUsernameLabel: 'Имя пользователя для Ассоциации'
 devenirUnRelaiReconnect.identification.categorieJuridiqueLabel: 'Правовая категория'
@@ -123,7 +118,6 @@ devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuelLabel: 'Годовой б
 devenirUnRelaiReconnect.inscriptionCentres.finessFormatErreur: 'Недействительный формат номера finess'
 devenirUnRelaiReconnect.inscriptionCentres.finessLabel: 'Номер Finess'
 devenirUnRelaiReconnect.inscriptionCentres.justificatifFileLabel: 'Прикрепить подтвердающий документ'
-devenirUnRelaiReconnect.inscriptionCentres.nomLabel: Название
 devenirUnRelaiReconnect.inscriptionCentres.siretFormatErreur: 'Недействительный формат номера siret'
 devenirUnRelaiReconnect.inscriptionCentres.siretLabel: 'Номер Siret'
 devenirUnRelaiReconnect.inscriptionCentres.supprimerCeCentre: 'Удалить этот центр'
@@ -146,8 +140,8 @@ document.aucunFichier: 'На данный момент нет ни одного 
 document.avertissementTaille: 'Вы скоро достигнете лимита объёма хранения данных (% размер %)'
 document.bienSauvegarde: 'Документ резервного копирования. <br>, <b>Не забудьте удалить файл с вашей рабочей станции</b>'
 document.bienSupprime: 'Документ успешно удалён'
-document.categorie: 'Выбрать категорию'
 document.categorie2: 'Категория:'
+document.categorie: 'Выбрать категорию'
 document.choisirFichier: 'Выбрать файл'
 document.contenuLabel: Содержание
 document.contient: 'Содержит :'
@@ -165,21 +159,20 @@ document.imprimer: Печать
 document.metaTitle: Документы
 document.modifier: Изменить
 document.nom: 'Название :'
-document.nomLabel: Название
 document.ouGlissezDeposer: 'Или перетащите сюда'
 document.partage: Обмен
 document.plusDespace: 'Вы не можете загрузить этот файл, так как у вас недостаточно свободного места'
 document.supprimer: Удалить
 document.telecharger: Загрузить
-document.type: Тип
 document.type2: 'Тип :'
+document.type: Тип
 document.typeDocument: 'Тип документа'
 document.valableJusqua: 'Действителен до :'
 document.validite.expire: Недействительный
 document.validite.inconnu: Неизвестный
 document.validite.title: 'Срок действия'
-document.validite.valide: Действительный
 document.validite.validXAnd: 'Этот тип документов является допустимым % nAnsValid % лет'
+document.validite.valide: Действительный
 donneePersonnelle.ajouteElementTitle: 'Добавить элемент'
 donneePersonnelle.ajouter: Добавить
 donneePersonnelle.cantDelete: 'У вас нет прав удалять эту информацию'
@@ -243,6 +236,10 @@ form.validation.noPassword: 'Вы должны выбрать пароль'
 form.validation.passwordFormat: 'Ваш пароль может содержать только буквы и цифры'
 form.validation.phoneFormat: 'Незвестный формат номера телефона'
 form.validation.sirenFormat: 'Неверный формат номера Siren'
+form_connexion: войти
+form_forgot_password: 'Сбросить пароль'
+form_login: 'логин или пароль'
+form_password: пароль
 gestionnaire.centres.btnAjouterUnCentre: 'Добавить центр'
 gestionnaire.centres.cotisationJusqua: 'Вклад в % dateFin %'
 gestionnaire.centres.cotisationNoneffectuee: 'Взнос не произведён (центр неактивный)'
@@ -319,6 +316,7 @@ home.partenaires: Партнёры
 home.quiSommesNous: 'О нас'
 home.quiSommesNousTxt: 'Reconnect – это проект Группы SOS. Насчитывая на сегодняшний день 2500 сотрудников и 106 учреждений, к компетенции которых относятся такие области деятельности, как борьба с зависимостями, солидарное жильё, помощь в лечении и помощь инвалидам, Группа SOS Солидарность представляет собой идеальную опытную площадку для этих инноваций. В интересах своих получателей, Группа хочет распространить свою деятельность на всех cубъектов социальной деятельности.'
 home.twitter: Twitter
+login_form_title: 'Доступ в цифровой сейф'
 main.accepter: Согласиться
 main.adresse.rue: Улица
 main.annuler: Отменить
@@ -350,27 +348,22 @@ main.selectionner: Выбрать
 main.supprimer: Удалить
 main.uploaderFichier: 'Выбрать файл'
 main.voirFichier: 'Открыть файл'
+member_do_not_have_account: 'У члена нет аккаунта Reconnect'
+member_has_account: 'У члена есть аккаунт Reconnect'
+member_successfully_created: 'Член успешно создан'
 membre.ajoutBeneficiaire.aucunUtilisateurTrouve: 'Аккаунт получателя Reconnect, соотвествующий вашему поиску, не найден'
 membre.ajoutBeneficiaire.centres: 'Посредник Reconnect'
 membre.ajoutBeneficiaire.creerCompte: 'Создать аккаунт Reconnect'
 membre.ajoutBeneficiaire.dateNaissanceLabel: 'Дата рождения'
 membre.ajoutBeneficiaire.metaTitle: 'Добавить нового пользователя'
 membre.ajoutBeneficiaire.nePossedePasCompte: 'У пользователя нет аккаунта Reconnect'
-membre.ajoutBeneficiaire.nomLabel: Фамилия
 membre.ajoutBeneficiaire.possedeCompte: 'У пользователя есть аккаунт Reconnect'
-membre.ajoutBeneficiaire.prenomLabel: Имя
 membre.ajoutBeneficiaire.subtitle: 'Добавить нового пользователя'
 membre.ajoutBeneficiaire.title: 'Добавление нового <span class="main"> получателя</span>'
 membre.ajoutMembre.aucunUtilisateurTrouve: 'Аккаунт члена Reconnect, соответствующий вашему запросу, не найден'
 membre.ajoutMembre.centres: Центры
 membre.ajoutMembre.creerCompte: 'Создать аккаунт Reconnect'
-membre.ajoutMembre.metaTitle: 'Добавить нового члена'
-membre.ajoutMembre.nePossedePasCompte: 'У члена нет аккаунта Reconnect'
-membre.ajoutMembre.nomLabel: Фамилия
-membre.ajoutMembre.possedeCompte: 'У члена есть аккаунт Reconnect'
-membre.ajoutMembre.prenomLabel: Имя
 membre.ajoutMembre.subtitle: 'Добавить нового члена'
-membre.ajoutMembre.title: 'Добавление нового <span class="main"> члена</span>'
 membre.arreterSuivi.metaTitle: 'Остановить сопровождение получателя'
 membre.arreterSuivi.subtitle: 'Остановить отслеживание тема %'
 membre.arreterSuivi.success: 'Вы успешно основили сопровождение этого пользователя в центре'
@@ -388,9 +381,7 @@ membre.beneficiaires.mesNotes: Заметки
 membre.beneficiaires.metaTitle: 'Управление получателями'
 membre.beneficiaires.monCalendrier: Календарь
 membre.beneficiaires.noBeneficiairesInCentre: 'В этом центре нету получателей'
-membre.beneficiaires.nom: Фамилия
 membre.beneficiaires.nonValide: 'Не подтверждено'
-membre.beneficiaires.prenom: Имя
 membre.beneficiaires.renouvelerIdentifiants: 'Изменить пароль'
 membre.beneficiaires.selectCentre: 'Выбрать цент'
 membre.beneficiaires.title: 'Управление получателями'
@@ -420,9 +411,6 @@ membre.creationBeneficiaire.step6.terminer: Завершить
 membre.creationBeneficiaire.subtitle: 'Этап 1 из 5: Укажите личность получателя'
 membre.creationBeneficiaire.success: 'Получатель успешно создан'
 membre.creationBeneficiaire.title: 'Создание <span class="main"> бенефициара</span>'
-membre.creationMembre.membreEmailConstraint: 'Если у члена есть право управлять другими членами, он обязательно должен указать свой адрес электронной почты.'
-membre.creationMembre.success: 'Член успешно создан'
-membre.creationMembre.title: 'Создание члена'
 membre.doAjoutSubject.btnAjouter: Добавить
 membre.doAjoutSubject.centres: 'Ваши центры'
 membre.doAjoutSubject.subtitle: 'Выберите центр, в какой вы хотите добавить пользователя'
@@ -439,7 +427,6 @@ membre.droits.gestionBeneficiaires: 'Управление получателям
 membre.droits.gestionMembres: 'Управление членами'
 membre.droits.gestionPaiement: 'Управление платежами'
 membre.membres.aides: Пособия
-membre.membres.ajouterMembre: 'Добавить нового члена'
 membre.membres.arreterSuivi: Удалить
 membre.membres.btnDetails: Детали
 membre.membres.centres: Центры
@@ -452,9 +439,7 @@ membre.membres.mesNotes: 'Мои Заметки'
 membre.membres.metaTitle: 'Управление членами'
 membre.membres.monCalendrier: 'Мой календарь'
 membre.membres.noBeneficiairesInCentre: 'В этом центре нету получателей'
-membre.membres.nom: Фамилия
 membre.membres.nonValide: 'Не подтверждено'
-membre.membres.prenom: Имя
 membre.membres.renouvelerIdentifiants: 'Сменить парол'
 membre.membres.selectCentre: 'Выбрать центр'
 membre.membres.title: '<span class="main"> члены</span> управления'
@@ -483,13 +468,6 @@ membre.sendSmsCode.success: 'Управление этим центром под
 membre.sendSmsCode.text: 'На ваш телефон отправлено смс-сообщение с кодом'
 membre.supprimerMembreDuCentre.etesVousSur: 'Вы уверены, что хотите удалить члена этого центра?'
 membre.supprimerMembreDuCentre.success: 'Вы успешно удалили члена этого центра'
-modePaiement.carteBancaire: 'Банковская карт'
-modePaiement.cheque: Чек
-modePaiement.choisisseModePaiement: 'Выберите способ оплаты'
-modePaiement.flashBienSupprime: 'Элемент успешно удалён из корзины'
-modePaiement.recapitulatif: 'Сводный чек-лист вашей корзины'
-modePaiement.virement: Перевод
-'no': Нет
 note.ajouter: 'Добавить заметку'
 note.bienSauvegarde: 'Ваша заметка успешно сохранена'
 note.bienSupprime: 'Ваша заметка успешно удалена'
@@ -497,7 +475,6 @@ note.contenuLabel: 'Содержание заметки'
 note.date: Дата
 note.emptyData: 'Еще нет заметок. Нажмите «Добавить», чтобы создать его.'
 note.metaTitle: Заметки
-note.nom: Имя
 note.nomLabel: Заголовок
 note.supprimer: Удалить
 ouvrirUnCompte.btn1: 'Ознакомьтесь с картой Посредников Reconnect'
@@ -506,9 +483,9 @@ ouvrirUnCompte.metaTitle: 'Создать аккаунт Reconnect'
 ouvrirUnCompte.retourEnArriere: 'Вернуться назад'
 ouvrirUnCompte.text1: 'Расскажите вашим социальным консультантам о Reconnect, они смогут помочь вам создать и пользоваться вашим аккаунтом.'
 ouvrirUnCompte.text2: 'Необходимо реализовать <br/> повторно подключить на вашей структуре <br/> <br/>'
-ouvrirUnCompte.title: 'Учетная запись, <span class="main"> Повторное подключение</span>'
 ouvrirUnCompte.title1: 'Вы находитесь в подходе <br/> социальной поддержки'
 ouvrirUnCompte.title2: 'Вы <br/> социальный актер'
+ouvrirUnCompte.title: 'Учетная запись, <span class="main"> Повторное подключение</span>'
 paiement.btnPaiementSecurise: 'Для оплаты нажмите здесь'
 paiement.centreConcerne: Центр-получатель
 paiement.error.err00001: 'Не удалось установить соединение с центром авторизации или произошла внутренняя системная ошибка.'
@@ -528,13 +505,13 @@ paiement.metaTitle: Оплата
 paiement.nomProduit: 'Название товара'
 paiement.panierIntrouvable: 'Невозможно вернуться к содержимому корзины, начните процесс оплаты заново'
 paiement.prix: Цена
-paiement.text: 'Вы собираетесь произвести платёж в размере        евро. Сводный чек-лист вашей корзины:'
 paiement.text2: 'Вы будете перенаправлены на нашу платформу защищенных платежей :'
+paiement.text: 'Вы собираетесь произвести платёж в размере        евро. Сводный чек-лист вашей корзины:'
 paiement.title: Оплата
 paiementCheque.adresse: 'Улица, город индекс, Страна'
 paiementCheque.metaTitle: 'Оплата чеком'
-paiementCheque.text: 'Для подтверждения вашего платежа, пожалуйста, заполните как название: НАЗВАНИЕ, <br/> в порядке по: ЗАКАЗ. <br/> Наконец отправьте его по следующему адресу:'
 paiementCheque.text2: 'Для подтверждения оплаты нажмите здесь.  Как только мы получим ваш чек, мы отправим вам имейл с подверждением и квитанцией об оплате. После этого Центр появится в вашем аккаунте.'
+paiementCheque.text: 'Для подтверждения вашего платежа, пожалуйста, заполните как название: НАЗВАНИЕ, <br/> в порядке по: ЗАКАЗ. <br/> Наконец отправьте его по следующему адресу:'
 paiementCheque.title: 'Оплата чеком'
 paiementRetour.abandonMessage: 'Вы отменили платёж.'
 paiementRetour.errorMessage: 'Ваш платеж не может быть завершена, вы не было предъявлено обвинение. <br/> Пожалуйста, начните процесс оплаты. <br/> <br/> Ошибка платежной системы является следующее:'
@@ -543,17 +520,15 @@ paiementRetour.successMessage: 'Ваш платёж подтверждён. Мы
 paiementRetour.waitingMessage: 'Ваш платеж был подтвержден. <br/> В течение нескольких дней вы получите e-mail подтверждением получения вашего платежа.'
 paiementVirement.adresse: 'Улица, город индекс Страна'
 paiementVirement.metaTitle: 'Оплата банковским переводом'
-paiementVirement.text: 'Для подтверждения перевода укажите в названии : TODOPL НАЗВАНИЕ'
 paiementVirement.text2: 'Для подтверждения оплаты нажмите здесь. Как только мы получим ваш перевод, мы отправим вам имейл с подверждением и квитанцией об оплате. После этого Центр появится в вашем аккаунте.'
+paiementVirement.text: 'Для подтверждения перевода укажите в названии : TODOPL НАЗВАНИЕ'
 paiementVirement.title: 'Оплата банковским переводом'
 password_updated_successfully: 'Пароль успешно изменён'
 registerForm.adresse: 'Ваш личный адрес (необязательно)'
 registerForm.codePostal: Индекс
 registerForm.email: 'Электронная почта'
 registerForm.motDePasse: Пароль
-registerForm.nom: Фамилия
 registerForm.pays: Страна
-registerForm.prenom: Имя
 registerForm.rue: Улица
 registerForm.telephone: Телефон
 registerForm.username: 'Имя пользователя'
@@ -571,6 +546,7 @@ resetting.public.title: '<span class="main">Réinitialisation </span>du mot de p
 resetting.public.votreEmail: 'Ваш адрес электронной почты'
 resetting.reset.submit: 'Изменить пароль'
 settings_saved_successfully: 'Ваши настройки успешно сохранены'
+sms_sent_failed: 'Отправка SMS не удалась, пожалуйста, проверьте, действителен ли номер телефона'
 statut.abandoned: 'Операция отменена'
 statut.confirmed: 'Операция подтверждена'
 statut.created: Создано
@@ -623,6 +599,3 @@ user.reinitialiserMdp.title: 'Восстановить пароль'
 user.supprimerCompte.etesVousSurs: 'Вы точно хотите удалить ваш аккаунт?'
 user.supprimerCompte.success: 'Аккаунт успешно удалён'
 wrong_current_password: 'Неверный настоящий пароль'
-delete_currently_shared_document_warning: 'Документ находится в общем доступе еще %daysCount% дней. Если вы удалите его, совместный доступ будет отменен'
-sms_sent_failed: 'Отправка SMS не удалась, пожалуйста, проверьте, действителен ли номер телефона'
-'yes': Да

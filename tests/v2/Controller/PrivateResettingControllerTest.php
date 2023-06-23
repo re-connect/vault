@@ -144,30 +144,4 @@ class PrivateResettingControllerTest extends AuthenticatedTestCase
         $this->beneficiaryUser = $em->getRepository(User::class)->find($this->beneficiaryUser->getId());
         self::assertTrue($this->passwordHasher->isPasswordValid($this->beneficiaryUser, 'newPassword'));
     }
-
-    public function testPrivateRequestRandom(): void
-    {
-        // Pro reset password with random code and logout
-        $this->client->loginUser($this->proUser);
-        $crawler = $this->client->request('GET', sprintf('/user/%d/reset-password/random', $this->beneficiaryUser->getId()));
-        $form = $crawler->selectButton('Réinitialisation')->form();
-        $crawler = $this->client->submit($form);
-        $text = $crawler->filter('div.text-center.col-12 > span')->text();
-        $newPassword = substr($text, -8);
-        $this->client->request('GET', '/logout');
-
-        // Beneficiary try to login with new password
-        $crawler = $this->client->request('GET', '/');
-        $form = $crawler->selectButton('Connexion')->form();
-        $form->setValues([
-            '_username' => $this->beneficiaryUser->getEmail(),
-            '_password' => $newPassword,
-        ]);
-        $this->client->submit($form);
-        self::assertResponseStatusCodeSame(302);
-
-        // Successful login with new password, beneficiary can access documents
-        $this->client->request('GET', sprintf('/beneficiary/%d/documents', $this->beneficiaryUser->getSubjectBeneficiaire()->getId()));
-        self::assertResponseStatusCodeSame(200);
-    }
 }

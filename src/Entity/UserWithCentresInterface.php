@@ -2,14 +2,16 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
+
 interface UserWithCentresInterface
 {
     public function getUserCentre(Centre $centre);
 
-    /**
-     * @return UserCentre
-     */
     public function getUsersCentres();
+
+    /** @return Collection<int, UserCentre> */
+    public function getUserCentres(): Collection;
 
     public function isBeneficiaire();
 

@@ -3,11 +3,11 @@
 namespace App\ServiceV2\Traits;
 
 use App\Entity\User;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 trait UserAwareTrait
 {
-    private Security $security;
+    private readonly Security $security;
 
     protected function getUser(): ?User
     {

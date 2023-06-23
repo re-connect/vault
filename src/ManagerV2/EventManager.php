@@ -11,7 +11,7 @@ use App\ServiceV2\NotificationService;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class EventManager
 {
@@ -23,7 +23,7 @@ class EventManager
         private readonly RappelRepository $reminderRepository,
         private readonly EvenementRepository $eventRepository,
         private readonly LoggerInterface $logger,
-        private Security $security
+        private readonly Security $security
     ) {
     }
 

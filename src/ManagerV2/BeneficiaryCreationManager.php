@@ -11,7 +11,7 @@ use App\ServiceV2\NotificationService;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class BeneficiaryCreationManager
 {
@@ -19,7 +19,7 @@ class BeneficiaryCreationManager
 
     public function __construct(
         private readonly UserManager $userManager,
-        private Security $security,
+        private readonly Security $security,
         private readonly EntityManagerInterface $em,
         private readonly RelayManager $relayManager,
         private readonly NotificationService $notificator,

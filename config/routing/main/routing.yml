@@ -23,11 +23,11 @@ re_main_faq:
     controller: App\Controller\MainController::pageFAQ
 
 re_auto_login:
-    path: /auto-login
+    path: /public/auto-login
     controller: App\Controller\MainController::autoLogin
 
 re_main_change_lang:
-    path: /changer-langue/{lang}
+    path: /public/changer-langue/{lang}
     controller: App\Controller\MainController::changeLang
     requirements:
         lang: "[a-zA-Z]+"

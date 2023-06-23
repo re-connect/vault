@@ -8,8 +8,12 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
+  // directory where compiled assets will be stored
   .setOutputPath('public/build/')
+  // public path used by the web server to access the output path
   .setPublicPath('/build')
+  // only needed for CDN's or subdirectory deploy
+  // .setManifestKeyPrefix('build/')
 
   .addEntry('app', './assets/js/app.js')
   .addEntry('app_pro', './assets/js/app-pro.js')
@@ -32,8 +36,6 @@ Encore
   .addEntry('set_question_secrete', './assets/js/set-question-secrete.js')
   .addEntry('set_question_secrete_etape_3', './assets/js/set-question-secrete-etape-3.js')
 
-  .addStyleEntry('style', './assets/css/style.scss')
-
   // New Home
   .addEntry('homeV2', './assets/js/homeV2/app.js')
   .addStyleEntry('homeV2style', './assets/css/homeV2/main.scss')
@@ -51,13 +53,19 @@ Encore
   .enableSourceMaps(Encore.isDevServer())
   .enableVersioning(!Encore.isDevServer())
 
+  // configure Babel
+  // .configureBabel((config) => {
+  //     config.plugins.push('@babel/a-babel-plugin');
+  // })
+
+  // enables and configure @babel/preset-env polyfills
   .configureBabelPresetEnv((config) => {
     config.useBuiltIns = 'usage';
-    config.corejs = 3;
+    config.corejs = '3.23';
   })
 
   .copyFiles([
-    { from: './assets/images', to: 'images/[path][name].[hash:8].[ext]' },
+    {from: './assets/images', to: 'images/[path][name].[hash:8].[ext]'},
     {
       from: './node_modules/angular-utils-pagination',
       to: 'angular-utils-pagination/[path][name].[hash:8].[ext]',
@@ -70,18 +78,21 @@ Encore
       pattern: /\.(js|css)$/,
       includeSubdirectories: true
     },
-    { from: './node_modules/ckeditor/adapters', to: './ckeditor/adapters/[path][name].[ext]' },
-    { from: './node_modules/ckeditor/lang', to: './ckeditor/lang/[path][name].[ext]' },
-    { from: './node_modules/ckeditor/plugins', to: './ckeditor/plugins/[path][name].[ext]' },
-    { from: './node_modules/ckeditor/skins', to: './ckeditor/skins/[path][name].[ext]' },
-    { from: './node_modules/ckeditor/vendor', to: './ckeditor/vendor/[path][name].[ext]' }
+    {from: './node_modules/ckeditor/adapters', to: './ckeditor/adapters/[path][name].[ext]'},
+    {from: './node_modules/ckeditor/lang', to: './ckeditor/lang/[path][name].[ext]'},
+    {from: './node_modules/ckeditor/plugins', to: './ckeditor/plugins/[path][name].[ext]'},
+    {from: './node_modules/ckeditor/skins', to: './ckeditor/skins/[path][name].[ext]'},
+    {from: './node_modules/ckeditor/vendor', to: './ckeditor/vendor/[path][name].[ext]'}
   ])
   .enableSassLoader()
   .enableLessLoader()
   .autoProvidejQuery()
   .configureDevServerOptions(options => {
-    options.https = {
-      pfx: path.join(process.env.HOME, '.symfony5/certs/default.p12'),
+    options.server = {
+      type: 'https',
+      options: {
+        pfx: path.join(process.env.HOME, '.symfony5/certs/default.p12'),
+      }
     }
   })
 ;

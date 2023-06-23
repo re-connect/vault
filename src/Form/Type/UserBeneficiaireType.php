@@ -19,7 +19,7 @@ class UserBeneficiaireType extends AbstractType
         $builder
             ->add('prenom', null, [
                 'required' => true,
-                'label' => 'registerForm.prenom',
+                'label' => 'firstname',
                 'attr' => [
                     'pattern' => $regex,
                     'oninvalid' => 'this.setCustomValidity("Vous ne pouvez entrer que des lettres, tirets (-) ou apostrophes (\')")',
@@ -28,7 +28,7 @@ class UserBeneficiaireType extends AbstractType
             ])
             ->add('nom', null, [
                 'required' => true,
-                'label' => 'registerForm.nom',
+                'label' => 'name',
                 'attr' => [
                     'pattern' => $regex,
                     'oninvalid' => 'this.setCustomValidity("Vous ne pouvez entrer que des lettres, tirets (-) ou apostrophes (\')")',

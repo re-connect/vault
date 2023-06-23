@@ -44,28 +44,17 @@ class MemberBeneficiaryController extends AbstractController
         return new JsonResponse(null, 201);
     }
 
-    #[Route(
-        path: 'beneficiary/{id}/first-member-visit-notification',
-        name: 'first_member_visit_notification',
-        requirements: ['id' => '\d+'],
-        methods: ['GET'],
-    )]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function firstMemberVisitNotification(
-        Beneficiaire $beneficiary,
-        MemberBeneficiaryManager $memberBeneficiaryManager
-    ): Response {
-        $firstVisitForm = null;
-        if ($isFirstVisit = $memberBeneficiaryManager->isFirstMemberVisit($beneficiary)) {
-            $memberBeneficiaryManager->handleFirstMemberVisit($beneficiary);
-            $firstVisitForm = $this->createForm(FirstMemberVisitType::class, null, [
-                'action' => $this->generateUrl('first_member_visit', ['id' => $beneficiary->getId()]),
-            ]);
+    public function firstMemberVisitNotification(?Beneficiaire $beneficiary, MemberBeneficiaryManager $memberBeneficiaryManager): Response
+    {
+        if (!$beneficiary || !$memberBeneficiaryManager->isFirstMemberVisit($beneficiary)) {
+            return $this->render('void.html.twig');
         }
+        $memberBeneficiaryManager->handleFirstMemberVisit($beneficiary);
 
-        return $this->renderForm('v2/notifications/first_visit_notifications.html.twig', [
-            'isFirstVisit' => $isFirstVisit,
-            'firstVisitForm' => $firstVisitForm,
+        return $this->render('v2/notifications/first_visit_notifications.html.twig', [
+            'form' => $this->createForm(FirstMemberVisitType::class, null, [
+                'action' => $this->generateUrl('first_member_visit', ['id' => $beneficiary->getId()]),
+            ]),
         ]);
     }
 }

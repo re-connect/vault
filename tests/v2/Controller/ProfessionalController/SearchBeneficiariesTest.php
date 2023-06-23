@@ -9,7 +9,7 @@ use App\Tests\v2\Controller\TestRouteInterface;
 
 class SearchBeneficiariesTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const URL = '/professional/beneficiaries/search';
+    private const URL = '/beneficiaries/search';
 
     public function provideTestRoute(): ?\Generator
     {

@@ -3,11 +3,13 @@
 namespace App\Repository;
 
 use App\Entity\Beneficiaire;
+use App\Entity\BeneficiaireCentre;
 use App\Entity\Centre;
+use App\Entity\MembreCentre;
 use App\Entity\User;
+use App\Entity\UserCentre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 use Imagine\Image\Point\Center;
 
@@ -71,32 +73,26 @@ class CentreRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    /**
-     * @return Centre[]
-     */
-    public function findUserRelays(User $user, bool $isAccepted = true): array
+    /** @return UserCentre[] */
+    public function findUserRelays(User $user, bool $isAccepted = null): array
     {
-        $qb = $this->createQueryBuilder('c');
+        $qb = $this
+            ->getEntityManager()
+            ->createQueryBuilder()
+            ->select('uc')
+            ->from($user->isBeneficiaire() ? BeneficiaireCentre::class : MembreCentre::class, 'uc')
+            ->innerJoin(sprintf('uc.%s', $user->isBeneficiaire() ? 'beneficiaire' : 'membre'), 'u')
+            ->andWhere('u = :user');
 
-        if ($user->isBeneficiaire()) {
-            $qb->innerJoin('c.beneficiairesCentres', 'uc')
-                ->innerJoin('uc.beneficiaire', 'u');
-        } else {
-            $qb->innerJoin('c.membresCentres', 'uc')
-                ->innerJoin('uc.membre', 'u');
+        $parameters = ['user' => $user->getSubject()];
+
+        if (null !== $isAccepted) {
+            $parameters['isAccepted'] = $isAccepted;
+            $qb->andWhere('uc.bValid = :isAccepted');
         }
 
-        return $qb
-            ->leftJoin('c.adresse', 'a')
-            ->addSelect(['uc', 'u', 'a'])
-            ->where('u = :userSubject')
-            ->andWhere('uc.bValid = :isAccepted')
-            ->setParameters([
-                'userSubject' => $user->getSubject(),
-                'isAccepted' => $isAccepted,
-            ])
+        return $qb->setParameters($parameters)
             ->getQuery()
-            ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
             ->getResult();
     }
 }

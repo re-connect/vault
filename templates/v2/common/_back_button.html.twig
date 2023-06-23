@@ -1,0 +1,8 @@
+<button
+        class="btn btn-link text-primary"
+        {{ stimulus_controller('browser-navigation') }}
+        {{ stimulus_action('browser-navigation', 'back') }}
+>
+    <i class="fa fa-chevron-left"></i>
+    {{ 'back'|trans }}
+</button>

@@ -7,7 +7,7 @@ use App\Entity\Note;
 use App\Repository\NoteRepository;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class NoteManager
 {
@@ -16,7 +16,7 @@ class NoteManager
     public function __construct(
         private readonly EntityManagerInterface $em,
         private readonly NoteRepository $repository,
-        private Security $security,
+        private readonly Security $security,
     ) {
     }
 

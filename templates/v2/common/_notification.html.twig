@@ -1,0 +1,39 @@
+{% extends 'v2/common/_modal.html.twig' %}
+
+{% block title %}
+    {{ notification.title|trans }}
+{% endblock %}
+
+{% block subtitle %}
+    {{ notification.subtitle|trans }}
+{% endblock %}
+
+{% block content %}
+    {{ notification.content|trans|raw }}
+    {% if notification.form is defined and notification.form %}
+        {% set form = notification.form.formView %}
+        <br/><br/>
+        {{ form_start(form, {'attr': {'data-controller': notification.form.stimulusControllers}}) }}
+        {{ form_widget(form) }}
+        <div class="text-end">{{ include('v2/common/_button.html.twig') }}</div>
+        {{ form_end(form) }}
+    {% endif %}
+{% endblock %}
+
+{% block icon %}
+    {% if notification.icon is defined and notification.icon %}
+        <div class="col-2 me-1 my-auto">
+            <i class="fa fa-{{ notification.icon }} fa-2x text-primary me-1"></i>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+    {% for action in notification.actions %}
+        {% set color = action.color %}
+        <a href="{{ action.path }}"
+           class="btn btn-{{ color ?? getUserThemeColor() }} me-2 text-{{ color == 'light' ? 'decoration-underline' : 'white' }}">
+            {{ action.label|trans }}
+        </a>
+    {% endfor %}
+{% endblock %}

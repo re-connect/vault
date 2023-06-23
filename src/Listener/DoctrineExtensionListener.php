@@ -4,22 +4,15 @@ namespace App\Listener;
 
 use Gedmo\Loggable\LoggableListener;
 use Gedmo\Translatable\TranslatableListener;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class DoctrineExtensionListener
 {
-    private Security $security;
-    private TranslatableListener $translatableListener;
-    private LoggableListener $loggableListener;
-
     public function __construct(
-        Security $security,
-        TranslatableListener $translatableListener,
-        LoggableListener $loggableListener
+        private readonly Security $security,
+        private readonly TranslatableListener $translatableListener,
+        private readonly LoggableListener $loggableListener
     ) {
-        $this->security = $security;
-        $this->translatableListener = $translatableListener;
-        $this->loggableListener = $loggableListener;
     }
 
     public function onLateKernelRequest($event)

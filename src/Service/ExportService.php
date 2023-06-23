@@ -12,12 +12,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ExportService
 {
-    private EntityManagerInterface $em;
     private const EXPORT_COLUMNS = [
         'Filtres',
         'Bénéficiaires',
@@ -30,14 +31,23 @@ class ExportService
         'Documents provenants de x CFN',
     ];
 
-    public function __construct(EntityManagerInterface $em)
-    {
-        $this->em = $em;
+    public function __construct(
+        private readonly EntityManagerInterface $em,
+        private readonly string $kernelProjectDir,
+        private readonly LoggerInterface $logger,
+    ) {
     }
 
     public function saveExport(ExportModel $exportModel): StreamedResponse
     {
-        return $this->getStreamedResponse($this->createExportSpreadSheet($exportModel, self::EXPORT_COLUMNS, $this->getExportSheetData($exportModel)));
+        return $this->getStreamedResponse(
+            $this->exportDataToXlsx(
+                sprintf('export_cfn_%s.xlsx', (new \DateTime())->format('d-m-Y')),
+                $this->getSheetIntro($exportModel),
+                self::EXPORT_COLUMNS,
+                $this->getExportSheetData($exportModel),
+            )
+        );
     }
 
     private function getExportSheetData(ExportModel $exportModel): array
@@ -123,38 +133,36 @@ class ExportService
             ->andWhere('i.createdAt < :endDate');
     }
 
-    private function createExportSpreadSheet(ExportModel $exportModel, $exportSheetHeader, $exportSheetData): Spreadsheet
+    public function exportDataToXlsx(string $title, string $intro, array $header, array $data): Xlsx
     {
         $spreadsheet = new Spreadsheet();
+        $spreadsheet->getProperties()->setTitle($title);
         $sheet = $spreadsheet->getActiveSheet();
-        $sheetIntro = $this->getSheetIntro($exportModel);
-        $sheet->fromArray([$sheetIntro, [], $exportSheetHeader, ...$exportSheetData], null, 'A1', true);
+        $sheetIntro = [$intro];
+        $sheet->fromArray([$sheetIntro, [], $header, ...$data]);
+        $sheet->setAutoFilter(sprintf('A3:%s3', $sheet->getHighestColumn()));
         for ($i = 'A'; $i <= $sheet->getHighestColumn(); ++$i) {
             $sheet->getColumnDimension($i)->setAutoSize(true);
         }
 
-        return $spreadsheet;
+        return new Xlsx($spreadsheet);
     }
 
-    private function getSheetIntro(ExportModel $exportModel): array
+    private function getSheetIntro(ExportModel $exportModel): string
     {
-        return [
-            'Éléments créés',
-            sprintf(
-                'du %s au %s',
-                $exportModel->getStartDate()->format('d-m-Y'),
-                $exportModel->getEndDate()->format('d-m-Y')
-            ),
-        ];
+        return sprintf(
+            'Éléments créés du %s au %s',
+            $exportModel->getStartDate()->format('d-m-Y'),
+            $exportModel->getEndDate()->format('d-m-Y')
+        );
     }
 
-    private function getStreamedResponse(Spreadsheet $spreadsheet): StreamedResponse
+    private function getStreamedResponse(Xlsx $xlsx): StreamedResponse
     {
-        $fileName = sprintf('export_cfn_%s.xlsx', (new \DateTime())->format('d-m-Y'));
-        $writer = new Xlsx($spreadsheet);
+        $fileName = $xlsx->getSpreadsheet()->getProperties()->getTitle();
         $response = new StreamedResponse(
-            function () use ($writer) {
-                $writer->save('php://output');
+            function () use ($xlsx) {
+                $xlsx->save('php://output');
             }
         );
         $dispositionHeader = $response->headers->makeDisposition(
@@ -165,6 +173,18 @@ class ExportService
         $response->headers->set('Content-Disposition', $dispositionHeader);
 
         return $response;
+    }
+
+    public function saveFileToDisk(Xlsx $xlsx, SymfonyStyle $io = null): void
+    {
+        $filePath = sprintf('%s/var/export/%s.xlsx', $this->kernelProjectDir, $xlsx->getSpreadsheet()->getProperties()->getTitle());
+
+        try {
+            $xlsx->save($filePath);
+        } catch (\Exception $exception) {
+            $errorMessage = sprintf('Error saving file %s to disk : %s', $filePath, $exception->getMessage());
+            $io ? $io->error($errorMessage) : $this->logger->error($errorMessage);
+        }
     }
 
     private function addFiltersToQb(ExportModel $exportModel, QueryBuilder $queryBuilder, array &$parameters, $filter): void

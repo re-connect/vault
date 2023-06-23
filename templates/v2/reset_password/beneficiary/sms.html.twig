@@ -1,0 +1,5 @@
+{% extends 'v2/reset_password/beneficiary/reset_password_layout.html.twig' %}
+
+{% block content %}
+    {{ include('v2/reset_password/beneficiary/_form.html.twig', {formField: form.smsCode}) }}
+{% endblock %}

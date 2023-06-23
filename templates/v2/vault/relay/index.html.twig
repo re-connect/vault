@@ -1,18 +1,22 @@
-{% extends 'v2/vault/list_container_layout.html.twig' %}
+{% extends app.user.beneficiaire
+    ? 'v2/vault/list_container_layout.html.twig'
+    : 'v2/standard_layout.html.twig' %}
 
+{% block delimiter %}{% endblock %}
 {% block metaTitle %}{{ 'centre.metaTitle'|trans }}{% endblock metaTitle %}
+{% block title %}
+    {{ 'my_relays_title_1'|trans }}
+    <span class="text-blue">{{ 'my_relays_title_2'|trans }}</span>
+{% endblock title %}
 
 {% block content %}
     <div class="max-width-lg mt-4 m-auto">
         {% block list %}
-            {{ relays is not empty or pendingRelays is not empty
-            ? include('v2/vault/relay/_list.html.twig', {
-                'relays': relays,
-                'pendingRelays': pendingRelays,
-            })
+            {{ relays is not empty
+            ? include('v2/vault/relay/_list.html.twig', {relays})
             : include('v2/vault/components/_empty_list_content.html.twig', {
-                'message': 'center_has_no_info'|trans,
-                'img' : asset('build/images/icons/relais_bleu.png')
+                message: 'center_has_no_info'|trans,
+                img : asset('build/images/icons/relais_bleu.png'),
             }) }}
         {% endblock %}
     </div>

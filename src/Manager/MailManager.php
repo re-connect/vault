@@ -7,10 +7,8 @@ use App\Entity\Dossier;
 use App\Provider\DocumentProvider;
 use Mailjet\Client;
 use Mailjet\Resources;
-use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class MailManager
 {
@@ -21,25 +19,15 @@ class MailManager
         'es' => 3633402,
     ];
     private Client $mailjet;
-    private DocumentProvider $documentProvider;
-    private Security $security;
-    private DocumentManager $documentManager;
 
     public function __construct(
         $apikey,
         $apisecret,
-        Security $security,
-        DocumentProvider $documentProvider,
-        DocumentManager $documentManager,
-        RouterInterface $router,
-        TranslatorInterface $translator
+        private readonly Security $security,
+        private readonly DocumentProvider $documentProvider,
+        private readonly DocumentManager $documentManager,
     ) {
         $this->mailjet = new Client($apikey, $apisecret, true, ['version' => 'v3.1']);
-        $this->documentProvider = $documentProvider;
-        $this->documentManager = $documentManager;
-        $this->security = $security;
-        $this->router = $router;
-        $this->translator = $translator;
     }
 
     private function sendTemplate($id, $dest, $variables = [], $attachment = null)

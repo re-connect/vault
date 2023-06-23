@@ -65,7 +65,7 @@ class DocumentController extends AbstractController
             );
         }
 
-        return $this->renderForm('v2/vault/document/rename.html.twig', [
+        return $this->render('v2/vault/document/rename.html.twig', [
             'form' => $form,
             'document' => $manager->hydrateDocumentAndThumbnailWithUrl($document),
             'beneficiary' => $document->getBeneficiaire(),

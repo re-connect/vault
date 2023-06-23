@@ -1,18 +1,13 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-white mx-0 mt-75 vault-nav">
     <div class="container-fluid max-width-lg px-0 my-2">
-        <button class="navbar-toggler btn-white text-primary ms-2 px-4 border-light-grey" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler btn-white text-primary ms-2 px-4 border-light-grey" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse ps-4 mt-1 mt-md-0" id="navbarSupportedContent">
             <ul class="nav w-100 row">
-                {% for item in getUserNavItems() %}
-                    {{ include('v2/vault/nav/beneficiary/_beneficiary_nav_item.html.twig', {
-                        'item': item.itemKind,
-                        'title': item.title,
-                        'routeName': item.routeName,
-                        'image': item.image
-                    }) }}
-                {% endfor %}
+                {{ include('v2/vault/nav/_nav_items.html.twig', {beneficiary}) }}
             </ul>
         </div>
     </div>

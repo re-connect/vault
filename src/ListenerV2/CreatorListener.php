@@ -7,13 +7,13 @@ use App\Entity\DonneePersonnelle;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class CreatorListener
 {
     use UserAwareTrait;
 
-    public function __construct(private Security $security)
+    public function __construct(private readonly Security $security)
     {
     }
 

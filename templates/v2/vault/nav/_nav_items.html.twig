@@ -1,0 +1,3 @@
+{% for item in getUserNavItems() %}
+    {{ include('v2/vault/nav/_nav_item.html.twig', {beneficiary, item}) }}
+{% endfor %}

@@ -4,8 +4,10 @@ namespace App\ControllerV2;
 
 use App\Entity\User;
 use App\FormV2\ChangePasswordFormType;
-use App\FormV2\ResetPasswordRequestFormType;
-use App\FormV2\ResetPasswordSmsCheckFormType;
+use App\FormV2\ResetPassword\PublicRequest\ResetPasswordCheckSMSFormModel;
+use App\FormV2\ResetPassword\PublicRequest\ResetPasswordRequestFormModel;
+use App\FormV2\ResetPassword\PublicRequest\ResetPasswordRequestFormType;
+use App\FormV2\ResetPassword\PublicRequest\ResetPasswordSmsCheckFormType;
 use App\ManagerV2\UserManager;
 use App\ServiceV2\ResettingService;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +18,7 @@ use SymfonyCasts\Bundle\ResetPassword\Exception\ExpiredResetPasswordTokenExcepti
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
-#[Route(path: '/reset-password')]
+#[Route(path: '/public/reset-password')]
 class ResetPasswordController extends AbstractController
 {
     use ResetPasswordControllerTrait;
@@ -35,32 +37,35 @@ class ResetPasswordController extends AbstractController
     #[Route(path: '/email', name: 'app_forgot_password_email_request', methods: ['GET', 'POST'])]
     public function emailRequest(Request $request, ResettingService $service): Response
     {
-        $form = $this->createForm(ResetPasswordRequestFormType::class)->handleRequest($request);
+        $formModel = new ResetPasswordRequestFormModel();
+        $form = $this->createForm(ResetPasswordRequestFormType::class, $formModel)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $service->processSendingPasswordResetEmail(
-                $form->get('email')->getData(),
+                $formModel->email,
                 $request->getLocale(),
             );
         }
 
-        return $this->renderForm('v2/reset_password/public/request.html.twig', ['form' => $form]);
+        return $this->render('v2/reset_password/public/request.html.twig', ['form' => $form]);
     }
 
     #[Route(path: '/sms', name: 'app_forgot_password_sms_request', methods: ['GET', 'POST'])]
     public function phoneRequest(Request $request, ResettingService $service): Response
     {
-        $form = $this->createForm(ResetPasswordRequestFormType::class, null, [
+        $formModel = new ResetPasswordRequestFormModel();
+        $form = $this->createForm(ResetPasswordRequestFormType::class, $formModel, [
             'sms' => true,
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $service->processSendingPasswordResetSms($form->get('telephone')->getData());
+            $user = $service->processSendingPasswordResetSms($formModel->phone);
             if ($user) {
                 if ($service->isRequestingBySMS($user)) {
-                    $form = $this->createForm(ResetPasswordSmsCheckFormType::class, null, [
+                    $form = $this->createForm(
+                        ResetPasswordSmsCheckFormType::class,
+                        new ResetPasswordCheckSMSFormModel($user->getTelephone()), [
                         'action' => $this->generateUrl('app_forgot_password_check_sms'),
-                        'phone' => $user->getTelephone(),
                     ])->handleRequest($request);
                 } else {
                     $this->addFlash('danger', 'reset_password_requested_by_email');
@@ -68,7 +73,7 @@ class ResetPasswordController extends AbstractController
             }
         }
 
-        return $this->renderForm('v2/reset_password/public/request.html.twig', [
+        return $this->render('v2/reset_password/public/request.html.twig', [
             'form' => $form,
         ]);
     }
@@ -82,13 +87,12 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('app_forgot_password_sms_request');
         }
 
-        $form = $this->createForm(ResetPasswordSmsCheckFormType::class, null, [
-            'phone' => $requestFormParameters['phone'],
-        ])->handleRequest($request);
+        $formModel = new ResetPasswordCheckSMSFormModel($requestFormParameters['phone']);
+        $form = $this->createForm(ResetPasswordSmsCheckFormType::class, $formModel)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $phone = $form->get('phone')->getData();
-            $smsCode = $form->get('smsCode')->getData();
+            $phone = $formModel->phone;
+            $smsCode = $formModel->smsCode;
             if ($service->isSmsCheckValid($smsCode, $phone)) {
                 $passwordRequest = $service->findPasswordRequestWithSmsCode($smsCode);
 
@@ -98,7 +102,7 @@ class ResetPasswordController extends AbstractController
             $this->addFlash('danger', 'public_reset_password_SMS_wrong_code');
         }
 
-        return $this->renderForm('v2/reset_password/public/request.html.twig', [
+        return $this->render('v2/reset_password/public/request.html.twig', [
             'form' => $form,
         ]);
     }
@@ -145,7 +149,7 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('re_main_login');
         }
 
-        return $this->renderForm('v2/reset_password/public/reset.html.twig', [
+        return $this->render('v2/reset_password/public/reset.html.twig', [
             'form' => $form,
             'isBeneficiaire' => $user->isBeneficiaire(),
         ]);
@@ -190,7 +194,7 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('re_main_login');
         }
 
-        return $this->renderForm('v2/reset_password/public/reset.html.twig', [
+        return $this->render('v2/reset_password/public/reset.html.twig', [
             'form' => $form,
             'isBeneficiaire' => $user->isBeneficiaire(),
         ]);

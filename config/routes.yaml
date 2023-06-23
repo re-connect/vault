@@ -27,7 +27,7 @@ re_association:
     prefix: /association/
 
 re_get_centers:
-    path: /get-centers
+    path: /public/get-centers
     controller: App\Controller\MainController::getCenters
 
 re.api_rest:

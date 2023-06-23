@@ -11,8 +11,8 @@ use App\Repository\UserRepository;
 use App\ServiceV2\MailerService;
 use App\ServiceV2\Traits\SessionsAwareTrait;
 use App\ServiceV2\Traits\UserAwareTrait;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Security\Core\Security;
 
 class SharedDocumentManager
 {
@@ -26,7 +26,7 @@ class SharedDocumentManager
         private readonly UserRepository $userRepository,
         private readonly DocumentRepository $documentRepository,
         private RequestStack $requestStack,
-        private Security $security,
+        private readonly Security $security,
     ) {
     }
 

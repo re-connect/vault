@@ -41,7 +41,7 @@ class ContactController extends AbstractController
             return $this->redirectToRoute('list_contacts', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->renderForm('v2/vault/contact/edit.html.twig', [
+        return $this->render('v2/vault/contact/edit.html.twig', [
             'form' => $form,
             'beneficiary' => $beneficiary,
         ]);

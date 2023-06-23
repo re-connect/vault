@@ -4,24 +4,21 @@ namespace App\EventSubscriber;
 
 use App\ServiceV2\GdprService;
 use App\ServiceV2\Traits\UserAwareTrait;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\Security\Core\Security;
 
 class ExpiredPasswordSubscriber implements EventSubscriberInterface
 {
     use UserAwareTrait;
 
-    private GdprService $gdprService;
-    private RouterInterface $router;
-
-    public function __construct(Security $security, GdprService $gdprService, RouterInterface $router)
-    {
-        $this->security = $security;
-        $this->gdprService = $gdprService;
-        $this->router = $router;
+    public function __construct(
+        private readonly Security $security,
+        private readonly GdprService $gdprService,
+        private readonly RouterInterface $router,
+    ) {
     }
 
     public function checkPasswordExpiration(RequestEvent $event): void

@@ -79,12 +79,7 @@ class MembreCentre extends UserCentre
         return $this;
     }
 
-    /**
-     * Get droits.
-     *
-     * @return array
-     */
-    public function getDroits()
+    public function getDroits(): array
     {
         return $this->droits;
     }
@@ -114,6 +109,12 @@ class MembreCentre extends UserCentre
     {
         return array_key_exists(self::TYPEDROIT_GESTION_BENEFICIAIRES, $this->getDroits())
             && true === $this->getDroits()[self::TYPEDROIT_GESTION_BENEFICIAIRES];
+    }
+
+    public function canManageProfessionals(): bool
+    {
+        return array_key_exists(self::TYPEDROIT_GESTION_MEMBRES, $this->getDroits())
+            && true === $this->getDroits()[self::TYPEDROIT_GESTION_MEMBRES];
     }
 
     /**

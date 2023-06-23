@@ -12,8 +12,8 @@ use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use Symfony\Component\Security\Core\Security;
 
 class BeneficiaryAffiliationManager
 {
@@ -24,7 +24,7 @@ class BeneficiaryAffiliationManager
         private readonly EntityManagerInterface $em,
         private readonly AuthorizationCheckerInterface $authorizationChecker,
         private readonly RelayManager $relayManager,
-        private Security $security,
+        private readonly Security $security,
     ) {
     }
 
