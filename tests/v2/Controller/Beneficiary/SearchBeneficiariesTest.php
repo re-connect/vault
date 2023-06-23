@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\v2\Controller\ProController;
+namespace App\Tests\v2\Controller\Beneficiary;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
@@ -9,7 +9,7 @@ use App\Tests\v2\Controller\TestRouteInterface;
 
 class SearchBeneficiariesTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const URL = '/beneficiaries/search';
+    private const URL = '/beneficiaries/filter';
 
     public function provideTestRoute(): ?\Generator
     {
