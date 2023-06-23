@@ -401,7 +401,7 @@ class User extends BaseUser implements \JsonSerializable
 
     public function isBeneficiaire(): bool
     {
-        return self::USER_TYPE_BENEFICIAIRE === $this->typeUser;
+        return self::USER_TYPE_BENEFICIAIRE === $this->typeUser || $this->subjectBeneficiaire;
     }
 
     public function getSecretAnswer(): string
@@ -425,6 +425,10 @@ class User extends BaseUser implements \JsonSerializable
     public function setSubjectBeneficiaire(Beneficiaire $subjectBeneficiaire = null): self
     {
         $this->subjectBeneficiaire = $subjectBeneficiaire;
+
+        if ($subjectBeneficiaire) {
+            $this->typeUser = self::USER_TYPE_BENEFICIAIRE;
+        }
 
         return $this;
     }
@@ -475,7 +479,7 @@ class User extends BaseUser implements \JsonSerializable
 
     public function isMembre(): bool
     {
-        return self::USER_TYPE_MEMBRE === $this->typeUser;
+        return self::USER_TYPE_MEMBRE === $this->typeUser || $this->subjectMembre;
     }
 
     public function getSubjectMembre(): ?Membre
@@ -486,6 +490,10 @@ class User extends BaseUser implements \JsonSerializable
     public function setSubjectMembre(Membre $subjectMembre = null): self
     {
         $this->subjectMembre = $subjectMembre;
+
+        if ($subjectMembre) {
+            $this->typeUser = self::USER_TYPE_MEMBRE;
+        }
 
         return $this;
     }

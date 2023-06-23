@@ -42,6 +42,14 @@ class UserManager
         $user->eraseCredentials();
     }
 
+    public function updatePasswordWithPlain(User $user): void
+    {
+        $this->em->persist($user);
+        if ($password = $user->getPlainPassword()) {
+            $this->updatePassword($user, $password);
+        }
+    }
+
     public function setUniqueUsername(User $user): void
     {
         $user->setUsername($this->getUniqueUsername($user));

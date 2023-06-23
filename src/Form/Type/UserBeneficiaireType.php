@@ -48,7 +48,7 @@ class UserBeneficiaireType extends AbstractType
             ->add('adresse', AdresseType::class, ['required' => false, 'label' => 'registerForm.adresse'])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'label' => 'registerForm.motDePasse',
+                'label' => 'password',
                 'options' => ['translation_domain' => 'FOSUserBundle'],
                 'first_options' => ['label' => 'form.password'],
                 'second_options' => ['label' => 'form.password_confirmation'],

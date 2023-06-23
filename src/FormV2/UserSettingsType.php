@@ -71,7 +71,7 @@ class UserSettingsType extends AbstractType
         } else {
             $builder
                 ->add('username', TextType::class, [
-                    'label' => 'registerForm.username',
+                    'label' => 'username',
                 ]);
         }
     }

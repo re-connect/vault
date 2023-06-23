@@ -16,8 +16,8 @@ class UserMinimalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', null, ['label' => 'registerForm.username'])
-            ->add('plainPassword', PasswordType::class, ['label' => 'registerForm.motDePasse']);
+            ->add('username', null, ['label' => 'username'])
+            ->add('plainPassword', PasswordType::class, ['label' => 'password']);
     }
 
     /**
