@@ -10,13 +10,6 @@
     </div>
 {% endblock %}
 
-{% block searchform %}
-    {{ include('v2/vault/components/_search_input.html.twig', {
-        'routeName': 'search_notes',
-        'beneficiaryId': beneficiary.id,
-    }) }}
-{% endblock %}
-
 {% block actionButtons %}
     {{ include('v2/vault/components/_create_personal_data_button.html.twig', {'path' : path('create_note', {'id': beneficiary.id})}) }}
 {% endblock %}

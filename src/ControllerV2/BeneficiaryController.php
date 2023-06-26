@@ -28,7 +28,7 @@ class BeneficiaryController extends AbstractController
     ): Response {
         $query = $request->query;
         $formModel = new FilterUserFormModel(
-            $query->getAlpha('search'),
+            $query->get('search'),
             $relayRepository->find($query->getInt('relay')),
         );
 

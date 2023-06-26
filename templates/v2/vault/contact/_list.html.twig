@@ -19,8 +19,5 @@
 </table>
 <hr class="text-primary">
 <div class="d-flex justify-content-end">
-    {{ knp_pagination_render(contacts, 'v2/vault/components/_pagination.html.twig', {}, {
-        'routeName': 'search_contacts',
-        'id': beneficiary.id
-    }) }}
+    {{ knp_pagination_render(contacts) }}
 </div>
