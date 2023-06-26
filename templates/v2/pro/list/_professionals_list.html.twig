@@ -7,8 +7,5 @@
 {% endblock %}
 
 {% block pagination %}
-    {{ knp_pagination_render(professionals, 'v2/vault/components/_pagination.html.twig', {}, {
-        'routeName': 'filter_pro',
-        'id': null
-    }) }}
+    {{ knp_pagination_render(professionals) }}
 {% endblock %}
