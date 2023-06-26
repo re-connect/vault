@@ -7,8 +7,5 @@
 {% endblock %}
 
 {% block pagination %}
-    {{ knp_pagination_render(beneficiaries, 'v2/vault/components/_pagination.html.twig', {}, {
-        'routeName': 'filter_beneficiaries',
-        'id': null
-    }) }}
+    {{ knp_pagination_render(beneficiaries) }}
 {% endblock %}

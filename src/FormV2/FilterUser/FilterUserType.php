@@ -28,6 +28,9 @@ class FilterUserType extends AbstractType
                 'attr' => [
                     'placeholder' => 'main.chercher',
                     'autofocus' => true,
+                    'data-ajax-list-filter-target' => 'input',
+                    'data-input-name' => 'search',
+                    'data-action' => 'ajax-list-filter#filter',
                 ],
             ])->add('relay', EntityType::class, [
                 'class' => Centre::class,
@@ -36,6 +39,11 @@ class FilterUserType extends AbstractType
                 'placeholder' => 'choose_relay',
                 'required' => false,
                 'choices' => $options['relays'],
+                'attr' => [
+                    'data-ajax-list-filter-target' => 'input',
+                    'data-input-name' => 'relay',
+                    'data-action' => 'ajax-list-filter#filter',
+                ],
             ]);
     }
 
