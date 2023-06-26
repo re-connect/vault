@@ -10,12 +10,12 @@ use App\FormV2\Search\SearchFormModel;
 use App\FormV2\Search\SearchType;
 use App\FormV2\UserCreation\CreateUserType;
 use App\ManagerV2\UserManager;
+use App\Repository\CentreRepository;
 use App\Repository\MembreRepository;
 use App\Security\VoterV2\ProVoter;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,39 +25,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProController extends AbstractController
 {
     #[Route(path: '', name: 'list_pro', methods: ['GET'])]
-    public function listPros(Request $request, MembreRepository $repository, PaginatorService $paginator): Response
-    {
-        return $this->render('v2/pro/list/professionals.html.twig', [
-            'professionals' => $paginator->create(
-                $repository->findByAuthorizedProfessional($this->getUser()->getSubject()),
-                $request->query->getInt('page', 1),
-                PaginatorService::LIST_USER_LIMIT,
-            ),
-            'form' => $this->createForm(FilterUserType::class, null, [
-                'action' => $this->generateUrl('filter_pro'),
-                'attr' => ['data-controller' => 'ajax-list-filter'],
-                'relays' => $this->getUser()->getAffiliatedRelaysWithProfessionalManagement(),
-            ]),
-        ]);
-    }
+    public function listPros(
+        Request $request,
+        MembreRepository $repository,
+        PaginatorService $paginator,
+        CentreRepository $relayRepository,
+    ): Response {
+        $query = $request->query;
+        $formModel = new FilterUserFormModel(
+            $query->getAlpha('search'),
+            $relayRepository->find($query->getInt('relay')),
+        );
 
-    #[Route(
-        path: '/filter',
-        name: 'filter_pro',
-        methods: ['POST'],
-        condition: 'request.isXmlHttpRequest()',
-    )]
-    public function filterPros(Request $request, MembreRepository $repository, PaginatorService $paginator): Response
-    {
-        $formModel = new FilterUserFormModel();
         $form = $this->createForm(FilterUserType::class, $formModel, [
-            'action' => $this->generateUrl('filter_pro'),
+            'action' => $this->generateUrl('list_pro'),
             'attr' => ['data-controller' => 'ajax-list-filter'],
             'relays' => $this->getUser()->getAffiliatedRelaysWithProfessionalManagement(),
         ])->handleRequest($request);
 
-        return new JsonResponse([
-            'html' => $this->render('v2/pro/list/_professionals_list.html.twig', [
+        return $this->render($request->isXmlHttpRequest()
+            ? 'v2/pro/list/_professionals_list.html.twig'
+            : 'v2/pro/list/professionals.html.twig',
+            [
                 'professionals' => $paginator->create(
                     $repository->findByAuthorizedProfessional(
                         $this->getUser()->getSubject(),
@@ -68,8 +57,8 @@ class ProController extends AbstractController
                     PaginatorService::LIST_USER_LIMIT,
                 ),
                 'form' => $form,
-            ])->getContent(),
-        ]);
+            ],
+        );
     }
 
     #[Route(path: '/create/home', name: 'create_pro_home', methods: ['GET'])]
