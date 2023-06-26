@@ -7,6 +7,7 @@ use App\FormV2\FilterUser\FilterUserFormModel;
 use App\FormV2\FilterUser\FilterUserType;
 use App\FormV2\UserCreation\SecretQuestionType;
 use App\Repository\BeneficiaireRepository;
+use App\Repository\CentreRepository;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -39,33 +40,39 @@ class BeneficiaryController extends AbstractController
     #[Route(
         path: '/filter',
         name: 'filter_beneficiaries',
-        methods: ['POST'],
-        condition: 'request.isXmlHttpRequest()',
+        methods: ['GET'],
     )]
     #[IsGranted('ROLE_MEMBRE')]
-    public function searchBeneficiaries(Request $request, BeneficiaireRepository $repository, PaginatorService $paginator): Response
+    public function searchBeneficiaries(Request $request, BeneficiaireRepository $repository, PaginatorService $paginator, CentreRepository $relayRepository): Response
     {
-        $formModel = new FilterUserFormModel();
+        $query = $request->query;
+        $formModel = new FilterUserFormModel(
+            $query->getAlpha('search'),
+            $relayRepository->find($query->getInt('relay')),
+        );
+
         $form = $this->createForm(FilterUserType::class, $formModel, [
             'action' => $this->generateUrl('filter_beneficiaries'),
             'attr' => ['data-controller' => 'ajax-list-filter'],
             'relays' => $this->getUser()->getAffiliatedRelaysWithBeneficiaryManagement(),
         ])->handleRequest($request);
 
-        return new JsonResponse([
-            'html' => $this->render('v2/beneficiary/list/_beneficiaries_list.html.twig', [
-                'beneficiaries' => $paginator->create(
-                    $repository->findByAuthorizedProfessional(
-                        $this->getUser()->getSubject(),
-                        $formModel->search,
-                        $formModel->relay,
-                    ),
-                    $request->query->getInt('page', 1),
-                    PaginatorService::LIST_USER_LIMIT,
+        $responseParams = [
+            'beneficiaries' => $paginator->create(
+                $repository->findByAuthorizedProfessional(
+                    $this->getUser()->getSubject(),
+                    $formModel->search,
+                    $formModel->relay,
                 ),
-                'form' => $form,
-            ])->getContent(),
-        ]);
+                $request->query->getInt('page', 1),
+                PaginatorService::LIST_USER_LIMIT,
+            ),
+            'form' => $form,
+        ];
+
+        return $request->isXmlHttpRequest()
+            ? new JsonResponse(['html' => $this->render('v2/beneficiary/list/_beneficiaries_list.html.twig', $responseParams)->getContent()])
+            : $this->render('v2/beneficiary/list/beneficiaries.html.twig', $responseParams);
     }
 
     #[IsGranted('UPDATE', 'beneficiary')]

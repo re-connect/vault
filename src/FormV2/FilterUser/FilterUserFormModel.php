@@ -6,6 +6,7 @@ use App\Entity\Centre;
 
 class FilterUserFormModel
 {
-    public ?string $search = '';
-    public ?Centre $relay = null;
+    public function __construct(public readonly ?string $search = '', public readonly ?Centre $relay = null)
+    {
+    }
 }
