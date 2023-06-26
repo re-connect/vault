@@ -11,7 +11,6 @@ use App\Repository\CentreRepository;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,30 +20,12 @@ class BeneficiaryController extends AbstractController
 {
     #[Route(path: '', name: 'list_beneficiaries', methods: ['GET'])]
     #[IsGranted('ROLE_MEMBRE')]
-    public function listBeneficiaries(Request $request, BeneficiaireRepository $repository, PaginatorService $paginator): Response
-    {
-        return $this->render('v2/beneficiary/list/beneficiaries.html.twig', [
-            'beneficiaries' => $paginator->create(
-                $repository->findByAuthorizedProfessional($this->getUser()->getSubject()),
-                $request->query->getInt('page', 1),
-                PaginatorService::LIST_USER_LIMIT,
-            ),
-            'form' => $this->createForm(FilterUserType::class, null, [
-                'action' => $this->generateUrl('filter_beneficiaries'),
-                'attr' => ['data-controller' => 'ajax-list-filter'],
-                'relays' => $this->getUser()->getAffiliatedRelaysWithBeneficiaryManagement(),
-            ]),
-        ]);
-    }
-
-    #[Route(
-        path: '/filter',
-        name: 'filter_beneficiaries',
-        methods: ['GET'],
-    )]
-    #[IsGranted('ROLE_MEMBRE')]
-    public function searchBeneficiaries(Request $request, BeneficiaireRepository $repository, PaginatorService $paginator, CentreRepository $relayRepository): Response
-    {
+    public function listBeneficiaries(
+        Request $request,
+        BeneficiaireRepository $repository,
+        PaginatorService $paginator,
+        CentreRepository $relayRepository,
+    ): Response {
         $query = $request->query;
         $formModel = new FilterUserFormModel(
             $query->getAlpha('search'),
@@ -52,27 +33,27 @@ class BeneficiaryController extends AbstractController
         );
 
         $form = $this->createForm(FilterUserType::class, $formModel, [
-            'action' => $this->generateUrl('filter_beneficiaries'),
+            'action' => $this->generateUrl('list_beneficiaries'),
             'attr' => ['data-controller' => 'ajax-list-filter'],
             'relays' => $this->getUser()->getAffiliatedRelaysWithBeneficiaryManagement(),
         ])->handleRequest($request);
 
-        $responseParams = [
-            'beneficiaries' => $paginator->create(
-                $repository->findByAuthorizedProfessional(
-                    $this->getUser()->getSubject(),
-                    $formModel->search,
-                    $formModel->relay,
+        return $this->render($request->isXmlHttpRequest()
+            ? 'v2/beneficiary/list/_beneficiaries_list.html.twig'
+            : 'v2/beneficiary/list/beneficiaries.html.twig',
+            [
+                'beneficiaries' => $paginator->create(
+                    $repository->findByAuthorizedProfessional(
+                        $this->getUser()->getSubject(),
+                        $formModel->search,
+                        $formModel->relay,
+                    ),
+                    $request->query->getInt('page', 1),
+                    PaginatorService::LIST_USER_LIMIT,
                 ),
-                $request->query->getInt('page', 1),
-                PaginatorService::LIST_USER_LIMIT,
-            ),
-            'form' => $form,
-        ];
-
-        return $request->isXmlHttpRequest()
-            ? new JsonResponse(['html' => $this->render('v2/beneficiary/list/_beneficiaries_list.html.twig', $responseParams)->getContent()])
-            : $this->render('v2/beneficiary/list/beneficiaries.html.twig', $responseParams);
+                'form' => $form,
+            ],
+        );
     }
 
     #[IsGranted('UPDATE', 'beneficiary')]

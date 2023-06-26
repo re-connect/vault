@@ -16,7 +16,7 @@ export default class extends Controller {
       .get(`${form.getAttribute('action')}?${queryParams}`)
       .then((response) => {
         const listContainer = document.getElementsByClassName('list-container')[0];
-        listContainer.innerHTML = response.data.html;
+        listContainer.innerHTML = response.data;
       })
   }
 }
