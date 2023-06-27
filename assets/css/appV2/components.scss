@@ -33,8 +33,10 @@ span.spinner-border.d-none-not-important {
 
   cursor: pointer;
   flex-grow: 1;
+  flex-wrap: wrap;
 
   label {
+    margin-top: 1rem;
     cursor: pointer;
     width: 100%;
     min-height: 100px;

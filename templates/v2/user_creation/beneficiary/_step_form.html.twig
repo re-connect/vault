@@ -12,12 +12,12 @@
             }
         }) }}
         <div class="h-100 d-flex flex-column justify-content-between">
-            <div class="mt-5">
-            {% if beneficiaryCreationProcess.isPasswordStep %}
-                {{ include('v2/user_creation/components/_generate_password_input.html.twig', {field: form.password}) }}
-            {% else %}
-                {{ form_widget(form) }}
-            {% endif %}
+            <div>
+                {% if beneficiaryCreationProcess.isPasswordStep %}
+                    {{ include('v2/user_creation/components/_generate_password_input.html.twig', {field: form.password}) }}
+                {% else %}
+                    {{ form_widget(form) }}
+                {% endif %}
             </div>
 
             <div class="text-center mt-4 row">

@@ -173,12 +173,17 @@ class BeneficiaryCreationProcess
 
     public function isPasswordStep(): bool
     {
-        return !$this->remotely && self::PASSWORD_STEP === $this->currentStep;
+        return (self::PASSWORD_STEP === $this->currentStep) && !$this->remotely;
     }
 
     public function isIdentityStep(): bool
     {
         return self::IDENTITY_STEP === $this->currentStep;
+    }
+
+    public function isRelaysStep(): bool
+    {
+        return $this->currentStep === $this->getRelaysStep();
     }
 
     public function getRelaysStep(): int
