@@ -106,7 +106,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->updateUserRelays($user, $relays->relays, $loggedInUserRelays);
 
-            return $this->redirectToRoute('list_professionals');
+            return $this->redirectToRoute('list_pro');
         }
 
         return $this->render('v2/user/affiliation/invite.html.twig', ['form' => $form]);

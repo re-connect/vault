@@ -4,10 +4,13 @@ namespace App\ControllerV2;
 
 use App\Entity\Membre;
 use App\Entity\User;
+use App\FormV2\FilterUser\FilterUserFormModel;
+use App\FormV2\FilterUser\FilterUserType;
 use App\FormV2\Search\SearchFormModel;
 use App\FormV2\Search\SearchType;
 use App\FormV2\UserCreation\CreateUserType;
 use App\ManagerV2\UserManager;
+use App\Repository\CentreRepository;
 use App\Repository\MembreRepository;
 use App\Security\VoterV2\ProVoter;
 use App\ServiceV2\PaginatorService;
@@ -18,21 +21,57 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/pro')]
+#[IsGranted(ProVoter::MANAGE)]
 class ProController extends AbstractController
 {
+    #[Route(path: '', name: 'list_pro', methods: ['GET'])]
+    public function listPros(
+        Request $request,
+        MembreRepository $repository,
+        PaginatorService $paginator,
+        CentreRepository $relayRepository,
+    ): Response {
+        $query = $request->query;
+        $formModel = new FilterUserFormModel(
+            $query->get('search'),
+            $relayRepository->find($query->getInt('relay')),
+        );
+
+        $form = $this->createForm(FilterUserType::class, $formModel, [
+            'action' => $this->generateUrl('list_pro'),
+            'attr' => ['data-controller' => 'ajax-list-filter'],
+            'relays' => $this->getUser()->getAffiliatedRelaysWithProfessionalManagement(),
+        ])->handleRequest($request);
+
+        return $this->render($request->isXmlHttpRequest()
+            ? 'v2/pro/list/_professionals_list.html.twig'
+            : 'v2/pro/list/professionals.html.twig',
+            [
+                'professionals' => $paginator->create(
+                    $repository->findByAuthorizedProfessional(
+                        $this->getUser()->getSubject(),
+                        $formModel->search,
+                        $formModel->relay,
+                    ),
+                    $request->query->getInt('page', 1),
+                    PaginatorService::LIST_USER_LIMIT,
+                ),
+                'form' => $form,
+            ],
+        );
+    }
+
     #[Route(path: '/create/home', name: 'create_pro_home', methods: ['GET'])]
-    #[IsGranted(ProVoter::MANAGE)]
     public function createProHome(): Response
     {
-        $form = $this->createForm(SearchType::class, new SearchFormModel(), [
-            'action' => $this->generateUrl('search_pro'),
+        return $this->render('v2/pro/create/index.html.twig', [
+            'form' => $this->createForm(SearchType::class, new SearchFormModel(), [
+                'action' => $this->generateUrl('search_pro'),
+            ]),
         ]);
-
-        return $this->render('v2/pro/create_index.html.twig', ['form' => $form]);
     }
 
     #[Route(path: '/create', name: 'create_pro', methods: ['GET', 'POST'])]
-    #[IsGranted(ProVoter::MANAGE)]
     public function createPro(Request $request, EntityManagerInterface $em, UserManager $manager): Response
     {
         $user = (new User())->setSubjectMembre(new Membre());
@@ -46,11 +85,10 @@ class ProController extends AbstractController
             return $this->redirectToRoute('invite_user', ['id' => $user->getId()]);
         }
 
-        return $this->render('v2/pro/create.html.twig', ['form' => $form]);
+        return $this->render('v2/pro/create/create.html.twig', ['form' => $form]);
     }
 
     #[Route(path: '/search', name: 'search_pro', methods: ['GET', 'POST'])]
-    #[IsGranted(ProVoter::MANAGE)]
     public function searchPros(Request $request, MembreRepository $repository, PaginatorService $paginator): Response
     {
         $search = new SearchFormModel($request->query->get('q'));
@@ -68,7 +106,7 @@ class ProController extends AbstractController
         );
 
         return $request->isXmlHttpRequest()
-            ? $this->render('v2/pro/_search_results_card.html.twig', ['pros' => $pros])
-            : $this->render('v2/pro/search.html.twig', ['form' => $form, 'pros' => $pros]);
+            ? $this->render('v2/pro/create/_search_results_card.html.twig', ['pros' => $pros])
+            : $this->render('v2/pro/create/search.html.twig', ['form' => $form, 'pros' => $pros]);
     }
 }

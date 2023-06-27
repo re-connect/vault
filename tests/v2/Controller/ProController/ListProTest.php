@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\v2\Controller\ProfessionalController;
+namespace App\Tests\v2\Controller\ProController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
@@ -10,7 +10,7 @@ use App\Tests\Factory\MembreFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 
-class ListProfessionalsTest extends AbstractControllerTest implements TestRouteInterface
+class ListProTest extends AbstractControllerTest implements TestRouteInterface
 {
     private ?UserHelper $userHelper;
     private ?MembreRepository $repository;
@@ -23,7 +23,7 @@ class ListProfessionalsTest extends AbstractControllerTest implements TestRouteI
         $this->repository = $container->get(MembreRepository::class);
     }
 
-    private const URL = '/professionals';
+    private const URL = '/pro';
 
     public function provideTestRoute(): ?\Generator
     {

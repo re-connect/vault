@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Tests\v2\Controller;
+namespace App\Tests\v2\Controller\ProController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
+use App\Tests\v2\Controller\AbstractControllerTest;
+use App\Tests\v2\Controller\TestRouteInterface;
 
-class ProControllerTest extends AbstractControllerTest implements TestRouteInterface
+class CreateHomeTest extends AbstractControllerTest implements TestRouteInterface
 {
     private const HOME_URL = '/pro/create/home';
     private const SEARCH_URL = '/pro/search';

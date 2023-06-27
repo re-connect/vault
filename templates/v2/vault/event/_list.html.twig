@@ -16,8 +16,5 @@
 </table>
 <hr class="text-primary">
 <div class="d-flex justify-content-end">
-    {{ knp_pagination_render(events, 'v2/vault/components/_pagination.html.twig', {}, {
-        'routeName': 'search_events',
-        'id': beneficiary.id
-    }) }}
+    {{ knp_pagination_render(events) }}
 </div>
