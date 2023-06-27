@@ -893,6 +893,7 @@ statut.confirmed: Confirmed
 statut.created: Created
 statut.waiting: 'Waiting(cheque/bank transfer)'
 steps_count: 'Step %step%/%totalSteps%'
+subscribe_newsletter: Subscribe to our newsletter !
 subscription_confirmation: 'Subscription confirmation'
 summary: Summary
 summary_confirm_information: 'Summary, please confirm the information below'
