@@ -1076,6 +1076,7 @@ statut.created: Créé
 statut.waiting: 'En attente (cheque/virement)'
 steps_count: 'Étape %step%/%totalSteps%'
 submit: Valider
+subscribe_newsletter: Abonnez-vous à notre newsletter !
 subscription_confirmation: "Confirmation d'inscription"
 summary: Récapitulatif
 summary_confirm_information: 'Récapitulatif, veuillez confirmer les informations enregistrées ci-dessous'
