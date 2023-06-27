@@ -4,6 +4,15 @@ $pagination-color: theme-color("primary");
 $pagination-active-bg: theme-color("grey");
 $pagination-hover-color: theme-color("primary");
 
-.page-link.active, .active > .page-link {
-  border-color: inherit;
+.pagination {
+  z-index: 0;
+
+  .page-link {
+    color: theme-color("primary");
+  }
+
+  .page-link.active, .active > .page-link {
+    border-color: theme-color("grey");
+    background-color: theme-color("grey");
+  }
 }
