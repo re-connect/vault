@@ -14,13 +14,13 @@
             <div class="col d-flex flex-column justify-content-center {{ not relay.bValid ? 'd-none' : '' }}">
                 {% if is_granted('ROLE_MEMBRE') %}
                     {% if relay.canManageBeneficiaries %}
-                        <a href="{{ path('list_beneficiaries') }}"
+                        <a href="{{ path('list_beneficiaries', {'relay': center.id}) }}"
                            class="btn btn-blue text-white my-1">
                             {{ 'show_beneficiaries'|trans }}
                         </a>
                     {% endif %}
                     {% if relay.canManageProfessionals %}
-                        <a href="#"
+                        <a href="{{ path('list_pro', {'relay': center.id}) }}"
                            class="btn btn-blue text-white my-1">
                             {{ 'show_professionals'|trans }}
                         </a>
