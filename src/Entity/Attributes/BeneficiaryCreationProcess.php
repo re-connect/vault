@@ -181,6 +181,11 @@ class BeneficiaryCreationProcess
         return self::IDENTITY_STEP === $this->currentStep;
     }
 
+    public function isRelaysStep(): bool
+    {
+        return $this->currentStep === $this->getRelaysStep();
+    }
+
     public function getRelaysStep(): int
     {
         return $this->remotely ? self::REMOTELY_RELAYS_STEP : self::RELAYS_STEP;

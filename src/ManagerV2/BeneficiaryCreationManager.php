@@ -60,7 +60,9 @@ class BeneficiaryCreationManager
         $beneficiary = $this->getOrCreateBeneficiary($creationProcess);
         $this->em->persist($creationProcess);
         $this->updatePassword($beneficiary);
-        $this->updateRelays($beneficiary);
+        if ($creationProcess->isRelaysStep()) {
+            $this->updateRelays($beneficiary);
+        }
         $this->em->flush();
     }
 
