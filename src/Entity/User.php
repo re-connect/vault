@@ -1190,6 +1190,13 @@ class User extends BaseUser implements \JsonSerializable
         return null !== $this->getSubjectRelaysForRelay($relay);
     }
 
+    public function isInvitedToRelay(Centre $relay): bool
+    {
+        $userRelay = $this->getSubjectRelaysForRelay($relay);
+
+        return $userRelay !== null && !$userRelay->getBValid();
+    }
+
     public function getSubjectRelaysForRelay(Centre $relay): UserCentre|null
     {
         return $this->getSubjectRelays()

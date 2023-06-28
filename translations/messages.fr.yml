@@ -676,7 +676,7 @@ main.choisir: Choisir
 main.connexion: Connexion
 main.continuer: Continuer
 main.error.defaultSubTitle: "L'erreur suivante vient de se produire :"
-main.error.defaultTitle: "Une erreur s'est produite !"
+an_error_occurred: Une erreur s'est produite !
 main.error.error403SubTitle: "Il semble que vous n'ayez pas le droit d'effectuer cette action :"
 main.error.error403Title: 'Action interdite'
 main.error.error404SubTitle: 'Impossible de trouver la page demandée :'

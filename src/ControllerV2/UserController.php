@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -74,7 +73,7 @@ class UserController extends AbstractController
         $user = $this->getUser();
 
         if (!$this->isGranted('DELETE', $user)) {
-            throw new AccessDeniedException();
+            throw $this->createAccessDeniedException();
         }
 
         $form = $this->createFormBuilder()->getForm()->handleRequest($request);

@@ -6,10 +6,7 @@
     </div>
     <div class="col-12 col-md-8 bold">
         {{ form_start(form, {
-            'attr': {
-                'data-controller': 'conditional-field',
-                'class': 'display-required-labels h-100',
-            }
+            attr: {'data-controller': 'conditional-field', class: 'display-required-labels h-100'}
         }) }}
         <div class="h-100 d-flex flex-column justify-content-between">
             <div>
@@ -19,22 +16,18 @@
                     {{ form_widget(form) }}
                 {% endif %}
             </div>
-
             <div class="text-center mt-4 row">
                 <div class="col-6 d-grid gap-2">
                     {{ include('v2/common/_button_with_loader.html.twig', {
-                        'text': 'back'|trans,
-                        'href': path('create_beneficiary', {
+                        text: 'back'|trans,
+                        href: path('create_beneficiary', {
                             step: beneficiaryCreationProcess.previousStep,
                             id: beneficiaryCreationProcess.id,
                         })
                     }) }}
                 </div>
                 <div class="col-6 d-grid gap-2">
-                    {{ include('v2/common/_button_with_loader.html.twig', {
-                        'text': 'confirm'|trans,
-                        'color': 'blue',
-                    }) }}
+                    {{ include('v2/common/_button_with_loader.html.twig', {text: 'confirm'|trans, color: 'blue'}) }}
                 </div>
                 {{ form_end(form) }}
             </div>

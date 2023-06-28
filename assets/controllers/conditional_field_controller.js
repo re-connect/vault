@@ -1,22 +1,22 @@
-import { Controller } from "@hotwired/stimulus";
+import { Controller } from '@hotwired/stimulus';
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
   static targets = ['conditionalField', 'conditionedField'];
 
-  connect() {
+  connect () {
     this.toggleFieldDisplay();
   }
 
-  update() {
+  update () {
     this.toggleFieldDisplay();
   }
 
   toggleFieldDisplay() {
     const conditionalField = this.conditionalFieldTarget;
     const conditionedField = this.conditionedFieldTarget;
-    const conditionalValue = conditionalField.dataset.conditionalValue
+    const conditionalValue = conditionalField.dataset.conditionalValue;
 
-    conditionedField.classList.toggle('d-none', conditionalValue !== conditionalField.value)
+    conditionedField.classList.toggle('d-none', conditionalValue !== conditionalField.value);
   }
 }

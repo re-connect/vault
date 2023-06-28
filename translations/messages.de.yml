@@ -332,7 +332,7 @@ main.choisir: Auswählen
 main.connexion: Verbinden
 main.continuer: Weiter
 main.error.defaultSubTitle: 'Es ist ein Fehler aufgetreten'
-main.error.defaultTitle: 'Es ist ein Fehler aufgetreten'
+an_error_occurred: 'Es ist ein Fehler aufgetreten'
 main.error.error403SubTitle: 'Du hast keine Berechtigung diese Aktion durchzuführen'
 main.error.error403Title: 'Das ist nicht erlaubt'
 main.error.error404SubTitle: 'Die aufgerufene Seite konnte nicht gefunden werden'
