@@ -12,12 +12,12 @@ use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -74,7 +74,7 @@ class UserController extends AbstractController
         $user = $this->getUser();
 
         if (!$this->isGranted('DELETE', $user)) {
-            throw new AccessDeniedException();
+            throw $this->createAccessDeniedException();
         }
 
         $form = $this->createFormBuilder()->getForm()->handleRequest($request);
@@ -93,7 +93,16 @@ class UserController extends AbstractController
     }
 
     #[IsGranted('ROLE_MEMBRE')]
-    #[Route(path: '/{id<\d+>}/invite', name: 'invite_user', methods: [Request::METHOD_GET, 'POST'])]
+    #[Route(path: '/{id<\d+>}/toggle-invite/{relay<\d+>}', name: 'toggle_user_invitation', methods: ['GET'])]
+    public function toggleUserInvitation(User $user, #[MapEntity(id: 'relay')] Centre $relay, RelayManager $manager): Response
+    {
+        $manager->toggleUserInvitationToRelay($user, $relay);
+
+        return $this->json([]);
+    }
+
+    #[IsGranted('ROLE_MEMBRE')]
+    #[Route(path: '/{id<\d+>}/invite', name: 'invite_user', methods: ['GET', 'POST'])]
     public function inviteUser(Request $request, User $user, RelayManager $manager): Response
     {
         $relays = new AffiliateUserModel($user->getRelays());

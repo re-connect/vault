@@ -328,7 +328,7 @@ main.choisir: اختيار
 main.connexion: شارع
 main.continuer: متابعة
 main.error.defaultSubTitle: 'الخطأ التالي حدث لتوه :'
-main.error.defaultTitle: 'حدث خطأ ما'
+an_error_occurred: 'حدث خطأ ما'
 main.error.error403SubTitle: 'يبدو انه ليس لك الحق بالقيام بهذا العمل :'
 main.error.error403Title: 'عمل محظور'
 main.error.error404SubTitle: 'مستحيل ايجاد الصفحة المطلوبة'

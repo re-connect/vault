@@ -553,7 +553,7 @@ main.choisir: Select
 main.connexion: Connection
 main.continuer: Continue
 main.error.defaultSubTitle: 'This error was just made:'
-main.error.defaultTitle: 'An error has occurred!'
+an_error_occurred: 'An error has occurred!'
 main.error.error403SubTitle: "It seems that you don't have the rights to realize this action:"
 main.error.error403Title: 'Forbidden action'
 main.error.error404SubTitle: 'Impossible to find the requested page'

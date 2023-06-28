@@ -31,6 +31,11 @@ abstract class Subject implements \JsonSerializable
         return $this->user->getFullName();
     }
 
+    public function getUserId(): ?int
+    {
+        return $this->user?->getId();
+    }
+
     public function getUser(): ?User
     {
         return $this->user;

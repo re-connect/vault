@@ -11,13 +11,13 @@
            text-{{ color }}
            {{ isReached ? '' : 'pe-none' }}"
            data-turbo="false">
-            <i class="fa fa-lg breadcrumb-icon position-relative bg-white rounded-circle text-{{ color }}
+            <i class="fa fa-lg breadcrumb-icon position-relative rounded-circle text-{{ color }}
                 {% if isCurrentStep %}
-                    fa-circle
+                    fa-circle bg-white
                 {% elseif isDone  %}
-                    fa-check-circle
+                    fa-check-circle bg-white
                 {% else %}
-                    fa-circle-notch
+                    fa-circle fa-regular
                 {% endif %}
             "></i>
             {{ breadCrumbStepNames[step]|trans }}

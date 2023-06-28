@@ -30,12 +30,12 @@ class UserInformationType extends AbstractType
                     'class' => 'intl-tel-input',
                 ],
             ])
-            ->addEventSubscriber(new AddFormattedPhoneSubscriber())
             ->add('email', EmailType::class, [
                 'required' => false,
                 'row_attr' => ['class' => 'col-6 mt-3'],
                 'label' => 'email',
-            ]);
+            ])
+            ->addEventSubscriber(new AddFormattedPhoneSubscriber());
     }
 
     public function configureOptions(OptionsResolver $resolver): void
