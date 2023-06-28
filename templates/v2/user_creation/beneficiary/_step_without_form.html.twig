@@ -1,0 +1,26 @@
+<div class="col-3 d-none d-md-block">
+    {{ include('v2/user_creation/beneficiary/_breadcrumb.html.twig', {beneficiaryCreationProcess}) }}
+</div>
+<div class="col-12 col-md-8">
+    <div class="h-100 d-flex flex-column justify-content-between">
+        {% block stepContent %}{% endblock %}
+        <div class="row">
+            <div class="col-6 d-grid gap-2">
+                {{ include('v2/common/_button_with_loader.html.twig', {
+                    text: 'back'|trans,
+                    href: path('create_beneficiary', {
+                        step: beneficiaryCreationProcess.previousStep,
+                        id: beneficiaryCreationProcess.id,
+                    })
+                }) }}
+            </div>
+            <div class="col-6 d-grid gap-2">
+                {{ include('v2/common/_button_with_loader.html.twig', {
+                    text: 'confirm'|trans,
+                    color: 'blue',
+                    href: path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': beneficiaryCreationProcess.nextStep})
+                }) }}
+            </div>
+        </div>
+    </div>
+</div>
