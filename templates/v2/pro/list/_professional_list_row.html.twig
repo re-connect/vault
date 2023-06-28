@@ -11,6 +11,9 @@
     <span class="text-grey">{{ user.username }}</span>
 {% endblock %}
 
+{% block actions %}
+{% endblock %}
+
 {% block actionDropdown %}
     {{ include('v2/users_list/components/_action_dropdown.html.twig', {
         removeFromRelay: {

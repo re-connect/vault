@@ -35,9 +35,10 @@ class ProController extends AbstractController
         CentreRepository $relayRepository,
     ): Response {
         $query = $request->query;
+        $relay = $relayRepository->find($query->getInt('relay'));
         $formModel = new FilterUserFormModel(
             $query->get('search'),
-            $relayRepository->find($query->getInt('relay')),
+            $relay,
         );
 
         $form = $this->createForm(FilterUserType::class, $formModel, [
@@ -60,6 +61,7 @@ class ProController extends AbstractController
                     PaginatorService::LIST_USER_LIMIT,
                 ),
                 'form' => $form,
+                'relay' => $relay,
             ],
         );
     }
