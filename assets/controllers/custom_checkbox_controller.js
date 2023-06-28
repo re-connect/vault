@@ -18,7 +18,6 @@ export default class extends Controller {
   }
 
   click (event) {
-    console.log(this.togglableClassesValue);
     const target = event.currentTarget;
     this.toggleClasses(target);
     if (!event.params.path) {
@@ -26,8 +25,6 @@ export default class extends Controller {
     }
 
     axios.get(event.params.path)
-      .then(() => {
-      })
       .catch(error => {
         this.toggleClasses(target);
         if (error.response.status >= 500) {

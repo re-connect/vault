@@ -58,10 +58,10 @@ class RelayManager
     {
         if ($user->isInvitedToRelay($relay)) {
             $this->removeUserInvitationToRelay($user, $relay);
-        } elseif ($user->isLinkedToRelay($relay)) {
-            throw new AccessDeniedException();
-        } else {
+        } elseif (!$user->isLinkedToRelay($relay)) {
             $this->inviteUserToRelay($user, $relay);
+        } else {
+            throw new AccessDeniedException();
         }
     }
 
