@@ -28,12 +28,11 @@
             </h5>
         </div>
     {% endif %}
-
     <div class="row">
         {% if beneficiaryCreationProcess.isRelaysStep %}
-            {{ include('v2/user_creation/components/_relays_checkboxes.html.twig', {beneficiaryCreationProcess}) }}
+            {{ include('v2/user_creation/beneficiary/_step_relays.html.twig', {beneficiary}) }}
         {% elseif beneficiaryCreationProcess.isStepWithForm %}
-            {{ include('v2/user_creation/beneficiary/_step_form.html.twig', {beneficiary, beneficiaryCreationProcess, form}) }}
+            {{ include('v2/user_creation/beneficiary/_step_form.html.twig', {beneficiaryCreationProcess, form}) }}
         {% else %}
             {{ include('v2/user_creation/beneficiary/_step_5.html.twig', {beneficiary, beneficiaryCreationProcess}) }}
         {% endif %}
@@ -52,9 +51,9 @@
 
     {% if beneficiary.id and beneficiary.user.hasSuffixedUsername and beneficiaryCreationProcess.isPasswordStep %}
         {{ include('v2/notifications/notification_modal.twig', {
-            'title': 'duplicated_username'|trans,
-            'content': 'duplicated_username_alert'|trans,
-            'cancelPath': path('create_beneficiary_abort', {'id': beneficiaryCreationProcess.id}),
+            title: 'duplicated_username'|trans,
+            content: 'duplicated_username_alert'|trans,
+            cancelPath: path('create_beneficiary_abort', {id: beneficiaryCreationProcess.id}),
         }) }}
     {% endif %}
 {% endblock %}

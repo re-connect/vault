@@ -88,10 +88,6 @@ class CreateBeneficiaryType extends AbstractType
 
     private function addStep2Fields(FormBuilderInterface $builder, Beneficiaire $beneficiary, bool $isRemotely): void
     {
-        if ($isRemotely) {
-            $this->addRelaysFields($builder, $beneficiary->getCentres());
-        } else {
-            $this->addPasswordFields($builder);
-        }
+        $this->addPasswordFields($builder);
     }
 }
