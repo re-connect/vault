@@ -1,0 +1,31 @@
+{% extends 'v2/user_creation/beneficiary/_step_without_form.html.twig' %}
+
+{% set activeClasses = 'bg-primary text-white' %}
+{% set inactiveClasses = 'text-primary' %}
+{% block stepContent %}
+    <div class="row d-flex justify-content-around align-items-center"
+            {{ stimulus_controller('custom-checkbox', {
+                errorText: 'an_error_occurred'|trans,
+                togglableClasses: inactiveClasses|split(' ')|merge(activeClasses|split(' '))
+            }) }}
+    >
+        {% for userRelay in app.user.userRelays %}
+            <div class="col-12 col-sm-6 col-md-4 h-100">
+                {% set relay = userRelay.centre %}
+                <a
+                        class="btn btn-light border-primary {{ beneficiary.user.isLinkedToRelay(relay) ? activeClasses : inactiveClasses }}"
+                        {{ stimulus_action('custom-checkbox', 'click', null, {
+                            path: path('toggle_user_invitation', {
+                                id: beneficiary.userId,
+                                relay: relay.id,
+                            })
+                        }) }}
+                >
+                    <span>{{ relay.nameAndAddress }}</span>
+                    <br/>
+                    <i class="fa fa-hotel fa-4x mt-3"></i>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
