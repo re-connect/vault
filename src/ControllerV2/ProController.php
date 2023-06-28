@@ -16,7 +16,7 @@ use App\Repository\MembreRepository;
 use App\Security\VoterV2\ProVoter;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -116,9 +116,8 @@ class ProController extends AbstractController
     }
 
     #[Route(
-        path: '/{id}/relay/{relayId}/toggle-right/{right}',
-        name: 'pro_toggle_right',
-        requirements: ['id' => '\d+', 'relayId' => '\d+', 'right' => '[a-z]+'],
+        path: '/{id<\d+>}/relay/{relay<\d+>}/toggle-permission/{right<[a-z]+>}',
+        name: 'toggle_pro_permission',
         methods: ['PATCH'],
         condition: "request.isXmlHttpRequest() and
         params['right'] in [
@@ -126,11 +125,14 @@ class ProController extends AbstractController
         constant('App\\\Entity\\\MembreCentre::TYPEDROIT_GESTION_MEMBRES'),
         ]",
     )]
-    #[ParamConverter('relay', class: 'App\Entity\Centre', options: ['id' => 'relayId'])]
     #[IsGranted('UPDATE', 'pro')]
-    public function toggleRight(Membre $pro, Centre $relay, string $right, EntityManagerInterface $em): JsonResponse
-    {
-        $pro->getUserCentre($relay)?->toggleRight($right);
+    public function togglePermission(
+        Membre $pro,
+        #[MapEntity(id: 'relay')] Centre $relay,
+        string $permission,
+        EntityManagerInterface $em,
+    ): JsonResponse {
+        $pro->getUserCentre($relay)?->togglePermission($permission);
         $em->flush();
 
         return new JsonResponse($pro);

@@ -18,7 +18,7 @@
     <button class="btn border-0"
         {% if relay %}
             {{ stimulus_controller('ajax-toggle', {
-                url: path('pro_toggle_right', {id: user.subjectMembre.id, relayId: relay.id, right: button.right}),
+                url: path('toggle_pro_permission', {id: user.subjectMembre.id, relay: relay.id, right: button.right}),
             }) }}
             {{ stimulus_action('ajax-toggle', 'toggle') }}
         {% endif %}
