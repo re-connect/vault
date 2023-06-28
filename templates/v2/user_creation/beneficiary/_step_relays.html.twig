@@ -1,7 +1,5 @@
 {% extends 'v2/user_creation/beneficiary/_step_without_form.html.twig' %}
 
-{% set activeClasses = 'bg-primary text-white' %}
-{% set inactiveClasses = 'text-primary' %}
 {% block stepContent %}
-    {{ include('v2/user_creation/components/_relays_checkboxes.html.twig', { user: beneficiary.user }) }}
+    {{ include('v2/user_creation/components/_relays_checkboxes.html.twig', {user: beneficiary.user}) }}
 {% endblock %}

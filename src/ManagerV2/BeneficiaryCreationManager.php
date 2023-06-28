@@ -18,7 +18,6 @@ class BeneficiaryCreationManager
         private readonly UserManager $userManager,
         private readonly Security $security,
         private readonly EntityManagerInterface $em,
-        private readonly RelayManager $relayManager,
         private readonly NotificationService $notificator,
     ) {
     }

@@ -254,7 +254,6 @@ class User extends BaseUser implements \JsonSerializable
         return $this->email;
     }
 
-
     public function getBirthDate(): ?\DateTime
     {
         return $this->birthDate;

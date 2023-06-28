@@ -1,3 +1,6 @@
+{% set activeClasses = 'bg-primary text-white' %}
+{% set inactiveClasses = 'text-primary' %}
+
 <div class="row d-flex justify-content-around align-items-center"
         {{ stimulus_controller('custom-checkbox', {
             errorText: 'an_error_occurred'|trans,
