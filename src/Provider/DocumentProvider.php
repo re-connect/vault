@@ -448,11 +448,10 @@ class DocumentProvider extends DonneePersonnelleProvider
             $document = new Document();
 
             if ($byUser instanceof User) {
+                $creatorUser = (new CreatorUser())->setEntity($byUser);
+                $document->addCreator($creatorUser);
                 if ($byUser->isBeneficiaire()) {
                     $document->setBPrive(true);
-                } else {
-                    $creatorUser = (new CreatorUser())->setEntity($byUser);
-                    $document->addCreator($creatorUser);
                 }
             }
 

@@ -69,7 +69,6 @@ class CreateBeneficiaryType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Beneficiaire::class,
             'validation_groups' => ['beneficiaire'],
-            'cascade_validation' => true,
         ]);
     }
 
