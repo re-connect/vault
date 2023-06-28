@@ -4,11 +4,8 @@ namespace App\FormV2\UserCreation;
 
 use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Beneficiaire;
-use App\Entity\Centre;
 use App\FormV2\UserInformationType;
 use App\ServiceV2\Traits\UserAwareTrait;
-use Doctrine\Common\Collections\Collection;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
@@ -39,7 +36,6 @@ class CreateBeneficiaryType extends AbstractType
             default => $this->addIdentityFields($builder, $beneficiary->getDateNaissance(), $creationProcess?->isRemotely()),
             2 => $this->addStep2Fields($builder, $beneficiary, $creationProcess->isRemotely()),
             3 => $this->secretQuestionType->addFields($builder, $beneficiary),
-            4 => $this->addRelaysFields($builder, $beneficiary->getCentres()),
         };
     }
 
@@ -65,24 +61,6 @@ class CreateBeneficiaryType extends AbstractType
             ->add('password', TextType::class, [
                 'property_path' => 'user.plainPassword',
                 'label' => 'password',
-            ]);
-    }
-
-    /** @param Collection<int, Centre> $relays */
-    public function addRelaysFields(FormBuilderInterface $builder, Collection $relays): void
-    {
-        $builder
-            ->add('relays', EntityType::class, [
-                'multiple' => true,
-                'expanded' => true,
-                'choices' => $this->getUser()->getCentres(),
-                'choice_label' => 'nameAndAddress',
-                'class' => Centre::class,
-                'label' => false,
-                'data' => $relays,
-                'row_attr' => ['class' => 'relay-checkboxes'],
-                'label_attr' => ['class' => 'btn btn-outline-primary no-hover'],
-                'choice_attr' => fn () => ['class' => 'btn-check'],
             ]);
     }
 

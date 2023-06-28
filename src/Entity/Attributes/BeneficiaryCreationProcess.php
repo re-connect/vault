@@ -140,7 +140,7 @@ class BeneficiaryCreationProcess
 
     public function isStepWithForm(): bool
     {
-        return $this->getTotalFormSteps() >= $this->currentStep;
+        return !$this->isRelaysStep() && $this->getTotalFormSteps() >= $this->currentStep;
     }
 
     public function getBreadCrumbStepNames(): ?array
