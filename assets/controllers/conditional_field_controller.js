@@ -12,7 +12,10 @@ export default class extends Controller {
     this.toggleFieldDisplay();
   }
 
-  toggleFieldDisplay() {
+  toggleFieldDisplay () {
+    if (!this.targets.has('conditionalFieldTarget')) {
+      return;
+    }
     const conditionalField = this.conditionalFieldTarget;
     const conditionedField = this.conditionedFieldTarget;
     const conditionalValue = conditionalField.dataset.conditionalValue;

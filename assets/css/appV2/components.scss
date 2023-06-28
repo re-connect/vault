@@ -20,6 +20,11 @@
 .breadcrumb-step {
   .breadcrumb-icon {
     right: 12px;
+
+    &:before {
+      background-color: theme-color('light');
+      border-radius: 100%;
+    }
   }
 }
 
