@@ -15,13 +15,22 @@
 ] %}
 
 {% for button in buttons %}
-    <button class="btn border-0">
-    <i class="fas fa-{{ button.icon }} fa-2x text-{{ currentUserRelay and currentUserRelay.hasDroit(button.right) ? 'primary' : 'grey ' }}"
-        {% if not currentUserRelay %}
-            data-toggle="tooltip"
-            data-placement="top"
-            title="{{ 'you_must_select_center_for_right_update'|trans }}"
+    <button class="btn border-0"
+        {% if relay %}
+            {{ stimulus_controller('ajax-toggle', {
+                url: path('pro_toggle_right', {id: user.subjectMembre.id, relayId: relay.id, right: button.right}),
+            }) }}
+            {{ stimulus_action('ajax-toggle', 'toggle') }}
         {% endif %}
-    ></i>
+    >
+        <i class="fas fa-{{ button.icon }} fa-2x text-{{ currentUserRelay and currentUserRelay.hasDroit(button.right) ? 'primary' : 'grey ' }}"
+            {{ stimulus_target('ajax-toggle', 'icon') }}
+           data-toggle-classes='["text-primary", "text-grey"]'
+            {% if not currentUserRelay %}
+                data-toggle="tooltip"
+                data-placement="top"
+                title="{{ 'you_must_select_center_for_right_update'|trans }}"
+            {% endif %}
+        ></i>
     </button>
 {% endfor %}
