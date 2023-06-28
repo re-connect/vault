@@ -324,7 +324,7 @@ main.choisir: Выбрать
 main.connexion: Вход
 main.continuer: Пролоджить
 main.error.defaultSubTitle: 'Произошла следующая ошибка :'
-main.error.defaultTitle: 'Произошла ошибка !'
+an_error_occurred: 'Произошла ошибка !'
 main.error.error403SubTitle: 'Кажется, вы не имеете права выполнить это действие :'
 main.error.error403Title: 'Действие запрещено'
 main.error.error404SubTitle: 'Невозможно найти запрашиваемую страницу :'
