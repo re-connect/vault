@@ -241,6 +241,20 @@ class User extends BaseUser implements \JsonSerializable
         return $this;
     }
 
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        $this->emailCanonical = $email;
+
+        return $this;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+
     public function getBirthDate(): ?\DateTime
     {
         return $this->birthDate;
@@ -718,9 +732,7 @@ class User extends BaseUser implements \JsonSerializable
             'telephone' => $this->telephone,
             'username' => $this->username,
             'type_user' => $this->typeUser,
-//            'username_canonical' => $this->usernameCanonical,
             'email' => $this->email,
-//            'email_canonical' => $this->emailCanonical,
 //            'enabled' => $this->enabled,
             'last_login' => null !== $this->derniereConnexionAt ? $this->derniereConnexionAt->format(\DateTime::W3C) : null,
 //            'groups' => $this->groups,

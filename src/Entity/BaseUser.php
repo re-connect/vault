@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Entity\Traits\DeactivatableTrait;
 use Symfony\Component\Security\Core\User\LegacyPasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, UserInterface
 {
@@ -22,13 +21,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
      * @var string
      */
     protected $usernameCanonical;
-
-    /**
-     * @var string
-     *
-     * @Assert\Email
-     */
-    protected $email;
 
     /**
      * @var string
@@ -97,63 +89,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this->username;
     }
 
-    public function __serialize(): array
-    {
-        return [
-            $this->password,
-            $this->salt,
-            $this->usernameCanonical,
-            $this->username,
-            $this->enabled,
-            $this->id,
-            $this->email,
-            $this->emailCanonical,
-        ];
-    }
-
-    public function __unserialize(array $data): void
-    {
-        if (13 === count($data)) {
-            // Unserializing a User object from 1.3.x
-            unset($data[4], $data[5], $data[6], $data[9], $data[10]);
-            $data = array_values($data);
-        } elseif (11 === count($data)) {
-            // Unserializing a User from a dev version somewhere between 2.0-alpha3 and 2.0-beta1
-            unset($data[4], $data[7], $data[8]);
-            $data = array_values($data);
-        }
-
-        list(
-            $this->password,
-            $this->salt,
-            $this->usernameCanonical,
-            $this->username,
-            $this->enabled,
-            $this->id,
-            $this->email,
-            $this->emailCanonical
-        ) = $data;
-    }
-
-    /**
-     * @internal
-     */
-    final public function serialize()
-    {
-        return serialize($this->__serialize());
-    }
-
-    /**
-     * @internal
-     */
-    final public function unserialize($serialized)
-    {
-        $this->__unserialize(unserialize($serialized));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function addRole($role)
     {
         $role = strtoupper($role);
@@ -193,17 +128,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this->salt;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getEmailCanonical()
     {
         return $this->emailCanonical;
@@ -286,20 +210,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-        $this->emailCanonical = $email;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setEmailCanonical($emailCanonical)
     {
         $this->emailCanonical = $emailCanonical;
