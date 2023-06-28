@@ -117,6 +117,14 @@ class MembreCentre extends UserCentre
             && true === $this->getDroits()[self::TYPEDROIT_GESTION_MEMBRES];
     }
 
+    public function toggleRight(string $right): void
+    {
+        if (!in_array($right, [self::TYPEDROIT_GESTION_BENEFICIAIRES, self::TYPEDROIT_GESTION_MEMBRES])) {
+            return;
+        }
+        $this->droits[$right] = !$this->droits[$right];
+    }
+
     /**
      * Specify data which should be serialized to JSON.
      *

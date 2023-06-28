@@ -2,6 +2,7 @@
 
 namespace App\ControllerV2;
 
+use App\Entity\Centre;
 use App\Entity\Membre;
 use App\Entity\User;
 use App\FormV2\FilterUser\FilterUserFormModel;
@@ -15,10 +16,12 @@ use App\Repository\MembreRepository;
 use App\Security\VoterV2\ProVoter;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: '/pro')]
 #[IsGranted(ProVoter::MANAGE)]
@@ -108,5 +111,26 @@ class ProController extends AbstractController
         return $request->isXmlHttpRequest()
             ? $this->render('v2/pro/create/_search_results_card.html.twig', ['pros' => $pros])
             : $this->render('v2/pro/create/search.html.twig', ['form' => $form, 'pros' => $pros]);
+    }
+
+    #[Route(
+        path: '/{id}/relay/{relayId}/toggle-right/{right}',
+        name: 'pro_toggle_right',
+        requirements: ['id' => '\d+', 'relayId' => '\d+', 'right' => '[a-z]+'],
+        methods: ['PATCH'],
+        condition: "request.isXmlHttpRequest() and
+        params['right'] in [
+        constant('App\\\Entity\\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES'),
+        constant('App\\\Entity\\\MembreCentre::TYPEDROIT_GESTION_MEMBRES'),
+        ]",
+    )]
+    #[ParamConverter('relay', class: 'App\Entity\Centre', options: ['id' => 'relayId'])]
+    #[IsGranted('UPDATE', 'pro')]
+    public function toggleRight(Membre $pro, Centre $relay, string $right, EntityManagerInterface $em): JsonResponse
+    {
+        $pro->getUserCentre($relay)?->toggleRight($right);
+        $em->flush();
+
+        return new JsonResponse($pro);
     }
 }
