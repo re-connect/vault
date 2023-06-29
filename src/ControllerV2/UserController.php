@@ -5,8 +5,6 @@ namespace App\ControllerV2;
 use App\Entity\Centre;
 use App\Entity\User;
 use App\FormV2\ChangePasswordFormType;
-use App\FormV2\UserAffiliation\AffiliateUserType;
-use App\FormV2\UserAffiliation\Model\AffiliateUserModel;
 use App\FormV2\UserSettingsType;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;

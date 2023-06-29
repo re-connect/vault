@@ -3,8 +3,6 @@
 namespace App\ControllerV2;
 
 use App\Entity\Beneficiaire;
-use App\FormV2\UserAffiliation\AffiliateBeneficiaryType;
-use App\FormV2\UserAffiliation\Model\AffiliateBeneficiaryFormModel;
 use App\FormV2\UserAffiliation\Model\SearchBeneficiaryFormModel;
 use App\FormV2\UserAffiliation\SearchBeneficiaryType;
 use App\FormV2\UserCreation\AnswerSecretQuestionType;
