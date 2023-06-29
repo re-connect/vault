@@ -1,6 +1,7 @@
 'no': Non
 'yes': Oui
 accept: Accepter
+accepted: Accepté
 access: Accès
 accompanying_person_propose_cfn_activation: "Votre accompagnant %person.firstname% %person.lastname% de la structure %center% vous propose d'activer votre coffre-fort numérique Reconnect"
 add: Ajouter
@@ -668,7 +669,6 @@ mail_shared_document_content_3: "CONFIDENTIALITÉ : Ce courriel (de même que le
 mail_shared_document_title: 'Partage de document'
 mail_subject_reset_password: 'RECONNECT- Changez votre mot de passe'
 mail_subject_share_document: 'RECONNECT - Partage de document'
-main.accepter: Accepter
 main.adresse.rue: Rue
 main.annuler: Annuler
 main.chercher: Chercher
