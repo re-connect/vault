@@ -1208,6 +1208,13 @@ class User extends BaseUser implements \JsonSerializable
         return null !== $userRelay && !$userRelay->getBValid();
     }
 
+    public function hasValidLinkToRelay(Centre $relay): bool
+    {
+        $userRelay = $this->getSubjectRelaysForRelay($relay);
+
+        return null !== $userRelay && $userRelay->getBValid();
+    }
+
     public function getSubjectRelaysForRelay(Centre $relay): UserCentre|null
     {
         return $this->getSubjectRelays()

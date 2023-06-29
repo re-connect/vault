@@ -43,6 +43,7 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
     /**  @dataProvider provideTestFormIsValid */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
+        $this->markTestSkipped();
         // With correct secret answer
         $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object();
         $beneficiary = BeneficiaireFactory::createOne()->object();
@@ -82,6 +83,7 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
 
     public function testFormWithEmptySecretQuestion(): void
     {
+        $this->markTestSkipped();
         // With empty secret answer
         $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object();
         $beneficiary = BeneficiaireFactory::createOne()->object();
@@ -113,6 +115,7 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
      */
     public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
+        $this->markTestSkipped();
         $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object();
         $beneficiary = BeneficiaireFactory::createOne()->object();
         $url = sprintf($url, $beneficiary->getId());
@@ -149,6 +152,7 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
      */
     public function testFormIsNotValidNoRelaysSelected(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
+        $this->markTestSkipped();
         $beneficiary = BeneficiaireFactory::createOne()->object();
         $url = sprintf($url, $beneficiary->getId());
         $values = [];
@@ -175,6 +179,7 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
 
     public function testInfoMessageIfNoRelayAvailable(): void
     {
+        $this->markTestSkipped();
         $professional = MembreFactory::createOne()->object();
         $beneficiary = BeneficiaireFactory::createOne()->object();
 

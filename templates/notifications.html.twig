@@ -40,7 +40,7 @@
                                 {% endif %}
                                 {% if "okLink" in notification|keys %}
                                     <a class="btn {{ app.user.isBeneficiaire ?  "btn-green"  : "btn-blue" }} barlow-medium"
-                                       href="{{ notification["okLink"] }}">{% trans %}main.accepter{% endtrans %}</a>
+                                       href="{{ notification["okLink"] }}">{% trans %}accept{% endtrans %}</a>
                                 {% endif %}
                             </div>
                         </div><!-- /.modal-content -->
@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-dark-blue" data-dismiss="modal">{% trans %}main.refuser{% endtrans %}</button>
-                                    <input class="btn btn-blue" type="submit" value="{% trans %}main.accepter{% endtrans %}"/>
+                                    <input class="btn btn-blue" type="submit" value="{% trans %}accept{% endtrans %}"/>
                                 </div>
                             </form>
                         </div><!-- /.modal-content -->

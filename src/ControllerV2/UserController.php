@@ -5,8 +5,6 @@ namespace App\ControllerV2;
 use App\Entity\Centre;
 use App\Entity\User;
 use App\FormV2\ChangePasswordFormType;
-use App\FormV2\UserAffiliation\AffiliateUserType;
-use App\FormV2\UserAffiliation\Model\AffiliateUserModel;
 use App\FormV2\UserSettingsType;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
@@ -102,23 +100,10 @@ class UserController extends AbstractController
     }
 
     #[IsGranted('ROLE_MEMBRE')]
-    #[Route(path: '/{id<\d+>}/invite', name: 'invite_user', methods: ['GET', 'POST'])]
-    public function inviteUser(Request $request, User $user, RelayManager $manager): Response
+    #[Route(path: '/{id<\d+>}/invite', name: 'invite_user', methods: ['GET'])]
+    public function inviteUser(User $user): Response
     {
-        $relays = new AffiliateUserModel($user->getRelays());
-        $loggedInUserRelays = $this->getUser()->getValidRelays();
-        $form = $this->createForm(AffiliateUserType::class, $relays, [
-            'action' => $this->generateUrl('invite_user', ['id' => $user->getId()]),
-            'available_relays' => $loggedInUserRelays,
-        ])->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager->updateUserRelays($user, $relays->relays, $loggedInUserRelays);
-
-            return $this->redirectToRoute('list_pro');
-        }
-
-        return $this->render('v2/user/affiliation/invite.html.twig', ['form' => $form]);
+        return $this->render('v2/user/affiliation/invite.html.twig', ['user' => $user]);
     }
 
     #[Route(

@@ -1,3 +1,4 @@
+{% set text = text is defined ? text : 'submit'|trans %}
 {% set color = color is defined ? color : 'primary' %}
 {% if href is defined %}
     <a

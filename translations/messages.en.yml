@@ -1,6 +1,7 @@
 'no': 'No'
 'yes': 'Yes'
 accept: Accept
+accepted: Accepted
 access: Access
 accompanying_person_propose_cfn_activation: 'Your accompanying person %person.firstname% %person.lastname% from organization %center% offers you to activate your Reconnect numeric vault'
 add_date: 'Added at'
@@ -545,7 +546,6 @@ mail_shared_document_content_3: 'CONFIDENTIALITY: This email (as well as any att
 mail_shared_document_title: 'Document sharing'
 mail_subject_reset_password: 'RECONNECT - Reset your password'
 mail_subject_share_document: 'RECONNECT - Document sharing'
-main.accepter: Accept
 main.adresse.rue: Street
 main.annuler: Cancel
 main.chercher: Search

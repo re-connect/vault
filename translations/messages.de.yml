@@ -1,5 +1,6 @@
 identity: Personalien
 access: Zugang
+accepted: akzeptiert
 added_by: 'Erstellt von'
 add_date: 'Erstellt am'
 add_sms_reminder: 'SMS-Erinnerung hinzufügen'
@@ -324,7 +325,6 @@ mail_shared_document_title: Dokumente
 mail_shared_document_content_1: 'Jemand möchte ein Dokument mit Ihnen teilen.'
 mail_shared_document_content_2: 'Um dieses Dokument herunterzuladen, gehen Sie auf diesen Link (7 Tage gültig)'
 mail_shared_document_content_3: 'VERTRAULICHKEIT: Diese E-Mail (sowie die angehängten Dateien) ist ausschließlich für die Nutzung durch die Person oder Organisation bestimmt, an die sie gerichtet ist, und kann Insiderinformationen und vertrauliche Informationen enthalten. Jegliche Offenlegung, Verteilung oder Kopie dieser E-Mail ist strengstens untersagt. Wenn Sie diese E-Mail versehentlich erhalten haben, benachrichtigen Sie uns bitte umgehend, vernichten Sie alle Kopien und löschen Sie die E-Mail aus Ihrem Computersystem.'
-main.accepter: Annehmen
 main.adresse.rue: Straße
 main.annuler: Abbrechen
 main.chercher: Suchen

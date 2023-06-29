@@ -7,15 +7,22 @@
             togglableClasses: inactiveClasses|split(' ')|merge(activeClasses|split(' '))
         }) }}
 >
-    {% for userRelay in app.user.userRelays %}
-        <div class="col-12 col-sm-6 col-md-4 h-100">
-            {% set relay = userRelay.centre %}
+    {% for relay in app.user.validRelays %}
+        <div class="col-12 col-sm-6 col-md-4 h-100 mt-4">
             <a
-                    class="btn btn-light border-primary {{ user.isLinkedToRelay(relay) ? activeClasses : inactiveClasses }}"
+                    class="btn btn-light border-primary w-100 {{ user.isLinkedToRelay(relay) ? activeClasses : inactiveClasses }}"
                     {{ stimulus_action('custom-checkbox', 'click', null, {
                         path: path('toggle_user_invitation', {id: user.id, relay: relay.id})
                     }) }}
             >
+                {% if user.hasValidLinkToRelay(relay) %}
+                    <div class="text-end">
+                        <span class="badge bg-success text-white">
+                            <i class="fa fa-check-circle"></i>
+                            {{ 'accepted'|trans }}
+                        </span>
+                    </div>
+                {% endif %}
                 <span>{{ relay.nameAndAddress }}</span>
                 <br/>
                 <i class="fa fa-hotel fa-4x mt-3"></i>

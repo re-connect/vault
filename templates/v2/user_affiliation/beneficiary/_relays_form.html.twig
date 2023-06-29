@@ -21,24 +21,19 @@
                         </button>
                     </div>
                     <div
-                            class="col-6 my-3 {{ form_errors(form.secretAnswer)|length > 0 ? '' : 'd-none' }}"
+                            class="col-6 my-3 {{ form_errors(form.reponseSecrete)|length > 0 ? '' : 'd-none' }}"
                             {{ stimulus_target('toggle_display', 'target') }}
                     >
-                        <span class="bold">{{ form_label(form.secretAnswer) }}</span>
-                        {{ form_widget(form.secretAnswer) }}
-                        {{ form_errors(form.secretAnswer) }}
+                        {{ form_widget(form) }}
+                        {{ include('v2/common/_button_with_loader.html.twig') }}
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <h4 class="text-center">{{ 'relays'|trans }} :</h4>
-                {{ form_row(form.relays) }}
+                {{ include('v2/user_creation/components/_relays_checkboxes.html.twig', {user: beneficiary.user}) }}
             </div>
-            <div class="text-end">
-                <button type="submit" data-turbo="false" class="btn btn-blue text-white text-end mt-2">
-                    {{ 'submit'|trans }}
-                </button>
-            </div>
+            {{ include('v2/common/_button_row.html.twig', {href: path('list_beneficiaries')}) }}
         </div>
         {{ form_end(form) }}
     </div>
