@@ -17,7 +17,6 @@ use App\Security\VoterV2\ProVoter;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -116,11 +115,10 @@ class ProController extends AbstractController
     }
 
     #[Route(
-        path: '/{id<\d+>}/relay/{relay<\d+>}/toggle-permission/{right<[a-z]+>}',
+        path: '/{id<\d+>}/relay/{relay<\d+>}/toggle-permission/{permission<[a-z]+>}',
         name: 'toggle_pro_permission',
-        methods: ['PATCH'],
-        condition: "request.isXmlHttpRequest() and
-        params['right'] in [
+        methods: ['POST'],
+        condition: "params['permission'] in [
         constant('App\\\Entity\\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES'),
         constant('App\\\Entity\\\MembreCentre::TYPEDROIT_GESTION_MEMBRES'),
         ]",
@@ -131,10 +129,13 @@ class ProController extends AbstractController
         #[MapEntity(id: 'relay')] Centre $relay,
         string $permission,
         EntityManagerInterface $em,
-    ): JsonResponse {
+    ): Response {
         $pro->getUserCentre($relay)?->togglePermission($permission);
         $em->flush();
 
-        return new JsonResponse($pro);
+        return $this->render('v2/pro/list/_update_permission_button.html.twig', [
+            'user' => $pro->getUser(),
+            'relay' => $relay,
+        ]);
     }
 }
