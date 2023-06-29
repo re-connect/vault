@@ -1,36 +1,37 @@
-{% set currentUserRelay = relay ? user.userRelay(relay) : null %}
-{% if not currentUserRelay %}
-    {% set currentUserRelay = user.userRelays|length == 0 ? user.userRelays[0] : null %}
+{% if app.user.userRelays|length == 1 %}
+    {% set currentUserRelay = user.userRelay(app.user.firstUserRelay.centre) %}
+{% else %}
+    {% set currentUserRelay = user.userRelay(relay) %}
 {% endif %}
 
 {% set buttons = [
     {
         icon: 'user',
         right: constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES'),
+        tooltip: 'beneficiary_management'|trans,
     },
     {
         icon: 'user-cog',
         right: constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES'),
+        tooltip: 'pro_management'|trans,
     },
 ] %}
 
 {% for button in buttons %}
     <button class="btn border-0"
-        {% if relay %}
+        {% if currentUserRelay %}
             {{ stimulus_controller('ajax-toggle', {
-                url: path('toggle_pro_permission', {id: user.subjectMembre.id, relay: relay.id, right: button.right}),
+                url: path('toggle_pro_permission', {id: user.subjectMembre.id, relay: currentUserRelay.centre.id, right: button.right}),
             }) }}
             {{ stimulus_action('ajax-toggle', 'toggle') }}
         {% endif %}
     >
         <i class="fas fa-{{ button.icon }} fa-2x text-{{ currentUserRelay and currentUserRelay.hasDroit(button.right) ? 'primary' : 'grey ' }}"
-            {{ stimulus_target('ajax-toggle', 'icon') }}
+                {{ stimulus_target('ajax-toggle', 'icon') }}
            data-toggle-classes='["text-primary", "text-grey"]'
-            {% if not currentUserRelay %}
-                data-toggle="tooltip"
-                data-placement="top"
-                title="{{ 'you_must_select_center_for_right_update'|trans }}"
-            {% endif %}
+           data-toggle="tooltip"
+           data-placement="top"
+           title="{{ currentUserRelay ? button.tooltip : 'you_must_select_center_for_right_update'|trans }}"
         ></i>
     </button>
 {% endfor %}

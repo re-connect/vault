@@ -98,6 +98,7 @@ beneficiary_has_no_account_create: "Le bénéficiaire n'as pas encore de compte 
 beneficiary_has_no_email: Le bénéficiaire n'a pas renseigné d'adresse email
 beneficiary_has_no_phone_number: Le bénéficiaire n'a pas renseigné de numéro de téléphone
 beneficiary_has_no_secret_answer: Le bénéficiaire n'a pas renseigné de réponse secrète
+beneficiary_management: Gestion des bénéficiaires
 beneficiary_not_found: "Aucun bénéficiaire avec l'id %id% n'a été trouvé"
 beneficiary_reset_password_SMS_code: Code reçu par SMS
 beneficiary_reset_password_SMS_has_been_sent: Un SMS a été envoyé au bénéficiaire, il contient un code secret nécessaire pour renouveller son mot de passe
@@ -950,6 +951,7 @@ print_account_creation_act: "N'oubliez pas d'imprimer l'acte d'ouverture du comp
 private: Privé
 pro_manage_user_title_part_1: 'Gestion des'
 professionals: Professionnels
+pro_management: Gestion des professionnels
 public_reset_password: 'Je souhaite réinitialiser mon mot de passe'
 public_reset_password_SMS_has_been_sent: "Un SMS vous a été envoyé il contient un code secret nécessaire pour renouveller votre mot de passe, vous disposez d'un délai de 2 heures"
 public_reset_password_SMS_wrong_code: 'Le Code que vous avez entré ne correspond pas à celui que vous avez reçu par SMS'
