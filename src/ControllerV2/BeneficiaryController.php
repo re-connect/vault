@@ -9,7 +9,6 @@ use App\FormV2\UserCreation\SecretQuestionType;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\CentreRepository;
 use App\Security\VoterV2\BeneficiaryVoter;
-use App\Security\VoterV2\ProVoter;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +21,6 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class BeneficiaryController extends AbstractController
 {
     #[Route(path: '', name: 'list_beneficiaries', methods: ['GET'])]
-    #[IsGranted('ROLE_MEMBRE')]
     public function listBeneficiaries(
         Request $request,
         BeneficiaireRepository $repository,
