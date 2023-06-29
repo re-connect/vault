@@ -1,16 +1,16 @@
 {% set activeClasses = 'bg-primary text-white' %}
 {% set inactiveClasses = 'text-primary' %}
 
-<div class="row d-flex justify-content-around align-items-center"
+<div class="d-flex flex-wrap justify-content-around"
         {{ stimulus_controller('custom-checkbox', {
             errorText: 'an_error_occurred'|trans,
             togglableClasses: inactiveClasses|split(' ')|merge(activeClasses|split(' '))
         }) }}
 >
     {% for relay in app.user.validRelays %}
-        <div class="col-12 col-sm-6 col-md-4 h-100 mt-4">
+        <div class="relay-checkbox">
             <a
-                    class="btn btn-light border-primary w-100 {{ user.isLinkedToRelay(relay) ? activeClasses : inactiveClasses }}"
+                    class="btn btn-light border-primary h-100 w-100 {{ user.isLinkedToRelay(relay) ? activeClasses : inactiveClasses }}"
                     {{ stimulus_action('custom-checkbox', 'click', null, {
                         path: path('toggle_user_invitation', {id: user.id, relay: relay.id})
                     }) }}

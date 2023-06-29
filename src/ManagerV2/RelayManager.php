@@ -56,12 +56,10 @@ class RelayManager
 
     public function toggleUserInvitationToRelay(User $user, Centre $relay): void
     {
-        if ($user->isInvitedToRelay($relay)) {
-            $this->removeUserInvitationToRelay($user, $relay);
-        } elseif (!$user->isLinkedToRelay($relay)) {
-            $this->inviteUserToRelay($user, $relay);
+        if ($user->isLinkedToRelay($relay)) {
+            $this->removeUserFromRelay($user, $relay);
         } else {
-            throw new AccessDeniedException();
+            $this->inviteUserToRelay($user, $relay);
         }
     }
 
@@ -106,15 +104,6 @@ class RelayManager
             if (!$user->isLinkedToRelay($relay)) {
                 $this->em->persist(User::createUserRelay($user, $relay));
             }
-        }
-    }
-
-    public function removeUserInvitationToRelay(User $user, Centre $relay): void
-    {
-        $userRelay = $user->getUserRelay($relay);
-        if (!$userRelay->getBValid()) {
-            $this->em->remove($userRelay);
-            $this->em->flush();
         }
     }
 }
