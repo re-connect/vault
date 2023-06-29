@@ -35,6 +35,11 @@ class ProController extends AbstractController
     ): Response {
         $query = $request->query;
         $relay = $relayRepository->find($query->getInt('relay'));
+
+        if ($relay && !$this->isGranted('MANAGE_PRO', $relay)) {
+            throw $this->createAccessDeniedException();
+        }
+
         $formModel = new FilterUserFormModel(
             $query->get('search'),
             $relay,

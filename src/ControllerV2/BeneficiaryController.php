@@ -8,14 +8,17 @@ use App\FormV2\FilterUser\FilterUserType;
 use App\FormV2\UserCreation\SecretQuestionType;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\CentreRepository;
+use App\Security\VoterV2\BeneficiaryVoter;
+use App\Security\VoterV2\ProVoter;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: '/beneficiaries')]
+#[IsGranted(BeneficiaryVoter::MANAGE)]
 class BeneficiaryController extends AbstractController
 {
     #[Route(path: '', name: 'list_beneficiaries', methods: ['GET'])]
@@ -27,9 +30,15 @@ class BeneficiaryController extends AbstractController
         CentreRepository $relayRepository,
     ): Response {
         $query = $request->query;
+        $relay = $relayRepository->find($query->getInt('relay'));
+
+        if ($relay && !$this->isGranted('MANAGE_BENEFICIARIES', $relay)) {
+            throw $this->createAccessDeniedException();
+        }
+
         $formModel = new FilterUserFormModel(
             $query->get('search'),
-            $relayRepository->find($query->getInt('relay')),
+            $relay,
         );
 
         $form = $this->createForm(FilterUserType::class, $formModel, [
