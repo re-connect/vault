@@ -7,6 +7,7 @@ use App\FormV2\UserAffiliation\AffiliateBeneficiaryType;
 use App\FormV2\UserAffiliation\Model\AffiliateBeneficiaryFormModel;
 use App\FormV2\UserAffiliation\Model\SearchBeneficiaryFormModel;
 use App\FormV2\UserAffiliation\SearchBeneficiaryType;
+use App\FormV2\UserCreation\AnswerSecretQuestionType;
 use App\ManagerV2\BeneficiaryAffiliationManager;
 use App\ServiceV2\PaginatorService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -66,31 +67,23 @@ class BeneficiaryAffiliationController extends AbstractController
             return $this->render('v2/user_affiliation/beneficiary/_no_relay_available.html.twig');
         }
 
-        $affiliateBeneficiaryModel = (new AffiliateBeneficiaryFormModel($availableRelaysForAffiliation));
-
-        $form = $this->createForm(AffiliateBeneficiaryType::class, $affiliateBeneficiaryModel, [
+        $form = $this->createForm(AnswerSecretQuestionType::class, $beneficiary, [
             'action' => $this->generateUrl('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]),
-            'beneficiary' => $beneficiary,
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $secretAnswer = $affiliateBeneficiaryModel->getSecretAnswer();
-            $isSecretAnswerValid = $manager->isSecretAnswerValid($beneficiary, $secretAnswer);
-
-            if (!$secretAnswer || $isSecretAnswerValid) {
-                $manager->affiliateBeneficiary($beneficiary, $affiliateBeneficiaryModel->getRelays(), $isSecretAnswerValid);
+            if ($manager->isSecretAnswerValid($beneficiary, $form->get('reponseSecrete')->getData())) {
+                $manager->forceAcceptInvitations($beneficiary);
                 $this->addFlash('success', 'beneficiary_added_to_relays');
 
-                return $this->redirectToRoute('list_beneficiaries');
+                return $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary]);
             }
-            $form->get('secretAnswer')->addError(new FormError($translator->trans('wrong_secret_answer')));
+            $form->get('reponseSecrete')->addError(new FormError($translator->trans('wrong_secret_answer')));
         }
 
         return $this->render('v2/user_affiliation/beneficiary/_relays_form.html.twig', [
             'beneficiary' => $beneficiary,
-            'availableRelays' => $availableRelaysForAffiliation,
             'form' => $form,
-            'formModel' => $affiliateBeneficiaryModel,
         ]);
     }
 }
