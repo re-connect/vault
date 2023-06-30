@@ -1048,7 +1048,7 @@ search: Rechercher
 search_existing_beneficiary: 'Rechercher un bénéficiaire existant'
 search_member: Rechercher un professionnel existant
 search_member_help: Vous pouvez rechercher un membre existant afin de lui envoyer une invitation à rejoindre vos relais
-secret_answer: 'Réponse secrète'
+secret_answer: Réponse secrète
 secret_answer_optional: 'Réponse secrète (facultatif)'
 secret_question: 'Question secrète'
 secret_question_other: 'Autre question secrète'
@@ -1112,10 +1112,8 @@ user.parametres.mdpActuel: 'Votre mot de passe actuel'
 user.parametres.metaTitle: "Paramètres d'utilisateur"
 user.parametres.nouveauMotDePasse: 'Votre nouveau mot de passe'
 user.parametres.nouveauMotDePasseConfirm: 'Confirmation du nouveau mot de passe'
-user.parametres.questionSecreteLabel: 'Question secrète'
 user.parametres.randomMdp: "Le mot de passe de l'utilisateur est désormais :"
 user.parametres.reinitialisation: 'Reinitialisation du mot de passe'
-user.parametres.reponseSecreteLabel: 'Réponse secrète'
 user.parametres.subtitle: 'Paramètres de %subject%'
 user.parametres.title: 'Paramètres d''<span class="main">utilisateur</span>'
 user.parametres.userLabel: Utilisateur
