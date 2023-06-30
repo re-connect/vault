@@ -1,12 +1,8 @@
 {% extends 'v2/management_layout.html.twig' %}
 {% form_theme form 'v2/form_theme/create_user_form_theme.html.twig' %}
 
-{% block title %}
-    {{ 'choose_beneficiary_title_part_1'|trans }}
-    <span class="text-blue">
-        {{ 'choose_beneficiary_title_part_2'|trans }}
-    </span>
-{% endblock %}
+{% block metaTitle %}{{ 'choose_beneficiary'|trans }}{% endblock %}
+
 {% block subTitle %}{{ 'search_existing_beneficiary'|trans|upper }}{% endblock %}
 
 {% block content %}

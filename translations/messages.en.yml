@@ -53,6 +53,7 @@ beneficiaire.menu2.mesNotes: Notes
 beneficiaire.menu2.mesRelaisReconnect: Relays
 beneficiaire.menu2.monCalendrier: Meetings
 beneficiaries: Beneficiaries
+beneficiaries_management: Beneficiaries management
 beneficiary_added_to_relays: 'The beneficiary has been added to selected centers'
 beneficiary_already_affiliated_to_all_relays: 'The beneficiary is already affiliated to your Reconnect relays'
 beneficiary_already_as_account_affiliate: 'The beneficiary already has a Reconnect digital vault account. Link this existing account to one of your relays'
@@ -64,7 +65,6 @@ beneficiary_has_no_account_create: 'The beneficiary does not have a Reconnect di
 beneficiary_has_no_email: The beneficiary does not have email address
 beneficiary_has_no_phone_number: The beneficiary does not have phone number
 beneficiary_has_no_secret_answer: The beneficiary does not have secret answer
-beneficiary_management: Beneficiary management
 beneficiary_reset_password_SMS_code: Code received by SMS
 beneficiary_reset_password_SMS_has_been_sent: An SMS was sent to the beneficiary, containing a secret code to renew his password
 beneficiary_reset_password_already_requested: A reset password request has already been made for this beneficiary by sms
@@ -79,7 +79,6 @@ bientotDisponible.text: 'To receive more informations about <a class="bold main"
 birthdate: Birthdate
 cancel: Cancel
 centers: Centers
-centre.metaTitle: Structures
 centre.ville: City
 centre.vousAvezBienQuitte: 'You left this center'
 cfn_accessible_tool_alt_img: 'an accessible tool'
@@ -109,11 +108,10 @@ cfn_vault_is_satisfying_p: 'of professionals are very satisfied by the training'
 cfn_vault_is_satisfying_title: 95%
 cfn_vault_is_title: 'The digital safe is'
 choose: Choose
+choose_beneficiary: Choose a beneficiary
 choose_beneficiary_centers: "Please choose beneficiary's Reconnect relays"
 choose_beneficiary_password: "Please choose beneficiary's password"
 choose_beneficiary_secret_question: "Please choose beneficiary's secret question"
-choose_beneficiary_title_part_1: 'Choose a'
-choose_beneficiary_title_part_2: beneficiary
 choose_picture: 'Click here to add a picture'
 choose_relay: 'Choose a relay'
 choose_reset_password_method: Choose reset password method
@@ -164,8 +162,6 @@ country: Country
 create_account: Create an account
 create_member: 'Member creation'
 create_new_beneficiary: 'Create new beneficiary'
-create_new_beneficiary_title_part_1: 'Create new'
-create_new_beneficiary_title_part_2: beneficiary
 create_professional_help: Create a professional account on Reconnect and invite him to join your relays
 create_reconnect_account_remotely: 'Create Reconnect account remotely'
 create_reconnect_account_with_beneficiary: 'Create Reconnect account with beneficiary'
@@ -264,8 +260,7 @@ digital_cares_scalable_content_title: 'Evolving contents according to feedback f
 disabledAt: 'Disabled at'
 disabledBy: 'Disabled by'
 disaffiliate_beneficiary_subtitle: 'Stop the following of'
-disaffiliate_user_title_part_1: 'Stop the following of a'
-disaffiliate_user_title_part_2: User
+disaffiliate_user: Stop the following of a user
 document.apercu: Previews
 document.aucunFichier: 'For the moment,there is no folder'
 document.avertissementTaille: 'You soon reach the limit size of your storage space (%space%)'
@@ -424,7 +419,6 @@ gestionnaire.envoyerCentreAGestionnaire.subtitle: 'Allow to another administrato
 gestionnaire.envoyerCentreAGestionnaire.success: 'The center was transfered to this administrator.'
 gestionnaire.envoyerCentreAGestionnaire.title: 'Send to an administrator'
 gestionnaire.menu.gestionBeneficiaires: 'Beneficiaries management'
-gestionnaire.menu.gestionMembres: 'Members management'
 gestionnaire.menu.gestionRelais: 'Reconnect Relays management'
 gestionnaire.menu.usagers: Users
 header.logo: 'Reconnect, The Social Cloud'
@@ -600,7 +594,6 @@ membre.arreterSuivi.success: 'You stopped the following of this user in this cen
 membre.arreterSuivi.text: 'This user belongs to several centers that you manage, select the centers where stop following'
 membre.arreterSuivi.title: 'Stop the following of a <span class="main"> user </span>'
 membre.beneficiaires.aides: Aids
-membre.beneficiaires.ajouterBeneficiaire: 'Add a new beneficiary'
 membre.beneficiaires.arreterSuivi: 'Stop sharing'
 membre.beneficiaires.arreterSuiviEtesVousSur: 'You will delete the account of %nom%'
 membre.beneficiaires.btnDetails: Details
@@ -608,7 +601,6 @@ membre.beneficiaires.centres: Centers
 membre.beneficiaires.mesContacts: Contacts
 membre.beneficiaires.mesDocuments: Documents
 membre.beneficiaires.mesNotes: Notes
-membre.beneficiaires.metaTitle: 'Management of beneficiaires'
 membre.beneficiaires.monCalendrier: Calendar
 membre.beneficiaires.noBeneficiairesInCentre: 'There is no beneficiary in this center'
 membre.beneficiaires.nonValide: Non-validates
@@ -661,12 +653,10 @@ membre.membres.arreterSuivi: Delete
 membre.membres.btnDetails: Details
 membre.membres.centres: Centers
 membre.membres.gestionBeneficiaires: 'Beneficiaries management'
-membre.membres.gestionMembres: 'Members management'
 membre.membres.gestionPaiement: 'Payment management'
 membre.membres.mesContacts: 'My contacts'
 membre.membres.mesDocuments: 'My documents'
 membre.membres.mesNotes: 'My Notes'
-membre.membres.metaTitle: 'Members management'
 membre.membres.monCalendrier: 'My calendar'
 membre.membres.noBeneficiairesInCentre: 'There is no beneficiary in this center'
 membre.membres.nonValide: Non-validated
@@ -706,8 +696,7 @@ my_documents: 'My Documents'
 my_events: 'My Events'
 my_notes: 'My Notes'
 my_relays: 'My Relays'
-my_relays_title_1: My relays
-my_relays_title_2: Reconnect
+my_relays_title: My relays Reconnect
 name: Name
 no_result: 'No result'
 note.ajouter: 'Add a note'
@@ -790,9 +779,8 @@ phone_duplicate: 'This phone number is linked to multiple Reconnect accounts, pl
 postal_code: 'Postal Code'
 print_account_creation_act: "Don't forget to print the Reconnect account creation act, in order to obtain the signature of the beneficiary"
 private: Private
-pro_manage_user_title_part_1: Manage
+pro_management: Professionals management
 professionals: Professionals
-pro_management: Professional management
 public_reset_password: 'I want to reset my password'
 public_reset_password_SMS_has_been_sent: 'An SMS was sent to you containing a secret code to renew your password. It is valid for 2 hours.'
 public_reset_password_SMS_wrong_code: 'The code you entered does not correspond to the one you received by SMS'
@@ -955,8 +943,6 @@ user.supprimerCompte.success: 'The account has been deleted.'
 user_error_disabled_account: 'Your account is disabled, please contact support.'
 user_parameters_subtitle: "%subject%'s settings"
 user_parameters_title: '<span class="text-primary">User''s </span><span class="rp-blue vault-green">settings</span>'
-user_settings_title_1: User's
-user_settings_title_2: Settings
 user_update_password_subtitle: '%subject% password'
 user_update_password_title: '<span class="text-primary">New </span><span class="rp-blue vault-green">password</span>'
 username: Username

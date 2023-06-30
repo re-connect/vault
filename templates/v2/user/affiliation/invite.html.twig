@@ -1,10 +1,6 @@
 {% extends 'v2/standard_layout.html.twig' %}
 {% block metaTitle %}{{ 'invite_user_to_relay'|trans }}{% endblock %}
 
-{% block title %}
-    <span class="text-blue">{{ 'invite_user_to_relay'|trans }}</span>
-{% endblock %}
-
 {% block delimiter %}{% endblock %}
 
 {% block content %}
@@ -12,6 +8,6 @@
     <div class="mt-5"></div>
     {{ include('v2/common/_button_row.html.twig', {
         color: 'blue',
-        href: path('list_professionals')
+        href: path('list_pro')
     }) }}
 {% endblock %}

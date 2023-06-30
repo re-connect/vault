@@ -2,6 +2,7 @@
 'yes': Да
 accepted: принял
 add_member: 'Добавить нового члена'
+add_new_beneficiary: 'Добавить нового получателя'
 admin.bienvenue: 'Добро пожаловать в вашу администрацию Reconnect'
 admin.centres.benéficiaires: Получатели
 admin.centres.historique: История
@@ -40,8 +41,9 @@ beneficiaire.menu2.mesDocuments: Документы
 beneficiaire.menu2.mesNotes: Заметки
 beneficiaire.menu2.mesRelaisReconnect: Посредник
 beneficiaire.menu2.monCalendrier: 'Запись на приём'
+beneficiaries_management: 'Управление получателями'
 bientotDisponible.text: 'Дополнительные сведения о <a class="bold main"> Reconnect солидарности облако</a> и присоединиться к сети <a class="bold main"> Реле переподключение</a>, свяжитесь с нами напрямую по телефону: <a class="bold main"> 01 58 30 55 29</a> <br/> или по электронной почте: <a class="bold main"> contact@reconnect.fr</a>'
-centre.metaTitle: Центры
+centers: Центры
 centre.ville: Город
 centre.vousAvezBienQuitte: 'Вы успешно вышли из центра'
 confirm: Подтвердить
@@ -259,7 +261,6 @@ gestionnaire.envoyerCentreAGestionnaire.subtitle: 'Разрешить друго
 gestionnaire.envoyerCentreAGestionnaire.success: 'Центр был успешно передан этому администратору'
 gestionnaire.envoyerCentreAGestionnaire.title: 'Переслать администратору'
 gestionnaire.menu.gestionBeneficiaires: 'Управление получателями'
-gestionnaire.menu.gestionMembres: 'Управление членами'
 gestionnaire.menu.gestionRelais: 'Управление Посредниками Reconnect'
 gestionnaire.menu.usagers: Пользователи
 header.menu.commentCaMarche: 'Как это работает?'
@@ -368,7 +369,6 @@ membre.arreterSuivi.success: 'Вы успешно основили сопров�
 membre.arreterSuivi.text: 'Этот получатель прикреплён к нескольким центрам, которыми вы управляете, выберите центр, в котором нужно остановить сопровождение'
 membre.arreterSuivi.title: 'Остановить отслеживание <span class="main"> пользователя</span>'
 membre.beneficiaires.aides: Пособия
-membre.beneficiaires.ajouterBeneficiaire: 'Добавить нового получателя'
 membre.beneficiaires.arreterSuivi: 'Закончить обмен'
 membre.beneficiaires.arreterSuiviEtesVousSur: 'Вы прекращаете сопровождение %Имя%'
 membre.beneficiaires.btnDetails: Детали
@@ -376,7 +376,6 @@ membre.beneficiaires.centres: Центры
 membre.beneficiaires.mesContacts: Контакты
 membre.beneficiaires.mesDocuments: Документы
 membre.beneficiaires.mesNotes: Заметки
-membre.beneficiaires.metaTitle: 'Управление получателями'
 membre.beneficiaires.monCalendrier: Календарь
 membre.beneficiaires.noBeneficiairesInCentre: 'В этом центре нету получателей'
 membre.beneficiaires.nonValide: 'Не подтверждено'
@@ -429,12 +428,10 @@ membre.membres.arreterSuivi: Удалить
 membre.membres.btnDetails: Детали
 membre.membres.centres: Центры
 membre.membres.gestionBeneficiaires: 'Управление получателями'
-membre.membres.gestionMembres: 'Управление членами'
 membre.membres.gestionPaiement: 'Управление платежами'
 membre.membres.mesContacts: 'Мои контакты'
 membre.membres.mesDocuments: 'Мои документы'
 membre.membres.mesNotes: 'Мои Заметки'
-membre.membres.metaTitle: 'Управление членами'
 membre.membres.monCalendrier: 'Мой календарь'
 membre.membres.noBeneficiairesInCentre: 'В этом центре нету получателей'
 membre.membres.nonValide: 'Не подтверждено'
@@ -523,6 +520,7 @@ paiementVirement.text: 'Для подтверждения перевода ук�
 paiementVirement.title: 'Оплата банковским переводом'
 password: Пароль
 password_updated_successfully: 'Пароль успешно изменён'
+pro_management: 'Управление членами'
 registerForm.adresse: 'Ваш личный адрес (необязательно)'
 registerForm.codePostal: Индекс
 registerForm.email: 'Электронная почта'
