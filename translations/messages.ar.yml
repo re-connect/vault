@@ -20,6 +20,7 @@ admin.menu.traduction: ترجمة
 admin.metaTitle: 'ادارة ريكونيكت'
 admin.title: 'ادارة (فئة العمر/ريكونيكت)'
 aides.metaTitle: 'ادوات المساعدة'
+an_error_occurred: 'حدث خطأ ما'
 association.categorie.association: المؤسسة
 association.categorie.ccas: 'المركز الشعبي للعمل الاجتماعي'
 association.categorie.choisir: 'يرجى اختيار فئة مؤسستك'
@@ -328,7 +329,6 @@ main.choisir: اختيار
 main.connexion: شارع
 main.continuer: متابعة
 main.error.defaultSubTitle: 'الخطأ التالي حدث لتوه :'
-an_error_occurred: 'حدث خطأ ما'
 main.error.error403SubTitle: 'يبدو انه ليس لك الحق بالقيام بهذا العمل :'
 main.error.error403Title: 'عمل محظور'
 main.error.error404SubTitle: 'مستحيل ايجاد الصفحة المطلوبة'
@@ -546,6 +546,8 @@ resetting.public.text: 'يرجى ادخال عنوانك الالكتروني'
 resetting.public.title: 'اعادة تعيين كلمة السر'
 resetting.public.votreEmail: 'عنوانك الالكتروني'
 resetting.reset.submit: 'تغيير كلمة السر'
+secret_answer: 'الاجابة السرية'
+secret_question: 'السؤال السري'
 settings_saved_successfully: 'تم تسجيل قيمك المدخلة في الكمبيوتر'
 sms_sent_failed: 'فشل إرسال الرسائل القصيرة ، يرجى التحقق من صحة رقم الهاتف'
 statut.abandoned: ترك
@@ -575,8 +577,6 @@ user.parametres.mdpActuel: 'كلمة السر الخاصة بك الحالية'
 user.parametres.metaTitle: 'قيم المستخدم المدخلة  في الكمبيوتر'
 user.parametres.nouveauMotDePasse: 'كلمة السر الخاصة بك الجديدة'
 user.parametres.nouveauMotDePasseConfirm: 'تأكيد كلمة السر الجديدة'
-user.parametres.questionSecreteLabel: 'السؤال السري'
-user.parametres.reponseSecreteLabel: 'الاجابة السرية'
 user.parametres.subtitle: 'قيم (اسم الشخص) المدخلة في الكمبيوتر'
 user.parametres.title: 'قيم المستخدم المدخلة  في الكمبيوتر'
 user.parametres.userLabel: المستخدم
