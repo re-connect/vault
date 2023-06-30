@@ -9,7 +9,6 @@ use App\Repository\CentreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class RelayManager
 {
@@ -19,7 +18,7 @@ class RelayManager
 
     public function acceptRelay(User $user, Centre $relay): void
     {
-        if ($subjectRelay = $user->getSubjectRelaysForRelay($relay)) {
+        if ($subjectRelay = $user->getUserRelay($relay)) {
             $subjectRelay->setBValid(true);
             $this->em->flush();
         }
@@ -27,7 +26,7 @@ class RelayManager
 
     public function leaveRelay(User $user, Centre $relay): void
     {
-        if ($subjectRelay = $user->getSubjectRelaysForRelay($relay)) {
+        if ($subjectRelay = $user->getUserRelay($relay)) {
             $this->em->remove($subjectRelay);
             $this->em->flush();
         }
@@ -56,12 +55,10 @@ class RelayManager
 
     public function toggleUserInvitationToRelay(User $user, Centre $relay): void
     {
-        if ($user->isInvitedToRelay($relay)) {
-            $this->removeUserInvitationToRelay($user, $relay);
-        } elseif (!$user->isLinkedToRelay($relay)) {
-            $this->inviteUserToRelay($user, $relay);
+        if ($user->isLinkedToRelay($relay)) {
+            $this->removeUserFromRelay($user, $relay);
         } else {
-            throw new AccessDeniedException();
+            $this->inviteUserToRelay($user, $relay);
         }
     }
 
@@ -106,15 +103,6 @@ class RelayManager
             if (!$user->isLinkedToRelay($relay)) {
                 $this->em->persist(User::createUserRelay($user, $relay));
             }
-        }
-    }
-
-    public function removeUserInvitationToRelay(User $user, Centre $relay): void
-    {
-        $userRelay = $user->getUserRelay($relay);
-        if (!$userRelay->getBValid()) {
-            $this->em->remove($userRelay);
-            $this->em->flush();
         }
     }
 }

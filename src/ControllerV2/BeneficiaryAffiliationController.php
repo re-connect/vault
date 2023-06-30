@@ -59,12 +59,6 @@ class BeneficiaryAffiliationController extends AbstractController
         BeneficiaryAffiliationManager $manager,
         TranslatorInterface $translator,
     ): Response {
-        $availableRelaysForAffiliation = $manager->getAvailableRelaysForAffiliation($this->getUser(), $beneficiary);
-
-        if (0 === $availableRelaysForAffiliation->count()) {
-            return $this->render('v2/user_affiliation/beneficiary/_no_relay_available.html.twig');
-        }
-
         $form = $this->createForm(AnswerSecretQuestionType::class, $beneficiary, [
             'action' => $this->generateUrl('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]),
         ])->handleRequest($request);
@@ -74,7 +68,7 @@ class BeneficiaryAffiliationController extends AbstractController
                 $manager->forceAcceptInvitations($beneficiary);
                 $this->addFlash('success', 'beneficiary_added_to_relays');
 
-                return $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary]);
+                return $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]);
             }
             $form->get('reponseSecrete')->addError(new FormError($translator->trans('wrong_secret_answer')));
         }

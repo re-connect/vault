@@ -1,6 +1,6 @@
 {% set color = color is defined ? color : getUserThemeColor() %}
 {% set type = type is defined ? type : 'submit' %}
-{% set message = message is defined ? message : 'submit'|trans %}
+{% set message = message is defined ? message : 'submit' %}
 {% set textColor = 'outline' in color ? '' : 'text-white' %}
 
 <button class="btn btn-{{ color }} {{ textColor }} text-center mt-2 col mx-1" type="{{ type }}">
