@@ -4,11 +4,15 @@ namespace App\Tests\v2\Controller\ProController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
+use App\Entity\Centre;
 use App\Repository\MembreRepository;
 use App\Security\HelperV2\UserHelper;
 use App\Tests\Factory\MembreFactory;
+use App\Tests\Factory\RelayFactory;
+use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
+use Zenstruck\Foundry\Proxy;
 
 class ListProTest extends AbstractControllerTest implements TestRouteInterface
 {
@@ -55,5 +59,24 @@ class ListProTest extends AbstractControllerTest implements TestRouteInterface
             $professional = MembreFactory::find($professional->getId())->object();
             self::assertTrue($this->userHelper->canUpdateProfessional($proUser, $professional));
         }
+    }
+
+    public function testCanNotFilterOnUnauthorizedRelays(): void
+    {
+        $userMail = MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER;
+        $user = UserFactory::findByEmail($userMail)->object();
+
+        $allRelaysIds = array_map(fn (Proxy $relay) => $relay->object()->getId(), RelayFactory::all());
+        $allUserRelaysIds = array_map(fn (Centre $relay) => $relay->getId(), $user->getAffiliatedRelaysWithProfessionalManagement()->toArray());
+        $notAffiliatedRelaysIds = array_diff($allRelaysIds, $allUserRelaysIds);
+
+        array_map(
+            fn (int $relayId) => $this->assertRoute(
+                sprintf('%s?relay=%d', self::URL, $relayId),
+                403,
+                $userMail,
+            ),
+            $notAffiliatedRelaysIds,
+        );
     }
 }
