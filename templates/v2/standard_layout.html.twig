@@ -2,8 +2,12 @@
 
 {% block body %}
     <div class="position-relative bg-white text-center mt-75">
-        <h1 class="p-3 p-md-3 p-lg-4 text-primary text-uppercase bold">
-            {% block title %}{% endblock %}
+        <h1 class="p-3 p-md-3 p-lg-4 text-primary text-uppercase bold page-title">
+            {% block title %}
+                {% for word in block('metaTitle')|split(' ') %}
+                    <span class="{{ loop.last ? 'text-blue' : '' }}">{{ word|raw }}</span>
+                {% endfor %}
+            {% endblock %}
         </h1>
     </div>
     <div class="container-fluid max-width-lg text-primary mx-auto {% block bodyColor %}{{ parent() }}{% endblock %}">
