@@ -8,9 +8,7 @@ add: Ajouter
 add_date: "Date d'ajout"
 add_member: 'Ajouter un nouveau membre'
 add_new_benef_big_title: 'Ajouter un nouveau <span class="rp-blue text-blue">bénéficiaire</span>'
-add_new_beneficiary: "Ajout d'un nouveau bénéficiaire"
-add_new_beneficiary_title_part_1: 'Ajouter un nouveau'
-add_new_beneficiary_title_part_2: bénéficiaire
+add_new_beneficiary: 'Ajouter un nouveau bénéficiaire'
 add_new_member_big_title: 'Ajouter un nouveau <span class="rp-blue">membre</span>'
 add_new_professional: Ajouter un nouveau professionnel
 add_si_siao_number: 'Ajouter numéro SI-SIAO'
@@ -39,6 +37,7 @@ admin_reset_password_mail: 'Réinitialisation du mot de passe par Mail'
 admin_reset_password_sms: 'Réinitialisation du mot de passe par SMS'
 aides.metaTitle: Aides
 alt_logo_reconnect: 'logo association reconnect'
+an_error_occurred: Une erreur s'est produite !
 answer: Réponse
 answer_secret_question: 'Répondre à la question secrète'
 answer_secret_question_relay_acception_1: "Une fois validé, le bénéficiaire sera invité à rejoindre ces centres."
@@ -86,6 +85,7 @@ beneficiaire.menu2.mesNotes: Notes
 beneficiaire.menu2.mesRelaisReconnect: Relais
 beneficiaire.menu2.monCalendrier: Rendez-Vous
 beneficiaries: Bénéficiaires
+beneficiaries_management: Gestion des bénéficiaires
 beneficiary.delete.account: 'Êtes vous sûr de bien vouloir supprimer votre compte ?'
 beneficiary_added_to_relays: 'Le bénéficiaire a été ajouté aux relais selectionnés'
 beneficiary_already_affiliated_to_all_relays: "Le bénéficiaire est déjà affilié, ou invité, à l'ensemble de vos relais Reconnect"
@@ -99,7 +99,6 @@ beneficiary_has_no_account_create: "Le bénéficiaire n'as pas encore de compte 
 beneficiary_has_no_email: Le bénéficiaire n'a pas renseigné d'adresse email
 beneficiary_has_no_phone_number: Le bénéficiaire n'a pas renseigné de numéro de téléphone
 beneficiary_has_no_secret_answer: Le bénéficiaire n'a pas renseigné de réponse secrète
-beneficiary_management: Gestion des bénéficiaires
 beneficiary_not_found: "Aucun bénéficiaire avec l'id %id% n'a été trouvé"
 beneficiary_reset_password_SMS_code: Code reçu par SMS
 beneficiary_reset_password_SMS_has_been_sent: Un SMS a été envoyé au bénéficiaire, il contient un code secret nécessaire pour renouveller son mot de passe
@@ -118,7 +117,6 @@ cancel: Annuler
 center_has_no_info: "Aucun Relais n'a accès à vos informations partagées"
 center_is_empty: 'Votre Relais Reconnect est vide'
 centers: Centres
-centre.metaTitle: Centres
 centre.ville: Ville
 centre.vousAvezBienQuitte: 'Vous avez bien quitté le centre'
 cfn_accessible_tool_alt_img: 'un outil accessible'
@@ -148,11 +146,10 @@ cfn_vault_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s de l
 cfn_vault_is_satisfying_title: 95%
 cfn_vault_is_title: "Le coffre-fort numérique, c'est"
 choose: Choisir
+choose_beneficiary: Choisir un bénéficiaire
 choose_beneficiary_centers: 'Veuillez choisir le/les relais reconnect du bénéficiaire'
 choose_beneficiary_password: 'Veuillez choisir le mot de passe du bénéficiaire'
 choose_beneficiary_secret_question: 'Veuillez choisir la question secrète du bénéficiaire'
-choose_beneficiary_title_part_1: 'Choisir un'
-choose_beneficiary_title_part_2: bénéficiaire
 choose_picture: 'Cliquez ici pour choisir une image'
 choose_relay: 'Sélectionnez un centre'
 choose_reset_password_method: Veuillez choisir la méthode de réinitialisation du mot de passe
@@ -234,8 +231,6 @@ create_new_benef_step4: '<span class="rp-blue text-blue">Étape 4/%totalSteps%</
 create_new_benef_step5: '<span class="rp-blue text-blue">Étape %step%/%totalSteps%</span>&nbsp; Récapitulatif, veuillez confirmer les informations enregistrées ci-dessous'
 create_new_benef_step6: '<span class="rp-blue text-blue">Étape %step%/%totalSteps%</span>&nbsp; Charte d''utilisation'
 create_new_beneficiary: "Création d'un nouveau bénéficiaire"
-create_new_beneficiary_title_part_1: "Création d'un"
-create_new_beneficiary_title_part_2: bénéficiaire
 create_professional_help: Créez un compte professionnel sur Reconnect et invitez le à rejoindre vos relais
 create_reconnect_account: 'Créer un compte Reconnect'
 create_reconnect_account_remotely: 'Créer un compte Reconnect à distance'
@@ -347,8 +342,7 @@ digital_cares_scalable_content_title: 'Des contenus évolutifs en fonction des r
 disabledAt: 'Désactivé le'
 disabledBy: 'Désactivé par'
 disaffiliate_beneficiary_subtitle: 'Arrêter le suivi de'
-disaffiliate_user_title_part_1: "Arrêter le suivi d'un"
-disaffiliate_user_title_part_2: Utilisateur
+disaffiliate_user: Arrêter le suivi d'un utilisateur
 document.apercu: Aperçus
 document.aucunFichier: "Il n'y a aucun fichier pour l'instant"
 document.avertissementTaille: 'Vous avez bientôt atteint la taille limite de votre espace de stockage (%taille%)'
@@ -539,7 +533,6 @@ gestionnaire.envoyerCentreAGestionnaire.subtitle: 'Autoriser un autre gestionnai
 gestionnaire.envoyerCentreAGestionnaire.success: 'Le centre a bien été cédé à ce gestionnaire'
 gestionnaire.envoyerCentreAGestionnaire.title: 'Envoyer à un gestionnaire'
 gestionnaire.menu.gestionBeneficiaires: 'Gestion des bénéficiaires'
-gestionnaire.menu.gestionMembres: 'Gestion des membres'
 gestionnaire.menu.gestionRelais: 'Gestion des Relais Reconnect'
 gestionnaire.menu.usagers: Usagers
 header.logo: 'Reconnect, le cloud solidaire'
@@ -677,7 +670,6 @@ main.choisir: Choisir
 main.connexion: Connexion
 main.continuer: Continuer
 main.error.defaultSubTitle: "L'erreur suivante vient de se produire :"
-an_error_occurred: Une erreur s'est produite !
 main.error.error403SubTitle: "Il semble que vous n'ayez pas le droit d'effectuer cette action :"
 main.error.error403Title: 'Action interdite'
 main.error.error404SubTitle: 'Impossible de trouver la page demandée :'
@@ -731,7 +723,6 @@ membre.arreterSuivi.success: 'Vous avez bien arrété le suivi de cet utilisateu
 membre.arreterSuivi.text: 'Cet utilisateur appartient à plusieurs des centres que vous gérez, sélectionnez les centres dans lesquels arrêter le suivi'
 membre.arreterSuivi.title: 'Arrêter le suivi d''un <span class="main">utilisateur</span>'
 membre.beneficiaires.aides: Aides
-membre.beneficiaires.ajouterBeneficiaire: 'Ajouter un nouveau bénéficiaire'
 membre.beneficiaires.arreterSuivi: 'Retirer du Relais'
 membre.beneficiaires.arreterSuiviEtesVousSur: 'Vous allez arrêter le suivi de %nom%'
 membre.beneficiaires.btnDetails: Détails
@@ -739,7 +730,6 @@ membre.beneficiaires.centres: Centres
 membre.beneficiaires.mesContacts: Contacts
 membre.beneficiaires.mesDocuments: Documents
 membre.beneficiaires.mesNotes: Notes
-membre.beneficiaires.metaTitle: 'Gestion des bénéficiaires'
 membre.beneficiaires.monCalendrier: Calendrier
 membre.beneficiaires.noBeneficiairesInCentre: "Il n'y a aucun bénéficiaire dans ce centre"
 membre.beneficiaires.nonValide: 'Non validé'
@@ -799,12 +789,10 @@ membre.membres.arreterSuivi: Supprimer
 membre.membres.btnDetails: Détails
 membre.membres.centres: Centres
 membre.membres.gestionBeneficiaires: 'Gestion des bénéficiaires'
-membre.membres.gestionMembres: 'Gestion des membres'
 membre.membres.gestionPaiement: 'Gestion du paiement'
 membre.membres.mesContacts: 'Mes Contacts'
 membre.membres.mesDocuments: 'Mes Documents'
 membre.membres.mesNotes: 'Mes Notes'
-membre.membres.metaTitle: 'Gestion des membres'
 membre.membres.monCalendrier: 'Mon Calendrier'
 membre.membres.noBeneficiairesInCentre: "Il n'y a aucun bénéficiaire dans ce centre"
 membre.membres.nonValide: 'Non validé'
@@ -861,8 +849,7 @@ my_events: 'Mes Rappels'
 my_notes: 'Mes Notes'
 my_reconnect_centers: 'Mes relais <span class="rp-blue">reconnect</span>'
 my_relays: 'Mes Relais'
-my_relays_title_1: Mes relais
-my_relays_title_2: Reconnect
+my_relays_title: Mes relais Reconnect
 name: Nom
 next: Suivant
 no_result: 'Aucun résultat'
@@ -949,9 +936,8 @@ postal_code: 'Code Postal'
 previous: Précédent
 print_account_creation_act: "N'oubliez pas d'imprimer l'acte d'ouverture du compte Reconnect afin d'obtenir la signature du bénéficiaire"
 private: Privé
-pro_manage_user_title_part_1: 'Gestion des'
-professionals: Professionnels
 pro_management: Gestion des professionnels
+professionals: Professionnels
 public_reset_password: 'Je souhaite réinitialiser mon mot de passe'
 public_reset_password_SMS_has_been_sent: "Un SMS vous a été envoyé il contient un code secret nécessaire pour renouveller votre mot de passe, vous disposez d'un délai de 2 heures"
 public_reset_password_SMS_wrong_code: 'Le Code que vous avez entré ne correspond pas à celui que vous avez reçu par SMS'
@@ -1149,8 +1135,6 @@ user_not_found: "Aucun utilisateur n'a été trouvé"
 user_parameters_subtitle: 'Paramètres de %subject%'
 user_parameters_title: '<span class="text-primary">Paramètres d''</span><span class="rp-blue vault-green">utilisateur</span>'
 user_shared_document_with_you: 'L''utilisateur %nom% %prenom% souhaite partager ce document avec vous: "%document%"'
-user_settings_title_1: Paramètres d'
-user_settings_title_2: Utilisateur
 user_update_password_subtitle: 'Mot de passe de %subject%'
 user_update_password_title: '<span class="text-primary">Renouvellement de </span><span class="rp-blue vault-green">mot de passe</span>'
 username: "Nom d'utilisateur"
