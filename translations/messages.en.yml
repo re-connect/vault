@@ -29,6 +29,7 @@ admin.metaTitle: 'Reconnect Administration'
 admin.title: 'Reconnect <span class="main"> Administration</span>'
 aides.metaTitle: Aids
 alt_logo_reconnect: 'logo association reconnect'
+an_error_occurred: 'An error has occurred!'
 answer_secret_question: 'Answer secret question'
 answer_secret_question_relay_acception: 'Once validated, the beneficiary will be invited to join these centers. If you are in the presence of the beneficiary, you can enter the answer to his/her secret question in order to accept the invitation to these centers now. Otherwise, the beneficiary can accept the invitation from his account.'
 association.categorie.association: Association
@@ -553,7 +554,6 @@ main.choisir: Select
 main.connexion: Connection
 main.continuer: Continue
 main.error.defaultSubTitle: 'This error was just made:'
-an_error_occurred: 'An error has occurred!'
 main.error.error403SubTitle: "It seems that you don't have the rights to realize this action:"
 main.error.error403Title: 'Forbidden action'
 main.error.error404SubTitle: 'Impossible to find the requested page'
@@ -868,9 +868,9 @@ search: Rechercher
 search_existing_beneficiary: 'Search for an existing beneficiary'
 search_member: Search for an existing professional
 search_member_help: You can search for an existing professional and invite him to join your relays
-secret_answer: 'Secret answer'
+secret_answer: Secret answer
 secret_answer_optional: 'Secret answer (optional)'
-secret_question: 'Secret question'
+secret_question: Secret question
 select_relays_for_disaffiliation: 'This user is linked to one or several relays that you manage, please choose relays for which you want to stop the following'
 send: Send
 sending_sms_account_activation: 'Sending the SMS for account activation'
@@ -928,8 +928,6 @@ user.parametres.mdpActuel: 'Your present password'
 user.parametres.metaTitle: 'User´s settings'
 user.parametres.nouveauMotDePasse: 'Your new password'
 user.parametres.nouveauMotDePasseConfirm: 'Confirmation of the new password'
-user.parametres.questionSecreteLabel: 'Secret question'
-user.parametres.reponseSecreteLabel: 'Secrete answer'
 user.parametres.subtitle: 'Subject %settings%'
 user.parametres.title: 'User''s <span class="main"> settings </span>'
 user.parametres.userLabel: User

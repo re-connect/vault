@@ -1188,38 +1188,23 @@ class User extends BaseUser implements \JsonSerializable
         return new ArrayCollection();
     }
 
-    /** @return Collection <int, UserCentre> */
-    public function getSubjectRelays(): Collection
-    {
-        return $this->isBeneficiaire()
-            ? $this->getSubjectBeneficiaire()->getBeneficiairesCentres()
-            : $this->getSubjectMembre()->getMembresCentres();
-    }
-
     public function isLinkedToRelay(Centre $relay): bool
     {
-        return null !== $this->getSubjectRelaysForRelay($relay);
+        return null !== $this->getUserRelay($relay);
     }
 
     public function isInvitedToRelay(Centre $relay): bool
     {
-        $userRelay = $this->getSubjectRelaysForRelay($relay);
+        $userRelay = $this->getUserRelay($relay);
 
         return null !== $userRelay && !$userRelay->getBValid();
     }
 
     public function hasValidLinkToRelay(Centre $relay): bool
     {
-        $userRelay = $this->getSubjectRelaysForRelay($relay);
+        $userRelay = $this->getUserRelay($relay);
 
         return null !== $userRelay && $userRelay->getBValid();
-    }
-
-    public function getSubjectRelaysForRelay(Centre $relay): UserCentre|null
-    {
-        return $this->getSubjectRelays()
-            ->filter(fn (UserCentre $subjectRelay) => $subjectRelay->getCentre() === $relay)
-            ->first() ?: null;
     }
 
     public function getOldUsername(): ?string

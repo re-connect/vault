@@ -9,7 +9,6 @@ use App\Repository\CentreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class RelayManager
 {
@@ -19,7 +18,7 @@ class RelayManager
 
     public function acceptRelay(User $user, Centre $relay): void
     {
-        if ($subjectRelay = $user->getSubjectRelaysForRelay($relay)) {
+        if ($subjectRelay = $user->getUserRelay($relay)) {
             $subjectRelay->setBValid(true);
             $this->em->flush();
         }
@@ -27,7 +26,7 @@ class RelayManager
 
     public function leaveRelay(User $user, Centre $relay): void
     {
-        if ($subjectRelay = $user->getSubjectRelaysForRelay($relay)) {
+        if ($subjectRelay = $user->getUserRelay($relay)) {
             $this->em->remove($subjectRelay);
             $this->em->flush();
         }

@@ -12,16 +12,11 @@ class AnswerSecretQuestionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $this->addFields($builder, $builder->getData());
-    }
-
-    public function addFields(FormBuilderInterface $builder, Beneficiaire $beneficiary): void
-    {
         $builder
             ->add('questionSecrete', TextType::class, [
                 'required' => false,
                 'disabled' => true,
-                'label' => 'user.parametres.questionSecreteLabel',
+                'label' => 'secret_question',
             ])
             ->add('autreQuestionSecrete', TextType::class, [
                 'disabled' => true,
@@ -30,7 +25,7 @@ class AnswerSecretQuestionType extends AbstractType
                 'mapped' => false,
             ])
             ->add('reponseSecrete', TextType::class, [
-                'label' => 'user.parametres.reponseSecreteLabel',
+                'label' => 'secret_answer',
                 'mapped' => false,
             ]);
     }
