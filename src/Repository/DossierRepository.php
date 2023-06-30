@@ -8,14 +8,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * DossierRepository.
- *
- * @method Dossier|null find($id, $lockMode = null, $lockVersion = null)
- * @method Dossier|null findOneBy(array $criteria, array $orderBy = null)
- * @method Dossier[]    findAll()
- * @method Dossier[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
+/** @extends ServiceEntityRepository<Dossier> */
 class DossierRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)

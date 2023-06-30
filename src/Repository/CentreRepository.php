@@ -13,14 +13,7 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Imagine\Image\Point\Center;
 
-/**
- * CentreRepository.
- *
- * @method Centre|null find($id, $lockMode = null, $lockVersion = null)
- * @method Centre|null findOneBy(array $criteria, array $orderBy = null)
- * @method Centre[]    findAll()
- * @method Centre[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
+/** @extends ServiceEntityRepository<Centre> */
 class CentreRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
