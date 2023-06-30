@@ -196,6 +196,14 @@ class User extends BaseUser implements \JsonSerializable
         $this->creators = new ArrayCollection();
     }
 
+    public static function createPro(): self
+    {
+        $user = new self();
+        (new Membre())->setUser($user);
+
+        return $user;
+    }
+
     public function getUserIdentifier(): string
     {
         return $this->username;
