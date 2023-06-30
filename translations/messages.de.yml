@@ -7,8 +7,6 @@ add_date: 'Erstellt am'
 add_member: 'Nutzer*in neu anlegen'
 add_new_benef_big_title: 'Klient*in <span class="rp-blue text-blue">hinzufügen</span>'
 add_new_beneficiary: 'Klient*in hinzufügen'
-add_new_beneficiary_title_part_1: 'Klient*in'
-add_new_beneficiary_title_part_2: hinzufügen
 add_new_member_big_title: 'Mitarbeiter*in <span class="rp-blue">anlegen</span>'
 add_sms_reminder: 'SMS-Erinnerung hinzufügen'
 added_by: 'Erstellt von'
@@ -55,11 +53,12 @@ beneficiaire.menu2.mesDocuments: Dokumente
 beneficiaire.menu2.mesNotes: Notizen
 beneficiaire.menu2.mesRelaisReconnect: Einrichtungen
 beneficiaire.menu2.monCalendrier: Termine
+beneficiaries_management: 'Verwaltung von Klient*innen'
 beneficiary.delete.account: 'Sind Sie sicher, dass Sie ihr Konto löschen wollen?'
 beneficiary_not_found: 'Der Nutzer %id% wurde nicht gefunden'
 center_has_no_info: 'Keine Einrichtung kann auf Ihre Daten zugreifen'
 center_is_empty: 'Zu Ihrer Einrichtung existieren keine verknüpften Konten'
-centre.metaTitle: Einrichtungen
+centers: Einrichtungen
 centre.ville: Stadt
 centre.vousAvezBienQuitte: 'Du hast die Einrichtung verlassen'
 cfn_accessible_tool_alt_img: 'Ein leicht zugängliches Tool'
@@ -389,7 +388,6 @@ membre.arreterSuivi.success: 'Das war erfolgreich. Du folgst dem/der Nutzer*in n
 membre.arreterSuivi.text: 'Der/die Nutzer*in ist in mehreren Einrichtungen hinterlegt. Für welche Einrichtung soll die Freigabe beendet werden?'
 membre.arreterSuivi.title: 'Nutzer*in nicht <span class="main">mehr folgen</span>'
 membre.beneficiaires.aides: Hilfe
-membre.beneficiaires.ajouterBeneficiaire: 'Klient*in hinzufügen'
 membre.beneficiaires.arreterSuivi: 'Freigabe aufheben'
 membre.beneficiaires.arreterSuiviEtesVousSur: 'Sicher, dass Du %nom% nicht mehr folgen willst'
 membre.beneficiaires.btnDetails: Details
@@ -397,7 +395,6 @@ membre.beneficiaires.centres: Einrichtungen
 membre.beneficiaires.mesContacts: Kontakte
 membre.beneficiaires.mesDocuments: Dokumente
 membre.beneficiaires.mesNotes: Notizen
-membre.beneficiaires.metaTitle: 'Verwaltung von Klient*innen'
 membre.beneficiaires.noBeneficiairesInCentre: 'Es gibt keine Klient*innen in dieser Einrichtung'
 membre.beneficiaires.nonValide: 'Nicht bestätigt'
 membre.beneficiaires.renouvelerIdentifiants: 'Passwort zurücksetzen'
@@ -450,11 +447,9 @@ membre.membres.arreterSuivi: Entfernen
 membre.membres.btnDetails: Details
 membre.membres.centres: Einrichtungen
 membre.membres.gestionBeneficiaires: 'Verwaltung von Klient*innen'
-membre.membres.gestionMembres: 'Nutzer*innen Verwaltung'
 membre.membres.mesContacts: 'Meine Kontakte'
 membre.membres.mesDocuments: 'Meine Dokumente'
 membre.membres.mesNotes: 'Meine Notizen'
-membre.membres.metaTitle: 'Nutzer*innen Verwaltung'
 membre.membres.noBeneficiairesInCentre: 'In der Einrichtung sind keine Klient*innen hinterlegt'
 membre.membres.nonValide: 'Nicht bestätigt'
 membre.membres.renouvelerIdentifiants: 'Passwort zurücksetzen'
@@ -522,6 +517,7 @@ phone_duplicate: 'Diese Telefonnummer ist mit mehreren Konten verknüpft. Bitte 
 postal_code: Postleitzahl
 previous: Zurück
 private: Privat
+pro_management: 'Nutzer*innen Verwaltung'
 public_reset_password: 'Ich möchte mein Passwort zurücksetzen'
 public_reset_password_SMS_has_been_sent: 'Sie haben eine SMS mit einem Code erhalten, der für das Zurücksetzen des Passworts benötigt wird.'
 public_reset_password_SMS_wrong_code: 'Der eingegebene Code stimmt nicht mit dem Code aus der SMS überein.'

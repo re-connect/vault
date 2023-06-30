@@ -1,15 +1,6 @@
 {% extends 'v2/management_layout.html.twig' %}
 
-{% block metaTitle %}
-    {{ 'disaffiliate_user_title_part_1'|trans }}{{ 'disaffiliate_user_title_part_2'|trans }}
-{% endblock metaTitle %}
-
-{% block title %}
-    {{ 'disaffiliate_user_title_part_1'|trans }}
-    <span class="text-blue">
-        {{ 'disaffiliate_user_title_part_2'|trans }}
-    </span>
-{% endblock %}
+{% block metaTitle %}{{ 'disaffiliate_user'|trans }}{% endblock metaTitle %}
 {% block subTitleIcon %} <i class="fas fa-user-times fa-lg me-1"></i> {% endblock %}
 {% block subTitle %}{{ 'disaffiliate_beneficiary_subtitle'|trans|upper }} {{ user.fullName|upper }} {% endblock %}
 

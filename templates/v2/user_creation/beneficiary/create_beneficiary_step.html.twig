@@ -1,9 +1,5 @@
 {% extends 'v2/management_layout.html.twig' %}
 
-{% block title %}
-    {{ include('v2/user_creation/beneficiary/_create_beneficiary_title_default.html.twig') }}
-{% endblock %}
-
 {% block subTitle %}
     <span class="transform-uppercase">
         {{ 'steps_count'|trans({'%step%': beneficiaryCreationProcess.currentStep, '%totalSteps%': beneficiaryCreationProcess.totalSteps}) }} :
