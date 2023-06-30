@@ -98,6 +98,6 @@ abstract class UserCentre implements \JsonSerializable
 
     public function hasDroit(string $droit): bool
     {
-        return in_array($droit, $this->getDroits());
+        return array_key_exists($droit, $this->getDroits()) && true === $this->getDroits()[$droit];
     }
 }

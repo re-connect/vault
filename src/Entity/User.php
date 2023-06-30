@@ -1105,11 +1105,18 @@ class User extends BaseUser implements \JsonSerializable
             : $this->getSubjectMembre()->getMembresCentres();
     }
 
-    public function getUserRelay(Centre $relay): ?UserCentre
+    public function getUserRelay(?Centre $relay): ?UserCentre
     {
-        $userRelays = $this->getUserRelays()->filter(fn (UserCentre $userRelay) => $userRelay->getCentre() === $relay);
+        if (!$relay) {
+            return null;
+        }
 
-        return $userRelays->first() ?? null;
+        return $this->getUserRelays()->filter(fn (UserCentre $userRelay) => $userRelay->getCentre() === $relay)->first() ?: null;
+    }
+
+    public function getFirstUserRelay(): ?UserCentre
+    {
+        return $this->getUserRelays()->first() ?: null;
     }
 
     public static function createUserRelay(User $user, Centre $relay): UserCentre

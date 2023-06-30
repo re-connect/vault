@@ -11,6 +11,10 @@
     <span class="text-grey">{{ user.username }}</span>
 {% endblock %}
 
+{% block actions %}
+    {{ include('v2/pro/list/_update_permission_button.html.twig', {user, relay}) }}
+{% endblock %}
+
 {% block actionDropdown %}
     {{ include('v2/users_list/components/_action_dropdown.html.twig', {
         removeFromRelay: {

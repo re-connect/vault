@@ -2,6 +2,7 @@
 
 namespace App\ControllerV2;
 
+use App\Entity\Centre;
 use App\Entity\Membre;
 use App\Entity\User;
 use App\FormV2\FilterUser\FilterUserFormModel;
@@ -15,10 +16,11 @@ use App\Repository\MembreRepository;
 use App\Security\VoterV2\ProVoter;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: '/pro')]
 #[IsGranted(ProVoter::MANAGE)]
@@ -32,9 +34,10 @@ class ProController extends AbstractController
         CentreRepository $relayRepository,
     ): Response {
         $query = $request->query;
+        $relay = $relayRepository->find($query->getInt('relay'));
         $formModel = new FilterUserFormModel(
             $query->get('search'),
-            $relayRepository->find($query->getInt('relay')),
+            $relay,
         );
 
         $form = $this->createForm(FilterUserType::class, $formModel, [
@@ -57,6 +60,7 @@ class ProController extends AbstractController
                     PaginatorService::LIST_USER_LIMIT,
                 ),
                 'form' => $form,
+                'relay' => $relay,
             ],
         );
     }
@@ -108,5 +112,30 @@ class ProController extends AbstractController
         return $request->isXmlHttpRequest()
             ? $this->render('v2/pro/create/_search_results_card.html.twig', ['pros' => $pros])
             : $this->render('v2/pro/create/search.html.twig', ['form' => $form, 'pros' => $pros]);
+    }
+
+    #[Route(
+        path: '/{id<\d+>}/relay/{relay<\d+>}/toggle-permission/{permission<[a-z]+>}',
+        name: 'toggle_pro_permission',
+        methods: ['POST'],
+        condition: "params['permission'] in [
+        constant('App\\\Entity\\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES'),
+        constant('App\\\Entity\\\MembreCentre::TYPEDROIT_GESTION_MEMBRES'),
+        ]",
+    )]
+    #[IsGranted('UPDATE', 'pro')]
+    public function togglePermission(
+        Membre $pro,
+        #[MapEntity(id: 'relay')] Centre $relay,
+        string $permission,
+        EntityManagerInterface $em,
+    ): Response {
+        $pro->getUserCentre($relay)?->togglePermission($permission);
+        $em->flush();
+
+        return $this->render('v2/pro/list/_update_permission_button.html.twig', [
+            'user' => $pro->getUser(),
+            'relay' => $relay,
+        ]);
     }
 }

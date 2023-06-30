@@ -117,6 +117,14 @@ class MembreCentre extends UserCentre
             && true === $this->getDroits()[self::TYPEDROIT_GESTION_MEMBRES];
     }
 
+    public function togglePermission(string $permission): void
+    {
+        if (!array_key_exists($permission, $this->getDroits())) {
+            return;
+        }
+        $this->droits[$permission] = !$this->droits[$permission];
+    }
+
     /**
      * Specify data which should be serialized to JSON.
      *
