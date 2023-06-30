@@ -13,12 +13,7 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @method Beneficiaire|null find($id, $lockMode = null, $lockVersion = null)
- * @method Beneficiaire|null findOneBy(array $criteria, array $orderBy = null)
- * @method Beneficiaire[]    findAll()
- * @method Beneficiaire[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
+/** @extends ServiceEntityRepository<Beneficiaire> */
 class BeneficiaireRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)

@@ -27,6 +27,7 @@
             {% endif %}
                 <button class="btn border-0"
                         type="{{ currentUserRelay ? 'submit' : 'button' }}"
+                        id="{{ button.permission }}"
                 >
                     <i class="fas fa-{{ button.icon }} fa-2x text-{{ currentUserRelay and currentUserRelay.hasDroit(button.permission) ? 'primary' : 'grey ' }}"
                        data-toggle="tooltip"

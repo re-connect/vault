@@ -7,12 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @method Rappel|null find($id, $lockMode = null, $lockVersion = null)
- * @method Rappel|null findOneBy(array $criteria, array $orderBy = null)
- * @method Rappel[]    findAll()
- * @method Rappel[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
+/** @extends ServiceEntityRepository<Rappel> */
 class RappelRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)

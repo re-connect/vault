@@ -6,12 +6,7 @@ use App\Entity\Annotations\ClientPermission;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @method ClientPermission|null find($id, $lockMode = null, $lockVersion = null)
- * @method ClientPermission|null findOneBy(array $criteria, array $orderBy = null)
- * @method ClientPermission[]    findAll()
- * @method ClientPermission[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
+/** @extends ServiceEntityRepository<ClientPermission> */
 class ClientPermissionRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
