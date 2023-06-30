@@ -63,6 +63,7 @@ beneficiary_has_no_account_create: 'The beneficiary does not have a Reconnect di
 beneficiary_has_no_email: The beneficiary does not have email address
 beneficiary_has_no_phone_number: The beneficiary does not have phone number
 beneficiary_has_no_secret_answer: The beneficiary does not have secret answer
+beneficiary_management: Beneficiary management
 beneficiary_reset_password_SMS_code: Code received by SMS
 beneficiary_reset_password_SMS_has_been_sent: An SMS was sent to the beneficiary, containing a secret code to renew his password
 beneficiary_reset_password_already_requested: A reset password request has already been made for this beneficiary by sms
@@ -791,6 +792,7 @@ print_account_creation_act: "Don't forget to print the Reconnect account creatio
 private: Private
 pro_manage_user_title_part_1: Manage
 professionals: Professionals
+pro_management: Professional management
 public_reset_password: 'I want to reset my password'
 public_reset_password_SMS_has_been_sent: 'An SMS was sent to you containing a secret code to renew your password. It is valid for 2 hours.'
 public_reset_password_SMS_wrong_code: 'The code you entered does not correspond to the one you received by SMS'
@@ -974,4 +976,5 @@ you_are_now_subscribed_for_newsletter: 'You are now subscribed to our newsletter
 you_can_download_mobile_app: 'You can also download the mobile app'
 you_can_unsubscribe_for_newsletter: 'You can unsubscribe from this list at any time, using the link you will find at the bottom of each newsletter'
 you_must_provide_phone_number: 'You must provide a phone number'
+you_must_select_center_for_right_update: You must select a center to be able to modify the rights of a professional
 your_new_password: Your new password
