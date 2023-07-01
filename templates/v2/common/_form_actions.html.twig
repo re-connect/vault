@@ -1,0 +1,10 @@
+<div class="d-flex justify-content-between mt-4">
+    <div>
+        {% if backPath is defined %}
+            {{ include('v2/common/_button.html.twig', {message: 'back'|trans, color: 'primary'}) }}
+        {% endif %}
+    </div>
+    <div>
+        {{ include('v2/common/_button.html.twig', {message: buttonText, color: 'outline-primary'}) }}
+    </div>
+</div>

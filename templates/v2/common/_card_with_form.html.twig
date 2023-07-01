@@ -9,9 +9,7 @@
                 {{ form_errors(field) }}
             {% endfor %}
         </div>
-        <div class="text-end">
-            {{ include('v2/common/_button.html.twig', {message: buttonText, color: 'outline-primary'}) }}
-        </div>
+        {{ include('v2/common/_form_actions.html.twig') }}
         {{ form_end(form) }}
     </div>
 {% endblock %}

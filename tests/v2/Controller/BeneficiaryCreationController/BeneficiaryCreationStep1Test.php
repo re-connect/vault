@@ -54,7 +54,7 @@ class BeneficiaryCreationStep1Test extends AbstractControllerTest implements Tes
     {
         yield 'Should redirect to step 2 when form is correct' => [
             self::URL,
-            'confirm',
+            'submit',
             self::FORM_VALUES,
             MemberFixture::MEMBER_MAIL,
             '/beneficiary/create/2/%s',
@@ -77,7 +77,7 @@ class BeneficiaryCreationStep1Test extends AbstractControllerTest implements Tes
         yield 'Should return an error when nom is empty' => [
             self::URL,
             'create_beneficiary',
-            'confirm',
+            'submit',
             $values,
             [
                 [
@@ -95,7 +95,7 @@ class BeneficiaryCreationStep1Test extends AbstractControllerTest implements Tes
         yield 'Should return an error when prenom is empty' => [
             self::URL,
             'create_beneficiary',
-            'confirm',
+            'submit',
             $values,
             [
                 [
@@ -113,7 +113,7 @@ class BeneficiaryCreationStep1Test extends AbstractControllerTest implements Tes
         yield 'Should return an error if email already used' => [
             self::URL,
             'create_beneficiary',
-            'confirm',
+            'submit',
             $values,
             [
                 [
@@ -131,7 +131,7 @@ class BeneficiaryCreationStep1Test extends AbstractControllerTest implements Tes
         yield 'Should return an error if email is not correct' => [
             self::URL,
             'create_beneficiary',
-            'confirm',
+            'submit',
             $values,
             [
                 [

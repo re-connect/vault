@@ -25,17 +25,21 @@ class UserInformationType extends AbstractType
             ->add('telephone', null, [
                 'required' => false,
                 'label' => 'phone',
-                'row_attr' => ['class' => 'col-6 mt-3'],
+                'row_attr' => [
+                    'class' => 'col-6 mt-3',
+                    'data-controller' => 'intl-tel-input',
+                ],
                 'attr' => [
-                    'class' => 'intl-tel-input',
+                    'data-intl-tel-input-target' => 'input',
+                    'autocomplete' => 'tel',
                 ],
             ])
+            ->addEventSubscriber(new AddFormattedPhoneSubscriber())
             ->add('email', EmailType::class, [
                 'required' => false,
                 'row_attr' => ['class' => 'col-6 mt-3'],
                 'label' => 'email',
-            ])
-            ->addEventSubscriber(new AddFormattedPhoneSubscriber());
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

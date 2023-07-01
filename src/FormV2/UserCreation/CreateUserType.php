@@ -31,7 +31,10 @@ class CreateUserType extends AbstractType
                     'class' => 'col-6 mt-3',
                     'data-controller' => 'intl-tel-input',
                 ],
-                'attr' => ['data-intl-tel-input-target' => 'input'],
+                'attr' => [
+                    'data-intl-tel-input-target' => 'input',
+                    'autocomplete' => 'tel',
+                ],
             ])
             ->addEventSubscriber(new AddFormattedPhoneSubscriber())
             ->add('email', EmailType::class, [
