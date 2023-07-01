@@ -61,7 +61,7 @@ class BeneficiaryCreationStep3Test extends AbstractControllerTest implements Tes
     {
         yield 'Should redirect to step 4 when form is correct' => [
             self::URL,
-            'confirm',
+            'submit',
             self::FORM_VALUES,
             MemberFixture::MEMBER_MAIL,
             '/beneficiary/create/4/%s',
@@ -89,7 +89,7 @@ class BeneficiaryCreationStep3Test extends AbstractControllerTest implements Tes
         yield 'Should return an error when answer is empty' => [
             self::URL,
             'create_beneficiary',
-            'confirm',
+            'submit',
             $values,
             [
                 [
@@ -107,7 +107,7 @@ class BeneficiaryCreationStep3Test extends AbstractControllerTest implements Tes
         yield 'Should return an error when answer length < 3 ' => [
             self::URL,
             'create_beneficiary',
-            'confirm',
+            'submit',
             $values,
             [
                 [

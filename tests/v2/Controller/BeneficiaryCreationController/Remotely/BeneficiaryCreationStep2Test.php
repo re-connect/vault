@@ -75,7 +75,7 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
     {
         yield 'Should redirect to step 3 when form is correct' => [
             self::URL,
-            'confirm',
+            'submit',
             self::FORM_VALUES,
             MemberFixture::MEMBER_MAIL_WITH_RELAYS,
             '/beneficiary/create/3/%s',

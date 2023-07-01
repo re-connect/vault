@@ -83,7 +83,7 @@ class ProController extends AbstractController
     #[Route(path: '/create', name: 'create_pro', methods: ['GET', 'POST'])]
     public function createPro(Request $request, EntityManagerInterface $em, UserManager $manager): Response
     {
-        $user = (new User())->setSubjectMembre(new Membre());
+        $user = User::createPro();
         $form = $this->createForm(CreateUserType::class, $user, [
             'action' => $this->generateUrl('create_pro'),
         ])->handleRequest($request);
