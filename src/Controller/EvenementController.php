@@ -101,7 +101,7 @@ class EvenementController extends AbstractController
         }
 
         return $this->render('app/evenement/form.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'id' => $entity->getId(),
         ], $response);
     }

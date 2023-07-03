@@ -22,7 +22,6 @@ use App\Repository\UserRepository;
 use App\Security\Authorization\Voter\BeneficiaireVoter;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -35,6 +34,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -143,7 +143,7 @@ final class MembreBeneficiaireController extends REController
 
         return $this->render('user/membre-beneficiaire/questionSecrete.html.twig', [
             'beneficiaire' => $beneficiaire,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -208,7 +208,7 @@ final class MembreBeneficiaireController extends REController
         return $this->render(
             'user/membre-beneficiaire/creationBeneficiaireStep1.html.twig',
             [
-                'form' => $form->createView(),
+                'form' => $form,
                 'totalSteps' => $totalSteps,
             ]
         );
@@ -247,7 +247,7 @@ final class MembreBeneficiaireController extends REController
         }
 
         return $this->render('user/membre-beneficiaire/creationBeneficiaireStep2.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -287,7 +287,7 @@ final class MembreBeneficiaireController extends REController
         }
 
         return $this->render('user/membre-beneficiaire/creationBeneficiaireStep3.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -339,7 +339,7 @@ final class MembreBeneficiaireController extends REController
                 } catch (Exception) {
                     return $this->render($view, [
                         'beneficiaire' => $beneficiaire,
-                        'form' => $form->createView(),
+                        'form' => $form,
                         'way' => $way,
                         'totalSteps' => 4,
                     ]);
@@ -364,7 +364,7 @@ final class MembreBeneficiaireController extends REController
 
         return $this->render($view, [
             'beneficiaire' => $beneficiaire,
-            'form' => $form->createView(),
+            'form' => $form,
             'way' => $way,
             'totalSteps' => 'default' === $way ? 6 : 4,
         ]);
@@ -399,8 +399,7 @@ final class MembreBeneficiaireController extends REController
                 'form' => $this->createFormBuilder()
                     ->add('submit', SubmitType::class, ['label' => 'main.oui'])
                     ->add('allCentres', HiddenType::class, ['mapped' => false, 'data' => 1])
-                    ->getForm()
-                    ->createView(),
+                    ->getForm(),
             ]);
         }
 

@@ -23,12 +23,12 @@ use App\ManagerV2\NoteManager;
 use App\Repository\DossierRepository;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: '/beneficiary')]
 class BeneficiaryPersonalDataController extends AbstractController
@@ -55,7 +55,7 @@ class BeneficiaryPersonalDataController extends AbstractController
                 'form' => $this->getSearchForm(
                     $this->generateUrl('list_notes', ['id' => $beneficiary->getId()]),
                     $formModel,
-                )->handleRequest($request),
+                ),
             ],
         );
     }
@@ -112,7 +112,7 @@ class BeneficiaryPersonalDataController extends AbstractController
                 'form' => $this->getSearchForm(
                     $this->generateUrl('list_contacts', ['id' => $beneficiary->getId()]),
                     $formModel,
-                )->handleRequest($request),
+                ),
             ],
         );
     }
@@ -174,7 +174,7 @@ class BeneficiaryPersonalDataController extends AbstractController
                 'form' => $this->getSearchForm(
                     $this->generateUrl('list_events', ['id' => $beneficiary->getId()]),
                     $formModel,
-                )->handleRequest($request),
+                ),
             ],
         );
     }
@@ -232,7 +232,7 @@ class BeneficiaryPersonalDataController extends AbstractController
                 'form' => $this->getSearchForm(
                     $this->generateUrl('list_documents', ['id' => $beneficiary->getId()]),
                     $formModel,
-                )->handleRequest($request),
+                ),
             ],
         );
     }
@@ -251,7 +251,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         DossierRepository $folderRepository
     ): Response {
         if (!$files = $request->files->get('files')) {
-            return new Response(null, 400);
+            return new Response(null, Response::HTTP_BAD_REQUEST);
         }
         $folderId = $request->query->get('folder');
 
@@ -261,7 +261,7 @@ class BeneficiaryPersonalDataController extends AbstractController
             $folderId ? $folderRepository->find($folderId) : null
         );
 
-        return new Response(null, 201);
+        return new Response(null, Response::HTTP_CREATED);
     }
 
     #[Route(
