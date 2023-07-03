@@ -16,13 +16,14 @@ class CreateUserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('prenom', null, [
-            'label' => 'firstname',
-            'row_attr' => ['class' => 'col-6 mt-3'],
-        ])
+        $builder
+            ->add('prenom', null, [
+                'label' => 'firstname',
+                'row_attr' => ['class' => 'col-6 mt-3 required'],
+            ])
             ->add('nom', null, [
                 'label' => 'name',
-                'row_attr' => ['class' => 'col-6 mt-3'],
+                'row_attr' => ['class' => 'col-6 mt-3 required'],
             ])
             ->add('telephone', null, [
                 'required' => false,

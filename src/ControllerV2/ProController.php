@@ -89,6 +89,7 @@ class ProController extends AbstractController
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('success', 'user_successfully_created');
             $manager->updatePasswordWithPlain($user);
 
             return $this->redirectToRoute('invite_user', ['id' => $user->getId()]);

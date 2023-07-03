@@ -220,7 +220,7 @@ contacts: Contacts
 content: Contenu
 country: Pays
 create_account: Créer un compte
-create_member: Ajouter un membre
+create_member: Ajout d'un membre
 create_new_benef: 'Création d''un <span class="rp-blue text-blue">bénéficiaire</span>'
 create_new_benef_remotely_step2: '<span class="rp-blue text-blue">Étape %step%/%totalSteps%</span>&nbsp; Veuillez choisir le/les relais reconnect du bénéficiaire'
 create_new_benef_remotely_step4: '<span class="rp-blue text-blue">Étape %step%/%totalSteps%</span>&nbsp; Envoi du SMS d''activation du compte'
@@ -1135,6 +1135,7 @@ user_not_found: "Aucun utilisateur n'a été trouvé"
 user_parameters_subtitle: 'Paramètres de %subject%'
 user_parameters_title: '<span class="text-primary">Paramètres d''</span><span class="rp-blue vault-green">utilisateur</span>'
 user_shared_document_with_you: 'L''utilisateur %nom% %prenom% souhaite partager ce document avec vous: "%document%"'
+user_successfully_created: Opération réussie. L’utilisateur a bien été créé
 user_update_password_subtitle: 'Mot de passe de %subject%'
 user_update_password_title: '<span class="text-primary">Renouvellement de </span><span class="rp-blue vault-green">mot de passe</span>'
 username: "Nom d'utilisateur"
