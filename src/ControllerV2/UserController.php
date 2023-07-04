@@ -9,7 +9,6 @@ use App\FormV2\UserSettingsType;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -129,12 +128,11 @@ class UserController extends AbstractController
         methods: ['GET'],
         condition: 'request.isXmlHttpRequest()',
     )]
-    #[ParamConverter('relay', class: 'App\Entity\Centre', options: ['id' => 'relayId'])]
     #[IsGranted('ROLE_MEMBRE')]
     #[IsGranted('UPDATE', 'user')]
     public function disaffiliateFromRelay(
         User $user,
-        Centre $relay,
+        #[MapEntity(id: 'relayId')] Centre $relay,
         RelayManager $manager,
     ): Response {
         $manager->removeUserFromRelay($user, $relay);
