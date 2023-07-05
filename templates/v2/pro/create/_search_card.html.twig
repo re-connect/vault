@@ -1,0 +1,19 @@
+{% extends 'v2/common/_card.html.twig' %}
+
+{% set title='member_has_account'|trans %}
+{% set iconName='magnifying-glass' %}
+{% set helpText='search_member_help'|trans %}
+{% set buttonText='search'|trans %}
+
+{% block customContent %}
+    <div class="row text-end">
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-12 col-md-8 pt-2 d-flex">
+                {{ form_widget(form.search, {attr: {class: ''}}) }}
+            </div>
+            {{ include('v2/common/_button.html.twig', {message: buttonText, color: 'outline-primary'}) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

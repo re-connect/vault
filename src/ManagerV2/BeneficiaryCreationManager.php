@@ -4,12 +4,9 @@ namespace App\ManagerV2;
 
 use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Beneficiaire;
-use App\Entity\Centre;
-use App\Entity\CreatorCentre;
 use App\Entity\CreatorUser;
 use App\ServiceV2\NotificationService;
 use App\ServiceV2\Traits\UserAwareTrait;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 
@@ -21,7 +18,6 @@ class BeneficiaryCreationManager
         private readonly UserManager $userManager,
         private readonly Security $security,
         private readonly EntityManagerInterface $em,
-        private readonly RelayManager $relayManager,
         private readonly NotificationService $notificator,
     ) {
     }
@@ -59,51 +55,7 @@ class BeneficiaryCreationManager
     {
         $beneficiary = $this->getOrCreateBeneficiary($creationProcess);
         $this->em->persist($creationProcess);
-        $this->updatePassword($beneficiary);
-        $this->updateRelays($beneficiary);
-        $this->em->flush();
-    }
-
-    private function updatePassword(Beneficiaire $beneficiary): void
-    {
-        $user = $beneficiary->getUser();
-        if ($password = $user->getPlainPassword()) {
-            $this->userManager->updatePassword($user, $password);
-        }
-    }
-
-    private function updateRelays(Beneficiaire $beneficiary): void
-    {
-        $user = $beneficiary->getUser();
-        $beneficiaryRelays = $beneficiary->getCentres();
-        $newRelays = $beneficiary->relays ?? new ArrayCollection();
-
-        $newRelays
-            ->filter(fn (Centre $relay) => !$beneficiaryRelays->contains($relay))
-            ->map(fn (Centre $relay) => $this->relayManager->addUserToRelay($beneficiary->getUser(), $relay));
-
-        $beneficiaryRelays
-            ->filter(fn (Centre $relay) => !$newRelays->contains($relay))
-            ->map(fn (Centre $relay) => $this->relayManager->removeUserFromRelay($beneficiary->getUser(), $relay));
-
-        $hasRelays = count($newRelays) > 0;
-        $creatorRelay = $user->getCreatorCentre();
-
-        if ($hasRelays) {
-            if (!$creatorRelay) {
-                $user->addCreator((new CreatorCentre())->setEntity($newRelays->first()));
-            } elseif ($creatorRelay->getEntity() !== $newRelays->first()) {
-                $user->removeCreator($creatorRelay);
-                $this->em->remove($creatorRelay);
-                $user->addCreator((new CreatorCentre())->setEntity($newRelays->first()));
-            }
-        } else {
-            if ($creatorRelay) {
-                $user->removeCreator($creatorRelay);
-                $this->em->remove($creatorRelay);
-            }
-        }
-
+        $this->userManager->updatePasswordWithPlain($beneficiary->getUser());
         $this->em->flush();
     }
 

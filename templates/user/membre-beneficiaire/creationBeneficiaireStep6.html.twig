@@ -20,13 +20,13 @@
             {% trans %}membre.creationBeneficiaire.step6.remotely.content{% endtrans %}
         {% endif %}
     </div>
-{#    <div class="text-primary font-size-1 mt-3"> #}
-    {#        {{ 'add_si_siao_number_intro'|trans }} #}
-    {#        <a href="{{ path('add_si_siao_number', {'id': beneficiary.id}) }}" class="btn btn-blue font-size-1 ml-2" #}
-    {#        > #}
-    {#            {{ 'add'|trans }} #}
-    {#        </a> #}
-    {#    </div>#}
+    <div class="text-primary font-size-1 mt-3">
+        {{ 'add_si_siao_number_intro'|trans }}
+        <a href="{{ path('add_si_siao_number', {id: beneficiary.id}) }}" class="btn btn-blue font-size-1 ml-2"
+        >
+            {{ 'add'|trans }}
+        </a>
+    </div>
 {% endblock creation_addUserContent %}
 
 {% block bottomLinks %}

@@ -19,15 +19,19 @@ class UserInformationType extends AbstractType
                 'row_attr' => ['class' => 'col-6 mt-3'],
             ])
             ->add('nom', null, [
-                'label' => 'lastname',
+                'label' => 'name',
                 'row_attr' => ['class' => 'col-6 mt-3'],
             ])
             ->add('telephone', null, [
                 'required' => false,
                 'label' => 'phone',
-                'row_attr' => ['class' => 'col-6 mt-3'],
+                'row_attr' => [
+                    'class' => 'col-6 mt-3',
+                    'data-controller' => 'intl-tel-input',
+                ],
                 'attr' => [
-                    'class' => 'intl-tel-input',
+                    'data-intl-tel-input-target' => 'input',
+                    'autocomplete' => 'tel',
                 ],
             ])
             ->addEventSubscriber(new AddFormattedPhoneSubscriber())

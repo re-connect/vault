@@ -54,7 +54,7 @@ class MembreController extends AbstractController
             $centreManager->deassociateUserWithCentres($this->getUser()->getSubjectMembre(), $centre);
             $this->addFlash('success', 'membre.centres.vousAvezBienQuitte');
         } catch (\Exception $e) {
-            $this->addFlash('error', 'main.error.defaultTitle');
+            $this->addFlash('error', 'an_error_occurred');
         }
 
         return $this->redirect($request->headers->get('referer'));

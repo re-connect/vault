@@ -20,38 +20,16 @@
 .breadcrumb-step {
   .breadcrumb-icon {
     right: 12px;
+
+    &:before {
+      background-color: theme-color('light');
+      border-radius: 100%;
+    }
   }
 }
 
 span.spinner-border.d-none-not-important {
   display: none;
-}
-
-.relay-checkboxes > div {
-  display: flex;
-  justify-content: center;
-
-  cursor: pointer;
-  flex-grow: 1;
-
-  label {
-    cursor: pointer;
-    width: 100%;
-    min-height: 100px;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    border-color: gray;
-    color: gray;
-
-    &:after {
-      font-family: "Font Awesome 6 Free", 'Open Sans', sans-serif;
-      margin-top: 1rem;
-      font-weight: 900;
-      content: "\f594";
-      font-size: 30px;
-      display: block;
-    }
-  }
 }
 
 .rounded-card {
@@ -64,4 +42,12 @@ span.spinner-border.d-none-not-important {
 
 .btn-close {
   -webkit-appearance: none;
+}
+
+.relay-checkbox {
+  width: 200px;
+
+  .btn.text-primary span.badge {
+    display: none;
+  }
 }

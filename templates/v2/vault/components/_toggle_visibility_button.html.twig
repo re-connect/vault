@@ -1,16 +1,21 @@
 <div class="d-flex justify-content-center align-items-center"
-        {{ stimulus_controller('toggle-visibility', {'url': url })}}>
+    {{ stimulus_controller('ajax-toggle', {'url': url })}}
+>
     <i class="fas fa-lock{{ private ? ' text-primary' : '-open text-light-grey' }} me-2"
-       data-toggle-visibility-target="lockIcon">
+       {{ stimulus_target('ajax-toggle', 'icon') }}
+       data-toggle-classes='text-light-grey fa-lock-open fa-lock'
+    >
     </i>
     <div class="form-check form-switch form-switch-vault-visibility mx-2">
         <input type="checkbox"
                class="form-check-input form-check-vault-visibility text-white me-0"
-               data-action="toggle-visibility#toggle"
+               {{ stimulus_action('ajax-toggle', 'toggle') }}
                 {{ private ? '' : 'checked' }}
         >
     </div>
     <i class="fas fa-share {{ private ? 'text-light-grey' : 'text-green' }}"
-       data-toggle-visibility-target="shareIcon">
+        {{ stimulus_target('ajax-toggle', 'icon') }}
+       data-toggle-classes='text-light-grey text-green'
+    >
     </i>
 </div>

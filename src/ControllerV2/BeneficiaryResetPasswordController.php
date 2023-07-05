@@ -9,11 +9,11 @@ use App\FormV2\ResetPassword\BeneficiaryRequest\ResetPasswordSmsFormModel;
 use App\FormV2\ResetPassword\BeneficiaryRequest\ResetPasswordSmsFormType;
 use App\ManagerV2\UserManager;
 use App\ServiceV2\ResettingService;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[IsGranted('ROLE_MEMBRE')]

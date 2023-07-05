@@ -1,23 +1,45 @@
-identity: Personalien
+'no': Nein
+'yes': Ja
+accepted: akzeptiert
 access: Zugang
-added_by: 'Erstellt von'
+accompanying_person_propose_cfn_activation: 'Dein*e Sozialarbeiter*in %person.firstname% %person.lastname% aus der Einrichtung %center% lädt Dich ein, Deine Cloud zu aktivieren.'
 add_date: 'Erstellt am'
-add_sms_reminder: 'SMS-Erinnerung hinzufügen'
-add_new_beneficiary_title_part_1: 'Klient*in'
-add_new_beneficiary_title_part_2: hinzufügen
-add_new_beneficiary: 'Klient*in hinzufügen'
+add_member: 'Nutzer*in neu anlegen'
 add_new_benef_big_title: 'Klient*in <span class="rp-blue text-blue">hinzufügen</span>'
+add_new_beneficiary: 'Klient*in hinzufügen'
 add_new_member_big_title: 'Mitarbeiter*in <span class="rp-blue">anlegen</span>'
+add_sms_reminder: 'SMS-Erinnerung hinzufügen'
+added_by: 'Erstellt von'
 admin.menu.create_centre: 'Einrichtung erstellen'
 admin_reset_password_mail: 'Passwort per Mail zurücksetzen'
 admin_reset_password_sms: 'Passwort per SMS zurücksetzen'
 alt_logo_reconnect: 'Logo von Reconnect'
-association: Verein
+an_error_occurred: 'Es ist ein Fehler aufgetreten'
 answer: Antwort
+association: Verein
 at: um
 authentification_failure_wrong_credentials: 'Falsches Passwort oder falscher Benutzername'
 back_home: 'Zurück zur Startseite'
 back_to_reconnect_admin: 'Zurück zur Startseite'
+benef_has_account: 'Der/die Klient*in besitzt ein Konto'
+benef_has_no_account: 'Der/die Klient*in besitzt kein Konto'
+benef_management_title: 'Verwaltung von <span class="rp-blue">Klient*in</span>'
+benef_new_guide_accept_button: '<span class="text-uppercase lighter">Akzeptieren</span><br/><small class="lighter">Ich möchte meine Cloud aktivieren</small>'
+benef_new_guide_deny_button: '<span class="text-uppercase lighter">Ablehnen</span><br/><small class="lighter">Ich möchte meine Cloud löschen</small>'
+benef_new_guide_private_answer: 'Ja, mit dieser Freigabe können für mich zuständige Mitarbeitende, meine Dokumente einsehen.'
+benef_new_guide_private_question: 'Sollen meine Dokumente an ausgewählte Sozialarbeiter*innen freigegeben werden?'
+benef_new_guide_private_question_alt: 'Art der Freigabe'
+benef_new_guide_title: 'Willkommen bei Reconnect <span class="vault-green">- Der Cloud für wohnungslose Menschen</span>'
+benef_new_guide_what_for_answer_1: 'Meine Informationen speichern'
+benef_new_guide_what_for_answer_1_alt: Cloud
+benef_new_guide_what_for_answer_2: 'Meinen Austausch mit Sozialarbeiter*innen<br/>erleichtern'
+benef_new_guide_what_for_answer_2_alt: 'Meinen Austausch erleichtern'
+benef_new_guide_what_for_question: 'Was bringt mir die Cloud?'
+benef_new_guide_which_info_icon_1: Dokumente
+benef_new_guide_which_info_icon_2: Erinnerungen
+benef_new_guide_which_info_icon_3: Kontakte
+benef_new_guide_which_info_icon_4: Notizen
+benef_new_guide_which_info_question: 'Welche Dokumente möchtest Du speichern'
 beneficiaire.menu.mesAides: 'Meine Hilfen'
 beneficiaire.menu.mesContacts: 'Meine Kontakte'
 beneficiaire.menu.mesDocuments: 'Meine Dokumente'
@@ -31,30 +53,12 @@ beneficiaire.menu2.mesDocuments: Dokumente
 beneficiaire.menu2.mesNotes: Notizen
 beneficiaire.menu2.mesRelaisReconnect: Einrichtungen
 beneficiaire.menu2.monCalendrier: Termine
-beneficiary_not_found: 'Der Nutzer %id% wurde nicht gefunden'
+beneficiaries_management: 'Verwaltung von Klient*innen'
 beneficiary.delete.account: 'Sind Sie sicher, dass Sie ihr Konto löschen wollen?'
-benef_has_account: 'Der/die Klient*in besitzt ein Konto'
-benef_has_no_account: 'Der/die Klient*in besitzt kein Konto'
-benef_management_title: 'Verwaltung von <span class="rp-blue">Klient*in</span>'
-benef_new_guide_title: 'Willkommen bei Reconnect <span class="vault-green">- Der Cloud für wohnungslose Menschen</span>'
-benef_new_guide_what_for_question: 'Was bringt mir die Cloud?'
-benef_new_guide_what_for_answer_1: 'Meine Informationen speichern'
-benef_new_guide_what_for_answer_1_alt: Cloud
-benef_new_guide_what_for_answer_2: 'Meinen Austausch mit Sozialarbeiter*innen<br/>erleichtern'
-benef_new_guide_what_for_answer_2_alt: 'Meinen Austausch erleichtern'
-benef_new_guide_which_info_question: 'Welche Dokumente möchtest Du speichern'
-benef_new_guide_which_info_icon_1: Dokumente
-benef_new_guide_which_info_icon_2: Erinnerungen
-benef_new_guide_which_info_icon_3: Kontakte
-benef_new_guide_which_info_icon_4: Notizen
-benef_new_guide_private_question: 'Sollen meine Dokumente an ausgewählte Sozialarbeiter*innen freigegeben werden?'
-benef_new_guide_private_answer: 'Ja, mit dieser Freigabe können für mich zuständige Mitarbeitende, meine Dokumente einsehen.'
-benef_new_guide_private_question_alt: 'Art der Freigabe'
-benef_new_guide_deny_button: '<span class="text-uppercase lighter">Ablehnen</span><br/><small class="lighter">Ich möchte meine Cloud löschen</small>'
-benef_new_guide_accept_button: '<span class="text-uppercase lighter">Akzeptieren</span><br/><small class="lighter">Ich möchte meine Cloud aktivieren</small>'
+beneficiary_not_found: 'Der Nutzer %id% wurde nicht gefunden'
 center_has_no_info: 'Keine Einrichtung kann auf Ihre Daten zugreifen'
 center_is_empty: 'Zu Ihrer Einrichtung existieren keine verknüpften Konten'
-centre.metaTitle: Einrichtungen
+centers: Einrichtungen
 centre.ville: Stadt
 centre.vousAvezBienQuitte: 'Du hast die Einrichtung verlassen'
 cfn_accessible_tool_alt_img: 'Ein leicht zugängliches Tool'
@@ -84,14 +88,14 @@ choose_picture: 'Bild auswählen'
 city: Stadt
 comment: Kommentar
 confirm: Bestätigen
+connect_reconnect_site: 'Melde dich unter www.reconnect.fr an'
 connexionForm.connexion: Verbinden
 connexionForm.erreurIdentifiants: 'Benutzername oder Passwort falsch'
 connexionForm.inactif: 'Du wurdest wegen Inaktivität abgemeldet'
-connexionForm.motDePasse: Passwort
 connexionForm.oublieMdp: 'Ich habe mein Passwort oder Anmeldenamen vergessen'
 connexionForm.username: Anmeldename
 connexionForm.usernameV2: 'Anmeldename oder E-Mail'
-connect_reconnect_site: 'Melde dich unter www.reconnect.fr an'
+consult_media: 'Medien abrufen'
 contact.ajouter: 'Neuen Kontakt hinzufügen'
 contact.associationLabel: Verein
 contact.bienSauvegarde: 'Dein Kontakt wurde erfolgreich gespeichert'
@@ -111,43 +115,44 @@ contact.supprimer: Entfernen
 contact.telephoneLabel: Telefonnummer
 contact.text: 'Schreib uns, wenn Du Infos möchtest oder Hilfe bei der Nutzung benötigst.'
 contact.title: 'Schreib dem <span class="main">Reconnect Team</span>'
-consult_media: 'Medien abrufen'
-content: Inhalt
 contact_page_form_title: '(Kontaktformular ausfüllen)'
 contact_page_offices_city_aura: Lyon
-contact_page_offices_city_est: Strasbourg
 contact_page_offices_city_canada: Montreal
+contact_page_offices_city_est: Strasbourg
 contact_page_offices_city_hdf: Lille
 contact_page_offices_city_normandie: Rouen
 contact_page_offices_city_occitanie: Montpellier
-contact_page_offices_city_paris: Paris
 contact_page_offices_city_paca: Marseille
+contact_page_offices_city_paris: Paris
 contact_page_offices_contact: 'Es gibt die Cloud noch nicht in Ihrer Region?'
 contact_page_offices_region_aura: Auvergne-Rhônes-Alpes
-contact_page_offices_region_est: 'Grand Est'
 contact_page_offices_region_canada: Canada
+contact_page_offices_region_est: 'Grand Est'
 contact_page_offices_region_hdf: 'Hauts de France'
 contact_page_offices_region_normandie: Normandie
 contact_page_offices_region_occitanie: Occitanie
-contact_page_offices_region_paris: 'Île de France'
 contact_page_offices_region_paca: "Provence-Alpes-Côte d'Azur"
+contact_page_offices_region_paris: 'Île de France'
 contact_page_offices_title: 'Nehmen Sie Kontakt auf'
 contact_page_title: Kontaktaufnahme
 contact_us_button: Kontaktaufnahme!
 contact_us_title: 'Sie möchten mehr erfahren?'
+content: Inhalt
+create_member: 'Account anlegen'
 create_new_benef: 'Klient*in <span class="rp-blue text-blue">anlegen</span>'
+create_new_benef_remotely_step2: '<span class="rp-blue text-blue">Schritt %step%/%totalSteps%</span>&nbsp; Bitte wählen Sie die zuständigen Einrichtungen des/der Klient*in aus'
+create_new_benef_remotely_step4: '<span class="rp-blue text-blue">Schritt %step%/%totalSteps%</span>&nbsp; SMS versenden zur Aktivierung des Kontos'
 create_new_benef_step1: '<span class="rp-blue text-blue">Schritt 1/%totalSteps%</span>&nbsp; Bitte tragen Sie die Daten des/der Klient*in ein'
 create_new_benef_step2: '<span class="rp-blue text-blue">Schritt 2/%totalSteps%</span>&nbsp; Bitte wählen Sie einen Benutzernamen und ein Passwort'
 create_new_benef_step3: '<span class="rp-blue text-blue">Schritt 3/%totalSteps%</span>&nbsp; Bitte legen Sie eine Sicherheitsfrage für den/die Klient*in fest'
 create_new_benef_step4: '<span class="rp-blue text-blue">Schritt 4/%totalSteps%</span>&nbsp; Bitte wählen Sie die zuständige Einrichtung aus'
 create_new_benef_step5: '<span class="rp-blue text-blue">Schritt %step%/%totalSteps%</span>&nbsp; Bitte prüfen und bestätigen Sie die eingetragenen Informationen'
 create_new_benef_step6: '<span class="rp-blue text-blue">Schritt %step%/%totalSteps%</span>&nbsp; Nutzungsbedingungen'
-create_new_benef_remotely_step2: '<span class="rp-blue text-blue">Schritt %step%/%totalSteps%</span>&nbsp; Bitte wählen Sie die zuständigen Einrichtungen des/der Klient*in aus'
-create_new_benef_remotely_step4: '<span class="rp-blue text-blue">Schritt %step%/%totalSteps%</span>&nbsp; SMS versenden zur Aktivierung des Kontos'
 database: Datenbank
 date: Datum
 delete: Löschen
 delete_your_account: 'Wenn Du Dein Konto löschen möchtest, klicke hier'
+devenirUnRelaiReconnect.creation.success: 'Die Erinrichtung wurde erfolgreich erstellt'
 disabledAt: 'Deaktiviert am'
 disabledBy: 'Deaktiviert durch'
 document.apercu: Übersicht
@@ -206,17 +211,14 @@ donneePersonnelle.tous: Alles
 donneePersonnelle.vue: Ansicht
 dossier.ajouter: 'Einen Ordner erstellen'
 dossier.vide: leer
-edit: Bearbeiten
-enabled: Aktiv
-error: Fehler
-folder_content: 'Inhalt des Ordners :'
-devenirUnRelaiReconnect.creation.success: 'Die Erinrichtung wurde erfolgreich erstellt'
 download_document: 'Dokument herunterladen'
 download_document_click_button: 'Klicken, um das Dokument herunterzuladen'
-user_shared_document_with_you: 'Der Benutzer %nom% %prenom% möchte dieses Dokument mit Ihnen teilen: "%document%"'
+edit: Bearbeiten
 email: E-Mail
 email_does_not_exist: 'Es wurde kein Benutzer mit dieser E-Mail-Adresse gefunden'
 email_or_phone: 'E-Mailadresse oder Telefonnummer'
+enabled: Aktiv
+error: Fehler
 evenement.ajouter: 'Einen Termin erstellen'
 evenement.bienSauvegarde: 'Du hast den Termin erfolgreich gespeichert'
 evenement.bienSupprime: 'Du hast den Termin erfolgreich gelöscht'
@@ -236,11 +238,12 @@ evenement.smsContent: SMS-Erinnerung
 evenement.timeLabel: Uhzeit
 event: Termin
 faq_gdpr: 'F.A.Q. Datenschutz'
-faq_gdpr_text: '<p>Sie haben Fragen zum Thema Datenschutz / DSGVO?</p><p>Dieses FAQ sollte die meisten Fragen beantworten.</p>'
 faq_gdpr_no_content: 'Dieser Abschnitt ist aktuell leer'
+faq_gdpr_text: '<p>Sie haben Fragen zum Thema Datenschutz / DSGVO?</p><p>Dieses FAQ sollte die meisten Fragen beantworten.</p>'
 flash.erreur: Fehler
 flash.operationReussie: 'Das hat geklappt'
 folder.isSubFolder: 'Du kannst den Ordner nicht in einen Unterordner des Ordners verschieben.'
+folder_content: 'Inhalt des Ordners :'
 folders.notSameBeneficiaire: 'Die Dokumente gehören nicht zum gleichen Empfänger'
 footer.aide: Hilfe
 footer.deconnexion: Abmelden
@@ -256,29 +259,27 @@ footer_discover_rp: 'Entdecken Sie Reconnect Pro'
 footer_discover_vault: 'Entdecken Sie die Cloud für wohnungslose Menschen'
 footer_group_sos_text: 'Reconnect ist Teil der GROUPE SOS Solidarités, einem von neun Verbänden der GROUPE SOS, dem führenden Sozialunternehmen in Europa'
 footer_partners_text: 'Reconnect wird unterstützt von: '
+form.validation.noPassword: 'Du musst ein Passwort festlegen'
+form.validation.passwordFormat: 'Dein Passwort darf nur Buchstaben und Zahlen enthalten'
+form.validation.phoneFormat: 'Deine Telefonnummer hat ein ungültiges Format'
 form_connexion: Verbindung
 form_forgot_password: 'Ich habe mein Passwort oder meinen Benutzernamen vergessen'
 form_login: 'Benutzername oder E-Mail'
 form_message: 'Ihre Nachricht'
-form_password: Passwort
-form.validation.noPassword: 'Du musst ein Passwort festlegen'
-form.validation.passwordFormat: 'Dein Passwort darf nur Buchstaben und Zahlen enthalten'
-form.validation.phoneFormat: 'Deine Telefonnummer hat ein ungültiges Format'
 gdpr_know_more: 'Mehr über den Datenschutz erfahren'
+header.menu.deconnection: Abmelden
+header.menu.parametres: Einstellungen
+header.menu.relaisReconnect: 'Meine Einrichtungen'
 header_link_cfn: 'Cloud für<span class="d-lg-block"> wohnungslose Menschen</span>'
 header_link_contact: 'Kontakt<span class="d-lg-block"> aufnehmen</span>'
 header_link_rp: 'Lösung für<span class="d-lg-block"> Sozialarbeitende</span>'
 header_link_who_we_are: 'Wer sind<span class="d-lg-block"> wir ?</span>'
-header.menu.deconnection: Abmelden
-header.menu.parametres: Einstellungen
-header.menu.relaisReconnect: 'Meine Einrichtungen'
 health: Verfassung
-login_form_title: 'Zugang zur Cloud für Wohnungslose Menschen'
 home_meta_desc_v2: 'Digitalisierung als Unterstützung der Sozialarbeit und Inklusion'
-home_meta_title_v2: Reconnect
-home_meta_title_rp: 'Reconnect - Die Software für Sozialarbeiter*innen'
-home_meta_title_vault: 'Reconnect - Cloud für wohnungslose Menschen'
 home_meta_title_contact: 'Reconnect - Kontakt aufnehmen'
+home_meta_title_rp: 'Reconnect - Die Software für Sozialarbeiter*innen'
+home_meta_title_v2: Reconnect
+home_meta_title_vault: 'Reconnect - Cloud für wohnungslose Menschen'
 home_our_solutions_CTA: 'Mehr erfahren'
 home_our_solutions_alt_logo_cfn: 'logo reconnect Cloud für wohnungslose Menschen'
 home_our_solutions_alt_logo_rp: 'logo reconnect pro'
@@ -310,23 +311,24 @@ home_who_we_are_p2: 'Wir sind der Ansicht, dass eine stärkere Integration von s
 home_who_we_are_p3: 'Seit 2015 engagieren wir uns für Leistungsempfänger und Fachkräfte des Sozialwesens, indem wir Lösungen für ihre Bedürfnisse schaffen.'
 home_who_we_are_title: 'Wer sind wir ?'
 housing: Unterkunft
+identity: Personalien
 invalid_token: 'Token ungültig, bitte wiederholen Sie den Vorgang'
-is_the_beneficiary_present: 'Der/die Klient*in ist bei Dir?'
 is_the_beneficiary_absent: 'Der/die Klient*in ist nicht bei Dir?'
+is_the_beneficiary_present: 'Der/die Klient*in ist bei Dir?'
 leave_center: 'Einrichtung verlassen'
-leave_center_title: 'Die Einrichtung verlassen %s'
 leave_center_confirm: 'Sind Sie sich sicher ?'
+leave_center_title: 'Die Einrichtung verlassen %s'
 location: Ort
-mail_subject_reset_password: 'RECONNECT - Passwort zurücksetzen'
-mail_subject_share_document: 'RECONNECT - Dokument teilen'
-mail_reset_password_title: 'Passwort zurücksetzen'
+login_form_title: 'Zugang zur Cloud für Wohnungslose Menschen'
 mail_reset_password_content_1: 'Wir haben eine Anfrage zur Rücksetzung Ihres Passworts erhalten.Falls Sie keine Rücksetzung angefordert haben, können Sie diese Mail ignorieren und Ihr aktuelles Passwort bleibt bestehen.'
 mail_reset_password_content_2: 'Klicken Sie auf den unten stehenden Link, um ein neues Passwort zu wählen. Der Link ist für die nächsten 24 Stunden nutzbar.'
-mail_shared_document_title: Dokumente
+mail_reset_password_title: 'Passwort zurücksetzen'
 mail_shared_document_content_1: 'Jemand möchte ein Dokument mit Ihnen teilen.'
 mail_shared_document_content_2: 'Um dieses Dokument herunterzuladen, gehen Sie auf diesen Link (7 Tage gültig)'
 mail_shared_document_content_3: 'VERTRAULICHKEIT: Diese E-Mail (sowie die angehängten Dateien) ist ausschließlich für die Nutzung durch die Person oder Organisation bestimmt, an die sie gerichtet ist, und kann Insiderinformationen und vertrauliche Informationen enthalten. Jegliche Offenlegung, Verteilung oder Kopie dieser E-Mail ist strengstens untersagt. Wenn Sie diese E-Mail versehentlich erhalten haben, benachrichtigen Sie uns bitte umgehend, vernichten Sie alle Kopien und löschen Sie die E-Mail aus Ihrem Computersystem.'
-main.accepter: Annehmen
+mail_shared_document_title: Dokumente
+mail_subject_reset_password: 'RECONNECT - Passwort zurücksetzen'
+mail_subject_share_document: 'RECONNECT - Dokument teilen'
 main.adresse.rue: Straße
 main.annuler: Abbrechen
 main.chercher: Suchen
@@ -334,7 +336,6 @@ main.choisir: Auswählen
 main.connexion: Verbinden
 main.continuer: Weiter
 main.error.defaultSubTitle: 'Es ist ein Fehler aufgetreten'
-main.error.defaultTitle: 'Es ist ein Fehler aufgetreten'
 main.error.error403SubTitle: 'Du hast keine Berechtigung diese Aktion durchzuführen'
 main.error.error403Title: 'Das ist nicht erlaubt'
 main.error.error404SubTitle: 'Die aufgerufene Seite konnte nicht gefunden werden'
@@ -356,6 +357,13 @@ main.selectionner: Auswählen
 main.supprimer: Entfernen
 main.uploaderFichier: 'Eine Datei auswählen'
 main.voirFichier: 'Eine Datei anzeigen'
+member_do_not_have_account: 'Klient*in hat noch kein Konto'
+member_has_account: 'Klient*in Hat bereits ein Konto'
+member_management_big_title: 'Mitarbeiter*in <span class="rp-blue">verwalten</span>'
+member_new_guide_title: 'Willkommen bei Reconnect <span class="rp-blue">- Der Cloud für wohnungslose Menschen</span>'
+member_reset_password_no_rights: 'Sie dürfen das Passwort dieses Kontos nicht zurücksetzen.'
+member_reset_password_wrong_answer: 'Die eingegebene Antwort ist falsch.'
+member_successfully_created: 'Account erfolgreich angelegt.'
 membre.ajoutBeneficiaire.aucunUtilisateurTrouve: 'Es wurde kein Konto zu Deiner Suche gefunden'
 membre.ajoutBeneficiaire.centres: Einrichtungen
 membre.ajoutBeneficiaire.creerCompte.default.description: 'Der/die Klient*in ist bei Dir?'
@@ -373,8 +381,6 @@ membre.ajoutBeneficiaire.title: 'Klient*in <span class="main">hinzufügen</span>
 membre.ajoutMembre.aucunUtilisateurTrouve: 'Es wurde kein Konto zu Deiner Suche gefunden'
 membre.ajoutMembre.centres: Einrichtungen
 membre.ajoutMembre.creerCompte: 'Ein Konto erstellen'
-member_do_not_have_account: 'Klient*in hat noch kein Konto'
-member_has_account: 'Klient*in Hat bereits ein Konto'
 membre.ajoutMembre.subtitle: 'Nutzer*in neu anlegen'
 membre.arreterSuivi.metaTitle: 'Nutzer*in nicht mehr folgen'
 membre.arreterSuivi.subtitle: '%subject% nicht mehr folgen'
@@ -382,7 +388,6 @@ membre.arreterSuivi.success: 'Das war erfolgreich. Du folgst dem/der Nutzer*in n
 membre.arreterSuivi.text: 'Der/die Nutzer*in ist in mehreren Einrichtungen hinterlegt. Für welche Einrichtung soll die Freigabe beendet werden?'
 membre.arreterSuivi.title: 'Nutzer*in nicht <span class="main">mehr folgen</span>'
 membre.beneficiaires.aides: Hilfe
-membre.beneficiaires.ajouterBeneficiaire: 'Klient*in hinzufügen'
 membre.beneficiaires.arreterSuivi: 'Freigabe aufheben'
 membre.beneficiaires.arreterSuiviEtesVousSur: 'Sicher, dass Du %nom% nicht mehr folgen willst'
 membre.beneficiaires.btnDetails: Details
@@ -390,7 +395,6 @@ membre.beneficiaires.centres: Einrichtungen
 membre.beneficiaires.mesContacts: Kontakte
 membre.beneficiaires.mesDocuments: Dokumente
 membre.beneficiaires.mesNotes: Notizen
-membre.beneficiaires.metaTitle: 'Verwaltung von Klient*innen'
 membre.beneficiaires.noBeneficiairesInCentre: 'Es gibt keine Klient*innen in dieser Einrichtung'
 membre.beneficiaires.nonValide: 'Nicht bestätigt'
 membre.beneficiaires.renouvelerIdentifiants: 'Passwort zurücksetzen'
@@ -424,8 +428,6 @@ membre.creationBeneficiaire.step6.terminer: 'Vorgang abschließen'
 membre.creationBeneficiaire.subtitle: 'Schritt 1/5 Allgemeine persönliche Daten'
 membre.creationBeneficiaire.success: 'Der/die Klient*in wurde angelegt'
 membre.creationBeneficiaire.title: 'Klient*in <span class="main">erstellen</span>'
-member_successfully_created: 'Account erfolgreich angelegt.'
-create_member: 'Account anlegen'
 membre.doAjoutSubject.btnAjouter: Hinzufügen
 membre.doAjoutSubject.centres: 'Deine Einrichtungen'
 membre.doAjoutSubject.subtitle: 'Wähl die Einrichtungen, mit denen der Account verbunden werden soll.'
@@ -441,16 +443,13 @@ membre.doDoAjoutSubject.text: 'Bitte wählen Sie, wie der/die Nutzer*in die Anfr
 membre.droits.gestionBeneficiaires: 'Klient*innen Verwaltung'
 membre.droits.gestionMembres: 'Nutzer*innen Verwaltung'
 membre.membres.aides: Hilfe
-add_member: 'Nutzer*in neu anlegen'
 membre.membres.arreterSuivi: Entfernen
 membre.membres.btnDetails: Details
 membre.membres.centres: Einrichtungen
 membre.membres.gestionBeneficiaires: 'Verwaltung von Klient*innen'
-membre.membres.gestionMembres: 'Nutzer*innen Verwaltung'
 membre.membres.mesContacts: 'Meine Kontakte'
 membre.membres.mesDocuments: 'Meine Dokumente'
 membre.membres.mesNotes: 'Meine Notizen'
-membre.membres.metaTitle: 'Nutzer*innen Verwaltung'
 membre.membres.noBeneficiairesInCentre: 'In der Einrichtung sind keine Klient*innen hinterlegt'
 membre.membres.nonValide: 'Nicht bestätigt'
 membre.membres.renouvelerIdentifiants: 'Passwort zurücksetzen'
@@ -482,7 +481,7 @@ membre.sendSmsCode.text: 'Eine SMS mit dem Code wurde soeben an die Telefonnumme
 membre.supprimerMembreDuCentre.etesVousSur: 'Bist Du sicher, dass Du die Person aus der Einrichtung entfernen möchtest?'
 membre.supprimerMembreDuCentre.success: 'Du hast die Person aus der Einrichtung entfernt'
 message: Nachricht
-move: Verschieben
+missing_secret_question_text: Sie haben noch keine geheime Frage und Antwort eingegeben. Das können Sie unten tun
 modal_message_contact_delete: 'Bist du sicher, dass du diesen Kontakt löschen möchtest'
 modal_message_document_delete: 'Bist du sicher, dass du dieses Dokument löschen möchtest'
 modal_message_document_move_in: 'Bist du sicher, dass du das Dokument verschieben möchtest'
@@ -493,15 +492,10 @@ modal_message_folder_move_in: 'Bist du sicher, dass du den Ordner verschieben m�
 modal_message_folder_move_out: 'Bist du sicher, dass du den Ordner verschieben möchtest'
 modal_message_move_in_folder: 'In den Ordner'
 modal_message_note_delete: 'Bist du sicher, dass du diese Notiz löschen möchtest'
+move: Verschieben
 my_reconnect_centers: 'Meine verknüpften <span class="rp-blue">Einrichtungen</span>'
-member_management_big_title: 'Mitarbeiter*in <span class="rp-blue">verwalten</span>'
-member_new_guide_title: 'Willkommen bei Reconnect <span class="rp-blue">- Der Cloud für wohnungslose Menschen</span>'
-member_reset_password_wrong_answer: 'Die eingegebene Antwort ist falsch.'
-member_reset_password_no_rights: 'Sie dürfen das Passwort dieses Kontos nicht zurücksetzen.'
-missing_secret_question_text: Sie haben noch keine geheime Frage und Antwort eingegeben. Das können Sie unten tun
 name: Name
 next: Weiter
-'no': Nein
 not_allowed_to_share_this_document: 'Sie sind nicht zur Freigabe dieses Dokuments berechtigt'
 note.ajouter: 'Eine neue Notiz erstellen'
 note.bienSauvegarde: 'Die Notiz wurde gespeichert'
@@ -523,18 +517,19 @@ phone_duplicate: 'Diese Telefonnummer ist mit mehreren Konten verknüpft. Bitte 
 postal_code: Postleitzahl
 previous: Zurück
 private: Privat
+pro_management: 'Nutzer*innen Verwaltung'
 public_reset_password: 'Ich möchte mein Passwort zurücksetzen'
+public_reset_password_SMS_has_been_sent: 'Sie haben eine SMS mit einem Code erhalten, der für das Zurücksetzen des Passworts benötigt wird.'
+public_reset_password_SMS_wrong_code: 'Der eingegebene Code stimmt nicht mit dem Code aus der SMS überein.'
+public_reset_password_SMS_your_code: 'Ihr Code aus der SMS'
 public_reset_password_already_requested: 'Sie haben in den letzten 24 Stunden bereits versucht Ihr Passwort zurückzusetzen.'
 public_reset_password_by_email: 'per E-Mail'
 public_reset_password_by_sms: 'per SMS'
 public_reset_password_email_duplicate: 'Diese E-Mail-Adresse ist mit mehreren Konten verknüpft. Bitte wenden Sie sich an den Support, wenn Sie sich nicht einloggen können.'
 public_reset_password_email_has_been_sent: 'Sie haben eine Email zum Zurücksetzen Ihres Passworts erhalten. Bitte setzen Sie das Passwort innerhalb von 24 Stunden zurück.'
-public_reset_password_SMS_has_been_sent: 'Sie haben eine SMS mit einem Code erhalten, der für das Zurücksetzen des Passworts benötigt wird.'
-public_reset_password_SMS_your_code: 'Ihr Code aus der SMS'
-public_reset_password_SMS_wrong_code: 'Der eingegebene Code stimmt nicht mit dem Code aus der SMS überein.'
-public_reset_password_success: 'Ihr Passwort wurde erfolgreich geändert. Sie können sich nun einloggen.'
 public_reset_password_failure_not_in_time: 'Sie haben Ihr Passwort nicht in der vorgegebenen Zeit zurückgesetzt. Bitte wiederholen Sie den Vorgang.'
 public_reset_password_subtitle: 'Bitte geben Sie Ihre E-Mail oder Telefonnummer ein, um das Zurücksetzen zu starten.'
+public_reset_password_success: 'Ihr Passwort wurde erfolgreich geändert. Sie können sich nun einloggen.'
 question: Frage
 quitterCentre.texte: 'Möchtest du diese Einrichtung wirklich verlassen?'
 quitterCentre.titre: 'Die Einrichtung %s verlassen'
@@ -543,12 +538,11 @@ reconnect_center_span: 'Reconnect <span class="rp-blue">Einrichtung</span>'
 registerForm.adresse: 'Deine private Adresse (optional)'
 registerForm.correspondentPas: 'Die Passwörter stimmen nicht überein'
 registerForm.email: E-Mail-Adresse
-registerForm.motDePasse: Passwort
 registerForm.repeterMotDePasse: 'Passwort bestätigen'
 registerForm.telephone: Telefon
-registerForm.username: Anmeldename
 reminder: Erinnerung
 reminder_sms: SMS-Erinnerung
+reminder_sms_content: "Hallo \nErinnerung an Deinen Termin: %name% \n%date%"
 rename: Umbenennen
 resetting.check_email: 'An die angegebene Adresse wurde eine E-Mail gesendet. Sie enthält einen Link, den Du anklicken musst, um Dein Passwort zurückzusetzen.'
 resetting.email.message: "Hallo %username% !\nUm Dein Passwort zurückzusetzen, gehe bitte auf die folgende Seite:\n%confirmationUrl%\n Viele Grüße, das Team von Reconnect.\n"
@@ -587,24 +581,24 @@ rp_page_stats_automation_title: 'Automatische Statistiken'
 rp_page_user_file_alt_img: 'Klient*innenakte'
 rp_page_user_file_p: 'Hier finden Sie alle Informationen, die Ihnen die Arbeit erleichtern: Sie können alle bisherigen Arbeitsschritte mit Klient*innen einsehen, neue einfügen, Protokolle erfassen sowie z.B. Fristen planen.'
 rp_page_user_file_title: "Klient*innenakte'"
-secret_question: Sicherheitsfrage
-set_secret_question: 'Tragen Sie hier Ihre Sicherheitsfrage ein'
-secret_answer: 'Bitte beantworten Sie die Frage'
-secret_question_other: 'Andere Sicherheitsfrage stellen'
 search: Suche
+secret_answer: geheime Antwort
+secret_question: Sicherheitsfrage
+secret_question_other: 'Andere Sicherheitsfrage stellen'
 send: Abschicken
+set_secret_question: 'Tragen Sie hier Ihre Sicherheitsfrage ein'
 settings_saved_successfully: 'Die Einstellungen wurden gespeichert'
 share_document: 'Dokument teilen'
-share_document_with: 'Dokument per E-Mail teilen'
-share_document_success: 'Eine E-Mail mit einem Link zum Download des Dokuments wurde verschickt.'
-share_document_error_not_found: 'Empfänger oder Dokument nicht gefunden'
 share_document_error_expired: 'Der Link ist nicht mehr gültig, bitte wiederholen Sie den Vorgang'
 share_document_error_no_shared_document: 'Dokument konnte nicht geteilt werden'
+share_document_error_not_found: 'Empfänger oder Dokument nicht gefunden'
+share_document_success: 'Eine E-Mail mit einem Link zum Download des Dokuments wurde verschickt.'
+share_document_with: 'Dokument per E-Mail teilen'
 shared: Freigegeben
 status: Status
 tax: Steuern
 today: Heute
-username: Benutzername
+used_available: 'Du verwendest %used% von verfügbaren %available%'
 user.cgu.bAccepter: 'Ich akzeptiere die Nutzungsbedingungen'
 user.cgu.metaTitle: Nutzungsbedingungen
 user.cgu.mustAccept: 'Du musst die Nutzungsbedingungen akzeptieren'
@@ -614,10 +608,6 @@ user.firstVisit.gestionnaire.metaTitle: 'Willkommen bei Reconnect - Der Cloud f�
 user.firstVisit.gestionnaire.text: "<p class=\"smallMargin\">Vielen Dank, dass Du Dich für «\_Reconnect – Die Cloud für wohnungslose Menschen\_» entschieden hast.</p> <p class=\"smallMargin\">Das Tool wird Dich in Deiner Einrichtung unterstützen, die Klient*innen bei der Nutzung ihres Reconnect-Kontos zu unterstützen.</p> <p class=\"smallMargin\">Zögere nicht, Dich mit Reconnect in Verbindung zu setzen, wenn du weitere Informationen benötigst.</p> <p class=\"smallMargin\">Das Reconnect-Team heißt Dich auf der Plattform willkommen und wünscht Dir eine gute Nutzung.</p>"
 user.firstVisit.membre.metaTitle: 'Willkommen bei Reconnect - Der Cloud für wohnungslose Menschen'
 user.firstVisit.membre.text: '<p class="smallMargin">Die Hauptfunktion dieses Tools ist die Sicherung persönlicher Informationen der begleiteten Personen.</p> <p class="smallMargin">Das Tool ist Teil der Begleitung und kann Dir ermöglichen, die Klient*innen bei der Sicherung ihrer Daten zu unterstützen.</p> <p class="smallMargin">Das Team von Reconnect heißt Dich auf der  Plattform willkommen und wünscht Dir viel Spaß bei der Nutzung.</p>'
-user_not_found: 'Nutzer*in konnte nicht gefunden werden'
-used_available: 'Du verwendest %used% von verfügbaren %available%'
-user_parameters_title: '<span class="text-primary">Nutzer*innen-</span><span class="rp-blue vault-green">Einstellungen</span>'
-user_parameters_subtitle: 'Einstellungen von %subject%'
 user.parametres.changerMotDePasse: 'Passwort ändern'
 user.parametres.dateNaissanceLabel: Geburtsdatum
 user.parametres.enregister: 'Änderungen speichern'
@@ -627,10 +617,8 @@ user.parametres.mdpActuelFaux: 'Dein aktuelles Passwort ist falsch'
 user.parametres.metaTitle: Einstellungen
 user.parametres.nouveauMotDePasse: 'Neues Passwort'
 user.parametres.nouveauMotDePasseConfirm: 'Neues Passwort bestätigen'
-user.parametres.questionSecreteLabel: Sicherheitsfrage
 user.parametres.randomMdp: 'Das Passwort lautet nun'
 user.parametres.reinitialisation: 'Passwort zurücksetzen'
-user.parametres.reponseSecreteLabel: 'Antwort auf die Sicherheitsfrage'
 user.parametres.subtitle: 'Einstellungen für %subject%'
 user.parametres.title: 'Einstellungen des/der <span class="main">Nutzer*in</span>'
 user.parametres.userLabel: 'Nutzer*in'
@@ -653,16 +641,18 @@ user.reinitialiserMdp.telephone: 'Per SMS zurücksetzen'
 user.reinitialiserMdp.title: 'Ein Passwort zurücksetzen'
 user.supprimerCompte.etesVousSurs: 'Möchtest Du das Konto wirklich löschen?'
 user.supprimerCompte.success: 'Das Konto wurde gelöscht'
+user_not_found: 'Nutzer*in konnte nicht gefunden werden'
+user_parameters_subtitle: 'Einstellungen von %subject%'
+user_parameters_title: '<span class="text-primary">Nutzer*innen-</span><span class="rp-blue vault-green">Einstellungen</span>'
+user_shared_document_with_you: 'Der Benutzer %nom% %prenom% möchte dieses Dokument mit Ihnen teilen: "%document%"'
+username: Benutzername
 vault: Cloud
 website_CGS: 'CGS du site'
 website_confidentiality: 'Datenschutzrichtlinie der Website'
 website_legal: 'Rechtliche Hinweise'
 website_title: Reconnect
 work: Arbeit
-'yes': Ja
 you_can_download_mobile_app: 'Du kannst auch die mobile App herunterladen'
+you_must_provide_phone_number: 'Du musst eine Telefonnummer angeben'
 your_email: 'Ihre Email'
 your_phone_number: 'Ihre Telefonnummer'
-you_must_provide_phone_number: 'Du musst eine Telefonnummer angeben'
-reminder_sms_content: "Hallo \nErinnerung an Deinen Termin: %name% \n%date%"
-accompanying_person_propose_cfn_activation: 'Dein*e Sozialarbeiter*in %person.firstname% %person.lastname% aus der Einrichtung %center% lädt Dich ein, Deine Cloud zu aktivieren.'

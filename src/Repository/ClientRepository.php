@@ -7,14 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 
-/**
- * @extends ServiceEntityRepository<Client>
- *
- * @method Client|null find($id, $lockMode = null, $lockVersion = null)
- * @method Client|null findOneBy(array $criteria, array $orderBy = null)
- * @method Client[]    findAll()
- * @method Client[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
+/** @extends ServiceEntityRepository<Client> */
 class ClientRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)

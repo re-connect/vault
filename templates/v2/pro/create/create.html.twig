@@ -1,0 +1,16 @@
+{% extends 'v2/standard_layout.html.twig' %}
+{% block metaTitle %}{{ 'create_member'|trans }}{% endblock %}
+
+{% block delimiter %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 mt-2">
+            {{ include('v2/common/_card_with_form.html.twig', {
+                title: 'create_account'|trans,
+                form,
+                backPath: path('create_pro_home'),
+            }) }}
+        </div>
+    </div>
+{% endblock %}

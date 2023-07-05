@@ -16,7 +16,7 @@ class RelayController extends AbstractController
     public function relays(CentreRepository $repository): Response
     {
         return $this->render('v2/vault/relay/index.html.twig', [
-            'relays' => $repository->findUserRelays($this->getUser()),
+            'userRelays' => $repository->findUserRelays($this->getUser()),
         ]);
     }
 

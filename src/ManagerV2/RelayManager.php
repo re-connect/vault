@@ -6,6 +6,7 @@ use App\Entity\Centre;
 use App\Entity\User;
 use App\Entity\UserCentre;
 use App\Repository\CentreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -17,7 +18,7 @@ class RelayManager
 
     public function acceptRelay(User $user, Centre $relay): void
     {
-        if ($subjectRelay = $user->getSubjectRelaysForRelay($relay)) {
+        if ($subjectRelay = $user->getUserRelay($relay)) {
             $subjectRelay->setBValid(true);
             $this->em->flush();
         }
@@ -25,7 +26,7 @@ class RelayManager
 
     public function leaveRelay(User $user, Centre $relay): void
     {
-        if ($subjectRelay = $user->getSubjectRelaysForRelay($relay)) {
+        if ($subjectRelay = $user->getUserRelay($relay)) {
             $this->em->remove($subjectRelay);
             $this->em->flush();
         }
@@ -48,6 +49,22 @@ class RelayManager
     {
         $this->addNewRelays($user, $newRelays);
         $this->removeOutdatedRelays($user, $newRelays, $loggedInUserRelays);
+
+        $this->em->flush();
+    }
+
+    public function toggleUserInvitationToRelay(User $user, Centre $relay): void
+    {
+        if ($user->isLinkedToRelay($relay)) {
+            $this->removeUserFromRelay($user, $relay);
+        } else {
+            $this->inviteUserToRelay($user, $relay);
+        }
+    }
+
+    public function inviteUserToRelay(User $user, Centre $relay): void
+    {
+        $this->addNewRelays($user, new ArrayCollection([$relay]));
 
         $this->em->flush();
     }

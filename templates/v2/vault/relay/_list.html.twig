@@ -1,5 +1,5 @@
 <div class="container mx-auto w-75">
-    {% for relay in relays %}
-        {{ include('v2/vault/relay/_relay_card.html.twig', {relay}) }}
+    {% for userRelay in userRelays %}
+        {{ include('v2/vault/relay/_relay_card.html.twig', {userRelay}) }}
     {% endfor %}
 </div>

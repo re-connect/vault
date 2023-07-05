@@ -9,35 +9,32 @@
             {{ beneficiary.user.username }}
         </h4>
         <div class="row my-4">
-            {% if beneficiary.questionSecrete %}
-                <div class="w-75 text-center mx-auto mt-4">
-                    <span class="font-size-1-2">{{ 'answer_secret_question_relay_acception'|trans }}</span>
-                    <br>
-                    <div class="row" {{ stimulus_controller('toggle_display') }}>
-                        <div class="col">
-                            <button type="button" class="btn btn-blue text-white rounded-pill shadow-sm mt-3"
-                                    {{ stimulus_action('toggle_display', 'toggle') }}
-                            >
-                                {{ 'answer_secret_question'|trans }}
-                            </button>
-                        </div>
-                        <div
-                                class="col-6 my-3 {{ form_errors(form.secretAnswer)|length > 0 ? '' : 'd-none' }}"
-                                {{ stimulus_target('toggle_display', 'target') }}
+            <div class="text-center mx-auto mt-4 col-12 col-md-6">
+                <span class="font-size-1-2 mt-3">{{ 'answer_secret_question_relay_acception_1'|trans }} {{ beneficiary.questionSecrete ? 'answer_secret_question_relay_acception_2'|trans : '' }}</span>
+                <br>
+                <div class=" {{ beneficiary.questionSecrete ? '' : 'd-none' }}" {{ stimulus_controller('toggle_display') }} >
+                    <div>
+                        <button type="button" class="btn btn-blue text-white rounded-pill shadow-sm mt-3"
+                                {{ stimulus_action('toggle_display', 'toggle') }}
                         >
-                            <span class="bold">{{ form_label(form.secretAnswer) }}</span>
-                            {{ form_widget(form.secretAnswer) }}
-                            {{ form_errors(form.secretAnswer) }}
-                        </div>
+                            {{ 'answer_secret_question'|trans }}
+                        </button>
+                    </div>
+                    <div
+                            class="{{ form_errors(form.reponseSecrete)|length > 0 ? '' : 'd-none' }}"
+                            {{ stimulus_target('toggle_display', 'target') }}
+                    >
+                        {{ form_widget(form) }}
+                        {{ include('v2/common/_button_with_loader.html.twig') }}
                     </div>
                 </div>
-            {% endif %}
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <h4 class="text-center">{{ 'relays'|trans }} :</h4>
+                {{ include('v2/user_creation/components/_relays_checkboxes.html.twig', {user: beneficiary.user}) }}
+            </div>
+            {{ include('v2/common/_button_row.html.twig', {href: path('list_beneficiaries')}) }}
         </div>
-        <h4 class="text-center">{{ 'relays'|trans }} :</h4>
-        {{ form_row(form.relays) }}
-        <button type="submit" data-turbo="false" class="btn btn-blue text-white mt-2 w-100">
-            {{ 'submit'|trans }}
-        </button>
         {{ form_end(form) }}
     </div>
 {% endblock %}

@@ -10,15 +10,6 @@
     </div>
 {% endblock %}
 
-{% block searchform %}
-    <div>
-        {{ include('v2/vault/components/_search_input.html.twig', {
-            'routeName': 'search_documents',
-            'beneficiaryId': beneficiary.id,
-        }) }}
-    </div>
-{% endblock %}
-
 {% block actionButtons %}
     {% if currentFolder is defined %}
         <div class="d-inline text-primary text-start me-1">

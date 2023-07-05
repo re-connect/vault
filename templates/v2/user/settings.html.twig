@@ -1,20 +1,13 @@
 {% extends 'v2/management_layout.html.twig' %}
 {% block metaTitle %}{{ 'user.parametres.metaTitle'|trans }}{% endblock metaTitle %}
 
-{% block title %}
-    {{ 'user_settings_title_1'|trans }}
-    <span class="{{ getUserTextColor() }}">
-        {{ 'user_settings_title_2'|trans }}
-    </span>
-{% endblock %}
-
 {% block subTitle %}
     {{ 'user_parameters_subtitle'|trans({'%subject%' : app.user.prenom ~ ' ' ~ app.user.nom})|upper }}
 {% endblock %}
 
 {% block content %}
     <div class="container w-75 justify-content-center">
-        {{ include('v2/user/_user_settings_form.html.twig', {'form': userForm}) }}
+        {{ include('v2/user/_user_settings_form.html.twig', {form: userForm}) }}
     </div>
     <div class="text-primary pb-2 row mt-4">
         <div class="col pt-2">

@@ -1,0 +1,44 @@
+<turbo-frame id="update-pro-permission-button">
+    {% if app.user.userRelays|length == 1 %}
+        {% set currentUserRelay = user.userRelay(app.user.firstUserRelay.centre) %}
+    {% else %}
+        {% set currentUserRelay = user.userRelay(relay) %}
+    {% endif %}
+
+    {% set buttons = [
+        {
+            icon: 'user',
+            permission: constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES'),
+            tooltip: 'beneficiaries_management'|trans,
+        },
+        {
+            icon: 'user-cog',
+            permission: constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES'),
+            tooltip: 'pro_management'|trans,
+        },
+    ] %}
+
+    <div class="d-flex justify-content-center">
+        {% for button in buttons %}
+            {% if currentUserRelay %}
+                <form action="{{ path('toggle_pro_permission', {id: user.subjectMembre.id, relay: currentUserRelay.centre.id, permission: button.permission}) }}"
+                      method="post"
+                >
+            {% endif %}
+                <button class="btn border-0"
+                        type="{{ currentUserRelay ? 'submit' : 'button' }}"
+                        id="{{ button.permission }}"
+                >
+                    <i class="fas fa-{{ button.icon }} fa-2x text-{{ currentUserRelay and currentUserRelay.hasDroit(button.permission) ? 'primary' : 'grey ' }}"
+                       data-toggle="tooltip"
+                       data-placement="top"
+                       title="{{ currentUserRelay ? button.tooltip : 'you_must_select_center_for_right_update'|trans }}"
+                    >
+                    </i>
+                </button>
+            {% if currentUserRelay %}
+                </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+</turbo-frame>

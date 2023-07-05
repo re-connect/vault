@@ -23,7 +23,7 @@ class UserSetPasswordType extends AbstractType
         $builder
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'label' => 'registerForm.motDePasse',
+                'label' => 'password',
                 'options' => ['translation_domain' => 'FOSUserBundle'],
                 'first_options' => [
                     'label' => 'form.password',

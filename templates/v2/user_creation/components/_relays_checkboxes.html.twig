@@ -1,0 +1,15 @@
+{% set activeClasses = 'bg-primary text-white' %}
+{% set inactiveClasses = 'text-primary' %}
+
+<div class="d-flex flex-wrap justify-content-around"
+        {{ stimulus_controller('custom-checkbox', {
+            errorText: 'an_error_occurred'|trans,
+            togglableClasses: inactiveClasses|split(' ')|merge(activeClasses|split(' '))
+        }) }}
+>
+    {% for relay in app.user.validRelays %}
+        {{ include('v2/user_creation/components/_relays_checkbox.html.twig', {
+            relay, user, activeClasses, inactiveClasses
+        }) }}
+    {% endfor %}
+</div>

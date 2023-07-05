@@ -97,8 +97,8 @@ class UserController extends REController
         }
 
         return $this->render('user/user/parametres.html.twig', [
-            'form' => $form->createView(),
-            'formChangePassword' => $formChangePassword->createView(),
+            'form' => $form,
+            'formChangePassword' => $formChangePassword,
             'user' => $user,
             'subject' => $user->getSubject(),
         ]);
@@ -117,7 +117,7 @@ class UserController extends REController
                 $form->addError(new FormError($translator->trans('user.cgu.mustAccept')));
 
                 return $this->render('user/user/cgs-cs.html.twig', [
-                    'form' => $form->createView(),
+                    'form' => $form,
                 ]);
             } else {
                 $this->getUser()->setFirstVisit();
@@ -128,7 +128,7 @@ class UserController extends REController
         }
 
         return $this->render('user/user/cgs-cs.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

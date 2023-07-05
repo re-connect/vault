@@ -13,11 +13,11 @@ use App\Provider\CentreProvider;
 use App\Provider\MembreProvider;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[IsGranted('ROLE_MEMBRE')]
@@ -75,13 +75,13 @@ final class MembreMembreController extends REController
             }
 
             return $this->render('user/membre-membre/ajoutMembreSearch.html.twig', [
-                'form' => $form->createView(),
+                'form' => $form,
                 'foundUsers' => $foundUsers,
             ]);
         }
 
         return $this->render('user/membre-membre/ajoutMembreSearch.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -132,9 +132,11 @@ final class MembreMembreController extends REController
             return $this->redirect($this->generateUrl('re_membre_show_username', ['id' => $user->getId()]));
         }
 
+        $formData = $form->getData();
+
         return $this->render('user/membre-membre/creationMembre.html.twig', [
-            'form' => $form->createView(),
-            'subject' => $form->getData(),
+            'form' => $form,
+            'subject' => $formData,
         ]);
     }
 

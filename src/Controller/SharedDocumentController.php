@@ -90,7 +90,7 @@ class SharedDocumentController extends REController
         }
 
         return $this->render('app\document\share.html.twig', [
-            'shareForm' => $shareForm->createView(),
+            'shareForm' => $shareForm,
             'document' => $document,
         ]);
     }

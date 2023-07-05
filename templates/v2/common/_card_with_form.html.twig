@@ -1,0 +1,15 @@
+{% extends 'v2/common/_card.html.twig' %}
+
+{% block customContent %}
+    <div class="text-start">
+        {{ form_start(form, {attr: {class: 'display-required-labels'}}) }}
+        <div class="row">
+            {% for field in form %}
+                {{ form_row(field) }}
+                {{ form_errors(field) }}
+            {% endfor %}
+        </div>
+        {{ include('v2/common/_form_actions.html.twig') }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -40,7 +40,7 @@ class SecretQuestionType extends AbstractType
             ])
             ->add('questionSecrete', HiddenType::class, [
                 'required' => true,
-                'label' => 'user.parametres.questionSecreteLabel',
+                'label' => 'secret_question',
             ])
             ->add('autreQuestionSecrete', TextType::class, [
                 'required' => false,
@@ -51,7 +51,7 @@ class SecretQuestionType extends AbstractType
                 ],
             ])
             ->add('reponseSecrete', TextType::class, [
-                'label' => 'user.parametres.reponseSecreteLabel',
+                'label' => 'secret_answer',
             ])
             ->addEventSubscriber($this->secretQuestionsHelper->createSecretQuestionListener());
     }

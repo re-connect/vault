@@ -28,11 +28,11 @@ class BeneficiaireParametresType extends AbstractType
                 'label_attr' => ['class' => 'font-size-1'],
             ])
             ->add('questionSecrete', null, [
-                'label' => 'user.parametres.questionSecreteLabel',
+                'label' => 'secret_question',
                 'label_attr' => ['class' => 'font-size-1'],
             ])
             ->add('reponseSecrete', null, [
-                'label' => 'user.parametres.reponseSecreteLabel',
+                'label' => 'secret_answer',
                 'label_attr' => ['class' => 'font-size-1'],
             ])
             ->add('submit', SubmitType::class, ['label' => 'user.parametres.enregister', 'attr' => ['class' => 'btn-green font-size-1']]);

@@ -1,6 +1,7 @@
 'no': 'No'
 'yes': 'Yes'
 accept: Accept
+accepted: Accepted
 access: Access
 accompanying_person_propose_cfn_activation: 'Your accompanying person %person.firstname% %person.lastname% from organization %center% offers you to activate your Reconnect numeric vault'
 add_date: 'Added at'
@@ -28,6 +29,7 @@ admin.metaTitle: 'Reconnect Administration'
 admin.title: 'Reconnect <span class="main"> Administration</span>'
 aides.metaTitle: Aids
 alt_logo_reconnect: 'logo association reconnect'
+an_error_occurred: 'An error has occurred!'
 answer_secret_question: 'Answer secret question'
 answer_secret_question_relay_acception: 'Once validated, the beneficiary will be invited to join these centers. If you are in the presence of the beneficiary, you can enter the answer to his/her secret question in order to accept the invitation to these centers now. Otherwise, the beneficiary can accept the invitation from his account.'
 association.categorie.association: Association
@@ -51,6 +53,7 @@ beneficiaire.menu2.mesNotes: Notes
 beneficiaire.menu2.mesRelaisReconnect: Relays
 beneficiaire.menu2.monCalendrier: Meetings
 beneficiaries: Beneficiaries
+beneficiaries_management: Beneficiaries management
 beneficiary_added_to_relays: 'The beneficiary has been added to selected centers'
 beneficiary_already_affiliated_to_all_relays: 'The beneficiary is already affiliated to your Reconnect relays'
 beneficiary_already_as_account_affiliate: 'The beneficiary already has a Reconnect digital vault account. Link this existing account to one of your relays'
@@ -76,7 +79,6 @@ bientotDisponible.text: 'To receive more informations about <a class="bold main"
 birthdate: Birthdate
 cancel: Cancel
 centers: Centers
-centre.metaTitle: Structures
 centre.ville: City
 centre.vousAvezBienQuitte: 'You left this center'
 cfn_accessible_tool_alt_img: 'an accessible tool'
@@ -106,11 +108,10 @@ cfn_vault_is_satisfying_p: 'of professionals are very satisfied by the training'
 cfn_vault_is_satisfying_title: 95%
 cfn_vault_is_title: 'The digital safe is'
 choose: Choose
+choose_beneficiary: Choose a beneficiary
 choose_beneficiary_centers: "Please choose beneficiary's Reconnect relays"
 choose_beneficiary_password: "Please choose beneficiary's password"
 choose_beneficiary_secret_question: "Please choose beneficiary's secret question"
-choose_beneficiary_title_part_1: 'Choose a'
-choose_beneficiary_title_part_2: beneficiary
 choose_picture: 'Click here to add a picture'
 choose_relay: 'Choose a relay'
 choose_reset_password_method: Choose reset password method
@@ -124,7 +125,6 @@ connect_reconnect_site: 'Connect to www.reconnect.fr'
 connexionForm.connexion: Connection
 connexionForm.erreurIdentifiants: 'You entered an unknown username/ password'
 connexionForm.inactif: 'You have been deconnected after a period of inactivity.'
-connexionForm.motDePasse: Password
 connexionForm.oublieMdp: 'I forgot my password or my username'
 connexionForm.username: 'User name'
 connexionForm.usernameV2: 'Username or email'
@@ -162,8 +162,6 @@ country: Country
 create_account: Create an account
 create_member: 'Member creation'
 create_new_beneficiary: 'Create new beneficiary'
-create_new_beneficiary_title_part_1: 'Create new'
-create_new_beneficiary_title_part_2: beneficiary
 create_professional_help: Create a professional account on Reconnect and invite him to join your relays
 create_reconnect_account_remotely: 'Create Reconnect account remotely'
 create_reconnect_account_with_beneficiary: 'Create Reconnect account with beneficiary'
@@ -262,8 +260,7 @@ digital_cares_scalable_content_title: 'Evolving contents according to feedback f
 disabledAt: 'Disabled at'
 disabledBy: 'Disabled by'
 disaffiliate_beneficiary_subtitle: 'Stop the following of'
-disaffiliate_beneficiary_title_part_1: 'Stop the following of a'
-disaffiliate_beneficiary_title_part_2: Beneficiary
+disaffiliate_user: Stop the following of a user
 document.apercu: Previews
 document.aucunFichier: 'For the moment,there is no folder'
 document.avertissementTaille: 'You soon reach the limit size of your storage space (%space%)'
@@ -401,7 +398,6 @@ form.validation.tooShort: 'Your password should be at least {{ limit }} characte
 form_connexion: Login
 form_forgot_password: 'I forgot my password or my login'
 form_login: 'Username or Email'
-form_password: Password
 generate_password: 'Generate password'
 gestionnaire.centres.btnAjouterUnCentre: 'Add a center'
 gestionnaire.centres.cotisationJusqua: 'Contribution until %dateFin%'
@@ -423,7 +419,6 @@ gestionnaire.envoyerCentreAGestionnaire.subtitle: 'Allow to another administrato
 gestionnaire.envoyerCentreAGestionnaire.success: 'The center was transfered to this administrator.'
 gestionnaire.envoyerCentreAGestionnaire.title: 'Send to an administrator'
 gestionnaire.menu.gestionBeneficiaires: 'Beneficiaries management'
-gestionnaire.menu.gestionMembres: 'Members management'
 gestionnaire.menu.gestionRelais: 'Reconnect Relays management'
 gestionnaire.menu.usagers: Users
 header.logo: 'Reconnect, The Social Cloud'
@@ -547,7 +542,6 @@ mail_shared_document_content_3: 'CONFIDENTIALITY: This email (as well as any att
 mail_shared_document_title: 'Document sharing'
 mail_subject_reset_password: 'RECONNECT - Reset your password'
 mail_subject_share_document: 'RECONNECT - Document sharing'
-main.accepter: Accept
 main.adresse.rue: Street
 main.annuler: Cancel
 main.chercher: Search
@@ -555,7 +549,6 @@ main.choisir: Select
 main.connexion: Connection
 main.continuer: Continue
 main.error.defaultSubTitle: 'This error was just made:'
-main.error.defaultTitle: 'An error has occurred!'
 main.error.error403SubTitle: "It seems that you don't have the rights to realize this action:"
 main.error.error403Title: 'Forbidden action'
 main.error.error404SubTitle: 'Impossible to find the requested page'
@@ -601,7 +594,6 @@ membre.arreterSuivi.success: 'You stopped the following of this user in this cen
 membre.arreterSuivi.text: 'This user belongs to several centers that you manage, select the centers where stop following'
 membre.arreterSuivi.title: 'Stop the following of a <span class="main"> user </span>'
 membre.beneficiaires.aides: Aids
-membre.beneficiaires.ajouterBeneficiaire: 'Add a new beneficiary'
 membre.beneficiaires.arreterSuivi: 'Stop sharing'
 membre.beneficiaires.arreterSuiviEtesVousSur: 'You will delete the account of %nom%'
 membre.beneficiaires.btnDetails: Details
@@ -609,7 +601,6 @@ membre.beneficiaires.centres: Centers
 membre.beneficiaires.mesContacts: Contacts
 membre.beneficiaires.mesDocuments: Documents
 membre.beneficiaires.mesNotes: Notes
-membre.beneficiaires.metaTitle: 'Management of beneficiaires'
 membre.beneficiaires.monCalendrier: Calendar
 membre.beneficiaires.noBeneficiairesInCentre: 'There is no beneficiary in this center'
 membre.beneficiaires.nonValide: Non-validates
@@ -662,12 +653,10 @@ membre.membres.arreterSuivi: Delete
 membre.membres.btnDetails: Details
 membre.membres.centres: Centers
 membre.membres.gestionBeneficiaires: 'Beneficiaries management'
-membre.membres.gestionMembres: 'Members management'
 membre.membres.gestionPaiement: 'Payment management'
 membre.membres.mesContacts: 'My contacts'
 membre.membres.mesDocuments: 'My documents'
 membre.membres.mesNotes: 'My Notes'
-membre.membres.metaTitle: 'Members management'
 membre.membres.monCalendrier: 'My calendar'
 membre.membres.noBeneficiairesInCentre: 'There is no beneficiary in this center'
 membre.membres.nonValide: Non-validated
@@ -707,8 +696,7 @@ my_documents: 'My Documents'
 my_events: 'My Events'
 my_notes: 'My Notes'
 my_relays: 'My Relays'
-my_relays_title_1: My relays
-my_relays_title_2: Reconnect
+my_relays_title: My relays Reconnect
 name: Name
 no_result: 'No result'
 note.ajouter: 'Add a note'
@@ -791,7 +779,7 @@ phone_duplicate: 'This phone number is linked to multiple Reconnect accounts, pl
 postal_code: 'Postal Code'
 print_account_creation_act: "Don't forget to print the Reconnect account creation act, in order to obtain the signature of the beneficiary"
 private: Private
-pro_manage_user_title_part_1: Manage
+pro_management: Professionals management
 professionals: Professionals
 public_reset_password: 'I want to reset my password'
 public_reset_password_SMS_has_been_sent: 'An SMS was sent to you containing a secret code to renew your password. It is valid for 2 hours.'
@@ -807,11 +795,9 @@ rediscover_our_solutions: '(re)Discover our solutions'
 registerForm.adresse: 'Your personal address (optional)'
 registerForm.codePostal: 'Postal code'
 registerForm.email: Email
-registerForm.motDePasse: Password
 registerForm.pays: Country
 registerForm.rue: Street
 registerForm.telephone: 'Phone number'
-registerForm.username: Username
 registerForm.ville: City
 relay_has_no_address: 'The Reconnect relay did not informed any address'
 relays: Relays
@@ -819,7 +805,7 @@ reminder: Reminder
 reminder_sms: 'SMS Reminder'
 remove_from_relay: 'Remove from relay'
 remove_from_relay_confirm: 'Are you sure you want to remove the beneficiary %beneficiary% ?'
-remove_from_relay_confirm_relay: 'Are you sure you want to remove the beneficiary %beneficiary% from the relay %relay% ?'
+remove_from_relay_confirm_relay: Are you sure you want to remove the user %user% from the relay %relay% ?
 removed_from_relay: 'Removed from relay'
 rename: Rename
 renew_password: 'Renew password'
@@ -872,9 +858,9 @@ search: Rechercher
 search_existing_beneficiary: 'Search for an existing beneficiary'
 search_member: Search for an existing professional
 search_member_help: You can search for an existing professional and invite him to join your relays
-secret_answer: 'Secret answer'
+secret_answer: Secret answer
 secret_answer_optional: 'Secret answer (optional)'
-secret_question: 'Secret question'
+secret_question: Secret question
 select_relays_for_disaffiliation: 'This user is linked to one or several relays that you manage, please choose relays for which you want to stop the following'
 send: Send
 sending_sms_account_activation: 'Sending the SMS for account activation'
@@ -897,6 +883,7 @@ statut.confirmed: Confirmed
 statut.created: Created
 statut.waiting: 'Waiting(cheque/bank transfer)'
 steps_count: 'Step %step%/%totalSteps%'
+subscribe_newsletter: Subscribe to our newsletter !
 subscription_confirmation: 'Subscription confirmation'
 summary: Summary
 summary_confirm_information: 'Summary, please confirm the information below'
@@ -931,8 +918,6 @@ user.parametres.mdpActuel: 'Your present password'
 user.parametres.metaTitle: 'User´s settings'
 user.parametres.nouveauMotDePasse: 'Your new password'
 user.parametres.nouveauMotDePasseConfirm: 'Confirmation of the new password'
-user.parametres.questionSecreteLabel: 'Secret question'
-user.parametres.reponseSecreteLabel: 'Secrete answer'
 user.parametres.subtitle: 'Subject %settings%'
 user.parametres.title: 'User''s <span class="main"> settings </span>'
 user.parametres.userLabel: User
@@ -958,8 +943,7 @@ user.supprimerCompte.success: 'The account has been deleted.'
 user_error_disabled_account: 'Your account is disabled, please contact support.'
 user_parameters_subtitle: "%subject%'s settings"
 user_parameters_title: '<span class="text-primary">User''s </span><span class="rp-blue vault-green">settings</span>'
-user_settings_title_1: User's
-user_settings_title_2: Settings
+user_successfully_created: The user has been successfully created
 user_update_password_subtitle: '%subject% password'
 user_update_password_title: '<span class="text-primary">New </span><span class="rp-blue vault-green">password</span>'
 username: Username
@@ -977,4 +961,5 @@ you_are_now_subscribed_for_newsletter: 'You are now subscribed to our newsletter
 you_can_download_mobile_app: 'You can also download the mobile app'
 you_can_unsubscribe_for_newsletter: 'You can unsubscribe from this list at any time, using the link you will find at the bottom of each newsletter'
 you_must_provide_phone_number: 'You must provide a phone number'
+you_must_select_center_for_right_update: You must select a center to be able to modify the rights of a professional
 your_new_password: Your new password

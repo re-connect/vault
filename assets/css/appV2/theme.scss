@@ -1,8 +1,11 @@
+@import "bootstrap-next/scss/functions";
+@import "bootstrap-next/scss/variables";
+
 @function theme-color($key) {
   @return map-get($theme-colors, $key);
-};
+}
 
-$theme-colors : (
+$custom-colors: (
         "primary" : #203468,
         "green" : #4db95f,
         "light-green" : #e9f7ed,
@@ -13,6 +16,8 @@ $theme-colors : (
         "light-grey" : #cdd1dc,
         "black": #000000,
 );
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
 
 //Disable bootstrap active && hover && focus style
 a:focus,

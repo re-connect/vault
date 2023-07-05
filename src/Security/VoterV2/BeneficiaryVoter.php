@@ -3,6 +3,7 @@
 namespace App\Security\VoterV2;
 
 use App\Entity\Beneficiaire;
+use App\Entity\MembreCentre;
 use App\Entity\User;
 use App\Security\HelperV2\UserHelper;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -10,19 +11,24 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class BeneficiaryVoter extends Voter
 {
+    public const MANAGE = 'MANAGE_BENEFICIARIES';
     public const UPDATE = 'UPDATE';
 
     public function __construct(private readonly UserHelper $helper)
     {
     }
 
-    /**
-     * @param object $subject
-     */
     protected function supports(string $attribute, $subject): bool
     {
-        return self::UPDATE === $attribute
-            && $subject instanceof Beneficiaire;
+        if (self::MANAGE === $attribute && !$subject) {
+            return true;
+        }
+
+        if (self::UPDATE === $attribute && $subject instanceof Beneficiaire) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -37,6 +43,7 @@ class BeneficiaryVoter extends Voter
         }
 
         return match ($attribute) {
+            self::MANAGE => $user->hasDroit(MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES),
             self::UPDATE => $this->canUpdateBeneficiary($user, $subject),
             default => false,
         };
@@ -46,7 +53,7 @@ class BeneficiaryVoter extends Voter
     {
         return match ($user->getTypeUser()) {
             User::USER_TYPE_BENEFICIAIRE => $user->getSubjectBeneficiaire() === $subject,
-            User::USER_TYPE_MEMBRE, User::USER_TYPE_GESTIONNAIRE => $this->helper->canManageBeneficiary($user, $subject),
+            User::USER_TYPE_MEMBRE => $this->helper->canUpdateBeneficiary($user, $subject),
             default => false,
         };
     }

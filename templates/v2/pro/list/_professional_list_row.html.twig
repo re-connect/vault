@@ -1,0 +1,25 @@
+{% extends 'v2/users_list/components/_subject_list_row.html.twig' %}
+{% set user = professional.user %}
+
+{% block icon %}
+    <i class="fas fa-user fa-3x text-primary"></i>
+{% endblock %}
+
+{% block information %}
+    <span>{{ user.prenom|capitalize }} {{ user.nom|upper }}</span>
+    <br>
+    <span class="text-grey">{{ user.username }}</span>
+{% endblock %}
+
+{% block actions %}
+    {{ include('v2/pro/list/_update_permission_button.html.twig', {user, relay}) }}
+{% endblock %}
+
+{% block actionDropdown %}
+    {{ include('v2/users_list/components/_action_dropdown.html.twig', {
+        removeFromRelay: {
+            path: path('disaffiliate_relay_choice', {'id': user.id}),
+            message: 'remove_from_relay_confirm'|trans({'%beneficiairy%': user.fullName})
+        }
+    }) }}
+{% endblock %}

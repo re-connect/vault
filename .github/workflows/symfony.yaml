@@ -15,7 +15,7 @@ jobs:
         strategy:
             matrix:
                 php-versions:
-                  [ "8.1", "8.2" ]
+                  [ "8.2" ]
         name: PHP ${{ matrix.php-versions }} Test on ubuntu-latest
         steps:
             # —— Backend setup 🔧 ——————————————————————————————————————————————————
@@ -45,6 +45,8 @@ jobs:
             # —— Check coding standards ✨ ————————————————————————————————————————————————————————————————
             -   name: Check CS
                 run: vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
+            -   name: Check Rector
+                run: vendor/bin/rector process --dry-run
             -   name: Dump routes
                 run: php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
             -   name: Copy keys

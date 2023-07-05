@@ -1,0 +1,34 @@
+{% extends 'v2/users_list/components/_subject_list_row.html.twig' %}
+{% set user = beneficiary.user %}
+
+{% block icon %}
+    <a href="{{ path('list_documents', {'id': beneficiary.id}) }}"
+       class="text-decoration-none h-100 py-2"
+    >
+        <i class="fas fa-user fa-3x text-primary"></i>
+    </a>
+{% endblock %}
+
+{% block information %}
+    <a href="{{ path('list_documents', {'id': beneficiary.id}) }}"
+       class="text-decoration-none text-primary h-100"
+    >
+        <span>{{ user.prenom|capitalize }} {{ user.nom|upper }}</span>
+        <br>
+        <span class="text-grey">{{ user.username }}</span>
+    </a>
+{% endblock %}
+
+{% block actions %}
+    {{ include('v2/beneficiary/list/_personal_data_row.html.twig') }}
+{% endblock %}
+
+{% block actionDropdown %}
+    {{ include('v2/users_list/components/_action_dropdown.html.twig', {
+        removeFromRelay: {
+            path: path('disaffiliate_relay_choice', {'id': beneficiary.user.id}),
+            message: 'remove_from_relay_confirm'|trans({'%beneficiairy%': beneficiary.user.fullName})
+        },
+        resetPasswordPath: path('reset_password_beneficiary', {'id': beneficiary.id}),
+    }) }}
+{% endblock %}

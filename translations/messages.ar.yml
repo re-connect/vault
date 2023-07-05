@@ -1,6 +1,8 @@
 'no': لا
 'yes': نعم
+accepted: قبلت
 add_member: 'اضافة عضو جديد'
+add_new_beneficiary: 'اضف مستفيد جديد'
 admin.bienvenue: 'اهلا بك على صفحة ادارة ريكونيكت'
 admin.centres.benéficiaires: المستفيدون
 admin.centres.historique: 'تاريخ الاتصالات'
@@ -19,6 +21,7 @@ admin.menu.traduction: ترجمة
 admin.metaTitle: 'ادارة ريكونيكت'
 admin.title: 'ادارة (فئة العمر/ريكونيكت)'
 aides.metaTitle: 'ادوات المساعدة'
+an_error_occurred: 'حدث خطأ ما'
 association.categorie.association: المؤسسة
 association.categorie.ccas: 'المركز الشعبي للعمل الاجتماعي'
 association.categorie.choisir: 'يرجى اختيار فئة مؤسستك'
@@ -38,15 +41,15 @@ beneficiaire.menu2.mesDocuments: المواعيد
 beneficiaire.menu2.mesNotes: 'نقاط المناوبة  لريكونيكت الخاصة بي'
 beneficiaire.menu2.mesRelaisReconnect: الملاحظات
 beneficiaire.menu2.monCalendrier: المستفيدين
+beneficiaries_management: 'ادارة المستفيدين'
 bientotDisponible.text: 'للحصول على المزيد من المعلومات حول ريكونيكت كلاود التضامن و الالتحاق بالشبكات يرجى الاتصال بنا مباشرة عبر الهاتف رقم: 0158305529 او عبر البريد الالكتروني على العنوان التالي: contact@reconnect.fr'
-centre.metaTitle: المراكز
+centers: المراكز
 centre.ville: المدينة
 centre.vousAvezBienQuitte: 'انت غادرت المركز*'
 confirm: تأكيد
 connexionForm.connexion: الاتصال
 connexionForm.erreurIdentifiants: 'لقد ادخلت اسم مستخدم خاطئ او كلمة سر خاطئة'
 connexionForm.inactif: 'تم قطع الاتصال بعد مدة من غير استعمال'
-connexionForm.motDePasse: 'كلمة السر'
 connexionForm.oublieMdp: 'نسيت كلمة السر او كلمة التعريف'
 connexionForm.username: 'اسم المستخدم'
 contact.ajouter: 'اضافة عنوان معرفة'
@@ -239,7 +242,6 @@ form.validation.sirenFormat: 'ان شكل رقم السيرين غير صالح'
 form_connexion: 'تسجيل دخول'
 form_forgot_password: 'إعادة ضبط كلمة السر'
 form_login: 'اسم المستخدم أو كلمة المرور'
-form_password: 'كلمة السر'
 gestionnaire.centres.btnAjouterUnCentre: 'اضافة مركز'
 gestionnaire.centres.cotisationJusqua: 'المساهمة حتى (التاريخ)'
 gestionnaire.centres.cotisationNoneffectuee: 'لم تتم المساهمة (تم الغاء المركز)'
@@ -260,7 +262,6 @@ gestionnaire.envoyerCentreAGestionnaire.subtitle: 'تخويل مدير آخر ل
 gestionnaire.envoyerCentreAGestionnaire.success: 'لقد تم تحويل المركز الى هذا المدير'
 gestionnaire.envoyerCentreAGestionnaire.title: 'الارسال الى احد المديرين'
 gestionnaire.menu.gestionBeneficiaires: 'ادارة المستخدمين'
-gestionnaire.menu.gestionMembres: 'ادارة الاعضاء'
 gestionnaire.menu.gestionRelais: 'ادارة نقاط المناوبة  لريكونيكت'
 gestionnaire.menu.usagers: المستخدمين
 header.logo: 'ريكونيكت كلاود التضامن'
@@ -322,7 +323,6 @@ home.quiSommesNous: 'من نحن؟'
 home.quiSommesNousTxt: 'ريكونيكت هو مشروع تقوده مجموعة النجدة . SOS تضم مجموعة النجدة اليوم 2500 موظفا و 106 مؤسسة في القطاعات التالية: الإدمان و مساكن التضامن و المرافقة الصحية و الإعاقة و تشكل هذه المجموعة حقل تجارب مثالي لهذا الابتكار. و ترغب هذه المجموعة ايضا في توسيع مشروعها ليشمل مجمل الفاعلين في حقل العمل الاجتماعي.'
 home.twitter: تويتر
 login_form_title: 'الوصول إلى الخزنة الرقمية'
-main.accepter: قبول
 main.adresse.rue: 'مشاهدة الملف'
 main.annuler: الغاء
 main.chercher: بحث
@@ -330,7 +330,6 @@ main.choisir: اختيار
 main.connexion: شارع
 main.continuer: متابعة
 main.error.defaultSubTitle: 'الخطأ التالي حدث لتوه :'
-main.error.defaultTitle: 'حدث خطأ ما'
 main.error.error403SubTitle: 'يبدو انه ليس لك الحق بالقيام بهذا العمل :'
 main.error.error403Title: 'عمل محظور'
 main.error.error404SubTitle: 'مستحيل ايجاد الصفحة المطلوبة'
@@ -375,7 +374,6 @@ membre.arreterSuivi.success: 'لقد تم وضع حد لمرافقة هذا ال
 membre.arreterSuivi.text: 'هذا المستخدم ينتمي الى عدد من المراكز التي تديرها، اختر المراكز حيث تريد وضع حد للمرافقة فيها'
 membre.arreterSuivi.title: 'وضع حد لمرافقة مستخدم'
 membre.beneficiaires.aides: 'ادوات العون'
-membre.beneficiaires.ajouterBeneficiaire: 'اضف مستفيد جديد'
 membre.beneficiaires.arreterSuivi: 'انهاء المشاركة'
 membre.beneficiaires.arreterSuiviEtesVousSur: 'ستضع حد لمرافقة (الاسم)'
 membre.beneficiaires.btnDetails: تفاصيل
@@ -383,7 +381,6 @@ membre.beneficiaires.centres: المراكز
 membre.beneficiaires.mesContacts: المعارف
 membre.beneficiaires.mesDocuments: لوثائق
 membre.beneficiaires.mesNotes: الملاحظات
-membre.beneficiaires.metaTitle: 'ادارة المستفيدين'
 membre.beneficiaires.monCalendrier: 'جدول المواعيد'
 membre.beneficiaires.noBeneficiairesInCentre: 'ليس هناك أي مستفيد في هذا المركز'
 membre.beneficiaires.nonValide: 'غير موافق عليه'
@@ -436,12 +433,10 @@ membre.membres.arreterSuivi: الغاء
 membre.membres.btnDetails: تفاصيل
 membre.membres.centres: المراكز
 membre.membres.gestionBeneficiaires: 'ادارة المستفيدين'
-membre.membres.gestionMembres: 'ادارة الاعضاء'
 membre.membres.gestionPaiement: 'ادارة المدفوعات'
 membre.membres.mesContacts: معارفي
 membre.membres.mesDocuments: وثائقي
 membre.membres.mesNotes: ملاحظاتي
-membre.membres.metaTitle: 'ادارة الأعضاء'
 membre.membres.monCalendrier: 'جدول اعمالي'
 membre.membres.noBeneficiairesInCentre: 'لا يوجد أي مستفيد في هذا المركز'
 membre.membres.nonValide: 'لم تتم الموافقة عليه'
@@ -529,14 +524,13 @@ paiementVirement.text2: 'لاثبات تسديد المبلغ انقر هنا. �
 paiementVirement.text: 'لاثبات تحويلك المصرفي يرجى الاشارة الى العنوان التالي تودوبل العنوان:'
 paiementVirement.title: 'الدفع بتحويل مصرفي'
 password_updated_successfully: 'تم تغيير كلمة السر الخاصة بك'
+pro_management: 'ادارة الاعضاء'
 registerForm.adresse: 'عنوانك الشخصي (اختياري)'
 registerForm.codePostal: 'الرقم البريدي'
 registerForm.email: 'عنوان البريد الالكتروني'
-registerForm.motDePasse: 'كلمة السر'
 registerForm.pays: البلد
 registerForm.rue: الشارع
 registerForm.telephone: 'رقم الهاتف'
-registerForm.username: 'اسم المستخدم'
 registerForm.ville: المدينة
 resetting.check_email: 'لقد تم ارسال رسالة الكترونية الى العنوان الالكتروني المسجل. تحتوي هذه الرسالة على رابط انترنيت  عليك ان تنقر عليه لاعادة تعيين كلمة السر.'
 resetting.email.message: 'صباح الخير من اجل اعادة تعيين كلمة السر يرجى العودة الى... من قبل الفريق'
@@ -550,6 +544,8 @@ resetting.public.text: 'يرجى ادخال عنوانك الالكتروني'
 resetting.public.title: 'اعادة تعيين كلمة السر'
 resetting.public.votreEmail: 'عنوانك الالكتروني'
 resetting.reset.submit: 'تغيير كلمة السر'
+secret_answer: 'الاجابة السرية'
+secret_question: 'السؤال السري'
 settings_saved_successfully: 'تم تسجيل قيمك المدخلة في الكمبيوتر'
 sms_sent_failed: 'فشل إرسال الرسائل القصيرة ، يرجى التحقق من صحة رقم الهاتف'
 statut.abandoned: ترك
@@ -579,8 +575,6 @@ user.parametres.mdpActuel: 'كلمة السر الخاصة بك الحالية'
 user.parametres.metaTitle: 'قيم المستخدم المدخلة  في الكمبيوتر'
 user.parametres.nouveauMotDePasse: 'كلمة السر الخاصة بك الجديدة'
 user.parametres.nouveauMotDePasseConfirm: 'تأكيد كلمة السر الجديدة'
-user.parametres.questionSecreteLabel: 'السؤال السري'
-user.parametres.reponseSecreteLabel: 'الاجابة السرية'
 user.parametres.subtitle: 'قيم (اسم الشخص) المدخلة في الكمبيوتر'
 user.parametres.title: 'قيم المستخدم المدخلة  في الكمبيوتر'
 user.parametres.userLabel: المستخدم

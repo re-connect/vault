@@ -78,7 +78,7 @@ class ContactController extends AbstractController
         }
 
         return $this->render('app/donnee-personnelle/form.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

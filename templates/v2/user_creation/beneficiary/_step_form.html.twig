@@ -6,38 +6,24 @@
     </div>
     <div class="col-12 col-md-8 bold">
         {{ form_start(form, {
-            'attr': {
-                'data-controller': 'conditional-field',
-                'class': 'display-required-labels h-100',
-            }
+            attr: {'data-controller': 'conditional-field', class: 'display-required-labels h-100'}
         }) }}
         <div class="h-100 d-flex flex-column justify-content-between">
-            <div class="mt-5">
-            {% if beneficiaryCreationProcess.isPasswordStep %}
-                {{ include('v2/user_creation/components/_generate_password_input.html.twig', {field: form.password}) }}
-            {% else %}
-                {{ form_widget(form) }}
-            {% endif %}
-            </div>
-
-            <div class="text-center mt-4 row">
-                <div class="col-6 d-grid gap-2">
-                    {{ include('v2/common/_button_with_loader.html.twig', {
-                        'text': 'back'|trans,
-                        'href': path('create_beneficiary', {
+            <div>
+                {% if beneficiaryCreationProcess.isPasswordStep %}
+                    {{ include('v2/user_creation/components/_password_card.html.twig', {form, title: 'create_new_beneficiary'|trans,}) }}
+                {% else %}
+                    {{ include('v2/common/_card_with_form.html.twig', {
+                        form,
+                        title: 'create_new_beneficiary'|trans,
+                        backPath: path('create_beneficiary', {
                             step: beneficiaryCreationProcess.previousStep,
                             id: beneficiaryCreationProcess.id,
                         })
                     }) }}
-                </div>
-                <div class="col-6 d-grid gap-2">
-                    {{ include('v2/common/_button_with_loader.html.twig', {
-                        'text': 'confirm'|trans,
-                        'color': 'blue',
-                    }) }}
-                </div>
-                {{ form_end(form) }}
+                {% endif %}
             </div>
         </div>
+        {{ form_end(form) }}
     </div>
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'v2/users_list/_subjects_list.html.twig' %}
+
+{% block listRows %}
+    {% for beneficiary in beneficiaries %}
+        {{ include('v2/beneficiary/list/_beneficiaries_list_row.html.twig', {beneficiary}) }}
+    {% endfor %}
+{% endblock %}
+
+{% block pagination %}
+    {{ knp_pagination_render(beneficiaries) }}
+{% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block metaTitle %}{% trans %}membre.membres.metaTitle{% endtrans %}{% endblock metaTitle %}  
+{% block metaTitle %}{{ 'pro_management'|trans }}{% endblock metaTitle %}
 {% block body %}
 
     <div class="" style="min-height: 364px;">
@@ -69,7 +69,7 @@
                                            ng-class="{'text-primary':hasRight(membre, '{{ constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES') }}')}"
                                            class="fas fa-user"></i>
                                     </a> &nbsp;
-                                    <a title="{% trans %}membre.membres.gestionMembres{% endtrans %}"
+                                    <a title="{% trans %}pro_management{% endtrans %}"
                                        ng-click="changeRight(membre, '{{ constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES') }}')"
                                        href="" class="text-secondary">
                                         <i style="font-size: 2rem;"

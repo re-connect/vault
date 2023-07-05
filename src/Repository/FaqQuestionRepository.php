@@ -6,12 +6,7 @@ use App\Entity\FaqQuestion;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @method FaqQuestion|null find($id, $lockMode = null, $lockVersion = null)
- * @method FaqQuestion|null findOneBy(array $criteria, array $orderBy = null)
- * @method FaqQuestion[]    findAll()
- * @method FaqQuestion[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
+/** @extends ServiceEntityRepository<FaqQuestion> */
 class FaqQuestionRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)

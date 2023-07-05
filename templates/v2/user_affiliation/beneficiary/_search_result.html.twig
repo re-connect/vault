@@ -2,7 +2,7 @@
     <thead>
     <tr>
         <th scope="col">
-            {{ 'lastname'|trans }}
+            {{ 'name'|trans }}
         </th>
         <th scope="col">
             {{ 'firstname'|trans }}
@@ -16,7 +16,7 @@
     <tbody>
     {% if beneficiaries|length > 0 %}
         {% for beneficiary in beneficiaries %}
-            <tr class="align-middle">
+            <tr class="align-middle mx-2">
                 <td>{{ beneficiary.user.nom|upper }}</td>
                 <td>{{ beneficiary.user.prenom|lower }}</td>
                 <td>{{ beneficiary.dateNaissance|date('d/m/Y') }}</td>

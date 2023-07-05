@@ -2,32 +2,103 @@
 
 namespace App\ControllerV2;
 
+use App\Entity\Centre;
+use App\Entity\Membre;
+use App\Entity\User;
+use App\FormV2\FilterUser\FilterUserFormModel;
+use App\FormV2\FilterUser\FilterUserType;
 use App\FormV2\Search\SearchFormModel;
 use App\FormV2\Search\SearchType;
+use App\FormV2\UserCreation\CreateUserType;
+use App\ManagerV2\UserManager;
+use App\Repository\CentreRepository;
 use App\Repository\MembreRepository;
 use App\Security\VoterV2\ProVoter;
 use App\ServiceV2\PaginatorService;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: '/pro')]
+#[IsGranted(ProVoter::MANAGE)]
 class ProController extends AbstractController
 {
+    #[Route(path: '', name: 'list_pro', methods: ['GET'])]
+    public function listPros(
+        Request $request,
+        MembreRepository $repository,
+        PaginatorService $paginator,
+        CentreRepository $relayRepository,
+    ): Response {
+        $query = $request->query;
+        $relay = $relayRepository->find($query->getInt('relay'));
+
+        if ($relay && !$this->isGranted('MANAGE_PRO', $relay)) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $formModel = new FilterUserFormModel(
+            $query->get('search'),
+            $relay,
+        );
+
+        $form = $this->createForm(FilterUserType::class, $formModel, [
+            'action' => $this->generateUrl('list_pro'),
+            'attr' => ['data-controller' => 'ajax-list-filter'],
+            'relays' => $this->getUser()->getAffiliatedRelaysWithProfessionalManagement(),
+        ])->handleRequest($request);
+
+        return $this->render($request->isXmlHttpRequest()
+            ? 'v2/pro/list/_professionals_list.html.twig'
+            : 'v2/pro/list/professionals.html.twig',
+            [
+                'professionals' => $paginator->create(
+                    $repository->findByAuthorizedProfessional(
+                        $this->getUser()->getSubject(),
+                        $formModel->search,
+                        $formModel->relay,
+                    ),
+                    $request->query->getInt('page', 1),
+                    PaginatorService::LIST_USER_LIMIT,
+                ),
+                'form' => $form,
+                'relay' => $relay,
+            ],
+        );
+    }
+
     #[Route(path: '/create/home', name: 'create_pro_home', methods: ['GET'])]
-    #[IsGranted(ProVoter::MANAGE)]
     public function createProHome(): Response
     {
-        $form = $this->createForm(SearchType::class, new SearchFormModel(), [
-            'action' => $this->generateUrl('search_pro'),
+        return $this->render('v2/pro/create/index.html.twig', [
+            'form' => $this->createForm(SearchType::class, new SearchFormModel(), [
+                'action' => $this->generateUrl('search_pro'),
+            ]),
         ]);
+    }
 
-        return $this->render('v2/pro/create_index.html.twig', ['form' => $form]);
+    #[Route(path: '/create', name: 'create_pro', methods: ['GET', 'POST'])]
+    public function createPro(Request $request, EntityManagerInterface $em, UserManager $manager): Response
+    {
+        $user = User::createPro();
+        $form = $this->createForm(CreateUserType::class, $user, [
+            'action' => $this->generateUrl('create_pro'),
+        ])->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('success', 'user_successfully_created');
+            $manager->updatePasswordWithPlain($user);
+
+            return $this->redirectToRoute('invite_user', ['id' => $user->getId()]);
+        }
+
+        return $this->render('v2/pro/create/create.html.twig', ['form' => $form]);
     }
 
     #[Route(path: '/search', name: 'search_pro', methods: ['GET', 'POST'])]
-    #[IsGranted(ProVoter::MANAGE)]
     public function searchPros(Request $request, MembreRepository $repository, PaginatorService $paginator): Response
     {
         $search = new SearchFormModel($request->query->get('q'));
@@ -45,7 +116,32 @@ class ProController extends AbstractController
         );
 
         return $request->isXmlHttpRequest()
-            ? $this->render('v2/pro/_search_results_card.html.twig', ['pros' => $pros])
-            : $this->render('v2/pro/search.html.twig', ['form' => $form, 'pros' => $pros]);
+            ? $this->render('v2/pro/create/_search_results_card.html.twig', ['pros' => $pros])
+            : $this->render('v2/pro/create/search.html.twig', ['form' => $form, 'pros' => $pros]);
+    }
+
+    #[Route(
+        path: '/{id<\d+>}/relay/{relay<\d+>}/toggle-permission/{permission<[a-z]+>}',
+        name: 'toggle_pro_permission',
+        methods: ['POST'],
+        condition: "params['permission'] in [
+        constant('App\\\Entity\\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES'),
+        constant('App\\\Entity\\\MembreCentre::TYPEDROIT_GESTION_MEMBRES'),
+        ]",
+    )]
+    #[IsGranted('UPDATE', 'pro')]
+    public function togglePermission(
+        Membre $pro,
+        #[MapEntity(id: 'relay')] Centre $relay,
+        string $permission,
+        EntityManagerInterface $em,
+    ): Response {
+        $pro->getUserCentre($relay)?->togglePermission($permission);
+        $em->flush();
+
+        return $this->render('v2/pro/list/_update_permission_button.html.twig', [
+            'user' => $pro->getUser(),
+            'relay' => $relay,
+        ]);
     }
 }

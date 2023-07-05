@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block metaTitle %}{% trans %}membre.beneficiaires.metaTitle{% endtrans %}{% endblock metaTitle %}
+{% block metaTitle %}{{ 'beneficiaries_management'|trans }}{% endblock metaTitle %}
 
 {% block body %}
     <div class="" style="min-height: 364px;">
@@ -33,7 +33,7 @@
 
                             <a href="{{ path('re_membre_ajoutBeneficiaire') }}"
                                class="font-size-1 btn btn-blue white"><i class="fas fa-user-plus"></i>
-                                &nbsp; {% trans %}membre.beneficiaires.ajouterBeneficiaire{% endtrans %}</a>
+                                &nbsp; {% trans %}add_new_beneficiary{% endtrans %}</a>
 
                             <div class="clearFloat">&nbsp;</div>
                         </div>
@@ -44,7 +44,7 @@
                                 <div class="smallMargin text-primary font-size-1">{{ 'center_is_empty'|trans }}</div>
                                 <a href="{{ path('re_membre_ajoutBeneficiaire') }}"
                                    class="font-size-1 btn btn-blue white"><i class="fas fa-user-plus"></i>
-                                    &nbsp; {% trans %}membre.beneficiaires.ajouterBeneficiaire{% endtrans %}</a>
+                                    &nbsp; {% trans %}add_new_beneficiary{% endtrans %}</a>
                             </div>
                         </div>
                         <table class="reTable2 table-90" ng-if="hasBeneficiaires()">

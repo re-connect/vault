@@ -1,32 +1,32 @@
-{% set center = relay.centre %}
+{% set relay = userRelay.centre %}
 
-<div class="card rounded-card shadow border mt-3 text-{{ not relay.bValid ? 'grey' : 'primary' }}">
+<div class="card rounded-card shadow border mt-3 text-{{ not userRelay.bValid ? 'grey' : 'primary' }}">
     <div class="card-body">
         <div class="row">
             <div class="col-12 col-sm-2 my-auto text-center">
                 <i class="fa fa-hotel my-4 fa-3x"></i>
             </div>
             <div class="col-12 col-sm-6 my-4 my-md-auto">
-                <span class="bold">{{ center.nom }}</span>
+                <span class="bold">{{ relay.nom }}</span>
                 <br>
-                <span>{{ center.adresse }}</span>
+                <span>{{ relay.adresse }}</span>
             </div>
-            <div class="col d-flex flex-column justify-content-center {{ not relay.bValid ? 'd-none' : '' }}">
+            <div class="col d-flex flex-column justify-content-center {{ not userRelay.bValid ? 'd-none' : '' }}">
                 {% if is_granted('ROLE_MEMBRE') %}
-                    {% if relay.canManageBeneficiaries %}
-                        <a href="{{ path('list_beneficiaries') }}"
+                    {% if userRelay.canManageBeneficiaries %}
+                        <a href="{{ path('list_beneficiaries', {'relay': relay.id}) }}"
                            class="btn btn-blue text-white my-1">
                             {{ 'show_beneficiaries'|trans }}
                         </a>
                     {% endif %}
-                    {% if relay.canManageProfessionals %}
-                        <a href="#"
+                    {% if userRelay.canManageProfessionals %}
+                        <a href="{{ path('list_pro', {'relay': relay.id}) }}"
                            class="btn btn-blue text-white my-1">
                             {{ 'show_professionals'|trans }}
                         </a>
                     {% endif %}
                 {% else %}
-                    <a href="{{ path('leave_relay', {'id': center.id}) }}"
+                    <a href="{{ path('leave_relay', {'id': relay.id}) }}"
                        class="btn btn-red text-white">
                         <i class="fa fa-times me-1"></i>
                         {{ 'leave_center'|trans }}

@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+updated_files_path=$(git status --porcelain | grep "V2" | awk '{print $2}');
+updated_files_path_array=$(echo $updated_files_path | tr ";" "\n");
+
+for file_path in $updated_files_path_array; do
+  file_name_with_extension="$(basename "$file_path")";
+  file_name="${file_name_with_extension%%.*}";
+
+  tests_files_path=$(find ./tests/v2 -name "*.php" | grep "$file_name" || true);
+  tests_files_path_array=$(echo $tests_files_path | tr ";" "\n")
+
+  for test_to_execute in $tests_files_path_array; do
+    vendor/bin/simple-phpunit  $test_to_execute;
+  done
+done

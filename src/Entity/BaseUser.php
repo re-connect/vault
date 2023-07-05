@@ -5,15 +5,11 @@ namespace App\Entity;
 use App\Entity\Traits\DeactivatableTrait;
 use Symfony\Component\Security\Core\User\LegacyPasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, UserInterface
 {
     use DeactivatableTrait;
 
-    /**
-     * @var mixed
-     */
     protected $id;
 
     /**
@@ -25,13 +21,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
      * @var string
      */
     protected $usernameCanonical;
-
-    /**
-     * @var string
-     *
-     * @Assert\Email
-     */
-    protected $email;
 
     /**
      * @var string
@@ -100,63 +89,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this->username;
     }
 
-    public function __serialize(): array
-    {
-        return [
-            $this->password,
-            $this->salt,
-            $this->usernameCanonical,
-            $this->username,
-            $this->enabled,
-            $this->id,
-            $this->email,
-            $this->emailCanonical,
-        ];
-    }
-
-    public function __unserialize(array $data): void
-    {
-        if (13 === count($data)) {
-            // Unserializing a User object from 1.3.x
-            unset($data[4], $data[5], $data[6], $data[9], $data[10]);
-            $data = array_values($data);
-        } elseif (11 === count($data)) {
-            // Unserializing a User from a dev version somewhere between 2.0-alpha3 and 2.0-beta1
-            unset($data[4], $data[7], $data[8]);
-            $data = array_values($data);
-        }
-
-        list(
-            $this->password,
-            $this->salt,
-            $this->usernameCanonical,
-            $this->username,
-            $this->enabled,
-            $this->id,
-            $this->email,
-            $this->emailCanonical
-        ) = $data;
-    }
-
-    /**
-     * @internal
-     */
-    final public function serialize()
-    {
-        return serialize($this->__serialize());
-    }
-
-    /**
-     * @internal
-     */
-    final public function unserialize($serialized)
-    {
-        $this->__unserialize(unserialize($serialized));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function addRole($role)
     {
         $role = strtoupper($role);
@@ -171,33 +103,21 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function eraseCredentials()
     {
         $this->plainPassword = null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUsername()
     {
         return $this->username;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUsernameCanonical()
     {
         return $this->usernameCanonical;
@@ -208,17 +128,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this->salt;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getEmailCanonical()
     {
         return $this->emailCanonical;
@@ -229,9 +138,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this->password;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPlainPassword()
     {
         return $this->plainPassword;
@@ -247,9 +153,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this->lastLogin;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getConfirmationToken()
     {
         return $this->confirmationToken;
@@ -265,25 +168,16 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return array_values(array_unique($roles));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasRole($role)
     {
         return in_array(strtoupper($role), $this->getRoles(), true);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isSuperAdmin()
     {
         return $this->hasRole('ROLE_SUPER_ADMIN');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function removeRole($role)
     {
         if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
@@ -294,9 +188,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setUsername($username)
     {
         $this->username = $username;
@@ -305,9 +196,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setUsernameCanonical($usernameCanonical)
     {
         $this->usernameCanonical = $usernameCanonical;
@@ -315,9 +203,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setSalt($salt)
     {
         $this->salt = $salt;
@@ -325,20 +210,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-        $this->emailCanonical = $email;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setEmailCanonical($emailCanonical)
     {
         $this->emailCanonical = $emailCanonical;
@@ -346,9 +217,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setPassword($password)
     {
         $this->password = $password;
@@ -356,9 +224,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setSuperAdmin($boolean)
     {
         if (true === $boolean) {
@@ -370,9 +235,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setPlainPassword($password)
     {
         $this->plainPassword = $password;
@@ -380,9 +242,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setLastLogin(\DateTime $time = null)
     {
         $this->lastLogin = $time;
@@ -390,9 +249,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setConfirmationToken($confirmationToken)
     {
         $this->confirmationToken = $confirmationToken;
@@ -400,9 +256,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setRoles(array $roles)
     {
         $this->roles = [];
@@ -414,9 +267,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isEqualTo(UserInterface $user)
     {
         if (!$user instanceof self) {

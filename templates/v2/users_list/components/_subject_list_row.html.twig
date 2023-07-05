@@ -1,0 +1,14 @@
+<tr class="text-primary align-middle bg-white">
+    <td class="border-0 p-0 h-100 text-center align-middle">
+        {% block icon %}{% endblock %}
+    </td>
+    <td class="border-0 h-100 w-25 text-start align-middle bold">
+        {% block information %}{% endblock %}
+    </td>
+    <td class="border-0 h-100 text-center d-none d-md-table-cell align-middle px-5">
+        {% block actions %}{% endblock %}
+    </td>
+    <td class="border-0 h-100 text-center align-middle" {{ stimulus_controller('dropdown-menu') }}>
+        {% block actionDropdown %}{% endblock %}
+    </td>
+</tr>

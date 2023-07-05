@@ -196,6 +196,14 @@ class User extends BaseUser implements \JsonSerializable
         $this->creators = new ArrayCollection();
     }
 
+    public static function createPro(): self
+    {
+        $user = new self();
+        (new Membre())->setUser($user);
+
+        return $user;
+    }
+
     public function getUserIdentifier(): string
     {
         return $this->username;
@@ -239,6 +247,19 @@ class User extends BaseUser implements \JsonSerializable
         $this->nom = $nom;
 
         return $this;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        $this->emailCanonical = $email;
+
+        return $this;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     public function getBirthDate(): ?\DateTime
@@ -401,7 +422,7 @@ class User extends BaseUser implements \JsonSerializable
 
     public function isBeneficiaire(): bool
     {
-        return self::USER_TYPE_BENEFICIAIRE === $this->typeUser;
+        return self::USER_TYPE_BENEFICIAIRE === $this->typeUser || $this->subjectBeneficiaire;
     }
 
     public function getSecretAnswer(): string
@@ -425,6 +446,10 @@ class User extends BaseUser implements \JsonSerializable
     public function setSubjectBeneficiaire(Beneficiaire $subjectBeneficiaire = null): self
     {
         $this->subjectBeneficiaire = $subjectBeneficiaire;
+
+        if ($subjectBeneficiaire) {
+            $this->typeUser = self::USER_TYPE_BENEFICIAIRE;
+        }
 
         return $this;
     }
@@ -475,7 +500,7 @@ class User extends BaseUser implements \JsonSerializable
 
     public function isMembre(): bool
     {
-        return self::USER_TYPE_MEMBRE === $this->typeUser;
+        return self::USER_TYPE_MEMBRE === $this->typeUser || $this->subjectMembre;
     }
 
     public function getSubjectMembre(): ?Membre
@@ -486,6 +511,10 @@ class User extends BaseUser implements \JsonSerializable
     public function setSubjectMembre(Membre $subjectMembre = null): self
     {
         $this->subjectMembre = $subjectMembre;
+
+        if ($subjectMembre) {
+            $this->typeUser = self::USER_TYPE_MEMBRE;
+        }
 
         return $this;
     }
@@ -710,9 +739,7 @@ class User extends BaseUser implements \JsonSerializable
             'telephone' => $this->telephone,
             'username' => $this->username,
             'type_user' => $this->typeUser,
-//            'username_canonical' => $this->usernameCanonical,
             'email' => $this->email,
-//            'email_canonical' => $this->emailCanonical,
 //            'enabled' => $this->enabled,
             'last_login' => null !== $this->derniereConnexionAt ? $this->derniereConnexionAt->format(\DateTime::W3C) : null,
 //            'groups' => $this->groups,
@@ -1086,11 +1113,18 @@ class User extends BaseUser implements \JsonSerializable
             : $this->getSubjectMembre()->getMembresCentres();
     }
 
-    public function getUserRelay(Centre $relay): ?UserCentre
+    public function getUserRelay(?Centre $relay): ?UserCentre
     {
-        $userRelays = $this->getUserRelays()->filter(fn (UserCentre $userRelay) => $userRelay->getCentre() === $relay);
+        if (!$relay) {
+            return null;
+        }
 
-        return $userRelays->first() ?? null;
+        return $this->getUserRelays()->filter(fn (UserCentre $userRelay) => $userRelay->getCentre() === $relay)->first() ?: null;
+    }
+
+    public function getFirstUserRelay(): ?UserCentre
+    {
+        return $this->getUserRelays()->first() ?: null;
     }
 
     public static function createUserRelay(User $user, Centre $relay): UserCentre
@@ -1158,24 +1192,34 @@ class User extends BaseUser implements \JsonSerializable
         return new ArrayCollection();
     }
 
-    /** @return Collection <int, UserCentre> */
-    public function getSubjectRelays(): Collection
+    public function getAffiliatedRelays(): Collection
     {
-        return $this->isBeneficiaire()
-            ? $this->getSubjectBeneficiaire()->getBeneficiairesCentres()
-            : $this->getSubjectMembre()->getMembresCentres();
+        if ($this->isBeneficiaire()) {
+            return $this->getSubjectBeneficiaire()->getAffiliatedRelays();
+        } elseif ($this->isMembre()) {
+            return $this->getSubjectMembre()->getAffiliatedRelays();
+        }
+
+        return new ArrayCollection();
     }
 
     public function isLinkedToRelay(Centre $relay): bool
     {
-        return null !== $this->getSubjectRelaysForRelay($relay);
+        return null !== $this->getUserRelay($relay);
     }
 
-    public function getSubjectRelaysForRelay(Centre $relay): UserCentre|null
+    public function isInvitedToRelay(Centre $relay): bool
     {
-        return $this->getSubjectRelays()
-            ->filter(fn (UserCentre $subjectRelay) => $subjectRelay->getCentre() === $relay)
-            ->first() ?: null;
+        $userRelay = $this->getUserRelay($relay);
+
+        return null !== $userRelay && !$userRelay->getBValid();
+    }
+
+    public function hasValidLinkToRelay(Centre $relay): bool
+    {
+        $userRelay = $this->getUserRelay($relay);
+
+        return null !== $userRelay && $userRelay->getBValid();
     }
 
     public function getOldUsername(): ?string

@@ -1,0 +1,14 @@
+{% extends 'v2/management_layout.html.twig' %}
+
+{% block metaTitle %}{{ 'disaffiliate_user'|trans }}{% endblock metaTitle %}
+{% block subTitleIcon %} <i class="fas fa-user-times fa-lg me-1"></i> {% endblock %}
+{% block subTitle %}{{ 'disaffiliate_beneficiary_subtitle'|trans|upper }} {{ user.fullName|upper }} {% endblock %}
+
+{% block content %}
+    <h5 class="text-center my-4 px-3 px-md-5">{{ 'select_relays_for_disaffiliation'|trans }} : </h5>
+    <div class="row mt-3 mx-auto">
+        {% for relay in relays %}
+            {{ include('v2/user/disaffiliation/_disaffiliate_card.html.twig', {relay}) }}
+        {% endfor %}
+    </div>
+{% endblock %}

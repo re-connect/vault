@@ -1,6 +1,8 @@
 'no': Нет
 'yes': Да
+accepted: принял
 add_member: 'Добавить нового члена'
+add_new_beneficiary: 'Добавить нового получателя'
 admin.bienvenue: 'Добро пожаловать в вашу администрацию Reconnect'
 admin.centres.benéficiaires: Получатели
 admin.centres.historique: История
@@ -19,6 +21,7 @@ admin.menu.traduction: Перевод
 admin.metaTitle: 'Администрация Reconnect'
 admin.title: 'Директоров, <span class="main"> Повторное подключение</span>'
 aides.metaTitle: Пособия
+an_error_occurred: 'Произошла ошибка !'
 association.categorie.association: Ассоциация
 association.categorie.ccas: 'Муниципальный центр социального обслуживания (CCAS)'
 association.categorie.choisir: 'Выберите категорию ассоциации'
@@ -38,15 +41,15 @@ beneficiaire.menu2.mesDocuments: Документы
 beneficiaire.menu2.mesNotes: Заметки
 beneficiaire.menu2.mesRelaisReconnect: Посредник
 beneficiaire.menu2.monCalendrier: 'Запись на приём'
+beneficiaries_management: 'Управление получателями'
 bientotDisponible.text: 'Дополнительные сведения о <a class="bold main"> Reconnect солидарности облако</a> и присоединиться к сети <a class="bold main"> Реле переподключение</a>, свяжитесь с нами напрямую по телефону: <a class="bold main"> 01 58 30 55 29</a> <br/> или по электронной почте: <a class="bold main"> contact@reconnect.fr</a>'
-centre.metaTitle: Центры
+centers: Центры
 centre.ville: Город
 centre.vousAvezBienQuitte: 'Вы успешно вышли из центра'
 confirm: Подтвердить
 connexionForm.connexion: Вход
 connexionForm.erreurIdentifiants: 'Вы ввели неверное имя пользователя/пароль'
 connexionForm.inactif: 'Ваша сессия была закрыта после определённого периода неактивности'
-connexionForm.motDePasse: Пароль
 connexionForm.oublieMdp: 'Забыли пароль или логин?'
 connexionForm.username: 'Имя пользователя'
 contact.ajouter: 'Добавить контакт'
@@ -239,7 +242,6 @@ form.validation.sirenFormat: 'Неверный формат номера Siren'
 form_connexion: войти
 form_forgot_password: 'Сбросить пароль'
 form_login: 'логин или пароль'
-form_password: пароль
 gestionnaire.centres.btnAjouterUnCentre: 'Добавить центр'
 gestionnaire.centres.cotisationJusqua: 'Вклад в % dateFin %'
 gestionnaire.centres.cotisationNoneffectuee: 'Взнос не произведён (центр неактивный)'
@@ -259,7 +261,6 @@ gestionnaire.envoyerCentreAGestionnaire.subtitle: 'Разрешить друго
 gestionnaire.envoyerCentreAGestionnaire.success: 'Центр был успешно передан этому администратору'
 gestionnaire.envoyerCentreAGestionnaire.title: 'Переслать администратору'
 gestionnaire.menu.gestionBeneficiaires: 'Управление получателями'
-gestionnaire.menu.gestionMembres: 'Управление членами'
 gestionnaire.menu.gestionRelais: 'Управление Посредниками Reconnect'
 gestionnaire.menu.usagers: Пользователи
 header.menu.commentCaMarche: 'Как это работает?'
@@ -317,7 +318,6 @@ home.quiSommesNous: 'О нас'
 home.quiSommesNousTxt: 'Reconnect – это проект Группы SOS. Насчитывая на сегодняшний день 2500 сотрудников и 106 учреждений, к компетенции которых относятся такие области деятельности, как борьба с зависимостями, солидарное жильё, помощь в лечении и помощь инвалидам, Группа SOS Солидарность представляет собой идеальную опытную площадку для этих инноваций. В интересах своих получателей, Группа хочет распространить свою деятельность на всех cубъектов социальной деятельности.'
 home.twitter: Twitter
 login_form_title: 'Доступ в цифровой сейф'
-main.accepter: Согласиться
 main.adresse.rue: Улица
 main.annuler: Отменить
 main.chercher: Искать
@@ -325,7 +325,6 @@ main.choisir: Выбрать
 main.connexion: Вход
 main.continuer: Пролоджить
 main.error.defaultSubTitle: 'Произошла следующая ошибка :'
-main.error.defaultTitle: 'Произошла ошибка !'
 main.error.error403SubTitle: 'Кажется, вы не имеете права выполнить это действие :'
 main.error.error403Title: 'Действие запрещено'
 main.error.error404SubTitle: 'Невозможно найти запрашиваемую страницу :'
@@ -370,7 +369,6 @@ membre.arreterSuivi.success: 'Вы успешно основили сопров�
 membre.arreterSuivi.text: 'Этот получатель прикреплён к нескольким центрам, которыми вы управляете, выберите центр, в котором нужно остановить сопровождение'
 membre.arreterSuivi.title: 'Остановить отслеживание <span class="main"> пользователя</span>'
 membre.beneficiaires.aides: Пособия
-membre.beneficiaires.ajouterBeneficiaire: 'Добавить нового получателя'
 membre.beneficiaires.arreterSuivi: 'Закончить обмен'
 membre.beneficiaires.arreterSuiviEtesVousSur: 'Вы прекращаете сопровождение %Имя%'
 membre.beneficiaires.btnDetails: Детали
@@ -378,7 +376,6 @@ membre.beneficiaires.centres: Центры
 membre.beneficiaires.mesContacts: Контакты
 membre.beneficiaires.mesDocuments: Документы
 membre.beneficiaires.mesNotes: Заметки
-membre.beneficiaires.metaTitle: 'Управление получателями'
 membre.beneficiaires.monCalendrier: Календарь
 membre.beneficiaires.noBeneficiairesInCentre: 'В этом центре нету получателей'
 membre.beneficiaires.nonValide: 'Не подтверждено'
@@ -431,12 +428,10 @@ membre.membres.arreterSuivi: Удалить
 membre.membres.btnDetails: Детали
 membre.membres.centres: Центры
 membre.membres.gestionBeneficiaires: 'Управление получателями'
-membre.membres.gestionMembres: 'Управление членами'
 membre.membres.gestionPaiement: 'Управление платежами'
 membre.membres.mesContacts: 'Мои контакты'
 membre.membres.mesDocuments: 'Мои документы'
 membre.membres.mesNotes: 'Мои Заметки'
-membre.membres.metaTitle: 'Управление членами'
 membre.membres.monCalendrier: 'Мой календарь'
 membre.membres.noBeneficiairesInCentre: 'В этом центре нету получателей'
 membre.membres.nonValide: 'Не подтверждено'
@@ -523,15 +518,15 @@ paiementVirement.metaTitle: 'Оплата банковским переводо�
 paiementVirement.text2: 'Для подтверждения оплаты нажмите здесь. Как только мы получим ваш перевод, мы отправим вам имейл с подверждением и квитанцией об оплате. После этого Центр появится в вашем аккаунте.'
 paiementVirement.text: 'Для подтверждения перевода укажите в названии : TODOPL НАЗВАНИЕ'
 paiementVirement.title: 'Оплата банковским переводом'
+password: Пароль
 password_updated_successfully: 'Пароль успешно изменён'
+pro_management: 'Управление членами'
 registerForm.adresse: 'Ваш личный адрес (необязательно)'
 registerForm.codePostal: Индекс
 registerForm.email: 'Электронная почта'
-registerForm.motDePasse: Пароль
 registerForm.pays: Страна
 registerForm.rue: Улица
 registerForm.telephone: Телефон
-registerForm.username: 'Имя пользователя'
 registerForm.ville: Город
 resetting.check_email: 'На указанный адрес было отправлено сообщение со ссылкой, на которую вам надо нажать для восстановления пароля.'
 resetting.email.message: 'Здравствуйте, % username %! Чтобы сбросить свой пароль, пожалуйста перейдите на % confirmationUrl % с уважением, команда.'
@@ -545,6 +540,8 @@ resetting.public.text: 'Укажите ваш адрес электронной 
 resetting.public.title: '<span class="main">Réinitialisation </span>du mot de passe'
 resetting.public.votreEmail: 'Ваш адрес электронной почты'
 resetting.reset.submit: 'Изменить пароль'
+secret_answer: 'Секретный ответ'
+secret_question: 'Секретный вопрос'
 settings_saved_successfully: 'Ваши настройки успешно сохранены'
 sms_sent_failed: 'Отправка SMS не удалась, пожалуйста, проверьте, действителен ли номер телефона'
 statut.abandoned: 'Операция отменена'
@@ -574,8 +571,6 @@ user.parametres.mdpActuel: 'Настоящий пароль'
 user.parametres.metaTitle: 'Настройки пользователя'
 user.parametres.nouveauMotDePasse: 'Новый пароль'
 user.parametres.nouveauMotDePasseConfirm: 'Подтверждение нового пароля'
-user.parametres.questionSecreteLabel: 'Секретный вопрос'
-user.parametres.reponseSecreteLabel: 'Секретный ответ'
 user.parametres.subtitle: 'Настройки %subject%'
 user.parametres.title: 'Настройки пользователя'
 user.parametres.userLabel: Пользователь

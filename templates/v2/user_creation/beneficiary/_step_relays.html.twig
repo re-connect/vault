@@ -1,0 +1,5 @@
+{% extends 'v2/user_creation/beneficiary/_step_without_form.html.twig' %}
+
+{% block stepContent %}
+    {{ include('v2/user_creation/components/_relays_checkboxes.html.twig', {user: beneficiary.user}) }}
+{% endblock %}

@@ -16,9 +16,9 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username', null, ['label' => 'registerForm.username'])
+            ->add('username', null, ['label' => 'username'])
             ->add('plainPassword', PasswordType::class, [
-                'label' => 'registerForm.motDePasse',
+                'label' => 'password',
                 'attr' => [
                     'data-password-strength-target' => 'input',
                     'data-action' => 'password-strength#check',

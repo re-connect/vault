@@ -1,7 +1,4 @@
 {% extends 'v2/management_layout.html.twig' %}
-{% block title %}
-    {{ include('v2/user_creation/beneficiary/_create_beneficiary_title_default.html.twig') }}
-{% endblock %}
 
 {% set lastStep = beneficiaryCreationProcess.totalSteps %}
 {% block subTitle %}
@@ -11,21 +8,29 @@
     </span>
 {% endblock %}
 
+{% block backButton %}
+{% endblock %}
+
 {% block content %}
-    <p class="mt-4">
+    <div class="mt-4">
         {% if beneficiaryCreationProcess and beneficiaryCreationProcess.isRemotely %}
             {{ 'beneficiary_created_successfully_wait_activation'|trans }}
         {% else %}
-            {{ 'print_account_creation_act'|trans }}
-            <a href="https://www.reconnect.fr/annexe/bienvenue-compte-reconnect"
-               target="_blank"
-               class="btn btn-blue text-white ms-2">
-                {{ 'download'|trans }}
-            </a>
+            <div class="d-flex justify-content-between">
+                <span>
+                    {{ 'print_account_creation_act'|trans }}
+                </span>
+                <a href="https://www.reconnect.fr/annexe/bienvenue-compte-reconnect"
+                   target="_blank"
+                   class="btn btn-warning text-white ms-auto">
+                    <i class="fa fa-download"></i>
+                    {{ 'download'|trans }}
+                </a>
+            </div>
         {% endif %}
-    </p>
+    </div>
     <div class="text-center mt-5">
-        <a href="{{ path('list_beneficiaries') }}" class="btn btn-primary">
+        <a href="{{ path('list_beneficiaries') }}" class="btn btn-blue text-white">
             {{ 'confirm'|trans }}
         </a>
     </div>

@@ -140,7 +140,7 @@ class BeneficiaryCreationProcess
 
     public function isStepWithForm(): bool
     {
-        return $this->getTotalFormSteps() >= $this->currentStep;
+        return !$this->isRelaysStep() && $this->getTotalFormSteps() >= $this->currentStep;
     }
 
     public function getBreadCrumbStepNames(): ?array
@@ -173,12 +173,17 @@ class BeneficiaryCreationProcess
 
     public function isPasswordStep(): bool
     {
-        return !$this->remotely && self::PASSWORD_STEP === $this->currentStep;
+        return (self::PASSWORD_STEP === $this->currentStep) && !$this->remotely;
     }
 
     public function isIdentityStep(): bool
     {
         return self::IDENTITY_STEP === $this->currentStep;
+    }
+
+    public function isRelaysStep(): bool
+    {
+        return $this->currentStep === $this->getRelaysStep();
     }
 
     public function getRelaysStep(): int

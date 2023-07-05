@@ -3,20 +3,16 @@
 namespace App\ControllerV2;
 
 use App\Entity\Beneficiaire;
-use App\Entity\Centre;
-use App\FormV2\UserAffiliation\AffiliateBeneficiaryType;
-use App\FormV2\UserAffiliation\Model\AffiliateBeneficiaryFormModel;
 use App\FormV2\UserAffiliation\Model\SearchBeneficiaryFormModel;
 use App\FormV2\UserAffiliation\SearchBeneficiaryType;
+use App\FormV2\UserCreation\AnswerSecretQuestionType;
 use App\ManagerV2\BeneficiaryAffiliationManager;
 use App\ServiceV2\PaginatorService;
-use Doctrine\Common\Collections\ArrayCollection;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[IsGranted('ROLE_MEMBRE')]
@@ -63,72 +59,23 @@ class BeneficiaryAffiliationController extends AbstractController
         BeneficiaryAffiliationManager $manager,
         TranslatorInterface $translator,
     ): Response {
-        $availableRelaysForAffiliation = $manager->getAvailableRelaysForAffiliation($this->getUser(), $beneficiary);
-
-        if (0 === $availableRelaysForAffiliation->count()) {
-            return $this->render('v2/user_affiliation/beneficiary/_no_relay_available.html.twig');
-        }
-
-        $affiliateBeneficiaryModel = (new AffiliateBeneficiaryFormModel($availableRelaysForAffiliation));
-
-        $form = $this->createForm(AffiliateBeneficiaryType::class, $affiliateBeneficiaryModel, [
+        $form = $this->createForm(AnswerSecretQuestionType::class, $beneficiary, [
             'action' => $this->generateUrl('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]),
-            'beneficiary' => $beneficiary,
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $secretAnswer = $affiliateBeneficiaryModel->getSecretAnswer();
-            $isSecretAnswerValid = $manager->isSecretAnswerValid($beneficiary, $secretAnswer);
-
-            if (!$secretAnswer || $isSecretAnswerValid) {
-                $manager->affiliateBeneficiary($beneficiary, $affiliateBeneficiaryModel->getRelays(), $isSecretAnswerValid);
+            if ($manager->isSecretAnswerValid($beneficiary, $form->get('reponseSecrete')->getData())) {
+                $manager->forceAcceptInvitations($beneficiary);
                 $this->addFlash('success', 'beneficiary_added_to_relays');
 
-                return $this->redirectToRoute('list_beneficiaries');
+                return $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]);
             }
-            $form->get('secretAnswer')->addError(new FormError($translator->trans('wrong_secret_answer')));
+            $form->get('reponseSecrete')->addError(new FormError($translator->trans('wrong_secret_answer')));
         }
 
         return $this->render('v2/user_affiliation/beneficiary/_relays_form.html.twig', [
             'beneficiary' => $beneficiary,
-            'availableRelays' => $availableRelaysForAffiliation,
             'form' => $form,
-            'formModel' => $affiliateBeneficiaryModel,
         ]);
-    }
-
-    #[Route(
-        path: '/beneficiary/{id}/disaffiliate/choose-relay',
-        name: 'disaffiliate_beneficiary_relay_choice',
-        requirements: ['id' => '\d+'],
-        methods: ['GET'],
-    )]
-    public function disaffiliateChooseRelay(Beneficiaire $beneficiary): Response
-    {
-        return !$this->isGranted('UPDATE', $beneficiary)
-            ? $this->redirectToRoute('list_beneficiaries')
-            : $this->render('v2/user_affiliation/beneficiary/disaffiliate_beneficiary.html.twig', [
-                'beneficiary' => $beneficiary,
-                'relays' => $this->getProfessional()?->getManageableRelays($beneficiary) ?: new ArrayCollection([]),
-            ]);
-    }
-
-    #[Route(
-        path: '/beneficiary/{id}/relay/{relayId}/disaffiliate',
-        name: 'disaffiliate_beneficiary',
-        requirements: ['id' => '\d+'],
-        methods: ['GET'],
-        condition: 'request.isXmlHttpRequest()',
-    )]
-    #[ParamConverter('relay', class: 'App\Entity\Centre', options: ['id' => 'relayId'])]
-    #[IsGranted('UPDATE', 'beneficiary')]
-    public function disaffiliateFromRelay(
-        Beneficiaire $beneficiary,
-        ?Centre $relay,
-        BeneficiaryAffiliationManager $manager,
-    ): Response {
-        $manager->disaffiliateBeneficiary($beneficiary, $relay);
-
-        return $this->json($beneficiary);
     }
 }

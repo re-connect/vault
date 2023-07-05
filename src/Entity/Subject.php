@@ -28,7 +28,12 @@ abstract class Subject implements \JsonSerializable
 
     public function getFullName(): string
     {
-        return $this->user->getFullName();
+        return $this->user?->getFullName() ?? '';
+    }
+
+    public function getUserId(): ?int
+    {
+        return $this->user?->getId();
     }
 
     public function getUser(): ?User
@@ -45,7 +50,7 @@ abstract class Subject implements \JsonSerializable
 
     public function getDefaultUsername(): string
     {
-        return sprintf('%s.%s', $this->user->getSluggedLastname(), $this->user->getSluggedFirstName());
+        return sprintf('%s.%s', $this->user?->getSluggedLastname() ?? '', $this->user?->getSluggedFirstName() ?? '');
     }
 
     public function getUsername(): ?string
