@@ -38,13 +38,17 @@ class UserController extends AbstractController
             'isBeneficiaire' => $user->isBeneficiaire(),
         ])->handleRequest($request);
 
-        if ($userForm->isSubmitted()) {
-            if ($userForm->isValid()) {
-                $em->flush();
-                $this->addFlash('success', 'settings_saved_successfully');
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+            $usernameWillBeUpdated = $userManager->getUniqueUsername($user) !== $user->getUsername();
+            $em->flush();
+            $this->addFlash(
+                'success',
+                $usernameWillBeUpdated
+                ? 'settings_saved_successfully_username_updated'
+                : 'settings_saved_successfully',
+            );
 
-                return $this->redirectToRoute('user_settings');
-            }
+            return $this->redirectToRoute('user_settings');
         }
 
         if ($passwordForm->isSubmitted()) {
@@ -61,6 +65,7 @@ class UserController extends AbstractController
         }
 
         return $this->render('v2/user/settings.html.twig', [
+            'user' => $user,
             'userForm' => $userForm,
             'passwordForm' => $passwordForm,
         ]);
@@ -87,6 +92,7 @@ class UserController extends AbstractController
 
         return $this->render('v2/user/delete.html.twig', [
             'submitForm' => $form,
+            'user' => $user,
         ]);
     }
 
