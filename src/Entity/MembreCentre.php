@@ -31,6 +31,15 @@ class MembreCentre extends UserCentre
         ];
     }
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->droits = [
+            self::TYPEDROIT_GESTION_BENEFICIAIRES => true,
+            self::TYPEDROIT_GESTION_MEMBRES => false,
+        ];
+    }
+
     /**
      * Get centre.
      *

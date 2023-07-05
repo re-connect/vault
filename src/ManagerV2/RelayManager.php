@@ -69,12 +69,6 @@ class RelayManager
         $this->em->flush();
     }
 
-    public function addUserToRelay(User $user, Centre $relay): void
-    {
-        $this->em->persist(User::createUserRelay($user, $relay));
-        $this->em->flush();
-    }
-
     /** @return UserCentre[] */
     public function getPendingRelays(?User $user): array
     {
