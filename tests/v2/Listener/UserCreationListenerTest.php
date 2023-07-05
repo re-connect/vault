@@ -3,45 +3,90 @@
 namespace App\Tests\v2\Listener;
 
 use App\Entity\Beneficiaire;
+use App\Entity\Membre;
 use App\Entity\User;
 use App\Tests\Factory\BeneficiaireFactory;
-use App\Tests\Factory\UserFactory;
+use App\Tests\Factory\MembreFactory;
 use App\Tests\v2\AuthenticatedTestCase;
+use Doctrine\ORM\EntityManagerInterface;
 use Zenstruck\Foundry\Test\Factories;
 
 class UserCreationListenerTest extends AuthenticatedTestCase
 {
     use Factories;
+    private EntityManagerInterface $em;
 
-    /** @dataProvider provideListenerShouldFormatUsername */
-    public function testListenerShouldFormatUsername(string $typeUser, string $regex): void
+    protected function setUp(): void
     {
-        $user = UserFactory::createOne([
-            'typeUser' => $typeUser,
-        ])->object();
-
-        if (User::USER_TYPE_BENEFICIAIRE === $typeUser) {
-            /** @var Beneficiaire $beneficary */
-            $beneficary = BeneficiaireFactory::createOne(['user' => $user])->object();
-            $beneficary->setDateNaissance(new \DateTime());
-        }
-
-        self::assertMatchesRegularExpression($regex, $user->getUsername());
+        parent::setUp();
+        $this->em = self::getContainer()->get(EntityManagerInterface::class);
     }
 
-    public function provideListenerShouldFormatUsername(): \Generator
+    public function testShouldFormatBeneficiaryUsername(): void
     {
-        yield 'Should trigger listener with beneficiary' => [
-            User::USER_TYPE_BENEFICIAIRE,
-            '/^[a-z\-]{1,}\.[a-z\-]{1,}\.([0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3}){1}(-[1-9]\d*)?$/',
-        ];
-        yield 'Should trigger listener with member' => [
-            User::USER_TYPE_MEMBRE,
-            '/^[a-z\-]{1,}\.[a-z\-]{1,}(-[1-9]\d*)?$/',
-        ];
-        yield 'Should trigger listener with gestionnaire' => [
-            User::USER_TYPE_GESTIONNAIRE,
-            '/^[a-z\-]{1,}\.[a-z\-]{1,}(-[1-9]\d*)?$/',
-        ];
+        // Test standard username
+        $beneficiary = BeneficiaireFactory::createOne()->object();
+        $user = $beneficiary->getUser();
+        $expectedUsername = strtolower(
+            sprintf(
+                '%s.%s.%s',
+                $user->getPrenom(),
+                $user->getNom(),
+                $beneficiary->getDateNaissance()->format('d/m/Y'),
+            )
+        );
+
+        self::assertEquals($expectedUsername, $user->getUsername());
+
+        // Test create with duplicated information
+        $newUser = (new User())
+            ->setNom($user->getNom())
+            ->setPrenom($user->getPrenom())
+            ->setPassword('random')
+            ->setTypeUser(User::USER_TYPE_BENEFICIAIRE);
+
+        $newBeneficiary = (new Beneficiaire())
+            ->setDateNaissance($beneficiary->getDateNaissance())
+            ->setUser($newUser);
+        $this->em->persist($newUser);
+        $this->em->persist($newBeneficiary);
+        $this->em->flush();
+
+        $expectedUsername = sprintf('%s-1', $expectedUsername);
+
+        self::assertEquals($expectedUsername, $newUser->getUsername());
+    }
+
+    public function testShouldFormatProUsername(): void
+    {
+        // Test standard username
+        $pro = MembreFactory::createOne()->object();
+        $user = $pro->getUser();
+        $expectedUsername = strtolower(
+            sprintf(
+                '%s.%s',
+                $user->getNom(),
+                $user->getPrenom(),
+            )
+        );
+
+        self::assertEquals($expectedUsername, $user->getUsername());
+
+        // Test create with duplicated information
+        $newUser = (new User())
+            ->setNom($user->getNom())
+            ->setPrenom($user->getPrenom())
+            ->setPassword('random')
+            ->setTypeUser(User::USER_TYPE_MEMBRE);
+
+        $pro = (new Membre())
+            ->setUser($newUser);
+        $this->em->persist($newUser);
+        $this->em->persist($pro);
+        $this->em->flush();
+
+        $expectedUsername = sprintf('%s-1', $user->getUsername());
+
+        self::assertEquals($expectedUsername, $newUser->getUsername());
     }
 }
