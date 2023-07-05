@@ -9,7 +9,7 @@
         title: isPro ? null : 'information'|trans,
         leftColumnFields: [form.prenom, form.telephone],
         rightColumnFields: [form.nom, form.email],
-        fullWidthColumnFields: [isPro ? form.username : form.dateNaissance],
+        fullWidthColumnFields: isPro ? null : [form.dateNaissance],
     }) }}
     {% if form.adresse is defined %}
         {{ include('v2/user/_settings_form_block.html.twig', {

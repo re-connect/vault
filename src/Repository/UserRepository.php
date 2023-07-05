@@ -192,8 +192,11 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
     public function findHomonyms(string $baseUsername): array
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.username LIKE :baseUsername')
-            ->setParameter('baseUsername', $baseUsername.'%')
+            ->andWhere('u.username = :baseUsername OR u.username LIKE :formattedBaseUsername')
+            ->setParameters([
+                'baseUsername' => $baseUsername,
+                'formattedBaseUsername' => sprintf('%%%s-%%', $baseUsername),
+            ])
             ->getQuery()
             ->getResult();
     }

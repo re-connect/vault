@@ -10,7 +10,6 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -67,11 +66,6 @@ class UserSettingsType extends AbstractType
                     'property_path' => 'subjectBeneficiaire',
                     'label' => false,
                     'data' => $beneficiary,
-                ]);
-        } else {
-            $builder
-                ->add('username', TextType::class, [
-                    'label' => 'username',
                 ]);
         }
     }
