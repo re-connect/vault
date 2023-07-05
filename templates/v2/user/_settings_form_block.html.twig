@@ -11,7 +11,7 @@
 <div class="col-12 col-md-6">
     {{ include('v2/common/_field_list.html.twig', {fields: rightColumnFields}) }}
 </div>
-{% if fullWidthColumnFields is defined %}
+{% if fullWidthColumnFields is defined and fullWidthColumnFields %}
     <div class="col-12">
         {{ include('v2/common/_field_list.html.twig', {fields: fullWidthColumnFields}) }}
     </div>
