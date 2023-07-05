@@ -35,7 +35,7 @@ class UserCreationSubscriber implements EventSubscriberInterface
     public function preUpdate(PreUpdateEventArgs $event): void
     {
         $object = $event->getObject();
-        if ($object instanceof User) {
+        if ($object instanceof User && $this->hasUsernameInformationChanged($event)) {
             $this->manager->setUniqueUsername($object);
         }
     }
@@ -98,5 +98,12 @@ class UserCreationSubscriber implements EventSubscriberInterface
         if ($client && Client::CLIENT_ROSALIE === $client->getNom() && $user?->getTelephone()) {
             $this->notificationService->sendVaultCreatedSms($user);
         }
+    }
+
+    private function hasUsernameInformationChanged(PreUpdateEventArgs $event): bool
+    {
+        return $event->hasChangedField('nom')
+            || $event->hasChangedField('prenom')
+            || $event->hasChangedField('birthDate');
     }
 }
