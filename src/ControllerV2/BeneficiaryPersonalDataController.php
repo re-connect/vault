@@ -23,7 +23,7 @@ use App\ManagerV2\NoteManager;
 use App\Repository\DossierRepository;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -271,12 +271,11 @@ class BeneficiaryPersonalDataController extends AbstractController
         methods: ['GET'],
         condition: 'request.isXmlHttpRequest()',
     )]
-    #[ParamConverter('parentFolder', class: 'App\Entity\Dossier', options: ['id' => 'parentFolderId'])]
     #[IsGranted('UPDATE', 'beneficiary')]
     public function searchFolders(
         Request $request,
         Beneficiaire $beneficiary,
-        Dossier $parentFolder,
+        #[MapEntity(id: 'parentFolderId')] Dossier $parentFolder,
         FolderableItemManager $manager,
         PaginatorService $paginator,
     ): Response {
