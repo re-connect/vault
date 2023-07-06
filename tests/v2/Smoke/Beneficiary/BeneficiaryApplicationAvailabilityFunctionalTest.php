@@ -22,6 +22,6 @@ class BeneficiaryApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
 
     public function beneficiaryUrlProvider(): \Generator
     {
-        yield ['/beneficiary/'];
+        yield ['/beneficiary'];
     }
 }
