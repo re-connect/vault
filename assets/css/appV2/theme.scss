@@ -38,6 +38,11 @@ label:focus,
   box-shadow: none !important;
 }
 
+.blue-tooltip {
+  --bs-tooltip-bg: var(--bs-blue);
+  --bs-tooltip-opacity: 1;
+}
+
 $hr-opacity: 100%;
 
 .hr-2 {

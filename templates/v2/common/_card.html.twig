@@ -6,6 +6,7 @@
         {% if tooltipMessage is defined and tooltipMessage %}
             data-toggle="tooltip"
             data-placement="top"
+            data-bs-custom-class="{{ getUserThemeColor() }}-tooltip"
             title="{{ tooltipMessage }}"
         {% endif %}
 >
