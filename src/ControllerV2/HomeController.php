@@ -21,10 +21,13 @@ class HomeController extends AbstractController
         return $this->render('void.html.twig');
     }
 
-    #[IsGranted('ROLE_BENEFICIAIRE')]
+    #[IsGranted('ROLE_USER')]
     #[Route(path: '/beneficiary/', name: 'beneficiary_home', methods: ['GET'])]
     public function home(): Response
     {
+        if (!$this->getUser()?->isBeneficiaire()) {
+            throw $this->createAccessDeniedException();
+        }
         if ($subjectBeneficiary = $this->getUser()?->getSubject()) {
             return $this->render('v2/beneficiary/home/home.html.twig', ['beneficiary' => $subjectBeneficiary]);
         }
