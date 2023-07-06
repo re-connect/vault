@@ -4,6 +4,7 @@ namespace App\ControllerV2;
 
 use App\Entity\Beneficiaire;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class HomeController extends AbstractController
@@ -18,5 +19,16 @@ class HomeController extends AbstractController
         }
 
         return $this->render('void.html.twig');
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route(path: '/beneficiary', name: 'beneficiary_home', methods: ['GET'])]
+    public function home(): Response
+    {
+        if (!$subjectBeneficiary = $this->getUser()?->getSubjectBeneficiaire()) {
+            throw $this->createAccessDeniedException();
+        }
+
+        return $this->render('v2/beneficiary/home/home.html.twig', ['beneficiary' => $subjectBeneficiary]);
     }
 }
