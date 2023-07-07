@@ -843,12 +843,12 @@ modal_message_move_in_folder: 'dans le dossier'
 modal_message_note_delete: 'Êtes vous sûr de vouloir supprimer la note'
 modal_message_note_deletev2: 'Êtes vous sûr de vouloir supprimer la note %name% ?'
 move: Déplacer
-my_contacts: 'Mes Contacts'
-my_documents: 'Mes Documents'
-my_events: 'Mes Rappels'
-my_notes: 'Mes Notes'
+my_contacts: 'Mes contacts'
+my_documents: 'Mes documents'
+my_events: 'Mes rappels'
+my_notes: 'Mes notes'
 my_reconnect_centers: 'Mes relais <span class="rp-blue">reconnect</span>'
-my_relays: 'Mes Relais'
+my_relays: 'Mes relais'
 my_relays_title: Mes relais Reconnect
 name: Nom
 next: Suivant
