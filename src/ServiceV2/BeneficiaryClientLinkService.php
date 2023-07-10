@@ -18,20 +18,16 @@ class BeneficiaryClientLinkService
     ) {
     }
 
-    public function linkBeneficiaryToClientWithName(Beneficiaire $beneficiary, string $clientName, string $externalId, ?Centre $relay = null, ?string $memberExternalId = null): void
+    public function linkBeneficiaryToClientWithName(Beneficiaire $beneficiary, string $clientName, string $externalId, ?string $memberExternalId = null): void
     {
         if ($client = $this->clientRepository->findOneBy(['nom' => $clientName])) {
-            $this->linkBeneficiaryToClient($beneficiary, $client, $externalId, $relay, $memberExternalId);
+            $this->linkBeneficiaryToClient($beneficiary, $client, $externalId, $memberExternalId);
         }
     }
 
-    public function linkBeneficiaryToClient(Beneficiaire $beneficiary, Client $client, string $externalId, ?Centre $relay = null, ?string $memberExternalId = null): void
+    public function linkBeneficiaryToClient(Beneficiaire $beneficiary, Client $client, string $externalId, ?string $memberExternalId = null): void
     {
         $beneficiary->addClientExternalLink($client, $externalId, $memberExternalId);
-
-        if ($relay) {
-            $beneficiary->addBeneficiaryRelayForRelay($relay)->addCreatorRelay($relay);
-        }
     }
 
     public function unlinkBeneficiaryForCurrentClient(Beneficiaire $beneficiary): Beneficiaire

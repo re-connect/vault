@@ -1,5 +1,5 @@
 <a href="{{ path }}"
-   class="btn btn-{{ color }} text-white text-center mt-2 col mx-1" {{ attr }}>
+   class="btn btn-{{ color is defined ? color : getUserThemeColor() }} text-white text-center mt-2 col mx-1" {{ attr is defined ? attr : '' }}>
     {% if icon is defined %}
         <i class="{{ icon }} me-2" aria-hidden="true"></i>
     {% endif %}

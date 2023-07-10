@@ -3,6 +3,7 @@
 namespace App\ControllerV2;
 
 use App\Api\Manager\ApiClientManager;
+use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Beneficiaire;
 use App\Repository\BeneficiaireRepository;
 use App\ServiceV2\RosalieService;
@@ -30,8 +31,11 @@ class RosalieInteroperabilityController extends AbstractController
                 $service->linkBeneficiaryToRosalie($beneficiary);
                 $this->addFlash('success', $translator->trans('si_siao_number_found_rosalie'));
             }
+            $beneficiaryCreationProcess = $beneficiary->getCreationProcess();
 
-            return $this->redirectToRoute('list_beneficiaries');
+            return $beneficiaryCreationProcess?->getIsCreating()
+                ? $this->redirectToRoute('create_beneficiary', ['id' => $beneficiaryCreationProcess->getId(), 'step' => $beneficiaryCreationProcess->getLastReachedStep()])
+                : $this->redirectToRoute('list_beneficiaries');
         }
 
         return $this->render('v2/rosalie/add_si_siao_number.html.twig', [
