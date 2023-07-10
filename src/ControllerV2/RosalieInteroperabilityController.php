@@ -3,7 +3,6 @@
 namespace App\ControllerV2;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Beneficiaire;
 use App\Repository\BeneficiaireRepository;
 use App\ServiceV2\RosalieService;

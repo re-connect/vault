@@ -6,9 +6,10 @@
     {name: 'lastname', value: beneficiary.user.nom},
     {name: 'phone', value: beneficiary.user.telephone},
     {name: 'email', value: beneficiary.user.email},
-    {name: 'secret_question',  value: beneficiary.questionSecrete, step: secretQuestionStep, hide: beneficiaryCreationProcess.remotely},
-    {name: 'secret_answer',  value: beneficiary.reponseSecrete, step:secretQuestionStep, hide: beneficiaryCreationProcess.remotely},
-    {name: 'relays',  value: beneficiary.user.centres, step: beneficiaryCreationProcess.relaysStep}
+    {name: 'secret_question', value: beneficiary.questionSecrete, step: secretQuestionStep, hidden: beneficiaryCreationProcess.remotely},
+    {name: 'secret_answer', value: beneficiary.reponseSecrete, step:secretQuestionStep, hidden: beneficiaryCreationProcess.remotely},
+    {name: 'relays', value: beneficiary.user.centres, step: beneficiaryCreationProcess.relaysStep},
+    {name: 'si_siao_number', value: beneficiary.sisiaoNumber, hidden: null == beneficiary.sisiaoNumber, readonly: true}
 ] %}
 
 {% block stepContent %}
