@@ -5,7 +5,9 @@
 
 {% set isBeneficiary = app.user.isBeneficiaire %}
 
-{% set route = app.request.attributes.get('_route')|split('_') %}
+{% if route is not defined %}
+    {% set route = app.request.attributes.get('_route')|split('_') %}
+{% endif %}
 <li class="col vault-nav-item {{ isBeneficiary ? 'beneficiary-nav-item' : 'list-group pro-nav-item mt-3 mt-sm-0 px-0' }}">
     <a href="{{ path(routeName, {id: beneficiary.id}) }}" class="btn nav-link text-primary px-2
     {{ kind|split('-')|filter((i) => i in route ) ? 'current-item' : '' }}" title="{{ title|trans }}"
