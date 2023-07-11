@@ -17,8 +17,8 @@ class DistantIdFilter extends AbstractFilter
         ManagerRegistry $managerRegistry,
         private readonly ApiClientManager $apiClientManager,
         LoggerInterface $logger = null,
-        ?array $properties = null,
-        ?NameConverterInterface $nameConverter = null,
+        array $properties = null,
+        NameConverterInterface $nameConverter = null,
     ) {
         parent::__construct($managerRegistry, $logger, $properties, $nameConverter);
     }

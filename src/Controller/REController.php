@@ -28,7 +28,7 @@ abstract class REController extends AbstractController
         return parent::getUser();
     }
 
-    protected function successFlashTranslate(string $message, ?string $domain = null): void
+    protected function successFlashTranslate(string $message, string $domain = null): void
     {
         $message = $this->translator->trans($message, [], $domain);
         $this->addFlash('success', $message);

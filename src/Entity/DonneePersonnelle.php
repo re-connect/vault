@@ -145,7 +145,7 @@ abstract class DonneePersonnelle implements \JsonSerializable
         return $this->beneficiaire;
     }
 
-    public function setBeneficiaire(?Beneficiaire $beneficiaire = null): static
+    public function setBeneficiaire(Beneficiaire $beneficiaire = null): static
     {
         $this->beneficiaire = $beneficiaire;
 

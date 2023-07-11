@@ -61,7 +61,7 @@ class PhoneApplication
             }
             $this->url .= $key.'='.$value;
             $first = false;
-//    $url .= '/' . $key. '/'. $value;
+            //    $url .= '/' . $key. '/'. $value;
         }
     }
 
@@ -187,17 +187,12 @@ class PhoneApplication
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getUrl()
     {
         return $this->url;
     }
 
     /**
-     * @param mixed $url
-     *
      * @return PhoneApplication
      */
     public function setUrl($url)
@@ -207,17 +202,12 @@ class PhoneApplication
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getAccessToken()
     {
         return $this->access_token;
     }
 
     /**
-     * @param mixed $access_token
-     *
      * @return PhoneApplication
      */
     public function setAccessToken($access_token)

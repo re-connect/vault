@@ -11,9 +11,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BeneficiaireParametresType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -38,9 +35,6 @@ class BeneficiaireParametresType extends AbstractType
             ->add('submit', SubmitType::class, ['label' => 'user.parametres.enregister', 'attr' => ['class' => 'btn-green font-size-1']]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

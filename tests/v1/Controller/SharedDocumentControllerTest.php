@@ -39,7 +39,7 @@ class SharedDocumentControllerTest extends WebTestCase
         $form = $crawler->selectButton('Confirmer')->form();
         $form['email[email]'] = 'gandalf@gmail.com';
         $this->client->submit($form);
-//        $this->assertResponseRedirects('/api/beneficiaire/'.$this->beneficiare->getId().'/document');
+        //        $this->assertResponseRedirects('/api/beneficiaire/'.$this->beneficiare->getId().'/document');
     }
 
     private function generateDocument(): Document

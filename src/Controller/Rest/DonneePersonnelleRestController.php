@@ -63,9 +63,9 @@ abstract class DonneePersonnelleRestController extends REController
         $this->provider->save($entity);
         $user = $this->getUser();
 
-        if ($entity->getBPrive() && (($user instanceof User &&
-                    !$user->isBeneficiaire() &&
-                    !$user->isAdministrateur()) || !$user instanceof User)) {
+        if ($entity->getBPrive() && (($user instanceof User
+                    && !$user->isBeneficiaire()
+                    && !$user->isAdministrateur()) || !$user instanceof User)) {
             $data = null;
         } else {
             $this->entityManager->refresh($entity);
@@ -80,8 +80,8 @@ abstract class DonneePersonnelleRestController extends REController
         try {
             $entity = $this->provider->getEntity($id, $this->accessWrite);
 
-            if ((null !== $user = $this->getUser()) && $user instanceof User && ($user->isBeneficiaire() ||
-                    $user->isAdministrateur())) {
+            if ((null !== $user = $this->getUser()) && $user instanceof User && ($user->isBeneficiaire()
+                    || $user->isAdministrateur())) {
                 $this->provider->changePrive($entity);
 
                 return $this->json($entity, Response::HTTP_ACCEPTED);

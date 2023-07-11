@@ -64,9 +64,9 @@ class UniqueExternalLinkValidator extends ConstraintValidator
 
             if (null !== $externalLink) {
                 $externalLinks = $value->filter(static function ($element) use ($externalLink) {
-                    return $element->getClient() === $externalLink->getClient() &&
-                        $element->getDistantId() === $externalLink->getDistantId() &&
-                        $element->getEntity() === $externalLink->getEntity();
+                    return $element->getClient() === $externalLink->getClient()
+                        && $element->getDistantId() === $externalLink->getDistantId()
+                        && $element->getEntity() === $externalLink->getEntity();
                 });
             }
 

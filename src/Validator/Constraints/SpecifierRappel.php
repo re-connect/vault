@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class SpecifierRappel extends Constraint
 {
-//    public $message = 'evenement.errorSpecifierHeureRappel';
+    //    public $message = 'evenement.errorSpecifierHeureRappel';
     public $message = 'Vous devez renseigner un rappel.';
     public $messageRappelAfterDateEvent = 'La date de rappel doit se situer avant la date de l\'événement.';
 

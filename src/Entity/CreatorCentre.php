@@ -39,7 +39,7 @@ class CreatorCentre extends Creator
         return $this;
     }
 
-    public function __construct(?Centre $relay = null)
+    public function __construct(Centre $relay = null)
     {
         $this->entity = $relay;
     }
