@@ -136,36 +136,36 @@ class APIRestControllerTest extends AbstractControllerTest
         $this->assertArrayHasKey('code', $content['error']);
         $this->assertArrayHasKey('details', $content['error']);
         $this->assertArrayHasKey('dateNaissance', $content['error']['details']);
-//        $this->assertArrayHasKey('prenom', $content['error']['details']);
-//        $this->assertArrayHasKey('nom', $content['error']['details']);
-//        $this->assertArrayHasKey('email', $content['error']['details']);
-//        $this->assertArrayHasKey('telephone', $content['error']['details']);
-//
-//        /**
-//         * call throw with wrong client name existant
-//         */
-//        $this->client->request(Request::METHOD_PUT,
-//            '/appli/axel/beneficiaire/'.$this->distantId.'?access_token='.$this->accessToken,
-//            $this->beneficiaire
-//        );
-//
-//        $response = $this->client->getResponse();
-//
-//        $this->assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
-//        $this->assertResponseHeaderSame('Content-Type', 'application/json');
-//        $this->assertJson($response->getContent());
-//        $content = $response->getContent();
-//        $this->assertJson($content);
-//
-//        $content = json_decode($content, true);
-//
-//        $this->assertArrayHasKey('error', $content);
-//        $this->assertArrayHasKey('message', $content['error']);
-//        $this->assertArrayHasKey('status', $content['error']);
-//        $this->assertArrayHasKey('code', $content['error']);
-//
-//        $this->assertEquals('Le token fourni ne correspond pas à votre compte. Veuillez contacter Reconnect', $content['error']['message']);
-//        $this->assertEquals(400, $content['error']['status']);
+        //        $this->assertArrayHasKey('prenom', $content['error']['details']);
+        //        $this->assertArrayHasKey('nom', $content['error']['details']);
+        //        $this->assertArrayHasKey('email', $content['error']['details']);
+        //        $this->assertArrayHasKey('telephone', $content['error']['details']);
+        //
+        //        /**
+        //         * call throw with wrong client name existant
+        //         */
+        //        $this->client->request(Request::METHOD_PUT,
+        //            '/appli/axel/beneficiaire/'.$this->distantId.'?access_token='.$this->accessToken,
+        //            $this->beneficiaire
+        //        );
+        //
+        //        $response = $this->client->getResponse();
+        //
+        //        $this->assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        //        $this->assertResponseHeaderSame('Content-Type', 'application/json');
+        //        $this->assertJson($response->getContent());
+        //        $content = $response->getContent();
+        //        $this->assertJson($content);
+        //
+        //        $content = json_decode($content, true);
+        //
+        //        $this->assertArrayHasKey('error', $content);
+        //        $this->assertArrayHasKey('message', $content['error']);
+        //        $this->assertArrayHasKey('status', $content['error']);
+        //        $this->assertArrayHasKey('code', $content['error']);
+        //
+        //        $this->assertEquals('Le token fourni ne correspond pas à votre compte. Veuillez contacter Reconnect', $content['error']['message']);
+        //        $this->assertEquals(400, $content['error']['status']);
         $firstCentre = $this->getEntityManager()->getRepository(Centre::class)->findByClientIdentifier($this->oauthClient->getIdentifier())[0];
 
         /*
@@ -304,10 +304,10 @@ class APIRestControllerTest extends AbstractControllerTest
         $this->assertArrayHasKey('code', $content['error']);
         $this->assertArrayHasKey('details', $content['error']);
         $this->assertArrayHasKey('dateNaissance', $content['error']['details']);
-//        $this->assertArrayHasKey('prenom', $content['error']['details']);
-//        $this->assertArrayHasKey('nom', $content['error']['details']);
-//        $this->assertArrayHasKey('email', $content['error']['details']);
-//        $this->assertArrayHasKey('telephone', $content['error']['details']);
+        //        $this->assertArrayHasKey('prenom', $content['error']['details']);
+        //        $this->assertArrayHasKey('nom', $content['error']['details']);
+        //        $this->assertArrayHasKey('email', $content['error']['details']);
+        //        $this->assertArrayHasKey('telephone', $content['error']['details']);
     }
 
     public function testGetBeneficiaireWithoutToken()

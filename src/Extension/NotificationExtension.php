@@ -98,9 +98,9 @@ class NotificationExtension extends AbstractExtension
              * NOTIFICATION CONSULTATIONBENEFICIAIRE
              * Notifications pour l'ajout d'un membre dans les contacts d'un utilisateur
              */
-            if ($user->isMembre() &&
-                $session->has('firstConsultationBeneficiaire') &&
-                $beneficiaire = $this->entityManager->find(Beneficiaire::class, $session->get('firstConsultationBeneficiaire'))
+            if ($user->isMembre()
+                && $session->has('firstConsultationBeneficiaire')
+                && $beneficiaire = $this->entityManager->find(Beneficiaire::class, $session->get('firstConsultationBeneficiaire'))
             ) {
                 $arStr[] = [
                     'type' => self::NOTIFICATION_AJOUT_CONTACT,

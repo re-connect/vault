@@ -31,8 +31,8 @@ final class Image extends AbstractImage
 {
     public function thumbnail(BoxInterface $size, $settings = ManipulatorInterface::THUMBNAIL_INSET, $filter = ImageInterface::FILTER_UNDEFINED): static
     {
-        if (ManipulatorInterface::THUMBNAIL_INSET !== $settings &&
-            ManipulatorInterface::THUMBNAIL_OUTBOUND !== $settings) {
+        if (ManipulatorInterface::THUMBNAIL_INSET !== $settings
+            && ManipulatorInterface::THUMBNAIL_OUTBOUND !== $settings) {
             throw new InvalidArgumentException('Invalid mode specified');
         }
 
@@ -120,8 +120,6 @@ final class Image extends AbstractImage
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return ImageInterface
      */
     final public function copy()
@@ -137,8 +135,6 @@ final class Image extends AbstractImage
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return ImageInterface
      */
     final public function crop(PointInterface $start, BoxInterface $size)
@@ -164,8 +160,6 @@ final class Image extends AbstractImage
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return ImageInterface
      */
     final public function paste(ImageInterface $image, PointInterface $start, $alpha = 100)
@@ -193,8 +187,6 @@ final class Image extends AbstractImage
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return ImageInterface
      */
     final public function resize(BoxInterface $size, $filter = ImageInterface::FILTER_UNDEFINED)
@@ -226,8 +218,6 @@ final class Image extends AbstractImage
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return ImageInterface
      */
     final public function rotate($angle, ColorInterface $background = null)
@@ -246,8 +236,6 @@ final class Image extends AbstractImage
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return ImageInterface
      */
     final public function save($path = null, array $options = [])
@@ -273,8 +261,6 @@ final class Image extends AbstractImage
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return ImageInterface
      */
     public function show($format, array $options = [])
@@ -286,9 +272,6 @@ final class Image extends AbstractImage
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function get($format, array $options = []): string
     {
         ob_start();
@@ -297,17 +280,12 @@ final class Image extends AbstractImage
         return ob_get_clean();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function __toString()
     {
         return $this->get('png');
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return ImageInterface
      */
     final public function flipHorizontally()
@@ -331,8 +309,6 @@ final class Image extends AbstractImage
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return ImageInterface
      */
     final public function flipVertically()
@@ -356,8 +332,6 @@ final class Image extends AbstractImage
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return ImageInterface
      */
     final public function strip()
@@ -366,33 +340,22 @@ final class Image extends AbstractImage
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function draw(): DrawerInterface|AlphaBlendingAwareDrawerInterface
     {
         return new Drawer($this->resource);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function effects(): EffectsInterface
     {
         return new Effects($this->resource);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSize(): BoxInterface
     {
         return new Box(imagesx($this->resource), imagesy($this->resource));
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return ImageInterface
      */
     public function applyMask(ImageInterface $mask)
@@ -425,8 +388,6 @@ final class Image extends AbstractImage
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return ImageInterface
      */
     public function fill(FillInterface $fill)
@@ -444,9 +405,6 @@ final class Image extends AbstractImage
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function mask(): static
     {
         $mask = $this->copy();
@@ -458,9 +416,6 @@ final class Image extends AbstractImage
         return $mask;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function histogram(): array
     {
         $size = $this->getSize();
@@ -475,9 +430,6 @@ final class Image extends AbstractImage
         return array_unique($colors);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getColorAt(PointInterface $point): ColorInterface
     {
         if (!$point->in($this->getSize())) {
@@ -490,9 +442,6 @@ final class Image extends AbstractImage
         return $this->palette->color([$info['red'], $info['green'], $info['blue']], max(min(100 - (int) round($info['alpha'] / 127 * 100), 100), 0));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function layers(): LayersInterface
     {
         if (null === $this->layers) {
@@ -502,9 +451,6 @@ final class Image extends AbstractImage
         return $this->layers;
     }
 
-    /**
-     * {@inheritdoc}
-     **/
     public function interlace($scheme): static
     {
         static $supportedInterlaceSchemes = [
@@ -523,25 +469,16 @@ final class Image extends AbstractImage
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function palette(): PaletteInterface
     {
         return $this->palette;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function profile(ProfileInterface $profile): static
     {
         throw new RuntimeException('GD driver does not support color profiles');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function usePalette(PaletteInterface $palette): static
     {
         if (!$palette instanceof RGB) {

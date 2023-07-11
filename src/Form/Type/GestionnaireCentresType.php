@@ -25,9 +25,6 @@ class GestionnaireCentresType extends AbstractType
         $this->translator = $translator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -41,9 +38,6 @@ class GestionnaireCentresType extends AbstractType
             ->add('submit', SubmitType::class, ['label' => 'main.etapeSuivante', 'attr' => ['class' => 'btn-grey']]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

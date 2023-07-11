@@ -28,7 +28,7 @@ class Gestionnaire extends Subject implements UserHandleCentresInterface
         $this->updatedAt = new \DateTime();
     }
 
-    public function setUser(?User $user = null): self
+    public function setUser(User $user = null): self
     {
         $this->user = $user;
         $this->user->setTypeUser(User::USER_TYPE_GESTIONNAIRE);

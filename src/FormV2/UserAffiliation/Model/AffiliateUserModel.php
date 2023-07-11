@@ -12,7 +12,7 @@ class AffiliateUserModel
     public ReadableCollection $relays;
 
     /** @param ?ReadableCollection<int, Centre> $relays */
-    public function __construct(?ReadableCollection $relays = null)
+    public function __construct(ReadableCollection $relays = null)
     {
         $this->relays = $relays ?: new ArrayCollection();
     }

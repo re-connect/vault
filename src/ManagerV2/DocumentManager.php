@@ -109,7 +109,7 @@ class DocumentManager
         return $document;
     }
 
-    public function uploadFile(UploadedFile $file, Beneficiaire $beneficiary, ?Dossier $folder = null): ?Document
+    public function uploadFile(UploadedFile $file, Beneficiaire $beneficiary, Dossier $folder = null): ?Document
     {
         if ($this->isFileExtensionAllowed($file)) {
             try {
@@ -134,7 +134,7 @@ class DocumentManager
      *
      * @return Document[]
      */
-    public function uploadFiles(array $files, Beneficiaire $beneficiary, ?Dossier $folder = null): array
+    public function uploadFiles(array $files, Beneficiaire $beneficiary, Dossier $folder = null): array
     {
         return array_map(fn (UploadedFile $file) => $this->uploadFile($file, $beneficiary, $folder), $files);
     }
