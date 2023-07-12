@@ -73,7 +73,7 @@ class BeneficiaryAffiliationController extends AbstractController
             $form->get('reponseSecrete')->addError(new FormError($translator->trans('wrong_secret_answer')));
         }
 
-        return $this->render('v2/user_affiliation/beneficiary/_relays_form.html.twig', [
+        return $this->render('v2/user_affiliation/beneficiary/relays_form.html.twig', [
             'beneficiary' => $beneficiary,
             'form' => $form,
         ]);

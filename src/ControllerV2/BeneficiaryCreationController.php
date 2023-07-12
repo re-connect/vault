@@ -72,7 +72,7 @@ class BeneficiaryCreationController extends AbstractController
     {
         $this->addFlash('success', 'beneficiary_created_successfully');
 
-        return $this->render('v2/user_creation/beneficiary/_download_terms_of_use.html.twig', [
+        return $this->render('v2/user_creation/beneficiary/download_terms_of_use.html.twig', [
             'beneficiaryCreationProcess' => $beneficiaryCreationProcess,
         ]);
     }
