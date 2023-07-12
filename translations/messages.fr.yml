@@ -114,7 +114,7 @@ beneficiary_will_receive_email_reset_request: Le bénéficiaire recevra un email
 beneficiary_will_receive_sms_account_information: 'Il recevra un sms pour activer son compte et compléter ses informations'
 beneficiary_will_receive_sms_reset_request: Le bénéficiaire recevra un code par SMS afin de réinitialiser son mot de passe
 bientotDisponible.text: 'Pour obtenir plus d''informations sur <a class="bold main">Reconnect le cloud solidaire</a> et rejoindre le réseau des <a class="bold main">Relais Reconnect</a>, contactez-nous directement par téléphone au : <a class="bold main">01 58 30 55 29</a> <br/>ou par mail : <a class="bold main">contact@reconnect.fr</a>'
-birthdate: 'Date de naissance'
+birthDate: Date de naissance
 cancel: Annuler
 center_has_no_info: "Aucun Relais n'a accès à vos informations partagées"
 center_is_empty: 'Votre Relais Reconnect est vide'
@@ -967,7 +967,6 @@ regions: Régions
 registerForm.adresse: 'Votre adresse personnelle (facultatif)'
 registerForm.codePostal: 'Code postal'
 registerForm.correspondentPas: 'Les mots de passe ne correspondent pas'
-registerForm.email: Email
 registerForm.pays: Pays
 registerForm.repeterMotDePasse: 'Confirmez le mot de passe'
 registerForm.rue: Rue
@@ -1099,7 +1098,6 @@ user.firstVisit.gestionnaire.text: "<p class=\"smallMargin\">Merci d’avoir cho
 user.firstVisit.gestionnaire.title: 'Bienvenue sur Reconnect le <span class="main">Cloud Solidaire</span> Reconnect</span>'
 user.firstVisit.membre.title: 'Bienvenue sur Reconnect le <span class="main">Cloud Solidaire</span>'
 user.parametres.changerMotDePasse: 'Modifier votre mot de passe'
-user.parametres.dateNaissanceLabel: 'Date de naissance'
 user.parametres.enregister: 'Enregistrer les modifications'
 user.parametres.lieuNaissanceLabel: 'Lieu de naissance'
 user.parametres.mdpActuel: 'Votre mot de passe actuel'

@@ -38,11 +38,11 @@ class UserSetPasswordType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'required' => false,
-                'label' => 'registerForm.email',
+                'label' => 'email',
             ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => User::class,

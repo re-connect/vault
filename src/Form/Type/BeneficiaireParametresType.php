@@ -20,7 +20,7 @@ class BeneficiaireParametresType extends AbstractType
             ])
             ->add('dateNaissance', BirthdayType::class, [
                 'required' => false,
-                'label' => 'user.parametres.dateNaissanceLabel',
+                'label' => 'birthDate',
                 'attr' => ['class' => 'datePicker'],
                 'label_attr' => ['class' => 'font-size-1'],
             ])

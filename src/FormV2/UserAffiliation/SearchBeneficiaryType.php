@@ -24,7 +24,7 @@ class SearchBeneficiaryType extends AbstractType
             ])
             ->add('birthDate', BirthdayType::class, [
                 'required' => false,
-                'label' => 'birthdate',
+                'label' => 'birthDate',
             ]);
     }
 

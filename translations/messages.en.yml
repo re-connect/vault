@@ -76,7 +76,7 @@ beneficiary_will_receive_email_reset_request: The beneficiary will receive an em
 beneficiary_will_receive_sms_account_information: 'The beneficiary will receive an SMS to activate his account and complete his information'
 beneficiary_will_receive_sms_reset_request: The beneficiary will receive a code by SMS in order to reset his password
 bientotDisponible.text: 'To receive more informations about <a class="bold main">Reconnect,The Solidarity Cloud </a> and join the network of <a class="bold main">Reconnect Relays</a>,con tact us by phone at:<a class="bold main"> 01 58 30 55 29</a> <br/> or by Email: <a class="bold main"> contact@reconnect.fr </a>'
-birthdate: Birthdate
+birthDate: Date of birth
 cancel: Cancel
 centers: Centers
 centre.ville: City
@@ -795,7 +795,6 @@ public_reset_password_success: 'Your password has been changed, you can now conn
 rediscover_our_solutions: '(re)Discover our solutions'
 registerForm.adresse: 'Your personal address (optional)'
 registerForm.codePostal: 'Postal code'
-registerForm.email: Email
 registerForm.pays: Country
 registerForm.rue: Street
 registerForm.telephone: 'Phone number'
@@ -915,7 +914,6 @@ user.firstVisit.membre.metaTitle: 'Welcome to Reconnect,The Solidarity Cloud'
 user.firstVisit.membre.text: '<p class="smallMargin"> The main function of this device is to save the personal informations of the supported people. </p> <p class="smallMargin">The tool is part of the accompaniment and will allow You to attend the beneficiaries in safeguarding their data. </p> <p class="smallMargin"> The Reconnect team welcomes You to its platform and wishes You a good use </p>'
 user.firstVisit.membre.title: 'Welcome to Reconnect,the <span class="main"> Solidarity Cloud </span>'
 user.parametres.changerMotDePasse: 'Change your password'
-user.parametres.dateNaissanceLabel: 'Date of birth'
 user.parametres.enregister: 'Register my changes'
 user.parametres.lieuNaissanceLabel: 'Place of birth'
 user.parametres.mdpActuel: 'Your present password'
