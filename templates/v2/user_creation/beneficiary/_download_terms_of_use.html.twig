@@ -5,6 +5,7 @@
     {{ 'steps_count'|trans({'%step%': lastStep, '%totalSteps%': lastStep})|upper }}
     {{ (beneficiaryCreationProcess.isRemotely ? 'sending_sms_account_activation' : 'terms_of_use')|trans|upper }}
 {% endblock %}
+{% block subTitleIconName %}user-plus{% endblock %}
 
 {% block backButton %}
 {% endblock %}
