@@ -47,7 +47,7 @@ class CreateBeneficiaryType extends AbstractType
                 'attr' => ['class' => 'row'],
             ])
             ->add('dateNaissance', BirthdayType::class, [
-                'label' => 'birthdate',
+                'label' => 'birthDate',
                 'row_attr' => ['class' => 'mt-3'],
                 'data' => $birthDate ?? new \DateTime('01/01/1975'),
             ]);

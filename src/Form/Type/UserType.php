@@ -35,7 +35,7 @@ class UserType extends AbstractType
                 ],
             ])
             ->addEventSubscriber(new AddFormattedPhoneSubscriber())
-            ->add('email', EmailType::class, ['required' => false, 'label' => 'registerForm.email'])
+            ->add('email', EmailType::class, ['required' => false, 'label' => 'email'])
             ->add('adresse', AdresseType::class, ['required' => false, 'label' => 'registerForm.adresse'])
             ->add('submit', SubmitType::class, [
                 'label' => 'confirm',

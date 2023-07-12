@@ -40,12 +40,8 @@ class UserController extends AbstractController
         if ($userForm->isSubmitted() && $userForm->isValid()) {
             $usernameWillBeUpdated = $userManager->getUniqueUsername($user) !== $user->getUsername();
             $em->flush();
-            $this->addFlash(
-                'success',
-                $usernameWillBeUpdated
-                ? 'settings_saved_successfully_username_updated'
-                : 'settings_saved_successfully',
-            );
+            $message = sprintf('settings_saved_successfully%s', $usernameWillBeUpdated ? '_username_updated' : '');
+            $this->addFlash('success', $message);
 
             return $this->redirectToRoute('user_settings');
         }

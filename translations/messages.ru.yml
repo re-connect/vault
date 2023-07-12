@@ -43,6 +43,7 @@ beneficiaire.menu2.mesRelaisReconnect: Посредник
 beneficiaire.menu2.monCalendrier: 'Запись на приём'
 beneficiaries_management: 'Управление получателями'
 bientotDisponible.text: 'Дополнительные сведения о <a class="bold main"> Reconnect солидарности облако</a> и присоединиться к сети <a class="bold main"> Реле переподключение</a>, свяжитесь с нами напрямую по телефону: <a class="bold main"> 01 58 30 55 29</a> <br/> или по электронной почте: <a class="bold main"> contact@reconnect.fr</a>'
+birthDate: Дата рождения
 centers: Центры
 centre.ville: Город
 centre.vousAvezBienQuitte: 'Вы успешно вышли из центра'
@@ -194,6 +195,7 @@ donneePersonnelle.signalerCommeAbusif: 'Отметить как некоррек
 donneePersonnelle.tous: Все
 donneePersonnelle.vue: Вид
 dossier.vide: 'Папка пуста'
+email: 'Электронная почта'
 enabled: активный
 error: Ошибка
 evenement.ajouter: 'Добавить событие'
@@ -523,7 +525,6 @@ password_updated_successfully: 'Пароль успешно изменён'
 pro_management: 'Управление членами'
 registerForm.adresse: 'Ваш личный адрес (необязательно)'
 registerForm.codePostal: Индекс
-registerForm.email: 'Электронная почта'
 registerForm.pays: Страна
 registerForm.rue: Улица
 registerForm.telephone: Телефон
@@ -564,7 +565,6 @@ user.firstVisit.membre.metaTitle: 'Добро пожаловать в Reconnect 
 user.firstVisit.membre.text: 'Основной функцией этого сервиса является хранение личной информации получателей. Сервис является частью социального сопровождения и позволяет вам помогать получателям сохранять их данные. Команда Reconnect приветствует вас на платформе и желает вам успешной работы.'
 user.firstVisit.membre.title: 'Добро пожаловать в Reconnect le Cloud Solidaire'
 user.parametres.changerMotDePasse: 'Изменить пароль'
-user.parametres.dateNaissanceLabel: 'Дата рождения'
 user.parametres.enregister: 'Сохранить изменения'
 user.parametres.lieuNaissanceLabel: 'Место рождения'
 user.parametres.mdpActuel: 'Настоящий пароль'
