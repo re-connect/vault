@@ -98,7 +98,7 @@ class MembreRepository extends ServiceEntityRepository
 
         if ($search) {
             foreach (explode(' ', $search) as $word) {
-                $qb->andWhere("CONCAT(u.prenom, ' ', u.nom, ' ', u.email) LIKE :search")
+                $qb->andWhere('u.prenom LIKE :search OR u.nom LIKE :search OR u.email LIKE :search')
                     ->setParameter('search', sprintf('%%%s%%', $word));
             }
         }
