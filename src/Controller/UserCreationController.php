@@ -345,6 +345,6 @@ class UserCreationController extends AbstractController
             'form' => $form,
         ]);
 
-//        return $this->redirect($this->generateUrl($redirectRoute, []));
+        //        return $this->redirect($this->generateUrl($redirectRoute, []));
     }
 }

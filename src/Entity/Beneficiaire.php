@@ -207,7 +207,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this;
     }
 
-    public function setUser(?User $user = null): self
+    public function setUser(User $user = null): self
     {
         $this->user = $user;
         $this->user->setTypeUser(User::USER_TYPE_BENEFICIAIRE);
@@ -519,7 +519,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this->idRosalie;
     }
 
-    public function setIdRosalie(?int $idRosalie = null): Beneficiaire
+    public function setIdRosalie(int $idRosalie = null): Beneficiaire
     {
         $this->idRosalie = $idRosalie;
 

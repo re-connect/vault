@@ -40,9 +40,6 @@ class BeneficiaireTypeStep3 extends AbstractType
             ->addModelTransformer(new QuestionSecreteTransformer($this->request));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

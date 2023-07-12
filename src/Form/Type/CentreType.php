@@ -25,9 +25,6 @@ class CentreType extends AbstractType
         $this->translator = $translator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $prixCentres = $this->em->getRepository(PrixCentre::class)->findAll();
@@ -45,9 +42,6 @@ class CentreType extends AbstractType
             ->add('budgetAnnuel', ChoiceType::class, ['label' => 'devenirUnRelaiReconnect.inscriptionCentres.budgetAnnuelLabel', 'choices' => $arPrix]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

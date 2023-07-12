@@ -160,9 +160,6 @@ class Rappel implements \JsonSerializable
         return $this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function jsonSerialize(): array
     {
         return [
@@ -223,7 +220,7 @@ class Rappel implements \JsonSerializable
     {
         if ($this->id) {
             $this->id = null;
-//            $this->sms = null === $this->sms ? null : clone $this->sms;
+            //            $this->sms = null === $this->sms ? null : clone $this->sms;
             $this->sms = null;
             $this->evenement = null;
         }

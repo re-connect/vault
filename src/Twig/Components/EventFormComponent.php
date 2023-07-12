@@ -35,7 +35,7 @@ class EventFormComponent extends AbstractController
     #[PreReRender]
     public function noFormSubmissionOnRender(): void
     {
-        if (!$this->getFormInstance()->isSubmitted()) {
+        if (!$this->getForm()->isSubmitted()) {
             $this->submitForm(false);
         }
     }

@@ -122,28 +122,28 @@ class BeneficiaireRestV2ControllerTest extends AbstractControllerTest
         $this->assertResponseStatusCodeSame(404);
 
         /* le centre n'existe pas / le lien externe existe pour un autre bénéficiaire */
-//        $this->client->request(Request::METHOD_PATCH, $this->generateUrl('beneficiaries/'.$beneficiaire->getId().'/add-external-link'),
-//            [
-//                'distant_id' => 2,
-//                'center_distant_id' => $centre4->getId(),
-//                'membre_distant_id' => 1234
-//            ]);
-//
-//        $this->assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
-//        $content = $this->client->getResponse()->getContent();
-//        $this->assertJson($content);
-//
-//        $content = json_decode($content, true);
-//
-//        $this->assertArrayHasKey('error', $content);
-//        $this->assertArrayHasKey('message', $content['error']);
-//        $this->assertArrayHasKey('status', $content['error']);
-//        $this->assertArrayHasKey('code', $content['error']);
-//        $this->assertArrayHasKey('details', $content['error']);
-//
-//        $this->assertEquals('There was a validation error', $content['error']['message']);
-//        $this->assertEquals(400, $content['error']['status']);
-//        $this->assertEquals('validation_error', $content['error']['code']);
+        //        $this->client->request(Request::METHOD_PATCH, $this->generateUrl('beneficiaries/'.$beneficiaire->getId().'/add-external-link'),
+        //            [
+        //                'distant_id' => 2,
+        //                'center_distant_id' => $centre4->getId(),
+        //                'membre_distant_id' => 1234
+        //            ]);
+        //
+        //        $this->assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        //        $content = $this->client->getResponse()->getContent();
+        //        $this->assertJson($content);
+        //
+        //        $content = json_decode($content, true);
+        //
+        //        $this->assertArrayHasKey('error', $content);
+        //        $this->assertArrayHasKey('message', $content['error']);
+        //        $this->assertArrayHasKey('status', $content['error']);
+        //        $this->assertArrayHasKey('code', $content['error']);
+        //        $this->assertArrayHasKey('details', $content['error']);
+        //
+        //        $this->assertEquals('There was a validation error', $content['error']['message']);
+        //        $this->assertEquals(400, $content['error']['status']);
+        //        $this->assertEquals('validation_error', $content['error']['code']);
 
         /* le centre existe / le lien externe n'existe pas */
         $centre = $em->getRepository(Centre::class)->findByClientIdentifier($client->getRandomId())[0];
@@ -933,9 +933,9 @@ class BeneficiaireRestV2ControllerTest extends AbstractControllerTest
         $response = $this->client->getResponse();
         $this->assertEquals(Response::HTTP_OK, $response->getStatusCode());
 
-//        $document = $this->uploadDocument($beneficiary->$this->getId());
-//        $document = $this->getDocument($document->getId());
-//        $this->deleteEntity($document['id'], self::DOCUMENT_ENTITY_NAME);
+        //        $document = $this->uploadDocument($beneficiary->$this->getId());
+        //        $document = $this->getDocument($document->getId());
+        //        $this->deleteEntity($document['id'], self::DOCUMENT_ENTITY_NAME);
 
         $note = $this->addNote($beneficiary->getId());
         $note = $this->getNote($note['id']);

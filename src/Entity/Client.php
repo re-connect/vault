@@ -143,7 +143,7 @@ class Client extends BaseClient
         return $this->dossierImage;
     }
 
-    public function setDossierImage(?string $dossierImage = null): self
+    public function setDossierImage(string $dossierImage = null): self
     {
         $this->dossierImage = $dossierImage;
 

@@ -9,17 +9,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AssociationType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nom', null, ['label' => 'devenirUnRelaiReconnect.accueil.associationLbl']);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

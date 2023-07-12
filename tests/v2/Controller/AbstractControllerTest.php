@@ -25,8 +25,8 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
     public function assertRoute(
         string $url,
         int $expectedStatusCode,
-        ?string $userMail = null,
-        ?string $expectedRedirect = null,
+        string $userMail = null,
+        string $expectedRedirect = null,
         string $method = 'GET',
         bool $isXmlHttpRequest = false,
         array $body = [],
@@ -81,7 +81,7 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
      * @param array<string, string>         $values
      * @param array<array<string, ?string>> $errors
      */
-    public function assertFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
+    public function assertFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, string $alternateSelector = null): void
     {
         self::ensureKernelShutdown();
         $client = static::createClient();

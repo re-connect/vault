@@ -18,7 +18,7 @@ class Oauth2Helper
     ) {
     }
 
-    public function getClient(?OAuth2Token $token = null): ?Client
+    public function getClient(OAuth2Token $token = null): ?Client
     {
         if (!$token) {
             /** @var OAuth2Token $token * */
