@@ -115,6 +115,7 @@ choose_beneficiary_secret_question: "Please choose beneficiary's secret question
 choose_picture: 'Click here to add a picture'
 choose_relay: 'Choose a relay'
 choose_reset_password_method: Choose reset password method
+choose_user: Choose a user
 city: City
 comment: Comment
 confirm: Confirm
