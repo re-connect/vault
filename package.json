@@ -63,7 +63,7 @@
     "webpack-notifier": "^1.15.0"
   },
   "scripts": {
-    "dev-server": "encore dev-server",
+    "dev-server": "NODE_OPTIONS=--openssl-legacy-provider encore dev-server",
     "dev": "encore dev",
     "lint": "eslint assets/js",
     "watch": "encore dev --watch",
