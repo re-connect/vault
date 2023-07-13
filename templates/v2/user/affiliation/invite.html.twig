@@ -6,7 +6,7 @@
 {% block content %}
     <h5 class="my-4">
         {{ 'username'|trans }} :
-        <span class="transform-uppercase text-blue">{{ user.username }}</span>
+        <span class="text-blue">{{ user.username|upper }}</span>
     </h5>
     {{ include('v2/user_creation/components/_relays_checkboxes.html.twig', {user})}}
     <div class="mt-5"></div>
