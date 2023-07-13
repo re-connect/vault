@@ -543,7 +543,6 @@ mail_shared_document_content_3: 'CONFIDENTIALITY: This email (as well as any att
 mail_shared_document_title: 'Document sharing'
 mail_subject_reset_password: 'RECONNECT - Reset your password'
 mail_subject_share_document: 'RECONNECT - Document sharing'
-main.adresse.rue: Street
 main.annuler: Cancel
 main.chercher: Search
 main.choisir: Select
@@ -886,6 +885,7 @@ statut.confirmed: Confirmed
 statut.created: Created
 statut.waiting: 'Waiting(cheque/bank transfer)'
 steps_count: 'Step %step%/%totalSteps%'
+street: Street
 subscribe_newsletter: Subscribe to our newsletter !
 subscription_confirmation: 'Subscription confirmation'
 summary: Summary
