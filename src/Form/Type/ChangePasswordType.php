@@ -12,9 +12,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ChangePasswordType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
@@ -30,9 +27,6 @@ class ChangePasswordType extends AbstractType
             ->add('submit', SubmitType::class, ['label' => 'confirm']);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

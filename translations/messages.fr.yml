@@ -594,7 +594,7 @@ home.lireLarticle: "Lire l'article"
 home.metaDesc: leCloudSolidaire
 home.metaDescV2: "La plateforme de stockage et de partage qui facilite les démarches d'accompagnement social"
 home.metaTitle: 'Reconnect le cloud solidaire'
-home.metaTitleV2: 'Reconnect le cloud solidaire'
+home.metaTitleV2: 'Reconnect le coffre-fort numérique'
 home.nousSuivre: 'Nous suivre'
 home.oublieIdentifiant: 'J’ai oublié mon mot de passe ou mon identifiant'
 home.ouvreCompteAlt: 'Ouvrir un compte'
@@ -844,12 +844,12 @@ modal_message_move_in_folder: 'dans le dossier'
 modal_message_note_delete: 'Êtes vous sûr de vouloir supprimer la note'
 modal_message_note_deletev2: 'Êtes vous sûr de vouloir supprimer la note %name% ?'
 move: Déplacer
-my_contacts: 'Mes Contacts'
-my_documents: 'Mes Documents'
-my_events: 'Mes Rappels'
-my_notes: 'Mes Notes'
+my_contacts: 'Mes contacts'
+my_documents: 'Mes documents'
+my_events: 'Mes rappels'
+my_notes: 'Mes notes'
 my_reconnect_centers: 'Mes relais <span class="rp-blue">reconnect</span>'
-my_relays: 'Mes Relais'
+my_relays: 'Mes relais'
 my_relays_title: Mes relais Reconnect
 name: Nom
 next: Suivant
@@ -1048,6 +1048,7 @@ sending_sms_account_activation: "Envoi du SMS d'activation du compte"
 setQuestionSecrete.bienSauvegarde: 'Votre question secrete a bien été enregistrée'
 set_secret_question: 'Entrez votre question secrète'
 settings_saved_successfully: 'Vos parametres ont bien été enregistrés'
+settings_saved_successfully_username_updated: Vos parametres ont bien été enregistrés, veuillez noter que votre nom d'utilisateur a été mis à jour
 share_document: 'Partager le document'
 share_document_error_expired: "La durée de validité du lien de téléchargement est expirée, veuillez recommencer l'opération"
 share_document_error_no_shared_document: "Aucun document n'a été partagé"

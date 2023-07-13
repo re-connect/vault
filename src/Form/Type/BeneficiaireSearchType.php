@@ -11,15 +11,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BeneficiaireSearchType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-//        $years = [];
-//        for ($i = 1900; $i < 2010; $i++) {
-//            $years[] = $i;
-//        }
+        //        $years = [];
+        //        for ($i = 1900; $i < 2010; $i++) {
+        //            $years[] = $i;
+        //        }
 
         $builder
             ->add('nom', null, ['required' => false, 'label' => 'name'])
@@ -29,9 +26,6 @@ class BeneficiaireSearchType extends AbstractType
             ->add('rechercher', SubmitType::class, ['label' => 'search']);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([]);

@@ -13,29 +13,26 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BeneficiaireCentreType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-//        $builder
-//            ->add('centre', EntityType::class, ['class' => Centre::class, 'choices' => $options['centres']]);
+        //        $builder
+        //            ->add('centre', EntityType::class, ['class' => Centre::class, 'choices' => $options['centres']]);
     }
 
-//    public function buildView(FormView $view, FormInterface $form, array $options)
-//    {
-//
-//        $view->vars['centres'] = $options['centres'];
-//        parent::buildView($view, $form, $options);
-//    }
+    //    public function buildView(FormView $view, FormInterface $form, array $options)
+    //    {
+    //
+    //        $view->vars['centres'] = $options['centres'];
+    //        parent::buildView($view, $form, $options);
+    //    }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-//        $optionsNormalizer = function (Options $options, $value) {
-//            $value['block_name'] = 'entry';
-//
-//            return $value;
-//        };
+        //        $optionsNormalizer = function (Options $options, $value) {
+        //            $value['block_name'] = 'entry';
+        //
+        //            return $value;
+        //        };
 
         $resolver->setDefaults([
 //            'allow_add' => true,
@@ -49,9 +46,9 @@ class BeneficiaireCentreType extends AbstractType
             'centres' => [],
         ]);
 
-//        foreach ($optionsNormalizer as $option => $normalizer) {
-//            $resolver->setNormalizer('options', $optionsNormalizer);
-//        }
+        //        foreach ($optionsNormalizer as $option => $normalizer) {
+        //            $resolver->setNormalizer('options', $optionsNormalizer);
+        //        }
     }
 
     public function getBlockPrefix(): string

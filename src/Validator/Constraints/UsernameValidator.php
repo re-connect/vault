@@ -10,9 +10,6 @@ use Symfony\Component\Validator\ConstraintValidator;
  */
 class UsernameValidator extends ConstraintValidator
 {
-    /**
-     * @param mixed $value
-     */
     public function validate($value, Constraint $constraint)
     {
         /* @var Username $constraint */

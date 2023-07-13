@@ -1,0 +1,14 @@
+{% extends "v2/standard_layout.html.twig" %}
+{% block title %}
+    {% for word in 'home.metaTitleV2'|trans|split(' ') %}
+        <span class="{{ loop.last ? getUserTextColor() : '' }}">{{ word|raw }}</span>
+    {% endfor %}
+{% endblock %}
+{% block delimiter %}{% endblock delimiter %}
+{% block content %}
+    <div class="container-fluid d-flex flex-wrap vault-nav ">
+            {% for item in getUserNavItems() %}
+                {{ include('v2/beneficiary/home/_nav_item.html.twig', {beneficiary, item}) }}
+            {% endfor %}
+    </div>
+{% endblock content %}

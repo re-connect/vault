@@ -20,8 +20,6 @@ class DocumentRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return mixed
-     *
      * @throws NoResultException
      * @throws NonUniqueResultException
      */
@@ -43,7 +41,7 @@ class DocumentRepository extends ServiceEntityRepository
         return $qb->getQuery()->getSingleResult();
     }
 
-    public function findAllowed(Beneficiaire $beneficiaire, bool $isBeneficiaire, ?int $dossierId = null): array
+    public function findAllowed(Beneficiaire $beneficiaire, bool $isBeneficiaire, int $dossierId = null): array
     {
         $criteria = [
             'beneficiaire' => $beneficiaire,

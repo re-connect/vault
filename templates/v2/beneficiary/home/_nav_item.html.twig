@@ -1,0 +1,13 @@
+<div class="vault-nav-item beneficiary-nav-item col-4">
+    <div class="m-3">
+        <div class="bg-white rounded-card rounded-4 shadow-3 shadow">
+            <a href="{{ path(item.routeName, {id: beneficiary.id}) }}" class="btn nav-link text-primary px-5 py-4" title="{{ item.title|trans }}">
+                <img src="{{ asset(item.image) }}"
+                     alt="{{ item.title|trans }}"
+                     class="img-{{ item.itemKind }} d-none d-sm-inline my-3"
+                >
+                <p class="font-size-1-3 bold mb-0 text-nowrap">{{ item.title|trans }}</p>
+            </a>
+        </div>
+    </div>
+</div>

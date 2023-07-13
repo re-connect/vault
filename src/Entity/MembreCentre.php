@@ -11,6 +11,10 @@ class MembreCentre extends UserCentre
 {
     public const TYPEDROIT_GESTION_BENEFICIAIRES = 'gestionbeneficiaires';
     public const TYPEDROIT_GESTION_MEMBRES = 'gestionmembres';
+    public const PERMISSIONS = [
+        self::TYPEDROIT_GESTION_BENEFICIAIRES,
+        self::TYPEDROIT_GESTION_MEMBRES,
+    ];
 
     #[Groups(['v3:center:read', 'v3:center:write'])]
     private $centre;
@@ -28,6 +32,15 @@ class MembreCentre extends UserCentre
         return [
             self::TYPEDROIT_GESTION_BENEFICIAIRES => 'membre.droits.gestionBeneficiaires',
             self::TYPEDROIT_GESTION_MEMBRES => 'membre.droits.gestionMembres',
+        ];
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->droits = [
+            self::TYPEDROIT_GESTION_BENEFICIAIRES => true,
+            self::TYPEDROIT_GESTION_MEMBRES => false,
         ];
     }
 
@@ -119,9 +132,16 @@ class MembreCentre extends UserCentre
 
     public function togglePermission(string $permission): void
     {
-        if (!array_key_exists($permission, $this->getDroits())) {
+        if (!in_array($permission, self::PERMISSIONS)) {
             return;
         }
+
+        if (!array_key_exists($permission, $this->droits)) {
+            $this->droits[$permission] = true;
+
+            return;
+        }
+
         $this->droits[$permission] = !$this->droits[$permission];
     }
 
@@ -152,7 +172,7 @@ class MembreCentre extends UserCentre
         if ($this->id) {
             $this->id = null;
             $this->membre = clone $this->membre;
-//            $this->centre =  null;
+            //            $this->centre =  null;
             $this->setInitiateur(null);
         }
     }

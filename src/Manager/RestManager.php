@@ -147,8 +147,8 @@ class RestManager
     }
 
     /**
-     * @param mixed                   $value       The value to validate
-     * @param Constraint|Constraint[] $constraints The constraint(s) to validate against
+     * @param mixed                                              $value       The value to validate
+     * @param Constraint|Constraint[]                            $constraints The constraint(s) to validate against
      * @param string|GroupSequence|(string|GroupSequence)[]|null $groups      The validation groups to validate. If none is given, "Default" is assumed
      */
     public function getJsonValidationError($value, $constraints = null, $groups = null): ?array

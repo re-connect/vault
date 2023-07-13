@@ -9,9 +9,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GestionnaireType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -21,9 +18,6 @@ class GestionnaireType extends AbstractType
             ->add('association', AssociationType::class, ['label' => false]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $validation_groups = ['gestionnaire'];

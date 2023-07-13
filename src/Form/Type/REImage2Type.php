@@ -11,9 +11,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class REImage2Type extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -25,9 +22,6 @@ class REImage2Type extends AbstractType
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -44,9 +38,6 @@ class REImage2Type extends AbstractType
         parent::buildForm($builder, $options);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         if (null === $options['width'] && null === $options['height']) {

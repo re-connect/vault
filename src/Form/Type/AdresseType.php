@@ -9,9 +9,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AdresseType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -29,9 +26,6 @@ class AdresseType extends AbstractType
             ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

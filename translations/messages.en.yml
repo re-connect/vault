@@ -869,6 +869,7 @@ select_relays_for_disaffiliation_pro: This professional user is linked to one or
 send: Send
 sending_sms_account_activation: 'Sending the SMS for account activation'
 settings_saved_successfully: 'Your settings has been registered'
+settings_saved_successfully_username_updated: Your settings has been registered, please note that your username has been updated
 share_document: 'Share document'
 share_document_error_expired: 'The validity of the download link has expired, please retry'
 share_document_error_no_shared_document: 'No document has been shared'
