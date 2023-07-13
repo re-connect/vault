@@ -4,7 +4,7 @@ namespace App\FormV2\UserCreation;
 
 use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Beneficiaire;
-use App\FormV2\UserInformationType;
+use App\FormV2\UserType;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
@@ -42,7 +42,7 @@ class CreateBeneficiaryType extends AbstractType
     public function addIdentityFields(FormBuilderInterface $builder, ?\DateTime $birthDate, ?bool $remotely = false): void
     {
         $builder
-            ->add('user', UserInformationType::class, [
+            ->add('user', UserType::class, [
                 'label' => false,
                 'attr' => ['class' => 'row'],
             ])
