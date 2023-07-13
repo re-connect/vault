@@ -25,6 +25,7 @@ class FilterUserType extends AbstractType
             ->add('search', TextType::class, [
                 'label' => false,
                 'required' => false,
+                'row_attr' => ['class' => 'input-with-glass'],
                 'attr' => [
                     'placeholder' => 'main.chercher',
                     'autofocus' => true,
