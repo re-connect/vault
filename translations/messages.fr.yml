@@ -153,6 +153,7 @@ choose_beneficiary_secret_question: 'Veuillez choisir la question secrète du b�
 choose_picture: 'Cliquez ici pour choisir une image'
 choose_relay: 'Sélectionnez un centre'
 choose_reset_password_method: Veuillez choisir la méthode de réinitialisation du mot de passe
+choose_user: Choisir un utilisateur
 city: Ville
 comment: Commentaire
 confirm: Confirmer
