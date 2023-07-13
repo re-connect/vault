@@ -804,10 +804,12 @@ relay_has_no_address: 'The Reconnect relay did not informed any address'
 relays: Relays
 reminder: Reminder
 reminder_sms: 'SMS Reminder'
+remove_access_for: Remove access for
 remove_from_relay: 'Remove from relay'
 remove_from_relay_confirm: 'Are you sure you want to remove the beneficiary %beneficiary% ?'
 remove_from_relay_confirm_relay: Are you sure you want to remove the user %user% from the relay %relay% ?
 removed_from_relay: 'Removed from relay'
+remove_user_access: Remove access from a user
 rename: Rename
 renew_password: 'Renew password'
 reset: Reset
@@ -863,6 +865,7 @@ secret_answer: Secret answer
 secret_answer_optional: 'Secret answer (optional)'
 secret_question: Secret question
 select_relays_for_disaffiliation: 'This user is linked to one or several relays that you manage, please choose relays for which you want to stop the following'
+select_relays_for_disaffiliation_pro: This professional user is linked to one or several relays that you manage, please choose relays for which you want to stop the following
 send: Send
 sending_sms_account_activation: 'Sending the SMS for account activation'
 settings_saved_successfully: 'Your settings has been registered'

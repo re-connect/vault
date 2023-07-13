@@ -978,10 +978,12 @@ relays: Relais
 reminder: Rappel
 reminder_sms: 'Rappel SMS'
 reminder_sms_content: "Bonjour \nRappel RDV : %name% \n%date%"
+remove_access_for: Retirer l'accès de
 remove_from_relay: 'Retirer du relais'
 remove_from_relay_confirm: 'Êtes vous sûr de vouloir retirer le bénéficiaire %beneficiairy% ?'
 remove_from_relay_confirm_relay: Êtes vous sûr de vouloir retirer l'utilisateur %user% du relais %relay% ?
 removed_from_relay: Retiré
+remove_user_access: Retirer l'accès à un utilisateur
 rename: Renommer
 renew_password: 'Renouveler le mot de passe'
 reset: Réinitialisation
@@ -1043,6 +1045,7 @@ secret_answer_optional: 'Réponse secrète (facultatif)'
 secret_question: 'Question secrète'
 secret_question_other: 'Autre question secrète'
 select_relays_for_disaffiliation: 'Cette personne est liée à un ou plusieurs relai(s) que vous gérez, sélectionnez le.les relais pour lesquels vous souhaitez arrêter le suivi'
+select_relays_for_disaffiliation_pro: Cet utilisateur professionnel est lié à un ou plusieurs relai(s) que vous gérez, sélectionnez le.les relais auxquels vous souhaitez lui retirer l’accès
 send: Envoyer
 sending_sms_account_activation: "Envoi du SMS d'activation du compte"
 setQuestionSecrete.bienSauvegarde: 'Votre question secrete a bien été enregistrée'
