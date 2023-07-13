@@ -50,7 +50,7 @@ class Association extends Subject
         $this->gestionnaires = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
-//        $this->user = new User();
+        //        $this->user = new User();
     }
 
     public static function getAllCategories()

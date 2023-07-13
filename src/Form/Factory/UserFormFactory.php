@@ -69,9 +69,9 @@ class UserFormFactory
     public function getBeneficiaireForm($centres)
     {
         if (
-            false === $this->authorizationChecker->isGranted('ROLE_ADMIN') &&
-            false === $this->authorizationChecker->isGranted('ROLE_GESTIONNAIRE') &&
-            false === $this->authorizationChecker->isGranted('ROLE_MEMBRE')
+            false === $this->authorizationChecker->isGranted('ROLE_ADMIN')
+            && false === $this->authorizationChecker->isGranted('ROLE_GESTIONNAIRE')
+            && false === $this->authorizationChecker->isGranted('ROLE_MEMBRE')
         ) {
             throw new AccessDeniedException('main.pasLesDroits');
         }
@@ -94,9 +94,9 @@ class UserFormFactory
     public function getMembreForm($centres, $removeUsername = false)
     {
         if (
-            false === $this->authorizationChecker->isGranted('ROLE_ADMIN') &&
-            false === $this->authorizationChecker->isGranted('ROLE_GESTIONNAIRE') &&
-            false === $this->authorizationChecker->isGranted('ROLE_MEMBRE')
+            false === $this->authorizationChecker->isGranted('ROLE_ADMIN')
+            && false === $this->authorizationChecker->isGranted('ROLE_GESTIONNAIRE')
+            && false === $this->authorizationChecker->isGranted('ROLE_MEMBRE')
         ) {
             throw new AccessDeniedException('main.pasLesDroits');
         }

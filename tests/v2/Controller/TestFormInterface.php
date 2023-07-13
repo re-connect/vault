@@ -19,7 +19,7 @@ interface TestFormInterface
      *
      * @dataProvider provideTestFormIsNotValid
      */
-    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void;
+    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, string $alternateSelector = null): void;
 
     public function provideTestFormIsNotValid(): ?\Generator;
 }

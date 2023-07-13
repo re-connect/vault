@@ -3,9 +3,7 @@
 {% set lastStep = beneficiaryCreationProcess.totalSteps %}
 {% block subTitle %}
     {{ 'steps_count'|trans({'%step%': lastStep, '%totalSteps%': lastStep})|upper }}
-    <span class="text-blue">
-        {{ beneficiaryCreationProcess.isRemotely ? 'sending_sms_account_activation'|trans|upper : 'terms_of_use'|trans|upper }}
-    </span>
+    {{ (beneficiaryCreationProcess.isRemotely ? 'sending_sms_account_activation' : 'terms_of_use')|trans|upper }}
 {% endblock %}
 {% block subTitleIconName %}user-plus{% endblock %}
 

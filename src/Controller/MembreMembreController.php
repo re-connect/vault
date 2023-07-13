@@ -93,9 +93,6 @@ final class MembreMembreController extends REController
         return $userCreationController->doAjoutSubjectAction($otherMembre);
     }
 
-    /**
-     * @return mixed
-     */
     public function doDoAjoutMembre(Membre $otherMembre, UserCreationController $userCreationController)
     {
         return $userCreationController->doDoAjoutSubjectAction($otherMembre);

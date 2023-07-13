@@ -19,7 +19,7 @@ class DossierRepository extends ServiceEntityRepository
     /**
      * @return Dossier[]
      */
-    public function findAllowed(Beneficiaire $beneficiaire, bool $isBeneficiaire, ?int $dossierParentId = null): array
+    public function findAllowed(Beneficiaire $beneficiaire, bool $isBeneficiaire, int $dossierParentId = null): array
     {
         $criteria = [
             'beneficiaire' => $beneficiaire,

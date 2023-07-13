@@ -135,9 +135,6 @@ class SMS implements \JsonSerializable
         return $this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function jsonSerialize(): array
     {
         return [

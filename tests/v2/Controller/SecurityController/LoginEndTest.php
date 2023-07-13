@@ -24,8 +24,8 @@ class LoginEndTest extends AbstractControllerTest implements TestRouteInterface
     public function testRoute(
         string $url,
         int $expectedStatusCode,
-        ?string $userMail = null,
-        ?string $expectedRedirect = null,
+        string $userMail = null,
+        string $expectedRedirect = null,
         string $method = 'GET',
         bool $isXmlHttpRequest = false,
         array $body = [],

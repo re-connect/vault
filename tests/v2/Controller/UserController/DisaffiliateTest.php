@@ -15,8 +15,8 @@ class DisaffiliateTest extends AbstractControllerTest
     public function testRouteForBeneficiaryUser(
         string $url,
         int $expectedStatusCode,
-        ?string $userMail = null,
-        ?string $expectedRedirect = null,
+        string $userMail = null,
+        string $expectedRedirect = null,
         string $method = 'GET',
     ): void {
         $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
@@ -36,8 +36,8 @@ class DisaffiliateTest extends AbstractControllerTest
     public function testRouteForProUser(
         string $url,
         int $expectedStatusCode,
-        ?string $userMail = null,
-        ?string $expectedRedirect = null,
+        string $userMail = null,
+        string $expectedRedirect = null,
         string $method = 'GET',
     ): void {
         $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL)->object();

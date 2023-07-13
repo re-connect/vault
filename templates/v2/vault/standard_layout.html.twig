@@ -2,6 +2,6 @@
 
 {% block body %}
     {% set beneficiary = beneficiary is defined ? beneficiary : null %}
-    {{ render(controller('App\\ControllerV2\\HomeController::renderBeneficiaryNav', {beneficiary})) }}
+    {{ render(controller('App\\ControllerV2\\HomeController::renderBeneficiaryNav', { beneficiary: beneficiary })) }}
     {% block content %}{% endblock %}
 {% endblock %}

@@ -19,7 +19,7 @@ class AddSiSiaoNumberTest extends AbstractControllerTest
     }
 
     /** @dataProvider provideTestRoute */
-    public function testRoute(int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = '', string $method = 'GET'): void
+    public function testRoute(int $expectedStatusCode, string $userMail = null, ?string $expectedRedirect = '', string $method = 'GET'): void
     {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
 

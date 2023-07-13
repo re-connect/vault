@@ -13,7 +13,7 @@ export default class extends Controller {
   }
 
   toggleFieldDisplay () {
-    if (!this.targets.has('conditionalFieldTarget')) {
+    if (!this.targets.has('conditionalField')) {
       return;
     }
     const conditionalField = this.conditionalFieldTarget;

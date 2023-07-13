@@ -624,7 +624,7 @@ class Centre implements \JsonSerializable
         return $this->region;
     }
 
-    public function setRegion(?string $region = null): self
+    public function setRegion(string $region = null): self
     {
         $this->region = $region;
 
