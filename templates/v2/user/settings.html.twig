@@ -1,9 +1,8 @@
 {% extends 'v2/management_layout.html.twig' %}
 {% block metaTitle %}{{ 'user.parametres.metaTitle'|trans }}{% endblock metaTitle %}
 
-{% block subTitle %}
-    {{ 'user_parameters_subtitle'|trans({'%subject%' : user.prenom ~ ' ' ~ user.nom})|upper }}
-{% endblock %}
+{% block subTitle %}{{ 'user_parameters_subtitle'|trans({'%subject%' : app.user.fullName})|upper }}{% endblock %}
+{% block subTitleIconName %}user-plus{% endblock %}
 
 {% block content %}
     <div class="container w-75 justify-content-center">
