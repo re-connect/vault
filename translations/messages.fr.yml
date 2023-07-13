@@ -1081,6 +1081,7 @@ switchUser.connecte: 'Vous êtes connecté en tant que <span class="italic">%use
 switch_content_private: 'Basculer en privé'
 switch_content_private_confirm: "Êtes vous sûr de vouloir basculer ce contenu dans l'espace privé du bénéficiaire ?"
 tax: Impôts
+team_management: Gestion d'équipe
 terms_of_use: "Charte d'utilisation"
 thank_you_for_subscription: 'Merci pour votre inscription !'
 today: "Aujourd'hui"
@@ -1161,7 +1162,7 @@ you_are_now_subscribed_for_newsletter: "Vous êtes maintenant inscrit.e sur notr
 you_can_download_mobile_app: "Vous pouvez également télécharger l'application mobile"
 you_can_unsubscribe_for_newsletter: 'Vous pouvez vous désabonner à tout moment de cette liste, grâce au lien que vous trouverez en bas de page de chaque newsletter'
 you_must_provide_phone_number: 'Vous devez renseigner le numéro de téléphone'
-you_must_select_center_for_right_update: Vous devez sélectionner un centre pour pouvoir modifier les droits d'un professionnel
+you_must_select_center_for_right_update: Vous devez sélectionner un centre pour pouvoir modifier les droits d'un utilisateur
 your_email: 'Votre Email'
 your_new_password: Votre nouveau mot de passe
 your_phone_number: 'Votre numéro de téléphone'
