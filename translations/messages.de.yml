@@ -330,7 +330,6 @@ mail_shared_document_content_3: 'VERTRAULICHKEIT: Diese E-Mail (sowie die angeh�
 mail_shared_document_title: Dokumente
 mail_subject_reset_password: 'RECONNECT - Passwort zurücksetzen'
 mail_subject_share_document: 'RECONNECT - Dokument teilen'
-main.adresse.rue: Straße
 main.annuler: Abbrechen
 main.chercher: Suchen
 main.choisir: Auswählen
@@ -596,6 +595,7 @@ share_document_success: 'Eine E-Mail mit einem Link zum Download des Dokuments w
 share_document_with: 'Dokument per E-Mail teilen'
 shared: Freigegeben
 status: Status
+street: Straße
 tax: Steuern
 today: Heute
 used_available: 'Du verwendest %used% von verfügbaren %available%'

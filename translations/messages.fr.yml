@@ -663,7 +663,6 @@ mail_shared_document_content_3: "CONFIDENTIALITÉ : Ce courriel (de même que le
 mail_shared_document_title: 'Partage de document'
 mail_subject_reset_password: 'RECONNECT- Changez votre mot de passe'
 mail_subject_share_document: 'RECONNECT - Partage de document'
-main.adresse.rue: Rue
 main.annuler: Annuler
 main.chercher: Chercher
 main.choisir: Choisir
@@ -1064,6 +1063,7 @@ statut.confirmed: Confirmé
 statut.created: Créé
 statut.waiting: 'En attente (cheque/virement)'
 steps_count: 'Étape %step%/%totalSteps%'
+street: Rue
 submit: Valider
 subscribe_newsletter: Abonnez-vous à notre newsletter !
 subscription_confirmation: "Confirmation d'inscription"

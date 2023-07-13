@@ -9,6 +9,7 @@
         {% endif %}
     </div>
     <div>
-        {{ include('v2/common/_button.html.twig', {message: buttonText, color: 'blue'}) }}
+        {% set message = buttonText is defined ? buttonText : 'submit' %}
+        {{ include('v2/common/_button.html.twig', {message, color: 'blue'}) }}
     </div>
 </div>

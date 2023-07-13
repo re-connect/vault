@@ -325,7 +325,6 @@ home.quiSommesNous: 'من نحن؟'
 home.quiSommesNousTxt: 'ريكونيكت هو مشروع تقوده مجموعة النجدة . SOS تضم مجموعة النجدة اليوم 2500 موظفا و 106 مؤسسة في القطاعات التالية: الإدمان و مساكن التضامن و المرافقة الصحية و الإعاقة و تشكل هذه المجموعة حقل تجارب مثالي لهذا الابتكار. و ترغب هذه المجموعة ايضا في توسيع مشروعها ليشمل مجمل الفاعلين في حقل العمل الاجتماعي.'
 home.twitter: تويتر
 login_form_title: 'الوصول إلى الخزنة الرقمية'
-main.adresse.rue: 'مشاهدة الملف'
 main.annuler: الغاء
 main.chercher: بحث
 main.choisir: اختيار
@@ -553,6 +552,7 @@ statut.abandoned: ترك
 statut.confirmed: تثبيت
 statut.created: 'تم الانشاء'
 statut.waiting: 'في انتظار (الشيك/الحوالة المصرفية)'
+street: 'مشاهدة الملف'
 switchUser.btnRevenir: 'العودة الى صفحة ادارة الموقع'
 switchUser.connecte: 'انت تتصل بصفتك'
 user.cgu.bAccepter: 'نقاط المناوبة الخاصة بي'
