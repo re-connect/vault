@@ -983,6 +983,11 @@ class User extends BaseUser implements \JsonSerializable
         return $this->addCreator(new CreatorClient($client));
     }
 
+    public function addCreatorUser(User $user): self
+    {
+        return $this->addCreator(new CreatorUser($user));
+    }
+
     public function getAutoLoginToken(): ?string
     {
         return $this->autoLoginToken;

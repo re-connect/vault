@@ -9,27 +9,30 @@ use App\Entity\User;
 use App\ManagerV2\UserManager;
 use App\ServiceV2\MailerService;
 use App\ServiceV2\NotificationService;
-use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
+use App\ServiceV2\Traits\UserAwareTrait;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class UserCreationSubscriber implements EventSubscriberInterface
+#[AsDoctrineListener(event: Events::preUpdate)]
+#[AsDoctrineListener(event: Events::prePersist)]
+#[AsDoctrineListener(event: Events::postPersist)]
+class UserCreationSubscriber
 {
+    use UserAwareTrait;
+
     public function __construct(
         private readonly ApiClientManager $apiClientManager,
         private readonly NotificationService $notificationService,
         private readonly MailerService $mailerService,
         private readonly UserManager $manager,
         private readonly UserPasswordHasherInterface $hasher,
+        private readonly Security $security,
     ) {
-    }
-
-    public function getSubscribedEvents(): array
-    {
-        return [Events::prePersist, Events::preUpdate, Events::postPersist];
     }
 
     public function preUpdate(PreUpdateEventArgs $event): void
@@ -40,9 +43,7 @@ class UserCreationSubscriber implements EventSubscriberInterface
         }
     }
 
-    /**
-     * @param LifecycleEventArgs<ObjectManager> $args
-     */
+    /** @param LifecycleEventArgs<ObjectManager> $args */
     public function prePersist(LifecycleEventArgs $args): void
     {
         $object = $args->getObject();
@@ -50,7 +51,8 @@ class UserCreationSubscriber implements EventSubscriberInterface
         if ($object instanceof Beneficiaire) {
             $user = $object->getUser();
             $this->initPassword($user);
-            $this->setupLinks($object);
+            $this->addCreators($user);
+            $this->setupClientLink($object);
         } elseif ($object instanceof User) {
             $user = $object;
         } else {
@@ -67,21 +69,30 @@ class UserCreationSubscriber implements EventSubscriberInterface
         $user->setPassword($this->hasher->hashPassword($user, $plainPassword));
     }
 
-    private function setupLinks(Beneficiaire $beneficiary): void
+    private function addCreatorUser(User $user): void
     {
-        if (!$client = $this->apiClientManager->getCurrentOldClient()) {
-            return;
+        if ($this->getUser() instanceof User) {
+            $user->addCreatorUser($this->getUser());
         }
-        $beneficiary->addCreatorClient($client);
+    }
 
-        if ($distantId = $beneficiary->distantId) {
+    private function addCreatorClient(User $user): void
+    {
+        if ($client = $this->apiClientManager->getCurrentOldClient()) {
+            $user->addCreatorClient($client);
+        }
+    }
+
+    private function setupClientLink(Beneficiaire $beneficiary): void
+    {
+        $client = $this->apiClientManager->getCurrentOldClient();
+        $distantId = $beneficiary->distantId;
+        if ($client && $distantId) {
             $beneficiary->addClientExternalLink($client, $distantId);
         }
     }
 
-    /**
-     * @param LifecycleEventArgs<ObjectManager> $args
-     */
+    /** @param LifecycleEventArgs<ObjectManager> $args */
     public function postPersist(LifecycleEventArgs $args): void
     {
         $object = $args->getObject();
@@ -100,10 +111,17 @@ class UserCreationSubscriber implements EventSubscriberInterface
         }
     }
 
-    private function hasUsernameInformationChanged(PreUpdateEventArgs $event): bool
+    private function addCreatorRelay(?User $user): void
     {
-        return $event->hasChangedField('nom')
-            || $event->hasChangedField('prenom')
-            || $event->hasChangedField('birthDate');
+        if ($firstRelay = $user?->getFirstUserRelay()) {
+            $user->addCreatorRelay($firstRelay->getCentre());
+        }
+    }
+
+    private function addCreators(?User $user): void
+    {
+        $this->addCreatorUser($user);
+        $this->addCreatorRelay($user);
+        $this->addCreatorClient($user);
     }
 }
