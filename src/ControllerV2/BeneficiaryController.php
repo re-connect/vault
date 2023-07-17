@@ -17,9 +17,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: '/beneficiaries')]
-#[IsGranted(BeneficiaryVoter::MANAGE)]
 class BeneficiaryController extends AbstractController
 {
+    #[IsGranted(BeneficiaryVoter::MANAGE)]
     #[Route(path: '', name: 'list_beneficiaries', methods: ['GET'])]
     public function listBeneficiaries(
         Request $request,
