@@ -31,10 +31,10 @@ App\Entity\Beneficiaire:
             type: string
             length: 255
             nullable: true
-        activationSmsCode:
+        relayInvitationSmsCode:
             type: string
             nullable: true
-        activationSmsCodeLastSend:
+        relayInvitationSmsCodeSendAt:
             type: datetime
             nullable: true
         isCreating:

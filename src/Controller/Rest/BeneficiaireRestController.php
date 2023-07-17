@@ -215,7 +215,7 @@ class BeneficiaireRestController extends REController
                 throw new \RuntimeException('Code sms non recu');
             }
 
-            $bResult = strtolower($entity->getActivationSmsCode()) === strtolower($codeSms);
+            $bResult = strtolower($entity->getRelayInvitationSmsCode()) === strtolower($codeSms);
             if ($bResult) {
                 $centreManager->accepterTousCentreEnCommun($entity->getUser()->getSubject(), $user->getSubject());
             }
