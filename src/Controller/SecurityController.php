@@ -55,7 +55,7 @@ class SecurityController extends AbstractController
                 return $this->redirect($this->generateUrl('re_beneficiaire_setQuestionSecrete'));
             }
 
-            return $this->redirect($this->generateUrl('re_beneficiaire_accueil'));
+            return $this->redirect($this->generateUrl('beneficiary_home'));
         }
 
         if ($user->isMembre() || $user->isGestionnaire()) {

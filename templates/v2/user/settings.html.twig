@@ -1,12 +1,12 @@
 {% extends 'v2/management_layout.html.twig' %}
 {% block metaTitle %}{{ 'user.parametres.metaTitle'|trans }}{% endblock metaTitle %}
 
-{% block subTitle %}
-    {{ 'user_parameters_subtitle'|trans({'%subject%' : app.user.prenom ~ ' ' ~ app.user.nom})|upper }}
-{% endblock %}
+{% block subTitle %}{{ 'user_parameters_subtitle'|trans({'%subject%' : app.user.fullName})|upper }}{% endblock %}
+{% block subTitleIconName %}user-plus{% endblock %}
 
 {% block content %}
     <div class="container w-75 justify-content-center">
+        <h4 class="text-center rounded border-primary text-primary py-2">{{ 'username'|trans }} : <span class="text-{{ getUserThemeColor() }}">{{ user.username }}</span></h4>
         {{ include('v2/user/_user_settings_form.html.twig', {form: userForm}) }}
     </div>
     <div class="text-primary pb-2 row mt-4">

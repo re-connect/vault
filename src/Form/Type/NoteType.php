@@ -6,9 +6,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class NoteType extends NoteSimpleType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);

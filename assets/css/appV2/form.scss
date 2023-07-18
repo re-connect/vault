@@ -37,3 +37,19 @@ form .form-group.has-error .help-block .list-unstyled li {
     content: "\f06a";
   }
 }
+
+.input-with-glass {
+  input {
+    padding-left: 2rem;
+  }
+  &:before {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 2rem;
+    color: theme-color("grey");
+    font-family: "Font Awesome 6 Free", 'Open Sans', sans-serif;
+    font-weight: 900;
+    content: '\f002';
+  }
+}

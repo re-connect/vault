@@ -237,7 +237,7 @@ class UserCreationController extends AbstractController
         $form->handleRequest($this->request);
 
         if ($this->request->isMethod(Request::METHOD_POST)) {
-            if ($form->get('code')->getData() === $subject->getActivationSmsCode()) {
+            if ($form->get('code')->getData() === $subject->getRelayInvitationSmsCode()) {
                 $this->centreManager->accepterTousCentreEnCommun($subject, $this->getUser()->getSubject());
                 $session = $this->requestStack->getSession();
                 if ($session instanceof Session) {
@@ -345,6 +345,6 @@ class UserCreationController extends AbstractController
             'form' => $form,
         ]);
 
-//        return $this->redirect($this->generateUrl($redirectRoute, []));
+        //        return $this->redirect($this->generateUrl($redirectRoute, []));
     }
 }

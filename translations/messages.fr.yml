@@ -11,9 +11,11 @@ add_new_benef_big_title: 'Ajouter un nouveau <span class="rp-blue text-blue">bé
 add_new_beneficiary: 'Ajouter un nouveau bénéficiaire'
 add_new_member_big_title: 'Ajouter un nouveau <span class="rp-blue">membre</span>'
 add_new_professional: Ajouter un nouveau professionnel
+add_new_user: 'Ajouter un nouvel utilisateur'
 add_si_siao_number: 'Ajouter numéro SI-SIAO'
 add_si_siao_number_intro: 'Si vous le désirez, vous pouvez renseigner un numéro SI-SIAO pour ce bénéficiaire : '
 add_sms_reminder: 'Ajouter un rappel SMS'
+add_user: 'Ajouter un utilisateur'
 added_by: 'Déposé par'
 admin.bienvenue: 'Bienvenue sur votre administration Reconnect'
 admin.centres.benéficiaires: Bénéficiaires
@@ -112,7 +114,7 @@ beneficiary_will_receive_email_reset_request: Le bénéficiaire recevra un email
 beneficiary_will_receive_sms_account_information: 'Il recevra un sms pour activer son compte et compléter ses informations'
 beneficiary_will_receive_sms_reset_request: Le bénéficiaire recevra un code par SMS afin de réinitialiser son mot de passe
 bientotDisponible.text: 'Pour obtenir plus d''informations sur <a class="bold main">Reconnect le cloud solidaire</a> et rejoindre le réseau des <a class="bold main">Relais Reconnect</a>, contactez-nous directement par téléphone au : <a class="bold main">01 58 30 55 29</a> <br/>ou par mail : <a class="bold main">contact@reconnect.fr</a>'
-birthdate: 'Date de naissance'
+birthDate: Date de naissance
 cancel: Annuler
 center_has_no_info: "Aucun Relais n'a accès à vos informations partagées"
 center_is_empty: 'Votre Relais Reconnect est vide'
@@ -153,6 +155,7 @@ choose_beneficiary_secret_question: 'Veuillez choisir la question secrète du b�
 choose_picture: 'Cliquez ici pour choisir une image'
 choose_relay: 'Sélectionnez un centre'
 choose_reset_password_method: Veuillez choisir la méthode de réinitialisation du mot de passe
+choose_user: Choisir un utilisateur
 city: Ville
 comment: Commentaire
 confirm: Confirmer
@@ -231,7 +234,7 @@ create_new_benef_step4: '<span class="rp-blue text-blue">Étape 4/%totalSteps%</
 create_new_benef_step5: '<span class="rp-blue text-blue">Étape %step%/%totalSteps%</span>&nbsp; Récapitulatif, veuillez confirmer les informations enregistrées ci-dessous'
 create_new_benef_step6: '<span class="rp-blue text-blue">Étape %step%/%totalSteps%</span>&nbsp; Charte d''utilisation'
 create_new_beneficiary: "Création d'un nouveau bénéficiaire"
-create_professional_help: Créez un compte professionnel sur Reconnect et invitez le à rejoindre vos relais
+create_professional_help: Créez un compte utilisateur professionnel sur Reconnect et invitez le à rejoindre vos relais
 create_reconnect_account: 'Créer un compte Reconnect'
 create_reconnect_account_remotely: 'Créer un compte Reconnect à distance'
 create_reconnect_account_with_beneficiary: 'Créer un compte Reconnect avec le bénéficiaire'
@@ -593,7 +596,7 @@ home.lireLarticle: "Lire l'article"
 home.metaDesc: leCloudSolidaire
 home.metaDescV2: "La plateforme de stockage et de partage qui facilite les démarches d'accompagnement social"
 home.metaTitle: 'Reconnect le cloud solidaire'
-home.metaTitleV2: 'Reconnect le cloud solidaire'
+home.metaTitleV2: 'Reconnect le coffre-fort numérique'
 home.nousSuivre: 'Nous suivre'
 home.oublieIdentifiant: 'J’ai oublié mon mot de passe ou mon identifiant'
 home.ouvreCompteAlt: 'Ouvrir un compte'
@@ -663,7 +666,6 @@ mail_shared_document_content_3: "CONFIDENTIALITÉ : Ce courriel (de même que le
 mail_shared_document_title: 'Partage de document'
 mail_subject_reset_password: 'RECONNECT- Changez votre mot de passe'
 mail_subject_share_document: 'RECONNECT - Partage de document'
-main.adresse.rue: Rue
 main.annuler: Annuler
 main.chercher: Chercher
 main.choisir: Choisir
@@ -843,12 +845,12 @@ modal_message_move_in_folder: 'dans le dossier'
 modal_message_note_delete: 'Êtes vous sûr de vouloir supprimer la note'
 modal_message_note_deletev2: 'Êtes vous sûr de vouloir supprimer la note %name% ?'
 move: Déplacer
-my_contacts: 'Mes Contacts'
-my_documents: 'Mes Documents'
-my_events: 'Mes Rappels'
-my_notes: 'Mes Notes'
+my_contacts: 'Mes contacts'
+my_documents: 'Mes documents'
+my_events: 'Mes rappels'
+my_notes: 'Mes notes'
 my_reconnect_centers: 'Mes relais <span class="rp-blue">reconnect</span>'
-my_relays: 'Mes Relais'
+my_relays: 'Mes relais'
 my_relays_title: Mes relais Reconnect
 name: Nom
 next: Suivant
@@ -964,7 +966,6 @@ regions: Régions
 registerForm.adresse: 'Votre adresse personnelle (facultatif)'
 registerForm.codePostal: 'Code postal'
 registerForm.correspondentPas: 'Les mots de passe ne correspondent pas'
-registerForm.email: Email
 registerForm.pays: Pays
 registerForm.repeterMotDePasse: 'Confirmez le mot de passe'
 registerForm.rue: Rue
@@ -975,10 +976,12 @@ relays: Relais
 reminder: Rappel
 reminder_sms: 'Rappel SMS'
 reminder_sms_content: "Bonjour \nRappel RDV : %name% \n%date%"
+remove_access_for: Retirer l'accès de
 remove_from_relay: 'Retirer du relais'
 remove_from_relay_confirm: 'Êtes vous sûr de vouloir retirer le bénéficiaire %beneficiairy% ?'
 remove_from_relay_confirm_relay: Êtes vous sûr de vouloir retirer l'utilisateur %user% du relais %relay% ?
 removed_from_relay: Retiré
+remove_user_access: Retirer l'accès à un utilisateur
 rename: Renommer
 renew_password: 'Renouveler le mot de passe'
 reset: Réinitialisation
@@ -1034,16 +1037,19 @@ search: Rechercher
 search_existing_beneficiary: 'Rechercher un bénéficiaire existant'
 search_member: Rechercher un professionnel existant
 search_member_help: Vous pouvez rechercher un membre existant afin de lui envoyer une invitation à rejoindre vos relais
+search_professional_help: Vous pouvez rechercher un utilisateur professionnel existant afin de lui envoyer une invitation à rejoindre vos relais
 secret_answer: Réponse secrète
 secret_answer_optional: 'Réponse secrète (facultatif)'
 secret_question: 'Question secrète'
 secret_question_other: 'Autre question secrète'
 select_relays_for_disaffiliation: 'Cette personne est liée à un ou plusieurs relai(s) que vous gérez, sélectionnez le.les relais pour lesquels vous souhaitez arrêter le suivi'
+select_relays_for_disaffiliation_pro: Cet utilisateur professionnel est lié à un ou plusieurs relai(s) que vous gérez, sélectionnez le.les relais auxquels vous souhaitez lui retirer l’accès
 send: Envoyer
 sending_sms_account_activation: "Envoi du SMS d'activation du compte"
 setQuestionSecrete.bienSauvegarde: 'Votre question secrete a bien été enregistrée'
 set_secret_question: 'Entrez votre question secrète'
 settings_saved_successfully: 'Vos parametres ont bien été enregistrés'
+settings_saved_successfully_username_updated: Vos parametres ont bien été enregistrés, veuillez noter que votre nom d'utilisateur a été mis à jour
 share_document: 'Partager le document'
 share_document_error_expired: "La durée de validité du lien de téléchargement est expirée, veuillez recommencer l'opération"
 share_document_error_no_shared_document: "Aucun document n'a été partagé"
@@ -1064,6 +1070,7 @@ statut.confirmed: Confirmé
 statut.created: Créé
 statut.waiting: 'En attente (cheque/virement)'
 steps_count: 'Étape %step%/%totalSteps%'
+street: Rue
 submit: Valider
 subscribe_newsletter: Abonnez-vous à notre newsletter !
 subscription_confirmation: "Confirmation d'inscription"
@@ -1074,6 +1081,7 @@ switchUser.connecte: 'Vous êtes connecté en tant que <span class="italic">%use
 switch_content_private: 'Basculer en privé'
 switch_content_private_confirm: "Êtes vous sûr de vouloir basculer ce contenu dans l'espace privé du bénéficiaire ?"
 tax: Impôts
+team_management: Gestion d'équipe
 terms_of_use: "Charte d'utilisation"
 thank_you_for_subscription: 'Merci pour votre inscription !'
 today: "Aujourd'hui"
@@ -1091,7 +1099,6 @@ user.firstVisit.gestionnaire.text: "<p class=\"smallMargin\">Merci d’avoir cho
 user.firstVisit.gestionnaire.title: 'Bienvenue sur Reconnect le <span class="main">Cloud Solidaire</span> Reconnect</span>'
 user.firstVisit.membre.title: 'Bienvenue sur Reconnect le <span class="main">Cloud Solidaire</span>'
 user.parametres.changerMotDePasse: 'Modifier votre mot de passe'
-user.parametres.dateNaissanceLabel: 'Date de naissance'
 user.parametres.enregister: 'Enregistrer les modifications'
 user.parametres.lieuNaissanceLabel: 'Lieu de naissance'
 user.parametres.mdpActuel: 'Votre mot de passe actuel'
@@ -1124,6 +1131,7 @@ user.reinitialiserMdp.telephone: 'Réinitialiser avec un SMS sur le téléphone'
 user.reinitialiserMdp.title: 'Réinitialiser un mot de passe'
 user.supprimerCompte.etesVousSurs: 'Êtes vous sûrs de bien vouloir supprimer votre compte ?'
 user.supprimerCompte.success: 'Le compte a bien été supprimé'
+user_do_not_have_account: "L'utilisateur ne possède pas de compte Reconnect"
 user_error_disabled_account: 'Votre compte est désactivé, veuillez contacter le support.'
 user_firstVisit_membre_intro: 'Cet outil a pour fonction première la sauvegarde d’informations personnelles des personnes accompagnées.'
 user_firstVisit_membre_intro_more: 'L’outil s’inscrit dans le cadre de l’accompagnement et pourra vous permettre d’assister les bénéficiaires dans la sauvegarde de leurs données.'
@@ -1131,6 +1139,7 @@ user_firstVisit_membre_metaTitle: 'Bienvenue sur Reconnect le Cloud Solidaire'
 user_firstVisit_membre_outro: 'L’équipe de Reconnect vous souhaite la bienvenue sur sa plateforme et une bonne utilisation.'
 user_firstVisit_rgpd: 'Lors de votre utilisation du coffre-fort numérique, Reconnect est amenée à traiter des données personnelles vous concernant. Dans ce cadre, vous pouvez accéder à vos données personnelles pour les rectifier, demander leur effacement ou exercer votre droit à la limitation du traitement de ses données. Pour exercer ces droits ou pour toute question sur le traitement de vos données personnelles, il est possible de contacter Reconnect à l’adresse <a href="mailto:%mailRGPD%">%mailRGPD%</a> ou par téléphone au %phoneNumber%.'
 user_firstVisit_rgpd_more: 'Pour plus d’informations sur le traitement de vos données personnelles, nous vous invitons également à consulter la Politique de Confidentialité du coffre-fort numérique accessible suivant ce lien: <a href="%linkRGPD%">%linkRGPD%</a>'
+user_has_account: "L'utilisateur possède un compte Reconnect"
 user_not_found: "Aucun utilisateur n'a été trouvé"
 user_parameters_subtitle: 'Paramètres de %subject%'
 user_parameters_title: '<span class="text-primary">Paramètres d''</span><span class="rp-blue vault-green">utilisateur</span>'
@@ -1153,7 +1162,7 @@ you_are_now_subscribed_for_newsletter: "Vous êtes maintenant inscrit.e sur notr
 you_can_download_mobile_app: "Vous pouvez également télécharger l'application mobile"
 you_can_unsubscribe_for_newsletter: 'Vous pouvez vous désabonner à tout moment de cette liste, grâce au lien que vous trouverez en bas de page de chaque newsletter'
 you_must_provide_phone_number: 'Vous devez renseigner le numéro de téléphone'
-you_must_select_center_for_right_update: Vous devez sélectionner un centre pour pouvoir modifier les droits d'un professionnel
+you_must_select_center_for_right_update: Vous devez sélectionner un centre pour pouvoir modifier les droits d'un utilisateur
 your_email: 'Votre Email'
 your_new_password: Votre nouveau mot de passe
 your_phone_number: 'Votre numéro de téléphone'

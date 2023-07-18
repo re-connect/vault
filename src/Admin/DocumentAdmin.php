@@ -119,20 +119,13 @@ class DocumentAdmin extends AbstractAdmin
         $list
             ->add('id')
             ->add('beneficiaire', null, ['label' => 'Bénéficiaire'])
-            ->add('nom', 'string', [
-                'template' => 'admin/list_nom.html.twig',
-            ])
-            ->add('creatorUser', null, [
-                'label' => 'Déposé par (utilisateur)',
-            ])
-            ->add('creatorCentre', null, [
-                'label' => 'Déposé par (centre)',
-            ])
-            ->add('creatorClient', null, [
-                'label' => 'Déposé par (client)',
-            ])
+            ->add('nom', 'string', ['template' => 'admin/list_nom.html.twig'])
+            ->add('creatorUser', null, ['label' => 'Déposé par (utilisateur)'])
+            ->add('creatorCentre', null, ['label' => 'Déposé par (centre)'])
+            ->add('creatorClient', null, ['label' => 'Déposé par (client)'])
             ->add('createdAt', null, ['label' => 'Créé le'])
             ->add('isPrivate', null, ['label' => 'Accès'])
+            ->add('dossier.id', null, ['label' => 'Id dossier'])
             ->add('dossier.nom', null, ['label' => 'Nom du dossier'])
             ->add('beneficiaire.user.canada', null, ['label' => 'Canada']);
     }

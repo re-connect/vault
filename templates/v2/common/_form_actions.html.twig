@@ -1,14 +1,13 @@
 <div class="d-flex justify-content-between mt-4">
     <div>
         {% if backPath is defined %}
-            {{ include('v2/common/_button.html.twig', {
-                message: 'back'|trans,
-                color: 'light text-decoration-underline',
-                textColor: 'black',
-            }) }}
+            <a class="btn btn-light text-decoration-underline black text-center mt-2 col mx-1" href="{{ backPath }}">
+                {{ 'back'|trans }}
+            </a>
         {% endif %}
     </div>
     <div>
-        {{ include('v2/common/_button.html.twig', {message: buttonText, color: 'blue'}) }}
+        {% set message = buttonText is defined ? buttonText : 'submit' %}
+        {{ include('v2/common/_button.html.twig', {message, color: getUserThemeColor()}) }}
     </div>
 </div>

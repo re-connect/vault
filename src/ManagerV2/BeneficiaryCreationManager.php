@@ -4,7 +4,7 @@ namespace App\ManagerV2;
 
 use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Beneficiaire;
-use App\Entity\CreatorUser;
+use App\Entity\User;
 use App\ServiceV2\NotificationService;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,9 +27,6 @@ class BeneficiaryCreationManager
         $beneficiary = $creationProcess->getBeneficiary();
         if (!$beneficiary->getId()) {
             $user = $beneficiary->getUser();
-            if (!$user->getCreatorUser()) {
-                $user->addCreator((new CreatorUser())->setEntity($this->getUser()));
-            }
             $user->setPassword($this->userManager->getRandomPassword());
             $this->em->persist($beneficiary);
             $this->em->persist($user);
@@ -41,6 +38,7 @@ class BeneficiaryCreationManager
     public function finishCreation(BeneficiaryCreationProcess $creationProcess): void
     {
         $creationProcess->setIsCreating(false);
+        $this->setCreatorRelay($creationProcess->getBeneficiary()?->getUser());
         $this->em->flush();
 
         if ($creationProcess->isRemotely()) {
@@ -70,5 +68,12 @@ class BeneficiaryCreationManager
         }
 
         return $creationProcess;
+    }
+
+    private function setCreatorRelay(?User $user): void
+    {
+        if ($firstRelay = $user?->getFirstUserRelay()) {
+            $user->addCreatorRelay($firstRelay->getCentre());
+        }
     }
 }

@@ -126,7 +126,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         return 1024 * 1024 * 300;
     }
 
-    public function getEntity(int $id, ?string $accessAttribute = null): Document
+    public function getEntity(int $id, string $accessAttribute = null): Document
     {
         if (!$entity = $this->em->getRepository(Document::class)->find($id)) {
             throw new NotFoundHttpException('No document found for id '.$id);
@@ -135,7 +135,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         return $entity;
     }
 
-    public function getEntities(Beneficiaire $beneficiaire, ?int $dossierId = null): array
+    public function getEntities(Beneficiaire $beneficiaire, int $dossierId = null): array
     {
         /** @var User $user */
         $user = $this->tokenStorage->getToken()->getUser();
@@ -428,8 +428,8 @@ class DocumentProvider extends DonneePersonnelleProvider
         UploadedFile $file,
         Beneficiaire $beneficiaire,
         Client $client = null,
-        ?UserInterface $byUser = null,
-        ?Dossier $dossier = null,
+        UserInterface $byUser = null,
+        Dossier $dossier = null,
         bool $log = true
     ): Document {
         try {

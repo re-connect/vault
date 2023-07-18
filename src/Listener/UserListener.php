@@ -22,7 +22,7 @@ class UserListener
         if (!$entity instanceof User) {
             return;
         }
-//        $entityManager = $args->getEntityManager();
+        //        $entityManager = $args->getEntityManager();
         try {
             if (null === ($request = $this->requestStack->getCurrentRequest())) {
                 throw new \RuntimeException('');

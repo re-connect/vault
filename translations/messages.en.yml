@@ -76,7 +76,7 @@ beneficiary_will_receive_email_reset_request: The beneficiary will receive an em
 beneficiary_will_receive_sms_account_information: 'The beneficiary will receive an SMS to activate his account and complete his information'
 beneficiary_will_receive_sms_reset_request: The beneficiary will receive a code by SMS in order to reset his password
 bientotDisponible.text: 'To receive more informations about <a class="bold main">Reconnect,The Solidarity Cloud </a> and join the network of <a class="bold main">Reconnect Relays</a>,con tact us by phone at:<a class="bold main"> 01 58 30 55 29</a> <br/> or by Email: <a class="bold main"> contact@reconnect.fr </a>'
-birthdate: Birthdate
+birthDate: Date of birth
 cancel: Cancel
 centers: Centers
 centre.ville: City
@@ -115,6 +115,7 @@ choose_beneficiary_secret_question: "Please choose beneficiary's secret question
 choose_picture: 'Click here to add a picture'
 choose_relay: 'Choose a relay'
 choose_reset_password_method: Choose reset password method
+choose_user: Choose a user
 city: City
 comment: Comment
 confirm: Confirm
@@ -542,7 +543,6 @@ mail_shared_document_content_3: 'CONFIDENTIALITY: This email (as well as any att
 mail_shared_document_title: 'Document sharing'
 mail_subject_reset_password: 'RECONNECT - Reset your password'
 mail_subject_share_document: 'RECONNECT - Document sharing'
-main.adresse.rue: Street
 main.annuler: Cancel
 main.chercher: Search
 main.choisir: Select
@@ -794,7 +794,6 @@ public_reset_password_success: 'Your password has been changed, you can now conn
 rediscover_our_solutions: '(re)Discover our solutions'
 registerForm.adresse: 'Your personal address (optional)'
 registerForm.codePostal: 'Postal code'
-registerForm.email: Email
 registerForm.pays: Country
 registerForm.rue: Street
 registerForm.telephone: 'Phone number'
@@ -803,10 +802,12 @@ relay_has_no_address: 'The Reconnect relay did not informed any address'
 relays: Relays
 reminder: Reminder
 reminder_sms: 'SMS Reminder'
+remove_access_for: Remove access for
 remove_from_relay: 'Remove from relay'
 remove_from_relay_confirm: 'Are you sure you want to remove the beneficiary %beneficiary% ?'
 remove_from_relay_confirm_relay: Are you sure you want to remove the user %user% from the relay %relay% ?
 removed_from_relay: 'Removed from relay'
+remove_user_access: Remove access from a user
 rename: Rename
 renew_password: 'Renew password'
 reset: Reset
@@ -862,9 +863,11 @@ secret_answer: Secret answer
 secret_answer_optional: 'Secret answer (optional)'
 secret_question: Secret question
 select_relays_for_disaffiliation: 'This user is linked to one or several relays that you manage, please choose relays for which you want to stop the following'
+select_relays_for_disaffiliation_pro: This professional user is linked to one or several relays that you manage, please choose relays for which you want to stop the following
 send: Send
 sending_sms_account_activation: 'Sending the SMS for account activation'
 settings_saved_successfully: 'Your settings has been registered'
+settings_saved_successfully_username_updated: Your settings has been registered, please note that your username has been updated
 share_document: 'Share document'
 share_document_error_expired: 'The validity of the download link has expired, please retry'
 share_document_error_no_shared_document: 'No document has been shared'
@@ -883,6 +886,7 @@ statut.confirmed: Confirmed
 statut.created: Created
 statut.waiting: 'Waiting(cheque/bank transfer)'
 steps_count: 'Step %step%/%totalSteps%'
+street: Street
 subscribe_newsletter: Subscribe to our newsletter !
 subscription_confirmation: 'Subscription confirmation'
 summary: Summary
@@ -911,7 +915,6 @@ user.firstVisit.membre.metaTitle: 'Welcome to Reconnect,The Solidarity Cloud'
 user.firstVisit.membre.text: '<p class="smallMargin"> The main function of this device is to save the personal informations of the supported people. </p> <p class="smallMargin">The tool is part of the accompaniment and will allow You to attend the beneficiaries in safeguarding their data. </p> <p class="smallMargin"> The Reconnect team welcomes You to its platform and wishes You a good use </p>'
 user.firstVisit.membre.title: 'Welcome to Reconnect,the <span class="main"> Solidarity Cloud </span>'
 user.parametres.changerMotDePasse: 'Change your password'
-user.parametres.dateNaissanceLabel: 'Date of birth'
 user.parametres.enregister: 'Register my changes'
 user.parametres.lieuNaissanceLabel: 'Place of birth'
 user.parametres.mdpActuel: 'Your present password'

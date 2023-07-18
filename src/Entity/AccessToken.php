@@ -33,33 +33,21 @@ class AccessToken implements TokenInterface
         return $this->id;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getClientId()
     {
         return $this->getClient()->getPublicId();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setExpiresAt($timestamp)
     {
         $this->expiresAt = $timestamp;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getExpiresAt()
     {
         return $this->expiresAt;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getExpiresIn()
     {
         if ($this->expiresAt) {
@@ -69,9 +57,6 @@ class AccessToken implements TokenInterface
         return PHP_INT_MAX;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasExpired()
     {
         if ($this->expiresAt) {
@@ -81,73 +66,46 @@ class AccessToken implements TokenInterface
         return false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setToken($token)
     {
         $this->token = $token;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getToken()
     {
         return $this->token;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setScope($scope)
     {
         $this->scope = $scope;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getScope()
     {
         return $this->scope;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setUser($user)
     {
         $this->user = $user;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUser()
     {
         return $this->user;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getData()
     {
         return $this->getUser();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setClient($client)
     {
         $this->client = $client;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getClient()
     {
         return $this->client;

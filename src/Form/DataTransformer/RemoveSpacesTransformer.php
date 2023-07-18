@@ -10,8 +10,6 @@ class RemoveSpacesTransformer implements DataTransformerInterface
     /**
      * Transforms an object (Promotion) to a string (code).
      *
-     * @param string $promotion
-     *
      * @return string
      */
     public function transform($value): mixed

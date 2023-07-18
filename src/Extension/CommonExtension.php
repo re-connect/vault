@@ -277,7 +277,7 @@ class CommonExtension extends AbstractExtension
                         if (false !== $pos) {
                             unset($open_tags[$pos]);
                         }
-                    // if tag is an opening tag
+                        // if tag is an opening tag
                     } elseif (preg_match('/^<\s*([^\s>!]+).*?>$/s', $line_matchings[1], $tag_matchings)) {
                         // add tag to the beginning of $open_tags list
                         array_unshift($open_tags, strtolower($tag_matchings[1]));

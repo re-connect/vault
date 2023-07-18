@@ -175,7 +175,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
         return $this->dossierParent;
     }
 
-    public function setDossierParent(?Dossier $dossierParent = null): self
+    public function setDossierParent(Dossier $dossierParent = null): self
     {
         $this->dossierParent = $dossierParent;
 

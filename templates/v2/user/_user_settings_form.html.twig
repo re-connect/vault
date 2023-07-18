@@ -1,32 +1,17 @@
 {% form_theme form 'v2/form_theme/create_user_form_theme.html.twig' %}
-{{ form_start(form, {attr: {
-    class: 'display-required-labels',
-    'data-controller': 'conditional-field',
-}}) }}
-{% set isPro = is_granted(('ROLE_MEMBRE')) %}
+{% set isPro = is_granted('ROLE_MEMBRE') %}
+
+{{ form_start(form, {attr: { class: 'display-required-labels','data-controller': 'conditional-field' }}) }}
 <div class="row bold">
-    {{ include('v2/user/_settings_form_block.html.twig', {
-        title: isPro ? null : 'information'|trans,
-        leftColumnFields: [form.prenom, form.telephone],
-        rightColumnFields: [form.nom, form.email],
-        fullWidthColumnFields: [isPro ? form.username : form.dateNaissance],
-    }) }}
-    {% if form.adresse is defined %}
-        {{ include('v2/user/_settings_form_block.html.twig', {
-            title: 'contact_detail'|trans,
-            leftColumnFields: [form.adresse.nom, form.adresse.ville],
-            rightColumnFields: [form.adresse.codePostal, form.adresse.pays],
-        }) }}
-    {% endif %}
-    {% if form.secretQuestion is defined %}
-        {{ include('v2/user/_settings_form_block.html.twig', {
-            title: 'secret_question'|trans,
-            leftColumnFields: [form.secretQuestion.questionSecreteChoice, form.secretQuestion.autreQuestionSecrete],
-            rightColumnFields: [form.secretQuestion.reponseSecrete],
-        }) }}
-    {% endif %}
-    <div class="col-12 col-md-4 d-grid mt-3 mx-auto">
-        {{ include('v2/common/_button_with_loader.html.twig', {text: 'submit'|trans, color: getUserThemeColor()}) }}
-    </div>
+    {% set fieldsSets = {
+        'information': [form.prenom, form.nom, form.telephone, form.email, isPro ? null : form.dateNaissance],
+        'contact_detail': form.adresse is defined ? [form.adresse.nom, form.adresse.ville, form.adresse.codePostal, form.adresse.pays] : [],
+        'secret_question': form.secretQuestion is defined ? [form.secretQuestion.questionSecreteChoice, form.secretQuestion.autreQuestionSecrete, form.secretQuestion.reponseSecrete] : [],
+    } %}
+
+    {% for title, fields in fieldsSets|filter((fields, title) => fields|length > 0) %}
+        {{ include('v2/user/_settings_form_block.html.twig', {title, fields}) }}
+    {% endfor %}
+    {{ include('v2/common/_form_actions.html.twig') }}
 </div>
 {{ form_end(form) }}

@@ -9,7 +9,7 @@ use App\ManagerV2\FolderableItemManager;
 use App\ManagerV2\FolderManager;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,13 +76,12 @@ class FolderController extends AbstractController
         options: ['expose' => true],
         methods: ['GET'],
     )]
-    #[ParamConverter('parentFolder', class: 'App\Entity\Dossier', options: ['id' => 'folderId'])]
     #[IsGranted('UPDATE', 'folder')]
     public function moveToFolder(
         Request $request,
         Dossier $folder,
         FolderableItemManager $manager,
-        ?Dossier $parentFolder = null,
+        #[MapEntity(id: 'folderId')] Dossier $parentFolder = null,
     ): Response {
         if ($parentFolder) {
             $this->denyAccessUnlessGranted('UPDATE', $parentFolder);

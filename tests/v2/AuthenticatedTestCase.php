@@ -44,7 +44,7 @@ class AuthenticatedTestCase extends WebTestCase
     /**
      * @param string[] $roles
      */
-    public function createTestUser(string $email, array $roles, ?string $typeUser = null): User
+    public function createTestUser(string $email, array $roles, string $typeUser = null): User
     {
         $em = $this->getEntityManager();
         $user = $this->getTestUser($email, $roles);

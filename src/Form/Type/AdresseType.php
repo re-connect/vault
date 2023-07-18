@@ -9,14 +9,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AdresseType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nom', null, [
-                'label' => 'main.adresse.rue',
+                'label' => 'street',
                 'label_attr' => ['class' => 'font-size-1'],
             ])
             ->add('ville', null, [
@@ -29,9 +26,6 @@ class AdresseType extends AbstractType
             ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

@@ -6,7 +6,6 @@ use App\Api\Manager\ApiClientManager;
 use App\Entity\Beneficiaire;
 use App\Entity\Centre;
 use App\Entity\Contact;
-use App\Entity\CreatorUser;
 use App\Event\BeneficiaireEvent;
 use App\Event\REEvent;
 use App\Form\Type\BeneficiaireSearchType;
@@ -172,10 +171,6 @@ final class MembreBeneficiaireController extends REController
             $user = $beneficiaire->getUser();
             $user->setPlainPassword($autoPassword);
             $this->userManager->updatePassword($user);
-
-            if (null === $beneficiaire->getId() && !$beneficiaire->getCreatorUser()) {
-                $user->addCreator((new CreatorUser())->setEntity($this->getUser()));
-            }
         }
 
         $errors = [];

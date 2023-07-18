@@ -14,16 +14,20 @@ class AddressType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, [
-                'label' => 'main.adresse.rue',
+                'label' => 'street',
+                'row_attr' => ['class' => 'col-6 mt-3'],
             ])
             ->add('ville', TextType::class, [
                 'label' => 'city',
+                'row_attr' => ['class' => 'col-6 mt-3'],
             ])
             ->add('codePostal', TextType::class, [
                 'label' => 'postal_code',
+                'row_attr' => ['class' => 'col-6 mt-3'],
             ])
             ->add('pays', TextType::class, [
                 'label' => 'country',
+                'row_attr' => ['class' => 'col-6 mt-3'],
             ]);
     }
 

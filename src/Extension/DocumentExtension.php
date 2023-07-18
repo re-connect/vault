@@ -41,17 +41,11 @@ class DocumentExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * @return mixed
-     */
     public function getMaxSizeForBeneficiaire()
     {
         return $this->documentProvider->getMaxSizeForBeneficiaire();
     }
 
-    /**
-     * @return mixed
-     */
     public function maxSizeSoonReached(Beneficiaire $beneficiaire)
     {
         return $this->documentProvider->maxSizeSoonReached($beneficiaire);

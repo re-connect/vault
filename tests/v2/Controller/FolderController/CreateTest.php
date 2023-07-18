@@ -61,8 +61,8 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
     public function testRoute(
         string $url,
         int $expectedStatusCode,
-        ?string $userMail = null,
-        ?string $expectedRedirect = null,
+        string $userMail = null,
+        string $expectedRedirect = null,
         string $method = 'GET',
         bool $isXmlHttpRequest = false,
         array $body = [],
@@ -87,7 +87,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
      *
      * @dataProvider provideTestFormIsNotValid
      */
-    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
+    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, string $alternateSelector = null): void
     {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
         $url = sprintf($url, $beneficiary->getId());

@@ -29,12 +29,12 @@ class EveryDayCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-//      Mettre à null le champ 'SmsPasswordResetCode' pour les utilisateurs n'ayant pas réinitialisé leur mot de passe depuis plus de 24h.
+        //      Mettre à null le champ 'SmsPasswordResetCode' pour les utilisateurs n'ayant pas réinitialisé leur mot de passe depuis plus de 24h.
         $this->SMSManager->nullifySmsPasswordResetCodesFromYesterday();
 
         $this->statistiqueCentreManager->storeStatistics();
 
-//      Informations pour le log
+        //      Informations pour le log
         $date = new \DateTime();
         $now = $date->format('Y-m-d H:i:s').PHP_EOL;
         $log = ' ---------- '.PHP_EOL.'Commande effectué à : '.$now.PHP_EOL;
