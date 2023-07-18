@@ -1036,4 +1036,13 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
                 fn (BeneficiaireCentre $beneficiaryRelay) => $beneficiaryRelay->getCentre(),
             );
     }
+
+    public function hasValidSmsRelayInvitationCode(): bool
+    {
+        if (!$this->relayInvitationSmsCodeSendAt || !$this->relayInvitationSmsCode) {
+            return false;
+        }
+
+        return $this->relayInvitationSmsCodeSendAt > (new \DateTime())->modify('-24 hours');
+    }
 }

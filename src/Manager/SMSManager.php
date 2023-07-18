@@ -33,6 +33,20 @@ class SMSManager
     ) {
     }
 
+    /** @throws \Exception */
+    public function sendAffiliationCodeSms(Beneficiaire $beneficiary): void
+    {
+        $telephone = $beneficiary->getUser()?->getTelephone();
+        $code = $this->getRandomSmallSmsCode();
+        $beneficiary->setRelayInvitationSmsCode($code);
+        $beneficiary->setRelayInvitationSmsCodeSendAt(new \DateTime('now'));
+        $this->em->flush();
+
+        $message = $this->translator->trans('membre.sendSmsCode.smsMessage', ['%code%' => $code]);
+
+        $this->doSendSms($telephone, $message);
+    }
+
     public function sendSmsActivation($subject): void
     {
         $telephone = $subject->getUser()->getTelephone();

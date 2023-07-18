@@ -104,4 +104,16 @@ class BeneficiaryAffiliationManager
         }
         $this->em->flush();
     }
+
+    public function isSmsCodeValid(Beneficiaire $beneficiary, string $code): bool
+    {
+        return $beneficiary->getRelayInvitationSmsCode() === $code;
+    }
+
+    public function resetAffiliationSmsCode(Beneficiaire $beneficiary): void
+    {
+        $beneficiary->setRelayInvitationSmsCode(null);
+        $beneficiary->setRelayInvitationSmsCodeSendAt(null);
+        $this->em->flush();
+    }
 }
