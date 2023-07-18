@@ -1,5 +1,5 @@
 {% extends 'v2/standard_layout.html.twig' %}
-{% block metaTitle %}{{ 'create_member'|trans }}{% endblock %}
+{% block metaTitle %}{{ 'add_user'|trans }}{% endblock %}
 
 {% block delimiter %}{% endblock %}
 
@@ -10,7 +10,7 @@
         </div>
         <div class="col-12 col-md-6 mt-2">
             {{ include('v2/common/_card.html.twig', {
-                title: 'member_do_not_have_account'|trans,
+                title: 'user_do_not_have_account'|trans,
                 iconName: 'user-plus',
                 helpText: 'create_professional_help'|trans,
                 buttonPath:  path('create_pro'),

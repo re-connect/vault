@@ -3,13 +3,13 @@
 {% block customContent %}
     <div class="text-start">
         {{ form_start(form, {attr: {class: 'display-required-labels'}}) }}
-        <div class="row">
+        <div class="row text-primary">
             {% for field in form %}
                 {{ form_row(field) }}
                 {{ form_errors(field) }}
             {% endfor %}
         </div>
-        {{ include('v2/common/_form_actions.html.twig') }}
+        {{ include('v2/common/_form_actions.html.twig', { backPath }) }}
         {{ form_end(form) }}
     </div>
 {% endblock %}

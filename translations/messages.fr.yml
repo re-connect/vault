@@ -15,6 +15,7 @@ add_new_user: 'Ajouter un nouvel utilisateur'
 add_si_siao_number: 'Ajouter numéro SI-SIAO'
 add_si_siao_number_intro: 'Si vous le désirez, vous pouvez renseigner un numéro SI-SIAO pour ce bénéficiaire : '
 add_sms_reminder: 'Ajouter un rappel SMS'
+add_user: 'Ajouter un utilisateur'
 added_by: 'Déposé par'
 admin.bienvenue: 'Bienvenue sur votre administration Reconnect'
 admin.centres.benéficiaires: Bénéficiaires
@@ -232,7 +233,7 @@ create_new_benef_step4: '<span class="rp-blue text-blue">Étape 4/%totalSteps%</
 create_new_benef_step5: '<span class="rp-blue text-blue">Étape %step%/%totalSteps%</span>&nbsp; Récapitulatif, veuillez confirmer les informations enregistrées ci-dessous'
 create_new_benef_step6: '<span class="rp-blue text-blue">Étape %step%/%totalSteps%</span>&nbsp; Charte d''utilisation'
 create_new_beneficiary: "Création d'un nouveau bénéficiaire"
-create_professional_help: Créez un compte professionnel sur Reconnect et invitez le à rejoindre vos relais
+create_professional_help: Créez un compte utilisateur professionnel sur Reconnect et invitez le à rejoindre vos relais
 create_reconnect_account: 'Créer un compte Reconnect'
 create_reconnect_account_remotely: 'Créer un compte Reconnect à distance'
 create_reconnect_account_with_beneficiary: 'Créer un compte Reconnect avec le bénéficiaire'
@@ -1035,6 +1036,7 @@ search: Rechercher
 search_existing_beneficiary: 'Rechercher un bénéficiaire existant'
 search_member: Rechercher un professionnel existant
 search_member_help: Vous pouvez rechercher un membre existant afin de lui envoyer une invitation à rejoindre vos relais
+search_professional_help: Vous pouvez rechercher un utilisateur professionnel existant afin de lui envoyer une invitation à rejoindre vos relais
 secret_answer: Réponse secrète
 secret_answer_optional: 'Réponse secrète (facultatif)'
 secret_question: 'Question secrète'
@@ -1126,6 +1128,7 @@ user.reinitialiserMdp.telephone: 'Réinitialiser avec un SMS sur le téléphone'
 user.reinitialiserMdp.title: 'Réinitialiser un mot de passe'
 user.supprimerCompte.etesVousSurs: 'Êtes vous sûrs de bien vouloir supprimer votre compte ?'
 user.supprimerCompte.success: 'Le compte a bien été supprimé'
+user_do_not_have_account: "L'utilisateur ne possède pas de compte Reconnect"
 user_error_disabled_account: 'Votre compte est désactivé, veuillez contacter le support.'
 user_firstVisit_membre_intro: 'Cet outil a pour fonction première la sauvegarde d’informations personnelles des personnes accompagnées.'
 user_firstVisit_membre_intro_more: 'L’outil s’inscrit dans le cadre de l’accompagnement et pourra vous permettre d’assister les bénéficiaires dans la sauvegarde de leurs données.'
@@ -1133,6 +1136,7 @@ user_firstVisit_membre_metaTitle: 'Bienvenue sur Reconnect le Cloud Solidaire'
 user_firstVisit_membre_outro: 'L’équipe de Reconnect vous souhaite la bienvenue sur sa plateforme et une bonne utilisation.'
 user_firstVisit_rgpd: 'Lors de votre utilisation du coffre-fort numérique, Reconnect est amenée à traiter des données personnelles vous concernant. Dans ce cadre, vous pouvez accéder à vos données personnelles pour les rectifier, demander leur effacement ou exercer votre droit à la limitation du traitement de ses données. Pour exercer ces droits ou pour toute question sur le traitement de vos données personnelles, il est possible de contacter Reconnect à l’adresse <a href="mailto:%mailRGPD%">%mailRGPD%</a> ou par téléphone au %phoneNumber%.'
 user_firstVisit_rgpd_more: 'Pour plus d’informations sur le traitement de vos données personnelles, nous vous invitons également à consulter la Politique de Confidentialité du coffre-fort numérique accessible suivant ce lien: <a href="%linkRGPD%">%linkRGPD%</a>'
+user_has_account: "L'utilisateur possède un compte Reconnect"
 user_not_found: "Aucun utilisateur n'a été trouvé"
 user_parameters_subtitle: 'Paramètres de %subject%'
 user_parameters_title: '<span class="text-primary">Paramètres d''</span><span class="rp-blue vault-green">utilisateur</span>'
