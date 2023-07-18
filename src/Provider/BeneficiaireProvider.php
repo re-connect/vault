@@ -10,8 +10,6 @@ use App\Entity\Centre;
 use App\Entity\ClientBeneficiaire;
 use App\Entity\CreatorCentre;
 use App\Entity\CreatorClient;
-use App\Entity\CreatorUser;
-use App\Entity\Membre;
 use App\Entity\User;
 use App\Event\BeneficiaireEvent;
 use App\Event\REEvent;
@@ -190,12 +188,14 @@ final class BeneficiaireProvider
 
     public function populateBeneficiary(Beneficiaire $beneficiaire, $data, bool $forceAccept = false): array
     {
-        $connectedUser = $this->security->getUser();
         $user = $beneficiaire->getUser();
         $errors = new ConstraintViolationList();
 
         $distantId = (string) $data->get('idRosalie') ?: (string) $data->get('distant_id');
         $oldClient = $this->apiClientManager->getCurrentOldClient();
+        if ($oldClient) {
+            $user->addCreator((new CreatorClient())->setEntity($oldClient));
+        }
 
         if (null !== $oldClient && null === $beneficiaire->getId() && '' !== $distantId) {
             $membreDistantId = $data->get('member_distant_id');
@@ -220,23 +220,7 @@ final class BeneficiaireProvider
                     $this->linkBeneficiaryToCenter($beneficiaire, $centre, $externalLink, $forceAccept);
                 }
             }
-
-            if ($oldClient) {
-                $user->addCreator((new CreatorClient())->setEntity($oldClient));
-            }
-
-            $membre = $this->entityManager->getRepository(Membre::class)->findByDistantId($membreDistantId, $oldClient->getRandomId());
-            if ($membre) {
-                $user->addCreator((new CreatorUser())->setEntity($membre->getUser()));
-            }
         } else {
-            if ($connectedUser instanceof User && $connectedUser->getSubjectMembre()) {
-                $user->addCreator((new CreatorUser())->setEntity($connectedUser));
-            }
-            if ($oldClient) {
-                $user->addCreator((new CreatorClient())->setEntity($oldClient));
-            }
-
             $all = $data->all();
             if (array_key_exists('centers', $all)) {
                 $centers = $all['centers'];
@@ -350,9 +334,6 @@ final class BeneficiaireProvider
     {
         if ($isCreating = !$beneficiaire->getId()) {
             $beneficiaire->addCreator((new CreatorClient())->setEntity($this->apiClientManager->getCurrentOldClient()));
-            if ($user) {
-                $beneficiaire->addCreator((new CreatorUser())->setEntity($user));
-            }
             if ($firstCentre) {
                 $beneficiaire->addCreator((new CreatorCentre())->setEntity($firstCentre));
             }

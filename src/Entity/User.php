@@ -956,6 +956,11 @@ class User extends BaseUser implements \JsonSerializable
         return false === $creator ? null : $creator;
     }
 
+    public function getCreatorCentreRelay(): ?Centre
+    {
+        return $this->getCreatorCentre()?->getEntity();
+    }
+
     public function getCreatorCentre(): ?CreatorCentre
     {
         $creator = $this->creators->filter(static function ($creator) {
@@ -981,6 +986,11 @@ class User extends BaseUser implements \JsonSerializable
     public function addCreatorClient(Client $client): self
     {
         return $this->addCreator(new CreatorClient($client));
+    }
+
+    public function addCreatorUser(User $user): self
+    {
+        return $this->addCreator(new CreatorUser($user));
     }
 
     public function getAutoLoginToken(): ?string

@@ -981,6 +981,11 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this->beneficiairesCentres->exists(fn (int $key, BeneficiaireCentre $beneficiaireCentre) => $beneficiaireCentre->getCentre() === $relay);
     }
 
+    public function addRelay(Centre $relay): self
+    {
+        return $this->addBeneficiaryRelayForRelay($relay);
+    }
+
     public function addBeneficiaryRelayForRelay(Centre $relay): self
     {
         if (!$this->hasBeneficiaryRelayForRelay($relay)) {
