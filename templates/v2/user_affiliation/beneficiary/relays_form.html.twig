@@ -1,4 +1,7 @@
-{% extends 'v2/user_affiliation/beneficiary/affiliate_beneficiary_relays.html.twig' %}
+{% extends 'v2/management_layout.html.twig' %}
+{% block metaTitle %}{{ 'choose_beneficiary'|trans }}{% endblock %}
+{% block subTitle %}{{ 'choose_beneficiary_centers'|trans|upper }}{% endblock %}
+{% block subTitleIcon %}{% endblock %}
 {% form_theme form 'v2/form_theme/create_user_form_theme.html.twig' %}
 
 {% block content %}
