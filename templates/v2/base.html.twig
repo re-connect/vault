@@ -17,7 +17,7 @@
 
     {{ include('favicons.html.twig') }}
 </head>
-<body class="d-flex flex-column">
+<body class="d-flex flex-column" {{ stimulus_controller('tooltip') }}>
 {{ include('v2/header/header.html.twig') }}
 
 <main role="main" class="position-relative {% block bodyColor %}{{ getUserBackgroundColor() }}{% endblock %} pb-5">
