@@ -34,25 +34,25 @@ class NavExtension extends AbstractExtension
                 'itemKind' => 'documents-folders',
                 'title' => $isBeneficiary ? 'my_documents' : 'documents',
                 'routeName' => 'list_documents',
-                'image' => 'build/images/icons/docs_bleu.png',
+                'image' => 'build/images/icons/docs_bleu.svg',
             ],
             [
                 'itemKind' => 'events',
                 'title' => $isBeneficiary ? 'my_events' : 'events',
                 'routeName' => 'list_events',
-                'image' => 'build/images/icons/rappels_bleu.png',
+                'image' => 'build/images/icons/rappels_bleu.svg',
             ],
             [
                 'itemKind' => 'contacts',
                 'title' => $isBeneficiary ? 'my_contacts' : 'contacts',
                 'routeName' => 'list_contacts',
-                'image' => 'build/images/icons/contacts_bleu.png',
+                'image' => 'build/images/icons/contacts_bleu.svg',
             ],
             [
                 'itemKind' => 'notes',
                 'title' => $isBeneficiary ? 'my_notes' : 'notes',
                 'routeName' => 'list_notes',
-                'image' => 'build/images/icons/notes_bleu.png',
+                'image' => 'build/images/icons/notes_bleu.svg',
             ],
         ];
 
@@ -61,7 +61,7 @@ class NavExtension extends AbstractExtension
                 'itemKind' => 'relays',
                 'title' => 'my_relays',
                 'routeName' => 'my_relays',
-                'image' => 'build/images/icons/relais_bleu.png',
+                'image' => 'build/images/icons/relais_bleu.svg',
             ];
         }
 
