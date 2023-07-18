@@ -49,6 +49,7 @@ class DossierAdmin extends AbstractAdmin
             ->addIdentifier('nom', null, ['route' => ['name' => 'edit']])
             ->add('isPrivate', null, ['label' => 'Accès'])
             ->addIdentifier('createdAt', null, ['route' => ['name' => 'edit']])
+            ->add('dossierParent.id', null, ['label' => 'Id dossier parent'])
             ->add('beneficiaire.user.canada', null, ['label' => 'Canada']);
     }
 
