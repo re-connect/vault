@@ -36,7 +36,7 @@ class StatistiqueCentreManager
             ->getQuery()
             ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
             ->getResult();
-//            ->iterate();
+        //            ->iterate();
 
         $arStatistics = [
             StatistiqueCentre::STATISTIQUECENTRE_NB_BENEFICIAIRES,
@@ -44,26 +44,26 @@ class StatistiqueCentreManager
             StatistiqueCentre::STATISTIQUECENTRE_SMS_ENVOYES,
         ];
 
-//        $i = 1;
-//
-//        /** @var Centre $entity */
-//        foreach ($iterableResult as $row) {
-//            $entity = $row[0];
-//            dump($entity);die;
-//
+        //        $i = 1;
+        //
+        //        /** @var Centre $entity */
+        //        foreach ($iterableResult as $row) {
+        //            $entity = $row[0];
+        //            dump($entity);die;
+        //
         // //            foreach ($arStatistics as $statKey) {
         // //                $this->updateStatisticValue($centre, $statKey);
         // //            }
-//
-//            if (($i % 20) === 0) {
-//                $output->writeln('enregistrement en cours !!!!!!!!!');
+        //
+        //            if (($i % 20) === 0) {
+        //                $output->writeln('enregistrement en cours !!!!!!!!!');
         // //                $this->em->flush(); // Executes all updates.
         // //                $this->em->clear(); // Detaches all objects from Doctrine!
-//            }
-//            $i++;
-//            $output->writeln($i);
-//        }
-//        $this->em->flush();
+        //            }
+        //            $i++;
+        //            $output->writeln($i);
+        //        }
+        //        $this->em->flush();
         foreach ($iterableResult as $centre) {
             foreach ($arStatistics as $statKey) {
                 $this->updateStatisticValue($centre, $statKey);

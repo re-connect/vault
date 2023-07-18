@@ -5,7 +5,7 @@ namespace App\ControllerV2;
 use App\Entity\Centre;
 use App\Entity\User;
 use App\FormV2\ChangePasswordFormType;
-use App\FormV2\UserSettingsType;
+use App\FormV2\UserType;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,21 +29,20 @@ class UserController extends AbstractController
         TranslatorInterface $translator,
     ): Response {
         $user = $this->getUser();
-
-        $userForm = $this->createForm(UserSettingsType::class, $user)->handleRequest($request);
+        $userForm = $this->createForm(UserType::class, $user)->handleRequest($request);
 
         $passwordForm = $this->createForm(ChangePasswordFormType::class, null, [
             'checkCurrentPassword' => true,
             'isBeneficiaire' => $user->isBeneficiaire(),
         ])->handleRequest($request);
 
-        if ($userForm->isSubmitted()) {
-            if ($userForm->isValid()) {
-                $em->flush();
-                $this->addFlash('success', 'settings_saved_successfully');
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+            $usernameWillBeUpdated = $userManager->getUniqueUsername($user) !== $user->getUsername();
+            $em->flush();
+            $message = sprintf('settings_saved_successfully%s', $usernameWillBeUpdated ? '_username_updated' : '');
+            $this->addFlash('success', $message);
 
-                return $this->redirectToRoute('user_settings');
-            }
+            return $this->redirectToRoute('user_settings');
         }
 
         if ($passwordForm->isSubmitted()) {

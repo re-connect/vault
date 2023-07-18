@@ -71,7 +71,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
     /**
      * @dataProvider provideTestFormIsNotValid
      */
-    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
+    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, string $alternateSelector = null): void
     {
         $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email, $alternateSelector);
     }

@@ -13,10 +13,10 @@ class SpecifierRappelValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-//        throw new \Exception(__METHOD__);
-//        if (!$constraint instanceof Evenement) {
-//            throw new UnexpectedTypeException($constraint, SpecifierRappel::class);
-//        }
+        //        throw new \Exception(__METHOD__);
+        //        if (!$constraint instanceof Evenement) {
+        //            throw new UnexpectedTypeException($constraint, SpecifierRappel::class);
+        //        }
 
         // custom constraints should ignore null and empty values to allow
         // other constraints (NotBlank, NotNull, etc.) take care of that
@@ -24,10 +24,10 @@ class SpecifierRappelValidator extends ConstraintValidator
             return;
         }
 
-//        if ($value->getRappels()->count() === 0) {
-//            $this->context->addViolation($constraint->message, array('%string%' => $value));
-//            return;
-//        }
+        //        if ($value->getRappels()->count() === 0) {
+        //            $this->context->addViolation($constraint->message, array('%string%' => $value));
+        //            return;
+        //        }
 
         foreach ($value->getRappels() as $rappel) {
             if ($rappel->getDate() > $value->getDate()) {

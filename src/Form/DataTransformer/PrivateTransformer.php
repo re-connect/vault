@@ -9,8 +9,6 @@ class PrivateTransformer implements DataTransformerInterface
     /**
      * Transforms an object (Promotion) to a string (code).
      *
-     * @param mixed $value
-     *
      * @return mixed|string
      */
     public function transform($value): mixed
@@ -29,8 +27,6 @@ class PrivateTransformer implements DataTransformerInterface
 
     /**
      * Transforms a string (code) to an object (Promotion).
-     *
-     * @param mixed $value
      *
      * @return mixed|null
      */

@@ -122,7 +122,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
         return $this->dossier;
     }
 
-    public function setDossier(?Dossier $dossier = null): self
+    public function setDossier(Dossier $dossier = null): self
     {
         $this->dossier = $dossier;
 
@@ -307,7 +307,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
         return $this->thumbnailKey;
     }
 
-    public function setThumbnailKey(?string $thumbnailKey = null): self
+    public function setThumbnailKey(string $thumbnailKey = null): self
     {
         $this->thumbnailKey = $thumbnailKey;
 

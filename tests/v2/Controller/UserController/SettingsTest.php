@@ -12,19 +12,19 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
 {
     private const URL = '/user/settings';
     private const FORM_VALUES = [
-        'user_settings[prenom]' => 'Ambroise',
-        'user_settings[nom]' => 'Croizat',
-        'user_settings[telephone]' => '0618181818',
-        'user_settings[email]' => 'a.croizat@mail.com',
-        'user_settings[adresse][nom]' => 'Bastille',
-        'user_settings[adresse][ville]' => 'Paris',
-        'user_settings[adresse][codePostal]' => '75011',
-        'user_settings[dateNaissance][day]' => '1',
-        'user_settings[dateNaissance][month]' => '1',
-        'user_settings[dateNaissance][year]' => '1995',
-        'user_settings[secretQuestion][questionSecreteChoice]' => 'Quel est le prénom de la mère du bénéficiaire ?',
-        'user_settings[secretQuestion][autreQuestionSecrete]' => '',
-        'user_settings[secretQuestion][reponseSecrete]' => 'Maman',
+        'user[prenom]' => 'Ambroise',
+        'user[nom]' => 'Croizat',
+        'user[telephone]' => '0618181818',
+        'user[email]' => 'a.croizat@mail.com',
+        'user[adresse][nom]' => 'Bastille',
+        'user[adresse][ville]' => 'Paris',
+        'user[adresse][codePostal]' => '75011',
+        'user[dateNaissance][day]' => '1',
+        'user[dateNaissance][month]' => '1',
+        'user[dateNaissance][year]' => '1995',
+        'user[secretQuestion][questionSecreteChoice]' => 'Quel est le prénom de la mère du bénéficiaire ?',
+        'user[secretQuestion][autreQuestionSecrete]' => '',
+        'user[secretQuestion][reponseSecrete]' => 'Maman',
     ];
 
     public function provideTestRoute(): ?\Generator
@@ -48,7 +48,7 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
     public function provideTestFormIsNotValid(): ?\Generator
     {
         $values = self::FORM_VALUES;
-        $values['user_settings[nom]'] = '';
+        $values['user[nom]'] = '';
         yield 'Should return an error if lastname is empty' => [
             self::URL,
             'user_settings',
@@ -65,7 +65,7 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
         ];
 
         $values = self::FORM_VALUES;
-        $values['user_settings[prenom]'] = '';
+        $values['user[prenom]'] = '';
         yield 'Should return an error if firstname is empty' => [
             self::URL,
             'user_settings',
@@ -82,7 +82,7 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
         ];
 
         $values = self::FORM_VALUES;
-        $values['user_settings[email]'] = 'wrong format';
+        $values['user[email]'] = 'wrong format';
         yield 'Should return an error if email address is not correct' => [
             self::URL,
             'user_settings',
@@ -103,8 +103,8 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
     public function testRoute(
         string $url,
         int $expectedStatusCode,
-        ?string $userMail = null,
-        ?string $expectedRedirect = null,
+        string $userMail = null,
+        string $expectedRedirect = null,
         string $method = 'GET',
         bool $isXmlHttpRequest = false,
         array $body = [],
@@ -128,7 +128,7 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
      *
      * @dataProvider provideTestFormIsNotValid
      */
-    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
+    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, string $alternateSelector = null): void
     {
         $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email, $alternateSelector);
     }

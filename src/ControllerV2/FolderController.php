@@ -81,7 +81,7 @@ class FolderController extends AbstractController
         Request $request,
         Dossier $folder,
         FolderableItemManager $manager,
-        #[MapEntity(id: 'folderId')] ?Dossier $parentFolder = null,
+        #[MapEntity(id: 'folderId')] Dossier $parentFolder = null,
     ): Response {
         if ($parentFolder) {
             $this->denyAccessUnlessGranted('UPDATE', $parentFolder);

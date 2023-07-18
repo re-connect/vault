@@ -56,6 +56,7 @@ beneficiaire.menu2.monCalendrier: Termine
 beneficiaries_management: 'Verwaltung von Klient*innen'
 beneficiary.delete.account: 'Sind Sie sicher, dass Sie ihr Konto löschen wollen?'
 beneficiary_not_found: 'Der Nutzer %id% wurde nicht gefunden'
+birthDate: Geburtsdatum
 center_has_no_info: 'Keine Einrichtung kann auf Ihre Daten zugreifen'
 center_is_empty: 'Zu Ihrer Einrichtung existieren keine verknüpften Konten'
 centers: Einrichtungen
@@ -329,7 +330,6 @@ mail_shared_document_content_3: 'VERTRAULICHKEIT: Diese E-Mail (sowie die angeh�
 mail_shared_document_title: Dokumente
 mail_subject_reset_password: 'RECONNECT - Passwort zurücksetzen'
 mail_subject_share_document: 'RECONNECT - Dokument teilen'
-main.adresse.rue: Straße
 main.annuler: Abbrechen
 main.chercher: Suchen
 main.choisir: Auswählen
@@ -537,7 +537,6 @@ reconnect_center: 'Reconnect Einrichtung'
 reconnect_center_span: 'Reconnect <span class="rp-blue">Einrichtung</span>'
 registerForm.adresse: 'Deine private Adresse (optional)'
 registerForm.correspondentPas: 'Die Passwörter stimmen nicht überein'
-registerForm.email: E-Mail-Adresse
 registerForm.repeterMotDePasse: 'Passwort bestätigen'
 registerForm.telephone: Telefon
 reminder: Erinnerung
@@ -596,6 +595,7 @@ share_document_success: 'Eine E-Mail mit einem Link zum Download des Dokuments w
 share_document_with: 'Dokument per E-Mail teilen'
 shared: Freigegeben
 status: Status
+street: Straße
 tax: Steuern
 today: Heute
 used_available: 'Du verwendest %used% von verfügbaren %available%'
@@ -609,7 +609,6 @@ user.firstVisit.gestionnaire.text: "<p class=\"smallMargin\">Vielen Dank, dass D
 user.firstVisit.membre.metaTitle: 'Willkommen bei Reconnect - Der Cloud für wohnungslose Menschen'
 user.firstVisit.membre.text: '<p class="smallMargin">Die Hauptfunktion dieses Tools ist die Sicherung persönlicher Informationen der begleiteten Personen.</p> <p class="smallMargin">Das Tool ist Teil der Begleitung und kann Dir ermöglichen, die Klient*innen bei der Sicherung ihrer Daten zu unterstützen.</p> <p class="smallMargin">Das Team von Reconnect heißt Dich auf der  Plattform willkommen und wünscht Dir viel Spaß bei der Nutzung.</p>'
 user.parametres.changerMotDePasse: 'Passwort ändern'
-user.parametres.dateNaissanceLabel: Geburtsdatum
 user.parametres.enregister: 'Änderungen speichern'
 user.parametres.lieuNaissanceLabel: Geburtsort
 user.parametres.mdpActuel: 'Aktuelles Passwort'

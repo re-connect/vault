@@ -22,7 +22,7 @@ class CreateTest extends AbstractControllerTest
     }
 
     /** @dataProvider provideTestUploadRoute */
-    public function testUpload(string $url, int $expectedStatusCode, ?string $userMail = null): void
+    public function testUpload(string $url, int $expectedStatusCode, string $userMail = null): void
     {
         self::ensureKernelShutdown();
         $client = $this->createClient();
