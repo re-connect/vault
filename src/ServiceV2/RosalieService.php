@@ -50,8 +50,7 @@ class RosalieService
 
     public function linkBeneficiaryToRosalie(Beneficiaire $beneficiary): void
     {
-        $relay = $beneficiary->getCentres()->count() > 0 ? $beneficiary->getCentres()->first() : null;
-        $this->clientLinkService->linkBeneficiaryToClientWithName($beneficiary, 'rosalie', $beneficiary->getSiSiaoNumber(), $relay);
+        $this->clientLinkService->linkBeneficiaryToClientWithName($beneficiary, 'rosalie', $beneficiary->getSiSiaoNumber());
         $this->em->flush();
     }
 
