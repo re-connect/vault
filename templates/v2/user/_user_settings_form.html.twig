@@ -1,7 +1,7 @@
 {% form_theme form 'v2/form_theme/create_user_form_theme.html.twig' %}
 {% set isPro = is_granted('ROLE_MEMBRE') %}
 
-    {{ form_start(form, {attr: { class: 'display-required-labels','data-controller': 'conditional-field' }}) }}
+{{ form_start(form, {attr: { class: 'display-required-labels','data-controller': 'conditional-field' }}) }}
 <div class="row bold">
     {% set fieldsSets = {
         'information': [form.prenom, form.nom, form.telephone, form.email, isPro ? null : form.dateNaissance],
