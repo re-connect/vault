@@ -17,8 +17,11 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Contracts\Translation\TranslatorInterface;
+
+use function Symfony\Component\String\u;
 
 class DocumentManager
 {
@@ -173,8 +176,9 @@ class DocumentManager
 
         $response->headers->set('Content-Type', 'application/octet-stream');
         $response->headers->set('Content-Disposition', HeaderUtils::makeDisposition(
-            HeaderUtils::DISPOSITION_ATTACHMENT,
-            $document->getNom()
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+            $document->getNom(),
+            u($document->getNom())->ascii()->toString(),
         ));
 
         return $response;
