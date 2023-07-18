@@ -956,6 +956,11 @@ class User extends BaseUser implements \JsonSerializable
         return false === $creator ? null : $creator;
     }
 
+    public function getCreatorCentreRelay(): ?Centre
+    {
+        return $this->getCreatorCentre()?->getEntity();
+    }
+
     public function getCreatorCentre(): ?CreatorCentre
     {
         $creator = $this->creators->filter(static function ($creator) {

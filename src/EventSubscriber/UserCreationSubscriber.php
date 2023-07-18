@@ -63,35 +63,6 @@ class UserCreationSubscriber
         $this->mailerService->sendDuplicateUsernameAlert($user);
     }
 
-    private function initPassword(User $user): void
-    {
-        $plainPassword = $user->getPlainPassword() ?? $this->manager->getRandomPassword();
-        $user->setPassword($this->hasher->hashPassword($user, $plainPassword));
-    }
-
-    private function addCreatorUser(User $user): void
-    {
-        if ($this->getUser() instanceof User) {
-            $user->addCreatorUser($this->getUser());
-        }
-    }
-
-    private function addCreatorClient(User $user): void
-    {
-        if ($client = $this->apiClientManager->getCurrentOldClient()) {
-            $user->addCreatorClient($client);
-        }
-    }
-
-    private function setupClientLink(Beneficiaire $beneficiary): void
-    {
-        $client = $this->apiClientManager->getCurrentOldClient();
-        $distantId = $beneficiary->distantId;
-        if ($client && $distantId) {
-            $beneficiary->addClientExternalLink($client, $distantId);
-        }
-    }
-
     /** @param LifecycleEventArgs<ObjectManager> $args */
     public function postPersist(LifecycleEventArgs $args): void
     {
@@ -118,10 +89,46 @@ class UserCreationSubscriber
         }
     }
 
+    private function initPassword(User $user): void
+    {
+        $plainPassword = $user->getPlainPassword() ?? $this->manager->getRandomPassword();
+        $user->setPassword($this->hasher->hashPassword($user, $plainPassword));
+    }
+
+    private function setupClientLink(Beneficiaire $beneficiary): void
+    {
+        $client = $this->apiClientManager->getCurrentOldClient();
+        $distantId = $beneficiary->distantId;
+        if ($client && $distantId) {
+            $beneficiary->addClientExternalLink($client, $distantId);
+        }
+    }
+
+    private function addCreatorUser(User $user): void
+    {
+        if ($this->getUser() instanceof User) {
+            $user->addCreatorUser($this->getUser());
+        }
+    }
+
+    private function addCreatorClient(User $user): void
+    {
+        if ($client = $this->apiClientManager->getCurrentOldClient()) {
+            $user->addCreatorClient($client);
+        }
+    }
+
     private function addCreators(?User $user): void
     {
         $this->addCreatorUser($user);
         $this->addCreatorRelay($user);
         $this->addCreatorClient($user);
+    }
+
+    private function hasUsernameInformationChanged(PreUpdateEventArgs $event): bool
+    {
+        return $event->hasChangedField('nom')
+            || $event->hasChangedField('prenom')
+            || $event->hasChangedField('birthDate');
     }
 }
