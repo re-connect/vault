@@ -260,7 +260,7 @@ final class BeneficiaireRestV2Controller extends REController
                 throw new BadRequestHttpException('Code sms non recu');
             }
 
-            $bResult = strtolower($entity->getActivationSmsCode()) === strtolower($codeSms);
+            $bResult = strtolower($entity->getRelayInvitationSmsCode()) === strtolower($codeSms);
             if ($bResult) {
                 $centreManager->accepterTousCentreEnCommun($entity->getUser()->getSubject(), $subject);
             }

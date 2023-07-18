@@ -109,9 +109,9 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     private bool $isCreating = true;
 
-    private ?string $activationSmsCode = null;
+    private ?string $relayInvitationSmsCode = null;
 
-    private ?\DateTime $activationSmsCodeLastSend = null;
+    private ?\DateTime $relayInvitationSmsCodeSendAt = null;
 
     /** @var Collection<int, ConsultationBeneficiaire> */
     private Collection $consultationsBeneficiaires;
@@ -436,24 +436,48 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function getActivationSmsCode(): ?string
     {
-        return $this->activationSmsCode;
+        return $this->relayInvitationSmsCode;
     }
 
-    public function setActivationSmsCode(?string $activationSmsCode): self
+    public function getRelayInvitationSmsCode(): ?string
     {
-        $this->activationSmsCode = $activationSmsCode;
+        return $this->relayInvitationSmsCode;
+    }
+
+    public function setActivationSmsCode(?string $relayInvitationSmsCode): self
+    {
+        $this->relayInvitationSmsCode = $relayInvitationSmsCode;
+
+        return $this;
+    }
+
+    public function setRelayInvitationSmsCode(?string $relayInvitationSmsCode): self
+    {
+        $this->relayInvitationSmsCode = $relayInvitationSmsCode;
 
         return $this;
     }
 
     public function getActivationSmsCodeLastSend(): ?\DateTime
     {
-        return $this->activationSmsCodeLastSend;
+        return $this->relayInvitationSmsCodeSendAt;
     }
 
-    public function setActivationSmsCodeLastSend(?\DateTime $activationSmsCodeLastSend): self
+    public function getRelayInvitationSmsCodeSendAt(): ?\DateTime
     {
-        $this->activationSmsCodeLastSend = $activationSmsCodeLastSend;
+        return $this->relayInvitationSmsCodeSendAt;
+    }
+
+    public function setActivationSmsCodeLastSend(?\DateTime $relayInvitationSmsCodeSendAt): self
+    {
+        $this->relayInvitationSmsCodeSendAt = $relayInvitationSmsCodeSendAt;
+
+        return $this;
+    }
+
+    public function setRelayInvitationSmsCodeSendAt(?\DateTime $relayInvitationSmsCodeSendAt): self
+    {
+        $this->relayInvitationSmsCodeSendAt = $relayInvitationSmsCodeSendAt;
 
         return $this;
     }
