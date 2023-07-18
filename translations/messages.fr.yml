@@ -1049,6 +1049,7 @@ sending_sms_account_activation: "Envoi du SMS d'activation du compte"
 setQuestionSecrete.bienSauvegarde: 'Votre question secrete a bien été enregistrée'
 set_secret_question: 'Entrez votre question secrète'
 settings_saved_successfully: 'Vos parametres ont bien été enregistrés'
+settings_saved_successfully_username_updated: Vos parametres ont bien été enregistrés, veuillez noter que votre nom d'utilisateur a été mis à jour
 share_document: 'Partager le document'
 share_document_error_expired: "La durée de validité du lien de téléchargement est expirée, veuillez recommencer l'opération"
 share_document_error_no_shared_document: "Aucun document n'a été partagé"
