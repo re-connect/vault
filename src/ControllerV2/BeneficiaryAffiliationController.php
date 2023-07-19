@@ -3,12 +3,13 @@
 namespace App\ControllerV2;
 
 use App\Entity\Beneficiaire;
+use App\FormV2\AnswerSecretQuestionType;
 use App\FormV2\UserAffiliation\Model\SearchBeneficiaryFormModel;
+use App\FormV2\UserAffiliation\RelayAffiliationSmsCodeType;
 use App\FormV2\UserAffiliation\SearchBeneficiaryType;
-use App\FormV2\UserCreation\AnswerSecretQuestionType;
+use App\Manager\SMSManager;
 use App\ManagerV2\BeneficiaryAffiliationManager;
 use App\ServiceV2\PaginatorService;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -59,23 +60,53 @@ class BeneficiaryAffiliationController extends AbstractController
         BeneficiaryAffiliationManager $manager,
         TranslatorInterface $translator,
     ): Response {
-        $form = $this->createForm(AnswerSecretQuestionType::class, $beneficiary, [
+        $secretQuestionForm = $this->createForm(AnswerSecretQuestionType::class, $beneficiary, [
             'action' => $this->generateUrl('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]),
         ])->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($manager->isSecretAnswerValid($beneficiary, $form->get('reponseSecrete')->getData())) {
-                $manager->forceAcceptInvitations($beneficiary);
-                $this->addFlash('success', 'beneficiary_added_to_relays');
+        if ($secretQuestionForm->isSubmitted() && $secretQuestionForm->isValid()) {
+            $manager->forceAcceptInvitations($beneficiary);
+            $this->addFlash('success', 'beneficiary_added_to_relays');
 
-                return $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]);
-            }
-            $form->get('reponseSecrete')->addError(new FormError($translator->trans('wrong_secret_answer')));
+            return $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]);
+        }
+
+        $smsCodeForm = $this->createForm(RelayAffiliationSmsCodeType::class, $beneficiary, ['action' => $this->generateUrl('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()])])
+           ->handleRequest($request);
+
+        if ($smsCodeForm->isSubmitted() && $smsCodeForm->isValid()) {
+            $manager->forceAcceptInvitations($beneficiary);
+            $manager->resetAffiliationSmsCode($beneficiary);
+            $this->addFlash('success', 'beneficiary_added_to_relays');
+
+            return $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]);
         }
 
         return $this->render('v2/user_affiliation/beneficiary/relays_form.html.twig', [
             'beneficiary' => $beneficiary,
-            'form' => $form,
+            'secretQuestionForm' => $secretQuestionForm,
+            'smsCodeForm' => $smsCodeForm,
         ]);
+    }
+
+    /** @throws \Exception */
+    #[Route(
+        path: '/beneficiary/{id}/affiliate/send-invitation-sms-code',
+        name: 'affiliate_beneficiary_sms_code',
+        requirements: ['id' => '\d+'],
+        methods: ['GET'],
+    )]
+    public function sensSmsAffiliationCode(
+        Beneficiaire $beneficiary,
+        SMSManager $manager,
+        TranslatorInterface $translator,
+    ): Response {
+        if (!$beneficiary->getUser()?->getTelephone()) {
+            $this->addFlash('error', $translator->trans('beneficiary_has_no_phone_number'));
+        } else {
+            $manager->sendAffiliationCodeSms($beneficiary);
+        }
+
+        return $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]);
     }
 }
