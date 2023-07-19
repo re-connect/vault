@@ -96,7 +96,7 @@ class BeneficiaryAffiliationController extends AbstractController
         requirements: ['id' => '\d+'],
         methods: ['GET'],
     )]
-    public function sensSmsAffiliationCode(
+    public function sendSmsAffiliationCode(
         Beneficiaire $beneficiary,
         SMSManager $manager,
         TranslatorInterface $translator,
