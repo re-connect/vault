@@ -23,12 +23,8 @@
                     <span>{{ 'beneficiary_relay_affiliation_end'|trans }} </span>
                 {% endif %}
                 <br>
-                {% if hasSecretQuestion %}
-                    {{ include('v2/user_affiliation/beneficiary/_relays_form_secret_question.html.twig', { beneficiary, secretQuestionForm }) }}
-                {% endif %}
-                {% if hasTelephone %}
-                    {{ include('v2/user_affiliation/beneficiary/_relays_form_sms_code.html.twig', { beneficiary, smsCodeForm }) }}
-                {% endif %}
+                {{ include('v2/user_affiliation/beneficiary/_relays_form_secret_question.html.twig', { beneficiary, secretQuestionForm }) }}
+                {{ include('v2/user_affiliation/beneficiary/_relays_form_sms_code.html.twig', { beneficiary, smsCodeForm }) }}
             </div>
             <div class="col-12 col-md-6 mb-4">
                 <h4 class="text-center">{{ 'relays'|trans }} :</h4>

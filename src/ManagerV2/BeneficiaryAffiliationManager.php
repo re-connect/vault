@@ -112,8 +112,7 @@ class BeneficiaryAffiliationManager
 
     public function resetAffiliationSmsCode(Beneficiaire $beneficiary): void
     {
-        $beneficiary->setRelayInvitationSmsCode(null);
-        $beneficiary->setRelayInvitationSmsCodeSendAt(null);
+        $beneficiary->resetAffiliationSmsCode();
         $this->em->flush();
     }
 }

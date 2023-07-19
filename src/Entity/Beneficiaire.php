@@ -454,6 +454,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     public function setRelayInvitationSmsCode(?string $relayInvitationSmsCode): self
     {
         $this->relayInvitationSmsCode = $relayInvitationSmsCode;
+        $this->relayInvitationSmsCodeSendAt = new \DateTime('now');
 
         return $this;
     }
@@ -1037,12 +1038,21 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
             );
     }
 
+    public function relayInvitationSmsSent(): bool
+    {
+        return $this->relayInvitationSmsCodeSendAt && $this->relayInvitationSmsCode;
+    }
+
     public function hasValidSmsRelayInvitationCode(): bool
     {
-        if (!$this->relayInvitationSmsCodeSendAt || !$this->relayInvitationSmsCode) {
-            return false;
-        }
+        return $this->relayInvitationSmsSent() && $this->relayInvitationSmsCodeSendAt > (new \DateTime())->modify('-24 hours');
+    }
 
-        return $this->relayInvitationSmsCodeSendAt > (new \DateTime())->modify('-24 hours');
+    public function resetAffiliationSmsCode(): self
+    {
+        $this->relayInvitationSmsCodeSendAt = null;
+        $this->relayInvitationSmsCode = null;
+
+        return $this;
     }
 }
