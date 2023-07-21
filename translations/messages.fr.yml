@@ -463,6 +463,7 @@ faq_gdpr: 'F.A.Q. RGPD'
 faq_gdpr_no_content: 'Cette section est vide pour le moment'
 faq_gdpr_text: "<p>Dans le cadre de la mise en place d'outils Reconnect, vous vous posez des questions concernant la mise en conformite de votre structure au RGPD ?</p><p>Cette F.A.Q. a pour but de répondre à vos interrogations.</p>"
 fill_beneficiary_identity_information: "Veuillez renseigner l'identité du bénéficiaire"
+finish: Terminer
 firstname: Prénom
 flash.erreur: Erreur
 flash.operationReussie: 'Opération réussie'

@@ -54,14 +54,26 @@ class BeneficiaryAffiliationController extends AbstractController
         requirements: ['id' => '\d+'],
         methods: ['GET', 'POST'],
     )]
-    public function relays(
+    public function relays(Beneficiaire $beneficiary): Response
+    {
+        return $this->render('v2/user_affiliation/beneficiary/relays_form.html.twig', [
+            'beneficiary' => $beneficiary,
+        ]);
+    }
+
+    #[Route(
+        path: '/beneficiary/{id}/affiliate/relays/secret_question',
+        name: 'affiliate_beneficiary_relays_secret_question',
+        requirements: ['id' => '\d+'],
+        methods: ['GET', 'POST'],
+    )]
+    public function relaysSecretQuestion(
         Request $request,
         Beneficiaire $beneficiary,
         BeneficiaryAffiliationManager $manager,
-        TranslatorInterface $translator,
     ): Response {
         $secretQuestionForm = $this->createForm(AnswerSecretQuestionType::class, $beneficiary, [
-            'action' => $this->generateUrl('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]),
+            'action' => $this->generateUrl('affiliate_beneficiary_relays_secret_question', ['id' => $beneficiary->getId()]),
         ])->handleRequest($request);
 
         if ($secretQuestionForm->isSubmitted() && $secretQuestionForm->isValid()) {
@@ -71,8 +83,40 @@ class BeneficiaryAffiliationController extends AbstractController
             return $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]);
         }
 
-        $smsCodeForm = $this->createForm(RelayAffiliationSmsCodeType::class, $beneficiary, ['action' => $this->generateUrl('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()])])
-           ->handleRequest($request);
+        return $this->render('v2/user_affiliation/beneficiary/_relays_form_secret_question.html.twig', [
+            'beneficiary' => $beneficiary,
+            'secretQuestionForm' => $secretQuestionForm,
+        ]);
+    }
+
+    /** @throws \Exception */
+    #[Route(
+        path: '/beneficiary/{id}/affiliate/relays/sms_code',
+        name: 'affiliate_beneficiary_relays_sms_code',
+        requirements: ['id' => '\d+'],
+        methods: ['GET', 'POST'],
+    )]
+    public function relaysSmsCode(
+        Request $request,
+        Beneficiaire $beneficiary,
+        BeneficiaryAffiliationManager $manager,
+        TranslatorInterface $translator,
+        SMSManager $SMSmanager,
+    ): Response {
+        if (!$beneficiary->getUser()?->getTelephone()) {
+            $this->addFlash('error', $translator->trans('beneficiary_has_no_phone_number'));
+
+            return $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]);
+        }
+
+        if (!$beneficiary->hasValidSmsRelayInvitationCode() && $request::METHOD_GET === $request->getMethod()) {
+            $SMSmanager->sendAffiliationCodeSms($beneficiary);
+        }
+
+        $smsCodeForm = $this->createForm(RelayAffiliationSmsCodeType::class, $beneficiary, [
+            'action' => $this->generateUrl('affiliate_beneficiary_relays_sms_code', ['id' => $beneficiary->getId()]),
+        ])
+            ->handleRequest($request);
 
         if ($smsCodeForm->isSubmitted() && $smsCodeForm->isValid()) {
             $manager->forceAcceptInvitations($beneficiary);
@@ -82,31 +126,9 @@ class BeneficiaryAffiliationController extends AbstractController
             return $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]);
         }
 
-        return $this->render('v2/user_affiliation/beneficiary/relays_form.html.twig', [
+        return $this->render('v2/user_affiliation/beneficiary/_relays_form_sms_code.html.twig', [
             'beneficiary' => $beneficiary,
-            'secretQuestionForm' => $secretQuestionForm,
             'smsCodeForm' => $smsCodeForm,
         ]);
-    }
-
-    /** @throws \Exception */
-    #[Route(
-        path: '/beneficiary/{id}/affiliate/send-invitation-sms-code',
-        name: 'affiliate_beneficiary_sms_code',
-        requirements: ['id' => '\d+'],
-        methods: ['GET'],
-    )]
-    public function sendSmsAffiliationCode(
-        Beneficiaire $beneficiary,
-        SMSManager $manager,
-        TranslatorInterface $translator,
-    ): Response {
-        if (!$beneficiary->getUser()?->getTelephone()) {
-            $this->addFlash('error', $translator->trans('beneficiary_has_no_phone_number'));
-        } else {
-            $manager->sendAffiliationCodeSms($beneficiary);
-        }
-
-        return $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]);
     }
 }

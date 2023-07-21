@@ -1,25 +1,16 @@
-{% if beneficiary.user.telephone %}
-    {% if beneficiary.hasValidSmsRelayInvitationCode %}
-        <div class=" {{ beneficiary.user.telephone ? '' : 'd-none' }}" {{ stimulus_controller('toggle_display') }} >
-            <div class="m-4 border-1 border rounded d-flex align-items-center justify-content-center flex-column p-2">
-                <div class="w-75">{{ 'sms_sent_at_date'|trans({ '%date%': beneficiary.relayInvitationSmsCodeSendAt|date('d/m/Y'), '%hour%':beneficiary.relayInvitationSmsCodeSendAt|date('h\\hi'), '%phone%': beneficiary.user.telephone }) }}</div>
-                {{ form_start(smsCodeForm) }}
-                <span class="form-group has-error">{{ form_errors(smsCodeForm.code) }}</span>
-                <div class="d-flex align-items-center justify-content-center">
-                    <span class="bold">{{ 'sms_code'|trans }}</span><span class="m-2 w-25">{{ form_widget(smsCodeForm.code) }}</span><span>{{ include('v2/common/_button_with_loader.html.twig') }}</span>
-                </div>
-                {{ form_end(smsCodeForm) }}
+{% extends 'v2/user_affiliation/beneficiary/relays_form.html.twig' %}
 
+{% block frame %}
+    <turbo-frame id="force-affiliation-form">
+    <div class="border-1 border rounded d-flex align-items-center  flex-column p-2">
+            <div class="text-center">{{ 'sms_sent_at_date'|trans({ '%date%': beneficiary.relayInvitationSmsCodeSendAt|date('d/m/Y'), '%hour%':beneficiary.relayInvitationSmsCodeSendAt|date('h\\hi'), '%phone%': beneficiary.user.telephone }) }}</div>
+            {{ form_start(smsCodeForm) }}
+            <span class="form-group has-error text-center">{{ form_errors(smsCodeForm.code) }}</span>
+            <div class="d-flex align-items-center justify-content-center">
+                <span class="bold">{{ 'sms_code'|trans }}</span><span class="m-2 w-25">{{ form_widget(smsCodeForm.code) }}</span>
+                <span>{{ include('v2/common/_button_with_loader.html.twig') }}</span>
             </div>
+            {{ form_end(smsCodeForm) }}
         </div>
-    {% else %}
-        <div>
-            <a class="btn btn-blue text-white rounded-pill shadow-sm mt-3"
-               href="{{ path('affiliate_beneficiary_sms_code', { id:beneficiary.id }) }}"
-                    {{ stimulus_action('toggle_display', 'toggle') }}
-            >
-                {{ 'send_sms_code'|trans }}
-            </a>
-        </div>
-    {% endif %}
-{% endif %}
+    </turbo-frame>
+{% endblock %}
