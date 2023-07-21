@@ -28,6 +28,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     normalizationContext: ['groups' => ['v3:folder:read']],
     denormalizationContext: ['groups' => ['v3:folder:write']],
     openapiContext: ['tags' => ['Dossiers']],
+    security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
 )]
 class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 {
