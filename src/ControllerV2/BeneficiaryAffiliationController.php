@@ -101,7 +101,7 @@ class BeneficiaryAffiliationController extends AbstractController
         Beneficiaire $beneficiary,
         BeneficiaryAffiliationManager $manager,
         TranslatorInterface $translator,
-        SMSManager $SMSmanager,
+        SMSManager $smsManager,
     ): Response {
         if (!$beneficiary->getUser()?->getTelephone()) {
             $this->addFlash('error', $translator->trans('beneficiary_has_no_phone_number'));
@@ -110,7 +110,7 @@ class BeneficiaryAffiliationController extends AbstractController
         }
 
         if (!$beneficiary->hasValidSmsRelayInvitationCode() && $request::METHOD_GET === $request->getMethod()) {
-            $SMSmanager->sendAffiliationCodeSms($beneficiary);
+            $smsManager->sendAffiliationCodeSms($beneficiary);
         }
 
         $smsCodeForm = $this->createForm(RelayAffiliationSmsCodeType::class, $beneficiary, [
