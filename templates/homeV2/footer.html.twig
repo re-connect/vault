@@ -47,9 +47,9 @@
                     <a target="_self" class="d-block text-decoration-none my-3"
                        href="{{ path('re_main_page_vault') }}">{{ 'form_connexion'|trans }}</a>
                     <a target="_blank" class="d-block text-decoration-none my-3"
-                       href="https://www.reconnect.fr/annexe/cgs-cs">{{ 'footer_CGS_vault'|trans }}</a>
+                       href="{{ path('re_admin_annexe', { url: 'cgs-cs'}) }}">{{ 'footer_CGS_vault'|trans }}</a>
                     <a target="_blank" class="d-block text-decoration-none my-3"
-                       href="https://www.reconnect.fr/annexe/confidentialite-cs">{{ 'footer_confidentiality_vault'|trans }}</a>
+                       href="{{ path('re_admin_annexe', { url: 'confidentialite-cs'}) }}">{{ 'footer_confidentiality_vault'|trans }}</a>
                 </div>
                 <div class="col-12 mt-1 pb-1 text-center col-sm-4 text-sm-start">
                     <h5 class="pb-1">Reconnect Pro</h5>
@@ -90,11 +90,11 @@
             <div class="col-12 col-sm-8">
                 <div class="row text-center  mx-auto">
                     <a class="col-12 col-sm-3 text-decoration-none my-1" target="_blank"
-                       href="https://www.reconnect.fr/annexe/cgu-reconnect">{{ 'website_CGS' | trans }}</a>
+                       href="{{ path('re_admin_annexe', { url: 'cgu-reconnect'}) }}">{{ 'website_CGS' | trans }}</a>
                     <a class="col-12 col-sm-4 text-decoration-none my-1" target="_blank"
-                       href="https://www.reconnect.fr/annexe/confidentialite-reconnect">{{ 'website_confidentiality' | trans }}</a>
+                       href="{{ path('re_admin_annexe', { url: 'confidentialite-reconnect'}) }}">{{ 'website_confidentiality' | trans }}</a>
                     <a class="col-12 col-sm-3 text-decoration-none my-1" target="_blank"
-                       href="https://www.reconnect.fr/annexe/mentions-legales">{{ 'website_legal' | trans }}</a>
+                       href="{{ path('re_admin_annexe', { url: 'mentions-legales'}) }}">{{ 'website_legal' | trans }}</a>
                     <div class="col-12 col-sm-1 my-1">
                         {{ include('common/_language-selector.html.twig') }}
                     </div>
