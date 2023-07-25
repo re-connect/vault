@@ -9,6 +9,9 @@
             <div class="d-flex align-items-center justify-content-center">
                 <span class="bold">{{ 'sms_code'|trans }}</span><span class="m-2 w-25">{{ form_widget(smsCodeForm.code) }}</span>
                 <span>{{ include('v2/common/_button_with_loader.html.twig') }}</span>
+                <a class="btn btn-link text-primary mx-1" href="{{ path('affiliate_beneficiary_relays', {id:beneficiary.id}) }}">
+                    {{ 'back'|trans }}
+                </a>
             </div>
             {{ form_end(smsCodeForm) }}
         </div>
