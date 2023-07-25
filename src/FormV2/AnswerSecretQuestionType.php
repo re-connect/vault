@@ -16,17 +16,6 @@ class AnswerSecretQuestionType extends AbstractType
         /** @var Beneficiaire $beneficiary */
         $beneficiary = $builder->getData();
         $builder
-            ->add('questionSecrete', TextType::class, [
-                'required' => false,
-                'disabled' => true,
-                'label' => 'secret_question',
-            ])
-            ->add('autreQuestionSecrete', TextType::class, [
-                'disabled' => true,
-                'required' => false,
-                'label' => 'secret_question_other',
-                'mapped' => false,
-            ])
             ->add('reponseSecrete', TextType::class, [
                 'label' => 'secret_answer',
                 'mapped' => false,
