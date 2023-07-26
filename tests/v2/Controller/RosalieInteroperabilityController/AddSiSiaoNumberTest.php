@@ -33,7 +33,7 @@ class AddSiSiaoNumberTest extends AbstractControllerTest
         $client = $this->assertRoute($this->buildUrlString(self::URL, [$beneficiary->getId()]), 200, MemberFixture::MEMBER_MAIL);
 
         $this->assertSelectorTextContains('h1', 'Ajouter numéro SI-SIAO');
-        $this->assertSelectorTextContains('h2', $beneficiary->getFullName());
+        $this->assertSelectorTextContains('h4', $beneficiary->getUsername());
 
         $client->submitForm('Ajouter', ['form[number]' => 'XXXXXXXX']);
         $this->assertResponseRedirects('/beneficiaries');

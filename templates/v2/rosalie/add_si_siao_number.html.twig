@@ -1,11 +1,15 @@
-{% extends 'v2/common/_layout.html.twig' %}
+{% extends 'v2/standard_layout.html.twig' %}
 
 {% block metaTitle %}{{ 'add_si_siao_number'|trans }}{% endblock metaTitle %}
-{% block title %}{{ 'add_si_siao_number'|trans }}{% endblock %}
 
-{% block bodyContent %}
+{% block delimiter %}{% endblock %}
+
+{% block content %}
     <div class="container">
-        <h2 class="pb-2 text-center">{{ beneficiary.fullName }}</h2>
+        <h4 class="pb-2 my-2 text-center">
+            {{ 'username'|trans }} :
+            <span class="transform-uppercase text-blue">{{ beneficiary.username }}</span>
+        </h4>
         {{ form_start(form) }}
         <div class="row">
             <div class="d-flex align-items-center col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
