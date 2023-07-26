@@ -28,17 +28,17 @@ class RosalieInteroperabilityController extends AbstractController
             ? $this->redirectToRoute('create_beneficiary', ['id' => $beneficiaryCreationProcess->getId(), 'step' => $beneficiaryCreationProcess->getLastReachedStep()])
             : $this->redirectToRoute('list_beneficiaries');
 
-        return $this->addSiSiaoNumberForm($request, $beneficiary, $service, $translator, $em, $redirection);
+        return $this->processSiSiaoNumberForm($request, $beneficiary, $service, $translator, $em, $redirection);
     }
 
     #[IsGranted('ROLE_MEMBRE')]
     #[Route('/beneficiary/{id}/affiliate/add-si-siao-number', name: 'affiliate_beneficiary_add_si_siao_number')]
     public function affiliationAddSiSiaoNumber(Request $request, Beneficiaire $beneficiary, RosalieService $service, TranslatorInterface $translator, EntityManagerInterface $em): Response
     {
-        return $this->addSiSiaoNumberForm($request, $beneficiary, $service, $translator, $em, $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]));
+        return $this->processSiSiaoNumberForm($request, $beneficiary, $service, $translator, $em, $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]));
     }
 
-    private function addSiSiaoNumberForm(Request $request, Beneficiaire $beneficiary, RosalieService $service, TranslatorInterface $translator, EntityManagerInterface $em, RedirectResponse $redirection): Response
+    private function processSiSiaoNumberForm(Request $request, Beneficiaire $beneficiary, RosalieService $service, TranslatorInterface $translator, EntityManagerInterface $em, RedirectResponse $redirection): Response
     {
         $form = $this->createFormBuilder()
             ->add('number', TextType::class, ['label' => 'si_siao_number'])
