@@ -32,6 +32,7 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
         yield ['/public/reset-password/check-sms'];
         yield ['/public/reset-password/reset/sms/{token}'];
         yield ['/public/reset-password/reset/email/{token}'];
+        yield ['/reinitialiser-mot-de-passe'];
         yield ['/logout'];
     }
 }
