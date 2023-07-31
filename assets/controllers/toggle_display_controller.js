@@ -5,6 +5,6 @@ export default class extends Controller {
   static targets = ['target'];
 
   toggle() {
-    this.targetTarget.classList.toggle('d-none')
+    this.targetTargets.forEach(target => target.classList.toggle('d-none'));
   }
 }
