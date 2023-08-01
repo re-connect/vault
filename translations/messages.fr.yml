@@ -42,8 +42,6 @@ alt_logo_reconnect: 'logo association reconnect'
 an_error_occurred: Une erreur s'est produite !
 answer: Réponse
 answer_secret_question: 'Répondre à la question secrète'
-answer_secret_question_relay_acception_1: "Une fois validé, le bénéficiaire sera invité à rejoindre ces centres."
-answer_secret_question_relay_acception_2: "Si vous êtes en présence du bénéficiaire, vous pouvez entrer la réponse à sa question secrète afin d'accepter l'invitation à ces centres dès maintenant. Sinon, il pourra accepter l'invitation en se connectant à son compte Reconnect."
 association.categorie.association: Association
 association.categorie.ccas: "Centre Communal d'Action Social (CCAS)"
 association.categorie.choisir: 'Veuillez choisir la catégorie de votre association'
@@ -102,6 +100,11 @@ beneficiary_has_no_email: Le bénéficiaire n'a pas renseigné d'adresse email
 beneficiary_has_no_phone_number: Le bénéficiaire n'a pas renseigné de numéro de téléphone
 beneficiary_has_no_secret_answer: Le bénéficiaire n'a pas renseigné de réponse secrète
 beneficiary_not_found: "Aucun bénéficiaire avec l'id %id% n'a été trouvé"
+beneficiary_relay_affiliation_end: "Sinon, il pourra accepter l'invitation en se connectant à son compte Reconnect"
+beneficiary_relay_affiliation_intro: "Une fois validé, le bénéficiaire sera invité à rejoindre ces centres."
+beneficiary_relay_affiliation_options: "Si vous êtes en présence du bénéficiaire, vous pouvez accepter l'invitation à ces centres dès maintenant en :"
+beneficiary_relay_affiliation_question: "Répondant avec lui à sa question secrète"
+beneficiary_relay_affiliation_sms: "Indiquant le code reçu par SMS par le bénéficiaire"
 beneficiary_reset_password_SMS_code: Code reçu par SMS
 beneficiary_reset_password_SMS_has_been_sent: Un SMS a été envoyé au bénéficiaire, il contient un code secret nécessaire pour renouveller son mot de passe
 beneficiary_reset_password_already_requested: Une demande de réinitialisation du mot de passe a déjà été effectuée pour ce bénéficiaire
@@ -460,6 +463,7 @@ faq_gdpr: 'F.A.Q. RGPD'
 faq_gdpr_no_content: 'Cette section est vide pour le moment'
 faq_gdpr_text: "<p>Dans le cadre de la mise en place d'outils Reconnect, vous vous posez des questions concernant la mise en conformite de votre structure au RGPD ?</p><p>Cette F.A.Q. a pour but de répondre à vos interrogations.</p>"
 fill_beneficiary_identity_information: "Veuillez renseigner l'identité du bénéficiaire"
+finish: Terminer
 firstname: Prénom
 flash.erreur: Erreur
 flash.operationReussie: 'Opération réussie'
@@ -1045,6 +1049,7 @@ secret_question_other: 'Autre question secrète'
 select_relays_for_disaffiliation: 'Cette personne est liée à un ou plusieurs relai(s) que vous gérez, sélectionnez le.les relais pour lesquels vous souhaitez arrêter le suivi'
 select_relays_for_disaffiliation_pro: Cet utilisateur professionnel est lié à un ou plusieurs relai(s) que vous gérez, sélectionnez le.les relais auxquels vous souhaitez lui retirer l’accès
 send: Envoyer
+send_sms_code: Recevoir un code par SMS
 sending_sms_account_activation: "Envoi du SMS d'activation du compte"
 setQuestionSecrete.bienSauvegarde: 'Votre question secrete a bien été enregistrée'
 set_secret_question: 'Entrez votre question secrète'
@@ -1062,7 +1067,9 @@ show_professionals: Voir les professionnels
 si_siao_number: 'Numéro SI-SIAO'
 si_siao_number_found_rosalie: 'Numéro SI-SIAO trouvé dans Rosalie, liaison effectuée'
 sms: SMS
+sms_code: Code reçu par sms
 sms_sent: 'SMS envoyé'
+sms_sent_at_date: 'Un sms contenant le code a été envoyé le %date% à %hour% sur le téléphone %phone%'
 sms_sent_failed: "L'envoi du SMS a échoué, veuillez vérifier que le numéro de téléphone est valide"
 status: Statut
 statut.abandoned: Abandonné

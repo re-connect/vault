@@ -1,8 +1,9 @@
 <?php
 
-namespace App\FormV2\UserCreation;
+namespace App\FormV2;
 
 use App\Entity\Beneficiaire;
+use App\Validator\Constraints\SecretAnswer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -12,21 +13,13 @@ class AnswerSecretQuestionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        /** @var Beneficiaire $beneficiary */
+        $beneficiary = $builder->getData();
         $builder
-            ->add('questionSecrete', TextType::class, [
-                'required' => false,
-                'disabled' => true,
-                'label' => 'secret_question',
-            ])
-            ->add('autreQuestionSecrete', TextType::class, [
-                'disabled' => true,
-                'required' => false,
-                'label' => 'secret_question_other',
-                'mapped' => false,
-            ])
             ->add('reponseSecrete', TextType::class, [
                 'label' => 'secret_answer',
                 'mapped' => false,
+                'constraints' => new SecretAnswer($beneficiary),
             ]);
     }
 

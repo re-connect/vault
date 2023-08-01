@@ -175,7 +175,7 @@ class MainController extends AbstractController
         if ($lang = $request->query->get('lang')) {
             $languageService->setLocaleInSession($lang);
             if ($request->getLocale() !== $translator->getLocale()) {
-                return $this->redirectToRoute('/resetting_mail_translation', ['lang' => $request->getLocale()]);
+                return $this->redirectToRoute('resetting_mail_translation', ['lang' => $request->getLocale()]);
             }
         }
 
@@ -188,7 +188,7 @@ class MainController extends AbstractController
         if ($lang = $request->query->get('lang')) {
             $languageService->setLocaleInSession($lang);
             if ($request->getLocale() !== $translator->getLocale()) {
-                return $this->redirectToRoute('/shared_document_mail_translation', ['lang' => $request->getLocale()]);
+                return $this->redirectToRoute('shared_document_mail_translation', ['lang' => $request->getLocale()]);
             }
         }
 

@@ -1,43 +1,63 @@
 {% extends 'v2/management_layout.html.twig' %}
 {% block metaTitle %}{{ 'choose_beneficiary'|trans }}{% endblock %}
 {% block subTitle %}{{ 'choose_beneficiary_centers'|trans|upper }}{% endblock %}
-{% block subTitleIcon %}{% endblock %}
-{% form_theme form 'v2/form_theme/create_user_form_theme.html.twig' %}
+{% block subTitleIconName %}user-plus{% endblock %}
+
+{% set hasSecretQuestion = beneficiary.questionSecrete %}
+{% set hasTelephone = beneficiary.user.telephone %}
 
 {% block content %}
     <div>
-        {{ form_start(form) }}
         <h4 class="text-center mt-4">
             <i class="fas fa-user me-1"></i>
             {{ beneficiary.user.username }}
         </h4>
         <div class="row my-4">
-            <div class="text-center mx-auto mt-4 col-12 col-md-6">
-                <span class="font-size-1-2 mt-3">{{ 'answer_secret_question_relay_acception_1'|trans }} {{ beneficiary.questionSecrete ? 'answer_secret_question_relay_acception_2'|trans : '' }}</span>
-                <br>
-                <div class=" {{ beneficiary.questionSecrete ? '' : 'd-none' }}" {{ stimulus_controller('toggle_display') }} >
-                    <div>
-                        <button type="button" class="btn btn-blue text-white rounded-pill shadow-sm mt-3"
-                                {{ stimulus_action('toggle_display', 'toggle') }}
-                        >
-                            {{ 'answer_secret_question'|trans }}
-                        </button>
-                    </div>
-                    <div
-                            class="{{ form_errors(form.reponseSecrete)|length > 0 ? '' : 'd-none' }}"
-                            {{ stimulus_target('toggle_display', 'target') }}
-                    >
-                        {{ form_widget(form) }}
-                        {{ include('v2/common/_button_with_loader.html.twig') }}
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 mb-4">
+            <div class="col-12 col-md-5 mb-4">
                 <h4 class="text-center">{{ 'relays'|trans }} :</h4>
                 {{ include('v2/user_creation/components/_relays_checkboxes.html.twig', {user: beneficiary.user}) }}
             </div>
-            {{ include('v2/common/_button_row.html.twig', {href: path('list_beneficiaries')}) }}
+            <div class="d-flex flex-column mx-auto mt-5 col-12 col-md-6 font-size-1-2">
+                <span>{{ 'beneficiary_relay_affiliation_intro'|trans }} </span>
+                {% if hasSecretQuestion or hasTelephone %}
+                    <span>{{ 'beneficiary_relay_affiliation_options'|trans }} </span>
+                    <ul class="mx-auto pt-2">
+                        {% if hasSecretQuestion %}<li>{{ 'beneficiary_relay_affiliation_question'|trans }}</li>{% endif %}
+                        {% if hasTelephone %}<li>{{ 'beneficiary_relay_affiliation_sms'|trans }}</li>{% endif %}
+                    </ul>
+                    <span>{{ 'beneficiary_relay_affiliation_end'|trans }} </span>
+                {% endif %}
+                <br>
+                {% block frame %}
+                    <turbo-frame id="force-affiliation-form" class="text-center">
+                        {% if hasSecretQuestion %}
+                            <a class="btn btn-blue text-white shadow-sm"
+                               href="{{ path('affiliate_beneficiary_relays_secret_question', { id:beneficiary.id }) }}"
+                            >
+                                {{ 'answer_secret_question'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if hasTelephone %}
+                            <a class="btn btn-blue text-white shadow-sm"
+                               href="{{ path('affiliate_beneficiary_relays_sms_code', { id:beneficiary.id }) }}"
+                            >
+                                {{ 'send_sms_code'|trans }}
+                            </a>
+                        {% endif %}
+                    </turbo-frame>
+                {% endblock %}
+            </div>
+            <div class="d-flex justify-content-between mt-4 pt-2">
+                <div class="font-size-1-2">
+                    <span>{{ 'add_si_siao_number_intro'|trans }}</span>
+                    <a class="btn btn-blue text-white shadow-sm"
+                       href="{{ path('affiliate_beneficiary_add_si_siao_number', { id:beneficiary.id }) }}"
+                    >
+                        {{ 'add'|trans }}
+                    </a>
+                </div>
+                {{ include('v2/common/_button_row.html.twig', {href: path('list_beneficiaries'), text: 'finish'|trans }) }}
+            </div>
         </div>
-        {{ form_end(form) }}
     </div>
 {% endblock %}
