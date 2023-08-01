@@ -22,6 +22,7 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
     public const MEMBER_MAIL_NO_RELAY_NO_PERMISSION = 'v2_test_user_member_no_relay_no_permission@mail.com';
     public const MEMBER_PASSWORD_EXPIRED_MAIL = 'v2_test_user_membre_password_expired@mail.com';
     public const MEMBER_PASSWORD_OVERDUE_MAIL = 'v2_test_user_membre_password_overdue@mail.com';
+    public const MEMBER_FIRST_VISIT = 'v2_test_user_membre_first_visit@mail.com';
 
     public function load(ObjectManager $manager)
     {
@@ -58,6 +59,7 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
             ],
         );
         $this->createMember(['email' => self::MEMBER_MAIL_NO_RELAY_NO_PERMISSION], [], false, false);
+        $this->createMember(['email' => self::MEMBER_FIRST_VISIT, 'firstVisit' => true], [], false, false);
     }
 
     /** @param array<Centre> $relays */
