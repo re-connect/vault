@@ -18,6 +18,7 @@ use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\DoctrineORMAdminBundle\Filter\CallbackFilter;
 use Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class DocumentAdmin extends AbstractAdmin
@@ -52,6 +53,29 @@ class DocumentAdmin extends AbstractAdmin
             ->add('beneficiaire.id', null, ['label' => 'Bénéficiaire (id)'])
             ->add('beneficiaire.user.id', null, ['label' => 'Utilisateur (id)'])
             ->add('nom', null, ['label' => 'Nom du document'])
+            ->add('region', CallbackFilter::class, [
+                'label' => 'Région (centre - lié à)',
+                'callback' => static function (\Sonata\AdminBundle\Datagrid\ProxyQueryInterface $query, string $alias, string $field, FilterData $data): bool {
+                    if (!$data->hasValue()) {
+                        return false;
+                    }
+                    $value = $data->getValue();
+
+                    $query
+                        ->innerJoin($alias.'.beneficiaire', 'b')
+                        ->innerJoin('b.beneficiairesCentres', 'bc')
+                        ->innerJoin('bc.centre', 'c')
+                        ->andWhere('c.region IN (:regions)')
+                        ->setParameter('regions', $value);
+
+                    return true;
+                },
+                'field_type' => ChoiceType::class,
+                'field_options' => [
+                    'choices' => array_combine(Centre::REGIONS, Centre::REGIONS),
+                    'multiple' => true,
+                ],
+            ])
             ->add('creatorUser', CallbackFilter::class, [
                 'label' => 'Déposé par (utilisateur)',
                 'callback' => static function (ProxyQueryInterface $query, string $alias, string $field, FilterData $data): bool {
