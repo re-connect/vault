@@ -52,11 +52,6 @@ class SecurityController extends AbstractController
         }
 
         if ($user->isBeneficiaire()) {
-            // I think we never pass this condition
-            if ((!$user->getSubjectBeneficiaire()->getQuestionSecrete() || !$user->getSubjectBeneficiaire()->getReponseSecrete()) && $user->isFirstVisit()) {
-                return $this->redirect($this->generateUrl('re_beneficiaire_setQuestionSecrete'));
-            }
-
             return $this->redirect($this->generateUrl('beneficiary_home'));
         }
 
