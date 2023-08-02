@@ -7,7 +7,7 @@
         <fieldset>
             <legend><label>Nom d'utilisateur</label></legend>
             {{ subject.user.username }}
-            <a class="floatRight btn btn-medium" href="{{ linkToList }}" >Retour à la liste</a>
+            <a class="floatRight btn btn-medium" href="{{ path('list_pro') }}" >Retour à la liste</a>
         </fieldset>
     </div>
 {% endblock addUserContent %}

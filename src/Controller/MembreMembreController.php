@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Centre;
 use App\Entity\Membre;
 use App\Entity\User;
 use App\Form\Factory\UserFormFactory;
@@ -47,11 +46,9 @@ final class MembreMembreController extends REController
         return $this->redirect($this->generateUrl('re_membre_membresCentre', ['id' => $centreFirst->getId()]));
     }
 
-    public function membresCentre(Centre $centre): Response
+    public function membresCentre(): Response
     {
-        return $this->render('user/membre-membre/membresCentre.html.twig', [
-            'centre' => $centre,
-        ]);
+        return $this->redirectToRoute('list_pro');
     }
 
     public function ajoutMembreSearch(Request $request, UserRepository $userRepository): Response
