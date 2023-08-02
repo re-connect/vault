@@ -33,7 +33,7 @@
 		{% endif %}
 	
 		&nbsp;{% if app.user.isMembre %}
-			<a class="rp-blue" href="{{ path('re_membre_membres') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
+			<a class="rp-blue" href="{{ path(subject.user.isBeneficiaire ? 're_user_redirectUser' : 're_membre_membres') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
 		{% else %}
 			<a class="rp-blue" href="{{ path('re_user_redirectUser') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
 		{% endif %}
