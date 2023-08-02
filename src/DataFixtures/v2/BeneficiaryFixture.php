@@ -23,11 +23,14 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
     public const BENEFICIARY_MAIL_SETTINGS = 'v2_test_user_beneficiary_settings@mail.com';
     public const BENEFICIARY_MAIL_SETTINGS_EDIT = 'v2_test_user_beneficiary_settings_edit@mail.com';
     public const BENEFICIARY_MAIL_SETTINGS_DELETE = 'v2_test_user_beneficiary_to_delete@mail.com';
+    public const BENEFICIARY_MAIL_FIRST_VISIT = 'v2_test_user_beneficiary_first_visit@mail.com';
+    public const BENEFICIARY_MAIL_NO_SECRET_QUESTION = 'v2_test_user_beneficiary_no_secret_question@mail.com';
 
     public function load(ObjectManager $manager)
     {
         $this->createTestBeneficiary(
             $this->getTestUser(self::BENEFICIARY_MAIL),
+            [],
             [
                 RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY_1]),
                 RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY_2]),
@@ -36,11 +39,13 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_SETTINGS));
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_SETTINGS_EDIT));
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_SETTINGS_DELETE));
+        $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_FIRST_VISIT)->setFirstVisit(true));
+        $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_NO_SECRET_QUESTION), ['questionSecrete' => null]);
     }
 
-    public function createTestBeneficiary(User $user, array $relays = []): void
+    public function createTestBeneficiary(User $user, array $attributes = [], array $relays = []): void
     {
-        $beneficiary = BeneficiaireFactory::new()
+        $beneficiary = BeneficiaireFactory::new($attributes)
             ->linkToRelays(!empty($relays)
                 ? $relays
                 : [RelayFactory::findOrCreate(['nom' => RelayFixture::DEFAULT_PRO_RELAY])]
