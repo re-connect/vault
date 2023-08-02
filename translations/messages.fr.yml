@@ -89,6 +89,7 @@ beneficiaries_management: Gestion des bénéficiaires
 beneficiary.delete.account: 'Êtes vous sûr de bien vouloir supprimer votre compte ?'
 beneficiary_added_to_relays: 'Le bénéficiaire a été ajouté aux relais selectionnés'
 beneficiary_already_affiliated_to_all_relays: "Le bénéficiaire est déjà affilié, ou invité, à l'ensemble de vos relais Reconnect"
+beneficiary_already_affiliated_to_relay: Le bénéficiaire est déjà affilié à ce relais
 beneficiary_already_as_account_affiliate: 'Le bénéficiaire a déjà un compte sur le coffre-fort numérique Reconnect, liez ce compte existant à un de vos relais'
 beneficiary_created_successfully: 'Le bénéficiaire a bien été créé'
 beneficiary_created_successfully_wait_activation: Le compte a bien été créé, le bénéficiaire vient de recevoir un SMS afin d’activer son coffre-fort numérique. Il peut dès à présent définir son mot de passe et la réponse à sa question secrète.
@@ -942,6 +943,7 @@ postal_code: 'Code Postal'
 previous: Précédent
 print_account_creation_act: "N'oubliez pas d'imprimer l'acte d'ouverture du compte Reconnect afin d'obtenir la signature du bénéficiaire"
 private: Privé
+pro_already_affiliated_to_relay: L'utilisateur est déjà affilié à ce relais
 pro_management: Gestion des professionnels
 professionals: Professionnels
 public_reset_password: 'Je souhaite réinitialiser mon mot de passe'

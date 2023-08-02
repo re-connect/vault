@@ -56,6 +56,7 @@ beneficiaries: Beneficiaries
 beneficiaries_management: Beneficiaries management
 beneficiary_added_to_relays: 'The beneficiary has been added to selected centers'
 beneficiary_already_affiliated_to_all_relays: 'The beneficiary is already affiliated to your Reconnect relays'
+beneficiary_already_affiliated_to_relay: The beneficiary is already affiliated to this relay
 beneficiary_already_as_account_affiliate: 'The beneficiary already has a Reconnect digital vault account. Link this existing account to one of your relays'
 beneficiary_created_successfully: 'Beneficiary created successfully'
 beneficiary_created_successfully_wait_activation: 'The account has been successfully created and is awaiting activation by the beneficiary.'
@@ -779,6 +780,7 @@ phone_duplicate: 'This phone number is linked to multiple Reconnect accounts, pl
 postal_code: 'Postal Code'
 print_account_creation_act: "Don't forget to print the Reconnect account creation act, in order to obtain the signature of the beneficiary"
 private: Private
+pro_already_affiliated_to_relay: The professional is already affiliated to this relay
 pro_management: Professionals management
 professionals: Professionals
 public_reset_password: 'I want to reset my password'
