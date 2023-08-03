@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AnnexeController extends AbstractController
 {
     /**
-     * @Route("/public/annexe/{url}", name="re_admin_annexe")
+     * @Route("/annexe/{url}", name="re_admin_annexe")
      */
     public function show(EntityManagerInterface $em, $url): BinaryFileResponse
     {
