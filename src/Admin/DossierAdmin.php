@@ -2,12 +2,17 @@
 
 namespace App\Admin;
 
+use App\Entity\Centre;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
+use Sonata\AdminBundle\Filter\Model\FilterData;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
+use Sonata\DoctrineORMAdminBundle\Filter\CallbackFilter;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class DossierAdmin extends AbstractAdmin
 {
@@ -37,6 +42,29 @@ class DossierAdmin extends AbstractAdmin
             ->add('beneficiaire.id')
             ->add('beneficiaire.user.id')
             ->add('nom')
+            ->add('region', CallbackFilter::class, [
+                'label' => 'Région (centre - lié à)',
+                'callback' => static function (ProxyQueryInterface $query, string $alias, string $field, FilterData $data): bool {
+                    if (!$data->hasValue()) {
+                        return false;
+                    }
+                    $value = $data->getValue();
+
+                    $query
+                        ->innerJoin($alias.'.beneficiaire', 'b')
+                        ->innerJoin('b.beneficiairesCentres', 'bc')
+                        ->innerJoin('bc.centre', 'c')
+                        ->andWhere('c.region IN (:regions)')
+                        ->setParameter('regions', $value);
+
+                    return true;
+                },
+                'field_type' => ChoiceType::class,
+                'field_options' => [
+                    'choices' => array_combine(Centre::REGIONS, Centre::REGIONS),
+                    'multiple' => true,
+                ],
+            ])
             ->add('createdAt')
             ->add('beneficiaire.user.canada', null, ['label' => 'Canada']);
     }

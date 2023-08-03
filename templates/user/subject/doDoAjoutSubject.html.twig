@@ -32,17 +32,11 @@
 			<li class="smallMargin">&#149;	{% trans %}membre.doDoAjoutSubject.confirmeraEnConnectant{% endtrans %}
 		{% endif %}
 	
-		&nbsp; 
-		{% if subject.user.isBeneficiaire and app.user.isGestionnaire %}
-			<a class="rp-blue" href="{{ path('re_gestionnaire_beneficiaires') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
-			{% elseif subject.user.isBeneficiaire %}
-			<a class="rp-blue" href="{{ path('list_beneficiaries') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
-			{% elseif app.user.isGestionnaire %}
-			<a class="rp-blue" href="{{ path('re_gestionnaire_membres') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
-			{% else %}
-			<a class="rp-blue" href="{{ path('re_membre_membres') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
+		&nbsp;{% if app.user.isMembre %}
+			<a class="rp-blue" href="{{ path(subject.user.isBeneficiaire ? 're_user_redirectUser' : 're_membre_membres') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
+		{% else %}
+			<a class="rp-blue" href="{{ path('re_user_redirectUser') }}" class="">{% trans %}membre.doDoAjoutSubject.termine{% endtrans %}</a>
 		{% endif %}
-
 		</li>
 	</ul>
 

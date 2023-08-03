@@ -2,8 +2,10 @@
 
 namespace App\Tests\v2\Controller;
 
+use App\DataFixtures\v2\AdminFixture;
 use App\Entity\User;
 use App\RepositoryV2\ResetPasswordRequestRepository;
+use App\Tests\Factory\UserFactory;
 use App\Tests\v2\AuthenticatedTestCase;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -30,7 +32,7 @@ class PrivateResettingControllerTest extends AuthenticatedTestCase
 
         $this->em = $this->getEntityManager();
         $this->beneficiaryUser = $this->createTestBeneficiary('reset_tests@mail.com')->getUser();
-        $this->proUser = $this->createTestUser('admin@mail.com', ['ROLE_ADMIN'], 'ROLE_ADMIN');
+        $this->proUser = UserFactory::find(['email' => AdminFixture::ADMIN_MAIL])->object();
         $this->proUser->setTypeUser('ROLE_ADMIN');
         $this->em->flush();
     }
@@ -42,7 +44,6 @@ class PrivateResettingControllerTest extends AuthenticatedTestCase
             $this->em->remove($request);
             $this->em->flush();
         }
-        $this->removeTestUser('admin@mail.com');
         $this->removeTestUser('reset_tests@mail.com');
     }
 
