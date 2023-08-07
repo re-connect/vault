@@ -188,6 +188,8 @@ class User extends BaseUser implements \JsonSerializable
     private ?string $fcnToken = null;
     private ?bool $isCreationProcessPending = false;
     private ?string $oldUsername = null;
+    /** @var ?Collection<int, SharedDocument> */
+    private ?Collection $sharedDocuments;
 
     public function __construct()
     {
