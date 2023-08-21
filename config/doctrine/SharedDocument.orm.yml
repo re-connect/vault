@@ -29,8 +29,8 @@ App\Entity\SharedDocument:
     manyToOne:
         document:
             targetEntity: App\Entity\Document
-            mappedBy: shareddocument
+            mappedBy: sharedDocuments
         sharedBy:
             targetEntity: App\Entity\User
-            mappedBy: shareddocument
+            mappedBy: sharedDocuments
 
