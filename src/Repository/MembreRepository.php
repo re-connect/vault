@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Centre;
 use App\Entity\Membre;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
@@ -91,7 +92,7 @@ class MembreRepository extends ServiceEntityRepository
     }
 
     /** @return Membre[] */
-    public function search(?string $search = ''): array
+    public function search(User $loggedUser, ?string $search = ''): array
     {
         $qb = $this->createQueryBuilder('m')
             ->join('m.user', 'u');
@@ -99,7 +100,11 @@ class MembreRepository extends ServiceEntityRepository
         if ($search) {
             foreach (explode(' ', $search) as $word) {
                 $qb->andWhere('u.prenom LIKE :search OR u.nom LIKE :search OR u.email LIKE :search')
-                    ->setParameter('search', sprintf('%%%s%%', $word));
+                    ->andWhere('u != :user')
+                    ->setParameters([
+                        'user' => $loggedUser,
+                        'search' => sprintf('%%%s%%', $word),
+                    ]);
             }
         }
 
