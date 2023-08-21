@@ -103,7 +103,7 @@ class UserController extends AbstractController
     #[Route(path: '/{id<\d+>}/invite', name: 'invite_user', methods: ['GET'])]
     public function inviteUser(User $user): Response
     {
-        return $this->render('v2/user/affiliation/invite.html.twig', ['user' => $user]);
+        return $this->render('v2/user/affiliation/invite.html.twig', ['user' => $user, 'relays' => $this->getUser()->getAffiliatedRelaysWithProfessionalManagement()]);
     }
 
     #[Route(

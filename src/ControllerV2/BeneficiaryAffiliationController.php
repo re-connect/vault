@@ -58,6 +58,7 @@ class BeneficiaryAffiliationController extends AbstractController
     {
         return $this->render('v2/user_affiliation/beneficiary/relays_form.html.twig', [
             'beneficiary' => $beneficiary,
+            'relays' => $this->getUser()->getValidRelays(),
         ]);
     }
 
@@ -86,6 +87,7 @@ class BeneficiaryAffiliationController extends AbstractController
         return $this->render('v2/user_affiliation/beneficiary/_relays_form_secret_question.html.twig', [
             'beneficiary' => $beneficiary,
             'secretQuestionForm' => $secretQuestionForm,
+            'relays' => $this->getUser()->getValidRelays(),
         ]);
     }
 
@@ -129,6 +131,7 @@ class BeneficiaryAffiliationController extends AbstractController
         return $this->render('v2/user_affiliation/beneficiary/_relays_form_sms_code.html.twig', [
             'beneficiary' => $beneficiary,
             'smsCodeForm' => $smsCodeForm,
+            'relays' => $this->getUser()->getValidRelays(),
         ]);
     }
 }
