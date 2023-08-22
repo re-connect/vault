@@ -181,6 +181,10 @@ App\Entity\User:
             cascade: [ "persist", "remove" ]
             mappedBy: user
             orphanRemoval: true
+        sharedDocuments:
+            targetEntity: App\Entity\SharedDocument
+            mappedBy: sharedBy
+            cascade: [ "remove" ]
     manyToOne:
         disabledBy:
             targetEntity: App\Entity\User

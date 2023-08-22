@@ -1,16 +1,26 @@
-<div class="relay-checkbox">
+{% set hasValidLinkToRelay = user.hasValidLinkToRelay(relay) %}
+{% set isPro = user.hasRole('ROLE_MEMBRE') %}
+
+<div class="relay-checkbox py-1">
     <a
-            class="btn btn-light border-primary h-100 w-100 {{ user.isLinkedToRelay(relay) ? activeClasses : inactiveClasses }}"
+        class="btn btn-light border-primary h-100 w-100 {{ user.isLinkedToRelay(relay) ? activeClasses : inactiveClasses }}"
+        {% if not hasValidLinkToRelay %}
             {{ stimulus_action('custom-checkbox', 'click', null, {
                 path: path('toggle_user_invitation', {id: user.id, relay: relay.id})
             }) }}
+        {% else %}
+            data-toggle="tooltip"
+            data-bs-placement="top"
+            data-bs-custom-class="blue-tooltip"
+            title="{{ isPro ? 'pro_already_affiliated_to_relay'|trans : 'beneficiary_already_affiliated_to_relay'|trans }}"
+        {% endif %}
     >
-        {% if user.hasValidLinkToRelay(relay) %}
+        {% if hasValidLinkToRelay %}
             <div class="text-end">
-                        <span class="badge bg-success text-white">
-                            <i class="fa fa-check-circle"></i>
-                            {{ 'accepted'|trans }}
-                        </span>
+                <span class="badge bg-success text-white">
+                    <i class="fa fa-check-circle"></i>
+                    {{ 'accepted'|trans }}
+                </span>
             </div>
         {% endif %}
         <span>{{ relay.nameAndAddress }}</span>

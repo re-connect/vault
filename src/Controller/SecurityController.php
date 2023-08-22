@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Security\VoterV2\BeneficiaryVoter;
 use App\ServiceV2\GdprService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -51,16 +52,13 @@ class SecurityController extends AbstractController
         }
 
         if ($user->isBeneficiaire()) {
-            if ((!$user->getSubjectBeneficiaire()->getQuestionSecrete() || !$user->getSubjectBeneficiaire()->getReponseSecrete()) && $user->isFirstVisit()) {
-                return $this->redirect($this->generateUrl('re_beneficiaire_setQuestionSecrete'));
-            }
-
             return $this->redirect($this->generateUrl('beneficiary_home'));
         }
 
         if ($user->isMembre() || $user->isGestionnaire()) {
-            return $this->redirect($this->generateUrl('list_beneficiaries'));
+            return $this->redirect($this->generateUrl($this->isGranted(BeneficiaryVoter::MANAGE) ? 'list_beneficiaries' : 're_membre_ajoutBeneficiaire'));
         }
+
         if ($user->isAssociation()) {
             return $this->redirect($this->generateUrl('re_association_accueil'));
         }

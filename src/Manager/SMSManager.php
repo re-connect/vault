@@ -33,6 +33,22 @@ class SMSManager
     ) {
     }
 
+    /** @throws \Exception */
+    public function sendAffiliationCodeSms(Beneficiaire $beneficiary): void
+    {
+        $telephone = $beneficiary->getUser()?->getTelephone();
+        $code = $this->getRandomSmallSmsCode();
+        $beneficiary->setRelayInvitationSmsCode($code);
+        $message = $this->translator->trans('membre.sendSmsCode.smsMessage', ['%code%' => $code]);
+
+        try {
+            $this->em->flush();
+            $this->doSendSms($telephone, $message);
+        } catch (Exception) {
+            $this->smsLogger->info(sprintf('Failure sending activation SMS to %s', $telephone));
+        }
+    }
+
     public function sendSmsActivation($subject): void
     {
         $telephone = $subject->getUser()->getTelephone();
@@ -68,7 +84,7 @@ class SMSManager
             $this->doSendSms($number, $message);
             $this->smsLogger->info('SMS envoyé à '.$number.' : '.$message);
         } catch (Exception) {
-            $this->smsLogger->info('Failure sending activation SMS to '.$number);
+            $this->smsLogger->info(sprintf('Failure sending activation SMS to %s', $number));
         }
     }
 
