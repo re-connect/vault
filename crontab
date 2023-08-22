@@ -1,2 +1,2 @@
 * * * * * php ~/www/current/bin/console re:everyMinute >> ~/www/shared/var/log/sms-reminders.log
-* * * * * php ~/www/current/bin/console app:enable-api-client {apiClientName} >> ~/www/shared/var/log/enable-api-client.log
+0 6 * * 0 php ~/www/current/bin/console app:enable-api-client {apiClientName} >> ~/www/shared/var/log/enable-api-client.log
