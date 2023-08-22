@@ -111,7 +111,7 @@ class ProController extends AbstractController
         }
 
         $pros = $paginator->create(
-            $repository->search($search->getSearch()),
+            $repository->search($this->getUser(), $search->getSearch()),
             $request->query->getInt('page', $request->query->getInt('page', 1)),
         );
 

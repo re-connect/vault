@@ -60,6 +60,7 @@ class BeneficiaryCreationController extends AbstractController
             'form' => $form,
             'beneficiaryCreationProcess' => $creationProcess,
             'beneficiary' => $beneficiary,
+            'relays' => $this->getUser()->getValidRelays(),
         ]);
     }
 
