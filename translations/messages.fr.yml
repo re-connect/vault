@@ -102,8 +102,8 @@ beneficiary_has_no_phone_number: Le bénéficiaire n'a pas renseigné de numéro
 beneficiary_has_no_secret_answer: Le bénéficiaire n'a pas renseigné de réponse secrète
 beneficiary_not_found: "Aucun bénéficiaire avec l'id %id% n'a été trouvé"
 beneficiary_relay_affiliation_end: "Sinon, il pourra accepter l'invitation en se connectant à son compte Reconnect"
-beneficiary_relay_affiliation_intro: "Une fois validé, le bénéficiaire sera invité à rejoindre ces centres."
-beneficiary_relay_affiliation_options: "Si vous êtes en présence du bénéficiaire, vous pouvez accepter l'invitation à ces centres dès maintenant en :"
+beneficiary_relay_affiliation_intro: "Sélectionnez ci-contre le/les centres auxquels vous voulez affilier le bénéficiaire."
+beneficiary_relay_affiliation_options: "Si vous êtes avec le bénéficiaire, vous pouvez valider l’ajout à un/des centres en :"
 beneficiary_relay_affiliation_question: "Répondant avec lui à sa question secrète"
 beneficiary_relay_affiliation_sms: "Indiquant le code reçu par SMS par le bénéficiaire"
 beneficiary_reset_password_SMS_code: Code reçu par SMS
@@ -1171,7 +1171,7 @@ you_are_now_subscribed_for_newsletter: "Vous êtes maintenant inscrit.e sur notr
 you_can_download_mobile_app: "Vous pouvez également télécharger l'application mobile"
 you_can_unsubscribe_for_newsletter: 'Vous pouvez vous désabonner à tout moment de cette liste, grâce au lien que vous trouverez en bas de page de chaque newsletter'
 you_must_provide_phone_number: 'Vous devez renseigner le numéro de téléphone'
-you_must_select_center_for_right_update: Vous devez sélectionner un centre pour pouvoir modifier les droits d'un utilisateur
+you_must_select_center_for_right_update: Sélectionnez un centre pour modifier les droits d’un utilisateur
 your_email: 'Votre Email'
 your_new_password: Votre nouveau mot de passe
 your_phone_number: 'Votre numéro de téléphone'
