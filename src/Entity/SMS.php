@@ -179,4 +179,13 @@ class SMS implements \JsonSerializable
     {
         return 'SMS To String';
     }
+
+    public static function createReminderSms(Rappel $reminder, Evenement $event, Beneficiaire $beneficiary, string $number): self
+    {
+        return (new SMS())
+            ->setRappel($reminder)
+            ->setEvenement($event)
+            ->setBeneficiaire($beneficiary)
+            ->setDest($number);
+    }
 }
