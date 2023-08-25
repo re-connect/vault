@@ -74,13 +74,7 @@ class NotificationService
             $this->sendSms($number, $message);
             $reminder->setBEnvoye(true);
 
-            $sms = (new SMS())
-            ->setRappel($reminder)
-            ->setEvenement($event)
-            ->setBeneficiaire($beneficiary)
-            ->setDest($number);
-
-            $this->em->persist($sms);
+            $this->persistReminderSms($reminder, $event, $beneficiary, $number);
             $this->em->flush();
             $this->logger->info(sprintf('SMS envoyé à %s : %s', $number, $message));
         } catch (\Exception $e) {
@@ -233,5 +227,16 @@ class NotificationService
         }
 
         return $notifications;
+    }
+
+    private function persistReminderSms(Rappel $reminder, Evenement $event, Beneficiaire $beneficiary, string $number): void
+    {
+        $sms = (new SMS())
+            ->setRappel($reminder)
+            ->setEvenement($event)
+            ->setBeneficiaire($beneficiary)
+            ->setDest($number);
+
+        $this->em->persist($sms);
     }
 }
