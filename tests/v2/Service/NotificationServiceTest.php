@@ -123,13 +123,13 @@ class NotificationServiceTest extends AuthenticatedTestCase
     public function testSendSmsReminderSuccessfully(): void
     {
         // Create event and reminder
+        $reminder = (new Rappel())
+            ->setDate((new \DateTime())->modify('+6 hours'));
+
         $event = (new Evenement($this->beneficiaryUser))
             ->setNom('RDV Reconnect')
-            ->setDate((new \DateTime())->modify('+1 day'));
-
-        $reminder = (new Rappel())
-            ->setDate((new \DateTime())->modify('+6 hours'))
-            ->setEvenement($event);
+            ->setDate((new \DateTime())->modify('+1 day'))
+            ->addRappel($reminder);
 
         $this->em->persist($event);
         $this->em->flush();
@@ -155,7 +155,6 @@ class NotificationServiceTest extends AuthenticatedTestCase
 
         // reminder is sent
         self::assertTrue($reminder->getBEnvoye());
-        $this->em->remove($event);
         $this->em->flush();
     }
 
