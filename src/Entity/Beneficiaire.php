@@ -955,9 +955,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function getExternalLinkForClient(?Client $client): ?ClientBeneficiaire
     {
-        return !$client
-            ? null
-            : $this->getExternalLinksForClient($client)->first() ?? null;
+        return $this->getExternalLinksForClient($client)?->first() ?: null;
     }
 
     /** @return ?ArrayCollection<int, ClientBeneficiaire> */
