@@ -15,12 +15,12 @@ class DoctrineExtensionListener
     ) {
     }
 
-    public function onLateKernelRequest($event)
+    public function onLateKernelRequest($event): void
     {
         $this->translatableListener->setTranslatableLocale($event->getRequest()->getLocale());
     }
 
-    public function onKernelRequest()
+    public function onKernelRequest(): void
     {
         $user = $this->security->getUser();
         if (null !== $user) {
