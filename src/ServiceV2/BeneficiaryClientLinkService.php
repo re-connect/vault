@@ -29,18 +29,17 @@ class BeneficiaryClientLinkService
         $beneficiary->addClientExternalLink($client, $externalId, $memberExternalId);
     }
 
-    public function unlinkBeneficiaryForCurrentClient(Beneficiaire $beneficiary): Beneficiaire
+    public function unlinkBeneficiaryForCurrentClient(Beneficiaire $beneficiary): void
     {
-        return $this->unlinkBeneficiaryForClient($beneficiary, $this->apiClientManager->getCurrentOldClient());
+        $this->unlinkBeneficiaryForClient($beneficiary, $this->apiClientManager->getCurrentOldClient());
     }
 
-    public function unlinkBeneficiaryForClient(Beneficiaire $beneficiary, Client $client): Beneficiaire
+    public function unlinkBeneficiaryForClient(Beneficiaire $beneficiary, Client $client): void
     {
         foreach ($beneficiary->getExternalLinksForClient($client) as $link) {
             $this->em->remove($link);
         }
-        $this->em->flush();
 
-        return $beneficiary;
+        $this->em->flush();
     }
 }
