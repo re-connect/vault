@@ -5,6 +5,7 @@ namespace App\ServiceV2;
 use App\Entity\Beneficiaire;
 use App\Entity\Evenement;
 use App\Entity\Rappel;
+use App\Entity\SMS;
 use App\Entity\User;
 use App\Entity\UserCentre;
 use App\FormV2\UserCreation\SecretQuestionType;
@@ -62,7 +63,8 @@ class NotificationService
     public function sendSmsReminder(Rappel $reminder): void
     {
         $event = $reminder->getEvenement();
-        $number = $event->getBeneficiaire()?->getUser()?->getTelephone();
+        $beneficiary = $event->getBeneficiaire();
+        $number = $beneficiary?->getUser()?->getTelephone();
         if (null === $number) {
             return;
         }
@@ -71,6 +73,9 @@ class NotificationService
             $message = $this->getReminderMessage($event);
             $this->sendSms($number, $message);
             $reminder->setBEnvoye(true);
+            $sms = SMS::createReminderSms($reminder, $event, $beneficiary, $number);
+
+            $this->em->persist($sms);
             $this->em->flush();
             $this->logger->info(sprintf('SMS envoyé à %s : %s', $number, $message));
         } catch (\Exception $e) {
