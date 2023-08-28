@@ -6,6 +6,7 @@ use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Entity\Beneficiaire;
 use App\Entity\Evenement;
 use App\Entity\Rappel;
+use App\Entity\SMS;
 use App\Helper\SecretQuestionsHelper;
 use App\ManagerV2\RelayManager;
 use App\ServiceV2\NotificationService;
@@ -73,6 +74,10 @@ class NotificationServiceTest extends AuthenticatedTestCase
 
     public function testSendSmsResetPasswordSuccessfulLog(): void
     {
+        // count nb persisted sms
+        $smsRepo = $this->em->getRepository(SMS::class);
+        $baseSMSCount = count($smsRepo->findAll());
+
         $smsCode = '12345';
         $phoneNumber = '+33666666666';
         $message = 'Le code pour réinitialiser votre mot de passe reconnect est 12345';
@@ -83,6 +88,9 @@ class NotificationServiceTest extends AuthenticatedTestCase
         );
 
         $this->notificationService->sendSmsResetPassword($smsCode, $phoneNumber);
+        // Assert we don't keep trace of the sms
+        $newSMSCount = count($smsRepo->findAll());
+        $this->assertEquals($baseSMSCount, $newSMSCount);
     }
 
     public function testSendSmsResetPasswordErrorLog(): void
@@ -122,14 +130,18 @@ class NotificationServiceTest extends AuthenticatedTestCase
 
     public function testSendSmsReminderSuccessfully(): void
     {
+        // count nb persisted sms
+        $smsRepo = $this->em->getRepository(SMS::class);
+        $baseSMSCount = count($smsRepo->findAll());
+
         // Create event and reminder
+        $reminder = (new Rappel())
+            ->setDate((new \DateTime())->modify('+6 hours'));
+
         $event = (new Evenement($this->beneficiaryUser))
             ->setNom('RDV Reconnect')
-            ->setDate((new \DateTime())->modify('+1 day'));
-
-        $reminder = (new Rappel())
-            ->setDate((new \DateTime())->modify('+6 hours'))
-            ->setEvenement($event);
+            ->setDate((new \DateTime())->modify('+1 day'))
+            ->addRappel($reminder);
 
         $this->em->persist($event);
         $this->em->flush();
@@ -152,10 +164,11 @@ class NotificationServiceTest extends AuthenticatedTestCase
         );
 
         $this->notificationService->sendSmsReminder($reminder);
-
+        // Assert we keep trace of the sms
+        $newSMSCount = count($smsRepo->findAll());
+        $this->assertEquals($baseSMSCount + 1, $newSMSCount);
         // reminder is sent
         self::assertTrue($reminder->getBEnvoye());
-        $this->em->remove($event);
         $this->em->flush();
     }
 
