@@ -7,6 +7,7 @@ form_validation_no_password: Vous devez choisir un mot de passe
 lastname_format: 'Vous ne pouvez entrer que des lettres, tirets (-) ou apostrophes ('')'
 lastname_not_empty: Le nom ne doit pas être vide
 mail_not_empty: Le mail ne doit pas être vide
+phone_already_in_use: Ce numéro de téléphone est déjà utilisé
 phone_not_empty: Le téléphone ne doit pas être vide
 secret_answer_mismatch: La réponse à la question secrète est incorrecte
 secret_answer_not_empty: La réponse secrète ne doit pas être vide
