@@ -27,7 +27,7 @@ class RosalieServiceTest extends KernelTestCase
         $beneficiaryClientService = $this->createMock(BeneficiaryClientLinkService::class);
         $beneficiaryRepository = $this->createMock(BeneficiaireRepository::class);
         $clientRepository = $this->createMock(ClientRepository::class);
-        $this->service = new RosalieService($this->httpClient, $em, 'token', $beneficiaryClientService, $beneficiaryRepository, $clientRepository);
+        $this->service = new RosalieService($this->httpClient, $em, 'http://rosalie', 'token', $beneficiaryClientService, $beneficiaryRepository, $clientRepository);
     }
 
     public function testSiSiaoNumberExistsOnRosalie(): void
@@ -35,7 +35,7 @@ class RosalieServiceTest extends KernelTestCase
         $this->httpClient->expects($this->once())->method('request')
             ->with(
                 Request::METHOD_POST,
-                RosalieService::NUMBER_CHECK_ENDPOINT,
+                'http://rosalie/famille/verification_cle/',
                 [
                     'headers' => ['Authorization: Basic token'],
                     'body' => [
