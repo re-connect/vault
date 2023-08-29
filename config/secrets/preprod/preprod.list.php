@@ -20,6 +20,7 @@ return [
     'MJ_APIKEY_PRIVATE' => null,
     'MJ_APIKEY_PUBLIC' => null,
     'OAUTH_ENCRYPTION_KEY' => null,
+    'ROSALIE_BASE_URL' => null,
     'ROSALIE_BASIC_TOKEN' => null,
     'VONAGE_SMS_EU_DSN' => null,
     'VONAGE_SMS_US_DSN' => null,
