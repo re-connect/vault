@@ -109,9 +109,9 @@ abstract class DonneePersonnelle implements \JsonSerializable
         return $this->bPrive;
     }
 
-    public function setBPrive(bool $bPrive): static
+    public function setBPrive(?bool $bPrive): static
     {
-        $this->bPrive = $bPrive;
+        $this->bPrive = $bPrive ?? false;
 
         return $this;
     }

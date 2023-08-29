@@ -12,12 +12,12 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class RosalieService
 {
-    public const BASE_URL = 'https://test.ssp-online.fr/api';
-    public const NUMBER_CHECK_ENDPOINT = self::BASE_URL.'/famille/verification_cle/';
+    private const KEY_VERIFICATION_PATH = '/famille/verification_cle/';
 
     public function __construct(
         private readonly HttpClientInterface $httpClient,
         private readonly EntityManagerInterface $em,
+        private readonly string $rosalieBaseUrl,
         private readonly string $rosalieBasicToken,
         private readonly BeneficiaryClientLinkService $clientLinkService,
         private readonly BeneficiaireRepository $beneficiaireRepository,
@@ -30,7 +30,7 @@ class RosalieService
         try {
             $response = $this->httpClient->request(
                 Request::METHOD_POST,
-                self::NUMBER_CHECK_ENDPOINT,
+                $this->rosalieBaseUrl.self::KEY_VERIFICATION_PATH,
                 [
                     'headers' => [sprintf('Authorization: Basic %s', $this->rosalieBasicToken)],
                     'body' => [
