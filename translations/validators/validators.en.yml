@@ -7,6 +7,7 @@ form_validation_no_password: Password must not be empty
 lastname_format: 'You can only enter letters, hyphens (-) or apostrophes ('')'
 lastname_not_empty: Lastname must not be empty
 mail_not_empty: Mail must not be empty
+phone_already_in_use: Phone number already in use
 phone_not_empty: Phone must not be empty
 secret_answer_mismatch: Secret answer does not match
 secret_answer_not_empty: Secret answer must not be empty
