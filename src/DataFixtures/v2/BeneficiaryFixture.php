@@ -26,10 +26,12 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
     public const BENEFICIARY_MAIL_FIRST_VISIT = 'v2_test_user_beneficiary_first_visit@mail.com';
     public const BENEFICIARY_MAIL_NO_SECRET_QUESTION = 'v2_test_user_beneficiary_no_secret_question@mail.com';
 
+    public const BENEFICIARY_PHONE = '0612345678';
+
     public function load(ObjectManager $manager)
     {
         $this->createTestBeneficiary(
-            $this->getTestUser(self::BENEFICIARY_MAIL),
+            $this->getTestUser(self::BENEFICIARY_MAIL)->setTelephone(self::BENEFICIARY_PHONE),
             [],
             [
                 RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY_1]),

@@ -142,5 +142,23 @@ class BeneficiaryCreationStep1Test extends AbstractControllerTest implements Tes
             MemberFixture::MEMBER_MAIL,
             'div.invalid-feedback',
         ];
+
+        $values = self::FORM_VALUES;
+        $values['create_beneficiary[user][telephone]'] = BeneficiaryFixture::BENEFICIARY_PHONE;
+
+        yield 'Should return an error if phone already used' => [
+            self::URL,
+            'create_beneficiary',
+            'submit',
+            $values,
+            [
+                [
+                    'message' => 'phone_already_in_use',
+                    'params' => null,
+                ],
+            ],
+            MemberFixture::MEMBER_MAIL,
+            'div.invalid-feedback',
+        ];
     }
 }
