@@ -4,6 +4,7 @@
 {% set rows = [
     {name: 'firstname', value: beneficiary.user.prenom},
     {name: 'lastname', value: beneficiary.user.nom},
+    {name: 'birthDate', value: beneficiary.dateNaissance|date('d/m/Y')},
     {name: 'phone', value: beneficiary.user.telephone},
     {name: 'email', value: beneficiary.user.email},
     {name: 'secret_question', value: beneficiary.questionSecrete, step: secretQuestionStep, hidden: beneficiaryCreationProcess.remotely},

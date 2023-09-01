@@ -1,5 +1,8 @@
 {% extends 'v2/user_creation/beneficiary/_step_without_form.html.twig' %}
 
 {% block stepContent %}
-    {{ include('v2/user_creation/components/_relays_checkboxes.html.twig', {user: beneficiary.user}) }}
+    <h3 class="text-center pb-4">{{ 'choose_relays'|trans }}</h3>
+    <div class="pb-4">
+        {{ include('v2/user_creation/components/_relays_checkboxes.html.twig', {user: beneficiary.user}) }}
+    </div>
 {% endblock %}
