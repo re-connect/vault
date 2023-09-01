@@ -158,6 +158,7 @@ choose_beneficiary_password: 'Veuillez choisir le mot de passe du bénéficiaire
 choose_beneficiary_secret_question: 'Veuillez choisir la question secrète du bénéficiaire'
 choose_picture: 'Cliquez ici pour choisir une image'
 choose_relay: 'Sélectionnez un centre'
+choose_relays: 'Cliquez sur le/les relais auxquels vous voulez affilier le bénéficiaire'
 choose_reset_password_method: Veuillez choisir la méthode de réinitialisation du mot de passe
 choose_user: Choisir un utilisateur
 city: Ville
