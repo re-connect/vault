@@ -15,15 +15,15 @@ class SearchBeneficiaryType extends AbstractType
     {
         $builder
             ->add('lastname', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'name',
             ])
             ->add('firstname', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'firstname',
             ])
             ->add('birthDate', BirthdayType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'birthDate',
             ]);
     }
