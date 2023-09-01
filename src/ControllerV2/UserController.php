@@ -47,6 +47,9 @@ class UserController extends AbstractController
 
         if ($passwordForm->isSubmitted()) {
             $currentPasswordInput = $passwordForm->get('currentPassword');
+            if ($passwordForm->get('plainPassword')->get('first')->getData() !== $passwordForm->get('plainPassword')->get('second')->getData()) {
+                $this->addFlash('error', $translator->trans('form.validation.mismatch'));
+            }
             if (!$userManager->isPasswordValid($user, $currentPasswordInput->getData())) {
                 $currentPasswordInput->addError(new FormError($translator->trans('wrong_current_password')));
             }
