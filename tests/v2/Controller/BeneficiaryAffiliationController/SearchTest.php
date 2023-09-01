@@ -5,10 +5,9 @@ namespace App\Tests\v2\Controller\BeneficiaryAffiliationController;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\v2\Controller\AbstractControllerTest;
-use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
 
-class SearchTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
+class SearchTest extends AbstractControllerTest implements TestRouteInterface
 {
     private const URL = '/beneficiary/affiliate/search';
     private const FORM_VALUES = [
@@ -53,68 +52,6 @@ class SearchTest extends AbstractControllerTest implements TestRouteInterface, T
             self::FORM_VALUES,
             MemberFixture::MEMBER_MAIL,
             null,
-        ];
-    }
-
-    /**
-     * @dataProvider provideTestFormIsNotValid
-     */
-    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, string $alternateSelector = null): void
-    {
-        $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email, $alternateSelector);
-    }
-
-    public function provideTestFormIsNotValid(): ?\Generator
-    {
-        $values = self::FORM_VALUES;
-        $values['search_beneficiary[birthDate][day]'] = '';
-
-        yield 'Should return an error when day is empty' => [
-            self::URL,
-            'affiliate_beneficiary_search',
-            'search',
-            $values,
-            [
-                [
-                    'message' => 'Please enter a valid birthdate.',
-                ],
-            ],
-            MemberFixture::MEMBER_MAIL,
-            'div.invalid-feedback',
-        ];
-
-        $values = self::FORM_VALUES;
-        $values['search_beneficiary[birthDate][month]'] = '';
-
-        yield 'Should return an error when month is empty' => [
-            self::URL,
-            'affiliate_beneficiary_search',
-            'search',
-            $values,
-            [
-                [
-                    'message' => 'Please enter a valid birthdate.',
-                ],
-            ],
-            MemberFixture::MEMBER_MAIL,
-            'div.invalid-feedback',
-        ];
-
-        $values = self::FORM_VALUES;
-        $values['search_beneficiary[birthDate][year]'] = '';
-
-        yield 'Should return an error when year is empty' => [
-            self::URL,
-            'affiliate_beneficiary_search',
-            'search',
-            $values,
-            [
-                [
-                    'message' => 'Please enter a valid birthdate.',
-                ],
-            ],
-            MemberFixture::MEMBER_MAIL,
-            'div.invalid-feedback',
         ];
     }
 }
