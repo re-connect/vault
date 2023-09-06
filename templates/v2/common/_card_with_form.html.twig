@@ -5,8 +5,14 @@
         {{ form_start(form, {attr: {class: 'display-required-labels'}}) }}
         <div class="row text-primary">
             {% for field in form %}
-                {{ form_row(field) }}
-                {{ form_errors(field) }}
+{#          The 'plainPassword' field name is only used when creating a professionnal #}
+                {% if field.vars.name == 'plainPassword' %}
+                    {{ form_errors(field) }}
+                    {{ include('v2/user/strong_password/_strong_password_row.html.twig', {'field' : field, 'isBeneficiaire': false, 'hideAndShow': false }) }}
+                {% else %}
+                    {{ form_row(field) }}
+                    {{ form_errors(field) }}
+                {% endif %}
             {% endfor %}
         </div>
         {{ include('v2/common/_form_actions.html.twig', { backPath }) }}
