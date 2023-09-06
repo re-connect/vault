@@ -39,6 +39,8 @@ association.urlLabel: 'Internet site'
 authentification_failure_wrong_credentials: 'Username or password incorrect'
 back: Back
 back_home: 'Back to homepage'
+benef_has_account: 'The beneficiary already has an account ?'
+benef_has_no_account: 'The beneficiary does not have an account ?'
 beneficiaire.menu.mesAides: 'My Aids'
 beneficiaire.menu.mesContacts: 'My Contacts'
 beneficiaire.menu.mesDocuments: 'My documents'
@@ -57,12 +59,12 @@ beneficiaries_management: Beneficiaries management
 beneficiary_added_to_relays: 'The beneficiary has been added to selected centers'
 beneficiary_already_affiliated_to_all_relays: 'The beneficiary is already affiliated to your Reconnect relays'
 beneficiary_already_affiliated_to_relay: The beneficiary is already affiliated to this relay
-beneficiary_already_as_account_affiliate: 'The beneficiary already has a Reconnect digital vault account. Link this existing account to one of your relays'
+beneficiary_already_as_account_affiliate: 'Link this existing account to one of your relays'
 beneficiary_created_successfully: 'Beneficiary created successfully'
 beneficiary_created_successfully_wait_activation: 'The account has been successfully created and is awaiting activation by the beneficiary.'
 beneficiary_creation_canceled: 'Beneficiary creation canceled'
 beneficiary_creation_remotely_sms: "Your accompanying person %pro.firstname% %pro.lastname% from organization %center% offers you to activate your Reconnect digital vault Reconnect \nConnect to www.reconnect.fr \nUsername : %username% \nPassword : %password% \nOr click on the link : %autoLoginLink% \nYou can also download the mobile app : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
-beneficiary_has_no_account_create: 'The beneficiary does not have a Reconnect digital vault account yet. Create this account with the beneficiary or remotely with to his phone number, and link him to one of your relays'
+beneficiary_has_no_account_create: 'Create an account with the beneficiary or remotely with his phone number, and link it to one of your relays'
 beneficiary_has_no_email: The beneficiary does not have email address
 beneficiary_has_no_phone_number: The beneficiary does not have phone number
 beneficiary_has_no_secret_answer: The beneficiary does not have secret answer
