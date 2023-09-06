@@ -22,6 +22,7 @@ services:
             $kernelEnvironment: '%kernel.environment%'
             $kernelProjectDir: '%kernel.project_dir%'
             $noReplyMail: 'noreply@reconnect.fr'
+            string $rosalieBaseUrl: '%env(ROSALIE_BASE_URL)%'
             string $rosalieBasicToken: '%env(ROSALIE_BASIC_TOKEN)%'
             string $iOSAppLink: '%env(IOS_APP_LINK)%'
             string $androidAppLink: '%env(ANDROID_APP_LINK)%'
