@@ -32,7 +32,7 @@ class MigrateRosalieIdsToSiSiaoIdsCommand extends Command
         parent::__construct($name);
     }
 
-    public function getAssociativeRecords(array $records): array
+    private function getAssociativeRecords(array $records): array
     {
         return array_reduce(
             $records,
