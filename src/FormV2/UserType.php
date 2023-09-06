@@ -36,7 +36,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-            'validation_groups' => ['beneficiaire', 'membre'],
+            'validation_groups' => ['beneficiaire', 'membre', 'phone'],
             'allow_extra_fields' => true,
         ]);
     }
