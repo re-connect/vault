@@ -53,6 +53,8 @@ class RosalieInteroperabilityController extends AbstractController
             $em->flush();
 
             return $redirection;
+        } elseif (str_contains($this->getUser()?->getEmail() ?? '', '@samusocial-75')) {
+            $this->addFlash('error', $translator->trans('si_siao_number_not_found_rosalie'));
         }
 
         return $this->render('v2/rosalie/add_si_siao_number.html.twig', [

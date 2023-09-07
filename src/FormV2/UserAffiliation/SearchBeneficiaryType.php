@@ -14,18 +14,9 @@ class SearchBeneficiaryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('lastname', TextType::class, [
-                'required' => false,
-                'label' => 'name',
-            ])
-            ->add('firstname', TextType::class, [
-                'required' => false,
-                'label' => 'firstname',
-            ])
-            ->add('birthDate', BirthdayType::class, [
-                'required' => false,
-                'label' => 'birthDate',
-            ]);
+            ->add('lastname', TextType::class, ['label' => 'name'])
+            ->add('firstname', TextType::class, ['label' => 'firstname'])
+            ->add('birthDate', BirthdayType::class, ['label' => 'birthDate']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

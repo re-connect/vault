@@ -9,7 +9,9 @@
 {% block content %}
     <div class="row mt-3 mt-md-5 mx-auto">
         <div class="col-md-4 pe-md-5">
-            {{ form_start(form) }}
+            {{ form_start(form, {
+                attr: {class: 'display-required-labels'}
+            }) }}
             {{ form_widget(form) }}
             <button type="submit" data-turbo="false" class="btn btn-blue text-white mt-3 w-100">
                 {{ 'search'|trans }}

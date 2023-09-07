@@ -52,8 +52,8 @@ authentification_failure_wrong_credentials: "Mot de passe ou nom d'utilisateur i
 back: Retour
 back_home: "Retour à l'accueil"
 back_to_reconnect_admin: "Retour à l'accueil"
-benef_has_account: 'Le bénéficiaire possède un compte Reconnect'
-benef_has_no_account: 'Le bénéficiaire ne possède pas de compte Reconnect'
+benef_has_account: 'Le bénéficiaire possède un compte Reconnect ?'
+benef_has_no_account: 'Le bénéficiaire ne possède pas de compte Reconnect ?'
 benef_management_title: 'Gestion des <span class="rp-blue">bénéficiaires</span>'
 benef_new_guide_accept_button: '<span class="text-uppercase lighter">J''accepte</span><br/><small class="lighter">je veux activer mon coffre</small>'
 benef_new_guide_deny_button: '<span class="text-uppercase lighter">Je refuse</span><br/><small class="lighter">je veux supprimer mon coffre</small>'
@@ -90,13 +90,13 @@ beneficiary.delete.account: 'Êtes vous sûr de bien vouloir supprimer votre com
 beneficiary_added_to_relays: 'Le bénéficiaire a été ajouté aux relais selectionnés'
 beneficiary_already_affiliated_to_all_relays: "Le bénéficiaire est déjà affilié, ou invité, à l'ensemble de vos relais Reconnect"
 beneficiary_already_affiliated_to_relay: Le bénéficiaire est déjà affilié à ce relais
-beneficiary_already_as_account_affiliate: 'Le bénéficiaire a déjà un compte sur le coffre-fort numérique Reconnect, liez ce compte existant à un de vos relais'
+beneficiary_already_as_account_affiliate: 'Rattachez son coffre-fort à l’un de vos relais afin de lui partager des informations.'
 beneficiary_created_successfully: 'Le bénéficiaire a bien été créé'
 beneficiary_created_successfully_wait_activation: Le compte a bien été créé, le bénéficiaire vient de recevoir un SMS afin d’activer son coffre-fort numérique. Il peut dès à présent définir son mot de passe et la réponse à sa question secrète.
 beneficiary_creation_canceled: 'Annulation de la création du bénéficiaire'
 beneficiary_creation_client_sms: "Votre compte Coffre-fort Reconnect a été crée crée.\nvotre identifiant est %username%, vous pouvez vous connecter en cliquant sur le lien ci-dessous : %autoLoginLink% \nVous pouvez également télécharger l'application mobile : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
 beneficiary_creation_remotely_sms: "Votre accompagnant %pro.firstname% %pro.lastname% de la structure %center% vous propose d'activer votre coffre-fort numérique Reconnect \nConnectez-vous sur www.reconnect.fr \nIdentifiant : %username% \nMot de passe : %password% \nOu cliquez sur le lien : %autoLoginLink% \nVous pouvez également télécharger l'application mobile : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
-beneficiary_has_no_account_create: "Le bénéficiaire n'as pas encore de compte sur le coffre-fort numérique Reconnect, créez ce compte avec le bénéficiaire ou à distance grâce à son numéro de téléphone, et reliez le à un de vos relais"
+beneficiary_has_no_account_create: "Créez-lui un compte puis rattachez-le à l’un de vos relais afin de lui partager des informations."
 beneficiary_has_no_email: Le bénéficiaire n'a pas renseigné d'adresse email
 beneficiary_has_no_phone_number: Le bénéficiaire n'a pas renseigné de numéro de téléphone
 beneficiary_has_no_secret_answer: Le bénéficiaire n'a pas renseigné de réponse secrète
@@ -113,7 +113,7 @@ beneficiary_reset_password_already_requested_by_email: Une demande de réinitial
 beneficiary_reset_password_email_has_been_sent: Un email a été envoyé au bénéficiaire avec des instructions pour renouveller son mot de passe
 beneficiary_reset_password_success: Le mot de passe du bénéficiaire %fullName% a bien été mis à jour
 beneficiary_will_give_you_secret_answer: Le bénéficiaire vous fournira la réponse à sa question secrète afin de réinitialiser son mot de passe
-beneficiary_will_give_you_secret_information: "Le bénéficiaire vous communiquera le mot de passe qu'il désire utiliser ainsi qu'une question et réponse secrète permettant de réinitialiser son mot de passe"
+beneficiary_will_give_you_secret_information: "Il vous communiquera le mot de passe qu'il souhaite utiliser ainsi qu'une question et une réponse secrète permettant de réinitialiser son mot de passe"
 beneficiary_will_receive_email_reset_request: Le bénéficiaire recevra un email lui permettant de réinitialiser son mot de passe directement
 beneficiary_will_receive_sms_account_information: 'Il recevra un sms pour activer son compte et compléter ses informations'
 beneficiary_will_receive_sms_reset_request: Le bénéficiaire recevra un code par SMS afin de réinitialiser son mot de passe
@@ -158,6 +158,7 @@ choose_beneficiary_password: 'Veuillez choisir le mot de passe du bénéficiaire
 choose_beneficiary_secret_question: 'Veuillez choisir la question secrète du bénéficiaire'
 choose_picture: 'Cliquez ici pour choisir une image'
 choose_relay: 'Sélectionnez un centre'
+choose_relays: 'Cliquez sur le/les relais auxquels vous voulez affilier le bénéficiaire'
 choose_reset_password_method: Veuillez choisir la méthode de réinitialisation du mot de passe
 choose_user: Choisir un utilisateur
 city: Ville
@@ -1068,6 +1069,7 @@ show_beneficiaries: Voir les bénéficiaires
 show_professionals: Voir les professionnels
 si_siao_number: 'Numéro SI-SIAO'
 si_siao_number_found_rosalie: 'Numéro SI-SIAO trouvé dans Rosalie, liaison effectuée'
+si_siao_number_not_found_rosalie: 'Numéro SI-SIAO non trouvé dans Rosalie'
 sms: SMS
 sms_code: Code reçu par sms
 sms_sent: 'SMS envoyé'
@@ -1158,6 +1160,7 @@ user_update_password_subtitle: 'Mot de passe de %subject%'
 user_update_password_title: '<span class="text-primary">Renouvellement de </span><span class="rp-blue vault-green">mot de passe</span>'
 username: "Nom d'utilisateur"
 vault: 'Coffre-fort numérique'
+verify_affiliation_search_informations: Assurez-vous avec le bénéficiaire que l’orthographe et la date de naissance sont corrects
 website_CGS: 'CGS du site'
 website_confidentiality: 'Politique de confidentialité du site'
 website_legal: 'Mentions légales'

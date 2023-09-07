@@ -8,6 +8,10 @@ App\Entity\User:
                 fields: email
                 groups: [ beneficiaire, membre, association, gestionnaire ]
                 message: email_already_in_use
+        -   Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+                fields: telephone
+                groups: [ phone ]
+                message: phone_already_in_use
 
     properties:
         username:
