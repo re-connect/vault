@@ -84,12 +84,12 @@ class MembreAdmin extends AbstractAdmin
         }
     }
 
-    public function setEntityManager(EntityManagerInterface $entityManager)
+    public function setEntityManager(EntityManagerInterface $entityManager): void
     {
         $this->entityManager = $entityManager;
     }
 
-    public function setUserManager(UserManager $userManager)
+    public function setUserManager(UserManager $userManager): void
     {
         $this->userManager = $userManager;
     }

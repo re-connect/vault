@@ -26,7 +26,7 @@ class ClientAdmin extends AbstractAdmin
         }
     }
 
-    public function setEntityManager(EntityManagerInterface $entityManager)
+    public function setEntityManager(EntityManagerInterface $entityManager): void
     {
         $this->entityManager = $entityManager;
     }

@@ -64,7 +64,7 @@ class BeneficiaireAdmin extends AbstractAdmin
         }
     }
 
-    public function setUserManager(UserManager $userManager)
+    public function setUserManager(UserManager $userManager): void
     {
         $this->userManager = $userManager;
     }

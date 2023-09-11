@@ -17,7 +17,7 @@ class AssociationAdmin extends AbstractAdmin
     ];
     private UserManager $userManager;
 
-    public function setUserManager(UserManager $userManager)
+    public function setUserManager(UserManager $userManager): void
     {
         $this->userManager = $userManager;
     }
