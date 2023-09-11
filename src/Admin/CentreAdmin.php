@@ -5,7 +5,7 @@ namespace App\Admin;
 use App\Entity\Association;
 use App\Entity\Centre;
 use App\Entity\CreatorCentre;
-use App\Entity\User;
+use App\EventSubscriber\AssociationCreationSubscriber;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
@@ -20,9 +20,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\FormError;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 
 class CentreAdmin extends AbstractAdmin
 {
@@ -131,26 +128,7 @@ class CentreAdmin extends AbstractAdmin
             )
             ->end();
 
-        $form->getFormBuilder()->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-            $data = $event->getData();
-            $form = $event->getForm();
-            if (!$data instanceof Centre || $data->getId()) {
-                return;
-            }
-
-            $association = $form->get('association')->getData();
-            $newAssociation = $form->get('newAssociation')->getData();
-            if (!$association && !$newAssociation) {
-                $form->get('association')->addError(
-                    new FormError('Vous devez choisir une association existante, ou renseigner le nom de la nouvelle association'),
-                );
-            } else {
-                $isTest = $data->getTest();
-                $data->setAssociation($association ?? $this->createUserAssociation($newAssociation, $isTest)->getSubjectAssociation());
-
-                $this->entityManager->flush();
-            }
-        });
+        $form->getFormBuilder()->addEventSubscriber(new AssociationCreationSubscriber($this->entityManager, $this->userManager));
     }
 
     protected function configureDatagridFilters(DatagridMapper $filter): void
@@ -197,24 +175,5 @@ class CentreAdmin extends AbstractAdmin
             'test',
             'region',
         ];
-    }
-
-    private function createUserAssociation(string $associationName, bool $isTest): User
-    {
-        $association = (new Association())->setNom($associationName);
-
-        $userAssociation = (new User())
-            ->setPlainPassword($this->userManager->getRandomPassword())
-            ->setNom($associationName)
-            ->setTest($isTest)
-            ->setSubjectAssociation($association)
-            ->disable();
-
-        $association->setUser($userAssociation);
-        $this->userManager->updatePasswordWithPlain($userAssociation);
-        $this->entityManager->persist($userAssociation);
-        $this->entityManager->persist($association);
-
-        return $userAssociation;
     }
 }
