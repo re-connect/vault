@@ -174,6 +174,9 @@ class NotificationServiceTest extends AuthenticatedTestCase
 
     public function testSendSmsReminderErrorLog(): void
     {
+        // count nb persisted sms
+        $smsRepo = $this->em->getRepository(SMS::class);
+        $baseSMSCount = count($smsRepo->findAll());
         // Create event and reminder
         $event = (new Evenement($this->beneficiaryUser))
             ->setNom('RDV Reconnect')
@@ -192,7 +195,7 @@ class NotificationServiceTest extends AuthenticatedTestCase
             $event->getNom(),
             $event->getDate()->format("d/m/Y à H\hi")
         );
-        $errorLogMessage = 'L\'envoi du SMS a échoué, veuillez vérifier que le numéro de téléphone est valide';
+        $errorLogMessage = "L'envoi du SMS a échoué, veuillez vérifier que le numéro de téléphone est valide";
         $exceptionMessage = 'Fake exception message';
 
         // We simulate exception
@@ -222,7 +225,10 @@ class NotificationServiceTest extends AuthenticatedTestCase
         $this->notificationService->sendSmsReminder($reminder);
 
         // reminder is not sent
-        self::assertFalse($reminder->getBEnvoye());
+        $newSMSCount = count($smsRepo->findAll());
+        $this->assertEquals($baseSMSCount, $newSMSCount);
+        $this->assertNull($reminder->getSms());
+        $this->assertTrue($reminder->getBEnvoye());
         $this->em->remove($reminder);
         $this->em->remove($event);
         $this->em->flush();

@@ -69,10 +69,11 @@ class NotificationService
             return;
         }
 
+        $message = $this->getReminderMessage($event);
         try {
-            $message = $this->getReminderMessage($event);
-            $this->sendSms($number, $message);
             $reminder->setBEnvoye(true);
+            $this->em->flush();
+            $this->sendSms($number, $message);
             $sms = SMS::createReminderSms($reminder, $event, $beneficiary, $number);
 
             $this->em->persist($sms);
