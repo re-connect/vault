@@ -6,7 +6,7 @@ use App\Entity\Association;
 use App\Entity\Centre;
 use App\Entity\CreatorCentre;
 use App\Entity\User;
-use App\Manager\UserManager;
+use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
@@ -204,14 +204,14 @@ class CentreAdmin extends AbstractAdmin
         $association = (new Association())->setNom($associationName);
 
         $userAssociation = (new User())
-            ->setPlainPassword($this->userManager->randomPassword())
+            ->setPlainPassword($this->userManager->getRandomPassword())
             ->setNom($associationName)
             ->setTest($isTest)
             ->setSubjectAssociation($association)
             ->disable();
 
         $association->setUser($userAssociation);
-        $this->userManager->updatePassword($userAssociation);
+        $this->userManager->updatePasswordWithPlain($userAssociation);
         $this->entityManager->persist($userAssociation);
         $this->entityManager->persist($association);
 

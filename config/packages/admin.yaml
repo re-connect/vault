@@ -67,7 +67,7 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "Beneficiaires" }
         calls:
-            - [ setUserManager, [ '@App\Manager\UserManager' ] ]
+            - [ setUserManager, [ '@App\ManagerV2\UserManager' ] ]
 
     sonata.admin.beneficiairecentre:
         class: App\Admin\BeneficiaireCentreAdmin
@@ -91,7 +91,7 @@ services:
             - ~
         calls:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
-            - [ setUserManager, [ '@App\Manager\UserManager' ] ]
+            - [ setUserManager, [ '@App\ManagerV2\UserManager' ] ]
 
     sonata.admin.gestionnaire:
         class: App\Admin\GestionnaireAdmin
@@ -114,7 +114,7 @@ services:
             - App\Entity\Association
             - ~
         calls:
-            - [ setUserManager, [ '@App\Manager\UserManager' ] ]
+            - [ setUserManager, [ '@App\ManagerV2\UserManager' ] ]
 
     sonata.admin.centre:
         class: App\Admin\CentreAdmin
@@ -126,7 +126,7 @@ services:
             - ~
         calls:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
-            - [ setUserManager, [ '@App\Manager\UserManager' ] ]
+            - [ setUserManager, [ '@App\ManagerV2\UserManager' ] ]
 
     sonata.admin.type_centre:
         class: App\Admin\TypeCentreAdmin

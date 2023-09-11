@@ -4,7 +4,7 @@ namespace App\Admin;
 
 use App\Entity\Centre;
 use App\Entity\CreatorUser;
-use App\Manager\UserManager;
+use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
@@ -64,14 +64,14 @@ class MembreAdmin extends AbstractAdmin
             }
         }
         if ($object->getUser()->getPlainPassword()) {
-            $this->userManager->updatePassword($object->getUser());
+            $this->userManager->updatePasswordWithPlain($object->getUser());
         }
         parent::preUpdate($object);
     }
 
     protected function prePersist(object $object): void
     {
-        $this->userManager->updatePassword($object->getUser());
+        $this->userManager->updatePasswordWithPlain($object->getUser());
 
         parent::prePersist($object);
     }

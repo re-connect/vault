@@ -2,7 +2,7 @@
 
 namespace App\Admin;
 
-use App\Manager\UserManager;
+use App\ManagerV2\UserManager;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -24,7 +24,7 @@ class AssociationAdmin extends AbstractAdmin
 
     protected function prePersist(object $object): void
     {
-        $this->userManager->updatePassword($object->getUser());
+        $this->userManager->updatePasswordWithPlain($object->getUser());
 
         parent::prePersist($object);
     }
