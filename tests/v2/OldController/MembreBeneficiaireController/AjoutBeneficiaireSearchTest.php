@@ -28,6 +28,6 @@ class AjoutBeneficiaireSearchTest extends AbstractControllerTest implements Test
     {
         yield 'Should redirect to login when not authenticated' => [self::URL, 302, null, '/login'];
         yield 'Should return 403 status code when authenticated as beneficiaire' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL];
-        yield 'Should return 200 status code when authenticated as member' => [self::URL, 200, MemberFixture::MEMBER_MAIL];
+        yield 'Should return 302 status code when authenticated as member' => [self::URL, 302, MemberFixture::MEMBER_MAIL, '/beneficiary/affiliate'];
     }
 }
