@@ -9,7 +9,7 @@ use App\Entity\Client;
 use App\Entity\CreatorCentre;
 use App\Entity\CreatorClient;
 use App\Entity\CreatorUser;
-use App\Manager\UserManager;
+use App\ManagerV2\UserManager;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -60,18 +60,18 @@ class BeneficiaireAdmin extends AbstractAdmin
         }
 
         if ($object->getUser()->getPlainPassword()) {
-            $this->userManager->updatePassword($object->getUser());
+            $this->userManager->updatePasswordWithPlain($object->getUser());
         }
     }
 
-    public function setUserManager(UserManager $userManager)
+    public function setUserManager(UserManager $userManager): void
     {
         $this->userManager = $userManager;
     }
 
     protected function prePersist(object $object): void
     {
-        $this->userManager->updatePassword($object->getUser());
+        $this->userManager->updatePasswordWithPlain($object->getUser());
 
         parent::prePersist($object);
     }

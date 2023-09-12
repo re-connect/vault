@@ -32,15 +32,6 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Annexe }
 
-    sonata.admin.userassociation:
-        class: App\Admin\UserAssociationAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "Utilisateurs association", show_in_dashboard: false }
-        arguments:
-            - ~
-            - App\Entity\User
-            - ~
-
     sonata.admin.user_simple:
         class: App\Admin\UserSimpleAdmin
         tags:
@@ -67,7 +58,7 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "Beneficiaires" }
         calls:
-            - [ setUserManager, [ '@App\Manager\UserManager' ] ]
+            - [ setUserManager, [ '@App\ManagerV2\UserManager' ] ]
 
     sonata.admin.beneficiairecentre:
         class: App\Admin\BeneficiaireCentreAdmin
@@ -91,19 +82,7 @@ services:
             - ~
         calls:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
-            - [ setUserManager, [ '@App\Manager\UserManager' ] ]
-
-    sonata.admin.gestionnaire:
-        class: App\Admin\GestionnaireAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "Gestionnaires" }
-        arguments:
-            - ~
-            - App\Entity\Gestionnaire
-            - ~
-        calls:
-            - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
-            - [ setUserManager, [ '@App\Manager\UserManager' ] ]
+            - [ setUserManager, [ '@App\ManagerV2\UserManager' ] ]
 
     sonata.admin.association:
         class: App\Admin\AssociationAdmin
@@ -114,7 +93,8 @@ services:
             - App\Entity\Association
             - ~
         calls:
-            - [ setUserManager, [ '@App\Manager\UserManager' ] ]
+            - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
+            - [ setUserManager, [ '@App\ManagerV2\UserManager' ] ]
 
     sonata.admin.centre:
         class: App\Admin\CentreAdmin
@@ -126,7 +106,7 @@ services:
             - ~
         calls:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
-            - [ setUserManager, [ '@App\Manager\UserManager' ] ]
+            - [ setUserManager, [ '@App\ManagerV2\UserManager' ] ]
 
     sonata.admin.type_centre:
         class: App\Admin\TypeCentreAdmin

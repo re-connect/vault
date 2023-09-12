@@ -59,6 +59,7 @@ trait DeactivatableTrait
     public function enable(): self
     {
         $this->setDisabledAt(null)->setDisabledBy(null);
+        $this->enabled = true;
 
         return $this;
     }
