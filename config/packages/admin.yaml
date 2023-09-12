@@ -32,15 +32,6 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Annexe }
 
-    sonata.admin.userassociation:
-        class: App\Admin\UserAssociationAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "Utilisateurs association", show_in_dashboard: false }
-        arguments:
-            - ~
-            - App\Entity\User
-            - ~
-
     sonata.admin.user_simple:
         class: App\Admin\UserSimpleAdmin
         tags:
@@ -102,6 +93,7 @@ services:
             - App\Entity\Association
             - ~
         calls:
+            - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
             - [ setUserManager, [ '@App\ManagerV2\UserManager' ] ]
 
     sonata.admin.centre:

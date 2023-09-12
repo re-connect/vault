@@ -11,6 +11,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 
 class AssociationCreationSubscriber implements EventSubscriberInterface
 {
@@ -29,31 +30,44 @@ class AssociationCreationSubscriber implements EventSubscriberInterface
     {
         $data = $event->getData();
         $form = $event->getForm();
-        if (!$data instanceof Centre || $data->getId()) {
+
+        if ($data->getId()) {
             return;
         }
 
-        $association = $form->get('association')->getData();
-        $newAssociation = $form->get('newAssociation')->getData();
+        if ($data instanceof Centre) {
+            $this->createUserAssociationFromRelay($data, $form);
+        } elseif ($data instanceof Association) {
+            $this->createUserAssociation($data);
+        }
 
-        if (!$association && !$newAssociation) {
+        $this->em->flush();
+    }
+
+    private function createUserAssociationFromRelay(Centre $data, FormInterface $form): void
+    {
+        $association = $form->get('association')->getData();
+        $newAssociationName = $form->get('newAssociationName')->getData();
+
+        if (!$association && !$newAssociationName) {
             $form->get('association')->addError(
                 new FormError('Vous devez choisir une association existante, ou renseigner le nom de la nouvelle association'),
             );
-        } else {
-            $data->setAssociation($association ?? $this->createUserAssociation($newAssociation, $data->getTest())->getSubjectAssociation());
 
-            $this->em->flush();
+            return;
         }
+
+        $data->setAssociation($association ?? $this->createUserAssociation(
+            (new Association())->setNom($newAssociationName),
+            $data->getTest(),
+        )->getSubjectAssociation());
     }
 
-    private function createUserAssociation(string $associationName, bool $isTest): User
+    private function createUserAssociation(Association $association, bool $isTest = false): User
     {
-        $association = (new Association())->setNom($associationName);
-
         $userAssociation = (new User())
             ->setPlainPassword($this->userManager->getRandomPassword())
-            ->setNom($associationName)
+            ->setNom($association->getNom())
             ->setTest($isTest)
             ->setSubjectAssociation($association)
             ->disable();

@@ -104,7 +104,7 @@ class CentreAdmin extends AbstractAdmin
                     'mapped' => false,
                     'required' => false,
                 ])
-                ->add('newAssociation', TextType::class, [
+                ->add('newAssociationName', TextType::class, [
                     'label' => 'Ou nom de la nouvelle association',
                     'mapped' => false,
                     'required' => false,
