@@ -30,7 +30,7 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
         $crawler = $client->request('GET', self::URL);
 
         // Submit form
-        $form = $crawler->selectButton('Oui')->form();
+        $form = $crawler->selectButton('Supprimer')->form();
         $client->submit($form);
 
         // Is deleted
