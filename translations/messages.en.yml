@@ -808,7 +808,7 @@ relay_has_no_address: 'The Reconnect relay did not informed any address'
 relays: Relays
 reminder: Reminder
 reminder_sms: 'SMS Reminder'
-remove_access_for: Remove access for
+remove_access_for: Professionals
 remove_from_relay: 'Remove from relay'
 remove_from_relay_confirm: 'Are you sure you want to remove the beneficiary %beneficiary% ?'
 remove_from_relay_confirm_relay: Are you sure you want to remove the user %user% from the relay %relay% ?
