@@ -35,10 +35,7 @@ class RappelRepository extends ServiceEntityRepository
             ->andWhere('r.bEnvoye = false')
             ->andWhere('r.date > :nowLess12h05')
             ->andWhere('r.date < :nowPlus12h')
-            ->setParameters([
-                'nowPlus12h' => $nowPlus12h,
-                'nowLess12h05' => $nowLess12h05,
-            ])
+            ->setParameters(['nowPlus12h' => $nowPlus12h, 'nowLess12h05' => $nowLess12h05])
             ->getQuery()
             ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
             ->getResult();
