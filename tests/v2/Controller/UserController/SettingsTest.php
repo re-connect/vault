@@ -97,6 +97,23 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
             BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS,
             'div.invalid-feedback',
         ];
+
+        $values = self::FORM_VALUES;
+        $values['user[telephone]'] = BeneficiaryFixture::BENEFICIARY_PHONE;
+        yield 'Should return an error if phone is already in use' => [
+            self::URL,
+            'user_settings',
+            'submit',
+            $values,
+            [
+                [
+                    'message' => 'Ce numéro de téléphone est déjà utilisé',
+                    'params' => null,
+                ],
+            ],
+            BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS,
+            'div.invalid-feedback',
+        ];
     }
 
     /** @dataProvider provideTestRoute */
