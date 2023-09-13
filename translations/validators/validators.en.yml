@@ -14,3 +14,4 @@ secret_answer_not_empty: Secret answer must not be empty
 secret_question_not_empty: Secret question must not be empty
 username_already_in_use: Username already in use
 username_not_valid: Username invalid
+folder_circular_dependency: This movement is not valid
