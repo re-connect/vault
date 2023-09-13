@@ -86,7 +86,7 @@ beneficiaire.menu2.mesRelaisReconnect: Relais
 beneficiaire.menu2.monCalendrier: Rendez-Vous
 beneficiaries: Bénéficiaires
 beneficiaries_management: Gestion des bénéficiaires
-beneficiary.delete.account: 'Êtes vous sûr de bien vouloir supprimer votre compte ?'
+beneficiary.delete.account: 'Êtes vous sûr de vouloir supprimer votre compte ?'
 beneficiary_added_to_relays: 'Le bénéficiaire a été ajouté aux relais selectionnés'
 beneficiary_already_affiliated_to_all_relays: "Le bénéficiaire est déjà affilié, ou invité, à l'ensemble de vos relais Reconnect"
 beneficiary_already_affiliated_to_relay: Le bénéficiaire est déjà affilié à ce relais
@@ -716,7 +716,7 @@ membre.ajoutBeneficiaire.creerCompte.subTitle.remotely: 'à distance'
 membre.ajoutBeneficiaire.creerCompte.subTitle: 'avec le bénéficiaire'
 membre.ajoutBeneficiaire.creerCompte: 'Créer un compte Reconnect'
 membre.ajoutBeneficiaire.dateNaissanceLabel: 'Date de naissance'
-membre.ajoutBeneficiaire.metaTitle: 'Ajouter un nouveau beneficiaire'
+membre.ajoutBeneficiaire.metaTitle: 'Ajouter un beneficiaire'
 membre.ajoutBeneficiaire.nePossedePasCompte: 'Le bénéficiaire ne possède pas de compte reconnect'
 membre.ajoutBeneficiaire.possedeCompte: 'Le bénéficiaire possède un compte reconnect'
 membre.ajoutBeneficiaire.subtitle: "Ajout d'un nouveau beneficiaire"
@@ -1142,7 +1142,7 @@ user.reinitialiserMdp.telephone: 'Réinitialiser avec un SMS sur le téléphone'
 user.reinitialiserMdp.title: 'Réinitialiser un mot de passe'
 user.supprimerCompte.etesVousSurs: 'Êtes vous sûrs de bien vouloir supprimer votre compte ?'
 user.supprimerCompte.success: 'Le compte a bien été supprimé'
-user_do_not_have_account: "L'utilisateur ne possède pas de compte Reconnect"
+user_do_not_have_account: "L'utilisateur ne possède pas de compte Reconnect ?"
 user_error_disabled_account: 'Votre compte est désactivé, veuillez contacter le support.'
 user_firstVisit_membre_intro: 'Cet outil a pour fonction première la sauvegarde d’informations personnelles des personnes accompagnées.'
 user_firstVisit_membre_intro_more: 'L’outil s’inscrit dans le cadre de l’accompagnement et pourra vous permettre d’assister les bénéficiaires dans la sauvegarde de leurs données.'
@@ -1150,7 +1150,7 @@ user_firstVisit_membre_metaTitle: 'Bienvenue sur Reconnect le Cloud Solidaire'
 user_firstVisit_membre_outro: 'L’équipe de Reconnect vous souhaite la bienvenue sur sa plateforme et une bonne utilisation.'
 user_firstVisit_rgpd: 'Lors de votre utilisation du coffre-fort numérique, Reconnect est amenée à traiter des données personnelles vous concernant. Dans ce cadre, vous pouvez accéder à vos données personnelles pour les rectifier, demander leur effacement ou exercer votre droit à la limitation du traitement de ses données. Pour exercer ces droits ou pour toute question sur le traitement de vos données personnelles, il est possible de contacter Reconnect à l’adresse <a href="mailto:%mailRGPD%">%mailRGPD%</a> ou par téléphone au %phoneNumber%.'
 user_firstVisit_rgpd_more: 'Pour plus d’informations sur le traitement de vos données personnelles, nous vous invitons également à consulter la Politique de Confidentialité du coffre-fort numérique accessible suivant ce lien: <a href="%linkRGPD%">%linkRGPD%</a>'
-user_has_account: "L'utilisateur possède un compte Reconnect"
+user_has_account: "L'utilisateur possède un compte Reconnect ?"
 user_not_found: "Aucun utilisateur n'a été trouvé"
 user_parameters_subtitle: 'Paramètres de %subject%'
 user_parameters_title: '<span class="text-primary">Paramètres d''</span><span class="rp-blue vault-green">utilisateur</span>'
@@ -1178,3 +1178,4 @@ you_must_select_center_for_right_update: Sélectionnez un centre pour modifier l
 your_email: 'Votre Email'
 your_new_password: Votre nouveau mot de passe
 your_phone_number: 'Votre numéro de téléphone'
+all_your_data_will_be_deleted: Vos données seront supprimées et vous ne pourrez plus y accéder ni les structures sociales qui vous accompagnent.

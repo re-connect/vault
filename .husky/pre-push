@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-symfony console doctrine:fixtures:load --env=test --group=v2 -n
-./vendor/bin/simple-phpunit tests/v2/Smoke --stop-on-failure

@@ -2,13 +2,15 @@
 
 namespace App\Admin;
 
-use App\Manager\UserManager;
+use App\EventSubscriber\AssociationCreationSubscriber;
+use App\ManagerV2\UserManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\AdminType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class AssociationAdmin extends AbstractAdmin
 {
@@ -16,15 +18,21 @@ class AssociationAdmin extends AbstractAdmin
         'validation_groups' => ['association', 'username'],
     ];
     private UserManager $userManager;
+    private EntityManagerInterface $em;
 
-    public function setUserManager(UserManager $userManager)
+    public function setUserManager(UserManager $userManager): void
     {
         $this->userManager = $userManager;
     }
 
+    public function setEntityManager(EntityManagerInterface $em): void
+    {
+        $this->em = $em;
+    }
+
     protected function prePersist(object $object): void
     {
-        $this->userManager->updatePassword($object->getUser());
+        $this->userManager->updatePasswordWithPlain($object->getUser());
 
         parent::prePersist($object);
     }
@@ -38,6 +46,10 @@ class AssociationAdmin extends AbstractAdmin
 
     protected function configureFormFields(FormMapper $form): void
     {
+        $formOptions = $this->getSubject()->getId()
+            ? ['property_path' => 'user.test']
+            : ['mapped' => false];
+
         $form
             ->with('Informations')
             ->add('id', null, ['attr' => [
@@ -46,13 +58,14 @@ class AssociationAdmin extends AbstractAdmin
             ->add('categorieJuridique')
             ->add('siren')
             ->add('urlSite')
-            ->add('user', AdminType::class, [
-                'label_attr' => ['style' => 'display:none'],
-                'btn_add' => false, 'btn_delete' => false, ], [
-                'admin_code' => 'sonata.admin.userassociation',
-                'validation_groups' => [null],
+            ->add('test', CheckboxType::class, [
+                ...$formOptions,
+                'required' => false,
+                'label' => 'Compte test',
             ])
             ->end();
+
+        $form->getFormBuilder()->addEventSubscriber(new AssociationCreationSubscriber($this->em, $this->userManager));
     }
 
     protected function configureDatagridFilters(DatagridMapper $filters): void

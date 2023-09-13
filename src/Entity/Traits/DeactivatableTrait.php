@@ -51,6 +51,7 @@ trait DeactivatableTrait
     public function disable(User $user = null): self
     {
         $this->setDisabledAt(new \DateTime())->setDisabledBy($user);
+        $this->enabled = false;
 
         return $this;
     }
@@ -58,6 +59,7 @@ trait DeactivatableTrait
     public function enable(): self
     {
         $this->setDisabledAt(null)->setDisabledBy(null);
+        $this->enabled = true;
 
         return $this;
     }

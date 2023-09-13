@@ -52,6 +52,7 @@ class UserController extends AbstractController
             }
             if (!$userManager->isPasswordValid($user, $currentPasswordInput->getData())) {
                 $currentPasswordInput->addError(new FormError($translator->trans('wrong_current_password')));
+                $this->addFlash('error', $translator->trans('wrong_current_password'));
             }
             if ($passwordForm->isValid()) {
                 $userManager->updatePassword($user, $passwordForm->get('plainPassword')->getData());
@@ -88,7 +89,7 @@ class UserController extends AbstractController
         }
 
         return $this->render('v2/user/delete.html.twig', [
-            'submitForm' => $form,
+            'form' => $form,
             'user' => $user,
         ]);
     }
