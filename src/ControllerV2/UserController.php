@@ -89,7 +89,7 @@ class UserController extends AbstractController
         }
 
         return $this->render('v2/user/delete.html.twig', [
-            'submitForm' => $form,
+            'form' => $form,
             'user' => $user,
         ]);
     }

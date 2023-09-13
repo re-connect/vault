@@ -8,6 +8,7 @@
     </div>
     <div>
         {% set message = buttonText is defined ? buttonText : 'submit' %}
-        {{ include('v2/common/_button.html.twig', {message, color: getUserThemeColor()}) }}
+        {% set buttonColor = buttonColor is defined ? buttonColor : getUserThemeColor() %}
+        {{ include('v2/common/_button.html.twig', {message, buttonColor}) }}
     </div>
 </div>
