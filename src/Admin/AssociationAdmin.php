@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class AssociationAdmin extends AbstractAdmin
 {
@@ -45,6 +46,10 @@ class AssociationAdmin extends AbstractAdmin
 
     protected function configureFormFields(FormMapper $form): void
     {
+        $formOptions = $this->getSubject()->getId()
+            ? ['property_path' => 'user.test']
+            : ['mapped' => false];
+
         $form
             ->with('Informations')
             ->add('id', null, ['attr' => [
@@ -53,6 +58,11 @@ class AssociationAdmin extends AbstractAdmin
             ->add('categorieJuridique')
             ->add('siren')
             ->add('urlSite')
+            ->add('test', CheckboxType::class, [
+                ...$formOptions,
+                'required' => false,
+                'label' => 'Compte test',
+            ])
             ->end();
 
         $form->getFormBuilder()->addEventSubscriber(new AssociationCreationSubscriber($this->em, $this->userManager));
