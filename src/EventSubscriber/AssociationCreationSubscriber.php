@@ -38,7 +38,7 @@ class AssociationCreationSubscriber implements EventSubscriberInterface
         if ($data instanceof Centre) {
             $this->createUserAssociationFromRelay($data, $form);
         } elseif ($data instanceof Association) {
-            $this->createUserAssociation($data);
+            $this->createUserAssociation($data, $form->get('test')->getData());
         }
 
         $this->em->flush();
