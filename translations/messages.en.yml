@@ -584,7 +584,7 @@ membre.ajoutBeneficiaire.centres: 'Reconnect Relays'
 membre.ajoutBeneficiaire.creerCompte.subTitle.remotely: remotely
 membre.ajoutBeneficiaire.creerCompte: 'Create a Reconnect account'
 membre.ajoutBeneficiaire.dateNaissanceLabel: 'Date of birth'
-membre.ajoutBeneficiaire.metaTitle: 'Add a new beneficiary'
+membre.ajoutBeneficiaire.metaTitle: 'Add a beneficiary'
 membre.ajoutBeneficiaire.nePossedePasCompte: 'The beneficiary does not have a Reconnect account'
 membre.ajoutBeneficiaire.possedeCompte: 'The beneficiary has a Reconnect account'
 membre.ajoutBeneficiaire.subtitle: 'Adding of a new beneficiary'
@@ -949,7 +949,9 @@ user.reinitialiserMdp.telephone: 'Reset by SMS or by Phone'
 user.reinitialiserMdp.title: 'Reset password'
 user.supprimerCompte.etesVousSurs: 'Are You sure You want to delete Your accunt?'
 user.supprimerCompte.success: 'The account has been deleted.'
+user_do_not_have_account: "The user does not have account ?"
 user_error_disabled_account: 'Your account is disabled, please contact support.'
+user_has_account: "The user already has an account ?"
 user_parameters_subtitle: "%subject%'s settings"
 user_parameters_title: '<span class="text-primary">User''s </span><span class="rp-blue vault-green">settings</span>'
 user_successfully_created: The user has been successfully created
