@@ -28,6 +28,7 @@ admin.menu.traduction: Translation
 admin.metaTitle: 'Reconnect Administration'
 admin.title: 'Reconnect <span class="main"> Administration</span>'
 aides.metaTitle: Aids
+all_your_data_will_be_deleted: Your data will be deleted and you will no longer be able to access it or the social structures that support you.
 alt_logo_reconnect: 'logo association reconnect'
 an_error_occurred: 'An error has occurred!'
 answer_secret_question: 'Answer secret question'
@@ -265,8 +266,9 @@ digital_cares_scalable_content_text: 'Beneficiaries are asked to measure their p
 digital_cares_scalable_content_title: 'Evolving contents according to feedback from the field'
 disabledAt: 'Disabled at'
 disabledBy: 'Disabled by'
+disaffiliate_beneficiary: Remove beneficiary
 disaffiliate_beneficiary_subtitle: 'Stop the following of'
-disaffiliate_user: Stop the following of a user
+disaffiliate_user: Remove user
 document.apercu: Previews
 document.aucunFichier: 'For the moment,there is no folder'
 document.avertissementTaille: 'You soon reach the limit size of your storage space (%space%)'
@@ -868,7 +870,7 @@ search_member_help: You can search for an existing professional and invite him t
 secret_answer: Secret answer
 secret_answer_optional: 'Secret answer (optional)'
 secret_question: Secret question
-select_relays_for_disaffiliation: 'This user is linked to one or several relays that you manage, please choose relays for which you want to stop the following'
+select_relays_for_disaffiliation: 'This person is linked to one or several relays you manage, please choose relays from which you want to remove her'
 select_relays_for_disaffiliation_pro: This professional user is linked to one or several relays that you manage, please choose relays for which you want to stop the following
 send: Send
 sending_sms_account_activation: 'Sending the SMS for account activation'
