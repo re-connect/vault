@@ -8,7 +8,6 @@ use App\Entity\Centre;
 use App\Entity\Contact;
 use App\Event\BeneficiaireEvent;
 use App\Event\REEvent;
-use App\Form\Type\BeneficiaireSearchType;
 use App\Form\Type\BeneficiaireTypeStep1;
 use App\Form\Type\BeneficiaireTypeStep2;
 use App\Form\Type\BeneficiaireTypeStep3;
@@ -17,7 +16,6 @@ use App\Manager\SMSManager;
 use App\Manager\UserManager;
 use App\Provider\BeneficiaireProvider;
 use App\Provider\UserProvider;
-use App\Repository\UserRepository;
 use App\Security\Authorization\Voter\BeneficiaireVoter;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
@@ -80,35 +78,9 @@ final class MembreBeneficiaireController extends REController
         ]);
     }
 
-    public function ajoutBeneficiaireSearch(Request $request, UserRepository $userRepository): Response
+    public function ajoutBeneficiaireSearch(): Response
     {
-        $foundUsers = null;
-        $form = $this->createForm(BeneficiaireSearchType::class);
-        $form->handleRequest($request);
-
-        if ($this->request->isMethod(Request::METHOD_POST)) {
-            $foundUsers = [];
-            $nom = $form->get('nom')->getData();
-            $prenom = $form->get('prenom')->getData();
-            $dateNaissance = $form->get('dateNaissance')->getData();
-
-            if (empty($nom) && empty($prenom) && empty($dateNaissance)) {
-                $this->session->getFlashBag()->set('error', 'Vous devez renseigner au moins un champ.');
-            } else {
-                $criterias = [
-                    'u.nom' => $nom,
-                    'u.prenom' => $prenom,
-                    'b.dateNaissance' => $dateNaissance,
-                ];
-
-                $foundUsers = $userRepository->findBeneficiairesByCriterias($criterias);
-            }
-        }
-
-        return $this->render('user/membre-beneficiaire/ajoutBeneficiaireSearch.html.twig', [
-            'form' => $form,
-            'foundUsers' => $foundUsers,
-        ]);
+        return $this->redirectToRoute('affiliate_beneficiary_home');
     }
 
     public function doDoAjoutBeneficiaire(Beneficiaire $beneficiaire): Response
