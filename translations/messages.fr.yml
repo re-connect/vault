@@ -39,6 +39,7 @@ admin_reset_password_mail: 'Réinitialisation du mot de passe par Mail'
 admin_reset_password_sms: 'Réinitialisation du mot de passe par SMS'
 aides.metaTitle: Aides
 alt_logo_reconnect: 'logo association reconnect'
+all_your_data_will_be_deleted: Vos données seront supprimées et vous ne pourrez plus y accéder ni les structures sociales qui vous accompagnent.
 an_error_occurred: Une erreur s'est produite !
 answer: Réponse
 answer_secret_question: 'Répondre à la question secrète'
@@ -349,6 +350,7 @@ digital_cares_scalable_content_text: 'Les bénéficiaires sont amenés à mesure
 digital_cares_scalable_content_title: 'Des contenus évolutifs en fonction des retours terrain'
 disabledAt: 'Désactivé le'
 disabledBy: 'Désactivé par'
+disaffiliate_beneficiary: Arrêter le suivi d'un bénéficiaire
 disaffiliate_beneficiary_subtitle: 'Arrêter le suivi de'
 disaffiliate_user: Arrêter le suivi d'un utilisateur
 document.apercu: Aperçus
