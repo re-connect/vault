@@ -25,4 +25,20 @@ fixer:
 deploy:
 	@$(CONSOLE) deploy preprod
 
+fixture-v1:
+	@$(CONSOLE) doctrine:fixtures:load --env=test --group=v1 -n
+
+fixture-v2:
+	@$(CONSOLE) doctrine:fixtures:load --env=test --group=v2 -n
+
+fixture: fixture-v1 fixture-v2
+
+test-v1:
+	@$(PHPUNIT) tests/v1
+
+test-v2:
+	@$(PHPUNIT) tests/v2
+
+test: test-v1 test-v2
+
 dep: deploy
