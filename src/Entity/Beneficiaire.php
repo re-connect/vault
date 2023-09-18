@@ -69,6 +69,8 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 {
     use GedmoTimedTrait;
 
+    private const DEFAULT_BIRTHDATE = '01/01/1975';
+
     #[Groups(['read', 'write', 'beneficiary:read', 'v3:beneficiary:write', 'v3:beneficiary:read'])]
     private ?\DateTime $dateNaissance = null;
 
@@ -161,6 +163,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         $this->externalLinks = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->dateNaissance = new \DateTime(self::DEFAULT_BIRTHDATE);
     }
 
     public static function getArQuestionsSecrete(): array
@@ -176,6 +179,11 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
             'membre.creationBeneficiaire.questionsSecretes.q8' => 'membre.creationBeneficiaire.questionsSecretes.q8',
             'membre.creationBeneficiaire.questionsSecretes.q9' => 'membre.creationBeneficiaire.questionsSecretes.q9',
         ];
+    }
+
+    public static function getDefaultBirthDate(): \DateTime
+    {
+        return new \DateTime(self::DEFAULT_BIRTHDATE);
     }
 
     public function getReponseSecrete(): ?string
