@@ -3,10 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Centre;
-use App\Entity\Gestionnaire;
-use App\Entity\Membre;
 use App\Manager\CentreManager;
-use App\Provider\CentreProvider;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,22 +17,9 @@ class MembreController extends AbstractController
     /**
      * @Route("/centres", name="re_membre_centres", methods={"GET"})
      */
-    public function centres(CentreProvider $centreProvider): Response
+    public function centres(): Response
     {
-        $subject = $this->getUser()->getSubject();
-        $centres = $centreProvider->getCentresFromUserWithCentre($subject);
-        $membreCentres = $subject instanceof Membre ? $subject->getMembresCentres() : [];
-        $membreCentresById = [];
-        foreach ($membreCentres as $membreCentre) {
-            $membreCentresById[$membreCentre->getCentre()->getId()] = $membreCentre;
-        }
-
-        return $this->render('user/membre/centres.html.twig', [
-            'centres' => $centres,
-            'subject' => $subject,
-            'membreCentres' => $membreCentresById,
-            'isGestionnaire' => $subject instanceof Gestionnaire,
-        ]);
+        return $this->redirectToRoute('my_relays');
     }
 
     /**
