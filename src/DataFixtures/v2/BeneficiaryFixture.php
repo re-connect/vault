@@ -2,8 +2,10 @@
 
 namespace App\DataFixtures\v2;
 
+use App\Entity\Beneficiaire;
 use App\Entity\User;
 use App\Tests\Factory\BeneficiaireFactory;
+use App\Tests\Factory\BeneficiaryCreationProcessFactory;
 use App\Tests\Factory\ContactFactory;
 use App\Tests\Factory\CreatorCentreFactory;
 use App\Tests\Factory\CreatorUserFactory;
@@ -25,7 +27,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
     public const BENEFICIARY_MAIL_SETTINGS_DELETE = 'v2_test_user_beneficiary_to_delete@mail.com';
     public const BENEFICIARY_MAIL_FIRST_VISIT = 'v2_test_user_beneficiary_first_visit@mail.com';
     public const BENEFICIARY_MAIL_NO_SECRET_QUESTION = 'v2_test_user_beneficiary_no_secret_question@mail.com';
-
+    public const BENEFICIARY_MAIL_IN_CREATION = 'v2_test_user_beneficiary_in_creation@mail.com';
     public const BENEFICIARY_PHONE = '0612345678';
 
     public function load(ObjectManager $manager)
@@ -43,9 +45,12 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_SETTINGS_DELETE));
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_FIRST_VISIT)->setFirstVisit(true));
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_NO_SECRET_QUESTION), ['questionSecrete' => null]);
+        $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_IN_CREATION), [], [], true);
+
+        $manager->flush();
     }
 
-    public function createTestBeneficiary(User $user, array $attributes = [], array $relays = []): void
+    public function createTestBeneficiary(User $user, array $attributes = [], array $relays = [], bool $inCreation = false): void
     {
         $beneficiary = BeneficiaireFactory::new($attributes)
             ->linkToRelays(!empty($relays)
@@ -55,12 +60,28 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
             ->withAttributes(['user' => $user])
             ->create()->object();
 
+        $this->addPersonalData($beneficiary);
+        $this->addCreators($user);
+        $this->initCreationProcess($beneficiary, $inCreation);
+    }
+
+    private function initCreationProcess(Beneficiaire $beneficiary, bool $inCreation): void
+    {
+        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['beneficiary' => $beneficiary])->object();
+        $creationProcess->setIsCreating($inCreation);
+    }
+
+    private function addPersonalData(Beneficiaire $beneficiary): void
+    {
         ContactFactory::createOne(['beneficiaire' => $beneficiary])->object();
         NoteFactory::createOne(['beneficiaire' => $beneficiary])->object();
         EventFactory::createOne(['beneficiaire' => $beneficiary])->object();
         DocumentFactory::createOne(['beneficiaire' => $beneficiary])->object();
         FolderFactory::createMany(2, ['beneficiaire' => $beneficiary]);
+    }
 
+    private function addCreators(User $user): void
+    {
         $creatorRelay = CreatorCentreFactory::createOne()->object();
         $creatorUser = CreatorUserFactory::createOne()->object();
         $user->addCreator($creatorRelay);
