@@ -28,6 +28,7 @@ admin.menu.traduction: Translation
 admin.metaTitle: 'Reconnect Administration'
 admin.title: 'Reconnect <span class="main"> Administration</span>'
 aides.metaTitle: Aids
+all_your_data_will_be_deleted: Your data will be deleted and you will no longer be able to access it or the social structures that support you.
 alt_logo_reconnect: 'logo association reconnect'
 an_error_occurred: 'An error has occurred!'
 answer_secret_question: 'Answer secret question'
@@ -266,6 +267,8 @@ digital_cares_scalable_content_title: 'Evolving contents according to feedback f
 disabledAt: 'Disabled at'
 disabledBy: 'Disabled by'
 disaffiliate_beneficiary_subtitle: 'Stop the following of'
+disaffiliate_beneficiary: Remove beneficiary
+disaffiliate_user: Remove user
 document.apercu: Previews
 document.aucunFichier: 'For the moment,there is no folder'
 document.avertissementTaille: 'You soon reach the limit size of your storage space (%space%)'
@@ -974,5 +977,3 @@ you_can_unsubscribe_for_newsletter: 'You can unsubscribe from this list at any t
 you_must_provide_phone_number: 'You must provide a phone number'
 you_must_select_center_for_right_update: You must select a center to be able to modify the rights of a professional
 your_new_password: Your new password
-all_your_data_will_be_deleted: Your data will be deleted and you will no longer be able to access it or the social structures that support you.
-disaffiliate_beneficiary: Remove beneficiary
