@@ -45,6 +45,30 @@ class ToggleUserInvitationTest extends AbstractControllerTest
         yield 'Should return 200 status code when authenticated as member' => [self::URL, 200, MemberFixture::MEMBER_MAIL_WITH_RELAYS];
     }
 
+    /** @dataProvider provideTestForceBeneficiaryAffiliation */
+    public function testForceBeneficiaryAffiliation(string $email, bool $isCreating)
+    {
+        $loggedUser = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object();
+        $relay = $loggedUser->getCentres()[0];
+        $testedUser = UserFactory::findByEmail($email)->object();
+
+        self::assertEquals($isCreating, $testedUser->getSubjectBeneficiaire()->getCreationProcess()->isCreating());
+        self::assertFalse($testedUser->isLinkedToRelay($relay));
+
+        $url = sprintf(self::URL, $testedUser->getId(), $relay->getId());
+        $this->assertRoute($url, 200, MemberFixture::MEMBER_MAIL_WITH_RELAYS);
+
+        $testedUser = UserFactory::find($testedUser)->object();
+        $relay = RelayFactory::find($relay)->object();
+        self::assertEquals($isCreating, $testedUser->getUserRelay($relay)->getBValid());
+    }
+
+    public function provideTestForceBeneficiaryAffiliation(): ?\Generator
+    {
+        yield 'Should not force acceptation for existing beneficiary' => [BeneficiaryFixture::BENEFICIARY_MAIL, false];
+        yield 'Should force acceptation for beneficiary in creation' => [BeneficiaryFixture::BENEFICIARY_MAIL_IN_CREATION, true];
+    }
+
     public function testProPermissionOnInvitation(): void
     {
         $loggedUser = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object();

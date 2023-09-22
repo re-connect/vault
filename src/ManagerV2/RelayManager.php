@@ -96,9 +96,12 @@ class RelayManager
     /** @param ReadableCollection<int, Centre> $newRelays */
     public function addNewRelays(User $user, ReadableCollection $newRelays): void
     {
+        $beneficiary = $user->getSubjectBeneficiaire();
+        $forceAffiliation = $beneficiary && $beneficiary->getCreationProcess()?->getIsCreating();
+
         foreach ($newRelays as $relay) {
             if (!$user->isLinkedToRelay($relay)) {
-                $this->em->persist(User::createUserRelay($user, $relay));
+                $this->em->persist(User::createUserRelay($user, $relay, $forceAffiliation));
             }
         }
     }
