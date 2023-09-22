@@ -437,10 +437,7 @@ class User extends BaseUser implements \JsonSerializable
         return !$this->getSubjectBeneficiaire() ? '' : $this->getSubjectBeneficiaire()->getQuestionSecrete();
     }
 
-    /**
-     * @return Beneficiaire
-     */
-    public function getSubjectBeneficiaire()
+    public function getSubjectBeneficiaire(): ?Beneficiaire
     {
         return $this->subjectBeneficiaire;
     }
@@ -1139,11 +1136,11 @@ class User extends BaseUser implements \JsonSerializable
         return $this->getUserRelays()->first() ?: null;
     }
 
-    public static function createUserRelay(User $user, Centre $relay): UserCentre
+    public static function createUserRelay(User $user, Centre $relay, bool $valid = false): UserCentre
     {
         $userRelay = $user->isBeneficiaire() ? new BeneficiaireCentre() : new MembreCentre();
 
-        return $userRelay->setCentre($relay)->setUser($user);
+        return $userRelay->setCentre($relay)->setUser($user)->setBValid($valid);
     }
 
     public function isCreationProcessPending(): ?bool
