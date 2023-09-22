@@ -350,6 +350,8 @@ digital_cares_scalable_content_title: 'Des contenus évolutifs en fonction des r
 disabledAt: 'Désactivé le'
 disabledBy: 'Désactivé par'
 disaffiliate_beneficiary_subtitle: 'Arrêter le suivi de'
+disaffiliate_beneficiary: Arrêter le suivi d'un bénéficiaire
+disaffiliate_user: Arrêter le suivi d'un utilisateur
 document.apercu: Aperçus
 document.aucunFichier: "Il n'y a aucun fichier pour l'instant"
 document.avertissementTaille: 'Vous avez bientôt atteint la taille limite de votre espace de stockage (%taille%)'
@@ -1178,4 +1180,3 @@ your_email: 'Votre Email'
 your_new_password: Votre nouveau mot de passe
 your_phone_number: 'Votre numéro de téléphone'
 all_your_data_will_be_deleted: Vos données seront supprimées et vous ne pourrez plus y accéder ni les structures sociales qui vous accompagnent.
-disaffiliate_beneficiary: Arrêter le suivi d'un bénéficiaire
