@@ -1,6 +1,6 @@
 {% extends 'v2/management_layout.html.twig' %}
 
-{% block metaTitle %}{{ 'disaffiliate_user'|trans }}{% endblock metaTitle %}
+{% block metaTitle %}{{ user.subjectBeneficiaire ? 'disaffiliate_beneficiary'|trans : 'disaffiliate_user'|trans }}{% endblock metaTitle %}
 {% block subTitleIconName %}user-times{% endblock %}
 {% block subTitle %}{{ 'disaffiliate_beneficiary_subtitle'|trans|upper }} {{ user.fullName|upper }} {% endblock %}
 
