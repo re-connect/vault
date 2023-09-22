@@ -350,6 +350,7 @@ digital_cares_scalable_content_title: 'Des contenus évolutifs en fonction des r
 disabledAt: 'Désactivé le'
 disabledBy: 'Désactivé par'
 disaffiliate_beneficiary_subtitle: 'Arrêter le suivi de'
+disaffiliate_beneficiary: Arrêter le suivi d'un bénéficiaire
 disaffiliate_user: Arrêter le suivi d'un utilisateur
 document.apercu: Aperçus
 document.aucunFichier: "Il n'y a aucun fichier pour l'instant"
