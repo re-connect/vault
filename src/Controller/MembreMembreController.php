@@ -7,11 +7,9 @@ use App\Entity\Centre;
 use App\Entity\Membre;
 use App\Entity\User;
 use App\Form\Factory\UserFormFactory;
-use App\Form\Type\MembreSearchType;
 use App\Manager\CentreManager;
 use App\Provider\CentreProvider;
 use App\Provider\MembreProvider;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -54,35 +52,9 @@ final class MembreMembreController extends REController
         ]);
     }
 
-    public function ajoutMembreSearch(Request $request, UserRepository $userRepository): Response
+    public function ajoutMembreSearch(): Response
     {
-        $form = $this->createForm(MembreSearchType::class);
-        $form->handleRequest($request);
-        if ($request->isMethod(Request::METHOD_POST)) {
-            $nom = $form->get('nom')->getData();
-            $prenom = $form->get('prenom')->getData();
-
-            $foundUsers = [];
-            if (empty($nom) && empty($prenom)) {
-                $this->addFlash('error', 'Vous devez renseigner au moins un champ.');
-            } else {
-                $criterias = [
-                    'u.nom' => $nom,
-                    'u.prenom' => $prenom,
-                ];
-
-                $foundUsers = $userRepository->findMembresByCriterias($criterias);
-            }
-
-            return $this->render('user/membre-membre/ajoutMembreSearch.html.twig', [
-                'form' => $form,
-                'foundUsers' => $foundUsers,
-            ]);
-        }
-
-        return $this->render('user/membre-membre/ajoutMembreSearch.html.twig', [
-            'form' => $form,
-        ]);
+        return $this->redirectToRoute('create_pro_home');
     }
 
     /**

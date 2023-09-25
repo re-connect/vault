@@ -1,7 +1,7 @@
 {% extends 'v2/management_layout.html.twig' %}
 
 {% set isPro = user.hasRole('ROLE_MEMBRE') %}
-{% block metaTitle %}{{ (isPro ? 'remove_user_access' : 'disaffiliate_user')|trans }}{% endblock metaTitle %}
+{% block metaTitle %}{{ (isPro ? 'remove_user_access' : 'disaffiliate_beneficiary')|trans }}{% endblock metaTitle %}
 {% block subTitleIconName %}user-times{% endblock %}
 {% block subTitle %}{{ (isPro ? 'remove_access_for' : 'disaffiliate_beneficiary_subtitle')|trans|upper }} {{ user.fullName|upper }} {% endblock %}
 
