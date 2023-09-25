@@ -118,11 +118,6 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 
-    App\ListenerV2\DeactivatableListener:
-        autowire: true
-        tags:
-            - { name: doctrine.event_listener, event: preUpdate, }
-
     # Voter
     App\Security\Authorization\Voter\UserVoter:
         autowire: true

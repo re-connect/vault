@@ -36,9 +36,6 @@ class RelayManager
     {
         if ($userRelay = $user->getUserRelay($relay)) {
             $this->em->remove($userRelay);
-            if ($user->isMembre() && 1 === $user->getUserRelays()->count()) {
-                $user->disable();
-            }
         }
 
         $this->em->flush();
