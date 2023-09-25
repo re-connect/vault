@@ -60,7 +60,10 @@ class UserCreationSubscriber
         }
 
         $this->manager->setUniqueUsername($user);
-        $this->mailerService->sendDuplicateUsernameAlert($user);
+
+        if ($object instanceof User) {
+            $this->mailerService->sendDuplicateUsernameAlert($user);
+        }
     }
 
     /** @param LifecycleEventArgs<ObjectManager> $args */
