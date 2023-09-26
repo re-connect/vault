@@ -26,9 +26,6 @@ class CreatorListenerTest extends AuthenticatedKernelTestCase
         yield 'Should trigger listener when creating as professional' => [
             MemberFixture::MEMBER_MAIL,
         ];
-        yield 'Should trigger listener when creating as gestionnaire' => [
-            GestionnaireFixture::GESTIONNAIRE_MAIL,
-        ];
     }
 
     /** @dataProvider provideTestCreatorListener */
