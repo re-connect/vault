@@ -49,7 +49,7 @@ class CreateBeneficiaryType extends AbstractType
             ->add('dateNaissance', BirthdayType::class, [
                 'label' => 'birthDate',
                 'row_attr' => ['class' => 'mt-3'],
-                'data' => $birthDate ?? new \DateTime('01/01/1975'),
+                'data' => $birthDate,
             ]);
 
         $builder->get('user')->get('telephone')->setRequired($remotely);
