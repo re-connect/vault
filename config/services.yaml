@@ -112,17 +112,6 @@ services:
         tags:
             - { name: 'kernel.event_listener', event: 're.event.evenement', method: onEvenementEvent }
 
-    #ListenerV2
-    App\ListenerV2\CreatorListener:
-        autowire: true
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-
-    App\ListenerV2\DeactivatableListener:
-        autowire: true
-        tags:
-            - { name: doctrine.event_listener, event: preUpdate, }
-
     # Voter
     App\Security\Authorization\Voter\UserVoter:
         autowire: true

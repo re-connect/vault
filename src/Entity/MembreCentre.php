@@ -17,15 +17,12 @@ class MembreCentre extends UserCentre
     ];
 
     #[Groups(['v3:center:read', 'v3:center:write'])]
-    private $centre;
+    private ?Centre $centre = null;
 
     #[Groups(['v3:center:read', 'v3:center:write'])]
-    private $membre;
+    private ?Membre $membre = null;
 
-    /**
-     * @var array
-     */
-    private $droits = [];
+    private ?array $droits = [];
 
     public static function getArDroits()
     {
@@ -44,48 +41,24 @@ class MembreCentre extends UserCentre
         ];
     }
 
-    /**
-     * Get centre.
-     *
-     * @return Centre
-     */
-    public function getCentre()
+    public function getCentre(): ?Centre
     {
         return $this->centre;
     }
 
-    /**
-     * Set centre.
-     *
-     * @param Centre $centre
-     *
-     * @return MembreCentre
-     */
-    public function setCentre(Centre $centre = null)
+    public function setCentre(Centre $centre = null): static
     {
         $this->centre = $centre;
 
         return $this;
     }
 
-    /**
-     * Get membre.
-     *
-     * @return Membre
-     */
-    public function getMembre()
+    public function getMembre(): ?Membre
     {
         return $this->membre;
     }
 
-    /**
-     * Set membre.
-     *
-     * @param Membre $membre
-     *
-     * @return MembreCentre
-     */
-    public function setMembre(Membre $membre = null)
+    public function setMembre(Membre $membre = null): static
     {
         $this->membre = $membre;
 
@@ -97,21 +70,14 @@ class MembreCentre extends UserCentre
         return $this->droits;
     }
 
-    /**
-     * Set droits.
-     *
-     * @param array $droits
-     *
-     * @return MembreCentre
-     */
-    public function setDroits($droits = [])
+    public function setDroits($droits = []): static
     {
         $this->droits = $droits;
 
         return $this;
     }
 
-    public function setUser(User $user): self
+    public function setUser(User $user): static
     {
         $this->membre = $user->getSubjectMembre();
 
