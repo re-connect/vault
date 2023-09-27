@@ -2,6 +2,7 @@
 
 namespace App\Tests\v2\EventSubscriber\Logs;
 
+use App\DataFixtures\v2\MemberFixture;
 use App\Entity\User;
 use App\EventSubscriber\Logs\UserSubscriber;
 use App\Tests\Factory\UserFactory;
@@ -56,7 +57,7 @@ class UserSubscriberTest extends AbstractLogActivitySubscriberTest implements Te
 
     public function testPreRemove(): void
     {
-        $user = UserFactory::random()->object();
+        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL)->object();
         $this->em->remove($user->getSubject());
         $this->em->remove($user);
         $logContent = $this->getLogContent($user);

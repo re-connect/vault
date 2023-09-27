@@ -133,7 +133,7 @@ class UserCreationListenerTest extends AuthenticatedTestCase
             ->setEmail('dummymail@mail.com')
             ->setLastLang('dd')
             ->setDisabledAt(new \DateTime())
-            ->setDisabledBy(UserFactory::random()->object())
+            ->setDisabledBy(UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object())
             ->setTest(!$user->isTest())
             ->setCanada($user->isCanada());
         $this->em->flush();
