@@ -65,7 +65,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
         $this->initCreationProcess($beneficiary, $inCreation);
     }
 
-    private function initCreationProcess(Beneficiaire $beneficiary, bool $inCreation): void
+    private function initCreationProcess(Beneficiaire $beneficiary, bool $inCreation = false): void
     {
         $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['beneficiary' => $beneficiary])->object();
         $creationProcess->setIsCreating($inCreation);
