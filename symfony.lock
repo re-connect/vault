@@ -913,9 +913,6 @@
             "webpack.config.js"
         ]
     },
-    "symfony/yaml": {
-        "version": "v4.4.9"
-    },
     "symfonycasts/reset-password-bundle": {
         "version": "1.13",
         "recipe": {
