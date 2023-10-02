@@ -173,6 +173,11 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return $this->getMembresCentres();
     }
 
+    public function getUserCentresCount()
+    {
+        return $this->getMembresCentres()->count();
+    }
+
     public function getUserCentre(Centre $centre)
     {
         foreach ($this->getMembresCentres() as $membreCentre) {
