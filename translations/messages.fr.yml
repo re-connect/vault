@@ -1180,3 +1180,5 @@ your_email: 'Votre Email'
 your_new_password: Votre nouveau mot de passe
 your_phone_number: 'Votre numéro de téléphone'
 all_your_data_will_be_deleted: Vos données seront supprimées et vous ne pourrez plus y accéder ni les structures sociales qui vous accompagnent.
+no_relay_selected_alert: Vous n’avez affilié ce bénéficiaire à aucun relais. Si vous souhaitez poursuivre la création comme cela, cliquez sur continuer
+no_relay_selected: Aucun relais sélectionné
