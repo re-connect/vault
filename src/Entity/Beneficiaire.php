@@ -408,6 +408,11 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this->getBeneficiairesCentres();
     }
 
+    public function getUserCentresCount()
+    {
+        return $this->getBeneficiairesCentres()->count();
+    }
+
     public function isBeneficiaire(): bool
     {
         return true;

@@ -227,6 +227,11 @@ class BeneficiaryCreationProcess
         return $step === $this->currentStep;
     }
 
+    public function isSummaryStep(): bool
+    {
+        return $this->currentStep === ($this->remotely ? self::REMOTELY_TOTAL_STEPS - 1 : self::DEFAULT_TOTAL_STEPS - 1);
+    }
+
     public function isStepDone(int $step): bool
     {
         return $step < $this->lastReachedStep;
