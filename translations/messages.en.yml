@@ -705,6 +705,8 @@ my_notes: 'My Notes'
 my_relays: 'My Relays'
 my_relays_title: My relays Reconnect
 name: Name
+no_relay_selected: No relay selected
+no_relay_selected_alert: You have not affiliated this beneficiary to any relay. If you want to continue creating like this, click continue
 no_result: 'No result'
 note.ajouter: 'Add a note'
 note.bienSauvegarde: 'Your note has been saved'
@@ -977,5 +979,3 @@ you_can_unsubscribe_for_newsletter: 'You can unsubscribe from this list at any t
 you_must_provide_phone_number: 'You must provide a phone number'
 you_must_select_center_for_right_update: You must select a center to be able to modify the rights of a professional
 your_new_password: Your new password
-no_relay_selected: No relay selected
-no_relay_selected_alert: You have not affiliated this beneficiary to any relay. If you want to continue creating like this, click continue
