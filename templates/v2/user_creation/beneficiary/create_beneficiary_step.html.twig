@@ -53,4 +53,12 @@
             cancelPath: path('create_beneficiary_abort', {id: beneficiaryCreationProcess.id}),
         }) }}
     {% endif %}
+
+    {% if beneficiaryCreationProcess.isSummaryStep and beneficiary.userCentresCount == 0 %}
+        {{ include('v2/notifications/notification_modal.twig', {
+            title: 'no_relay_selected'|trans,
+            content: 'no_relay_selected_alert'|trans,
+            cancelPath: path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': beneficiaryCreationProcess.previousStep}),
+        }) }}
+    {% endif %}
 {% endblock %}

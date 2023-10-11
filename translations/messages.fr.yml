@@ -861,6 +861,8 @@ my_relays: 'Mes relais'
 my_relays_title: Mes relais Reconnect
 name: Nom
 next: Suivant
+no_relay_selected_alert: Vous n’avez affilié ce bénéficiaire à aucun relais. Si vous souhaitez poursuivre la création comme cela, cliquez sur continuer
+no_relay_selected: Aucun relais sélectionné
 no_result: 'Aucun résultat'
 not_allowed_to_share_this_document: "Vous n'êtes pas autorisé à partager ce document"
 note.ajouter: 'Ajouter une note'
