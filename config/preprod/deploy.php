@@ -32,7 +32,7 @@ return new class() extends DefaultDeployer {
     public function beforeOptimizing()
     {
         $this->log('Remote yarn');
-        $this->runRemote('~/.yarn/bin/yarn install');
+        $this->runRemote('~/.yarn/bin/yarn install --force');
         $this->runRemote('~/.yarn/bin/yarn dev');
     }
 

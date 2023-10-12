@@ -9,7 +9,7 @@ export default class extends Controller {
 
   connect() {
     intlTelInput(this.inputTarget, {
-      autoPlaceholder: 'aggressive',
+      customPlaceholder: () => 'X XX XX XX XX',
       hiddenInput: 'formatted-number',
       initialCountry: 'fr',
       preferredCountries,
