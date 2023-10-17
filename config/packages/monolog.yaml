@@ -3,9 +3,11 @@ monolog:
         - deprecation # Deprecations are logged in the dedicated "deprecation" channel when it exists
     handlers:
         deprecation:
-            type: stream
+            type: rotating_file
             channels: [ deprecation ]
-            path: "%kernel.logs_dir%/%kernel.environment%.deprecations.log"
+            path: "%kernel.logs_dir%/deprecations/%kernel.environment%.deprecations.log"
+            max_files: 30
+
 when@dev:
     monolog:
         handlers:
