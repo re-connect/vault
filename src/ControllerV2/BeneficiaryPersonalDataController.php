@@ -21,6 +21,7 @@ use App\ManagerV2\FolderableItemManager;
 use App\ManagerV2\FolderManager;
 use App\ManagerV2\NoteManager;
 use App\Repository\DossierRepository;
+use App\ServiceV2\MailerServiceV2;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
@@ -40,8 +41,10 @@ class BeneficiaryPersonalDataController extends AbstractController
         Beneficiaire $beneficiary,
         NoteManager $manager,
         PaginatorService $paginator,
+        MailerServiceV2 $mailer,
     ): Response {
         $formModel = new SearchFormModel($request->query->get('search'));
+        $mailer->test();
 
         return $this->render($request->isXmlHttpRequest()
             ? 'v2/vault/note/_list.html.twig'
