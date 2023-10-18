@@ -44,7 +44,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         MailerServiceV2 $mailer,
     ): Response {
         $formModel = new SearchFormModel($request->query->get('search'));
-        $mailer->test();
+        $mailer->testApi();
 
         return $this->render($request->isXmlHttpRequest()
             ? 'v2/vault/note/_list.html.twig'
