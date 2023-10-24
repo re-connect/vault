@@ -60,7 +60,7 @@ class BeneficiaryAffiliationManager
      */
     public function getAvailableRelaysForAffiliation(User $professional, Beneficiaire $beneficiary): ArrayCollection
     {
-        return $professional->getSubject()->getCentres()->filter(
+        return $professional->getCentres()->filter(
             fn (Centre $relay) => !$beneficiary->getCentres()->contains($relay)
         );
     }

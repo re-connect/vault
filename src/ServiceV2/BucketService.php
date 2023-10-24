@@ -45,7 +45,7 @@ class BucketService
     }
 
     /**
-     * @return bool|resource
+     * @return false|resource
      */
     public function getObjectStream(string $fileKey)
     {

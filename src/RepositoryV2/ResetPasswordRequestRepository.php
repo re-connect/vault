@@ -27,9 +27,16 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         parent::__construct($registry, ResetPasswordRequest::class);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function createResetPasswordRequest(object $user, \DateTimeInterface $expiresAt, string $selector, string $hashedToken): ResetPasswordRequestInterface
     {
-        return new ResetPasswordRequest($user, $expiresAt, $selector, $hashedToken);
+        if ($user instanceof User) {
+            return new ResetPasswordRequest($user, $expiresAt, $selector, $hashedToken);
+        }
+
+        throw new \Exception(sprintf('Error while creating reset password request at date %s : $user object is not instance of User', (new \DateTime())->format('dd/mm/YYYY')));
     }
 
     public function getMostRecentNonExpiredRequest(User $user): ?ResetPasswordRequest
