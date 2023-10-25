@@ -14,10 +14,13 @@
     {% endif %}
     {{ form_start(form) }}
     {{ form_row(form._username, {full_name:'_username', value: last_username}) }}
-    <div class="position-relative">
-        {{ form_row(form._password, {full_name:'_password'}) }}
-        <i style="right:3%; top:25%; z-index:2;"
-           class="show-password fas fa-eye position-absolute font-size-1 clickable {{ icon_color }}"></i>
+    <div class="position-relative" {{ stimulus_controller('hide-show-password') }}>
+        {{ form_row(form._password, {full_name:'_password', attr: {'data-hide-show-password-target' : 'input'}}) }}
+        <button type="button" class="btn position-absolute border-0" style="right:0; top:-1px; z-index:2;"
+                {{ stimulus_action('hide-show-password', 'toggle') }}>
+            <i class="fas fa-eye font-size-1 {{ icon_color }}"
+                {{ stimulus_target('hide-show-password', 'icon') }}></i>
+        </button>
     </div>
 
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">

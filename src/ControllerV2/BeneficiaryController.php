@@ -51,7 +51,7 @@ class BeneficiaryController extends AbstractController
             [
                 'beneficiaries' => $paginator->create(
                     $repository->findByAuthorizedProfessional(
-                        $this->getUser()->getSubject(),
+                        $this->getUser()->getSubjectMembre(),
                         $formModel->search,
                         $formModel->relay,
                     ),

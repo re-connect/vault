@@ -3,6 +3,7 @@
 namespace App\ManagerV2;
 
 use App\Entity\Beneficiaire;
+use App\Entity\Document;
 use App\Entity\Dossier;
 use App\Repository\DossierRepository;
 use App\ServiceV2\BucketService;
@@ -93,15 +94,18 @@ class FolderManager
         $options->setZeroHeader(true);
         $zip = new ZipStream($folder->getNom(), $options);
 
-        $folder->getDocuments($this->getUser() === $folder->getBeneficiaire()->getUser())
-            ->filter(
-                fn ($document) => $this->bucketService->getObjectStream($document->getObjectKey())
-            )->map(
-                fn ($document) => $zip->addFileFromStream(
+        $documents = $folder->getDocuments($this->getUser() === $folder->getBeneficiaire()->getUser())
+            ->filter(fn (Document $document) => is_resource($this->bucketService->getObjectStream($document->getObjectKey())));
+
+        foreach ($documents as $document) {
+            $objectStream = $this->bucketService->getObjectStream($document->getObjectKey());
+            if ($objectStream) {
+                $zip->addFileFromStream(
                     $document->getNom(),
-                    $this->bucketService->getObjectStream($document->getObjectKey())
-                )
-            );
+                    $objectStream,
+                );
+            }
+        }
 
         try {
             $zip->finish();

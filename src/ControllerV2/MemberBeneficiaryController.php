@@ -30,7 +30,7 @@ class MemberBeneficiaryController extends AbstractController
             return new JsonResponse(null, Response::HTTP_UNAUTHORIZED);
         }
 
-        $formData = $request->request->all()['first_member_visit'];
+        $formData = (array) $request->request->all()['first_member_visit'];
         $contact = (new Contact($beneficiary))
             ->setNom($user->getNom())
             ->setPrenom($user->getPrenom())

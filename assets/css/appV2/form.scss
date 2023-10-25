@@ -53,3 +53,7 @@ form .form-group.has-error .help-block .list-unstyled li {
     content: '\f002';
   }
 }
+
+input[data-intl-tel-input-id]::placeholder {
+  color: theme-color('light-grey');
+}

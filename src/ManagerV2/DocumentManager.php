@@ -163,16 +163,16 @@ class DocumentManager
 
     public function downloadDocument(Document $document): ?StreamedResponse
     {
-        if (!$this->bucketService->getObjectStream($document->getObjectKey())) {
+        $objectStream = $this->bucketService->getObjectStream($document->getObjectKey());
+        $outputStream = fopen('php://output', 'wb');
+        if (!$objectStream || !$outputStream) {
             return null;
         }
 
-        $response = new StreamedResponse(function () use ($document) {
-            stream_copy_to_stream(
-                $this->bucketService->getObjectStream($document->getObjectKey()),
-                fopen('php://output', 'wb')
-            );
-        });
+        $response = new StreamedResponse(fn () => stream_copy_to_stream(
+            $objectStream,
+            $outputStream,
+        ));
 
         $response->headers->set('Content-Type', 'application/octet-stream');
         $response->headers->set('Content-Disposition', HeaderUtils::makeDisposition(
