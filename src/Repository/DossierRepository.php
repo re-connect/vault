@@ -64,4 +64,12 @@ class DossierRepository extends ServiceEntityRepository
         return $qb->getQuery()
             ->getResult();
     }
+
+    public function findWithParentFolder(): array
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.dossierParent is not null')
+            ->getQuery()
+            ->getResult();
+    }
 }
