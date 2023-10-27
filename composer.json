@@ -72,7 +72,7 @@
     "symfony/validator": "6.3.*",
     "symfony/vonage-notifier": "6.3.*",
     "symfony/web-link": "6.3.*",
-    "symfony/webpack-encore-bundle": "1.16.*",
+    "symfony/webpack-encore-bundle": "2.1.*",
     "symfony/yaml": "6.3.*",
     "symfonycasts/reset-password-bundle": "1.18.*",
     "twig/extra-bundle": "3.7.*",
