@@ -18,7 +18,6 @@ use App\Provider\BeneficiaireProvider;
 use App\Provider\UserProvider;
 use App\Security\Authorization\Voter\BeneficiaireVoter;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -303,7 +302,7 @@ final class MembreBeneficiaireController extends REController
                     $this->entityManager->flush();
 
                     $SMSManager->sendSMSBeneficiaryAddremotely($beneficiaire, $password);
-                } catch (Exception) {
+                } catch (\Exception) {
                     return $this->render($view, [
                         'beneficiaire' => $beneficiaire,
                         'form' => $form,

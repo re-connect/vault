@@ -136,8 +136,6 @@ class Association extends Subject
     /**
      * Set user.
      *
-     * @param User $user
-     *
      * @return Association
      */
     public function setUser(User $user = null)

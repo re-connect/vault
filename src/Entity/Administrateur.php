@@ -20,8 +20,6 @@ class Administrateur extends Subject
     /**
      * Set user.
      *
-     * @param User $user
-     *
      * @return Administrateur
      */
     public function setUser(User $user = null)
