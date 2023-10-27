@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af3de277111abab20a6d1502042c3976",
+    "content-hash": "8a2722b62bfbab7ae675a6ac83f17f1f",
     "packages": [
         {
             "name": "api-platform/core",
-            "version": "v3.1.12",
+            "version": "v3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "1fe505a9d8fd235a8d7e4aa0f245f382f65578f8"
+                "reference": "ad2cbe073b1cf0d5589c2ef1e48603e4426286ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/1fe505a9d8fd235a8d7e4aa0f245f382f65578f8",
-                "reference": "1fe505a9d8fd235a8d7e4aa0f245f382f65578f8",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/ad2cbe073b1cf0d5589c2ef1e48603e4426286ad",
+                "reference": "ad2cbe073b1cf0d5589c2ef1e48603e4426286ad",
                 "shasum": ""
             },
             "require": {
@@ -31,6 +31,7 @@
                 "symfony/property-access": "^6.1",
                 "symfony/property-info": "^6.1",
                 "symfony/serializer": "^6.1",
+                "symfony/translation-contracts": "^3.3",
                 "symfony/web-link": "^6.1",
                 "willdurand/negotiation": "^3.0"
             },
@@ -40,24 +41,22 @@
                 "doctrine/mongodb-odm": "<2.4",
                 "doctrine/orm": "<2.14.0",
                 "doctrine/persistence": "<1.3",
-                "elasticsearch/elasticsearch": ">=8.0",
+                "elasticsearch/elasticsearch": ">=8.0,<8.4",
                 "phpspec/prophecy": "<1.15",
                 "phpunit/phpunit": "<9.5",
-                "symfony/service-contracts": "<3",
                 "symfony/var-exporter": "<6.1.1"
             },
             "require-dev": {
-                "behat/behat": "^3.1",
-                "behat/mink": "^1.9@dev",
+                "behat/behat": "^3.11",
+                "behat/mink": "^1.9",
                 "doctrine/cache": "^1.11 || ^2.1",
                 "doctrine/common": "^3.2.2",
-                "doctrine/data-fixtures": "^1.2.2",
                 "doctrine/dbal": "^3.4.0",
                 "doctrine/doctrine-bundle": "^1.12 || ^2.0",
                 "doctrine/mongodb-odm": "^2.2",
                 "doctrine/mongodb-odm-bundle": "^4.0",
                 "doctrine/orm": "^2.14",
-                "elasticsearch/elasticsearch": "^7.11.0",
+                "elasticsearch/elasticsearch": "^7.11 || ^8.4",
                 "friends-of-behat/mink-browserkit-driver": "^1.3.1",
                 "friends-of-behat/mink-extension": "^2.2",
                 "friends-of-behat/symfony-extension": "^2.1",
@@ -72,9 +71,9 @@
                 "phpstan/phpstan-phpunit": "^1.0",
                 "phpstan/phpstan-symfony": "^1.0",
                 "psr/log": "^1.0 || ^2.0 || ^3.0",
-                "ramsey/uuid": "^3.7 || ^4.0",
-                "ramsey/uuid-doctrine": "^1.4",
-                "soyuka/contexts": "^3.3.6",
+                "ramsey/uuid": "^3.9.7 || ^4.0",
+                "ramsey/uuid-doctrine": "^1.4 || ^2.0",
+                "soyuka/contexts": "v3.3.9",
                 "soyuka/stubs-mongodb": "^1.0",
                 "symfony/asset": "^6.1",
                 "symfony/browser-kit": "^6.1",
@@ -82,7 +81,7 @@
                 "symfony/config": "^6.1",
                 "symfony/console": "^6.1",
                 "symfony/css-selector": "^6.1",
-                "symfony/dependency-injection": "^6.1",
+                "symfony/dependency-injection": "^6.1.12",
                 "symfony/doctrine-bridge": "^6.1",
                 "symfony/dom-crawler": "^6.1",
                 "symfony/error-handler": "^6.1",
@@ -100,6 +99,7 @@
                 "symfony/routing": "^6.1",
                 "symfony/security-bundle": "^6.1",
                 "symfony/security-core": "^6.1",
+                "symfony/stopwatch": "^6.1",
                 "symfony/twig-bundle": "^6.1",
                 "symfony/uid": "^6.1",
                 "symfony/validator": "^6.1",
@@ -129,7 +129,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.2.x-dev"
+                    "dev-main": "3.3.x-dev"
                 },
                 "symfony": {
                     "require": "^6.1"
@@ -166,15 +166,9 @@
             ],
             "support": {
                 "issues": "https://github.com/api-platform/core/issues",
-                "source": "https://github.com/api-platform/core/tree/v3.1.12"
+                "source": "https://github.com/api-platform/core/tree/v3.2.2"
             },
-            "funding": [
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/api-platform/core",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2023-05-24T19:23:57+00:00"
+            "time": "2023-10-27T09:37:13+00:00"
         },
         {
             "name": "aws/aws-crt-php",
@@ -6316,16 +6310,16 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "4.27.1",
+            "version": "4.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "2ae0c57def6d64f9f86d9e7d63d55c6cd573f6d9"
+                "reference": "724c4fcec44b33c74aa3f3cc37627aa2e7890446"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/2ae0c57def6d64f9f86d9e7d63d55c6cd573f6d9",
-                "reference": "2ae0c57def6d64f9f86d9e7d63d55c6cd573f6d9",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/724c4fcec44b33c74aa3f3cc37627aa2e7890446",
+                "reference": "724c4fcec44b33c74aa3f3cc37627aa2e7890446",
                 "shasum": ""
             },
             "require": {
@@ -6384,7 +6378,7 @@
                 "psalm/plugin-phpunit": "^0.18",
                 "psalm/plugin-symfony": "^5.0",
                 "psr/event-dispatcher": "^1.0",
-                "rector/rector": "^0.17",
+                "rector/rector": "^0.18",
                 "symfony/browser-kit": "^5.4 || ^6.2",
                 "symfony/css-selector": "^5.4 || ^6.2",
                 "symfony/filesystem": "^5.4 || ^6.2",
@@ -6429,7 +6423,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataAdminBundle/issues",
-                "source": "https://github.com/sonata-project/SonataAdminBundle/tree/4.27.1"
+                "source": "https://github.com/sonata-project/SonataAdminBundle/tree/4.28.0"
             },
             "funding": [
                 {
@@ -6449,7 +6443,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-09-21T18:44:40+00:00"
+            "time": "2023-10-18T22:47:20+00:00"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -6671,16 +6665,16 @@
         },
         {
             "name": "sonata-project/doctrine-orm-admin-bundle",
-            "version": "4.13.0",
+            "version": "4.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "6f45c37d06c168827f1965cc00c3e8a0191f1fb5"
+                "reference": "534837c60b06d64c06dc01eca69cfe4f944a4e94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/6f45c37d06c168827f1965cc00c3e8a0191f1fb5",
-                "reference": "6f45c37d06c168827f1965cc00c3e8a0191f1fb5",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/534837c60b06d64c06dc01eca69cfe4f944a4e94",
+                "reference": "534837c60b06d64c06dc01eca69cfe4f944a4e94",
                 "shasum": ""
             },
             "require": {
@@ -6725,7 +6719,7 @@
                 "phpunit/phpunit": "^9.5",
                 "psalm/plugin-phpunit": "^0.18",
                 "psalm/plugin-symfony": "^5.0",
-                "rector/rector": "^0.16",
+                "rector/rector": "^0.18",
                 "sonata-project/block-bundle": "^4.2",
                 "sonata-project/entity-audit-bundle": "^1.1",
                 "symfony/browser-kit": "^5.4 || ^6.2",
@@ -6780,7 +6774,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/issues",
-                "source": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/tree/4.13.0"
+                "source": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/tree/4.14.0"
             },
             "funding": [
                 {
@@ -6800,7 +6794,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-05-13T15:33:05+00:00"
+            "time": "2023-10-23T16:21:16+00:00"
         },
         {
             "name": "sonata-project/exporter",
@@ -14852,23 +14846,21 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.21.3",
+            "version": "v3.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "d051aff28bbb75830809f4f3b67c6b94c1fc5fb6"
+                "reference": "e889301f276c6ce2c391d6aafae9a162e785b064"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/d051aff28bbb75830809f4f3b67c6b94c1fc5fb6",
-                "reference": "d051aff28bbb75830809f4f3b67c6b94c1fc5fb6",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/e889301f276c6ce2c391d6aafae9a162e785b064",
+                "reference": "e889301f276c6ce2c391d6aafae9a162e785b064",
                 "shasum": ""
             },
             "require": {
                 "composer/semver": "^3.3",
                 "composer/xdebug-handler": "^3.0.3",
-                "doctrine/annotations": "^2",
-                "doctrine/lexer": "^2 || ^3",
                 "ext-json": "*",
                 "ext-tokenizer": "*",
                 "php": "^7.4 || ^8.0",
@@ -14896,8 +14888,6 @@
                 "phpspec/prophecy": "^1.16",
                 "phpspec/prophecy-phpunit": "^2.0",
                 "phpunit/phpunit": "^9.5",
-                "phpunitgoodpractices/polyfill": "^1.6",
-                "phpunitgoodpractices/traits": "^1.9.2",
                 "symfony/phpunit-bridge": "^6.2.3",
                 "symfony/yaml": "^5.4 || ^6.0"
             },
@@ -14937,7 +14927,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.21.3"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.36.0"
             },
             "funding": [
                 {
@@ -14945,7 +14935,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-07-16T22:25:44+00:00"
+            "time": "2023-10-27T10:12:29+00:00"
         },
         {
             "name": "nikic/php-parser",
