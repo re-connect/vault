@@ -46,7 +46,6 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use ZipStream\Option\Archive;
 use ZipStream\ZipStream;
 
 class DocumentProvider extends DonneePersonnelleProvider
@@ -306,9 +305,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         }
 
         return new StreamedResponse(function () use ($folder, $documents) {
-            $options = new Archive();
-            $options->setZeroHeader(true);
-            $zip = new ZipStream($folder->getNom(), $options);
+            $zip = new ZipStream(outputName: sprintf('%s.zip', $folder->getNom()));
 
             foreach ($documents as $document) {
                 $zip->addFileFromStream(
