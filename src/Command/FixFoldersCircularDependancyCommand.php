@@ -32,7 +32,7 @@ class FixFoldersCircularDependancyCommand extends Command
         $io->info('Finding and removing circular dependancies');
 
         $i = 0;
-        foreach ($progressBar->iterate($this->folderRepository->findWithParentFolder()) as $folder) {
+        foreach ($progressBar->iterate($this->folderRepository->findWithCircularDependancy()) as $folder) {
             $parent = $folder->getDossierParent();
             if (null !== $parent && $folder === $parent->getDossierParent()) {
                 $folder->setDossierParent();
