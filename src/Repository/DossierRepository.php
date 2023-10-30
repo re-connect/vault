@@ -65,10 +65,11 @@ class DossierRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findWithParentFolder(): array
+    public function findWithCircularDependency(): array
     {
         return $this->createQueryBuilder('d')
-            ->where('d.dossierParent is not null')
+            ->join('d.dossierParent', 'd2')
+            ->where('d = d2.dossierParent')
             ->getQuery()
             ->getResult();
     }
