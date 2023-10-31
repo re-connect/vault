@@ -5,7 +5,6 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\Dto\BeneficiaryDto;
@@ -435,6 +434,20 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this;
     }
 
+    public function useVaultSpace(int $additionalSpace): self
+    {
+        $this->totalFileSize += $additionalSpace;
+
+        return $this;
+    }
+
+    public function freeVaultSpace(int $additionalSpace): self
+    {
+        $this->totalFileSize -= $additionalSpace;
+
+        return $this;
+    }
+
     public function getIsCreating(): bool
     {
         return $this->isCreating;
@@ -857,7 +870,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function removeEvenement(Evenement $evenement): self
     {
-        $evenement->setBeneficiaire(null);
+        $evenement->setBeneficiaire();
         $this->evenements->removeElement($evenement);
 
         return $this;
@@ -873,7 +886,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function removeNote(Note $note): self
     {
-        $note->setBeneficiaire(null);
+        $note->setBeneficiaire();
         $this->notes->removeElement($note);
 
         return $this;
@@ -889,7 +902,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function removeDocument(Document $document): self
     {
-        $document->setBeneficiaire(null);
+        $document->setBeneficiaire();
         $this->documents->removeElement($document);
 
         return $this;
@@ -897,7 +910,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function removeDossier(Dossier $dossier): self
     {
-        $dossier->setBeneficiaire(null);
+        $dossier->setBeneficiaire();
         $this->dossiers->removeElement($dossier);
 
         return $this;
