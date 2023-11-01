@@ -1,20 +1,22 @@
 {% set hasValidLinkToRelay = user.hasValidLinkToRelay(relay) %}
 {% set isPro = user.hasRole('ROLE_MEMBRE') %}
 
-<div class="relay-checkbox py-1">
+<div class="relay-checkbox py-1 d-flex w-100">
     <a
-        class="btn btn-light border-primary h-100 w-100 {{ user.isLinkedToRelay(relay) ? activeClasses : inactiveClasses }}"
-        {% if not hasValidLinkToRelay %}
-            {{ stimulus_action('custom-checkbox', 'click', null, {
-                path: path('toggle_user_invitation', {id: user.id, relay: relay.id})
-            }) }}
-        {% else %}
-            data-toggle="tooltip"
-            data-bs-placement="top"
-            data-bs-custom-class="blue-tooltip"
-            title="{{ isPro ? 'pro_already_affiliated_to_relay'|trans : 'beneficiary_already_affiliated_to_relay'|trans }}"
-        {% endif %}
+            style="height: 40px; width: 40px"
+            class="btn btn-light border-primary {{ user.isLinkedToRelay(relay) ? activeClasses : inactiveClasses }}"
+            {% if not hasValidLinkToRelay %}
+                {{ stimulus_action('custom-checkbox', 'click', null, {
+                    path: path('toggle_user_invitation', {id: user.id, relay: relay.id})
+                }) }}
+            {% else %}
+                data-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-custom-class="blue-tooltip"
+                title="{{ isPro ? 'pro_already_affiliated_to_relay'|trans : 'beneficiary_already_affiliated_to_relay'|trans }}"
+            {% endif %}
     >
+        <i class="fa fa-check fa-1x text-white"></i>
         {% if hasValidLinkToRelay %}
             <div class="text-end">
                 <span class="badge bg-success text-white">
@@ -23,8 +25,8 @@
                 </span>
             </div>
         {% endif %}
-        <span>{{ relay.nameAndAddress }}</span>
-        <br/>
-        <i class="fa fa-hotel fa-4x mt-3"></i>
     </a>
+    <div class="flex-grow-1 ms-2 d-flex align-items-center">
+        <span>{{ relay.nameAndAddress }}</span>
+    </div>
 </div>
