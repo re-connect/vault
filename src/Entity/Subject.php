@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ReadableCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 abstract class Subject implements \JsonSerializable
@@ -16,11 +17,11 @@ abstract class Subject implements \JsonSerializable
     {
         $str = '';
 
-        if (null !== $this->getUser()) {
-            $str = sprintf('%s', $this->getUser()->getUserIdentifier());
+        if (null !== $this->user) {
+            $str = sprintf('%s', $this->user->getUserIdentifier());
         }
         if (null !== $this->id) {
-            $str .= sprintf(' (id:%s)', $this->getId());
+            $str .= sprintf(' (id:%s)', $this->id);
         }
 
         return $str;
@@ -55,6 +56,17 @@ abstract class Subject implements \JsonSerializable
 
     public function getUsername(): ?string
     {
-        return $this->getUser()?->getUsername();
+        return $this->user?->getUsername();
+    }
+
+    /** @return ReadableCollection<int, Centre> */
+    public function getRelays(): ReadableCollection
+    {
+        return $this->user->getUserRelays();
+    }
+
+    public function hasRelays(): bool
+    {
+        return $this->getRelays()->count() > 0;
     }
 }
