@@ -72,8 +72,8 @@ final class MembreFactory extends ModelFactory
                     'membre' => $this,
                     'centre' => $centre,
                     'droits' => [
-                        MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES => $beneficiaryManagement,
-                        MembreCentre::TYPEDROIT_GESTION_MEMBRES => $proManagement,
+                        MembreCentre::MANAGE_BENEFICIARIES_PERMISSION => $beneficiaryManagement,
+                        MembreCentre::MANAGE_PROS_PERMISSION => $proManagement,
                     ],
                 ]), $centres
             ),

@@ -23,8 +23,8 @@ class MembreCentreAdmin extends AbstractAdmin
             ->add('bValid', null, ['label' => 'Accepté'])
             ->add('droits', ImmutableArrayType::class, [
                 'keys' => [
-                    [MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES, CheckboxType::class, []],
-                    [MembreCentre::TYPEDROIT_GESTION_MEMBRES, CheckboxType::class, []],
+                    [MembreCentre::MANAGE_BENEFICIARIES_PERMISSION, CheckboxType::class, []],
+                    [MembreCentre::MANAGE_PROS_PERMISSION, CheckboxType::class, []],
                 ],
             ])
             ->end();
