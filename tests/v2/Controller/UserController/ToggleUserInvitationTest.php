@@ -86,8 +86,8 @@ class ToggleUserInvitationTest extends AbstractControllerTest
 
         self::assertSame(
             [
-                MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES => true,
-                MembreCentre::TYPEDROIT_GESTION_MEMBRES => false,
+                MembreCentre::MANAGE_BENEFICIARIES_PERMISSION => true,
+                MembreCentre::MANAGE_PROS_PERMISSION => false,
             ],
             $userRelay->getDroits()
         );
