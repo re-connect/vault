@@ -13,6 +13,7 @@ return new class() extends DefaultDeployer {
             ->remoteComposerBinaryPath('/var/www/preprod_coffre_reconnect_fr/composer.phar')
             ->useSshAgentForwarding(false)
             ->composerOptimizeFlags('--optimize --no-dev --classmap-authoritative')
+            ->resetOpCacheFor('https://preprod.reconnect.fr/')
             ->sharedFilesAndDirs([
                 'config/secrets/preprod/preprod.decrypt.private.php',
                 'config/jwt/',
