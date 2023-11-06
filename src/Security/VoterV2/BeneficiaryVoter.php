@@ -43,7 +43,7 @@ class BeneficiaryVoter extends Voter
         }
 
         return match ($attribute) {
-            self::MANAGE => $user->hasDroit(MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES),
+            self::MANAGE => $user->hasDroit(MembreCentre::MANAGE_BENEFICIARIES_PERMISSION),
             self::UPDATE => $this->canUpdateBeneficiary($user, $subject),
             default => false,
         };

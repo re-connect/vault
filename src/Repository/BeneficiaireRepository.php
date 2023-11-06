@@ -191,7 +191,7 @@ class BeneficiaireRepository extends ServiceEntityRepository
             ->andWhere('mc.bValid = true')
             ->andWhere('mc.droits LIKE :access')
             ->setParameter('id', $professional->getId())
-            ->setParameter('access', sprintf('%%"%s";b:1%%', MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES));
+            ->setParameter('access', sprintf('%%"%s";b:1%%', MembreCentre::MANAGE_BENEFICIARIES_PERMISSION));
 
         if ($relay) {
             $qb->andWhere('c = :relay')

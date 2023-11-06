@@ -40,8 +40,8 @@ class MembreFixture extends Fixture implements DependentFixtureInterface, Fixtur
     private function createMembersForClient(string $clientName): void
     {
         $permissions = [
-            MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES => true,
-            MembreCentre::TYPEDROIT_GESTION_MEMBRES => true,
+            MembreCentre::MANAGE_BENEFICIARIES_PERMISSION => true,
+            MembreCentre::MANAGE_PROS_PERMISSION => true,
         ];
         $client = $this->manager->getRepository(Client::class)->findOneBy(['nom' => $clientName]);
         $centers = $this->manager->getRepository(Centre::class)->findByClientIdentifier($client->getRandomId());
