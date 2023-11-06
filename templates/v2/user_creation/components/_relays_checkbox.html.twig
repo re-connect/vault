@@ -17,14 +17,6 @@
             {% endif %}
     >
         <i class="fa fa-check fa-1x text-white"></i>
-        {% if hasValidLinkToRelay %}
-            <div class="text-end">
-                <span class="badge bg-success text-white">
-                    <i class="fa fa-check-circle"></i>
-                    {{ 'accepted'|trans }}
-                </span>
-            </div>
-        {% endif %}
     </a>
     <div class="flex-grow-1 ms-2 d-flex align-items-center">
         <span>{{ relay.nameAndAddress }}</span>
