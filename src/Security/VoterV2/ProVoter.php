@@ -39,7 +39,7 @@ class ProVoter extends Voter
         }
 
         return match ($attribute) {
-            self::MANAGE => $user->hasDroit(MembreCentre::TYPEDROIT_GESTION_MEMBRES),
+            self::MANAGE => $user->hasDroit(MembreCentre::MANAGE_PROS_PERMISSION),
             self::UPDATE => $this->helper->canUpdateProfessional($user, $subject),
             default => false,
         };

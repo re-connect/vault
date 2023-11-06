@@ -9,11 +9,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 class MembreCentre extends UserCentre
 {
-    public const TYPEDROIT_GESTION_BENEFICIAIRES = 'gestionbeneficiaires';
-    public const TYPEDROIT_GESTION_MEMBRES = 'gestionmembres';
+    public const MANAGE_BENEFICIARIES_PERMISSION = 'gestionbeneficiaires';
+    public const MANAGE_PROS_PERMISSION = 'gestionmembres';
     public const PERMISSIONS = [
-        self::TYPEDROIT_GESTION_BENEFICIAIRES,
-        self::TYPEDROIT_GESTION_MEMBRES,
+        self::MANAGE_BENEFICIARIES_PERMISSION,
+        self::MANAGE_PROS_PERMISSION,
     ];
 
     #[Groups(['v3:center:read', 'v3:center:write'])]
@@ -27,8 +27,8 @@ class MembreCentre extends UserCentre
     public static function getArDroits()
     {
         return [
-            self::TYPEDROIT_GESTION_BENEFICIAIRES => 'membre.droits.gestionBeneficiaires',
-            self::TYPEDROIT_GESTION_MEMBRES => 'membre.droits.gestionMembres',
+            self::MANAGE_BENEFICIARIES_PERMISSION => 'membre.droits.gestionBeneficiaires',
+            self::MANAGE_PROS_PERMISSION => 'membre.droits.gestionMembres',
         ];
     }
 
@@ -36,8 +36,8 @@ class MembreCentre extends UserCentre
     {
         parent::__construct();
         $this->droits = [
-            self::TYPEDROIT_GESTION_BENEFICIAIRES => true,
-            self::TYPEDROIT_GESTION_MEMBRES => false,
+            self::MANAGE_BENEFICIARIES_PERMISSION => true,
+            self::MANAGE_PROS_PERMISSION => false,
         ];
     }
 
@@ -86,14 +86,14 @@ class MembreCentre extends UserCentre
 
     public function canManageBeneficiaries(): bool
     {
-        return array_key_exists(self::TYPEDROIT_GESTION_BENEFICIAIRES, $this->getDroits())
-            && true === $this->getDroits()[self::TYPEDROIT_GESTION_BENEFICIAIRES];
+        return array_key_exists(self::MANAGE_BENEFICIARIES_PERMISSION, $this->getDroits())
+            && true === $this->getDroits()[self::MANAGE_BENEFICIARIES_PERMISSION];
     }
 
     public function canManageProfessionals(): bool
     {
-        return array_key_exists(self::TYPEDROIT_GESTION_MEMBRES, $this->getDroits())
-            && true === $this->getDroits()[self::TYPEDROIT_GESTION_MEMBRES];
+        return array_key_exists(self::MANAGE_PROS_PERMISSION, $this->getDroits())
+            && true === $this->getDroits()[self::MANAGE_PROS_PERMISSION];
     }
 
     public function togglePermission(string $permission): void
