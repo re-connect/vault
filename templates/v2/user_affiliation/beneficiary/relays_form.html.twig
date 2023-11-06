@@ -34,14 +34,14 @@
                     <turbo-frame id="force-affiliation-form" class="text-center mt-3">
                         {% if hasSecretQuestion %}
                             <a class="btn btn-blue text-white shadow-sm"
-                               href="{{ path('affiliate_beneficiary_relays_secret_question', { id:beneficiary.id }) }}"
+                               href="{{ path('affiliate_beneficiary_relays_secret_question', {id: beneficiary.id}) }}"
                             >
                                 {{ 'answer_secret_question'|trans }}
                             </a>
                         {% endif %}
                         {% if hasTelephone %}
                             <a class="btn btn-blue text-white shadow-sm"
-                               href="{{ path('affiliate_beneficiary_relays_sms_code', { id:beneficiary.id }) }}"
+                               href="{{ path('affiliate_beneficiary_relays_sms_code', {id: beneficiary.id}) }}"
                             >
                                 {{ 'send_sms_code'|trans }}
                             </a>
@@ -53,12 +53,12 @@
                 <div class="font-size-1-2">
                     <span>{{ 'add_si_siao_number_intro'|trans }}</span>
                     <a class="btn btn-blue text-white shadow-sm"
-                       href="{{ path('affiliate_beneficiary_add_si_siao_number', { id:beneficiary.id }) }}"
+                       href="{{ path('affiliate_beneficiary_add_si_siao_number', {id: beneficiary.id}) }}"
                     >
                         {{ 'add'|trans }}
                     </a>
                 </div>
-                {{ include('v2/common/_button_row.html.twig', {href: path('list_beneficiaries'), text: 'finish'|trans }) }}
+                {{ include('v2/common/_button_row.html.twig', {href: path('affiliate_beneficiary_finish', {id: beneficiary.id}), text: 'finish'|trans }) }}
             </div>
         </div>
     </div>

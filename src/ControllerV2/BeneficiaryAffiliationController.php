@@ -28,11 +28,16 @@ class BeneficiaryAffiliationController extends AbstractController
     #[Route(path: '/beneficiary/affiliate/search', name: 'affiliate_beneficiary_search', methods: ['GET', 'POST'])]
     public function search(Request $request, BeneficiaryAffiliationManager $manager, PaginatorService $paginator): Response
     {
-        $birthDate = $request->query->getAlnum('birthdate');
+        $birthDate = null;
+        try {
+            $birthDate = new \DateTime($request->query->getAlnum('birthdate'));
+        } catch (\Exception) {
+        }
+
         $searchBeneficiaryModel = (new SearchBeneficiaryFormModel(
             $request->query->getAlnum('firstname'),
             $request->query->getAlnum('lastname'),
-            $birthDate ? new \DateTime($request->query->getAlnum('birthdate')) : null,
+            $birthDate,
         ));
 
         $searchForm = $this->createForm(SearchBeneficiaryType::class, $searchBeneficiaryModel, [
@@ -56,6 +61,26 @@ class BeneficiaryAffiliationController extends AbstractController
     )]
     public function relays(Beneficiaire $beneficiary): Response
     {
+        return $this->render('v2/user_affiliation/beneficiary/relays_form.html.twig', [
+            'beneficiary' => $beneficiary,
+            'relays' => $this->getUser()->getValidRelays(),
+        ]);
+    }
+
+    #[Route(
+        path: '/beneficiary/{id}/affiliate/finish',
+        name: 'affiliate_beneficiary_finish',
+        requirements: ['id' => '\d+'],
+        methods: ['GET'],
+    )]
+    public function finish(Beneficiaire $beneficiary): Response
+    {
+        if ($beneficiary->hasRelays()) {
+            return $this->redirectToRoute('list_beneficiaries');
+        }
+
+        $this->addFlash('danger', 'no_relay_selected');
+
         return $this->render('v2/user_affiliation/beneficiary/relays_form.html.twig', [
             'beneficiary' => $beneficiary,
             'relays' => $this->getUser()->getValidRelays(),
