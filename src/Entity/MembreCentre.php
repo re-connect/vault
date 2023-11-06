@@ -9,6 +9,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 class MembreCentre extends UserCentre
 {
+    public const DEFAULT_PERMISSION_CREATE_BENEFICIARIES = 'creationbeneficiaires';
     public const MANAGE_BENEFICIARIES_PERMISSION = 'gestionbeneficiaires';
     public const MANAGE_PROS_PERMISSION = 'gestionmembres';
     public const PERMISSIONS = [
