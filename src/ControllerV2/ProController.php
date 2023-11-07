@@ -125,8 +125,8 @@ class ProController extends AbstractController
         name: 'toggle_pro_permission',
         methods: ['POST'],
         condition: "params['permission'] in [
-        constant('App\\\Entity\\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES'),
-        constant('App\\\Entity\\\MembreCentre::TYPEDROIT_GESTION_MEMBRES'),
+        constant('App\\\Entity\\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION'),
+        constant('App\\\Entity\\\MembreCentre::MANAGE_PROS_PERMISSION'),
         ]",
     )]
     #[IsGranted('UPDATE', 'pro')]

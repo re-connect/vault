@@ -28,11 +28,11 @@ class TogglePermission extends AbstractControllerTest implements TestRouteInterf
         $authorizedPro = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER)->object();
 
         // Test with beneficiaryManagement
-        $url = sprintf(self::URL, $randomPro->getId(), $authorizedPro->getAffiliatedRelaysWithProfessionalManagement()[0]->getId(), MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES);
+        $url = sprintf(self::URL, $randomPro->getId(), $authorizedPro->getAffiliatedRelaysWithProfessionalManagement()[0]->getId(), MembreCentre::MANAGE_BENEFICIARIES_PERMISSION);
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 
         // Test with proManagement
-        $url = sprintf(self::URL, $randomPro->getId(), $authorizedPro->getAffiliatedRelaysWithProfessionalManagement()[0]->getId(), MembreCentre::TYPEDROIT_GESTION_MEMBRES);
+        $url = sprintf(self::URL, $randomPro->getId(), $authorizedPro->getAffiliatedRelaysWithProfessionalManagement()[0]->getId(), MembreCentre::MANAGE_PROS_PERMISSION);
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
 
@@ -76,7 +76,7 @@ class TogglePermission extends AbstractControllerTest implements TestRouteInterf
 
     public function provideTestToggleBeneficiaryManagement(): ?\Generator
     {
-        yield 'Should toggle beneficiary management permission' => [MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES];
-        yield 'Should toggle pro management permission' => [MembreCentre::TYPEDROIT_GESTION_MEMBRES];
+        yield 'Should toggle beneficiary management permission' => [MembreCentre::MANAGE_BENEFICIARIES_PERMISSION];
+        yield 'Should toggle pro management permission' => [MembreCentre::MANAGE_PROS_PERMISSION];
     }
 }

@@ -8,12 +8,12 @@
     {% set buttons = [
         {
             icon: 'user',
-            permission: constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES'),
+            permission: constant('App\\Entity\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION'),
             tooltip: 'beneficiaries_management'|trans,
         },
         {
             icon: 'user-cog',
-            permission: constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES'),
+            permission: constant('App\\Entity\\MembreCentre::MANAGE_PROS_PERMISSION'),
             tooltip: 'team_management'|trans,
         },
     ] %}

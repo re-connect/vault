@@ -28,11 +28,11 @@
                         {% endif %}
                         {% if membreCentres %}
                             {% set droits = membreCentres[centre.id].droits %}
-                            {% if droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES")] is defined and droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES")] %}
+                            {% if droits[constant("App\\Entity\\MembreCentre::MANAGE_PROS_PERMISSION")] is defined and droits[constant("App\\Entity\\MembreCentre::MANAGE_PROS_PERMISSION")] %}
                                 <a href="{{ path('re_membre_membresCentre', {'id' : centre.id}) }}"
                                    class="btn btn-blue">{% trans %}membre.centres.voirMembres{% endtrans %}</a>
                             {% endif %}
-                            {% if droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES")] is defined and droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES")] %}
+                            {% if droits[constant("App\\Entity\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION")] is defined and droits[constant("App\\Entity\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION")] %}
                                 <a href="{{ path('list_beneficiaries', {'id' : centre.id}) }}"
                                    class="btn btn-blue">{% trans %}membre.centres.voirBeneficiaires{% endtrans %}</a>
                             {% endif %}

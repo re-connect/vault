@@ -134,7 +134,7 @@ class CentreProvider
             ->innerJoin('mc.membre', 'm')
             ->innerJoin('b.user', 'u')
             ->where('m.id = '.$membre->getId())
-            ->andWhere("mc.droits LIKE '%".MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES."\";b:1%'")
+            ->andWhere("mc.droits LIKE '%".MembreCentre::MANAGE_BENEFICIARIES_PERMISSION."\";b:1%'")
             ->andWhere('b.isCreating = FALSE');
 
         if (!$takeUnvalid) {
@@ -170,7 +170,7 @@ class CentreProvider
             ->innerJoin('c.membresCentres', 'mc')
             ->innerJoin('mc.membre', 'm')
             ->where('m.id = '.$membreId)
-            ->andWhere("mc.droits LIKE '%".MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES."\";b:1%'")
+            ->andWhere("mc.droits LIKE '%".MembreCentre::MANAGE_BENEFICIARIES_PERMISSION."\";b:1%'")
             ->andWhere('b.id = '.$id)
             ->andWhere('b.isCreating = FALSE');
 
@@ -286,7 +286,7 @@ class CentreProvider
             ->leftJoin('c.membresCentres', 'mc')
             ->leftJoin('mc.membre', 'm')
             ->where('m.id = '.$membre->getId())
-            ->andWhere("mc.droits LIKE '%".MembreCentre::TYPEDROIT_GESTION_MEMBRES."\";b:1%'")
+            ->andWhere("mc.droits LIKE '%".MembreCentre::MANAGE_PROS_PERMISSION."\";b:1%'")
             ->andWhere('omc.bValid = TRUE')
             ->getQuery()
             ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
