@@ -1,14 +1,15 @@
 {% set hasValidLinkToRelay = user.hasValidLinkToRelay(relay) %}
 {% set isPro = user.hasRole('ROLE_MEMBRE') %}
+{% set isLinkedToRelay = user.isLinkedToRelay(relay) %}
 
-<div class="relay-checkbox py-1 d-flex w-100">
+<div class="relay-checkbox py-1 d-flex w-100" {{ stimulus_controller('toggle-display') }}>
     <a
             style="height: 40px; width: 40px"
-            class="btn btn-light border-primary {{ user.isLinkedToRelay(relay) ? activeClasses : inactiveClasses }}"
+            class="btn btn-light border-primary {{ isLinkedToRelay ? activeClasses : inactiveClasses }}"
             {% if not hasValidLinkToRelay %}
                 {{ stimulus_action('custom-checkbox', 'click', null, {
                     path: path('toggle_user_invitation', {id: user.id, relay: relay.id})
-                }) }}
+                })|stimulus_action('toggle-display', 'toggle') }}
             {% else %}
                 data-toggle="tooltip"
                 data-bs-placement="top"
@@ -16,9 +17,19 @@
                 title="{{ isPro ? 'pro_already_affiliated_to_relay'|trans : 'beneficiary_already_affiliated_to_relay'|trans }}"
             {% endif %}
     >
-        <i class="fa fa-check fa-1x text-white"></i>
+        <i class="fa fa-check text-white"></i>
     </a>
-    <div class="flex-grow-1 ms-2 d-flex align-items-center">
+    <div class="flex-grow-1 ms-2 d-flex align-items-start justify-content-center flex-column">
         <span>{{ relay.nameAndAddress }}</span>
+        {% if isPro %}
+            <div {{ stimulus_target('toggle-display', 'target') }} class="{{ isLinkedToRelay ? '' : 'd-none' }}">
+                {{ include('v2/user_creation/components/_permissions_checkboxes.html.twig', {
+                    user,
+                    hasValidLinkToRelay,
+                    activeClasses,
+                    inactiveClasses,
+                }) }}
+            </div>
+        {% endif %}
     </div>
 </div>
