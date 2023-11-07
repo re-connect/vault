@@ -1,0 +1,49 @@
+{% set userRelay = user.userRelay(relay) %}
+
+{% set permissions = [
+    {
+        name: 'beneficiary_creation'|trans,
+        value: constant('App\\Entity\\MembreCentre::DEFAULT_PERMISSION_CREATE_BENEFICIARIES'),
+        icon: 'user-plus',
+        isOwned: true,
+    },
+    {
+        name: 'beneficiaries_management'|trans,
+        value: constant('App\\Entity\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION'),
+        icon: 'user',
+        isOwned: userRelay and userRelay.canManageBeneficiaries,
+    },
+    {
+        name: 'pro_management'|trans,
+        value: constant('App\\Entity\\MembreCentre::MANAGE_PROS_PERMISSION'),
+        icon: 'user-cog',
+        isOwned: userRelay and userRelay.canManageProfessionals,
+    },
+] %}
+
+{% for permission in permissions %}
+    {% set isDefaultPermission = permission.value == constant('App\\Entity\\MembreCentre::DEFAULT_PERMISSION_CREATE_BENEFICIARIES')%}
+    {% set isDisabled = not hasValidLinkToRelay or isDefaultPermission %}
+    <div class="d-flex mt-2 ms-md-5"
+            {% if isDisabled %}
+                data-toggle="tooltip"
+                data-bs-placement="right"
+                data-bs-custom-class="blue-tooltip"
+                title="{{ isDefaultPermission ? 'you_can_not_update_default_permission'|trans : 'wait_for_affiliation_validation_to_update_permission'|trans }}"
+            {% endif %}
+    >
+        <a
+                class="d-flex align-items-center justify-content-center btn btn-light border-primary {{ permission.isOwned ? activeClasses : inactiveClasses }} {{ isDisabled ? 'disabled' : '' }}"
+                style="height: 30px; width: 30px"
+                {{ stimulus_action('custom-checkbox', 'click', null, {
+                    path: path('toggle_pro_permission', {id: user.subjectMembre.id, relay: relay.id, permission: permission.value})
+                }) }}
+        >
+            <i class="fa fa-check fa-2xs text-white py-1"></i>
+        </a>
+        <div class="ms-2 d-flex align-items-center">
+            <i class="fa fa-{{ permission.icon }} text-primary me-1"></i>
+            <span>{{ permission.name }}</span>
+        </div>
+    </div>
+{% endfor %}
