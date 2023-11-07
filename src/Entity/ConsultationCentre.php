@@ -44,8 +44,6 @@ class ConsultationCentre
     /**
      * Set centre.
      *
-     * @param \App\Entity\Centre $centre
-     *
      * @return ConsultationCentre
      */
     public function setCentre(Centre $centre)
@@ -67,8 +65,6 @@ class ConsultationCentre
 
     /**
      * Set beneficiaire.
-     *
-     * @param \App\Entity\Beneficiaire $beneficiaire
      *
      * @return ConsultationCentre
      */

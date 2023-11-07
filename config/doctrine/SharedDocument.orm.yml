@@ -29,8 +29,7 @@ App\Entity\SharedDocument:
     manyToOne:
         document:
             targetEntity: App\Entity\Document
-            mappedBy: sharedDocuments
+            inversedBy: sharedDocuments
         sharedBy:
             targetEntity: App\Entity\User
-            mappedBy: sharedDocuments
-
+            inversedBy: sharedDocuments

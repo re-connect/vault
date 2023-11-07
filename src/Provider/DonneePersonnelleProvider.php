@@ -281,9 +281,6 @@ abstract class DonneePersonnelleProvider
         }
     }
 
-    /**
-     * @return JsonResponse
-     */
     public function persist($id, $provider, $className, $request, $restManager, $beneficiaireProvider, $client): ?JsonResponse
     {
         try {

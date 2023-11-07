@@ -40,9 +40,12 @@ Encore
   .addEntry('homeV2', './assets/js/homeV2/app.js')
   .addStyleEntry('homeV2style', './assets/css/homeV2/main.scss')
 
-  //New app
+  // New app
   .addEntry('appV2', './assets/js/appV2/app.js')
   .addStyleEntry('appV2style', './assets/css/appV2/main.scss')
+
+  // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
+  .splitEntryChunks()
 
   .enableStimulusBridge('./assets/controllers.json')
 

@@ -9,7 +9,6 @@ use App\Entity\User;
 use App\Event\EvenementEvent;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -44,7 +43,7 @@ class SMSManager
         try {
             $this->em->flush();
             $this->doSendSms($telephone, $message);
-        } catch (Exception) {
+        } catch (\Exception) {
             $this->smsLogger->info(sprintf('Failure sending activation SMS to %s', $telephone));
         }
     }
@@ -83,7 +82,7 @@ class SMSManager
         try {
             $this->doSendSms($number, $message);
             $this->smsLogger->info('SMS envoyé à '.$number.' : '.$message);
-        } catch (Exception) {
+        } catch (\Exception) {
             $this->smsLogger->info(sprintf('Failure sending activation SMS to %s', $number));
         }
     }

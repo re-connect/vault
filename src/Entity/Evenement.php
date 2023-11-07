@@ -245,8 +245,6 @@ class Evenement extends DonneePersonnelle
     /**
      * Set sms.
      *
-     * @param SMS $sms
-     *
      * @return Evenement
      */
     public function setSms(SMS $sms = null)
@@ -268,8 +266,6 @@ class Evenement extends DonneePersonnelle
 
     /**
      * Set membre.
-     *
-     * @param Membre $membre
      *
      * @return Evenement
      */

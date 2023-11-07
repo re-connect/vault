@@ -101,8 +101,6 @@ class StatistiqueCentre
     /**
      * Set centre.
      *
-     * @param \App\Entity\Centre $centre
-     *
      * @return StatistiqueCentre
      */
     public function setCentre(Centre $centre)

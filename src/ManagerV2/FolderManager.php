@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use ZipStream\Exception\OverflowException;
-use ZipStream\Option\Archive;
 use ZipStream\ZipStream;
 
 class FolderManager
@@ -90,9 +89,7 @@ class FolderManager
 
     private function createZipFromFolder(Dossier $folder): void
     {
-        $options = new Archive();
-        $options->setZeroHeader(true);
-        $zip = new ZipStream($folder->getNom(), $options);
+        $zip = new ZipStream(outputName: sprintf('%s.zip', $folder->getNom()));
 
         $documents = $folder->getDocuments($this->getUser() === $folder->getBeneficiaire()->getUser())
             ->filter(fn (Document $document) => is_resource($this->bucketService->getObjectStream($document->getObjectKey())));
