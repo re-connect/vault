@@ -14,7 +14,7 @@ class UserTest extends KernelTestCase
         $userRelay = User::createUserRelay(new User(), new Centre());
 
         self::assertEquals([
-            MembreCentre::MANAGE_BENEFICIARIES_PERMISSION => true,
+            MembreCentre::MANAGE_BENEFICIARIES_PERMISSION => false,
             MembreCentre::MANAGE_PROS_PERMISSION => false,
         ], $userRelay->getDroits());
     }
