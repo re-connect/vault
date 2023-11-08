@@ -69,6 +69,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     use GedmoTimedTrait;
 
     private const DEFAULT_BIRTHDATE = '01/01/1975';
+    public const MAX_VAULT_SIZE = 1024 * 1024 * 600; // 600Mo
 
     #[Groups(['read', 'write', 'beneficiary:read', 'v3:beneficiary:write', 'v3:beneficiary:read'])]
     private ?\DateTime $dateNaissance = null;
@@ -425,6 +426,11 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     public function getTotalFileSize(): ?int
     {
         return $this->totalFileSize;
+    }
+
+    public function getTotalFileSizeInMo(): ?int
+    {
+        return $this->totalFileSize / (1024 * 1024);
     }
 
     public function setTotalFileSize(?int $totalFileSize): self

@@ -120,9 +120,9 @@ class DocumentProvider extends DonneePersonnelleProvider
         return $beneficiaire->getTotalFileSize() / $this->getMaxSizeForBeneficiaire() > 0.9;
     }
 
-    public function getMaxSizeForBeneficiaire()
+    public function getMaxSizeForBeneficiaire(): int
     {
-        return 1024 * 1024 * 300;
+        return Beneficiaire::MAX_VAULT_SIZE;
     }
 
     public function getEntity(int $id, string $accessAttribute = null): Document
@@ -305,7 +305,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         }
 
         return new StreamedResponse(function () use ($folder, $documents) {
-            $zip = new ZipStream(outputName: sprintf('%s.zip', $folder->getNom()));
+            $zip = new ZipStream(sprintf('%s.zip', $folder->getNom()));
 
             foreach ($documents as $document) {
                 $zip->addFileFromStream(
