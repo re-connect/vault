@@ -20,7 +20,7 @@ class UserHelper
     {
         return 0 < count(array_intersect(
             $user->getAffiliatedRelaysWithProfessionalManagement()->toArray(),
-            $professional->getAffiliatedRelays()->toArray(),
+            $professional->getCentres()->toArray(),
         ));
     }
 }
