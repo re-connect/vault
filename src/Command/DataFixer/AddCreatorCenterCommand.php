@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command;
+namespace App\Command\DataFixer;
 
 use App\Entity\CreatorCentre;
 use App\Repository\BeneficiaireRepository;
