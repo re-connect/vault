@@ -37,7 +37,7 @@ class MembreCentre extends UserCentre
     {
         parent::__construct();
         $this->droits = [
-            self::MANAGE_BENEFICIARIES_PERMISSION => true,
+            self::MANAGE_BENEFICIARIES_PERMISSION => false,
             self::MANAGE_PROS_PERMISSION => false,
         ];
     }
@@ -110,6 +110,15 @@ class MembreCentre extends UserCentre
         }
 
         $this->droits[$permission] = !$this->droits[$permission];
+    }
+
+    public function addPermission(string $permission): void
+    {
+        if (!in_array($permission, self::PERMISSIONS)) {
+            return;
+        }
+
+        $this->droits[$permission] = true;
     }
 
     /**
