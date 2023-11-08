@@ -130,6 +130,7 @@ class ProController extends AbstractController
         ]",
     )]
     #[IsGranted('UPDATE', 'pro')]
+    #[IsGranted('MANAGE_PRO', 'relay')]
     public function togglePermission(
         Membre $pro,
         #[MapEntity(id: 'relay')] Centre $relay,
