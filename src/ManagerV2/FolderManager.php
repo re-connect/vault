@@ -89,7 +89,7 @@ class FolderManager
 
     private function createZipFromFolder(Dossier $folder): void
     {
-        $zip = new ZipStream(outputName: sprintf('%s.zip', $folder->getNom()));
+        $zip = new ZipStream(sprintf('%s.zip', $folder->getNom()));
 
         $documents = $folder->getDocuments($this->getUser() === $folder->getBeneficiaire()->getUser())
             ->filter(fn (Document $document) => is_resource($this->bucketService->getObjectStream($document->getObjectKey())));
