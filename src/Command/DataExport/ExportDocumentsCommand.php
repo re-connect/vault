@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command;
+namespace App\Command\DataExport;
 
 use App\Entity\Document;
 use App\Service\ExportService;

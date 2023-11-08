@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command;
+namespace App\Command\DataMigration;
 
 use App\Entity\Centre;
 use App\Entity\ClientGestionnaire;
@@ -19,6 +19,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use function App\Command\str_contains;
 
 #[AsCommand(
     name: 'app:migrate-gestionnaire-to-member',

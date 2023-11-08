@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command;
+namespace App\Command\DataImport;
 
 use App\Entity\Beneficiaire;
 use App\Entity\Membre;
