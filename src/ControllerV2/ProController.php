@@ -137,6 +137,10 @@ class ProController extends AbstractController
         string $permission,
         EntityManagerInterface $em,
     ): Response {
+        if (!$this->isGranted($permission, $pro->getUser()?->getUserRelay($relay))) {
+            throw $this->createAccessDeniedException();
+        }
+
         $pro->getUserCentre($relay)?->togglePermission($permission);
         $em->flush();
 
