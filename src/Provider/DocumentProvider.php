@@ -305,7 +305,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         }
 
         return new StreamedResponse(function () use ($folder, $documents) {
-            $zip = new ZipStream(sprintf('%s.zip', $folder->getNom()));
+            $zip = new ZipStream(outputName: sprintf('%s.zip', $folder->getNom()));
 
             foreach ($documents as $document) {
                 $zip->addFileFromStream(
