@@ -1231,6 +1231,11 @@ class User extends BaseUser implements \JsonSerializable
         return null !== $userRelay && $userRelay->getBValid();
     }
 
+    public function hasPermissionOnRelay(Centre $relay, string $permission): bool
+    {
+        return $this->isMembre() && $this->getUserRelay($relay)?->hasDroit($permission);
+    }
+
     public function getOldUsername(): ?string
     {
         return $this->oldUsername;
