@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command;
+namespace App\Command\DataMigration;
 
 use App\Entity\Centre;
 use App\Entity\ClientGestionnaire;
