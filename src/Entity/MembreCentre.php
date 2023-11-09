@@ -121,6 +121,15 @@ class MembreCentre extends UserCentre
         $this->droits[$permission] = true;
     }
 
+    public function removePermission(string $permission): void
+    {
+        if (!in_array($permission, self::PERMISSIONS)) {
+            return;
+        }
+
+        $this->droits[$permission] = false;
+    }
+
     /**
      * Specify data which should be serialized to JSON.
      *
