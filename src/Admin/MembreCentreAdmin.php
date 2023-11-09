@@ -8,6 +8,8 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\Form\Type\ImmutableArrayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class MembreCentreAdmin extends AbstractAdmin
 {
@@ -29,5 +31,14 @@ class MembreCentreAdmin extends AbstractAdmin
                 ],
             ])
             ->end();
+
+        $form->getFormBuilder()->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
+            $data = $event->getData();
+            if (!$data instanceof MembreCentre || $data->getId()) {
+                return;
+            }
+
+            $data->addPermission(MembreCentre::MANAGE_BENEFICIARIES_PERMISSION);
+        });
     }
 }

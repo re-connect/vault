@@ -1,15 +1,22 @@
 {% set text = text is defined ? text : 'submit'|trans %}
+{% set icon = icon is defined ? icon : null %}
 {% set color = color is defined ? color : 'primary' %}
+{% set customClasses = customClasses is defined ? customClasses : '' %}
+{% set style = style is defined ? style : '' %}
+{% set enableTurbo = enableTurbo is defined and enableTurbo ? true : false %}
+{% set spinnerColor = spinnerColor is defined ? spinnerColor : '' %}
+
 {% if href is defined %}
     <a
             {{ stimulus_controller('loader') }}
             {{ stimulus_action('loader', 'load') }}
             {{ stimulus_target('loader', 'button') }}
-            class="btn btn-{{ color }} text-right text-white"
+            class="btn btn-{{ color }} text-right text-white {{ customClasses }}"
             href="{{ href }}"
-            data-turbo="false"
+            data-turbo="{{ enableTurbo }}"
+            style="{{ style }}"
     >
-        {{ include('v2/common/_button_with_loader_content.html.twig', ) }}
+        {{ include('v2/common/_button_with_loader_content.html.twig', {icon, text, spinnerColor}) }}
     </a>
 {% else %}
     <button
@@ -19,6 +26,6 @@
             type="submit" class="btn btn-{{ color }} text-right text-white"
             data-turbo="false"
     >
-        {{ include('v2/common/_button_with_loader_content.html.twig', ) }}
+        {{ include('v2/common/_button_with_loader_content.html.twig', {icon, text, spinnerColor}) }}
     </button>
 {% endif %}

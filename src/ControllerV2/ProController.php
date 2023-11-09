@@ -123,13 +123,14 @@ class ProController extends AbstractController
     #[Route(
         path: '/{id<\d+>}/relay/{relay<\d+>}/toggle-permission/{permission<[a-z]+>}',
         name: 'toggle_pro_permission',
-        methods: ['POST'],
+        methods: ['GET', 'POST'],
         condition: "params['permission'] in [
         constant('App\\\Entity\\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION'),
         constant('App\\\Entity\\\MembreCentre::MANAGE_PROS_PERMISSION'),
         ]",
     )]
     #[IsGranted('UPDATE', 'pro')]
+    #[IsGranted('MANAGE_PRO', 'relay')]
     public function togglePermission(
         Membre $pro,
         #[MapEntity(id: 'relay')] Centre $relay,
