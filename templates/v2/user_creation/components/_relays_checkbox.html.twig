@@ -2,16 +2,20 @@
 {% set isPro = user.hasRole('ROLE_MEMBRE') %}
 {% set isLinkedToRelay = user.isLinkedToRelay(relay) %}
 {% set checkboxColor = isLinkedToRelay ? activeClasses : inactiveClasses %}
+{% if hasValidLinkToRelay %}
+    {% set tooltipMessage = isPro ? 'pro_already_affiliated_to_relay'|trans : 'beneficiary_already_affiliated_to_relay'|trans %}
+{% endif %}
 
 <div class="py-1 d-flex w-100">
     {{ include('v2/common/_button_with_loader.html.twig', {
-        href: path('toggle_user_invitation', {id: user.id, relay: relay.id}),
+        href: hasValidLinkToRelay ? null : path('toggle_user_invitation', {id: user.id, relay: relay.id}),
         color: 'light border-primary',
         customClasses: checkboxColor,
         style: 'height: 40px; width: 40px',
         icon: 'check',
         enableTurbo: true,
         spinnerColor: checkboxColor,
+        tooltip: tooltipMessage is defined ? tooltipMessage : null,
     }) }}
     <div class="flex-grow-1 ms-2 d-flex align-items-start justify-content-center flex-column">
         <span>{{ relay.nameAndAddress }}</span>
