@@ -4,7 +4,9 @@ namespace App\Tests\v2\Controller\ProController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
+use App\Entity\Centre;
 use App\Entity\MembreCentre;
+use App\Entity\User;
 use App\Repository\MembreCentreRepository;
 use App\Tests\Factory\MembreFactory;
 use App\Tests\Factory\UserFactory;
@@ -57,9 +59,8 @@ class TogglePermission extends AbstractControllerTest implements TestRouteInterf
         $crawler = $client->request('GET', sprintf('/pro?relay=%s', $relay->getId()));
 
         // Fetch the first pro in list, check permissions
-        $firstUsernameInList = $crawler->filter('td.border-0.h-100.w-25.text-start.align-middle.bold > span.text-grey')->html();
-        $firstUserInList = UserFactory::find(['username' => $firstUsernameInList])->object();
-        $userRelay = $firstUserInList->getUserRelay($relay);
+        $userInList = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL)->object();
+        $userRelay = $userInList->getUserRelay($relay);
         $userPermissionBeforeUpdate = $userRelay->getDroits()[$permission];
 
         // Click on toggle permission button
@@ -78,5 +79,56 @@ class TogglePermission extends AbstractControllerTest implements TestRouteInterf
     {
         yield 'Should toggle beneficiary management permission' => [MembreCentre::MANAGE_BENEFICIARIES_PERMISSION];
         yield 'Should toggle pro management permission' => [MembreCentre::MANAGE_PROS_PERMISSION];
+    }
+
+    public function testCanNotSeeNotOwnedPermission(): void
+    {
+        self::ensureKernelShutdown();
+        $client = self::createClient();
+        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER)->object();
+        $client->loginUser($user);
+
+        // Test only for beneficiary management as pro list is unreachable without pro management permission
+        $testedPermission = MembreCentre::MANAGE_BENEFICIARIES_PERMISSION;
+        $ownedPermission = MembreCentre::MANAGE_PROS_PERMISSION;
+        $relay = $this->getRelayToTestNotOwnedPermission($user, $testedPermission);
+
+        // Request to pro list, with relay query param
+        $crawler = $client->request('GET', sprintf('/pro?relay=%s', $relay->getId()));
+        $ownedPermissionButtonCount = $crawler->filter(sprintf('button#%s', $ownedPermission))->count();
+        $testedPermissionButtonCount = $crawler->filter(sprintf('button#%s', $testedPermission))->count();
+
+        // Not owned permission button is not shown
+        self::assertGreaterThan(0, $ownedPermissionButtonCount);
+        self::assertEquals(0, $testedPermissionButtonCount);
+    }
+
+    public function testCanNotGiveNotOwnedPermission(): void
+    {
+        self::ensureKernelShutdown();
+        $client = self::createClient();
+        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER)->object();
+        $client->loginUser($user);
+
+        $testedPermission = MembreCentre::MANAGE_BENEFICIARIES_PERMISSION;
+        $relay = $this->getRelayToTestNotOwnedPermission($user, $testedPermission);
+
+        // Fetch pro from relay
+        $firstUserInList = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL)->object();
+
+        // Can not update permission
+        $client->request('GET', sprintf(self::URL, $firstUserInList->getSubjectMembre()->getId(), $relay->getId(), $testedPermission));
+        self::assertResponseStatusCodeSame(403);
+    }
+
+    private function getRelayToTestNotOwnedPermission(User $user, string $permission): Centre
+    {
+        $relay = $user->getSubjectMembre()->getCentres()->first();
+        $userRelay = $user->getUserRelay($relay);
+
+        $userRelay->removePermission($permission);
+        $this->getEntityManager()->flush();
+
+        return $relay;
     }
 }
