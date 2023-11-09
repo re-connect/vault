@@ -43,10 +43,10 @@ Encore
   // New app
   .addEntry('appV2', './assets/js/appV2/app.js')
   .addStyleEntry('appV2style', './assets/css/appV2/main.scss')
+    // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
+    .splitEntryChunks()
 
-  // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
-  .splitEntryChunks()
-
+  // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
   .enableStimulusBridge('./assets/controllers.json')
 
   .splitEntryChunks()
