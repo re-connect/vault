@@ -39,14 +39,11 @@ Encore
   // New Home
   .addEntry('homeV2', './assets/js/homeV2/app.js')
   .addStyleEntry('homeV2style', './assets/css/homeV2/main.scss')
+  .addStyleEntry('adminStyle', './assets/css/appV2/admin/main.scss')
 
   // New app
   .addEntry('appV2', './assets/js/appV2/app.js')
   .addStyleEntry('appV2style', './assets/css/appV2/main.scss')
-
-  // Admin
-  .addStyleEntry('adminStyle', './assets/css/appV2/admin/main.scss')
-
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
   .splitEntryChunks()
 

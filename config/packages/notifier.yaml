@@ -4,6 +4,7 @@ framework:
             vonage: '%env(VONAGE_SMS_EU_DSN)%'
             vonageUS: '%env(VONAGE_SMS_US_DSN)%'
         #            mailjet: '%env(MAILJET_SMS_DSN)%'
+        chatter_transports:
         channel_policy:
             urgent: [ 'sms' ]
             high: [ 'sms' ]
