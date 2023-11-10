@@ -1,0 +1,11 @@
+{% extends 'v2/common/_card.html.twig' %}
+
+{% block customContent %}
+    {{ include('v2/user_creation/components/_relays_checkboxes.html.twig', {user, relays})}}
+    <div class="mt-5">
+        {{ include('v2/common/_button_row.html.twig', {
+            color: 'blue',
+            href: path('list_pro')
+        }) }}
+    </div>
+{% endblock %}
