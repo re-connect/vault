@@ -12,8 +12,8 @@ use Zenstruck\Foundry\Test\Factories;
 
 class ProDefaultPermissionListenerTest extends AuthenticatedKernelTestCase
 {
-    private EntityManagerInterface $em;
     use Factories;
+    private EntityManagerInterface $em;
 
     protected function setUp(): void
     {
