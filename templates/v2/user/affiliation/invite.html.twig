@@ -8,10 +8,7 @@
         {{ 'username'|trans }} :
         <span class="text-blue">{{ user.username|upper }}</span>
     </h5>
-    {{ include('v2/user_creation/components/_relays_checkboxes.html.twig', {user, relays})}}
-    <div class="mt-5"></div>
-    {{ include('v2/common/_button_row.html.twig', {
-        color: 'blue',
-        href: path('list_pro')
-    }) }}
+    <div class="col-12 col-md-8 m-auto">
+        {{ include('v2/user/affiliation/_invite_user_card.html.twig', {user, relays, title: 'choose_relays_and_permissions'|trans}) }}
+    </div>
 {% endblock %}
