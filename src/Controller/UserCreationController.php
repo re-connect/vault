@@ -135,7 +135,7 @@ class UserCreationController extends AbstractController
                 if (!in_array($value, $centreSubject)) {
                     $arDroits = null;
                     if ($subject->getUser()->isMembre()) {
-                        $arDroits = [MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES => true];
+                        $arDroits = [MembreCentre::MANAGE_BENEFICIARIES_PERMISSION => true];
                     }
                     $bForceAccept = 'remotely' === $way ? false : $subject->getIsCreating();
                     $this->centreManager

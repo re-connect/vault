@@ -43,14 +43,14 @@ class ListTest extends AbstractControllerTest implements TestRouteInterface
 
     public function testRelayCardButtonsShowBeneficiary(): void
     {
-        $html = $this->getProfessionalOnRelayList([MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES => true]);
+        $html = $this->getProfessionalOnRelayList([MembreCentre::MANAGE_BENEFICIARIES_PERMISSION => true]);
         self::assertStringContainsString(self::SHOW_BENEFICIARY_BUTTON, $html);
         self::assertStringNotContainsString(self::SHOW_PROFESSIONAL_BUTTON, $html);
     }
 
     public function testRelayCardButtonsShowProfessionals(): void
     {
-        $html = $this->getProfessionalOnRelayList([MembreCentre::TYPEDROIT_GESTION_MEMBRES => true]);
+        $html = $this->getProfessionalOnRelayList([MembreCentre::MANAGE_PROS_PERMISSION => true]);
         self::assertStringNotContainsString(self::SHOW_BENEFICIARY_BUTTON, $html);
         self::assertStringContainsString(self::SHOW_PROFESSIONAL_BUTTON, $html);
     }
@@ -58,8 +58,8 @@ class ListTest extends AbstractControllerTest implements TestRouteInterface
     public function testRelayCardButtonsShowProfessionalsAndBeneficiaries(): void
     {
         $html = $this->getProfessionalOnRelayList([
-            MembreCentre::TYPEDROIT_GESTION_MEMBRES => true,
-            MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES => true,
+            MembreCentre::MANAGE_PROS_PERMISSION => true,
+            MembreCentre::MANAGE_BENEFICIARIES_PERMISSION => true,
         ]);
         self::assertStringContainsString(self::SHOW_BENEFICIARY_BUTTON, $html);
         self::assertStringContainsString(self::SHOW_PROFESSIONAL_BUTTON, $html);

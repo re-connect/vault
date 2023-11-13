@@ -78,7 +78,6 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
         }
 
         MembreFactory::new()
-            ->linkToRelays([RelayFactory::findOrCreate(['nom' => RelayFixture::DEFAULT_PRO_RELAY])])
             ->withAttributes(['user' => $user])
             ->create();
     }

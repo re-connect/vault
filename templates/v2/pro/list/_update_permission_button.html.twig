@@ -1,39 +1,48 @@
 <turbo-frame id="update-pro-permission-button">
-    {% if app.user.userRelays|length == 1 %}
-        {% set currentUserRelay = user.userRelay(app.user.firstUserRelay.centre) %}
-    {% else %}
-        {% set currentUserRelay = user.userRelay(relay) %}
-    {% endif %}
+    {% set currentUserRelay = user.userRelay(relay) %}
 
-    {% set buttons = [
+    {% set permissions = [
         {
             icon: 'user',
-            permission: constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES'),
+            value: constant('App\\Entity\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION'),
             tooltip: 'beneficiaries_management'|trans,
+            isShown: not currentUserRelay or is_granted('MANAGE_BENEFICIARIES', relay),
+            isOwned: currentUserRelay and currentUserRelay.canManageBeneficiaries,
         },
         {
             icon: 'user-cog',
-            permission: constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES'),
+            value: constant('App\\Entity\\MembreCentre::MANAGE_PROS_PERMISSION'),
             tooltip: 'team_management'|trans,
+            isShown: not currentUserRelay or is_granted('MANAGE_PRO', relay),
+            isOwned: currentUserRelay and currentUserRelay.canManageProfessionals,
         },
     ] %}
 
     <div class="d-flex justify-content-center">
-        {% for button in buttons %}
+        <div class="border-0 px-1" style="padding-top: 0.375rem;">
+            <i class="fas fa-user-plus fa-2x text-primary"
+               data-toggle="tooltip"
+               data-placement="top"
+               data-bs-custom-class="blue-tooltip"
+               title="{{ 'beneficiaries_creation'|trans }}"
+            >
+            </i>
+        </div>
+        {% for permission in permissions|filter(p => p.isShown) %}
             {% if currentUserRelay %}
-                <form action="{{ path('toggle_pro_permission', {id: user.subjectMembre.id, relay: currentUserRelay.centre.id, permission: button.permission}) }}"
+                <form action="{{ path('toggle_pro_permission', {id: user.subjectMembre.id, relay: relay.id, permission: permission.value}) }}"
                       method="post"
                 >
             {% endif %}
                 <button class="btn border-0"
                         type="{{ currentUserRelay ? 'submit' : 'button' }}"
-                        id="{{ button.permission }}"
+                        id="{{ permission.value }}"
                 >
-                    <i class="fas fa-{{ button.icon }} fa-2x text-{{ currentUserRelay and currentUserRelay.hasDroit(button.permission) ? 'primary' : 'grey ' }}"
+                    <i class="fas fa-{{ permission.icon }} fa-2x text-{{ permission.isOwned ? 'primary' : 'grey ' }}"
                        data-toggle="tooltip"
                        data-placement="top"
                        data-bs-custom-class="blue-tooltip"
-                       title="{{ currentUserRelay ? button.tooltip : 'you_must_select_center_for_right_update'|trans }}"
+                       title="{{ currentUserRelay ? permission.tooltip : 'you_must_select_center_for_right_update'|trans }}"
                     >
                     </i>
                 </button>

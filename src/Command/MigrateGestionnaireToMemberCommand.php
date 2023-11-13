@@ -106,7 +106,7 @@ class MigrateGestionnaireToMemberCommand extends Command
     {
         $newProfessional->addMembresCentre(
             (new MembreCentre())
-                ->setDroits([MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES => true, MembreCentre::TYPEDROIT_GESTION_MEMBRES => true])
+                ->setDroits([MembreCentre::MANAGE_BENEFICIARIES_PERMISSION => true, MembreCentre::MANAGE_PROS_PERMISSION => true])
                 ->setMembre($newProfessional)
                 ->setCentre($relay)
                 ->setBValid(true)

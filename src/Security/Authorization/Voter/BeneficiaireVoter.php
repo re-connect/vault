@@ -53,7 +53,7 @@ class BeneficiaireVoter extends REVoter
 
                         // D'abord vérifier que le membre a les droits sur le centre
                         $currentMembreCentre = $user->getSubjectMembre()->getUserCentre($centre);
-                        if (null === $currentMembreCentre || null === $currentMembreCentre->getDroits() || !in_array(MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES, $currentMembreCentre->getDroits()) || false === $currentMembreCentre->getDroits()[MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES]) {
+                        if (null === $currentMembreCentre || null === $currentMembreCentre->getDroits() || !in_array(MembreCentre::MANAGE_BENEFICIARIES_PERMISSION, $currentMembreCentre->getDroits()) || false === $currentMembreCentre->getDroits()[MembreCentre::MANAGE_BENEFICIARIES_PERMISSION]) {
                             return false;
                         }
 

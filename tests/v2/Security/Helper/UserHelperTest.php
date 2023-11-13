@@ -41,7 +41,7 @@ class UserHelperTest extends KernelTestCase
         // Relay common, accepted affiliation, no rights
         self::assertFalse($this->userHelper->canUpdateBeneficiary($this->membre->getUser(), $this->beneficiary));
 
-        $this->membre->getMembresCentres()[0]->setDroits([MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES => true]);
+        $this->membre->getMembresCentres()[0]->setDroits([MembreCentre::MANAGE_BENEFICIARIES_PERMISSION => true]);
 
         // Relays common, accepted affiliation, has rights
         self::assertTrue($this->userHelper->canUpdateBeneficiary($this->membre->getUser(), $this->beneficiary));

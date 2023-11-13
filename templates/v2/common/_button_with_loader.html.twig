@@ -1,24 +1,45 @@
 {% set text = text is defined ? text : 'submit'|trans %}
+{% set icon = icon is defined ? icon : null %}
 {% set color = color is defined ? color : 'primary' %}
-{% if href is defined %}
+{% set customClasses = customClasses is defined ? customClasses : '' %}
+{% set style = style is defined ? style : '' %}
+{% set enableTurbo = enableTurbo is defined and enableTurbo ? true : false %}
+{% set spinnerColor = spinnerColor is defined ? spinnerColor : '' %}
+{% set tooltip = tooltip is defined ? tooltip : null %}
+
+{% if href is defined and href %}
     <a
             {{ stimulus_controller('loader') }}
             {{ stimulus_action('loader', 'load') }}
             {{ stimulus_target('loader', 'button') }}
-            class="btn btn-{{ color }} text-right text-white"
+            class="btn btn-{{ color }} text-right text-white {{ customClasses }}"
             href="{{ href }}"
-            data-turbo="false"
+            data-turbo="{{ enableTurbo }}"
+            style="{{ style }}"
+            {% if tooltip %}
+                data-toggle="tooltip"
+                data-bs-placement="right"
+                data-bs-custom-class="blue-tooltip"
+                title="{{ tooltip|trans }}"
+            {% endif %}
     >
-        {{ include('v2/common/_button_with_loader_content.html.twig', ) }}
+        {{ include('v2/common/_button_with_loader_content.html.twig', {icon, text, spinnerColor}) }}
     </a>
 {% else %}
     <button
             {{ stimulus_controller('loader') }}
             {{ stimulus_action('loader', 'load') }}
             {{ stimulus_target('loader', 'button') }}
-            type="submit" class="btn btn-{{ color }} text-right text-white"
-            data-turbo="false"
+            type="submit" class="btn btn-{{ color }} text-right text-white {{ customClasses }}"
+            data-turbo="{{ enableTurbo }}"
+            style="{{ style }}"
+            {% if tooltip %}
+                data-toggle="tooltip"
+                data-bs-placement="right"
+                data-bs-custom-class="blue-tooltip"
+                title="{{ tooltip|trans }}"
+            {% endif %}
     >
-        {{ include('v2/common/_button_with_loader_content.html.twig', ) }}
+        {{ include('v2/common/_button_with_loader_content.html.twig', {icon, text, spinnerColor}) }}
     </button>
 {% endif %}

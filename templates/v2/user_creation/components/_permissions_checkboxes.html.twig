@@ -1,0 +1,35 @@
+{% set userRelay = user.userRelay(relay) %}
+
+{% set permissions = [
+    {
+        name: 'beneficiaries_creation'|trans,
+        value: constant('App\\Entity\\MembreCentre::DEFAULT_PERMISSION_CREATE_BENEFICIARIES'),
+        icon: 'user-plus',
+        isOwned: true,
+        isUpdatable: false,
+    },
+    {
+        name: 'beneficiaries_management'|trans,
+        value: constant('App\\Entity\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION'),
+        icon: 'user',
+        isOwned: userRelay and userRelay.canManageBeneficiaries,
+        isUpdatable: is_granted('MANAGE_BENEFICIARIES', relay),
+    },
+    {
+        name: 'pro_management'|trans,
+        value: constant('App\\Entity\\MembreCentre::MANAGE_PROS_PERMISSION'),
+        icon: 'user-cog',
+        isOwned: userRelay and userRelay.canManageProfessionals,
+        isUpdatable: is_granted('MANAGE_PRO', relay),
+    },
+] %}
+
+{% for permission in permissions %}
+    {{ include('v2/user_creation/components/_permissions_checkbox.html.twig', {
+        user,
+        relay,
+        permission,
+        activeClasses,
+        inactiveClasses,
+    }) }}
+{% endfor %}

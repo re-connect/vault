@@ -96,11 +96,17 @@ class UserController extends AbstractController
 
     #[IsGranted('ROLE_MEMBRE')]
     #[Route(path: '/{id<\d+>}/toggle-invite/{relay<\d+>}', name: 'toggle_user_invitation', methods: ['GET'])]
-    public function toggleUserInvitation(User $user, #[MapEntity(id: 'relay')] Centre $relay, RelayManager $manager): Response
+    public function toggleUserInvitation(Request $request, User $user, #[MapEntity(id: 'relay')] Centre $relay, RelayManager $manager): Response
     {
         $manager->toggleUserInvitationToRelay($user, $relay);
 
-        return $this->json([]);
+        if ($request->isXmlHttpRequest()) {
+            return $this->json([]);
+        }
+
+        return $user->isMembre()
+            ? $this->redirectToRoute('invite_user', ['id' => $user->getId()])
+            : $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $user->getSubjectBeneficiaire()?->getId()]);
     }
 
     #[IsGranted('ROLE_MEMBRE')]
