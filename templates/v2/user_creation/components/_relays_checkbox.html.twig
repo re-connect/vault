@@ -1,10 +1,14 @@
-{% set hasValidLinkToRelay = user.hasValidLinkToRelay(relay) %}
 {% set isPro = user.hasRole('ROLE_MEMBRE') %}
+{% set isBeneficiaryInCreation = not isPro and user.subjectBeneficiaire.isCreating %}
+{% set hasValidLinkToRelay = user.hasValidLinkToRelay(relay) %}
 {% set isLinkedToRelay = user.isLinkedToRelay(relay) %}
-{% set isUpdatable = not isPro and user.subjectBeneficiaire.isCreating or not hasValidLinkToRelay %}
+{% set isUpdatable = isBeneficiaryInCreation or not hasValidLinkToRelay %}
 {% set checkboxColor = isLinkedToRelay ? activeClasses : inactiveClasses %}
-{% if hasValidLinkToRelay %}
-    {% set tooltipMessage = isPro ? 'pro_already_affiliated_to_relay'|trans : 'beneficiary_already_affiliated_to_relay'|trans %}
+
+{% if hasValidLinkToRelay and isPro %}
+    {% set tooltipMessage = 'pro_already_affiliated_to_relay'|trans %}
+{% elseif hasValidLinkToRelay and not isBeneficiaryInCreation %}
+    {% set tooltipMessage = 'beneficiary_already_affiliated_to_relay'|trans %}
 {% endif %}
 
 <div class="py-1 d-flex w-100">
