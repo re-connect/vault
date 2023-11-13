@@ -44,6 +44,7 @@ final class BeneficiaryDto
                 ->setTelephone($this->phone)
             )
             ->setDateNaissance($this->birthDate)
-            ->setDistantId($this->distantId);
+            ->setDistantId($this->distantId)
+            ->setIsCreating(false);
     }
 }
