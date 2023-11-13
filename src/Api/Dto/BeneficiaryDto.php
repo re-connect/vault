@@ -38,10 +38,11 @@ final class BeneficiaryDto
     {
         return (new Beneficiaire())
             ->setUser((new User())
-                ->setNom($this->firstName)
-                ->setPrenom($this->lastName)
+                ->setNom($this->lastName)
+                ->setPrenom($this->firstName)
                 ->setEmail($this->email)
                 ->setTelephone($this->phone)
+                ->setIsCreationProcessPending(false)
             )
             ->setDateNaissance($this->birthDate)
             ->setDistantId($this->distantId);
