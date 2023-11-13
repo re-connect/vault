@@ -46,9 +46,14 @@ class DeactivatableListener
     {
         $user = $userRelay->getMembre()?->getUser();
 
-        if ($user && $user->isEnabled() && 1 === $user->getUserRelays()->count()) {
+        if ($user && $user->isEnabled() && $this->isUserLastRelayLink($user, $userRelay)) {
             $user->disable($this->getUser());
             $args->getObjectManager()->flush();
         }
+    }
+
+    private function isUserLastRelayLink(User $user, MembreCentre $userRelay): bool
+    {
+        return 0 === $user->getUserRelays()->count() || (1 === $user->getUserRelays()->count() && $user->getUserRelays()->first() === $userRelay);
     }
 }
