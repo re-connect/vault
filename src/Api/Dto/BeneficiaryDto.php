@@ -45,6 +45,7 @@ final class BeneficiaryDto
                 ->setIsCreationProcessPending(false)
             )
             ->setDateNaissance($this->birthDate)
-            ->setDistantId($this->distantId);
+            ->setDistantId($this->distantId)
+            ->setIsCreating(false);
     }
 }
