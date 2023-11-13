@@ -1,5 +1,6 @@
 api_platform:
     title: 'Reconnect API'
+    version: 1.0.0
     enable_swagger_ui: true
     name_converter: 'Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter'
     mapping:
@@ -15,7 +16,12 @@ api_platform:
         authorizationUrl: '/api/authorize'
         scopes: [ ]
     defaults:
+        stateless: true
         route_prefix: '/v3'
+        cache_headers:
+            vary: [ 'Content-Type', 'Authorization', 'Origin' ]
+        extra_properties:
+            standard_put: true
     patch_formats:
         json: [ 'application/json' ]
         jsonapi: [ 'application/vnd.api+json' ]

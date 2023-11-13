@@ -41,7 +41,7 @@ class DocumentExtension extends AbstractExtension
         ];
     }
 
-    public function getMaxSizeForBeneficiaire()
+    public function getMaxSizeForBeneficiaire(): int
     {
         return $this->documentProvider->getMaxSizeForBeneficiaire();
     }
