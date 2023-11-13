@@ -64,4 +64,13 @@ class DossierRepository extends ServiceEntityRepository
         return $qb->getQuery()
             ->getResult();
     }
+
+    public function findWithCircularDependency(): array
+    {
+        return $this->createQueryBuilder('d')
+            ->join('d.dossierParent', 'd2')
+            ->where('d = d2.dossierParent')
+            ->getQuery()
+            ->getResult();
+    }
 }

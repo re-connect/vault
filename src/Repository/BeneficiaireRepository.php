@@ -9,6 +9,7 @@ use App\Entity\Client;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,6 +20,17 @@ class BeneficiaireRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Beneficiaire::class);
+    }
+
+    /** @return Beneficiaire[] */
+    public function findByPaginated(int $offset, int $batchSize): array
+    {
+        return $this->createQueryBuilder('b')
+            ->setFirstResult($offset)
+            ->setMaxResults($batchSize)
+            ->orderBy('b.id', Criteria::ASC)
+            ->getQuery()
+            ->getResult();
     }
 
     /**
@@ -191,7 +203,7 @@ class BeneficiaireRepository extends ServiceEntityRepository
             ->andWhere('mc.bValid = true')
             ->andWhere('mc.droits LIKE :access')
             ->setParameter('id', $professional->getId())
-            ->setParameter('access', sprintf('%%"%s";b:1%%', MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES));
+            ->setParameter('access', sprintf('%%"%s";b:1%%', MembreCentre::MANAGE_BENEFICIARIES_PERMISSION));
 
         if ($relay) {
             $qb->andWhere('c = :relay')

@@ -29,11 +29,19 @@ class ToggleUserInvitationTest extends AbstractControllerTest
         $relay = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object()->getCentres()[0];
         $url = sprintf(self::URL, $user->getId(), $relay->getId());
 
+        if (MemberFixture::MEMBER_MAIL_WITH_RELAYS === $userMail) {
+            $expectedRedirect = sprintf('/user/%s/invite', $user->getId());
+        }
+
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 
         // Test toggle beneficiary invite
         $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $url = sprintf(self::URL, $user->getId(), $relay->getId());
+
+        if (MemberFixture::MEMBER_MAIL_WITH_RELAYS === $userMail) {
+            $expectedRedirect = sprintf('/beneficiary/%s/affiliate/relays', $user->getSubject()->getId());
+        }
 
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
@@ -42,7 +50,7 @@ class ToggleUserInvitationTest extends AbstractControllerTest
     {
         yield 'Should redirect to login when not authenticated on settings page' => [self::URL, 302, null, '/login'];
         yield 'Should return 403 status code when authenticated as beneficiary' => [self::URL, 403, BeneficiaryFixture::BENEFICIARY_MAIL];
-        yield 'Should return 200 status code when authenticated as member' => [self::URL, 200, MemberFixture::MEMBER_MAIL_WITH_RELAYS];
+        yield 'Should return 200 status code when authenticated as member' => [self::URL, 302, MemberFixture::MEMBER_MAIL_WITH_RELAYS];
     }
 
     /** @dataProvider provideTestForceBeneficiaryAffiliation */
@@ -56,7 +64,7 @@ class ToggleUserInvitationTest extends AbstractControllerTest
         self::assertFalse($testedUser->isLinkedToRelay($relay));
 
         $url = sprintf(self::URL, $testedUser->getId(), $relay->getId());
-        $this->assertRoute($url, 200, MemberFixture::MEMBER_MAIL_WITH_RELAYS);
+        $this->assertRoute($url, 302, MemberFixture::MEMBER_MAIL_WITH_RELAYS, sprintf('/beneficiary/%s/affiliate/relays', $testedUser->getSubject()->getId()));
 
         $testedUser = UserFactory::find($testedUser)->object();
         $relay = RelayFactory::find($relay)->object();
@@ -78,7 +86,7 @@ class ToggleUserInvitationTest extends AbstractControllerTest
         self::assertFalse($testedUser->isLinkedToRelay($relay));
 
         $url = sprintf(self::URL, $testedUser->getId(), $relay->getId());
-        $this->assertRoute($url, 200, MemberFixture::MEMBER_MAIL_WITH_RELAYS);
+        $this->assertRoute($url, 302, MemberFixture::MEMBER_MAIL_WITH_RELAYS, sprintf('/user/%s/invite', $testedUser->getId()));
 
         $testedUser = UserFactory::find($testedUser)->object();
         $relay = RelayFactory::find($relay)->object();
@@ -86,8 +94,8 @@ class ToggleUserInvitationTest extends AbstractControllerTest
 
         self::assertSame(
             [
-                MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES => true,
-                MembreCentre::TYPEDROIT_GESTION_MEMBRES => false,
+                MembreCentre::MANAGE_BENEFICIARIES_PERMISSION => true,
+                MembreCentre::MANAGE_PROS_PERMISSION => false,
             ],
             $userRelay->getDroits()
         );

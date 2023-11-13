@@ -1182,3 +1182,7 @@ your_email: 'Votre Email'
 your_new_password: Votre nouveau mot de passe
 your_phone_number: 'Votre numéro de téléphone'
 all_your_data_will_be_deleted: Vos données seront supprimées et vous ne pourrez plus y accéder ni les structures sociales qui vous accompagnent.
+beneficiaries_creation: Création de bénéficiaires
+you_can_not_update_default_permission: Vous ne pouvez pas modifier la permission par défaut
+choose_relays_and_permissions: Choix des relais et permissions
+relays_choice: Choix des relais

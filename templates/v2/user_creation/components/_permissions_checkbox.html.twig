@@ -1,0 +1,28 @@
+{% set isDefaultPermission = (permission.value == constant('App\\Entity\\MembreCentre::DEFAULT_PERMISSION_CREATE_BENEFICIARIES')) %}
+{% set isUpdatable = permission.isUpdatable %}
+
+{% if isDefaultPermission or isUpdatable %}
+    <div class="d-flex mt-2 ms-md-5"
+            {% if isDefaultPermission %}
+                data-toggle="tooltip"
+                data-bs-placement="right"
+                data-bs-custom-class="blue-tooltip"
+                title="{{ 'you_can_not_update_default_permission'|trans }}"
+            {% endif %}
+    >
+        <a
+                style="height: 30px; width: 30px"
+                class="d-flex align-items-center justify-content-center btn btn-light border-primary
+                {{ permission.isOwned ? activeClasses : inactiveClasses }} {{ isUpdatable ? '' : 'disabled' }}"
+                {{ stimulus_action('custom-checkbox', 'click', null, {
+                    path: path('toggle_pro_permission', {id: user.subjectMembre.id, relay: relay.id, permission: permission.value})
+                }) }}
+        >
+            <i class="fa fa-check fa-2xs text-white py-1"></i>
+        </a>
+        <div class="ms-2 d-flex align-items-center">
+            <i class="fa fa-{{ permission.icon }} text-primary me-1"></i>
+            <span>{{ permission.name }}</span>
+        </div>
+    </div>
+{% endif %}

@@ -25,8 +25,8 @@ class MembreCentreType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'choices' => [
-                    'membre.droits.gestionBeneficiaires' => MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES,
-                    'membre.droits.gestionMembres' => MembreCentre::TYPEDROIT_GESTION_MEMBRES,
+                    'membre.droits.gestionBeneficiaires' => MembreCentre::MANAGE_BENEFICIARIES_PERMISSION,
+                    'membre.droits.gestionMembres' => MembreCentre::MANAGE_PROS_PERMISSION,
                 ],
             ]);
         $builder->get('droits')

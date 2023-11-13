@@ -59,7 +59,7 @@ class MembreVoter extends Voter
 
                         // D'abord vérifier que le membre a les droits sur le centre
                         $currentMembreCentre = $user->getSubjectMembre()->getUserCentre($centre);
-                        if (null === $currentMembreCentre || null === $currentMembreCentre->getDroits() || !in_array(MembreCentre::TYPEDROIT_GESTION_MEMBRES, $currentMembreCentre->getDroits()) || false == $currentMembreCentre->getDroits()[MembreCentre::TYPEDROIT_GESTION_MEMBRES]) {
+                        if (null === $currentMembreCentre || null === $currentMembreCentre->getDroits() || !in_array(MembreCentre::MANAGE_PROS_PERMISSION, $currentMembreCentre->getDroits()) || false == $currentMembreCentre->getDroits()[MembreCentre::MANAGE_PROS_PERMISSION]) {
                             return false;
                         }
 

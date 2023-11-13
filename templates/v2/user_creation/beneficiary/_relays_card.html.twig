@@ -1,0 +1,22 @@
+{% extends 'v2/common/_card.html.twig' %}
+{% block customContent %}
+    <div>
+        {{ include('v2/user_creation/components/_relays_checkboxes.html.twig', {user: beneficiary.user}) }}
+        <div class="d-flex justify-content-between mt-4">
+            <div>
+                <a class="btn btn-light text-decoration-underline black text-center mt-2 col mx-1"
+                   href="{{ path('create_beneficiary', { step: beneficiaryCreationProcess.previousStep, id: beneficiaryCreationProcess.id }) }}"
+                >
+                    {{ 'back'|trans }}
+                </a>
+            </div>
+            <div>
+                {{ include('v2/common/_button_with_loader.html.twig', {
+                    text: 'confirm'|trans,
+                    color: 'blue',
+                    href: path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': beneficiaryCreationProcess.nextStep})
+                }) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

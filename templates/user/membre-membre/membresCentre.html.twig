@@ -20,7 +20,7 @@
                                             selected>{% trans %}membre.beneficiaires.selectCentre{% endtrans %}</option>
                                     {% if app.user.isMembre %}
                                         {% for userCentre in app.user.subject.usersCentres %}
-                                            {% if not app.user.isMembre or (userCentre.droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES")] is defined and userCentre.droits[constant("App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES")]) %}
+                                            {% if not app.user.isMembre or (userCentre.droits[constant("App\\Entity\\MembreCentre::MANAGE_PROS_PERMISSION")] is defined and userCentre.droits[constant("App\\Entity\\MembreCentre::MANAGE_PROS_PERMISSION")]) %}
                                                 <option value="{{ userCentre.centre.nom }}">{{ userCentre.centre.nom }}</option>
                                             {% endif %}
                                         {% endfor %}
@@ -63,17 +63,17 @@
                                 </td>
                                 <td ng-if="centreName != null">
                                     <a title="{% trans %}membre.membres.gestionBeneficiaires{% endtrans %}"
-                                       ng-click="changeRight(membre, '{{ constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES') }}')"
+                                       ng-click="changeRight(membre, '{{ constant('App\\Entity\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION') }}')"
                                        href="" class="text-secondary">
                                         <i style="font-size: 2rem;"
-                                           ng-class="{'text-primary':hasRight(membre, '{{ constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES') }}')}"
+                                           ng-class="{'text-primary':hasRight(membre, '{{ constant('App\\Entity\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION') }}')}"
                                            class="fas fa-user"></i>
                                     </a> &nbsp;
                                     <a title="{% trans %}pro_management{% endtrans %}"
-                                       ng-click="changeRight(membre, '{{ constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES') }}')"
+                                       ng-click="changeRight(membre, '{{ constant('App\\Entity\\MembreCentre::MANAGE_PROS_PERMISSION') }}')"
                                        href="" class="text-secondary">
                                         <i style="font-size: 2rem;"
-                                           ng-class="{'text-primary':hasRight(membre, '{{ constant('App\\Entity\\MembreCentre::TYPEDROIT_GESTION_MEMBRES') }}')}"
+                                           ng-class="{'text-primary':hasRight(membre, '{{ constant('App\\Entity\\MembreCentre::MANAGE_PROS_PERMISSION') }}')}"
                                            class="fas fa-user-cog"></i>
                                     </a> &nbsp;
                                 </td>

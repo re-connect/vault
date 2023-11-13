@@ -5,6 +5,11 @@
     {{ encore_entry_script_tags('custom') }}
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('adminStyle') }}
+{% endblock %}
+
 {% block logo %}
     {% apply spaceless %}
         <a class="logo" href="{{ url('sonata_admin_dashboard') }}">

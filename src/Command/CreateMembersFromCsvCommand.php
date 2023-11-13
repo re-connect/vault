@@ -79,7 +79,7 @@ class CreateMembersFromCsvCommand extends Command
 
                 $membreCentre = new MembreCentre();
                 $membreCentre->setBValid(true);
-                $membreCentre->setDroits([MembreCentre::TYPEDROIT_GESTION_BENEFICIAIRES => true, MembreCentre::TYPEDROIT_GESTION_MEMBRES => false]);
+                $membreCentre->setDroits([MembreCentre::MANAGE_BENEFICIARIES_PERMISSION => true, MembreCentre::MANAGE_PROS_PERMISSION => false]);
                 $membreCentre->setCentre($centre);
 
                 $membre->addMembresCentre($membreCentre);
