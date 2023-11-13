@@ -44,23 +44,23 @@ class RosalieInteroperabilityController extends AbstractController
             ->add('number', TextType::class, ['label' => 'si_siao_number'])
             ->getForm()->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $beneficiary->setSiSiaoNumber($form->get('number')->getData());
-            if ($service->beneficiaryExistsOnRosalie($beneficiary)) {
-                $service->linkBeneficiaryToRosalie($beneficiary);
-                $this->addFlash('success', $translator->trans('si_siao_number_found_rosalie'));
-            }
-            $em->flush();
+        if (!$form->isSubmitted() || !$form->isValid()) {
+            return $this->render('v2/rosalie/add_si_siao_number.html.twig', [
+                'beneficiary' => $beneficiary,
+                'form' => $form,
+            ]);
+        }
 
-            return $redirection;
+        $beneficiary->setSiSiaoNumber($form->get('number')->getData());
+        if ($service->beneficiaryExistsOnRosalie($beneficiary)) {
+            $service->linkBeneficiaryToRosalie($beneficiary);
+            $this->addFlash('success', $translator->trans('si_siao_number_found_rosalie'));
         } elseif (str_contains($this->getUser()?->getEmail() ?? '', '@samusocial-75')) {
             $this->addFlash('error', $translator->trans('si_siao_number_not_found_rosalie'));
         }
+        $em->flush();
 
-        return $this->render('v2/rosalie/add_si_siao_number.html.twig', [
-            'beneficiary' => $beneficiary,
-            'form' => $form,
-        ]);
+        return $redirection;
     }
 
     #[IsGranted('ROLE_OAUTH2_SI_SIAO_NUMBERS')]
