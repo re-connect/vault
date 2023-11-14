@@ -41,7 +41,7 @@ class RosalieInteroperabilityController extends AbstractController
     private function processSiSiaoNumberForm(Request $request, Beneficiaire $beneficiary, RosalieService $service, TranslatorInterface $translator, EntityManagerInterface $em, RedirectResponse $redirection): Response
     {
         $form = $this->createFormBuilder()
-            ->add('number', TextType::class, ['label' => 'si_siao_number'])
+            ->add('number', TextType::class, ['label' => 'si_siao_number', 'data' => $beneficiary->getSiSiaoNumber()])
             ->getForm()->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
