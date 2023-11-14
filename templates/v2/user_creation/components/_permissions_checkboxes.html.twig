@@ -16,7 +16,7 @@
         isUpdatable: is_granted('MANAGE_BENEFICIARIES', relay),
     },
     {
-        name: 'pro_management'|trans,
+        name: 'team_management'|trans,
         value: constant('App\\Entity\\MembreCentre::MANAGE_PROS_PERMISSION'),
         icon: 'user-cog',
         isOwned: userRelay and userRelay.canManageProfessionals,
