@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row mb-5">
     {% for row in rows %}
         {% if row.hidden is not defined or not row.hidden %}
             {{ include('v2/user_creation/beneficiary/_summary_row.html.twig', {row}) }}
