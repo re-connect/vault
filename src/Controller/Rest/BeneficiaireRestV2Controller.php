@@ -406,7 +406,7 @@ final class BeneficiaireRestV2Controller extends REController
             $password = $request->request->get('password') ?? $userManager->randomPassword();
             $user->setPlainPassword($password);
 
-            $errorsArray = $provider->populateBeneficiary($beneficiaire, $request->request);
+            $errorsArray = $provider->populateBeneficiary($beneficiaire, $request->request, true);
 
             if (count($errorsArray) > 0) {
                 return $this->json($errorsArray, Response::HTTP_BAD_REQUEST);
