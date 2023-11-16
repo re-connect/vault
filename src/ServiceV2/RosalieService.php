@@ -3,6 +3,7 @@
 namespace App\ServiceV2;
 
 use App\Entity\Beneficiaire;
+use App\Entity\Helper\BeneficiaryCheckOnRosalie;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\ClientRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,7 +26,7 @@ class RosalieService
     ) {
     }
 
-    public function beneficiaryExistsOnRosalie(Beneficiaire $beneficiary): bool
+    public function checkBeneficiaryOnRosalie(Beneficiaire $beneficiary): BeneficiaryCheckOnRosalie
     {
         try {
             $response = $this->httpClient->request(
@@ -42,9 +43,9 @@ class RosalieService
                 ],
             );
 
-            return 300 > $response->getStatusCode();
+            return BeneficiaryCheckOnRosalie::fromResponse($beneficiary, $response->getStatusCode(), $response->getContent(false));
         } catch (ExceptionInterface) {
-            return false;
+            return new BeneficiaryCheckOnRosalie($beneficiary);
         }
     }
 
