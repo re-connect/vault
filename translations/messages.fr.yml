@@ -1187,3 +1187,5 @@ you_can_not_update_default_permission: Vous ne pouvez pas modifier la permission
 choose_relays_and_permissions: Choix des relais et permissions
 relays_choice: Choix des relais
 edit_si_siao_number: Modifier numéro SI-SIAO
+si_siao_number_almost_found_rosalie: Une famille a été trouvée sur Rosalie pour cette clé SI-SIAO, elle correspond presque aux informations renseignées, veuillez les vérifier (nom, prénom)
+si_siao_number_does_not_match_rosalie: La clé SI-SIAO ne correspond pas aux informations renseignées pour cette personne
