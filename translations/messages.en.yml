@@ -984,3 +984,5 @@ you_can_not_update_default_permission: You can't update default permission
 choose_relays_and_permissions: Choose relays and permissions
 relays_choice: Choose relays
 edit_si_siao_number: Edit SI-SIAO number
+si_siao_number_almost_found_rosalie: A family was found on Rosalie for this SI-SIAO key, it almost matches the information provided, please check it (last name, first name)
+si_siao_number_does_not_match_rosalie: The SI-SIAO key does not match the information provided for this person
