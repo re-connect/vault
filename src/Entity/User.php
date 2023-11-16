@@ -1252,4 +1252,13 @@ class User extends BaseUser implements \JsonSerializable
     {
         return $this->getValidUserCentres()->exists(fn (int $index, UserCentre $userCentre) => $userCentre->hasDroit($droit));
     }
+
+    public function formatPhone(): static
+    {
+        if (preg_match('/^0[1-9][0-9]{8}$/', $this->telephone)) {
+            $this->telephone = preg_replace('/^0/', '+33', $this->telephone);
+        }
+
+        return $this;
+    }
 }
