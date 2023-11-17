@@ -15,6 +15,7 @@ services:
             $adminMails: '%env(json:ADMIN_MAILS)%'
             $apikey: '%env(MJ_APIKEY_PUBLIC)%'
             $apisecret: '%env(MJ_APIKEY_PRIVATE)%'
+            $brevoApiKey: '%env(BREVO_API_KEY)%'
             $bucketAccess: '%env(BUCKET_ACCESS_KEY)%'
             $bucketEndpoint: '%env(BUCKET_ENDPOINT)%'
             $bucketName: '%env(BUCKET_NAME)%'

@@ -4,6 +4,7 @@ return [
     'ADMIN_MAIL' => null,
     'ADMIN_MAILS' => null,
     'APP_SECRET' => null,
+    'BREVO_API_KEY' => null,
     'BUCKET_ACCESS_KEY' => null,
     'BUCKET_ENDPOINT' => null,
     'BUCKET_HOST' => null,
