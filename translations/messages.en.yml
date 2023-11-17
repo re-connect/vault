@@ -986,3 +986,6 @@ relays_choice: Choose relays
 edit_si_siao_number: Edit SI-SIAO number
 si_siao_number_almost_found_rosalie: A family was found on Rosalie for this SI-SIAO key, it almost matches the information provided, please check it (last name, first name)
 si_siao_number_does_not_match_rosalie: The SI-SIAO key does not match the information provided for this person
+digital_cares_qualiopi_content_title: 'Our commitment: quality training to fight the digital divide'
+digital_cares_qualiopi_content_text: Designed with and for the beneficiaries of our social structures, all our workshops aim to help them better master digital tools and become autonomous in their practices. To help them achieve this, we are committed to offering quality training courses, all Qualiopi-certified.
+digital_cares_qualiopi_content_img_alt: Qualiopi certified training courses
