@@ -1,11 +1,11 @@
 <?php
 
-namespace App\ServiceV2\Mailer;
+namespace App\ServiceV2\Mailer\Email;
 
 use App\Entity\User;
 use Brevo\Client\Model\SendSmtpEmail;
 
-class ShareDocumentEmail implements LocalizedTemplatedEmailInterface
+readonly class ShareDocumentEmail implements LocalizedTemplatedEmailInterface
 {
     private const FR_TEMPLATE_ID = 9;
     private const EN_TEMPLATE_ID = 10;

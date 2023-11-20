@@ -4,6 +4,9 @@ namespace App\ServiceV2\Mailer;
 
 use App\Entity\SharedDocument;
 use App\Entity\User;
+use App\ServiceV2\Mailer\Email\DuplicatedUsernameEmail;
+use App\ServiceV2\Mailer\Email\ResetPasswordEmail;
+use App\ServiceV2\Mailer\Email\ShareDocumentEmail;
 use Brevo\Client\Api\TransactionalEmailsApi;
 use Brevo\Client\Configuration;
 use Brevo\Client\Model\SendSmtpEmail;
@@ -19,6 +22,9 @@ readonly class MailerService
 {
     private TransactionalEmailsApi $transactionalEmailsApi;
 
+    /**
+     * @param string[] $adminMails
+     */
     public function __construct(
         private Mailer $mailer,
         private RouterInterface $router,
