@@ -10,32 +10,12 @@ monolog:
 
 when@dev:
     monolog:
-        handlers:
-            main:
-                type: stream
-                path: "%kernel.logs_dir%/%kernel.environment%.log"
-                level: debug
-                channels: [ "!event" ]
-            # uncomment to get logging in your browser
-            # you may have to allow bigger header sizes in your Web server configuration
-            #firephp:
-            #    type: firephp
-            #    level: info
-            #chromephp:
-            #    type: chromephp
-            #    level: info
-            console:
-                type: console
-                process_psr_3_messages: false
-                channels: [ "!event", "!doctrine", "!console" ]
-
-when@test:
-    monolog:
         channels:
             - login
             - personal_data
             - user
             - relay
+            - affiliation
         handlers:
             main:
                 type: fingers_crossed
@@ -50,23 +30,77 @@ when@test:
             activity:
                 level: debug
                 type: stream
-                path: '%kernel.logs_dir%/activity/login.log'
+                path: '%kernel.logs_dir%/activity_dev/login.log'
                 channels: [ 'login' ]
             personal_data:
                 level: debug
                 type: stream
-                path: '%kernel.logs_dir%/activity/personal_data.log'
+                path: '%kernel.logs_dir%/activity_dev/personal_data.log'
                 channels: [ 'personal_data' ]
             user:
                 level: debug
                 type: stream
-                path: '%kernel.logs_dir%/activity/user.log'
+                path: '%kernel.logs_dir%/activity_dev/user.log'
                 channels: [ 'user' ]
             relay:
                 level: debug
                 type: stream
-                path: '%kernel.logs_dir%/activity/relay.log'
+                path: '%kernel.logs_dir%/activity_dev/relay.log'
                 channels: [ 'relay' ]
+            affiliation:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/activity_dev/affiliation.log'
+                channels: [ 'affiliation' ]
+            console:
+                type: console
+                process_psr_3_messages: false
+                channels: [ "!event", "!doctrine", "!console" ]
+
+when@test:
+    monolog:
+        channels:
+            - login
+            - personal_data
+            - user
+            - relay
+            - affiliation
+        handlers:
+            main:
+                type: fingers_crossed
+                action_level: error
+                handler: nested
+                excluded_http_codes: [ 404, 405 ]
+                channels: [ "!event" ]
+            nested:
+                type: stream
+                path: "%kernel.logs_dir%/%kernel.environment%.log"
+                level: debug
+            activity:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/activity_test/login.log'
+                channels: [ 'login' ]
+            personal_data:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/activity_test/personal_data.log'
+                channels: [ 'personal_data' ]
+            user:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/activity_test/user.log'
+                channels: [ 'user' ]
+            relay:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/activity_test/relay.log'
+                channels: [ 'relay' ]
+            affiliation:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/activity_test/affiliation.log'
+                channels: [ 'affiliation' ]
 
 when@prod:
     monolog:
@@ -75,6 +109,7 @@ when@prod:
             - personal_data
             - user
             - relay
+            - affiliation
         handlers:
             main:
                 type: fingers_crossed
@@ -110,3 +145,8 @@ when@prod:
                 type: stream
                 path: '%kernel.logs_dir%/activity/relay.log'
                 channels: [ 'relay' ]
+            affiliation:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/activity/affiliation.log'
+                channels: [ 'affiliation' ]
