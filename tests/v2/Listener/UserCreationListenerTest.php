@@ -148,4 +148,19 @@ class UserCreationListenerTest extends AuthenticatedTestCase
         yield 'Test trigger listener with beneficiary' => [BeneficiaryFixture::BENEFICIARY_MAIL];
         yield 'Test trigger listener with pro' => [MemberFixture::MEMBER_MAIL];
     }
+
+    /** @dataProvider providePhoneNumbers */
+    public function testShouldFormatUserPhoneNumber(string $phoneNumber, string $expectedResult): void
+    {
+        $user = UserFactory::createOne(['telephone' => $phoneNumber])->object();
+        $this->assertEquals($expectedResult, $user->getTelephone());
+    }
+
+    public function providePhoneNumbers(): \Generator
+    {
+        yield '0120202020 should be formatted to +33120202020' => ['0120202020', '+33120202020'];
+        yield '0620202020 should be formatted to +33620202020' => ['0620202020', '+33620202020'];
+        yield '0720202020 should be formatted to +33720202020' => ['0720202020', '+33720202020'];
+        yield '+33620202021 should be formatted to +33620202021' => ['+33620202021', '+33620202021'];
+    }
 }

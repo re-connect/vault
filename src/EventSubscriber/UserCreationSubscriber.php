@@ -55,6 +55,7 @@ class UserCreationSubscriber
             $this->setupClientLink($object);
         } elseif ($object instanceof User) {
             $user = $object;
+            $user->formatPhone();
         } else {
             return;
         }
