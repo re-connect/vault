@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Entity\Interface;
+namespace App\ListenerV2\Logs;
 
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 
-interface LogActivitySubscriberInterface
+interface LogActivityListenerInterface
 {
     public function postPersist(LifecycleEventArgs $args): void;
 

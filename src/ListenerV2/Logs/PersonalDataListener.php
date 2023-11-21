@@ -1,11 +1,10 @@
 <?php
 
-namespace App\EventSubscriber\Logs;
+namespace App\ListenerV2\Logs;
 
 use App\Entity\DonneePersonnelle;
-use App\Entity\Interface\LogActivitySubscriberInterface;
 use App\ServiceV2\Traits\UserAwareTrait;
-use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
@@ -13,7 +12,10 @@ use Doctrine\Persistence\ObjectManager;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 
-class PersonalDataSubscriber implements EventSubscriberInterface, LogActivitySubscriberInterface
+#[AsDoctrineListener(event: Events::postPersist)]
+#[AsDoctrineListener(event: Events::preUpdate)]
+#[AsDoctrineListener(event: Events::preRemove)]
+class PersonalDataListener implements LogActivityListenerInterface
 {
     use UserAwareTrait;
 
@@ -21,11 +23,6 @@ class PersonalDataSubscriber implements EventSubscriberInterface, LogActivitySub
 
     public function __construct(private readonly LoggerInterface $personalDataLogger, private readonly Security $security)
     {
-    }
-
-    public function getSubscribedEvents(): array
-    {
-        return [Events::postPersist, Events::preUpdate, Events::preRemove];
     }
 
     /**
