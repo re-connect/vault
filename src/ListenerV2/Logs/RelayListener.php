@@ -5,6 +5,8 @@ namespace App\ListenerV2\Logs;
 use App\Entity\Centre;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
+use Doctrine\ORM\Event\PostPersistEventArgs;
+use Doctrine\ORM\Event\PreRemoveEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
@@ -25,10 +27,7 @@ class RelayListener implements LogActivityListenerInterface
     {
     }
 
-    /**
-     * @param LifecycleEventArgs<ObjectManager> $args
-     */
-    public function postPersist(LifecycleEventArgs $args): void
+    public function postPersist(PostPersistEventArgs $args): void
     {
         $this->log($args, sprintf('%s created :', self::RELAY_NAME));
     }
@@ -38,10 +37,7 @@ class RelayListener implements LogActivityListenerInterface
         $this->log($args, sprintf('%s updated :', self::RELAY_NAME));
     }
 
-    /**
-     * @param LifecycleEventArgs<ObjectManager> $args
-     */
-    public function preRemove(LifecycleEventArgs $args): void
+    public function preRemove(PreRemoveEventArgs $args): void
     {
         $this->log($args, sprintf('%s removed :', self::RELAY_NAME));
     }

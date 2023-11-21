@@ -91,6 +91,8 @@ abstract class UserCentre implements \JsonSerializable
 
     abstract public function setUser(User $user): self;
 
+    abstract public function getUser(): ?User;
+
     public function getDroits(): array
     {
         return [];

@@ -34,6 +34,15 @@ class AffiliationListenerTest extends AbstractLogActivityListenerTest
         $this->assertLastLog(self::LOG_FILE_NAME, ['Affiliation link created', ...$this->getLogContent($beneficiaireCentre)]);
     }
 
+    public function testPreUpdateBeneficiaireCentre(): void
+    {
+        $beneficiaireCentre = $this->createBeneficiaireCentre();
+        $beneficiaireCentre->setBValid(true);
+        $this->em->flush();
+
+        $this->assertLastLog(self::LOG_FILE_NAME, ['Affiliation link accepted', ...$this->getLogContent($beneficiaireCentre)]);
+    }
+
     public function testPreRemoveBeneficiaireCentre(): void
     {
         $beneficiaireCentre = $this->createBeneficiaireCentre();
@@ -51,6 +60,15 @@ class AffiliationListenerTest extends AbstractLogActivityListenerTest
         $this->assertLastLog(self::LOG_FILE_NAME, ['Affiliation link created', ...$this->getLogContent($membreCentre)]);
     }
 
+    public function testPreUpdateMembreCentre(): void
+    {
+        $membreCentre = $this->createMembreCentre();
+        $membreCentre->setBValid(true);
+        $this->em->flush();
+
+        $this->assertLastLog(self::LOG_FILE_NAME, ['Affiliation link accepted', ...$this->getLogContent($membreCentre)]);
+    }
+
     public function testPreRemoveMembreCentre(): void
     {
         $membreCentre = $this->createMembreCentre();
@@ -63,19 +81,21 @@ class AffiliationListenerTest extends AbstractLogActivityListenerTest
 
     private function getLogContent(UserCentre $userCentre): array
     {
-        $user = $userCentre instanceof MembreCentre ? $userCentre->getMembre()?->getUser() : $userCentre->getBeneficiaire()?->getUser();
-
         return [
             'entity_id' => $userCentre->getId(),
             'relay' => $userCentre->getCentre()?->getId(),
-            'user' => $user?->getId(),
+            'user' => $userCentre->getUser()?->getId(),
+            'accepted' => $userCentre->getBValid(),
             'by_user_id' => $this->loggedUser?->getId(),
         ];
     }
 
     private function createBeneficiaireCentre(): BeneficiaireCentre
     {
-        $beneficiaireCentre = (new BeneficiaireCentre())->setCentre(RelayFactory::createOne()->object())->setBeneficiaire(BeneficiaireFactory::createOne()->object());
+        $beneficiaireCentre = (new BeneficiaireCentre())
+                ->setCentre(RelayFactory::createOne()
+                ->object())->setBeneficiaire(BeneficiaireFactory::createOne()->object())
+                ->setBValid(false);
 
         $this->em->persist($beneficiaireCentre);
         $this->em->flush();

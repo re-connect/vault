@@ -5,6 +5,8 @@ namespace App\ListenerV2\Logs;
 use App\Entity\User;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
+use Doctrine\ORM\Event\PostPersistEventArgs;
+use Doctrine\ORM\Event\PreRemoveEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
@@ -25,10 +27,7 @@ class UserListener implements LogActivityListenerInterface
     {
     }
 
-    /**
-     * @param LifecycleEventArgs<ObjectManager> $args
-     */
-    public function postPersist(LifecycleEventArgs $args): void
+    public function postPersist(PostPersistEventArgs $args): void
     {
         $this->log($args, sprintf('%s created :', self::USER_NAME));
     }
@@ -45,10 +44,7 @@ class UserListener implements LogActivityListenerInterface
         }
     }
 
-    /**
-     * @param LifecycleEventArgs<ObjectManager> $args
-     */
-    public function preRemove(LifecycleEventArgs $args): void
+    public function preRemove(PreRemoveEventArgs $args): void
     {
         $this->log($args, sprintf('%s removed :', self::USER_NAME));
     }
