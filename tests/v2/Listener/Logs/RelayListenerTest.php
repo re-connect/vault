@@ -1,31 +1,26 @@
 <?php
 
-namespace App\Tests\v2\EventSubscriber\Logs;
+namespace App\Tests\v2\Listener\Logs;
 
 use App\Entity\Centre;
-use App\EventSubscriber\Logs\RelaySubscriber;
+use App\ListenerV2\Logs\RelayListener;
 use App\Tests\Factory\RelayFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Zenstruck\Foundry\Test\Factories;
 
-class RelaySubscriberTest extends AbstractLogActivitySubscriberTest implements TestLogActivitySubscriberInterface
+class RelayListenerTest extends AbstractLogActivityListenerTest implements TestLogActivityListenerInterface
 {
     use Factories;
 
     private const LOG_FILE_NAME = 'relay.log';
-    private ?RelaySubscriber $relaySubscriber;
+    private ?RelayListener $relaySubscriber;
     private ?EntityManagerInterface $em;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->relaySubscriber = $this->getContainer()->get(RelaySubscriber::class);
+        $this->relaySubscriber = $this->getContainer()->get(RelayListener::class);
         $this->em = $this->getContainer()->get(EntityManagerInterface::class);
-    }
-
-    public function testEventSubscriptions(): void
-    {
-        $this->assertEventSubscriptions($this->relaySubscriber->getSubscribedEvents());
     }
 
     public function testPostPersist(): void

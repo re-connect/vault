@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Tests\v2\EventSubscriber\Logs;
+namespace App\Tests\v2\Listener\Logs;
 
-interface TestLogActivitySubscriberInterface
+interface TestLogActivityListenerInterface
 {
-    public function testEventSubscriptions(): void;
-
     public function testPostPersist(): void;
 
     public function testPreUpdate(): void;

@@ -120,6 +120,11 @@ class BeneficiaireCentre extends UserCentre
         return $this;
     }
 
+    public function getUser(): User
+    {
+        return $this->beneficiaire?->getUser();
+    }
+
     public function __clone()
     {
         $this->beneficiaire = clone $this->beneficiaire;

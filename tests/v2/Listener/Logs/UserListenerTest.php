@@ -1,32 +1,27 @@
 <?php
 
-namespace App\Tests\v2\EventSubscriber\Logs;
+namespace App\Tests\v2\Listener\Logs;
 
 use App\DataFixtures\v2\MemberFixture;
 use App\Entity\User;
-use App\EventSubscriber\Logs\UserSubscriber;
+use App\ListenerV2\Logs\UserListener;
 use App\Tests\Factory\UserFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Zenstruck\Foundry\Test\Factories;
 
-class UserSubscriberTest extends AbstractLogActivitySubscriberTest implements TestLogActivitySubscriberInterface
+class UserListenerTest extends AbstractLogActivityListenerTest implements TestLogActivityListenerInterface
 {
     use Factories;
 
     private const LOG_FILE_NAME = 'user.log';
-    private ?UserSubscriber $userSubscriber;
+    private ?UserListener $userSubscriber;
     private ?EntityManagerInterface $em;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->userSubscriber = $this->getContainer()->get(UserSubscriber::class);
+        $this->userSubscriber = $this->getContainer()->get(UserListener::class);
         $this->em = $this->getContainer()->get(EntityManagerInterface::class);
-    }
-
-    public function testEventSubscriptions(): void
-    {
-        $this->assertEventSubscriptions($this->userSubscriber->getSubscribedEvents());
     }
 
     public function testPostPersist(): void
