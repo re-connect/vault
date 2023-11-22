@@ -10,7 +10,7 @@
     {name: 'secret_question', value: beneficiary.questionSecrete, step: secretQuestionStep, hidden: beneficiaryCreationProcess.remotely},
     {name: 'secret_answer', value: beneficiary.reponseSecrete, step:secretQuestionStep, hidden: beneficiaryCreationProcess.remotely},
     {name: 'relays', value: beneficiary.user.centres, step: beneficiaryCreationProcess.relaysStep},
-    {name: 'si_siao_number', value: beneficiary.sisiaoNumber, hidden: null == beneficiary.sisiaoNumber, readonly: true}
+    {name: 'si_siao_number', value: beneficiary.sisiaoNumber, hidden: null == beneficiary.sisiaoNumber, editPath: path('add_si_siao_number', {id: beneficiary.id})}
 ] %}
 
 {% block stepContent %}
