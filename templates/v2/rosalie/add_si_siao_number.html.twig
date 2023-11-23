@@ -1,6 +1,6 @@
 {% extends 'v2/standard_layout.html.twig' %}
 
-{% block metaTitle %}{{ 'add_si_siao_number'|trans }}{% endblock metaTitle %}
+{% block metaTitle %}{{ beneficiary.sisiaoNumber ? 'edit_si_siao_number'|trans : 'add_si_siao_number'|trans }}{% endblock metaTitle %}
 
 {% block delimiter %}{% endblock %}
 
@@ -17,7 +17,7 @@
                     {{ form_widget(form.number) }}
                 </div>
                 <div class="text-end ms-2">
-                    {{ include('v2/common/_button_with_loader.html.twig', {'text': 'add'|trans}) }}
+                    {{ include('v2/common/_button_with_loader.html.twig', {text: beneficiary.sisiaoNumber ? 'submit'|trans : 'add'|trans}) }}
                 </div>
 
             </div>

@@ -51,6 +51,6 @@ class RosalieServiceTest extends KernelTestCase
             ->setSiSiaoNumber('SI-00000000')
             ->setUser((new User())->setPrenom('Frodo')->setNom('BAGGINS'))
             ->setDateNaissance(\DateTime::createFromFormat('d/m/Y', '01/01/1975'));
-        $this->service->beneficiaryExistsOnRosalie($beneficiary);
+        $this->service->checkBeneficiaryOnRosalie($beneficiary);
     }
 }
