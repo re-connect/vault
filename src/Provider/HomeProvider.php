@@ -46,24 +46,28 @@ class HomeProvider
             'icon_alt' => 'cfn_vault_is_safe_alt_img',
             'title' => 'cfn_vault_is_safe_title',
             'text' => 'cfn_vault_is_safe_p',
+            'is_qualiopi' => false,
         ],
         [
             'icon_file_name' => 'icon_vault_exchange_info.png',
             'icon_alt' => 'cfn_vault_exchange_info_alt_img',
             'title' => 'cfn_vault_exchange_info_title',
             'text' => 'cfn_vault_exchange_info_p',
+            'is_qualiopi' => false,
         ],
         [
             'icon_file_name' => 'icon_vault_easy_access.png',
             'icon_alt' => 'cfn_vault_easy_access_alt_img',
             'title' => 'cfn_vault_easy_access_title',
             'text' => 'cfn_vault_easy_access_p',
+            'is_qualiopi' => false,
         ],
         [
             'icon_file_name' => 'logo_vault_like.png',
             'icon_alt' => 'cfn_vault_is_satisfying_alt_img',
             'title' => 'cfn_vault_is_satisfying_title',
             'text' => 'cfn_vault_is_satisfying_p',
+            'is_qualiopi' => true,
         ],
     ];
 
@@ -105,24 +109,28 @@ class HomeProvider
             'icon_alt' => 'rp_is_simple_alt_img',
             'title' => 'rp_is_simple_title',
             'text' => 'rp_is_simple_p',
+            'is_qualiopi' => false,
         ],
         [
             'icon_file_name' => 'icon_rp_specific.png',
             'icon_alt' => 'rp_is_specific_alt_img',
             'title' => 'rp_is_specific_title',
             'text' => 'rp_is_specific_p',
+            'is_qualiopi' => false,
         ],
         [
             'icon_file_name' => 'icon_rp_adaptable.png',
             'icon_alt' => 'rp_is_adaptable_alt_img',
             'title' => 'rp_is_adaptable_title',
             'text' => 'rp_is_adaptable_p',
+            'is_qualiopi' => false,
         ],
         [
             'icon_file_name' => 'logo_rp_like.png',
             'icon_alt' => 'rp_is_satisfying_alt_img',
             'title' => 'rp_is_satisfying_title',
             'text' => 'rp_is_satisfying_p',
+            'is_qualiopi' => true,
         ],
     ];
 
@@ -155,6 +163,13 @@ class HomeProvider
             'img_alt' => 'digital_cares_scalable_content_img_alt',
             'is_mobile' => false,
         ],
+        [
+            'title' => 'digital_cares_qualiopi_content_title',
+            'text' => 'digital_cares_qualiopi_content_text',
+            'img_fileName' => 'digital_cares_qualiopi.png',
+            'img_alt' => 'digital_cares_qualiopi_content_img_alt',
+            'is_mobile' => false,
+        ],
     ];
 
     public const DIGITAL_CARES_IS_CONTENT = [
@@ -163,24 +178,28 @@ class HomeProvider
             'icon_alt' => 'digital_cares_appreciated_training_img_alt',
             'title' => 'digital_cares_appreciated_training_title',
             'text' => 'digital_cares_appreciated_training_text',
+            'is_qualiopi' => false,
         ],
         [
             'icon_file_name' => 'logo_digital_cares_student.png',
             'icon_alt' => 'digital_cares_acquire_skills_img_alt',
             'title' => 'digital_cares_acquire_skills_title',
             'text' => 'digital_cares_acquire_skills_text',
+            'is_qualiopi' => false,
         ],
         [
             'icon_file_name' => 'logo_digital_cares_bulb.png',
             'icon_alt' => 'digital_cares_dynamic_workshop_img_alt',
             'title' => 'digital_cares_dynamic_workshop_title',
             'text' => 'digital_cares_dynamic_workshop_text',
+            'is_qualiopi' => false,
         ],
         [
             'icon_file_name' => 'logo_digital_cares_knowledge.png',
             'icon_alt' => 'digital_cares_knowledge_img_alt',
             'title' => 'digital_cares_knowledge_title',
             'text' => 'digital_cares_knowledge_text',
+            'is_qualiopi' => false,
         ],
     ];
 }
