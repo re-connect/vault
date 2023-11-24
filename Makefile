@@ -8,7 +8,7 @@ PHPUNIT         = $(BIN)/simple-phpunit
 PHPSTAN         = $(BIN)/phpstan
 RECTOR          = $(BIN)/rector
 PHP_CS_FIXER    = $(BIN)/php-cs-fixer
-PHPSTAN_LEVEL   = 1
+PHPSTAN_LEVEL   = 7
 
 cs: stan fixer
 

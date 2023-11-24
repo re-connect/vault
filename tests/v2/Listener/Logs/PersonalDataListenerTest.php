@@ -1,33 +1,28 @@
 <?php
 
-namespace App\Tests\v2\EventSubscriber\Logs;
+namespace App\Tests\v2\Listener\Logs;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Entity\Contact;
-use App\EventSubscriber\Logs\PersonalDataSubscriber;
+use App\ListenerV2\Logs\PersonalDataListener;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\ContactFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Zenstruck\Foundry\Test\Factories;
 
-class PersonalDataSubscriberTest extends AbstractLogActivitySubscriberTest implements TestLogActivitySubscriberInterface
+class PersonalDataListenerTest extends AbstractLogActivityListenerTest implements TestLogActivityListenerInterface
 {
     use Factories;
 
     private const LOG_FILE_NAME = 'personal_data.log';
-    private ?PersonalDataSubscriber $personalDataSubscriber;
+    private ?PersonalDataListener $personalDataSubscriber;
     private ?EntityManagerInterface $em;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->personalDataSubscriber = $this->getContainer()->get(PersonalDataSubscriber::class);
+        $this->personalDataSubscriber = $this->getContainer()->get(PersonalDataListener::class);
         $this->em = $this->getContainer()->get(EntityManagerInterface::class);
-    }
-
-    public function testEventSubscriptions(): void
-    {
-        $this->assertEventSubscriptions($this->personalDataSubscriber->getSubscribedEvents());
     }
 
     public function testPostPersist(): void

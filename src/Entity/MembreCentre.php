@@ -85,6 +85,11 @@ class MembreCentre extends UserCentre
         return $this;
     }
 
+    public function getUser(): User
+    {
+        return $this->membre?->getUser();
+    }
+
     public function canManageBeneficiaries(): bool
     {
         return array_key_exists(self::MANAGE_BENEFICIARIES_PERMISSION, $this->getDroits())
