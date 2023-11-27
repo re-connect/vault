@@ -16,7 +16,7 @@ class BeneficiaireCentreAdmin extends AbstractAdmin
     {
         /** @var BeneficiaireCentre $beneficiaireCentre */
         $beneficiaireCentre = $this->getSubject();
-        $beneficiaireId = $beneficiaireCentre->getBeneficiaire()->getId();
+        $beneficiaireId = $beneficiaireCentre->getBeneficiaire()?->getId();
 
         $form
             ->add('centre', ModelType::class, [
