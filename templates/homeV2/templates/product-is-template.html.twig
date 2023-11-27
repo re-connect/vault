@@ -9,10 +9,6 @@
                          alt="{{ item.icon_alt|trans }}">
                     <h5 class="py-3">{{ item.title |trans }}</h5>
                     <p class="font-size-1-1">{{ item.text|trans }}</p>
-                    {% if item.is_qualiopi %}
-                        <img class="w-75 h-25 p-2"
-                             src="{{ asset('build/images/homeV2/digital_cares_qualiopi.png') }}" alt="{{ 'digital_cares_qualiopi_content_img_alt'|trans }}">
-                    {% endif %}
                 </article>
             {% endfor %}
         </div>
