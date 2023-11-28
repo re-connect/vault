@@ -1,14 +1,13 @@
-it:
-  accepted: accettato
-  authentification_failure_wrong_credentials: Password o nome utente non corretti
-  form_connexion: Login
-  form_forgot_password: Reimpostare la mia password
-  form_login: Nome utente o E-mail
-  health: Salute
-  housing: Alloggio
-  identity: Identità
-  login_form_title: Accesso alla cassaforte digitale
-  missing_secret_question_text: Non avete ancora inserito una domanda e una
-    risposta segreta, potete farlo qui di seguito
-  tax: Imposta
-  work: Lavoro
+accepted: accettato
+authentification_failure_wrong_credentials: Password o nome utente non corretti
+form_connexion: Login
+form_forgot_password: Reimpostare la mia password
+form_login: Nome utente o E-mail
+health: Salute
+housing: Alloggio
+identity: Identità
+login_form_title: Accesso alla cassaforte digitale
+missing_secret_question_text: Non avete ancora inserito una domanda e una
+  risposta segreta, potete farlo qui di seguito
+tax: Imposta
+work: Lavoro
