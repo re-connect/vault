@@ -6,4 +6,6 @@ files:
   - source: translations/validators
     translation: /translations/validators/validators.%two_letters_code%.yml
 bundles:
-  - 2
+  - 4
+  - 6
+  - 8
