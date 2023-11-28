@@ -1,101 +1,72 @@
-es:
-  security:
-    login:
-      username: Nombre de usuario
-      password: Contraseña
-      remember_me: Recordar
-      submit: Entrar
-  profile:
-    show:
-      username: Nombre de usuario
-      email: Email
-    edit:
-      submit: Actualizar usuario
-    flash:
-      updated: El perfil ha sido actualizado.
-  change_password:
-    submit: Cambiar contraseña
-    flash:
-      success: La contraseña se ha cambiado con éxito.
-  registration:
-    check_email: Se ha enviado un correo electrónico a %email%. Contiene un enlace
-      de activación al que debes acceder para activar tu cuenta.
-    confirmed: Felicidades %username%, tu cuenta está ahora confirmada.
-    back: Volver a la página original.
-    submit: Registrar
-    flash:
-      user_created: El usuario se ha creado satisfactoriamente.
-    email:
-      subject: ¡Bienvenido %username%!
-      message: >-
-        ¡Hola %username%!
+security.login.username: Nombre de usuario
+security.login.password: Contraseña
+security.login.remember_me: Recordar
+security.login.submit: Entrar
+profile.show.username: Nombre de usuario
+profile.show.email: Email
+profile.edit.submit: Actualizar usuario
+profile.flash.updated: El perfil ha sido actualizado.
+change_password.submit: Cambiar contraseña
+change_password.flash.success: La contraseña se ha cambiado con éxito.
+registration.check_email: Se ha enviado un correo electrónico a %email%.
+  Contiene un enlace de activación al que debes acceder para activar tu cuenta.
+registration.confirmed: Felicidades %username%, tu cuenta está ahora confirmada.
+registration.back: Volver a la página original.
+registration.submit: Registrar
+registration.flash.user_created: El usuario se ha creado satisfactoriamente.
+registration.email.subject: ¡Bienvenido %username%!
+registration.email.message: |-
+  ¡Hola %username%!
+
+  Para completar la validación de tu cuenta, por favor visita %confirmationUrl%
+
+  Este enlace sólo puede utilizarse una vez para validar tu cuenta.
+
+  Atentamente,
+  el Equipo.
+resetting.check_email: >-
+  Se ha enviado un correo electrónico a tu cuenta de correo. Contiene un enlace
+  de activación al que debes acceder para restablecer tu contraseña.
+
+  Nota: Solo se puede solicitar una nueva contraseña cada %tokenLifetime% horas.
 
 
-        Para completar la validación de tu cuenta, por favor visita %confirmationUrl%
+  Si no recibes un correo electrónico, comprueba tu carpeta de correo no deseado o inténtalo de nuevo.
+resetting.request.username: Nombre de usuario o correo electrónico
+resetting.request.submit: Restablecer contraseña
+resetting.reset.submit: Cambiar contraseña
+resetting.flash.success: La contraseña se ha cambiado con éxito.
+resetting.email.subject: Restablecer Contraseña
+resetting.email.message: |-
+  ¡Hola %username%!
 
+  Para restablecer tu contraseña, por favor visita %confirmationUrl%
 
-        Este enlace sólo puede utilizarse una vez para validar tu cuenta.
-
-
-        Atentamente,
-
-        el Equipo.
-  resetting:
-    check_email: >-
-      Se ha enviado un correo electrónico a tu cuenta de correo. Contiene un
-      enlace de activación al que debes acceder para restablecer tu contraseña.
-
-      Nota: Solo se puede solicitar una nueva contraseña cada %tokenLifetime% horas.
-
-
-      Si no recibes un correo electrónico, comprueba tu carpeta de correo no deseado o inténtalo de nuevo.
-    request:
-      username: Nombre de usuario o correo electrónico
-      submit: Restablecer contraseña
-    reset:
-      submit: Cambiar contraseña
-    flash:
-      success: La contraseña se ha cambiado con éxito.
-    email:
-      subject: Restablecer Contraseña
-      message: |-
-        ¡Hola %username%!
-
-        Para restablecer tu contraseña, por favor visita %confirmationUrl%
-
-        Atentamente,
-        el Equipo.
-  layout:
-    logout: Salir
-    login: Entrar
-    register: Registrar
-    logged_in_as: Identificado como %username%
-  form:
-    username: Nombre de usuario
-    email: Email
-    current_password: Contraseña actual
-    password: Contraseña
-    password_confirmation: Repita la contraseña
-    new_password: Nueva contraseña
-    new_password_confirmation: Repita la contraseña
-  fos_user:
-    username:
-      already_used: El nombre de usuario ya está en uso.
-      blank: Por favor, ingrese un nombre de usuario.
-      short: El nombre de usuario es demasiado corto.
-      long: El nombre de usuario es demasiado largo.
-    email:
-      already_used: La dirección de correo ya está en uso.
-      blank: Por favor, ingrese una dirección de correo.
-      short: La dirección de correo es demasiado corta.
-      long: La dirección de correo es demasiado larga.
-      invalid: La dirección de correo no es válida.
-    password:
-      blank: Por favor, ingrese una contraseña.
-      short: La contraseña es demasiado corta.
-      mismatch: Las dos contraseñas no coinciden.
-    new_password:
-      blank: Por favor, ingrese una nueva contraseña.
-      short: La nueva contraseña es demasiado corta.
-    current_password:
-      invalid: La contraseña ingresada no es válida.
+  Atentamente,
+  el Equipo.
+layout.logout: Salir
+layout.login: Entrar
+layout.register: Registrar
+layout.logged_in_as: Identificado como %username%
+form.username: Nombre de usuario
+form.email: Email
+form.current_password: Contraseña actual
+form.password: Contraseña
+form.password_confirmation: Repita la contraseña
+form.new_password: Nueva contraseña
+form.new_password_confirmation: Repita la contraseña
+fos_user.username.already_used: El nombre de usuario ya está en uso.
+fos_user.username.blank: Por favor, ingrese un nombre de usuario.
+fos_user.username.short: El nombre de usuario es demasiado corto.
+fos_user.username.long: El nombre de usuario es demasiado largo.
+fos_user.email.already_used: La dirección de correo ya está en uso.
+fos_user.email.blank: Por favor, ingrese una dirección de correo.
+fos_user.email.short: La dirección de correo es demasiado corta.
+fos_user.email.long: La dirección de correo es demasiado larga.
+fos_user.email.invalid: La dirección de correo no es válida.
+fos_user.password.blank: Por favor, ingrese una contraseña.
+fos_user.password.short: La contraseña es demasiado corta.
+fos_user.password.mismatch: Las dos contraseñas no coinciden.
+fos_user.new_password.blank: Por favor, ingrese una nueva contraseña.
+fos_user.new_password.short: La nueva contraseña es demasiado corta.
+fos_user.current_password.invalid: La contraseña ingresada no es válida.
