@@ -1,98 +1,73 @@
-ar:
-  security:
-    login:
-      username: إسم المستخدم
-      password: كلمة المرور
-      remember_me: حفظ البيانات
-      submit: تسجيل دخول
-  profile:
-    show:
-      username: إسم المستخدم
-      email: بريد إلكتروني
-    edit:
-      submit: تحديث
-    flash:
-      updated: تم تحديث الملف الشخصي
-  change_password:
-    submit: تغيير كلمة المرور
-    flash:
-      success: تم تغيير كلمة المرور
-  registration:
-    check_email: لقد تم إرسال رسالة إلكترونية إلى %email% تحتوي على رابط يجب إتباعه
-      لتفعيل حسابك الشخصي.
-    confirmed: تهانينا %username%، لقد تم تفعيل حسابك.
-    back: عودة إلى الصفحة الرئيسية
-    submit: تسجيل
-    flash:
-      user_created: تم إنشاء حسابك بنجاح
-    email:
-      subject: "%username%! مرحبا"
-      message: |-
-        مرحبا %username%!
+security.login.username: إسم المستخدم
+security.login.password: كلمة المرور
+security.login.remember_me: حفظ البيانات
+security.login.submit: تسجيل دخول
+profile.show.username: إسم المستخدم
+profile.show.email: بريد إلكتروني
+profile.edit.submit: تحديث
+profile.flash.updated: تم تحديث الملف الشخصي
+change_password.submit: تغيير كلمة المرور
+change_password.flash.success: تم تغيير كلمة المرور
+registration.check_email: لقد تم إرسال رسالة إلكترونية إلى %email% تحتوي على
+  رابط يجب إتباعه لتفعيل حسابك الشخصي.
+registration.confirmed: تهانينا %username%، لقد تم تفعيل حسابك.
+registration.back: عودة إلى الصفحة الرئيسية
+registration.submit: تسجيل
+registration.flash.user_created: تم إنشاء حسابك بنجاح
+registration.email.subject: "%username%! مرحبا"
+registration.email.message: |-
+  مرحبا %username%!
 
 
-         لتفعيل حسابك يرجى إتباع الرابط التالي %confirmationUrl%
+   لتفعيل حسابك يرجى إتباع الرابط التالي %confirmationUrl%
 
-         الرابط يمكن إستخدامه مرة واحدة فقط لتفعيل حسابك
+   الرابط يمكن إستخدامه مرة واحدة فقط لتفعيل حسابك
 
-        شكرا،
-        فريق العمل.
-  resetting:
-    check_email: >-
-      لقد تم إرسال رسالة إلكترونية تحتوي على رابط يجب الضغط عليه لإعادة ضبط كلمة
-      المرور الخاصة بك.
+  شكرا،
+  فريق العمل.
+resetting.check_email: >-
+  لقد تم إرسال رسالة إلكترونية تحتوي على رابط يجب الضغط عليه لإعادة ضبط كلمة
+  المرور الخاصة بك.
 
-      ملحوظة: يمكنك إعادة ضبط كلمة المرور الخاصة بك خلال %tokenLifetime% ساعة
+  ملحوظة: يمكنك إعادة ضبط كلمة المرور الخاصة بك خلال %tokenLifetime% ساعة
 
 
-      يرجى التحقق من ملف السبام إذا لم تستقبل الرسالة الإلكترونية قريبا أو أعد المحاولة
-    request:
-      username: إسم المستخدم او البريد الالكتروني
-      submit: إعادة ضبط كلمة المرور
-    reset:
-      submit: تغيير كلمة المرور
-    flash:
-      success: تم إعادة ضبط كلمة المرور بنجاح
-    email:
-      subject: إعادة ضبط كلمة المرور
-      message: |-
-        مرحبا %username%!
+  يرجى التحقق من ملف السبام إذا لم تستقبل الرسالة الإلكترونية قريبا أو أعد المحاولة
+resetting.request.username: إسم المستخدم او البريد الالكتروني
+resetting.request.submit: إعادة ضبط كلمة المرور
+resetting.reset.submit: تغيير كلمة المرور
+resetting.flash.success: تم إعادة ضبط كلمة المرور بنجاح
+resetting.email.subject: إعادة ضبط كلمة المرور
+resetting.email.message: |-
+  مرحبا %username%!
 
-        لإعادة ضبط كلمة المرور يرجى إتباع الرابط التالي %confirmationUrl%
+  لإعادة ضبط كلمة المرور يرجى إتباع الرابط التالي %confirmationUrl%
 
-        شكرا،
-        فريق العمل.
-  layout:
-    logout: خروج
-    login: دخول
-    register: تسجيل
-    logged_in_as: تم الدخول بإسم %username%
-  form:
-    username: إسم المستخدم
-    email: البريد الإلكتروني
-    current_password: كلمة المرور الحالية
-    password: كلمة المرور
-    password_confirmation: تأكيد
-    new_password: كلمة المرور الجديدة
-    new_password_confirmation: تأكيد كلمة المرور
-  fos_user:
-    username:
-      already_used: الإسم المختار مسجل مسبقا
-      blank: يرجى تعيين إسم المستخدم
-      short: " إسم المستخدم قصير جدا"
-      long: " إسم المستخدم طويل جدا"
-    email:
-      already_used: البريد الإلكتروني مسجل مسبقا
-      blank: يرجى تعين البريد الإلكتروني
-      short: " البريد الإلكتروني قصير"
-      long: " البريد الإلكتروني طويل"
-      invalid: البريد الإلكتروني غير صحيح
-    password:
-      blank: يرجى تعيين كلمة المرور
-      short: كلمة المرور قصيرة
-      mismatch: كلمة المرور المدخلة غير مطابقة للكلمة الأصلية
-    new_password:
-      blank: يرجى تعيين كلمة مرور جديدة
-      short: " كلمة المرور الجديدة قصيرة"
-    current_password:
-      invalid: كلمة المرور المدخلة غير صحيحة
+  شكرا،
+  فريق العمل.
+layout.logout: خروج
+layout.login: دخول
+layout.register: تسجيل
+layout.logged_in_as: تم الدخول بإسم %username%
+form.username: إسم المستخدم
+form.email: البريد الإلكتروني
+form.current_password: كلمة المرور الحالية
+form.password: كلمة المرور
+form.password_confirmation: تأكيد
+form.new_password: كلمة المرور الجديدة
+form.new_password_confirmation: تأكيد كلمة المرور
+fos_user.username.already_used: الإسم المختار مسجل مسبقا
+fos_user.username.blank: يرجى تعيين إسم المستخدم
+fos_user.username.short: " إسم المستخدم قصير جدا"
+fos_user.username.long: " إسم المستخدم طويل جدا"
+fos_user.email.already_used: البريد الإلكتروني مسجل مسبقا
+fos_user.email.blank: يرجى تعين البريد الإلكتروني
+fos_user.email.short: " البريد الإلكتروني قصير"
+fos_user.email.long: " البريد الإلكتروني طويل"
+fos_user.email.invalid: البريد الإلكتروني غير صحيح
+fos_user.password.blank: يرجى تعيين كلمة المرور
+fos_user.password.short: كلمة المرور قصيرة
+fos_user.password.mismatch: كلمة المرور المدخلة غير مطابقة للكلمة الأصلية
+fos_user.new_password.blank: يرجى تعيين كلمة مرور جديدة
+fos_user.new_password.short: " كلمة المرور الجديدة قصيرة"
+fos_user.current_password.invalid: كلمة المرور المدخلة غير صحيحة
