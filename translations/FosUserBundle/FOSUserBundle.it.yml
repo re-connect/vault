@@ -1,101 +1,76 @@
-it:
-  security:
-    login:
-      username: Username
-      password: Password
-      remember_me: Ricordami
-      submit: Login
-  profile:
-    show:
-      username: Username
-      email: Email
-    edit:
-      submit: Aggiorna
-    flash:
-      updated: Il profilo è stato aggiornato.
-  change_password:
-    submit: Cambia password
-    flash:
-      success: La password è stata cambiata.
-  registration:
-    check_email: Un'email è stata inviata a %email%. Contiene il link d'attivazione
-      che devi utilizzare per attivare il tuo account.
-    confirmed: Congratulazioni %username%, il tuo account è confermato.
-    back: Torna alla pagina d'origine.
-    submit: Registra
-    flash:
-      user_created: Utente creato con successo.
-    email:
-      subject: Benvenuto %username%!
-      message: >-
-        Ciao %username%!
+security.login.username: Username
+security.login.password: Password
+security.login.remember_me: Ricordami
+security.login.submit: Login
+profile.show.username: Username
+profile.show.email: Email
+profile.edit.submit: Aggiorna
+profile.flash.updated: Il profilo è stato aggiornato.
+change_password.submit: Cambia password
+change_password.flash.success: La password è stata cambiata.
+registration.check_email: Un'email è stata inviata a %email%. Contiene il link
+  d'attivazione che devi utilizzare per attivare il tuo account.
+registration.confirmed: Congratulazioni %username%, il tuo account è confermato.
+registration.back: Torna alla pagina d'origine.
+registration.submit: Registra
+registration.flash.user_created: Utente creato con successo.
+registration.email.subject: Benvenuto %username%!
+registration.email.message: >-
+  Ciao %username%!
 
 
-        Per terminare la validazione del tuo account visita %confirmationUrl%
+  Per terminare la validazione del tuo account visita %confirmationUrl%
 
 
-        Questo link può essere utilizzato solo una volta per verificare il tuo account.
+  Questo link può essere utilizzato solo una volta per verificare il tuo account.
 
 
-        Saluti,
+  Saluti,
 
-        il Team.
-  resetting:
-    check_email: >-
-      È stata inviata un'email con il link d'attivazione che devi utilizzare per
-      il reset della password.
+  il Team.
+resetting.check_email: >-
+  È stata inviata un'email con il link d'attivazione che devi utilizzare per il
+  reset della password.
 
-      Nota: è possibile richiedere una password entro %tokenLifetime% ore.
+  Nota: è possibile richiedere una password entro %tokenLifetime% ore.
 
 
-      Se non ricevi un'email verifica la cartella di spam o riprova.
-    request:
-      username: Username o indirizzo email
-      submit: Password reset
-    reset:
-      submit: Cambia password
-    flash:
-      success: La password è stata resettata.
-    email:
-      subject: Password reset
-      message: |-
-        Ciao %username%!
+  Se non ricevi un'email verifica la cartella di spam o riprova.
+resetting.request.username: Username o indirizzo email
+resetting.request.submit: Password reset
+resetting.reset.submit: Cambia password
+resetting.flash.success: La password è stata resettata.
+resetting.email.subject: Password reset
+resetting.email.message: |-
+  Ciao %username%!
 
-        Per resettare la password visita %confirmationUrl%
+  Per resettare la password visita %confirmationUrl%
 
-        Saluti,
-        il Team.
-  layout:
-    logout: Logout
-    login: Login
-    register: Registra
-    logged_in_as: Collegato come %username%
-  form:
-    username: Username
-    email: Email
-    current_password: Password corrente
-    password: Password
-    password_confirmation: Ripeti password
-    new_password: Nuova password
-    new_password_confirmation: Ripeti password
-  fos_user:
-    username:
-      already_used: Username già in uso.
-      blank: Si prega di inserire un username.
-      short: Username troppo breve.
-      long: Username troppo lungo.
-    email:
-      already_used: Email già in uso.
-      blank: Si prega di inserire una email.
-      short: Email troppo breve.
-      long: Email troppo lunga.
-      invalid: Email non valida.
-    password:
-      blank: Si prega di inserire una password.
-      short: Password troppo breve.
-      mismatch: Le due password non coincidono.
-    new_password:
-      blank: Si prega di inserire nuovamente la password.
-      short: Nuova password troppo breve.
-    current_password:
-      invalid: Password non valida.
+  Saluti,
+  il Team.
+layout.logout: Logout
+layout.login: Login
+layout.register: Registra
+layout.logged_in_as: Collegato come %username%
+form.username: Username
+form.email: Email
+form.current_password: Password corrente
+form.password: Password
+form.password_confirmation: Ripeti password
+form.new_password: Nuova password
+form.new_password_confirmation: Ripeti password
+fos_user.username.already_used: Username già in uso.
+fos_user.username.blank: Si prega di inserire un username.
+fos_user.username.short: Username troppo breve.
+fos_user.username.long: Username troppo lungo.
+fos_user.email.already_used: Email già in uso.
+fos_user.email.blank: Si prega di inserire una email.
+fos_user.email.short: Email troppo breve.
+fos_user.email.long: Email troppo lunga.
+fos_user.email.invalid: Email non valida.
+fos_user.password.blank: Si prega di inserire una password.
+fos_user.password.short: Password troppo breve.
+fos_user.password.mismatch: Le due password non coincidono.
+fos_user.new_password.blank: Si prega di inserire nuovamente la password.
+fos_user.new_password.short: Nuova password troppo breve.
+fos_user.current_password.invalid: Password non valida.
