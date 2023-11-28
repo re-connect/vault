@@ -5,3 +5,5 @@ files:
     translation: /translations/FosUserBundle/FOSUserBundle.%two_letters_code%.yml
   - source: translations/validators
     translation: /translations/validators/validators.%two_letters_code%.yml
+bundles:
+  - 2
