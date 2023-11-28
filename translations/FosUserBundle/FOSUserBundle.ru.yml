@@ -1,101 +1,76 @@
-ru:
-  security:
-    login:
-      username: Имя пользователя
-      password: Пароль
-      remember_me: Запомнить меня
-      submit: Войти
-  profile:
-    show:
-      username: Имя пользователя
-      email: Электронная почта
-    edit:
-      submit: Обновить
-    flash:
-      updated: Профиль пользователя обновлен.
-  change_password:
-    submit: Изменить пароль
-    flash:
-      success: Пароль изменен.
-  registration:
-    check_email: Письмо отправлено на адрес %email%. В нём содержится ссылка, по
-      которой вы можете подтвердить свою регистрацию.
-    confirmed: Поздравляем %username%, ваш аккаунт подтвержден.
-    back: Вернуться на предыдущую страницу.
-    submit: Зарегистрироваться
-    flash:
-      user_created: Пользователь успешно создан.
-    email:
-      subject: Добро пожаловать, %username%!
-      message: >-
-        Приветствуем, %username%!
+security.login.username: Имя пользователя
+security.login.password: Пароль
+security.login.remember_me: Запомнить меня
+security.login.submit: Войти
+profile.show.username: Имя пользователя
+profile.show.email: Электронная почта
+profile.edit.submit: Обновить
+profile.flash.updated: Профиль пользователя обновлен.
+change_password.submit: Изменить пароль
+change_password.flash.success: Пароль изменен.
+registration.check_email: Письмо отправлено на адрес %email%. В нём содержится
+  ссылка, по которой вы можете подтвердить свою регистрацию.
+registration.confirmed: Поздравляем %username%, ваш аккаунт подтвержден.
+registration.back: Вернуться на предыдущую страницу.
+registration.submit: Зарегистрироваться
+registration.flash.user_created: Пользователь успешно создан.
+registration.email.subject: Добро пожаловать, %username%!
+registration.email.message: >-
+  Приветствуем, %username%!
 
 
-        Для подтверждения вашей регистрации, пройдите по ссылке %confirmationUrl%
+  Для подтверждения вашей регистрации, пройдите по ссылке %confirmationUrl%
 
 
-        Эта ссылка может быть использована только единожды для подтверждения вашей учетной записи.
+  Эта ссылка может быть использована только единожды для подтверждения вашей учетной записи.
 
 
-        С наилучшими пожеланиями,
+  С наилучшими пожеланиями,
 
-        команда сайта.
-  resetting:
-    check_email: >-
-      Письмо отправлено. Оно содержит ссылку, при переходе по которой ваш пароль
-      будет сброшен.
+  команда сайта.
+resetting.check_email: >-
+  Письмо отправлено. Оно содержит ссылку, при переходе по которой ваш пароль
+  будет сброшен.
 
-      Заметьте, вы сможете запросить новый пароль только через %tokenLifetime% часов.
+  Заметьте, вы сможете запросить новый пароль только через %tokenLifetime% часов.
 
 
-      Если вы не получили письмо, проверьте папку Спам или попробуйте снова.
-    request:
-      username: Имя пользователя или электронная почта
-      submit: Сбросить пароль
-    reset:
-      submit: Изменить пароль
-    flash:
-      success: Пароль успешно сброшен.
-    email:
-      subject: Сброс пароля
-      message: |-
-        Приветствуем, %username%!
+  Если вы не получили письмо, проверьте папку Спам или попробуйте снова.
+resetting.request.username: Имя пользователя или электронная почта
+resetting.request.submit: Сбросить пароль
+resetting.reset.submit: Изменить пароль
+resetting.flash.success: Пароль успешно сброшен.
+resetting.email.subject: Сброс пароля
+resetting.email.message: |-
+  Приветствуем, %username%!
 
-        Для сброса пароля, пожалуйста, пройдите по ссылке %confirmationUrl%
+  Для сброса пароля, пожалуйста, пройдите по ссылке %confirmationUrl%
 
-        С наилучшими пожеланиями,
-        команда сайта.
-  layout:
-    logout: Выход
-    login: Вход
-    register: Регистрация
-    logged_in_as: Вы вошли как %username%
-  form:
-    username: Имя пользователя
-    email: Электронная почта
-    current_password: Текущий пароль
-    password: Пароль
-    password_confirmation: Подтвердите пароль
-    new_password: Новый пароль
-    new_password_confirmation: Подтвердите пароль
-  fos_user:
-    username:
-      already_used: Логин уже используется.
-      blank: Пожалуйста, укажите логин.
-      short: Логин слишком короткий.
-      long: Логин слишком длинный.
-    email:
-      already_used: Email уже используется.
-      blank: Пожалуйста, укажите Ваш email.
-      short: Email слишком короткий.
-      long: Email слишком длинный.
-      invalid: Email в неправильном формате.
-    password:
-      blank: Пожалуйста, укажите пароль.
-      short: Пароль слишком короткий.
-      mismatch: Введенные пароли не совпадают.
-    new_password:
-      blank: Пожалуйста, укажите новый пароль.
-      short: Новый пароль слишком короткий.
-    current_password:
-      invalid: Вы неправильно ввели Ваш текущий пароль.
+  С наилучшими пожеланиями,
+  команда сайта.
+layout.logout: Выход
+layout.login: Вход
+layout.register: Регистрация
+layout.logged_in_as: Вы вошли как %username%
+form.username: Имя пользователя
+form.email: Электронная почта
+form.current_password: Текущий пароль
+form.password: Пароль
+form.password_confirmation: Подтвердите пароль
+form.new_password: Новый пароль
+form.new_password_confirmation: Подтвердите пароль
+fos_user.username.already_used: Логин уже используется.
+fos_user.username.blank: Пожалуйста, укажите логин.
+fos_user.username.short: Логин слишком короткий.
+fos_user.username.long: Логин слишком длинный.
+fos_user.email.already_used: Email уже используется.
+fos_user.email.blank: Пожалуйста, укажите Ваш email.
+fos_user.email.short: Email слишком короткий.
+fos_user.email.long: Email слишком длинный.
+fos_user.email.invalid: Email в неправильном формате.
+fos_user.password.blank: Пожалуйста, укажите пароль.
+fos_user.password.short: Пароль слишком короткий.
+fos_user.password.mismatch: Введенные пароли не совпадают.
+fos_user.new_password.blank: Пожалуйста, укажите новый пароль.
+fos_user.new_password.short: Новый пароль слишком короткий.
+fos_user.current_password.invalid: Вы неправильно ввели Ваш текущий пароль.
