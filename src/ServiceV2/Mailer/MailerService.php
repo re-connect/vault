@@ -4,6 +4,9 @@ namespace App\ServiceV2\Mailer;
 
 use App\Entity\SharedDocument;
 use App\Entity\User;
+use App\ServiceV2\Mailer\Email\DuplicatedUsernameEmail;
+use App\ServiceV2\Mailer\Email\ResetPasswordEmail;
+use App\ServiceV2\Mailer\Email\ShareDocumentLinkEmail;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
