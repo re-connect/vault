@@ -1,0 +1,24 @@
+{% apply inky_to_html|inline_css(source('@appV2styles/foundation-email.css'), source('@appV2styles/email.css')) %}
+    <container>
+        {{ include('v2/email/_header.html.twig')|inky_to_html }}
+        <spacer size="50"></spacer>
+        <row>
+            <columns>
+                {% block content %}{% endblock %}
+            </columns>
+        </row>
+        <spacer size="50"></spacer>
+        <row>
+            <columns>
+                <center>
+                    {% block link %}{% endblock %}
+                </center>
+            </columns>
+        </row>
+        <spacer size="30"></spacer>
+        {{ include('v2/email/_translation_links.html.twig', {currentLocale, translationRoute})|inky_to_html }}
+        {% block confidentialitySection %}{% endblock %}
+        <spacer size="30"></spacer>
+        {{ include('v2/email/_footer.html.twig', {year})|inky_to_html }}
+    </container>
+{% endapply %}

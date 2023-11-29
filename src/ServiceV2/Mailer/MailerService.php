@@ -2,6 +2,7 @@
 
 namespace App\ServiceV2\Mailer;
 
+use App\Entity\SharedDocument;
 use App\Entity\User;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -37,5 +38,17 @@ readonly class MailerService
         ], UrlGeneratorInterface::ABSOLUTE_URL);
 
         $this->send(ResetPasswordEmail::create($locale, $user->getEmail(), $url));
+    }
+
+    public function sendSharedDocumentLink(SharedDocument $sharedDocument, string $email, string $locale): void
+    {
+        $document = $sharedDocument->getDocument();
+
+        $this->send(ShareDocumentLinkEmail::create(
+            $locale,
+            $email,
+            $document?->getPresignedUrl(),
+            $document?->getBeneficiaire()?->getUser(),
+        ));
     }
 }
