@@ -155,6 +155,13 @@ class HomeProvider
             'img_alt' => 'digital_cares_scalable_content_img_alt',
             'is_mobile' => false,
         ],
+        [
+            'title' => 'digital_cares_qualiopi_content_title',
+            'text' => 'digital_cares_qualiopi_content_text',
+            'img_fileName' => 'digital_cares_qualiopi.png',
+            'img_alt' => 'digital_cares_qualiopi_content_img_alt',
+            'is_mobile' => false,
+        ],
     ];
 
     public const DIGITAL_CARES_IS_CONTENT = [
