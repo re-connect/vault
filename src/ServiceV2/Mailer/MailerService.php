@@ -12,18 +12,18 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
 
-readonly class MailerService
+class MailerService
 {
     /**
      * @param string[] $adminMails
      */
     public function __construct(
-        private MailerInterface $mailer,
-        private RouterInterface $router,
-        private LoggerInterface $logger,
-        private string $contactMail,
-        private string $noReplyMail,
-        private array $adminMails,
+        private readonly MailerInterface $mailer,
+        private readonly RouterInterface $router,
+        private readonly LoggerInterface $logger,
+        private readonly string $contactMail,
+        private readonly string $noReplyMail,
+        private readonly array $adminMails,
     ) {
     }
 
