@@ -23,7 +23,7 @@ class ResettingService
     use SessionsAwareTrait;
 
     public function __construct(
-        private readonly MailerService $mailerService,
+        private readonly Mailer\MailerService $mailerService,
         private readonly ResetPasswordRequestRepository $repository,
         private readonly TokenGeneratorInterface $tokenGenerator,
         private readonly EntityManagerInterface $em,
@@ -36,7 +36,7 @@ class ResettingService
 
     public function handleEmailSend(User $user, ResetPasswordToken $token, string $locale): void
     {
-        $this->mailerService->sendResettingEmailMessage($user, $token, $locale);
+        $this->mailerService->sendResetPasswordLink($user, $token, $locale);
     }
 
     public function generateSmsCodeAndToken(User $user): void
