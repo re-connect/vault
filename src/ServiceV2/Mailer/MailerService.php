@@ -14,18 +14,23 @@ use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
 
 readonly class MailerService
 {
+    /**
+     * @param string[] $adminMails
+     */
     public function __construct(
         private MailerInterface $mailer,
         private RouterInterface $router,
         private LoggerInterface $logger,
         private string $contactMail,
+        private string $noReplyMail,
+        private array $adminMails,
     ) {
     }
 
     public function send(Email $email): void
     {
         try {
-            $this->mailer->send($email->sender($this->contactMail));
+            $this->mailer->send($email->sender($email->getSender() ?? $this->contactMail));
         } catch (TransportExceptionInterface $e) {
             $this->logger->error(sprintf('Error sending mail, cause : %s', $e->getMessage()));
         }
@@ -50,5 +55,14 @@ readonly class MailerService
             $document?->getPresignedUrl(),
             $document?->getBeneficiaire()?->getUser(),
         ));
+    }
+
+    public function sendDuplicatedUsernameAlert(User $user): void
+    {
+        if (!$user->hasSuffixedUsername() || !$user->isBeneficiaire()) {
+            return;
+        }
+
+        $this->send(DuplicatedUsernameEmail::create($this->noReplyMail, $this->adminMails, $user));
     }
 }
