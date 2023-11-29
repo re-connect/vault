@@ -8,7 +8,7 @@ use App\Factory\SharedDocumentFactory;
 use App\Repository\DocumentRepository;
 use App\Repository\SharedDocumentRepository;
 use App\Repository\UserRepository;
-use App\ServiceV2\MailerService;
+use App\ServiceV2\Mailer\MailerService;
 use App\ServiceV2\Traits\SessionsAwareTrait;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -39,7 +39,7 @@ class SharedDocumentManager
             return;
         }
         $sharedDocument = $this->factory->generateSharedDocument($user, $document, $email, $locale);
-        $this->mailerService->shareFileWithMail($sharedDocument, $email, $locale);
+        $this->mailerService->sendSharedDocumentLink($sharedDocument, $email, $locale);
 
         $this->addFlashMessage('success', 'share_document_success');
     }
