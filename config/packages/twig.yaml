@@ -9,6 +9,10 @@ twig:
         - 'form/fields.html.twig'
         - 'bootstrap_3_layout.html.twig'
     default_path: '%kernel.project_dir%/templates'
+    paths:
+        '%kernel.project_dir%/assets/css/appV2': appV2styles
+        '%kernel.project_dir%/assets/images/homeV2': homeV2Images
+        '%kernel.project_dir%/assets/images/appV2': appV2Images
 
 when@test:
     twig:
