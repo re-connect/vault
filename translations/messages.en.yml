@@ -998,3 +998,4 @@ french_flag: French flag
 english_flag: English flag
 german_flag: German flag
 spanish_flag: Spanish flag
+reminder_sms_content: "Hello \nAppointment reminder : %name% \n%date%"
