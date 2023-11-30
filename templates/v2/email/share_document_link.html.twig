@@ -1,7 +1,7 @@
 {% extends 'v2/email/templated_email_base.html.twig' %}
 
 {% block content %}
-    <p class="text-primary">{{ 'mail_shared_document_content_1'|trans({'%fullName%': senderFullName}) }}</p>
+    <p class="text-primary">{{ 'mail_shared_document_content_1'|trans({'%fullName%': senderFullName|upper}) }}</p>
     <spacer size="20"></spacer>
     <p class="text-primary">{{ 'mail_shared_document_content_2'|trans }}</p>
 {% endblock %}

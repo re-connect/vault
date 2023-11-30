@@ -1,19 +1,19 @@
 {% set translationLinks = {
     'fr': {
         'imgPath': '@appV2Images/icon_fr.png',
-        'alt': 'Logo FR',
+        'alt': 'french_flag',
     },
     'en': {
         'imgPath': '@appV2Images/icon_en.png',
-        'alt': 'Logo EN',
+        'alt': 'english_flag',
     },
     'de': {
         'imgPath': '@appV2Images/icon_de.png',
-        'alt': 'Logo DE',
+        'alt': 'german_flag',
     },
     'es': {
         'imgPath': '@appV2Images/icon_es.png',
-        'alt': 'Logo ES',
+        'alt': 'spanish_flag',
     },
 } %}
 <row>
@@ -24,7 +24,7 @@
                     {% if locale != currentLocale %}
                         <item href="{{ url(translationRoute, {'lang': locale}) }}" target="_blank">
                             <img src="{{ email.image(translationLink.imgPath) }}"
-                                 alt="{{ translationLink.alt }}"
+                                 alt="{{ translationLink.alt|trans }}"
                                  class="w-50 text-center"
                             >
                         </item>
