@@ -324,7 +324,7 @@ login_form_title: 'Zugang zur Cloud für Wohnungslose Menschen'
 mail_reset_password_content_1: 'Wir haben eine Anfrage zur Rücksetzung Ihres Passworts erhalten.Falls Sie keine Rücksetzung angefordert haben, können Sie diese Mail ignorieren und Ihr aktuelles Passwort bleibt bestehen.'
 mail_reset_password_content_2: 'Klicken Sie auf den unten stehenden Link, um ein neues Passwort zu wählen. Der Link ist für die nächsten 24 Stunden nutzbar.'
 mail_reset_password_title: 'Passwort zurücksetzen'
-mail_shared_document_content_1: 'Jemand möchte ein Dokument mit Ihnen teilen.'
+mail_shared_document_content_1: '%fullName% möchte ein Dokument mit Ihnen teilen.'
 mail_shared_document_content_2: 'Um dieses Dokument herunterzuladen, gehen Sie auf diesen Link (7 Tage gültig)'
 mail_shared_document_content_3: 'VERTRAULICHKEIT: Diese E-Mail (sowie die angehängten Dateien) ist ausschließlich für die Nutzung durch die Person oder Organisation bestimmt, an die sie gerichtet ist, und kann Insiderinformationen und vertrauliche Informationen enthalten. Jegliche Offenlegung, Verteilung oder Kopie dieser E-Mail ist strengstens untersagt. Wenn Sie diese E-Mail versehentlich erhalten haben, benachrichtigen Sie uns bitte umgehend, vernichten Sie alle Kopien und löschen Sie die E-Mail aus Ihrem Computersystem.'
 mail_shared_document_title: Dokumente
@@ -655,3 +655,6 @@ you_can_download_mobile_app: 'Du kannst auch die mobile App herunterladen'
 you_must_provide_phone_number: 'Du musst eine Telefonnummer angeben'
 your_email: 'Ihre Email'
 your_phone_number: 'Ihre Telefonnummer'
+all_rights_reserved: Alle Rechte vorbehalten
+reset: Zurücksetzen
+download: Herunterladen

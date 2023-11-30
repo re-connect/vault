@@ -13,6 +13,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
 
 class MailerService
@@ -24,6 +25,7 @@ class MailerService
         private readonly MailerInterface $mailer,
         private readonly RouterInterface $router,
         private readonly LoggerInterface $logger,
+        private readonly TranslatorInterface $translator,
         private readonly string $contactMail,
         private readonly string $noReplyMail,
         private readonly array $adminMails,
@@ -32,8 +34,11 @@ class MailerService
 
     public function send(Email $email): void
     {
+        $email->sender($email->getSender() ?? $this->contactMail);
+        $email->subject($this->translator->trans($email->getSubject()));
+
         try {
-            $this->mailer->send($email->sender($email->getSender() ?? $this->contactMail));
+            $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
             $this->logger->error(sprintf('Error sending mail, cause : %s', $e->getMessage()));
         }

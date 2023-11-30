@@ -544,7 +544,7 @@ login_form_title: 'Access to the digital safe'
 mail_reset_password_content_1: 'We have just received a request to reset the password of your digital safe by Reconnect. If you didn’t ask for it, please ignore this email and your password will remain the same.'
 mail_reset_password_content_2: 'Else, please, click on the link below to reset your password, this link is available for 24 hours.'
 mail_reset_password_title: 'Reset your password'
-mail_shared_document_content_1: 'Someone would like to shate with you a document from its digital safe by Reconnect.'
+mail_shared_document_content_1: '%fullName% would like to share with you a document from its digital safe by Reconnect.'
 mail_shared_document_content_2: 'To download this document, please click on the link (available for 7 days)'
 mail_shared_document_content_3: 'CONFIDENTIALITY: This email (as well as any attached documents) is strictly for the use of the person or entity to whom it is addressed and may contain privileged and confidential information. Any disclosure, distribution or copying of this email and its documents is strictly prohibited. If you have received this e-mail by error, please notify us immediately, destroy all copies and delete it from your computer system.'
 mail_shared_document_title: 'Document sharing'
@@ -993,3 +993,4 @@ contact_page_offices_region_bretagne: Bretagne
 contact_page_offices_city_bretagne: Rennes
 si_siao_number_found_rosalie: SI-SIAO founded on hotel reservation app (Rosalie), connection made
 si_siao_number_not_found_rosalie: SI-SIAO number does not exist in the hotel reservation application (Rosalie)
+all_rights_reserved: All rights reserved

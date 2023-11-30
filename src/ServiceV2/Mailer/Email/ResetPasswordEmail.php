@@ -8,7 +8,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 class ResetPasswordEmail implements LocalizedTemplatedEmailInterface
 {
     private const TEMPLATE_PATH = 'v2/email/reset_password.html.twig';
-    private const SUBJECT = 'RECONNECT - Réinitialiser un mot de passe';
+    private const SUBJECT = 'mail_subject_reset_password';
     private const TRANSLATION_ROUTE = 'resetting_mail_translation';
 
     public static function create(string $locale, string $recipientEmail, string $urlInMail, User $sender = null): TemplatedEmail

@@ -667,7 +667,7 @@ login_form_title: 'Accès au coffre-fort numérique'
 mail_reset_password_content_1: "Nous avons reçu une demande de renouvellement de mot de passe pour votre coffre-fort Reconnect. Si vous n'êtes pas à l'origine de cette demande, vous pouvez ignorer cet e-mail et aucun changement ne sera apporté à votre compte."
 mail_reset_password_content_2: 'Cliquez sur le lien pour réinitialiser votre mot de passe. Le lien sera actif pendant 24 heures.'
 mail_reset_password_title: 'Renouvellement du mot de passe'
-mail_shared_document_content_1: 'Une personne souhaite partager avec vous un document de son coffre-fort Reconnect.'
+mail_shared_document_content_1: '%fullName% souhaite partager avec vous un document de son coffre-fort Reconnect.'
 mail_shared_document_content_2: 'Pour télécharger ce document, rendez-vous sur le lien (valable 7 jours)'
 mail_shared_document_content_3: "CONFIDENTIALITÉ : Ce courriel (de même que les fichiers joints) est strictement réservé à l'usage de la personne ou de l'entité à qui il est adressé et peut contenir de l'information privilégiée et confidentielle. Toute divulgation, distribution ou copie de ce courriel est strictement prohibée. Si vous avez reçu ce courriel par erreur, veuillez nous en aviser sur-le-champ, détruire toutes les copies et le supprimer de votre système informatique."
 mail_shared_document_title: 'Partage de document'
@@ -1198,3 +1198,8 @@ digital_cares_qualiopi_content_text: Adaptation permanente aux besoins de nos pu
 digital_cares_qualiopi_content_img_alt: Formations certifiées Qualiopi
 contact_page_offices_city_bretagne: Rennes
 contact_page_offices_region_bretagne: Bretagne
+all_rights_reserved: Tous droits réservés
+french_flag: Drapeau français
+english_flag: Drapeau anglais
+german_flag: Drapeau allemand
+spanish_flag: Drapeau espagnol
