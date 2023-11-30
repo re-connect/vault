@@ -65,7 +65,7 @@ class ResettingService
      */
     public function handleSmsSend(User $user, string $smsCode): void
     {
-        $this->notificator->sendSmsResetPassword($smsCode, $user->getTelephone());
+        $this->notificator->sendSmsResetPassword($user, $smsCode);
     }
 
     public function isSmsCheckValid(string $smsCode, string $phone): bool
