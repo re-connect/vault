@@ -49,14 +49,15 @@ class NotificationService
     ) {
     }
 
-    public function sendSmsResetPassword(string $code, string $number): void
+    public function sendSmsResetPassword(User $user, string $code): void
     {
-        $message = $this->translator->trans('user.reinitialiserMdp.smsMessage', ['%code%' => $code]);
+        $message = $this->translator->trans('user.reinitialiserMdp.smsMessage', ['%code%' => $code], 'messages', $user->getLastLang());
+        $phoneNumber = $user->getTelephone();
         try {
-            $this->sendSms($number, $message);
-            $this->logger->info(sprintf('SMS envoyé à %s : %s', $number, $message));
+            $this->sendSms($phoneNumber, $message);
+            $this->logger->info(sprintf('SMS envoyé à %s : %s', $phoneNumber, $message));
         } catch (\Exception $e) {
-            $this->logger->error(sprintf('Error sending sms to %s, content %s, cause %s ', $number, $message, $e->getMessage()));
+            $this->logger->error(sprintf('Error sending sms to %s, content %s, cause %s ', $phoneNumber, $message, $e->getMessage()));
         }
     }
 
