@@ -992,3 +992,4 @@ digital_cares_qualiopi_content_img_alt: Qualiopi certified training courses
 contact_page_offices_region_bretagne: Bretagne
 contact_page_offices_city_bretagne: Rennes
 all_rights_reserved: All rights reserved
+reminder_sms_content: "Hello \nAppointment reminder : %name% \n%date%"
