@@ -34,9 +34,9 @@ class ResettingService
     ) {
     }
 
-    public function handleEmailSend(User $user, ResetPasswordToken $token, string $locale): void
+    public function handleEmailSend(User $user, ResetPasswordToken $token): void
     {
-        $this->mailerService->sendResetPasswordLink($user, $token, $locale);
+        $this->mailerService->sendResetPasswordLink($user, $token);
     }
 
     public function generateSmsCodeAndToken(User $user): void
@@ -108,7 +108,7 @@ class ResettingService
         return 0 < count($requests) && null !== $requests[0]->getSmsCode();
     }
 
-    public function processSendingPasswordResetEmail(string $email, string $locale): void
+    public function processSendingPasswordResetEmail(string $email): void
     {
         $userRepository = $this->em->getRepository(User::class);
         $usersCount = $userRepository->count(['email' => $email]);
@@ -125,7 +125,7 @@ class ResettingService
 
         try {
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
-            $this->handleEmailSend($user, $resetToken, $locale);
+            $this->handleEmailSend($user, $resetToken);
             $this->requestStack->getCurrentRequest()->getSession()->set('ResetPasswordPublicToken', $resetToken);
             $this->addFlashMessage('success', 'public_reset_password_email_has_been_sent');
         } catch (TooManyPasswordRequestsException $e) {
@@ -217,7 +217,7 @@ class ResettingService
     {
         try {
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
-            $this->handleEmailSend($user, $resetToken, $user->getLastLang() ?? $this->requestStack->getCurrentRequest()->getLocale());
+            $this->handleEmailSend($user, $resetToken);
             $this->requestStack->getCurrentRequest()->getSession()->set('ResetPasswordPublicToken', $resetToken);
             $this->addFlashMessage('success', 'beneficiary_reset_password_email_has_been_sent');
         } catch (TooManyPasswordRequestsException) {
