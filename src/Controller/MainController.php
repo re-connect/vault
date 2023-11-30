@@ -32,11 +32,9 @@ class MainController extends AbstractController
         VerbatimRepository $verbatimRepository,
         AuthenticationUtils $authenticationUtils
     ): Response {
-        if ($this->getUser()) {
-            return $this->redirectToRoute('re_user_redirectUser');
-        }
-
-        return $this->home($request, $verbatimRepository, $authenticationUtils);
+        return $this->getUser()
+            ? $this->redirectToRoute('re_user_redirectUser')
+            : $this->home($request, $verbatimRepository, $authenticationUtils);
     }
 
     #[Route('/home', name: 'home')]
