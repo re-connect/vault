@@ -40,30 +40,14 @@ class SecurityController extends AbstractController
     {
         $user = $this->getUser();
 
-        if (!$user instanceof User || is_string($user)) {
-            return $this->redirect($this->generateUrl('re_main_login'));
-        }
-
-        if ($user->isAdministrateur()) {
-            return $this->redirect($this->generateUrl('sonata_admin_dashboard'));
-        }
-        if ($user->isFirstVisit()) {
-            return $this->redirect($this->generateUrl('re_user_firstVisit'));
-        }
-
-        if ($user->isBeneficiaire()) {
-            return $this->redirect($this->generateUrl('beneficiary_home'));
-        }
-
-        if ($user->isMembre() || $user->isGestionnaire()) {
-            return $this->redirect($this->generateUrl($this->isGranted(BeneficiaryVoter::MANAGE) ? 'list_beneficiaries' : 'affiliate_beneficiary_home'));
-        }
-
-        if ($user->isAssociation()) {
-            return $this->redirect($this->generateUrl('re_association_accueil'));
-        }
-
-        return $this->redirect($this->generateUrl('re_main_login'));
+        return match (true) {
+            !$user instanceof User || is_string($user) => $this->redirect($this->generateUrl('re_main_login')),
+            $user->isAdministrateur() => $this->redirect($this->generateUrl('sonata_admin_dashboard')),
+            $user->isFirstVisit() => $this->redirect($this->generateUrl('re_user_firstVisit')),
+            $user->isBeneficiaire() => $this->redirect($this->generateUrl('beneficiary_home')),
+            $user->isMembre() => $this->redirect($this->generateUrl($this->isGranted(BeneficiaryVoter::MANAGE) ? 'list_beneficiaries' : 'affiliate_beneficiary_home')),
+            'default' => $this->redirect($this->generateUrl('re_main_login')),
+        };
     }
 
     #[Route('/login_link', name: 'login_link')]
