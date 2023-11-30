@@ -1,0 +1,19 @@
+{% extends 'v2/email/templated_email_base.html.twig' %}
+
+{% block content %}
+    <p class="text-primary">{{ 'mail_shared_document_content_1'|trans({'%fullName%': senderFullName|upper}) }}</p>
+    <spacer size="20"></spacer>
+    <p class="text-primary">{{ 'mail_shared_document_content_2'|trans }}</p>
+{% endblock %}
+
+{% block link %}
+    <button href="{{ documentUrl }}" class="green radius-15">{{ 'download'|trans }}</button>
+{% endblock %}
+
+{% block confidentialitySection %}
+    <row>
+        <columns>
+            <p class="text-primary">{{ 'mail_shared_document_content_3'|trans }}</p>
+        </columns>
+    </row
+{% endblock %}
