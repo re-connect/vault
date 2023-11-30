@@ -44,25 +44,27 @@ class MailerService
         }
     }
 
-    public function sendResetPasswordLink(User $user, ResetPasswordToken $token, string $locale): void
+    public function sendResetPasswordLink(User $user, ResetPasswordToken $token): void
     {
         $url = $this->router->generate('app_reset_password_email', [
             'token' => $token->getToken(),
         ], UrlGeneratorInterface::ABSOLUTE_URL);
 
-        $this->send(ResetPasswordEmail::create($locale, $user->getEmail(), $url));
+        $this->send(ResetPasswordEmail::create($user, $url));
     }
 
-    public function sendSharedDocumentLink(SharedDocument $sharedDocument, string $email, string $locale): void
+    public function sendSharedDocumentLink(SharedDocument $sharedDocument, string $email): void
     {
         $document = $sharedDocument->getDocument();
+        $user = $document?->getBeneficiaire()?->getUser();
 
-        $this->send(ShareDocumentLinkEmail::create(
-            $locale,
-            $email,
-            $document?->getPresignedUrl(),
-            $document?->getBeneficiaire()?->getUser(),
-        ));
+        if ($document && $user) {
+            $this->send(ShareDocumentLinkEmail::create(
+                $user,
+                $email,
+                $document->getPresignedUrl(),
+            ));
+        }
     }
 
     public function sendDuplicatedUsernameAlert(User $user): void

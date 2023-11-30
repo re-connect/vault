@@ -39,7 +39,7 @@ class SharedDocumentManager
             return;
         }
         $sharedDocument = $this->factory->generateSharedDocument($user, $document, $email, $locale);
-        $this->mailerService->sendSharedDocumentLink($sharedDocument, $email, $locale);
+        $this->mailerService->sendSharedDocumentLink($sharedDocument, $email);
 
         $this->addFlashMessage('success', 'share_document_success');
     }
