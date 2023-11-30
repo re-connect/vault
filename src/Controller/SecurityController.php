@@ -26,7 +26,11 @@ class SecurityController extends AbstractController
 
     public function loginEnd(Request $request): RedirectResponse
     {
-        $targetPath = $request->getSession()->get('_security.main.target_path');
+        $user = $this->getUser();
+        $session = $request->getSession();
+
+        $session->set('_locale', $user?->getLastLang() ?? User::DEFAULT_LANGUAGE);
+        $targetPath = $session->get('_security.main.target_path');
 
         return $this->redirect(match (true) {
             !$this->getUser() => $this->generateUrl('re_main_login'),
