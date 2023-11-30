@@ -35,9 +35,9 @@ class PrivateResettingController extends AbstractController
 
     #[Route(path: '/user/{id}/reset-password/email', name: 'private_reset_password_email', methods: ['GET', 'POST'])]
     #[IsGranted('gestion beneficiaire', 'userToReset')]
-    public function privateResetPasswordEmail(Request $request, ResettingService $service, User $userToReset): Response
+    public function privateResetPasswordEmail(ResettingService $service, User $userToReset): Response
     {
-        $service->processSendingPasswordResetEmail($userToReset->getEmail(), $request->getLocale());
+        $service->processSendingPasswordResetEmail($userToReset->getEmail());
 
         return $this->render('user/resetting/private/index.html.twig', [
             'userToReset' => $userToReset,
