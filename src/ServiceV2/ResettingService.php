@@ -34,7 +34,7 @@ class ResettingService
     ) {
     }
 
-    public function handleEmailSend(User $user, ResetPasswordToken $token): void
+    public function sendEmail(User $user, ResetPasswordToken $token): void
     {
         $this->mailerService->sendResetPasswordLink($user, $token);
     }
@@ -63,7 +63,7 @@ class ResettingService
     /**
      * @throws \Exception
      */
-    public function handleSmsSend(User $user, string $smsCode): void
+    public function sendSms(User $user, string $smsCode): void
     {
         $this->notificator->sendSmsResetPassword($user, $smsCode);
     }
@@ -108,7 +108,7 @@ class ResettingService
         return 0 < count($requests) && null !== $requests[0]->getSmsCode();
     }
 
-    public function processSendingPasswordResetEmail(string $email): void
+    public function sendPasswordResetEmail(string $email): void
     {
         $userRepository = $this->em->getRepository(User::class);
         $usersCount = $userRepository->count(['email' => $email]);
@@ -125,7 +125,7 @@ class ResettingService
 
         try {
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
-            $this->handleEmailSend($user, $resetToken);
+            $this->sendEmail($user, $resetToken);
             $this->requestStack->getCurrentRequest()->getSession()->set('ResetPasswordPublicToken', $resetToken);
             $this->addFlashMessage('success', 'public_reset_password_email_has_been_sent');
         } catch (TooManyPasswordRequestsException $e) {
@@ -174,7 +174,7 @@ class ResettingService
         $smsCode = $this->getSmsCode($user);
         if ($smsCode) {
             try {
-                $this->handleSmsSend($user, $smsCode);
+                $this->sendSms($user, $smsCode);
                 $this->addFlashMessage('success', 'public_reset_password_SMS_has_been_sent');
 
                 return $user;
@@ -203,7 +203,7 @@ class ResettingService
         $smsCode = $this->getSmsCode($user);
         if ($smsCode) {
             try {
-                $this->handleSmsSend($user, $smsCode);
+                $this->sendSms($user, $smsCode);
                 $this->addFlashMessage('success', 'beneficiary_reset_password_SMS_has_been_sent');
             } catch (\Exception) {
                 $this->addFlashMessage('danger', 'error');
@@ -217,7 +217,7 @@ class ResettingService
     {
         try {
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
-            $this->handleEmailSend($user, $resetToken);
+            $this->sendEmail($user, $resetToken);
             $this->requestStack->getCurrentRequest()->getSession()->set('ResetPasswordPublicToken', $resetToken);
             $this->addFlashMessage('success', 'beneficiary_reset_password_email_has_been_sent');
         } catch (TooManyPasswordRequestsException) {
