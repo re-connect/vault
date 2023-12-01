@@ -52,6 +52,8 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     private $externalLinks;
     private ?bool $wasGestionnaire = false;
 
+    private ?bool $isRosalie = false;
+
     /**
      * Constructor.
      */
@@ -501,5 +503,17 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
             $this->membresCentres = [];
             $this->user = clone $this->user;
         }
+    }
+
+    public function isRosalie(): ?bool
+    {
+        return $this->isRosalie;
+    }
+
+    public function setIsRosalie(?bool $isRosalie): self
+    {
+        $this->isRosalie = $isRosalie;
+
+        return $this;
     }
 }
