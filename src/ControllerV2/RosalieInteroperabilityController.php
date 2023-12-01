@@ -64,7 +64,7 @@ class RosalieInteroperabilityController extends AbstractController
         if ($beneficiaryCheck->beneficiaryIsFound()) {
             $this->service->linkBeneficiaryToRosalie($beneficiaryCheck->getBeneficiary());
             $this->addFlash('success', 'si_siao_number_found_rosalie');
-        } elseif (str_contains($this->getUser()?->getEmail() ?? '', '@samusocial-75')) {
+        } elseif ($this->getUser()?->isRosalie()) {
             $this->addFlash('error', $beneficiaryCheck->getSamuSocialErrorMessage());
         }
 

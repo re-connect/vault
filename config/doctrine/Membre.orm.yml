@@ -28,6 +28,10 @@ App\Entity\Membre:
             type: boolean
             options:
                 default: false
+        isRosalie:
+            type: boolean
+            options:
+                default: false
     oneToOne:
         user:
             targetEntity: App\Entity\User

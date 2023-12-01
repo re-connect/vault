@@ -657,6 +657,7 @@ invalid_token: "Token invalide, veuillez recommencer l'opération"
 invite_user_to_relay: Inviter l'utilisateur à un relai
 is_the_beneficiary_absent: "Le bénéficiaire n'est pas avec vous ?"
 is_the_beneficiary_present: 'Le bénéficiaire est avec vous ?'
+is_rosalie: Utilisation de Rosalie
 lastname: Nom
 leave: Quitter
 leave_center: 'Quitter ce centre'
@@ -1017,6 +1018,9 @@ resetting.public.votreEmail: 'Votre email'
 resetting.public.votreTelephone: 'Votre numéro de téléphone'
 resetting.reset.submit: 'Modifier le mot de passe'
 results: Résultats
+rosalie: Rosalie
+rosalie_link: Liaison vers Rosalie
+rosalie_link_text: "Si l'utilisateur doit être amené à relier des coffre-forts numérique à l'application de réservation hôtelière (Rosalie), cochez la case ci-dessous"
 rp_is_adaptable_alt_img: 'adaptable aux besoins'
 rp_is_adaptable_p: 'Le paramétrage permet de répondre aux besoins propres du fonctionnement de votre structure.'
 rp_is_adaptable_title: 'Adaptable à vos besoins'

@@ -17,6 +17,7 @@ use App\Security\VoterV2\ProVoter;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -148,5 +149,27 @@ class ProController extends AbstractController
             'user' => $pro->getUser(),
             'relay' => $relay,
         ]);
+    }
+
+    #[Route(path: '/rosalie/{id}', name: 'rosalie_pro', methods: ['GET', 'POST'])]
+    public function activateRosalie(Membre $member, Request $request, EntityManagerInterface $em): Response
+    {
+        if (!$this->getUser()?->isRosalie()) {
+            return $this->redirectToRoute('list_pro');
+        }
+        $form = $this->createFormBuilder()
+            ->add('isRosalie', CheckboxType::class, ['label' => 'rosalie', 'required' => false, 'value' => $member->isRosalie()])
+            ->setAction($this->generateUrl('rosalie_pro', ['id' => $member->getId()]))
+            ->getForm()
+            ->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $member->setIsRosalie($form->getData()['isRosalie']);
+            $em->flush();
+
+            return $this->redirectToRoute('list_pro');
+        }
+
+        return $this->render('v2/pro/rosalie/rosalie.html.twig', ['form' => $form, 'user' => $member->getUser()]);
     }
 }
