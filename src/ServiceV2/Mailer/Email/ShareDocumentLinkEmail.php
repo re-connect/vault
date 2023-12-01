@@ -21,7 +21,7 @@ class ShareDocumentLinkEmail
                 'senderFullName' => $sender->getFullName(),
                 'documentUrl' => $url,
                 'year' => (new \DateTime())->format('Y'),
-                'currentLocale' => $sender->getLastLang(),
+                'currentLocale' => User::DEFAULT_LANGUAGE,
                 'translationRoute' => self::TRANSLATION_ROUTE,
             ]);
     }
