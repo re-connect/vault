@@ -19,11 +19,11 @@ final class Version20231201093726 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE membre ADD isRosalie TINYINT(1) DEFAULT 0 NOT NULL');
+        $this->addSql('ALTER TABLE membre ADD usesRosalie TINYINT(1) DEFAULT 0 NOT NULL');
     }
 
     public function down(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE membre DROP isRosalie');
+        $this->addSql('ALTER TABLE membre DROP usesRosalie');
     }
 }

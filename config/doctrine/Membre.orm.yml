@@ -28,7 +28,7 @@ App\Entity\Membre:
             type: boolean
             options:
                 default: false
-        isRosalie:
+        usesRosalie:
             type: boolean
             options:
                 default: false

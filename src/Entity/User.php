@@ -1262,8 +1262,8 @@ class User extends BaseUser implements \JsonSerializable
         return $this;
     }
 
-    public function isRosalie(): bool
+    public function usesRosalie(): bool
     {
-        return $this->getSubjectMembre()?->isRosalie() ?? false;
+        return $this->getSubjectMembre()?->usesRosalie() ?? false;
     }
 }

@@ -5,7 +5,7 @@
     <div class="mt-5">
         {{ include('v2/common/_button_row.html.twig', {
             color: 'blue',
-            href: app.user.isRosalie and user.isMembre ? path('rosalie_pro', {id: user.subjectMembre.id}) : path('list_pro')
+            href: app.user.usesRosalie and user.isMembre ? path('rosalie_pro', {id: user.subjectMembre.id}) : path('list_pro')
         }) }}
     </div>
 {% endblock %}

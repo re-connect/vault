@@ -52,7 +52,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     private $externalLinks;
     private ?bool $wasGestionnaire = false;
 
-    private ?bool $isRosalie = false;
+    private ?bool $usesRosalie = false;
 
     /**
      * Constructor.
@@ -493,6 +493,18 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return $this;
     }
 
+    public function usesRosalie(): ?bool
+    {
+        return $this->usesRosalie;
+    }
+
+    public function setUsesRosalie(?bool $usesRosalie): Membre
+    {
+        $this->usesRosalie = $usesRosalie;
+
+        return $this;
+    }
+
     public function __clone()
     {
         if ($this->id) {
@@ -503,17 +515,5 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
             $this->membresCentres = [];
             $this->user = clone $this->user;
         }
-    }
-
-    public function isRosalie(): ?bool
-    {
-        return $this->isRosalie;
-    }
-
-    public function setIsRosalie(?bool $isRosalie): self
-    {
-        $this->isRosalie = $isRosalie;
-
-        return $this;
     }
 }
