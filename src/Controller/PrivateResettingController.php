@@ -37,7 +37,7 @@ class PrivateResettingController extends AbstractController
     #[IsGranted('gestion beneficiaire', 'userToReset')]
     public function privateResetPasswordEmail(ResettingService $service, User $userToReset): Response
     {
-        $service->processSendingPasswordResetEmail($userToReset->getEmail());
+        $service->sendPasswordResetEmail($userToReset->getEmail());
 
         return $this->render('user/resetting/private/index.html.twig', [
             'userToReset' => $userToReset,
