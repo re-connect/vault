@@ -17,8 +17,8 @@ mail_reset_password_content_2: De lo contrario, por favor, haga clic en el
   siguiente enlace para restablecer su contraseña, Este enlace está disponible
   durante 24 horas.
 mail_reset_password_title: Restablecer la contraseña
-mail_shared_document_content_1: Alguien compartir con usted un documento de su
-  caja fuerte digital de Reconnect.
+mail_shared_document_content_1: "%fullName% compartir con usted un documento de
+  su caja fuerte digital de Reconnect."
 mail_shared_document_content_2: Para descargar este documento, clicar en este
   enlace (disponible durante 7 días)
 mail_shared_document_content_3: "CONFIDENCIALIDAD: Este correo electrónico (así
