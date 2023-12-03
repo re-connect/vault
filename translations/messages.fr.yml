@@ -893,8 +893,8 @@ mail_reset_password_content_1: Nous avons reçu une demande de renouvellement de
 mail_reset_password_content_2: Cliquez sur le lien pour réinitialiser votre mot
   de passe. Le lien sera actif pendant 24 heures.
 mail_reset_password_title: Renouvellement du mot de passe
-mail_shared_document_content_1: Une personne souhaite partager avec vous un
-  document de son coffre-fort Reconnect.
+mail_shared_document_content_1: "%fullName% souhaite partager avec vous un
+  document de son coffre-fort Reconnect."
 mail_shared_document_content_2: Pour télécharger ce document, rendez-vous sur le lien (valable 7 jours)
 mail_shared_document_content_3: "CONFIDENTIALITÉ : Ce courriel (de même que les
   fichiers joints) est strictement réservé à l'usage de la personne ou de
@@ -1580,3 +1580,8 @@ rosalie_link_text: Si l'utilisateur doit être amené à relier des coffre-forts
   numérique à l'application de réservation hôtelière (Rosalie), cochez la case
   ci-dessous
 uses_rosalie: Utilisation de Rosalie
+all_rights_reserved: Tous droits réservés
+french_flag: Drapeau français
+english_flag: Drapeau anglais
+german_flag: Drapeau allemand
+spanish_flag: Drapeau espagnol
