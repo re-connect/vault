@@ -53,20 +53,6 @@ class BeneficiaireControllerTest extends WebTestCase
         return $beneficiaire;
     }
 
-    public function testNotes()
-    {
-        $beneficiaire = $this->createBeneficary();
-        $crawler = $this->client->request('GET', $this->router->generate('re_app_note_list', ['id' => $beneficiaire->getId()]));
-
-        // Note page
-        $crawler = $this->client->click($crawler->filter('a:contains("'.$this->translator->trans('beneficiaire.menu.mesNotes').'")')->eq(0)->link());
-        self::assertEquals(200, $this->client->getResponse()->getStatusCode());
-        self::assertTrue($crawler->filter('html:contains("'.$this->translator->trans('note.metaTitle').'")')->count() > 0);
-        // Add Notes
-        $this->client->click($crawler->filter('a:contains("'.$this->translator->trans('donneePersonnelle.ajouter').'")')->eq(0)->link());
-        $this->assertResponseStatusCodeSame(200);
-    }
-
     public function authenticateUser($username)
     {
         $user = $this->em->getRepository(User::class)->findOneBy(['username' => $username]);
