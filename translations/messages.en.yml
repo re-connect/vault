@@ -960,7 +960,7 @@ user_parameters_subtitle: "%subject%'s settings"
 user_parameters_title: '<span class="text-primary">User''s </span><span class="rp-blue vault-green">settings</span>'
 user_successfully_created: The user has been successfully created
 user_update_password_subtitle: '%subject% password'
-user_update_password_title: '<span class="text-primary">New </span><span class="rp-blue vault-green">password</span>'
+user_update_password_title: New password
 username: Username
 vault: 'The digital safe'
 verbatim_content_1: 'The digital safe is very easy to use! I have several beneficiaries who can barely read and write, I think even they will be able to use it.'
