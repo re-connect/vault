@@ -1,3 +1,0 @@
-re_association_accueil:
-    path: /
-    defaults: { _controller: App\Controller\AssociationController::accueil }
