@@ -706,8 +706,8 @@ mail_reset_password_content_1: We have just received a request to reset the
 mail_reset_password_content_2: Else, please, click on the link below to reset
   your password, this link is available for 24 hours.
 mail_reset_password_title: Reset your password
-mail_shared_document_content_1: Someone would like to shate with you a document
-  from its digital safe by Reconnect.
+mail_shared_document_content_1: "%fullName% would like to shate with you a
+  document from its digital safe by Reconnect."
 mail_shared_document_content_2: To download this document, please click on the link (available for 7 days)
 mail_shared_document_content_3: "CONFIDENTIALITY: This email (as well as any
   attached documents) is strictly for the use of the person or entity to whom it
@@ -1249,3 +1249,9 @@ digital_cares_qualiopi_content_img_alt: Qualiopi certified training courses
 contact_page_offices_region_bretagne: Bretagne
 contact_page_offices_city_bretagne: Rennes
 test_string: Test String has been changed
+all_rights_reserved: All rights reserved
+french_flag: French flag
+english_flag: English flag
+german_flag: German flag
+spanish_flag: Spanish flag
+reminder_sms_content: '"Hello \nAppointment reminder : %name% \n%date%"'
