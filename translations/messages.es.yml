@@ -27,9 +27,5 @@ yes: Sí
 all_rights_reserved: Derechos reservados
 reset: Restablecer
 download: Descargar
-french_flag: French flag
-english_flag: English flag
-german_flag: German flag
-spanish_flag: Spanish flag
 reminder_sms_content: 'Hola, recordatorio de un evento : %name%date'
 user.reinitialiserMdp.smsMessage: El codigo para restablecer la contraseña de su caja fuerte digital de Reconnect es %code%
