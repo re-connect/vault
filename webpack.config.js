@@ -24,7 +24,6 @@ Encore
   .addEntry('evenement_form', './assets/js/evenement_form.js')
   .addEntry('login', './assets/js/login.js')
   .addEntry('membre_centres', './assets/js/membre-centres.js')
-  .addEntry('parameter', './assets/js/parameter.js')
   .addEntry('reset_password', './assets/js/reset-password.js')
   .addEntry('set_question_secrete', './assets/js/set-question-secrete.js')
   .addEntry('set_question_secrete_etape_3', './assets/js/set-question-secrete-etape-3.js')
