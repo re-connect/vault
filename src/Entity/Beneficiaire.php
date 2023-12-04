@@ -1090,4 +1090,14 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
         return $this;
     }
+
+    public function hasRosalieExternalLink(): bool
+    {
+        return null !== $this->getRosalieExternalLink();
+    }
+
+    public function getRosalieExternalLink(): ?ClientBeneficiaire
+    {
+        return $this->getExternalLinks()->filter(fn (ClientBeneficiaire $link) => Client::CLIENT_ROSALIE === $link->getClient()?->getNom())->first() ?: null;
+    }
 }
