@@ -1,0 +1,13 @@
+{% extends 'v2/common/_card.html.twig' %}
+
+{% block customContent %}
+    {{ form_start(form) }}
+    <div class="d-flex flex-column justify-content-center align-items-center font-size-1-2">
+        <p class="text-left col-11 py-2">{{ 'rosalie_link_text'|trans }}</p>
+        <div class="d-flex col-7 justify-content-start">
+            {{ include('v2/common/_checkbox_field.html.twig', {field: form.usesRosalie}) }}
+        </div>
+    </div>
+    {{ include('v2/common/_form_actions.html.twig') }}
+    {{ form_end(form) }}
+{% endblock %}

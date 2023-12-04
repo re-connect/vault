@@ -4,9 +4,12 @@ namespace App\ControllerV2;
 
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Beneficiaire;
+use App\Entity\Membre;
 use App\Repository\BeneficiaireRepository;
+use App\Security\VoterV2\ProVoter;
 use App\ServiceV2\RosalieService;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -64,7 +67,7 @@ class RosalieInteroperabilityController extends AbstractController
         if ($beneficiaryCheck->beneficiaryIsFound()) {
             $this->service->linkBeneficiaryToRosalie($beneficiaryCheck->getBeneficiary());
             $this->addFlash('success', 'si_siao_number_found_rosalie');
-        } elseif (str_contains($this->getUser()?->getEmail() ?? '', '@samusocial-75')) {
+        } elseif ($this->getUser()?->usesRosalie()) {
             $this->addFlash('error', $beneficiaryCheck->getSamuSocialErrorMessage());
         }
 
@@ -76,5 +79,28 @@ class RosalieInteroperabilityController extends AbstractController
     public function getSiSiaoNumbers(BeneficiaireRepository $repository, ApiClientManager $apiClientManager): JsonResponse
     {
         return $this->json($repository->getBeneficiariesSiSiaoNumbers($apiClientManager->getCurrentOldClient()));
+    }
+
+    #[IsGranted(ProVoter::MANAGE)]
+    #[Route(path: 'pro/rosalie/{id}', name: 'rosalie_pro', methods: ['GET', 'POST'])]
+    public function activateRosalie(Request $request, Membre $member, EntityManagerInterface $em): Response
+    {
+        if (!$this->getUser()?->usesRosalie()) {
+            return $this->redirectToRoute('list_pro');
+        }
+        $form = $this->createFormBuilder()
+            ->add('usesRosalie', CheckboxType::class, ['label' => 'rosalie', 'required' => false, 'value' => $member->usesRosalie()])
+            ->setAction($this->generateUrl('rosalie_pro', ['id' => $member->getId()]))
+            ->getForm()
+            ->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $member->setUsesRosalie($form->getData()['usesRosalie']);
+            $em->flush();
+
+            return $this->redirectToRoute('list_pro');
+        }
+
+        return $this->render('v2/pro/rosalie/rosalie.html.twig', ['form' => $form, 'user' => $member->getUser()]);
     }
 }
