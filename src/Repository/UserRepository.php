@@ -206,4 +206,23 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
         $user->setPassword($newHashedPassword);
         $this->getEntityManager()->flush();
     }
+
+    public function addUserSearchConditions(QueryBuilder $qb, string $search = null): QueryBuilder
+    {
+        if (!$search) {
+            return $qb;
+        }
+
+        $searchFields = [
+            'u.username',
+            'u.nom',
+            'u.prenom',
+            'CONCAT(u.nom, \' \', u.prenom)',
+            'CONCAT(u.prenom, \' \', u.nom)',
+        ];
+        $searchConditions = array_map(fn (string $field) => sprintf('%s LIKE :search', $field), $searchFields);
+
+        return $qb->andWhere(implode(' OR ', $searchConditions))
+            ->setParameter('search', '%'.$search.'%');
+    }
 }

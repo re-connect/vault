@@ -17,7 +17,7 @@ use Doctrine\Persistence\ManagerRegistry;
 /** @extends ServiceEntityRepository<Beneficiaire> */
 class BeneficiaireRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, private readonly UserRepository $userRepository)
     {
         parent::__construct($registry, Beneficiaire::class);
     }
@@ -209,11 +209,7 @@ class BeneficiaireRepository extends ServiceEntityRepository
             $qb->andWhere('c = :relay')
                 ->setParameter('relay', $relay);
         }
-
-        if ($search) {
-            $qb->andWhere('u.username LIKE :search')
-                ->setParameter('search', sprintf('%%%s%%', $search));
-        }
+        $qb = $this->userRepository->addUserSearchConditions($qb, $search);
 
         return $qb->orderBy('u.username')
             ->getQuery()
