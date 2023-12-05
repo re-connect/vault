@@ -1074,8 +1074,8 @@ shared: Partagé
 show_beneficiaries: Voir les bénéficiaires
 show_professionals: Voir les professionnels
 si_siao_number: 'Numéro SI-SIAO'
-si_siao_number_found_rosalie: 'Numéro SI-SIAO trouvé dans Rosalie, liaison effectuée'
-si_siao_number_not_found_rosalie: 'Numéro SI-SIAO non trouvé dans Rosalie'
+si_siao_number_found_rosalie: Numéro SI-SIAO trouvé dans l'application de réservation hôtelière (Rosalie), liaison effectuée
+si_siao_number_not_found_rosalie: Numéro SI-SIAO inexistant dans l’application de réservation hôtelière (Rosalie)
 sms: SMS
 sms_code: Code reçu par sms
 sms_sent: 'SMS envoyé'
@@ -1191,8 +1191,8 @@ you_can_not_update_default_permission: Vous ne pouvez pas modifier la permission
 choose_relays_and_permissions: Choix des relais et permissions
 relays_choice: Choix des relais
 edit_si_siao_number: Modifier numéro SI-SIAO
-si_siao_number_almost_found_rosalie: Une famille a été trouvée sur Rosalie pour cette clé SI-SIAO, elle correspond presque aux informations renseignées, veuillez les vérifier (nom, prénom)
-si_siao_number_does_not_match_rosalie: La clé SI-SIAO ne correspond pas aux informations renseignées pour cette personne
+si_siao_number_almost_found_rosalie: Ce numéro SI-SIAO correspond presque à un dossier trouvé sur l’application de réservation hôtelière (Rosalie)
+si_siao_number_does_not_match_rosalie: Ce numéro SI-SIAO ne correspond pas aux informations renseignées pour ce bénéficiaire sur l'application de réservation hôtelière (Rosalie)
 digital_cares_qualiopi_content_title: 'Notre engagement : des formations de qualité pour lutter contre la fracture numérique'
 digital_cares_qualiopi_content_text: Adaptation permanente aux besoins de nos publics, approche ludique, apport théorique et mise en œuvre pratique… Conçus avec et pour les bénéficiaires des structures sociales, tous nos ateliers visent à les aider à mieux maîtriser les outils numériques et à devenir autonomes dans leurs pratiques. Pour qu’ils.elles y parviennent, nous nous engageons à leur proposer des formations de qualité, au plus près de leurs besoins.
 digital_cares_qualiopi_content_img_alt: Formations certifiées Qualiopi
