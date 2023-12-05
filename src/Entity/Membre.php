@@ -52,6 +52,8 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     private $externalLinks;
     private ?bool $wasGestionnaire = false;
 
+    private ?bool $usesRosalie = false;
+
     /**
      * Constructor.
      */
@@ -487,6 +489,18 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     public function setWasGestionnaire(?bool $wasGestionnaire): self
     {
         $this->wasGestionnaire = $wasGestionnaire;
+
+        return $this;
+    }
+
+    public function usesRosalie(): ?bool
+    {
+        return $this->usesRosalie;
+    }
+
+    public function setUsesRosalie(?bool $usesRosalie): Membre
+    {
+        $this->usesRosalie = $usesRosalie;
 
         return $this;
     }

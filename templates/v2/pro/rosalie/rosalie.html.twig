@@ -1,0 +1,14 @@
+{% extends 'v2/standard_layout.html.twig' %}
+{% block metaTitle %}{{ 'invite_user_to_relay'|trans }}{% endblock %}
+
+{% block delimiter %}{% endblock %}
+
+{% block content %}
+    <h5 class="my-4">
+        {{ 'username'|trans }} :
+        <span class="text-blue">{{ user.username|upper }}</span>
+    </h5>
+    <div class="col-12 col-md-8 m-auto">
+        {{ include('v2/pro/rosalie/_rosalie_card.html.twig', {user, title: 'rosalie_link'|trans}) }}
+    </div>
+{% endblock %}
