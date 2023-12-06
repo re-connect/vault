@@ -21,10 +21,10 @@
         <center>
             <menu>
                 {% for locale, translationLink in translationLinks %}
-                    {% if locale != currentLocale %}
+                    {% if locale != userLang %}
                         <item href="{{ url(translationRoute, {'lang': locale}) }}" target="_blank">
                             <img src="{{ email.image(translationLink.imgPath) }}"
-                                 alt="{{ translationLink.alt|trans }}"
+                                 alt="{{ translationLink.alt|trans({}, 'messages', userLang) }}"
                                  class="w-50 text-center"
                             >
                         </item>
