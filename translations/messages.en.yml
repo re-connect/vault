@@ -984,10 +984,12 @@ you_can_not_update_default_permission: You can't update default permission
 choose_relays_and_permissions: Choose relays and permissions
 relays_choice: Choose relays
 edit_si_siao_number: Edit SI-SIAO number
-si_siao_number_almost_found_rosalie: A family was found on Rosalie for this SI-SIAO key, it almost matches the information provided, please check it (last name, first name)
-si_siao_number_does_not_match_rosalie: The SI-SIAO key does not match the information provided for this person
+si_siao_number_almost_found_rosalie: This SI-SIAO number almost match to a family found on the hotel reservation application (Rosalie)
+si_siao_number_does_not_match_rosalie: This SI-SIAO number does not correspond to the information provided for this beneficiary on the hotel reservation application (Rosalie)
 digital_cares_qualiopi_content_title: 'Our commitment: quality training to fight the digital divide'
 digital_cares_qualiopi_content_text: Designed with and for the beneficiaries of our social structures, all our workshops aim to help them better master digital tools and become autonomous in their practices. To help them achieve this, we are committed to offering them quality training that is as close as possible to their needs.
 digital_cares_qualiopi_content_img_alt: Qualiopi certified training courses
 contact_page_offices_region_bretagne: Bretagne
 contact_page_offices_city_bretagne: Rennes
+si_siao_number_found_rosalie: SI-SIAO founded on hotel reservation app (Rosalie), connection made
+si_siao_number_not_found_rosalie: SI-SIAO number does not exist in the hotel reservation application (Rosalie)

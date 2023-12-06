@@ -12,7 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
 /** @extends ServiceEntityRepository<Membre> */
 class MembreRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, private readonly UserRepository $userRepository)
     {
         parent::__construct($registry, Membre::class);
     }
@@ -82,11 +82,7 @@ class MembreRepository extends ServiceEntityRepository
             $qb->andWhere('c IN (:relays)')
                 ->setParameter('relays', $professional->getAffiliatedRelaysWithProfessionalManagement()->toArray());
         }
-
-        if ($search) {
-            $qb->andWhere('u.username LIKE :search')
-                ->setParameter('search', sprintf('%%%s%%', $search));
-        }
+        $qb = $this->userRepository->addUserSearchConditions($qb, $search);
 
         return $qb->getQuery()->getResult();
     }
@@ -95,18 +91,11 @@ class MembreRepository extends ServiceEntityRepository
     public function search(User $loggedUser, ?string $search = ''): array
     {
         $qb = $this->createQueryBuilder('m')
-            ->join('m.user', 'u');
+            ->join('m.user', 'u')
+            ->andWhere('u != :user')
+            ->setParameter('user', $loggedUser);
 
-        if ($search) {
-            foreach (explode(' ', $search) as $word) {
-                $qb->andWhere('u.prenom LIKE :search OR u.nom LIKE :search OR u.email LIKE :search')
-                    ->andWhere('u != :user')
-                    ->setParameters([
-                        'user' => $loggedUser,
-                        'search' => sprintf('%%%s%%', $word),
-                    ]);
-            }
-        }
+        $this->userRepository->addUserSearchConditions($qb, $search);
 
         return $qb->getQuery()->getResult();
     }

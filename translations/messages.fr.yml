@@ -1017,6 +1017,9 @@ resetting.public.votreEmail: 'Votre email'
 resetting.public.votreTelephone: 'Votre numéro de téléphone'
 resetting.reset.submit: 'Modifier le mot de passe'
 results: Résultats
+rosalie: Rosalie
+rosalie_link: Liaison vers Rosalie
+rosalie_link_text: Si l'utilisateur doit être amené à relier des coffre-forts numérique à l'application de réservation hôtelière (Rosalie), cochez la case ci-dessous
 rp_is_adaptable_alt_img: 'adaptable aux besoins'
 rp_is_adaptable_p: 'Le paramétrage permet de répondre aux besoins propres du fonctionnement de votre structure.'
 rp_is_adaptable_title: 'Adaptable à vos besoins'
@@ -1071,8 +1074,8 @@ shared: Partagé
 show_beneficiaries: Voir les bénéficiaires
 show_professionals: Voir les professionnels
 si_siao_number: 'Numéro SI-SIAO'
-si_siao_number_found_rosalie: 'Numéro SI-SIAO trouvé dans Rosalie, liaison effectuée'
-si_siao_number_not_found_rosalie: 'Numéro SI-SIAO non trouvé dans Rosalie'
+si_siao_number_found_rosalie: Numéro SI-SIAO trouvé dans l'application de réservation hôtelière (Rosalie), liaison effectuée
+si_siao_number_not_found_rosalie: Numéro SI-SIAO inexistant dans l’application de réservation hôtelière (Rosalie)
 sms: SMS
 sms_code: Code reçu par sms
 sms_sent: 'SMS envoyé'
@@ -1162,6 +1165,7 @@ user_successfully_created: Opération réussie. L’utilisateur a bien été cr�
 user_update_password_subtitle: 'Mot de passe de %subject%'
 user_update_password_title: '<span class="text-primary">Renouvellement de </span><span class="rp-blue vault-green">mot de passe</span>'
 username: "Nom d'utilisateur"
+uses_rosalie: Utilisation de Rosalie
 vault: 'Coffre-fort numérique'
 verify_affiliation_search_informations: Assurez-vous avec le bénéficiaire que l’orthographe et la date de naissance sont corrects
 website_CGS: 'CGS du site'
@@ -1187,8 +1191,8 @@ you_can_not_update_default_permission: Vous ne pouvez pas modifier la permission
 choose_relays_and_permissions: Choix des relais et permissions
 relays_choice: Choix des relais
 edit_si_siao_number: Modifier numéro SI-SIAO
-si_siao_number_almost_found_rosalie: Une famille a été trouvée sur Rosalie pour cette clé SI-SIAO, elle correspond presque aux informations renseignées, veuillez les vérifier (nom, prénom)
-si_siao_number_does_not_match_rosalie: La clé SI-SIAO ne correspond pas aux informations renseignées pour cette personne
+si_siao_number_almost_found_rosalie: Ce numéro SI-SIAO correspond presque à un dossier trouvé sur l’application de réservation hôtelière (Rosalie)
+si_siao_number_does_not_match_rosalie: Ce numéro SI-SIAO ne correspond pas aux informations renseignées pour ce bénéficiaire sur l'application de réservation hôtelière (Rosalie)
 digital_cares_qualiopi_content_title: 'Notre engagement : des formations de qualité pour lutter contre la fracture numérique'
 digital_cares_qualiopi_content_text: Adaptation permanente aux besoins de nos publics, approche ludique, apport théorique et mise en œuvre pratique… Conçus avec et pour les bénéficiaires des structures sociales, tous nos ateliers visent à les aider à mieux maîtriser les outils numériques et à devenir autonomes dans leurs pratiques. Pour qu’ils.elles y parviennent, nous nous engageons à leur proposer des formations de qualité, au plus près de leurs besoins.
 digital_cares_qualiopi_content_img_alt: Formations certifiées Qualiopi

@@ -109,6 +109,7 @@ class MembreAdmin extends AbstractAdmin
                 'admin_code' => 'sonata.admin.user_simple',
                 'admin_code_external_links' => 'reo_auth.admin.client_membre',
             ])
+            ->add('usesRosalie', null, ['label' => 'uses_rosalie'])
             ->end();
 
         if ($this->isCurrentRoute('edit')) {

@@ -12,6 +12,7 @@ $pagination-hover-color: theme-color("primary");
   }
 
   .page-link.active, .active > .page-link {
+    z-index: 0;
     border-color: theme-color("grey");
     background-color: theme-color("grey");
   }
