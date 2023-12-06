@@ -8,6 +8,7 @@ use App\ServiceV2\Mailer\Email\DuplicatedUsernameEmail;
 use App\ServiceV2\Mailer\Email\ResetPasswordEmail;
 use App\ServiceV2\Mailer\Email\ShareDocumentLinkEmail;
 use Psr\Log\LoggerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
@@ -35,7 +36,11 @@ class MailerService
     public function send(Email $email): void
     {
         $email->sender($email->getSender() ?? $this->contactMail);
-        $email->subject($this->translator->trans($email->getSubject()));
+
+        if ($email instanceof TemplatedEmail) {
+            $userLang = $email->getContext()['userLang'];
+            $email->subject($this->translator->trans($email->getSubject(), [], 'messages', $userLang ?? User::DEFAULT_LANGUAGE));
+        }
 
         try {
             $this->mailer->send($email);
