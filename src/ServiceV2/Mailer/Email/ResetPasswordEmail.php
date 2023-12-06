@@ -20,7 +20,7 @@ class ResetPasswordEmail
             ->context([
                 'resetUrl' => $url,
                 'year' => (new \DateTime())->format('Y'),
-                'currentLocale' => $user->getLastLang(),
+                'userLang' => $user->getLastLang(),
                 'translationRoute' => self::TRANSLATION_ROUTE,
             ]);
     }
