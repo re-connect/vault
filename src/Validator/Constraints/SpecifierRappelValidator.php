@@ -11,7 +11,7 @@ class SpecifierRappelValidator extends ConstraintValidator
     /**
      * @param Evenement $value
      */
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         //        throw new \Exception(__METHOD__);
         //        if (!$constraint instanceof Evenement) {

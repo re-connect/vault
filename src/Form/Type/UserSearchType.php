@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserSearchType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('search', null, ['label' => 'membre.userSearch.searchLabel', 'attr' => ['autocomplete' => 'off', 'placeholder' => 'membre.userSearch.searchPlaceholder']])
@@ -18,7 +18,7 @@ class UserSearchType extends AbstractType
             ->add('rechercher', SubmitType::class);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
         ]);

@@ -14,7 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContactSimpleType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nom', null, ['label' => 'name', 'label_attr' => ['class' => 'font-size-1']])
@@ -34,7 +34,7 @@ class ContactSimpleType extends AbstractType
             ->add('submit', SubmitType::class, ['label' => 'confirm', 'attr' => ['class' => 'btn btn-blue btn-green font-size-1 js-loading-container']]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Contact::class,

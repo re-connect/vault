@@ -28,7 +28,7 @@ class StandardizePhoneNumbersCommand extends Command
         $this->em = $em;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->addOption('delete', 'd', InputOption::VALUE_NONE, 'Delete wrongly formatted numbers');
     }

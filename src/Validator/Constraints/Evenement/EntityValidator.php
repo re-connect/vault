@@ -24,7 +24,7 @@ class EntityValidator extends ConstraintValidator
      *
      * @throws \Exception
      */
-    public function validate($entity, Constraint $constraint)
+    public function validate($entity, Constraint $constraint): void
     {
         //        throw new \Exception(__METHOD__);
         if (null === $entity || '' === $entity) {

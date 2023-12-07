@@ -25,7 +25,7 @@ class BeneficiaireTypeStep3 extends AbstractType
         $this->request = $requestStack->getCurrentRequest();
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $arQuestions = [];
         foreach (Beneficiaire::getArQuestionsSecrete() as $key => $value) {
@@ -40,7 +40,7 @@ class BeneficiaireTypeStep3 extends AbstractType
             ->addModelTransformer(new QuestionSecreteTransformer($this->request));
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Beneficiaire::class,

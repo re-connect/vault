@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BeneficiaireParametresType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('user', UserBeneficiaireWithoutPasswordType::class, [
@@ -35,7 +35,7 @@ class BeneficiaireParametresType extends AbstractType
             ->add('submit', SubmitType::class, ['label' => 'user.parametres.enregister', 'attr' => ['class' => 'btn-green font-size-1']]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Beneficiaire::class,

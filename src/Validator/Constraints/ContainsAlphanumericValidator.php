@@ -7,7 +7,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class ContainsAlphanumericValidator extends ConstraintValidator
 {
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         if (null != $value && !preg_match("#^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$#", $value, $matches)) {
             $this->context->addViolation($constraint->message, ['%string%' => $value]);

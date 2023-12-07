@@ -26,7 +26,7 @@ class UpdateAccessToDocumentsInFoldersCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setHelp('This command update access to documents in folders.');

@@ -13,11 +13,11 @@ class TimezoneListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            FormEvents::POST_SUBMIT => 'onPostSubmit',
+            FormEvents::SUBMIT => 'onSubmit',
         ];
     }
 
-    public function onPostSubmit(FormEvent $event): void
+    public function onSubmit(FormEvent $event): void
     {
         $data = $event->getData();
         $isValidEntity = $data instanceof Rappel || $data instanceof Evenement;

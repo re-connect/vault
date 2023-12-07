@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BeneficiaireTypeStep2 extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('user', UserMinimalType::class, ['required' => true])
@@ -33,7 +33,7 @@ class BeneficiaireTypeStep2 extends AbstractType
         $builder->get('user')->add('username', TextType::class, $options); // replace the field
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Beneficiaire::class,

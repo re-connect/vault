@@ -23,7 +23,7 @@ class PasswordResetSecretQuestionType extends AbstractType
         $this->manager = $manager;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $manager = $this->manager;
         /** @var User $user */
@@ -53,7 +53,7 @@ class PasswordResetSecretQuestionType extends AbstractType
             ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefaults([

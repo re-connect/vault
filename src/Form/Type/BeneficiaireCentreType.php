@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BeneficiaireCentreType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         //        $builder
         //            ->add('centre', EntityType::class, ['class' => Centre::class, 'choices' => $options['centres']]);
@@ -26,7 +26,7 @@ class BeneficiaireCentreType extends AbstractType
     //        parent::buildView($view, $form, $options);
     //    }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         //        $optionsNormalizer = function (Options $options, $value) {
         //            $value['block_name'] = 'entry';
