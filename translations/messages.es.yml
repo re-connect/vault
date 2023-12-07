@@ -29,3 +29,4 @@ reset: Restablecer
 download: Descargar
 reminder_sms_content: 'Hola, recordatorio de un evento : %name%date'
 user.reinitialiserMdp.smsMessage: El codigo para restablecer la contraseña de su caja fuerte digital de Reconnect es %code%
+mail_shared_document_content_1_anonymous: Alguien compartir con usted un documento de su caja fuerte digital de Reconnect.
