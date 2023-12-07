@@ -17,9 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Route("/appli", name="api_contact_", options={"expose"=true})
- */
+#[Route(path: '/appli', name: 'api_contact_', options: ['expose' => true])]
 final class ContactRestController extends DonneePersonnelleRestController
 {
     private OldClientRepository $oldClientRepository;
@@ -38,31 +36,13 @@ final class ContactRestController extends DonneePersonnelleRestController
         parent::__construct($requestStack, $translator, $entityManager, $restManager, $beneficiaireProvider, $apiClientManager);
     }
 
-    /**
-     * @Route(
-     *     "/contacts/{id}",
-     *     name="delete",
-     *     methods={"DELETE"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/contacts/{id}', name: 'delete', methods: ['DELETE'], requirements: ['id' => '\d{1,10}'])]
     public function deleteAction($id): JsonResponse
     {
         return parent::deleteAction($id);
     }
 
-    /**
-     * @Route(
-     *     "/beneficiaries/{id}/contacts",
-     *     name="list",
-     *     methods={"GET"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{id}/contacts', name: 'list', methods: ['GET'], requirements: ['id' => '\d{1,10}'])]
     public function listAction($id): JsonResponse
     {
         try {
@@ -82,61 +62,25 @@ final class ContactRestController extends DonneePersonnelleRestController
         }
     }
 
-    /**
-     * @Route(
-     *     "/contacts/{id}/toggle-access",
-     *     name="toggle_access",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/contacts/{id}/toggle-access', name: 'toggle_access', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function toggleAccessAction($id): JsonResponse
     {
         return parent::toggleAccessAction($id);
     }
 
-    /**
-     * @Route(
-     *     "/contacts/{id}",
-     *     name="edit",
-     *     methods={"PUT"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/contacts/{id}', name: 'edit', methods: ['PUT'], requirements: ['id' => '\d{1,10}'])]
     public function editAction($id): JsonResponse
     {
         return parent::editAction($id);
     }
 
-    /**
-     * @Route(
-     *     "/beneficiaries/{id}/contacts",
-     *     name="add",
-     *     methods={"POST"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{id}/contacts', name: 'add', methods: ['POST'], requirements: ['id' => '\d{1,10}'])]
     public function addAction($id): JsonResponse
     {
         return parent::addAction($id);
     }
 
-    /**
-     * @Route(
-     *     "/contacts/{id}/report-abuse",
-     *     name="report_abuse",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/contacts/{id}/report-abuse', name: 'report_abuse', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function reportAbuseAction($id): JsonResponse
     {
         return parent::reportAbuseAction($id);

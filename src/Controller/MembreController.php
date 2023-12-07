@@ -9,29 +9,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/membre")
- */
+#[Route(path: '/membre')]
 class MembreController extends AbstractController
 {
-    /**
-     * @Route("/centres", name="re_membre_centres", methods={"GET"})
-     */
+    #[Route(path: '/centres', name: 're_membre_centres', methods: ['GET'])]
     public function centres(): Response
     {
         return $this->redirectToRoute('my_relays');
     }
 
-    /**
-     * @Route(
-     *     "/quitter-centre/{id}",
-     *     name="re_membre_quitterCentre",
-     *     methods={"GET"},
-     *      requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     *     )
-     */
+    #[Route(path: '/quitter-centre/{id}', name: 're_membre_quitterCentre', methods: ['GET'], requirements: ['id' => '\d{1,10}'])]
     public function quitterCentre(Centre $centre, Request $request, CentreManager $centreManager): RedirectResponse
     {
         try {

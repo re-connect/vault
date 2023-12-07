@@ -35,12 +35,7 @@ class SharedDocumentController extends REController
         $this->manager = $manager;
     }
 
-    /**
-     * @Route(
-     *     "/api/v2/documents/{id}/share",
-     *     name="api_share_document",
-     *     methods={"POST"})
-     */
+    #[Route(path: '/api/v2/documents/{id}/share', name: 'api_share_document', methods: ['POST'])]
     public function apiShareDocument(Request $request, AuthorizationCheckerInterface $authorizationChecker, Document $document): JsonResponse
     {
         $errors = [];
@@ -69,12 +64,7 @@ class SharedDocumentController extends REController
         return $this->json($jsonBody, $status);
     }
 
-    /**
-     * @Route(
-     *     "/appli/document/{id}/share",
-     *     name="share_document",
-     *     methods={"GET", "POST"})
-     */
+    #[Route(path: '/appli/document/{id}/share', name: 'share_document', methods: ['GET', 'POST'])]
     public function shareDocument(Request $request, AuthorizationCheckerInterface $authorizationChecker, Document $document): Response
     {
         if (false === $authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW, $document)) {
@@ -95,9 +85,7 @@ class SharedDocumentController extends REController
         ]);
     }
 
-    /**
-     * @Route("/public/download-document/{token}", name="public_download_share_document", methods={"GET"})
-     */
+    #[Route(path: '/public/download-document/{token}', name: 'public_download_share_document', methods: ['GET'])]
     public function publicDownloadSharedDocument(
         Request $request,
         LanguageService $languageService,

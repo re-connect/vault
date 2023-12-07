@@ -16,17 +16,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-/**
- * @Route("/appli", name="re_app_document_", options={"expose"=true})
- */
+#[Route(path: '/appli', name: 're_app_document_', options: ['expose' => true])]
 class DocumentController extends AbstractController
 {
-    /**
-     * @Route("/beneficiaire/{id}/document",
-     *     name="list",
-     *     requirements={"id"="\d{1,10}"}
-     * )
-     */
+    #[Route(path: '/beneficiaire/{id}/document', name: 'list', requirements: ['id' => '\d{1,10}'])]
     public function index(
         $id,
         DocumentProvider $provider,
