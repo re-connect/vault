@@ -16,9 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PublicRestController extends AbstractController
 {
-    /**
-     * @Route("/public/kpis", name="public_kpis", methods={"GET"})
-     */
+    #[Route(path: '/public/kpis', name: 'public_kpis', methods: ['GET'])]
     public function index(EntityManagerInterface $em): JsonResponse
     {
         $beneficiaireRepository = $em->getRepository(Beneficiaire::class);

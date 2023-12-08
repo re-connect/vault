@@ -12,9 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Route("/api")
- */
+#[Route(path: '/api')]
 class UserRestController extends REController
 {
     public function __construct(
@@ -26,9 +24,7 @@ class UserRestController extends REController
         parent::__construct($requestStack, $translator, $entityManager, $apiClientManager);
     }
 
-    /**
-     * @Route("/user", methods={"GET"})
-     */
+    #[Route(path: '/user', methods: ['GET'])]
     public function getUserAction(): JsonResponse
     {
         try {

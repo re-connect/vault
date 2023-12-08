@@ -25,21 +25,10 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Route("/appli", name="api_folder_", options={"expose"=true})
- */
+#[Route(path: '/appli', name: 'api_folder_', options: ['expose' => true])]
 class DossierRestController extends AbstractController
 {
-    /**
-     * @Route(
-     *     "/folders/{id}/toggle-access",
-     *     name="toggle_access",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/folders/{id}/toggle-access', name: 'toggle_access', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function toggleAccessAction(int $id, DossierProvider $provider): JsonResponse
     {
         try {
@@ -55,16 +44,7 @@ class DossierRestController extends AbstractController
         }
     }
 
-    /**
-     * @Route(
-     *     "/folders/{id}",
-     *     name="delete",
-     *     methods={"DELETE"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/folders/{id}', name: 'delete', methods: ['DELETE'], requirements: ['id' => '\d{1,10}'])]
     public function deleteAction(int $id, DossierProvider $provider): JsonResponse
     {
         try {
@@ -80,16 +60,7 @@ class DossierRestController extends AbstractController
         }
     }
 
-    /**
-     * @Route(
-     *     "/beneficiaries/{beneficiaryId}/folders",
-     *     name="add",
-     *     methods={"PATCH", "POST"},
-     *     requirements={
-     *          "beneficiaryId": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{beneficiaryId}/folders', name: 'add', methods: ['PATCH', 'POST'], requirements: ['beneficiaryId' => '\d{1,10}'])]
     public function addAction(int $beneficiaryId, Request $request, DossierProvider $provider, BeneficiaireProvider $beneficiaireProvider): JsonResponse
     {
         try {
@@ -109,16 +80,7 @@ class DossierRestController extends AbstractController
         }
     }
 
-    /**
-     * @Route(
-     *     "/folders/{id}/name",
-     *     name="rename",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: '/folders/{id}/name', name: 'rename', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function renameAction(int $id, Request $request, DossierProvider $provider): JsonResponse
     {
         try {
@@ -136,16 +98,7 @@ class DossierRestController extends AbstractController
         return $jsonResponseException->getResponse();
     }
 
-    /**
-     * @Route(
-     *     "/beneficiaries/{beneficiaryId}/folders",
-     *     name="list",
-     *     methods={"GET"},
-     *     requirements={
-     *          "beneficiaryId": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{beneficiaryId}/folders', name: 'list', methods: ['GET'], requirements: ['beneficiaryId' => '\d{1,10}'])]
     public function listAction(
         int $beneficiaryId,
         BeneficiaireProvider $beneficiaireProvider,
@@ -177,16 +130,7 @@ class DossierRestController extends AbstractController
         }
     }
 
-    /**
-     * @Route(
-     *     "/folders/{id}/send",
-     *     name="send",
-     *     methods={"POST"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: '/folders/{id}/send', name: 'send', methods: ['POST'], requirements: ['id' => '\d{1,10}'])]
     public function sendAction(
         int $id,
         Request $request,
@@ -236,16 +180,7 @@ class DossierRestController extends AbstractController
         }
     }
 
-    /**
-     * @Route(
-     *     "/folders/{id}/report-abuse",
-     *     name="report_abuse",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: '/folders/{id}/report-abuse', name: 'report_abuse', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function reportAbuseAction(int $id, DossierProvider $provider): JsonResponse
     {
         try {
@@ -261,16 +196,7 @@ class DossierRestController extends AbstractController
         }
     }
 
-    /**
-     * @Route(
-     *     "/folders/{id}",
-     *     name="get_entity",
-     *     methods={"GET"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: '/folders/{id}', name: 'get_entity', methods: ['GET'], requirements: ['id' => '\d{1,10}'])]
     public function getEntityAction(int $id, DossierProvider $provider): JsonResponse
     {
         try {
@@ -284,17 +210,7 @@ class DossierRestController extends AbstractController
         }
     }
 
-    /**
-     * @Route(
-     *     "/folders/{id}/folder/{dossierId}",
-     *     name="put_in_folder",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *          "dossierId": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: '/folders/{id}/folder/{dossierId}', name: 'put_in_folder', methods: ['PATCH'], requirements: ['id' => '\d{1,10}', 'dossierId' => '\d{1,10}'])]
     public function putInFolderAction(
         int $id,
         int $dossierId,
@@ -315,16 +231,7 @@ class DossierRestController extends AbstractController
         }
     }
 
-    /**
-     * @Route(
-     *     "/folders/{id}/get-out-from-folder",
-     *     name="get_out_from_folder",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/folders/{id}/get-out-from-folder', name: 'get_out_from_folder', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function getOutFromFolderAction(int $id, DossierProvider $provider): JsonResponse
     {
         try {
