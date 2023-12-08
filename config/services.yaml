@@ -43,19 +43,6 @@ services:
     # please note that last definitions always *replace* previous ones
     'Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter': ~
 
-    # Menu Builders
-    App\Menu\REMainMenuBuilder:
-        tags:
-            - { name: knp_menu.menu_builder, method: headerMenu, alias: re_main.header.menu_renderer }
-            - { name: knp_menu.menu_builder, method: devenirUnRelaiReconnectMenu, alias: re_main.header.menu_renderer }
-
-    App\Menu\REUserMenuBuilder:
-        tags:
-            - { name: knp_menu.menu_builder, method: beneficiaireMenu, alias: re_user.beneficiaire.menu_renderer }
-            - { name: knp_menu.menu_builder, method: membreMenu, alias: re_user.membre.menu_renderer }
-            - { name: knp_menu.menu_builder, method: gestionnaireMenu, alias: re_user.gestionnaire.menu_renderer }
-        public: true
-
     # Twig Extension
     App\Extension\DocumentExtension:
         autowire: true

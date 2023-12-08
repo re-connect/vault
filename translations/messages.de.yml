@@ -29,7 +29,7 @@ benef_new_guide_deny_button: '<span class="text-uppercase lighter">Ablehnen</spa
 benef_new_guide_private_answer: 'Ja, mit dieser Freigabe können für mich zuständige Mitarbeitende, meine Dokumente einsehen.'
 benef_new_guide_private_question: 'Sollen meine Dokumente an ausgewählte Sozialarbeiter*innen freigegeben werden?'
 benef_new_guide_private_question_alt: 'Art der Freigabe'
-benef_new_guide_title: 'Willkommen bei Reconnect <span class="vault-green">- Der Cloud für wohnungslose Menschen</span>'
+benef_new_guide_title: 'Willkommen bei Reconnect <span class="text-green">- Der Cloud für wohnungslose Menschen</span>'
 benef_new_guide_what_for_answer_1: 'Meine Informationen speichern'
 benef_new_guide_what_for_answer_1_alt: Cloud
 benef_new_guide_what_for_answer_2: 'Meinen Austausch mit Sozialarbeiter*innen<br/>erleichtern'
