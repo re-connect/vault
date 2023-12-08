@@ -21,12 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Route({
- *     "old": "/api/",
- *     "new": "/api/v2/"
- *   }, name="re_api_note_")
- */
+#[Route(path: ['old' => '/api/', 'new' => '/api/v2/'], name: 're_api_note_')]
 final class NoteRestV2Controller extends DonneePersonnelleRestController
 {
     public function __construct(

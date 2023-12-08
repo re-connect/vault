@@ -14,19 +14,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/appli")
- */
+#[Route(path: '/appli')]
 class MembreRestController extends AbstractController
 {
-    /**
-     * @Route(
-     *     "/membres",
-     *     name="api_get_membres_from_user_handles_centre",
-     *     options={"expose"=true},
-     *     methods={"GET"}
-     * )
-     */
+    #[Route(path: '/membres', name: 'api_get_membres_from_user_handles_centre', options: ['expose' => true], methods: ['GET'])]
     public function getMembresFromUserHandlesCentreAction(CentreProvider $centreProvider): JsonResponse
     {
         try {
@@ -49,14 +40,7 @@ class MembreRestController extends AbstractController
         }
     }
 
-    /**
-     * @Route(
-     *     "/membres/{id}/changer-droit",
-     *     name="api_changer_droits_membre_centre",
-     *     options={"expose"=true},
-     *     methods={"POST"}
-     * )
-     */
+    #[Route(path: '/membres/{id}/changer-droit', name: 'api_changer_droits_membre_centre', options: ['expose' => true], methods: ['POST'])]
     public function changerDroitsMembreCentreAction(Membre $membre, Request $request, CentreManager $centreManager, CentreRepository $centreRepository): Response
     {
         if (false === $this->isGranted(MembreVoter::GESTION_MEMBRE, $membre)) {

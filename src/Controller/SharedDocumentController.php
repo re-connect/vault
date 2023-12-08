@@ -31,12 +31,7 @@ class SharedDocumentController extends REController
         $this->manager = $manager;
     }
 
-    /**
-     * @Route(
-     *     "/api/v2/documents/{id}/share",
-     *     name="api_share_document",
-     *     methods={"POST"})
-     */
+    #[Route(path: '/api/v2/documents/{id}/share', name: 'api_share_document', methods: ['POST'])]
     public function apiShareDocument(Request $request, AuthorizationCheckerInterface $authorizationChecker, Document $document): JsonResponse
     {
         $errors = [];

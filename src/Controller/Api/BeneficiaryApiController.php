@@ -10,9 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BeneficiaryApiController extends AbstractController
 {
-    /**
-     * @Route("/beneficiaries/mine", "list_my_beneficiaries", methods={"GET"})
-     */
+    #[Route(path: '/beneficiaries/mine', name: 'list_my_beneficiaries', methods: ['GET'])]
     public function getMine(CentreProvider $centreProvider): JsonResponse
     {
         $user = $this->getUser();

@@ -16,9 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Route("/appli", name="api_note_", options={"expose"=true})
- */
+#[Route(path: '/appli', name: 'api_note_', options: ['expose' => true])]
 final class NoteRestController extends DonneePersonnelleRestController
 {
     public function __construct(
@@ -35,31 +33,13 @@ final class NoteRestController extends DonneePersonnelleRestController
         parent::__construct($requestStack, $translator, $entityManager, $restManager, $beneficiaireProvider, $apiClientManager);
     }
 
-    /**
-     * @Route(
-     *     "/notes/{id}",
-     *     name="delete",
-     *     methods={"DELETE"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/notes/{id}', name: 'delete', methods: ['DELETE'], requirements: ['id' => '\d{1,10}'])]
     public function deleteAction(int $id): JsonResponse
     {
         return parent::deleteAction($id);
     }
 
-    /**
-     * @Route(
-     *     "/beneficiaries/{id}/notes",
-     *     name="list",
-     *     methods={"GET"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{id}/notes', name: 'list', methods: ['GET'], requirements: ['id' => '\d{1,10}'])]
     public function listAction(int $id): JsonResponse
     {
         try {
@@ -77,61 +57,25 @@ final class NoteRestController extends DonneePersonnelleRestController
         }
     }
 
-    /**
-     * @Route(
-     *     "/notes/{id}/toggle-access",
-     *     name="toggle_access",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/notes/{id}/toggle-access', name: 'toggle_access', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function toggleAccessAction($id): JsonResponse
     {
         return parent::toggleAccessAction($id);
     }
 
-    /**
-     * @Route(
-     *     "/notes/{id}/report-abuse",
-     *     name="report_abuse",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/notes/{id}/report-abuse', name: 'report_abuse', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function reportAbuseAction(int $id): JsonResponse
     {
         return parent::reportAbuseAction($id);
     }
 
-    /**
-     * @Route(
-     *     "/notes/{id}",
-     *     name="update",
-     *     methods={"PUT"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/notes/{id}', name: 'update', methods: ['PUT'], requirements: ['id' => '\d{1,10}'])]
     public function editAction(int $id): JsonResponse
     {
         return parent::editAction($id);
     }
 
-    /**
-     * @Route(
-     *     "/beneficiaries/{id}/notes",
-     *     name="add",
-     *     methods={"POST"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{id}/notes', name: 'add', methods: ['POST'], requirements: ['id' => '\d{1,10}'])]
     public function addAction(int $id): JsonResponse
     {
         return parent::addAction($id);

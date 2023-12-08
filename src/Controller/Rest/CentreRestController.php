@@ -19,9 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-/**
- * @Route("/appli", name="api_center_")
- */
+#[Route(path: '/appli', name: 'api_center_')]
 final class CentreRestController extends AbstractController
 {
     private CentreProvider $provider;
