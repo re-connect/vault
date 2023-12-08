@@ -1,12 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'v2/base.html.twig' %}
 
 {% block metaTitle %}{{ 'user.cgu.metaTitle'|trans }}{% endblock metaTitle %}
 
 {% block notifications %}{% endblock %}
+{% block bodyColor %}white{% endblock %}
 
-{% block bodyCentered %}
-    <div id="page-cgu">
-        <h1 class="center h1 text-primary">{{ 'user.cgu.title'|trans }}</h1>
+{% block body %}
+    <div id="page-cgu" class="container mt-5 pt-5 max-width-lg">
+        <h1 class="center h1 text-primary bold text-center my-3">{{ 'user.cgu.title'|trans|upper }}</h1>
         <br/>
         <div id="cgu-text" class="bigMargin midPadding" style="
    height: 300px; border: 1px solid #ddd; overflow: auto;">
@@ -1702,13 +1703,13 @@
                 </o:shapelayout>
             </xml><![endif]--> </head>
             <body lang=FR link=blue vlink=purple style='tab-interval:35.4pt'>
-            <div class=WordSection1>
-                <h1 style='text-align:justify'>Préambule&nbsp;: <strong><span
+            <div class="p-3">
+                <h1 style='text-align:justify' class="font-size-1">Préambule&nbsp;: <strong><span
                                 style='font-family: \"Asap\",sans-serif;mso-bidi-font-family:\"Times New Roman\";mso-bidi-theme-font: major-bidi;mso-bidi-font-weight:normal'>Reconnect – Le Cloud Solidaire&nbsp;<o:p></o:p></span></strong>
                 </h1>
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'><o:p>&nbsp;</o:p></span>
                 </p>
-                <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'>Reconnet a développé une plateforme d’hébergement en «&nbsp;nuage&nbsp;» et de partage afin de permettre aux personnes en situation de précarité, accompagnées par des structures sociales, de stocker et de partager de manière sécurisée leurs informations et documents personnels (le «&nbsp;<b
+                <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'>Reconnect a développé une plateforme d’hébergement en «&nbsp;nuage&nbsp;» et de partage afin de permettre aux personnes en situation de précarité, accompagnées par des structures sociales, de stocker et de partager de manière sécurisée leurs informations et documents personnels (le «&nbsp;<b
                                 style='mso-bidi-font-weight: normal'>Service Cloud Solidaire</b>&nbsp;»). <o:p></o:p></span>
                 </p>
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'>Le service Cloud Solidaire de Reconnect se matérialise par une application web accessible depuis le site internet </span><a
@@ -1722,7 +1723,7 @@
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'>L’ouverture d’un compte pour le bénéficiaire s’effectue au sein des structures sociales ayant conclu une Convention de Partenariat avec Reconnect, leur permettant d’être équipées du Cloud Solidaire, structures aussi appelées «&nbsp;Relais Reconnect&nbsp;». Cette ouverture de compte est réalisée par un <span
                                 style='mso-bidi-font-weight:bold'>professionnel</span>, en présence du bénéficiaire.<b><o:p></o:p></b></span>
                 </p>
-                <h1 style='text-align:justify'>Définitions&nbsp;</h1>
+                <h1 style='text-align:justify' class="font-size-1">Définitions&nbsp;</h1>
                 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight: normal'><span
                                 style='font-family:\"Asap\",sans-serif'><o:p>&nbsp;</o:p></span></b></p>
                 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight: normal'><span
@@ -1818,7 +1819,7 @@
                                 style='font-family:\"Asap\",sans-serif'>Utilisateur Professionnel&nbsp;:</span></b><span
                             style='font-family:\"Asap\",sans-serif'> désigne tout préposé d’une Structure Sociale ayant été désigné par cette structure pour avoir un Compte Professionnel sur le Service Cloud Solidaire.<o:p></o:p></span>
                 </p>
-                <h1 style='text-align:justify'><strong><span
+                <h1 style='text-align:justify' class="font-size-1"><strong><span
                                 style='font-family:\"Asap\",sans-serif; mso-bidi-font-family:\"Times New Roman\";mso-bidi-theme-font:major-bidi; mso-bidi-font-weight:normal'>Objet <o:p></o:p></span></strong>
                 </h1>
                 <p class=MsoNormal style='text-align:justify'>
@@ -1830,7 +1831,7 @@
                 </p>
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'><o:p>&nbsp;</o:p></span>
                 </p>
-                <h1 style='text-align:justify'>Article 1 - Acceptation des Conditions Générales du Service</h1>
+                <h1 style='text-align:justify' class="font-size-1">Article 1 - Acceptation des Conditions Générales du Service</h1>
                 <p class=MsoNormal style='text-align:justify'>
                     <o:p>&nbsp;</o:p>
                 </p>
@@ -1845,8 +1846,8 @@
                 <p class=MsoNormal style='text-align:justify'><span
                             style='font-family:\"Asap\",sans-serif; mso-fareast-font-family:Calibri;mso-bidi-font-family:\"Times New Roman\"'><o:p>&nbsp;</o:p></span>
                 </p>
-                <h1 style='text-align:justify'>Article 2 - Accès au Service Cloud Solidaire</h1>
-                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l0 level1 lfo2'><![if
+                <h1 style='text-align:justify' class="font-size-1">Article 2 - Accès au Service Cloud Solidaire</h1>
+                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l0 level1 lfo2' class="font-size-1"><![if
                     !supportLists]><span style='mso-fareast-font-family: Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>a.<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Conditions
                     techniques</h2>
@@ -1884,7 +1885,7 @@
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'>Par ailleurs, il appartient à l’Utilisateur de protéger son poste informatique (ordinateur,<span
                                 style='mso-spacerun:yes'>  </span>mobile, tablette, etc.) contre l’intrusion de virus, logiciels espions, chevaux de Troie et autres parasites de nature intrusive ou destructive.<o:p></o:p></span>
                 </p>
-                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l0 level1 lfo2'><![if
+                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l0 level1 lfo2' class="font-size-1"><![if
                     !supportLists]><span style='mso-fareast-font-family: Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>b.<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
                             style='mso-spacerun:yes'> </span>Partenariat avec les Structures Sociales et rôle du
@@ -1909,7 +1910,7 @@
                 <p class=MsoNormal style='text-align:justify'><span
                             style='font-family:\"Asap\",sans-serif; mso-fareast-font-family:Calibri;mso-bidi-font-family:\"Times New Roman\"'>A l’occasion de la création du Compte Gestionnaire, un Mot de Passe lui est affecté automatiquement par Reconnect. Lors de sa première connexion, le Gestionnaire est invité à modifier son Mot de Passe et à en choisir un qui lui soit personnel.<o:p></o:p></span>
                 </p>
-                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l0 level1 lfo2'><![if
+                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l0 level1 lfo2' class="font-size-1"><![if
                     !supportLists]><span style='mso-fareast-font-family: Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>c.<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Inscription
                     et rôle&nbsp;de l’Utilisateur Professionnel</h2>
@@ -1952,7 +1953,7 @@
                 <p class=MsoNormal style='text-align:justify'><span
                             style='font-family:\"Asap\",sans-serif; mso-fareast-font-family:Calibri;mso-bidi-font-family:\"Times New Roman\"; color:black'>Pour se connecter à son Compte Professionnel, l’Utilisateur Professionnel doit se munir de son Identifiant et de son Mot de Passe qu’il a choisi lors de sa première connexion. <o:p></o:p></span>
                 </p>
-                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l0 level1 lfo2'><![if
+                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l0 level1 lfo2' class="font-size-1"><![if
                     !supportLists]><span style='mso-fareast-font-family: Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>d.<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Création
                     et fonctionnalités&nbsp;du Compte Bénéficiaire</h2>
@@ -2017,11 +2018,11 @@
                 <p class=MsoNormal style='text-align:justify'><span
                             style='font-family:\"Asap\",sans-serif; mso-fareast-font-family:Calibri;mso-bidi-font-family:\"Times New Roman\"; color:black'><o:p>&nbsp;</o:p></span>
                 </p>
-                <h1 style='text-align:justify'>Article 3 - Responsabilité des Utilisateurs</h1>
+                <h1 style='text-align:justify' class="font-size-1">Article 3 - Responsabilité des Utilisateurs</h1>
                 <p class=MsoNormal style='text-align:justify'>
                     <o:p>&nbsp;</o:p>
                 </p>
-                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l8 level1 lfo4'><![if
+                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l8 level1 lfo4' class="font-size-1"><![if
                     !supportLists]><span style='mso-fareast-font-family: Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>a.<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Respect
                     de la législation</h2>
@@ -2074,7 +2075,7 @@
                 </p>
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'>Par ailleurs, en cas de violation ou de tentative de violation des Conditions Générales du Service, Reconnect se réserve le droit de supprimer l’accès des Utilisateurs concernés à leurs Comptes dans les conditions prévues à l’article 5 des CGS.<span
                                 style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
-                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l8 level1 lfo4'><![if
+                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l8 level1 lfo4' class="font-size-1"><![if
                     !supportLists]><span style='mso-fareast-font-family: Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>b.<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Paramètres
                     de confidentialité </h2>
@@ -2091,7 +2092,7 @@
                 </p>
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'>Toute utilisation du Service Cloud Solidaire effectué sur un Compte sera présumé avoir été effectuée par l’Utilisateur correspondant. Reconnect ne saurait être tenue pour responsable de la perte des Identifiants et/ou du Mot de Passe de l’Utilisateur et, à défaut d’opposition préalable et régulièrement notifiée par écrit à Reconnect, des conséquences dommageables de l’utilisation d’un Compte par une personne non-autorisée.<o:p></o:p></span>
                 </p>
-                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l8 level1 lfo4'><![if
+                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l8 level1 lfo4' class="font-size-1"><![if
                     !supportLists]><span style='mso-fareast-font-family: Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>c.<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Responsabilité
                     des Bénéficiaires</h2>
@@ -2109,7 +2110,7 @@
                                 style='mso-spacerun:yes'> </span>décide seul du maintien ou de la suppression de son Compte Bénéficiaire. Il peut également à tout moment supprimer son affiliation à une Structure Sociale. <br
                                 clear=all style='mso-special-character:line-break;page-break-before:always'> <o:p></o:p></span>
                 </p>
-                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l8 level1 lfo4'><![if
+                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l8 level1 lfo4' class="font-size-1"><![if
                     !supportLists]><span style='mso-fareast-font-family: Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>d.<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Responsabilité
                     des Utilisateurs Professionnels et des Structures Sociales</h2>
@@ -2137,11 +2138,11 @@
                 <p class=MsoNormal style='text-align:justify'>
                     <o:p>&nbsp;</o:p>
                 </p>
-                <h1 style='text-align:justify'>Article 4 - Responsabilité de Reconnect</h1>
+                <h1 style='text-align:justify' class="font-size-1">Article 4 - Responsabilité de Reconnect</h1>
                 <p class=MsoNormal style='text-align:justify'>
                     <o:p>&nbsp;</o:p>
                 </p>
-                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l9 level1 lfo6'><![if
+                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l9 level1 lfo6' class="font-size-1"><![if
                     !supportLists]><span style='mso-fareast-font-family: Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>a.<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Validité
                     des informations et documents des Utilisateurs</h2>
@@ -2154,7 +2155,7 @@
                 </p>
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'>Reconnect n’étant pas le dépositaire des documents, elle ne peut pas assurer que les documents déposés ou partagés via les Comptes sont dépourvus d’erreur, corrects et/ou en cours de validité. <o:p></o:p></span>
                 </p>
-                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l9 level1 lfo6'><![if
+                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l9 level1 lfo6' class="font-size-1"><![if
                     !supportLists]><span style='mso-fareast-font-family: Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>b.<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Maintenance
                     du Service Cloud Solidaire</h2>
@@ -2166,11 +2167,11 @@
                 <p class=MsoNormal style='text-align:justify'>
                     <o:p>&nbsp;</o:p>
                 </p>
-                <h1 style='text-align:justify'>Article 5 - Suspension du Service Cloud Solidaire</h1>
+                <h1 style='text-align:justify' class="font-size-1">Article 5 - Suspension du Service Cloud Solidaire</h1>
                 <p class=MsoNormal style='text-align:justify'>
                     <o:p>&nbsp;</o:p>
                 </p>
-                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l13 level1 lfo7'><![if
+                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l13 level1 lfo7' class="font-size-1"><![if
                     !supportLists]><span style='mso-fareast-font-family: Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>a.<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Suspension
                     à l’initiative de l’Utilisateur</h2>
@@ -2204,7 +2205,7 @@
                 <span style='font-size:11.0pt;line-height:115%;font-family:\"Asap\",sans-serif; mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-bidi-font-family: \"Times New Roman\";mso-bidi-theme-font:minor-bidi;mso-ansi-language:FR; mso-fareast-language:EN-US;mso-bidi-language:AR-SA'><br
                             clear=all style='mso-special-character:line-break;page-break-before:always'> </span>
                 <p class=MsoNormal><span style='font-family:\"Asap\",sans-serif'><o:p>&nbsp;</o:p></span></p>
-                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l13 level1 lfo7'><![if
+                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l13 level1 lfo7' class="font-size-1"><![if
                     !supportLists]><span style='mso-fareast-font-family: Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>b.<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Utilisation
                     abusive</h2>
@@ -2214,7 +2215,7 @@
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'>Toute utilisation abusive ou frauduleuse du Service Cloud Solidaire , ainsi que toute violation des Conditions Générales de Services, peut entrainer la suppression par Reconnect des Comptes concernés et des fonctionnalités associées, le cas échéant selon la gravité et<span
                                 style='mso-spacerun:yes'>  </span>les risques encourus sans notification préalable ou dans un délai de quinze (15) jours à compter d’une mise en demeure de l’Utilisateur restée infructueuse. <o:p></o:p></span>
                 </p>
-                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l13 level1 lfo7'><![if
+                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l13 level1 lfo7' class="font-size-1"><![if
                     !supportLists]><span style='mso-fareast-font-family: Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>c.<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Suspension
                     temporaire</h2>
@@ -2227,7 +2228,7 @@
                 </p>
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'>Par ailleurs, Reconnect peut être amenée à interrompre tout ou partie du Service Cloud Solidaire, à tout moment sans préavis, le tout sans droit à indemnité. L’Utilisateur reconnaît et accepte que Reconnect ne soit pas responsable des interruptions, et des conséquences qui peuvent en découler pour l’Utilisateur ou tout tiers.<o:p></o:p></span>
                 </p>
-                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l13 level1 lfo7'><![if
+                <h2 style='margin-left:36.0pt;text-align:justify;text-indent:-18.0pt; mso-list:l13 level1 lfo7' class="font-size-1"><![if
                     !supportLists]><span style='mso-fareast-font-family: Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>d.<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Inactivité
                 </h2>
@@ -2246,7 +2247,7 @@
                 <p class=MsoNormal><b><span
                                 style='font-size:14.0pt;line-height:115%; font-family:\"Asap\",sans-serif;mso-fareast-font-family:\"Times New Roman\"; mso-fareast-theme-font:major-fareast;mso-bidi-font-family:\"Times New Roman\"; mso-bidi-theme-font:major-bidi;color:#377F3C;mso-themecolor:accent1;mso-themeshade: 191'><o:p>&nbsp;</o:p></span></b>
                 </p>
-                <h1 style='text-align:justify'>Article 6 - Force majeure</h1>
+                <h1 style='text-align:justify' class="font-size-1">Article 6 - Force majeure</h1>
                 <p class=MsoNormal style='text-align:justify'>
                     <o:p>&nbsp;</o:p>
                 </p>
@@ -2254,7 +2255,7 @@
                 </p>
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'><o:p>&nbsp;</o:p></span>
                 </p>
-                <h1 style='text-align:justify'>Article 7 - Dysfonctionnements et recommandations</h1>
+                <h1 style='text-align:justify' class="font-size-1">Article 7 - Dysfonctionnements et recommandations</h1>
                 <p class=MsoNormal style='text-align:justify'>
                     <o:p>&nbsp;</o:p>
                 </p>
@@ -2266,14 +2267,14 @@
                 </p>
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'><o:p>&nbsp;</o:p></span>
                 </p>
-                <h1 style='text-align:justify'>Article 8 - Protection des données personnelles</h1>
+                <h1 style='text-align:justify' class="font-size-1">Article 8 - Protection des données personnelles</h1>
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'><o:p>&nbsp;</o:p></span>
                 </p>
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'>Soucieuse de préserver la vie privée des Utilisateurs, Reconnect met tout en œuvre pour protéger la sécurité et la confidentialité de leurs Données Personnelles. Pour plus d’informations sur la manière dont ces Données Personnelles sont traitées dans le cadre des Services Cloud Solidaire, les Utilisateurs sont invités à consulter la Politique de Confidentialité de Reconnect accessible suivant ce lien&nbsp;: </span><a
                             href=\"www.reconnect.fr/annexe/confidentialite-cs\"><span
                                 style='font-family:\"Asap\",sans-serif'>www.reconnect.fr/annexe/confidentialite-cs</span></a><span
                             style='font-family:\"Asap\",sans-serif'>.<o:p></o:p></span></p>
-                <h2 style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l15 level1 lfo17'><![if !supportLists]><span
+                <h2 style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l15 level1 lfo17' class="font-size-1"><![if !supportLists]><span
                             style='mso-fareast-font-family:Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>a)<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Quelles
                     sont les Données Personnelles traitées dans le cadre des Services Reconnect&nbsp;?</h2>
@@ -2363,7 +2364,7 @@
                 </p>
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'>Le Service Cloud Solidaire n’a pas vocation à accueillir des données sensibles, au sens de la définition du RGPD, et en particulier des données de santé. Dans l’hypothèse où un Utilisateur aurait recours au Service Cloud Solidaire aux fins de stocker et de gérer des données sensibles, une telle utilisation serait de sa propre responsabilité et Reconnect ne prend aucune garantie à cet égard.<o:p></o:p></span>
                 </p>
-                <h2 style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l15 level1 lfo17'><![if !supportLists]><span
+                <h2 style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l15 level1 lfo17' class="font-size-1"><![if !supportLists]><span
                             style='mso-fareast-font-family:Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>b)<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Dans
                     quel but sont utilisées les Données Personnelles des Utilisateurs ?</h2>
@@ -2377,7 +2378,7 @@
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'>Enfin, Reconnect est susceptible de traiter et/ou de transmettre les Données Personnelles des Utilisateurs pour satisfaire aux requêtes ou injonctions légales, ou<span
                                 style='mso-spacerun:yes'>  </span>lorsque cela est permis par la loi.<o:p></o:p></span>
                 </p>
-                <h2 style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l15 level1 lfo17'><![if !supportLists]><span
+                <h2 style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l15 level1 lfo17' class="font-size-1"><![if !supportLists]><span
                             style='mso-fareast-font-family:Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>c)<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Pour
                     quelles durées les Données Personnelles des Utilisateurs sont-elles conservées ?</h2>
@@ -2388,7 +2389,7 @@
                 </p>
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'>Toutefois les Données Personnelles des Utilisateurs pourront être conservées, exclusivement à des fins probatoires, pour une durée supérieure selon les délais de prescription applicables.<o:p></o:p></span>
                 </p>
-                <h2 style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l15 level1 lfo17'><![if !supportLists]><span
+                <h2 style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l15 level1 lfo17' class="font-size-1"><![if !supportLists]><span
                             style='mso-fareast-font-family:Asap;mso-bidi-font-family:Asap'><span
                                 style='mso-list:Ignore'>d)<span style='font:7.0pt \"Times New Roman\"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Quels
                     sont les droits des Utilisateurs sur leurs Données Personnelles&nbsp;?</h2>
@@ -2415,7 +2416,7 @@
                 </p>
                 <p class=MsoNormal style='text-align:justify'><span style='font-family:\"Asap\",sans-serif'><o:p>&nbsp;</o:p></span>
                 </p>
-                <h1 style='text-align:justify'>Article 9 - Propriété intellectuelle</h1>
+                <h1 style='text-align:justify' class="font-size-1">Article 9 - Propriété intellectuelle</h1>
                 <p class=MsoNormal style='text-align:justify'>
                     <o:p>&nbsp;</o:p>
                 </p>
@@ -2435,7 +2436,7 @@
                 <p class=MsoNormal style='text-align:justify'><span
                             style='font-size:14.0pt; line-height:115%;font-family:\"Asap\",sans-serif;mso-fareast-font-family:\"Times New Roman\"; mso-bidi-font-family:Arial;mso-fareast-language:FR'><o:p>&nbsp;</o:p></span>
                 </p>
-                <h1 style='text-align:justify'>Article 10 - Dispositions diverses</h1>
+                <h1 style='text-align:justify' class="font-size-1">Article 10 - Dispositions diverses</h1>
                 <p class=MsoNormal style='text-align:justify'><span
                             style='font-family:\"Asap\",sans-serif; mso-fareast-font-family:Calibri;mso-bidi-font-family:\"Times New Roman\"'><o:p>&nbsp;</o:p></span>
                 </p>
@@ -2445,7 +2446,7 @@
                 <p class=MsoNormal style='text-align:justify'><span
                             style='font-family:\"Asap\",sans-serif; mso-fareast-font-family:Calibri;mso-bidi-font-family:\"Times New Roman\"'><o:p>&nbsp;</o:p></span>
                 </p>
-                <h1 style='text-align:justify'>Article 11 - Droit applicable et juridiction compétente</h1>
+                <h1 style='text-align:justify' class="font-size-1">Article 11 - Droit applicable et juridiction compétente</h1>
                 <p class=MsoNormal style='text-align:justify'><span
                             style='font-family:\"Asap\",sans-serif; mso-fareast-font-family:Calibri;mso-bidi-font-family:\"Times New Roman\"'><o:p>&nbsp;</o:p></span>
                 </p>
@@ -2464,7 +2465,7 @@
                 <p class=MsoNormal style='text-align:justify'><span
                             style='font-family:\"Asap\",sans-serif; mso-fareast-font-family:Calibri;mso-bidi-font-family:\"Times New Roman\"'><o:p>&nbsp;</o:p></span>
                 </p>
-                <h1 style='text-align:justify'>Article 12 - Modification des Conditions Générales d’Utilisation</h1>
+                <h1 style='text-align:justify' class="font-size-1">Article 12 - Modification des Conditions Générales d’Utilisation</h1>
                 <p class=MsoNormal style='text-align:justify'><span
                             style='font-family:\"Asap\",sans-serif; mso-fareast-font-family:Calibri;mso-bidi-font-family:\"Times New Roman\"'><o:p>&nbsp;</o:p></span>
                 </p>
@@ -2483,15 +2484,15 @@
             </div>
         </div>
         <div class="clearFloat">&nbsp;</div>
-        <div class="bigPadding center">
-            {{ form_start(form, {"attr" : {"class" : "reForm font-size-1", "novalidate":"novalidate"}}) }}
+        <div class="text-center text-primary mt-3 font-size-1-1 bold">
+            {{ form_start(form, {"attr" : {"class" : "display-required-labels", "novalidate":"novalidate"}}) }}
             {{ form_row(form.accept) }}
             <div class="mb-4">
                 {{ form_errors(form) }}
             </div>
-            {{ form_row(form.submit, {"attr": {"class" : app.user.isBeneficiaire ?  "btn-green"  : "btn-blue" }} ) }}
+            {{ form_row(form.submit, {"attr": {"class" : app.user.isBeneficiaire ?  "btn-green text-white"  : "btn-blue text-white" }} ) }}
             {{ form_rest(form) }}
             {{ form_end(form) }}
         </div>
     </div>
-{% endblock bodyCentered %}
+{% endblock %}
