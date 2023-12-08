@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'v2/base.html.twig' %}
 
 {% block metaTitle %}
     {% if app.user.isBeneficiaire %}
@@ -11,9 +11,10 @@
 {% endblock metaTitle %}
 
 {% block notifications %}{% endblock %}
+{% block bodyColor %}white{% endblock %}
 
-{% block bodyCentered %}
-    <div id="page-firstVisit">
+{% block body %}
+    <div class="container mt-5 pt-5">
         {% if app.user.isBeneficiaire %}
             {% include "user/user/beneficiary_new_guide.html.twig" %}
         {% elseif app.user.isMembre %}
@@ -51,4 +52,4 @@
                                               class="btn btn-blue font-size-1">{{ 'main.continuer'|trans }}</a></div>
         {% endif %}
     </div>
-{% endblock bodyCentered %}
+{% endblock %}

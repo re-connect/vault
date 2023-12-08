@@ -21,7 +21,6 @@
     "friendsofsymfony/jsrouting-bundle": "3.3.*",
     "friendsofsymfony/rest-bundle": "^3.5",
     "gedmo/doctrine-extensions": "3.13.*",
-    "knplabs/knp-menu-bundle": "3.2.*",
     "knplabs/knp-paginator-bundle": "6.2.*",
     "league/csv": "9.11.*",
     "league/oauth2-server-bundle": "0.5.*",
