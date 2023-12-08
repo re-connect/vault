@@ -24,24 +24,10 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Route({
- *     "old": "/api/",
- *     "new": "/api/v2/"
- *   }, name="re_api_dossier_")
- */
+#[Route(path: ['old' => '/api/', 'new' => '/api/v2/'], name: 're_api_dossier_')]
 class DossierRestV2Controller extends REController
 {
-    /**
-     * @Route(
-     *     "folders/{id}",
-     *     name="delete",
-     *     methods={"DELETE"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: 'folders/{id}', name: 'delete', methods: ['DELETE'], requirements: ['id' => '\d{1,10}'])]
     public function delete(int $id, DossierProvider $provider): JsonResponse
     {
         try {
@@ -57,16 +43,7 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "beneficiaries/{beneficiaryId}/folders",
-     *     methods={"POST"},
-     *     name="add",
-     *     requirements={
-     *          "beneficiaryId": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: 'beneficiaries/{beneficiaryId}/folders', methods: ['POST'], name: 'add', requirements: ['beneficiaryId' => '\d{1,10}'])]
     public function add(
         int $beneficiaryId,
         DossierProvider $provider,
@@ -118,16 +95,7 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "folders/{id}",
-     *     name="patch",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: 'folders/{id}', name: 'patch', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function patch(int $id, DossierProvider $provider): JsonResponse
     {
         try {
@@ -172,16 +140,7 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "beneficiaries/{beneficiaryId}/folders",
-     *     name="list",
-     *     methods={"GET"},
-     *     requirements={
-     *          "beneficiaryId": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: 'beneficiaries/{beneficiaryId}/folders', name: 'list', methods: ['GET'], requirements: ['beneficiaryId' => '\d{1,10}'])]
     public function list(int $beneficiaryId, BeneficiaireProvider $beneficiaireProvider, AuthorizationCheckerInterface $authorizationChecker): JsonResponse
     {
         try {
@@ -203,16 +162,7 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "folders/{id}/send",
-     *     name="send",
-     *     methods={"POST"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: 'folders/{id}/send', name: 'send', methods: ['POST'], requirements: ['id' => '\d{1,10}'])]
     public function send(
         int $id,
         Request $request,
@@ -257,16 +207,7 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "folders/{id}/toggle-access",
-     *     name="toggle_access",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: 'folders/{id}/toggle-access', name: 'toggle_access', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function toggleAccess(int $id, DossierProvider $provider): JsonResponse
     {
         try {
@@ -282,16 +223,7 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "folders/{id}/name",
-     *     name="rename",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: 'folders/{id}/name', name: 'rename', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function renameAction(int $id, Request $request, DossierProvider $provider): JsonResponse
     {
         try {

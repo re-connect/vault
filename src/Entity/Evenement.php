@@ -29,9 +29,7 @@ class Evenement extends DonneePersonnelle
     public const EVENEMENT_RAPPEL_MAIL = 'Mail';
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
     private $date;
-    /**
-     * @Groups({"read-personal-data", "write-personal-data", "read-personal-data-v2", "write-personal-data-v2"})
-     */
+    #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2'])]
     private ?string $timezone = null;
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
     private ?string $lieu = null;
