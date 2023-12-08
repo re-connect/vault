@@ -31,12 +31,7 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Route({
- *     "old": "/api/",
- *     "new": "/api/v2/"
- *   }, name="re_api_document_")
- */
+#[Route(path: ['old' => '/api/', 'new' => '/api/v2/'], name: 're_api_document_')]
 class DocumentRestV2Controller extends REController
 {
     private DocumentProvider $provider;
@@ -52,16 +47,7 @@ class DocumentRestV2Controller extends REController
         parent::__construct($requestStack, $translator, $entityManager, $apiClientManager);
     }
 
-    /**
-     * @Route(
-     *     "beneficiaries/{beneficiaryId}/documents",
-     *     methods={"GET"},
-     *     requirements={
-     *          "beneficiaryId": "\d{1,10}"
-     *     },
-     *     name="list"
-     * )
-     */
+    #[Route(path: 'beneficiaries/{beneficiaryId}/documents', methods: ['GET'], requirements: ['beneficiaryId' => '\d{1,10}'], name: 'list')]
     public function list(int $beneficiaryId, BeneficiaireProvider $beneficiaireProvider): JsonResponse
     {
         try {
@@ -100,16 +86,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "documents/{id}",
-     *     name="delete",
-     *     methods={"DELETE"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: 'documents/{id}', name: 'delete', methods: ['DELETE'], requirements: ['id' => '\d{1,10}'])]
     public function delete(int $id): JsonResponse
     {
         try {
@@ -125,16 +102,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "documents/{id}",
-     *     name="patch",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: 'documents/{id}', name: 'patch', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function patch(int $id, DossierProvider $dossierProvider): JsonResponse
     {
         try {
@@ -173,18 +141,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "documents/{id}/{version}",
-     *     methods={"GET"},
-     *     name="show",
-     *     defaults={"version": "originals"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *          "version" : "large|medium|originals|small|thumbnails|json"
-     *     }
-     * )
-     */
+    #[Route(path: 'documents/{id}/{version}', methods: ['GET'], name: 'show', defaults: ['version' => 'originals'], requirements: ['id' => '\d{1,10}', 'version' => 'large|medium|originals|small|thumbnails|json'])]
     public function show(int $id, string $version = 'originals'): Response
     {
         try {
@@ -209,15 +166,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Route("beneficiaries/{beneficiaryId}/documents",
-     *     requirements={
-     *          "beneficiaryId": "\d{1,10}"
-     *     },
-     *     name="upload",
-     *     methods={"POST"}
-     * )
-     */
+    #[Route(path: 'beneficiaries/{beneficiaryId}/documents', requirements: ['beneficiaryId' => '\d{1,10}'], name: 'upload', methods: ['POST'])]
     public function upload(Request $request, int $beneficiaryId, BeneficiaireProvider $beneficiaireProvider, RestManager $restManager): Response
     {
         try {
@@ -252,15 +201,7 @@ class DocumentRestV2Controller extends REController
         return $jsonResponseException->getResponse();
     }
 
-    /**
-     * @Route("documents/{id}/send",
-     *     methods={"POST"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     },
-     *     name="send"
-     * )
-     */
+    #[Route(path: 'documents/{id}/send', methods: ['POST'], requirements: ['id' => '\d{1,10}'], name: 'send')]
     public function send(
         int $id,
         ValidatorInterface $validator,
@@ -298,16 +239,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "documents/{id}/toggle-access",
-     *     name="toggle_access",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: 'documents/{id}/toggle-access', name: 'toggle_access', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function toggleAccess(int $id): JsonResponse
     {
         try {
@@ -324,16 +256,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "documents/{id}",
-     *     name="get",
-     *     methods={"GET"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: 'documents/{id}', name: 'get', methods: ['GET'], requirements: ['id' => '\d{1,10}'])]
     public function getEntity(int $id): JsonResponse
     {
         try {
@@ -348,16 +271,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "documents/{id}/name",
-     *     name="rename",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: 'documents/{id}/name', name: 'rename', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function renameAction(
         int $id,
         Request $request,
@@ -385,17 +299,7 @@ class DocumentRestV2Controller extends REController
         return $jsonResponseException->getResponse();
     }
 
-    /**
-     * @Route(
-     *     "documents/{id}/folder/{dossierId}",
-     *     name="put_in_folder",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *          "dossierId": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: 'documents/{id}/folder/{dossierId}', name: 'put_in_folder', methods: ['PATCH'], requirements: ['id' => '\d{1,10}', 'dossierId' => '\d{1,10}'])]
     public function putInFolderAction(
         int $id,
         int $dossierId,
@@ -419,16 +323,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "documents/{id}/get-out-from-folder",
-     *     name="get_out_from_folder",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: 'documents/{id}/get-out-from-folder', name: 'get_out_from_folder', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function getOutFromFolderAction(int $id, DocumentProvider $provider): JsonResponse
     {
         try {

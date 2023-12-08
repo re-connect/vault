@@ -26,21 +26,10 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Route("/appli", name="api_document_", options={"expose"=true})
- */
+#[Route(path: '/appli', name: 'api_document_', options: ['expose' => true])]
 class DocumentRestController extends REController
 {
-    /**
-     * @Route(
-     *     "/beneficiaries/{beneficiaryId}/documents",
-     *     name="list",
-     *     methods={"GET"},
-     *     requirements={
-     *          "beneficiaryId": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{beneficiaryId}/documents', name: 'list', methods: ['GET'], requirements: ['beneficiaryId' => '\d{1,10}'])]
     public function listAction(
         int $beneficiaryId,
         DocumentProvider $provider,
@@ -59,16 +48,7 @@ class DocumentRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "/documents/{id}/toggle-access",
-     *     name="toggle_access",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/documents/{id}/toggle-access', name: 'toggle_access', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function toggleAccessAction(int $id, DocumentProvider $provider): JsonResponse
     {
         try {
@@ -85,16 +65,7 @@ class DocumentRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "/beneficiaries/{beneficiaryId}/folders/{folderId}/documents",
-     *     name="list_from_folder",
-     *     methods={"GET"},
-     *     requirements={
-     *          "beneficiaryId": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{beneficiaryId}/folders/{folderId}/documents', name: 'list_from_folder', methods: ['GET'], requirements: ['beneficiaryId' => '\d{1,10}'])]
     public function listFromFolderAction(
         int $beneficiaryId,
         int $folderId,
@@ -117,16 +88,7 @@ class DocumentRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "/documents/{id}",
-     *     name="delete",
-     *     methods={"DELETE"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/documents/{id}', name: 'delete', methods: ['DELETE'], requirements: ['id' => '\d{1,10}'])]
     public function deleteAction(
         int $id,
         DocumentProvider $provider,
@@ -151,16 +113,8 @@ class DocumentRestController extends REController
 
     /**
      * Move the file to the source folder.
-     *
-     * @Route(
-     *     "/documents/{id}/get-out-from-folder",
-     *     name="get_out_from_folder",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
      */
+    #[Route(path: '/documents/{id}/get-out-from-folder', name: 'get_out_from_folder', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function getOutFromFolderAction(int $id, DocumentProvider $provider): JsonResponse
     {
         try {
@@ -179,16 +133,8 @@ class DocumentRestController extends REController
 
     /**
      * Report abuse Route annotation.
-     *
-     * @Route(
-     *     "/documents/{id}/report-abuse",
-     *     name="report_abuse",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
      */
+    #[Route(path: '/documents/{id}/report-abuse', name: 'report_abuse', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function reportAbuseAction(int $id, DocumentProvider $provider): JsonResponse
     {
         try {
@@ -205,16 +151,7 @@ class DocumentRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "/documents/{id}/name",
-     *     name="rename",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *     }
-     * )
-     */
+    #[Route(path: '/documents/{id}/name', name: 'rename', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function renameAction(
         int $id,
         Request $request,
@@ -244,17 +181,8 @@ class DocumentRestController extends REController
 
     /**
      * Move the file to the folder.
-     *
-     * @Route(
-     *     "/documents/{id}/folder/{dossierId}",
-     *     name="put_in_folder",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *          "dossierId": "\d{1,10}"
-     *     }
-     * )
      */
+    #[Route(path: '/documents/{id}/folder/{dossierId}', name: 'put_in_folder', methods: ['PATCH'], requirements: ['id' => '\d{1,10}', 'dossierId' => '\d{1,10}'])]
     public function putInFolderAction(
         int $id,
         int $dossierId,
@@ -278,18 +206,7 @@ class DocumentRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "/documents/{id}/{version}",
-     *     defaults={"version": "originals"},
-     *     name="show",
-     *     methods={"GET"},
-     *     requirements={
-     *          "id": "\d{1,10}",
-     *          "version" : "large|medium|originals|small|thumbnails"
-     *     }
-     * )
-     */
+    #[Route(path: '/documents/{id}/{version}', defaults: ['version' => 'originals'], name: 'show', methods: ['GET'], requirements: ['id' => '\d{1,10}', 'version' => 'large|medium|originals|small|thumbnails'])]
     public function showAction(int $id, DocumentProvider $provider, ?string $version = 'originals'): Response
     {
         try {
@@ -311,16 +228,8 @@ class DocumentRestController extends REController
 
     /**
      * Download the file.
-     *
-     * @Route(
-     *     "/beneficiaries/{beneficiaryId}/documents",
-     *     name="upload",
-     *     methods={"POST"},
-     *     requirements={
-     *          "beneficiaryId": "\d{1,10}"
-     *     }
-     * )
      */
+    #[Route(path: '/beneficiaries/{beneficiaryId}/documents', name: 'upload', methods: ['POST'], requirements: ['beneficiaryId' => '\d{1,10}'])]
     public function uploadAction(
         int $beneficiaryId,
         DocumentProvider $provider,
@@ -365,16 +274,8 @@ class DocumentRestController extends REController
 
     /**
      * Send the file by email.
-     *
-     * @Route(
-     *     "/documents/{id}/send",
-     *     name="send",
-     *     methods={"POST"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
      */
+    #[Route(path: '/documents/{id}/send', name: 'send', methods: ['POST'], requirements: ['id' => '\d{1,10}'])]
     public function sendAction(
         int $id,
         Request $request,

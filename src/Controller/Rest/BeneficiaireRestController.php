@@ -28,18 +28,10 @@ use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Route("/appli", name="api_beneficiary_", options={"expose"=true})
- */
+#[Route(path: '/appli', name: 'api_beneficiary_', options: ['expose' => true])]
 class BeneficiaireRestController extends REController
 {
-    /**
-     * @Route(
-     *     "/beneficiaries/mine",
-     *     name="list_for_user",
-     *     methods={"GET"},
-     * )
-     */
+    #[Route(path: '/beneficiaries/mine', name: 'list_for_user', methods: ['GET'])]
     public function getForMe(CentreProvider $centreProvider): JsonResponse
     {
         try {
@@ -61,16 +53,7 @@ class BeneficiaireRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "/beneficiaries/{id}/send-sms-activation-code",
-     *     name="send_sms_activation_code",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{id}/send-sms-activation-code', name: 'send_sms_activation_code', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function sendActivationCodeAction($id, BeneficiaireProvider $beneficiaireProvider, SMSManager $SMSManager): JsonResponse
     {
         try {
@@ -86,16 +69,7 @@ class BeneficiaireRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "/beneficiaries/{id}",
-     *     name="get",
-     *     methods={"GET"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{id}', name: 'get', methods: ['GET'], requirements: ['id' => '\d{1,10}'])]
     public function getBeneficiaireAction($id, BeneficiaireProvider $beneficiaireProvider): JsonResponse
     {
         try {
@@ -109,16 +83,7 @@ class BeneficiaireRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "/beneficiaries/{id}/phone-number",
-     *     name="update_phone_number",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{id}/phone-number', name: 'update_phone_number', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function updatePhoneNumberAction(
         $id,
         Request $request,
@@ -145,16 +110,7 @@ class BeneficiaireRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "/beneficiaries/{id}",
-     *     name="delete",
-     *     methods={"DELETE"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{id}', name: 'delete', methods: ['DELETE'], requirements: ['id' => '\d{1,10}'])]
     public function deleteBeneficiariesAction(
         $id,
         BeneficiaireProvider $beneficiaireProvider,
@@ -180,16 +136,7 @@ class BeneficiaireRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "/beneficiaries/{id}/test-activation-sms-code",
-     *     name="test_sms_code",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{id}/test-activation-sms-code', name: 'test_sms_code', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function testCodeSmsAction(
         $id,
         Request $request,
@@ -228,16 +175,7 @@ class BeneficiaireRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *    "/beneficiaries/{id}/password",
-     *     name="update_password",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{id}/password', name: 'update_password', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function updatePasswordAction(
         $id,
         Request $request,
@@ -275,16 +213,7 @@ class BeneficiaireRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *    "/beneficiaries/{id}/update-secret-question",
-     *     name="update_secret_question",
-     *     methods={"PATCH"},
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     }
-     * )
-     */
+    #[Route(path: '/beneficiaries/{id}/update-secret-question', name: 'update_secret_question', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function updateSecretQuestionAction(
         $id,
         Request $request,
@@ -330,13 +259,7 @@ class BeneficiaireRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *    "/get-secret-questions",
-     *     name="get_secret_questions",
-     *     methods={"GET"},
-     * )
-     */
+    #[Route(path: '/get-secret-questions', name: 'get_secret_questions', methods: ['GET'])]
     public function getSecretQuestionsAction(BeneficiaireProvider $provider, TranslatorInterface $translator): JsonResponse
     {
         try {
@@ -350,13 +273,7 @@ class BeneficiaireRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *    "/beneficiaries",
-     *     name="add",
-     *     methods={"POST"},
-     * )
-     */
+    #[Route(path: '/beneficiaries', name: 'add', methods: ['POST'])]
     public function addAction(
         Request $request,
         TranslatorInterface $translator,
@@ -510,13 +427,7 @@ class BeneficiaireRestController extends REController
         return $errors;
     }
 
-    /**
-     * @Route(
-     *    "/beneficiaries/enable",
-     *     name="enable",
-     *     methods={"PATCH"},
-     * )
-     */
+    #[Route(path: '/beneficiaries/enable', name: 'enable', methods: ['PATCH'])]
     public function enableAction(
         Request $request,
         UserManager $userManager,

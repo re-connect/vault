@@ -11,9 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-/**
- * @Route(options={"expose"=true})
- */
+#[Route(options: ['expose' => true])]
 class PrivateResettingController extends AbstractController
 {
     #[Route(path: '/user/{id}/unlock-password-reset', name: 'unlock_password_reset', methods: ['GET'])]

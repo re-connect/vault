@@ -24,12 +24,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class ContactRestControllerV2.
- *
- * @Route({
- *     "old": "/api/",
- *     "new": "/api/v2/"
- *   }, name="re_api_contact_")
  */
+#[Route(path: ['old' => '/api/', 'new' => '/api/v2/'], name: 're_api_contact_')]
 final class ContactRestV2Controller extends DonneePersonnelleRestController
 {
     public function __construct(

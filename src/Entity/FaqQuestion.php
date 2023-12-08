@@ -13,9 +13,7 @@ class FaqQuestion
     private int $id;
     private string $text;
     private string $answer;
-    /**
-     * @Assert\PositiveOrZero()
-     */
+    #[Assert\PositiveOrZero]
     private ?int $position = null;
     private \DateTime $createdAt;
 
