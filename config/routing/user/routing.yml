@@ -18,21 +18,3 @@ re_user_firstVisit:
 re_user_cgs:
     path: /user/cgs
     controller: App\Controller\UserController::cgs
-
-re_user_accepterCentre:
-    path: /user/accepter-centre/{id}
-    controller: App\Controller\UserController::accepterCentre
-    requirements:
-        id: \d{1,10}
-
-re_user_refuserCentre:
-    path: /user/refuser-centre/{id}
-    controller: App\Controller\UserController::refuserCentre
-    requirements:
-        id: \d{1,10}
-
-re_user_settings:
-    path: /user/{id}/settings
-    controller: App\Controller\UserController::parametres
-    requirements:
-        id: \d{1,10}

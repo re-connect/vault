@@ -1,7 +1,3 @@
-re_app:
-    resource: "./routing/app/routing.yml"
-    prefix: /appli/
-
 re_main:
     resource: "routing/main/routing.yml"
     prefix: /
@@ -9,22 +5,6 @@ re_main:
 re_user:
     resource: "./routing/user/routing.yml"
     prefix: /
-
-re_beneficiaire:
-    resource: "./routing/user/beneficiaire_routing.yml"
-    prefix: /beneficiaire/
-
-re_membre:
-    resource: "./routing/user/membre_routing.yml"
-    prefix: membre/
-
-re_gestionnaire:
-    resource: "./routing/user/gestionnaire_routing.yml"
-    prefix: /gestionnaire/
-
-re_association:
-    resource: "./routing/user/association_routing.yml"
-    prefix: /association/
 
 re_get_centers:
     path: /public/get-centers
