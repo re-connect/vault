@@ -19,12 +19,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-/**
- * @Route({
- *     "old": "/api/",
- *     "new": "/api/v2/"
- *   }, name="re_api_membre_")
- */
+#[Route(path: ['old' => '/api/', 'new' => '/api/v2/'], name: 're_api_membre_')]
 class MembreRestV2Controller extends REController
 {
     /**

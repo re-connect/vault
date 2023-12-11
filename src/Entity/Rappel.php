@@ -11,20 +11,16 @@ class Rappel implements \JsonSerializable
 
     /**
      * @var int
-     *
-     * @Groups({"read-personal-data", "read-personal-data-v2"})
      */
+    #[Groups(['read-personal-data', 'read-personal-data-v2'])]
     private $id;
     /**
      * @var \DateTime
-     *
-     * @Groups({"read-personal-data", "write-personal-data", "read-personal-data-v2", "write-personal-data-v2"})
      */
+    #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2'])]
     private $date;
 
-    /**
-     * @Groups({"read-personal-data", "write-personal-data", "read-personal-data-v2", "write-personal-data-v2"})
-     */
+    #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2'])]
     private ?string $timezone = null;
 
     /** @var Evenement */
