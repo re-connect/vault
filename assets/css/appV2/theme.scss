@@ -38,7 +38,7 @@ label:focus,
   box-shadow: none !important;
 }
 
-.blue-tooltip {
+.blue-tooltip + .tooltip {
   --bs-tooltip-bg: var(--bs-blue);
   --bs-tooltip-opacity: 1;
 }
