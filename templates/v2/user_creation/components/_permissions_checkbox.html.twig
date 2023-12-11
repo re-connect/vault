@@ -2,8 +2,9 @@
 {% set isUpdatable = permission.isUpdatable %}
 
 {% if isDefaultPermission or isUpdatable %}
-    <div class="d-flex mt-2 ms-md-5"
+    <div class="d-flex mt-2 ms-md-5 blue-tooltip"
             {% if isDefaultPermission %}
+                {{ stimulus_controller('tooltip', {title: 'you_can_not_update_default_permission'|trans}) }}
                 data-toggle="tooltip"
                 data-bs-placement="right"
                 data-bs-custom-class="blue-tooltip"
