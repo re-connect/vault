@@ -704,7 +704,7 @@ main.voirFichier: 'Voir le fichier'
 member_do_not_have_account: 'Le membre ne possède pas de compte reconnect'
 member_has_account: 'Le membre possède un compte reconnect'
 member_management_big_title: 'Gestion des <span class="rp-blue">membres</span>'
-member_new_guide_title: 'Bienvenue sur Reconnect <span class="rp-blue">Le coffre-fort numérique</span>'
+member_new_guide_title: 'Bienvenue sur Reconnect <span class="text-blue">Le coffre-fort numérique</span>'
 member_reset_password_no_rights: "Vous n'avez pas le droit de réinitialiser le mot de passe de cet utilisateur"
 member_reset_password_wrong_answer: 'La réponse fournie est incorrecte'
 member_successfully_created: 'Le membre a bien été créé'
