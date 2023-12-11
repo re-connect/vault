@@ -14,9 +14,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\ManyToOne;
-use Doctrine\ORM\Mapping\OneToMany;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -34,29 +31,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 {
     final public const AUTOCOMPLETE_NAMES = ['health', 'housing', 'identity', 'tax', 'work'];
-    /**
-     * @OneToMany(targetEntity="App\Entity\Document", mappedBy="dossier")
-     */
+
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:folder:read'])]
     private Collection $documents;
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:folder:read'])]
     private ?string $dossierImage = null;
-    /**
-     * @Groups({ "read-personal-data", "read-personal-data-v2", "write-personal-data-v2" })
-     *
-     * @ManyToOne(targetEntity="App\Entity\Dossier", inversedBy="sousDossiers")
-     *
-     * @JoinColumn(name="dossier_parent_id")
-     */
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
     #[Assert\Expression(
         '!value or value not in this.getSousDossiers().toArray() and value != this',
         message: 'folder_circular_dependency',
     )]
     private ?Dossier $dossierParent = null;
-    /**
-     * @OneToMany(targetEntity="App\Entity\Dossier", mappedBy="dossierParent")
-     */
     #[Groups(['read-personal-data', 'read-personal-data-v2'])]
     private Collection $sousDossiers;
 

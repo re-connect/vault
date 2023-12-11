@@ -60,7 +60,7 @@ benef_new_guide_deny_button: '<span class="text-uppercase lighter">Je refuse</sp
 benef_new_guide_private_answer: 'Oui, avec ce bouton je pourrai choisir si le professionnel qui m’accompagne a accès à mes informations ou pas.'
 benef_new_guide_private_question: 'Est-ce que je peux enregistrer des informations juste pour moi ?'
 benef_new_guide_private_question_alt: 'Choix du partage'
-benef_new_guide_title: 'Bienvenue sur Reconnect <span class="vault-green">Le coffre-fort numérique</span>'
+benef_new_guide_title: 'Bienvenue sur Reconnect <span class="text-green">Le coffre-fort numérique</span>'
 benef_new_guide_what_for_answer_1: 'Conserver mes informations'
 benef_new_guide_what_for_answer_1_alt: Coffre-fort
 benef_new_guide_what_for_answer_2: "Simplifier mes échanges avec les<br/>professionnels qui m'accompagnent"
@@ -704,7 +704,7 @@ main.voirFichier: 'Voir le fichier'
 member_do_not_have_account: 'Le membre ne possède pas de compte reconnect'
 member_has_account: 'Le membre possède un compte reconnect'
 member_management_big_title: 'Gestion des <span class="rp-blue">membres</span>'
-member_new_guide_title: 'Bienvenue sur Reconnect <span class="rp-blue">Le coffre-fort numérique</span>'
+member_new_guide_title: 'Bienvenue sur Reconnect <span class="text-blue">Le coffre-fort numérique</span>'
 member_reset_password_no_rights: "Vous n'avez pas le droit de réinitialiser le mot de passe de cet utilisateur"
 member_reset_password_wrong_answer: 'La réponse fournie est incorrecte'
 member_successfully_created: 'Le membre a bien été créé'
