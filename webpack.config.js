@@ -63,12 +63,6 @@ Encore
   .copyFiles([
     {from: './assets/images', to: 'images/[path][name].[hash:8].[ext]'},
     {
-      from: './node_modules/angular-utils-pagination',
-      to: 'angular-utils-pagination/[path][name].[hash:8].[ext]',
-      // only copy files matching this pattern
-      pattern: /\.(html)$/
-    },
-    {
       from: './node_modules/ckeditor/',
       to: './ckeditor/[path][name].[ext]',
       pattern: /\.(js|css)$/,
