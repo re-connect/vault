@@ -2,12 +2,9 @@
 {% set cardColor = isDisabled ? 'grey' : 'primary' %}
 {% set buttonText = buttonText is defined ? buttonText : 'submit'|trans %}
 
-<div class="card rounded-card h-100"
+<div class="card rounded-card h-100 {{ getUserThemeColor() }}-tooltip"
         {% if tooltipMessage is defined and tooltipMessage %}
-            data-toggle="tooltip"
-            data-placement="top"
-            data-bs-custom-class="{{ getUserThemeColor() }}-tooltip"
-            title="{{ tooltipMessage }}"
+            {{ stimulus_controller('tooltip', {title: tooltipMessage}) }}
         {% endif %}
 >
     <h5 class="card-header bg-{{ cardColor }} text-white p-3 text-center">{{ title }}</h5>
