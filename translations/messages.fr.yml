@@ -1074,6 +1074,7 @@ shared: Partagé
 show_beneficiaries: Voir les bénéficiaires
 show_professionals: Voir les professionnels
 si_siao_number: 'Numéro SI-SIAO'
+si_siao_number_already_linked: Ce numéro SI-SIAO est déjà lié à un bénéficiaire sur l'application de réservation hôtelière (Rosalie)
 si_siao_number_found_rosalie: Numéro SI-SIAO trouvé dans l'application de réservation hôtelière (Rosalie), liaison effectuée
 si_siao_number_not_found_rosalie: Numéro SI-SIAO inexistant dans l’application de réservation hôtelière (Rosalie)
 sms: SMS
