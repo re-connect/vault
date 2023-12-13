@@ -12,15 +12,12 @@
             {{ stimulus_controller('loader') }}
             {{ stimulus_action('loader', 'load') }}
             {{ stimulus_target('loader', 'button') }}
-            class="btn btn-{{ color }} text-right text-white {{ customClasses }}"
+            class="btn btn-{{ color }} text-right text-white {{ customClasses }} {{ getUserThemeColor() }}-tooltip"
             href="{{ href }}"
             data-turbo="{{ enableTurbo }}"
             style="{{ style }}"
             {% if tooltip %}
-                data-toggle="tooltip"
-                data-bs-placement="right"
-                data-bs-custom-class="blue-tooltip"
-                title="{{ tooltip|trans }}"
+                {{ stimulus_controller('tooltip', {title: tooltip|trans}) }}
             {% endif %}
     >
         {{ include('v2/common/_button_with_loader_content.html.twig', {icon, text, spinnerColor}) }}
