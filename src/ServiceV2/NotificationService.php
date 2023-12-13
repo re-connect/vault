@@ -4,15 +4,15 @@ namespace App\ServiceV2;
 
 use App\Entity\Beneficiaire;
 use App\Entity\Evenement;
+use App\Entity\Helper\Notification\Notification;
+use App\Entity\Helper\Notification\NotificationAction;
+use App\Entity\Helper\Notification\NotificationForm;
 use App\Entity\Rappel;
 use App\Entity\SMS;
 use App\Entity\User;
 use App\Entity\UserCentre;
 use App\FormV2\UserCreation\SecretQuestionType;
 use App\Helper\SecretQuestionsHelper;
-use App\HelperEntity\Notification;
-use App\HelperEntity\NotificationAction;
-use App\HelperEntity\NotificationForm;
 use App\ManagerV2\RelayManager;
 use App\ServiceV2\Traits\SessionsAwareTrait;
 use App\ServiceV2\Traits\UserAwareTrait;
