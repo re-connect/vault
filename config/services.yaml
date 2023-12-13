@@ -49,17 +49,7 @@ services:
         tags:
             - { name: twig.extension }
 
-    App\Extension\NotificationExtension:
-        autowire: true
-        tags:
-            - { name: twig.extension }
-
     App\Extension\CommonExtension:
-        autowire: true
-        tags:
-            - { name: twig.extension }
-
-    App\Extension\SolutionExtension:
         autowire: true
         tags:
             - { name: twig.extension }
