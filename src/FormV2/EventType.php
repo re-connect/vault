@@ -45,7 +45,7 @@ class EventType extends AbstractType
                 ]
             )
             ->add('rappels', LiveCollectionType::class, [
-                'entry_type' => RappelType::class,
+                'entry_type' => ReminderType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
