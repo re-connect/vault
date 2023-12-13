@@ -4,30 +4,31 @@ namespace App\Listener;
 
 use App\Entity\FaqQuestion;
 use App\Repository\FaqQuestionRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Event\PostFlushEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
+use Doctrine\Persistence\ObjectManager;
 
+#[AsEntityListener(event: Events::preUpdate, method: 'preUpdate', entity: FaqQuestion::class)]
+#[AsEntityListener(event: Events::prePersist, method: 'prePersist', entity: FaqQuestion::class)]
+#[AsEntityListener(event: Events::postFlush, method: 'postFlush', entity: FaqQuestion::class)]
 class FaqQuestionListener
 {
-    private FaqQuestionRepository $repository;
-    private EntityManagerInterface $em;
-    protected array $faqQuestionToPersist;
-
-    public function __construct(FaqQuestionRepository $repository, EntityManagerInterface $em)
+    /**
+     * @param FaqQuestion[] $faqQuestionToPersist
+     */
+    public function __construct(private readonly FaqQuestionRepository $repository, private array $faqQuestionToPersist = [])
     {
-        $this->repository = $repository;
-        $this->em = $em;
-        $this->faqQuestionToPersist = [];
     }
 
-    public function prePersist(LifecycleEventArgs $args): void
+    /**
+     * @param LifecycleEventArgs<ObjectManager> $args
+     */
+    public function prePersist(FaqQuestion $entity, LifecycleEventArgs $args): void
     {
-        $entity = $args->getObject();
-        if (!$entity instanceof FaqQuestion) {
-            return;
-        }
+        $em = $args->getObjectManager();
         $position = $entity->getPosition();
         $faqQuestionsWithHigherOrEqualPosition = $this->repository->findGreaterThanOrEqual($position);
         if (null === $position) {
@@ -37,17 +38,13 @@ class FaqQuestionListener
             foreach ($faqQuestionsWithHigherOrEqualPosition as $faqQuestion) {
                 $faqQuestionPosition = $faqQuestion->getPosition();
                 $faqQuestion->setPosition($faqQuestionPosition + 1);
-                $this->em->persist($faqQuestion);
+                $em->persist($faqQuestion);
             }
         }
     }
 
-    public function preUpdate(PreUpdateEventArgs $args): void
+    public function preUpdate(FaqQuestion $entity, PreUpdateEventArgs $args): void
     {
-        $entity = $args->getObject();
-        if (!$entity instanceof FaqQuestion) {
-            return;
-        }
         $this->faqQuestionToPersist[] = $entity;
         $position = $entity->getPosition();
         $faqQuestionsWithHigherOrEqualPosition = $this->repository->findGreaterThanOrEqual($position);
@@ -66,10 +63,10 @@ class FaqQuestionListener
         }
     }
 
-    public function postFlush(PostFlushEventArgs $event)
+    public function postFlush(FaqQuestion $entity, PostFlushEventArgs $event): void
     {
         if (!empty($this->faqQuestionToPersist)) {
-            $em = $event->getEntityManager();
+            $em = $event->getObjectManager();
             foreach ($this->faqQuestionToPersist as $thing) {
                 $em->persist($thing);
             }
