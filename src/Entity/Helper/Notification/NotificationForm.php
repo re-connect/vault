@@ -1,6 +1,6 @@
 <?php
 
-namespace App\HelperEntity;
+namespace App\Entity\Helper\Notification;
 
 use Symfony\Component\Form\FormView;
 
