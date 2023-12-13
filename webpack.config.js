@@ -15,27 +15,17 @@ Encore
   // only needed for CDN's or subdirectory deploy
   // .setManifestKeyPrefix('build/')
 
-  .addEntry('app', './assets/js/app.js')
-  .addEntry('app_pro', './assets/js/app-pro.js')
-  .addEntry('accueil', './assets/js/accueil.js')
-  .addEntry('beneficiaire_accueil', './assets/js/beneficiaire-accueil.js')
-  .addEntry('creation_beneficiaire_step_2', './assets/js/creation-beneficiaire-step-2.js')
-  .addEntry('custom', './assets/js/custom.js')
-  .addEntry('evenement_form', './assets/js/evenement_form.js')
-  .addEntry('login', './assets/js/login.js')
-  .addEntry('membre_centres', './assets/js/membre-centres.js')
-  .addEntry('reset_password', './assets/js/reset-password.js')
-  .addEntry('set_question_secrete', './assets/js/set-question-secrete.js')
-  .addEntry('set_question_secrete_etape_3', './assets/js/set-question-secrete-etape-3.js')
-
   // New Home
   .addEntry('homeV2', './assets/js/homeV2/app.js')
   .addStyleEntry('homeV2style', './assets/css/homeV2/main.scss')
-  .addStyleEntry('adminStyle', './assets/css/appV2/admin/main.scss')
 
   // New app
   .addEntry('appV2', './assets/js/appV2/app.js')
   .addStyleEntry('appV2style', './assets/css/appV2/main.scss')
+
+  // Admin
+  .addEntry('custom', './assets/js/custom.js')
+  .addStyleEntry('adminStyle', './assets/css/appV2/admin/main.scss')
 
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
   .splitEntryChunks()
