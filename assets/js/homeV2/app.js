@@ -1,5 +1,5 @@
 import 'bootstrap-next';
-import '../language-selector';
+import './language-selector';
 import './show-password';
 import './openstreetmap-marker-generator';
 import '../helpers/intl-tel-input';
