@@ -4,7 +4,7 @@ twig:
     globals:
         googleSiteVerification: '%env(GOOGLE_SITE_VERIFICATION)%'
         crispWebsiteId: '%env(CRISP_WEBSITE_ID)%'
-        appUrl: 'https://reconnect.fr/'
+        appUrl: '%env(APP_ROOT_URL)%'
     form_themes:
         - '@VichUploader/Form/fields.html.twig'
         - 'form/fields.html.twig'
