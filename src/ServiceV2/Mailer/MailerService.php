@@ -55,7 +55,11 @@ class MailerService
             'token' => $token->getToken(),
         ], UrlGeneratorInterface::ABSOLUTE_URL);
 
-        $this->send(ResetPasswordEmail::create($user, $url));
+        $this->send(ResetPasswordEmail::create(
+            $user->getEmail(),
+            $user->getLastLang(),
+            $url,
+        ));
     }
 
     public function sendSharedDocumentLink(SharedDocument $sharedDocument, string $email): void
@@ -65,9 +69,10 @@ class MailerService
 
         if ($document && $user) {
             $this->send(ShareDocumentLinkEmail::create(
-                $user,
                 $email,
+                User::DEFAULT_LANGUAGE,
                 $document->getPresignedUrl(),
+                $user,
             ));
         }
     }
