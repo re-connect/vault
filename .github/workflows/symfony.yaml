@@ -31,6 +31,8 @@ jobs:
                     key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
                     restore-keys: |
                         ${{ runner.os }}-php-
+            -   name: Local PHP Security Checker
+                uses: pplotka/local-php-security-checker-github-actions@1.1.2
             -   name: Start MariaDB
                 uses: getong/mariadb-action@v1.1
                 with:
