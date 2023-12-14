@@ -28,7 +28,7 @@ jobs:
             -   name: Local PHP Security Checker
                 uses: pplotka/local-php-security-checker-github-actions@1.1.2
                 with:
-                    path: path/to/php/project/composer.lock
+                    path: ./composer.lock
             -   name: Cache Composer packages
                 id: composer-cache
                 uses: actions/cache@v3
