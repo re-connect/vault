@@ -3,34 +3,33 @@
 namespace App\Listener;
 
 use App\Entity\User;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
+use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+#[AsEntityListener(event: Events::prePersist, method: 'prePersist', entity: User::class)]
 class UserListener
 {
-    private RequestStack $requestStack;
-
-    public function __construct(RequestStack $requestStack)
+    public function __construct(private readonly RequestStack $requestStack)
     {
-        $this->requestStack = $requestStack;
     }
 
-    public function prePersist(LifecycleEventArgs $args)
+    /**
+     * @param LifecycleEventArgs<ObjectManager> $args
+     */
+    public function prePersist(User $user, LifecycleEventArgs $args): void
     {
-        $entity = $args->getObject();
-        // only act on some "User" entity
-        if (!$entity instanceof User) {
-            return;
-        }
         //        $entityManager = $args->getEntityManager();
         try {
             if (null === ($request = $this->requestStack->getCurrentRequest())) {
                 throw new \RuntimeException('');
             }
 
-            $entity->setLastIp($request->getClientIp());
-        } catch (\RuntimeException $e) {
-            $entity->setLastIp('127.0.0.1');
+            $user->setLastIp($request->getClientIp());
+        } catch (\RuntimeException) {
+            $user->setLastIp('127.0.0.1');
         }
     }
 }
