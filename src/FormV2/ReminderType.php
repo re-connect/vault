@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RappelType extends AbstractType
+class ReminderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

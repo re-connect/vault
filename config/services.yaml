@@ -48,17 +48,7 @@ services:
         tags:
             - { name: twig.extension }
 
-    App\Extension\NotificationExtension:
-        autowire: true
-        tags:
-            - { name: twig.extension }
-
     App\Extension\CommonExtension:
-        autowire: true
-        tags:
-            - { name: twig.extension }
-
-    App\Extension\SolutionExtension:
         autowire: true
         tags:
             - { name: twig.extension }
@@ -68,31 +58,6 @@ services:
         autowire: true
         tags:
             - { name: twig.extension }
-
-    # Listener
-    App\Listener\UserListener:
-        autowire: true
-        tags:
-            - { name: doctrine.event_listener, event: prePersist, method: prePersist }
-
-    App\Listener\DonneePersonnelleListener:
-        autowire: true
-        tags:
-            - { name: doctrine.event_listener, event: preUpdate }
-
-    App\Listener\REImageListener:
-        autowire: true
-        tags:
-            - { name: doctrine.event_listener, event: prePersist, method: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
-            - { name: doctrine.event_listener, event: preRemove, method: preRemove }
-
-    App\Listener\FaqQuestionListener:
-        autowire: true
-        tags:
-            - { name: doctrine.event_listener, event: prePersist, method: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
-            - { name: doctrine.event_listener, event: postFlush, method: postFlush }
 
     re.manager.sms:
         class: App\Manager\SMSManager
