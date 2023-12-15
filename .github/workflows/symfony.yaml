@@ -23,6 +23,10 @@ jobs:
                 with:
                     php-version: ${{ matrix.php-versions }}
             -   uses: actions/checkout@v3
+            -   name: Local PHP Security Checker
+                uses: pplotka/local-php-security-checker-github-actions@1.1.2
+                with:
+                    path: ./composer.lock
             -   name: Cache Composer packages
                 id: composer-cache
                 uses: actions/cache@v3
