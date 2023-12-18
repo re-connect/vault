@@ -19,6 +19,7 @@ services:
             $bucketEndpoint: '%env(BUCKET_ENDPOINT)%'
             $bucketName: '%env(BUCKET_NAME)%'
             $bucketSecret: '%env(BUCKET_SECRET_KEY)%'
+            $env: '%env(APP_ENV)%'
             $kernelEnvironment: '%kernel.environment%'
             $kernelProjectDir: '%kernel.project_dir%'
             $noReplyMail: 'noreply@reconnect.fr'
