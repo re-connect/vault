@@ -15,11 +15,13 @@ class LanguageService
     ) {
     }
 
-    public function setLocaleInSession(string $lang): void
+    public function setLocaleInSession(string $lang = null): void
     {
-        $locale = $this->getLocaleFromLang($lang);
-        $this->request->getCurrentRequest()->setLocale($locale);
-        $this->request->getSession()->set('_locale', $locale);
+        if ($lang) {
+            $locale = $this->getLocaleFromLang($lang);
+            $this->request->getCurrentRequest()->setLocale($locale);
+            $this->request->getSession()->set('_locale', $locale);
+        }
     }
 
     public function getLocaleFromLang(string $lang): string
