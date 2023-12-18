@@ -51,13 +51,16 @@ class MailerService
 
     public function sendResetPasswordLink(User $user, ResetPasswordToken $token): void
     {
+        $userLastLang = $user->getLastLang();
+
         $url = $this->router->generate('app_reset_password_email', [
             'token' => $token->getToken(),
+            'lang' => $userLastLang,
         ], UrlGeneratorInterface::ABSOLUTE_URL);
 
         $this->send(ResetPasswordEmail::create(
             $user->getEmail(),
-            $user->getLastLang(),
+            $userLastLang,
             $url,
         ));
     }
