@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command;
+namespace App\Command\Scheduled;
 
 use App\ManagerV2\EventManager;
 use Symfony\Component\Console\Attribute\AsCommand;
