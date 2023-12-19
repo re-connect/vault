@@ -5,8 +5,10 @@ namespace App\ServiceV2;
 use App\Entity\Beneficiaire;
 use App\Entity\Helper\BeneficiaryCheckOnRosalie;
 use App\Repository\BeneficiaireRepository;
+use App\Repository\ClientBeneficiaireRepository;
 use App\Repository\ClientRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -23,6 +25,7 @@ class RosalieService
         private readonly BeneficiaryClientLinkService $clientLinkService,
         private readonly BeneficiaireRepository $beneficiaireRepository,
         private readonly ClientRepository $clientRepository,
+        private readonly ClientBeneficiaireRepository $clientBeneficiaireRepository,
     ) {
     }
 
@@ -49,10 +52,21 @@ class RosalieService
         }
     }
 
-    public function linkBeneficiaryToRosalie(Beneficiaire $beneficiary): void
+    public function linkBeneficiaryToRosalie(Beneficiaire $beneficiary): bool
     {
-        $this->clientLinkService->linkBeneficiaryToClientWithName($beneficiary, 'rosalie', $beneficiary->getSiSiaoNumber());
-        $this->em->flush();
+        $siSiaoNumber = $beneficiary->getSiSiaoNumber();
+        try {
+            if (!$this->clientBeneficiaireRepository->findOneByDistantIdAndClientName($siSiaoNumber, 'rosalie')) {
+                $this->clientLinkService->linkBeneficiaryToClientWithName($beneficiary, 'rosalie', $siSiaoNumber);
+                $this->em->flush();
+
+                return true;
+            }
+        } catch (NonUniqueResultException $e) {
+            return false;
+        }
+
+        return false;
     }
 
     public function migrateIdToSiSiaoId(int $id, string $number): void

@@ -6,6 +6,7 @@ use App\Entity\Beneficiaire;
 use App\Entity\Centre;
 use App\Entity\User;
 use App\Repository\BeneficiaireRepository;
+use App\Repository\ClientBeneficiaireRepository;
 use App\Repository\ClientRepository;
 use App\ServiceV2\BeneficiaryClientLinkService;
 use App\ServiceV2\RosalieService;
@@ -27,7 +28,8 @@ class RosalieServiceTest extends KernelTestCase
         $beneficiaryClientService = $this->createMock(BeneficiaryClientLinkService::class);
         $beneficiaryRepository = $this->createMock(BeneficiaireRepository::class);
         $clientRepository = $this->createMock(ClientRepository::class);
-        $this->service = new RosalieService($this->httpClient, $em, 'http://rosalie', 'token', $beneficiaryClientService, $beneficiaryRepository, $clientRepository);
+        $clientBeneficiaireRepository = $this->createMock(ClientBeneficiaireRepository::class);
+        $this->service = new RosalieService($this->httpClient, $em, 'http://rosalie', 'token', $beneficiaryClientService, $beneficiaryRepository, $clientRepository, $clientBeneficiaireRepository);
     }
 
     public function testSiSiaoNumberExistsOnRosalie(): void
