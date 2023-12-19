@@ -5,7 +5,6 @@ namespace App\ControllerV2;
 use App\Entity\Document;
 use App\ManagerV2\DocumentManager;
 use App\ManagerV2\SharedDocumentManager;
-use App\Service\LanguageService;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,14 +42,10 @@ class SharedDocumentController extends AbstractController
 
     #[Route(path: '/public/download-shared-document/{token}', name: 'download_shared_document', methods: ['GET'])]
     public function downloadSharedDocument(
-        Request $request,
         string $token,
-        LanguageService $languageService,
         DocumentManager $documentManager,
         SharedDocumentManager $sharedDocumentManager,
     ): Response {
-        $languageService->setLocaleFromLang($request->query->get('lang', ''));
-
         if (!$sharedDocument = $sharedDocumentManager->validateTokenAndFetchDocument($token)) {
             return $this->redirectToRoute('home');
         }

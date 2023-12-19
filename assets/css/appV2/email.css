@@ -1,0 +1,53 @@
+button {
+    padding: 15px 20px 15px 20px;
+}
+
+.text-primary {
+    color: #203468;
+}
+
+.text-white {
+    color: #FFFFFF;
+}
+
+.no-decoration {
+    text-decoration: none;
+}
+
+.w-50 {
+    width: 50px;
+}
+
+.w-250 {
+    width: 200px;
+}
+
+.font-size-12 {
+    font-size: 12px;
+}
+
+.btn-link-green {
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px 15px 20px;
+    border-radius: 15px;
+    background-color: #4db95f;
+}
+
+.footer {
+    background-color: #4db95f;
+    border-radius: 15px;
+    padding: 0 20px 0 20px;
+}
+
+table.button.green table td {
+    text-align: left;
+    color: #fefefe;
+    background: #4db95f;
+    border: 2px solid #4db95f;
+}
+
+table.button.radius-15 table td {
+    border-radius: 15px;
+    border: none;
+}
