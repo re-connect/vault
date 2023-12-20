@@ -1,0 +1,36 @@
+{% set translationLinks = {
+    'fr': {
+        'imgPath': '@appV2Images/icon_fr.png',
+        'alt': 'french_flag',
+    },
+    'en': {
+        'imgPath': '@appV2Images/icon_en.png',
+        'alt': 'english_flag',
+    },
+    'de': {
+        'imgPath': '@appV2Images/icon_de.png',
+        'alt': 'german_flag',
+    },
+    'es': {
+        'imgPath': '@appV2Images/icon_es.png',
+        'alt': 'spanish_flag',
+    },
+} %}
+<row>
+    <columns>
+        <center>
+            <menu>
+                {% for locale, translationLink in translationLinks %}
+                    {% if locale != userLang %}
+                        <item href="{{ url(translationRoute, {'lang': locale}) }}" target="_blank">
+                            <img src="{{ email.image(translationLink.imgPath) }}"
+                                 alt="{{ translationLink.alt|trans({}, 'messages', userLang) }}"
+                                 class="w-50 text-center"
+                            >
+                        </item>
+                    {% endif %}
+                {% endfor %}
+            </menu>
+        </center>
+    </columns>
+</row>

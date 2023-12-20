@@ -25,6 +25,7 @@ class User extends BaseUser implements \JsonSerializable
     public const USER_TYPE_GESTIONNAIRE = 'ROLE_GESTIONNAIRE';
     public const USER_TYPE_ASSOCIATION = 'ROLE_ASSOCIATION';
     public const USER_TYPE_ADMINISTRATEUR = 'ROLE_ADMIN';
+    public const DEFAULT_LANGUAGE = 'fr';
 
     public static array $arTypesUser = [
         self::USER_TYPE_BENEFICIAIRE => 'beneficiaire',
@@ -383,7 +384,7 @@ class User extends BaseUser implements \JsonSerializable
 
     public function getLastLang(): ?string
     {
-        return $this->lastLang;
+        return $this->lastLang ?? self::DEFAULT_LANGUAGE;
     }
 
     public function setLastLang(?string $lastLang): self

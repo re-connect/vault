@@ -11,7 +11,7 @@ use App\ManagerV2\SharedDocumentManager;
 use App\Repository\DocumentRepository;
 use App\Repository\SharedDocumentRepository;
 use App\Repository\UserRepository;
-use App\ServiceV2\MailerService;
+use App\ServiceV2\Mailer\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

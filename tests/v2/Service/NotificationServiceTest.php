@@ -7,6 +7,7 @@ use App\Entity\Beneficiaire;
 use App\Entity\Evenement;
 use App\Entity\Rappel;
 use App\Entity\SMS;
+use App\Entity\User;
 use App\Helper\SecretQuestionsHelper;
 use App\ManagerV2\RelayManager;
 use App\ServiceV2\NotificationService;
@@ -87,7 +88,7 @@ class NotificationServiceTest extends AuthenticatedTestCase
             sprintf('SMS envoyé à %s : %s', $phoneNumber, $message)
         );
 
-        $this->notificationService->sendSmsResetPassword($smsCode, $phoneNumber);
+        $this->notificationService->sendSmsResetPassword((new User())->setTelephone($phoneNumber), $smsCode);
         // Assert we don't keep trace of the sms
         $newSMSCount = count($smsRepo->findAll());
         $this->assertEquals($baseSMSCount, $newSMSCount);
@@ -125,7 +126,7 @@ class NotificationServiceTest extends AuthenticatedTestCase
             ]
         );
 
-        $this->notificationService->sendSmsResetPassword($smsCode, $phoneNumber);
+        $this->notificationService->sendSmsResetPassword($this->beneficiaryUser->getUser(), $smsCode);
     }
 
     public function testSendSmsReminderSuccessfully(): void

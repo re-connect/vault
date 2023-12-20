@@ -61,14 +61,8 @@ class RosalieInteroperabilityController extends AbstractController
 
         $beneficiary->setSiSiaoNumber($form->get('number')->getData());
         $this->em->flush();
-
-        $beneficiaryCheck = $this->service->checkBeneficiaryOnRosalie($beneficiary);
-
-        if ($beneficiaryCheck->beneficiaryIsFound()) {
-            $this->service->linkBeneficiaryToRosalie($beneficiaryCheck->getBeneficiary());
-            $this->addFlash('success', 'si_siao_number_found_rosalie');
-        } elseif ($this->getUser()?->usesRosalie()) {
-            $this->addFlash('error', $beneficiaryCheck->getSamuSocialErrorMessage());
+        if ($this->getUser()->usesRosalie()) {
+            $this->createRosalieLink($beneficiary);
         }
 
         return $redirection;
@@ -102,5 +96,20 @@ class RosalieInteroperabilityController extends AbstractController
         }
 
         return $this->render('v2/pro/rosalie/rosalie.html.twig', ['form' => $form, 'user' => $member->getUser()]);
+    }
+
+    private function createRosalieLink(Beneficiaire $beneficiary): void
+    {
+        $beneficiaryCheck = $this->service->checkBeneficiaryOnRosalie($beneficiary);
+
+        if ($beneficiaryCheck->beneficiaryIsFound()) {
+            if ($this->service->linkBeneficiaryToRosalie($beneficiaryCheck->getBeneficiary())) {
+                $this->addFlash('success', 'si_siao_number_found_rosalie');
+            } else {
+                $this->addFlash('error', 'si_siao_number_already_linked');
+            }
+        } else {
+            $this->addFlash('error', $beneficiaryCheck->getSamuSocialErrorMessage());
+        }
     }
 }

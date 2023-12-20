@@ -7,7 +7,7 @@ use App\Entity\Beneficiaire;
 use App\Entity\Client;
 use App\Entity\User;
 use App\ManagerV2\UserManager;
-use App\ServiceV2\MailerService;
+use App\ServiceV2\Mailer\MailerService;
 use App\ServiceV2\NotificationService;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
@@ -66,7 +66,7 @@ class UserCreationSubscriber
         $this->manager->setUniqueUsername($user);
 
         if ($object instanceof User && 'preprod' !== $this->env) {
-            $this->mailerService->sendDuplicateUsernameAlert($user);
+            $this->mailerService->sendDuplicatedUsernameAlert($user);
         }
     }
 

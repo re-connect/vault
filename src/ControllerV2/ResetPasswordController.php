@@ -9,6 +9,7 @@ use App\FormV2\ResetPassword\PublicRequest\ResetPasswordRequestFormModel;
 use App\FormV2\ResetPassword\PublicRequest\ResetPasswordRequestFormType;
 use App\FormV2\ResetPassword\PublicRequest\ResetPasswordSmsCheckFormType;
 use App\ManagerV2\UserManager;
+use App\Service\LanguageService;
 use App\ServiceV2\ResettingService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,10 +42,7 @@ class ResetPasswordController extends AbstractController
         $form = $this->createForm(ResetPasswordRequestFormType::class, $formModel)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $service->processSendingPasswordResetEmail(
-                $formModel->email,
-                $request->getLocale(),
-            );
+            $service->sendPasswordResetEmail($formModel->email);
         }
 
         return $this->render('v2/reset_password/public/request.html.twig', ['form' => $form]);
@@ -156,12 +154,19 @@ class ResetPasswordController extends AbstractController
     }
 
     #[Route(path: '/reset/email/{token}', name: 'app_reset_password_email', methods: ['GET', 'POST'])]
-    public function resetEmail(Request $request, UserManager $userManager, string $token = null): Response
-    {
+    public function resetEmail(
+        Request $request,
+        UserManager $userManager,
+        LanguageService $languageService,
+        string $token = null,
+    ): Response {
+        $lang = $request->query->get('lang', User::DEFAULT_LANGUAGE);
+        $languageService->setLocaleInSession($lang);
+
         if ($token) {
             $this->storeTokenInSession($token);
 
-            return $this->redirectToRoute('app_reset_password_email');
+            return $this->redirectToRoute('app_reset_password_email', ['lang' => $lang]);
         }
 
         $token = $this->getTokenFromSession();
