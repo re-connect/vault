@@ -7,15 +7,18 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UserController extends REController
 {
+    #[Route(path: '/user/first-visit', name: 'user_first_visit', methods: ['GET'])]
     public function firstVisit(): Response
     {
         return $this->render('user/user/firstVisit.html.twig');
     }
 
+    #[Route(path: '/user/cgs', name: 'user_cgs', methods: ['GET'])]
     public function cgs(TranslatorInterface $translator, EntityManagerInterface $em): Response
     {
         $form = $this->createFormBuilder()
@@ -35,7 +38,7 @@ class UserController extends REController
                 $this->getUser()->setFirstVisit();
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('re_user_redirectUser'));
+                return $this->redirect($this->generateUrl('redirect_user'));
             }
         }
 

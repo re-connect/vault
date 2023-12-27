@@ -61,6 +61,6 @@ class OldRoutesController extends AbstractController
 
     private function redirectUser(): Response
     {
-        return $this->redirectToRoute('re_user_redirectUser');
+        return $this->redirectToRoute('redirect_user');
     }
 }

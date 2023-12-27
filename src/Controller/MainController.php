@@ -27,14 +27,18 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class MainController extends AbstractController
 {
+    #[Route(path: '/', name: 're_main_accueil', methods: ['GET'])]
+    #[Route(path: '/login', name: 're_main_login', methods: ['GET', 'POST'])]
     public function homeV2(
         Request $request,
         VerbatimRepository $verbatimRepository,
         AuthenticationUtils $authenticationUtils
     ): Response {
-        return $this->getUser()
-            ? $this->redirectToRoute('re_user_redirectUser')
-            : $this->home($request, $verbatimRepository, $authenticationUtils);
+        if ($this->getUser()) {
+            return $this->redirectToRoute('redirect_user');
+        }
+
+        return $this->home($request, $verbatimRepository, $authenticationUtils);
     }
 
     #[Route('/home', name: 'home')]
@@ -58,6 +62,7 @@ class MainController extends AbstractController
         ]);
     }
 
+    #[Route(path: '/reconnect-le-coffre-fort-numerique', name: 're_main_page_vault', methods: ['GET'])]
     public function pageVault(AuthenticationUtils $authenticationUtils): Response
     {
         $form = $this->createForm(LoginTypeV2::class, null, [
@@ -73,6 +78,7 @@ class MainController extends AbstractController
         ]);
     }
 
+    #[Route(path: '/reconnect-la-solution-pro', name: 're_main_page_RP', methods: ['GET'])]
     public function pageRP(): Response
     {
         return $this->render('homeV2/pages/page-rp.html.twig', [
@@ -96,6 +102,7 @@ class MainController extends AbstractController
         return $this->render('homeV2/pages/newsletter_confirmation.html.twig');
     }
 
+    #[Route(path: '/faq-rgpd', name: 're_main_faq', methods: ['GET'])]
     public function pageFAQ(FaqQuestionRepository $repository): Response
     {
         return $this->render('homeV2/pages/faq.html.twig', [
@@ -103,16 +110,25 @@ class MainController extends AbstractController
         ]);
     }
 
+    #[Route(path: '/nous-contacter', name: 're_main_contactV2', methods: ['GET'])]
     public function contactV2(): Response
     {
         return $this->render('homeV2/pages/contact.html.twig');
     }
 
+    #[Route(path: '/public/get-centers', name: 're_get_centers', methods: ['GET'])]
     public function getCenters(CentreProvider $provider): Response
     {
         return new JsonResponse([$provider->getAllCentresWithAddress()], Response::HTTP_OK);
     }
 
+    #[Route(
+        path: '/public/changer-langue/{lang}',
+        name: 're_main_change_lang',
+        requirements: ['lang' => '[a-zA-Z]+'],
+        options: ['expose' => true],
+        methods: ['GET'],
+    )]
     public function changeLang($lang, Request $request, EntityManagerInterface $em): RedirectResponse
     {
         $request->setLocale(strtolower($lang));
@@ -136,6 +152,7 @@ class MainController extends AbstractController
         return $this->redirect($referer);
     }
 
+    #[Route(path: '/public/auto-login', name: 're_auto_login', methods: ['GET'])]
     public function autoLogin(Request $request, EntityManagerInterface $em, TokenStorageInterface $tokenStorage, EventDispatcherInterface $eventDispatcher, TranslatorInterface $translator, RequestStack $requestStack): Response
     {
         $session = $requestStack->getSession();
@@ -164,7 +181,7 @@ class MainController extends AbstractController
         $event = new InteractiveLoginEvent($request, $token);
         $eventDispatcher->dispatch($event, 'security.interactive_login');
 
-        return $this->redirect($this->generateUrl('re_user_redirectUser'));
+        return $this->redirect($this->generateUrl('redirect_user'));
     }
 
     #[Route('/public/resetting-mail-translation', name: 'resetting_mail_translation', methods: ['GET'])]
