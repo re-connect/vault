@@ -75,6 +75,6 @@ class BeneficiaryController extends AbstractController
             $em->flush();
         }
 
-        return $this->redirectToRoute('re_user_redirectUser');
+        return $this->redirectToRoute('redirect_user');
     }
 }

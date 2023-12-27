@@ -19,11 +19,13 @@ class SecurityController extends AbstractController
     {
     }
 
+    #[Route(path: '/logout', name: 'app_logout', methods: ['GET'])]
     public function logout()
     {
         throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
     }
 
+    #[Route(path: '/login-end', name: 'login_end', methods: ['GET'])]
     public function loginEnd(Request $request): RedirectResponse
     {
         $targetPath = $request->getSession()->get('_security.main.target_path');
@@ -32,10 +34,11 @@ class SecurityController extends AbstractController
             !$this->getUser() => $this->generateUrl('re_main_login'),
             !$this->getUser()->isBeneficiaire() && $this->gdprService->isPasswordRenewalDue() => $this->generateUrl('app_update_password'),
             !$this->isGranted(User::USER_TYPE_ADMINISTRATEUR) && $targetPath => $targetPath,
-            default => $this->generateUrl('re_user_redirectUser'),
+            default => $this->generateUrl('redirect_user'),
         });
     }
 
+    #[Route(path: '/user/redirect-user/', name: 'redirect_user', methods: ['GET'])]
     public function redirectUser(): ?RedirectResponse
     {
         $user = $this->getUser();
@@ -48,7 +51,7 @@ class SecurityController extends AbstractController
             return $this->redirect($this->generateUrl('sonata_admin_dashboard'));
         }
         if ($user->isFirstVisit()) {
-            return $this->redirect($this->generateUrl('re_user_firstVisit'));
+            return $this->redirect($this->generateUrl('user_first_visit'));
         }
 
         if ($user->isBeneficiaire()) {
