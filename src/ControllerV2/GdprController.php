@@ -22,7 +22,7 @@ class GdprController extends AbstractController
                 $userManager->updatePassword($user, $newPassword);
                 $this->addFlash('success', 'password_updated_successfully');
 
-                return $this->redirectToRoute('re_user_loginEnd');
+                return $this->redirectToRoute('login_end');
             }
             $this->addFlash('danger', 'password_new_should_be_different_from_current');
         } else {

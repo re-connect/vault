@@ -16,8 +16,8 @@ class RedirectUserTest extends AbstractControllerTest implements TestRouteInterf
     {
         yield 'Should redirect to login when not authenticated' => [self::URL, 302, null, '/login'];
         yield 'Should redirect to admin dashboard when authenticated as admin' => [self::URL, 302, AdminFixture::ADMIN_MAIL, '/admin/dashboard'];
-        yield 'Should redirect to first visit page when authenticated for the first time as Beneficiary' => [self::URL, 302, MemberFixture::MEMBER_FIRST_VISIT, '/user/premiere-visite'];
-        yield 'Should redirect to first visit page when authenticated for the first time as Professional' => [self::URL, 302, BeneficiaryFixture::BENEFICIARY_MAIL_FIRST_VISIT, '/user/premiere-visite'];
+        yield 'Should redirect to first visit page when authenticated for the first time as Beneficiary' => [self::URL, 302, MemberFixture::MEMBER_FIRST_VISIT, '/user/first-visit'];
+        yield 'Should redirect to first visit page when authenticated for the first time as Professional' => [self::URL, 302, BeneficiaryFixture::BENEFICIARY_MAIL_FIRST_VISIT, '/user/first-visit'];
         yield 'Should redirect to beneficiary home when authenticated as beneficiary' => [self::URL, 302, BeneficiaryFixture::BENEFICIARY_MAIL, '/beneficiary'];
         yield 'Should redirect to beneficiary creation when authenticated as Professional with no manage beneficiary rights' => [self::URL, 302, MemberFixture::MEMBER_MAIL_NO_RELAY_NO_PERMISSION, '/beneficiary/affiliate'];
         yield 'Should redirect to beneficiary list when authenticated as Professional with manage beneficiary rights' => [self::URL, 302, MemberFixture::MEMBER_MAIL, '/beneficiaries'];

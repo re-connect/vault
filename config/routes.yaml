@@ -1,24 +1,6 @@
-re_main:
-    resource: "routing/main/routing.yml"
-    prefix: /
-
-re_user:
-    resource: "./routing/user/routing.yml"
-    prefix: /
-
-re_get_centers:
-    path: /public/get-centers
-    controller: App\Controller\MainController::getCenters
-
 re.api_rest:
     type: annotation
     resource: App\Controller\Rest\APIRestController
-
-re_image2_download:
-    path: /reimage2/download
-    controller: App\Controller\REImage2Controller::download
-    options:
-        expose: true
 
 ##### API REST V2 #####
 api_v2_beneficiaire:
