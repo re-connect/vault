@@ -1,5 +1,5 @@
-'no': 'No'
-'yes': 'Yes'
+no: 'No'
+yes: 'Yes'
 accept: Accept
 accepted: Accepted
 access: Access
@@ -15,17 +15,13 @@ all_your_data_will_be_deleted: Your data will be deleted and you will no longer 
 alt_logo_reconnect: 'logo association reconnect'
 an_error_occurred: 'An error has occurred!'
 answer_secret_question: 'Answer secret question'
-association.categorie.association: Association
-association.categorie.ccas: 'Communal Centre for Social Action(CCSA)'
+association: Association
+communal_centre_for_social_action: 'Communal Centre for Social Action(CCSA)'
 back: Back
 back_home: 'Back to homepage'
 benef_has_account: 'The beneficiary already has an account ?'
 benef_has_no_account: 'The beneficiary does not have an account ?'
-beneficiaire.menu.mesDocuments: 'My documents'
-beneficiaire.menu2.mesContacts: Contacts
-beneficiaire.menu2.mesDocuments: Documents
-beneficiaire.menu2.mesNotes: Notes
-beneficiaire.menu2.monCalendrier: Meetings
+meetings: Meetings
 beneficiaries: Beneficiaries
 beneficiaries_management: Beneficiaries management
 beneficiary_added_to_relays: 'The beneficiary has been added to selected centers'
@@ -53,7 +49,7 @@ beneficiary_will_receive_sms_reset_request: The beneficiary will receive a code 
 birthDate: Date of birth
 cancel: Cancel
 centers: Centers
-centre.vousAvezBienQuitte: 'You left this center'
+relay_leaved_successfully: 'You left this center'
 cfn_accessible_tool_alt_img: 'an accessible tool'
 cfn_accessible_tool_p: 'The digital safe has been designed to be accessible to as many people as possible. It is quick and intuitive to use, even for people who are not familiar with digital technology. Creating an account does not require a phone number or email address. The tool is translated into several languages and our mobile application allows it to be accessible from a computer or a phone.'
 cfn_accessible_tool_title: 'An accessible tool'
@@ -96,12 +92,9 @@ confirm_beneficiary_creation_cancellation: 'Are you sure you want to cancel bene
 confirm_beneficiary_creation_remotely: "By clicking on confirm, an SMS will be sent to the beneficiary allowing him to activate his account and define his password and the answer to his secret question.\nHe can choose whether or not to accept the sharing of his information with the relay(s) above."
 confirm_new_password: Confirm new password
 connect_reconnect_site: 'Connect to www.reconnect.fr'
-contact.associationLabel: Association
-contact.bienSupprime: 'Your contact has been deleted'
-contact.commentaireLabel: Comment
-contact.emptyData: 'There is no contact yet. Click "Add" to create one.'
-contact.metaTitle: Contact
-contact.telephoneLabel: 'Mobile phone'
+contact_deleted_successfully: 'Your contact has been deleted'
+no_contact_yet: 'There is no contact yet. Click "Add" to create one.'
+contact: Contact
 contact_created: 'Contact created'
 contact_detail: Contact details
 contact_page_offices_contact: 'Are we not settled in your area?'
@@ -151,22 +144,19 @@ disabledBy: 'Disabled by'
 disaffiliate_beneficiary_subtitle: 'Stop the following of'
 disaffiliate_beneficiary: Remove beneficiary
 disaffiliate_user: Remove user
-document.aucunFichier: 'For the moment,there is no folder'
-document.bienSupprime: 'Your documents has been deleted.'
-document.creerUnDossier: 'Create a folder'
-document.deposerDesFichiers: 'Deposit of files'
-document.dossier: Folder
-document.envoyerParEmail.bienEnvoyeParMail: 'Your document has been sent by Email'
-document.metaTitle: Documents
-document.nom: 'Last name'
-document.telecharger: Download
+no_document_yet: 'For the moment,there is no folder'
+document_deleted_successfully: 'Your documents has been deleted.'
+create_folder: 'Create a folder'
+drop_files: 'Deposit of files'
+folder: Folder
+document_successfully_send_email: 'Your document has been sent by Email'
 documents: Documents
-donneePersonnelle.ajouter: Add
-donneePersonnelle.cantDelete: 'You do not have the right to delete this information'
-donneePersonnelle.cantDisplay: 'You do not have the right to show the informations of this beneficiary.'
-donneePersonnelle.cantEdit: 'You do not have the right to edit this information'
-donneePersonnelle.cantReportAbuse: 'You do not have the right to signal this information as abusiv'
-dossier.vide: empty
+add: Add
+you_can_not_delete_personal_data: 'You do not have the right to delete this information'
+you_can_not_display_personal_data: 'You do not have the right to show the informations of this beneficiary.'
+you_can_not_edit_personal_data: 'You do not have the right to edit this information'
+you_can_not_report_personal_data: 'You do not have the right to signal this information as abusiv'
+empty: empty
 download: Download
 download_training_catalogue: 'Download the training catalogue'
 duplicated_username: 'Duplicated username'
@@ -175,28 +165,22 @@ edit: Edit
 email: Email
 enabled: Enabled
 error: Error
-evenement.bienSupprime: 'Your event has been deleted'
-evenement.commentaireLabel: Message
-evenement.dateLabel: Date
-evenement.emptyData: 'There are no events at this time. Click "Add" to create one.'
-evenement.errorSpecifierHeureRappel: 'You must specify the number of hours before sending your reminder'
-evenement.lieuLabel: Place
-evenement.metaTitle: Events
-evenement.nomLabel: Title
-evenement.rappelsLabel: Reminders
+event_removed_successfully: 'Your event has been deleted'
+date: Date
+no_event_yet: 'There are no events at this time. Click "Add" to create one.'
+title: Title
+reminders: Reminders
 event: Event
 event_created: 'Event created'
 event_updated: 'Event updated'
 events: Events
 fill_beneficiary_identity_information: "Please fill beneficiary's identity information"
 firstname: Firstname
-flash.erreur: Error!
-flash.operationReussie: 'Succesful operation'
-folder.isSubFolder: 'The destination folder is a subfolder of the one to be moved.'
+success: 'Succesful operation'
+folder_error_circular_dependency: 'The destination folder is a subfolder of the one to be moved.'
 folder_contains_documents_alert: 'The folder %name% contains documents, if you delete it, you also delete all the documents it contains. Are you sure you want to delete this folder and all the documents it contains?'
 folder_content: 'Folder:'
-folders.notSameBeneficiaire: 'The files do not belong to the same beneficiary.'
-footer.copyright: '©2021 Reconnect -All rights reserved'
+folder_error_different_beneficiary: 'The files do not belong to the same beneficiary.'
 footer_CGS_rp: 'CGS of Reconnect Pro'
 footer_CGS_vault: 'CGS of the digital safe'
 footer_alt_logo_afnic: 'logo afnic'
@@ -207,24 +191,22 @@ footer_discover_rp: 'Learn about Reconnect Pro'
 footer_discover_vault: 'Learn about the digital safe'
 footer_group_sos_text: 'Reconnect is an association of the GROUPE SOS Solidarités, one of the nine sectors of the GROUPE SOS, the leading social enterprise in Europe'
 footer_partners_text: 'Reconnect is supported by:'
-form.validation.mismatch: 'Passwords mismatch'
-form.validation.noPassword: 'You must choose a password'
-form.validation.passwordFormat: 'Your password must contain only letters and numbers.'
-form.validation.tooShort: 'Your password should be at least {{ limit }} characters'
+passwords_mismatch: 'Passwords mismatch'
+you_must_choose_password: 'You must choose a password'
+password_wrong_format: 'Your password must contain only letters and numbers.'
+password_too_short: 'Your password should be at least {{ limit }} characters'
 form_connexion: Login
 form_forgot_password: 'I forgot my password or my login'
 form_login: 'Username or Email'
 generate_password: 'Generate password'
-header.menu.deconnection: Disconnect
-header.menu.parametres: Parameters
+logout: Disconnect
+parameters: Parameters
 header_link_cfn: 'The digital<span class="d-lg-block"> safe</span>'
 header_link_contact: 'Contact<span class="d-lg-block"> us</span>'
 header_link_rp: 'The pro<span class="d-lg-block"> solution</span>'
 header_link_who_we_are: 'Who we<span class="d-lg-block"> are</span>'
 health: Health
-home.metaDesc: TheSocialCloud
-home.metaTitle: 'Reconnect, The Social Cloud'
-home_meta_desc_v2: 'Digital technology for inclusion and social action'
+home_meta_desc: 'Digital technology for inclusion and social action'
 home_meta_title_contact: 'Reconnect - Contact us'
 home_meta_title_digital_cares: 'Reconnect - Digital cares'
 home_meta_title_rp: 'Reconnect - The social monitoring software'
@@ -282,36 +264,29 @@ mail_shared_document_content_3: 'CONFIDENTIALITY: This email (as well as any att
 mail_shared_document_title: 'Document sharing'
 mail_subject_reset_password: 'RECONNECT - Reset your password'
 mail_subject_share_document: 'RECONNECT - Document sharing'
-main.annuler: Cancel
-main.chercher: Search
-main.continuer: Continue
-main.metaAppend: Reconnect
-main.modifier: Edit
-main.modifierFichier: 'Edit the file'
-main.non: 'No'
-main.oui: 'Yes'
-main.pasLesDroits: "You don't have the rights to access this page"
-main.refuser: Decline
-main.retour: Back
-main.uploaderFichier: 'Choose a file'
-main.voirFichier: 'See the file'
-membre.ajoutBeneficiaire.creerCompte.subTitle.remotely: remotely
-membre.ajoutBeneficiaire.creerCompte: 'Create a Reconnect account'
-membre.ajoutBeneficiaire.metaTitle: 'Add a beneficiary'
-membre.creationBeneficiaire.questionsSecretes.q1: 'Which is the first name of the beneficiary´s mother?'
-membre.creationBeneficiaire.questionsSecretes.q2: 'Which is the name of the beneficiary´s pet?'
-membre.creationBeneficiaire.questionsSecretes.q3: 'What is the name of the favourite street of the beneficiary?'
-membre.creationBeneficiaire.questionsSecretes.q4: 'Which highschool institution does the beneficiary remember They attended?'
-membre.creationBeneficiaire.questionsSecretes.q5: 'Which is the nickname of the beneficiary?'
-membre.creationBeneficiaire.questionsSecretes.q6: Other
-membre.droits.gestionBeneficiaires: 'Beneficiaries management'
-membre.droits.gestionMembres: 'Members management'
-membre.partageContact.ajouterMail: 'Add an Email address'
-membre.partageContact.ajouterNuméro: 'Add my phone number'
-membre.partageContact.success: 'Your contact has been added in the contact list of the beneficiary'
-membre.partageContact.text: 'You consult for the first time the shared elements of this user. Do You agree that yout contact be added to the shared contacts list of this user?'
-membre.partageContact.title: 'Share your contact'
-membre.sendSmsCode.smsMessage: 'To confirm your addition please send to your Reconnect Relays the validation code'
+continue: Continue
+reconnect: Reconnect
+edit_file: 'Edit the file'
+you_can_not_see_page: "You don't have the rights to access this page"
+decline: Decline
+choose_file: 'Choose a file'
+display_file: 'See the file'
+remotely: remotely
+create_reconnect_account: 'Create a Reconnect account'
+add_beneficiary: 'Add a beneficiary'
+beneficiary_secret_question_1: 'Which is the first name of the beneficiary´s mother?'
+beneficiary_secret_question_2: 'Which is the name of the beneficiary´s pet?'
+beneficiary_secret_question_3: 'What is the name of the favourite street of the beneficiary?'
+beneficiary_secret_question_4: 'Which highschool institution does the beneficiary remember They attended?'
+beneficiary_secret_question_5: 'Which is the nickname of the beneficiary?'
+beneficiary_secret_question_6: Other
+professionals_management: 'Members management'
+add_personal_email: 'Add an Email address'
+add_personal_phone: 'Add my phone number'
+personal_phone_added_successfully: 'Your contact has been added in the contact list of the beneficiary'
+do_you_accept_to_share_your_information_in_contact_list: 'You consult for the first time the shared elements of this user. Do You agree that yout contact be added to the shared contacts list of this user?'
+share_your_information: 'Share your contact'
+confirm_relay_affiliation_with_sms_code: 'To confirm your addition please send to your Reconnect Relays the validation code'
 missing_secret_question: Secret question is missing
 missing_secret_question_text: You have not yet entered a secret question and answer, you can do so below
 move: Move
@@ -325,11 +300,9 @@ name: Name
 no_relay_selected: No relay selected
 no_relay_selected_alert: You have not affiliated this beneficiary to any relay. If you want to continue creating like this, click continue
 no_result: 'No result'
-note.bienSupprime: 'Your note has been deleted.'
-note.contenuLabel: 'Note content'
-note.emptyData: 'There are no notes yet. Click "Add" to create one.'
-note.metaTitle: Notes
-note.nomLabel: Title
+note_deleted_successfully: 'Your note has been deleted.'
+note_content: 'Note content'
+no_note_yet: 'There are no notes yet. Click "Add" to create one.'
 note_created: 'Note created'
 note_updated: 'Note updated'
 notes: Notes
@@ -361,8 +334,7 @@ public_reset_password_email_has_been_sent: 'An email was sent to you with instru
 public_reset_password_failure_not_in_time: 'You did not renew your password within the time limit, please try again'
 public_reset_password_success: 'Your password has been changed, you can now connect to your account'
 rediscover_our_solutions: '(re)Discover our solutions'
-registerForm.adresse: 'Your personal address (optional)'
-registerForm.telephone: 'Phone number'
+your_address: 'Your personal address (optional)'
 relay_has_no_address: 'The Reconnect relay did not informed any address'
 relays: Relays
 reminder: Reminder
@@ -381,9 +353,9 @@ reset_beneficiary_password: Reset password of %username%
 reset_password_no_way: The beneficiary did not provide a phone number, email address, or answer the secret question. To reset the password, please contact support and we will help you as soon as possible
 reset_password_requested_by_SMS: 'Current reset request was made by SMS'
 reset_password_requested_by_email: 'Current reset request was made by email'
-resetting.public.existePas: 'No user with whis Email has been found'
-resetting.public.metaTitle: 'Password reset'
-resetting.public.text: 'Please enter your Email address'
+no_user_found_with_this_email_address: 'No user with whis Email has been found'
+password_reset: 'Password reset'
+enter_email_address: 'Please enter your Email address'
 results: Results
 rp_is_adaptable_alt_img: 'Adaptable to your needs'
 rp_is_adaptable_p: "The configuration allows you to meet the specific needs of your organization's operations."
@@ -447,20 +419,18 @@ thank_you_for_subscription: 'Thanks for subscribing'
 toggle: Toggle
 unsupported_file_extension: 'Error %fileName%, unsupported file extension'
 used_available: '%used% used over %available% available'
-user.cgu.bAccepter: 'I accept the terms of use'
-user.cgu.metaTitle: 'General conditions of use'
-user.cgu.mustAccept: 'You must accept the terms of use'
-user.cgu.title: 'General conditions of use'
-user.firstVisit.beneficiaire.metaTitle: 'Welcome to Reconnect,The Solidarity Cloud'
-user.firstVisit.gestionnaire.metaTitle: 'Welcome to Reconnect,The Solidarity Cloud'
+accept_terms_of_use: 'I accept the terms of use'
+general_conditions_of_use: 'General conditions of use'
+you_must_accept_terms_of_use: 'You must accept the terms of use'
+welcome_on_solidarity_cloud: 'Welcome to Reconnect,The Solidarity Cloud'
 user.firstVisit.membre.metaTitle: 'Welcome to Reconnect,The Solidarity Cloud'
-user.parametres.changerMotDePasse: 'Change your password'
-user.parametres.mdpActuel: 'Your present password'
-user.parametres.metaTitle: 'User´s settings'
-user.pendingCentre.flashAccepter: 'You accepted  the association to the center'
-user.pendingCentre.flashRefuser: 'You denied the association to the center.'
-user.pendingCentre.title: 'A Reconnect Center wishes to add you'
-user.reinitialiserMdp.smsMessage: 'The code to reset your password is %code%'
+update_your_password: 'Change your password'
+actual_password: 'Your present password'
+user_settings: 'User´s settings'
+relay_affiliation_successful: 'You accepted  the association to the center'
+relay_affiliation_denied: 'You denied the association to the center.'
+relay_wishes_to_add_you: 'A Reconnect Center wishes to add you'
+sms_reset_password_code_is: 'The code to reset your password is %code%'
 user_do_not_have_account: "The user does not have account ?"
 user_error_disabled_account: 'Your account is disabled, please contact support.'
 user_has_account: "The user already has an account ?"

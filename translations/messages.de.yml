@@ -1,5 +1,5 @@
-'no': Nein
-'yes': Ja
+no: Nein
+yes: Ja
 accepted: akzeptiert
 access: Zugang
 accompanying_person_propose_cfn_activation: 'Dein*e Sozialarbeiter*in %person.firstname% %person.lastname% aus der Einrichtung %center% lädt Dich ein, Deine Cloud zu aktivieren.'
@@ -25,22 +25,19 @@ benef_new_guide_title: 'Willkommen bei Reconnect <span class="text-green">- Der 
 benef_new_guide_what_for_answer_1: 'Meine Informationen speichern'
 benef_new_guide_what_for_answer_2: 'Meinen Austausch mit Sozialarbeiter*innen<br/>erleichtern'
 benef_new_guide_what_for_question: 'Was bringt mir die Cloud?'
-benef_new_guide_which_info_icon_1: Dokumente
-benef_new_guide_which_info_icon_2: Erinnerungen
-benef_new_guide_which_info_icon_3: Kontakte
-benef_new_guide_which_info_icon_4: Notizen
+documents: Dokumente
+reminders: Erinnerungen
+contacts: Kontakte
+notes: Notizen
 benef_new_guide_which_info_question: 'Welche Dokumente möchtest Du speichern'
-beneficiaire.menu.mesDocuments: 'Meine Dokumente'
-beneficiaire.menu2.mesContacts: Kontakte
-beneficiaire.menu2.mesDocuments: Dokumente
-beneficiaire.menu2.mesNotes: Notizen
-beneficiaire.menu2.monCalendrier: Termine
+my_documents: 'Meine Dokumente'
+meetings: Termine
 beneficiaries_management: 'Verwaltung von Klient*innen'
-beneficiary.delete.account: 'Sind Sie sicher, dass Sie ihr Konto löschen wollen?'
+beneficiary_delete_account: 'Sind Sie sicher, dass Sie ihr Konto löschen wollen?'
 birthDate: Geburtsdatum
 center_has_no_info: 'Keine Einrichtung kann auf Ihre Daten zugreifen'
 centers: Einrichtungen
-centre.vousAvezBienQuitte: 'Du hast die Einrichtung verlassen'
+relay_leaved_successfully: 'Du hast die Einrichtung verlassen'
 cfn_accessible_tool_alt_img: 'Ein leicht zugängliches Tool'
 cfn_accessible_tool_p: 'Die Cloud wurde so entwickelt, dass sie für möglichst viele Menschen zugänglich ist. Sie lässt sich schnell und intuitiv bedienen – auch ohne Vorkenntnisse. Für die Einrichtung eines Accounts ist weder eine Telefonnummer noch eine E-Mail-Adresse erforderlich. Die Cloud ist in mehrere Sprachen übersetzt und kann via PC oder Smartphone-App genutzt werden.'
 cfn_accessible_tool_title: 'Ein leicht zugängliches Tool'
@@ -68,12 +65,9 @@ city: Stadt
 comment: Kommentar
 confirm: Bestätigen
 connect_reconnect_site: 'Melde dich unter www.reconnect.fr an'
-contact.associationLabel: Verein
-contact.bienSupprime: 'Dein Kontakt wurde erfolgreich gelöscht'
-contact.commentaireLabel: Kommentar
-contact.emptyData: 'Du hast noch keine Kontakte. Klicke auf "Hinzufügen", um einen zu erstellen.'
-contact.metaTitle: Kontakt
-contact.telephoneLabel: Telefonnummer
+contact_deleted_successfully: 'Dein Kontakt wurde erfolgreich gelöscht'
+no_contact_yet: 'Du hast noch keine Kontakte. Klicke auf "Hinzufügen", um einen zu erstellen.'
+contact: Kontakt
 contact_page_offices_city_aura: Lyon
 contact_page_offices_city_canada: Montreal
 contact_page_offices_city_est: Strasbourg
@@ -103,49 +97,39 @@ delete: Löschen
 delete_your_account: 'Wenn Du Dein Konto löschen möchtest, klicke hier'
 disabledAt: 'Deaktiviert am'
 disabledBy: 'Deaktiviert durch'
-document.aucunFichier: 'Du hast noch keine Dokumente.'
-document.bienSupprime: 'Dein Dokument wurde erfolgreich gelöscht.'
-document.creerUnDossier: 'Ordner erstellen'
-document.deposerDesFichiers: 'Dokumente hochladen'
-document.dossier: Ordner
-document.envoyerParEmail.bienEnvoyeParMail: 'Du hast das Dokument erfolgreich per E-Mail verschickt'
-document.metaTitle: Dokumente
-document.move: Verschieben
-document.nom: Dokumentenname
-document.telecharger: Herunterladen
-donneePersonnelle.ajouter: Hinzufügen
-donneePersonnelle.cantDelete: 'Du hast nicht die Berechtigung zum Löschen der Datei'
-donneePersonnelle.cantDisplay: 'Du hast nicht die Berechtigung zum Anzeigen der Daten'
-donneePersonnelle.cantEdit: 'Du hast nicht die Berechtigung, die Daten zu bearbeiten'
-donneePersonnelle.cantReportAbuse: 'Du hast nicht die Berechtigung, diese Daten zu melden'
-donneePersonnelle.edit: Bearbeiten
-donneePersonnelle.form.access.label: Freigabe
-donneePersonnelle.information: Informationen
-donneePersonnelle.list.entete.actions: Aktionen
-dossier.vide: leer
+no_document_yet: 'Du hast noch keine Dokumente.'
+document_deleted_successfully: 'Dein Dokument wurde erfolgreich gelöscht.'
+create_folder: 'Ordner erstellen'
+drop_files: 'Dokumente hochladen'
+folder: Ordner
+document_successfully_send_email: 'Du hast das Dokument erfolgreich per E-Mail verschickt'
+download: Herunterladen
+add: Hinzufügen
+you_can_not_delete_personal_data: 'Du hast nicht die Berechtigung zum Löschen der Datei'
+you_can_not_display_personal_data: 'Du hast nicht die Berechtigung zum Anzeigen der Daten'
+you_can_not_edit_personal_data: 'Du hast nicht die Berechtigung, die Daten zu bearbeiten'
+you_can_not_report_personal_data: 'Du hast nicht die Berechtigung, diese Daten zu melden'
+information: Informationen
+actions: Aktionen
+empty: leer
 download_document: 'Dokument herunterladen'
 download_document_click_button: 'Klicken, um das Dokument herunterzuladen'
 edit: Bearbeiten
 email: E-Mail
 enabled: Aktiv
 error: Fehler
-evenement.bienSupprime: 'Du hast den Termin erfolgreich gelöscht'
-evenement.commentaireLabel: Nachricht
-evenement.dateLabel: Datum
-evenement.emptyData: 'Du hast noch keine Termine. Klick auf "Hinzufügen" um einen zu erstellen.'
-evenement.lieuLabel: Ort
-evenement.metaTitle: Termine
-evenement.nomLabel: Titel
-evenement.rappelsLabel: Mahnungen
+event_removed_successfully: 'Du hast den Termin erfolgreich gelöscht'
+no_event_yet: 'Du hast noch keine Termine. Klick auf "Hinzufügen" um einen zu erstellen.'
+events: Termine
+title: Titel
 event: Termin
 faq_gdpr: 'F.A.Q. Datenschutz'
 faq_gdpr_no_content: 'Dieser Abschnitt ist aktuell leer'
 faq_gdpr_text: '<p>Sie haben Fragen zum Thema Datenschutz / DSGVO?</p><p>Dieses FAQ sollte die meisten Fragen beantworten.</p>'
-flash.erreur: Fehler
-flash.operationReussie: 'Das hat geklappt'
-folder.isSubFolder: 'Du kannst den Ordner nicht in einen Unterordner des Ordners verschieben.'
+success: 'Das hat geklappt'
+folder_error_circular_dependency: 'Du kannst den Ordner nicht in einen Unterordner des Ordners verschieben.'
 folder_content: 'Inhalt des Ordners :'
-folders.notSameBeneficiaire: 'Die Dokumente gehören nicht zum gleichen Empfänger'
+folder_error_different_beneficiary: 'Die Dokumente gehören nicht zum gleichen Empfänger'
 footer_CGS_rp: 'CGS von Reconnect Pro'
 footer_CGS_vault: 'CGS der Cloud'
 footer_alt_logo_afnic: 'logo afnic'
@@ -158,21 +142,21 @@ footer_discover_rp: 'Entdecken Sie Reconnect Pro'
 footer_discover_vault: 'Entdecken Sie die Cloud für wohnungslose Menschen'
 footer_group_sos_text: 'Reconnect ist Teil der GROUPE SOS Solidarités, einem von neun Verbänden der GROUPE SOS, dem führenden Sozialunternehmen in Europa'
 footer_partners_text: 'Reconnect wird unterstützt von: '
-form.validation.noPassword: 'Du musst ein Passwort festlegen'
-form.validation.passwordFormat: 'Dein Passwort darf nur Buchstaben und Zahlen enthalten'
+you_must_choose_password: 'Du musst ein Passwort festlegen'
+password_wrong_format: 'Dein Passwort darf nur Buchstaben und Zahlen enthalten'
 form_connexion: Verbindung
 form_forgot_password: 'Ich habe mein Passwort oder meinen Benutzernamen vergessen'
 form_login: 'Benutzername oder E-Mail'
 gdpr_know_more: 'Mehr über den Datenschutz erfahren'
-header.menu.deconnection: Abmelden
-header.menu.parametres: Einstellungen
-header.menu.relaisReconnect: 'Meine Einrichtungen'
+logout: Abmelden
+parameters: Einstellungen
+my_reconnect_relays: 'Meine Einrichtungen'
 header_link_cfn: 'Cloud für<span class="d-lg-block"> wohnungslose Menschen</span>'
 header_link_contact: 'Kontakt<span class="d-lg-block"> aufnehmen</span>'
 header_link_rp: 'Lösung für<span class="d-lg-block"> Sozialarbeitende</span>'
 header_link_who_we_are: 'Wer sind<span class="d-lg-block"> wir ?</span>'
 health: Verfassung
-home_meta_desc_v2: 'Digitalisierung als Unterstützung der Sozialarbeit und Inklusion'
+home_meta_desc: 'Digitalisierung als Unterstützung der Sozialarbeit und Inklusion'
 home_meta_title_contact: 'Reconnect - Kontakt aufnehmen'
 home_meta_title_rp: 'Reconnect - Die Software für Sozialarbeiter*innen'
 home_meta_title_vault: 'Reconnect - Cloud für wohnungslose Menschen'
@@ -224,44 +208,38 @@ mail_shared_document_content_3: 'VERTRAULICHKEIT: Diese E-Mail (sowie die angeh�
 mail_shared_document_title: Dokumente
 mail_subject_reset_password: 'RECONNECT - Passwort zurücksetzen'
 mail_subject_share_document: 'RECONNECT - Dokument teilen'
-main.annuler: Abbrechen
-main.chercher: Suchen
-main.continuer: Weiter
-main.modifier: Bearbeiten
-main.modifierFichier: 'Das Dokument bearbeiten'
-main.non: Nein
-main.oui: Ja
-main.pasLesDroits: 'Dir fehlt die Berechtigung zur Anzeige dieser Seite'
-main.refuser: Ablehnen
-main.retour: Zurück
-main.uploaderFichier: 'Eine Datei auswählen'
-main.voirFichier: 'Eine Datei anzeigen'
+cancel: Abbrechen
+continue: Weiter
+edit_file: 'Das Dokument bearbeiten'
+you_can_not_see_page: 'Dir fehlt die Berechtigung zur Anzeige dieser Seite'
+decline: Ablehnen
+back: Zurück
+choose_file: 'Eine Datei auswählen'
+display_file: 'Eine Datei anzeigen'
 member_new_guide_title: 'Willkommen bei Reconnect <span class="text-blue">- Der Cloud für wohnungslose Menschen</span>'
-membre.ajoutBeneficiaire.creerCompte.default.description: 'Der/die Klient*in ist bei Dir?'
-membre.ajoutBeneficiaire.creerCompte.remotely.description1: 'Der/die Klient*in ist nicht bei Dir?'
-membre.ajoutBeneficiaire.creerCompte.remotely.description2: 'Er/Sie erhält eine SMS zur Bestätigung und Vervollständigung der Daten'
-membre.ajoutBeneficiaire.creerCompte.subTitle.remotely: 'Aus der Entfernung'
-membre.ajoutBeneficiaire.creerCompte.subTitle: 'Mit dem/der Klient*in'
-membre.ajoutBeneficiaire.creerCompte: 'Ein Konto erstellen'
-membre.ajoutBeneficiaire.metaTitle: 'Klient*in hinzufügen'
-membre.creationBeneficiaire.questionsSecretes.q1: 'Wie lautet der Vorname der Mutter des/der Klient*in?'
-membre.creationBeneficiaire.questionsSecretes.q2: 'Wie heißt das Haustier des/der Klient*in'
-membre.creationBeneficiaire.questionsSecretes.q3: 'Wo hält sich der/die Klient*in am liebsten auf?'
-membre.creationBeneficiaire.questionsSecretes.q4: 'Welche Grundschule hat der/die Klient*in besucht?'
-membre.creationBeneficiaire.questionsSecretes.q5: 'Wie lautet der Spitzname des/der Klient*in?'
-membre.creationBeneficiaire.questionsSecretes.q6: 'Andere Frage stellen'
-membre.creationBeneficiaire.questionsSecretes.q6V2: 'Wo wurde der/die Klient*in geboren?'
-membre.creationBeneficiaire.questionsSecretes.q7: 'Was ist die Lieblingsfarbe des/der Klient*in?'
-membre.creationBeneficiaire.questionsSecretes.q8: 'Wie lautet der Familienname der Mutter des/der Klient*in?'
-membre.creationBeneficiaire.questionsSecretes.q9: 'Andere Frage stellen'
-membre.droits.gestionBeneficiaires: 'Klient*innen Verwaltung'
-membre.droits.gestionMembres: 'Nutzer*innen Verwaltung'
-membre.partageContact.ajouterMail: 'Meine E-Mail-Adresse hinzufügen'
-membre.partageContact.ajouterNuméro: 'Meine Telefonnummer hinzufügen'
-membre.partageContact.success: 'Du wurdest in die Kontaktliste des/der Klient*in aufgenommen.'
-membre.partageContact.text: 'Du siehst zum ersten Mal die freigegebenen Elemente dieser Person. Bist du damit einverstanden, dass Dein Kontakt zur Liste der freigegebenen Kontakte dieser Person hinzugefügt wird?'
-membre.partageContact.title: 'Deinen Kontakt teilen'
-membre.sendSmsCode.smsMessage: 'Um Deine Anmeldung zu bestätigen, sende bitte den Bestätigungscode %code% an Deine Reconnect-Einrichtung bzw. Deine/n Sozialarbeiter*in'
+is_the_beneficiary_with_you: 'Der/die Klient*in ist bei Dir?'
+the_beneficiary_is_not_with_you: 'Der/die Klient*in ist nicht bei Dir?'
+the_beneficiary_will_receive_sms_to_create_account: 'Er/Sie erhält eine SMS zur Bestätigung und Vervollständigung der Daten'
+remotely: 'Aus der Entfernung'
+with_beneficiary: 'Mit dem/der Klient*in'
+create_reconnect_account: 'Ein Konto erstellen'
+add_beneficiary: 'Klient*in hinzufügen'
+beneficiary_secret_question_1: 'Wie lautet der Vorname der Mutter des/der Klient*in?'
+beneficiary_secret_question_2: 'Wie heißt das Haustier des/der Klient*in'
+beneficiary_secret_question_3: 'Wo hält sich der/die Klient*in am liebsten auf?'
+beneficiary_secret_question_4: 'Welche Grundschule hat der/die Klient*in besucht?'
+beneficiary_secret_question_5: 'Wie lautet der Spitzname des/der Klient*in?'
+beneficiary_secret_question_6: 'Wo wurde der/die Klient*in geboren?'
+beneficiary_secret_question_7: 'Was ist die Lieblingsfarbe des/der Klient*in?'
+beneficiary_secret_question_8: 'Wie lautet der Familienname der Mutter des/der Klient*in?'
+beneficiary_secret_question_9: 'Andere Frage stellen'
+professionals_management: 'Nutzer*innen Verwaltung'
+add_personal_email: 'Meine E-Mail-Adresse hinzufügen'
+add_personal_phone: 'Meine Telefonnummer hinzufügen'
+personal_phone_added_successfully: 'Du wurdest in die Kontaktliste des/der Klient*in aufgenommen.'
+do_you_accept_to_share_your_information_in_contact_list: 'Du siehst zum ersten Mal die freigegebenen Elemente dieser Person. Bist du damit einverstanden, dass Dein Kontakt zur Liste der freigegebenen Kontakte dieser Person hinzugefügt wird?'
+share_your_information: 'Deinen Kontakt teilen'
+confirm_relay_affiliation_with_sms_code: 'Um Deine Anmeldung zu bestätigen, sende bitte den Bestätigungscode %code% an Deine Reconnect-Einrichtung bzw. Deine/n Sozialarbeiter*in'
 message: Nachricht
 missing_secret_question_text: Sie haben noch keine geheime Frage und Antwort eingegeben. Das können Sie unten tun
 modal_message_contact_delete: 'Bist du sicher, dass du diesen Kontakt löschen möchtest'
@@ -273,11 +251,9 @@ move: Verschieben
 name: Name
 next: Weiter
 not_allowed_to_share_this_document: 'Sie sind nicht zur Freigabe dieses Dokuments berechtigt'
-note.bienSupprime: 'Die Notiz wurde gelöscht'
-note.contenuLabel: Beschreibung
-note.emptyData: 'Es sind noch keine Notizen hinterlegt. Klicke auf "Hinzufügen" um eine Notiz zu erstellen.'
-note.metaTitle: Notizen
-note.nomLabel: Betreff
+note_deleted_successfully: 'Die Notiz wurde gelöscht'
+note_content: Beschreibung
+no_note_yet: 'Es sind noch keine Notizen hinterlegt. Klicke auf "Hinzufügen" um eine Notiz zu erstellen.'
 number_of_docs: 'Anzahl Dokumente'
 or_click_link: 'Oder klicke auf den Link'
 password: Passwort
@@ -301,16 +277,15 @@ public_reset_password_failure_not_in_time: 'Sie haben Ihr Passwort nicht in der 
 public_reset_password_success: 'Ihr Passwort wurde erfolgreich geändert. Sie können sich nun einloggen.'
 question: Frage
 reconnect_center: 'Reconnect Einrichtung'
-registerForm.adresse: 'Deine private Adresse (optional)'
-registerForm.telephone: Telefon
+your_address: 'Deine private Adresse (optional)'
 reminder: Erinnerung
 reminder_sms: SMS-Erinnerung
 reminder_sms_content: "Hallo \nErinnerung an Deinen Termin: %name% \n%date%"
 rename: Umbenennen
-resetting.public.existePas: 'Es wurde kein Konto mit dieser E-Mail-Adresse gefunden'
-resetting.public.metaTitle: 'Passwort zurücksetzen'
-resetting.public.text: 'Bitte gib Deine E-Mail-Adresse ein'
-resetting.public.votreTelephone: 'Deine Telefonnummer'
+no_user_found_with_this_email_address: 'Es wurde kein Konto mit dieser E-Mail-Adresse gefunden'
+password_reset: 'Passwort zurücksetzen'
+enter_email_address: 'Bitte gib Deine E-Mail-Adresse ein'
+your_phone_number: 'Deine Telefonnummer'
 rp_is_adaptable_alt_img: 'bedarfsgerechte Anpassung'
 rp_is_adaptable_p: 'Sie können die Cloud an die Anforderungen Ihrer Einrichtung anpassen.'
 rp_is_adaptable_title: 'bedarfsgerechte Anpassung'
@@ -353,20 +328,18 @@ street: Straße
 tax: Steuern
 today: Heute
 used_available: 'Du verwendest %used% von verfügbaren %available%'
-user.cgu.bAccepter: 'Ich akzeptiere die Nutzungsbedingungen'
-user.cgu.metaTitle: Nutzungsbedingungen
-user.cgu.mustAccept: 'Du musst die Nutzungsbedingungen akzeptieren'
-user.cgu.title: 'Allgemeine Geschäftsbedingungen des Dienstes'
-user.firstVisit.beneficiaire.metaTitle: 'Willkommen bei Reconnect - Der Cloud für wohnungslose Menschen'
-user.firstVisit.gestionnaire.metaTitle: 'Willkommen bei Reconnect - Der Cloud für wohnungslose Menschen'
+accept_terms_of_use: 'Ich akzeptiere die Nutzungsbedingungen'
+general_conditions_of_use: Nutzungsbedingungen
+you_must_accept_terms_of_use: 'Du musst die Nutzungsbedingungen akzeptieren'
+welcome_on_solidarity_cloud: 'Willkommen bei Reconnect - Der Cloud für wohnungslose Menschen'
 user.firstVisit.membre.metaTitle: 'Willkommen bei Reconnect - Der Cloud für wohnungslose Menschen'
-user.parametres.changerMotDePasse: 'Passwort ändern'
-user.parametres.mdpActuel: 'Aktuelles Passwort'
-user.parametres.metaTitle: Einstellungen
-user.pendingCentre.flashAccepter: 'Du hast die Verbindung zur Einrichtung angenommen'
-user.pendingCentre.flashRefuser: 'Du hast die Verbindung zur Einrichtung abgelehnt'
-user.pendingCentre.title: 'Eine Einrichtung möchte dich hinzufügen'
-user.reinitialiserMdp.smsMessage: 'Der Code zum Zurücksetzen Deines Passwortes ist %code%'
+update_your_password: 'Passwort ändern'
+actual_password: 'Aktuelles Passwort'
+user_settings: Einstellungen
+relay_affiliation_successful: 'Du hast die Verbindung zur Einrichtung angenommen'
+relay_affiliation_denied: 'Du hast die Verbindung zur Einrichtung abgelehnt'
+relay_wishes_to_add_you: 'Eine Einrichtung möchte dich hinzufügen'
+sms_reset_password_code_is: 'Der Code zum Zurücksetzen Deines Passwortes ist %code%'
 user_not_found: 'Nutzer*in konnte nicht gefunden werden'
 user_parameters_subtitle: 'Einstellungen von %subject%'
 user_shared_document_with_you: 'Der Benutzer %nom% %prenom% möchte dieses Dokument mit Ihnen teilen: "%document%"'

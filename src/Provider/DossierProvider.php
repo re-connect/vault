@@ -27,7 +27,7 @@ class DossierProvider extends DonneePersonnelleProvider
     public function createFolder(Beneficiaire $beneficiaire, string $nom = 'Sans nom', bool $log = true): Dossier
     {
         if (!$this->authorizationChecker->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $beneficiaire)) {
-            throw new AccessDeniedException($this->translator->trans('donneePersonnelle.cantDisplay'));
+            throw new AccessDeniedException($this->translator->trans('you_can_not_display_personal_data'));
         }
 
         $dossier = (new Dossier())
@@ -83,7 +83,7 @@ class DossierProvider extends DonneePersonnelleProvider
             throw new \RuntimeException("Le document et le dossier n'appartiennent pas au même bénéficiaire");
         }
         if (!$this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_EDIT, $dossier)) {
-            throw new AccessDeniedException($this->translator->trans('donneePersonnelle.cantEdit'));
+            throw new AccessDeniedException($this->translator->trans('you_can_not_edit_personal_data'));
         }
 
         $document
@@ -117,7 +117,7 @@ class DossierProvider extends DonneePersonnelleProvider
     public function changePrive(DonneePersonnelle $donneePersonnelle, $bPrive = true): void
     {
         if (!$this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_EDIT, $donneePersonnelle)) {
-            throw new AccessDeniedException($this->translator->trans('donneePersonnelle.cantEdit'));
+            throw new AccessDeniedException($this->translator->trans('you_can_not_edit_personal_data'));
         }
 
         $this->changePriveRecursive($donneePersonnelle, $bPrive);
@@ -160,13 +160,13 @@ class DossierProvider extends DonneePersonnelleProvider
     public function moveDossierInside(Dossier $dossier, Dossier $dossierDestinataire): void
     {
         if ($dossier->getBeneficiaire()->getId() !== $dossierDestinataire->getBeneficiaire()->getId()) {
-            throw new BadRequestHttpException($this->translator->trans('folders.notSameBeneficiaire'));
+            throw new BadRequestHttpException($this->translator->trans('folder_error_different_beneficiary'));
         }
         if ($this->isInFolder($dossier, $dossierDestinataire)) {
-            throw new BadRequestHttpException($this->translator->trans('folder.isSubFolder'));
+            throw new BadRequestHttpException($this->translator->trans('folder_error_circular_dependency'));
         }
         if (!$this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_EDIT, $dossier)) {
-            throw new AccessDeniedException($this->translator->trans('donneePersonnelle.cantEdit'));
+            throw new AccessDeniedException($this->translator->trans('you_can_not_edit_personal_data'));
         }
 
         $dossier
@@ -192,7 +192,7 @@ class DossierProvider extends DonneePersonnelleProvider
     public function getOutFromFolder(Dossier $dossier): void
     {
         if (!$this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_EDIT, $dossier)) {
-            throw new AccessDeniedException($this->translator->trans('donneePersonnelle.cantEdit'));
+            throw new AccessDeniedException($this->translator->trans('you_can_not_edit_personal_data'));
         }
 
         $dossier->setDossierParent();
