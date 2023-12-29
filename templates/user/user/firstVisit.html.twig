@@ -2,11 +2,9 @@
 
 {% block metaTitle %}
     {% if app.user.isBeneficiaire %}
-        {{ 'user.firstVisit.beneficiaire.metaTitle'|trans }}
+        {{ 'welcome_on_solidarity_cloud'|trans }}
     {% elseif app.user.isMembre %}
         {{ 'user_firstVisit_membre_metaTitle'|trans }}
-    {% elseif app.user.isGestionnaire %}
-        {{ 'user.firstVisit.gestionnaire.metaTitle'|trans }}
     {% endif %}
 {% endblock metaTitle %}
 
@@ -37,7 +35,7 @@
             </div>
             <div class="text-center mt-3 mt-md-5">
                 <a href="{{ path('re_user_cgs') }}" class="btn btn-blue text-white font-size-1">
-                    {{ 'main.continuer'|trans }}
+                    {{ 'continue'|trans }}
                 </a>
             </div>
         {% endif %}

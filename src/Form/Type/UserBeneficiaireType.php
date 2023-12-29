@@ -37,7 +37,7 @@ class UserBeneficiaireType extends AbstractType
             ])
             ->add('telephone', null, [
                     'required' => false,
-                    'label' => 'registerForm.telephone',
+                    'label' => 'phone',
                     'attr' => [
                         'class' => 'intl-tel-input',
                     ],
@@ -45,7 +45,7 @@ class UserBeneficiaireType extends AbstractType
             )
             ->addEventSubscriber(new AddFormattedPhoneSubscriber())
             ->add('email', EmailType::class, ['required' => false, 'label' => 'email'])
-            ->add('adresse', AdresseType::class, ['required' => false, 'label' => 'registerForm.adresse'])
+            ->add('adresse', AdresseType::class, ['required' => false, 'label' => 'your_address'])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'label' => 'password',

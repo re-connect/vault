@@ -1,5 +1,5 @@
-'no': Non
-'yes': Oui
+no: Non
+yes: Oui
 accept: Accepter
 accepted: Accepté
 access: Accès
@@ -21,8 +21,7 @@ alt_logo_reconnect: 'logo association reconnect'
 an_error_occurred: Une erreur s'est produite !
 answer: Réponse
 answer_secret_question: 'Répondre à la question secrète'
-association.categorie.association: Association
-association.categorie.ccas: "Centre Communal d'Action Social (CCAS)"
+communal_centre_for_social_action: "Centre Communal d'Action Social (CCAS)"
 association: Association
 at: à
 back: Retour
@@ -38,19 +37,12 @@ benef_new_guide_title: 'Bienvenue sur Reconnect <span class="text-green">Le coff
 benef_new_guide_what_for_answer_1: 'Conserver mes informations'
 benef_new_guide_what_for_answer_2: "Simplifier mes échanges avec les<br/>professionnels qui m'accompagnent"
 benef_new_guide_what_for_question: 'A quoi servira mon coffre-fort numérique ?'
-benef_new_guide_which_info_icon_1: Documents
-benef_new_guide_which_info_icon_2: Rappels
-benef_new_guide_which_info_icon_3: Contacts
-benef_new_guide_which_info_icon_4: Notes
+reminders: Rappels
 benef_new_guide_which_info_question: 'Quelles informations je peux conserver ?'
-beneficiaire.menu.mesDocuments: 'Mes Documents'
-beneficiaire.menu2.mesContacts: Contacts
-beneficiaire.menu2.mesDocuments: Documents
-beneficiaire.menu2.mesNotes: Notes
-beneficiaire.menu2.monCalendrier: Rendez-Vous
+meetings: Rendez-Vous
 beneficiaries: Bénéficiaires
 beneficiaries_management: Gestion des bénéficiaires
-beneficiary.delete.account: 'Êtes vous sûr de vouloir supprimer votre compte ?'
+beneficiary_delete_account: 'Êtes vous sûr de vouloir supprimer votre compte ?'
 beneficiary_added_to_relays: 'Le bénéficiaire a été ajouté aux relais selectionnés'
 beneficiary_already_affiliated_to_relay: Le bénéficiaire est déjà affilié à ce relais
 beneficiary_already_as_account_affiliate: 'Rattachez son coffre-fort à l’un de vos relais afin de lui partager des informations.'
@@ -83,7 +75,7 @@ birthDate: Date de naissance
 cancel: Annuler
 center_has_no_info: "Aucun Relais n'a accès à vos informations partagées"
 centers: Centres
-centre.vousAvezBienQuitte: 'Vous avez bien quitté le centre'
+relay_leaved_successfully: 'Vous avez bien quitté le centre'
 cfn_accessible_tool_alt_img: 'un outil accessible'
 cfn_accessible_tool_p: "Le coffre-fort numérique a été conçu de manière à être accessible au plus grand nombre. Sa prise en main est rapide et intuitive, y compris pour des personnes éloignées du numérique. L'ouverture d'un compte ne nécessite pas de numéro de téléphone ou d'adresse mail. L'outil est traduit dans plusieurs langues, et est accessible depuis un ordinateur ou depuis un téléphone grâce à notre application mobile."
 cfn_accessible_tool_title: 'Un outil accessible'
@@ -126,12 +118,9 @@ confirm_beneficiary_creation_cancellation: 'Êtes vous sûr de vouloir annuler l
 confirm_beneficiary_creation_remotely: "En cliquant sur confirmer, un SMS sera envoyé au bénéficiaire lui permettant d’activer son compte et de définir son mot de passe et la réponse à sa question secrète. \n Il pourra choisir d’accepter ou non le partage de ses informations avec le(s) relais ci-dessus."
 confirm_new_password: Confirmez votre nouveau mot de passe
 connect_reconnect_site: 'Connectez-vous sur www.reconnect.fr'
-contact.associationLabel: Association
-contact.bienSupprime: 'Votre contact a bien été supprimé'
-contact.commentaireLabel: Commentaire
-contact.emptyData: 'Il n''y a aucun contact pour l''instant. Cliquez sur "Ajouter" pour en créer un.'
-contact.metaTitle: Contact
-contact.telephoneLabel: Téléphone
+contact_deleted_successfully: 'Votre contact a bien été supprimé'
+no_contact_yet: 'Il n''y a aucun contact pour l''instant. Cliquez sur "Ajouter" pour en créer un.'
+contact: Contact
 contact_created: 'Contact créé'
 contact_detail: Coordonnées
 contact_page_offices_city_aquitaine: Bordeaux
@@ -208,28 +197,19 @@ disabledBy: 'Désactivé par'
 disaffiliate_beneficiary_subtitle: 'Arrêter le suivi de'
 disaffiliate_beneficiary: Arrêter le suivi d'un bénéficiaire
 disaffiliate_user: Arrêter le suivi d'un utilisateur
-document.aucunFichier: "Il n'y a aucun fichier pour l'instant"
-document.bienSupprime: 'Votre document a bien été supprimée'
-document.creerUnDossier: 'Créer un dossier'
-document.deposerDesFichiers: 'Déposer des fichiers'
-document.dossier: Dossier
-document.envoyerParEmail.bienEnvoyeParMail: 'Votre document a bien été envoyé par mail'
-document.metaTitle: Documents
-document.move: Déplacer
-document.nom: 'Nom :'
-document.rename: Renommer
-document.telecharger: Télécharger
+no_document_yet: "Il n'y a aucun fichier pour l'instant"
+document_deleted_successfully: 'Votre document a bien été supprimée'
+create_folder: 'Créer un dossier'
+drop_files: 'Déposer des fichiers'
+folder: Dossier
+document_successfully_send_email: 'Votre document a bien été envoyé par mail'
 documents: Documents
-donneePersonnelle.ajouter: Ajouter
-donneePersonnelle.cantDelete: "Vous n'avez pas le droit de supprimer cette donnée"
-donneePersonnelle.cantDisplay: "Vous n'avez pas le droit d'afficher les données de ce beneficiaire"
-donneePersonnelle.cantEdit: "Vous n'avez pas le droit d'éditer cette donnée"
-donneePersonnelle.cantReportAbuse: "Vous n'avez pas le droit de signaler cette donnée comme abusive"
-donneePersonnelle.edit: Modifier
-donneePersonnelle.form.access.label: Accès
-donneePersonnelle.information: Informations
-donneePersonnelle.list.entete.actions: Actions
-dossier.vide: vide
+you_can_not_delete_personal_data: "Vous n'avez pas le droit de supprimer cette donnée"
+you_can_not_display_personal_data: "Vous n'avez pas le droit d'afficher les données de ce beneficiaire"
+you_can_not_edit_personal_data: "Vous n'avez pas le droit d'éditer cette donnée"
+you_can_not_report_personal_data: "Vous n'avez pas le droit de signaler cette donnée comme abusive"
+actions: Actions
+empty: vide
 download: Télécharger
 download_document: 'Télécharger un document'
 download_document_click_button: 'Cliquer sur le bouton ci-dessous pour télécharger le document'
@@ -241,15 +221,9 @@ email: Email
 enabled: Actif
 error: Erreur
 error_during_download: "Erreur : le téléchargement n'a pas pu aboutir"
-evenement.bienSupprime: 'Votre événement a bien été supprimé'
-evenement.commentaireLabel: Message
-evenement.dateLabel: Date
-evenement.emptyData: 'Il n''y a aucun événement pour l''instant. Cliquez sur "Ajouter" pour en créer un.'
-evenement.errorSpecifierHeureRappel: "Vous devez specificer le nombre d'heures avant lequel envoyer votre rappel."
-evenement.lieuLabel: Lieu
-evenement.metaTitle: Evenements
-evenement.nomLabel: Titre
-evenement.rappelsLabel: Rappels
+event_removed_successfully: 'Votre événement a bien été supprimé'
+no_event_yet: 'Il n''y a aucun événement pour l''instant. Cliquez sur "Ajouter" pour en créer un.'
+title: Titre
 event: Événement
 event_created: 'Événement créé'
 event_updated: 'Événement modifié'
@@ -263,13 +237,11 @@ faq_gdpr_text: "<p>Dans le cadre de la mise en place d'outils Reconnect, vous vo
 fill_beneficiary_identity_information: "Veuillez renseigner l'identité du bénéficiaire"
 finish: Terminer
 firstname: Prénom
-flash.erreur: Erreur
-flash.operationReussie: 'Opération réussie'
-folder.isSubFolder: 'Le dossier de destination est un sous dossier de celui qui est à déplacer.'
+success: 'Opération réussie'
+folder_error_circular_dependency: 'Le dossier de destination est un sous dossier de celui qui est à déplacer.'
 folder_contains_documents_alert: "Le dossier %name% contient des documents, si vous le supprimez, vous supprimez aussi l'ensemble des documents qu'il contient. Êtes-vous sûr de vouloir supprimer ce dossier et tous les documents qu'il contient ?"
 folder_content: 'Contenu du dossier :'
-folders.notSameBeneficiaire: "Les dossiers n'appartiennent pas au même bénéficiaire."
-footer.copyright: '©2021 Reconnect - Tous droits réservés'
+folder_error_different_beneficiary: "Les dossiers n'appartiennent pas au même bénéficiaire."
 footer_CGS_rp: 'CGS de Reconnect Pro'
 footer_CGS_vault: 'CGS du coffre-fort numérique'
 footer_alt_logo_afnic: 'logo afnic'
@@ -282,28 +254,26 @@ footer_discover_rp: 'Découvrir Reconnect Pro'
 footer_discover_vault: 'Découvrir le coffre-fort numérique'
 footer_group_sos_text: "Reconnect est une association du Groupe SOS Solidarités, l'une des neuf activités du Groupe SOS, qui agit pour l'inclusion des personnes en situation de vulnérabilité"
 footer_partners_text: 'Reconnect est soutenu par :'
-form.validation.mismatch: 'Les deux mots de passe ne sont pas identiques'
-form.validation.noPassword: 'Vous devez choisir un mot de passe'
-form.validation.passwordFormat: 'Votre mot de passe ne peut contenir que des lettres et des chiffres'
-form.validation.tooShort: 'Votre mot de passe doit contenir au moins {{ limit }} caractères'
+passwords_mismatch: 'Les deux mots de passe ne sont pas identiques'
+you_must_choose_password: 'Vous devez choisir un mot de passe'
+password_wrong_format: 'Votre mot de passe ne peut contenir que des lettres et des chiffres'
+password_too_short: 'Votre mot de passe doit contenir au moins {{ limit }} caractères'
 form_connexion: Connexion
 form_forgot_password: "J'ai oublié mon mot de passe ou mon identifiant"
 form_login: "Nom d'utilisateur ou Email"
 gdpr_know_more: 'En savoir plus sur la conformité RGPD de votre structure'
 generate_password: 'Générer un mot de passe'
-header.menu.deconnection: Déconnexion
-header.menu.parametres: Paramètres
-header.menu.relaisReconnect: 'Mes relais reconnect'
+logout: Déconnexion
+parameters: Paramètres
+my_reconnect_relays: 'Mes relais reconnect'
 header_link_cfn: 'Le coffre-fort<span class="d-lg-block"> numérique</span>'
 header_link_contact: 'Nous<span class="d-lg-block"> contacter</span>'
 header_link_rp: 'La Solution<span class="d-lg-block"> Pro</span>'
 header_link_who_we_are: 'Qui<span class="d-lg-block"> sommes-nous ?</span>'
 health: Santé
-home.metaDesc: leCloudSolidaire
-home.metaDescV2: "La plateforme de stockage et de partage qui facilite les démarches d'accompagnement social"
-home.metaTitle: 'Reconnect le cloud solidaire'
-home.metaTitleV2: 'Reconnect le coffre-fort numérique'
-home_meta_desc_v2: "Le numérique au service de l'inclusion et de l'action sociale"
+vault_meta_desc: "La plateforme de stockage et de partage qui facilite les démarches d'accompagnement social"
+vault_meta_title: 'Reconnect le coffre-fort numérique'
+home_meta_desc: "Le numérique au service de l'inclusion et de l'action sociale"
 home_meta_title_contact: 'Reconnect - Nous contacter'
 home_meta_title_digital_cares: "Reconnect - L'accompagnement numérique"
 home_meta_title_rp: 'Reconnect - Le logiciel métier suivi social'
@@ -361,45 +331,36 @@ mail_shared_document_content_3: "CONFIDENTIALITÉ : Ce courriel (de même que le
 mail_shared_document_title: 'Partage de document'
 mail_subject_reset_password: 'RECONNECT- Changez votre mot de passe'
 mail_subject_share_document: 'RECONNECT - Partage de document'
-main.annuler: Annuler
-main.chercher: Chercher
-main.continuer: Continuer
-main.metaAppend: Reconnect
-main.modifier: Modifier
-main.modifierFichier: 'Modifier le fichier'
-main.non: Non
-main.oui: Oui
-main.pasLesDroits: "Vous n'avez pas les droits pour visionner cette page"
-main.refuser: Refuser
-main.retour: Retour
-main.uploaderFichier: 'Choisir un fichier'
-main.voirFichier: 'Voir le fichier'
+continue: Continuer
+reconnect: Reconnect
+edit_file: 'Modifier le fichier'
+you_can_not_see_page: "Vous n'avez pas les droits pour visionner cette page"
+decline: Refuser
+choose_file: 'Choisir un fichier'
+display_file: 'Voir le fichier'
 member_new_guide_title: 'Bienvenue sur Reconnect <span class="text-blue">Le coffre-fort numérique</span>'
-membre.ajoutBeneficiaire.creerCompte.default.description: 'Le bénéficiaire est avec vous ?'
-membre.ajoutBeneficiaire.creerCompte.remotely.description1: 'Le bénéficiaire n’est pas avec vous ?'
-membre.ajoutBeneficiaire.creerCompte.remotely.description2: 'Il recevra un sms pour activer son compte et compléter ses informations'
-membre.ajoutBeneficiaire.creerCompte.subTitle.remotely: 'à distance'
-membre.ajoutBeneficiaire.creerCompte.subTitle: 'avec le bénéficiaire'
-membre.ajoutBeneficiaire.creerCompte: 'Créer un compte Reconnect'
-membre.ajoutBeneficiaire.metaTitle: 'Ajouter un beneficiaire'
-membre.creationBeneficiaire.questionsSecretes.q1: 'Quel est le prénom de la mère du bénéficiaire ?'
-membre.creationBeneficiaire.questionsSecretes.q2: "Quel est le nom de l'animal de compagnie du bénéficiaire ?"
-membre.creationBeneficiaire.questionsSecretes.q3: 'Quel est le nom de la rue préférée du bénéficiaire ?'
-membre.creationBeneficiaire.questionsSecretes.q4: 'Quel établissement du secondaire le bénéficiaire se souvient avoir fréquenté ?'
-membre.creationBeneficiaire.questionsSecretes.q5: 'Quel est le surnom du bénéficiaire ?'
-membre.creationBeneficiaire.questionsSecretes.q6: Autre
-membre.creationBeneficiaire.questionsSecretes.q6V2: 'Quelle est la ville de naissance du bénéficiaire ?'
-membre.creationBeneficiaire.questionsSecretes.q7: 'Quelle est la couleur préférée du bénéficiaire ?'
-membre.creationBeneficiaire.questionsSecretes.q8: 'Quel est le nom de famille de la mère du bénéficiaire ?'
-membre.creationBeneficiaire.questionsSecretes.q9: Autre
-membre.droits.gestionBeneficiaires: 'Gestion des bénéficaires'
-membre.droits.gestionMembres: 'Gestion des membres'
-membre.partageContact.ajouterMail: 'Ajouter mon mail'
-membre.partageContact.ajouterNuméro: 'Ajouter mon numéro de téléphone'
-membre.partageContact.success: 'Votre contact a été ajouté dans la liste des contacts du bénéficiaire'
-membre.partageContact.text: 'Vous consultez pour la première fois les éléments partagés de cet usager. Acceptez vous que votre contact soit ajouté à la liste des contacts partagés de cet usager ?'
-membre.partageContact.title: 'Partagez votre contact'
-membre.sendSmsCode.smsMessage: 'Afin de confirmer votre ajout veuillez transmettre à votre Relais Reconnect le code de validation %code%'
+is_the_beneficiary_with_you: 'Le bénéficiaire est avec vous ?'
+the_beneficiary_is_not_with_you: 'Le bénéficiaire n’est pas avec vous ?'
+the_beneficiary_will_receive_sms_to_create_account: 'Il recevra un sms pour activer son compte et compléter ses informations'
+remotely: 'à distance'
+with_beneficiary: 'avec le bénéficiaire'
+add_beneficiary: 'Ajouter un beneficiaire'
+beneficiary_secret_question_1: 'Quel est le prénom de la mère du bénéficiaire ?'
+beneficiary_secret_question_2: "Quel est le nom de l'animal de compagnie du bénéficiaire ?"
+beneficiary_secret_question_3: 'Quel est le nom de la rue préférée du bénéficiaire ?'
+beneficiary_secret_question_4: 'Quel établissement du secondaire le bénéficiaire se souvient avoir fréquenté ?'
+beneficiary_secret_question_5: 'Quel est le surnom du bénéficiaire ?'
+beneficiary_secret_question_6: 'Quelle est la ville de naissance du bénéficiaire ?'
+beneficiary_secret_question_7: 'Quelle est la couleur préférée du bénéficiaire ?'
+beneficiary_secret_question_8: 'Quel est le nom de famille de la mère du bénéficiaire ?'
+beneficiary_secret_question_9: Autre
+professionals_management: 'Gestion des professionnels'
+add_personal_email: 'Ajouter mon mail'
+add_personal_phone: 'Ajouter mon numéro de téléphone'
+personal_phone_added_successfully: 'Votre contact a été ajouté dans la liste des contacts du bénéficiaire'
+do_you_accept_to_share_your_information_in_contact_list: 'Vous consultez pour la première fois les éléments partagés de cet usager. Acceptez vous que votre contact soit ajouté à la liste des contacts partagés de cet usager ?'
+share_your_information: 'Partagez votre contact'
+confirm_relay_affiliation_with_sms_code: 'Afin de confirmer votre ajout veuillez transmettre à votre Relais Reconnect le code de validation %code%'
 message: Message
 missing_secret_question: Question secrète non renseignée
 missing_secret_question_text: Vous n’avez pas encore renseigné de question et réponse secrète, vous pouvez le faire ci-dessous
@@ -426,11 +387,9 @@ no_relay_selected_alert: Vous n’avez affilié ce bénéficiaire à aucun relai
 no_relay_selected: Aucun relais sélectionné
 no_result: 'Aucun résultat'
 not_allowed_to_share_this_document: "Vous n'êtes pas autorisé à partager ce document"
-note.bienSupprime: 'Votre note a bien été supprimée'
-note.contenuLabel: 'Contenu de la note'
-note.emptyData: 'Il n''y a aucune note pour l''instant. Cliquez sur "Ajouter" pour en créer une.'
-note.metaTitle: Notes
-note.nomLabel: Titre
+note_deleted_successfully: 'Votre note a bien été supprimée'
+note_content: 'Contenu de la note'
+no_note_yet: 'Il n''y a aucune note pour l''instant. Cliquez sur "Ajouter" pour en créer une.'
 note_created: 'Note créée'
 note_updated: 'Note modifiée'
 notes: Notes
@@ -472,8 +431,7 @@ reconnect_phone_number: '01 55 28 95 33'
 reconnect_rgpd_mail: rgpd@reconnect.fr
 rediscover_our_solutions: '(re)Découvrez nos solutions'
 regions: Régions
-registerForm.adresse: 'Votre adresse personnelle (facultatif)'
-registerForm.telephone: Téléphone
+your_address: 'Votre adresse personnelle (facultatif)'
 relay_has_no_address: "Le relais Reconnect n'a pas renseigné d'adresse"
 relays: Relais
 reminder: Rappel
@@ -493,11 +451,11 @@ reset_beneficiary_password: Réinitialisation du mot de passe de %username%
 reset_password_no_way: Le bénéficiaire n’a pas indiqué de numéro de téléphone, ni d’adresse e-mail, ni de réponse à la question secrète. Pour réinitialiser son mot de passe, merci de contacter le support, nous vous aiderons dans les plus brefs délais.
 reset_password_requested_by_SMS: 'La demande de réinitialisation actuelle a été effectuée par SMS'
 reset_password_requested_by_email: 'La demande de réinitialisation actuelle a été effectuée par email'
-resetting.public.existePas: "Aucun utilisateur avec cet email n'a été trouvé"
-resetting.public.metaTitle: 'Réinitialisation du mot de passe'
-resetting.public.text: 'Veuillez saisir votre adresse e-mail.'
-resetting.public.textPhone: 'Veuillez saisir votre téléphone.'
-resetting.public.votreTelephone: 'Votre numéro de téléphone'
+no_user_found_with_this_email_address: "Aucun utilisateur avec cet email n'a été trouvé"
+password_reset: 'Réinitialisation du mot de passe'
+enter_email_address: 'Veuillez saisir votre adresse e-mail.'
+enter_phone_number: 'Veuillez saisir votre téléphone.'
+your_phone_number: 'Votre numéro de téléphone'
 results: Résultats
 rp_is_adaptable_alt_img: 'adaptable aux besoins'
 rp_is_adaptable_p: 'Le paramétrage permet de répondre aux besoins propres du fonctionnement de votre structure.'
@@ -573,19 +531,17 @@ today: "Aujourd'hui"
 toggle: Basculer
 unsupported_file_extension: "Erreur %fileName%, le format de fichier n'est pas supporté"
 used_available: '%used% utilisé(s) sur %available% disponibles'
-user.cgu.bAccepter: "J'accepte les conditions d'utilisation"
-user.cgu.metaTitle: 'Conditions générales du service'
-user.cgu.mustAccept: "Vous devez accepter les conditions d'utilisation"
-user.cgu.title: 'Conditions générales du service'
-user.firstVisit.beneficiaire.metaTitle: 'Bienvenue sur Reconnect le Cloud Solidaire'
-user.firstVisit.gestionnaire.metaTitle: 'Bienvenue sur Reconnect le Cloud Solidaire'
-user.parametres.changerMotDePasse: 'Modifier votre mot de passe'
-user.parametres.mdpActuel: 'Votre mot de passe actuel'
-user.parametres.metaTitle: "Paramètres d'utilisateur"
-user.pendingCentre.flashAccepter: "Vous avez accepté l'association au centre"
-user.pendingCentre.flashRefuser: "Vous avez refusé l'association au centre"
-user.pendingCentre.title: 'Un relais Reconnect souhaite vous ajouter'
-user.reinitialiserMdp.smsMessage: 'Le code pour réinitialiser votre mot de passe reconnect est %code%'
+accept_terms_of_use: "J'accepte les conditions d'utilisation"
+general_conditions_of_use: 'Conditions générales du service'
+you_must_accept_terms_of_use: "Vous devez accepter les conditions d'utilisation"
+welcome_on_solidarity_cloud: 'Bienvenue sur Reconnect le Cloud Solidaire'
+update_your_password: 'Modifier votre mot de passe'
+actual_password: 'Votre mot de passe actuel'
+user_settings: "Paramètres d'utilisateur"
+relay_affiliation_successful: "Vous avez accepté l'association au centre"
+relay_affiliation_denied: "Vous avez refusé l'association au centre"
+relay_wishes_to_add_you: 'Un relais Reconnect souhaite vous ajouter'
+sms_reset_password_code_is: 'Le code pour réinitialiser votre mot de passe reconnect est %code%'
 user_do_not_have_account: "L'utilisateur ne possède pas de compte Reconnect ?"
 user_error_disabled_account: 'Votre compte est désactivé, veuillez contacter le support.'
 user_firstVisit_membre_intro: 'Cet outil a pour fonction première la sauvegarde d’informations personnelles des personnes accompagnées.'

@@ -19,14 +19,14 @@ class UserController extends REController
     public function cgs(TranslatorInterface $translator, EntityManagerInterface $em): Response
     {
         $form = $this->createFormBuilder()
-            ->add('accept', CheckboxType::class, ['label' => 'user.cgu.bAccepter'])
-            ->add('submit', SubmitType::class, ['label' => 'main.continuer', 'attr' => ['class' => 'btn-green']])
+            ->add('accept', CheckboxType::class, ['label' => 'accept_terms_of_use'])
+            ->add('submit', SubmitType::class, ['label' => 'continue', 'attr' => ['class' => 'btn-green']])
             ->getForm();
         $form->handleRequest($this->request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$form->get('accept')->getData()) {
-                $form->addError(new FormError($translator->trans('user.cgu.mustAccept')));
+                $form->addError(new FormError($translator->trans('you_must_accept_terms_of_use')));
 
                 return $this->render('user/user/cgs-cs.html.twig', [
                     'form' => $form,

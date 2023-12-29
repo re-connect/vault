@@ -35,7 +35,7 @@ class SecretQuestionsHelper
         if ($beneficiarySecretQuestion = $beneficiary->getQuestionSecrete()) {
             return array_key_exists($beneficiarySecretQuestion, $secretQuestions)
                 ? $beneficiarySecretQuestion
-                : $secretQuestions[$this->translator->trans('membre.creationBeneficiaire.questionsSecretes.q9')];
+                : $secretQuestions[$this->translator->trans('beneficiary_secret_question_9')];
         }
 
         return array_key_first($secretQuestions);

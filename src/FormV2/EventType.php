@@ -21,10 +21,10 @@ class EventType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, [
-                'label' => 'evenement.nomLabel',
+                'label' => 'title',
             ])
             ->add('date', DateTimeType::class, [
-                    'label' => 'evenement.dateLabel',
+                    'label' => 'date',
                     'widget' => 'single_text',
                     'minutes' => [0, 15, 30, 45],
                 ]
@@ -35,12 +35,12 @@ class EventType extends AbstractType
                 ],
             )
             ->add('lieu', TextType::class, [
-                    'label' => 'evenement.lieuLabel',
+                    'label' => 'location',
                     'required' => false,
                 ]
             )
             ->add('commentaire', TextareaType::class, [
-                    'label' => 'evenement.commentaireLabel',
+                    'label' => 'comment',
                     'required' => false,
                 ]
             )

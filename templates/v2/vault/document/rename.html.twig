@@ -31,7 +31,7 @@
                 {{ link(document.dossier
                     ? path('folder', {'id': document.dossier.id})
                     : path('list_documents', {'id': document.beneficiaire.id}),
-                    'main.retour',
+                    'back',
                     'grey',
                 ) }}
                 {{ button('submit', 'confirm', 'green') }}

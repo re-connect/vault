@@ -56,8 +56,8 @@ class Association extends Subject
     public static function getAllCategories()
     {
         return [
-            self::ASSOCIATION_CATEGORIEJURIDIQUE_ASSOCIATION => 'association.categorie.association',
-            self::ASSOCIATION_CATEGORIEJURIDIQUE_CCAS => 'association.categorie.ccas',
+            self::ASSOCIATION_CATEGORIEJURIDIQUE_ASSOCIATION => 'association',
+            self::ASSOCIATION_CATEGORIEJURIDIQUE_CCAS => 'communal_centre_for_social_action',
         ];
     }
 

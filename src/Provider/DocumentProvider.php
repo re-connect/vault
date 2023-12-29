@@ -207,7 +207,7 @@ class DocumentProvider extends DonneePersonnelleProvider
     public function getEntitiesFromBeneficiaire(Beneficiaire $beneficiaire): array
     {
         if (false === $this->authorizationChecker->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $beneficiaire)) {
-            throw new AccessDeniedException('donneePersonnelle.cantDisplay');
+            throw new AccessDeniedException('you_can_not_display_personal_data');
         }
 
         $qb = $this->em->createQueryBuilder()
@@ -343,7 +343,7 @@ class DocumentProvider extends DonneePersonnelleProvider
     public function getOutFromFolder(Document $document): Document
     {
         if (false === $this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_EDIT, $document)) {
-            throw new AccessDeniedException($this->translator->trans('donneePersonnelle.cantEdit'));
+            throw new AccessDeniedException($this->translator->trans('you_can_not_edit_personal_data'));
         }
 
         $document->setDossier();
@@ -431,7 +431,7 @@ class DocumentProvider extends DonneePersonnelleProvider
     ): Document {
         try {
             if (false === $this->authorizationChecker->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $beneficiaire)) {
-                throw new AccessDeniedException($this->translator->trans('donneePersonnelle.cantEdit'));
+                throw new AccessDeniedException($this->translator->trans('you_can_not_edit_personal_data'));
             }
 
             $uploadExtensionsAllow = array_merge(Document::BROWSER_EXTENSIONS_VIEWABLE, Document::BROWSER_EXTENSIONS_NOT_VIEWABLE);
@@ -524,7 +524,7 @@ class DocumentProvider extends DonneePersonnelleProvider
     {
         /** @var Document $donneePersonnelle */
         if (false === $this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_EDIT, $donneePersonnelle)) {
-            throw new AccessDeniedException($this->translator->trans('donneePersonnelle.cantEdit'));
+            throw new AccessDeniedException($this->translator->trans('you_can_not_edit_personal_data'));
         }
 
         $sanitizedString = $this->sanitize($newNameWithOrWithoutExtension);

@@ -17,7 +17,7 @@ class ResetPasswordRequestFormType extends AbstractType
         if ($options['sms']) {
             $builder
                 ->add('phone', TelType::class, [
-                    'label' => 'resetting.public.textPhone',
+                    'label' => 'enter_phone_number',
                     'label_attr' => [
                         'class' => 'w-75 mt-1 mb-3',
                     ],
@@ -37,7 +37,7 @@ class ResetPasswordRequestFormType extends AbstractType
                             'message' => 'Please enter your email',
                         ]),
                     ],
-                    'label' => 'resetting.public.text',
+                    'label' => 'enter_email_address',
                     'label_attr' => [
                         'class' => 'w-75 mt-1 mb-3',
                     ],

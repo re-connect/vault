@@ -1,129 +1,114 @@
-'no': Нет
-'yes': Да
+no: Нет
+yes: Да
 accepted: принял
 add_new_beneficiary: 'Добавить нового получателя'
 admin.centres.statistiques.nbBeneficiaires: 'Количество получателей'
 admin.centres.statistiques.nbMembres: 'Количество членов'
 admin.centres.statistiques.smsEnvoyes: 'Количество посланных смс-сообщений'
 an_error_occurred: 'Произошла ошибка !'
-association.categorie.association: Ассоциация
-association.categorie.ccas: 'Муниципальный центр социального обслуживания (CCAS)'
+association: Ассоциация
+communal_centre_for_social_action: 'Муниципальный центр социального обслуживания (CCAS)'
 back_home: 'Вернуться в главное меню'
-beneficiaire.menu.mesDocuments: 'Мои документы'
-beneficiaire.menu2.mesContacts: Контакты
-beneficiaire.menu2.mesDocuments: Документы
-beneficiaire.menu2.mesNotes: Заметки
-beneficiaire.menu2.monCalendrier: 'Запись на приём'
+my_documents: 'Мои документы'
+contacts: Контакты
+documents: Документы
+notes: Заметки
+meetings: 'Запись на приём'
 beneficiaries_management: 'Управление получателями'
 birthDate: Дата рождения
 centers: Центры
-centre.vousAvezBienQuitte: 'Вы успешно вышли из центра'
+relay_leaved_successfully: 'Вы успешно вышли из центра'
 confirm: Подтвердить
-contact.associationLabel: Ассоциация
-contact.bienSupprime: 'Контакт успешно удалён'
-contact.commentaireLabel: Комментарий
-contact.emptyData: 'Там еще нет контакта. Нажмите «Добавить», чтобы создать его.'
-contact.metaTitle: Контакт
-contact.telephoneLabel: 'Номер телефона'
+contact_deleted_successfully: 'Контакт успешно удалён'
+comment: Комментарий
+no_contact_yet: 'Там еще нет контакта. Нажмите «Добавить», чтобы создать его.'
+contact: Контакт
+phone: 'Номер телефона'
 delete_your_account: 'Если вы хотите удалить свой аккаунт, нажмите здесь'
 disabledAt: 'Отключено на'
 disabledBy: отключено
-document.aucunFichier: 'На данный момент нет ни одного элемента'
-document.bienSupprime: 'Документ успешно удалён'
-document.creerUnDossier: 'Создать досье'
-document.deposerDesFichiers: 'Загрузить файлы'
-document.dossier: Папка
-document.envoyerParEmail.bienEnvoyeParMail: 'Документ успешно отправлен по электронной почте'
-document.metaTitle: Документы
-document.nom: 'Название :'
-document.telecharger: Загрузить
-donneePersonnelle.ajouter: Добавить
-donneePersonnelle.cantDelete: 'У вас нет прав удалять эту информацию'
-donneePersonnelle.cantDisplay: 'У вас нет прав доступа к данным этого получателя'
-donneePersonnelle.cantEdit: 'У вас нет права редактировать эту информацию'
-donneePersonnelle.cantReportAbuse: 'У вас нет права отметить эту информацию как некорректную'
-dossier.vide: 'Папка пуста'
+no_document_yet: 'На данный момент нет ни одного элемента'
+document_deleted_successfully: 'Документ успешно удалён'
+create_folder: 'Создать досье'
+drop_files: 'Загрузить файлы'
+folder: Папка
+document_successfully_send_email: 'Документ успешно отправлен по электронной почте'
+download: Загрузить
+add: Добавить
+you_can_not_delete_personal_data: 'У вас нет прав удалять эту информацию'
+you_can_not_display_personal_data: 'У вас нет прав доступа к данным этого получателя'
+you_can_not_edit_personal_data: 'У вас нет права редактировать эту информацию'
+you_can_not_report_personal_data: 'У вас нет права отметить эту информацию как некорректную'
+empty: 'Папка пуста'
 email: 'Электронная почта'
 enabled: активный
 error: Ошибка
-evenement.bienSupprime: 'Ваш элемент успешно удалён'
-evenement.commentaireLabel: Сообщение
-evenement.dateLabel: Дата
-evenement.emptyData: 'На данный момент нет событий. Нажмите «Добавить», чтобы создать его.'
-evenement.errorSpecifierHeureRappel: 'Вы должны уточнить, за сколько часов вам отправить напоминание'
-evenement.lieuLabel: Место
-evenement.metaTitle: События
-evenement.nomLabel: Заголовок
-evenement.rappelsLabel: Напомиание
-flash.erreur: Ошибка
-flash.operationReussie: 'Действие успешно выполнено'
-footer.copyright: '©2021 Reconnect – Все права защищены'
-form.validation.noPassword: 'Вы должны выбрать пароль'
-form.validation.passwordFormat: 'Ваш пароль может содержать только буквы и цифры'
+event_removed_successfully: 'Ваш элемент успешно удалён'
+date: Дата
+no_event_yet: 'На данный момент нет событий. Нажмите «Добавить», чтобы создать его.'
+location: Место
+events: События
+title: Заголовок
+reminders: Напомиание
+success: 'Действие успешно выполнено'
+you_must_choose_password: 'Вы должны выбрать пароль'
+password_wrong_format: 'Ваш пароль может содержать только буквы и цифры'
 form_connexion: войти
 form_forgot_password: 'Сбросить пароль'
 form_login: 'логин или пароль'
-header.menu.deconnection: Выход
-header.menu.parametres: Настройки
+logout: Выход
+parameters: Настройки
 login_form_title: 'Доступ в цифровой сейф'
-main.annuler: Отменить
-main.chercher: Искать
+cancel: Отменить
+search: Искать
 main.continuer: Пролоджить
-main.metaAppend: Reconnect
-main.modifier: Изменить
-main.modifierFichier: 'Изменить файл'
-main.non: Нет
-main.oui: Да
-main.pasLesDroits: 'У вас нету прав доступа к этой странице'
-main.refuser: Отказаться
-main.retour: Назад
-main.uploaderFichier: 'Выбрать файл'
-main.voirFichier: 'Открыть файл'
-membre.ajoutBeneficiaire.creerCompte: 'Создать аккаунт Reconnect'
-membre.ajoutBeneficiaire.metaTitle: 'Добавить нового пользователя'
-membre.creationBeneficiaire.questionsSecretes.q1: 'Имя матери получателя'
-membre.creationBeneficiaire.questionsSecretes.q2: 'Кличка домашнего животного получателя'
-membre.creationBeneficiaire.questionsSecretes.q3: 'Название любимой улицы получателя'
-membre.creationBeneficiaire.questionsSecretes.q4: 'Общеобразовательное заведение, которое посещал получатель'
-membre.creationBeneficiaire.questionsSecretes.q5: 'Прозвище получателя'
-membre.creationBeneficiaire.questionsSecretes.q6: Другой
-membre.droits.gestionBeneficiaires: 'Управление получателями'
-membre.droits.gestionMembres: 'Управление членами'
-membre.partageContact.ajouterMail: 'Добавить адрес электронной почты'
-membre.partageContact.ajouterNuméro: 'Добавить номер телефона'
-membre.partageContact.success: 'Ваши контактные данные добавлены в список контактов получателя'
-membre.partageContact.text: 'Вы впервые открываете элементы, которыми поделился этот пользователь. Вы соглашаетесь с тем, что ваши контактные данные будут добавлены в список контактов этого пользователя?'
-membre.partageContact.title: 'Поделиться контактом'
-membre.sendSmsCode.smsMessage: 'Для подтверждения добавления сообщите код подтверждения вашему Посреднику Reconnect'
-note.bienSupprime: 'Ваша заметка успешно удалена'
-note.contenuLabel: 'Содержание заметки'
-note.emptyData: 'Еще нет заметок. Нажмите «Добавить», чтобы создать его.'
-note.metaTitle: Заметки
-note.nomLabel: Заголовок
+reconnect: Reconnect
+edit: Изменить
+edit_file: 'Изменить файл'
+you_can_not_see_page: 'У вас нету прав доступа к этой странице'
+decline: Отказаться
+back: Назад
+choose_file: 'Выбрать файл'
+display_file: 'Открыть файл'
+create_reconnect_account: 'Создать аккаунт Reconnect'
+add_beneficiarye: 'Добавить нового пользователя'
+beneficiary_secret_question_1: 'Имя матери получателя'
+beneficiary_secret_question_2: 'Кличка домашнего животного получателя'
+beneficiary_secret_question_3: 'Название любимой улицы получателя'
+beneficiary_secret_question_4: 'Общеобразовательное заведение, которое посещал получатель'
+beneficiary_secret_question_5: 'Прозвище получателя'
+beneficiary_secret_question_6: Другой
+professionals_management: 'Управление членами'
+add_personal_email: 'Добавить адрес электронной почты'
+add_personal_phone: 'Добавить номер телефона'
+personal_phone_added_successfully: 'Ваши контактные данные добавлены в список контактов получателя'
+do_you_accept_to_share_your_information_in_contact_list: 'Вы впервые открываете элементы, которыми поделился этот пользователь. Вы соглашаетесь с тем, что ваши контактные данные будут добавлены в список контактов этого пользователя?'
+share_your_information: 'Поделиться контактом'
+confirm_relay_affiliation_with_sms_code: 'Для подтверждения добавления сообщите код подтверждения вашему Посреднику Reconnect'
+note_deleted_successfully: 'Ваша заметка успешно удалена'
+note_content: 'Содержание заметки'
+no_note_yet: 'Еще нет заметок. Нажмите «Добавить», чтобы создать его.'
 password: Пароль
 password_updated_successfully: 'Пароль успешно изменён'
-registerForm.adresse: 'Ваш личный адрес (необязательно)'
-registerForm.telephone: Телефон
-resetting.public.existePas: 'Пользователь с таким адресом электронной почты не обнаружен'
-resetting.public.metaTitle: 'Восстановление пароля'
-resetting.public.text: 'Укажите ваш адрес электронной почты.'
+your_address: 'Ваш личный адрес (необязательно)'
+no_user_found_with_this_email_address: 'Пользователь с таким адресом электронной почты не обнаружен'
+password_reset: 'Восстановление пароля'
+enter_email_address: 'Укажите ваш адрес электронной почты.'
 secret_answer: 'Секретный ответ'
 secret_question: 'Секретный вопрос'
 settings_saved_successfully: 'Ваши настройки успешно сохранены'
 sms_sent_failed: 'Отправка SMS не удалась, пожалуйста, проверьте, действителен ли номер телефона'
 street: Улица
-user.cgu.bAccepter: 'Я согласен с условиями пользования'
-user.cgu.metaTitle: 'Общие условия использования'
-user.cgu.mustAccept: 'Вы должны принять условия пользования'
-user.cgu.title: 'Общие условия использования'
-user.firstVisit.beneficiaire.metaTitle: 'Добро пожаловать в Reconnect le Cloud Solidaire'
-user.firstVisit.gestionnaire.metaTitle: 'Добро пожаловать в Reconnect le Cloud Solidaire'
+accept_terms_of_use: 'Я согласен с условиями пользования'
+general_conditions_of_use: 'Общие условия использования'
+you_must_accept_terms_of_use: 'Вы должны принять условия пользования'
+welcome_on_solidarity_cloud: 'Добро пожаловать в Reconnect le Cloud Solidaire'
 user.firstVisit.membre.metaTitle: 'Добро пожаловать в Reconnect le Cloud Solidaire'
-user.parametres.changerMotDePasse: 'Изменить пароль'
-user.parametres.mdpActuel: 'Настоящий пароль'
-user.parametres.metaTitle: 'Настройки пользователя'
-user.pendingCentre.flashAccepter: 'Вы согласились присоединиться к центру'
-user.pendingCentre.flashRefuser: 'Вы отказались присоединиться к центру'
-user.pendingCentre.title: 'Посредник Reconnect хочет вас добавить'
-user.reinitialiserMdp.smsMessage: 'Код для восстановления вашего пароля Reconnect :'
+update_your_password: 'Изменить пароль'
+actual_password: 'Настоящий пароль'
+user_settings: 'Настройки пользователя'
+relay_affiliation_successful: 'Вы согласились присоединиться к центру'
+relay_affiliation_denied: 'Вы отказались присоединиться к центру'
+relay_wishes_to_add_you: 'Посредник Reconnect хочет вас добавить'
+sms_reset_password_code_is: 'Код для восстановления вашего пароля Reconnect :'
 wrong_current_password: 'Неверный настоящий пароль'
