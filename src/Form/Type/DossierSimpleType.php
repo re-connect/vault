@@ -22,7 +22,7 @@ class DossierSimpleType extends AbstractType
 
         if (null === $dossier->getDossierParent()) {
             $builder->add('bPrive', ChoiceType::class, [
-                'label' => 'donneePersonnelle.form.access.label',
+                'label' => 'access',
                 'label_attr' => ['class' => 'font-size-1'],
                 'required' => true,
                 'expanded' => true,

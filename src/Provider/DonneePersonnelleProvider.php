@@ -64,7 +64,7 @@ abstract class DonneePersonnelleProvider
     public function getEntitiesFromBeneficiaire(Beneficiaire $beneficiaire): array
     {
         if (false === $this->authorizationChecker->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $beneficiaire)) {
-            throw new AccessDeniedException('donneePersonnelle.cantDisplay');
+            throw new AccessDeniedException('you_can_not_display_personal_data');
         }
 
         $qb = $this->em->createQueryBuilder()
@@ -91,7 +91,7 @@ abstract class DonneePersonnelleProvider
         $attribute = null === $donneePersonnelle->getId() ? DonneePersonnelleVoter::DONNEEPERSONNELLE_CREATE : DonneePersonnelleVoter::DONNEEPERSONNELLE_EDIT;
         $user = $this->tokenStorage->getToken()->getUser();
         if (!$user instanceof User || false === $this->authorizationChecker->isGranted($attribute, $donneePersonnelle)) {
-            throw new AccessDeniedException($this->translator->trans('donneePersonnelle.cantEdit'));
+            throw new AccessDeniedException($this->translator->trans('you_can_not_edit_personal_data'));
         }
 
         if ($user->isBeneficiaire()) {
@@ -106,7 +106,7 @@ abstract class DonneePersonnelleProvider
     public function delete(DonneePersonnelle $donneePersonnelle, bool $log = true): void
     {
         if (false === $this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_DELETE, $donneePersonnelle)) {
-            throw new AccessDeniedException($this->translator->trans('donneePersonnelle.cantDelete'));
+            throw new AccessDeniedException($this->translator->trans('you_can_not_delete_personal_data'));
         }
 
         if ($log) {
@@ -127,7 +127,7 @@ abstract class DonneePersonnelleProvider
             $donneePersonnelle
         )
         ) {
-            throw new AccessDeniedException($this->translator->trans('donneePersonnelle.cantReportAbuse'));
+            throw new AccessDeniedException($this->translator->trans('you_can_not_report_personal_data'));
         }
 
         // TODO: Mettre un log
@@ -148,7 +148,7 @@ abstract class DonneePersonnelleProvider
             $this->eventDispatcher->dispatch(new DonneePersonnelleEvent($donneePersonnelle, $donneePersonnelle->getBeneficiaire()->getUser(), DonneePersonnelleEvent::DONNEEPERSONNELLE_CREATED), REEvent::RE_EVENT_DONNEEPERSONNELLE);
         } else {
             if (false === $this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_EDIT, $donneePersonnelle)) {
-                throw new AccessDeniedException($this->translator->trans('donneePersonnelle.cantEdit'));
+                throw new AccessDeniedException($this->translator->trans('you_can_not_edit_personal_data'));
             }
             $this->eventDispatcher->dispatch(new DonneePersonnelleEvent($donneePersonnelle, $donneePersonnelle->getBeneficiaire()->getUser(), DonneePersonnelleEvent::DONNEEPERSONNELLE_MODIFIED), REEvent::RE_EVENT_DONNEEPERSONNELLE);
         }
@@ -184,7 +184,7 @@ abstract class DonneePersonnelleProvider
     public function rename(DonneePersonnelle $donneePersonnelle, $newName)
     {
         if (false === $this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_EDIT, $donneePersonnelle)) {
-            throw new AccessDeniedException($this->translator->trans('donneePersonnelle.cantEdit'));
+            throw new AccessDeniedException($this->translator->trans('you_can_not_edit_personal_data'));
         }
 
         $sanitizedString = $this->sanitize($newName);
@@ -212,7 +212,7 @@ abstract class DonneePersonnelleProvider
     public function getEntitiesByName(Beneficiaire $beneficiaire, $name): array
     {
         if (false === $this->authorizationChecker->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $beneficiaire)) {
-            throw new AccessDeniedException('donneePersonnelle.cantDisplay');
+            throw new AccessDeniedException('you_can_not_display_personal_data');
         }
 
         $qb = $this->em->createQueryBuilder()

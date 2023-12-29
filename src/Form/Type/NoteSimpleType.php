@@ -18,11 +18,11 @@ class NoteSimpleType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, [
-                'label' => 'note.nomLabel',
+                'label' => 'title',
                 'label_attr' => ['class' => 'font-size-1'],
             ])
             ->add('contenu', TextareaType::class, [
-                'label' => 'note.contenuLabel',
+                'label' => 'note_content',
                 'label_attr' => ['class' => 'font-size-1'],
             ])
             ->add('bPrive', ChoiceType::class, [

@@ -53,7 +53,7 @@ class NoteController extends AbstractController
     {
         $em->remove($note);
         $em->flush();
-        $this->addFlash('success', 'note.bienSupprime');
+        $this->addFlash('success', 'note_deleted_successfully');
 
         return $this->redirectToRoute('list_notes', ['id' => $note->getBeneficiaireId()]);
     }

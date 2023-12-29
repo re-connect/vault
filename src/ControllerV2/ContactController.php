@@ -53,7 +53,7 @@ class ContactController extends AbstractController
     {
         $em->remove($contact);
         $em->flush();
-        $this->addFlash('success', 'contact.bienSupprime');
+        $this->addFlash('success', 'contact_deleted_successfully');
 
         return $this->redirectToRoute('list_contacts', ['id' => $contact->getBeneficiaireId()]);
     }
