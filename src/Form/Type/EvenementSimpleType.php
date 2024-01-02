@@ -22,7 +22,7 @@ class EvenementSimpleType extends AbstractType
     {
         $builder
             ->add('nom', null, [
-                'label' => 'evenement.nomLabel',
+                'label' => 'title',
                 'label_attr' => ['class' => 'font-size-1'],
             ])
             ->add(
@@ -45,7 +45,7 @@ class EvenementSimpleType extends AbstractType
                 'lieu',
                 null,
                 [
-                    'label' => 'evenement.lieuLabel',
+                    'label' => 'location',
                     'label_attr' => ['class' => 'font-size-1'],
                     'required' => false,
                 ]
@@ -54,7 +54,7 @@ class EvenementSimpleType extends AbstractType
                 'commentaire',
                 TextareaType::class,
                 [
-                    'label' => 'evenement.commentaireLabel',
+                    'label' => 'comment',
                     'label_attr' => ['class' => 'font-size-1'],
                     'required' => false,
                 ]

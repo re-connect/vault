@@ -18,13 +18,13 @@ class DocumentSimpleType extends AbstractType
         $builder
             ->add('nom', TextType::class, ['label' => 'name'])
             ->add('bPrive', ChoiceType::class, [
-                'label' => 'donneePersonnelle.form.access.label',
+                'label' => 'access',
                 'required' => true,
                 'expanded' => true,
                 'choices' => DonneePersonnelle::getArBPrive(),
             ])
             ->add('submit', SubmitType::class, ['label' => 'confirm'])
-            ->add('cancel', SubmitType::class, ['label' => 'main.annuler'])
+            ->add('cancel', SubmitType::class, ['label' => 'cancel'])
             ->setAction('#');
     }
 

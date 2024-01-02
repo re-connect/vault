@@ -14,7 +14,7 @@ class ResetPasswordSmsCheckFormType extends AbstractType
         $builder
             ->add('phone', TelType::class, [
                 'required' => true,
-                'label' => 'resetting.public.votreTelephone',
+                'label' => 'your_phone_number',
                 'label_attr' => ['class' => 'mb-2'],
                 'attr' => [
                     'class' => 'w-50 mx-auto mb-2',

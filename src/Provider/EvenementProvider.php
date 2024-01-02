@@ -49,7 +49,7 @@ class EvenementProvider extends DonneePersonnelleProvider
     public function delete(DonneePersonnelle $entity, bool $log = true): void
     {
         if (false === $this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_DELETE, $entity)) {
-            throw new AccessDeniedException($this->translator->trans('donneePersonnelle.cantDelete'));
+            throw new AccessDeniedException($this->translator->trans('you_can_not_delete_personal_data'));
         }
 
         if ($log) {

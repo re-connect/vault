@@ -5,12 +5,12 @@
         <div class="col-12 col-lg-4 offset-lg-4 text-primary bg-white rounded py-2 shadow">
             <h4 class="font-size-1-3 text-center mt-1">
                 <i class="fa fa-info-circle me-2" aria-hidden="true"></i>
-                {{ 'donneePersonnelle.information'|trans }}
+                {{ 'information'|trans }}
             </h4>
             <hr class="text-light-grey">
             {{ include('v2/vault/event/_detail_information.html.twig', {
                 'information': {
-                    'evenement.nomLabel': event.nom,
+                    'title': event.nom,
                     'date': event.date|format_datetime(),
                     'location': event.lieu,
                     'message': event.commentaire,
@@ -19,8 +19,8 @@
                 'reminders': event.rappels
             }) }}
             <div class="row mx-1 mt-2">
-                {{ link(path('list_events', {'id': beneficiary.id}), 'main.retour', 'grey') }}
-                {{ link(path('event_edit', {'id': event.id}), 'main.modifier', getUserThemeColor(), 'fa fa-pencil-alt') }}
+                {{ link(path('list_events', {'id': beneficiary.id}), 'back', 'grey') }}
+                {{ link(path('event_edit', {'id': event.id}), 'edit', getUserThemeColor(), 'fa fa-pencil-alt') }}
             </div>
         </div>
     </div>

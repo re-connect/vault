@@ -37,7 +37,7 @@ class UserFormFactory
             && false === $this->authorizationChecker->isGranted('ROLE_GESTIONNAIRE')
             && false === $this->authorizationChecker->isGranted('ROLE_MEMBRE')
         ) {
-            throw new AccessDeniedException('main.pasLesDroits');
+            throw new AccessDeniedException('you_can_not_see_page');
         }
 
         $beneficiaire = new Beneficiaire();

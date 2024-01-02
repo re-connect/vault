@@ -114,7 +114,7 @@ class ResettingService
         $usersCount = $userRepository->count(['email' => $email]);
 
         if (1 !== $usersCount) {
-            $this->addFlashMessage('danger', 0 === $usersCount ? 'resetting.public.existePas' : 'email_duplicate');
+            $this->addFlashMessage('danger', 0 === $usersCount ? 'no_user_found_with_this_email_address' : 'email_duplicate');
 
             return;
         }

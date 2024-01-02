@@ -46,7 +46,7 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
             $values,
             [
                 [
-                    'message' => 'form.validation.mismatch',
+                    'message' => 'passwords_mismatch',
                     'params' => null,
                 ],
             ],
@@ -63,7 +63,7 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
             $values,
             [
                 [
-                    'message' => 'form.validation.tooShort',
+                    'message' => 'password_too_short',
                     'params' => ['{{ limit }}' => 8],
                 ],
             ],

@@ -51,7 +51,7 @@ class NotificationService
 
     public function sendSmsResetPassword(string $code, string $number): void
     {
-        $message = $this->translator->trans('user.reinitialiserMdp.smsMessage', ['%code%' => $code]);
+        $message = $this->translator->trans('sms_reset_password_code_is', ['%code%' => $code]);
         try {
             $this->sendSms($number, $message);
             $this->logger->info(sprintf('SMS envoyé à %s : %s', $number, $message));
@@ -197,12 +197,12 @@ class NotificationService
         $relay = $userCentre->getCentre();
 
         return new Notification(
-            'user.pendingCentre.title',
+            'relay_wishes_to_add_you',
             $relay->getNom(),
             'hotel',
             $relay->getAdresse()?->toHTML() ?? $this->translator->trans('relay_has_no_address'),
             [
-                new NotificationAction('main.refuser', $this->router->generate('deny_relay', ['id' => $relay->getId()]), 'light'),
+                new NotificationAction('decline', $this->router->generate('deny_relay', ['id' => $relay->getId()]), 'light'),
                 new NotificationAction('accept', $this->router->generate('accept_relay', ['id' => $relay->getId()])),
             ],
         );

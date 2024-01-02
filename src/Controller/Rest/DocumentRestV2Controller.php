@@ -226,7 +226,7 @@ class DocumentRestV2Controller extends REController
             if (0 === count($errors)) {
                 $mailManager->sendFileWithMail($document, $email);
 
-                return $this->json($translator->trans('document.envoyerParEmail.bienEnvoyeParMail'));
+                return $this->json($translator->trans('document_successfully_send_email'));
             }
 
             $errorMessage = $errors[0]->getMessage();

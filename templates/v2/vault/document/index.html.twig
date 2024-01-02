@@ -1,12 +1,12 @@
 {% extends '/v2/vault/list_container_layout.html.twig' %}
 
-{% block metaTitle %}{{ 'document.metaTitle'|trans }}{% endblock metaTitle %}
+{% block metaTitle %}{{ 'documents'|trans }}{% endblock metaTitle %}
 
 {% block list %}
     <div class="list-container d-flex flex-column justify-content-center">
         {{ foldersAndDocuments is not empty
         ? include('v2/vault/document/_list.html.twig', {foldersAndDocuments})
-        : include('v2/vault/components/_empty_list_content.html.twig', {'message': 'document.aucunFichier'|trans})}}
+        : include('v2/vault/components/_empty_list_content.html.twig', {'message': 'no_document_yet'|trans})}}
     </div>
 {% endblock %}
 
@@ -31,7 +31,7 @@
             }) }}
     >
         <i class="fas fa-plus-circle me-md-1"></i>
-        <span class="d-none d-sm-inline">{{ 'document.deposerDesFichiers'|trans }}</span>
+        <span class="d-none d-sm-inline">{{ 'drop_files'|trans }}</span>
     </button>
     <a href="{{ currentFolder is defined
         ? path('folder_create_subfolder', {'id': currentFolder.id})
@@ -39,6 +39,6 @@
     }}"
        class="btn {{ getUserButtonColor() }} text-white ms-2">
         <i class="fas fa-folder-plus me-md-1"></i>
-        <span class="d-none d-sm-inline">{{ 'document.creerUnDossier'|trans }}</span>
+        <span class="d-none d-sm-inline">{{ 'create_folder'|trans }}</span>
     </a>
 {% endblock %}
