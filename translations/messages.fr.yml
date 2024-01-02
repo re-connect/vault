@@ -1205,3 +1205,7 @@ english_flag: Drapeau anglais
 german_flag: Drapeau allemand
 spanish_flag: Drapeau espagnol
 mail_shared_document_content_1_anonymous: Une personne souhaite partager avec vous un document de son coffre-fort Reconnect.
+error_401: Vous n'êtes pas connecté
+error_403: Vous n'êtes pas autorisé à accéder à cette page
+error_404: Oups, il semble que cette page n'existe pas
+error_500: Il y a eu une erreur technique, le problème vient de nous, nous allons le traiter rapidement
