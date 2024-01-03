@@ -19,11 +19,13 @@ class SecurityController extends AbstractController
     {
     }
 
+    #[Route(path: '/logout', name: 'app_logout', methods: ['GET'])]
     public function logout()
     {
         throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
     }
 
+    #[Route(path: '/login-end', name: 'login_end', methods: ['GET'])]
     public function loginEnd(Request $request): RedirectResponse
     {
         $user = $this->getUser();
@@ -36,10 +38,11 @@ class SecurityController extends AbstractController
             !$this->getUser() => $this->generateUrl('re_main_login'),
             !$this->getUser()->isBeneficiaire() && $this->gdprService->isPasswordRenewalDue() => $this->generateUrl('app_update_password'),
             !$this->isGranted(User::USER_TYPE_ADMINISTRATEUR) && $targetPath => $targetPath,
-            default => $this->generateUrl('re_user_redirectUser'),
+            default => $this->generateUrl('redirect_user'),
         });
     }
 
+    #[Route(path: '/user/redirect-user/', name: 'redirect_user', methods: ['GET'])]
     public function redirectUser(): ?RedirectResponse
     {
         $user = $this->getUser();
@@ -47,7 +50,7 @@ class SecurityController extends AbstractController
         return match (true) {
             !$user instanceof User || is_string($user) => $this->redirect($this->generateUrl('re_main_login')),
             $user->isAdministrateur() => $this->redirect($this->generateUrl('sonata_admin_dashboard')),
-            $user->isFirstVisit() => $this->redirect($this->generateUrl('re_user_firstVisit')),
+            $user->isFirstVisit() => $this->redirect($this->generateUrl('user_first_visit')),
             $user->isBeneficiaire() => $this->redirect($this->generateUrl('beneficiary_home')),
             $user->isMembre() => $this->redirect($this->generateUrl($this->isGranted(BeneficiaryVoter::MANAGE) ? 'list_beneficiaries' : 'affiliate_beneficiary_home')),
             'default' => $this->redirect($this->generateUrl('re_main_login')),
