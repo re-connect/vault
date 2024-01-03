@@ -55,7 +55,6 @@ class SecurityController extends AbstractController
             $user->isMembre() => $this->redirect($this->generateUrl($this->isGranted(BeneficiaryVoter::MANAGE) ? 'list_beneficiaries' : 'affiliate_beneficiary_home')),
             'default' => $this->redirect($this->generateUrl('re_main_login')),
         };
-
     }
 
     #[Route('/login_link', name: 'login_link')]
