@@ -302,7 +302,7 @@ class DocumentRestController extends REController
             if (0 === count($errors)) {
                 $mailManager->sendFileWithMail($document, $email);
 
-                return $this->json($translator->trans('document.envoyerParEmail.bienEnvoyeParMail'));
+                return $this->json($translator->trans('document_successfully_send_email'));
             }
 
             // this is *not* a valid email address

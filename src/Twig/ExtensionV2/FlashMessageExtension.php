@@ -38,8 +38,8 @@ class FlashMessageExtension extends AbstractExtension
     public function getFlashMessageTitle(string $flashType): string
     {
         return match ($flashType) {
-            self::TYPE_SUCCESS => $this->translator->trans('flash.operationReussie'),
-            self::TYPE_ERROR, self::TYPE_DANGER => $this->translator->trans('flash.erreur'),
+            self::TYPE_SUCCESS => $this->translator->trans('success'),
+            self::TYPE_ERROR, self::TYPE_DANGER => $this->translator->trans('error'),
             default => '',
         };
     }

@@ -38,7 +38,7 @@ class SMSManager
         $telephone = $beneficiary->getUser()?->getTelephone();
         $code = $this->getRandomSmallSmsCode();
         $beneficiary->setRelayInvitationSmsCode($code);
-        $message = $this->translator->trans('membre.sendSmsCode.smsMessage', ['%code%' => $code]);
+        $message = $this->translator->trans('confirm_relay_affiliation_with_sms_code', ['%code%' => $code]);
 
         try {
             $this->em->flush();
@@ -77,7 +77,7 @@ class SMSManager
 
     private function doSendSmsActivation($code, $number): void
     {
-        $message = $this->translator->trans('membre.sendSmsCode.smsMessage', ['%code%' => $code]);
+        $message = $this->translator->trans('confirm_relay_affiliation_with_sms_code', ['%code%' => $code]);
 
         try {
             $this->doSendSms($number, $message);
@@ -115,7 +115,7 @@ class SMSManager
      */
     public function sendSmsResetPassword($code, $number): void
     {
-        $message = $this->translator->trans('user.reinitialiserMdp.smsMessage', ['%code%' => $code]);
+        $message = $this->translator->trans('sms_reset_password_code_is', ['%code%' => $code]);
         $this->doSendSms($number, $message);
         $this->smsLogger->info('SMS envoyé à '.$number.' : '.$message);
     }

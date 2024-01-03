@@ -16,7 +16,7 @@ class SearchType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'main.chercher',
+                    'placeholder' => 'search',
                     'class' => 'border-0 rounded-pill p-0',
                     'autofocus' => true,
                 ],

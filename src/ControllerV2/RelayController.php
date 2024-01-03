@@ -24,7 +24,7 @@ class RelayController extends AbstractController
     public function acceptRelay(Request $request, Centre $relay, RelayManager $manager): Response
     {
         $manager->acceptRelay($this->getUser(), $relay);
-        $this->addFlash('success', 'user.pendingCentre.flashAccepter');
+        $this->addFlash('success', 'relay_affiliation_successful');
 
         return $this->redirect($request->headers->get('referer'));
     }
@@ -33,7 +33,7 @@ class RelayController extends AbstractController
     public function denyInvitation(Request $request, Centre $relay, RelayManager $manager): Response
     {
         $manager->leaveRelay($this->getUser(), $relay);
-        $this->addFlash('success', 'user.pendingCentre.flashRefuser');
+        $this->addFlash('success', 'relay_affiliation_denied');
 
         return $this->redirect($request->headers->get('referer'));
     }
@@ -48,7 +48,7 @@ class RelayController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->leaveRelay($this->getUser(), $relay);
-            $this->addFlash('success', 'centre.vousAvezBienQuitte');
+            $this->addFlash('success', 'relay_leaved_successfully');
 
             return $this->redirectToRoute('my_relays');
         }

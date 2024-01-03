@@ -29,7 +29,7 @@ App\Entity\User:
                     message: "form_validation_no_password"
             -   Regex:
                     pattern: '#^[\S]+$#'
-                    message: "form.validation.passwordFormat"
+                    message: "password_wrong_format"
                     groups: [ password ]
             -   Length:
                     min: 5

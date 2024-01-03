@@ -19,12 +19,12 @@ class ContactSimpleType extends AbstractType
         $builder
             ->add('nom', null, ['label' => 'name', 'label_attr' => ['class' => 'font-size-1']])
             ->add('prenom', null, ['label' => 'firstname', 'label_attr' => ['class' => 'font-size-1']])
-            ->add('telephone', null, ['label' => 'contact.telephoneLabel', 'required' => false, 'label_attr' => ['class' => 'font-size-1']])
+            ->add('telephone', null, ['label' => 'phone', 'required' => false, 'label_attr' => ['class' => 'font-size-1']])
             ->add('email', EmailType::class, ['label' => 'email', 'required' => false, 'label_attr' => ['class' => 'font-size-1']])
-            ->add('commentaire', TextareaType::class, ['label' => 'contact.commentaireLabel', 'required' => false, 'label_attr' => ['class' => 'font-size-1']])
-            ->add('association', null, ['label' => 'contact.associationLabel', 'required' => false, 'label_attr' => ['class' => 'font-size-1']])
+            ->add('commentaire', TextareaType::class, ['label' => 'comment', 'required' => false, 'label_attr' => ['class' => 'font-size-1']])
+            ->add('association', null, ['label' => 'association', 'required' => false, 'label_attr' => ['class' => 'font-size-1']])
             ->add('bPrive', ChoiceType::class, [
-                'label' => 'donneePersonnelle.form.access.label',
+                'label' => 'access',
                 'label_attr' => ['class' => 'font-size-1'],
                 'required' => true,
                 'expanded' => true,

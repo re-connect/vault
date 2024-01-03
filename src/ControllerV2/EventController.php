@@ -54,7 +54,7 @@ class EventController extends AbstractController
     {
         $em->remove($event);
         $em->flush();
-        $this->addFlash('success', 'evenement.bienSupprime');
+        $this->addFlash('success', 'event_removed_successfully');
 
         return $this->redirectToRoute('list_events', ['id' => $event->getBeneficiaireId()]);
     }

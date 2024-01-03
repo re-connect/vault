@@ -169,15 +169,15 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     public static function getArQuestionsSecrete(): array
     {
         return [
-            'membre.creationBeneficiaire.questionsSecretes.q1' => 'membre.creationBeneficiaire.questionsSecretes.q1',
-            'membre.creationBeneficiaire.questionsSecretes.q2' => 'membre.creationBeneficiaire.questionsSecretes.q2',
-            'membre.creationBeneficiaire.questionsSecretes.q3' => 'membre.creationBeneficiaire.questionsSecretes.q3',
-            'membre.creationBeneficiaire.questionsSecretes.q4' => 'membre.creationBeneficiaire.questionsSecretes.q4',
-            'membre.creationBeneficiaire.questionsSecretes.q5' => 'membre.creationBeneficiaire.questionsSecretes.q5',
-            'membre.creationBeneficiaire.questionsSecretes.q6V2' => 'membre.creationBeneficiaire.questionsSecretes.q6V2',
-            'membre.creationBeneficiaire.questionsSecretes.q7' => 'membre.creationBeneficiaire.questionsSecretes.q7',
-            'membre.creationBeneficiaire.questionsSecretes.q8' => 'membre.creationBeneficiaire.questionsSecretes.q8',
-            'membre.creationBeneficiaire.questionsSecretes.q9' => 'membre.creationBeneficiaire.questionsSecretes.q9',
+            'beneficiary_secret_question_1' => 'beneficiary_secret_question_1',
+            'beneficiary_secret_question_2' => 'beneficiary_secret_question_2',
+            'beneficiary_secret_question_3' => 'beneficiary_secret_question_3',
+            'beneficiary_secret_question_4' => 'beneficiary_secret_question_4',
+            'beneficiary_secret_question_5' => 'beneficiary_secret_question_5',
+            'beneficiary_secret_question_6' => 'beneficiary_secret_question_6',
+            'beneficiary_secret_question_7' => 'beneficiary_secret_question_7',
+            'beneficiary_secret_question_8' => 'beneficiary_secret_question_8',
+            'beneficiary_secret_question_9' => 'beneficiary_secret_question_9',
         ];
     }
 
