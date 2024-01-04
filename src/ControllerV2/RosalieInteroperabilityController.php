@@ -112,4 +112,13 @@ class RosalieInteroperabilityController extends AbstractController
             $this->addFlash('error', $beneficiaryCheck->getSamuSocialErrorMessage());
         }
     }
+
+    #[IsGranted('ROLE_MEMBRE')]
+    #[Route('/beneficiaries/{id}/link-rosalie', name: 'link_rosalie')]
+    public function linkToRosalie(Beneficiaire $beneficiary): Response
+    {
+        $this->createRosalieLink($beneficiary);
+
+        return $this->redirectToRoute('create_beneficiary', ['id' => $beneficiary->getCreationProcess()->getId(), 'step' => $beneficiary->getCreationProcess()->getLastReachedStep()]);
+    }
 }
