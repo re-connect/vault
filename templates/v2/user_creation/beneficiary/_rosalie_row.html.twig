@@ -1,0 +1,24 @@
+{% if not beneficiary.sisiaoNumber %}
+    <div class="pb-3 d-flex align-items-center justify-content-start">
+        {{ 'add_si_siao_number_intro'|trans }}
+        <span class="mb-2">
+                {{ include('v2/common/_link_button.html.twig', {
+                    path: path('add_si_siao_number', {id: beneficiary.id}),
+                    message: 'add'|trans
+                }) }}
+        </span>
+
+    </div>
+{% elseif not beneficiary.hasRosalieExternalLink and app.user.usesRosalie %}
+    <div class="pb-3 d-flex align-items-center justify-content-start">
+        <span class="px-2">
+            <i class="fas fa-warning p-2 text-warning"></i>{{ 'beneficiary_not_linked_rosalie'|trans }}
+        </span>
+        <span class="mb-2">
+            {{ include('v2/common/_link_button.html.twig', {
+                path: path('link_rosalie', {id: beneficiary.id}),
+                message: 'retry'|trans
+            }) }}
+        </span>
+    </div>
+{% endif %}
