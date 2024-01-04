@@ -10,7 +10,7 @@ RECTOR          = $(BIN)/rector
 PHP_CS_FIXER    = $(BIN)/php-cs-fixer
 PHPSTAN_LEVEL   = 7
 
-cs: stan fixer
+cs: stan rector fixer
 
 stan:
 	@$(PHPSTAN) analyse -l $(PHPSTAN_LEVEL) --xdebug
@@ -36,5 +36,7 @@ test-v1:
 
 test-v2:
 	@$(PHPUNIT) tests/v2
+
+test: fixture-v1 test-v1 fixture-v2 test-v2
 
 dep: deploy
