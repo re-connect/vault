@@ -55,6 +55,7 @@ beneficiary_has_no_account_create: "Créez-lui un compte puis rattachez-le à l�
 beneficiary_has_no_email: Le bénéficiaire n'a pas renseigné d'adresse email
 beneficiary_has_no_phone_number: Le bénéficiaire n'a pas renseigné de numéro de téléphone
 beneficiary_has_no_secret_answer: Le bénéficiaire n'a pas renseigné de réponse secrète
+beneficiary_linked_rosalie: Ce bénéficiaire est lié à l'application de réservation hotelière (Rosalie)
 beneficiary_not_found: "Aucun bénéficiaire avec l'id %id% n'a été trouvé"
 beneficiary_not_linked_rosalie: Attention ce bénéficiaire n'a pas été lié à l'application de réservation hotelière (Rosalie)
 beneficiary_relay_affiliation_end: "Sinon, il pourra accepter l'invitation en se connectant à son compte Reconnect"
