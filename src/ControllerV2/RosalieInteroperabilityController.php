@@ -34,16 +34,9 @@ class RosalieInteroperabilityController extends AbstractController
 
         $redirection = $beneficiaryCreationProcess?->getIsCreating()
             ? $this->redirectToRoute('create_beneficiary', ['id' => $beneficiaryCreationProcess->getId(), 'step' => $beneficiaryCreationProcess->getLastReachedStep()])
-            : $this->redirectToRoute('list_beneficiaries');
+            : $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]);
 
         return $this->processSiSiaoNumberForm($request, $beneficiary, $redirection);
-    }
-
-    #[IsGranted('ROLE_MEMBRE')]
-    #[Route('/beneficiary/{id}/affiliate/add-si-siao-number', name: 'affiliate_beneficiary_add_si_siao_number')]
-    public function affiliationAddSiSiaoNumber(Request $request, Beneficiaire $beneficiary): Response
-    {
-        return $this->processSiSiaoNumberForm($request, $beneficiary, $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]));
     }
 
     private function processSiSiaoNumberForm(Request $request, Beneficiaire $beneficiary, RedirectResponse $redirection): Response
@@ -118,7 +111,10 @@ class RosalieInteroperabilityController extends AbstractController
     public function linkToRosalie(Beneficiaire $beneficiary): Response
     {
         $this->createRosalieLink($beneficiary);
+        $beneficiaryCreationProcess = $beneficiary->getCreationProcess();
 
-        return $this->redirectToRoute('create_beneficiary', ['id' => $beneficiary->getCreationProcess()->getId(), 'step' => $beneficiary->getCreationProcess()->getLastReachedStep()]);
+        return $beneficiaryCreationProcess?->getIsCreating()
+            ? $this->redirectToRoute('create_beneficiary', ['id' => $beneficiaryCreationProcess->getId(), 'step' => $beneficiaryCreationProcess->getLastReachedStep()])
+            : $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]);
     }
 }
