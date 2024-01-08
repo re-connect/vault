@@ -2,7 +2,7 @@
     <div class="container-fluid max-width-lg mx-auto">
         <div class="row">
             <div class="col-1 col-lg-6 text-left px-2">
-                <a href="{{ path('re_user_redirectUser') }}">
+                <a href="{{ path('redirect_user') }}">
                     <img src="{{ asset('build/images/vault-logo-small.png') }}" alt="logo reconnect" class="img-logo">
                 </a>
             </div>
@@ -27,7 +27,7 @@
                             <div class="col-12">
                                 <a href="{{ path('my_relays') }}"
                                    class="text-white text-decoration-none"><i
-                                            class="fas fa-hotel me-1"></i>{{ 'header.menu.relaisReconnect'|trans|upper }}
+                                            class="fas fa-hotel me-1"></i>{{ 'my_reconnect_relays'|trans|upper }}
                                 </a>
                             </div>
                         {% endif %}
@@ -36,12 +36,12 @@
                                class="text-white text-decoration-none"
                                data-turbo="false"
                             >
-                                <i class="fas fa-cog me-1"></i>{{ 'header.menu.parametres'|trans|upper }}
+                                <i class="fas fa-cog me-1"></i>{{ 'parameters'|trans|upper }}
                             </a>
                         </div>
                         <div class="col-12 text-end">
                             <a href="{{ path('app_logout') }}"
-                               class="btn {{ getUserButtonColor() }} text-white bold">{{ 'header.menu.deconnection'|trans }}</a>
+                               class="btn {{ getUserButtonColor() }} text-white bold">{{ 'logout'|trans }}</a>
                         </div>
                     </div>
                 </div>

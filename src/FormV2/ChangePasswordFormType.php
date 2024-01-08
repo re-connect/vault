@@ -28,24 +28,24 @@ class ChangePasswordFormType extends AbstractType
 
         $constraintsBeneficiaire = [
                 new NotBlank([
-                    'message' => $this->translator->trans('form.validation.noPassword'),
+                    'message' => $this->translator->trans('you_must_choose_password'),
                 ]),
                 new Length([
                     'min' => 5,
-                    'minMessage' => $this->translator->trans('form.validation.tooShort'),
+                    'minMessage' => $this->translator->trans('password_too_short'),
                     // max length allowed by Symfony for security reasons
                     'max' => 4096,
                 ]),
                 new Regex([
                     'pattern' => '#^[\S]+$#',
-                    'message' => $this->translator->trans('form.validation.passwordFormat'),
+                    'message' => $this->translator->trans('password_wrong_format'),
                 ]),
             ];
 
         $constraintsMembre = [
             new Length([
                 'min' => 8,
-                'minMessage' => $this->translator->trans('form.validation.tooShort'),
+                'minMessage' => $this->translator->trans('password_too_short'),
                 // max length allowed by Symfony for security reasons
                 'max' => 4096,
             ]),
@@ -68,7 +68,7 @@ class ChangePasswordFormType extends AbstractType
                 'second_options' => [
                     'label' => 'confirm_new_password',
                 ],
-                'invalid_message' => $this->translator->trans('form.validation.mismatch'),
+                'invalid_message' => $this->translator->trans('passwords_mismatch'),
                 // Instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
@@ -77,7 +77,7 @@ class ChangePasswordFormType extends AbstractType
         if ($options['checkCurrentPassword']) {
             $builder
                 ->add('currentPassword', PasswordType::class, [
-                    'label' => 'user.parametres.mdpActuel',
+                    'label' => 'actual_password',
                     'attr' => [
                         'autocomplete' => 'new-password',
                     ],

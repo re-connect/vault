@@ -1,54 +1,43 @@
-{% extends 'base.html.twig' %}
+{% extends 'v2/base.html.twig' %}
 
 {% block metaTitle %}
     {% if app.user.isBeneficiaire %}
-        {{ 'user.firstVisit.beneficiaire.metaTitle'|trans }}
+        {{ 'welcome_on_solidarity_cloud'|trans }}
     {% elseif app.user.isMembre %}
         {{ 'user_firstVisit_membre_metaTitle'|trans }}
-    {% elseif app.user.isGestionnaire %}
-        {{ 'user.firstVisit.gestionnaire.metaTitle'|trans }}
     {% endif %}
 {% endblock metaTitle %}
 
 {% block notifications %}{% endblock %}
+{% block bodyColor %}white{% endblock %}
 
-{% block bodyCentered %}
-    <div id="page-firstVisit">
+{% block body %}
+    <div class="container mt-5 pt-5">
         {% if app.user.isBeneficiaire %}
             {% include "user/user/beneficiary_new_guide.html.twig" %}
         {% elseif app.user.isMembre %}
-            <h1 class="center h1 text-primary">
+            <h1 class="text-center text-primary text-uppercase">
                 {{ 'member_new_guide_title'|trans|raw }}
             </h1>
             <br/>
-
-            <div id="firstVisit-image" class="mt-5">
-                <img src="{{ asset('build/images/home/background.jpg') }}" alt="">
+            <div class="mt-2 row">
+                <div class="mt-2 mt-md-5 col-12 col-md-6 col-lg-4 text-center d-flex">
+                    <img src="{{ asset('build/images/home/background.jpg') }}" class="my-auto img-fluid">
+                </div>
+                <div class="text-primary font-size-1 col-12 col-md-6 col-lg-8 mt-5 mt-md-0" id="firstVisit-text">
+                    <p class="smallMargin">{{ 'user_firstVisit_membre_intro'|trans }}</p>
+                    <p class="smallMargin">{{ 'user_firstVisit_membre_intro_more'|trans }}</p>
+                    <p class="smallMargin">{{ 'user_firstVisit_rgpd'|trans({'%mailRGPD%' : 'reconnect_rgpd_mail'|trans, '%phoneNumber%': 'reconnect_phone_number'|trans})|raw }}</p>
+                    <p class="smallMargin">{{ 'user_firstVisit_rgpd_more'|trans({'%linkRGPD%' : 'https://www.reconnect.fr/annexe/confidentialite-cs'})|raw }}</p>
+                    <p class="smallMargin">{{ 'user_firstVisit_membre_outro'|trans }}</p>
+                </div>
+                <div class="clearFloat">&nbsp;</div>
             </div>
-            <div class="text-primary font-size-1" id="firstVisit-text">
-                <p class="smallMargin">{{ 'user_firstVisit_membre_intro'|trans }}</p>
-                <p class="smallMargin">{{ 'user_firstVisit_membre_intro_more'|trans }}</p>
-                <p class="smallMargin">{{ 'user_firstVisit_rgpd'|trans({'%mailRGPD%' : 'reconnect_rgpd_mail'|trans, '%phoneNumber%': 'reconnect_phone_number'|trans})|raw }}</p>
-                <p class="smallMargin">{{ 'user_firstVisit_rgpd_more'|trans({'%linkRGPD%' : 'https://www.reconnect.fr/annexe/confidentialite-cs'})|raw }}</p>
-                <p class="smallMargin">{{ 'user_firstVisit_membre_outro'|trans }}</p>
+            <div class="text-center mt-3 mt-md-5">
+                <a href="{{ path('user_cgs') }}" class="btn btn-blue text-white font-size-1">
+                    {{ 'continue'|trans }}
+                </a>
             </div>
-            <div class="clearFloat">&nbsp;</div>
-            <div class="bigPadding center"><a href="{{ path('re_user_cgs') }}"
-                                              class="btn btn-blue font-size-1">{{ 'main.continuer'|trans }}</a></div>
-        {% elseif app.user.isGestionnaire %}
-            <h1 class="center h1 text-primary">{{ 'member_new_guide_title'|trans|raw }}
-            </h1>
-            <br/>
-
-            <div id="firstVisit-image">
-                <img src="{{ asset('build/images/home/background.jpg') }}" alt="">
-            </div>
-            <div class="text-primary font-size-1" id="firstVisit-text">
-                {{ 'user.firstVisit.gestionnaire.text'|trans|raw }}
-            </div>
-            <div class="clearFloat">&nbsp;</div>
-            <div class="bigPadding center"><a href="{{ path('re_user_cgs') }}"
-                                              class="btn btn-blue font-size-1">{{ 'main.continuer'|trans }}</a></div>
         {% endif %}
     </div>
-{% endblock bodyCentered %}
+{% endblock %}

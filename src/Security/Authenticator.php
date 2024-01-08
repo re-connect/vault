@@ -55,6 +55,6 @@ class Authenticator extends AbstractLoginFormAuthenticator
 
         $this->eventDispatcher->dispatch(new UserEvent($user, $previousLogin !== $now->format('Y-m-d')));
 
-        return new RedirectResponse($this->router->generate('re_user_loginEnd'));
+        return new RedirectResponse($this->router->generate('login_end'));
     }
 }

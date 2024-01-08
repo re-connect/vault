@@ -25,12 +25,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Route({
- *     "old": "/api/",
- *     "new": "/api/v2/"
- *   }, name="re_api_user_")
- */
+#[Route(path: ['old' => '/api/', 'new' => '/api/v2/'], name: 're_api_user_')]
 class UserRestV2Controller extends REController
 {
     protected string $accessRead = Client::ACCESS_USER_READ;

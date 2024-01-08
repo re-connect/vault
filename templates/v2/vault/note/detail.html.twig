@@ -1,7 +1,7 @@
 {{ include('v2/vault/components/_personal_data_detail.html.twig', {
     'information': {
-        'note.nomLabel': note.nom,
-        'note.contenuLabel': note.contenu,
+        'title': note.nom,
+        'note_content': note.contenu,
         'add_date': note.createdAt|format_datetime(),
     },
     'readHtml': true,

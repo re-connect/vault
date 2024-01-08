@@ -7,7 +7,7 @@
 {% block content %}
     <div {{ stimulus_controller('autocomplete', {'source': autocompleteNames}) }}>
         {{ include('v2/vault/form/_personal_data_form.html.twig', {
-            'title': 'document.creerUnDossier',
+            'title': 'create_folder',
             'icon' : 'fas fa-folder-plus',
             'cancelPath': path('list_documents', {'id': beneficiary.id}),
         }) }}

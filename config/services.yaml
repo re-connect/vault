@@ -43,26 +43,8 @@ services:
     # please note that last definitions always *replace* previous ones
     'Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter': ~
 
-    # Menu Builders
-    App\Menu\REMainMenuBuilder:
-        tags:
-            - { name: knp_menu.menu_builder, method: headerMenu, alias: re_main.header.menu_renderer }
-            - { name: knp_menu.menu_builder, method: devenirUnRelaiReconnectMenu, alias: re_main.header.menu_renderer }
-
-    App\Menu\REUserMenuBuilder:
-        tags:
-            - { name: knp_menu.menu_builder, method: beneficiaireMenu, alias: re_user.beneficiaire.menu_renderer }
-            - { name: knp_menu.menu_builder, method: membreMenu, alias: re_user.membre.menu_renderer }
-            - { name: knp_menu.menu_builder, method: gestionnaireMenu, alias: re_user.gestionnaire.menu_renderer }
-        public: true
-
     # Twig Extension
     App\Extension\DocumentExtension:
-        autowire: true
-        tags:
-            - { name: twig.extension }
-
-    App\Extension\NotificationExtension:
         autowire: true
         tags:
             - { name: twig.extension }
@@ -72,41 +54,11 @@ services:
         tags:
             - { name: twig.extension }
 
-    App\Extension\SolutionExtension:
-        autowire: true
-        tags:
-            - { name: twig.extension }
-
     #Twig Extension V2
     App\Twig\ExtensionV2\UserColorExtension:
         autowire: true
         tags:
             - { name: twig.extension }
-
-    # Listener
-    App\Listener\UserListener:
-        autowire: true
-        tags:
-            - { name: doctrine.event_listener, event: prePersist, method: prePersist }
-
-    App\Listener\DonneePersonnelleListener:
-        autowire: true
-        tags:
-            - { name: doctrine.event_listener, event: preUpdate }
-
-    App\Listener\REImageListener:
-        autowire: true
-        tags:
-            - { name: doctrine.event_listener, event: prePersist, method: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
-            - { name: doctrine.event_listener, event: preRemove, method: preRemove }
-
-    App\Listener\FaqQuestionListener:
-        autowire: true
-        tags:
-            - { name: doctrine.event_listener, event: prePersist, method: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
-            - { name: doctrine.event_listener, event: postFlush, method: postFlush }
 
     re.manager.sms:
         class: App\Manager\SMSManager
