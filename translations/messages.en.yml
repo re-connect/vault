@@ -475,3 +475,4 @@ german_flag: German flag
 spanish_flag: Spanish flag
 reminder_sms_content: "Hello \nAppointment reminder : %name% \n%date%"
 mail_shared_document_content_1_anonymous: Someone would like to share with you a document from its digital safe by Reconnect.
+my_reconnect_relays: My Reconnect relays
