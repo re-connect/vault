@@ -5,8 +5,8 @@ namespace App\Manager;
 use Aws\S3\Exception\S3Exception;
 use Aws\S3\S3Client;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Uid\Uuid;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Uid\Uuid;
 
 class DocumentManager
 {
