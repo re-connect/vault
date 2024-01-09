@@ -1,4 +1,5 @@
 {% extends 'v2/common/_card.html.twig' %}
+{% form_theme form 'v2/form_theme/form_theme.html.twig' %}
 
 {% block customContent %}
     <div class="text-start">
@@ -7,11 +8,9 @@
             {% for field in form %}
 {#          The 'plainPassword' field name is only used when creating a professionnal #}
                 {% if field.vars.name == 'plainPassword' %}
-                    {{ form_errors(field) }}
                     {{ include('v2/user/strong_password/_strong_password_row.html.twig', {'field' : field, 'isBeneficiaire': false, 'hideAndShow': false }) }}
                 {% else %}
                     {{ form_row(field) }}
-                    {{ form_errors(field) }}
                 {% endif %}
             {% endfor %}
         </div>
