@@ -5,8 +5,7 @@ namespace App\Manager;
 use Aws\S3\Exception\S3Exception;
 use Aws\S3\S3Client;
 use Psr\Log\LoggerInterface;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Uid\Uuid;
 use Symfony\Component\HttpFoundation\File\File;
 
 class DocumentManager
@@ -65,15 +64,13 @@ class DocumentManager
     }
 
     /**
-     * @return UuidInterface
-     *
      * @throws \Exception
      */
-    public function putFile(File $file)
+    public function putFile(File $file): string
     {
         try {
             $handle = fopen($file->getPathname(), 'r');
-            $key = Uuid::uuid4();
+            $key = Uuid::v4()->toRfc4122();
             $this->client->putObject([
                 'Bucket' => $this->bucketName,
                 'Key' => $key,
