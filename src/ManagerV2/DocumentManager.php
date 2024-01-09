@@ -201,7 +201,7 @@ class DocumentManager
             }
             $this->em->remove($document);
             $this->em->flush();
-            $this->addFlashMessage('success', 'document.bienSupprime');
+            $this->addFlashMessage('success', 'document_deleted_successfully');
         } catch (\Exception $e) {
             $this->addFlashMessage('danger', 'error');
         }

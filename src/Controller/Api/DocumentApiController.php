@@ -11,9 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DocumentApiController extends AbstractController
 {
-    /**
-     * @Route("/beneficiaries/{id}/documents","list_beneficiary_documents",methods={"GET"})
-     */
+    #[Route(path: '/beneficiaries/{id}/documents', name: 'list_beneficiary_documents', methods: ['GET'])]
     public function getBeneficiaryDocuments(Beneficiaire $beneficiaire, DocumentRepository $repository, DocumentProvider $provider): JsonResponse
     {
         $documents = $repository->findBy(['beneficiaire' => $beneficiaire]);

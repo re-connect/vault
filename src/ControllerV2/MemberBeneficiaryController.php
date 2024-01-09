@@ -39,7 +39,7 @@ class MemberBeneficiaryController extends AbstractController
 
         $em->persist($contact);
         $em->flush();
-        $this->addFlash('success', 'membre.partageContact.success');
+        $this->addFlash('success', 'personal_phone_added_successfully');
 
         return new JsonResponse(null, Response::HTTP_CREATED);
     }

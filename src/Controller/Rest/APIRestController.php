@@ -26,9 +26,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Route("/appli/rosalie", name="re_api_api_rest_")
- */
+#[Route(path: '/appli/rosalie', name: 're_api_api_rest_')]
 class APIRestController extends REController
 {
     public function __construct(
@@ -40,25 +38,14 @@ class APIRestController extends REController
         parent::__construct($requestStack, $translator, $entityManager, $clientManager);
     }
 
-    /**
-     * @Route(
-     *     "/beneficiaire/{distantId}",
-     *     methods={"GET"},
-     *     name="get_beneficiaire"
-     * )
-     */
+    #[Route(path: '/beneficiaire/{distantId}', methods: ['GET'], name: 'get_beneficiaire')]
     public function getBeneficiaire(string $distantId, BeneficiaireProvider $beneficiaireProvider): JsonResponse
     {
         return $this->json($beneficiaireProvider->getEntityByDistantId($distantId, false)
             ->jsonSerializeForClient($this->apiClientManager->getCurrentOldClient()));
     }
 
-    /**
-     * @Route("/beneficiaire/{distantId}",
-     *     name="edit_beneficiaire",
-     *     methods={"PUT"}
-     * )
-     */
+    #[Route(path: '/beneficiaire/{distantId}', name: 'edit_beneficiaire', methods: ['PUT'])]
     public function editBeneficiaire(
         Request $request,
         string $distantId,
@@ -80,12 +67,7 @@ class APIRestController extends REController
         }
     }
 
-    /**
-     * @Route("/beneficiaire/{distantId}",
-     *     name="delete_beneficiaire",
-     *     methods={"DELETE"}
-     * )
-     */
+    #[Route(path: '/beneficiaire/{distantId}', name: 'delete_beneficiaire', methods: ['DELETE'])]
     public function deleteBeneficiaire(
         string $distantId,
         BeneficiaireProvider $beneficiaireProvider,
@@ -103,9 +85,7 @@ class APIRestController extends REController
         }
     }
 
-    /**
-     * @Route("/beneficiaire", name="create_beneficiaire", methods={"POST"})
-     */
+    #[Route(path: '/beneficiaire', name: 'create_beneficiaire', methods: ['POST'])]
     public function createBeneficiaire(
         Request $request,
         UserManager $userManager,
@@ -146,13 +126,7 @@ class APIRestController extends REController
         }
     }
 
-    /**
-     * @Route("/beneficiaire/{distantId}/uploadFile",
-     *     requirements={"distantId": "\d{1,10}"},
-     *     name="upload_file",
-     *     methods={"POST"}
-     * )
-     */
+    #[Route(path: '/beneficiaire/{distantId}/uploadFile', requirements: ['distantId' => '\d{1,10}'], name: 'upload_file', methods: ['POST'])]
     public function uploadFile(
         int $distantId,
         Request $request,
@@ -193,16 +167,8 @@ class APIRestController extends REController
 
     /**
      * Lier un beneficiaire distant à un centre distant.
-     *
-     * @Route("/beneficiaire/{distantBeneficiaryId}/centre/{distantCenterId}/link",
-     *     requirements={
-     *          "distantBeneficiaryId": "\d{1,10}",
-     *          "distantCenterId": "\d{1,10}"
-     *     },
-     *     name="link_to_center",
-     *     methods={"PATCH"}
-     * )
      */
+    #[Route(path: '/beneficiaire/{distantBeneficiaryId}/centre/{distantCenterId}/link', requirements: ['distantBeneficiaryId' => '\d{1,10}', 'distantCenterId' => '\d{1,10}'], name: 'link_to_center', methods: ['PATCH'])]
     public function linkToCenter(
         int $distantBeneficiaryId,
         int $distantCenterId,
@@ -225,16 +191,7 @@ class APIRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "/beneficiaire/{username}",
-     *     requirements={
-     *          "username": "[a-z\-]+\.[a-z\-]+\.[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3}(.[0-9]{1,2})?",
-     *     },
-     *     name="beneficiary_exists",
-     *     methods={"GET"}
-     * )
-     */
+    #[Route(path: '/beneficiaire/{username}', requirements: ['username' => '[a-z\-]+\.[a-z\-]+\.[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3}(.[0-9]{1,2})?'], name: 'beneficiary_exists', methods: ['GET'])]
     public function beneficiaryExists(string $username, BeneficiaireProvider $beneficiaryProvider): JsonResponse
     {
         try {
@@ -248,13 +205,7 @@ class APIRestController extends REController
         }
     }
 
-    /**
-     * @Route(
-     *     "/centre/{distantId}",
-     *     name="get_centre",
-     *     methods={"GET"}
-     * )
-     */
+    #[Route(path: '/centre/{distantId}', name: 'get_centre', methods: ['GET'])]
     public function getCentre(string $distantId, CentreProvider $centreProvider): JsonResponse
     {
         try {

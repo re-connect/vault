@@ -46,7 +46,7 @@ class UserType extends AbstractType
         $builder
             ->add('adresse', AddressType::class, [
                 'required' => false,
-                'label' => 'registerForm.adresse',
+                'label' => 'your_address',
             ])
             ->add('dateNaissance', BirthdayType::class, [
                 'property_path' => 'subjectBeneficiaire.dateNaissance',

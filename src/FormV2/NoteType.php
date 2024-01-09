@@ -16,10 +16,10 @@ class NoteType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, [
-                'label' => 'note.nomLabel',
+                'label' => 'title',
             ])
             ->add('contenu', TextareaType::class, [
-                'label' => 'note.contenuLabel',
+                'label' => 'note_content',
                 'attr' => [
                     'class' => 'd-none',
                     'data-controller' => 'quill-editor',

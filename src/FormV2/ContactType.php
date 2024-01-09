@@ -22,18 +22,18 @@ class ContactType extends AbstractType
                 'label' => 'firstname',
             ])
             ->add('telephone', TextType::class, [
-                'label' => 'contact.telephoneLabel',
+                'label' => 'phone',
                 'required' => false,
             ])
             ->add('email', TextType::class, [
                 'required' => false,
             ])
             ->add('commentaire', TextareaType::class, [
-                'label' => 'contact.commentaireLabel',
+                'label' => 'comment',
                 'required' => false,
             ])
             ->add('association', TextType::class, [
-                'label' => 'contact.associationLabel',
+                'label' => 'association',
                 'required' => false,
             ])
             ->add('bPrive', ChoiceType::class, [

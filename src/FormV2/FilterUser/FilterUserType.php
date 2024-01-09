@@ -27,7 +27,7 @@ class FilterUserType extends AbstractType
                 'required' => false,
                 'row_attr' => ['class' => 'input-with-glass'],
                 'attr' => [
-                    'placeholder' => 'main.chercher',
+                    'placeholder' => 'search',
                     'autofocus' => true,
                     'data-ajax-list-filter-target' => 'input',
                     'data-input-name' => 'search',

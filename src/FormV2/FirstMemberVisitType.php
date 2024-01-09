@@ -13,10 +13,10 @@ class FirstMemberVisitType extends AbstractType
     {
         $builder
             ->add('sharePhone', CheckboxType::class, [
-                'label' => 'membre.partageContact.ajouterNuméro',
+                'label' => 'add_personal_phone',
             ])
             ->add('shareMail', CheckboxType::class, [
-                'label' => 'membre.partageContact.ajouterMail',
+                'label' => 'add_personal_email',
             ])
         ;
     }

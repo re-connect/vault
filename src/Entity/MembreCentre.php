@@ -28,8 +28,8 @@ class MembreCentre extends UserCentre
     public static function getArDroits()
     {
         return [
-            self::MANAGE_BENEFICIARIES_PERMISSION => 'membre.droits.gestionBeneficiaires',
-            self::MANAGE_PROS_PERMISSION => 'membre.droits.gestionMembres',
+            self::MANAGE_BENEFICIARIES_PERMISSION => 'beneficiaries_management',
+            self::MANAGE_PROS_PERMISSION => 'professionals_management',
         ];
     }
 

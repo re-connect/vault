@@ -15,7 +15,7 @@
         }) }}
     </td>
     <td class="bg-white borderless w-25 align-middle">
-        {% if app.user.isBeneficiaire and not document.dossier%}
+        {% if app.user.isBeneficiaire and not document.dossier %}
             {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
                 'url': path('document_toggle_visibility', {'id': document.id}),
                 'private': document.bPrive,
