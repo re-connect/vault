@@ -34,6 +34,14 @@ sonata_admin:
                     - sonata.admin.faq
                     - reo_auth.admin.client
                     - re_admin.admin.annexe
+            superAdminFeatures:
+                label: "Outils SuperAdmin"
+                icon: '<i class="fa fa-cat"></i>'
+                items:
+                    - sonata.admin.admin
+                roles:
+                    - ROLE_SUPER_ADMIN
+
     global_search:
         empty_boxes: hide
         admin_route: edit
