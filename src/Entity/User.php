@@ -1266,4 +1266,9 @@ class User extends BaseUser implements \JsonSerializable
     {
         return $this->getSubjectMembre()?->usesRosalie() ?? false;
     }
+
+    public function mustAcceptTermsOfUse(): bool
+    {
+        return !$this->hasRole('ROLE_ADMIN') && $this->isFirstVisit();
+    }
 }
