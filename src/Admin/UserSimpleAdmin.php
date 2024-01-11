@@ -47,7 +47,7 @@ class UserSimpleAdmin extends AbstractAdmin
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'password', 'attr' => ['autocomplete' => 'off']],
                 'second_options' => ['label' => 'Confirmer le mot de passe', 'attr' => ['autocomplete' => 'off']],
-                'invalid_message' => 'fos_user.password.mismatch',
+                'invalid_message' => 'Les mots de passe ne sont pas identiques',
             ])
             ->add('createdAt', DateTimePickerType::class, [
                 'label' => 'Date de création',

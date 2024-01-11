@@ -50,6 +50,12 @@ class UserManager
         }
     }
 
+    public function createRandomPassword(User $user): void
+    {
+        $this->em->persist($user);
+        $this->updatePassword($user, ByteString::fromRandom(32)->toString());
+    }
+
     public function setUniqueUsername(User $user): void
     {
         $user->setUsername($this->getUniqueUsername($user));

@@ -191,6 +191,17 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: "admin", label: "Creator" }
 
+    sonata.admin.admin:
+        class: App\Admin\AdminUserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Outils SuperAdmin", label: "Admins" }
+        arguments:
+            - ~
+            - App\Entity\User
+            - ~
+        calls:
+            - [ setUserManager, [ '@App\ManagerV2\UserManager' ] ]
+            - [ setResettingService, [ '@App\ServiceV2\ResettingService' ] ]
     # OAuth
     reo_auth.admin.client:
         class: App\Admin\ClientAdmin
