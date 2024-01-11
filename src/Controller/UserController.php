@@ -18,7 +18,7 @@ class UserController extends REController
         return $this->render('user/user/firstVisit.html.twig');
     }
 
-    #[Route(path: '/user/cgs', name: 'user_cgs', methods: ['GET'])]
+    #[Route(path: '/user/cgs', name: 'user_cgs', methods: ['GET', 'POST'])]
     public function cgs(TranslatorInterface $translator, EntityManagerInterface $em): Response
     {
         $form = $this->createFormBuilder()
