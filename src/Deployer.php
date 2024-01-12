@@ -54,6 +54,11 @@ class Deployer extends DefaultDeployer
         $this->runRemote('~/.yarn/bin/yarn dev');
     }
 
+    public function beforePublishing(): void
+    {
+        $this->flushOpCache();
+    }
+
     public function beforeFinishingDeploy(): void
     {
         $this->runRemote('{{ console_bin }} fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json');
