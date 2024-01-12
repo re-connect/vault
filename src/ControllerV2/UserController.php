@@ -23,7 +23,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route(path: '/user')]
 class UserController extends AbstractController
 {
-    #[Route(path: '/first_visit', name: 'user_cgs', methods: ['GET', 'POST'])]
+    #[Route(path: '/cgs', name: 'user_cgs', methods: ['GET', 'POST'])]
     public function cgs(Request $request, TranslatorInterface $translator, EntityManagerInterface $em): Response
     {
         if (!$this->getUser()->isFirstVisit()) {
