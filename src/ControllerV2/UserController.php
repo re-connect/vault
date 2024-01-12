@@ -23,7 +23,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route(path: '/user')]
 class UserController extends AbstractController
 {
-    #[Route(path: '/cgs', name: 'user_cgs', methods: ['GET', 'POST'])]
+    #[Route(path: '/first_visit', name: 'user_cgs', methods: ['GET', 'POST'])]
     public function cgs(Request $request, TranslatorInterface $translator, EntityManagerInterface $em): Response
     {
         if (!$this->getUser()->isFirstVisit()) {
@@ -47,7 +47,7 @@ class UserController extends AbstractController
             $form->addError(new FormError($translator->trans('you_must_accept_terms_of_use')));
         }
 
-        return $this->render('user/user/cgs-cs.html.twig', [
+        return $this->render('v2/user/first_visit/cgs.html.twig', [
             'form' => $form,
         ]);
     }
@@ -56,7 +56,7 @@ class UserController extends AbstractController
     public function firstVisit(): Response
     {
         return $this->getUser()->isFirstVisit()
-            ? $this->render('user/user/firstVisit.html.twig')
+            ? $this->render('v2/user/first_visit/first_visit.html.twig')
             : $this->redirectToRoute('redirect_user');
     }
 

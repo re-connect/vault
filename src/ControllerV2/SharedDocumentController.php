@@ -52,7 +52,7 @@ class SharedDocumentController extends AbstractController
         $document = $sharedDocument->getDocument();
         $documentManager->hydrateDocumentWithPresignedUrl($document);
 
-        return $this->render('download\download.html.twig', [
+        return $this->render('v2/vault/document/download.html.twig', [
             'sharedDocument' => $sharedDocument,
             'downloadLink' => $document->getPresignedUrl(),
         ]);

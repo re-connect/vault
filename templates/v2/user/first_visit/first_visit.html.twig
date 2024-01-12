@@ -14,7 +14,7 @@
 {% block body %}
     <div class="container mt-5 pt-5">
         {% if app.user.isBeneficiaire %}
-            {% include "user/user/beneficiary_new_guide.html.twig" %}
+            {% include "v2/user/first_visit/beneficiary_new_guide.html.twig" %}
         {% elseif app.user.isMembre %}
             <h1 class="text-center text-primary text-uppercase">
                 {{ 'member_new_guide_title'|trans|raw }}
