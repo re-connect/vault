@@ -10,8 +10,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\Form\Type\DateTimePickerType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class AdminUserAdmin extends AbstractAdmin
 {
@@ -22,6 +22,7 @@ class AdminUserAdmin extends AbstractAdmin
     protected function prePersist(object $object): void
     {
         if ($object instanceof User) {
+            $object->setFirstVisit();
             $this->userManager->createRandomPassword($object);
         }
         parent::prePersist($object);
@@ -54,6 +55,7 @@ class AdminUserAdmin extends AbstractAdmin
             ->add('nom', null, ['label' => 'Nom'])
             ->add('prenom', null, ['label' => 'Prénom'])
             ->add('enabled', null, ['label' => 'Actif'])
+            ->add('typeUser', null, ['label' => 'user_type'])
             ->addIdentifier('createdAt', null, ['route' => ['name' => 'edit']]);
     }
 
@@ -75,7 +77,12 @@ class AdminUserAdmin extends AbstractAdmin
                 'attr' => ['read_only' => true],
                 'disabled' => true,
             ])
-            ->add('typeUser', HiddenType::class, ['data' => User::USER_TYPE_ADMINISTRATEUR]);
+            ->add('typeUser', ChoiceType::class,
+                [
+                    'label' => 'user_type',
+                    'choices' => User::ADMIN_TYPES,
+                    'multiple' => false,
+                ]);
     }
 
     protected function configureQuery(ProxyQueryInterface $query): ProxyQueryInterface
@@ -84,8 +91,11 @@ class AdminUserAdmin extends AbstractAdmin
 
         $rootAlias = current($query->getRootAliases());
 
-        $query->andWhere($rootAlias.'.roles LIKE :adminRole');
-        $query->setParameter('adminRole', '%'.User::USER_TYPE_ADMINISTRATEUR.'%');
+        $query->andWhere($rootAlias.'.roles LIKE :adminRole OR '.$rootAlias.'.roles LIKE :superAdminRole');
+        $query->setParameters([
+            'adminRole' => '%'.User::USER_TYPE_ADMINISTRATEUR.'%',
+            'superAdminRole' => '%'.User::USER_TYPE_SUPER_ADMIN.'%',
+        ]);
 
         return $query;
     }

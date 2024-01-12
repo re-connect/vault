@@ -53,7 +53,7 @@ class UserManager
     public function createRandomPassword(User $user): void
     {
         $this->em->persist($user);
-        $this->updatePassword($user, ByteString::fromRandom(32)->toString());
+        $this->updatePassword($user, $this->getRandomPassword(32));
     }
 
     public function setUniqueUsername(User $user): void
@@ -63,7 +63,7 @@ class UserManager
 
     public function getUniqueUsername(User $user): string
     {
-        $baseUsername = $user->getDefaultUsername();
+        $baseUsername = $user->isAdministrateur() || $user->isSuperAdmin() ? $user->getDefaultAdminUserName() : $user->getDefaultUsername();
         $homonyms = $this->repository->findHomonyms($baseUsername);
         $hasNoHomonym = 0 === count($homonyms);
         if ($hasNoHomonym) {
