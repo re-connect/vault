@@ -8,9 +8,4 @@ return new class extends Deployer {
     protected string $repositoryBranch = 'development';
     protected string $home = '/var/www/preprod_coffre_reconnect_fr';
     protected string $symfonyVaultDecryptKeyPath = '/preprod/preprod.decrypt.private.php';
-
-    public function beforePublishing(): void
-    {
-        $this->flushOpCache();
-    }
 };
