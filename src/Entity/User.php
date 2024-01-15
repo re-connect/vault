@@ -99,7 +99,6 @@ class User extends BaseUser implements \JsonSerializable
      * @var bool
      */
     #[Groups(['read', 'user:read'])]
-    #[Groups(['read', 'user:read'])]
     private $bActif = false;
 
     /**
