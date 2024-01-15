@@ -38,7 +38,9 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('accept')->getData()) {
-                $this->getUser()->setFirstVisit();
+                $this->getUser()
+                    ->setFirstVisit()
+                    ->setCgsAcceptedAt(new \DateTimeImmutable());
                 $em->flush();
 
                 return $this->redirect($this->generateUrl('redirect_user'));

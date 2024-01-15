@@ -191,6 +191,8 @@ class User extends BaseUser implements \JsonSerializable
     /** @var ?Collection<int, SharedDocument> */
     private ?Collection $sharedDocuments;
 
+    private ?\DateTimeImmutable $cgsAcceptedAt = null;
+
     public function __construct()
     {
         parent::__construct();
@@ -1270,5 +1272,17 @@ class User extends BaseUser implements \JsonSerializable
     public function mustAcceptTermsOfUse(): bool
     {
         return !$this->hasRole('ROLE_ADMIN') && $this->isFirstVisit();
+    }
+
+    public function getCgsAcceptedAt(): ?\DateTimeImmutable
+    {
+        return $this->cgsAcceptedAt;
+    }
+
+    public function setCgsAcceptedAt(?\DateTimeImmutable $cgsAcceptedAt): static
+    {
+        $this->cgsAcceptedAt = $cgsAcceptedAt;
+
+        return $this;
     }
 }
