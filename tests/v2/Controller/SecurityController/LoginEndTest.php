@@ -19,6 +19,8 @@ class LoginEndTest extends AbstractControllerTest implements TestRouteInterface
         yield 'Should redirect to password update route when authenticated as member with expired password' => [self::URL, 302, MemberFixture::MEMBER_PASSWORD_EXPIRED_MAIL, '/update-password'];
         yield 'Should redirect to password update route when authenticated as member with overdue password' => [self::URL, 302, MemberFixture::MEMBER_PASSWORD_OVERDUE_MAIL, '/update-password'];
         yield 'Should redirect to beneficiary creation when authenticated as member with no manage beneficiary rights' => [self::URL, 302, MemberFixture::MEMBER_MAIL_NO_RELAY_NO_PERMISSION, '/user/redirect-user/'];
+        yield 'Should redirect to first visit page on login as member in first visit' => [self::URL, 302, MemberFixture::MEMBER_FIRST_VISIT, '/user/first-visit'];
+        yield 'Should redirect to first visit page on login as beneficiary in first visit' => [self::URL, 302, BeneficiaryFixture::BENEFICIARY_MAIL_FIRST_VISIT, '/user/first-visit'];
     }
 
     /** @dataProvider provideTestRoute */
