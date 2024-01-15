@@ -4,6 +4,7 @@ security:
         ROLE_GESTIONNAIRE: ROLE_MEMBRE
         ROLE_ASSOCIATION: ROLE_MEMBRE
         ROLE_ADMIN: ROLE_BENEFICIAIRE
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     # https://symfony.com/doc/current/security/experimental_authenticators.html
     enable_authenticator_manager: true
