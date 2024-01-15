@@ -53,7 +53,7 @@ class MainController extends AbstractController
         // Get the last 4 Verbatims created in admin
         $verbatims = $verbatimRepository->findBy([], ['id' => 'desc'], 4);
 
-        return $this->render('homeV2/pages/index.html.twig', [
+        return $this->render('home/pages/index.html.twig', [
             'host' => $request->headers->get('host'),
             'form' => $form,
             'verbatims' => $verbatims,
@@ -69,7 +69,7 @@ class MainController extends AbstractController
             'action' => $this->generateUrl('re_main_login'),
         ]);
 
-        return $this->render('homeV2/pages/page-vault.html.twig', [
+        return $this->render('home/pages/page-vault.html.twig', [
             'form' => $form,
             'features' => HomeProvider::VAULT_FEATURES_CONTENT,
             'product_is' => HomeProvider::VAULT_IS_CONTENT,
@@ -81,7 +81,7 @@ class MainController extends AbstractController
     #[Route(path: '/reconnect-la-solution-pro', name: 're_main_page_RP', methods: ['GET'])]
     public function pageRP(): Response
     {
-        return $this->render('homeV2/pages/page-rp.html.twig', [
+        return $this->render('home/pages/page-rp.html.twig', [
             'features' => HomeProvider::RP_FEATURES_CONTENT,
             'product_is' => HomeProvider::RP_IS_CONTENT,
         ]);
@@ -90,7 +90,7 @@ class MainController extends AbstractController
     #[Route('/reconnect-accompagnement-numerique', name: 'digital_cares')]
     public function digitalCares(): Response
     {
-        return $this->render('homeV2/pages/digital_cares.html.twig', [
+        return $this->render('home/pages/digital_cares.html.twig', [
             'features' => HomeProvider::DIGITAL_CARES_FEATURES_CONTENT,
             'product_is' => HomeProvider::DIGITAL_CARES_IS_CONTENT,
         ]);
@@ -99,13 +99,13 @@ class MainController extends AbstractController
     #[Route('/public/newsletter-confirmation', name: 'newsletter_confirmation')]
     public function newsletterConfirmation(): Response
     {
-        return $this->render('homeV2/pages/newsletter_confirmation.html.twig');
+        return $this->render('home/pages/newsletter_confirmation.html.twig');
     }
 
     #[Route(path: '/faq-rgpd', name: 're_main_faq', methods: ['GET'])]
     public function pageFAQ(FaqQuestionRepository $repository): Response
     {
-        return $this->render('homeV2/pages/faq.html.twig', [
+        return $this->render('home/pages/faq.html.twig', [
             'faqQuestions' => $repository->findBy([], ['position' => 'ASC']),
         ]);
     }
@@ -113,7 +113,7 @@ class MainController extends AbstractController
     #[Route(path: '/nous-contacter', name: 're_main_contactV2', methods: ['GET'])]
     public function contactV2(): Response
     {
-        return $this->render('homeV2/pages/contact.html.twig');
+        return $this->render('home/pages/contact.html.twig');
     }
 
     #[Route(path: '/public/get-centers', name: 're_get_centers', methods: ['GET'])]
@@ -194,7 +194,7 @@ class MainController extends AbstractController
             }
         }
 
-        return $this->render('homeV2/pages/mail-translation/resetting-password.html.twig');
+        return $this->render('home/pages/mail-translation/resetting-password.html.twig');
     }
 
     #[Route('/public/shared-document-mail-translation', name: 'shared_document_mail_translation', methods: ['GET'])]
@@ -207,7 +207,7 @@ class MainController extends AbstractController
             }
         }
 
-        return $this->render('homeV2/pages/mail-translation/shared-document.html.twig');
+        return $this->render('home/pages/mail-translation/shared-document.html.twig');
     }
 
     #[Route('/public/get-mailjet-form', name: 'get_mailjet_form', methods: ['GET'])]

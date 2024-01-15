@@ -10,6 +10,8 @@ use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +23,43 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route(path: '/user')]
 class UserController extends AbstractController
 {
+    #[Route(path: '/cgs', name: 'user_cgs', methods: ['GET', 'POST'])]
+    public function cgs(Request $request, TranslatorInterface $translator, EntityManagerInterface $em): Response
+    {
+        if (!$this->getUser()->isFirstVisit()) {
+            return $this->redirectToRoute('redirect_user');
+        }
+
+        $form = $this->createFormBuilder()
+            ->add('accept', CheckboxType::class, ['label' => 'accept_terms_of_use'])
+            ->add('submit', SubmitType::class, ['label' => 'continue', 'attr' => ['class' => 'btn-green']])
+            ->getForm()
+            ->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('accept')->getData()) {
+                $this->getUser()->setFirstVisit();
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('redirect_user'));
+            }
+
+            $form->addError(new FormError($translator->trans('you_must_accept_terms_of_use')));
+        }
+
+        return $this->render('v2/user/first_visit/cgs.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    #[Route(path: '/first-visit', name: 'user_first_visit', methods: ['GET'])]
+    public function firstVisit(): Response
+    {
+        return $this->getUser()->isFirstVisit()
+            ? $this->render('v2/user/first_visit/first_visit.html.twig')
+            : $this->redirectToRoute('redirect_user');
+    }
+
     #[Route(path: '/settings', name: 'user_settings', methods: ['GET', 'POST'])]
     public function settings(
         Request $request,

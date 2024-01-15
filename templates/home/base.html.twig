@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"/>
+    <title>
+        {% block title %}{{ 'website_title'| trans }}{% endblock %}
+    </title>
+    <meta name="description" content="{{ 'home_meta_desc'| trans }}"/>
+    <meta property="og:title" content="{% block meta_title %}{% endblock %}"/>
+    <meta property="og:image" content="https://www.reconnect.fr{{ asset('build/images/home/meta_image.png') }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    {% block metas %}{% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('home') }}
+    {% endblock %}
+    {% block styles %}
+        {{ encore_entry_link_tags('homeStyle') }}
+    {% endblock %}
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    {{ include('favicons.html.twig') }}
+
+    {% if app.environment == 'prod' %}
+        <!-- Matomo -->
+        <script type="text/javascript">
+               var _paq = window._paq = window._paq || [];
+               /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+               _paq.push(['trackPageView']);
+               _paq.push(['enableLinkTracking']);
+               (function () {
+                      var u = "https://reconnect.matomo.cloud/";
+                      _paq.push(['setTrackerUrl', u + 'matomo.php']);
+                      _paq.push(['setSiteId', '1']);
+                      var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+                      g.type = 'text/javascript';
+                      g.async = true;
+                      g.src = '//cdn.matomo.cloud/reconnect.matomo.cloud/matomo.js';
+                      s.parentNode.insertBefore(g, s);
+               })();
+        </script>
+        <!-- End Matomo Code -->
+    {% endif %}
+    {% block base_link %}
+    {% endblock base_link %}
+</head>
+
+<body class="preload {% block bodyClass %}{% endblock bodyClass %}">
+
+<main role="main" id="wrapper{% if app.user %}Connected{% endif %}">
+    {% include('home/header.html.twig') %}
+    {% block body %}
+        <div class="centeredContainer">
+            {% include('ies_alert.html.twig') %}
+            {% block bodyCentered %}
+            {% endblock bodyCentered %}
+        </div>
+    {% endblock body %}
+</main>
+
+{% include('home/footer.html.twig') %}
+
+</body>
+
+{{ include('v2/common/_crisp.html.twig') }}
+
+</html>
