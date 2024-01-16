@@ -537,7 +537,6 @@ unsupported_file_extension: "Erreur %fileName%, le format de fichier n'est pas s
 used_available: '%used% utilisé(s) sur %available% disponibles'
 accept_terms_of_use: "J'accepte les conditions d'utilisation"
 general_conditions_of_use: 'Conditions générales du service'
-you_must_accept_terms_of_use: "Vous devez accepter les conditions d'utilisation"
 welcome_on_solidarity_cloud: 'Bienvenue sur Reconnect le Cloud Solidaire'
 update_your_password: 'Modifier votre mot de passe'
 actual_password: 'Votre mot de passe actuel'
