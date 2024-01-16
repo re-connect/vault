@@ -2486,12 +2486,10 @@
         <div class="clearFloat">&nbsp;</div>
         <div class="text-center text-primary mt-3 font-size-1-1 bold">
             {{ form_start(form, {"attr" : {"class" : "display-required-labels", "novalidate":"novalidate"}}) }}
-            {{ form_row(form.accept) }}
-            <div class="mb-4">
-                {{ form_errors(form) }}
+            {{ form_widget(form) }}
+            <div class="text-center mt-2">
+                {{ include('v2/common/_button.html.twig', {message: 'continue'}) }}
             </div>
-            {{ form_row(form.submit, {"attr": {"class" : app.user.isBeneficiaire ?  "btn-green text-white"  : "btn-blue text-white" }} ) }}
-            {{ form_rest(form) }}
             {{ form_end(form) }}
         </div>
     </div>

@@ -4,14 +4,13 @@ namespace App\ControllerV2;
 
 use App\Entity\Centre;
 use App\Entity\User;
+use App\FormV2\CgsType;
 use App\FormV2\ChangePasswordFormType;
 use App\FormV2\UserType;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,11 +29,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('redirect_user');
         }
 
-        $form = $this->createFormBuilder()
-            ->add('accept', CheckboxType::class, ['label' => 'accept_terms_of_use'])
-            ->add('submit', SubmitType::class, ['label' => 'continue', 'attr' => ['class' => 'btn-green']])
-            ->getForm()
-            ->handleRequest($request);
+        $form = $this->createForm(CgsType::class)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('accept')->getData()) {
