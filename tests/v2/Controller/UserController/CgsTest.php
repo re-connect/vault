@@ -6,7 +6,6 @@ use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
-use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
 use Zenstruck\Foundry\Test\Factories;
 
@@ -16,7 +15,7 @@ class CgsTest extends AbstractControllerTest implements TestRouteInterface
     private const URL = '/user/cgs';
 
     private const FORM_VALUES = [
-        'form[accept]' => '1',
+        'cgs[accept]' => '1',
     ];
 
     /** @dataProvider provideTestRoute */
@@ -44,13 +43,17 @@ class CgsTest extends AbstractControllerTest implements TestRouteInterface
     /** @dataProvider provideTestFormIsValid */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
+        $user = UserFactory::findByEmail($email)->object();
         // Check that use has not accpted terms of use
-        self::assertTrue(UserFactory::findByEmail($email)->object()->isFirstVisit());
+        self::assertTrue($user->isFirstVisit());
+        self::assertNull($user->getCgsAcceptedAt());
 
         $this->assertFormIsValid($url, $formSubmit, $values, $email, $redirectUrl);
 
+        $user = UserFactory::findByEmail($email)->object();
         // Then check that user has accepted terms of use
-        self::assertFalse(UserFactory::findByEmail($email)->object()->isFirstVisit());
+        self::assertFalse($user->isFirstVisit());
+        self::assertNotNull($user->getCgsAcceptedAt());
     }
 
     public function provideTestFormIsValid(): ?\Generator
@@ -85,7 +88,7 @@ class CgsTest extends AbstractControllerTest implements TestRouteInterface
         $form = $crawler->selectButton(self::$translator->trans('continue'))->form();
         $client->submit($form);
 
-        self::assertSelectorTextContains('div.alert', "Vous devez accepter les conditions d'utilisation");
+        self::assertSelectorTextContains('span.help-block', "Vous devez accepter les conditions d'utilisation");
         $this->assertResponseStatusCodeSame(422);
         $this->assertRouteSame('user_cgs');
     }
