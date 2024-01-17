@@ -8,6 +8,7 @@ use App\FormV2\ChangePasswordFormType;
 use App\FormV2\UserType;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
+use App\ServiceV2\Mailer\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Form\FormError;
@@ -149,5 +150,18 @@ class UserController extends AbstractController
         $manager->removeUserFromRelay($user, $relay);
 
         return $this->json($user);
+    }
+
+    #[Route(path: '/request-personal-account-data', name: 'request_personal_account_data', methods: ['GET'])]
+    public function requestPersonalAccountData(MailerService $mailer): Response
+    {
+        $user = $this->getUser();
+        if (!$user?->isBeneficiaire()) {
+            return $this->redirectToRoute('redirect_user');
+        }
+
+        $mailer->sendPersonalDataRequestEmail($user);
+
+        return $this->render('v2/user/request_personal_account_data.html.twig');
     }
 }

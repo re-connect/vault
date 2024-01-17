@@ -88,4 +88,18 @@ class MailerService
 
         $this->send(DuplicatedUsernameEmail::create($this->noReplyMail, $this->adminMails, $user));
     }
+
+    public function sendPersonalDataRequestEmail(User $user): void
+    {
+        $email = (new Email())
+            ->subject('CFN - Demande de récupération de données')
+            ->text(sprintf(
+                "L'utilisateur (id user = %d) vient d’effectuer une demande de récupération de ses données sur le coffre-fort numérique (%s)",
+                $user->getId(),
+                (new \DateTime())->format('d/m/Y h:i:s'),
+            ))
+            ->to(...$this->adminMails);
+
+        $this->send($email);
+    }
 }
