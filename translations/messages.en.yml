@@ -480,3 +480,6 @@ password_criterion_lowercase: Lowercase
 password_criterion_number: Number
 password_criterion_special: Special character
 password_criterion_uppercase: Uppercase
+take_away_account_data: I want to take away my account data
+your_personal_data_request_has_been_send_to_tech_team: Your data take away request has been forwarded to our dedicated teams.
+you_will_be_contacted_soon: You will be contacted as soon as possible.

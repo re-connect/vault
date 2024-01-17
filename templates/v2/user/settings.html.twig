@@ -22,9 +22,13 @@
         {{ include('v2/user/change_password_form.html.twig', {'askCurrentPassword': true, 'passwordForm': passwordForm}) }}
     </div>
     {% if app.user.isBeneficiaire %}
-        <div class="text-center mb-5">
-            <a href="{{ path('user_delete') }}"
-               class="font-size-1 text-green">{{ 'delete_your_account'|trans }}</a>
+        <div class="d-flex flex-column align-items-center mt-3 mb-5 font-size-1">
+            <a href="{{ path('request_personal_account_data') }}" class="text-green mt-2">
+                {{ 'take_away_account_data'|trans }}
+            </a>
+            <a href="{{ path('user_delete') }}" class="text-primary mt-2">
+                {{ 'delete_your_account'|trans }}
+            </a>
         </div>
     {% endif %}
 {% endblock %}
