@@ -611,3 +611,6 @@ password_criterion_lowercase: Minuscule
 password_criterion_number: Chiffre
 password_criterion_special: Caractère spécial
 password_criterion_uppercase: Majuscule
+take_away_account_data: Je souhaite récupérer mes données
+your_personal_data_request_has_been_send_to_tech_team: Votre demande de récupération de vos données à été transmise à nos équipes dédiées.
+you_will_be_contacted_soon: Vous serez contacté dans les meilleurs délais à ce sujet.
