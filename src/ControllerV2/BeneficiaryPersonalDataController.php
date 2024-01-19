@@ -343,7 +343,7 @@ class BeneficiaryPersonalDataController extends AbstractController
     {
         return $this->createForm($formTypeClassName, $entity, [
             'action' => $url,
-            'private' => $this->isLoggedInUser($entity->getBeneficiaire()->getUser()),
+            'private' => $this->isLoggedInUser($entity->getBeneficiaire()?->getUser()),
         ]);
     }
 }

@@ -28,7 +28,7 @@ class EventController extends AbstractController
             $manager->updateReminders($event);
             $this->addFlash('success', 'event_updated');
 
-            return $this->redirectToRoute('list_events', ['id' => $beneficiary->getId()]);
+            return $this->redirectToRoute('list_events', ['id' => $beneficiary?->getId()]);
         }
 
         return $this->render('v2/vault/event/form.html.twig', [

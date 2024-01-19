@@ -29,15 +29,17 @@ class FolderController extends AbstractController
         $beneficiary = $folder->getBeneficiaire();
         $searchForm = $this->createForm(SearchType::class, null, [
             'attr' => ['data-controller' => 'ajax-list-filter'],
-            'action' => $this->generateUrl('search_folders', ['id' => $beneficiary->getId(), 'parentFolderId' => $folder->getId()]),
+            'action' => $this->generateUrl('search_folders', ['id' => $beneficiary?->getId(), 'parentFolderId' => $folder->getId()]),
         ]);
 
         return $this->render('v2/vault/document/index.html.twig', [
             'beneficiary' => $beneficiary,
-            'foldersAndDocuments' => $paginator->create(
-                $manager->getFoldersAndDocumentsWithUrl($beneficiary, $folder),
-                $request->query->getInt('page', 1),
-            ),
+            'foldersAndDocuments' => $beneficiary
+                ? $paginator->create(
+                    $manager->getFoldersAndDocumentsWithUrl($beneficiary, $folder),
+                    $request->query->getInt('page', 1),
+                )
+                : [],
             'currentFolder' => $folder,
             'form' => $searchForm,
         ]);
@@ -189,7 +191,7 @@ class FolderController extends AbstractController
         $beneficiary = $folder->getBeneficiaire();
 
         return $this->render('v2/vault/folder/tree_view.html.twig', [
-            'folders' => $folderManager->getRootFolders($beneficiary),
+            'folders' => $beneficiary ? $folderManager->getRootFolders($beneficiary) : [],
             'element' => $folder,
             'beneficiary' => $beneficiary,
         ]);

@@ -26,16 +26,16 @@ class MemberBeneficiaryController extends AbstractController
     public function firstMemberVisit(Beneficiaire $beneficiary, Request $request, EntityManagerInterface $em): JsonResponse
     {
         $user = $this->getUser();
-        if (!$user->isMembre()) {
+        if ($user && !$user->isMembre()) {
             return new JsonResponse(null, Response::HTTP_UNAUTHORIZED);
         }
 
         $formData = (array) $request->request->all()['first_member_visit'];
         $contact = (new Contact($beneficiary))
-            ->setNom($user->getNom())
-            ->setPrenom($user->getPrenom())
-            ->setTelephone(array_key_exists('sharePhone', $formData) ? $user->getTelephone() : null)
-            ->setEmail(array_key_exists('shareMail', $formData) ? $user->getEmail() : null);
+            ->setNom($user?->getNom())
+            ->setPrenom($user?->getPrenom())
+            ->setTelephone(array_key_exists('sharePhone', $formData) ? $user?->getTelephone() : null)
+            ->setEmail(array_key_exists('shareMail', $formData) ? $user?->getEmail() : null);
 
         $em->persist($contact);
         $em->flush();
