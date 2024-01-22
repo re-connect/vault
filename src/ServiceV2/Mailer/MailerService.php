@@ -94,9 +94,9 @@ class MailerService
         $email = (new Email())
             ->subject('CFN - Demande de récupération de données')
             ->text(sprintf(
-                "L'utilisateur (id user = %d) vient d’effectuer une demande de récupération de ses données sur le coffre-fort numérique (%s)",
+                'Un utilisateur (id user = %d) vient d’effectuer une demande de récupération de ses données sur le coffre-fort numérique (%s)',
                 $user->getId(),
-                (new \DateTime())->format('d/m/Y h:i:s'),
+                (new \DateTime())->format('d/m/Y à H\hi'),
             ))
             ->to(...$this->adminMails);
 
