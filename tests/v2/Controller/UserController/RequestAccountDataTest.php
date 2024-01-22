@@ -42,7 +42,7 @@ class RequestAccountDataTest extends AbstractControllerTest implements TestRoute
         self::assertEmailCount(1);
         self::assertEmailTextBodyContains(
             self::getMailerMessage(),
-            sprintf("L'utilisateur (id user = %d) vient d’effectuer une demande de récupération de ses données sur le coffre-fort numérique", $user->getId()),
+            sprintf('Un utilisateur (id user = %d) vient d’effectuer une demande de récupération de ses données sur le coffre-fort numérique', $user->getId()),
         );
     }
 }
