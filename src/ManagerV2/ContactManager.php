@@ -25,11 +25,15 @@ class ContactManager
      */
     public function getContacts(Beneficiaire $beneficiary, string $search = null): array
     {
-        return $this->repository->findByBeneficiary(
-            $beneficiary,
-            $this->isLoggedInUser($beneficiary->getUser()),
-            $search,
-        );
+        $user = $beneficiary->getUser();
+
+        return $user
+            ? $this->repository->findByBeneficiary(
+                $beneficiary,
+                $this->isLoggedInUser($user),
+                $search,
+            )
+            : [];
     }
 
     public function toggleVisibility(Contact $contact): void

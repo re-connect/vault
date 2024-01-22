@@ -54,7 +54,7 @@ class RosalieInteroperabilityController extends AbstractController
 
         $beneficiary->setSiSiaoNumber($form->get('number')->getData());
         $this->em->flush();
-        if ($this->getUser()->usesRosalie()) {
+        if ($this->getUser()?->usesRosalie()) {
             $this->createRosalieLink($beneficiary);
         }
 

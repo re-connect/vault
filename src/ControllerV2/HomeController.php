@@ -14,7 +14,7 @@ class HomeController extends AbstractController
     public function renderBeneficiaryNav(?Beneficiaire $beneficiary, RequestStack $stack): Response
     {
         if ($subjectBeneficiary = $this->getUser()?->getSubjectBeneficiaire()) {
-            return $this->render('v2/vault/nav/beneficiary/_beneficiary_nav.html.twig', ['beneficiary' => $subjectBeneficiary, 'route' => $stack->getMainRequest()->attributes->get('_route')]);
+            return $this->render('v2/vault/nav/beneficiary/_beneficiary_nav.html.twig', ['beneficiary' => $subjectBeneficiary, 'route' => $stack->getMainRequest()?->attributes->get('_route')]);
         } elseif ($beneficiary) {
             return $this->render('v2/vault/nav/pro/_pro_nav.html.twig', ['beneficiary' => $beneficiary]);
         }
