@@ -146,6 +146,9 @@ App\Entity\User:
         disabledAt:
             type: datetime
             nullable: true
+        cgsAcceptedAt:
+            type: datetime_immutable
+            nullable: true
     oneToOne:
         subjectAdministrateur:
             targetEntity: App\Entity\Administrateur
