@@ -304,6 +304,7 @@ class BeneficiaireAdmin extends AbstractAdmin
                 'label' => 'Créé par (client)',
             ])
             ->add('createdAt', null, ['label' => 'Date de création'])
+            ->add('user.cgsAcceptedAt', null, ['label' => 'Acceptation CGS'])
             ->add('user.canada', null, ['label' => 'Canada'])
             ->add('_action', 'actions', [
                 'actions' => [
