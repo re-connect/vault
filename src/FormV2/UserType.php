@@ -10,6 +10,7 @@ use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -90,6 +91,11 @@ class UserType extends AbstractType
                 'required' => false,
                 'row_attr' => ['class' => 'col-6 mt-3'],
                 'label' => 'email',
+            ])
+            ->add('mfaEnabled', CheckboxType::class, [
+                'required' => false,
+                'label' => 'enable_mfa',
+                'help' => 'enable_mfa_help',
             ]);
     }
 }

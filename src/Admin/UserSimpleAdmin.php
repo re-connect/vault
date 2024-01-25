@@ -73,7 +73,8 @@ class UserSimpleAdmin extends AbstractAdmin
                 'help' => $this->getResetPasswordText(),
                 'help_html' => true,
                 'attr' => ['read_only' => true, 'style' => 'display:none'],
-            ]);
+            ])
+            ->add('mfaEnabled');
     }
 
     protected function configureDatagridFilters(DatagridMapper $filter): void

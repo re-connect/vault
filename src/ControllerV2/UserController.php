@@ -39,15 +39,13 @@ class UserController extends AbstractController
                     ->setCgsAcceptedAt(new \DateTimeImmutable());
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('redirect_user'));
+                return $this->redirectToRoute('redirect_user');
             }
 
             $form->addError(new FormError($translator->trans('you_must_accept_terms_of_use')));
         }
 
-        return $this->render('v2/user/first_visit/cgs.html.twig', [
-            'form' => $form,
-        ]);
+        return $this->render('v2/user/first_visit/cgs.html.twig', ['form' => $form]);
     }
 
     #[Route(path: '/first-visit', name: 'user_first_visit', methods: ['GET'])]
