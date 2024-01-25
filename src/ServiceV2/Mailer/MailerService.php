@@ -27,15 +27,14 @@ class MailerService
         private readonly RouterInterface $router,
         private readonly LoggerInterface $logger,
         private readonly TranslatorInterface $translator,
-        private readonly string $contactMail,
-        private readonly string $noReplyMail,
+        private readonly string $mailerSender,
         private readonly array $adminMails,
     ) {
     }
 
     public function send(Email $email): void
     {
-        $email->sender($email->getSender() ?? $this->contactMail);
+        $email->sender($email->getSender() ?? $this->mailerSender);
 
         if ($email instanceof TemplatedEmail) {
             $userLang = $email->getContext()['userLang'];
@@ -86,7 +85,7 @@ class MailerService
             return;
         }
 
-        $this->send(DuplicatedUsernameEmail::create($this->noReplyMail, $this->adminMails, $user));
+        $this->send(DuplicatedUsernameEmail::create($this->mailerSender, $this->adminMails, $user));
     }
 
     public function sendPersonalDataRequestEmail(User $user): void
