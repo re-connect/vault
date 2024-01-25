@@ -4,7 +4,7 @@
 {{ form_start(form, {attr: { class: 'display-required-labels','data-controller': 'conditional-field' }}) }}
 <div class="row bold">
     {% set fieldsSets = {
-        'information': [form.prenom, form.nom, form.telephone, form.email, isPro ? null : form.dateNaissance],
+        'information': [form.prenom, form.nom, form.telephone, form.email, isPro ? null : form.dateNaissance, form.mfaEnabled],
         'contact_detail': form.adresse is defined ? [form.adresse.nom, form.adresse.ville, form.adresse.codePostal, form.adresse.pays] : [],
         'secret_question': form.secretQuestion is defined ? [form.secretQuestion.questionSecreteChoice, form.secretQuestion.autreQuestionSecrete, form.secretQuestion.reponseSecrete] : [],
     } %}

@@ -10,13 +10,14 @@ use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User extends BaseUser implements \JsonSerializable
+class User extends BaseUser implements \JsonSerializable, TwoFactorInterface
 {
     private const BASE_USERNAME_REGEXP = '/^[a-z\-]+\.[a-z\-]+(\.[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3})?$/';
     public const USER_TYPE_BENEFICIAIRE = 'ROLE_BENEFICIAIRE';
@@ -200,6 +201,9 @@ class User extends BaseUser implements \JsonSerializable
     private ?\DateTimeImmutable $personalAccountDataRequestedAt = null;
 
     private bool $hasPasswordWithLatestPolicy = false;
+
+    private ?string $authCode;
+    private ?bool $mfaEnabled;
 
     public function __construct()
     {
@@ -1289,5 +1293,49 @@ class User extends BaseUser implements \JsonSerializable
     public function hasRequestedPersonalAccountData(): bool
     {
         return (bool) $this->personalAccountDataRequestedAt;
+    }
+
+    public function isEmailAuthEnabled(): bool
+    {
+        return $this->isMfaEnabled();
+    }
+
+    public function getEmailAuthRecipient(): string
+    {
+        return $this->email;
+    }
+
+    public function getEmailAuthCode(): string
+    {
+        if (null === $this->authCode) {
+            throw new \LogicException('The email authentication code was not set');
+        }
+
+        return $this->authCode;
+    }
+
+    public function setEmailAuthCode(string $authCode): void
+    {
+        $this->authCode = $authCode;
+    }
+
+    public function isMfaEnabled(): ?bool
+    {
+        return $this->mfaEnabled ?? false;
+    }
+
+    public function setMfaEnabled(bool $mfaEnabled = false): void
+    {
+        $this->mfaEnabled = $mfaEnabled;
+    }
+
+    public function enableMfa(): void
+    {
+        $this->mfaEnabled = true;
+    }
+
+    public function disableMfa(): void
+    {
+        $this->mfaEnabled = false;
     }
 }
