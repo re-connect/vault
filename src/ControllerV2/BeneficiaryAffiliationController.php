@@ -76,7 +76,7 @@ class BeneficiaryAffiliationController extends AbstractController
     public function finish(Beneficiaire $beneficiary): Response
     {
         if ($beneficiary->hasRelays()) {
-            return $this->redirectToRoute('re_user_redirectUser');
+            return $this->redirectToRoute('redirect_user');
         }
 
         $this->addFlash('danger', 'no_relay_selected');
