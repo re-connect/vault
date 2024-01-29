@@ -34,7 +34,7 @@ class BeneficiaryResetPasswordController extends AbstractController
     public function resetEmail(Beneficiaire $beneficiary, ResettingService $service): Response
     {
         $user = $beneficiary->getUser();
-        if ($user->getEmail()) {
+        if ($user?->getEmail()) {
             $service->processSendingUserPasswordResetEmail($user);
         } else {
             $this->addFlash('error', 'beneficiary_has_no_email');

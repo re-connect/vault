@@ -66,6 +66,10 @@ class UserController extends AbstractController
         TranslatorInterface $translator,
     ): Response {
         $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('redirect_user');
+        }
+
         $userForm = $this->createForm(UserType::class, $user)->handleRequest($request);
 
         $passwordForm = $this->createForm(ChangePasswordFormType::class, null, [

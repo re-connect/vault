@@ -35,6 +35,7 @@ class ProController extends AbstractController
     ): Response {
         $query = $request->query;
         $relay = $relayRepository->find($query->getInt('relay'));
+        $user = $this->getUser();
 
         if ($relay && !$this->isGranted('MANAGE_PRO', $relay)) {
             throw $this->createAccessDeniedException();
@@ -48,19 +49,22 @@ class ProController extends AbstractController
         $form = $this->createForm(FilterUserType::class, $formModel, [
             'action' => $this->generateUrl('list_pro'),
             'attr' => ['data-controller' => 'ajax-list-filter'],
-            'relays' => $this->getUser()->getAffiliatedRelaysWithProfessionalManagement(),
+            'relays' => $user?->getAffiliatedRelaysWithProfessionalManagement() ?? [],
         ])->handleRequest($request);
+
+        $pro = $user?->getSubjectMembre();
 
         return $this->render($request->isXmlHttpRequest()
             ? 'v2/pro/list/_professionals_list.html.twig'
             : 'v2/pro/list/professionals.html.twig',
             [
                 'professionals' => $paginator->create(
-                    $repository->findByAuthorizedProfessional(
-                        $this->getUser()->getSubjectMembre(),
-                        $formModel->search,
-                        $formModel->relay,
-                    ),
+                    $pro
+                        ? $repository->findByAuthorizedProfessional(
+                            $pro,
+                            $formModel->search,
+                            $formModel->relay,
+                        ) : [],
                     $request->query->getInt('page', 1),
                     PaginatorService::LIST_USER_LIMIT,
                 ),
@@ -102,6 +106,7 @@ class ProController extends AbstractController
     public function searchPros(Request $request, MembreRepository $repository, PaginatorService $paginator): Response
     {
         $search = new SearchFormModel($request->query->get('q'));
+        $user = $this->getUser();
         $form = $this->createForm(SearchType::class, $search, [
             'action' => $this->generateUrl('search_pro'),
         ])->handleRequest($request);
@@ -110,10 +115,12 @@ class ProController extends AbstractController
             return $this->redirectToRoute('search_pro', ['q' => $search->getSearch()]);
         }
 
-        $pros = $paginator->create(
-            $repository->search($this->getUser(), $search->getSearch()),
-            $request->query->getInt('page', $request->query->getInt('page', 1)),
-        );
+        $pros = $user
+            ? $paginator->create(
+                $repository->search($user, $search->getSearch()),
+                $request->query->getInt('page', $request->query->getInt('page', 1)),
+            )
+            : [];
 
         return $request->isXmlHttpRequest()
             ? $this->render('v2/pro/create/_search_results_card.html.twig', ['pros' => $pros])

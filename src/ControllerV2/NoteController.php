@@ -38,7 +38,7 @@ class NoteController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'note_updated');
 
-            return $this->redirectToRoute('list_notes', ['id' => $beneficiary->getId()]);
+            return $this->redirectToRoute('list_notes', ['id' => $beneficiary?->getId()]);
         }
 
         return $this->render('v2/vault/note/edit.html.twig', [

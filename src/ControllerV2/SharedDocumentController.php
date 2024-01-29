@@ -30,7 +30,7 @@ class SharedDocumentController extends AbstractController
                 $request->getLocale(),
             );
 
-            return $this->redirectToRoute('list_documents', ['id' => $document->getBeneficiaire()->getId()]);
+            return $this->redirectToRoute('list_documents', ['id' => $document->getBeneficiaire()?->getId()]);
         }
 
         return $this->render('v2/vault/document/share.html.twig', [
@@ -46,10 +46,13 @@ class SharedDocumentController extends AbstractController
         DocumentManager $documentManager,
         SharedDocumentManager $sharedDocumentManager,
     ): Response {
-        if (!$sharedDocument = $sharedDocumentManager->validateTokenAndFetchDocument($token)) {
+        $sharedDocument = $sharedDocumentManager->validateTokenAndFetchDocument($token);
+        $document = $sharedDocument?->getDocument();
+
+        if (!$sharedDocument || !$document) {
             return $this->redirectToRoute('home');
         }
-        $document = $sharedDocument->getDocument();
+
         $documentManager->hydrateDocumentWithPresignedUrl($document);
 
         return $this->render('v2/vault/document/download.html.twig', [

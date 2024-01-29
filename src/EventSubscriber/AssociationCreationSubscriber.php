@@ -59,7 +59,7 @@ class AssociationCreationSubscriber implements EventSubscriberInterface
 
         $data->setAssociation($association ?? $this->createUserAssociation(
             (new Association())->setNom($newAssociationName),
-            $data->getTest(),
+            $data->getTest() ?? false,
         )->getSubjectAssociation());
     }
 
