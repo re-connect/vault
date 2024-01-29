@@ -25,6 +25,12 @@ class User extends BaseUser implements \JsonSerializable
     public const USER_TYPE_GESTIONNAIRE = 'ROLE_GESTIONNAIRE';
     public const USER_TYPE_ASSOCIATION = 'ROLE_ASSOCIATION';
     public const USER_TYPE_ADMINISTRATEUR = 'ROLE_ADMIN';
+    public const USER_TYPE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+
+    public const ADMIN_TYPES = [
+        self::USER_TYPE_ADMINISTRATEUR => self::USER_TYPE_ADMINISTRATEUR,
+        self::USER_TYPE_SUPER_ADMIN => self::USER_TYPE_SUPER_ADMIN,
+    ];
     public const DEFAULT_LANGUAGE = 'fr';
 
     public static array $arTypesUser = [
@@ -1081,6 +1087,11 @@ class User extends BaseUser implements \JsonSerializable
     public function getDefaultUsername(): string
     {
         return $this->getSubject()?->getDefaultUserName() ?? sprintf('%s.%s', $this->getSluggedLastname(), $this->getSluggedFirstName());
+    }
+
+    public function getDefaultAdminUsername(): string
+    {
+        return sprintf('%s.admin', $this->getDefaultUsername());
     }
 
     /** @return Collection<int, UserCentre> */

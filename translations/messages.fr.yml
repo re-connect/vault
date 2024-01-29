@@ -558,6 +558,7 @@ user_not_found: "Aucun utilisateur n'a été trouvé"
 user_parameters_subtitle: 'Paramètres de %subject%'
 user_shared_document_with_you: 'L''utilisateur %nom% %prenom% souhaite partager ce document avec vous: "%document%"'
 user_successfully_created: Opération réussie. L’utilisateur a bien été créé
+user_type: Type d'utilisateur
 user_update_password_subtitle: 'Mot de passe de %subject%'
 user_update_password_title: Renouvellement de mot de passe
 username: "Nom d'utilisateur"
