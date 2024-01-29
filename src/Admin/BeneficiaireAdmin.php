@@ -21,6 +21,7 @@ use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\DoctrineORMAdminBundle\Filter\CallbackFilter;
 use Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter;
 use Sonata\Form\Type\CollectionType;
+use Sonata\Form\Type\DatePickerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -112,6 +113,11 @@ class BeneficiaireAdmin extends AbstractAdmin
             ->add('reponseSecrete', null, [
                 'label' => 'Réponse secrète',
                 'required' => false,
+            ])
+            ->add('user.personalAccountDataRequestedAt', DatePickerType::class, [
+                    'label' => 'Demande de récupération des données',
+                    'required' => false,
+                    'help' => 'Date à laquelle la demande a été faite. Lorsque cette demande a été traitée, veuillez effacer cette date.',
             ])
             ->add('isCreating', null, [
                 'label' => 'En cours de création',
