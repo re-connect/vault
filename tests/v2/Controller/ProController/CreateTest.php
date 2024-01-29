@@ -93,6 +93,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
                 ],
             ],
             MemberFixture::MEMBER_MAIL,
+            'div.invalid-feedback',
         ];
 
         $values = self::FORM_VALUES;
@@ -110,6 +111,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
                 ],
             ],
             MemberFixture::MEMBER_MAIL,
+            'div.invalid-feedback',
         ];
 
         $values = self::FORM_VALUES;
@@ -128,6 +130,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
                 ],
             ],
             MemberFixture::MEMBER_MAIL,
+            'div.invalid-feedback',
         ];
 
         $values = self::FORM_VALUES;
@@ -146,6 +149,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
                 ],
             ],
             MemberFixture::MEMBER_MAIL,
+            'div.invalid-feedback',
         ];
 
         $values = self::FORM_VALUES;
@@ -164,6 +168,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
                 ],
             ],
             MemberFixture::MEMBER_MAIL,
+            'div.invalid-feedback',
         ];
 
         $values = self::FORM_VALUES;
@@ -182,6 +187,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
                 ],
             ],
             MemberFixture::MEMBER_MAIL,
+            'div.invalid-feedback',
         ];
     }
 }
