@@ -4,6 +4,7 @@ namespace App\ControllerV2;
 
 use App\Entity\Centre;
 use App\Entity\User;
+use App\FormV2\CgsType;
 use App\FormV2\ChangePasswordFormType;
 use App\FormV2\UserType;
 use App\ManagerV2\RelayManager;
@@ -21,6 +22,41 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route(path: '/user')]
 class UserController extends AbstractController
 {
+    #[Route(path: '/cgs', name: 'user_cgs', methods: ['GET', 'POST'])]
+    public function cgs(Request $request, TranslatorInterface $translator, EntityManagerInterface $em): Response
+    {
+        if (!$this->getUser()->isFirstVisit()) {
+            return $this->redirectToRoute('redirect_user');
+        }
+
+        $form = $this->createForm(CgsType::class)->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('accept')->getData()) {
+                $this->getUser()
+                    ->setFirstVisit()
+                    ->setCgsAcceptedAt(new \DateTimeImmutable());
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('redirect_user'));
+            }
+
+            $form->addError(new FormError($translator->trans('you_must_accept_terms_of_use')));
+        }
+
+        return $this->render('v2/user/first_visit/cgs.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    #[Route(path: '/first-visit', name: 'user_first_visit', methods: ['GET'])]
+    public function firstVisit(): Response
+    {
+        return $this->getUser()->isFirstVisit()
+            ? $this->render('v2/user/first_visit/first_visit.html.twig')
+            : $this->redirectToRoute('redirect_user');
+    }
+
     #[Route(path: '/settings', name: 'user_settings', methods: ['GET', 'POST'])]
     public function settings(
         Request $request,

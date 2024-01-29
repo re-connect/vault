@@ -16,8 +16,8 @@ Encore
   // .setManifestKeyPrefix('build/')
 
   // New Home
-  .addEntry('homeV2', './assets/js/homeV2/app.js')
-  .addStyleEntry('homeV2style', './assets/css/homeV2/main.scss')
+  .addEntry('home', './assets/js/home/app.js')
+  .addStyleEntry('homeStyle', './assets/css/home/main.scss')
 
   // New app
   .addEntry('appV2', './assets/js/appV2/app.js')

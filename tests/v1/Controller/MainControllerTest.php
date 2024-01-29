@@ -55,7 +55,7 @@ class MainControllerTest extends WebTestCase
         return $beneficiaire;
     }
 
-    public function testHomeV2()
+    public function testHome()
     {
         $beneficiaire = $this->testCreateTestUser();
 

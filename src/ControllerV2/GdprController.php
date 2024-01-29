@@ -29,7 +29,7 @@ class GdprController extends AbstractController
             $gdprService->showPasswordRenewalFlash();
         }
 
-        return $this->render('user/update_password.html.twig', [
+        return $this->render('v2/user/update_password_form.html.twig', [
             'passwordForm' => $form,
         ]);
     }
