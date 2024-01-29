@@ -174,6 +174,9 @@ class CentreAdmin extends AbstractAdmin
             'updatedAt',
             'test',
             'region',
+            'association',
+            'adresse',
+            'externalLinks',
         ];
     }
 }
