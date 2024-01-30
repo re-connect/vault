@@ -12,6 +12,7 @@ use App\Entity\User;
 use App\Exception\JsonResponseException;
 use App\Manager\MailManager;
 use App\Manager\RestManager;
+use App\ManagerV2\MemberBeneficiaryManager;
 use App\Provider\BeneficiaireProvider;
 use App\Provider\DocumentProvider;
 use App\Provider\DossierProvider;
@@ -48,7 +49,7 @@ class DocumentRestV2Controller extends REController
     }
 
     #[Route(path: 'beneficiaries/{beneficiaryId}/documents', methods: ['GET'], requirements: ['beneficiaryId' => '\d{1,10}'], name: 'list')]
-    public function list(int $beneficiaryId, BeneficiaireProvider $beneficiaireProvider): JsonResponse
+    public function list(int $beneficiaryId, BeneficiaireProvider $beneficiaireProvider, MemberBeneficiaryManager $memberBeneficiaryManager): JsonResponse
     {
         try {
             $beneficiaire = $beneficiaireProvider->getEntity($beneficiaryId, Client::ACCESS_DOCUMENT_READ);
@@ -77,6 +78,9 @@ class DocumentRestV2Controller extends REController
             foreach ($entities as $entity) {
                 $this->provider->generatePresignedUris($entity);
             }
+
+            // Record beneficiary consultation on this route, as it is the first reachable beneficiary page for mobile app
+            $memberBeneficiaryManager->recordBeneficiaryConsultation($beneficiaire);
 
             return $this->json($entities);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
