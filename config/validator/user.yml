@@ -35,7 +35,7 @@ App\Entity\User:
                     min: 5
                     groups: [ password, password-beneficiaire ]
             -   Length:
-                    min: 8
+                    min: 10
                     groups: [ password-membre ]
             -   Callback:
                   callback: [ App\Entity\User, validatePassword ]

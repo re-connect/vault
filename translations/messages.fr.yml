@@ -398,7 +398,7 @@ or_click_link: 'Ou cliquez sur le lien'
 password: 'Mot de passe'
 password_confirm: 'Confirmez votre mot de passe'
 password_expired: 'Votre mot de passe a expiré. Veuillez choisir un nouveau mot de passe.'
-password_help: "Vous devez entrer un mot de passe d'au moins 8 caractères et remplir au moins 4 des 5 critères ci-dessous"
+password_help: "Vous devez entrer un mot de passe d'au moins 10 caractères et remplir au moins 4 des 5 critères ci-dessous"
 password_help_criteria: 'Le mot de passe doit remplir au moins {{ atLeast }} des {{ total }} critères ci-dessous'
 password_invalid: 'Mot de passe invalide'
 password_new_should_be_different_from_current: 'Votre nouveau mot de passe doit être différent de votre mot de passe actuel.'
@@ -602,7 +602,7 @@ error_401: Vous n'êtes pas connecté
 error_403: Vous n'êtes pas autorisé à accéder à cette page
 error_404: Oups, il semble que cette page n'existe pas
 error_500: Il y a eu une erreur technique, le problème vient de nous, nous allons le traiter rapidement
-password_criterion_length: 8 caractères
+password_criterion_length: 10 caractères
 password_criterion_lowercase: Minuscule
 password_criterion_number: Chiffre
 password_criterion_special: Caractère spécial

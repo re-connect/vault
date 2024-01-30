@@ -1,8 +1,9 @@
+const MIN_PASSWORD_LENGTH = 10;
 const testRegexp = (regexp) => (text) => regexp.test(text);
-const isEightChars = (text) => text.length >= 8
+const isLongEnough = (text) => text.length >= MIN_PASSWORD_LENGTH;
 
 export const criteria = [
-  { key: 'length', checker: isEightChars },
+  { key: 'length', checker: isLongEnough },
   { key: 'special', checker: testRegexp(/(?=.*\W)/) },
   { key: 'number', checker: testRegexp(/\d/) },
   { key: 'lowercase', checker: testRegexp(/[a-z]/) },
