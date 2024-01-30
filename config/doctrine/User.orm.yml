@@ -149,6 +149,9 @@ App\Entity\User:
         cgsAcceptedAt:
             type: datetime_immutable
             nullable: true
+        personalAccountDataRequestedAt:
+            type: datetime_immutable
+            nullable: true
     oneToOne:
         subjectAdministrateur:
             targetEntity: App\Entity\Administrateur
