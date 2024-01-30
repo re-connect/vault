@@ -49,7 +49,7 @@ class BeneficiaryCreationController extends AbstractController
         }
 
         $beneficiary = $creationProcess->getBeneficiary();
-        $form = !$creationProcess->isStepWithForm() ? null : $this->createStepForm($beneficiary, $creationProcess)->handleRequest($request);
+        $form = !$creationProcess->isStepWithForm() ? null : $this->createStepForm($beneficiary, $creationProcess)?->handleRequest($request);
         if ($form?->isSubmitted() && $form->isValid()) {
             $manager->createOrUpdate($creationProcess);
 
@@ -60,7 +60,7 @@ class BeneficiaryCreationController extends AbstractController
             'form' => $form,
             'beneficiaryCreationProcess' => $creationProcess,
             'beneficiary' => $beneficiary,
-            'relays' => $this->getUser()->getValidRelays(),
+            'relays' => $this->getUser()?->getValidRelays(),
         ]);
     }
 
@@ -81,8 +81,10 @@ class BeneficiaryCreationController extends AbstractController
     #[Route(path: '/abort/{id<\d+>}', name: 'create_beneficiary_abort', methods: ['GET'])]
     public function abortCreation(BeneficiaryCreationProcess $beneficiaryCreationProcess, EntityManagerInterface $em): Response
     {
-        if ($beneficiaryCreationProcess->isCreating()) {
-            $em->remove($beneficiaryCreationProcess->getBeneficiary());
+        $beneficiary = $beneficiaryCreationProcess->getBeneficiary();
+
+        if ($beneficiaryCreationProcess->isCreating() && $beneficiary) {
+            $em->remove($beneficiary);
             $em->flush();
             $this->addFlash('success', 'beneficiary_creation_canceled');
         }

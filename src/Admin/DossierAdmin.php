@@ -28,7 +28,7 @@ class DossierAdmin extends AbstractAdmin
         $form
             ->with('Informations')
             ->add('id', null, ['attr' => ['read_only' => true], 'disabled' => true])
-            ->add('nom')
+            ->add('nom', null, ['attr' => ['read_only' => true], 'disabled' => true])
             ->add('beneficiaire.user.username', null, ['attr' => ['read_only' => true], 'disabled' => true])
             ->add('beneficiaire.user.id', null, ['attr' => ['read_only' => true], 'disabled' => true])
             ->end();

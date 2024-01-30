@@ -101,7 +101,6 @@ sms_sent_failed: 'Отправка SMS не удалась, пожалуйста
 street: Улица
 accept_terms_of_use: 'Я согласен с условиями пользования'
 general_conditions_of_use: 'Общие условия использования'
-you_must_accept_terms_of_use: 'Вы должны принять условия пользования'
 welcome_on_solidarity_cloud: 'Добро пожаловать в Reconnect le Cloud Solidaire'
 user.firstVisit.membre.metaTitle: 'Добро пожаловать в Reconnect le Cloud Solidaire'
 update_your_password: 'Изменить пароль'

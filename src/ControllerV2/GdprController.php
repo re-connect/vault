@@ -15,8 +15,8 @@ class GdprController extends AbstractController
     public function updatePassword(Request $request, UserManager $userManager, GdprService $gdprService): Response
     {
         $user = $this->getUser();
-        $form = $this->createForm(ChangePasswordFormType::class, null, ['isBeneficiaire' => $user->isBeneficiaire()])->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        $form = $this->createForm(ChangePasswordFormType::class, null, ['isBeneficiaire' => $user?->isBeneficiaire()])->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid() && $user) {
             $newPassword = $form->get('plainPassword')->getData();
             if (!$userManager->isPasswordValid($user, $newPassword)) {
                 $userManager->updatePassword($user, $newPassword);
@@ -29,7 +29,7 @@ class GdprController extends AbstractController
             $gdprService->showPasswordRenewalFlash();
         }
 
-        return $this->render('user/update_password.html.twig', [
+        return $this->render('v2/user/update_password_form.html.twig', [
             'passwordForm' => $form,
         ]);
     }

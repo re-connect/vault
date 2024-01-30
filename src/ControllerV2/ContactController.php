@@ -38,7 +38,7 @@ class ContactController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'contact_updated');
 
-            return $this->redirectToRoute('list_contacts', ['id' => $beneficiary->getId()]);
+            return $this->redirectToRoute('list_contacts', ['id' => $beneficiary?->getId()]);
         }
 
         return $this->render('v2/vault/contact/edit.html.twig', [

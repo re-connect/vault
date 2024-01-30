@@ -68,8 +68,8 @@ class UserCreationListenerTest extends AuthenticatedTestCase
         $expectedUsername = strtolower(
             sprintf(
                 '%s.%s',
-                $user->getNom(),
-                $user->getPrenom(),
+                $user->getSluggedLastName(),
+                $user->getSluggedFirstName(),
             )
         );
 

@@ -27,15 +27,14 @@ class MailerService
         private readonly RouterInterface $router,
         private readonly LoggerInterface $logger,
         private readonly TranslatorInterface $translator,
-        private readonly string $contactMail,
-        private readonly string $noReplyMail,
+        private readonly string $mailerSender,
         private readonly array $adminMails,
     ) {
     }
 
     public function send(Email $email): void
     {
-        $email->sender($email->getSender() ?? $this->contactMail);
+        $email->sender($email->getSender() ?? $this->mailerSender);
 
         if ($email instanceof TemplatedEmail) {
             $userLang = $email->getContext()['userLang'];
@@ -86,6 +85,20 @@ class MailerService
             return;
         }
 
-        $this->send(DuplicatedUsernameEmail::create($this->noReplyMail, $this->adminMails, $user));
+        $this->send(DuplicatedUsernameEmail::create($this->mailerSender, $this->adminMails, $user));
+    }
+
+    public function sendPersonalDataRequestEmail(User $user): void
+    {
+        $email = (new Email())
+            ->subject('CFN - Demande de récupération de données')
+            ->text(sprintf(
+                'Un utilisateur (id user = %d) vient d’effectuer une demande de récupération de ses données sur le coffre-fort numérique (%s)',
+                $user->getId(),
+                (new \DateTime())->format('d/m/Y à H\hi'),
+            ))
+            ->to(...$this->adminMails);
+
+        $this->send($email);
     }
 }

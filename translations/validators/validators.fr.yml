@@ -17,3 +17,4 @@ username_not_valid: Le username n'est pas valide
 wrong_secret_answer: 'La réponse à la question secrète est incorrecte'
 wrong_sms_code: 'Le code est incorrect'
 folder_circular_dependency: Ce mouvement de dossier n'est pas valide
+you_must_accept_terms_of_use: "Vous devez accepter les conditions d'utilisation"

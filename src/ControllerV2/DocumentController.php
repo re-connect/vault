@@ -137,7 +137,7 @@ class DocumentController extends AbstractController
         $beneficiary = $document->getBeneficiaire();
 
         return $this->render('v2/vault/folder/tree_view.html.twig', [
-            'folders' => $folderManager->getRootFolders($beneficiary),
+            'folders' => $beneficiary ? $folderManager->getRootFolders($beneficiary) : [],
             'element' => $document,
             'beneficiary' => $document->getBeneficiaire(),
         ]);

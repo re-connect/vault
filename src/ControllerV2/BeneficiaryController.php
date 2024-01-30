@@ -29,6 +29,7 @@ class BeneficiaryController extends AbstractController
     ): Response {
         $query = $request->query;
         $relay = $relayRepository->find($query->getInt('relay'));
+        $pro = $this->getUser()?->getSubjectMembre();
 
         if ($relay && !$this->isGranted('MANAGE_BENEFICIARIES', $relay)) {
             throw $this->createAccessDeniedException();
@@ -42,7 +43,7 @@ class BeneficiaryController extends AbstractController
         $form = $this->createForm(FilterUserType::class, $formModel, [
             'action' => $this->generateUrl('list_beneficiaries'),
             'attr' => ['data-controller' => 'ajax-list-filter'],
-            'relays' => $this->getUser()->getAffiliatedRelaysWithBeneficiaryManagement(),
+            'relays' => $this->getUser()?->getAffiliatedRelaysWithBeneficiaryManagement(),
         ])->handleRequest($request);
 
         return $this->render($request->isXmlHttpRequest()
@@ -50,11 +51,12 @@ class BeneficiaryController extends AbstractController
             : 'v2/beneficiary/list/beneficiaries.html.twig',
             [
                 'beneficiaries' => $paginator->create(
-                    $repository->findByAuthorizedProfessional(
-                        $this->getUser()->getSubjectMembre(),
+                    $pro
+                    ? $repository->findByAuthorizedProfessional(
+                        $pro,
                         $formModel->search,
                         $formModel->relay,
-                    ),
+                    ) : [],
                     $request->query->getInt('page', 1),
                     PaginatorService::LIST_USER_LIMIT,
                 ),

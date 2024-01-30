@@ -63,7 +63,7 @@ class BeneficiaryAffiliationController extends AbstractController
     {
         return $this->render('v2/user_affiliation/beneficiary/relays_form.html.twig', [
             'beneficiary' => $beneficiary,
-            'relays' => $this->getUser()->getValidRelays(),
+            'relays' => $this->getUser()?->getValidRelays(),
         ]);
     }
 
@@ -76,14 +76,14 @@ class BeneficiaryAffiliationController extends AbstractController
     public function finish(Beneficiaire $beneficiary): Response
     {
         if ($beneficiary->hasRelays()) {
-            return $this->redirectToRoute('re_user_redirectUser');
+            return $this->redirectToRoute('redirect_user');
         }
 
         $this->addFlash('danger', 'no_relay_selected');
 
         return $this->render('v2/user_affiliation/beneficiary/relays_form.html.twig', [
             'beneficiary' => $beneficiary,
-            'relays' => $this->getUser()->getValidRelays(),
+            'relays' => $this->getUser()?->getValidRelays(),
         ]);
     }
 
@@ -112,7 +112,7 @@ class BeneficiaryAffiliationController extends AbstractController
         return $this->render('v2/user_affiliation/beneficiary/_relays_form_secret_question.html.twig', [
             'beneficiary' => $beneficiary,
             'secretQuestionForm' => $secretQuestionForm,
-            'relays' => $this->getUser()->getValidRelays(),
+            'relays' => $this->getUser()?->getValidRelays(),
         ]);
     }
 
@@ -156,7 +156,7 @@ class BeneficiaryAffiliationController extends AbstractController
         return $this->render('v2/user_affiliation/beneficiary/_relays_form_sms_code.html.twig', [
             'beneficiary' => $beneficiary,
             'smsCodeForm' => $smsCodeForm,
-            'relays' => $this->getUser()->getValidRelays(),
+            'relays' => $this->getUser()?->getValidRelays(),
         ]);
     }
 }

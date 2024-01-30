@@ -4,7 +4,7 @@ const $ = require('jquery');
 import 'jquery-ui-dist/jquery-ui.js';
 import './tooltip-jquery';
 import './favicons';
-import './homeV2/language-selector';
+import './home/language-selector';
 import '../bootstrap';
 import './helpers/intl-tel-input';
 

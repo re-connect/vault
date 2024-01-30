@@ -198,7 +198,7 @@ disaffiliate_beneficiary_subtitle: 'Arrêter le suivi de'
 disaffiliate_beneficiary: Arrêter le suivi d'un bénéficiaire
 disaffiliate_user: Arrêter le suivi d'un utilisateur
 no_document_yet: "Il n'y a aucun fichier pour l'instant"
-document_deleted_successfully: 'Votre document a bien été supprimée'
+document_deleted_successfully: 'Votre document a bien été supprimé'
 create_folder: 'Créer un dossier'
 drop_files: 'Déposer des fichiers'
 folder: Dossier
@@ -537,7 +537,6 @@ unsupported_file_extension: "Erreur %fileName%, le format de fichier n'est pas s
 used_available: '%used% utilisé(s) sur %available% disponibles'
 accept_terms_of_use: "J'accepte les conditions d'utilisation"
 general_conditions_of_use: 'Conditions générales du service'
-you_must_accept_terms_of_use: "Vous devez accepter les conditions d'utilisation"
 welcome_on_solidarity_cloud: 'Bienvenue sur Reconnect le Cloud Solidaire'
 update_your_password: 'Modifier votre mot de passe'
 actual_password: 'Votre mot de passe actuel'
@@ -559,6 +558,7 @@ user_not_found: "Aucun utilisateur n'a été trouvé"
 user_parameters_subtitle: 'Paramètres de %subject%'
 user_shared_document_with_you: 'L''utilisateur %nom% %prenom% souhaite partager ce document avec vous: "%document%"'
 user_successfully_created: Opération réussie. L’utilisateur a bien été créé
+user_type: Type d'utilisateur
 user_update_password_subtitle: 'Mot de passe de %subject%'
 user_update_password_title: Renouvellement de mot de passe
 username: "Nom d'utilisateur"
@@ -602,3 +602,11 @@ error_401: Vous n'êtes pas connecté
 error_403: Vous n'êtes pas autorisé à accéder à cette page
 error_404: Oups, il semble que cette page n'existe pas
 error_500: Il y a eu une erreur technique, le problème vient de nous, nous allons le traiter rapidement
+password_criterion_length: 8 caractères
+password_criterion_lowercase: Minuscule
+password_criterion_number: Chiffre
+password_criterion_special: Caractère spécial
+password_criterion_uppercase: Majuscule
+take_away_account_data: Je souhaite récupérer mes données
+your_personal_data_request_has_been_send_to_tech_team: Votre demande de récupération de vos données à été transmise à nos équipes dédiées.
+you_will_be_contacted_soon: Vous serez contacté dans les meilleurs délais à ce sujet.
