@@ -44,12 +44,11 @@ class MemberBeneficiaryController extends AbstractController
         return new JsonResponse(null, Response::HTTP_CREATED);
     }
 
-    public function firstMemberVisitNotification(?Beneficiaire $beneficiary, MemberBeneficiaryManager $memberBeneficiaryManager): Response
+    public function firstMemberVisitNotification(Beneficiaire $beneficiary, MemberBeneficiaryManager $memberBeneficiaryManager): Response
     {
-        if (!$beneficiary || !$memberBeneficiaryManager->isFirstMemberVisit($beneficiary)) {
+        if (!$memberBeneficiaryManager->isFirstMemberVisit($beneficiary)) {
             return $this->render('void.html.twig');
         }
-        $memberBeneficiaryManager->handleFirstMemberVisit($beneficiary);
 
         return $this->render('v2/notifications/first_visit_notifications.html.twig', [
             'form' => $this->createForm(FirstMemberVisitType::class, null, [

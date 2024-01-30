@@ -5,6 +5,7 @@ twig:
         googleSiteVerification: '%env(GOOGLE_SITE_VERIFICATION)%'
         crispWebsiteId: '%env(CRISP_WEBSITE_ID)%'
         appUrl: '%env(APP_ROOT_URL)%'
+        memberBeneficiaryManager: '@App\ManagerV2\MemberBeneficiaryManager'
     form_themes:
         - '@VichUploader/Form/fields.html.twig'
         - 'form/fields.html.twig'

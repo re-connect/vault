@@ -18,7 +18,7 @@ class MemberBeneficiaryManager
     ) {
     }
 
-    public function handleFirstMemberVisit(Beneficiaire $beneficiary): void
+    public function recordBeneficiaryConsultation(Beneficiaire $beneficiary): void
     {
         $user = $this->getUser();
         if (null !== $user && $user->isMembre()) {
