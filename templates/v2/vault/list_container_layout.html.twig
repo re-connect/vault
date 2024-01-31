@@ -21,6 +21,5 @@
     {{ parent() }}
     {% if beneficiary is defined %}
         {{ render(controller('App\\ControllerV2\\MemberBeneficiaryController::firstMemberVisitNotification', {beneficiary})) }}
-        {{ memberBeneficiaryManager.recordBeneficiaryConsultation(beneficiary) }}
     {% endif %}
 {% endblock %}
