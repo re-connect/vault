@@ -1,11 +1,5 @@
 files:
-  - source: translations/*.yml
-    translation: /translations/messages.%two_letters_code%.yml
-  - source: /translations/FosUserBundle
-    translation: /translations/FosUserBundle/FOSUserBundle.%two_letters_code%.yml
-  - source: translations/validators
-    translation: /translations/validators/validators.%two_letters_code%.yml
-bundles:
-  - 4
-  - 6
-  - 8
+  - source: translations/**/*.en.yml
+    translation: /translations/**/%file_name%.%two_letters_code%.yml
+    translation_replace:
+      .en: ''
