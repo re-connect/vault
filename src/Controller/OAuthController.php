@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OAuthController extends AbstractController
 {
-    private const QUERY_PARAMS = ['grant_type', 'client_id', 'client_secret', 'username', 'password'];
+    private const QUERY_PARAMS = ['grant_type', 'client_id', 'client_secret', 'username', 'password', '_auth_code'];
 
     #[Route(path: '/oauth/v2/token', name: 'oauth_server_token_post_old', methods: ['GET', 'POST'])]
     public function forwardTokenAuthentication(Request $request): Response

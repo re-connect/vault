@@ -20,6 +20,8 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
         'create_user[email]' => 'mail@test.com',
         'create_user[plainPassword][first]' => 'Reconnect!',
         'create_user[plainPassword][second]' => 'Reconnect!',
+        'create_user[mfaEnabled]' => false,
+        'create_user[mfaMethod]' => 'email',
     ];
 
     protected function setUp(): void
@@ -63,6 +65,17 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
             self::URL,
             'submit',
             self::FORM_VALUES,
+            MemberFixture::MEMBER_MAIL,
+            '/user/%s/invite',
+        ];
+
+        $values = self::FORM_VALUES;
+        $values['create_user[mfaEnabled]'] = true;
+        $values['create_user[mfaMethod]'] = 'email';
+        yield 'Should redirect to invite page when form is correct with mfa enabled' => [
+            self::URL,
+            'submit',
+            $values,
             MemberFixture::MEMBER_MAIL,
             '/user/%s/invite',
         ];
@@ -191,6 +204,25 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
             [
                 [
                     'message' => 'Votre mot de passe doit contenir au moins 9 caractères',
+                    'params' => null,
+                ],
+            ],
+            MemberFixture::MEMBER_MAIL,
+            'div.invalid-feedback',
+        ];
+
+        $values = self::FORM_VALUES;
+        $values['create_user[mfaEnabled]'] = true;
+        $values['create_user[mfaMethod]'] = 'sms';
+        $values['create_user[telephone]'] = null;
+        yield 'Should return an error when enabling sms 2fa with no phone' => [
+            self::URL,
+            'create_pro',
+            'submit',
+            $values,
+            [
+                [
+                    'message' => 'Vous avez choisi de recevoir un code de connexion par SMS, mais vous n\'avez pas renseigné de numéro de téléphone.',
                     'params' => null,
                 ],
             ],

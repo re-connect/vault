@@ -8,9 +8,12 @@ use App\Entity\Beneficiaire;
 use App\Entity\Gestionnaire;
 use App\Entity\Membre;
 use App\Entity\User;
+use App\Event\UserEvent;
 use App\Repository\UserRepository;
+use App\ServiceV2\Helper\PasswordHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\String\ByteString;
@@ -22,6 +25,8 @@ class UserManager
         private readonly EntityManagerInterface $em,
         private readonly LoggerInterface $logger,
         private readonly UserRepository $repository,
+        private readonly PasswordHelper $passwordHelper,
+        private readonly EventDispatcherInterface $dispatcher,
     ) {
     }
 
@@ -51,6 +56,7 @@ class UserManager
     public function updatePassword(User $user, string $password): void
     {
         $user->setPassword($this->hasher->hashPassword($user, $password));
+        $user->setHasPasswordWithLatestPolicy($this->passwordHelper->isStrongPassword($password));
         $this->em->flush();
         $user->eraseCredentials();
     }
@@ -135,5 +141,14 @@ class UserManager
     private function getNextHomonymUsername(string $baseUsername, array $homonyms): string
     {
         return sprintf('%s-%d', $baseUsername, $this->getMaxHomonymIndex($baseUsername, $homonyms) + 1);
+    }
+
+    public function handleUserLogin(User $user): void
+    {
+        if (!$user->hasLoginToday()) {
+            $user->setDerniereConnexionAt(new \DateTime());
+            $this->em->flush();
+        }
+        $this->dispatcher->dispatch(new UserEvent($user, !$user->hasLoginToday()));
     }
 }

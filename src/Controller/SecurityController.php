@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Domain\MFA\MfaCodeSender;
 use App\Entity\User;
 use App\Security\VoterV2\BeneficiaryVoter;
 use App\ServiceV2\GdprService;
@@ -15,6 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SecurityController extends AbstractController
 {
+    public const MFA_MAX_RETRIES = 3;
+
     public function __construct(private readonly GdprService $gdprService)
     {
     }
@@ -48,12 +51,11 @@ class SecurityController extends AbstractController
         $user = $this->getUser();
 
         return match (true) {
-            !$user instanceof User || is_string($user) => $this->redirect($this->generateUrl('re_main_login')),
-            $user->isAdministrateur() || $user->isSuperAdmin() => $this->redirect($this->generateUrl('sonata_admin_dashboard')),
-            $user->isFirstVisit() => $this->redirect($this->generateUrl('user_first_visit')),
-            $user->isBeneficiaire() => $this->redirect($this->generateUrl('beneficiary_home')),
+            $user->isAdministrateur() || $user->isSuperAdmin() => $this->redirectToRoute('sonata_admin_dashboard'),
+            $user->isFirstVisit() => $this->redirectToRoute('user_first_visit'),
+            $user->isBeneficiaire() => $this->redirectToRoute('beneficiary_home'),
             $user->isMembre() => $this->redirect($this->generateUrl($this->isGranted(BeneficiaryVoter::MANAGE) ? 'list_beneficiaries' : 'affiliate_beneficiary_home')),
-            'default' => $this->redirect($this->generateUrl('re_main_login')),
+            'default' => $this->redirectToRoute('re_main_login'),
         };
     }
 
@@ -61,5 +63,26 @@ class SecurityController extends AbstractController
     public function loginLink()
     {
         throw new \LogicException('This code should never be reached');
+    }
+
+    #[Route('/resend-auth-code', name: 'resend_auth_code', methods: ['GET'])]
+    public function resendAuthCode(MfaCodeSender $mfaCodeSender): RedirectResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('re_main_login');
+        }
+
+        if (self::MFA_MAX_RETRIES === $user->getMfaRetryCount()) {
+            $this->addFlash('danger', 'mfa_maximum_retries_reach');
+
+            return $this->redirectToRoute('2fa_login');
+        }
+
+        $mfaCodeSender->sendCode($user);
+
+        return $this->redirectToRoute('2fa_login');
     }
 }

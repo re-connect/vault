@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 abstract class AbstractWebUserSubscriber implements EventSubscriberInterface
 {
     use UserAwareTrait;
-    protected const FIRST_VISIT_ROUTES = ['re_main_change_lang', 'user_delete', 'user_first_visit', 'user_cgs', '2fa_login'];
+    protected const FIRST_VISIT_ROUTES = ['re_main_change_lang', 'user_delete', 'user_first_visit', 'user_cgs', '2fa_login', 'user_mfa'];
 
     public function __construct(
         private readonly Security $security,

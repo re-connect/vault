@@ -49,7 +49,7 @@ class MainControllerTest extends WebTestCase
         } catch (\Exception $exception) {
             echo $exception->getMessage();
         }
-        self::assertTrue($this->testPasswordAndAuthenticate($beneficiaire->getUser()->getUsername(), 'password'));
+        self::assertTrue($this->testPasswordAndAuthenticate($beneficiaire->getUser()->getUsername(), 'Password1'));
 
         return $beneficiaire;
     }
@@ -64,7 +64,7 @@ class MainControllerTest extends WebTestCase
         $form = $crawler->filter('form')->eq(0)->form();
         $form->setValues([
             '_username' => $beneficiaire->getUser()->getUsername(),
-            '_password' => 'password',
+            '_password' => 'Password1',
         ]);
         $crawler = $this->client->submit($form);
         $crawler = $this->client->request('GET', '/admin/dashboard');

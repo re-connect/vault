@@ -4,7 +4,9 @@ namespace App\Tests\v2\EventSubscriber;
 
 use App\EventSubscriber\Logs\LoginSubscriber;
 use App\ServiceV2\ActivityLogger;
+use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -22,7 +24,7 @@ class LoginSubscriberTest extends TestCase
     public function testCallActivityLoggerOnLoginSuccess(): void
     {
         $activityLogger = $this->createMock(ActivityLogger::class);
-        $subscriber = new LoginSubscriber($activityLogger);
+        $subscriber = new LoginSubscriber($this->createMock(Security::class), $activityLogger, $this->createMock(EntityManagerInterface::class));
         $event = new LoginSuccessEvent($this->createMock(AuthenticatorInterface::class), $this->createMock(Passport::class), $this->createMock(TokenInterface::class), new Request(), null, '');
 
         $activityLogger->expects($this->once())->method('logLogin');
