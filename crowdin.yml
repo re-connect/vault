@@ -1,7 +1,5 @@
 files:
   - source: translations/**/*.en.yml
     translation: /translations/**/%file_name%.%two_letters_code%.yml
-bundles:
-  - 4
-  - 6
-  - 8
+    translation_replace:
+      .en: 
