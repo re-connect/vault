@@ -2,4 +2,4 @@ files:
   - source: translations/**/*.en.yml
     translation: /translations/**/%file_name%.%two_letters_code%.yml
     translation_replace:
-      .en: 
+      .en: ''
