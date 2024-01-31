@@ -1,10 +1,6 @@
 files:
-  - source: translations/*.yml
-    translation: /translations/crowdin.%two_letters_code%.yml
-  - source: /translations/FosUserBundle
-    translation: /translations/FosUserBundle/crowdin.%two_letters_code%.yml
-  - source: translations/validators
-    translation: /translations/validators/crowdin.%two_letters_code%.yml
+  - source: translations/**/*.en.yml
+    translation: /translations/**/%file_name%.%two_letters_code%.yml
 bundles:
   - 4
   - 6
