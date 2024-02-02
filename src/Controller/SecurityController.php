@@ -48,12 +48,11 @@ class SecurityController extends AbstractController
         $user = $this->getUser();
 
         return match (true) {
-            !$user instanceof User || is_string($user) => $this->redirect($this->generateUrl('re_main_login')),
-            $user->isAdministrateur() || $user->isSuperAdmin() => $this->redirect($this->generateUrl('sonata_admin_dashboard')),
-            $user->isFirstVisit() => $this->redirect($this->generateUrl('user_first_visit')),
-            $user->isBeneficiaire() => $this->redirect($this->generateUrl('beneficiary_home')),
+            $user->isAdministrateur() || $user->isSuperAdmin() => $this->redirectToRoute('sonata_admin_dashboard'),
+            $user->isFirstVisit() => $this->redirectToRoute('user_first_visit'),
+            $user->isBeneficiaire() => $this->redirectToRoute('beneficiary_home'),
             $user->isMembre() => $this->redirect($this->generateUrl($this->isGranted(BeneficiaryVoter::MANAGE) ? 'list_beneficiaries' : 'affiliate_beneficiary_home')),
-            'default' => $this->redirect($this->generateUrl('re_main_login')),
+            'default' => $this->redirectToRoute('re_main_login'),
         };
     }
 
