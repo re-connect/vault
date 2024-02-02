@@ -32,7 +32,7 @@ App\Entity\User:
                     message: "password_wrong_format"
                     groups: [ password ]
             -   Length:
-                    min: 5
+                    min: 9
                     groups: [ password, password-beneficiaire ]
             -   Length:
                     min: 10

@@ -3,10 +3,11 @@ import { getValidCriteria, isPasswordStrongEnough } from './helpers/password_str
 
 export default class extends Controller {
   static targets = ['input', 'badge', 'widget', 'validText', 'invalidText'];
+  static values = { passwordLength: String };
 
-  check() {
+  check () {
     const value = this.inputTarget.value;
-    const validCriteria = getValidCriteria(value);
+    const validCriteria = getValidCriteria(value, this.passwordLengthValue);
     const isPasswordStrong = isPasswordStrongEnough(validCriteria);
 
     this.toggleContainerVisibility(value);
@@ -16,21 +17,21 @@ export default class extends Controller {
   }
 
   toggleBadgeColor = (validCriteria) => (target) => {
-    const isValid = validCriteria.includes(target.dataset.criterionName)
+    const isValid = validCriteria.includes(target.dataset.criterionName);
     target.classList.toggle('bg-green', isValid);
     target.classList.toggle('bg-red', !isValid);
+  };
+
+  toggleContainerVisibility (value) {
+    this.widgetTarget.classList.toggle('d-none', !value || value.length === 0);
   }
 
-  toggleContainerVisibility(value) {
-    this.widgetTarget.classList.toggle('d-none', !value || value.length === 0)
-  }
-
-  toggleIsValidText(isPasswordStrong) {
+  toggleIsValidText (isPasswordStrong) {
     this.validTextTarget.classList.toggle('d-none', !isPasswordStrong);
     this.invalidTextTarget.classList.toggle('d-none', isPasswordStrong);
   }
 
-  enableDisableForm(isPasswordStrong) {
+  enableDisableForm (isPasswordStrong) {
     const button = this.inputTarget.form.querySelector('button[type="submit"]');
     if (button) {
       button.disabled = !isPasswordStrong;

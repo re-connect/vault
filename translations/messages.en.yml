@@ -310,12 +310,13 @@ number_of_docs: 'Number of documents'
 or_click_link: 'Or click on the link'
 password: Password
 password_expired: 'Your password has expired. Please enter a new password.'
-password_help: 'The password must be at least 8 characters long and fulfill at least 4 of the 5 criteria below'
+password_help_beneficiary: "The password must be at list 9 characters long, and fulfill criteria below : 1 uppercase, 1 lowercase, 1 number"
+password_help_pro: "The password must be at list 10 characters long, and fulfill at least 3 of the 4 criteria below : 1 uppercase, 1 lowercase, 1 number, 1 special char"
 password_help_criteria: 'The password must fulfill {{ atLeast }} of {{ total }} criteria below'
-password_invalid: 'Invalid password'
 password_new_should_be_different_from_current: 'Your new password must be different from your current password.'
 password_renewal_due: 'Your password is about to expire. Please enter a new password.'
 password_updated_successfully: 'Your password has been changed.'
+password_too_weak: Password too weak
 password_valid: 'Valid password'
 phone: Phone
 phone_does_not_exist: 'No users with phone numbers were found'
@@ -475,7 +476,7 @@ spanish_flag: Spanish flag
 reminder_sms_content: "Hello \nAppointment reminder : %name% \n%date%"
 mail_shared_document_content_1_anonymous: Someone would like to share with you a document from its digital safe by Reconnect.
 my_reconnect_relays: My Reconnect relays
-password_criterion_length: 8 characters
+password_criterion_length: '%length% characters'
 password_criterion_lowercase: Lowercase
 password_criterion_number: Number
 password_criterion_special: Special character
