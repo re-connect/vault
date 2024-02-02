@@ -21,7 +21,6 @@ readonly class Oauth2UserResolveSubscriber
         private UserRepository $repository,
         private CodeGeneratorInterface $codeGenerator,
         private RequestStack $requestStack,
-        private EventDispatcherInterface $dispatcher,
     ) {
     }
 
@@ -31,17 +30,20 @@ readonly class Oauth2UserResolveSubscriber
         $isUserPasswordInvalid = $user instanceof LegacyPasswordAuthenticatedUserInterface && !$this->hasher->isPasswordValid($user, $event->getPassword());
         $event->setUser($isUserPasswordInvalid ? null : $user);
 
-        if ($user instanceof LegacyPasswordAuthenticatedUserInterface && !$this->hasher->isPasswordValid($user, $password)) {
-            $event->setUser(null);
+        if (!$user->isMfaEnabled()) {
+            return $event;
+        }
+
+        $currentRequest = $this->requestStack->getCurrentRequest();
+        $sentAuthCode = $currentRequest->request->get('_auth_code');
+
+        if (!$sentAuthCode) {
+            $event->setUser(new NullUser());
+            $this->codeGenerator->generateAndSend($user);
+        } elseif ($sentAuthCode !== $user->getEmailAuthCode()) {
+            $event->setUser(new NullUser());
         }
 
         return $event;
-    }
-
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            'league.oauth2_server.event.user_resolve' => 'checkUserPasswordValidity',
-        ];
     }
 }
