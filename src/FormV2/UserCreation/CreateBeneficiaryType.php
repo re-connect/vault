@@ -61,6 +61,10 @@ class CreateBeneficiaryType extends AbstractType
             ->add('password', TextType::class, [
                 'property_path' => 'user.plainPassword',
                 'label' => 'password',
+                'attr' => [
+                    'data-password-strength-target' => 'input',
+                    'data-action' => 'password-strength#check',
+                ],
             ]);
     }
 

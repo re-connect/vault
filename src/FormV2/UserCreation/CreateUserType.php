@@ -52,11 +52,11 @@ class CreateUserType extends AbstractType
                         'data-password-strength-target' => 'input',
                         'data-action' => 'password-strength#check',
                     ],
-                    'row_attr' => ['class' => 'col-6 mt-3'],
+                    'row_attr' => ['class' => 'col-6'],
                 ],
                 'second_options' => [
                     'label' => 'password_confirm',
-                    'row_attr' => ['class' => 'col-6 mt-3'],
+                    'row_attr' => ['class' => 'col-6'],
                 ],
             ]);
     }
