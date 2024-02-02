@@ -28,7 +28,7 @@ class MembreAdmin extends AbstractAdmin
 {
     protected function configureFormOptions(array &$formOptions): void
     {
-        $formOptions['validation_groups'] = ['password-membre', 'membre', 'Default'];
+        $formOptions['validation_groups'] = ['password', 'membre', 'Default'];
         parent::configureFormOptions($formOptions);
     }
 

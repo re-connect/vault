@@ -69,9 +69,9 @@ class CreateUserType extends AbstractType
                 /** @var User $data */
                 $data = $form->getData();
                 if ($data->isBeneficiaire()) {
-                    return ['password', 'password-beneficiaire', 'beneficiaire'];
+                    return ['password', 'beneficiaire'];
                 } elseif ($data->isMembre()) {
-                    return ['password', 'password-membre', 'membre'];
+                    return ['password', 'membre'];
                 }
 
                 return [];
