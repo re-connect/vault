@@ -6,7 +6,7 @@ export default class extends Controller {
   characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
   generate() {
-    this.inputTarget.value = this.getGeneratedPassword(8);
+    this.inputTarget.value = this.getGeneratedPassword(9);
   }
 
   getGeneratedPassword(length) {
