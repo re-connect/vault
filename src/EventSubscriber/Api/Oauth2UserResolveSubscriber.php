@@ -2,24 +2,34 @@
 
 namespace App\EventSubscriber\Api;
 
+use App\Repository\UserRepository;
 use League\Bundle\OAuth2ServerBundle\Event\UserResolveEvent;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use League\Bundle\OAuth2ServerBundle\OAuth2Events;
+use League\Bundle\OAuth2ServerBundle\Security\User\NullUser;
+use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Email\Generator\CodeGeneratorInterface;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\User\LegacyPasswordAuthenticatedUserInterface;
 
-class Oauth2UserResolveSubscriber implements EventSubscriberInterface
+#[AsEventListener(OAuth2Events::USER_RESOLVE, 'checkUserPasswordValidity', )]
+readonly class Oauth2UserResolveSubscriber
 {
-    private UserPasswordHasherInterface $hasher;
-
-    public function __construct(UserPasswordHasherInterface $hasher)
-    {
-        $this->hasher = $hasher;
+    public function __construct(
+        private UserPasswordHasherInterface $hasher,
+        private UserRepository $repository,
+        private CodeGeneratorInterface $codeGenerator,
+        private RequestStack $requestStack,
+        private EventDispatcherInterface $dispatcher,
+    ) {
     }
 
     public function checkUserPasswordValidity(UserResolveEvent $event): UserResolveEvent
     {
-        $user = $event->getUser();
-        $password = $event->getPassword();
+        $user = $this->repository->loadUserByIdentifier($event->getUsername());
+        $isUserPasswordInvalid = $user instanceof LegacyPasswordAuthenticatedUserInterface && !$this->hasher->isPasswordValid($user, $event->getPassword());
+        $event->setUser($isUserPasswordInvalid ? null : $user);
 
         if ($user instanceof LegacyPasswordAuthenticatedUserInterface && !$this->hasher->isPasswordValid($user, $password)) {
             $event->setUser(null);
