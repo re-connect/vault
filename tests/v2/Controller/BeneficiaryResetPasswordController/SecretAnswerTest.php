@@ -55,8 +55,8 @@ class SecretAnswerTest extends AbstractControllerTest implements TestRouteInterf
     public function provideTestFormIsValid(): ?\Generator
     {
         $values = self::FORM_VALUES;
-        $values['reset_password_secret_answer[password][plainPassword][first]'] = 'sameCorrectPassword';
-        $values['reset_password_secret_answer[password][plainPassword][second]'] = 'sameCorrectPassword';
+        $values['reset_password_secret_answer[password][plainPassword][first]'] = 'sameCorrectPassword1';
+        $values['reset_password_secret_answer[password][plainPassword][second]'] = 'sameCorrectPassword1';
 
         yield 'Should redirect to beneficiaries list when form is correct' => [
             self::URL,
@@ -129,7 +129,32 @@ class SecretAnswerTest extends AbstractControllerTest implements TestRouteInterf
             $values,
             [
                 [
-                    'message' => 'Votre mot de passe doit contenir au moins 5 caractères',
+                    'message' => 'Votre mot de passe doit contenir au moins 9 caractères',
+                    'params' => null,
+                ],
+            ],
+            MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES,
+            'div.invalid-feedback',
+        ];
+
+        $values['reset_password_secret_answer[password][plainPassword][first]'] = 'aaaaaaaaa';
+        $values['reset_password_secret_answer[password][plainPassword][second]'] = 'aaaaaaaaa';
+        yield 'Should return an error if password does not meet characters requirements' => [
+            self::URL,
+            'reset_password_beneficiary_secret_answer',
+            'confirm',
+            $values,
+            [
+                [
+                    'message' => 'password_help_criteria_beneficiary',
+                    'params' => null,
+                ],
+                [
+                    'message' => 'password_criterion_number',
+                    'params' => null,
+                ],
+                [
+                    'message' => 'password_criterion_uppercase',
                     'params' => null,
                 ],
             ],

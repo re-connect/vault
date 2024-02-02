@@ -163,8 +163,20 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
             $values,
             [
                 [
-                    'message' => 'password_help_criteria',
+                    'message' => 'password_help_criteria_pro',
                     'params' => ['{{ atLeast }}' => 2, '{{ total }}' => 3],
+                ],
+                [
+                    'message' => 'password_criterion_number',
+                    'params' => null,
+                ],
+                [
+                    'message' => 'password_criterion_uppercase',
+                    'params' => null,
+                ],
+                [
+                    'message' => 'password_criterion_special',
+                    'params' => null,
                 ],
             ],
             MemberFixture::MEMBER_MAIL,
@@ -182,7 +194,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
             $values,
             [
                 [
-                    'message' => 'Cette chaîne est trop courte. Elle doit avoir au minimum 10 caractères.',
+                    'message' => 'Votre mot de passe doit contenir au moins 10 caractères',
                     'params' => null,
                 ],
             ],
