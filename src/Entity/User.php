@@ -204,6 +204,8 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface
 
     private ?string $authCode;
     private ?bool $mfaEnabled;
+    private ?bool $mfaPending;    // This is only used when login from API
+    private ?bool $mfaValid;    // This is only used when login from API
 
     public function __construct()
     {
@@ -1333,5 +1335,40 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface
     public function disableMfa(): void
     {
         $this->mfaEnabled = false;
+    }
+
+    public function isMfaPending(): ?bool
+    {
+        return $this->mfaPending;
+    }
+
+    public function setMfaPending(?bool $mfaPending): User
+    {
+        $this->mfaPending = $mfaPending;
+        $this->mfaValid = !$mfaPending;
+
+        return $this;
+    }
+
+    public function isMfaValid(): ?bool
+    {
+        return $this->mfaValid;
+    }
+
+    public function setMfaValid(?bool $mfaValid): User
+    {
+        $this->mfaValid = $mfaValid;
+        $this->mfaPending = !$mfaValid;
+
+        return $this;
+    }
+
+    public function resetAuthCodes(): User
+    {
+        $this->authCode = null;
+        $this->mfaValid = false;
+        $this->mfaPending = false;
+
+        return $this;
     }
 }

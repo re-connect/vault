@@ -7,6 +7,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use League\OAuth2\Server\RequestAccessTokenEvent;
 use League\OAuth2\Server\RequestEvent;
+use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Email\Generator\CodeGeneratorInterface;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -17,6 +18,7 @@ readonly class Oauth2TokenIssuedSubscriber
         private EventDispatcherInterface $dispatcher,
         private UserRepository $repository,
         private EntityManagerInterface $em,
+        private CodeGeneratorInterface $codeGenerator,
     ) {
     }
 
@@ -35,5 +37,21 @@ readonly class Oauth2TokenIssuedSubscriber
             $this->em->flush();
         }
         $this->dispatcher->dispatch(new UserEvent($user, !$user->hasLoginToday()));
+
+        $isMfaEnabled = $user->isMfaEnabled();
+
+        if ($isMfaEnabled) {
+            parse_str($event->getRequest()->getServerParams()['QUERY_STRING'], $queryParams);
+            $mfaCodeSent = $queryParams['_auth_code'] ?? null;
+
+            if (!$mfaCodeSent) {
+                $this->codeGenerator->generateAndSend($user);
+                $user->setMfaPending(true);
+            } else {
+                $user->setMfaValid($mfaCodeSent === $user->getEmailAuthCode());
+            }
+        }
+
+        $this->em->flush();
     }
 }
