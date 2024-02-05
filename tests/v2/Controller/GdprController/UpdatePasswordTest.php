@@ -25,8 +25,8 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
             self::URL,
             'submit',
             [
-                'change_password_form[plainPassword][first]' => '123456Aa',
-                'change_password_form[plainPassword][second]' => '123456Aa',
+                'change_password_form[plainPassword][first]' => '123456Aaaa',
+                'change_password_form[plainPassword][second]' => '123456Aaaa',
             ],
             MemberFixture::MEMBER_MAIL,
             '/login-end',
@@ -63,8 +63,8 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
             $values,
             [
                 [
-                    'message' => 'password_too_short',
-                    'params' => ['{{ limit }}' => 8],
+                    'message' => 'password_help_criteria_pro',
+                    'params' => ['{{ atLeast }}' => 2, '{{ total }}' => 3],
                 ],
             ],
             MemberFixture::MEMBER_MAIL,
@@ -80,11 +80,8 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
             $values,
             [
                 [
-                    'message' => 'password_help_criteria',
-                    'params' => [
-                        '{{ atLeast }}' => 2,
-                        '{{ total }}' => 3,
-                    ],
+                    'message' => 'password_help_criteria_pro',
+                    'params' => ['{{ atLeast }}' => 2, '{{ total }}' => 3],
                 ],
                 [
                     'message' => 'password_criterion_special',

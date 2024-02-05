@@ -13,7 +13,7 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
 {
     private const URL = '/beneficiary/create/2/%s';
     private const FORM_VALUES = [
-        'create_beneficiary[password]' => 'Password',
+        'create_beneficiary[password]' => 'Password1',
     ];
 
     /** @dataProvider provideTestRoute */
@@ -105,7 +105,31 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
             $values,
             [
                 [
-                    'message' => 'Cette chaîne est trop courte. Elle doit avoir au minimum 5 caractères.',
+                    'message' => 'Votre mot de passe doit contenir au moins 9 caractères',
+                    'params' => null,
+                ],
+            ],
+            MemberFixture::MEMBER_MAIL,
+            'div.invalid-feedback',
+        ];
+
+        $values['create_beneficiary[password]'] = 'aaaaaaaaa';
+        yield 'Should return an error if password does not meet characters requirements' => [
+            self::URL,
+            'create_beneficiary',
+            'submit',
+            $values,
+            [
+                [
+                    'message' => 'password_help_criteria_beneficiary',
+                    'params' => null,
+                ],
+                [
+                    'message' => 'password_criterion_number',
+                    'params' => null,
+                ],
+                [
+                    'message' => 'password_criterion_uppercase',
                     'params' => null,
                 ],
             ],

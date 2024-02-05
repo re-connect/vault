@@ -12,7 +12,6 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\String\Slugger\AsciiSlugger;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -26,6 +25,8 @@ class User extends BaseUser implements \JsonSerializable
     public const USER_TYPE_ASSOCIATION = 'ROLE_ASSOCIATION';
     public const USER_TYPE_ADMINISTRATEUR = 'ROLE_ADMIN';
     public const USER_TYPE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+    public const BENEFICIARY_PASSWORD_LENGTH = 9;
+    public const PRO_PASSWORD_LENGTH = 10;
 
     public const ADMIN_TYPES = [
         self::USER_TYPE_ADMINISTRATEUR => self::USER_TYPE_ADMINISTRATEUR,
@@ -1041,41 +1042,6 @@ class User extends BaseUser implements \JsonSerializable
         $this->fcnToken = $fcnToken;
 
         return $this;
-    }
-
-    public static function validatePassword(?string $password, ExecutionContextInterface $context, $payload): void
-    {
-        if (null === $password) {
-            return;
-        }
-        $criteria = [
-            'special' => preg_match('/(?=.*\W)/', $password),
-            'number' => preg_match('/\d/', $password),
-            'lowercase' => preg_match('/[a-z]/', $password),
-            'uppercase' => preg_match('/[A-Z]/', $password),
-        ];
-
-        $violations = [];
-
-        foreach ($criteria as $key => $criterion) {
-            if (!$criterion) {
-                $violations[$key] = $context->buildViolation('password_criterion_'.$key)
-                    ->setTranslationDomain('messages')
-                    ->atPath('plainPassword');
-            }
-        }
-
-        $nbViolations = count($violations);
-        if ($nbViolations > 1) {
-            $context->buildViolation('password_help_criteria', ['{{ atLeast }}' => $nbViolations - 1, '{{ total }}' => $nbViolations])
-                ->setTranslationDomain('messages')
-                ->atPath('plainPassword')
-                ->addViolation();
-
-            foreach ($violations as $violation) {
-                $violation->addViolation();
-            }
-        }
     }
 
     public function refreshLastPasswordUpdateDate(PreUpdateEventArgs $event)

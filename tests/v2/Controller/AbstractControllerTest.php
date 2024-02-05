@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\AuthenticatedTestCase;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Translation\DataCollectorTranslator;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -92,10 +93,15 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
         $crawler = $client->request('GET', $url);
         $form = $crawler->selectButton(self::$translator->trans($formSubmit))->form();
         $form->setValues($values);
-        $client->submit($form);
+        $crawler = $client->submit($form);
 
         foreach ($errors as $error) {
-            $this->assertSelectorTextContains($alternateSelector ?? 'span.help-block', $this->getValidationErrorMessage($error));
+            if ($alternateSelector) {
+                $nodes = $crawler->filter($alternateSelector)->each(fn (Crawler $node) => $node->text());
+                $this->assertContains($this->getValidationErrorMessage($error), $nodes);
+            } else {
+                $this->assertSelectorTextContains('span.help-block', $this->getValidationErrorMessage($error));
+            }
         }
         $this->assertResponseStatusCodeSame(422);
         $this->assertRouteSame($route);
