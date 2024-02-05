@@ -162,6 +162,12 @@ App\Entity\User:
         mfaEnabled:
             type: boolean
             nullable: true
+        mfaPending:
+            type: boolean
+            nullable: true
+        mfaValid:
+            type: boolean
+            nullable: true
     oneToOne:
         subjectAdministrateur:
             targetEntity: App\Entity\Administrateur
