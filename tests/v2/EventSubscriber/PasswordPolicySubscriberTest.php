@@ -4,20 +4,20 @@ namespace App\Tests\v2\EventSubscriber;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
-use App\EventSubscriber\StrongPasswordSubscriber;
+use App\EventSubscriber\PasswordPolicySubscriber;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Zenstruck\Foundry\Test\Factories;
 
-class StrongPasswordSubscriberTest extends WebTestCase
+class PasswordPolicySubscriberTest extends WebTestCase
 {
     use Factories;
     private const RANDOM_URLS = [];
 
     public function testEventSubscription(): void
     {
-        $this->assertArrayHasKey(RequestEvent::class, StrongPasswordSubscriber::getSubscribedEvents());
+        $this->assertArrayHasKey(RequestEvent::class, PasswordPolicySubscriber::getSubscribedEvents());
     }
 
     /**
