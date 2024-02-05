@@ -58,6 +58,7 @@ final class UserFactory extends ModelFactory
             'prenom' => self::faker()->firstName(),
             'nom' => self::faker()->lastName(),
             'telephone' => self::faker()->phoneNumber(),
+            'hasPasswordWithLatestPolicy' => true,
         ];
     }
 

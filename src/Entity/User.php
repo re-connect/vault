@@ -200,6 +200,8 @@ class User extends BaseUser implements \JsonSerializable
     private ?\DateTimeImmutable $cgsAcceptedAt = null;
     private ?\DateTimeImmutable $personalAccountDataRequestedAt = null;
 
+    private bool $hasPasswordWithLatestPolicy = false;
+
     public function __construct()
     {
         parent::__construct();
@@ -1276,5 +1278,17 @@ class User extends BaseUser implements \JsonSerializable
     public function hasRequestedPersonalAccountData(): bool
     {
         return (bool) $this->personalAccountDataRequestedAt;
+    }
+
+    public function hasPasswordWithLatestPolicy(): bool
+    {
+        return $this->hasPasswordWithLatestPolicy;
+    }
+
+    public function setHasPasswordWithLatestPolicy(bool $hasUpdatedPasswordWithLatestPolicy): static
+    {
+        $this->hasPasswordWithLatestPolicy = $hasUpdatedPasswordWithLatestPolicy;
+
+        return $this;
     }
 }
