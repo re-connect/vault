@@ -28,7 +28,7 @@ class StrongPasswordSubscriberTest extends WebTestCase
         self::ensureKernelShutdown();
         $user = UserFactory::findByEmail($email)->object();
 
-        self::assertNull($user->hasUpdatedPasswordWithLastPolicy());
+        self::assertNull($user->hasUpdatedPasswordWithLatestPolicy());
 
         $client = static::createClient();
         $client->loginUser($user);
