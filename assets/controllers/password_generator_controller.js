@@ -1,18 +1,11 @@
 import {Controller} from '@hotwired/stimulus'
+import PasswordHelper from "./helpers/PasswordHelper";
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
   static targets = ['input'];
-  characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
   generate() {
-    this.inputTarget.value = this.getGeneratedPassword(9);
+    this.inputTarget.value = new PasswordHelper(9).generate();
   }
-
-  getGeneratedPassword(length) {
-    return [...Array(length)]
-      .reduce((acc) => acc + this.getRandomChar(), '');
-  }
-
-  getRandomChar = () => this.characters.charAt(Math.floor(Math.random() * this.characters.length));
 }

@@ -1,14 +1,18 @@
 import { Controller } from '@hotwired/stimulus';
-import { getValidCriteria, isPasswordStrongEnough } from './helpers/password_strength_helper';
+import PasswordHelper from "./helpers/PasswordHelper";
 
 export default class extends Controller {
   static targets = ['input', 'badge', 'widget', 'validText', 'invalidText'];
   static values = { passwordLength: String };
 
+  connect() {
+    this.helper = new PasswordHelper(this.passwordLengthValue);
+  }
+
   check () {
     const value = this.inputTarget.value;
-    const validCriteria = getValidCriteria(value, this.passwordLengthValue);
-    const isPasswordStrong = isPasswordStrongEnough(validCriteria);
+    const validCriteria = this.helper.getValidCriteria(value);
+    const isPasswordStrong = this.helper.isPasswordStrongEnough(validCriteria);
 
     this.toggleContainerVisibility(value);
     this.toggleIsValidText(isPasswordStrong);
