@@ -31,7 +31,7 @@ class GdprController extends AbstractController
             $gdprService->showPasswordRenewalFlash();
         }
 
-        return $this->renderPasswordPage($form);
+        return $this->renderPasswordPage($user, $form);
     }
 
     #[Route(path: '/improve-password', name: 'improve_password', methods: ['GET', 'POST'])]
@@ -47,7 +47,7 @@ class GdprController extends AbstractController
             return $this->redirectToRoute('redirect_user');
         }
 
-        return $this->renderPasswordPage($form);
+        return $this->renderPasswordPage($user, $form);
     }
 
     private function createPasswordForm(?User $user): FormInterface
@@ -55,9 +55,10 @@ class GdprController extends AbstractController
         return $this->createForm(ChangePasswordFormType::class, null, ['isBeneficiaire' => $user?->isBeneficiaire()]);
     }
 
-    private function renderPasswordPage(FormInterface $form): Response
+    private function renderPasswordPage(User $user, FormInterface $form): Response
     {
         return $this->render('v2/user/update_password_form.html.twig', [
+            'user' => $user,
             'passwordForm' => $form,
         ]);
     }
