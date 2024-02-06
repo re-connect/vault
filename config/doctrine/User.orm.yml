@@ -152,6 +152,10 @@ App\Entity\User:
         personalAccountDataRequestedAt:
             type: datetime_immutable
             nullable: true
+        hasPasswordWithLatestPolicy:
+            type: boolean
+            options:
+                default: false
     oneToOne:
         subjectAdministrateur:
             targetEntity: App\Entity\Administrateur
