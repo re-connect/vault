@@ -13,7 +13,8 @@ use Zenstruck\Foundry\Test\Factories;
 class PasswordPolicySubscriberTest extends WebTestCase
 {
     use Factories;
-    private const RANDOM_URLS = [];
+    private const IMPROVE_PASSWORD_URL = '/improve-password';
+    private const RANDOM_URLS = ['/beneficiaries', '/beneficiary', '/user/settings'];
 
     public function testEventSubscription(): void
     {
@@ -23,29 +24,33 @@ class PasswordPolicySubscriberTest extends WebTestCase
     /**
      * @dataProvider provideTestRedirectsToImprovePasswordPage
      */
-    public function testRedirectsToImprovePasswordPage(string $email): void
+    public function testRedirectsToImprovePasswordPage(string $email, string $redirection = null): void
     {
         self::ensureKernelShutdown();
-        $user = UserFactory::findByEmail($email)->object();
-
-        self::assertNull($user->hasUpdatedPasswordWithLatestPolicy());
-
         $client = static::createClient();
+
+        $user = UserFactory::findByEmail($email)->object();
         $client->loginUser($user);
+        $client->request('GET', '/user/redirect-user/');
 
-        // Redirect after login
-        self::assertResponseRedirects('/improve-password');
+        self::assertResponseRedirects($redirection);
 
-        // Redirects for any other page
-        foreach (self::RANDOM_URLS as $url) {
-            $client->request('GET', $url);
-            self::assertResponseRedirects('/improve-password');
+        if (self::IMPROVE_PASSWORD_URL === $redirection) {
+            self::assertFalse($user->hasPasswordWithLatestPolicy());
+
+            // Redirects for any other page
+            foreach (self::RANDOM_URLS as $url) {
+                $client->request('GET', $url);
+                self::assertResponseRedirects(self::IMPROVE_PASSWORD_URL);
+            }
         }
     }
 
     public function provideTestRedirectsToImprovePasswordPage(): \Generator
     {
-        yield 'Should redirect for beneficiary user' => [BeneficiaryFixture::BENEFICIARY_MAIL];
-        yield 'Should redirect for beneficiary user' => [MemberFixture::MEMBER_MAIL];
+        yield 'Should redirect for beneficiary user with weak password' => [BeneficiaryFixture::BENEFICIARY_PASSWORD_WEAK, self::IMPROVE_PASSWORD_URL];
+        yield 'Should not redirect for beneficiary user with strong password' => [BeneficiaryFixture::BENEFICIARY_MAIL, '/beneficiary'];
+        yield 'Should redirect for pro user with weak password' => [MemberFixture::MEMBER_PASSWORD_WEAK, self::IMPROVE_PASSWORD_URL];
+        yield 'Should not redirect for pro user with strong password' => [MemberFixture::MEMBER_MAIL, '/beneficiaries'];
     }
 }

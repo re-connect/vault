@@ -42,8 +42,7 @@ class MainControllerTest extends WebTestCase
     {
         try {
             $beneficiaire = $this->fixtureManager->getNewRandomBeneficiaire($this->userManager);
-            $beneficiaire->getUser()->setTest(true);
-            $beneficiaire->getUser()->setRoles(['ROLE_ADMIN']);
+            $beneficiaire->getUser()->setTest(true)->setRoles(['ROLE_ADMIN'])->setHasPasswordWithLatestPolicy(true);
             $em = $this->client->getContainer()->get('doctrine.orm.entity_manager');
             $em->persist($beneficiaire);
             $em->flush();
