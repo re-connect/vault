@@ -30,9 +30,22 @@ class UserManager
         return $password && $this->hasher->isPasswordValid($user, $password);
     }
 
-    public function getRandomPassword(int $length = 8): string
+    public function getRandomPassword(int $length = User::USER_PASSWORD_LENGTH): string
     {
-        return ByteString::fromRandom($length)->toString();
+        try {
+            $upperCount = random_int(1, 2);
+            $numberCount = random_int(1, 2);
+        } catch (\Exception) {
+            $upperCount = 2;
+            $numberCount = 2;
+        }
+
+        return str_shuffle(sprintf(
+            '%s%s%s',
+            ByteString::fromRandom($upperCount, implode('', range('A', 'Z')))->toString(),
+            ByteString::fromRandom($numberCount, '0123456789')->toString(),
+            ByteString::fromRandom($length - $upperCount - $numberCount, implode('', range('a', 'z')))->toString(),
+        ));
     }
 
     public function updatePassword(User $user, string $password): void
