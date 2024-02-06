@@ -8,8 +8,6 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 class CheckAcceptedTermsOfUseSubscriber extends AbstractWebUserSubscriber implements EventSubscriberInterface
 {
-    private const ALLOWED_ROUTES = ['user_first_visit', 'user_cgs', 'user_delete'];
-
     public function checkUserAcceptedTermsOfUse(RequestEvent $event): void
     {
         $user = $this->getUser();
@@ -21,7 +19,7 @@ class CheckAcceptedTermsOfUseSubscriber extends AbstractWebUserSubscriber implem
         if (
             $user->mustAcceptTermsOfUse()
             && $event->isMainRequest()
-            && !in_array($event->getRequest()->get('_route'), self::ALLOWED_ROUTES)
+            && !in_array($event->getRequest()->get('_route'), self::FIRST_VISIT_ROUTES)
         ) {
             $event->setResponse(new RedirectResponse($this->router->generate('user_first_visit')));
         }
