@@ -28,6 +28,7 @@ abstract class AbstractWebUserSubscriber implements EventSubscriberInterface
     {
         return $user instanceof User && !$this->isOauth2User();
     }
+
     private function isOauth2User(): bool
     {
         $token = $this->tokenStorage->getToken();

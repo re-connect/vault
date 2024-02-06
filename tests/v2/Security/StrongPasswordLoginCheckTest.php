@@ -11,6 +11,7 @@ use Zenstruck\Foundry\Test\Factories;
 class StrongPasswordLoginCheckTest extends WebTestCase
 {
     use Factories;
+
     /**
      * @dataProvider provideTestLoginSuccessHydrateUserDependingPasswordWeakness
      */
