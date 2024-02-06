@@ -10,6 +10,7 @@ use App\Entity\User;
 use App\Exception\JsonResponseException;
 use App\Manager\CentreManager;
 use App\Manager\UserManager;
+use App\ManagerV2\UserManager as UserManagerV2;
 use App\Provider\BeneficiaireProvider;
 use App\Provider\CentreProvider;
 use App\Provider\DocumentProvider;
@@ -88,7 +89,7 @@ class APIRestController extends REController
     #[Route(path: '/beneficiaire', name: 'create_beneficiaire', methods: ['POST'])]
     public function createBeneficiaire(
         Request $request,
-        UserManager $userManager,
+        UserManagerV2 $userManager,
         BeneficiaireProvider $beneficiaireProvider,
         UserPasswordHasherInterface $hasher
     ): JsonResponse {
@@ -97,7 +98,7 @@ class APIRestController extends REController
                 throw new BadRequestHttpException('Missing distant id.');
             }
 
-            $password = $userManager->randomPassword();
+            $password = $userManager->getRandomPassword();
             $user = (new User())
                 ->setBActif(true)
                 ->setTypeUser(User::USER_TYPE_BENEFICIAIRE);

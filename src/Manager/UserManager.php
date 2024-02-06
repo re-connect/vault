@@ -94,13 +94,6 @@ class UserManager
         }
     }
 
-    public function randomPassword($length = 8)
-    {
-        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-
-        return substr(str_shuffle($chars), 0, $length);
-    }
-
     public function compareSecretStrings($string1, $string2): bool
     {
         $string1 = strtolower($string1);
