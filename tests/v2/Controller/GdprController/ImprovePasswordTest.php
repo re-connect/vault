@@ -4,6 +4,7 @@ namespace App\Tests\v2\Controller\GdprController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
+use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
@@ -28,7 +29,7 @@ class ImprovePasswordTest extends AbstractControllerTest implements TestRouteInt
     public function provideTestRoute(): \Generator
     {
         yield 'Should redirect to login when not authenticated' => [self::URL, 302, null, '/login'];
-        yield 'Should return 200 status code when authenticated as member' => [self::URL, 200, MemberFixture::MEMBER_MAIL];
+        yield 'Should return 200 status code when authenticated as pro' => [self::URL, 200, MemberFixture::MEMBER_MAIL];
         yield 'Should return 200 status code when authenticated as beneficiary' => [self::URL, 200, BeneficiaryFixture::BENEFICIARY_MAIL];
     }
 
@@ -83,7 +84,7 @@ class ImprovePasswordTest extends AbstractControllerTest implements TestRouteInt
 
         yield 'Should return an error if passwords does not match for pro' => [
             self::URL,
-            'app_update_password',
+            'improve_password',
             'submit',
             $values,
             [
@@ -140,7 +141,7 @@ class ImprovePasswordTest extends AbstractControllerTest implements TestRouteInt
             MemberFixture::MEMBER_MAIL,
         ];
 
-        yield 'Should return an error if password does not meet characters requirements for pro' => [
+        yield 'Should return an error if password does not meet characters requirements for beneficiary' => [
             self::URL,
             'improve_password',
             'submit',
@@ -160,5 +161,25 @@ class ImprovePasswordTest extends AbstractControllerTest implements TestRouteInt
             ],
             BeneficiaryFixture::BENEFICIARY_MAIL,
         ];
+    }
+
+    public function testUpdatePasswordHydrateUser(): void
+    {
+        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_PASSWORD_WEAK)->object();
+
+        self::assertFalse($user->hasPasswordWithLatestPolicy());
+
+        $this->assertFormIsValid(
+            self::URL,
+            'submit',
+            [
+                'change_password_form[plainPassword][first]' => '123456Aaa',
+                'change_password_form[plainPassword][second]' => '123456Aaa',
+            ],
+            BeneficiaryFixture::BENEFICIARY_PASSWORD_WEAK,
+            '/user/redirect-user/',
+        );
+
+        self::assertTrue(UserFactory::find($user)->object()->hasPasswordWithLatestPolicy());
     }
 }
