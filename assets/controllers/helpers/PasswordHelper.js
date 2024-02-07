@@ -3,17 +3,14 @@ export default class PasswordHelper {
     upperChars = this.lowerChars.toUpperCase();
     numbers = '0123456789';
 
-    constructor(length, checkSpecialChar) {
+    constructor(length) {
         this.length = length;
         this.criteria = [
             { key: 'length', checker: this.isLongEnough },
-            { key: 'number', checker: this.testRegexp(/\d/) },
             { key: 'lowercase', checker: this.testRegexp(/[a-z]/) },
-            { key: 'uppercase', checker: this.testRegexp(/[A-Z]/) }
+            { key: 'uppercase', checker: this.testRegexp(/[A-Z]/) },
+            { key: 'nonAlphabetic', checker: this.testRegexp(/.*[^A-Za-z].*/) }
         ];
-        if (checkSpecialChar) {
-            this.criteria.push({ key: 'special', checker: this.testRegexp(/(?=.*\W)/) });
-        }
     }
 
     getValidCriteria = inputValue => this.criteria

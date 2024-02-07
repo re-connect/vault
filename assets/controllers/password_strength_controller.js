@@ -3,13 +3,10 @@ import PasswordHelper from "./helpers/PasswordHelper";
 
 export default class extends Controller {
   static targets = ['input', 'badge', 'widget', 'validText', 'invalidText'];
-  static values = {
-    passwordLength: String,
-    checkSpecialChar: Boolean,
-  };
+  static values = {passwordLength: String};
 
   connect() {
-    this.helper = new PasswordHelper(this.passwordLengthValue, this.checkSpecialCharValue);
+    this.helper = new PasswordHelper(this.passwordLengthValue);
   }
 
   check () {
