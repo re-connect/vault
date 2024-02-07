@@ -398,10 +398,8 @@ or_click_link: 'Ou cliquez sur le lien'
 password: 'Mot de passe'
 password_confirm: 'Confirmez votre mot de passe'
 password_expired: 'Votre mot de passe a expiré. Veuillez choisir un nouveau mot de passe.'
-password_help_beneficiary: Le mot de passe doit être long (au moins 9 caractères) avec 1 majuscule, 1 minuscule et 1 chiffre
-password_help_pro: "Le mot de passe doit être long (au moins 10 caractères) et remplir au moins 3 des 4 critères suivants : 1 majuscule, 1 minuscule, 1 chiffre ou 1 caractère spécial"
-password_help_criteria_pro: 'Il manque au moins {{ atLeast }} des {{ total }} critères ci-dessous :'
-password_help_criteria_beneficiary: 'Il manque les critères ci-dessous :'
+password_help: Le mot de passe doit être long (au moins 9 caractères) avec 1 majuscule, 1 minuscule et 1 chiffre ou caractère spécial
+password_help_criteria: 'Il manque les critères ci-dessous :'
 password_new_should_be_different_from_current: 'Votre nouveau mot de passe doit être différent de votre mot de passe actuel.'
 password_renewal_due: "Votre mot de passe est sur le point d'expirer. Veuillez choisir un nouveau mot de passe."
 password_too_weak: 'Mot de passe trop faible'

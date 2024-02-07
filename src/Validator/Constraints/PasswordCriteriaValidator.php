@@ -7,8 +7,7 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 /**
- * Beneficiary requirements : 9 chars, 1 uppercase, 1 lowercase, 1 number.
- * Pro requirements: 10 chars, and 3 of 4 criteria : 1 uppercase, 1 lowercase, 1 number, 1 special.
+ * Password requirements : 9 chars, 1 uppercase, 1 lowercase, 1 special|number.
  */
 class PasswordCriteriaValidator extends ConstraintValidator
 {
@@ -18,16 +17,14 @@ class PasswordCriteriaValidator extends ConstraintValidator
             return;
         }
 
-        $isBeneficiary = $constraint->isBeneficiary ?? $this->context->getObject()->isBeneficiaire();
-
-        $this->validatePasswordLength($value, $isBeneficiary);
+        $this->validatePasswordLength($value);
         $this->validatePasswordFormat($value);
-        $this->validatePasswordCriteria($value, $isBeneficiary);
+        $this->validatePasswordCriteria($value);
     }
 
-    private function validatePasswordLength(string $value, bool $isBeneficiary): void
+    private function validatePasswordLength(string $value): void
     {
-        $passwordMinLength = $isBeneficiary ? User::BENEFICIARY_PASSWORD_LENGTH : User::PRO_PASSWORD_LENGTH;
+        $passwordMinLength = User::USER_PASSWORD_LENGTH;
 
         if (strlen($value) < $passwordMinLength) {
             $this->context->buildViolation('password_too_short', ['{{ limit }}' => $passwordMinLength])
@@ -47,19 +44,14 @@ class PasswordCriteriaValidator extends ConstraintValidator
         }
     }
 
-    public function validatePasswordCriteria(string $value, bool $isBeneficiary): void
+    public function validatePasswordCriteria(string $value): void
     {
         $violations = [];
-        $authorizedViolations = $isBeneficiary ? 0 : 1;
         $criteria = [
-            'number' => preg_match('/\d/', $value),
             'lowercase' => preg_match('/[a-z]/', $value),
             'uppercase' => preg_match('/[A-Z]/', $value),
+            'nonAlphabetic' => preg_match('/(?=.*\W|\d)/', $value),
         ];
-
-        if (!$isBeneficiary) {
-            $criteria['special'] = preg_match('/(?=.*\W)/', $value);
-        }
 
         foreach ($criteria as $key => $criterion) {
             if (!$criterion) {
@@ -69,14 +61,8 @@ class PasswordCriteriaValidator extends ConstraintValidator
             }
         }
 
-        $nbViolations = count($violations);
-
-        if ($nbViolations > $authorizedViolations) {
-            $this->context->buildViolation($isBeneficiary
-                ? 'password_help_criteria_beneficiary'
-                : 'password_help_criteria_pro',
-                ['{{ atLeast }}' => $nbViolations - 1, '{{ total }}' => $nbViolations],
-            )
+        if (count($violations) > 0) {
+            $this->context->buildViolation('password_help_criteria')
             ->setTranslationDomain('messages')
             ->atPath('plainPassword')
             ->addViolation();

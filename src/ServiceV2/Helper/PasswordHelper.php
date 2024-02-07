@@ -11,8 +11,8 @@ readonly class PasswordHelper
     {
     }
 
-    public function isStrongPassword(string $password, bool $isBeneficiary): bool
+    public function isStrongPassword(string $password): bool
     {
-        return 0 === count($this->validator->validate($password, new PasswordCriteria(['isBeneficiary' => $isBeneficiary])));
+        return 0 === count($this->validator->validate($password, new PasswordCriteria()));
     }
 }
