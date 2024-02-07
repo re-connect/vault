@@ -2013,6 +2013,60 @@
             "time": "2023-10-06T06:47:41+00:00"
         },
         {
+            "name": "erkens/2fa-text",
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/erkens/2fa-text.git",
+                "reference": "353f4da422f6c28eedfa4a1b61d4e4837b706acb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/erkens/2fa-text/zipball/353f4da422f6c28eedfa4a1b61d4e4837b706acb",
+                "reference": "353f4da422f6c28eedfa4a1b61d4e4837b706acb",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "scheb/2fa-bundle": "^6.0 || ^7.0"
+            },
+            "require-dev": {
+                "symfony/http-client": "^5.3 || ^6.0 || ^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Erkens\\Security\\TwoFactorTextBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Erkens",
+                    "email": "erkens@users.noreply.github.com"
+                }
+            ],
+            "description": "Extends scheb/2fa-bundle with two-factor authentication via simple text messages",
+            "homepage": "https://github.com/Erkens/2fa-text",
+            "keywords": [
+                "2fa",
+                "Authentication",
+                "sms",
+                "symfony",
+                "text",
+                "two-factor",
+                "two-step"
+            ],
+            "support": {
+                "issues": "https://github.com/erkens/2fa-text/issues",
+                "source": "https://github.com/erkens/2fa-text/tree/v2.2.0"
+            },
+            "time": "2024-01-02T10:51:36+00:00"
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.16.0",
             "source": {
