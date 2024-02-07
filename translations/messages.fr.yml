@@ -617,9 +617,12 @@ you_will_be_contacted_soon: Nous reviendrons vers vous dans les meilleurs délai
 improve_password_pro: Chez Reconnect, la sécurité de nos outils et de vos données est une priorité. Pour la renforcer, nous vous invitons à mettre à jour votre mot de passe pour accéder au Coffre-fort numérique. Les personnes accompagnées devront également mettre à jour leur mot de passe pour accéder à leur Coffre-fort numérique.
 improve_password_beneficiary:  Pour plus de sécurité, les règles de mot de passe ont été mises à jour. Vous devez changer votre mot de passe.
 enable_mfa: Activer l'authentification à deux facteurs
-enable_mfa_help: En cochant cette case, vous recevrez par email un code à usage unique à chaque connexion pour valider votre identité et sécuriser votre compte.
+enable_mfa_help: En cochant cette case, vous recevrez un code à usage unique à chaque connexion pour valider votre identité et sécuriser votre compte.
 mail_auth_code_title: Bonjour %username% !
 mail_auth_code_content : 'Voici votre code de connexion : '
 mail_auth_code_subject: 'RECONNECT- Votre code de connexion'
-auth_code_email: 'Code de connexion reçu :'
+auth_code_received: 'Code de connexion reçu par %method% :'
 validate: Valider
+auth_code_sms_text: 'Voici votre code de connexion :  %code%'
+mfa: Authentification à deux facteurs
+mfa_method: "Recevoir le code par :"

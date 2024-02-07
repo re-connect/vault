@@ -168,6 +168,10 @@ App\Entity\User:
         mfaValid:
             type: boolean
             nullable: true
+        mfaMethod:
+            type: string
+            length: '255'
+            nullable: true
     oneToOne:
         subjectAdministrateur:
             targetEntity: App\Entity\Administrateur

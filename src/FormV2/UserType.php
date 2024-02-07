@@ -11,6 +11,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -30,6 +31,9 @@ class UserType extends AbstractType
         $this->addDefaultFields($builder);
         if ($beneficiary = $this->getUser()?->getSubjectBeneficiaire()) {
             $this->addBeneficiaryFields($builder, $beneficiary);
+        }
+        if ($builder->getData()) {
+            $this->addMfaFields($builder);
         }
     }
 
@@ -91,11 +95,26 @@ class UserType extends AbstractType
                 'required' => false,
                 'row_attr' => ['class' => 'col-6 mt-3'],
                 'label' => 'email',
-            ])
+            ]);
+    }
+
+    public function addMfaFields(FormBuilderInterface $builder): void
+    {
+        $builder
             ->add('mfaEnabled', CheckboxType::class, [
                 'required' => false,
+                'row_attr' => ['class' => 'col-12 mt-3'],
+
                 'label' => 'enable_mfa',
                 'help' => 'enable_mfa_help',
+            ])
+            ->add('mfaMethod', ChoiceType::class, [
+                'required' => false,
+                'placeholder' => false,
+                'label' => 'mfa_method',
+                'choices' => array_combine(User::MFA_METHODS, User::MFA_METHODS),
+                'expanded' => true,
+                'multiple' => false,
             ]);
     }
 }

@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
+use Erkens\Security\TwoFactorTextBundle\Model\TwoFactorTextInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
@@ -17,7 +18,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User extends BaseUser implements \JsonSerializable, TwoFactorInterface
+class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, TwoFactorTextInterface
 {
     private const BASE_USERNAME_REGEXP = '/^[a-z\-]+\.[a-z\-]+(\.[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3})?$/';
     public const USER_TYPE_BENEFICIAIRE = 'ROLE_BENEFICIAIRE';
@@ -40,6 +41,13 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface
         self::USER_TYPE_GESTIONNAIRE => 'gestionnaire',
         self::USER_TYPE_ASSOCIATION => 'association',
         self::USER_TYPE_ADMINISTRATEUR => 'administrateur',
+    ];
+
+    public const MFA_METHOD_SMS = 'sms';
+    public const MFA_METHOD_EMAIL = 'email';
+    public const MFA_METHODS = [
+      self::MFA_METHOD_SMS,
+      self::MFA_METHOD_EMAIL,
     ];
 
     /**
@@ -206,6 +214,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface
     private ?bool $mfaEnabled;
     private ?bool $mfaPending;    // This is only used when login from API
     private ?bool $mfaValid;    // This is only used when login from API
+    private string $mfaMethod = self::MFA_METHOD_EMAIL;
 
     public function __construct()
     {
@@ -1299,7 +1308,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface
 
     public function isEmailAuthEnabled(): bool
     {
-        return $this->isMfaEnabled();
+        return $this->isMfaEnabled() && self::MFA_METHOD_EMAIL === $this->mfaMethod;
     }
 
     public function getEmailAuthRecipient(): string
@@ -1313,6 +1322,26 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface
     }
 
     public function setEmailAuthCode(string $authCode): void
+    {
+        $this->authCode = $authCode;
+    }
+
+    public function isTextAuthEnabled(): bool
+    {
+        return $this->isMfaEnabled() && self::MFA_METHOD_SMS === $this->mfaMethod;
+    }
+
+    public function getTextAuthRecipient(): string
+    {
+        return $this->email;
+    }
+
+    public function getTextAuthCode(): string
+    {
+        return $this->authCode ?? '';
+    }
+
+    public function setTextAuthCode(string $authCode): void
     {
         $this->authCode = $authCode;
     }
@@ -1368,6 +1397,18 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface
         $this->authCode = null;
         $this->mfaValid = false;
         $this->mfaPending = false;
+
+        return $this;
+    }
+
+    public function getMfaMethod(): string
+    {
+        return $this->mfaMethod;
+    }
+
+    public function setMfaMethod(string $mfaMethod): User
+    {
+        $this->mfaMethod = $mfaMethod;
 
         return $this;
     }
