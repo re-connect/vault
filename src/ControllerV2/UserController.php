@@ -74,13 +74,17 @@ class UserController extends AbstractController
             'checkCurrentPassword' => true,
         ])->handleRequest($request);
 
-        if ($userForm->isSubmitted() && $userForm->isValid()) {
-            $usernameWillBeUpdated = $userManager->getUniqueUsername($user) !== $user->getUsername();
-            $em->flush();
-            $message = sprintf('settings_saved_successfully%s', $usernameWillBeUpdated ? '_username_updated' : '');
-            $this->addFlash('success', $message);
+        if ($userForm->isSubmitted()) {
+            if ($userForm->isValid()) {
+                $usernameWillBeUpdated = $userManager->getUniqueUsername($user) !== $user->getUsername();
+                $em->flush();
+                $message = sprintf('settings_saved_successfully%s', $usernameWillBeUpdated ? '_username_updated' : '');
+                $this->addFlash('success', $message);
 
-            return $this->redirectToRoute('user_settings');
+                return $this->redirectToRoute('user_settings');
+            }
+
+            $this->addFlash('error', 'form_contains_error');
         }
 
         if ($passwordForm->isSubmitted()) {
