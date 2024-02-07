@@ -12,6 +12,8 @@ App\Entity\User:
                 fields: telephone
                 groups: [ phone ]
                 message: phone_already_in_use
+        - App\Validator\Constraints\User\MfaMethodConstraint:
+              groups: [ beneficiaire, membre ]
 
     properties:
         username:
