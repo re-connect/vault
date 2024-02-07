@@ -9,3 +9,9 @@ scheb_two_factor:
         sender_name: Reconnect
         template: v2/user/2fa_form.html.twig
         mailer: App\ServiceV2\Mailer\MailerService
+two_factor_text:
+    enabled: true
+    digits: 4
+    auth_code_sender: App\Manager\SMSManager
+    text: 'To login, use this code: %s'
+    template: v2/user/2fa_form.html.twig
