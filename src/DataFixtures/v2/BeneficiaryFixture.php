@@ -21,6 +21,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
 {
+    public const WEAK_PASSWORD_HASH = '$2y$13$1e.Kr4Ru31eHQBKU3d6BY..EIerE6/IYA5K/JxMjGwBYb5dL7B6eG'; // = 'password'
+    public const STRONG_PASSWORD_HASH = '$2y$13$te1UUDYPXELYC9jcVmil0.XQcmPValnWUN10VqDAJsh5zpnkiT9fm'; // = 'StrongPassword1!'
     public const BENEFICIARY_MAIL = 'v2_test_user_beneficiary@mail.com';
     public const BENEFICIARY_MAIL_SETTINGS = 'v2_test_user_beneficiary_settings@mail.com';
     public const BENEFICIARY_MAIL_SETTINGS_EDIT = 'v2_test_user_beneficiary_settings_edit@mail.com';
@@ -29,6 +31,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
     public const BENEFICIARY_MAIL_NO_SECRET_QUESTION = 'v2_test_user_beneficiary_no_secret_question@mail.com';
     public const BENEFICIARY_MAIL_IN_CREATION = 'v2_test_user_beneficiary_in_creation@mail.com';
     public const BENEFICIARY_PHONE = '0612345678';
+    public const BENEFICIARY_PASSWORD_WEAK = 'v2_test_user_beneficiary_weak_password@mail.com';
 
     public function load(ObjectManager $manager)
     {
@@ -46,6 +49,10 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_FIRST_VISIT)->setFirstVisit(true));
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_NO_SECRET_QUESTION), ['questionSecrete' => null]);
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_IN_CREATION), [], [], true);
+        $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_PASSWORD_WEAK)
+            ->setHasPasswordWithLatestPolicy(false)
+            ->setPassword(self::WEAK_PASSWORD_HASH)
+        );
 
         $manager->flush();
     }
