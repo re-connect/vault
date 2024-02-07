@@ -52,7 +52,7 @@ class Authenticator extends AbstractLoginFormAuthenticator
         $previousLogin = $user->getDerniereConnexionAt()?->format('Y-m-d');
         $now = new \DateTime();
         $user->setLastIp($request->getClientIp())->setDerniereConnexionAt($now);
-        if ($user->hasPasswordWithLatestPolicy() || $this->passwordHelper->isStrongPassword($request->request->get('_password'), $user->isBeneficiaire())) {
+        if ($user->hasPasswordWithLatestPolicy() || $this->passwordHelper->isStrongPassword($request->request->get('_password'))) {
             $user->setHasPasswordWithLatestPolicy(true);
         }
         $this->em->persist($user);

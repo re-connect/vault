@@ -17,7 +17,8 @@ class GdprController extends AbstractController
     public function updatePassword(Request $request, UserManager $userManager, GdprService $gdprService): Response
     {
         $user = $this->getUser();
-        $form = $this->createPasswordForm($user)->handleRequest($request);
+        $form = $this->createPasswordForm()->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid() && $user) {
             $newPassword = $form->get('plainPassword')->getData();
             if (!$userManager->isPasswordValid($user, $newPassword)) {
@@ -38,7 +39,7 @@ class GdprController extends AbstractController
     public function improvePassword(Request $request, UserManager $userManager): Response
     {
         $user = $this->getUser();
-        $form = $this->createPasswordForm($user)->handleRequest($request);
+        $form = $this->createPasswordForm()->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setHasPasswordWithLatestPolicy(true);
             $userManager->updatePassword($user, $form->get('plainPassword')->getData());
@@ -50,9 +51,9 @@ class GdprController extends AbstractController
         return $this->renderPasswordPage($user, $form);
     }
 
-    private function createPasswordForm(?User $user): FormInterface
+    private function createPasswordForm(): FormInterface
     {
-        return $this->createForm(ChangePasswordFormType::class, null, ['isBeneficiaire' => $user?->isBeneficiaire()]);
+        return $this->createForm(ChangePasswordFormType::class);
     }
 
     private function renderPasswordPage(User $user, FormInterface $form): Response

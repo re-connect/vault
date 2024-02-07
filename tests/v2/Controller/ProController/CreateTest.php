@@ -163,11 +163,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
             $values,
             [
                 [
-                    'message' => 'password_help_criteria_pro',
-                    'params' => ['{{ atLeast }}' => 2, '{{ total }}' => 3],
-                ],
-                [
-                    'message' => 'password_criterion_number',
+                    'message' => 'password_help_criteria',
                     'params' => null,
                 ],
                 [
@@ -175,7 +171,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
                     'params' => null,
                 ],
                 [
-                    'message' => 'password_criterion_special',
+                    'message' => 'password_criterion_nonAlphabetic',
                     'params' => null,
                 ],
             ],
@@ -194,7 +190,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
             $values,
             [
                 [
-                    'message' => 'Votre mot de passe doit contenir au moins 10 caractères',
+                    'message' => 'Votre mot de passe doit contenir au moins 9 caractères',
                     'params' => null,
                 ],
             ],
