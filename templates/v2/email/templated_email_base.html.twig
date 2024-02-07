@@ -16,7 +16,9 @@
             </columns>
         </row>
         <spacer size="30"></spacer>
-        {{ include('v2/email/_translation_links.html.twig', {userLang, translationRoute})|inky_to_html }}
+        {% if translationRoute %}
+            {{ include('v2/email/_translation_links.html.twig', {userLang, translationRoute})|inky_to_html }}
+        {% endif %}
         {% block confidentialitySection %}{% endblock %}
         <spacer size="30"></spacer>
         {{ include('v2/email/_footer.html.twig', {userLang, year})|inky_to_html }}

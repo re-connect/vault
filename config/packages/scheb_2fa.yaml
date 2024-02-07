@@ -7,3 +7,5 @@ scheb_two_factor:
         enabled: true
         sender_email: noreply@reconnect.fr
         sender_name: Reconnect
+        template: v2/user/2fa_form.html.twig
+        mailer: App\ServiceV2\Mailer\MailerService

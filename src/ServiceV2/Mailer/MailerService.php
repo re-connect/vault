@@ -4,10 +4,13 @@ namespace App\ServiceV2\Mailer;
 
 use App\Entity\SharedDocument;
 use App\Entity\User;
+use App\ServiceV2\Mailer\Email\AuthCodeEmail;
 use App\ServiceV2\Mailer\Email\DuplicatedUsernameEmail;
 use App\ServiceV2\Mailer\Email\ResetPasswordEmail;
 use App\ServiceV2\Mailer\Email\ShareDocumentLinkEmail;
 use Psr\Log\LoggerInterface;
+use Scheb\TwoFactorBundle\Mailer\AuthCodeMailerInterface;
+use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
@@ -17,7 +20,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
 
-class MailerService
+class MailerService implements AuthCodeMailerInterface
 {
     /**
      * @param string[] $adminMails
@@ -100,5 +103,21 @@ class MailerService
             ->to(...$this->adminMails);
 
         $this->send($email);
+    }
+
+    public function sendAuthCode(TwoFactorInterface $user): void
+    {
+        /** @var User $user */
+        $authCode = $user->getEmailAuthCode();
+        $this->send(email: AuthCodeEmail::create(
+            $user->getEmail() ?? '',
+            $user->getLastLang(),
+            '',
+            null,
+            [
+                'authCode' => $authCode,
+                'username' => $user->getFullName(),
+            ]
+        ));
     }
 }
