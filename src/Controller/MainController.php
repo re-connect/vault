@@ -215,4 +215,17 @@ class MainController extends AbstractController
     {
         return new Response(file_get_contents('https://xzk0s.mjt.lu/wgt/xzk0s/54y/form?c=2e04c0ed'));
     }
+
+    #[Route('/public/auth-code-mail-translation', name: 'auth_code_mail_translation', methods: ['GET'])]
+    public function authCodeMailTranslation(Request $request, TranslatorInterface $translator, LanguageService $languageService): Response
+    {
+        if ($lang = $request->query->get('lang')) {
+            $languageService->setLocaleInSession($lang);
+            if ($request->getLocale() !== $translator->getLocale()) {
+                return $this->redirectToRoute('auth_code_mail_translation', ['lang' => $request->getLocale()]);
+            }
+        }
+
+        return $this->render('home/pages/mail-translation/resetting-password.html.twig');
+    }
 }
