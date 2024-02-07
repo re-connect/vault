@@ -146,11 +146,11 @@ class SecretAnswerTest extends AbstractControllerTest implements TestRouteInterf
             $values,
             [
                 [
-                    'message' => 'password_help_criteria_beneficiary',
+                    'message' => 'password_help_criteria',
                     'params' => null,
                 ],
                 [
-                    'message' => 'password_criterion_number',
+                    'message' => 'password_criterion_nonAlphabetic',
                     'params' => null,
                 ],
                 [

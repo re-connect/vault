@@ -121,15 +121,11 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
             $values,
             [
                 [
-                    'message' => 'password_help_criteria_beneficiary',
+                    'message' => 'password_help_criteria',
                     'params' => null,
                 ],
                 [
-                    'message' => 'password_criterion_number',
-                    'params' => null,
-                ],
-                [
-                    'message' => 'password_criterion_uppercase',
+                    'message' => 'password_criterion_nonAlphabetic',
                     'params' => null,
                 ],
             ],

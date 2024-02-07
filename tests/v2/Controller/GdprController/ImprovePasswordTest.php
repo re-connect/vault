@@ -122,11 +122,7 @@ class ImprovePasswordTest extends AbstractControllerTest implements TestRouteInt
             $values,
             [
                 [
-                    'message' => 'password_help_criteria_pro',
-                    'params' => ['{{ atLeast }}' => 2, '{{ total }}' => 3],
-                ],
-                [
-                    'message' => 'password_criterion_special',
+                    'message' => 'password_help_criteria',
                     'params' => null,
                 ],
                 [
@@ -148,7 +144,8 @@ class ImprovePasswordTest extends AbstractControllerTest implements TestRouteInt
             $values,
             [
                 [
-                    'message' => 'password_help_criteria_beneficiary',
+                    'message' => 'password_help_criteria',
+                    'params' => null,
                 ],
                 [
                     'message' => 'password_criterion_lowercase',
@@ -156,6 +153,47 @@ class ImprovePasswordTest extends AbstractControllerTest implements TestRouteInt
                 ],
                 [
                     'message' => 'password_criterion_uppercase',
+                    'params' => null,
+                ],
+            ],
+            BeneficiaryFixture::BENEFICIARY_MAIL,
+        ];
+
+        $values = [
+            'change_password_form[plainPassword][first]' => 'AAAAaaaaa',
+            'change_password_form[plainPassword][second]' => 'AAAAaaaaa',
+        ];
+
+        yield 'Should return an error if password does not contains non alphanumeric for pro' => [
+            self::URL,
+            'improve_password',
+            'submit',
+            $values,
+            [
+                [
+                    'message' => 'password_help_criteria',
+                    'params' => null,
+                ],
+                [
+                    'message' => 'password_criterion_nonAlphabetic',
+                    'params' => null,
+                ],
+            ],
+            MemberFixture::MEMBER_MAIL,
+        ];
+
+        yield 'Should return an error if password does not contains non alphanumeric beneficiary' => [
+            self::URL,
+            'improve_password',
+            'submit',
+            $values,
+            [
+                [
+                    'message' => 'password_help_criteria',
+                    'params' => null,
+                ],
+                [
+                    'message' => 'password_criterion_nonAlphabetic',
                     'params' => null,
                 ],
             ],

@@ -310,10 +310,8 @@ number_of_docs: 'Number of documents'
 or_click_link: 'Or click on the link'
 password: Password
 password_expired: 'Your password has expired. Please enter a new password.'
-password_help_beneficiary: "The password must be at list 9 characters long, and fulfill criteria below : 1 uppercase, 1 lowercase, 1 number"
-password_help_pro: "The password must be at list 10 characters long, and fulfill at least 3 of the 4 criteria below : 1 uppercase, 1 lowercase, 1 number, 1 special char"
-password_help_criteria_pro: 'The password is missing at least {{ atLeast }} of {{ total }} criteria below :'
-password_help_criteria_beneficiary: 'Criteria below are missing :'
+password_help: "The password must be at list 9 characters long, and fulfill criteria below : 1 uppercase, 1 lowercase, 1 special or number"
+password_help_criteria: 'Criteria below are missing :'
 password_new_should_be_different_from_current: 'Your new password must be different from your current password.'
 password_renewal_due: 'Your password is about to expire. Please enter a new password.'
 password_updated_successfully: 'Your password has been changed.'
@@ -479,11 +477,10 @@ mail_shared_document_content_1_anonymous: Someone would like to share with you a
 my_reconnect_relays: My Reconnect relays
 password_criterion_length: '%length% characters'
 password_criterion_lowercase: Lowercase
-password_criterion_number: Number
-password_criterion_special: Special character
+password_criterion_nonAlphabetic: Special/Number
 password_criterion_uppercase: Uppercase
 take_away_account_data: I want to take away my account data
 your_personal_data_request_has_been_send_to_tech_team: Your data take away request has been forwarded to our dedicated teams.
 you_will_be_contacted_soon: You will be contacted as soon as possible.
 improve_password_pro: At Reconnect, the security of our tools and your data is a priority. To strengthen it, we invite you to update your password to access the Digital Safe. Accompanied persons will also have to update their password to access their Digital Safe.
-improve_password_beneficiary: Pour plus de sécurité, les règles de mot de passe ont été mises à jour. Vous devez changer votre mot de passe.
+improve_password_beneficiary: For added security, the password rules have been updated. You must change your password.

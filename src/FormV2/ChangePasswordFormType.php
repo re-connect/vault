@@ -25,7 +25,7 @@ class ChangePasswordFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [
-                    'constraints' => [new PasswordCriteria(['isBeneficiary' => $options['isBeneficiaire']])],
+                    'constraints' => [new PasswordCriteria()],
                     'label' => 'your_new_password',
                     'attr' => [
                         'autocomplete' => 'new-password',
@@ -56,10 +56,8 @@ class ChangePasswordFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'isBeneficiaire' => false,
             'checkCurrentPassword' => false,
         ])
-        ->setAllowedTypes('isBeneficiaire', 'bool')
         ->setAllowedTypes('checkCurrentPassword', 'bool');
     }
 }

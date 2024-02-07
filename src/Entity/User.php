@@ -25,8 +25,7 @@ class User extends BaseUser implements \JsonSerializable
     public const USER_TYPE_ASSOCIATION = 'ROLE_ASSOCIATION';
     public const USER_TYPE_ADMINISTRATEUR = 'ROLE_ADMIN';
     public const USER_TYPE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
-    public const BENEFICIARY_PASSWORD_LENGTH = 9;
-    public const PRO_PASSWORD_LENGTH = 10;
+    public const USER_PASSWORD_LENGTH = 9;
 
     public const ADMIN_TYPES = [
         self::USER_TYPE_ADMINISTRATEUR => self::USER_TYPE_ADMINISTRATEUR,
