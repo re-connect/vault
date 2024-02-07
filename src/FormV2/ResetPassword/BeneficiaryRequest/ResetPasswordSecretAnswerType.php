@@ -18,7 +18,6 @@ class ResetPasswordSecretAnswerType extends AbstractType
                 'label' => 'secret_answer',
             ])
             ->add('password', ChangePasswordFormType::class, [
-                'isBeneficiaire' => true,
                 'mapped' => false,
                 'label' => false,
             ]);
