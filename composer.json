@@ -17,6 +17,7 @@
     "beberlei/doctrineextensions": "1.3.0",
     "doctrine/doctrine-bundle": "2.10.*",
     "doctrine/doctrine-migrations-bundle": "3.2.*",
+    "erkens/2fa-text": "^2.2",
     "friendsofsymfony/ckeditor-bundle": "2.4.*",
     "friendsofsymfony/jsrouting-bundle": "3.3.*",
     "friendsofsymfony/rest-bundle": "^3.5",
