@@ -610,8 +610,7 @@ error_404: Oups, il semble que cette page n'existe pas
 error_500: Il y a eu une erreur technique, le problème vient de nous, nous allons le traiter rapidement
 password_criterion_length: '%length% caractères'
 password_criterion_lowercase: Minuscule
-password_criterion_number: Chiffre
-password_criterion_special: Caractère spécial
+password_criterion_nonAlphabetic: Spécial/Chiffre
 password_criterion_uppercase: Majuscule
 take_away_account_data: Je souhaite récupérer mes données
 your_personal_data_request_has_been_send_to_tech_team: Votre demande de récupération de vos données à été transmise à nos équipes dédiées.
