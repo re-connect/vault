@@ -241,7 +241,7 @@ class SMSManager implements AuthCodeTextInterface
 
         try {
             $this->doSendSms($number, $message);
-            $this->smsLogger->info(sprintf('SMS envoyé à %s : %S', $number, $message));
+            $this->smsLogger->info(sprintf('SMS envoyé à %s : %s', $number, $message));
         } catch (\Exception) {
             $this->smsLogger->info(sprintf('Failure sending auth code SMS to %s', $number));
         }
