@@ -15,6 +15,7 @@ use App\Manager\CentreManager;
 use App\Manager\RestManager;
 use App\Manager\SMSManager;
 use App\Manager\UserManager;
+use App\ManagerV2\UserManager as UserManagerV2;
 use App\Provider\BeneficiaireProvider;
 use App\Provider\CentreProvider;
 use App\Provider\UserProvider;
@@ -303,7 +304,7 @@ final class BeneficiaireRestV2Controller extends REController
     }
 
     #[Route(path: 'beneficiaries', name: 'add', methods: ['POST'])]
-    public function add(Request $request, UserManager $userManager, BeneficiaireProvider $provider): Response
+    public function add(Request $request, UserManagerV2 $userManager, BeneficiaireProvider $provider): Response
     {
         try {
             $connectedUser = $this->getUser();
@@ -314,7 +315,7 @@ final class BeneficiaireRestV2Controller extends REController
             $user = (new User())->setBActif(true)->setTypeUser(User::USER_TYPE_BENEFICIAIRE);
             $beneficiaire = (new Beneficiaire())->setUser($user)->setIsCreating(false);
 
-            $password = $request->request->get('password') ?? $userManager->randomPassword();
+            $password = $request->request->get('password') ?? $userManager->getRandomPassword();
             $user->setPlainPassword($password);
 
             $errorsArray = $provider->populateBeneficiary($beneficiaire, $request->request, true);
