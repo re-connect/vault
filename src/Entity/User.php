@@ -8,15 +8,17 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
+use Erkens\Security\TwoFactorTextBundle\Model\TwoFactorTextInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User extends BaseUser implements \JsonSerializable
+class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, TwoFactorTextInterface
 {
     private const BASE_USERNAME_REGEXP = '/^[a-z\-]+\.[a-z\-]+(\.[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3})?$/';
     public const USER_TYPE_BENEFICIAIRE = 'ROLE_BENEFICIAIRE';
@@ -39,6 +41,13 @@ class User extends BaseUser implements \JsonSerializable
         self::USER_TYPE_GESTIONNAIRE => 'gestionnaire',
         self::USER_TYPE_ASSOCIATION => 'association',
         self::USER_TYPE_ADMINISTRATEUR => 'administrateur',
+    ];
+
+    public const MFA_METHOD_SMS = 'sms';
+    public const MFA_METHOD_EMAIL = 'email';
+    public const MFA_METHODS = [
+      self::MFA_METHOD_SMS,
+      self::MFA_METHOD_EMAIL,
     ];
 
     /**
@@ -200,6 +209,12 @@ class User extends BaseUser implements \JsonSerializable
     private ?\DateTimeImmutable $personalAccountDataRequestedAt = null;
 
     private bool $hasPasswordWithLatestPolicy = false;
+
+    private ?string $authCode;
+    private ?bool $mfaEnabled;
+    private ?bool $mfaPending;    // This is only used when login from API
+    private ?bool $mfaValid;    // This is only used when login from API
+    private string $mfaMethod = self::MFA_METHOD_EMAIL;
 
     public function __construct()
     {
@@ -1287,6 +1302,113 @@ class User extends BaseUser implements \JsonSerializable
     public function setHasPasswordWithLatestPolicy(bool $hasUpdatedPasswordWithLatestPolicy): static
     {
         $this->hasPasswordWithLatestPolicy = $hasUpdatedPasswordWithLatestPolicy;
+
+        return $this;
+    }
+
+    public function isEmailAuthEnabled(): bool
+    {
+        return $this->isMfaEnabled() && self::MFA_METHOD_EMAIL === $this->mfaMethod;
+    }
+
+    public function getEmailAuthRecipient(): string
+    {
+        return $this->email;
+    }
+
+    public function getEmailAuthCode(): string
+    {
+        return $this->authCode ?? '';
+    }
+
+    public function setEmailAuthCode(string $authCode): void
+    {
+        $this->authCode = $authCode;
+    }
+
+    public function isTextAuthEnabled(): bool
+    {
+        return $this->isMfaEnabled() && self::MFA_METHOD_SMS === $this->mfaMethod;
+    }
+
+    public function getTextAuthRecipient(): string
+    {
+        return $this->email;
+    }
+
+    public function getTextAuthCode(): string
+    {
+        return $this->authCode ?? '';
+    }
+
+    public function setTextAuthCode(string $authCode): void
+    {
+        $this->authCode = $authCode;
+    }
+
+    public function isMfaEnabled(): ?bool
+    {
+        return $this->mfaEnabled ?? false;
+    }
+
+    public function setMfaEnabled(bool $mfaEnabled = false): void
+    {
+        $this->mfaEnabled = $mfaEnabled;
+    }
+
+    public function enableMfa(): void
+    {
+        $this->mfaEnabled = true;
+    }
+
+    public function disableMfa(): void
+    {
+        $this->mfaEnabled = false;
+    }
+
+    public function isMfaPending(): ?bool
+    {
+        return $this->mfaPending;
+    }
+
+    public function setMfaPending(?bool $mfaPending): User
+    {
+        $this->mfaPending = $mfaPending;
+        $this->mfaValid = !$mfaPending;
+
+        return $this;
+    }
+
+    public function isMfaValid(): ?bool
+    {
+        return $this->mfaValid;
+    }
+
+    public function setMfaValid(?bool $mfaValid): User
+    {
+        $this->mfaValid = $mfaValid;
+        $this->mfaPending = !$mfaValid;
+
+        return $this;
+    }
+
+    public function resetAuthCodes(): User
+    {
+        $this->authCode = null;
+        $this->mfaValid = false;
+        $this->mfaPending = false;
+
+        return $this;
+    }
+
+    public function getMfaMethod(): string
+    {
+        return $this->mfaMethod;
+    }
+
+    public function setMfaMethod(string $mfaMethod): User
+    {
+        $this->mfaMethod = $mfaMethod;
 
         return $this;
     }

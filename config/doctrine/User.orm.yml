@@ -156,6 +156,22 @@ App\Entity\User:
             type: boolean
             options:
                 default: false
+        authCode:
+            type: string
+            nullable: true
+        mfaEnabled:
+            type: boolean
+            nullable: true
+        mfaPending:
+            type: boolean
+            nullable: true
+        mfaValid:
+            type: boolean
+            nullable: true
+        mfaMethod:
+            type: string
+            length: '255'
+            nullable: true
     oneToOne:
         subjectAdministrateur:
             targetEntity: App\Entity\Administrateur

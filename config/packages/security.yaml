@@ -6,8 +6,6 @@ security:
         ROLE_ADMIN: ROLE_BENEFICIAIRE
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
-    # https://symfony.com/doc/current/security/experimental_authenticators.html
-    enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         # a hasher used in the past for some users
@@ -63,6 +61,9 @@ security:
                 signature_properties: [ 'id' ]
                 lifetime: 1800
                 max_uses: 1
+            two_factor:
+                auth_form_path: 2fa_login
+                check_path: 2fa_login_check
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
@@ -73,7 +74,10 @@ security:
         - { path: ^/($|api/doc|login|oauth|reconnect-le-coffre-fort-numerique|reconnect-la-solution-pro|nous-contacter|faq-rgpd|reconnect-accompagnement-numerique|public|reinitialiser-mot-de-passe|annexe), roles: PUBLIC_ACCESS }
         - { path: ^/admin/app/user, roles: ROLE_SUPER_ADMIN }
         - { path: ^/admin, roles: ROLE_ADMIN }
+        # This ensures that the form can only be accessed when two-factor authentication is in progress.
+        - { path: ^/2fa, role: IS_AUTHENTICATED_2FA_IN_PROGRESS }
         - { path: ^/(.+), roles: IS_AUTHENTICATED_FULLY }
+
 
 when@test:
     security:

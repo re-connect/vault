@@ -1,0 +1,7 @@
+{% extends 'v2/email/templated_email_base.html.twig' %}
+
+{% block content %}
+    <h2 class="text-primary">{{ 'mail_auth_code_title'|trans({'%username%': username}, 'messages', userLang) }}</h2>
+    <spacer size="20"></spacer>
+    <p class="text-primary">{{ 'mail_auth_code_content'|trans({}, 'messages', userLang) }}<strong>{{ authCode }}</strong></p>
+{% endblock %}
