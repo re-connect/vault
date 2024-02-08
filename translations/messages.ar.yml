@@ -116,3 +116,9 @@ password_criterion_length: طول
 password_criterion_lowercase: أحرف صغيرة
 password_criterion_nonAlphabetic: حرف خاص/رقم
 password_criterion_uppercase: .حرف كبير
+your_new_password: كلمة المرور الجديدة الخاصة بك
+confirm_new_password: يرجى تأكيد كلمة المرور الجديدة الخاصة بك
+password_help: يجب أن تكون كلمة المرور طويلة (على الأقل ٩ أحرف) مع حرف كبير واحد وحرف صغير واحد ورقم أو حرف خاص
+user_update_password_title: تجديد كلمة المرور
+user_update_password_subtitle: 'كلمة المرور لـ %subject%'
+submit: تأكيد

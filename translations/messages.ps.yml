@@ -6,3 +6,11 @@ password_criterion_length: اوږدوالی
 password_criterion_lowercase: کوچني توري
 password_criterion_nonAlphabetic: ځانګړې/شمیره
 password_criterion_uppercase: لوی لیک
+user_update_password_subtitle: د %subject% د پټنته
+submit: تصویب
+improve_password_pro: در Reconnect، محافظت از ابزارها و داده‌های شما اولویت است. برای تقویت این امر، شما را به به‌روزرسانی رمز عبور خود برای دسترسی به صندوق امن دیجیتال دعوت می‌کنیم. افراد همراه نیز باید رمز عبور خود را برای دسترسی به صندوق امن دیجیتال خود به‌روزرسانی کنند.
+improve_password_beneficiary: برای افزایش امنیت، قوانین رمز عبور به‌روزرسانی شده‌اند. شما باید رمز عبور خود را تغییر دهید.
+user_update_password_title: تازه کولی د پټنومه
+password_help: پټنومه باید لوړه وي (لږ تل ۹ کارواکې) او د یوه برخه بزرګه، یوه برخه کښې یا د یوه عدد یا ویژنې په ځای کې شامل وي
+your_new_password: تاسونو نوي پټنومه
+confirm_new_password: خپل نوی پټنومه تصدیق کړئ

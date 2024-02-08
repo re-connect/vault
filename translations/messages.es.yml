@@ -37,3 +37,7 @@ improve_password_pro: Para Reconnect, la seguridad de sus datos es una prioridad
 improve_password_beneficiary: Para mayor seguridad, hay nuevas normas de contraseña. Por favor, cambie su contraseña.
 password_help: La contraseña debe ser larga (al menos 9 caracteres) con 1 letra mayúscula, 1 letra minúscula y 1 número o carácter especial
 user_update_password_title: Restablecer la contraseña
+your_new_password: Tu nueva contraseña
+confirm_new_password: Confirma tu nueva contraseña
+user_update_password_subtitle: 'Contraseña para %subject%'
+submit: Valida
