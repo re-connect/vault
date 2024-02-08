@@ -615,7 +615,7 @@ your_personal_data_request_has_been_send_to_tech_team: Votre demande de récupé
 your_personal_data_has_already_been_requested: Vous avez déjà effectué une demande de récupération de vos données.
 you_will_be_contacted_soon: Nous reviendrons vers vous dans les meilleurs délais à ce sujet.
 improve_password_pro: Chez Reconnect, la sécurité de nos outils et de vos données est une priorité. Pour la renforcer, nous vous invitons à mettre à jour votre mot de passe pour accéder au Coffre-fort numérique. Les personnes accompagnées devront également mettre à jour leur mot de passe pour accéder à leur Coffre-fort numérique.
-improve_password_beneficiary:  Pour plus de sécurité, les règles de mot de passe ont été mises à jour. Vous devez changer votre mot de passe.
+improve_password_beneficiary: Pour plus de sécurité, les règles de mot de passe ont été mises à jour. Vous devez changer votre mot de passe.
 enable_mfa: Activer l'authentification à deux facteurs
 enable_mfa_help: En cochant cette case, vous recevrez un code à usage unique à chaque connexion pour valider votre identité et sécuriser votre compte.
 mail_auth_code_title: Bonjour %username% !
