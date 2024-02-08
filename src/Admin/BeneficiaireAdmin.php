@@ -113,13 +113,17 @@ class BeneficiaireAdmin extends AbstractAdmin
             ->add('reponseSecrete', null, [
                 'label' => 'Réponse secrète',
                 'required' => false,
-            ])
-            ->add('user.personalAccountDataRequestedAt', DatePickerType::class, [
+            ]);
+        if ($this->isCurrentRoute('edit')) {
+            $formMapper
+                ->add('user.personalAccountDataRequestedAt', DatePickerType::class, [
                     'label' => 'Demande de récupération des données',
                     'required' => false,
                     'help' => 'Date à laquelle la demande a été faite. Lorsque cette demande a été traitée, veuillez effacer cette date.',
-            ])
-            ->add('isCreating', null, [
+                ]);
+        }
+        $formMapper
+             ->add('isCreating', null, [
                 'label' => 'En cours de création',
             ])
             ->end()
