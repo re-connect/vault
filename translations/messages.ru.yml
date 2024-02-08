@@ -115,3 +115,11 @@ password_criterion_length: Длина
 password_criterion_lowercase: Строчная буква
 password_criterion_nonAlphabetic: Особенный/число
 password_criterion_uppercase: прописная буква
+your_new_password: Ваш новый пароль
+confirm_new_password: Подтвердите ваш новый пароль
+submit: Подтвердить
+password_help: Пароль должен быть длинным (по крайней мере, 9 символов) с одной заглавной буквой, одной строчной буквой и одной цифрой или специальным символом
+user_update_password_subtitle: Пароль для %subject%
+improve_password_pro: В Reconnect безопасность наших инструментов и ваших данных - наш приоритет. Для её укрепления мы приглашаем вас обновить ваш пароль для доступа к цифровому сейфу. Сопровождающиеся лица также должны обновить свой пароль для доступа к своему цифровому сейфу.
+improve_password_beneficiary: Для повышения безопасности правила паролей были обновлены. Вам необходимо изменить ваш пароль.
+user_update_password_title: Обновление пароля
