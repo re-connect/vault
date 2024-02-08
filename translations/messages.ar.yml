@@ -112,3 +112,7 @@ sms_reset_password_code_is: 'ان رمز الحروف و الارقام لإعا
 wrong_current_password: 'كلمة السر الخاصة بك الحالية خاطئة'
 improve_password_pro: في Reconnect، يعد أمان أدواتنا وبياناتك أولوية. لتعزيزها ، ندعوك لتحديث كلمة المرور الخاصة بك للوصول إلى الخزانة الرقمية . يحتاج الأشخاص المرافقون أيضا إلى تحديث كلمة المرور الخاصة بهم للوصول إلى الخزينة الرقمية الخاصة بهم.
 improve_password_beneficiary: لمزيد من الأمان ، تم تحديث قواعد كلمة المرور. تحتاج إلى تغيير كلمة المرور الخاصة بك.
+password_criterion_length: طول
+password_criterion_lowercase: أحرف صغيرة
+password_criterion_nonAlphabetic: حرف خاص/رقم
+password_criterion_uppercase: .حرف كبير

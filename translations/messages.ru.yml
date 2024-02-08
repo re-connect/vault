@@ -111,3 +111,7 @@ relay_affiliation_denied: 'Вы отказались присоединитьс�
 relay_wishes_to_add_you: 'Посредник Reconnect хочет вас добавить'
 sms_reset_password_code_is: 'Код для восстановления вашего пароля Reconnect :'
 wrong_current_password: 'Неверный настоящий пароль'
+password_criterion_length: Длина
+password_criterion_lowercase: Строчная буква
+password_criterion_nonAlphabetic: Особенный/число
+password_criterion_uppercase: прописная буква
