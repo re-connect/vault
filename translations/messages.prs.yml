@@ -2,3 +2,7 @@ form_connexion: 'وارد شدن'
 form_forgot_password: 'رمز عبور یا نام کاربری خود را فراموش کرده ام.'
 form_login: 'نام کاربری   یا  آدرس ایمیل'
 login_form_title: 'دسترسی به گاوصندوق دیجیتالی'
+password_criterion_length: طول
+password_criterion_lowercase: حروف کوچک
+password_criterion_nonAlphabetic: ویژه/عدد
+password_criterion_uppercase: حرف بزرگ

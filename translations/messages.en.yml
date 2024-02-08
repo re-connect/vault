@@ -310,7 +310,7 @@ number_of_docs: 'Number of documents'
 or_click_link: 'Or click on the link'
 password: Password
 password_expired: 'Your password has expired. Please enter a new password.'
-password_help: "The password must be at list 9 characters long, and fulfill criteria below : 1 uppercase, 1 lowercase, 1 special or number"
+password_help: "The password must be at list 9 characters long, and fulfill criteria below: 1 uppercase, 1 lowercase, 1 special/number"
 password_help_criteria: 'Criteria below are missing :'
 password_new_should_be_different_from_current: 'Your new password must be different from your current password.'
 password_renewal_due: 'Your password is about to expire. Please enter a new password.'
