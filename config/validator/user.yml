@@ -30,7 +30,7 @@ App\Entity\User:
                     groups: [ password ]
                     message: "form_validation_no_password"
             -   App\Validator\Constraints\PasswordCriteria:
-                  groups: [ password ]
+                  groups: [ password, password-admin ]
         prenom:
             -   App\Validator\Constraints\Name:
                     groups: [ beneficiaire, membre, gestionnaire ]
