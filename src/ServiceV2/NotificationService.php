@@ -91,9 +91,10 @@ class NotificationService
     public function sendSms(string $number, string $message): void
     {
         $sms = (new SmsMessage($number, $message));
-        if (str_contains($number, '+1')) {
-            $sms->transport('vonageUS');
-        }
+        //        Todo: replace with brevo when a toll free number is obtained
+        //        if (str_contains($number, '+1')) {
+        //            $sms->transport('vonageUS');
+        //        }
 
         try {
             $this->texter->send($sms);
