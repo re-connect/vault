@@ -104,7 +104,6 @@ class UserType extends AbstractType
             ->add('mfaEnabled', CheckboxType::class, [
                 'required' => false,
                 'row_attr' => ['class' => 'col-12 mt-3'],
-
                 'label' => 'enable_mfa',
                 'help' => 'enable_mfa_help',
             ])
