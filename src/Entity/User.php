@@ -197,6 +197,7 @@ class User extends BaseUser implements \JsonSerializable
     private ?Collection $sharedDocuments;
 
     private ?\DateTimeImmutable $cgsAcceptedAt = null;
+    private ?\DateTimeImmutable $personalAccountDataRequestedAt = null;
 
     private bool $hasPasswordWithLatestPolicy = false;
 
@@ -1273,5 +1274,20 @@ class User extends BaseUser implements \JsonSerializable
         $this->hasPasswordWithLatestPolicy = $hasUpdatedPasswordWithLatestPolicy;
 
         return $this;
+    }
+
+    public function getPersonalAccountDataRequestedAt(): ?\DateTimeImmutable
+    {
+        return $this->personalAccountDataRequestedAt;
+    }
+
+    public function setPersonalAccountDataRequestedAt(?\DateTimeImmutable $personalAccountDataRequestedAt): void
+    {
+        $this->personalAccountDataRequestedAt = $personalAccountDataRequestedAt;
+    }
+
+    public function hasRequestedPersonalAccountData(): bool
+    {
+        return (bool) $this->personalAccountDataRequestedAt;
     }
 }

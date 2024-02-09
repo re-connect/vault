@@ -2,8 +2,13 @@
 
 {% block content %}
     <div class="text-center text-primary col-md-6 m-auto my-3 card rounded-card p-4 shadow">
-        <i class="fa-solid fa-envelope-circle-check fa-3x mb-3"></i>
-        <p>{{ 'your_personal_data_request_has_been_send_to_tech_team'|trans }}</p>
+        {% if not hasAlreadyRequestedData %}
+            <i class="fa-solid fa-envelope-circle-check fa-3x mb-3"></i>
+            <p>{{ 'your_personal_data_request_has_been_send_to_tech_team'|trans }}</p>
+        {% else %}
+            <i class="fa-regular fa-hourglass-half fa-3x mb-3"></i>
+            <p>{{ 'your_personal_data_has_already_been_requested'|trans }}</p>
+        {% endif %}
         <p>{{ 'you_will_be_contacted_soon'|trans }}</p>
     </div>
 {% endblock %}

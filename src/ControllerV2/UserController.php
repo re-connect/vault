@@ -192,15 +192,20 @@ class UserController extends AbstractController
     }
 
     #[Route(path: '/request-personal-account-data', name: 'request_personal_account_data', methods: ['GET'])]
-    public function requestPersonalAccountData(MailerService $mailer): Response
+    public function requestPersonalAccountData(MailerService $mailer, EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
         if (!$user?->isBeneficiaire()) {
             return $this->redirectToRoute('redirect_user');
         }
 
-        $mailer->sendPersonalDataRequestEmail($user);
+        $hasAlreadyRequestedData = $user->hasRequestedPersonalAccountData();
+        if (!$hasAlreadyRequestedData) {
+            $user->setPersonalAccountDataRequestedAt(new \DateTimeImmutable());
+            $em->flush();
+            $mailer->sendPersonalDataRequestEmail($user);
+        }
 
-        return $this->render('v2/user/request_personal_account_data.html.twig');
+        return $this->render('v2/user/request_personal_account_data.html.twig', ['hasAlreadyRequestedData' => $hasAlreadyRequestedData]);
     }
 }
