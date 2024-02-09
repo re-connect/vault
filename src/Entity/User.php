@@ -46,8 +46,8 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public const MFA_METHOD_SMS = 'sms';
     public const MFA_METHOD_EMAIL = 'email';
     public const MFA_METHODS = [
-      self::MFA_METHOD_SMS,
       self::MFA_METHOD_EMAIL,
+      self::MFA_METHOD_SMS,
     ];
 
     /**
