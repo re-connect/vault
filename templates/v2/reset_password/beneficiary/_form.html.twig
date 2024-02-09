@@ -6,7 +6,11 @@
     {{ form_start(form) }}
     {{ form_row(formField) }}
     {{ form_label(form.password.plainPassword.first) }}
-    {{ include('v2/common/_hide_show_password_input.html.twig', {field : form.password.plainPassword.first, hideAndShow: true, isBeneficiaire: true}) }}
+    {{ include('v2/user/strong_password/_strong_password_row.html.twig', {
+        'field': form.password.plainPassword.first,
+        'isBeneficiaire': true,
+        'hideAndShow': true
+    }) }}
     {{ form_row(form.password.plainPassword.second) }}
     <div class="d-grid gap-2 mt-3">
         {{ include('v2/common/_button_with_loader.html.twig', {text: 'confirm'|trans, color: 'blue' }) }}

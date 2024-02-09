@@ -27,19 +27,8 @@ App\Entity\User:
             -   NotBlank:
                     groups: [ password ]
                     message: "form_validation_no_password"
-            -   Regex:
-                    pattern: '#^[\S]+$#'
-                    message: "password_wrong_format"
-                    groups: [ password ]
-            -   Length:
-                    min: 5
-                    groups: [ password, password-beneficiaire ]
-            -   Length:
-                    min: 8
-                    groups: [ password-membre ]
-            -   Callback:
-                  callback: [ App\Entity\User, validatePassword ]
-                  groups: [ password-membre ]
+            -   App\Validator\Constraints\PasswordCriteria:
+                  groups: [ password, password-admin ]
         prenom:
             -   App\Validator\Constraints\Name:
                     groups: [ beneficiaire, membre, gestionnaire ]

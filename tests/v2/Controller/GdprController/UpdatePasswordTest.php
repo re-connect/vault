@@ -25,8 +25,8 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
             self::URL,
             'submit',
             [
-                'change_password_form[plainPassword][first]' => '123456Aa',
-                'change_password_form[plainPassword][second]' => '123456Aa',
+                'change_password_form[plainPassword][first]' => '123456Aaaa',
+                'change_password_form[plainPassword][second]' => '123456Aaaa',
             ],
             MemberFixture::MEMBER_MAIL,
             '/login-end',
@@ -63,17 +63,19 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
             $values,
             [
                 [
-                    'message' => 'password_too_short',
-                    'params' => ['{{ limit }}' => 8],
+                    'message' => 'password_help_criteria',
+                    'params' => null,
                 ],
             ],
             MemberFixture::MEMBER_MAIL,
         ];
+
         $values = [
             'change_password_form[plainPassword][first]' => '123456789',
             'change_password_form[plainPassword][second]' => '123456789',
         ];
-        yield 'Should return an error if password does not meet characters requirements' => [
+
+        yield 'Should return an error if password contains only numbers' => [
             self::URL,
             'app_update_password',
             'submit',
@@ -81,13 +83,6 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
             [
                 [
                     'message' => 'password_help_criteria',
-                    'params' => [
-                        '{{ atLeast }}' => 2,
-                        '{{ total }}' => 3,
-                    ],
-                ],
-                [
-                    'message' => 'password_criterion_special',
                     'params' => null,
                 ],
                 [
@@ -96,6 +91,33 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
                 ],
                 [
                     'message' => 'password_criterion_uppercase',
+                    'params' => null,
+                ],
+            ],
+            MemberFixture::MEMBER_MAIL,
+        ];
+
+        $values = [
+            'change_password_form[plainPassword][first]' => 'aaaaaaaaa',
+            'change_password_form[plainPassword][second]' => 'aaaaaaaaa',
+        ];
+
+        yield 'Should return an error if password contains only lowers' => [
+            self::URL,
+            'app_update_password',
+            'submit',
+            $values,
+            [
+                [
+                    'message' => 'password_help_criteria',
+                    'params' => null,
+                ],
+                [
+                    'message' => 'password_criterion_uppercase',
+                    'params' => null,
+                ],
+                [
+                    'message' => 'password_criterion_nonAlphabetic',
                     'params' => null,
                 ],
             ],

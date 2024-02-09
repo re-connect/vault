@@ -29,3 +29,15 @@ download: Descargar
 reminder_sms_content: 'Hola, recordatorio de un evento : %name%date'
 user.reinitialiserMdp.smsMessage: El codigo para restablecer la contraseña de su caja fuerte digital de Reconnect es %code%
 mail_shared_document_content_1_anonymous: Alguien compartir con usted un documento de su caja fuerte digital de Reconnect.
+password_criterion_length: '%length% caracteres'
+password_criterion_lowercase: Minúscula
+password_criterion_nonAlphabetic: Special/Numero
+password_criterion_uppercase: Mayúscula
+improve_password_pro: Para Reconnect, la seguridad de sus datos es una prioridad. Para reforzar la seguridad, le invitamos a actualizar su contraseña para acceder a la Caja Fuerte Digital. Las personas que tengan una caja fuerte digital tendrán que actualizar su contraseña también para ingresar a su cuenta.
+improve_password_beneficiary: Para mayor seguridad, hay nuevas normas de contraseña. Por favor, cambie su contraseña.
+password_help: La contraseña debe ser larga (al menos 9 caracteres) con 1 letra mayúscula, 1 letra minúscula y 1 número o carácter especial
+user_update_password_title: Restablecer la contraseña
+your_new_password: Tu nueva contraseña
+confirm_new_password: Confirma tu nueva contraseña
+user_update_password_subtitle: 'Contraseña para %subject%'
+submit: Valida

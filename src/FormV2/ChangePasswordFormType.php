@@ -2,15 +2,12 @@
 
 namespace App\FormV2;
 
+use App\Validator\Constraints\PasswordCriteria;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Callback;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ChangePasswordFormType extends AbstractType
@@ -24,40 +21,11 @@ class ChangePasswordFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $isBeneficiaire = $options['isBeneficiaire'];
-
-        $constraintsBeneficiaire = [
-                new NotBlank([
-                    'message' => $this->translator->trans('you_must_choose_password'),
-                ]),
-                new Length([
-                    'min' => 5,
-                    'minMessage' => $this->translator->trans('password_too_short'),
-                    // max length allowed by Symfony for security reasons
-                    'max' => 4096,
-                ]),
-                new Regex([
-                    'pattern' => '#^[\S]+$#',
-                    'message' => $this->translator->trans('password_wrong_format'),
-                ]),
-            ];
-
-        $constraintsMembre = [
-            new Length([
-                'min' => 8,
-                'minMessage' => $this->translator->trans('password_too_short'),
-                // max length allowed by Symfony for security reasons
-                'max' => 4096,
-            ]),
-            new Callback([
-                'callback' => ['App\Entity\User', 'validatePassword'],
-            ]),
-        ];
         $builder
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [
-                    'constraints' => $isBeneficiaire ? $constraintsBeneficiaire : $constraintsMembre,
+                    'constraints' => [new PasswordCriteria()],
                     'label' => 'your_new_password',
                     'attr' => [
                         'autocomplete' => 'new-password',
@@ -88,10 +56,8 @@ class ChangePasswordFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'isBeneficiaire' => false,
             'checkCurrentPassword' => false,
         ])
-        ->setAllowedTypes('isBeneficiaire', 'bool')
         ->setAllowedTypes('checkCurrentPassword', 'bool');
     }
 }

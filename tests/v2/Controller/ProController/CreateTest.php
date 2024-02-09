@@ -153,8 +153,8 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
         ];
 
         $values = self::FORM_VALUES;
-        $values['create_user[plainPassword][first]'] = 'password';
-        $values['create_user[plainPassword][second]'] = 'password';
+        $values['create_user[plainPassword][first]'] = 'passworddd';
+        $values['create_user[plainPassword][second]'] = 'passworddd';
 
         yield 'Should return an error when password is too weak' => [
             self::URL,
@@ -164,7 +164,15 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
             [
                 [
                     'message' => 'password_help_criteria',
-                    'params' => ['{{ atLeast }}' => 2, '{{ total }}' => 3],
+                    'params' => null,
+                ],
+                [
+                    'message' => 'password_criterion_uppercase',
+                    'params' => null,
+                ],
+                [
+                    'message' => 'password_criterion_nonAlphabetic',
+                    'params' => null,
                 ],
             ],
             MemberFixture::MEMBER_MAIL,
@@ -182,7 +190,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
             $values,
             [
                 [
-                    'message' => 'Cette chaîne est trop courte. Elle doit avoir au minimum 8 caractères.',
+                    'message' => 'Votre mot de passe doit contenir au moins 9 caractères',
                     'params' => null,
                 ],
             ],
