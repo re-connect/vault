@@ -6,3 +6,11 @@ password_criterion_length: طول
 password_criterion_lowercase: حروف کوچک
 password_criterion_nonAlphabetic: ویژه/عدد
 password_criterion_uppercase: حرف بزرگ
+user_update_password_subtitle : رمز عبور %subject%
+submit: تایید
+user_update_password_title: تجدید رمز عبور
+password_help: رمز عبور باید حداقل 9 کاراکتر بلند باشد و شامل حداقل یک حرف بزرگ، یک حرف کوچک و یک عدد یا نماد ویژه باشد
+your_new_password: رمز عبور جدید شما
+confirm_new_password: رمز عبور جدید خود را تأیید کنید
+improve_password_pro: در Reconnect، امنیت ابزارها و داده‌های ما و شما اولویت است. برای تقویت آن، شما را دعوت می‌کنیم تا رمز عبور خود را به‌روزرسانی کنید تا به صندوق امن دیجیتال دسترسی پیدا کنید. افراد همراه نیز باید رمز عبور خود را به‌روزرسانی کنند تا به صندوق امن دیجیتال خود دسترسی داشته باشند.
+improve_password_beneficiary: به منظور افزایش امنیت، قوانین رمز عبور به‌روزرسانی شده‌اند. شما باید رمز عبور خود را تغییر دهید.

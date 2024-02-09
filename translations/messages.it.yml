@@ -16,3 +16,8 @@ password_criterion_uppercase: Maiuscola
 improve_password_pro: In Reconnect la sicurezza dei nostri strumenti e dei vostri dati è una priorità. Per rafforzare questo aspetto, vi invitiamo ad aggiornare la vostra password per accedere alla cassaforte digitale. Anche chi ha una cassaforte digitale dovrà aggiornare la propria password per accedervi.
 improve_password_beneficiary: Per una maggiore sicurezza, sono state introdotte nuove regole per le password. Si prega di cambiare la password.
 password_help: La password deve essere lunga (almeno 9 caratteri) con 1 lettera maiuscola, 1 lettera minuscola e 1 numero o carattere speciale
+user_update_password_subtitle: Password per %subject%
+your_new_password: La tua nuova password
+confirm_new_password: Conferma la tua nuova password
+submit: Confermare
+user_update_password_title: Aggiornamento della password
