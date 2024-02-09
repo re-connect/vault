@@ -52,8 +52,9 @@ class CgsTest extends AbstractControllerTest implements TestRouteInterface
 
         $user = UserFactory::findByEmail($email)->object();
         // Then check that user has accepted terms of use
-        self::assertFalse($user->isFirstVisit());
-        self::assertNotNull($user->getCgsAcceptedAt());
+        $this->assertNotNull($user->getCgsAcceptedAt());
+        // Check if first visit process is over
+        $this->assertEquals($user->isFirstVisit(), !$user->isMfaEnabled());
     }
 
     public function provideTestFormIsValid(): ?\Generator
@@ -63,7 +64,7 @@ class CgsTest extends AbstractControllerTest implements TestRouteInterface
             'continue',
             self::FORM_VALUES,
             MemberFixture::MEMBER_FIRST_VISIT,
-            '/user/redirect-user/',
+            '/user/mfa',
         ];
 
         yield 'Should redirect when form is correct for pro' => [
@@ -71,7 +72,7 @@ class CgsTest extends AbstractControllerTest implements TestRouteInterface
             'continue',
             self::FORM_VALUES,
             BeneficiaryFixture::BENEFICIARY_MAIL_FIRST_VISIT,
-            '/user/redirect-user/',
+            '/user/mfa',
         ];
     }
 

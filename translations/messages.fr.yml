@@ -627,3 +627,4 @@ mfa_method: "Recevoir le code par :"
 form_contains_error: Vos modifications n'ont pas été enregistrées. Veuillez vérifier les informations.
 no_email_address: Vous avez choisi de recevoir un code de connexion par email, mais vous n'avez pas renseigné d'adresse email.
 no_phone_number: Vous avez choisi de recevoir un code de connexion par SMS, mais vous n'avez pas renseigné de numéro de téléphone.
+mfa_description: L'authentification à deux facteurs vous permet de recevoir un code par email ou sms à chaque connexion pour valider votre identité et sécuriser votre compte. Si vous souhaitez activer cette authentification à deux facteurs, veuillez cocher la case ci-dessous et choisir la méthode par laquelle vous souhaitez recevoir votre code de connexion.
