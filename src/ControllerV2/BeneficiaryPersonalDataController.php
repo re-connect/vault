@@ -8,6 +8,7 @@ use App\Entity\DonneePersonnelle;
 use App\Entity\Dossier;
 use App\Entity\Evenement;
 use App\Entity\Note;
+use App\EventV2\BeneficiaryConsultationEvent;
 use App\FormV2\ContactType;
 use App\FormV2\EventType;
 use App\FormV2\FolderType;
@@ -29,10 +30,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 #[Route(path: '/beneficiary')]
 class BeneficiaryPersonalDataController extends AbstractController
 {
+    public function __construct(private readonly EventDispatcherInterface $eventDispatcher)
+    {
+    }
+
     #[Route(path: '/{id}/notes', name: 'list_notes', requirements: ['id' => '\d+'], methods: ['GET'])]
     #[IsGranted('UPDATE', 'beneficiary')]
     public function listNotes(
@@ -41,6 +47,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         NoteManager $manager,
         PaginatorService $paginator,
     ): Response {
+        $this->dispatchBeneficiaryConsultationEvent($beneficiary);
         $formModel = new SearchFormModel($request->query->get('search'));
 
         return $this->render($request->isXmlHttpRequest()
@@ -98,6 +105,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         ContactManager $manager,
         PaginatorService $paginator,
     ): Response {
+        $this->dispatchBeneficiaryConsultationEvent($beneficiary);
         $formModel = new SearchFormModel($request->query->get('search'));
 
         return $this->render($request->isXmlHttpRequest()
@@ -160,6 +168,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         EventManager $manager,
         PaginatorService $paginator,
     ): Response {
+        $this->dispatchBeneficiaryConsultationEvent($beneficiary);
         $formModel = new SearchFormModel($request->query->get('search'));
 
         return $this->render($request->isXmlHttpRequest()
@@ -218,6 +227,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         FolderableItemManager $manager,
         PaginatorService $paginator,
     ): Response {
+        $this->dispatchBeneficiaryConsultationEvent($beneficiary);
         $formModel = new SearchFormModel($request->query->get('search'));
 
         return $this->render($request->isXmlHttpRequest()
@@ -345,5 +355,10 @@ class BeneficiaryPersonalDataController extends AbstractController
             'action' => $url,
             'private' => $this->isLoggedInUser($entity->getBeneficiaire()?->getUser()),
         ]);
+    }
+
+    private function dispatchBeneficiaryConsultationEvent(Beneficiaire $beneficiary): void
+    {
+        $this->eventDispatcher->dispatch(new BeneficiaryConsultationEvent($beneficiary));
     }
 }
