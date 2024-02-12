@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Security\VoterV2\BeneficiaryVoter;
+use App\ServiceV2\AuthCodeGenerator;
 use App\ServiceV2\GdprService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -15,6 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SecurityController extends AbstractController
 {
+    private const MFA_MAX_RETRIES = 3;
+
     public function __construct(private readonly GdprService $gdprService)
     {
     }
@@ -60,5 +63,26 @@ class SecurityController extends AbstractController
     public function loginLink()
     {
         throw new \LogicException('This code should never be reached');
+    }
+
+    #[Route('/resend-auth-code', name: 'resend_auth_code', methods: ['GET'])]
+    public function resendAuthCode(AuthCodeGenerator $authCodeGenerator): RedirectResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('re_main_login');
+        }
+
+        if (self::MFA_MAX_RETRIES === $user->getMfaRetryCount()) {
+            $this->addFlash('danger', 'mfa_maximum_retries_reach');
+
+            return $this->redirectToRoute('2fa_login');
+        }
+
+        $authCodeGenerator->generateAndSendToUser($user);
+
+        return $this->redirectToRoute('2fa_login');
     }
 }

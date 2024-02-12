@@ -215,6 +215,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     private ?bool $mfaPending;    // This is only used when login from API
     private ?bool $mfaValid;    // This is only used when login from API
     private string $mfaMethod = self::MFA_METHOD_EMAIL;
+    private ?int $mfaRetryCount = 0;
 
     public function __construct()
     {
@@ -1371,7 +1372,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->mfaPending;
     }
 
-    public function setMfaPending(?bool $mfaPending): User
+    public function setMfaPending(?bool $mfaPending): static
     {
         $this->mfaPending = $mfaPending;
         $this->mfaValid = !$mfaPending;
@@ -1384,7 +1385,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->mfaValid;
     }
 
-    public function setMfaValid(?bool $mfaValid): User
+    public function setMfaValid(?bool $mfaValid): static
     {
         $this->mfaValid = $mfaValid;
         $this->mfaPending = !$mfaValid;
@@ -1392,7 +1393,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this;
     }
 
-    public function resetAuthCodes(): User
+    public function resetAuthCodes(): static
     {
         $this->authCode = null;
         $this->mfaValid = false;
@@ -1406,10 +1407,41 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->mfaMethod;
     }
 
-    public function setMfaMethod(string $mfaMethod): User
+    public function setMfaMethod(string $mfaMethod): static
     {
         $this->mfaMethod = $mfaMethod;
 
         return $this;
+    }
+
+    public function getMfaRetryCount(): ?int
+    {
+        return $this->mfaRetryCount;
+    }
+
+    public function setMfaRetryCount(?int $mfaRetryCount): static
+    {
+        $this->mfaRetryCount = $mfaRetryCount;
+
+        return $this;
+    }
+
+    public function resetMfaRetryCount(): static
+    {
+        $this->mfaRetryCount = 0;
+
+        return $this;
+    }
+
+    public function increaseMfaRetryCount(): static
+    {
+        ++$this->mfaRetryCount;
+
+        return $this;
+    }
+
+    public function getValidationGroup(): string
+    {
+        return $this->isBeneficiaire() ? 'beneficiaire' : 'membre';
     }
 }

@@ -2,9 +2,10 @@
 
 {% block form %}
     <h3 class="text-primary py-2"><label for="_auth_code">{{ "auth_code_received"|trans({'%method%' : app.user.mfaMethod }) }}</label></h3>
+    <p class="text-primary">{{ 'mfa_code_not_received'|trans }}<a class="px-1" href="{{ path('resend_auth_code') }}">{{ 'resend_mfa_code'|trans }}</a></p>
     {% if authenticationError %}
         <div class="alert alert-danger alert-dismissible fade show w-75 mx-auto " role="alert">
-            <p>{{ authenticationError|trans(authenticationErrorData, 'SchebTwoFactorBundle') }}</p>
+            <p>{{ authenticationError|trans(authenticationErrorData, 'security') }}</p>
         </div>
     {% endif %}
     <form class="form" action="{{ checkPathUrl ? checkPathUrl : path(checkPathRoute) }}" method="post">
