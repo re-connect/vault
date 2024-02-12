@@ -25,7 +25,6 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
     public const MEMBER_FIRST_VISIT = 'v2_test_user_membre_first_visit@mail.com';
     public const MEMBER_DISABLED = 'v2_test_user_membre_disabled@mail.com';
     public const MEMBER_PASSWORD_WEAK = 'v2_test_user_membre_weak_password@mail.com';
-    public const MEMBER_PASSWORD_WEAK = 'v2_test_user_membre_weak_password@mail.com';
     public const MEMBER_FIRST_VISIT_WITH_MFA = 'v2_test_user_membre_first_visit_with_mfa@mail.com';
 
     public function load(ObjectManager $manager)
