@@ -172,6 +172,10 @@ App\Entity\User:
             type: string
             length: '255'
             nullable: true
+        mfaRetryCount:
+            type: integer
+            nullable: true
+            default: 0
     oneToOne:
         subjectAdministrateur:
             targetEntity: App\Entity\Administrateur
