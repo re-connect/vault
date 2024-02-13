@@ -2,6 +2,7 @@
 
 namespace App\Tests\Factory;
 
+use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Zenstruck\Foundry\ModelFactory;
@@ -42,7 +43,7 @@ final class UserFactory extends ModelFactory
             'enabled' => true,
             'disabledBy' => null,
             'disabledAt' => null,
-            'password' => 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w==',
+            'password' => BeneficiaryFixture::STRONG_PASSWORD_HASH,
             'roles' => [],
             'firstVisit' => false,
             'bFirstMobileConnexion' => self::faker()->boolean(),
@@ -58,6 +59,7 @@ final class UserFactory extends ModelFactory
             'prenom' => self::faker()->firstName(),
             'nom' => self::faker()->lastName(),
             'telephone' => self::faker()->phoneNumber(),
+            'hasPasswordWithLatestPolicy' => true,
         ];
     }
 

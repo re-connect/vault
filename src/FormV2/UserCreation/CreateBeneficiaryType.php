@@ -17,7 +17,7 @@ class CreateBeneficiaryType extends AbstractType
 {
     use UserAwareTrait;
 
-    public const DEFAULT_STEP_VALIDATION_GROUP = [1 => ['phone'], 2 => ['password', 'password-beneficiaire'], 3 => ['beneficiaireQuestionSecrete']];
+    public const DEFAULT_STEP_VALIDATION_GROUP = [1 => ['phone'], 2 => ['password'], 3 => ['beneficiaireQuestionSecrete']];
     public const REMOTELY_STEP_VALIDATION_GROUP = [1 => ['beneficiaire-remotely', 'phone']];
 
     public function __construct(
@@ -61,6 +61,10 @@ class CreateBeneficiaryType extends AbstractType
             ->add('password', TextType::class, [
                 'property_path' => 'user.plainPassword',
                 'label' => 'password',
+                'attr' => [
+                    'data-password-strength-target' => 'input',
+                    'data-action' => 'password-strength#check',
+                ],
             ]);
     }
 

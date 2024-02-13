@@ -7,6 +7,7 @@ $light-green: #9ee3a9;
 $blue: #47b4d1;
 $yellow: #f9b02a;
 $light-yellow: #fffbf5;
+$red: #ee5253;
 $enable-shadows: true;
 $navbar-light-color: $primary;
 $position-values: (
@@ -70,6 +71,10 @@ $position-values: (
 
 .bg-light-yellow {
   background-color: $light-yellow;
+}
+
+.bg-red {
+  background-color: $red;
 }
 
 .box-shadow-light-yellow {

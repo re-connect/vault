@@ -4,6 +4,7 @@ namespace App\Security;
 
 use App\Entity\User;
 use App\Event\UserEvent;
+use App\ServiceV2\Helper\PasswordHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +23,8 @@ class Authenticator extends AbstractLoginFormAuthenticator
     public function __construct(
         private readonly RouterInterface $router,
         private readonly EntityManagerInterface $em,
-        private readonly EventDispatcherInterface $eventDispatcher
+        private readonly EventDispatcherInterface $eventDispatcher,
+        private readonly PasswordHelper $passwordHelper,
     ) {
     }
 
@@ -50,6 +52,9 @@ class Authenticator extends AbstractLoginFormAuthenticator
         $previousLogin = $user->getDerniereConnexionAt()?->format('Y-m-d');
         $now = new \DateTime();
         $user->setLastIp($request->getClientIp())->setDerniereConnexionAt($now);
+        if (!$user->hasPasswordWithLatestPolicy() && $this->passwordHelper->isStrongPassword($request->request->get('_password'))) {
+            $user->setHasPasswordWithLatestPolicy(true);
+        }
         $this->em->persist($user);
         $this->em->flush();
 

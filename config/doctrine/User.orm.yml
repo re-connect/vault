@@ -149,6 +149,13 @@ App\Entity\User:
         cgsAcceptedAt:
             type: datetime_immutable
             nullable: true
+        hasPasswordWithLatestPolicy:
+            type: boolean
+            options:
+                default: false
+        personalAccountDataRequestedAt:
+            type: datetime_immutable
+            nullable: true
     oneToOne:
         subjectAdministrateur:
             targetEntity: App\Entity\Administrateur

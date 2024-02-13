@@ -20,7 +20,9 @@ class UserController extends AbstractController
             throw $this->createAccessDeniedException();
         }
 
-        $mailer->sendPersonalDataRequestEmail($user);
+        if (!$user->hasRequestedPersonalAccountData()) {
+            $mailer->sendPersonalDataRequestEmail($user);
+        }
 
         return $this->json($user);
     }

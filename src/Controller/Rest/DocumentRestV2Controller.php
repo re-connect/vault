@@ -9,6 +9,7 @@ use App\Entity\Document;
 use App\Entity\Dossier;
 use App\Entity\Membre;
 use App\Entity\User;
+use App\EventV2\BeneficiaryConsultationEvent;
 use App\Exception\JsonResponseException;
 use App\Manager\MailManager;
 use App\Manager\RestManager;
@@ -29,6 +30,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route(path: ['old' => '/api/', 'new' => '/api/v2/'], name: 're_api_document_')]
@@ -48,7 +50,7 @@ class DocumentRestV2Controller extends REController
     }
 
     #[Route(path: 'beneficiaries/{beneficiaryId}/documents', methods: ['GET'], requirements: ['beneficiaryId' => '\d{1,10}'], name: 'list')]
-    public function list(int $beneficiaryId, BeneficiaireProvider $beneficiaireProvider): JsonResponse
+    public function list(int $beneficiaryId, BeneficiaireProvider $beneficiaireProvider, EventDispatcherInterface $eventDispatcher): JsonResponse
     {
         try {
             $beneficiaire = $beneficiaireProvider->getEntity($beneficiaryId, Client::ACCESS_DOCUMENT_READ);
@@ -77,6 +79,9 @@ class DocumentRestV2Controller extends REController
             foreach ($entities as $entity) {
                 $this->provider->generatePresignedUris($entity);
             }
+
+            // Record beneficiary consultation on this route, as it is the first reachable beneficiary page for mobile app
+            $eventDispatcher->dispatch(new BeneficiaryConsultationEvent($beneficiaire));
 
             return $this->json($entities);
         } catch (NotFoundHttpException|AccessDeniedException $e) {

@@ -18,7 +18,6 @@ class ResetPasswordSmsFormType extends AbstractType
                 'label' => 'beneficiary_reset_password_SMS_code',
             ])
             ->add('password', ChangePasswordFormType::class, [
-                'isBeneficiaire' => true,
                 'mapped' => false,
                 'label' => false,
             ]);

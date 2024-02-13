@@ -14,6 +14,8 @@ class ExpiredPasswordSubscriber implements EventSubscriberInterface
 {
     use UserAwareTrait;
 
+    private const ALLOWED_ROUTES = ['app_update_password', 'improve_password', '2fa_login'];
+
     public function __construct(
         private readonly Security $security,
         private readonly GdprService $gdprService,
@@ -29,7 +31,7 @@ class ExpiredPasswordSubscriber implements EventSubscriberInterface
             && false === $user->isBeneficiaire()
             && $this->gdprService->isPasswordExpired()
             && $event->isMainRequest()
-            && 'app_update_password' !== $event->getRequest()->get('_route')
+            && !in_array($event->getRequest()->get('_route'), self::ALLOWED_ROUTES)
         ) {
             $event->setResponse(new RedirectResponse($this->router->generate('app_update_password')));
         }

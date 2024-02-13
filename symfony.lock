@@ -787,6 +787,15 @@
             "ref": "ae1cf494ce06b9a4578a8445c610402a1676ee8d"
         }
     },
+    "symfony/sendinblue-notifier": {
+        "version": "6.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.2",
+            "ref": "fe4a888a47063f12ff2e83db69cb937bfdab931d"
+        }
+    },
     "symfony/serializer": {
         "version": "v4.4.9"
     },
@@ -892,9 +901,6 @@
     },
     "symfony/var-exporter": {
         "version": "v4.4.9"
-    },
-    "symfony/vonage-notifier": {
-        "version": "v6.0.3"
     },
     "symfony/web-link": {
         "version": "v4.4.9"

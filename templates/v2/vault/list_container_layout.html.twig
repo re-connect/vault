@@ -19,6 +19,7 @@
 
 {% block notifications %}
     {{ parent() }}
-    {% set beneficiary = beneficiary is defined ? beneficiary : null %}
-    {{ render(controller('App\\ControllerV2\\MemberBeneficiaryController::firstMemberVisitNotification', {beneficiary})) }}
+    {% if beneficiary is defined %}
+        {{ render(controller('App\\ControllerV2\\MemberBeneficiaryController::firstMemberVisitNotification', {beneficiary})) }}
+    {% endif %}
 {% endblock %}

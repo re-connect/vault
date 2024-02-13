@@ -137,14 +137,14 @@ class ResetPasswordControllerTest extends AuthenticatedTestCase
         $form = $crawler->selectButton('Confirmer')->form();
         self::assertEquals($form->getName(), 'change_password_form');
         $form->setValues([
-             'change_password_form[plainPassword][first]' => 'newPassword',
-             'change_password_form[plainPassword][second]' => 'newPassword',
+             'change_password_form[plainPassword][first]' => 'newPassword1',
+             'change_password_form[plainPassword][second]' => 'newPassword1',
          ]);
         $this->client->submit($form);
 
         // Get recent instance of EntityManager and test password
         $em = $this->container->get(EntityManagerInterface::class);
         $this->user = $em->getRepository(User::class)->find($this->user->getId());
-        self::assertTrue($this->passwordHasher->isPasswordValid($this->user, 'newPassword'));
+        self::assertTrue($this->passwordHasher->isPasswordValid($this->user, 'newPassword1'));
     }
 }

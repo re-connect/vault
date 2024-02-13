@@ -355,3 +355,15 @@ your_email: 'Ihre Email'
 all_rights_reserved: Alle Rechte vorbehalten
 reset: Zurücksetzen
 mail_shared_document_content_1_anonymous: Jemand möchte ein Dokument mit Ihnen teilen.
+password_criterion_length: '%length% zeichen'
+password_criterion_lowercase: Kleinbuchstabe
+password_criterion_nonAlphabetic: Sonderzeichen/Nummer
+password_criterion_uppercase: Großbuchstabe
+password_help: Das Passwort muss lang sein (mindestens 9 Zeichen) mit 1 Großbuchstaben, 1 Kleinbuchstaben und 1 Zahl oder Sonderzeichen
+user_update_password_title: Passwort zurücksetzen
+improve_password_pro: Bei Reconnect ist die Sicherheit unserer Tools und Ihrer Daten eine Priorität. Um sie zu stärken, bitten wir Sie, Ihr Passwort für den Zugang zum Digitalen Tresor zu aktualisieren. Die begleiteten Personen müssen ebenfalls ihr Passwort für den Zugriff auf ihren Digitalen Safe aktualisieren.
+improve_password_beneficiary: Zur Erhöhung der Sicherheit wurden die Passwortregeln aktualisiert. Sie müssen Ihr Passwort ändern.
+your_new_password: Ihr neues Passwort
+confirm_new_password: Bestätigen Sie Ihr neues Passwort
+user_update_password_subtitle: Passwort für %subject%
+submit: Bestätigen
