@@ -40,6 +40,7 @@ services:
             - ~
             - App\Entity\User
             - ~
+            - '@Symfony\Bundle\SecurityBundle\Security'
         calls:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
 

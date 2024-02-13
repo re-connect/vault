@@ -485,3 +485,23 @@ your_personal_data_has_already_been_requested: You already requested your data t
 you_will_be_contacted_soon: You will be contacted as soon as possible.
 improve_password_pro: At Reconnect, the security of our tools and your data is a priority. To strengthen it, we invite you to update your password to access the Digital Safe. Accompanied persons will also have to update their password to access their Digital Safe.
 improve_password_beneficiary: For added security, the password rules have been updated. You must change your password.
+enable_mfa: Enable two-factor authentication
+enable_mfa_help: By checking this box, you will receive a one-time code each time you log in to validate your identity and secure your account.
+enable_mfa_help_benef_creation: By checking this box, the beneficiary will receive a one-time code each time they log in to validate their identity and secure their account.
+enable_mfa_help_pro_creation: By checking this box, the user will receive a one-time code each time they log in to validate their identity and secure their account.
+mail_auth_code_title: Hello %username%!
+mail_auth_code_content: 'Here is your login code: '
+mail_auth_code_subject: 'RECONNECT - Your login code'
+auth_code_received: 'Login code received via %method%:'
+validate: Validate
+auth_code_sms_text: 'Here is your login code: %code%'
+mfa: Two-factor authentication
+mfa_enabled: Two-factor authentication enabled
+mfa_method: 'Receive code via:'
+form_contains_error: Your changes were not saved. Please check the information.
+no_email_address: You have chosen to receive a login code via email, but you have not provided an email address.
+no_phone_number: You have chosen to receive a login code via SMS, but you have not provided a phone number.
+mfa_description: Two-factor authentication allows you to receive a code via email or SMS every time you log in to validate your identity and secure your account. If you want to enable this two-factor authentication, please check the box below and choose the method by which you want to receive your login code.
+mfa_maximum_retries_reach: You have reached the maximum number of allowed retries. If you are unable to log in, please contact support.
+mfa_code_not_received: Did not receive the code?
+resend_mfa_code: Click here to resend it.

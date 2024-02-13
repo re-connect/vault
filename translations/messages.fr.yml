@@ -618,6 +618,8 @@ improve_password_pro: Chez Reconnect, la sécurité de nos outils et de vos donn
 improve_password_beneficiary: Pour plus de sécurité, les règles de mot de passe ont été mises à jour. Vous devez changer votre mot de passe.
 enable_mfa: Activer l'authentification à deux facteurs
 enable_mfa_help: En cochant cette case, vous recevrez un code à usage unique à chaque connexion pour valider votre identité et sécuriser votre compte.
+enable_mfa_help_benef_creation: En cochant cette case, le bénéficiaire recevra un code à usage unique à chaque connexion pour valider son identité et sécuriser son compte.
+enable_mfa_help_pro_creation: En cochant cette case, l'utilisatieur recevra un code à usage unique à chaque connexion pour valider son identité et sécuriser son compte.
 mail_auth_code_title: Bonjour %username% !
 mail_auth_code_content : 'Voici votre code de connexion : '
 mail_auth_code_subject: 'RECONNECT- Votre code de connexion'
@@ -625,7 +627,12 @@ auth_code_received: 'Code de connexion reçu par %method% :'
 validate: Valider
 auth_code_sms_text: 'Voici votre code de connexion :  %code%'
 mfa: Authentification à deux facteurs
-mfa_method: "Recevoir le code par :"
+mfa_enabled: Double authentification active
+mfa_method: 'Recevoir le code par :'
 form_contains_error: Vos modifications n'ont pas été enregistrées. Veuillez vérifier les informations.
 no_email_address: Vous avez choisi de recevoir un code de connexion par email, mais vous n'avez pas renseigné d'adresse email.
 no_phone_number: Vous avez choisi de recevoir un code de connexion par SMS, mais vous n'avez pas renseigné de numéro de téléphone.
+mfa_description: L'authentification à deux facteurs vous permet de recevoir un code par email ou sms à chaque connexion pour valider votre identité et sécuriser votre compte. Si vous souhaitez activer cette authentification à deux facteurs, veuillez cocher la case ci-dessous et choisir la méthode par laquelle vous souhaitez recevoir votre code de connexion.
+mfa_maximum_retries_reach: Vous avez atteint le nombre maximum de renvois autorisés. Si vous ne parvenez pas à vous connecter, veuillez contacter le support.
+mfa_code_not_received: Vous n'avez pas reçu le code ?
+resend_mfa_code: Cliquez ici pour le renvoyer
