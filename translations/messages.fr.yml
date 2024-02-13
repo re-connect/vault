@@ -624,7 +624,7 @@ validate: Valider
 auth_code_sms_text: 'Voici votre code de connexion :  %code%'
 mfa: Authentification à deux facteurs
 mfa_enabled: Double authentification active
-mfa_method: "Recevoir le code par :"
+mfa_method: 'Recevoir le code par :'
 form_contains_error: Vos modifications n'ont pas été enregistrées. Veuillez vérifier les informations.
 no_email_address: Vous avez choisi de recevoir un code de connexion par email, mais vous n'avez pas renseigné d'adresse email.
 no_phone_number: Vous avez choisi de recevoir un code de connexion par SMS, mais vous n'avez pas renseigné de numéro de téléphone.
