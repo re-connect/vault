@@ -27,6 +27,7 @@ services:
             string $rosalieBasicToken: '%env(ROSALIE_BASIC_TOKEN)%'
             string $iOSAppLink: '%env(IOS_APP_LINK)%'
             string $androidAppLink: '%env(ANDROID_APP_LINK)%'
+            bool $appli2faEnabled: '%env(APPLI_2FA_ENABLED)%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name

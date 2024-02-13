@@ -19,6 +19,7 @@ readonly class Oauth2TokenIssuedSubscriber
         private UserRepository $repository,
         private EntityManagerInterface $em,
         private CodeGeneratorInterface $codeGenerator,
+        private bool $appli2faEnabled,
     ) {
     }
 
@@ -38,7 +39,7 @@ readonly class Oauth2TokenIssuedSubscriber
         }
         $this->dispatcher->dispatch(new UserEvent($user, !$user->hasLoginToday()));
 
-        $isMfaEnabled = $user->isMfaEnabled();
+        $isMfaEnabled = $user->isMfaEnabled() && $this->appli2faEnabled;
 
         if ($isMfaEnabled) {
             parse_str($event->getRequest()->getServerParams()['QUERY_STRING'], $queryParams);
