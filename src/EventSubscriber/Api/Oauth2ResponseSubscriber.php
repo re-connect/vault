@@ -19,8 +19,11 @@ use Symfony\Component\HttpFoundation\Response;
 #[AsEventListener(OAuth2Events::TOKEN_REQUEST_RESOLVE, 'validateUserToken', 2)]
 readonly class Oauth2ResponseSubscriber
 {
-    public function __construct(private UserRepository $repository, private EntityManagerInterface $em)
-    {
+    public function __construct(
+        private UserRepository $repository,
+        private EntityManagerInterface $em,
+        private bool $appli2faEnabled,
+    ) {
     }
 
     public function validateUserToken(TokenRequestResolveEvent $event): TokenRequestResolveEvent
@@ -32,7 +35,7 @@ readonly class Oauth2ResponseSubscriber
 
         /** @var ?User $user */
         $user = $this->repository->findByUsername($username);
-        if (!$user?->isMfaEnabled()) {
+        if (!$user?->isMfaEnabled() || !$this->appli2faEnabled) {
             return $event;
         }
 
