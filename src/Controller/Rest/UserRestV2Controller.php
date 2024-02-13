@@ -8,10 +8,12 @@ use App\Entity\Client;
 use App\Entity\User;
 use App\Exception\JsonResponseException;
 use App\Manager\RestManager;
+use App\ManagerV2\UserManager;
 use App\Provider\BeneficiaireProvider;
 use App\Provider\GestionnaireProvider;
 use App\Provider\MembreProvider;
 use App\Provider\UserProvider;
+use App\ServiceV2\Helper\PasswordHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Get;
@@ -154,5 +156,23 @@ class UserRestV2Controller extends REController
 
             return $jsonResponseException->getResponse();
         }
+    }
+
+    #[Route(path: 'user/password', name: 'update_my_password', methods: ['PATCH'])]
+    public function updatePassword(Request $request, UserManager $userManager, PasswordHelper $helper): JsonResponse
+    {
+        $user = $this->getUser();
+        $password = $request->request->get('password');
+        if (!($user instanceof User)) {
+            throw $this->createAccessDeniedException();
+        } elseif (!$password) {
+            return $this->json(['password' => 'missing'], Response::HTTP_BAD_REQUEST);
+        } elseif (!$helper->isStrongPassword($password)) {
+            return $this->json(['password' => 'weak'], Response::HTTP_BAD_REQUEST);
+        }
+
+        $userManager->updatePassword($user, $password);
+
+        return $this->json($user);
     }
 }
