@@ -6,10 +6,11 @@ use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
+use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
 use Zenstruck\Foundry\Test\Factories;
 
-class CgsTest extends AbstractControllerTest implements TestRouteInterface
+class CgsTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
     use Factories;
     private const URL = '/user/cgs';
@@ -78,27 +79,15 @@ class CgsTest extends AbstractControllerTest implements TestRouteInterface
         ];
     }
 
-    /** @dataProvider provideTestSubmitFormWithoutAcceptingTermsOfUse */
-    public function testSubmitFormWithoutAcceptingTermsOfUse(string $email): void
+    /** @dataProvider provideTestFormIsNotValid */
+    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, string $alternateSelector = null): void
     {
-        self::ensureKernelShutdown();
-        $client = static::createClient();
-        if ($email) {
-            $user = $this->getTestUserFromDb($email);
-            $client->loginUser($user);
-        }
-        $crawler = $client->request('GET', self::URL);
-        $form = $crawler->selectButton(self::$translator->trans('confirm'))->form();
-        $client->submit($form);
-
-        self::assertSelectorTextContains('div.alert', "Vous devez accepter les conditions d'utilisation");
-        $this->assertResponseStatusCodeSame(422);
-        $this->assertRouteSame('user_cgs');
+        $this->assertFormIsNotValid(self::URL, 'user_cgs', 'confirm', [], [['message' => 'Vous devez accepter les conditions d\'utilisation']], $email, 'div.alert');
     }
 
-    public function provideTestSubmitFormWithoutAcceptingTermsOfUse(): ?\Generator
+    public function provideTestFormIsNotValid(): ?\Generator
     {
-        yield 'Should return 422 status code with beneficiary' => [BeneficiaryFixture::BENEFICIARY_MAIL_FIRST_VISIT];
-        yield 'Should return 422 status code with pro' => [MemberFixture::MEMBER_FIRST_VISIT];
+        yield 'Should return 422 status code with beneficiary when cgs are not accepted' => [self::URL, 'user_cgs', 'confirm', [], [['message' => 'Vous devez accepter les conditions d\'utilisation']], BeneficiaryFixture::BENEFICIARY_MAIL_FIRST_VISIT, 'div.alert'];
+        yield 'Should return 422 status code with pro when cgs are not accepted' => [self::URL, 'user_cgs', 'confirm', [], [['message' => 'Vous devez accepter les conditions d\'utilisation']], MemberFixture::MEMBER_FIRST_VISIT, 'div.alert'];
     }
 }
