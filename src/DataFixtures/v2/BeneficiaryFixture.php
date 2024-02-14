@@ -30,6 +30,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
     public const BENEFICIARY_MAIL_IN_CREATION = 'v2_test_user_beneficiary_in_creation@mail.com';
     public const BENEFICIARY_PHONE = '0612345678';
     public const BENEFICIARY_PASSWORD_WEAK = 'v2_test_user_beneficiary_weak_password@mail.com';
+    public const BENEFICIARY_WITH_MFA_ENABLE = 'v2_test_user_beneficiary_with_mfa_enable@mail.com';
 
     public function load(ObjectManager $manager)
     {
@@ -51,6 +52,9 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
             ->setHasPasswordWithLatestPolicy(false)
             ->setPassword(UserFactory::WEAK_PASSWORD_HASH)
         );
+        $mfaEnabledUser = $this->getTestUser(self::BENEFICIARY_WITH_MFA_ENABLE);
+        $mfaEnabledUser->setMfaEnabled(true);
+        $this->createTestBeneficiary($mfaEnabledUser);
 
         $manager->flush();
     }
