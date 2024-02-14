@@ -4,9 +4,8 @@ namespace App\ControllerV2;
 
 use App\Entity\Centre;
 use App\Entity\User;
-use App\FormV2\CgsType;
 use App\FormV2\ChangePasswordFormType;
-use App\FormV2\MfaType;
+use App\FormV2\FirstVisitType;
 use App\FormV2\UserType;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
@@ -27,28 +26,23 @@ class UserController extends AbstractController
     #[Route(path: '/cgs', name: 'user_cgs', methods: ['GET', 'POST'])]
     public function cgs(Request $request, TranslatorInterface $translator, EntityManagerInterface $em): Response
     {
-        if (!$this->getUser()->isFirstVisit()) {
+        $user = $this->getUser();
+        if (!$user->isFirstVisit()) {
             return $this->redirectToRoute('redirect_user');
         }
 
-        $form = $this->createForm(CgsType::class)->handleRequest($request);
+        $form = $this->createForm(FirstVisitType::class, $user)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('accept')->getData()) {
-                $user = $this->getUser();
                 $user->setCgsAcceptedAt(new \DateTimeImmutable());
-                $em->flush();
-
-                if (!$user->isMfaEnabled()) {
-                    return $this->redirectToRoute('user_mfa');
-                }
                 $user->setFirstVisit();
                 $em->flush();
 
                 return $this->redirectToRoute('redirect_user');
             }
 
-            $form->addError(new FormError($translator->trans('you_must_accept_terms_of_use')));
+            $form->addError(new FormError($translator->trans('you_must_accept_terms_of_use', [], 'validators')));
         }
 
         return $this->render('v2/user/first_visit/cgs.html.twig', ['form' => $form]);
@@ -215,25 +209,5 @@ class UserController extends AbstractController
         }
 
         return $this->render('v2/user/request_personal_account_data.html.twig', ['hasAlreadyRequestedData' => $hasAlreadyRequestedData]);
-    }
-
-    #[Route(path: '/mfa', name: 'user_mfa', methods: ['GET', 'POST'])]
-    public function mfa(Request $request, EntityManagerInterface $em): Response
-    {
-        $user = $this->getUser();
-        if (!$user->isFirstVisit() || $user->isMfaEnabled()) {
-            return $this->redirectToRoute('redirect_user');
-        }
-
-        $form = $this->createForm(MfaType::class, $user)->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $user->setFirstVisit();
-            $em->flush();
-
-            return $this->redirectToRoute('redirect_user');
-        }
-
-        return $this->render('v2/user/first_visit/mfa.html.twig', ['form' => $form]);
     }
 }
