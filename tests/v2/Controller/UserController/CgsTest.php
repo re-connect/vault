@@ -82,7 +82,7 @@ class CgsTest extends AbstractControllerTest implements TestRouteInterface, Test
     /** @dataProvider provideTestFormIsNotValid */
     public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, string $alternateSelector = null): void
     {
-        $this->assertFormIsNotValid(self::URL, 'user_cgs', 'confirm', [], [['message' => 'Vous devez accepter les conditions d\'utilisation']], $email, 'div.alert');
+        $this->assertFormIsNotValid(self::URL, 'user_cgs', 'confirm', [], [['message' => 'Vous devez accepter les conditions d\'utilisation']], $email);
     }
 
     public function provideTestFormIsNotValid(): ?\Generator

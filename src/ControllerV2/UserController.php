@@ -34,15 +34,11 @@ class UserController extends AbstractController
         $form = $this->createForm(FirstVisitType::class, $user)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->get('accept')->getData()) {
-                $user->setCgsAcceptedAt(new \DateTimeImmutable());
-                $user->setFirstVisit();
-                $em->flush();
+            $user->setCgsAcceptedAt(new \DateTimeImmutable());
+            $user->setFirstVisit();
+            $em->flush();
 
-                return $this->redirectToRoute('redirect_user');
-            }
-
-            $form->addError(new FormError($translator->trans('you_must_accept_terms_of_use', [], 'validators')));
+            return $this->redirectToRoute('redirect_user');
         }
 
         return $this->render('v2/user/first_visit/cgs.html.twig', ['form' => $form]);
