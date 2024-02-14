@@ -553,7 +553,7 @@ user_do_not_have_account: "L'utilisateur ne possède pas de compte Reconnect ?"
 user_error_disabled_account: 'Votre compte est désactivé, veuillez contacter le support.'
 user_firstVisit_membre_intro: 'Cet outil a pour fonction première la sauvegarde d’informations personnelles des personnes accompagnées.'
 user_firstVisit_membre_intro_more: 'L’outil s’inscrit dans le cadre de l’accompagnement et pourra vous permettre d’assister les bénéficiaires dans la sauvegarde de leurs données.'
-user_firstVisit_membre_metaTitle: 'Bienvenue sur Reconnect le Cloud Solidaire'
+user_firstVisit_membre_metaTitle: 'Bienvenue sur Reconnect le Coffre Fort Numérique'
 user_firstVisit_membre_outro: 'L’équipe de Reconnect vous souhaite la bienvenue sur sa plateforme et une bonne utilisation.'
 user_firstVisit_rgpd: 'Lors de votre utilisation du coffre-fort numérique, Reconnect est amenée à traiter des données personnelles vous concernant. Dans ce cadre, vous pouvez accéder à vos données personnelles pour les rectifier, demander leur effacement ou exercer votre droit à la limitation du traitement de ses données. Pour exercer ces droits ou pour toute question sur le traitement de vos données personnelles, il est possible de contacter Reconnect à l’adresse <a href="mailto:%mailRGPD%">%mailRGPD%</a> ou par téléphone au %phoneNumber%.'
 user_firstVisit_rgpd_more: 'Pour plus d’informations sur le traitement de vos données personnelles, nous vous invitons également à consulter la Politique de Confidentialité du coffre-fort numérique accessible suivant ce lien: <a href="%linkRGPD%">%linkRGPD%</a>'
@@ -632,7 +632,6 @@ mfa_method: 'Recevoir le code par :'
 form_contains_error: Vos modifications n'ont pas été enregistrées. Veuillez vérifier les informations.
 no_email_address: Vous avez choisi de recevoir un code de connexion par email, mais vous n'avez pas renseigné d'adresse email.
 no_phone_number: Vous avez choisi de recevoir un code de connexion par SMS, mais vous n'avez pas renseigné de numéro de téléphone.
-mfa_description: L'authentification à deux facteurs vous permet de recevoir un code par email ou sms à chaque connexion pour valider votre identité et sécuriser votre compte. Si vous souhaitez activer cette authentification à deux facteurs, veuillez cocher la case ci-dessous et choisir la méthode par laquelle vous souhaitez recevoir votre code de connexion.
 mfa_maximum_retries_reach: Vous avez atteint le nombre maximum de renvois autorisés. Si vous ne parvenez pas à vous connecter, veuillez contacter le support.
 mfa_code_not_received: Vous n'avez pas reçu le code ?
 resend_mfa_code: Cliquez ici pour le renvoyer
