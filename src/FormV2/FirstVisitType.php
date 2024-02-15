@@ -25,7 +25,7 @@ class FirstVisitType extends AbstractType
         $builder
             ->add('accept', CheckboxType::class, [
                 'label' => 'accept_terms_of_use',
-                'constraints' => [new AcceptCGS()],
+                'constraints' => [new AcceptCGS(null, [$this->getUser()?->getValidationGroup()])],
                 'mapped' => false,
             ]);
         if (!$this->getUser()->isMfaEnabled()) {

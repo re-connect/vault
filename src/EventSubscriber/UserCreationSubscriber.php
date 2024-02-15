@@ -98,6 +98,9 @@ class UserCreationSubscriber
 
     private function initPassword(User $user): void
     {
+        if ($user->getPassword()) {
+            return;
+        }
         $plainPassword = $user->getPlainPassword() ?? $this->manager->getRandomPassword();
         $user->setPassword($this->hasher->hashPassword($user, $plainPassword));
     }

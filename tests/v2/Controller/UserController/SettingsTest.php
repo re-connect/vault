@@ -25,6 +25,8 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
         'user[secretQuestion][questionSecreteChoice]' => 'Quel est le prénom de la mère du bénéficiaire ?',
         'user[secretQuestion][autreQuestionSecrete]' => '',
         'user[secretQuestion][reponseSecrete]' => 'Maman',
+        'user[mfaEnabled]' => false,
+        'user[mfaMethod]' => 'email',
     ];
 
     public function provideTestRoute(): ?\Generator
@@ -40,6 +42,16 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
             self::URL,
             'submit',
            self::FORM_VALUES,
+            BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS_EDIT,
+            self::URL,
+        ];
+
+        $formValues = self::FORM_VALUES;
+        $formValues['user[mfaEnabled]'] = true;
+        yield 'Should refresh when form is correct with mfa enabled' => [
+            self::URL,
+            'submit',
+            $formValues,
             BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS_EDIT,
             self::URL,
         ];
@@ -108,6 +120,44 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
             [
                 [
                     'message' => 'Ce numéro de téléphone est déjà utilisé',
+                    'params' => null,
+                ],
+            ],
+            BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS,
+            'div.invalid-feedback',
+        ];
+
+        $values = self::FORM_VALUES;
+        $values['user[email]'] = null;
+        $values['user[mfaEnabled]'] = true;
+        $values['user[mfaMethod]'] = 'email';
+        yield 'Should return an error if trying to enable email 2FA with no email' => [
+            self::URL,
+            'user_settings',
+            'submit',
+            $values,
+            [
+                [
+                    'message' => 'Vous avez choisi de recevoir un code de connexion par email, mais vous n\'avez pas renseigné d\'adresse email.',
+                    'params' => null,
+                ],
+            ],
+            BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS,
+            'div.invalid-feedback',
+        ];
+
+        $values = self::FORM_VALUES;
+        $values['user[telephone]'] = null;
+        $values['user[mfaEnabled]'] = true;
+        $values['user[mfaMethod]'] = 'sms';
+        yield 'Should return an error if trying to enable sms 2FA with no telephone number' => [
+            self::URL,
+            'user_settings',
+            'submit',
+            $values,
+            [
+                [
+                    'message' => 'Vous avez choisi de recevoir un code de connexion par SMS, mais vous n\'avez pas renseigné de numéro de téléphone.',
                     'params' => null,
                 ],
             ],

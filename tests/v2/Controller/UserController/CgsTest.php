@@ -77,17 +77,32 @@ class CgsTest extends AbstractControllerTest implements TestRouteInterface, Test
             BeneficiaryFixture::BENEFICIARY_MAIL_FIRST_VISIT,
             '/user/redirect-user/',
         ];
+        $values = self::FORM_VALUES;
+        $values['first_visit[mfaEnabled]'] = true;
+        yield 'Should redirect when form is correct for pro with mfa enabled' => [
+            self::URL,
+            'confirm',
+            $values,
+            BeneficiaryFixture::BENEFICIARY_MAIL_FIRST_VISIT,
+            '/user/redirect-user/',
+        ];
     }
 
     /** @dataProvider provideTestFormIsNotValid */
     public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, string $alternateSelector = null): void
     {
-        $this->assertFormIsNotValid(self::URL, 'user_cgs', 'confirm', [], [['message' => 'Vous devez accepter les conditions d\'utilisation']], $email, 'div.alert');
+        $this->assertFormIsNotValid(self::URL, 'user_cgs', 'confirm', $values, $errors, $email, $alternateSelector);
     }
 
     public function provideTestFormIsNotValid(): ?\Generator
     {
-        yield 'Should return 422 status code with beneficiary when cgs are not accepted' => [self::URL, 'user_cgs', 'confirm', [], [['message' => 'Vous devez accepter les conditions d\'utilisation']], BeneficiaryFixture::BENEFICIARY_MAIL_FIRST_VISIT, 'div.alert'];
-        yield 'Should return 422 status code with pro when cgs are not accepted' => [self::URL, 'user_cgs', 'confirm', [], [['message' => 'Vous devez accepter les conditions d\'utilisation']], MemberFixture::MEMBER_FIRST_VISIT, 'div.alert'];
+        yield 'Should return 422 status code with beneficiary when cgs are not accepted' => [self::URL, 'user_cgs', 'confirm', [], [['message' => 'Vous devez accepter les conditions d\'utilisation']], BeneficiaryFixture::BENEFICIARY_MAIL_FIRST_VISIT];
+        yield 'Should return 422 status code with pro when cgs are not accepted' => [self::URL, 'user_cgs', 'confirm', [], [['message' => 'Vous devez accepter les conditions d\'utilisation']], MemberFixture::MEMBER_FIRST_VISIT];
+        $values = self::FORM_VALUES;
+        $values['first_visit[accept]'] = true;
+        $values['first_visit[mfaEnabled]'] = true;
+        $values['first_visit[mfaMethod]'] = 'sms';
+        yield 'Should return 422 status code with pro when choosing sms 2FA without telephone' => [self::URL, 'user_cgs', 'confirm', $values, [['message' => 'Vous avez choisi de recevoir un code de connexion par SMS, mais vous n\'avez pas renseigné de numéro de téléphone.']], MemberFixture::MEMBER_FIRST_VISIT];
+        yield 'Should return 422 status code with beneficiary when choosing sms 2FA without telephone' => [self::URL, 'user_cgs', 'confirm', $values, [['message' => 'Vous avez choisi de recevoir un code de connexion par SMS, mais vous n\'avez pas renseigné de numéro de téléphone.']], BeneficiaryFixture::BENEFICIARY_MAIL_FIRST_VISIT];
     }
 }

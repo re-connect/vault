@@ -2,7 +2,6 @@
 
 namespace App\Tests\Factory;
 
-use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Zenstruck\Foundry\ModelFactory;
@@ -30,6 +29,11 @@ use Zenstruck\Foundry\RepositoryProxy;
  */
 final class UserFactory extends ModelFactory
 {
+    public const WEAK_PASSWORD_HASH = '$2y$13$1e.Kr4Ru31eHQBKU3d6BY..EIerE6/IYA5K/JxMjGwBYb5dL7B6eG'; // = 'password'
+    public const WEAK_PASSWORD_CLEAR = 'password';
+    public const STRONG_PASSWORD_HASH = '$2y$13$te1UUDYPXELYC9jcVmil0.XQcmPValnWUN10VqDAJsh5zpnkiT9fm'; // = 'StrongPassword1!'
+    public const STRONG_PASSWORD_CLEAR = 'StrongPassword1!';
+
     public function __construct()
     {
         parent::__construct();
@@ -43,14 +47,15 @@ final class UserFactory extends ModelFactory
             'enabled' => true,
             'disabledBy' => null,
             'disabledAt' => null,
-            'password' => BeneficiaryFixture::STRONG_PASSWORD_HASH,
+            'plainPassword' => self::STRONG_PASSWORD_CLEAR,
+            'password' => self::STRONG_PASSWORD_HASH,
             'roles' => [],
             'firstVisit' => false,
             'bFirstMobileConnexion' => self::faker()->boolean(),
             'bActif' => true,
-            'typeUser' => 'ROLE_BENEFICIAIRE',
+            'typeUser' => User::USER_TYPE_BENEFICIAIRE,
             'lastIp' => self::faker()->text(),
-            'lastLang' => self::faker()->languageCode(),
+            'lastLang' => 'fr',
             'createdAt' => new \DateTime('now'),
             'updatedAt' => new \DateTime('now'),
             'test' => self::faker()->boolean(),
