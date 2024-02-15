@@ -45,9 +45,9 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_SETTINGS));
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_SETTINGS_EDIT));
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_SETTINGS_DELETE));
-        $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_FIRST_VISIT)->setFirstVisit(true));
+        $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_FIRST_VISIT, ['telephone' => null])->setFirstVisit(true));
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_NO_SECRET_QUESTION), ['questionSecrete' => null]);
-        $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_IN_CREATION), [], [], true);
+        $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_MAIL_IN_CREATION, ['telephone' => null]), [], [], true);
         $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_PASSWORD_WEAK)
             ->setHasPasswordWithLatestPolicy(false)
             ->setPassword(UserFactory::WEAK_PASSWORD_HASH)
@@ -97,11 +97,13 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
         $user->addCreator($creatorUser);
     }
 
-    public function getTestUser(string $email): User
+    public function getTestUser(string $email, array $attributes = []): User
     {
         $username = strstr($email, '@', true);
+        $attributes['username'] = $username;
+        $attributes['email'] = $email;
 
-        return UserFactory::createOne(['username' => $username, 'email' => $email])->object();
+        return UserFactory::createOne($attributes)->object();
     }
 
     /** @return string[] */

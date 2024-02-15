@@ -63,7 +63,7 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
             ],
         );
         $this->createMember(['email' => self::MEMBER_MAIL_NO_RELAY_NO_PERMISSION], [], false, false);
-        $this->createMember(['email' => self::MEMBER_FIRST_VISIT, 'firstVisit' => true], [], false, false);
+        $this->createMember(['email' => self::MEMBER_FIRST_VISIT, 'firstVisit' => true, 'telephone' => null], [], false, false);
         $this->createMember(['email' => self::MEMBER_FIRST_VISIT_WITH_MFA, 'firstVisit' => true, 'mfaEnabled' => true], [], false, false);
         $this->createMember(['email' => self::MEMBER_DISABLED, 'enabled' => false]);
         $this->createMember([
