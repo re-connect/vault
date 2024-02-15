@@ -4,7 +4,6 @@ namespace App\Tests\v2\Controller\SecurityController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
-use App\Repository\UserRepository;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -22,6 +21,7 @@ class MfaTest extends AbstractControllerTest
     public function testShouldRedirectToMfaAfterLogin(string $email): void
     {
         $this->submitLoginForm($email);
+        $this->assertEmailCount(1);
 
         $this->assertResponseStatusCodeSame(200);
         $this->assertRouteSame(self::MFA_ROUTE);
@@ -29,14 +29,15 @@ class MfaTest extends AbstractControllerTest
 
     public function provideTestShouldRedirectToMfaAfterLogin(): \Generator
     {
-        yield 'Should redirect to 2FA form as Member' => [MemberFixture::MEMBER_WITH_MFA_ENABLE];
-        yield 'Should redirect to 2FA form as Beneficiary' => [BeneficiaryFixture::BENEFICIARY_WITH_MFA_ENABLE];
+        yield 'Should redirect to 2FA form as Member with mfa enabled' => [MemberFixture::MEMBER_WITH_MFA_ENABLE];
+        yield 'Should redirect to 2FA form as Beneficiary with mfa enabled' => [BeneficiaryFixture::BENEFICIARY_WITH_MFA_ENABLE];
     }
 
     /** @dataProvider provideTestShouldNotRedirectToMfaAfterLogin */
     public function testShouldNotRedirectToMfaAfterLogin(string $email, string $route): void
     {
         $this->submitLoginForm($email);
+        $this->assertEmailCount(0);
 
         $this->assertResponseStatusCodeSame(200);
         $this->assertRouteSame($route);
@@ -44,41 +45,77 @@ class MfaTest extends AbstractControllerTest
 
     public function provideTestShouldNotRedirectToMfaAfterLogin(): \Generator
     {
-        yield 'Should redirect to beneficiaries list as Member' => [MemberFixture::MEMBER_MAIL_WITH_RELAYS, 'list_beneficiaries'];
-        yield 'Should redirect to vault home as Beneficiary' => [BeneficiaryFixture::BENEFICIARY_MAIL, 'beneficiary_home'];
+        yield 'Should redirect to beneficiaries list as Member with mfa disable' => [MemberFixture::MEMBER_MAIL_WITH_RELAYS, 'list_beneficiaries'];
+        yield 'Should redirect to vault home as Beneficiary with mfa disable' => [BeneficiaryFixture::BENEFICIARY_MAIL, 'beneficiary_home'];
     }
 
     public function testShouldNotValidFormIfAuthCodeIsIncorrect(): void
     {
         $this->submitLoginForm(MemberFixture::MEMBER_WITH_MFA_ENABLE);
+        $this->assertEmailCount(1);
         $this->assertRouteSame(self::MFA_ROUTE);
 
-        $form = $this->crawler->selectButton('Valider')->form();
-        $form->setValues([
-            '_auth_code' => 'abcd',
-        ]);
-        $this->client->submit($form);
+        $this->submitMfaForm('abcd');
 
         $this->assertRouteSame(self::MFA_ROUTE);
         $this->assertSelectorTextContains('div.alert', 'Le code est incorrect');
     }
 
-    public function testShouldValidFormIfAuthCodeIsIncorrect(): void
+    public function testShouldValidFormIfAuthCodeIsCorrect(): void
     {
         $this->submitLoginForm(MemberFixture::MEMBER_WITH_MFA_ENABLE);
+        $this->assertEmailCount(1);
         $this->assertRouteSame(self::MFA_ROUTE);
 
-        /** @var UserRepository $repo */
-        $repo = self::getContainer()->get(UserRepository::class);
-        $user = $repo->findOneBy(['email' => MemberFixture::MEMBER_WITH_MFA_ENABLE]);
-
-        $form = $this->crawler->selectButton('Valider')->form();
-        $form->setValues([
-            '_auth_code' => $user->getEmailAuthCode(),
-        ]);
-        $this->client->submit($form);
+        $user = $this->getTestUserFromDb(MemberFixture::MEMBER_WITH_MFA_ENABLE);
+        $this->submitMfaForm($user->getEmailAuthCode());
 
         $this->assertRouteSame('affiliate_beneficiary_home');
+    }
+
+    public function testResendAuthCode(): void
+    {
+        $this->submitLoginForm(MemberFixture::MEMBER_WITH_MFA_ENABLE);
+        $this->assertEmailCount(1);
+        $this->assertRouteSame(self::MFA_ROUTE);
+        $this->client->followRedirects(false); // no redirects so we can assert email count when clicking link
+
+        // Save auth code so we can assert a new one has been generated
+        $user = $this->getTestUserFromDb(MemberFixture::MEMBER_WITH_MFA_ENABLE);
+        $oldAuthCode = $user->getEmailAuthCode();
+
+        $this->client->clickLink('Cliquez ici pour le renvoyer');
+        $this->assertEmailCount(1);
+
+        $this->client->request('GET', '/2fa');
+        $this->assertRouteSame(self::MFA_ROUTE);
+        $this->client->followRedirects();
+
+        // Assert that the old code no longer works
+        $this->submitMfaForm($oldAuthCode);
+
+        $this->assertRouteSame(self::MFA_ROUTE);
+        $this->assertSelectorTextContains('div.alert', 'Le code est incorrect');
+        $user = $this->getTestUserFromDb(MemberFixture::MEMBER_WITH_MFA_ENABLE);
+
+        // Assert that the newly received code is working
+        $this->submitMfaForm($user->getEmailAuthCode());
+
+        $this->assertRouteSame('affiliate_beneficiary_home');
+    }
+
+    public function testResendAuthCodeLimit(): void
+    {
+        $this->submitLoginForm(MemberFixture::MEMBER_WITH_MFA_ENABLE);
+        $this->assertEmailCount(1);
+        $this->assertRouteSame(self::MFA_ROUTE);
+        // Click resend link 3 times
+        for ($i = 0; $i <= 3; ++$i) {
+            $this->client->clickLink('Cliquez ici pour le renvoyer');
+        }
+
+        $this->assertRouteSame(self::MFA_ROUTE);
+        $this->assertSelectorTextContains('div.alert', 'Vous avez atteint le nombre maximum de renvois autorisés. Si vous ne parvenez pas à vous connecter, veuillez contacter le support.');
     }
 
     private function submitLoginForm(string $email): void
@@ -94,5 +131,14 @@ class MfaTest extends AbstractControllerTest
             '_password' => UserFactory::STRONG_PASSWORD_CLEAR,
         ]);
         $this->crawler = $this->client->submit($form);
+    }
+
+    private function submitMfaForm(string $authCode): void
+    {
+        $form = $this->crawler->selectButton('Valider')->form();
+        $form->setValues([
+            '_auth_code' => $authCode,
+        ]);
+        $this->client->submit($form);
     }
 }
