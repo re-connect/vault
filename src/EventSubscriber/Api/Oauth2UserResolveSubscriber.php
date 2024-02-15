@@ -2,6 +2,7 @@
 
 namespace App\EventSubscriber\Api;
 
+use App\Domain\PasswordStrength\WeakPasswordUpgrader;
 use App\Repository\UserRepository;
 use League\Bundle\OAuth2ServerBundle\Event\UserResolveEvent;
 use League\Bundle\OAuth2ServerBundle\OAuth2Events;
@@ -15,6 +16,7 @@ readonly class Oauth2UserResolveSubscriber
     public function __construct(
         private UserPasswordHasherInterface $hasher,
         private UserRepository $repository,
+        private WeakPasswordUpgrader $weakPasswordUpgrader,
     ) {
     }
 
@@ -23,6 +25,8 @@ readonly class Oauth2UserResolveSubscriber
         $user = $this->repository->loadUserByIdentifier($event->getUsername());
         $isUserPasswordInvalid = $user instanceof LegacyPasswordAuthenticatedUserInterface && !$this->hasher->isPasswordValid($user, $event->getPassword());
         $event->setUser($isUserPasswordInvalid ? null : $user);
+
+        $this->weakPasswordUpgrader->markPasswordCompliant($user, $event->getPassword());
 
         return $event;
     }

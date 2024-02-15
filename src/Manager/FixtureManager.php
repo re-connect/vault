@@ -52,7 +52,7 @@ class FixtureManager
             } while (null !== $this->em->getRepository(User::class)->findOneByUsername($username));
         }
 
-        $password = 'password';
+        $password = 'Password1';
         $user = (new User())
             ->setUsername($username)
             ->setPlainPassword($password)
@@ -76,7 +76,7 @@ class FixtureManager
             return $alreadyExistingUser;
         }
 
-        $password = 'password';
+        $password = 'Password1';
         $user = (new User())
             ->setUsername($username)
             ->setPlainPassword($password)
@@ -129,7 +129,7 @@ class FixtureManager
 
     public function getNewRandomAssociation(): Association
     {
-        $password = 'password';
+        $password = 'Password1';
         $userAssociation = (new User())
             ->setUsername($this->faker->userName())
             ->setPrenom($this->faker->name())

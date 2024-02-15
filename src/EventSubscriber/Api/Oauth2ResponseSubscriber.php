@@ -2,10 +2,8 @@
 
 namespace App\EventSubscriber\Api;
 
-use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use http\Exception\InvalidArgumentException;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer\Key\InMemory;
 use Lcobucci\JWT\Signer\Rsa\Sha256;
@@ -33,9 +31,16 @@ readonly class Oauth2ResponseSubscriber
             return $event;
         }
 
-        /** @var ?User $user */
         $user = $this->repository->findByUsername($username);
-        if (!$user?->isMfaEnabled() || !$this->appli2faEnabled) {
+        if (!$user) {
+            return $event;
+        }
+
+        if (!$user->hasPasswordWithLatestPolicy()) {
+            $event->setResponse(new JsonResponse(['login' => 'success', 'weak_password' => true]));
+        }
+
+        if (!$user->isMfaEnabled() || !$this->appli2faEnabled) {
             return $event;
         }
 
@@ -70,7 +75,7 @@ readonly class Oauth2ResponseSubscriber
     public function extractUserIdFromJwt(string $jwt): string
     {
         if ('' === $jwt) {
-            throw new InvalidArgumentException('JWT can not be empty');
+            throw new \InvalidArgumentException('JWT can not be empty');
         }
 
         /** @var UnencryptedToken $token */

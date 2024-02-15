@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use App\Domain\MFA\MfaCodeSender;
 use App\Entity\User;
 use App\Security\VoterV2\BeneficiaryVoter;
-use App\ServiceV2\AuthCodeGenerator;
 use App\ServiceV2\GdprService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -66,7 +66,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/resend-auth-code', name: 'resend_auth_code', methods: ['GET'])]
-    public function resendAuthCode(AuthCodeGenerator $authCodeGenerator): RedirectResponse
+    public function resendAuthCode(MfaCodeSender $mfaCodeSender): RedirectResponse
     {
         /** @var User $user */
         $user = $this->getUser();
@@ -81,7 +81,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('2fa_login');
         }
 
-        $authCodeGenerator->generateAndSendToUser($user);
+        $mfaCodeSender->sendCode($user);
 
         return $this->redirectToRoute('2fa_login');
     }
