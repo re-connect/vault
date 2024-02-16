@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SecurityController extends AbstractController
 {
-    private const MFA_MAX_RETRIES = 3;
+    public const MFA_MAX_RETRIES = 3;
 
     public function __construct(private readonly GdprService $gdprService)
     {

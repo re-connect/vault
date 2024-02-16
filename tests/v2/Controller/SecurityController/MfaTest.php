@@ -2,6 +2,7 @@
 
 namespace App\Tests\v2\Controller\SecurityController;
 
+use App\Controller\SecurityController;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\UserFactory;
@@ -110,7 +111,7 @@ class MfaTest extends AbstractControllerTest
         $this->assertEmailCount(1);
         $this->assertRouteSame(self::MFA_ROUTE);
         // Click resend link 3 times
-        for ($i = 0; $i <= 3; ++$i) {
+        for ($i = 0; $i <= SecurityController::MFA_MAX_RETRIES; ++$i) {
             $this->client->clickLink('Cliquez ici pour le renvoyer');
         }
 
