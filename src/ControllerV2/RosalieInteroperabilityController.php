@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class RosalieInteroperabilityController extends AbstractController
@@ -30,6 +31,9 @@ class RosalieInteroperabilityController extends AbstractController
     #[Route('/beneficiaries/{id}/add-si-siao-number', name: 'add_si_siao_number')]
     public function addSiSiaoNumber(Request $request, Beneficiaire $beneficiary): Response
     {
+        if ($beneficiary->hasRosalieExternalLink()) {
+            throw new AccessDeniedException();
+        }
         $beneficiaryCreationProcess = $beneficiary->getCreationProcess();
 
         $redirection = $beneficiaryCreationProcess?->getIsCreating()
