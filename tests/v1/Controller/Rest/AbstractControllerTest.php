@@ -74,7 +74,7 @@ abstract class AbstractControllerTest extends WebTestCase
             'client_id' => $client->getIdentifier(),
             'client_secret' => $client->getSecret(),
             'username' => $member->getUser()->getUsername(),
-            'password' => 'password',
+            'password' => 'Password1',
         ]);
 
         $this->assertResponseStatusCodeSame(200);
