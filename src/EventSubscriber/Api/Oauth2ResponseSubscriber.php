@@ -36,11 +36,15 @@ readonly class Oauth2ResponseSubscriber
             return $event;
         }
 
+        if (!$this->appli2faEnabled) {
+            return $event;
+        }
+
         if (!$user->hasPasswordWithLatestPolicy()) {
             $event->setResponse(new JsonResponse(['login' => 'success', 'weak_password' => true]));
         }
 
-        if (!$user->isMfaEnabled() || !$this->appli2faEnabled) {
+        if (!$user->isMfaEnabled()) {
             return $event;
         }
 
