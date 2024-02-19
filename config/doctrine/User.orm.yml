@@ -156,6 +156,26 @@ App\Entity\User:
         personalAccountDataRequestedAt:
             type: datetime_immutable
             nullable: true
+        authCode:
+            type: string
+            nullable: true
+        mfaEnabled:
+            type: boolean
+            nullable: true
+        mfaPending:
+            type: boolean
+            nullable: true
+        mfaValid:
+            type: boolean
+            nullable: true
+        mfaMethod:
+            type: string
+            length: '255'
+            nullable: true
+        mfaRetryCount:
+            type: integer
+            nullable: true
+            default: 0
     oneToOne:
         subjectAdministrateur:
             targetEntity: App\Entity\Administrateur

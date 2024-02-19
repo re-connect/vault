@@ -4,8 +4,8 @@ namespace App\ControllerV2;
 
 use App\Entity\Centre;
 use App\Entity\User;
-use App\FormV2\CgsType;
 use App\FormV2\ChangePasswordFormType;
+use App\FormV2\FirstVisitType;
 use App\FormV2\UserType;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
@@ -26,28 +26,22 @@ class UserController extends AbstractController
     #[Route(path: '/cgs', name: 'user_cgs', methods: ['GET', 'POST'])]
     public function cgs(Request $request, TranslatorInterface $translator, EntityManagerInterface $em): Response
     {
-        if (!$this->getUser()->isFirstVisit()) {
+        $user = $this->getUser();
+        if (!$user->isFirstVisit()) {
             return $this->redirectToRoute('redirect_user');
         }
 
-        $form = $this->createForm(CgsType::class)->handleRequest($request);
+        $form = $this->createForm(FirstVisitType::class, $user)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->get('accept')->getData()) {
-                $this->getUser()
-                    ->setFirstVisit()
-                    ->setCgsAcceptedAt(new \DateTimeImmutable());
-                $em->flush();
+            $user->setCgsAcceptedAt(new \DateTimeImmutable());
+            $user->setFirstVisit();
+            $em->flush();
 
-                return $this->redirect($this->generateUrl('redirect_user'));
-            }
-
-            $form->addError(new FormError($translator->trans('you_must_accept_terms_of_use')));
+            return $this->redirectToRoute('redirect_user');
         }
 
-        return $this->render('v2/user/first_visit/cgs.html.twig', [
-            'form' => $form,
-        ]);
+        return $this->render('v2/user/first_visit/cgs.html.twig', ['form' => $form]);
     }
 
     #[Route(path: '/first-visit', name: 'user_first_visit', methods: ['GET'])]
@@ -76,13 +70,17 @@ class UserController extends AbstractController
             'checkCurrentPassword' => true,
         ])->handleRequest($request);
 
-        if ($userForm->isSubmitted() && $userForm->isValid()) {
-            $usernameWillBeUpdated = $userManager->getUniqueUsername($user) !== $user->getUsername();
-            $em->flush();
-            $message = sprintf('settings_saved_successfully%s', $usernameWillBeUpdated ? '_username_updated' : '');
-            $this->addFlash('success', $message);
+        if ($userForm->isSubmitted()) {
+            if ($userForm->isValid()) {
+                $usernameWillBeUpdated = $userManager->getUniqueUsername($user) !== $user->getUsername();
+                $em->flush();
+                $message = sprintf('settings_saved_successfully%s', $usernameWillBeUpdated ? '_username_updated' : '');
+                $this->addFlash('success', $message);
 
-            return $this->redirectToRoute('user_settings');
+                return $this->redirectToRoute('user_settings');
+            }
+
+            $this->addFlash('error', 'form_contains_error');
         }
 
         if ($passwordForm->isSubmitted()) {

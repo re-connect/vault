@@ -2,35 +2,7 @@
 
 namespace App\Tests\v1\Controller\Rest;
 
-use App\DataFixtures\ORM\BeneficiaireFixture;
-use App\DataFixtures\ORM\ClientFixtures;
-use App\DataFixtures\ORM\GestionnaireAssociationCentreFixture;
-use App\DataFixtures\ORM\MembreFixture;
-use App\DataFixtures\ORM\TypeCentreFixture;
-use App\Entity\AccessToken;
-use App\Entity\Administrateur;
-use App\Entity\Association;
-use App\Entity\Beneficiaire;
-use App\Entity\BeneficiaireCentre;
-use App\Entity\Centre;
-use App\Entity\Client as OldClient;
-use App\Entity\ClientCentre;
-use App\Entity\ClientEntity;
-use App\Entity\Contact;
-use App\Entity\Creator;
-use App\Entity\Document;
-use App\Entity\Dossier;
-use App\Entity\Evenement;
-use App\Entity\Gestionnaire;
 use App\Entity\Membre;
-use App\Entity\MembreCentre;
-use App\Entity\Note;
-use App\Entity\RefreshToken;
-use App\Entity\SharedDocument;
-use App\Entity\TypeCentre;
-use App\Entity\User;
-use App\Manager\FixtureManager;
-use App\Manager\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use League\Bundle\OAuth2ServerBundle\Model\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -50,39 +22,6 @@ abstract class AbstractControllerTest extends WebTestCase
         $this->client = static::createClient();
         $container = self::getContainer();
         $this->em = $container->get(EntityManagerInterface::class);
-        /*$fixturesManager = $container->get(FixtureManager::class);
-        $userManager = $container->get(UserManager::class);
-
-        $this->truncateTables([
-            ClientEntity::class,
-            Creator::class,
-            Note::class,
-            Evenement::class,
-            Contact::class,
-            RefreshToken::class,
-            SharedDocument::class,
-            Document::class,
-            Dossier::class,
-            MembreCentre::class,
-            BeneficiaireCentre::class,
-            Centre::class,
-            TypeCentre::class,
-            Administrateur::class,
-            Gestionnaire::class,
-            Association::class,
-            Creator::class,
-            AccessToken::class,
-            OldClient::class,
-            ClientCentre::class,
-            Beneficiaire::class,
-            Membre::class,
-            User::class,
-        ]);
-        (new ClientFixtures())->load($this->em);
-        (new TypeCentreFixture())->load($this->em);
-        (new GestionnaireAssociationCentreFixture($fixturesManager))->load($this->em);
-        (new BeneficiaireFixture($fixturesManager, $userManager))->load($this->em);
-        (new MembreFixture($fixturesManager))->load($this->em);*/
     }
 
     public function generateUrl($url): string
@@ -135,7 +74,7 @@ abstract class AbstractControllerTest extends WebTestCase
             'client_id' => $client->getIdentifier(),
             'client_secret' => $client->getSecret(),
             'username' => $member->getUser()->getUsername(),
-            'password' => 'password',
+            'password' => 'Password1',
         ]);
 
         $this->assertResponseStatusCodeSame(200);

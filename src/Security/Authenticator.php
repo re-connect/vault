@@ -2,9 +2,9 @@
 
 namespace App\Security;
 
+use App\Domain\PasswordStrength\WeakPasswordUpgrader;
 use App\Entity\User;
 use App\Event\UserEvent;
-use App\ServiceV2\Helper\PasswordHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +24,7 @@ class Authenticator extends AbstractLoginFormAuthenticator
         private readonly RouterInterface $router,
         private readonly EntityManagerInterface $em,
         private readonly EventDispatcherInterface $eventDispatcher,
-        private readonly PasswordHelper $passwordHelper,
+        private readonly WeakPasswordUpgrader $weakPasswordUpgrader,
     ) {
     }
 
@@ -52,9 +52,8 @@ class Authenticator extends AbstractLoginFormAuthenticator
         $previousLogin = $user->getDerniereConnexionAt()?->format('Y-m-d');
         $now = new \DateTime();
         $user->setLastIp($request->getClientIp())->setDerniereConnexionAt($now);
-        if (!$user->hasPasswordWithLatestPolicy() && $this->passwordHelper->isStrongPassword($request->request->get('_password'))) {
-            $user->setHasPasswordWithLatestPolicy(true);
-        }
+
+        $this->weakPasswordUpgrader->markPasswordCompliant($user, $request->request->get('_password'));
         $this->em->persist($user);
         $this->em->flush();
 

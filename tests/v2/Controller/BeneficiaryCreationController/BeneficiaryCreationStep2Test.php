@@ -14,6 +14,8 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
     private const URL = '/beneficiary/create/2/%s';
     private const FORM_VALUES = [
         'create_beneficiary[password]' => 'Password1',
+        'create_beneficiary[mfaEnabled]' => false,
+        'create_beneficiary[mfaMethod]' => 'email',
     ];
 
     /** @dataProvider provideTestRoute */
@@ -57,6 +59,17 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
             self::URL,
             'submit',
             self::FORM_VALUES,
+            MemberFixture::MEMBER_MAIL,
+            '/beneficiary/create/3/%s',
+        ];
+
+        $values = self::FORM_VALUES;
+        $values['create_beneficiary[mfaEnabled]'] = true;
+        $values['create_beneficiary[mfaMethod]'] = 'email';
+        yield 'Should redirect to step 2 when form is correct with mfa enabled' => [
+            self::URL,
+            'submit',
+            $values,
             MemberFixture::MEMBER_MAIL,
             '/beneficiary/create/3/%s',
         ];
@@ -126,6 +139,24 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
                 ],
                 [
                     'message' => 'password_criterion_nonAlphabetic',
+                    'params' => null,
+                ],
+            ],
+            MemberFixture::MEMBER_MAIL,
+            'div.invalid-feedback',
+        ];
+
+        $values = self::FORM_VALUES;
+        $values['create_beneficiary[mfaEnabled]'] = true;
+        $values['create_beneficiary[mfaMethod]'] = 'sms';
+        yield 'Should return an error when enabling sms 2fa with no phone' => [
+            self::URL,
+            'create_beneficiary',
+            'submit',
+            $values,
+            [
+                [
+                    'message' => 'Vous avez choisi de recevoir un code de connexion par SMS, mais vous n\'avez pas renseigné de numéro de téléphone.',
                     'params' => null,
                 ],
             ],
