@@ -4,6 +4,7 @@ namespace App\Form\Type;
 
 use App\Entity\User;
 use App\EventSubscriber\AddFormattedPhoneSubscriber;
+use App\FormV2\Field\PasswordField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -20,8 +21,7 @@ class UserType extends AbstractType
             ->add('plainPassword', PasswordType::class, [
                 'label' => 'password',
                 'attr' => [
-                    'data-password-strength-target' => 'input',
-                    'data-action' => 'password-strength#check',
+                    ...PasswordField::PASSWORD_STRENGTH_CONTROLLER_DATA_ATTRIBUTES,
                     'autocomplete' => 'new-password',
                 ],
             ])
