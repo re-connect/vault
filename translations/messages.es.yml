@@ -61,3 +61,5 @@ mfa_description: La autenticación de dos factores te permite recibir un código
 mfa_maximum_retries_reach: Has alcanzado el número máximo de reintentos permitidos. Si no puedes iniciar sesión, por favor contáctanos por el chat.
 mfa_code_not_received: ¿No recibiste el código?
 resend_mfa_code: Haz clic aquí para reenviarlo.
+actual_password: Su contraseña actual
+passwords_mismatch: Las contraseñas no coinciden
