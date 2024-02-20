@@ -5,6 +5,7 @@ namespace App\FormV2\UserCreation;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Beneficiaire;
 use App\Entity\User;
+use App\FormV2\Field\PasswordField;
 use App\FormV2\UserType;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -64,6 +65,7 @@ class CreateBeneficiaryType extends AbstractType
             ->add('password', TextType::class, [
                 'property_path' => 'user.plainPassword',
                 'label' => 'password',
+                'attr' => PasswordField::PASSWORD_STRENGTH_CONTROLLER_DATA_ATTRIBUTES,
             ])
             ->add('mfaEnabled', CheckboxType::class, [
                 'property_path' => 'user.mfaEnabled',
