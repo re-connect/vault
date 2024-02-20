@@ -387,3 +387,4 @@ mfa_description: Die Zwei-Faktor-Authentifizierung ermöglicht es Ihnen, bei jed
 mfa_maximum_retries_reach: Sie haben die maximale Anzahl an erlaubten Wiederholungen erreicht. Wenn Sie sich nicht anmelden können, wenden Sie sich bitte an den Support.
 mfa_code_not_received: Haben Sie den Code nicht erhalten?
 resend_mfa_code: Klicken Sie hier, um ihn erneut zu senden.
+passwords_mismatch: Die beiden Passwörter stimmen nicht überein
