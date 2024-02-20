@@ -2,6 +2,7 @@
 
 namespace App\FormV2;
 
+use App\FormV2\Field\PasswordField;
 use App\Validator\Constraints\PasswordCriteria;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -28,9 +29,8 @@ class ChangePasswordFormType extends AbstractType
                     'constraints' => [new PasswordCriteria()],
                     'label' => 'your_new_password',
                     'attr' => [
+                        ...PasswordField::PASSWORD_STRENGTH_CONTROLLER_DATA_ATTRIBUTES,
                         'autocomplete' => 'new-password',
-                        'data-password-strength-target' => 'input',
-                        'data-action' => 'password-strength#check',
                     ],
                 ],
                 'second_options' => [
