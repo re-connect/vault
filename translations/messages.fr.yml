@@ -61,6 +61,9 @@ beneficiary_has_no_account_create: "Créez-lui un compte puis rattachez-le à l�
 beneficiary_has_no_email: Le bénéficiaire n'a pas renseigné d'adresse email
 beneficiary_has_no_phone_number: Le bénéficiaire n'a pas renseigné de numéro de téléphone
 beneficiary_has_no_secret_answer: Le bénéficiaire n'a pas renseigné de réponse secrète
+beneficiary_linked_rosalie: Ce bénéficiaire est lié à l'application de réservation hotelière (Rosalie)
+beneficiary_not_found: "Aucun bénéficiaire avec l'id %id% n'a été trouvé"
+beneficiary_not_linked_rosalie: Attention, ce bénéficiaire n'a pas été lié à l'application de réservation hotelière (Rosalie)
 beneficiary_relay_affiliation_end: "Sinon, il pourra accepter l'invitation en se connectant à son compte Reconnect"
 beneficiary_relay_affiliation_intro: "Sélectionnez ci-contre le/les centres auxquels vous voulez affilier le bénéficiaire."
 beneficiary_relay_affiliation_options: "Si vous êtes avec le bénéficiaire, vous pouvez valider l’ajout à un/des centres en :"
@@ -489,6 +492,7 @@ reset_password_no_way: Le bénéficiaire n’a pas indiqué de numéro de télé
 reset_password_requested_by_SMS: 'La demande de réinitialisation actuelle a été effectuée par SMS'
 reset_password_requested_by_email: 'La demande de réinitialisation actuelle a été effectuée par email'
 results: Résultats
+retry: Réessayer
 rosalie: Rosalie
 rosalie_link: Liaison vers Rosalie
 rosalie_link_text: Si l'utilisateur doit être amené à relier des coffre-forts numérique à l'application de réservation hôtelière (Rosalie), cochez la case ci-dessous

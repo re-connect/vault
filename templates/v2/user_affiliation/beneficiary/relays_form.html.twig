@@ -16,6 +16,9 @@
             {% if app.user.usesRosalie and hasSisiaoNumber %}
                 <span class="text-grey">
                     {{ 'si_siao_number'|trans }} : {{ beneficiary.rosalieExternalLink.distantId ?? beneficiary.siSiaoNumber }}
+                    {% if not beneficiary.hasRosalieExternalLink %}
+                        <a class="px-1" href="{{ path('add_si_siao_number', {id: beneficiary.id}) }}"><i class="fas fa-pencil fa-xs text-grey"></i></a>
+                    {% endif %}
                 </span>
             {% endif %}
         </h4>
@@ -57,19 +60,12 @@
                 {% endblock %}
             </div>
             <div class="row mt-4 pt-2">
-                <div class="col-10">
-                    {% if not hasSisiaoNumber %}
-                    <div class="font-size-1-2">
-                        <span>{{ 'add_si_siao_number_intro'|trans }}</span>
-                        <a class="btn btn-blue text-white shadow-sm"
-                           href="{{ path('affiliate_beneficiary_add_si_siao_number', {id: beneficiary.id}) }}"
-                        >
-                            {{ 'add'|trans }}
-                        </a>
-                    </div>
-                    {% endif %}
+                <div class="col-12 d-flex justify-content-center" style="font-size: large">
+                    {{ include('v2/user_creation/beneficiary/_rosalie_row.html.twig', {beneficiary}) }}
                 </div>
-                <div class="col-2 text-end">
+            </div>
+            <div class="row">
+                <div class="col-12 text-end">
                     {{ include('v2/common/_button_row.html.twig', {href: path('affiliate_beneficiary_finish', {id: beneficiary.id}), text: 'finish'|trans }) }}
                 </div>
             </div>
