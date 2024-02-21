@@ -14,3 +14,5 @@ user_update_password_title: تازه کولی د پټنومه
 password_help: پټنومه باید لوړه وي (لږ تل ۹ کارواکې) او د یوه برخه بزرګه، یوه برخه کښې یا د یوه عدد یا ویژنې په ځای کې شامل وي
 your_new_password: تاسونو نوي پټنومه
 confirm_new_password: خپل نوی پټنومه تصدیق کړئ
+actual_password: په دووتنه کې ستاسو د اوسني پاسورډ
+passwords_mismatch: دوه پاسورډونه سره هم مطابقت نلري

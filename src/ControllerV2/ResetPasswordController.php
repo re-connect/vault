@@ -160,10 +160,11 @@ class ResetPasswordController extends AbstractController
         LanguageService $languageService,
         string $token = null,
     ): Response {
-        $lang = $request->query->get('lang', User::DEFAULT_LANGUAGE);
-        $languageService->setLocaleInSession($lang);
-
         if ($token) {
+            // We store lang in session once when user reach route for the first time, to allow update locale from dedicated component
+            $lang = $request->query->get('lang', User::DEFAULT_LANGUAGE);
+            $languageService->setLocaleInSession($lang);
+
             $this->storeTokenInSession($token);
 
             return $this->redirectToRoute('app_reset_password_email', ['lang' => $lang]);

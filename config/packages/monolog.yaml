@@ -16,6 +16,7 @@ when@dev:
             - user
             - relay
             - affiliation
+            - sms
         handlers:
             main:
                 type: fingers_crossed
@@ -52,6 +53,11 @@ when@dev:
                 type: stream
                 path: '%kernel.logs_dir%/activity_dev/affiliation.log'
                 channels: [ 'affiliation' ]
+            sms:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/activity_dev/sms.log'
+                channels: [ 'sms' ]
             console:
                 type: console
                 process_psr_3_messages: false

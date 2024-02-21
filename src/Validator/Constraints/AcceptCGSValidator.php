@@ -15,7 +15,7 @@ class AcceptCGSValidator extends ConstraintValidator
         }
 
         if (!$value) {
-            $this->context->buildViolation($constraint->message)->addViolation();
+            $this->context->buildViolation($constraint->message)->atPath('accept')->addViolation();
         }
     }
 }

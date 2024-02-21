@@ -367,3 +367,24 @@ your_new_password: Ihr neues Passwort
 confirm_new_password: Bestätigen Sie Ihr neues Passwort
 user_update_password_subtitle: Passwort für %subject%
 submit: Bestätigen
+enable_mfa: Zwei-Faktor-Authentifizierung aktivieren
+enable_mfa_help: Durch Aktivieren dieses Kontrollkästchens erhalten Sie bei jeder Anmeldung einen Einmalcode, um Ihre Identität zu bestätigen und Ihr Konto zu sichern.
+enable_mfa_help_benef_creation: Durch Aktivieren dieses Kontrollkästchens erhält der Begünstigte bei jeder Anmeldung einen Einmalcode, um seine Identität zu bestätigen und sein Konto zu sichern.
+enable_mfa_help_pro_creation: Durch Aktivieren dieses Kontrollkästchens erhält der Benutzer bei jeder Anmeldung einen Einmalcode, um seine Identität zu bestätigen und sein Konto zu sichern.
+mail_auth_code_title: Hallo %username%!
+mail_auth_code_content: 'Hier ist Ihr Anmeldecode: '
+mail_auth_code_subject: 'RECONNECT - Ihr Anmeldecode'
+auth_code_received: 'Anmeldecode erhalten über %method%:'
+validate: Bestätigen
+auth_code_sms_text: 'Hier ist Ihr Anmeldecode: %code%'
+mfa: Zwei-Faktor-Authentifizierung
+mfa_enabled: Doppelte Authentifizierung aktiviert
+mfa_method: 'Code erhalten über :'
+form_contains_error: Ihre Änderungen wurden nicht gespeichert. Bitte überprüfen Sie die Informationen.
+no_email_address: Sie haben sich entschieden, einen Anmeldecode per E-Mail zu erhalten, aber keine E-Mail-Adresse angegeben.
+no_phone_number: Sie haben sich entschieden, einen Anmeldecode per SMS zu erhalten, aber keine Telefonnummer angegeben.
+mfa_description: Die Zwei-Faktor-Authentifizierung ermöglicht es Ihnen, bei jeder Anmeldung einen Code per E-Mail oder SMS zu erhalten, um Ihre Identität zu bestätigen und Ihr Konto zu sichern. Wenn Sie diese Zwei-Faktor-Authentifizierung aktivieren möchten, aktivieren Sie das Kontrollkästchen unten und wählen Sie die Methode aus, mit der Sie Ihren Anmeldecode erhalten möchten.
+mfa_maximum_retries_reach: Sie haben die maximale Anzahl an erlaubten Wiederholungen erreicht. Wenn Sie sich nicht anmelden können, wenden Sie sich bitte an den Support.
+mfa_code_not_received: Haben Sie den Code nicht erhalten?
+resend_mfa_code: Klicken Sie hier, um ihn erneut zu senden.
+passwords_mismatch: Die beiden Passwörter stimmen nicht überein

@@ -4,6 +4,7 @@ namespace App\Admin;
 
 use App\Entity\Annotations\ResetPasswordRequest;
 use App\Entity\User;
+use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
@@ -12,13 +13,22 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\Form\Type\DateTimePickerType;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class UserSimpleAdmin extends AbstractAdmin
 {
+    use UserAwareTrait;
     private EntityManagerInterface $entityManager;
+
+    public function __construct(string $code = null, string $class = null, string $baseControllerName = null, Security $security)
+    {
+        $this->security = $security;
+        parent::__construct($code, $class, $baseControllerName);
+    }
 
     public function setEntityManager(EntityManagerInterface $entityManager): void
     {
@@ -73,6 +83,19 @@ class UserSimpleAdmin extends AbstractAdmin
                 'help' => $this->getResetPasswordText(),
                 'help_html' => true,
                 'attr' => ['read_only' => true, 'style' => 'display:none'],
+            ])
+            ->add('mfaEnabled', null, [
+                'label' => 'mfa_enabled',
+                'disabled' => !$this->getUser()?->isSuperAdmin(),
+            ])
+            ->add('mfaMethod', ChoiceType::class, [
+                'disabled' => !$this->getUser()?->isSuperAdmin(),
+                'required' => false,
+                'placeholder' => false,
+                'label' => 'mfa_method',
+                'choices' => array_combine(User::MFA_METHODS, User::MFA_METHODS),
+                'expanded' => true,
+                'multiple' => false,
             ]);
     }
 

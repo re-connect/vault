@@ -4,7 +4,10 @@ namespace App\FormV2\UserCreation;
 
 use App\Entity\User;
 use App\EventSubscriber\AddFormattedPhoneSubscriber;
+use App\FormV2\Field\PasswordField;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -48,9 +51,8 @@ class CreateUserType extends AbstractType
                 'first_options' => [
                     'label' => 'password',
                     'attr' => [
+                        ...PasswordField::PASSWORD_STRENGTH_CONTROLLER_DATA_ATTRIBUTES,
                         'autocomplete' => 'new-password',
-                        'data-password-strength-target' => 'input',
-                        'data-action' => 'password-strength#check',
                     ],
                     'row_attr' => ['class' => 'col-6'],
                 ],
@@ -58,6 +60,20 @@ class CreateUserType extends AbstractType
                     'label' => 'password_confirm',
                     'row_attr' => ['class' => 'col-6'],
                 ],
+            ])
+            ->add('mfaEnabled', CheckboxType::class, [
+                'required' => false,
+                'row_attr' => ['class' => 'col-12 mt-3'],
+                'label' => 'enable_mfa',
+                'help' => 'enable_mfa_help_pro_creation',
+            ])
+            ->add('mfaMethod', ChoiceType::class, [
+                'required' => false,
+                'placeholder' => false,
+                'label' => 'mfa_method',
+                'choices' => array_combine(User::MFA_METHODS, User::MFA_METHODS),
+                'expanded' => true,
+                'multiple' => false,
             ]);
     }
 

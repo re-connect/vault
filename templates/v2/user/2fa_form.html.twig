@@ -1,0 +1,39 @@
+{% extends 'v2/reset_password/public/reset_password_layout.html.twig' %}
+
+{% block form %}
+    <h3 class="text-primary py-2"><label for="_auth_code">{{ "auth_code_received"|trans({'%method%' : app.user.mfaMethod }) }}</label></h3>
+    <p class="text-primary">{{ 'mfa_code_not_received'|trans }}<a class="px-1" href="{{ path('resend_auth_code') }}">{{ 'resend_mfa_code'|trans }}</a></p>
+    {% if authenticationError %}
+        <div class="alert alert-danger alert-dismissible fade show w-75 mx-auto " role="alert">
+            <p>{{ authenticationError|trans(authenticationErrorData, 'security') }}</p>
+        </div>
+    {% endif %}
+    <form class="form" action="{{ checkPathUrl ? checkPathUrl : path(checkPathRoute) }}" method="post">
+        <div class="d-flex justify-content-center align-items-center flex-column w-100">
+            <p class="widget">
+                  <input
+                          class="form-control"
+                          id="_auth_code"
+                          type="text"
+                          name="{{ authCodeParameterName }}"
+                          autocomplete="one-time-code"
+                          autofocus
+                  />
+            </p>
+        </div>
+        {% if displayTrustedOption %}
+            <p class="widget"><label for="_trusted"><input id="_trusted" type="checkbox" name="{{ trustedParameterName }}" /> {{ "trusted"|trans({}, 'SchebTwoFactorBundle') }}</label></p>
+        {% endif %}
+        {% if isCsrfProtectionEnabled %}
+            <input type="hidden" name="{{ csrfParameterName }}" value="{{ csrf_token(csrfTokenId) }}">
+        {% endif %}
+        <div class="d-flex flex-column justify-content-between text-primary align-items-center mx-5">
+            {# The logout link gives the user a way out if they can't complete two-factor authentication #}
+            <input class="btn text-white btn-raised w-25 text-center font-weight-bold btn-primary"
+                   type="submit" value="{{ "validate"|trans() }}">
+        </div>
+        <div class="w-100  d-flex mx-5">
+            <a href="{{ logoutPath }}">{{ "cancel"|trans() }}</a>
+        </div>
+    </form>
+{% endblock %}

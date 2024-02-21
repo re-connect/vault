@@ -19,7 +19,7 @@
     </div>
     <hr class="bg-primary my-0 hr-2">
     <div class="container w-75 justify-content-center my-4">
-        {{ include('v2/user/change_password_form.html.twig', {'askCurrentPassword': true, 'passwordForm': passwordForm}) }}
+        {{ include('v2/user/change_password_form.html.twig', {askCurrentPassword: true, passwordForm}) }}
     </div>
     {% if app.user.isBeneficiaire %}
         <div class="d-flex flex-column align-items-center mt-3 mb-5 font-size-1">

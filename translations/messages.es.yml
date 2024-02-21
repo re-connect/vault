@@ -41,3 +41,25 @@ your_new_password: Tu nueva contraseña
 confirm_new_password: Confirma tu nueva contraseña
 user_update_password_subtitle: 'Contraseña para %subject%'
 submit: Valida
+enable_mfa: Activar autenticación de dos factores
+enable_mfa_help: Al marcar esta casilla, recibirás un código de un solo uso cada vez que inicies sesión para validar tu identidad y asegurar tu cuenta.
+enable_mfa_help_benef_creation: Al marcar esta casilla, el beneficiario recibirá un código de un solo uso cada vez que inicie sesión para validar su identidad y asegurar su cuenta.
+enable_mfa_help_pro_creation: Al marcar esta casilla, el usuario recibirá un código de un solo uso cada vez que inicie sesión para validar su identidad y asegurar su cuenta.
+mail_auth_code_title: ¡Hola %username%!
+mail_auth_code_content: 'Aquí está tu código de inicio de sesión: '
+mail_auth_code_subject: 'RECONNECT - Tu código de inicio de sesión'
+auth_code_received: 'Código de inicio de sesión recibido a través de %method%:'
+validate: Validar
+auth_code_sms_text: 'Aquí está tu código de inicio de sesión: %code%'
+mfa: Autenticación de dos factores
+mfa_enabled: Autenticación de dos factores activada
+mfa_method: 'Recibir código por:'
+form_contains_error: Tus cambios no se guardaron. Por favor, verifica la información.
+no_email_address: Has elegido recibir un código de inicio de sesión por correo electrónico, pero no has proporcionado ningun correo electrónico.
+no_phone_number: Has elegido recibir un código de inicio de sesión por SMS, pero no has proporcionado un número de teléfono.
+mfa_description: La autenticación de dos factores te permite recibir un código por correo electrónico o SMS cada vez que inicies sesión para validar tu identidad y asegurar tu cuenta. Si deseas activar esta autenticación de dos factores, marca la casilla a continuación y elige el método por el cual deseas recibir tu código de inicio de sesión.
+mfa_maximum_retries_reach: Has alcanzado el número máximo de reintentos permitidos. Si no puedes iniciar sesión, por favor contáctanos por el chat.
+mfa_code_not_received: ¿No recibiste el código?
+resend_mfa_code: Haz clic aquí para reenviarlo.
+actual_password: Su contraseña actual
+passwords_mismatch: Las contraseñas no coinciden

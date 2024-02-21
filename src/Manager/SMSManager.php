@@ -9,6 +9,8 @@ use App\Entity\User;
 use App\Event\EvenementEvent;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Erkens\Security\TwoFactorTextBundle\Model\TwoFactorTextInterface;
+use Erkens\Security\TwoFactorTextBundle\TextSender\AuthCodeTextInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -18,7 +20,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class SMSManager
+class SMSManager implements AuthCodeTextInterface
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
@@ -220,5 +222,29 @@ class SMSManager
         }
 
         return $message;
+    }
+
+    public function setMessageFormat(string $format): void
+    {
+        return;
+    }
+
+    public function getMessageFormat(): string
+    {
+        return '';
+    }
+
+    public function sendAuthCode(TwoFactorTextInterface $user, ?string $code): void
+    {
+        $message = $this->translator->trans('auth_code_sms_text', ['%code%' => $code]);
+        /** @var User $user */
+        $number = $user->getTelephone();
+
+        try {
+            $this->doSendSms($number, $message);
+            $this->smsLogger->info(sprintf('SMS envoyé à %s : %s', $number, $message));
+        } catch (\Exception) {
+            $this->smsLogger->info(sprintf('Failure sending auth code SMS to %s', $number));
+        }
     }
 }

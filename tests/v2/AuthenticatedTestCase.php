@@ -64,7 +64,7 @@ class AuthenticatedTestCase extends WebTestCase
     {
         return (new User())
             ->setUsername($email)
-            ->setPassword('password')
+            ->setPassword('Password1')
             ->setPrenom('test')
             ->setNom('test')
             ->setEmail($email)
