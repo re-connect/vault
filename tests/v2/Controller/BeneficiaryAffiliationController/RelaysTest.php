@@ -4,11 +4,13 @@ namespace App\Tests\v2\Controller\BeneficiaryAffiliationController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
+use App\Repository\ClientRepository;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\MembreFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class RelaysTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
@@ -190,5 +192,52 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
         )->getCrawler();
 
         self::assertTrue(str_contains($crawler->text(), self::$translator->trans('beneficiary_already_affiliated_to_all_relays')));
+    }
+
+    public function testShouldSeeEditSisiaoNumberLink(): void
+    {
+        $professional = MembreFactory::createOne(['usesRosalie' => true])->object();
+
+        $beneficiary = BeneficiaireFactory::createOne(['siSiaoNumber' => '1234'])->object();
+        $crawler = $this->assertRoute(
+            sprintf(self::URL, $beneficiary->getId()),
+            200,
+            $professional->getUser()->getEmail(),
+        )->getCrawler();
+
+        $this->assertSelectorExists('i.fa-pencil');
+    }
+
+    public function testShouldNotSeeEditSisiaoNumberLinkWhenNotUsingRosalie(): void
+    {
+        $professional = MembreFactory::createOne(['usesRosalie' => false])->object();
+
+        $beneficiary = BeneficiaireFactory::createOne(['siSiaoNumber' => '1234'])->object();
+        $crawler = $this->assertRoute(
+            sprintf(self::URL, $beneficiary->getId()),
+            200,
+            $professional->getUser()->getEmail(),
+        )->getCrawler();
+
+        $this->assertSelectorNotExists('i.fa-pencil');
+    }
+
+    public function testShouldNotSeeEditSisiaoNumberLinkWhenExternalLinkAlreadyExists(): void
+    {
+        $beneficiary = BeneficiaireFactory::createOne(['siSiaoNumber' => '1234'])->object();
+        $professional = MembreFactory::createOne(['usesRosalie' => true])->object();
+        $clientRepo = self::getContainer()->get(ClientRepository::class);
+        $em = self::getContainer()->get(EntityManagerInterface::class);
+
+        $beneficiary->addClientExternalLink($clientRepo->findOneBy(['nom' => 'rosalie']), '1234');
+        $em->flush();
+
+        $this->assertRoute(
+            sprintf(self::URL, $beneficiary->getId()),
+            200,
+            $professional->getUser()->getEmail(),
+        );
+
+        $this->assertSelectorNotExists('i.fa-pencil');
     }
 }

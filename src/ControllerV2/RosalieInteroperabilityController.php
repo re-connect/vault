@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class RosalieInteroperabilityController extends AbstractController
@@ -30,20 +31,16 @@ class RosalieInteroperabilityController extends AbstractController
     #[Route('/beneficiaries/{id}/add-si-siao-number', name: 'add_si_siao_number')]
     public function addSiSiaoNumber(Request $request, Beneficiaire $beneficiary): Response
     {
+        if ($beneficiary->hasRosalieExternalLink()) {
+            throw new AccessDeniedException();
+        }
         $beneficiaryCreationProcess = $beneficiary->getCreationProcess();
 
         $redirection = $beneficiaryCreationProcess?->getIsCreating()
             ? $this->redirectToRoute('create_beneficiary', ['id' => $beneficiaryCreationProcess->getId(), 'step' => $beneficiaryCreationProcess->getLastReachedStep()])
-            : $this->redirectToRoute('list_beneficiaries');
+            : $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]);
 
         return $this->processSiSiaoNumberForm($request, $beneficiary, $redirection);
-    }
-
-    #[IsGranted('ROLE_MEMBRE')]
-    #[Route('/beneficiary/{id}/affiliate/add-si-siao-number', name: 'affiliate_beneficiary_add_si_siao_number')]
-    public function affiliationAddSiSiaoNumber(Request $request, Beneficiaire $beneficiary): Response
-    {
-        return $this->processSiSiaoNumberForm($request, $beneficiary, $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]));
     }
 
     private function processSiSiaoNumberForm(Request $request, Beneficiaire $beneficiary, RedirectResponse $redirection): Response
@@ -111,5 +108,17 @@ class RosalieInteroperabilityController extends AbstractController
         } else {
             $this->addFlash('error', $beneficiaryCheck->getSamuSocialErrorMessage());
         }
+    }
+
+    #[IsGranted('ROLE_MEMBRE')]
+    #[Route('/beneficiaries/{id}/link-rosalie', name: 'link_rosalie')]
+    public function linkToRosalie(Beneficiaire $beneficiary): Response
+    {
+        $this->createRosalieLink($beneficiary);
+        $beneficiaryCreationProcess = $beneficiary->getCreationProcess();
+
+        return $beneficiaryCreationProcess?->getIsCreating()
+            ? $this->redirectToRoute('create_beneficiary', ['id' => $beneficiaryCreationProcess->getId(), 'step' => $beneficiaryCreationProcess->getLastReachedStep()])
+            : $this->redirectToRoute('affiliate_beneficiary_relays', ['id' => $beneficiary->getId()]);
     }
 }

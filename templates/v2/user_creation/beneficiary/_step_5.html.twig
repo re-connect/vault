@@ -15,15 +15,5 @@
 
 {% block stepContent %}
     {{ include('v2/user_creation/beneficiary/_step_5_rows.html.twig', {rows}) }}
-    {% if not beneficiary.sisiaoNumber %}
-        <div class="py-3 d-flex align-items-center justify-content-start">
-            {{ 'add_si_siao_number_intro'|trans }}
-            <span class="mb-2">
-                {{ include('v2/common/_link_button.html.twig', {
-                    path: path('add_si_siao_number', {id: beneficiary.id}),
-                    message: 'add'|trans
-                }) }}
-            </span>
-        </div>
-    {% endif %}
+    {{ include('v2/user_creation/beneficiary/_rosalie_row.html.twig', {beneficiary}) }}
 {% endblock %}

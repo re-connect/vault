@@ -2,10 +2,11 @@
 
 namespace App\DataFixtures\v2;
 
+use App\Entity\Client;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
-use League\Bundle\OAuth2ServerBundle\Model\Client;
+use League\Bundle\OAuth2ServerBundle\Model\Client as OauthCLient;
 use League\Bundle\OAuth2ServerBundle\ValueObject\Grant;
 use League\Bundle\OAuth2ServerBundle\ValueObject\Scope;
 
@@ -38,10 +39,14 @@ class ClientFixture extends Fixture implements FixtureGroupInterface
     public function load(ObjectManager $manager)
     {
         foreach (self::CLIENTS as $client) {
-            $client = (new Client($client['name'], $client['id'], $client['secret']))
+            $oauth = (new OauthCLient($client['name'], $client['id'], $client['secret']))
                 ->setGrants(new Grant($client['grantType']))
                 ->setScopes(new Scope($client['scopes']));
-            $manager->persist($client);
+            $manager->persist($oauth);
+
+            $classic = (new Client())->setNom($client['name'])
+            ->setRandomId($client['id'])->setSecret($client['id'])->setActif(true);
+            $manager->persist($classic);
         }
 
         $manager->flush();
