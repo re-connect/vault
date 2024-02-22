@@ -1100,4 +1100,9 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     {
         return $this->getExternalLinks()->filter(fn (ClientBeneficiaire $link) => Client::CLIENT_ROSALIE === $link->getClient()?->getNom())->first() ?: null;
     }
+
+    public function getAxelExternalLink(): ?ClientBeneficiaire
+    {
+        return $this->getExternalLinks()->filter(fn (ClientBeneficiaire $link) => Client::CLIENT_AXEL === $link->getClient()?->getNom())->first() ?: null;
+    }
 }
