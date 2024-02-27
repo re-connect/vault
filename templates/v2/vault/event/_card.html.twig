@@ -12,7 +12,7 @@
             {% for reminder in event.rappels %}
                 <br>
                 <span class="text-light-grey">
-                    {{ 'reminder'|trans }} : {{ reminder.date|format_datetime() }}
+                    {{ 'reminder'|trans }} : {{ reminder.date|format_datetime(timezone=event.timezone) }}
                 </span>
             {% endfor %}
         </a>
