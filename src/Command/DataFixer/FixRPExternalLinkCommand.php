@@ -44,11 +44,9 @@ class FixRPExternalLinkCommand extends Command
         $this->fixedLinks = 0;
         try {
             foreach ($beneficiaries as $beneficiary) {
-                match ($beneficiary->getCentres()->count()) {
-                    0 => $this->deleteLink($beneficiary),
-                    1 => $this->fixLink($beneficiary),
-                    default => '',
-                };
+                if (1 >= $beneficiary->getCentres()->count()) {
+                    $this->deleteLink($beneficiary);
+                }
             }
         } catch (\Exception $e) {
             $io->error($e->getMessage());
@@ -70,28 +68,12 @@ class FixRPExternalLinkCommand extends Command
         if (!$link) {
             throw new \Exception(sprintf('Beneficiary %s should have an external link to RP, but none was found', $beneficiary->getId()));
         }
+        if (null !== $link->getBeneficiaireCentre()) {
+            throw new \Exception(sprintf('Beneficiary %s external link is not broken', $beneficiary->getId()));
+        }
         $this->em->remove($link);
         $this->em->flush();
         ++$this->removedLinks;
-    }
-
-    /**
-     * @throws \Exception
-     */
-    private function fixLink(Beneficiaire $beneficiary): void
-    {
-        $link = $beneficiary->getAxelExternalLink();
-        if (!$link) {
-            throw new \Exception(sprintf('Beneficiary %s should have an external link to RP, but none was found', $beneficiary->getId()));
-        }
-        $benefCentre = $beneficiary->getBeneficiairesCentres()->first();
-        if (false === $benefCentre) {
-            throw new \Exception(sprintf('Beneficiary %s should have a beneficiaireCentre, but none was found', $beneficiary->getId()));
-        }
-        $benefCentre->setBValid(false);
-        $link->setBeneficiaireCentre($benefCentre);
-        $this->em->flush();
-        ++$this->fixedLinks;
     }
 
     public function promptConfirm(int $count, QuestionHelper $helper, InputInterface $input, OutputInterface $output, SymfonyStyle $io): bool
