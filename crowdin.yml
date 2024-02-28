@@ -1,10 +1,10 @@
 files:
   - source: translations/*
-    translation: /translations/message.%two_letters_code%.yml
+    translation: /translations/messages.%two_letters_code%.yml
   - source: /translations/FosUserBundle/*
-    translation: /translations/FosUserBundle/crowdin.%two_letters_code%.yml
+    translation: /translations/FosUserBundle/FOSUserBundle.%two_letters_code%.yml
   - source: translations/validators/*
-    translation: /translations/validators/crowdin.%two_letters_code%.yml
+    translation: /translations/validators/validators.%two_letters_code%.yml
 bundles:
   - 4
   - 6
