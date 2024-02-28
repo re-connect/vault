@@ -61,7 +61,7 @@ App\Entity\Centre:
             type: boolean
             options:
                 default: false
-        region:
+        regionAsString:
             type: string
             length: 255
             nullable: true
@@ -108,6 +108,12 @@ App\Entity\Centre:
             inversedBy: centres
             joinColumn:
                 nullable: true
+        region:
+            targetEntity: App\Entity\Region
+            inversedBy: centres
+            joinColumn:
+                nullable: true
+                onDelete: "SET NULL"
     oneToOne:
         adresse:
             targetEntity: App\Entity\Adresse
