@@ -1,9 +1,9 @@
 files:
-  - source: translations/*.yml
+  - source: translations/messages.fr.yml
     translation: /translations/message.%two_letters_code%.yml
-  - source: /translations/FosUserBundle
+  - source: /translations/FosUserBundle/FOSUserBundle.fr.yml
     translation: /translations/FosUserBundle/crowdin.%two_letters_code%.yml
-  - source: translations/validators
+  - source: translations/validators/validators.fr.yml
     translation: /translations/validators/crowdin.%two_letters_code%.yml
 bundles:
   - 4
