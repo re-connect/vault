@@ -5,6 +5,7 @@ namespace App\Admin;
 use App\Entity\Association;
 use App\Entity\Centre;
 use App\Entity\CreatorCentre;
+use App\Entity\Region;
 use App\EventSubscriber\AssociationCreationSubscriber;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,11 +15,9 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\AdminType;
-use Sonata\DoctrineORMAdminBundle\Filter\StringFilter;
 use Sonata\Form\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class CentreAdmin extends AbstractAdmin
@@ -79,9 +78,8 @@ class CentreAdmin extends AbstractAdmin
                 'disabled' => true,
             ])
             ->add('nom')
-            ->add('region', ChoiceType::class, [
-                'label' => 'Région',
-                'choices' => array_combine(Centre::REGIONS, Centre::REGIONS),
+            ->add('region', EntityType::class, [
+                'class' => Region::class,
                 'required' => false,
             ])
             ->add('adresse', AdminType::class, [
@@ -136,12 +134,7 @@ class CentreAdmin extends AbstractAdmin
         $filter
             ->add('id')
             ->add('nom')
-            ->add('region', StringFilter::class, [
-                'field_type' => ChoiceType::class,
-                'field_options' => [
-                    'choices' => array_combine(Centre::REGIONS, Centre::REGIONS),
-                ],
-            ])
+            ->add('region', null, ['label' => 'Région'])
             ->add('createdAt', null, ['label' => 'Date de création'])
             ->add('test', null, [
                 'label' => 'Compte test',
