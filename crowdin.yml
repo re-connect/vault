@@ -1,6 +1,6 @@
 files:
   - source: translations/*.yml
-    translation: /translations/crowdin.%two_letters_code%.yml
+    translation: /translations/message.%two_letters_code%.yml
   - source: /translations/FosUserBundle
     translation: /translations/FosUserBundle/crowdin.%two_letters_code%.yml
   - source: translations/validators
