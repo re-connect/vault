@@ -13,13 +13,12 @@ readonly class MfaCodeSender
         private EntityManagerInterface $em,
         private CodeGeneratorInterface $emailCodeGenerator,
         private SMSCodeGenerator $smsCodeGenerator,
-        private bool $appli2faEnabled,
     ) {
     }
 
     public function checkCode(User $user, mixed $authCode): void
     {
-        if (!$user->isMfaEnabled() || !$this->appli2faEnabled) {
+        if (!$user->isMfaEnabled()) {
             return;
         }
 
