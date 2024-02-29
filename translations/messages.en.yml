@@ -505,4 +505,3 @@ mfa_description: Two-factor authentication allows you to receive a code via emai
 mfa_maximum_retries_reach: You have reached the maximum number of allowed retries. If you are unable to log in, please contact support.
 mfa_code_not_received: Did not receive the code?
 resend_mfa_code: Click here to resend it.
-dummy_dummy: dummy
