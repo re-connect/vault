@@ -2,6 +2,7 @@
 
 namespace App\ServiceV2;
 
+use App\Entity\User;
 use App\ServiceV2\Traits\SessionsAwareTrait;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -30,16 +31,19 @@ class GdprService
         return $this->getDaysBeforeExpiration() <= self::RENEWAL_DAYS_COUNT;
     }
 
-    public function isPasswordExpired(): bool
+    public function isPasswordExpired(User $user = null): bool
     {
-        return $this->getDaysBeforeExpiration() <= self::EXPIRATION_DAYS_COUNT;
+        return $this->getDaysBeforeExpiration($user) <= self::EXPIRATION_DAYS_COUNT;
     }
 
-    private function getDaysBeforeExpiration(): int
+    private function getDaysBeforeExpiration(User $user = null): int
     {
-        return max((int) (new \DateTimeImmutable())
+        $user = $user ?: $this->getUser();
+        $now = new \DateTimeImmutable();
+
+        return max((int) $now
             ->sub(new \DateInterval('P1Y'))
-            ->diff($this->getUser()->getPasswordUpdatedAt() ?? new \DateTimeImmutable())
+            ->diff($user->getPasswordUpdatedAt() ?? $now)
             ->format('%r%a'), 0);
     }
 
