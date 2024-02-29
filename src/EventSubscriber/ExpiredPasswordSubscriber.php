@@ -5,12 +5,13 @@ namespace App\EventSubscriber;
 use App\ServiceV2\GdprService;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bundle\SecurityBundle\Security;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Routing\RouterInterface;
 
-class ExpiredPasswordSubscriber implements EventSubscriberInterface
+#[AsEventListener(RequestEvent::class, 'checkPasswordExpiration')]
+class ExpiredPasswordSubscriber
 {
     use UserAwareTrait;
 
@@ -35,12 +36,5 @@ class ExpiredPasswordSubscriber implements EventSubscriberInterface
         ) {
             $event->setResponse(new RedirectResponse($this->router->generate('app_update_password')));
         }
-    }
-
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            RequestEvent::class => 'checkPasswordExpiration',
-        ];
     }
 }
