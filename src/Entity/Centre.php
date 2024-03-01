@@ -644,4 +644,16 @@ class Centre implements \JsonSerializable
 
         return $this;
     }
+
+    public function getRegionAsString(): string
+    {
+        return $this->regionAsString;
+    }
+
+    public function setRegionAsString(string $regionAsString): Centre
+    {
+        $this->regionAsString = $regionAsString;
+
+        return $this;
+    }
 }

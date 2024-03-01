@@ -88,4 +88,11 @@ class CentreRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findAllWithRegionAsString(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.regionAsString is not null')
+            ->getQuery()->getResult();
+    }
 }
