@@ -40,7 +40,7 @@ readonly class Oauth2ResponseSubscriber
 
         if (!$user->hasPasswordWithLatestPolicy()) {
             $event->setResponse(new JsonResponse(['login' => 'success', 'weak_password' => true]));
-        } elseif ($this->gdprService->isPasswordExpired($user) && $this->appliExpirePassword) {
+        } elseif (false === $user->isBeneficiaire() && $this->gdprService->isPasswordExpired($user) && $this->appliExpirePassword) {
             $event->setResponse(new JsonResponse(['login' => 'success', 'expired_password' => true]));
         }
 
