@@ -351,7 +351,7 @@ leave_center_title: 'Quitter le centre %s'
 location: Lieu
 login_form_title: 'Accès au coffre-fort numérique'
 logout: Déconnexion
-mail_auth_code_content : 'Voici votre code de connexion : '
+mail_auth_code_content: 'Voici votre code de connexion : '
 mail_auth_code_subject: 'RECONNECT- Votre code de connexion'
 mail_auth_code_title: Bonjour %username% !
 mail_reset_password_content_1: "Nous avons reçu une demande de renouvellement de mot de passe pour votre coffre-fort Reconnect. Si vous n'êtes pas à l'origine de cette demande, vous pouvez ignorer cet e-mail et aucun changement ne sera apporté à votre compte."
@@ -631,3 +631,4 @@ your_new_password: Votre nouveau mot de passe
 your_personal_data_has_already_been_requested: Vous avez déjà effectué une demande de récupération de vos données.
 your_personal_data_request_has_been_send_to_tech_team: Votre demande de récupération de vos données à été transmise à nos équipes dédiées.
 your_phone_number: 'Votre numéro de téléphone'
+dummy_test: dummy
