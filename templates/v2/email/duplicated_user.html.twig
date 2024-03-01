@@ -3,10 +3,12 @@
     {% if client is not null %}
         <p>{{ 'duplicate_mail_created_by_client'|trans({'%client%': client.nom}) }}</p>
     {% endif %}
-    <p>{{ 'duplicate_mail_created_by_pro'|trans({'%id%': pro.id}) }}</p>
-    <ul>
-        {% for centre in centres %}
-            <li> {{ centre.nom }}{% if centre.region is not null %}, région {{ centre.region.name }}{% endif %}</li>
-        {% endfor %}
-    </ul>
+    {% if pro %}
+        <p>{{ 'duplicate_mail_created_by_pro'|trans({'%id%': pro.id}) }}</p>
+        <ul>
+            {% for centre in centres %}
+                <li> {{ centre.nom }}{% if centre.region is not null %}, région {{ centre.region.name }}{% endif %}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}

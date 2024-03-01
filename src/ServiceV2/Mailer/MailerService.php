@@ -2,6 +2,8 @@
 
 namespace App\ServiceV2\Mailer;
 
+use App\Entity\Centre;
+use App\Entity\Region;
 use App\Entity\SharedDocument;
 use App\Entity\User;
 use App\ServiceV2\Mailer\Email\AuthCodeEmail;
@@ -9,6 +11,7 @@ use App\ServiceV2\Mailer\Email\DuplicatedUsernameEmail;
 use App\ServiceV2\Mailer\Email\ResetPasswordEmail;
 use App\ServiceV2\Mailer\Email\ShareDocumentLinkEmail;
 use App\ServiceV2\Traits\UserAwareTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Psr\Log\LoggerInterface;
 use Scheb\TwoFactorBundle\Mailer\AuthCodeMailerInterface;
 use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
@@ -22,7 +25,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
 
-class MailerService implements AuthCodeMailerInterface
+readonly class MailerService implements AuthCodeMailerInterface
 {
     use UserAwareTrait;
 
@@ -30,14 +33,14 @@ class MailerService implements AuthCodeMailerInterface
      * @param string[] $adminMails
      */
     public function __construct(
-        private readonly MailerInterface $mailer,
-        private readonly RouterInterface $router,
-        private readonly LoggerInterface $logger,
-        private readonly TranslatorInterface $translator,
-        private readonly Security $security,
-        private readonly string $mailerSender,
-        private readonly array $adminMails,
-        private readonly string $duplicateDefaultRecipient,
+        private MailerInterface $mailer,
+        private RouterInterface $router,
+        private LoggerInterface $logger,
+        private TranslatorInterface $translator,
+        private Security $security,
+        private string $mailerSender,
+        private array $adminMails,
+        private string $duplicateDefaultRecipient,
     ) {
     }
 
@@ -67,7 +70,7 @@ class MailerService implements AuthCodeMailerInterface
         ], UrlGeneratorInterface::ABSOLUTE_URL);
 
         $this->send(ResetPasswordEmail::create(
-            $user->getEmail(),
+            [$user->getEmail()],
             $userLastLang,
             $url,
         ));
@@ -80,7 +83,7 @@ class MailerService implements AuthCodeMailerInterface
 
         if ($document && $user) {
             $this->send(ShareDocumentLinkEmail::create(
-                $email,
+                [$email],
                 User::DEFAULT_LANGUAGE,
                 $document->getPresignedUrl(),
                 $user,
@@ -88,13 +91,25 @@ class MailerService implements AuthCodeMailerInterface
         }
     }
 
-    public function sendDuplicatedUsernameAlert(User $user): void
+    public function sendDuplicatedUsernameAlert(User $duplicatedUser): void
     {
-        if (!$user->hasSuffixedUsername() || !$user->isBeneficiaire()) {
+        if (!$duplicatedUser->hasSuffixedUsername() || !$duplicatedUser->isBeneficiaire()) {
             return;
         }
 
-        $this->send(DuplicatedUsernameEmail::create($this->duplicateDefaultRecipient, $user, $this->getUser()));
+        $recipients = new ArrayCollection();
+        $pro = $this->getUser()?->getSubjectMembre();
+        if ($pro) {
+            $centres = $pro->getCentres();
+            $regions = $centres->map(fn (Centre $centre) => $centre->getRegion());
+            $recipients = $regions->map(fn (?Region $region) => $region?->getEmail())->filter(fn (?string $recipient) => null !== $recipient);
+        }
+
+        if ($recipients->isEmpty()) {
+            $recipients->add($this->duplicateDefaultRecipient);
+        }
+
+        $this->send(DuplicatedUsernameEmail::create($recipients->toArray(), 'fr', '', null, ['duplicatedUser' => $duplicatedUser, 'userLang' => 'fr', 'client' => $duplicatedUser->getCreatorClient(), 'centres' => $centres ?? [], 'pro' => $pro]));
     }
 
     public function sendPersonalDataRequestEmail(User $user): void
@@ -116,7 +131,7 @@ class MailerService implements AuthCodeMailerInterface
         /** @var User $user */
         $authCode = $user->getEmailAuthCode();
         $this->send(email: AuthCodeEmail::create(
-            $user->getEmail() ?? '',
+            [$user->getEmail() ?? ''],
             $user->getLastLang(),
             '',
             null,
