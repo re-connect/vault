@@ -26,10 +26,10 @@ class MigrateRegionsToTableCommand extends Command
 
     public const REGIONS_WITH_MAIL = [
         'Auvergne-Rhône-Alpes' => 'aura@reconnect.fr',
-        'Bourgogne-Franche-Comté' => null,
+        'Bourgogne-Franche-Comté' => 'support@reconnect.fr',
         'Bretagne' => 'bretagne@reconnect.fr',
-        'Centre-Val de Loire' => null,
-        'Corse' => null,
+        'Centre-Val de Loire' => 'support@reconnect.fr',
+        'Corse' => 'support@reconnect.fr',
         'Grand Est' => 'grand-est@reconnect.fr',
         'Hauts-de-France' => 'hauts-de-france@reconnect.fr',
         'Ile-de-France' => 'ile-de-france@reconnect.fr',
@@ -38,7 +38,7 @@ class MigrateRegionsToTableCommand extends Command
         'Occitanie' => 'occitanie@reconnect.fr',
         'Pays de la Loire' => 'pays-de-la-loire@reconnect.fr',
         'Provence-Alpes-Côte d’Azur' => 'paca@reconnect.fr',
-        'Autre' => null,
+        'Autre' => 'support@reconnect.fr',
     ];
 
     protected function execute(InputInterface $input, OutputInterface $output)

@@ -13,6 +13,7 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         bind:
             $adminMails: '%env(json:ADMIN_MAILS)%'
+            $duplicateDefaultRecipient: '%env(DUPLICATE_DEFAULT_RECIPIENT)%'
             $apikey: '%env(MJ_APIKEY_PUBLIC)%'
             $apisecret: '%env(MJ_APIKEY_PRIVATE)%'
             $bucketAccess: '%env(BUCKET_ACCESS_KEY)%'

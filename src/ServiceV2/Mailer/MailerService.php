@@ -8,10 +8,12 @@ use App\ServiceV2\Mailer\Email\AuthCodeEmail;
 use App\ServiceV2\Mailer\Email\DuplicatedUsernameEmail;
 use App\ServiceV2\Mailer\Email\ResetPasswordEmail;
 use App\ServiceV2\Mailer\Email\ShareDocumentLinkEmail;
+use App\ServiceV2\Traits\UserAwareTrait;
 use Psr\Log\LoggerInterface;
 use Scheb\TwoFactorBundle\Mailer\AuthCodeMailerInterface;
 use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
@@ -22,6 +24,8 @@ use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
 
 class MailerService implements AuthCodeMailerInterface
 {
+    use UserAwareTrait;
+
     /**
      * @param string[] $adminMails
      */
@@ -30,8 +34,10 @@ class MailerService implements AuthCodeMailerInterface
         private readonly RouterInterface $router,
         private readonly LoggerInterface $logger,
         private readonly TranslatorInterface $translator,
+        private readonly Security $security,
         private readonly string $mailerSender,
         private readonly array $adminMails,
+        private readonly string $duplicateDefaultRecipient,
     ) {
     }
 
@@ -88,7 +94,7 @@ class MailerService implements AuthCodeMailerInterface
             return;
         }
 
-        $this->send(DuplicatedUsernameEmail::create($this->mailerSender, $this->adminMails, $user));
+        $this->send(DuplicatedUsernameEmail::create($this->duplicateDefaultRecipient, $user, $this->getUser()));
     }
 
     public function sendPersonalDataRequestEmail(User $user): void
