@@ -35,6 +35,11 @@ class GdprServiceTest extends TestCase
         $this->security->method('getUser')->willReturn($user);
         $result = $method->invokeArgs($this->gdprService, []);
 
+        // If leap year, month >= March, and password updated less than a year ago, increments expected result
+        if (date('L') && date('n') >= 3 && $updatedAt->add(new \DateInterval('P1Y')) >= new \DateTime()) {
+            ++$expectedResult;
+        }
+
         $this->assertEquals($expectedResult, $result);
     }
 
