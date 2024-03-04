@@ -25,7 +25,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
 
-readonly class MailerService implements AuthCodeMailerInterface
+class MailerService implements AuthCodeMailerInterface
 {
     use UserAwareTrait;
 
@@ -33,14 +33,14 @@ readonly class MailerService implements AuthCodeMailerInterface
      * @param string[] $adminMails
      */
     public function __construct(
-        private MailerInterface $mailer,
-        private RouterInterface $router,
-        private LoggerInterface $logger,
-        private TranslatorInterface $translator,
-        private Security $security,
-        private string $mailerSender,
-        private array $adminMails,
-        private string $duplicateDefaultRecipient,
+        private readonly MailerInterface $mailer,
+        private readonly RouterInterface $router,
+        private readonly LoggerInterface $logger,
+        private readonly TranslatorInterface $translator,
+        private readonly Security $security,
+        private readonly string $mailerSender,
+        private readonly array $adminMails,
+        private readonly string $duplicateDefaultRecipient,
     ) {
     }
 
