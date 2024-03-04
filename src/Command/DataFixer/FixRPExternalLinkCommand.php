@@ -71,6 +71,11 @@ class FixRPExternalLinkCommand extends Command
         if (null !== $link->getBeneficiaireCentre()) {
             throw new \Exception(sprintf('Beneficiary %s external link is not broken', $beneficiary->getId()));
         }
+
+        $benefCentreLink = $beneficiary->getBeneficiairesCentres()->first();
+        if (false !== $benefCentreLink) {
+            $benefCentreLink->setBValid(false);
+        }
         $this->em->remove($link);
         $this->em->flush();
         ++$this->removedLinks;
