@@ -62,7 +62,7 @@ class Centre implements \JsonSerializable
      * @var string
      */
     #[Groups(['center:read', 'v3:center:read'])]
-    private $region = '';
+    private $regionAsString = '';
     /**
      * @var string
      */
@@ -143,6 +143,8 @@ class Centre implements \JsonSerializable
     private $externalLinks;
     private bool $canada = false;
     private ?Association $association = null;
+
+    private ?Region $region = null;
 
     #[Groups(['v3:center:read'])]
     public function getDistantIds(): ArrayCollection
@@ -619,12 +621,12 @@ class Centre implements \JsonSerializable
         return $this;
     }
 
-    public function getRegion(): ?string
+    public function getRegion(): ?Region
     {
         return $this->region;
     }
 
-    public function setRegion(string $region = null): self
+    public function setRegion(Region $region = null): self
     {
         $this->region = $region;
 
@@ -639,6 +641,18 @@ class Centre implements \JsonSerializable
     public function setAssociation(?Association $association): self
     {
         $this->association = $association;
+
+        return $this;
+    }
+
+    public function getRegionAsString(): string
+    {
+        return $this->regionAsString;
+    }
+
+    public function setRegionAsString(string $regionAsString): Centre
+    {
+        $this->regionAsString = $regionAsString;
 
         return $this;
     }
