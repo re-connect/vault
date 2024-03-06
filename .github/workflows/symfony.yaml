@@ -68,7 +68,7 @@ jobs:
             -   name: Load v2 fixtures
                 run: php bin/console doctrine:fixtures:load --env=test --group=v2 -n
             -   name: Run v2 tests
-                run: ./vendor/bin/simple-phpunit tests/v2
+                run: SYMFONY_PHPUNIT_REQUIRE="nikic/php-parser:^4.13" ./vendor/bin/simple-phpunit tests/v2 --coverage-cobertura=coverage/cobertura-coverage.xml
             # —— Code static analysis ✨ ——————————————————————————————————————————————————
             -   name: Static code analysis
                 run: vendor/bin/phpstan analyse -c phpstan.dist.neon
