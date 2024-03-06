@@ -199,8 +199,8 @@ form_connexion: Login
 form_forgot_password: 'I forgot my password or my login'
 form_login: 'Username or Email'
 generate_password: 'Generate password'
-logout: Disconnect
-parameters: Parameters
+logout: Logout
+parameters: Settings
 header_link_cfn: 'The digital<span class="d-lg-block"> safe</span>'
 header_link_contact: 'Contact<span class="d-lg-block"> us</span>'
 header_link_rp: 'The pro<span class="d-lg-block"> solution</span>'
@@ -243,7 +243,7 @@ home_who_we_are_p3: 'Since 2015, we have been committed to beneficiaries and soc
 home_who_we_are_title: 'Who are we?'
 housing: Housing
 identity: Identity
-information: Information
+information: Personal details
 innovative_solution_digital_divide: 'The solution to meet the challenges of the digital divide'
 invite_user_to_relay: Invite user to relay
 is_the_beneficiary_absent: 'Is the beneficiary absent ?'
@@ -310,7 +310,7 @@ number_of_docs: 'Number of documents'
 or_click_link: 'Or click on the link'
 password: Password
 password_expired: 'Your password has expired. Please enter a new password.'
-password_help: "The password must be at list 9 characters long, and fulfill criteria below: 1 uppercase, 1 lowercase, 1 special/number"
+password_help: "The password must be at least 9 characters long, including: 1 uppercase, 1 lowercase, 1 special/number"
 password_help_criteria: 'Criteria below are missing :'
 password_new_should_be_different_from_current: 'Your new password must be different from your current password.'
 password_renewal_due: 'Your password is about to expire. Please enter a new password.'
@@ -392,6 +392,7 @@ select_relays_for_disaffiliation_pro: This professional user is linked to one or
 send: Send
 sending_sms_account_activation: 'Sending the SMS for account activation'
 settings_saved_successfully: 'Your settings has been registered'
+settings_saved_successfully_username_updated: Your settings has been registered, please note that your username has been updated
 share_document: 'Share document'
 share_document_error_expired: 'The validity of the download link has expired, please retry'
 share_document_error_no_shared_document: 'No document has been shared'
@@ -407,6 +408,7 @@ sms_sent_failed: 'SMS sending failed, please check that the phone number is vali
 status: Status
 steps_count: 'Step %step%/%totalSteps%'
 street: Street
+submit: Submit
 subscribe_newsletter: Subscribe to our newsletter !
 subscription_confirmation: 'Subscription confirmation'
 summary: Summary
@@ -423,8 +425,8 @@ accept_terms_of_use: 'I accept the terms of use'
 general_conditions_of_use: 'General conditions of use'
 welcome_on_solidarity_cloud: 'Welcome to Reconnect,The Solidarity Cloud'
 user.firstVisit.membre.metaTitle: 'Welcome to Reconnect,The Solidarity Cloud'
-update_your_password: 'Change your password'
-actual_password: 'Your present password'
+update_your_password: 'Update your password'
+actual_password: 'Current password'
 user_settings: 'User´s settings'
 relay_affiliation_successful: 'You accepted  the association to the center'
 relay_affiliation_denied: 'You denied the association to the center.'
@@ -446,13 +448,13 @@ website_legal: 'Legal notice'
 while_waiting_next_newsletter_1: 'While waiting for the next one, you can'
 while_waiting_next_newsletter_2: 'find our news on our social networks and our blog!'
 work: Work
-wrong_current_password: 'Your present password is false'
+wrong_current_password: 'Your current password is incorrect'
 wrong_secret_answer: 'Wrong secret answer'
 you_are_now_subscribed_for_newsletter: 'You are now subscribed to our newsletter'
 you_can_download_mobile_app: 'You can also download the mobile app'
 you_can_unsubscribe_for_newsletter: 'You can unsubscribe from this list at any time, using the link you will find at the bottom of each newsletter'
 you_must_select_center_for_right_update: You must select a center to be able to modify the rights of a professional
-your_new_password: Your new password
+your_new_password: New password
 beneficiaries_creation: Beneficiaries creation
 you_can_not_update_default_permission: You can't update default permission
 choose_relays_and_permissions: Choose relays and permissions
