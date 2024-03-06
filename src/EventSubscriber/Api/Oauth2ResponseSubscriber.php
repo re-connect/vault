@@ -3,6 +3,7 @@
 namespace App\EventSubscriber\Api;
 
 use App\Repository\UserRepository;
+use App\ServiceV2\GdprService;
 use Doctrine\ORM\EntityManagerInterface;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer\Key\InMemory;
@@ -14,14 +15,18 @@ use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsEventListener(OAuth2Events::TOKEN_REQUEST_RESOLVE, 'checkOTPCode', 2)]
+#[AsEventListener(OAuth2Events::TOKEN_REQUEST_RESOLVE, 'onTokenResolve', 2)]
 readonly class Oauth2ResponseSubscriber
 {
-    public function __construct(private UserRepository $repository, private EntityManagerInterface $em, private bool $appli2faEnabled)
-    {
+    public function __construct(
+        private UserRepository $repository,
+        private EntityManagerInterface $em,
+        private GdprService $gdprService,
+        private bool $appliExpirePassword,
+    ) {
     }
 
-    public function checkOTPCode(TokenRequestResolveEvent $event): TokenRequestResolveEvent
+    public function onTokenResolve(TokenRequestResolveEvent $event): TokenRequestResolveEvent
     {
         $username = $this->extractUserIdFromResponse($event->getResponse());
         if (!$username) {
@@ -33,12 +38,10 @@ readonly class Oauth2ResponseSubscriber
             return $event;
         }
 
-        if (!$this->appli2faEnabled) {
-            return $event;
-        }
-
         if (!$user->hasPasswordWithLatestPolicy()) {
             $event->setResponse(new JsonResponse(['login' => 'success', 'weak_password' => true]));
+        } elseif (false === $user->isBeneficiaire() && $this->gdprService->isPasswordExpired($user) && $this->appliExpirePassword) {
+            $event->setResponse(new JsonResponse(['login' => 'success', 'expired_password' => true]));
         }
 
         if (!$user->isMfaEnabled()) {
