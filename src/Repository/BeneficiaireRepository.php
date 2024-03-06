@@ -216,4 +216,15 @@ class BeneficiaireRepository extends ServiceEntityRepository
             ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
             ->getResult();
     }
+
+    public function findWithBrokenRPLink(): array
+    {
+        return $this->createQueryBuilder('b')
+            ->leftJoin('b.externalLinks', 'el')
+            ->leftJoin('el.client', 'c')
+            ->where('c.nom LIKE \'axel\'')
+            ->andWhere('el.beneficiaireCentre is null')
+            ->getQuery()
+            ->getResult();
+    }
 }
