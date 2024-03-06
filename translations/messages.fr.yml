@@ -300,6 +300,7 @@ header_link_cfn: 'Le coffre-fort<span class="d-lg-block"> numérique</span>'
 header_link_contact: 'Nous<span class="d-lg-block"> contacter</span>'
 header_link_rp: 'La Solution<span class="d-lg-block"> Pro</span>'
 header_link_who_we_are: 'Qui<span class="d-lg-block"> sommes-nous ?</span>'
+header_link_our_blog: 'Notre <span class="d-lg-block">blog</span>'
 health: Santé
 home_meta_desc: "Le numérique au service de l'inclusion et de l'action sociale"
 home_meta_title_contact: 'Reconnect - Nous contacter'
