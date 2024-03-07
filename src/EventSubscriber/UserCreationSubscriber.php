@@ -24,7 +24,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserCreationSubscriber
 {
     use UserAwareTrait;
-    private string $env;
 
     public function __construct(
         private readonly ApiClientManager $apiClientManager,
@@ -33,9 +32,7 @@ class UserCreationSubscriber
         private readonly UserManager $manager,
         private readonly UserPasswordHasherInterface $hasher,
         private readonly Security $security,
-        string $kernelEnvironment,
     ) {
-        $this->env = $kernelEnvironment;
     }
 
     public function preUpdate(PreUpdateEventArgs $event): void
@@ -65,7 +62,7 @@ class UserCreationSubscriber
 
         $this->manager->setUniqueUsername($user);
 
-        if ($object instanceof User && 'preprod' !== $this->env) {
+        if ($object instanceof User) {
             $this->mailerService->sendDuplicatedUsernameAlert($user);
         }
     }
