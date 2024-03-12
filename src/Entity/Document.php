@@ -189,7 +189,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
 
     public function getThumb(): string
     {
-        return $this->thumb;
+        return $this->thumb ?? '';
     }
 
     public function setThumb(string $thumb): self
@@ -220,8 +220,8 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
             'id' => $this->id,
             'b_prive' => $this->bPrive,
             'nom' => $this->nom,
-            'created_at' => $this->createdAt->format(\DateTime::W3C),
-            'updated_at' => $this->updatedAt->format(\DateTime::W3C),
+            'created_at' => $this->createdAt->format(\DateTimeInterface::W3C),
+            'updated_at' => $this->updatedAt->format(\DateTimeInterface::W3C),
             'url' => $this->url,
             'thumb' => $this->thumb,
             'delete_url' => $this->deleteUrl,
