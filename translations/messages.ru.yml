@@ -78,6 +78,8 @@ beneficiary_secret_question_favorite_street: 'Название любимой у
 beneficiary_secret_question_secondary_school: 'Общеобразовательное заведение, которое посещал получатель'
 beneficiary_secret_question_nickname: 'Прозвище получателя'
 beneficiary_secret_question_city_of_birth: Другой
+beneficiary_secret_question_mother_lastname: Какая фамилия у матери получателя?
+beneficiary_secret_question_custom: Другое
 professionals_management: 'Управление членами'
 add_personal_email: 'Добавить адрес электронной почты'
 add_personal_phone: 'Добавить номер телефона'

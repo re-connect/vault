@@ -2,3 +2,11 @@ form_connexion: وارد شدن
 form_forgot_password: رمز عبور یا نام کاربری خود را فراموش کرده ام.
 form_login: نام کاربری   یا  آدرس ایمیل
 login_form_title: دسترسی به گاوصندوق دیجیتالی
+beneficiary_secret_question_mother_firstname: ما اسم کوچک مادر مددجو است؟
+beneficiary_secret_question_pet: اسم حیوان خانگی مددجو چیست؟
+beneficiary_secret_question_favorite_street: نام خیابان مورد علاقه مددجو چیست؟
+beneficiary_secret_question_secondary_school: کدام مدرسه متوسط ​​مددجو به یاد دارد که به آن رفته است؟
+beneficiary_secret_question_nickname: لقب مددجو چیست؟
+beneficiary_secret_question_city_of_birth: شهر محل تولد مددجو کدام است؟
+beneficiary_secret_question_mother_lastname: نام خانوادگی مادر مددجو چیست؟
+beneficiary_secret_question_custom: دیگر
