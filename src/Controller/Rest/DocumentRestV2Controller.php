@@ -83,7 +83,7 @@ class DocumentRestV2Controller extends REController
             // Record beneficiary consultation on this route, as it is the first reachable beneficiary page for mobile app
             $eventDispatcher->dispatch(new BeneficiaryConsultationEvent($beneficiaire));
 
-            return $this->json($entities);
+            return $this->json($entities, 200, [], ['groups' => ['v3:document:read']]);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
