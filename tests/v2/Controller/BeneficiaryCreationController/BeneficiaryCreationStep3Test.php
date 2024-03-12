@@ -126,7 +126,7 @@ class BeneficiaryCreationStep3Test extends AbstractControllerTest implements Tes
     private function getTranslatedSecretQuestions(): array
     {
         $secretQuestions = [];
-        foreach (Beneficiaire::getArQuestionsSecrete() as $key => $value) {
+        foreach (Beneficiaire::SECRET_QUESTIONS as $key => $value) {
             $secretQuestions[self::$translator->trans($key)] = self::$translator->trans($value);
         }
 
