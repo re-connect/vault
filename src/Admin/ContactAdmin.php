@@ -33,13 +33,13 @@ class ContactAdmin extends AbstractAdmin
     {
         $form
             ->with('Informations')
-            ->add('id', null, ['read_only' => true, 'disabled' => true])
-            ->add('nom')
-            ->add('telephone')
-            ->add('email')
-            ->add('commentaire')
-            ->add('beneficiaire.user.username', null, ['read_only' => true, 'disabled' => true])
-            ->add('beneficiaire.user.id', null, ['read_only' => true, 'disabled' => true])
+            ->add('id', null, ['disabled' => true])
+            ->add('nom', null, ['disabled' => true])
+            ->add('telephone', null, ['disabled' => true])
+            ->add('email', null, ['disabled' => true])
+            ->add('commentaire', null, ['disabled' => true])
+            ->add('beneficiaire.user.username', null, ['disabled' => true])
+            ->add('beneficiaire.user.id', null, ['disabled' => true])
             ->end();
     }
 
