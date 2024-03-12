@@ -50,7 +50,7 @@ class SecretQuestionListener implements EventSubscriberInterface
         $data = $event->getData();
         $secretQuestionChoice = $data['questionSecreteChoice'];
 
-        $otherChoice = $this->translator->trans('membre.creationBeneficiaire.questionsSecretes.q9');
+        $otherChoice = $this->translator->trans('beneficiary_secret_question_custom');
         $data['questionSecrete'] = $secretQuestionChoice && $otherChoice === $secretQuestionChoice
             ? $data['autreQuestionSecrete']
             : $secretQuestionChoice;
