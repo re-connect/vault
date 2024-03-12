@@ -72,14 +72,14 @@ beneficiary_reset_password_already_requested: Une demande de réinitialisation d
 beneficiary_reset_password_already_requested_by_email: Une demande de réinitialisation du mot de passe a déjà été effectuée pour ce bénéficiaire par email
 beneficiary_reset_password_email_has_been_sent: Un email a été envoyé au bénéficiaire avec des instructions pour renouveller son mot de passe
 beneficiary_reset_password_success: Le mot de passe du bénéficiaire %fullName% a bien été mis à jour
-beneficiary_secret_question_mother_firstname: 'Quel est le prénom de la mère du bénéficiaire ?'
-beneficiary_secret_question_pet: "Quel est le nom de l'animal de compagnie du bénéficiaire ?"
-beneficiary_secret_question_favorite_street: 'Quel est le nom de la rue préférée du bénéficiaire ?'
-beneficiary_secret_question_secondary_school: 'Quel établissement du secondaire le bénéficiaire se souvient avoir fréquenté ?'
-beneficiary_secret_question_nickname: 'Quel est le surnom du bénéficiaire ?'
-beneficiary_secret_question_city_of_birth: 'Quelle est la ville de naissance du bénéficiaire ?'
-beneficiary_secret_question_mother_lastname: 'Quel est le nom de famille de la mère du bénéficiaire ?'
-beneficiary_secret_question_custom: Autre
+secret_question_mother_firstname: 'Quel est le prénom de la mère du bénéficiaire ?'
+secret_question_pet: "Quel est le nom de l'animal de compagnie du bénéficiaire ?"
+secret_question_favorite_street: 'Quel est le nom de la rue préférée du bénéficiaire ?'
+secret_question_secondary_school: 'Quel établissement du secondaire le bénéficiaire se souvient avoir fréquenté ?'
+secret_question_nickname: 'Quel est le surnom du bénéficiaire ?'
+secret_question_city_of_birth: 'Quelle est la ville de naissance du bénéficiaire ?'
+secret_question_mother_lastname: 'Quel est le nom de famille de la mère du bénéficiaire ?'
+secret_question_custom: Autre
 beneficiary_will_give_you_secret_answer: Le bénéficiaire vous fournira la réponse à sa question secrète afin de réinitialiser son mot de passe
 beneficiary_will_give_you_secret_information: "Il vous communiquera le mot de passe qu'il souhaite utiliser ainsi qu'une question et une réponse secrète permettant de réinitialiser son mot de passe"
 beneficiary_will_receive_email_reset_request: Le bénéficiaire recevra un email lui permettant de réinitialiser son mot de passe directement

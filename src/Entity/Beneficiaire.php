@@ -71,14 +71,14 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     private const DEFAULT_BIRTHDATE = '01/01/1975';
     public const MAX_VAULT_SIZE = 1024 * 1024 * 600; // 600Mo
     public const SECRET_QUESTIONS = [
-        'beneficiary_secret_question_mother_firstname' => 'beneficiary_secret_question_mother_firstname',
-        'beneficiary_secret_question_pet' => 'beneficiary_secret_question_pet',
-        'beneficiary_secret_question_favorite_street' => 'beneficiary_secret_question_favorite_street',
-        'beneficiary_secret_question_secondary_school' => 'beneficiary_secret_question_secondary_school',
-        'beneficiary_secret_question_nickname' => 'beneficiary_secret_question_nickname',
-        'beneficiary_secret_question_city_of_birth' => 'beneficiary_secret_question_city_of_birth',
-        'beneficiary_secret_question_mother_lastname' => 'beneficiary_secret_question_mother_lastname',
-        'beneficiary_secret_question_custom' => 'beneficiary_secret_question_custom',
+        'secret_question_mother_firstname' => 'secret_question_mother_firstname',
+        'secret_question_pet' => 'secret_question_pet',
+        'secret_question_favorite_street' => 'secret_question_favorite_street',
+        'secret_question_secondary_school' => 'secret_question_secondary_school',
+        'secret_question_nickname' => 'secret_question_nickname',
+        'secret_question_city_of_birth' => 'secret_question_city_of_birth',
+        'secret_question_mother_lastname' => 'secret_question_mother_lastname',
+        'secret_question_custom' => 'secret_question_custom',
     ];
 
     #[Groups(['read', 'write', 'beneficiary:read', 'v3:beneficiary:write', 'v3:beneficiary:read'])]

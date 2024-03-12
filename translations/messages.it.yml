@@ -23,11 +23,11 @@ submit: Confermare
 user_update_password_title: Aggiornamento della password
 actual_password: La tua password attuale
 passwords_mismatch: Le due password non corrispondono
-beneficiary_secret_question_mother_firstname: Qual è il nome di battesimo della madre del beneficiario ?
-beneficiary_secret_question_pet: Qual è il nome dell'animale domestico del beneficiario ?
-beneficiary_secret_question_favorite_street: Qual è il nome della via preferita del beneficiario ?
-beneficiary_secret_question_secondary_school: A quale scuola secondaria il beneficiario ricorda di aver frequentato ?
-beneficiary_secret_question_nickname: Qual è il soprannome del beneficiario ?
-beneficiary_secret_question_city_of_birth: Qual è la città di nascita del beneficiario ?
-beneficiary_secret_question_mother_lastname: Qual è il cognome della madre del beneficiario ?
-beneficiary_secret_question_custom: Altro
+secret_question_mother_firstname: Qual è il nome di battesimo della madre del beneficiario ?
+secret_question_pet: Qual è il nome dell'animale domestico del beneficiario ?
+secret_question_favorite_street: Qual è il nome della via preferita del beneficiario ?
+secret_question_secondary_school: A quale scuola secondaria il beneficiario ricorda di aver frequentato ?
+secret_question_nickname: Qual è il soprannome del beneficiario ?
+secret_question_city_of_birth: Qual è la città di nascita del beneficiario ?
+secret_question_mother_lastname: Qual è il cognome della madre del beneficiario ?
+secret_question_custom: Altro

@@ -16,11 +16,11 @@ your_new_password: تاسونو نوي پټنومه
 confirm_new_password: خپل نوی پټنومه تصدیق کړئ
 actual_password: په دووتنه کې ستاسو د اوسني پاسورډ
 passwords_mismatch: دوه پاسورډونه سره هم مطابقت نلري
-beneficiary_secret_question_mother_firstname: مادر د موسدې کونډلو نوم څه دی؟
-beneficiary_secret_question_pet: موسدې پالنی حیوان څه نوم لري؟
-beneficiary_secret_question_favorite_street: موسدې مخونو د ټولو نوم څه دی؟
-beneficiary_secret_question_secondary_school: موسدې ځانګړې اداره څه اداره دی چې هغه به یاد کولای شو؟
-beneficiary_secret_question_nickname: موسدې پلار واخل؟
-beneficiary_secret_question_city_of_birth: موسدې پیدائشي ښار څه دی؟
-beneficiary_secret_question_mother_lastname: موسدې مادر د خلګو نوم څه دی؟
-beneficiary_secret_question_custom: بل اوباره
+secret_question_mother_firstname: مادر د موسدې کونډلو نوم څه دی؟
+secret_question_pet: موسدې پالنی حیوان څه نوم لري؟
+secret_question_favorite_street: موسدې مخونو د ټولو نوم څه دی؟
+secret_question_secondary_school: موسدې ځانګړې اداره څه اداره دی چې هغه به یاد کولای شو؟
+secret_question_nickname: موسدې پلار واخل؟
+secret_question_city_of_birth: موسدې پیدائشي ښار څه دی؟
+secret_question_mother_lastname: موسدې مادر د خلګو نوم څه دی؟
+secret_question_custom: بل اوباره

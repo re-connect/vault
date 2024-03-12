@@ -72,14 +72,14 @@ choose_file: 'Выбрать файл'
 display_file: 'Открыть файл'
 create_reconnect_account: 'Создать аккаунт Reconnect'
 add_beneficiarye: 'Добавить нового пользователя'
-beneficiary_secret_question_mother_firstname: 'Имя матери получателя'
-beneficiary_secret_question_pet: 'Кличка домашнего животного получателя'
-beneficiary_secret_question_favorite_street: 'Название любимой улицы получателя'
-beneficiary_secret_question_secondary_school: 'Общеобразовательное заведение, которое посещал получатель'
-beneficiary_secret_question_nickname: 'Прозвище получателя'
-beneficiary_secret_question_city_of_birth: Другой
-beneficiary_secret_question_mother_lastname: Какая фамилия у матери получателя?
-beneficiary_secret_question_custom: Другое
+secret_question_mother_firstname: 'Имя матери получателя'
+secret_question_pet: 'Кличка домашнего животного получателя'
+secret_question_favorite_street: 'Название любимой улицы получателя'
+secret_question_secondary_school: 'Общеобразовательное заведение, которое посещал получатель'
+secret_question_nickname: 'Прозвище получателя'
+secret_question_city_of_birth: Другой
+secret_question_mother_lastname: Какая фамилия у матери получателя?
+secret_question_custom: Другое
 professionals_management: 'Управление членами'
 add_personal_email: 'Добавить адрес электронной почты'
 add_personal_phone: 'Добавить номер телефона'
