@@ -80,7 +80,6 @@ beneficiary_secret_question_nickname: 'Quel est le surnom du bénéficiaire ?'
 beneficiary_secret_question_city_of_birth: 'Quelle est la ville de naissance du bénéficiaire ?'
 beneficiary_secret_question_mother_lastname: 'Quel est le nom de famille de la mère du bénéficiaire ?'
 beneficiary_secret_question_custom: Autre
-beneficiary_secret_question_7: 'Quelle est la couleur préférée du bénéficiaire ?'
 beneficiary_will_give_you_secret_answer: Le bénéficiaire vous fournira la réponse à sa question secrète afin de réinitialiser son mot de passe
 beneficiary_will_give_you_secret_information: "Il vous communiquera le mot de passe qu'il souhaite utiliser ainsi qu'une question et une réponse secrète permettant de réinitialiser son mot de passe"
 beneficiary_will_receive_email_reset_request: Le bénéficiaire recevra un email lui permettant de réinitialiser son mot de passe directement

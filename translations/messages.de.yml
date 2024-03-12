@@ -230,7 +230,6 @@ beneficiary_secret_question_favorite_street: 'Wo hält sich der/die Klient*in am
 beneficiary_secret_question_secondary_school: 'Welche Grundschule hat der/die Klient*in besucht?'
 beneficiary_secret_question_nickname: 'Wie lautet der Spitzname des/der Klient*in?'
 beneficiary_secret_question_city_of_birth: 'Wo wurde der/die Klient*in geboren?'
-beneficiary_secret_question_7: 'Was ist die Lieblingsfarbe des/der Klient*in?'
 beneficiary_secret_question_mother_lastname: 'Wie lautet der Familienname der Mutter des/der Klient*in?'
 beneficiary_secret_question_custom: 'Andere Frage stellen'
 professionals_management: 'Nutzer*innen Verwaltung'

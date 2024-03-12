@@ -77,7 +77,6 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         'beneficiary_secret_question_secondary_school' => 'beneficiary_secret_question_secondary_school',
         'beneficiary_secret_question_nickname' => 'beneficiary_secret_question_nickname',
         'beneficiary_secret_question_city_of_birth' => 'beneficiary_secret_question_city_of_birth',
-        'beneficiary_secret_question_7' => 'beneficiary_secret_question_7', //color
         'beneficiary_secret_question_mother_lastname' => 'beneficiary_secret_question_mother_lastname',
         'beneficiary_secret_question_custom' => 'beneficiary_secret_question_custom',
     ];
