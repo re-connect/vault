@@ -281,7 +281,7 @@ secret_question_secondary_school: 'Which highschool institution does the benefic
 secret_question_nickname: What is the nickname of the beneficiary ?
 secret_question_city_of_birth: "What is the beneficiary's city of birth ?"
 secret_question_mother_lastname: "What is the beneficiary's mother's last name ?"
-secret_question_custom: Autre
+secret_question_custom: Other
 professionals_management: 'Members management'
 add_personal_email: 'Add an Email address'
 add_personal_phone: 'Add my phone number'
