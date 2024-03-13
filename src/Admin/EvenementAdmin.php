@@ -33,15 +33,15 @@ class EvenementAdmin extends AbstractAdmin
     {
         $form
             ->with('Informations')
-            ->add('id', null, ['attr' => ['read_only' => true], 'disabled' => true])
-            ->add('nom')
-            ->add('date', 'datetime')
-            ->add('lieu')
-            ->add('commentaire')
-            ->add('bEnvoye', null, ['label' => 'Déjà envoyé', 'required' => false])
-            ->add('heureRappel', null, ['label' => "Nombre d'heures avant le rappel"])
-            ->add('beneficiaire.user.username', null, ['attr' => ['read_only' => true], 'disabled' => true])
-            ->add('beneficiaire.user.id', null, ['attr' => ['read_only' => true], 'disabled' => true])
+            ->add('id', null, ['disabled' => true])
+            ->add('nom', null, ['disabled' => true])
+            ->add('date', null, ['widget' => 'single_text', 'disabled' => true])
+            ->add('lieu', null, ['disabled' => true])
+            ->add('commentaire', null, ['disabled' => true])
+            ->add('bEnvoye', null, ['label' => 'Déjà envoyé', 'disabled' => true])
+            ->add('heureRappel', null, ['label' => "Nombre d'heures avant le rappel", 'disabled' => true])
+            ->add('beneficiaire.user.username', null, ['disabled' => true])
+            ->add('beneficiaire.user.id', null, ['disabled' => true])
             ->end();
     }
 
