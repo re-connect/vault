@@ -34,6 +34,7 @@ sonata_admin:
                     - sonata.admin.faq
                     - reo_auth.admin.client
                     - re_admin.admin.annexe
+                    - re_admin.admin.region
             superAdminFeatures:
                 label: "Outils SuperAdmin"
                 icon: '<i class="fa fa-cat"></i>'

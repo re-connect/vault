@@ -1,0 +1,23 @@
+App\Entity\Region:
+  type: entity
+  table: "region"
+  repositoryClass: App\Repository\RegionRepository
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 255
+    email:
+      type: string
+      length: 255
+      nullable: true
+  oneToMany:
+    centres:
+      targetEntity: Centre
+      mappedBy: region
+      cascade: [ "persist" ]

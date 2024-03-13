@@ -2,20 +2,9 @@
 
 namespace App\ServiceV2\Mailer\Email;
 
-use App\Entity\User;
-use Symfony\Component\Mime\Email;
-
-readonly class DuplicatedUsernameEmail
+class DuplicatedUsernameEmail extends LocalizedTemplatedEmail
 {
-    /**
-     * @param string[] $recipients
-     */
-    public static function create(string $sender, array $recipients, User $duplicatedUser): Email
-    {
-        return (new Email())
-            ->from($sender)
-            ->to(...$recipients)
-            ->subject('[Coffre-Fort Numérique] Doublons bénéficiaire')
-            ->text(sprintf('Doublons de username bénéficiaire : %s', $duplicatedUser->getUsername()));
-    }
+    protected const TEMPLATE_PATH = 'v2/email/duplicated_user.html.twig';
+    protected const SUBJECT = 'duplicate_mail_subject';
+    protected const TRANSLATION_ROUTE = null;
 }
