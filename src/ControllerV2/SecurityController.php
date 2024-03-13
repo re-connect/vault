@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\ControllerV2;
 
 use App\Domain\MFA\MfaCodeSender;
 use App\Entity\User;
@@ -11,9 +11,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * Class SecurityController.
- */
 class SecurityController extends AbstractController
 {
     public const MFA_MAX_RETRIES = 3;

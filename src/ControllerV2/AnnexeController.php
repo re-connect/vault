@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\ControllerV2;
 
 use App\Entity\Annexe;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,7 +14,7 @@ class AnnexeController extends AbstractController
     public function show(EntityManagerInterface $em, $url): BinaryFileResponse
     {
         /** @var Annexe $annexe */
-        $annexe = $em->getRepository(Annexe::class)->findOneByUrl($url);
+        $annexe = $em->getRepository(Annexe::class)->findOneBy(['url' => $url]);
 
         return new BinaryFileResponse($annexe);
     }

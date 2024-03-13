@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\ControllerV2;
 
 use App\Entity\User;
 use App\Form\Type\LoginTypeV2;

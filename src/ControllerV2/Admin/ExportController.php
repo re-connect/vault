@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\ControllerV2\Admin;
 
 use App\Form\Model\ExportModel;
 use App\Form\Type\ExportType;
