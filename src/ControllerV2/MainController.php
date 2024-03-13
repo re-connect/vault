@@ -10,7 +10,6 @@ use App\Repository\FaqQuestionRepository;
 use App\Repository\VerbatimRepository;
 use App\Service\LanguageService;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -129,14 +128,14 @@ class MainController extends AbstractController
         options: ['expose' => true],
         methods: ['GET'],
     )]
-    public function changeLang($lang, Request $request, EntityManagerInterface $em): RedirectResponse
+    public function changeLang(string $lang, Request $request, EntityManagerInterface $em): RedirectResponse
     {
         $request->setLocale(strtolower($lang));
         $request->getSession()->set('_locale', strtolower($lang));
         $referer = $request->headers->get('referer') ?: '/';
 
         if (str_contains($referer, 'lang=')) {
-            $langQueryParam = substr($referer, strpos($referer, 'lang='), 8);
+            $langQueryParam = substr($referer, (int) strpos($referer, 'lang='), 8);
             $referer = str_replace($langQueryParam, '', $referer);
         }
 
@@ -213,6 +212,6 @@ class MainController extends AbstractController
     #[Route('/public/get-mailjet-form', name: 'get_mailjet_form', methods: ['GET'])]
     public function getMailjetForm(): Response
     {
-        return new Response(file_get_contents('https://xzk0s.mjt.lu/wgt/xzk0s/54y/form?c=2e04c0ed'));
+        return new Response(file_get_contents('https://xzk0s.mjt.lu/wgt/xzk0s/54y/form?c=2e04c0ed') ?: null);
     }
 }

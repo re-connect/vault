@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AnnexeController extends AbstractController
 {
     #[Route(path: '/annexe/{url}', name: 're_admin_annexe')]
-    public function show(EntityManagerInterface $em, $url): BinaryFileResponse
+    public function show(EntityManagerInterface $em, string $url): BinaryFileResponse
     {
         /** @var Annexe $annexe */
         $annexe = $em->getRepository(Annexe::class)->findOneBy(['url' => $url]);
