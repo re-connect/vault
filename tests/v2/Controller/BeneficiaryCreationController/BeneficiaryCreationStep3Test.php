@@ -5,6 +5,7 @@ namespace App\Tests\v2\Controller\BeneficiaryCreationController;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Entity\Beneficiaire;
+use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\BeneficiaryCreationProcessFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestFormInterface;
@@ -126,10 +127,32 @@ class BeneficiaryCreationStep3Test extends AbstractControllerTest implements Tes
     private function getTranslatedSecretQuestions(): array
     {
         $secretQuestions = [];
-        foreach (Beneficiaire::getArQuestionsSecrete() as $key => $value) {
+        foreach (Beneficiaire::SECRET_QUESTIONS as $key => $value) {
             $secretQuestions[self::$translator->trans($key)] = self::$translator->trans($value);
         }
 
         return $secretQuestions;
+    }
+
+    public function testBeneficiaryShouldBeHydratedWithCustomSecretQuestion(): void
+    {
+        $customSecretQuestion = 'Hey look at this beautiful custom question';
+        self::ensureKernelShutdown();
+        $client = static::createClient();
+        $client->loginUser($this->getTestUserFromDb(MemberFixture::MEMBER_MAIL));
+
+        $values = self::FORM_VALUES;
+        $values['create_beneficiary[questionSecreteChoice]'] = $this->getTranslatedSecretQuestions()['Autre'];
+        $values['create_beneficiary[autreQuestionSecrete]'] = $customSecretQuestion;
+
+        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->object();
+        $url = sprintf(self::URL, $creationProcess->getId());
+        $crawler = $client->request('GET', $url);
+        $form = $crawler->selectButton(self::$translator->trans('submit'))->form();
+        $form->setValues($values);
+        $client->submit($form);
+
+        $beneficiary = BeneficiaireFactory::find($creationProcess->getBeneficiary()->getId());
+        self::assertEquals($customSecretQuestion, $beneficiary->getQuestionSecrete());
     }
 }

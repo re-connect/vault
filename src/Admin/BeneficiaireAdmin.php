@@ -108,6 +108,7 @@ class BeneficiaireAdmin extends AbstractAdmin
                 'years' => range(1900, date('Y')), ])
             ->add('questionSecrete', null, [
                 'label' => 'Question secrète',
+                'disabled' => true,
                 'required' => false,
             ])
             ->add('reponseSecrete', null, [

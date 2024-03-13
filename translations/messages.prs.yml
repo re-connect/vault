@@ -16,3 +16,11 @@ improve_password_pro: در Reconnect، امنیت ابزارها و داده‌�
 improve_password_beneficiary: به منظور افزایش امنیت، قوانین رمز عبور به‌روزرسانی شده‌اند. شما باید رمز عبور خود را تغییر دهید.
 actual_password: رمز عبور فعلی شما
 passwords_mismatch: رمز عبورها مطابقت ندارند
+secret_question_mother_firstname: نام کوچک مادر مددجو چیست؟
+secret_question_pet: نام حیوان خانگی مددجو چیست؟
+secret_question_favorite_street: نام خیابان مورد علاقه مددجو چیست؟
+secret_question_secondary_school: کدام مدرسه متوسط ​​مددجو به یاد دارد که به آن رفته است؟
+secret_question_nickname: لقب مددجو چیست؟
+secret_question_city_of_birth: شهر محل تولد مددجو کدام است؟
+secret_question_mother_lastname: نام خانوادگی مادر مددجو چیست؟
+secret_question_custom: سایر

@@ -22,7 +22,7 @@ class SecretQuestionsHelper
     public function getSecretQuestions(): array
     {
         $secretQuestions = [];
-        foreach (Beneficiaire::getArQuestionsSecrete() as $key => $value) {
+        foreach (Beneficiaire::SECRET_QUESTIONS as $key => $value) {
             $secretQuestions[$this->translator->trans($key)] = $this->translator->trans($value);
         }
 
@@ -35,7 +35,7 @@ class SecretQuestionsHelper
         if ($beneficiarySecretQuestion = $beneficiary->getQuestionSecrete()) {
             return array_key_exists($beneficiarySecretQuestion, $secretQuestions)
                 ? $beneficiarySecretQuestion
-                : $secretQuestions[$this->translator->trans('beneficiary_secret_question_9')];
+                : $secretQuestions[$this->translator->trans('secret_question_custom')];
         }
 
         return array_key_first($secretQuestions);
