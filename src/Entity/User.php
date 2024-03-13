@@ -1251,7 +1251,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function formatPhone(): static
     {
-        if (preg_match('/^0[1-9][0-9]{8}$/', $this->telephone)) {
+        if (preg_match('/^0[1-9][0-9]{8}$/', $this->telephone ?? '')) {
             $this->telephone = preg_replace('/^0/', '+33', $this->telephone);
         }
 
