@@ -2,7 +2,7 @@
 
 namespace App\Controller\Api;
 
-use App\Controller\AbstractController;
+use App\ControllerV2\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
