@@ -63,3 +63,11 @@ mfa_code_not_received: ¿No recibiste el código?
 resend_mfa_code: Haz clic aquí para reenviarlo.
 actual_password: Su contraseña actual
 passwords_mismatch: Las contraseñas no coinciden
+secret_question_mother_firstname: ¿Cuál es el nombre de pila de la madre del beneficiario?
+secret_question_pet: ¿Cuál es el nombre de la mascota del beneficiario?
+secret_question_favorite_street: ¿Cuál es el nombre de la calle favorita del beneficiario?
+secret_question_secondary_school: ¿A qué escuela secundaria recuerda haber asistido el beneficiario?
+secret_question_nickname: ¿Cuál es el apodo del beneficiario?
+secret_question_city_of_birth: ¿Cuál es la ciudad de nacimiento del beneficiario?
+secret_question_mother_lastname: ¿Cuál es el apellido de la madre del beneficiario?
+secret_question_custom: Otro

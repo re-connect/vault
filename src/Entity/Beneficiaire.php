@@ -70,6 +70,16 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     private const DEFAULT_BIRTHDATE = '01/01/1975';
     public const MAX_VAULT_SIZE = 1024 * 1024 * 600; // 600Mo
+    public const SECRET_QUESTIONS = [
+        'secret_question_mother_firstname' => 'secret_question_mother_firstname',
+        'secret_question_pet' => 'secret_question_pet',
+        'secret_question_favorite_street' => 'secret_question_favorite_street',
+        'secret_question_secondary_school' => 'secret_question_secondary_school',
+        'secret_question_nickname' => 'secret_question_nickname',
+        'secret_question_city_of_birth' => 'secret_question_city_of_birth',
+        'secret_question_mother_lastname' => 'secret_question_mother_lastname',
+        'secret_question_custom' => 'secret_question_custom',
+    ];
 
     #[Groups(['read', 'write', 'beneficiary:read', 'v3:beneficiary:write', 'v3:beneficiary:read'])]
     private ?\DateTime $dateNaissance = null;
@@ -164,21 +174,6 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
         $this->dateNaissance = new \DateTime(self::DEFAULT_BIRTHDATE);
-    }
-
-    public static function getArQuestionsSecrete(): array
-    {
-        return [
-            'beneficiary_secret_question_1' => 'beneficiary_secret_question_1',
-            'beneficiary_secret_question_2' => 'beneficiary_secret_question_2',
-            'beneficiary_secret_question_3' => 'beneficiary_secret_question_3',
-            'beneficiary_secret_question_4' => 'beneficiary_secret_question_4',
-            'beneficiary_secret_question_5' => 'beneficiary_secret_question_5',
-            'beneficiary_secret_question_6' => 'beneficiary_secret_question_6',
-            'beneficiary_secret_question_7' => 'beneficiary_secret_question_7',
-            'beneficiary_secret_question_8' => 'beneficiary_secret_question_8',
-            'beneficiary_secret_question_9' => 'beneficiary_secret_question_9',
-        ];
     }
 
     public static function getDefaultBirthDate(): \DateTime
