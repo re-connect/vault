@@ -12,12 +12,13 @@ abstract class LocalizedTemplatedEmail
     protected const TRANSLATION_ROUTE = null;
 
     /**
-     * @param array<string, string> $extraContent
+     * @param array<int, string>   $recipients
+     * @param array<string, mixed> $extraContent
      */
-    public static function create(string $recipient, string $lang, string $url, User $sender = null, array $extraContent = []): TemplatedEmail
+    public static function create(array $recipients, string $lang, string $url, User $sender = null, array $extraContent = []): TemplatedEmail
     {
         return (new TemplatedEmail())
-            ->to($recipient)
+            ->to(...$recipients)
             ->subject(static::SUBJECT)
             ->htmlTemplate(static::TEMPLATE_PATH)
             ->context(array_merge(self::getContext($lang, $url, $sender), $extraContent));

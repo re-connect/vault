@@ -274,12 +274,14 @@ display_file: 'See the file'
 remotely: remotely
 create_reconnect_account: 'Create a Reconnect account'
 add_beneficiary: 'Add a beneficiary'
-beneficiary_secret_question_1: 'Which is the first name of the beneficiary´s mother?'
-beneficiary_secret_question_2: 'Which is the name of the beneficiary´s pet?'
-beneficiary_secret_question_3: 'What is the name of the favourite street of the beneficiary?'
-beneficiary_secret_question_4: 'Which highschool institution does the beneficiary remember They attended?'
-beneficiary_secret_question_5: 'Which is the nickname of the beneficiary?'
-beneficiary_secret_question_6: Other
+secret_question_mother_firstname: 'What is the first name of the beneficiary´s mother ?'
+secret_question_pet: 'What is the name of the beneficiary´s pet ?'
+secret_question_favorite_street: 'What is the name of the favourite street of the beneficiary ?'
+secret_question_secondary_school: 'Which highschool institution does the beneficiary remember They attended ?'
+secret_question_nickname: What is the nickname of the beneficiary ?
+secret_question_city_of_birth: "What is the beneficiary's city of birth ?"
+secret_question_mother_lastname: "What is the beneficiary's mother's last name ?"
+secret_question_custom: Other
 professionals_management: 'Members management'
 add_personal_email: 'Add an Email address'
 add_personal_phone: 'Add my phone number'

@@ -128,7 +128,7 @@ final class BeneficiaireProvider
     {
         $arQuestions = [];
 
-        foreach (Beneficiaire::getArQuestionsSecrete() as $key => $value) {
+        foreach (Beneficiaire::SECRET_QUESTIONS as $key => $value) {
             $arQuestions[$translator->trans($key)] = $translator->trans($value);
         }
 
@@ -139,7 +139,7 @@ final class BeneficiaireProvider
     {
         $arQuestions = [];
 
-        foreach (Beneficiaire::getArQuestionsSecrete() as $value) {
+        foreach (Beneficiaire::SECRET_QUESTIONS as $value) {
             $arQuestions[] = $translator->trans($value);
         }
 
