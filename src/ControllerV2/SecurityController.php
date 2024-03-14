@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Controller;
+namespace App\ControllerV2;
 
 use App\Domain\MFA\MfaCodeSender;
 use App\Entity\User;
 use App\Security\VoterV2\BeneficiaryVoter;
 use App\ServiceV2\GdprService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * Class SecurityController.
- */
 class SecurityController extends AbstractController
 {
     public const MFA_MAX_RETRIES = 3;
@@ -23,7 +20,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/logout', name: 'app_logout', methods: ['GET'])]
-    public function logout()
+    public function logout(): Response
     {
         throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
     }
@@ -55,12 +52,12 @@ class SecurityController extends AbstractController
             $user->isFirstVisit() => $this->redirectToRoute('user_first_visit'),
             $user->isBeneficiaire() => $this->redirectToRoute('beneficiary_home'),
             $user->isMembre() => $this->redirect($this->generateUrl($this->isGranted(BeneficiaryVoter::MANAGE) ? 'list_beneficiaries' : 'affiliate_beneficiary_home')),
-            'default' => $this->redirectToRoute('re_main_login'),
+            true => $this->redirectToRoute('re_main_login'),
         };
     }
 
     #[Route('/login_link', name: 'login_link')]
-    public function loginLink()
+    public function loginLink(): Response
     {
         throw new \LogicException('This code should never be reached');
     }
@@ -68,7 +65,6 @@ class SecurityController extends AbstractController
     #[Route('/resend-auth-code', name: 'resend_auth_code', methods: ['GET'])]
     public function resendAuthCode(MfaCodeSender $mfaCodeSender): RedirectResponse
     {
-        /** @var User $user */
         $user = $this->getUser();
 
         if (!$user) {

@@ -2,7 +2,7 @@
 
 namespace App\Controller\Api;
 
-use App\Controller\AbstractController;
+use App\ControllerV2\AbstractController;
 use App\Entity\Beneficiaire;
 use App\Repository\BeneficiaireRepository;
 use App\ServiceV2\BeneficiaryClientLinkService;

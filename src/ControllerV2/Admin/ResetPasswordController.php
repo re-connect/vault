@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\ControllerV2\Admin;
 
 use App\Entity\User;
 use App\RepositoryV2\ResetPasswordRequestRepository;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(options: ['expose' => true])]
-class PrivateResettingController extends AbstractController
+class ResetPasswordController extends AbstractController
 {
     #[Route(path: '/user/{id}/unlock-password-reset', name: 'unlock_password_reset', methods: ['GET'])]
     #[IsGranted('ROLE_ADMIN')]

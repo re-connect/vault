@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2\Controller\SecurityController;
 
-use App\Controller\SecurityController;
+use App\ControllerV2\SecurityController;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\UserFactory;
