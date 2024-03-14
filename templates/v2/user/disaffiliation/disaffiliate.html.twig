@@ -12,4 +12,9 @@
             {{ include('v2/user/disaffiliation/_disaffiliate_card.html.twig', {relay}) }}
         {% endfor %}
     </div>
+    <div class="m-auto text-end my-2">
+        <a href="{{ isPro ? path('list_pro') : path('list_beneficiaries') }}" class="btn btn-primary text-white">
+            {{ 'finish'|trans }}
+        </a>
+    </div>
 {% endblock %}
