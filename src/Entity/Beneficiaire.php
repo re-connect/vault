@@ -262,9 +262,24 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this->beneficiairesCentres;
     }
 
-    public function getnbDocuments(): int
+    public function getDocumentsCount(): int
     {
         return $this->getDocuments()->count();
+    }
+
+    public function getNotesCount(): int
+    {
+        return $this->getNotes()->count();
+    }
+
+    public function getContactsCount(): int
+    {
+        return $this->getContacts()->count();
+    }
+
+    public function getEventsCount(): int
+    {
+        return $this->getEvenements()->count();
     }
 
     /** @return Collection<int, Document> */

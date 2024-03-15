@@ -330,8 +330,6 @@ class BeneficiaireAdmin extends AbstractAdmin
         return [
             'id' => 'id',
             "Nom d'utilisateur" => 'user.username',
-            'Nom' => 'user.nom',
-            'Prénom' => 'user.prenom',
             'Email' => 'user.email',
             'Télephone' => 'user.telephone',
             'Date de naissance' => 'dateNaissanceStr',
@@ -345,7 +343,10 @@ class BeneficiaireAdmin extends AbstractAdmin
             'Créé par (centre)' => 'user.creatorCentre',
             'Créé par (client)' => 'user.creatorClient',
             'Compte test' => 'user.testToString',
-            'Nombre de documents' => 'nbDocuments',
+            'Nombre de documents' => 'documentsCount',
+            "Nombre d'événements" => 'eventsCount',
+            'Nombre de contacts' => 'contactsCount',
+            'Nombre de notes' => 'notesCount',
             'Région' => 'getRegionToString',
         ];
     }
