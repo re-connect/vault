@@ -65,7 +65,8 @@ class DocumentAdmin extends AbstractAdmin
                         ->innerJoin($alias.'.beneficiaire', 'b')
                         ->innerJoin('b.beneficiairesCentres', 'bc')
                         ->innerJoin('bc.centre', 'c')
-                        ->andWhere('c.region IN (:regions)')
+                        ->innerJoin('c.region', 'r')
+                        ->andWhere('r.name IN (:regions)')
                         ->setParameter('regions', $value);
 
                     return true;
