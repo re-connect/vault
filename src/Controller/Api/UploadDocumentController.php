@@ -3,7 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Api\Manager\ApiClientManager;
-use App\Controller\AbstractController;
+use App\ControllerV2\AbstractController;
 use App\Entity\Document;
 use App\ManagerV2\DocumentManager;
 use App\Repository\BeneficiaireRepository;
