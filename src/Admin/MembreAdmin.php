@@ -222,7 +222,8 @@ class MembreAdmin extends AbstractAdmin
                     $query
                         ->innerJoin($alias.'.membresCentres', 'mc')
                         ->innerJoin('mc.centre', 'c')
-                        ->andWhere('c.region IN (:regions)')
+                        ->innerJoin('c.region', 'r')
+                        ->andWhere('r.name IN (:regions)')
                         ->setParameter('regions', $value);
 
                     return true;

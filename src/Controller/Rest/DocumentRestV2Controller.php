@@ -13,9 +13,11 @@ use App\EventV2\BeneficiaryConsultationEvent;
 use App\Exception\JsonResponseException;
 use App\Manager\MailManager;
 use App\Manager\RestManager;
+use App\ManagerV2\SharedDocumentManager;
 use App\Provider\BeneficiaireProvider;
 use App\Provider\DocumentProvider;
 use App\Provider\DossierProvider;
+use App\Security\Authorization\Voter\DonneePersonnelleVoter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\UploadException;
@@ -26,6 +28,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\ValidatorException;
@@ -49,7 +52,7 @@ class DocumentRestV2Controller extends REController
         parent::__construct($requestStack, $translator, $entityManager, $apiClientManager);
     }
 
-    #[Route(path: 'beneficiaries/{beneficiaryId}/documents', methods: ['GET'], requirements: ['beneficiaryId' => '\d{1,10}'], name: 'list')]
+    #[Route(path: 'beneficiaries/{beneficiaryId}/documents', name: 'list', requirements: ['beneficiaryId' => '\d{1,10}'], methods: ['GET'])]
     public function list(int $beneficiaryId, BeneficiaireProvider $beneficiaireProvider, EventDispatcherInterface $eventDispatcher): JsonResponse
     {
         try {
@@ -91,7 +94,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'documents/{id}', name: 'delete', methods: ['DELETE'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'documents/{id}', name: 'delete', requirements: ['id' => '\d{1,10}'], methods: ['DELETE'])]
     public function delete(int $id): JsonResponse
     {
         try {
@@ -107,7 +110,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'documents/{id}', name: 'patch', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'documents/{id}', name: 'patch', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
     public function patch(int $id, DossierProvider $dossierProvider): JsonResponse
     {
         try {
@@ -146,7 +149,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'documents/{id}/{version}', methods: ['GET'], name: 'show', defaults: ['version' => 'originals'], requirements: ['id' => '\d{1,10}', 'version' => 'large|medium|originals|small|thumbnails|json'])]
+    #[Route(path: 'documents/{id}/{version}', name: 'show', requirements: ['id' => '\d{1,10}', 'version' => 'large|medium|originals|small|thumbnails|json'], defaults: ['version' => 'originals'], methods: ['GET'])]
     public function show(int $id, string $version = 'originals'): Response
     {
         try {
@@ -171,7 +174,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'beneficiaries/{beneficiaryId}/documents', requirements: ['beneficiaryId' => '\d{1,10}'], name: 'upload', methods: ['POST'])]
+    #[Route(path: 'beneficiaries/{beneficiaryId}/documents', name: 'upload', requirements: ['beneficiaryId' => '\d{1,10}'], methods: ['POST'])]
     public function upload(Request $request, int $beneficiaryId, BeneficiaireProvider $beneficiaireProvider, RestManager $restManager): Response
     {
         try {
@@ -206,7 +209,7 @@ class DocumentRestV2Controller extends REController
         return $jsonResponseException->getResponse();
     }
 
-    #[Route(path: 'documents/{id}/send', methods: ['POST'], requirements: ['id' => '\d{1,10}'], name: 'send')]
+    #[Route(path: 'documents/{id}/send', name: 'send', requirements: ['id' => '\d{1,10}'], methods: ['POST'])]
     public function send(
         int $id,
         ValidatorInterface $validator,
@@ -244,7 +247,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'documents/{id}/toggle-access', name: 'toggle_access', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'documents/{id}/toggle-access', name: 'toggle_access', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
     public function toggleAccess(int $id): JsonResponse
     {
         try {
@@ -261,7 +264,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'documents/{id}', name: 'get', methods: ['GET'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'documents/{id}', name: 'get', requirements: ['id' => '\d{1,10}'], methods: ['GET'])]
     public function getEntity(int $id): JsonResponse
     {
         try {
@@ -276,7 +279,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'documents/{id}/name', name: 'rename', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'documents/{id}/name', name: 'rename', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
     public function renameAction(
         int $id,
         Request $request,
@@ -304,7 +307,7 @@ class DocumentRestV2Controller extends REController
         return $jsonResponseException->getResponse();
     }
 
-    #[Route(path: 'documents/{id}/folder/{dossierId}', name: 'put_in_folder', methods: ['PATCH'], requirements: ['id' => '\d{1,10}', 'dossierId' => '\d{1,10}'])]
+    #[Route(path: 'documents/{id}/folder/{dossierId}', name: 'put_in_folder', requirements: ['id' => '\d{1,10}', 'dossierId' => '\d{1,10}'], methods: ['PATCH'])]
     public function putInFolderAction(
         int $id,
         int $dossierId,
@@ -328,7 +331,7 @@ class DocumentRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'documents/{id}/get-out-from-folder', name: 'get_out_from_folder', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'documents/{id}/get-out-from-folder', name: 'get_out_from_folder', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
     public function getOutFromFolderAction(int $id, DocumentProvider $provider): JsonResponse
     {
         try {
@@ -343,5 +346,34 @@ class DocumentRestV2Controller extends REController
 
             return $jsonResponseException->getResponse();
         }
+    }
+
+    #[Route(path: 'documents/{id}/share', name: 'api_share_document', requirements: ['id' => '\d{1,10}'], methods: ['POST'])]
+    public function shareDocument(Request $request, AuthorizationCheckerInterface $authorizationChecker, Document $document, SharedDocumentManager $manager): JsonResponse
+    {
+        $errors = [];
+        $status = Response::HTTP_NO_CONTENT;
+        if (false === $authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW, $document)) {
+            $errors[] = $this->translator->trans('not_allowed_to_share_this_document');
+            $status = Response::HTTP_FORBIDDEN;
+        } else {
+            $email = $request->request->get('email');
+            $user = $this->getUser();
+            if (!$email) {
+                $errors[] = 'You must provide an email';
+                $status = Response::HTTP_BAD_REQUEST;
+            } elseif (!$user instanceof User) {
+                $errors[] = 'User not found';
+                $status = Response::HTTP_BAD_REQUEST;
+            } else {
+                $manager->generateSharedDocumentAndSendEmail($document, $email, $request->getLocale());
+            }
+        }
+        $jsonBody = [
+            'status' => count($errors) > 0 ? 'Failure' : 'Ok',
+            'errors' => $errors,
+        ];
+
+        return $this->json($jsonBody, $status);
     }
 }
