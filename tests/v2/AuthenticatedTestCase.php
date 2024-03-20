@@ -32,8 +32,7 @@ class AuthenticatedTestCase extends WebTestCase
             ->setQuestionSecrete('question')
             ->setReponseSecrete('reponse')
             ->setDateNaissance(new \DateTime())
-            ->setLieuNaissance('Ici')
-            ->setIsCreating(false);
+            ->setLieuNaissance('Ici');
 
         $em->persist($beneficiary);
         $em->flush();

@@ -38,8 +38,7 @@ class FixtureManager
             ->setQuestionSecrete('question')
             ->setReponseSecrete('reponse')
             ->setDateNaissance($date)
-            ->setLieuNaissance($this->faker->city())
-            ->setIsCreating(false);
+            ->setLieuNaissance($this->faker->city());
 
         return $beneficiaire;
     }

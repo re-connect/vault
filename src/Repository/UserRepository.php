@@ -103,7 +103,8 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
         $qb = $this->createQueryBuilder('u');
         $qb
             ->join('u.subjectBeneficiaire', 'b')
-            ->where('b.isCreating = FALSE');
+            ->leftJoin('b.creationProcess', 'cp')
+            ->andWhere('cp.id IS NULL OR cp.isCreating = false');
 
         $i = 0;
         foreach ($criterias as $key => $criteria) {

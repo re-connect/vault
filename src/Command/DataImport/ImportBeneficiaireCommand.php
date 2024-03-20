@@ -102,7 +102,6 @@ class ImportBeneficiaireCommand extends Command
 
         $beneficiaire
             ->setDateNaissance(date_create_from_format('d/m/Y', $dateNaissance))
-            ->setIsCreating(false)
             ->addCentre($centre);
 
         $beneficiaireCentre = $beneficiaire->getBeneficiairesCentres()->first();
