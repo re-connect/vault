@@ -349,6 +349,8 @@ leave_center: 'Quitter ce centre'
 leave_center_confirm: 'Êtes-vous sûr de vouloir quitter ce centre ?'
 leave_center_title: 'Quitter le centre %s'
 location: Lieu
+login_error_disabled_account: Votre compte est désactivé, veuillez contacter le support.
+login_error_account_in_creation: Votre compte est en cours de création, veuillez contacter le support.
 login_form_title: 'Accès au coffre-fort numérique'
 logout: Déconnexion
 mail_auth_code_content : 'Voici votre code de connexion : '
@@ -580,7 +582,6 @@ unsupported_file_extension: "Erreur %fileName%, le format de fichier n'est pas s
 update_your_password: 'Modifier votre mot de passe'
 used_available: '%used% utilisé(s) sur %available% disponibles'
 user_do_not_have_account: "L'utilisateur ne possède pas de compte Reconnect ?"
-user_error_disabled_account: 'Votre compte est désactivé, veuillez contacter le support.'
 user_firstVisit_membre_intro: 'Cet outil a pour fonction première la sauvegarde d’informations personnelles des personnes accompagnées.'
 user_firstVisit_membre_intro_more: 'L’outil s’inscrit dans le cadre de l’accompagnement et pourra vous permettre d’assister les bénéficiaires dans la sauvegarde de leurs données.'
 user_firstVisit_membre_metaTitle: 'Bienvenue sur Reconnect le Coffre Fort Numérique'
