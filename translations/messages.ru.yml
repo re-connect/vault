@@ -59,6 +59,8 @@ form_login: 'логин или пароль'
 logout: Выход
 parameters: Настройки
 login_form_title: 'Доступ в цифровой сейф'
+login_error_disabled_account: Ваша учетная запись отключена, пожалуйста, свяжитесь с поддержкой.
+login_error_account_in_creation: Ваша учетная запись создается, пожалуйста, свяжитесь с поддержкой.
 cancel: Отменить
 search: Искать
 main.continuer: Пролоджить

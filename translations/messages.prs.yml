@@ -2,6 +2,8 @@ form_connexion: 'وارد شدن'
 form_forgot_password: 'رمز عبور یا نام کاربری خود را فراموش کرده ام.'
 form_login: 'نام کاربری   یا  آدرس ایمیل'
 login_form_title: 'دسترسی به گاوصندوق دیجیتالی'
+login_error_disabled_account: حساب شما غیرفعال شده است، لطفاً با پشتیبانی تماس بگیرید.
+login_error_account_in_creation: حساب شما در حال ایجاد است، لطفاً با پشتیبانی تماس بگیرید.
 password_criterion_length: طول
 password_criterion_lowercase: حروف کوچک
 password_criterion_nonAlphabetic: ویژه/عدد

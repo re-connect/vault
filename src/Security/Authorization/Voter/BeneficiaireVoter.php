@@ -65,7 +65,7 @@ class BeneficiaireVoter extends REVoter
                         }
 
                         // Si le beneficiaire n'appartient à aucun centre, on a le droit de l'ajouter
-                        if ($beneficiaire->getIsCreating()) {
+                        if ($beneficiaire->isCreating()) {
                             return true;
                         }
                     }

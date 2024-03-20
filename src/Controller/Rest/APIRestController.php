@@ -106,8 +106,7 @@ class APIRestController extends REController
             $user->setPassword($hasher->hashPassword($user, $password));
 
             $beneficiaire = (new Beneficiaire())
-                ->setUser($user)
-                ->setIsCreating(false);
+                ->setUser($user);
 
             $errorsArray = $beneficiaireProvider->populateBeneficiary($beneficiaire, $request->request, true);
 

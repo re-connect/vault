@@ -200,7 +200,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     private $creators;
     private bool $canada = false;
     private ?string $fcnToken = null;
-    private ?bool $isCreationProcessPending = false;
+
     private ?string $oldUsername = null;
     /** @var ?Collection<int, SharedDocument> */
     private ?Collection $sharedDocuments;
@@ -1137,18 +1137,6 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         $userRelay = $user->isBeneficiaire() ? new BeneficiaireCentre() : new MembreCentre();
 
         return $userRelay->setCentre($relay)->setUser($user)->setBValid($valid);
-    }
-
-    public function isCreationProcessPending(): ?bool
-    {
-        return $this->isCreationProcessPending;
-    }
-
-    public function setIsCreationProcessPending(?bool $isCreationProcessPending): self
-    {
-        $this->isCreationProcessPending = $isCreationProcessPending;
-
-        return $this;
     }
 
     public function hasCreator(): bool

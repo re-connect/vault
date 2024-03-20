@@ -289,6 +289,8 @@ personal_phone_added_successfully: 'Your contact has been added in the contact l
 do_you_accept_to_share_your_information_in_contact_list: 'You consult for the first time the shared elements of this user. Do You agree that yout contact be added to the shared contacts list of this user?'
 share_your_information: 'Share your contact'
 confirm_relay_affiliation_with_sms_code: 'To confirm your addition please send to your Reconnect Relays the validation code'
+login_error_disabled_account: Your account is disabled, please contact support.
+login_error_account_in_creation: Your account is in creation process, please contact support.
 missing_secret_question: Secret question is missing
 missing_secret_question_text: You have not yet entered a secret question and answer, you can do so below
 move: Move
@@ -435,7 +437,6 @@ relay_affiliation_denied: 'You denied the association to the center.'
 relay_wishes_to_add_you: 'A Reconnect Center wishes to add you'
 sms_reset_password_code_is: 'The code to reset your password is %code%'
 user_do_not_have_account: "The user does not have account ?"
-user_error_disabled_account: 'Your account is disabled, please contact support.'
 user_has_account: "The user already has an account ?"
 user_parameters_subtitle: "%subject%'s settings"
 user_successfully_created: The user has been successfully created

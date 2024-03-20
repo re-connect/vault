@@ -17,7 +17,5 @@ interface UserWithCentresInterface
 
     public function isMembre();
 
-    public function getIsCreating();
-
     public function getUserCentresCount();
 }

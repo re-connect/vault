@@ -119,8 +119,6 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
     private int $totalFileSize = 0;
 
-    private bool $isCreating = true;
-
     private ?string $relayInvitationSmsCode = null;
 
     private ?\DateTime $relayInvitationSmsCodeSendAt = null;
@@ -464,16 +462,14 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this;
     }
 
-    public function getIsCreating(): bool
+    public function isCreating(): bool
     {
-        return $this->isCreating;
+        return $this->creationProcess?->isCreating() ?? false;
     }
 
-    public function setIsCreating(?bool $isCreating): self
+    public function isCreatingToString(): string
     {
-        $this->isCreating = $isCreating;
-
-        return $this;
+        return $this->creationProcess?->isCreating() ? 'Oui' : 'Non';
     }
 
     public function getActivationSmsCode(): ?string

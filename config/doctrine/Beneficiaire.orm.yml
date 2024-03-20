@@ -37,8 +37,6 @@ App\Entity\Beneficiaire:
         relayInvitationSmsCodeSendAt:
             type: datetime
             nullable: true
-        isCreating:
-            type: boolean
         neverClickedMesDocuments:
             type: boolean
             options:

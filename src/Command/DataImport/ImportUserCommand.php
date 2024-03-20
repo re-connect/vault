@@ -133,8 +133,7 @@ class ImportUserCommand extends Command
         $user->setTypeUser(User::USER_TYPE_BENEFICIAIRE);
         $beneficiary = (new Beneficiaire())
             ->setUser($user)
-            ->setDateNaissance($user->getBirthDate())
-            ->setIsCreating(false);
+            ->setDateNaissance($user->getBirthDate());
 
         if ($relayId) {
             $relay = $this->centreRepository->find($relayId);

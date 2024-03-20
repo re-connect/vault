@@ -159,16 +159,6 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return $this;
     }
 
-    /**
-     * Get isCreating.
-     *
-     * @return bool
-     */
-    public function getIsCreating()
-    {
-        return false;
-    }
-
     /** @return Collection<int, MembreCentre> */
     public function getUserCentres(): Collection
     {
