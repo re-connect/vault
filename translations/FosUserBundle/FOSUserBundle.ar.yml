@@ -3,13 +3,13 @@ security:
     username: 'إسم المستخدم'
     password: 'كلمة المرور'
     remember_me: 'حفظ البيانات'
-    submit: 'تسجيل دخول'
+    submit: تسجيل دخول
 profile:
   show:
     username: 'إسم المستخدم'
     email: 'بريد إلكتروني'
   edit:
-    submit: تحديث
+    submit: 'تحديث'
   flash:
     updated: 'تم تحديث الملف الشخصي'
 change_password:
@@ -20,7 +20,7 @@ registration:
   check_email: 'لقد تم إرسال رسالة إلكترونية إلى %email% تحتوي على رابط يجب إتباعه لتفعيل حسابك الشخصي.'
   confirmed: 'تهانينا %username%، لقد تم تفعيل حسابك.'
   back: 'عودة إلى الصفحة الرئيسية'
-  submit: تسجيل
+  submit: 'تسجيل'
   flash:
     user_created: 'تم إنشاء حسابك بنجاح'
   email:
@@ -67,7 +67,7 @@ form:
   email: 'البريد الإلكتروني'
   current_password: 'كلمة المرور الحالية'
   password: 'كلمة المرور'
-  password_confirmation: تأكيد
+  password_confirmation: 'تأكيد'
   new_password: 'كلمة المرور الجديدة'
   new_password_confirmation: 'تأكيد كلمة المرور'
 fos_user:
