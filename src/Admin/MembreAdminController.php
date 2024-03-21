@@ -33,14 +33,14 @@ class MembreAdminController extends CRUDController
 
     public function getSuperAdminErrorMessage(bool $isAffiliated): ?string
     {
-        return $isAffiliated ? 'Vous ne pouvez pas supprimer ce membre, vous devez d’abord le désaffilier de ses relais' : null;
+        return $isAffiliated ? 'Vous ne pouvez pas supprimer ce professionnel, vous devez d’abord le désaffilier de ses relais' : null;
     }
 
     public function getAdminErrorMessage(bool $isAffiliated, bool $isTest): ?string
     {
         return match (true) {
-            !$isTest => 'Vous ne pouvez pas supprimer ce membre, vous devez le désactiver',
-            $isTest && $isAffiliated => 'Vous ne pouvez pas supprimer ce membre test, vous devez d’abord le désaffilier de ses relais',
+            !$isTest => 'Vous ne pouvez pas supprimer ce professionnel, vous devez le désactiver',
+            $isTest && $isAffiliated => 'Vous ne pouvez pas supprimer ce professionnel test, vous devez d’abord le désaffilier de ses relais',
             default => null,
         };
     }
