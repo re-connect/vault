@@ -25,7 +25,7 @@ class UserCheckerTest extends KernelTestCase
         $user = UserFactory::findOrCreate(['enabled' => false])->object();
 
         $this->expectException(CustomUserMessageAccountStatusException::class);
-        $this->userChecker->checkPostAuth($user);
+        $this->userChecker->checkPreAuth($user);
     }
 
     public function testEnableUserDoesNotThrowException(): void
@@ -34,7 +34,7 @@ class UserCheckerTest extends KernelTestCase
 
         // Test will generate error if userChecker trows an exception
         $this->expectNotToPerformAssertions();
-        $this->userChecker->checkPostAuth($user);
+        $this->userChecker->checkPreAuth($user);
     }
 
     public function testInCreationUserThrowException(): void
@@ -42,7 +42,7 @@ class UserCheckerTest extends KernelTestCase
         $user = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_IN_CREATION)->object()->getUser();
 
         $this->expectException(CustomUserMessageAccountStatusException::class);
-        $this->userChecker->checkPostAuth($user);
+        $this->userChecker->checkPreAuth($user);
     }
 
     public function testNotInCreationUserDoesNotThrowException(): void
@@ -50,6 +50,6 @@ class UserCheckerTest extends KernelTestCase
         $user = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object()->getUser();
 
         $this->expectNotToPerformAssertions();
-        $this->userChecker->checkPostAuth($user);
+        $this->userChecker->checkPreAuth($user);
     }
 }
