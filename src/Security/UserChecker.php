@@ -16,10 +16,6 @@ readonly class UserChecker implements UserCheckerInterface
 
     public function checkPreAuth(UserInterface $user): void
     {
-    }
-
-    public function checkPostAuth(UserInterface $user): void
-    {
         if (!$user instanceof User) {
             return;
         }
@@ -29,6 +25,10 @@ readonly class UserChecker implements UserCheckerInterface
         if ($errorMessage) {
             throw new CustomUserMessageAccountStatusException($this->translator->trans($errorMessage));
         }
+    }
+
+    public function checkPostAuth(UserInterface $user): void
+    {
     }
 
     private function getErrorMessages(User $user): ?string
