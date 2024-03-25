@@ -11,5 +11,11 @@
 {% endblock %}
 
 {% block actionButtons %}
+    {% set outdated = app.request.query.get('outdated') %}
+    {{ include('v2/common/_link_button.html.twig', {
+        path: path('list_events', {id: beneficiary.id, outdated: outdated ? false : true}),
+        icon: 'fa-solid fa-calendar-days',
+        message: outdated ? 'future_events'|trans : 'outdated_events'|trans,
+    }) }}
     {{ include('v2/vault/components/_create_personal_data_button.html.twig', {'path' : path('create_event', {'id': beneficiary.id})}) }}
 {% endblock %}

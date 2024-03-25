@@ -418,4 +418,9 @@ class Evenement extends DonneePersonnelle
     {
         return $this->rappels->removeElement($rappel);
     }
+
+    public function getDateToUtcTimezone(): \DateTime
+    {
+        return $this->getDate()->setTimezone(new \DateTimeZone('UTC'));
+    }
 }

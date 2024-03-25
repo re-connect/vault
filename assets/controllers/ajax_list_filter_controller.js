@@ -12,16 +12,25 @@ export default class extends Controller {
   filter () {
     const form = this.formTarget;
     const inputs = this.inputTargets;
-
-    const queryParams = inputs.map(
-      (input) => input.value ? `${input.dataset.inputName}=${input.value}&` : ''
-    ).join('');
+    const formAction = form.getAttribute('action');
 
     axiosInstance
-      .get(`${form.getAttribute('action')}?${queryParams}`)
+      .get(`${formAction}${this.getQuerySeparator(formAction)}${this.getQueryParams(inputs)}`)
       .then((response) => {
         const listContainer = document.getElementsByClassName('list-container')[0];
         listContainer.innerHTML = response.data;
       });
+  }
+
+  getQueryParams (inputs) {
+    return inputs.map(
+      (input) => input.value ? `${input.dataset.inputName}=${input.value}&` : ''
+    ).join('');
+  }
+
+  getQuerySeparator (formAction) {
+    return formAction.substring(formAction.lastIndexOf('/') + 1).includes('?')
+      ? '&'
+      : '?';
   }
 }
