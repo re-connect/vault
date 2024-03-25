@@ -11,10 +11,10 @@
             {{ include('v2/vault/event/_detail_information.html.twig', {
                 'information': {
                     'title': event.nom,
-                    'date': event.date|format_datetime(),
+                    'date': event.date|format_datetime(timezone=event.timezone),
                     'location': event.lieu,
                     'message': event.commentaire,
-                    'add_date': event.createdAt|format_datetime(),
+                    'add_date': event.createdAt|format_datetime(timezone=event.timezone),
                 },
                 'reminders': event.rappels
             }) }}

@@ -32,11 +32,23 @@ class EventManager
      */
     public function getEvents(Beneficiaire $beneficiary, string $search = null): array
     {
-        return $this->eventRepository->findFutureEventsByBeneficiary(
+        $events = $this->eventRepository->findFutureEventsByBeneficiary(
             $beneficiary,
             $this->isLoggedInUser($beneficiary->getUser()),
             $search
         );
+
+        foreach ($events as $key => $event) {
+            $utcTimezone = new \DateTimeZone('UTC');
+            $nowUtc = new \DateTime('now', $utcTimezone);
+            $eventDateUtc = $event->getDate()->setTimezone($utcTimezone);
+
+            if ($eventDateUtc < $nowUtc) {
+                unset($events[$key]);
+            }
+        }
+
+        return $events;
     }
 
     public function toggleVisibility(Evenement $event): void
