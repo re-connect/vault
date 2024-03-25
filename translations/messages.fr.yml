@@ -289,6 +289,7 @@ form_contains_error: Vos modifications n'ont pas été enregistrées. Veuillez v
 form_forgot_password: "J'ai oublié mon mot de passe ou mon identifiant"
 form_login: "Nom d'utilisateur ou Email"
 french_flag: Drapeau français
+future_events: Prochains événements
 gdpr_know_more: 'En savoir plus sur la conformité RGPD de votre structure'
 general_conditions_of_use: 'Conditions générales du service'
 generate_password: 'Générer un mot de passe'
@@ -413,6 +414,7 @@ note_updated: 'Note modifiée'
 notes: Notes
 number_of_docs: 'Nombre de documents'
 or_click_link: 'Ou cliquez sur le lien'
+outdated_events: Événements passés
 parameters: Paramètres
 password: 'Mot de passe'
 password_confirm: 'Confirmez votre mot de passe'

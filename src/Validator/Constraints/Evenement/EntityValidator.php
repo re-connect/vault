@@ -35,7 +35,9 @@ class EntityValidator extends ConstraintValidator
             $entity->setDate(new \DateTime($entity->getDate()));
         }
 
-        if ((null === $entity->getId()) && $entity->getDate() < (new \DateTime())) {
+        $nowMinus12HoursUtc = (new \DateTime('now', new \DateTimeZone('UTC')))->modify('-12 hours -5 minutes');
+
+        if ((null === $entity->getId()) && $entity->getDateToUtcTimezone() < $nowMinus12HoursUtc) {
             $this->context->buildViolation($constraint->messageRappelBeforeNow)
                 ->atPath('date')
                 ->addViolation();
@@ -49,7 +51,7 @@ class EntityValidator extends ConstraintValidator
             ->getUnitOfWork()
             ->getOriginalEntityData($entity);
 
-        if (null !== $originalRappel && !empty($originalRappel['date']) && $originalRappel['date'] !== $currentDate && $originalRappel['date'] < (new \DateTime())) {
+        if (null !== $originalRappel && !empty($originalRappel['date']) && $originalRappel['date'] !== $currentDate && $originalRappel['date'] < $nowMinus12HoursUtc) {
             $this->context->buildViolation($constraint->messageRappelBeforeNow)
                 ->atPath('date')
                 ->addViolation();

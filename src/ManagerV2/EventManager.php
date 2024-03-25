@@ -30,25 +30,22 @@ class EventManager
     /**
      * @return Evenement[]
      */
-    public function getEvents(Beneficiaire $beneficiary, string $search = null): array
+    public function getEvents(Beneficiaire $beneficiary, string $search = null, bool $outdated = false): array
     {
-        $events = $this->eventRepository->findFutureEventsByBeneficiary(
-            $beneficiary,
-            $this->isLoggedInUser($beneficiary->getUser()),
-            $search
+        $nowUtc = new \DateTime('now', new \DateTimeZone('UTC'));
+
+        $events = $outdated
+            ? $this->eventRepository->findPastEventsByBeneficiary(
+                $beneficiary,
+                $this->isLoggedInUser($beneficiary->getUser()), $search)
+            : $this->eventRepository->findFutureEventsByBeneficiary(
+                $beneficiary,
+                $this->isLoggedInUser($beneficiary->getUser()), $search);
+
+        return array_filter($events, fn (Evenement $event) => $outdated
+            ? $event->getDateToUtcTimezone() < $nowUtc
+            : $event->getDateToUtcTimezone() > $nowUtc,
         );
-
-        foreach ($events as $key => $event) {
-            $utcTimezone = new \DateTimeZone('UTC');
-            $nowUtc = new \DateTime('now', $utcTimezone);
-            $eventDateUtc = $event->getDate()->setTimezone($utcTimezone);
-
-            if ($eventDateUtc < $nowUtc) {
-                unset($events[$key]);
-            }
-        }
-
-        return $events;
     }
 
     public function toggleVisibility(Evenement $event): void
@@ -84,9 +81,9 @@ class EventManager
             foreach ($reminders as $reminder) {
                 $utcTimezone = new \DateTimeZone('UTC');
                 $nowUtc = new \DateTime('now', $utcTimezone);
-                $reminderDateUtc = $reminder->getDate()->setTimezone($utcTimezone);
+                $eventDateUtc = $reminder->getEvenement()->getDate()->setTimezone($utcTimezone);
 
-                if (!$reminder->getBEnvoye() && $reminderDateUtc < $nowUtc) {
+                if (!$reminder->getBEnvoye() && $eventDateUtc < $nowUtc) {
                     echo sprintf('Sending reminder : %s%s', $reminder->getId(), PHP_EOL);
                     $this->notificator->sendSmsReminder($reminder);
                 }
