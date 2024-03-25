@@ -62,6 +62,16 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
             BeneficiaryFixture::BENEFICIARY_MAIL,
             '/beneficiary/%d/events',
         ];
+
+        $values = self::FORM_VALUES;
+        $values['event[date]'] = (new \DateTime())->modify('-11 hours')->format('Y-m-d H:i:s');
+        yield 'Should redirect when form is correct, with date less than 12 hours in the past' => [
+            self::URL,
+            'confirm',
+            $values,
+            BeneficiaryFixture::BENEFICIARY_MAIL,
+            '/beneficiary/%d/events',
+        ];
     }
 
     /**
@@ -97,8 +107,8 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
         ];
 
         $values = $this->getTestValues();
-        $values['event[date]'] = (new \DateTime('yesterday'))->format('Y-m-d H:i:s');
-        yield 'Should return an error when date is in the past' => [
+        $values['event[date]'] = (new \DateTime())->modify('-13 hours')->format('Y-m-d H:i:s');
+        yield 'Should return an error when date is more than 12 hours in the past' => [
             self::URL,
             'create_event',
             'confirm',
