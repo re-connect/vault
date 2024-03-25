@@ -170,6 +170,7 @@ class BeneficiaryPersonalDataController extends AbstractController
     ): Response {
         $this->dispatchBeneficiaryConsultationEvent($beneficiary);
         $formModel = new SearchFormModel($request->query->get('search'));
+        $outdated = $request->query->getBoolean('outdated');
 
         return $this->render($request->isXmlHttpRequest()
             ? 'v2/vault/event/_list.html.twig'
@@ -177,11 +178,11 @@ class BeneficiaryPersonalDataController extends AbstractController
             [
                 'beneficiary' => $beneficiary,
                 'events' => $paginator->create(
-                    $manager->getEvents($beneficiary, $formModel->getSearch(), $request->query->getBoolean('outdated')),
+                    $manager->getEvents($beneficiary, $formModel->getSearch(), $outdated),
                     $request->query->getInt('page', 1),
                 ),
                 'form' => $this->getSearchForm(
-                    $this->generateUrl('list_events', ['id' => $beneficiary->getId()]),
+                    $this->generateUrl('list_events', ['id' => $beneficiary->getId(), 'outdated' => $outdated]),
                     $formModel,
                 ),
             ],

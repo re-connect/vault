@@ -191,6 +191,7 @@ footer_discover_rp: 'Learn about Reconnect Pro'
 footer_discover_vault: 'Learn about the digital safe'
 footer_group_sos_text: 'Reconnect is an association of the GROUPE SOS Solidarités, one of the nine sectors of the GROUPE SOS, the leading social enterprise in Europe'
 footer_partners_text: 'Reconnect is supported by:'
+future_events: Future events
 passwords_mismatch: 'Passwords mismatch'
 you_must_choose_password: 'You must choose a password'
 password_wrong_format: 'Your password must contain only letters and numbers.'
@@ -308,6 +309,7 @@ note_updated: 'Note updated'
 notes: Notes
 number_of_docs: 'Number of documents'
 or_click_link: 'Or click on the link'
+outdated_events: Outdated events
 password: Password
 password_expired: 'Your password has expired. Please enter a new password.'
 password_help: "The password must be at list 9 characters long, and fulfill criteria below: 1 uppercase, 1 lowercase, 1 special/number"
