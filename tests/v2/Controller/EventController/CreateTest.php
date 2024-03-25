@@ -55,10 +55,22 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
 
     public function provideTestFormIsValid(): ?\Generator
     {
+        date_default_timezone_set('Europe/Paris');
+
         yield 'Should redirect when form is correct' => [
             self::URL,
             'confirm',
             $this->getTestValues(),
+            BeneficiaryFixture::BENEFICIARY_MAIL,
+            '/beneficiary/%d/events',
+        ];
+
+        $values = self::FORM_VALUES;
+        $values['event[date]'] = (new \DateTime())->modify('-12 hours')->format('Y-m-d H:i:s');
+        yield 'Should redirect when form is correct, with date less than 12 hours in the past' => [
+            self::URL,
+            'confirm',
+            $values,
             BeneficiaryFixture::BENEFICIARY_MAIL,
             '/beneficiary/%d/events',
         ];
@@ -79,6 +91,8 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
 
     public function provideTestFormIsNotValid(): ?\Generator
     {
+        date_default_timezone_set('Europe/Paris');
+
         $values = $this->getTestValues();
         $values['event[nom]'] = '';
         yield 'Should return an error when nom is empty' => [
@@ -97,8 +111,8 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
         ];
 
         $values = $this->getTestValues();
-        $values['event[date]'] = (new \DateTime('yesterday'))->format('Y-m-d H:i:s');
-        yield 'Should return an error when date is in the past' => [
+        $values['event[date]'] = (new \DateTime())->modify('-13 hours')->format('Y-m-d H:i:s');
+        yield 'Should return an error when date is more than 12 hours in the past' => [
             self::URL,
             'create_event',
             'confirm',
