@@ -38,7 +38,6 @@ class EntityValidator extends ConstraintValidator
         $nowMinus12HoursUtc = (new \DateTime('now', new \DateTimeZone('UTC')))->modify('-12 hours -5 minutes');
 
         if ((null === $entity->getId()) && $entity->getDateToUtcTimezone() < $nowMinus12HoursUtc) {
-
             $this->context->buildViolation($constraint->messageRappelBeforeNow)
                 ->atPath('date')
                 ->addViolation();

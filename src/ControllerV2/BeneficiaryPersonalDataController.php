@@ -177,7 +177,7 @@ class BeneficiaryPersonalDataController extends AbstractController
             [
                 'beneficiary' => $beneficiary,
                 'events' => $paginator->create(
-                    $manager->getEvents($beneficiary, $formModel->getSearch()),
+                    $manager->getEvents($beneficiary, $formModel->getSearch(), $request->query->getBoolean('outdated')),
                     $request->query->getInt('page', 1),
                 ),
                 'form' => $this->getSearchForm(
