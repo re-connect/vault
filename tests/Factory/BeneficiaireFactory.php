@@ -40,7 +40,6 @@ final class BeneficiaireFactory extends ModelFactory
         return [
             'totalFileSize' => self::faker()->randomNumber(),
             'dateNaissance' => self::faker()->dateTime(),
-            'isCreating' => false,
             'neverClickedMesDocuments' => self::faker()->boolean(),
             'questionSecrete' => 'question',
             'reponseSecrete' => 'reponse',

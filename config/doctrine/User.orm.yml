@@ -139,10 +139,6 @@ App\Entity\User:
             type: string
             length: '255'
             nullable: true
-        isCreationProcessPending:
-            type: boolean
-            options:
-                default: false
         disabledAt:
             type: datetime
             nullable: true

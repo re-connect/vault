@@ -69,8 +69,9 @@ class CentreProvider
             ->innerJoin('bc.centre', 'c')
             ->innerJoin('c.gestionnaire', 'g')
             ->innerJoin('b.user', 'u')
+            ->leftJoin('b.creationProcess', 'cp')
             ->where('g.id = '.$gestionnaire->getId())
-            ->andWhere('b.isCreating = FALSE')
+            ->andWhere('cp.id IS NULL OR cp.isCreating = false')
             ->andWhere('bc.bValid = TRUE')
             ->getQuery()
             ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
@@ -133,9 +134,10 @@ class CentreProvider
             ->innerJoin('c.membresCentres', 'mc')
             ->innerJoin('mc.membre', 'm')
             ->innerJoin('b.user', 'u')
+            ->leftJoin('b.creationProcess', 'cp')
             ->where('m.id = '.$membre->getId())
             ->andWhere("mc.droits LIKE '%".MembreCentre::MANAGE_BENEFICIARIES_PERMISSION."\";b:1%'")
-            ->andWhere('b.isCreating = FALSE');
+            ->andWhere('cp.id IS NULL OR cp.isCreating = false');
 
         if (!$takeUnvalid) {
             $qb->andWhere('bc.bValid = TRUE');
@@ -169,10 +171,11 @@ class CentreProvider
             ->innerJoin('bc.centre', 'c')
             ->innerJoin('c.membresCentres', 'mc')
             ->innerJoin('mc.membre', 'm')
+            ->leftJoin('b.creationProcess', 'cp')
             ->where('m.id = '.$membreId)
             ->andWhere("mc.droits LIKE '%".MembreCentre::MANAGE_BENEFICIARIES_PERMISSION."\";b:1%'")
             ->andWhere('b.id = '.$id)
-            ->andWhere('b.isCreating = FALSE');
+            ->andWhere('cp.id IS NULL OR cp.isCreating = false');
 
         return $qb
             ->getQuery()

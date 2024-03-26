@@ -106,7 +106,6 @@ class BeneficiaryCreationProcess
     public function setIsCreating(?bool $isCreating): self
     {
         $this->isCreating = $isCreating;
-        $this->beneficiary?->setIsCreating($isCreating);
 
         return $this;
     }
