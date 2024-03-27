@@ -7,9 +7,14 @@ form_validation_no_password: Vous devez choisir un mot de passe
 lastname_format: 'Vous ne pouvez entrer que des lettres, tirets (-) ou apostrophes ('')'
 lastname_not_empty: Das Feld "Name" darf nicht leer sein
 mail_not_empty: Das Feld "E-Mail-Adresse" darf nicht leer sein
+phone_already_in_use: Ce numéro de téléphone est déjà utilisé
 phone_not_empty: Das Feld "Telefonnummer" darf nicht leer sein
-secret_question_not_empty: Die Sicherheitsfrage darf nicht leer sein
+secret_answer_mismatch: La réponse à la question secrète est incorrecte
 secret_answer_not_empty: Die Antwort auf die Sicherheitsfrage darf nicht leer sein
+secret_question_not_empty: Die Sicherheitsfrage darf nicht leer sein
 username_already_in_use: Nutzername Dieser Nutzername wird bereits verwendet
 username_not_valid: Das Feld "Anmeldename" darf nicht leer sein
-you_must_accept_terms_of_use: 'Du musst die Nutzungsbedingungen akzeptieren'
+wrong_secret_answer: 'La réponse à la question secrète est incorrecte'
+wrong_sms_code: 'Le code est incorrect'
+folder_circular_dependency: Ce mouvement de dossier n'est pas valide
+you_must_accept_terms_of_use: "Du musst die Nutzungsbedingungen akzeptieren"

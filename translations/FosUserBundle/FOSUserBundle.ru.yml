@@ -1,7 +1,7 @@
 security:
   login:
     username: 'Имя пользователя'
-    password: Пароль
+    password: 'Пароль'
     remember_me: 'Запомнить меня'
     submit: Войти
 profile:
@@ -9,7 +9,7 @@ profile:
     username: 'Имя пользователя'
     email: 'Электронная почта'
   edit:
-    submit: Обновить
+    submit: 'Обновить'
   flash:
     updated: 'Профиль пользователя обновлен.'
 change_password:
@@ -20,7 +20,7 @@ registration:
   check_email: 'Письмо отправлено на адрес %email%. В нём содержится ссылка, по которой вы можете подтвердить свою регистрацию.'
   confirmed: 'Поздравляем %username%, ваш аккаунт подтвержден.'
   back: 'Вернуться на предыдущую страницу.'
-  submit: Зарегистрироваться
+  submit: 'Зарегистрироваться'
   flash:
     user_created: 'Пользователь успешно создан.'
   email:
@@ -65,7 +65,7 @@ form:
   username: 'Имя пользователя'
   email: 'Электронная почта'
   current_password: 'Текущий пароль'
-  password: Пароль
+  password: 'Пароль'
   password_confirmation: 'Подтвердите пароль'
   new_password: 'Новый пароль'
   new_password_confirmation: 'Подтвердите пароль'

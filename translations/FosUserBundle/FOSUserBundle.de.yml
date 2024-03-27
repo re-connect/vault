@@ -1,13 +1,13 @@
 security:
   login:
-    username: Benutzername
-    password: Passwort
+    username: 'Benutzername'
+    password: 'Passwort'
     remember_me: 'An mich erinnern'
     submit: Anmelden
 profile:
   show:
-    username: Benutzername
-    email: E-Mail
+    username: 'Benutzername'
+    email: 'E-Mail'
   edit:
     submit: 'Benutzer aktualisieren'
   flash:
@@ -20,7 +20,7 @@ registration:
   check_email: 'Eine E-Mail wurde an %email% gesendet. Sie enthält einen Link, den Sie anklicken müssen, um Ihr Benutzerkonto zu bestätigen.'
   confirmed: 'Glückwunsch %username%, Ihr Benutzerkonto ist jetzt bestätigt.'
   back: 'Zurück zur ursprünglichen Seite.'
-  submit: Registrieren
+  submit: 'Registrieren'
   flash:
     user_created: 'Der Benutzer wurde erfolgreich erstellt.'
   email:
@@ -60,10 +60,10 @@ layout:
   register: Registrieren
   logged_in_as: 'Angemeldet als %username%'
 form:
-  username: Benutzername
-  email: E-Mail-Adresse
+  username: 'Benutzername'
+  email: 'E-Mail-Adresse'
   current_password: 'Derzeitiges Passwort'
-  password: Passwort
+  password: 'Passwort'
   password_confirmation: 'Passwort bestätigen'
   new_password: 'Neues Passwort'
   new_password_confirmation: 'Neues Passwort bestätigen'
