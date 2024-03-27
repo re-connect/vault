@@ -58,6 +58,8 @@ form_login: 'اسم المستخدم أو كلمة المرور'
 logout: 'قطع الاتصال'
 parameters: 'القيم الدخلة في الكمبيوتر'
 login_form_title: 'الوصول إلى الخزنة الرقمية'
+login_error_disabled_account: حسابك معطل، يرجى الاتصال بالدعم.
+login_error_account_in_creation: حسابك قيد الإنشاء، يرجى الاتصال بالدعم.
 cancel: الغاء
 search: بحث
 continue: متابعة

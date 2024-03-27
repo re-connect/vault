@@ -2,6 +2,8 @@ form_connexion: 'ننوتل يا کنيکټ کيدل'
 form_forgot_password: 'زما پاسورډ بیا تنظیم کړئ'
 form_login: 'کاروونکي نوم یا بریښنالیک'
 login_form_title: 'ډیجیټل خوندي ته ډیجیټل خوندي ته لاسرسی'
+login_error_disabled_account: ستاسو اکاؤنټ غیر فعال دی، مهرباني وکړئ د پشتو پوښتنې ساتنه ته رابطه ونیسئ.
+login_error_account_in_creation: ستاسو اکاؤنټ جوړولو پرې کارېدلی، مهرباني وکړئ د پشتو پوښتنې ساتنه ته رابطه ونیسئ.
 password_criterion_length: اوږدوالی
 password_criterion_lowercase: کوچني توري
 password_criterion_nonAlphabetic: ځانګړې/شمیره

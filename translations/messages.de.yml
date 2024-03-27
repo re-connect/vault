@@ -239,6 +239,8 @@ personal_phone_added_successfully: 'Du wurdest in die Kontaktliste des/der Klien
 do_you_accept_to_share_your_information_in_contact_list: 'Du siehst zum ersten Mal die freigegebenen Elemente dieser Person. Bist du damit einverstanden, dass Dein Kontakt zur Liste der freigegebenen Kontakte dieser Person hinzugefügt wird?'
 share_your_information: 'Deinen Kontakt teilen'
 confirm_relay_affiliation_with_sms_code: 'Um Deine Anmeldung zu bestätigen, sende bitte den Bestätigungscode %code% an Deine Reconnect-Einrichtung bzw. Deine/n Sozialarbeiter*in'
+login_error_disabled_account: Ihr Konto ist deaktiviert, bitte kontaktieren Sie den Support.
+login_error_account_in_creation: Ihr Konto wird erstellt, bitte kontaktieren Sie den Support.
 message: Nachricht
 missing_secret_question_text: Sie haben noch keine geheime Frage und Antwort eingegeben. Das können Sie unten tun
 modal_message_contact_delete: 'Bist du sicher, dass du diesen Kontakt löschen möchtest'

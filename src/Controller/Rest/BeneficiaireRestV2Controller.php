@@ -313,7 +313,7 @@ final class BeneficiaireRestV2Controller extends REController
             }
 
             $user = (new User())->setBActif(true)->setTypeUser(User::USER_TYPE_BENEFICIAIRE);
-            $beneficiaire = (new Beneficiaire())->setUser($user)->setIsCreating(false);
+            $beneficiaire = (new Beneficiaire())->setUser($user);
 
             $password = $request->request->get('password') ?? $userManager->getRandomPassword();
             $user->setPlainPassword($password);
@@ -392,8 +392,6 @@ final class BeneficiaireRestV2Controller extends REController
 
                     return $this->json($errorsArray, Response::HTTP_INTERNAL_SERVER_ERROR);
                 }
-
-                $entity->setIsCreating(false);
 
                 $firstCentre = null;
                 if (!empty($request->request->get('re_form_beneficiaire')['centres'])) {

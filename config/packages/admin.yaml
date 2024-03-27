@@ -86,7 +86,7 @@ services:
         arguments:
             - ~
             - App\Entity\Membre
-            - ~
+            - App\Admin\MembreAdminController
         calls:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
             - [ setUserManager, [ '@App\ManagerV2\UserManager' ] ]

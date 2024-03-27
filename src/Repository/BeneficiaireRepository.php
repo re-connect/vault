@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Beneficiaire;
-use App\Entity\BeneficiaireCentre;
 use App\Entity\Centre;
 use App\Entity\Client;
 use App\Entity\Membre;
@@ -31,23 +30,6 @@ class BeneficiaireRepository extends ServiceEntityRepository
             ->orderBy('b.id', Criteria::ASC)
             ->getQuery()
             ->getResult();
-    }
-
-    /**
-     * Retourne le Beneficiaire qui sont liés à un centre et en cours de création
-     * c'est à dire que la création n'est pas allé jusqu'au bout.
-     */
-    public function findByIsCreatingJoinCentre(): array
-    {
-        $qb = $this->createQueryBuilder('b');
-        $isCreating = true;
-
-        $qb
-            ->join(BeneficiaireCentre::class, 'bc')
-            ->where('b.isCreating = :isCreating')
-            ->setParameter('isCreating', $isCreating);
-
-        return $qb->getQuery()->getResult();
     }
 
     public function findRosalies(): array
@@ -104,7 +86,8 @@ class BeneficiaireRepository extends ServiceEntityRepository
             ->createQueryBuilder('b')
             ->select('count(b.id)')
             ->join('b.user', 'user')
-            ->where('isCreating = false')
+            ->leftJoin('b.creationProcess', 'cp')
+            ->andWhere('cp.id IS NULL OR cp.isCreating = false')
             ->andWhere('user.test = false');
 
         try {
@@ -161,7 +144,8 @@ class BeneficiaireRepository extends ServiceEntityRepository
         $parameters = [];
         $qb = $this->createQueryBuilder('b')
             ->innerJoin('b.user', 'u')
-            ->where('b.isCreating = false');
+            ->leftJoin('b.creationProcess', 'cp')
+            ->andWhere('cp.id IS NULL OR cp.isCreating = false');
 
         if ($firstname) {
             $qb->andWhere('u.prenom LIKE :firstname');
@@ -194,10 +178,11 @@ class BeneficiaireRepository extends ServiceEntityRepository
             ->innerJoin('b.user', 'u')
             ->innerJoin('c.membresCentres', 'mc')
             ->innerJoin('mc.membre', 'm')
+            ->leftJoin('b.creationProcess', 'cp')
             ->addSelect('u')
             ->addSelect('bc')
             ->addSelect('c')
-            ->andWhere('b.isCreating = false')
+            ->andWhere('cp.id IS NULL OR cp.isCreating = false')
             ->andWhere('bc.bValid = true')
             ->andWhere('m.id = :id')
             ->andWhere('mc.bValid = true')

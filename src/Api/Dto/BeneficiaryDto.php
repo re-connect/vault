@@ -42,10 +42,8 @@ final class BeneficiaryDto
                 ->setPrenom($this->firstName)
                 ->setEmail($this->email)
                 ->setTelephone($this->phone)
-                ->setIsCreationProcessPending(false)
             )
             ->setDateNaissance($this->birthDate)
-            ->setDistantId($this->distantId)
-            ->setIsCreating(false);
+            ->setDistantId($this->distantId);
     }
 }

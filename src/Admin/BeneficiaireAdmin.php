@@ -24,6 +24,7 @@ use Sonata\Form\Type\CollectionType;
 use Sonata\Form\Type\DatePickerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -123,10 +124,15 @@ class BeneficiaireAdmin extends AbstractAdmin
                     'help' => 'Date à laquelle la demande a été faite. Lorsque cette demande a été traitée, veuillez effacer cette date.',
                 ]);
         }
+        if ($subject && $subject->getCreationProcess()) {
+            $formMapper
+                ->add('isCreating', CheckboxType::class, [
+                    'label' => 'En cours de création',
+                    'required' => false,
+                    'property_path' => 'creationProcess.isCreating',
+                ]);
+        }
         $formMapper
-             ->add('isCreating', null, [
-                'label' => 'En cours de création',
-            ])
             ->end()
             ->with('Centres')
             ->add(
@@ -335,7 +341,7 @@ class BeneficiaireAdmin extends AbstractAdmin
             'Date de naissance' => 'dateNaissanceStr',
             'Question secrète' => 'questionSecrete',
             'Réponse secrète' => 'reponseSecrete',
-            'En cours de création' => 'isCreating',
+            'En cours de création' => 'isCreatingToString',
             'Dernière Connexion' => 'user.derniereConnexionAt',
             'Création' => 'user.created_at',
             'Centres' => 'getBeneficiairesCentresStr',

@@ -8,23 +8,35 @@ use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class UserChecker implements UserCheckerInterface
+readonly class UserChecker implements UserCheckerInterface
 {
-    public function __construct(private readonly TranslatorInterface $translator)
+    public function __construct(private TranslatorInterface $translator)
     {
     }
 
     public function checkPreAuth(UserInterface $user): void
     {
+        if (!$user instanceof User) {
+            return;
+        }
+
+        $errorMessage = $this->getErrorMessages($user);
+
+        if ($errorMessage) {
+            throw new CustomUserMessageAccountStatusException($this->translator->trans($errorMessage));
+        }
     }
 
     public function checkPostAuth(UserInterface $user): void
     {
-        if (!$user instanceof User) {
-            return;
-        }
-        if (!$user->isEnabled()) {
-            throw new CustomUserMessageAccountStatusException($this->translator->trans('user_error_disabled_account'));
-        }
+    }
+
+    private function getErrorMessages(User $user): ?string
+    {
+        return match (true) {
+            !$user->isEnabled() => 'login_error_disabled_account',
+            $user->getSubjectBeneficiaire()?->isCreating() => 'login_error_account_in_creation',
+            default => null,
+        };
     }
 }

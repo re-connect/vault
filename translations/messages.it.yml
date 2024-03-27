@@ -6,6 +6,8 @@ health: Salute
 housing: Alloggio
 identity: Identità
 login_form_title: 'Accesso alla cassaforte digitale'
+login_error_disabled_account: Il tuo account è disabilitato, contatta il supporto.
+login_error_account_in_creation: Il tuo account è in fase di creazione, contatta il supporto.
 missing_secret_question_text: Non avete ancora inserito una domanda e una risposta segreta, potete farlo qui di seguito
 tax: Imposta
 work: Lavoro
