@@ -232,10 +232,10 @@ download_document_click_button: 'انقر على الرابط أدناه لتح�
 download_training_catalogue: 'قم بتنزيل كتالوج التدريب'
 drop_files: 'ايداع ملفات'
 duplicated_username: "تكرار اسم المستخدم"
-duplicated_username_alert: "Il existe déjà un coffre-fort numérique à ce nom, prénom et date de naissance. S'il ne s'agit pas du bénéficiaire accompagné, vous pouvez poursuivre la création et un -1 sera ajouté à son identifiant."
+duplicated_username_alert: "يوجد بالفعل خزانة أمان رقمية باسم، الاسم الأول، وتاريخ الميلاد. إذا لم يكن هذا المستفيد المرافق، يمكنك متابعة الإنشاء وسيتم إضافة -1 إلى معرفه."
 edit: تعديل
 edit_file: 'اختيار ملف'
-edit_si_siao_number: Modifier numéro SI-SIAO
+edit_si_siao_number: تعديل رقم SI-SIAO
 email: عنوان البريد الالكتروني
 empty: المجلد فارغ
 enable_mfa: تفعيل المصادقة ذات العاملين
@@ -243,29 +243,29 @@ enable_mfa_help: بتحديد هذا الخانة، ستتلقى رمزاً لل
 enable_mfa_help_benef_creation: بتحديد هذا الخانة، سيتلقى المستفيد رمزاً للاستخدام مرة واحدة في كل مرة يقوم بتسجيل الدخول لتأكيد هويته وتأمين حسابه.
 enable_mfa_help_pro_creation: بتحديد هذا الخانة، سيتلقى المستخدم رمزاً للاستخدام مرة واحدة في كل مرة يقوم بتسجيل الدخول لتأكيد هويته وتأمين حسابه.
 enabled: نشط
-english_flag: Drapeau anglais
+english_flag: علم إنجلترا
 enter_email_address: 'يرجى ادخال عنوانك الالكتروني'
-enter_phone_number: 'Veuillez saisir votre téléphone.'
+enter_phone_number: 'يرجى إدخال رقم هاتفك.'
 error: خطأ
-error_401: Vous n'êtes pas connecté
-error_403: Vous n'êtes pas autorisé à accéder à cette page
-error_404: Oups, il semble que cette page n'existe pas
-error_500: Il y a eu une erreur technique, le problème vient de nous, nous allons le traiter rapidement
-error_during_download: "Erreur : le téléchargement n'a pas pu aboutir"
-event: Événement
-event_created: 'Événement créé'
+error_401: لم تقم بتسجيل الدخول
+error_403: لا يسمح لك الوصول إلى هذه الصفحة
+error_404: عذرًا، يبدو أن هذه الصفحة غير موجودة
+error_500: حدث خطأ فني، المشكلة من جانبنا، سنعمل على حلها بسرعة
+error_during_download: "خطأ: فشل التنزيل"
+event: حدث
+event_created: 'تم إنشاء الحدث'
 event_removed_successfully: 'لفد تم الغاء الحدث'
-event_updated: 'Événement modifié'
+event_updated: 'تم تعديل الحدث'
 events: احداث
-export_subtitle_1: "Ce formulaire permet d'exporter le nombre de données créées sur une période par Centres OU par Régions."
-export_subtitle_2: 'Ne pas renseigner les filtres Centres et Régions retournera la totalité des données créées sur la période.'
-export_title: Statistiques
+export_subtitle_1: "هذا النموذج يسمح بتصدير عدد البيانات التي تم إنشاؤها خلال فترة زمنية حسب المراكز أو حسب المناطق."
+export_subtitle_2: 'عدم تعبئة فلاتر المراكز والمناطق سيعيد كل البيانات التي تم إنشاؤها خلال الفترة.'
+export_title: إحصائيات
 faq_gdpr: 'F.A.Q. RGPD'
-faq_gdpr_no_content: 'Cette section est vide pour le moment'
+faq_gdpr_no_content: 'هذا القسم فارغ في الوقت الحالي'
 faq_gdpr_text: "<p>Dans le cadre de la mise en place d'outils Reconnect, vous vous posez des questions concernant la mise en conformite de votre structure au RGPD ?</p><p>Cette F.A.Q. a pour but de répondre à vos interrogations.</p>"
-fill_beneficiary_identity_information: "Veuillez renseigner l'identité du bénéficiaire"
-finish: Terminer
-firstname: Prénom
+fill_beneficiary_identity_information: "يرجى تقديم هوية المستفيد"
+finish: إكمال
+firstname: الاسم
 folder: مجلد
 folder_contains_documents_alert: "Le dossier %name% contient des documents, si vous le supprimez, vous supprimez aussi l'ensemble des documents qu'il contient. Êtes-vous sûr de vouloir supprimer ce dossier et tous les documents qu'il contient ?"
 folder_content: 'Contenu du dossier :'
