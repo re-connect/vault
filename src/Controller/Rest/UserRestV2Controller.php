@@ -71,6 +71,7 @@ class UserRestV2Controller extends REController
      *
      * @Patch("user/register-notification-token", name="register_notification_token")
      */
+    #[Deprecated('This route belongs to the old API')]
     public function setFcnToken(Request $request, EntityManagerInterface $em): JsonResponse
     {
         try {
