@@ -12,10 +12,11 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: '/api/v3/beneficiaries', format: 'json')]
 #[IsGranted('ROLE_USER')]
-final class BeneficiaryController extends AbstractController
+final class BeneficiaryApiController extends AbstractController
 {
     #[Route(path: '/me/enable', methods: ['PUT'])]
-    public function enable(UserManager $userManager, #[MapRequestPayload] EnableBeneficiaryDto $dto): Response {
+    public function enable(UserManager $userManager, #[MapRequestPayload] EnableBeneficiaryDto $dto): Response
+    {
         $user = $this->getUser();
         if (!$user->isBeneficiaire()) {
             throw $this->createAccessDeniedException();
