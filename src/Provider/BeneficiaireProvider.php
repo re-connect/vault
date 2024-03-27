@@ -135,7 +135,7 @@ final class BeneficiaireProvider
         return $arQuestions;
     }
 
-    public function getSecretQuestionsV2($translator): array
+    public function getSecretQuestionsV2(TranslatorInterface $translator): array
     {
         $arQuestions = [];
 

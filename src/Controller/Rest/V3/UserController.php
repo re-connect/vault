@@ -3,12 +3,16 @@
 namespace App\Controller\Rest\V3;
 
 use App\ControllerV2\AbstractController;
-use App\Entity\User;
+use App\Provider\BeneficiaireProvider;
 use App\ServiceV2\Mailer\MailerService;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-#[Route(path: '/api/v3/users', name: 'api_user_')]
+#[Route(path: '/api/v3/users', format: 'json')]
+#[IsGranted('ROLE_USER')]
 class UserController extends AbstractController
 {
     #[Route(path: '/request-personal-account-data', name: 'request_personal_account_data', methods: ['GET'])]
@@ -16,7 +20,7 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
 
-        if (!$user instanceof User || !$user->isBeneficiaire()) {
+        if (!$user->isBeneficiaire()) {
             throw $this->createAccessDeniedException();
         }
 
@@ -25,5 +29,17 @@ class UserController extends AbstractController
         }
 
         return $this->json($user);
+    }
+
+    #[Route(path: '/me', name: 'get_me', methods: ['GET'])]
+    public function getMe(): JsonResponse
+    {
+        return $this->json($this->getUser());
+    }
+
+    #[Route(path: '/secret-questions', name: 'get_secret_questions', methods: ['GET'])]
+    public function getSecretQuestions(BeneficiaireProvider $provider, TranslatorInterface $translator): JsonResponse
+    {
+        return $this->json($provider->getSecretQuestionsV2($translator));
     }
 }

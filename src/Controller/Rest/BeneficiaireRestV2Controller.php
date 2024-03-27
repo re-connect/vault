@@ -24,6 +24,7 @@ use App\Validator\Constraints\Beneficiaire\Entity as BeneficiaireValidator;
 use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
+use JetBrains\PhpStorm\Deprecated;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -295,6 +296,7 @@ final class BeneficiaireRestV2Controller extends REController
         }
     }
 
+    #[Deprecated('This route belongs to the old API')]
     #[Route(path: 'get-secret-questions', name: 'get_secret_questions', methods: ['GET'])]
     public function getSecretQuestions(BeneficiaireProvider $provider, TranslatorInterface $translator): JsonResponse
     {
