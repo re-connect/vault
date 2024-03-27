@@ -4,7 +4,7 @@
   "license": "MIT",
   "description": "A vault to store any document",
   "require": {
-    "php": ">=8.2",
+    "php": ">=8.3",
     "ext-apcu": "*",
     "ext-ctype": "*",
     "ext-dom": "*",
