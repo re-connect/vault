@@ -87,54 +87,54 @@ beneficiary_will_receive_sms_account_information: 'سيتلقى المستفيد
 beneficiary_will_receive_sms_reset_request: سيتلقى المستفيد رمزًا عبر الرسائل النصية لإعادة تعيين كلمة المرور
 birthDate: تاريخ الولادة
 cancel: الغاء
-center_has_no_info: "Aucun Relais n'a accès à vos informations partagées"
+center_has_no_info: "لا يوجد أي روابط لديها وصول إلى معلوماتك المشتركة"
 centers: المراكز
-cfn_accessible_tool_alt_img: 'un outil accessible'
-cfn_accessible_tool_p: "Le coffre-fort numérique a été conçu de manière à être accessible au plus grand nombre. Sa prise en main est rapide et intuitive, y compris pour des personnes éloignées du numérique. L'ouverture d'un compte ne nécessite pas de numéro de téléphone ou d'adresse mail. L'outil est traduit dans plusieurs langues, et est accessible depuis un ordinateur ou depuis un téléphone grâce à notre application mobile."
-cfn_accessible_tool_title: 'Un outil accessible'
-cfn_complete_secure_alt_img: 'un outil de stockage complet et securisé'
-cfn_complete_secure_p: "Le coffre-fort numérique permet de conserver des copies numériques de documents administratifs, d'enregistrer des évènements avec un système de rappel par SMS, de conserver des contacts et des notes utiles."
-cfn_complete_secure_title: 'Un outil de stockage complet et sécurisé'
-cfn_interface_social_workers_alt_img: 'interface professionnels accompagnement social'
-cfn_interface_social_workers_p: "Depuis cette interface, un professionnel peut retrouver tous les coffres-forts liés à sa structure, les alimenter et consulter les informations partagées. Il peut également créer un coffre-fort à la demande d'une personne accompagnée."
-cfn_interface_social_workers_title: "Une interface pour les professionnels de l'accompagnement social"
-cfn_page_hero_text: "L'outil qui facilite l'accès aux droits des populations vulnérables et l'accompagnement social"
-cfn_social_care_alt_img: "un outil inscrit dans l'accompagnement social"
-cfn_social_care_p: 'La section "Mes Relais" permet de lier le coffre-fort aux organismes d''accompagnement fréquentés par le bénéficiaire. Chacune des informations stockées sur le coffre-fort peut alors être partagée ou non avec les professionnels qui l''accompagnent. A tout moment, le bénéficiaire peut choisir de rompre ce lien.'
-cfn_social_care_title: "Un outil inscrit dans l'accompagnement social"
-cfn_vault_easy_access_alt_img: 'acces aux droits facilite'
-cfn_vault_easy_access_p: "Le coffre-fort numérique permet de lutter contre les ruptures de progression liées à la perte d'informations. Les démarches d'insertions sont alors fluidifiées."
-cfn_vault_easy_access_title: "L'accès aux droits facilité"
-cfn_vault_exchange_info_alt_img: "échange d'information favorisé"
-cfn_vault_exchange_info_p: 'Le coffre-fort numérique est un outil favorisant les échanges entre la personne accompagnée et sa structure. Il permet au bénéficiaire de devenir acteur de la progression de son propre parcours.'
-cfn_vault_exchange_info_title: "Un échange d'informations favorisé avec les accompagnants"
-cfn_vault_is_safe_alt_img: 'informations en securité'
-cfn_vault_is_safe_p: 'Le coffre-fort numérique est un outil éthique et sécurisé. Il est conforme à la loi RGPD. La protection des données personnelles de nos utilisateurs est notre priorité absolue.'
-cfn_vault_is_safe_title: 'Des informations en sécurité'
-cfn_vault_is_satisfying_alt_img: 'Les professionnel.le.s sont très satisfait.e.s de la formation'
-cfn_vault_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s de la formation à l'utilisation du coffre-fort numérique"
+cfn_accessible_tool_alt_img: 'أداة قابلة للوصول'
+cfn_accessible_tool_p: "تم تصميم الخزانة الرقمية بحيث يكون لها إمكانية الوصول لأكبر عدد ممكن من الأشخاص. إن تعلم كيفية استخدامها سهل وسريع، حتى بالنسبة لأولئك الذين ليسوا ملمين بالتكنولوجيا. لا يتطلب فتح حساب الخاص بك أي رقم هاتف أو عنوان بريد إلكتروني. تم ترجمة الأداة إلى عدة لغات، ويمكن الوصول إليها سواء من جهاز كمبيوتر أو من هاتف محمول من خلال تطبيقنا المحمول."
+cfn_accessible_tool_title: 'أداة قابلة للوصول'
+cfn_complete_secure_alt_img: 'أداة تخزين شاملة وآمنة'
+cfn_complete_secure_p: "الخزانة الرقمية تتيح الاحتفاظ بنسخ رقمية من الوثائق الإدارية، وتسجيل الأحداث مع نظام تذكير عبر الرسائل النصية، والاحتفاظ بجهات الاتصال والملاحظات المفيدة."
+cfn_complete_secure_title: 'أداة تخزين شاملة وآمنة'
+cfn_interface_social_workers_alt_img: 'واجهة لمحترفي التوجيه الاجتماعي'
+cfn_interface_social_workers_p: "من خلال هذه الواجهة، يمكن للمحترف العثور على جميع الخزائن الآمنة المرتبطة بمركزه، وتزويدها بالبيانات والاطلاع على المعلومات المشتركة. كما يمكنه أيضًا إنشاء خزانة آمنة بناءً على طلب شخص يتلقى المساعدة."
+cfn_interface_social_workers_title: "واجهة لمحترفي التوجيه الاجتماعي"
+cfn_page_hero_text: "الأداة التي تسهل الوصول إلى الحقوق للسكان الضعفاء والتوجيه الاجتماعي"
+cfn_social_care_alt_img: "أداة مدرجة في التوجيه الاجتماعي"
+cfn_social_care_p: 'تتيح قسم "مراكزي" ربط الخزانة الرقمية بالهيئات التي يتعامل معها المستفيد. بإمكان كل معلومة مخزنة في الخزانة الرقمية أن تكون مشتركة أو غير مشتركة مع المحترفين الذين يقدمون الدعم. يمكن للمستفيد في أي وقت أن يقرر فصل هذا الارتباط.'
+cfn_social_care_title: "أداة مدرجة في التوجيه الاجتماعي"
+cfn_vault_easy_access_alt_img: 'الوصول إلى الحقوق بسهولة'
+cfn_vault_easy_access_p: "الخزانة الرقمية تسهم في مكافحة الانقطاع في التقدم بسبب فقدان المعلومات. وبالتالي، تصبح الإجراءات الخاصة بالإدماج أكثر سلاسة."
+cfn_vault_easy_access_title: "الوصول إلى الحقوق بسهولة"
+cfn_vault_exchange_info_alt_img: "تيسير تبادل المعلومات"
+cfn_vault_exchange_info_p: 'الخزانة الرقمية هي أداة تعزز التفاعل بين الشخص المستفيد والهيكل الذي يقدم له الدعم. إنها تتيح للمستفيد أن يكون نشطًا في تطور مساره الخاص.'
+cfn_vault_exchange_info_title: "تبادل المعلومات ميسَّر مع المرافقين"
+cfn_vault_is_safe_alt_img: 'المعلومات بأمان'
+cfn_vault_is_safe_p: 'الخزانة الرقمية هي أداة أخلاقية وآمنة. تتوافق مع قانون حماية البيانات العامة العامة الأوروبي (GDPR). حماية بيانات المستخدمين الشخصية هي أولويتنا المطلقة.'
+cfn_vault_is_safe_title: 'المعلومات بأمان'
+cfn_vault_is_satisfying_alt_img: 'المحترفون يشعرون برضا كبير عن التدريب'
+cfn_vault_is_satisfying_p: "المحترفون يشعرون برضا كبير عن التدريب على استخدام الخزانة الرقمية"
 cfn_vault_is_satisfying_title: 95%
-cfn_vault_is_title: "Le coffre-fort numérique, c'est"
-choose: Choisir
-choose_beneficiary: Choisir un bénéficiaire
-choose_beneficiary_centers: 'Veuillez choisir le/les relais reconnect du bénéficiaire'
-choose_beneficiary_password: 'Veuillez choisir le mot de passe du bénéficiaire'
-choose_beneficiary_secret_question: 'Veuillez choisir la question secrète du bénéficiaire'
+cfn_vault_is_title: "الخزانة الرقمية، هي"
+choose: اختار
+choose_beneficiary: اختيار المستفيد
+choose_beneficiary_centers: 'يرجى اختيار روابط Reconnect للمستفيد'
+choose_beneficiary_password: 'يرجى اختيار كلمة المرور للمستفيد'
+choose_beneficiary_secret_question: 'يرجى اختيار السؤال السري للمستفيد'
 choose_file: 'تحديد'
-choose_relay: 'Sélectionnez un centre'
-choose_relays: 'Cliquez sur le/les relais auxquels vous voulez affilier le bénéficiaire'
-choose_relays_and_permissions: Choix des relais et permissions
-choose_reset_password_method: Veuillez choisir la méthode de réinitialisation du mot de passe
-choose_user: Choisir un utilisateur
-city: Ville
+choose_relay: 'تحديد المركز'
+choose_relays: 'يرجى تحديد المراكز التي ترغب في ربط المستفيد بها'
+choose_relays_and_permissions: اختيار الروابط والأذونات
+choose_reset_password_method: يرجى اختيار طريقة إعادة تعيين كلمة المرور
+choose_user: إختيار مستخدم
+city: المدينة
 comment: تعليقات
 communal_centre_for_social_action: "المركز الشعبي للعمل الاجتماعي"
 confirm: تأكيد
-confirm_beneficiary_creation_cancellation: 'Êtes vous sûr de vouloir annuler la création de ce bénéficiaire ?'
-confirm_beneficiary_creation_remotely: "En cliquant sur confirmer, un SMS sera envoyé au bénéficiaire lui permettant d’activer son compte et de définir son mot de passe et la réponse à sa question secrète. \n Il pourra choisir d’accepter ou non le partage de ses informations avec le(s) relais ci-dessus."
+confirm_beneficiary_creation_cancellation: 'هل أنت متأكد من إلغاء إنشاء هذا الحدث؟'
+confirm_beneficiary_creation_remotely: "بالنقر على تأكيد، سيتم إرسال رسالة نصية إلى المستفيد تتيح له تنشيط حسابه وتعيين كلمة المرور والإجابة على السؤال السري. يمكنه اختيار قبول أو رفض مشاركة معلوماته مع الروابط المذكورة أعلاه."
 confirm_new_password: يرجى تأكيد كلمة المرور الجديدة الخاصة بك
 confirm_relay_affiliation_with_sms_code: 'من اجل تأكيد اضافة الشخص يرجى ارسال رمز التحقق بالحروف و الارقام الى نقطة مناوبة ريكونيكت الخاصة بك'
-connect_reconnect_site: 'Connectez-vous sur www.reconnect.fr'
+connect_reconnect_site: 'الرجاء الدخول إلى www.reconnect.fr'
 contact: المعارف
 contact_created: 'Contact créé'
 contact_deleted_successfully: 'لقد تم الغاء عنوان هذه المعرفة'
@@ -157,20 +157,20 @@ contact_page_offices_region_bretagne: بريتاني
 contact_page_offices_region_canada: كندا
 contact_page_offices_region_est: 'الشرق العظيم'
 contact_page_offices_region_hdf: 'Hauts de France'
-contact_page_offices_region_normandie: Normandie
-contact_page_offices_region_occitanie: Occitanie
-contact_page_offices_region_paca: "Provence-Alpes-Côte d'Azur"
-contact_page_offices_region_paris: 'Île de France'
+contact_page_offices_region_normandie: نورماندي
+contact_page_offices_region_occitanie: أوكسيتاني
+contact_page_offices_region_paca: "بروفانس ألب كوت دازور"
+contact_page_offices_region_paris: 'إيل دو فرانس'
 contact_page_offices_region_pdl: 'Pays de la Loire'
-contact_page_offices_title: 'Contactez nos antennes'
-contact_page_title: Contactez-nous
+contact_page_offices_title: 'الاتصال بفروعنا'
+contact_page_title: إتصل بنا
 contact_updated: 'Contact modifié'
-contact_us_button: 'Contactez-nous !'
-contact_us_title: 'Vous voulez en savoir plus ?'
+contact_us_button: 'إتصل بنا !'
+contact_us_title: 'هل تريد ان تعرف اكثر؟'
 contacts: ادوات العون
-content: Contenu
+content: المحتوى
 continue: متابعة
-country: Pays
+country: البلد
 create_account: Créer un compte
 create_folder: 'انشاء ملف'
 create_new_benef: 'Création d''un <span class="rp-blue text-blue">bénéficiaire</span>'
@@ -214,24 +214,24 @@ digital_cares_qualiopi_content_img_alt: Formations certifiées Qualiopi
 digital_cares_qualiopi_content_text: Adaptation permanente aux besoins de nos publics, approche ludique, apport théorique et mise en œuvre pratique… Conçus avec et pour les bénéficiaires des structures sociales, tous nos ateliers visent à les aider à mieux maîtriser les outils numériques et à devenir autonomes dans leurs pratiques. Pour qu’ils.elles y parviennent, nous nous engageons à leur proposer des formations de qualité, au plus près de leurs besoins.
 digital_cares_qualiopi_content_title: 'Notre engagement : des formations de qualité pour lutter contre la fracture numérique'
 digital_cares_scalable_content_img_alt: 'Contenus évolutifs en fonction des retours terrain'
-digital_cares_scalable_content_text: 'Les bénéficiaires sont amenés à mesurer leur progression et à évaluer la formation, afin de faire évoluer nos contenus. Cette démarche est couplée à une veille des nouveautés du secteur de l’inclusion numérique pour que nos contenus répondent au mieux aux besoins des bénéficiaires.'
-digital_cares_scalable_content_title: 'Des contenus évolutifs en fonction des retours terrain'
+digital_cares_scalable_content_text: 'يُطلب من المستفيدين قياس تقدمهم وتقييم التدريب، لتطوير محتوانا. يتم ذلك بالتزامن مع مراقبة آخر الأخبار في مجال التضمين الرقمي لضمان تلبية احتياجات المستفيدين بشكل أفضل.'
+digital_cares_scalable_content_title: 'محتويات قابلة للتطور استنادًا إلى التغذية الراجعة من الميدان'
 disabledAt: 'تعطيل في'
 disabledBy: 'معطل بواسطة'
-disaffiliate_beneficiary: Arrêter le suivi d'un bénéficiaire
-disaffiliate_beneficiary_subtitle: 'Arrêter le suivi de'
-disaffiliate_user: Arrêter le suivi d'un utilisateur
+disaffiliate_beneficiary: إيقاف متابعة مستفيد
+disaffiliate_beneficiary_subtitle: 'إيقاف التتبع'
+disaffiliate_user: إيقاف متابعة مستخدم
 display_file: 'تعديل ملف'
 do_you_accept_to_share_your_information_in_contact_list: 'انت ترى لأول مرة العناصر المشتركة مع المستخدم.  هل توافق على زيادة اسمك على لائحة المعارف المشتركة مع المستخدم؟'
 document_deleted_successfully: 'لقد تم الغاء وثيقتك'
 document_successfully_send_email: 'لقد تم ارسال ملفك عبر البريد الالكتروني'
 documents: وثائق
 download: تحميل
-download_document: 'Télécharger un document'
-download_document_click_button: 'Cliquer sur le bouton ci-dessous pour télécharger le document'
-download_training_catalogue: 'Téléchargez le catalogue de formation'
+download_document: 'تحميل وثيقة'
+download_document_click_button: 'انقر على الرابط أدناه لتحميل الوثيقة'
+download_training_catalogue: 'قم بتنزيل كتالوج التدريب'
 drop_files: 'ايداع ملفات'
-duplicated_username: "Duplicat de nom d'utilisateur"
+duplicated_username: "تكرار اسم المستخدم"
 duplicated_username_alert: "Il existe déjà un coffre-fort numérique à ce nom, prénom et date de naissance. S'il ne s'agit pas du bénéficiaire accompagné, vous pouvez poursuivre la création et un -1 sera ajouté à son identifiant."
 edit: تعديل
 edit_file: 'اختيار ملف'
