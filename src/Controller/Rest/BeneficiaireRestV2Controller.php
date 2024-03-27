@@ -432,6 +432,7 @@ final class BeneficiaireRestV2Controller extends REController
         }
     }
 
+    #[Deprecated('This route belongs to the old API')]
     #[Route(path: 'beneficiary/enable', name: 'enable', methods: ['PATCH'])]
     public function enable(
         Request $request,
