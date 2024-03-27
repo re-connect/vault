@@ -17,61 +17,61 @@ add_si_siao_number: 'إضافة رقم SI-SIAO'
 add_si_siao_number_intro: 'إذا كنت ترغب في ذلك، يمكنك تقديم رقم SI-SIAO لهذا المستفيد: '
 add_sms_reminder: 'إضافة تذكير SMS'
 add_user: 'اضافة مستخدم'
-added_by: 'Déposé par'
+added_by: 'الإيداع عن'
 admin.centres.statistiques.nbBeneficiaires: 'عدد المستفيدين'
 admin.centres.statistiques.nbMembres: 'عدد الاعضاء'
 admin.centres.statistiques.smsEnvoyes: 'عدد الرسائل النصية القصيرة المرسلة'
 all_rights_reserved: جميع الحقوق محفوظة
-all_your_data_will_be_deleted: Vos données seront supprimées et vous ne pourrez plus y accéder ni les structures sociales qui vous accompagnent.
-alt_logo_reconnect: 'logo association reconnect'
+all_your_data_will_be_deleted: سيتم حذف بياناتك، ولن تتمكن بعد ذلك من الوصول إليها، ولا الهيئات الاجتماعية التي ترافقك.
+alt_logo_reconnect: 'شعار جمعية Reconnect'
 an_error_occurred: حدث خطأ ما
 answer: إجابة
-answer_secret_question: 'Répondre à la question secrète'
+answer_secret_question: 'الرد على السؤال السري'
 association: المؤسسة
 at: الى
 auth_code_received: 'تم استلام رمز تسجيل الدخول عبر %method%:'
 auth_code_sms_text: 'إليك رمز تسجيل الدخول الخاص بك: %code%'
 back: عودة
 back_home: "العودة الى الصفحة الرئيسية"
-benef_has_account: 'Le bénéficiaire possède un compte Reconnect ?'
-benef_has_no_account: 'Le bénéficiaire ne possède pas de compte Reconnect ?'
+benef_has_account: 'هل المستفيد يمتلك حسابًا في Reconnect ؟'
+benef_has_no_account: 'المستفيد لا يمتلك حسابًا في Reconnect ؟'
 benef_new_guide_accept_button: '<span class="text-uppercase lighter">J''accepte</span><br/><small class="lighter">je veux activer mon coffre</small>'
 benef_new_guide_deny_button: '<span class="text-uppercase lighter">Je refuse</span><br/><small class="lighter">je veux supprimer mon coffre</small>'
-benef_new_guide_private_answer: 'Oui, avec ce bouton je pourrai choisir si le professionnel qui m’accompagne a accès à mes informations ou pas.'
-benef_new_guide_private_question: 'Est-ce que je peux enregistrer des informations juste pour moi ?'
-benef_new_guide_private_question_alt: 'Choix du partage'
+benef_new_guide_private_answer: 'نعم، باستخدام هذا الزر، يمكنني اختيار ما إذا كان المحترف الذي يرافقني له الوصول إلى معلوماتي أم لا.'
+benef_new_guide_private_question: 'هل يمكنني حفظ المعلومات فقط لنفسي؟'
+benef_new_guide_private_question_alt: 'اختيار مشاركة'
 benef_new_guide_title: 'Bienvenue sur Reconnect <span class="text-green">Le coffre-fort numérique</span>'
-benef_new_guide_what_for_answer_1: 'Conserver mes informations'
+benef_new_guide_what_for_answer_1: 'الاحتفاظ بمعلوماتي'
 benef_new_guide_what_for_answer_2: "Simplifier mes échanges avec les<br/>professionnels qui m'accompagnent"
-benef_new_guide_what_for_question: 'A quoi servira mon coffre-fort numérique ?'
-benef_new_guide_which_info_question: 'Quelles informations je peux conserver ?'
+benef_new_guide_what_for_question: 'ما الغرض من خزانة الأمان الرقمية الخاصة بي؟'
+benef_new_guide_which_info_question: 'ما هي المعلومات التي يمكنني الاحتفاظ بها؟'
 beneficiaries: المستفيدون
-beneficiaries_creation: Création de bénéficiaires
+beneficiaries_creation: إنشاء المستفيدين
 beneficiaries_management: ادارة المستفيدين
-beneficiary_added_to_relays: 'Le bénéficiaire a été ajouté aux relais selectionnés'
-beneficiary_already_affiliated_to_relay: Le bénéficiaire est déjà affilié à ce relais
-beneficiary_already_as_account_affiliate: 'Rattachez son coffre-fort à l’un de vos relais afin de lui partager des informations.'
-beneficiary_created_successfully: 'Le bénéficiaire a bien été créé'
-beneficiary_created_successfully_wait_activation: Le compte a bien été créé, le bénéficiaire vient de recevoir un SMS afin d’activer son coffre-fort numérique. Il peut dès à présent définir son mot de passe et la réponse à sa question secrète.
-beneficiary_creation_canceled: 'Annulation de la création du bénéficiaire'
+beneficiary_added_to_relays: 'تمت إضافة المستفيد إلى التتابع المحدد'
+beneficiary_already_affiliated_to_relay: المستفيد مرتبط بالفعل بهذا التتابع
+beneficiary_already_as_account_affiliate: 'ربط خزانة الأمان الخاصة به بأحد التتابع لمشاركة المعلومات معه.'
+beneficiary_created_successfully: 'تم إنشاء المستفيد بنجاح'
+beneficiary_created_successfully_wait_activation: تم إنشاء الحساب بنجاح. تم إرسال رسالة نصية إلى المستفيد لتفعيل خزانة الأمان الرقمية الخاصة به. يمكنه الآن تحديد كلمة مروره والإجابة على سؤاله السري.
+beneficiary_creation_canceled: 'إلغاء إنشاء المستفيد'
 beneficiary_creation_client_sms: "Votre compte Coffre-fort Reconnect a été crée crée.\nvotre identifiant est %username%, vous pouvez vous connecter en cliquant sur le lien ci-dessous : %autoLoginLink% \nVous pouvez également télécharger l'application mobile : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
 beneficiary_creation_remotely_sms: "Votre accompagnant %pro.firstname% %pro.lastname% de la structure %center% vous propose d'activer votre coffre-fort numérique Reconnect \nConnectez-vous sur www.reconnect.fr \nIdentifiant : %username% \nMot de passe : %password% \nOu cliquez sur le lien : %autoLoginLink% \nVous pouvez également télécharger l'application mobile : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
-beneficiary_delete_account: 'Êtes vous sûr de vouloir supprimer votre compte ?'
-beneficiary_has_no_account_create: "Créez-lui un compte puis rattachez-le à l’un de vos relais afin de lui partager des informations."
-beneficiary_has_no_email: Le bénéficiaire n'a pas renseigné d'adresse email
-beneficiary_has_no_phone_number: Le bénéficiaire n'a pas renseigné de numéro de téléphone
-beneficiary_has_no_secret_answer: Le bénéficiaire n'a pas renseigné de réponse secrète
-beneficiary_relay_affiliation_end: "Sinon, il pourra accepter l'invitation en se connectant à son compte Reconnect"
-beneficiary_relay_affiliation_intro: "Sélectionnez ci-contre le/les centres auxquels vous voulez affilier le bénéficiaire."
-beneficiary_relay_affiliation_options: "Si vous êtes avec le bénéficiaire, vous pouvez valider l’ajout à un/des centres en :"
-beneficiary_relay_affiliation_question: "Répondant avec lui à sa question secrète"
-beneficiary_relay_affiliation_sms: "Indiquant le code reçu par SMS par le bénéficiaire"
-beneficiary_reset_password_SMS_code: Code reçu par SMS
-beneficiary_reset_password_SMS_has_been_sent: Un SMS a été envoyé au bénéficiaire, il contient un code secret nécessaire pour renouveller son mot de passe
-beneficiary_reset_password_already_requested: Une demande de réinitialisation du mot de passe a déjà été effectuée pour ce bénéficiaire
-beneficiary_reset_password_already_requested_by_email: Une demande de réinitialisation du mot de passe a déjà été effectuée pour ce bénéficiaire par email
-beneficiary_reset_password_email_has_been_sent: Un email a été envoyé au bénéficiaire avec des instructions pour renouveller son mot de passe
-beneficiary_reset_password_success: Le mot de passe du bénéficiaire %fullName% a bien été mis à jour
+beneficiary_delete_account: 'هل أنت متأكد من رغبتك بإزالة حسابك ؟'
+beneficiary_has_no_account_create: "أنشئ له حسابًا ثم قم بربطه بأحد الروابط الخاصة بك لمشاركة المعلومات معه."
+beneficiary_has_no_email: المستفيد لم يقم بتقديم عنوان بريد إلكتروني
+beneficiary_has_no_phone_number: المستفيد لم يقم بتقديم رقم هاتف
+beneficiary_has_no_secret_answer: المستفيد لم يقم بتقديم إجابة سرية
+beneficiary_relay_affiliation_end: "أو يمكنه قبول الدعوة عن طريق تسجيل الدخول إلى حسابه في Reconnect"
+beneficiary_relay_affiliation_intro: "يرجى تحديد المراكز التي ترغب في ربط المستفيد بها."
+beneficiary_relay_affiliation_options: "إذا كنت مع المستفيد، يمكنك تأكيد إضافته إلى واحد أو أكثر من المراكز عن طريق:"
+beneficiary_relay_affiliation_question: "الرد معه على سؤاله السري"
+beneficiary_relay_affiliation_sms: "إدخال الرمز الذي تم استلامه عبر الرسالة النصية من قبل المستفيد"
+beneficiary_reset_password_SMS_code: الرمز المستلم عبر الرسالة النصية
+beneficiary_reset_password_SMS_has_been_sent: تم إرسال رسالة نصية إلى المستفيد، تحتوي على رمز سري ضروري لإعادة تعيين كلمة المرور الخاصة به
+beneficiary_reset_password_already_requested: تم بالفعل طلب إعادة تعيين كلمة المرور لهذا المستفيد
+beneficiary_reset_password_already_requested_by_email: تم بالفعل طلب إعادة تعيين كلمة المرور لهذا المستفيد عبر البريد الإلكتروني
+beneficiary_reset_password_email_has_been_sent: تم إرسال بريد إلكتروني إلى المستفيد يحتوي على تعليمات لإعادة تعيين كلمة المرور الخاصة به
+beneficiary_reset_password_success: تم تحديث كلمة المرور للمستفيد %fullName% بنجاح
 secret_question_mother_firstname: 'ما هو اسم والدة المستفيد؟'
 secret_question_pet: "ما هو اسم الحيوان الأليف الذي يملكه المستفيد؟"
 secret_question_favorite_street: 'ما هو اسم شارع المستفيد المفضل؟'
@@ -80,11 +80,11 @@ secret_question_nickname: 'ما هو لقب المستفيد؟'
 secret_question_city_of_birth: 'أي معلومات اخرى'
 secret_question_mother_lastname: 'ما هو اسم العائلة لأم المستفيد؟'
 secret_question_custom: آخر
-beneficiary_will_give_you_secret_answer: Le bénéficiaire vous fournira la réponse à sa question secrète afin de réinitialiser son mot de passe
-beneficiary_will_give_you_secret_information: "Il vous communiquera le mot de passe qu'il souhaite utiliser ainsi qu'une question et une réponse secrète permettant de réinitialiser son mot de passe"
-beneficiary_will_receive_email_reset_request: Le bénéficiaire recevra un email lui permettant de réinitialiser son mot de passe directement
-beneficiary_will_receive_sms_account_information: 'Il recevra un sms pour activer son compte et compléter ses informations'
-beneficiary_will_receive_sms_reset_request: Le bénéficiaire recevra un code par SMS afin de réinitialiser son mot de passe
+beneficiary_will_give_you_secret_answer: سيقوم المستفيد بتقديم الإجابة على سؤاله السري لإعادة تعيين كلمة المرور
+beneficiary_will_give_you_secret_information: "سيزودك المستفيد بكلمة مرور يرغب في استخدامها، بالإضافة إلى سؤال وإجابة سرية لإعادة تعيين كلمة المرور"
+beneficiary_will_receive_email_reset_request: سيتلقى المستفيد بريدًا إلكترونيًا يمكنه من خلاله إعادة تعيين كلمة المرور مباشرة
+beneficiary_will_receive_sms_account_information: 'سيتلقى المستفيد رسالة نصية لتفعيل حسابه واستكمال معلوماته'
+beneficiary_will_receive_sms_reset_request: سيتلقى المستفيد رمزًا عبر الرسائل النصية لإعادة تعيين كلمة المرور
 birthDate: تاريخ الولادة
 cancel: الغاء
 center_has_no_info: "Aucun Relais n'a accès à vos informations partagées"
@@ -138,24 +138,24 @@ connect_reconnect_site: 'Connectez-vous sur www.reconnect.fr'
 contact: المعارف
 contact_created: 'Contact créé'
 contact_deleted_successfully: 'لقد تم الغاء عنوان هذه المعرفة'
-contact_detail: Coordonnées
-contact_page_offices_city_aquitaine: Bordeaux
-contact_page_offices_city_aura: Lyon
-contact_page_offices_city_bretagne: Rennes
-contact_page_offices_city_canada: Montreal
-contact_page_offices_city_est: Strasbourg
-contact_page_offices_city_hdf: Lille
-contact_page_offices_city_normandie: Rouen
-contact_page_offices_city_occitanie: Montpellier
-contact_page_offices_city_paca: Marseille
-contact_page_offices_city_paris: Paris
-contact_page_offices_city_pdl: Nantes
-contact_page_offices_contact: 'Nous ne sommes pas présents dans votre région ?'
-contact_page_offices_region_aquitaine: 'Nouvelle Aquitaine'
-contact_page_offices_region_aura: Auvergne-Rhônes-Alpes
-contact_page_offices_region_bretagne: Bretagne
-contact_page_offices_region_canada: Canada
-contact_page_offices_region_est: 'Grand Est'
+contact_detail: معلومات للإتصال
+contact_page_offices_city_aquitaine: بوردو
+contact_page_offices_city_aura: ليون
+contact_page_offices_city_bretagne: رين
+contact_page_offices_city_canada: مونتريال
+contact_page_offices_city_est: ستراسبورغ
+contact_page_offices_city_hdf: ليل
+contact_page_offices_city_normandie: روان
+contact_page_offices_city_occitanie: مونبلييه
+contact_page_offices_city_paca: مارسيليا
+contact_page_offices_city_paris: باريس
+contact_page_offices_city_pdl: نانت
+contact_page_offices_contact: 'نحن غير متواجدين في منطقتك؟'
+contact_page_offices_region_aquitaine: 'آكيتاين الجديدة'
+contact_page_offices_region_aura: أوفيرني-رون-ألب
+contact_page_offices_region_bretagne: بريتاني
+contact_page_offices_region_canada: كندا
+contact_page_offices_region_est: 'الشرق العظيم'
 contact_page_offices_region_hdf: 'Hauts de France'
 contact_page_offices_region_normandie: Normandie
 contact_page_offices_region_occitanie: Occitanie
