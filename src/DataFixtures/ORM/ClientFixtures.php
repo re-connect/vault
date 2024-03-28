@@ -23,7 +23,7 @@ class ClientFixtures extends Fixture implements FixtureGroupInterface
         [
             'id' => 'm5tu4aqwedscccs4sogcgkk8w0wccg8s8c8ogwkso8w8c0ws0',
             'secret' => '4x0abo81dlkw8oso8gs8cg44gow000c0s8g8gwsw4g48880c8g',
-            'name' => 'axel',
+            'name' => 'reconnect pro',
             'grantType' => 'client_credentials',
             'scopes' => '',
         ],

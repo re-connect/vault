@@ -38,7 +38,7 @@ class BeneficiaireFixture extends Fixture implements DependentFixtureInterface, 
         $this->manager = $manager;
 
         $this->createBeneficiariesForClient('rosalie');
-        $this->createBeneficiariesForClient('axel');
+        $this->createBeneficiariesForClient('reconnect pro');
         $this->createBeneficiariesForClient('applimobile');
     }
 

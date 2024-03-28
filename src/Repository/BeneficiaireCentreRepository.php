@@ -15,17 +15,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class BeneficiaireCentreRepository extends EntityRepository
 {
-    public function getEntityAxel($beneficiaireId)
-    {
-        return $this->createQueryBuilder('bc')
-            ->join('bc.beneficiaire', 'beneficiaire')
-            ->join('bc.centre', 'c')
-            ->join('c.externalLinks', 'cel')
-            ->andWhere('cel.client = :clientId')
-            ->andWhere('beneficiaire = :beneficiaire')
-            ->setParameters([
-                'clientId' => 6,
-                'beneficiaire' => $beneficiaireId,
-            ])->getQuery()->getOneOrNullResult();
-    }
 }
