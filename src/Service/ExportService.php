@@ -75,7 +75,7 @@ class ExportService
             $this->getCount($this->getItemsCountBaseQb(Evenement::class), $exportModel, $filter),
             $this->getCount($this->getItemsCountBaseQb(Contact::class), $exportModel, $filter),
             $this->getCount($this->getItemsCountBaseQb(Document::class), $exportModel, $filter),
-            $this->getCount($this->getItemsBaseQb(Document::class)->groupBy('b'), $exportModel, $filter),
+            $this->getCount($this->getItemsBaseQb(Document::class), $exportModel, $filter),
         ];
     }
 
@@ -103,8 +103,7 @@ class ExportService
             ->innerJoin('b.user', 'u')
             ->andWhere('u.test != true')
             ->andWhere('b.createdAt > :startDate')
-            ->andWhere('b.createdAt < :endDate')
-            ->groupBy('b');
+            ->andWhere('b.createdAt < :endDate');
     }
 
     private function getItemsBaseQb(string $item): QueryBuilder
