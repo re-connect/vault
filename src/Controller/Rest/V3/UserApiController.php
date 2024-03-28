@@ -25,6 +25,7 @@ class UserApiController extends AbstractController
         return $this->json($this->getUser());
     }
 
+    #[Route(path: '/request-personal-account-data', methods: ['GET'])]
     #[Route(path: '/me/request-personal-account-data', methods: ['GET'])]
     public function requestPersonalAccountData(MailerService $mailer): Response
     {

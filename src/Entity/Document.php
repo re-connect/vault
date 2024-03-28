@@ -18,9 +18,7 @@ use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\DocumentRepository")
- */
+/** @ORM\Entity(repositoryClass="App\Repository\DocumentRepository") */
 #[Vich\Uploadable]
 #[ApiResource(
     operations: [
