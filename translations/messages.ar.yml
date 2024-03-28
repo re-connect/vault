@@ -210,10 +210,10 @@ digital_cares_participatory_content_text: 'Nos ateliers contiennent une dimensio
 digital_cares_participatory_content_title: 'Des contenus ludiques et participatifs'
 digital_cares_personalized_text: 'يتم إعداد محتويات ودعم العروض التقديمية مسبقًا من قبل فرق Reconnect وفقًا للمواضيع المحددة من قبل المحترفين في الهيكل وخصائص الجمهور. تتمثل نهج Reconnect في التوسط الرقمي في التكيف المستمر مع مستويات واحتياجات المستفيدين.'
 digital_cares_personalized_title: 'مرافقة ملائمة وشخصية'
-digital_cares_qualiopi_content_img_alt: Formations certifiées Qualiopi
-digital_cares_qualiopi_content_text: Adaptation permanente aux besoins de nos publics, approche ludique, apport théorique et mise en œuvre pratique… Conçus avec et pour les bénéficiaires des structures sociales, tous nos ateliers visent à les aider à mieux maîtriser les outils numériques et à devenir autonomes dans leurs pratiques. Pour qu’ils.elles y parviennent, nous nous engageons à leur proposer des formations de qualité, au plus près de leurs besoins.
-digital_cares_qualiopi_content_title: 'Notre engagement : des formations de qualité pour lutter contre la fracture numérique'
-digital_cares_scalable_content_img_alt: 'Contenus évolutifs en fonction des retours terrain'
+digital_cares_qualiopi_content_img_alt: تدريبات معتمدة من Qualiopi
+digital_cares_qualiopi_content_text: تكييف دائم لاحتياجات جمهورنا، ونهج ممتع، وإضافة نظريات وتطبيقات عملية… تم تصميم جميع ورش العمل بالتعاون مع ولصالح المستفيدين من هياكل الرعاية الاجتماعية، لمساعدتهم في تحسين مهاراتهم في استخدام الأدوات الرقمية وتحقيق الاستقلالية في ممارساتهم. نحن ملتزمون بتقديم تدريبات عالية الجودة، تلبي احتياجاتهم بدقة.
+digital_cares_qualiopi_content_title: 'تعهدنا: تقديم تدريبات عالية الجودة لمكافحة الهوة الرقمية'
+digital_cares_scalable_content_img_alt: 'محتويات قابلة للتطور استنادًا إلى التغذية الراجعة من الميدان'
 digital_cares_scalable_content_text: 'يُطلب من المستفيدين قياس تقدمهم وتقييم التدريب، لتطوير محتوانا. يتم ذلك بالتزامن مع مراقبة آخر الأخبار في مجال التضمين الرقمي لضمان تلبية احتياجات المستفيدين بشكل أفضل.'
 digital_cares_scalable_content_title: 'محتويات قابلة للتطور استنادًا إلى التغذية الراجعة من الميدان'
 disabledAt: 'تعطيل في'
@@ -260,9 +260,9 @@ events: احداث
 export_subtitle_1: "هذا النموذج يسمح بتصدير عدد البيانات التي تم إنشاؤها خلال فترة زمنية حسب المراكز أو حسب المناطق."
 export_subtitle_2: 'عدم تعبئة فلاتر المراكز والمناطق سيعيد كل البيانات التي تم إنشاؤها خلال الفترة.'
 export_title: إحصائيات
-faq_gdpr: 'F.A.Q. RGPD'
+faq_gdpr: 'الأسئلة الشائعة حول قانون حماية البيانات العامة الأوروبي'
 faq_gdpr_no_content: 'هذا القسم فارغ في الوقت الحالي'
-faq_gdpr_text: "<p>Dans le cadre de la mise en place d'outils Reconnect, vous vous posez des questions concernant la mise en conformite de votre structure au RGPD ?</p><p>Cette F.A.Q. a pour but de répondre à vos interrogations.</p>"
+faq_gdpr_text: "<p>إذا كنت تواجه أسئلة حول توافق هيكلك مع قانون حماية البيانات العامة الأوروبي (GDPR) في إطار تنفيذ أدوات Reconnect، يمكنك الاطلاع على الأسئلة الشائعة حول GDPR التي تقدمها Reconnect لمساعدتك في فهم المتطلبات واتخاذ الإجراءات المناسبة.</p><p>هذه الأسئلة الشائعة تهدف إلى الإجابة على استفساراتك.</p>"
 fill_beneficiary_identity_information: "يرجى تقديم هوية المستفيد"
 finish: إكمال
 firstname: الاسم
