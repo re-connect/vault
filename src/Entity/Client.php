@@ -14,7 +14,7 @@ class Client extends BaseClient
 {
     public const CLIENT_APPLI_MOBILE = 'applimobile';
     public const CLIENT_ROSALIE = 'rosalie';
-    public const CLIENT_AXEL = 'axel';
+    public const CLIENT_RECONNECT_PRO = 'reconnect_pro';
     public const CLIENT_ROSALIE_NEW = 'rosalieapp';
     public const SERVER_PATH_TO_IMAGE_FOLDER = 'uploads/client';
     public const CLIENT_REDIRECT_URI = '/user/redirect-user/';
