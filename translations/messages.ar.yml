@@ -136,7 +136,7 @@ confirm_new_password: يرجى تأكيد كلمة المرور الجديدة �
 confirm_relay_affiliation_with_sms_code: 'من اجل تأكيد اضافة الشخص يرجى ارسال رمز التحقق بالحروف و الارقام الى نقطة مناوبة ريكونيكت الخاصة بك'
 connect_reconnect_site: 'الرجاء الدخول إلى www.reconnect.fr'
 contact: المعارف
-contact_created: 'Contact créé'
+contact_created: 'تم إنشاء جهة اتصال'
 contact_deleted_successfully: 'لقد تم الغاء عنوان هذه المعرفة'
 contact_detail: معلومات للإتصال
 contact_page_offices_city_aquitaine: بوردو
@@ -164,14 +164,14 @@ contact_page_offices_region_paris: 'إيل دو فرانس'
 contact_page_offices_region_pdl: 'Pays de la Loire'
 contact_page_offices_title: 'الاتصال بفروعنا'
 contact_page_title: إتصل بنا
-contact_updated: 'Contact modifié'
+contact_updated: 'تم تعديل جهة الإتصال'
 contact_us_button: 'إتصل بنا !'
 contact_us_title: 'هل تريد ان تعرف اكثر؟'
 contacts: ادوات العون
 content: المحتوى
 continue: متابعة
 country: البلد
-create_account: Créer un compte
+create_account: إنشاء حساب
 create_folder: 'انشاء ملف'
 create_new_benef: 'Création d''un <span class="rp-blue text-blue">bénéficiaire</span>'
 create_new_beneficiary: "Création d'un nouveau bénéficiaire"
@@ -179,13 +179,13 @@ create_professional_help: Créez un compte utilisateur professionnel sur Reconne
 create_reconnect_account: 'فتح حساب ريكونيكت'
 create_reconnect_account_remotely: 'Créer un compte Reconnect à distance'
 create_reconnect_account_with_beneficiary: 'Créer un compte Reconnect avec le bénéficiaire'
-data: Données
-database: 'Base de données'
+data: البيانات
+database: 'قاعدة البيانات'
 date: التاريخ
-date_period_end: 'Date de fin de période'
-date_period_start: 'Date de début de période'
+date_period_end: 'تاريخ إنتهاء الفترة'
+date_period_start: 'تاريخ بدء الفترة'
 decline: رفض
-delete: Supprimer
+delete: حذف
 delete_your_account: 'اذا اردت الغاء حسابك انقر هنا'
 digital_care_is: "L'accompagnement numérique, c'est"
 digital_cares: "L'accompagnement \n numérique"
