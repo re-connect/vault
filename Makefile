@@ -10,7 +10,8 @@ RECTOR          = $(BIN)/rector
 PHP_CS_FIXER    = $(BIN)/php-cs-fixer
 PHPSTAN_LEVEL   = 7
 
-cs: stan rector fixer test
+cs: stan rector fixer
+ci: cs test
 
 stan:
 	@$(PHPSTAN) analyse -l $(PHPSTAN_LEVEL) --xdebug

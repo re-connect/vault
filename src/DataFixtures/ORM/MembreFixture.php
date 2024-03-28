@@ -31,7 +31,7 @@ class MembreFixture extends Fixture implements DependentFixtureInterface, Fixtur
     {
         $this->manager = $manager;
         $this->createMembersForClient('rosalie');
-        $this->createMembersForClient('axel');
+        $this->createMembersForClient('reconnect_pro');
         $this->createMembersForClient('applimobile');
 
         $manager->flush();

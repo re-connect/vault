@@ -15,15 +15,6 @@ class ClientBeneficiaireRepository extends ServiceEntityRepository
         parent::__construct($registry, ClientBeneficiaire::class);
     }
 
-    public function getEntityAxel($beneficiaireId): ?ClientBeneficiaire
-    {
-        return $this->createQueryBuilder('cb')
-            ->join('cb.entity', 'beneficiaire')
-            ->andWhere('beneficiaire = :beneficiaire')
-            ->setParameter('beneficiaire', $beneficiaireId)
-            ->getQuery()->getOneOrNullResult();
-    }
-
     /**
      * @throws NonUniqueResultException
      */
