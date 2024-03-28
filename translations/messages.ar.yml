@@ -269,29 +269,29 @@ firstname: الاسم
 folder: مجلد
 folder_contains_documents_alert: "Le dossier %name% contient des documents, si vous le supprimez, vous supprimez aussi l'ensemble des documents qu'il contient. Êtes-vous sûr de vouloir supprimer ce dossier et tous les documents qu'il contient ?"
 folder_content: 'محتويات الملف :'
-folder_error_circular_dependency: 'Le dossier de destination est un sous dossier de celui qui est à déplacer.'
-folder_error_different_beneficiary: "Les dossiers n'appartiennent pas au même bénéficiaire."
+folder_error_circular_dependency: 'الملف الهدف هو ملف فرعي لتلك التي ستتم نقلها.'
+folder_error_different_beneficiary: "الملفات لا تنتمي إلى نفس المستفيد."
 footer_CGS_rp: 'CGS de Reconnect Pro'
 footer_CGS_vault: 'CGS du coffre-fort numérique'
 footer_alt_logo_afnic: 'logo afnic'
 footer_alt_logo_ffe: "logo fondation la france s'engage"
 footer_alt_logo_groupe_sos_solidarite: 'logo groupe sos solidarité'
-footer_confidentiality_rp: 'Politique de confidentialité de Reconnect Pro'
-footer_confidentiality_vault: 'Politique de confidentialité du coffre-fort numérique'
-footer_copyright: 'Reconnect - Tous droits réservés'
-footer_discover_rp: 'Découvrir Reconnect Pro'
-footer_discover_vault: 'Découvrir le coffre-fort numérique'
-footer_group_sos_text: "Reconnect est une association du Groupe SOS Solidarités, l'une des neuf activités du Groupe SOS, qui agit pour l'inclusion des personnes en situation de vulnérabilité"
-footer_partners_text: 'Reconnect est soutenu par :'
+footer_confidentiality_rp: 'سياسة الخصوصية لـ Reconnect Pro'
+footer_confidentiality_vault: 'سياسة الخصوصية للخزانة الرقمية'
+footer_copyright: 'Reconnect - جميع الحقوق محفوظة'
+footer_discover_rp: 'اكتشاف Reconnect Pro'
+footer_discover_vault: 'اكتشاف الخزنة الرقمية'
+footer_group_sos_text: "Reconnect هي جمعية تابعة Groupe SOS Solidarités، وهي واحدة من تسع أنشطة تابعة لمجموعة \n Groupe SOS، التي تعمل على إدماج الأشخاص الذين يعانون من الضعف"
+footer_partners_text: 'يتم دعم Reconnect من قبل :'
 form_connexion: تسجيل دخول
 form_contains_error: لم يتم حفظ تغييراتك. يرجى التحقق من المعلومات.
 form_forgot_password: "إعادة ضبط كلمة السر"
 form_login: "اسم المستخدم أو كلمة المرور"
-french_flag: Drapeau français
-gdpr_know_more: 'En savoir plus sur la conformité RGPD de votre structure'
+french_flag: علم فرنسا
+gdpr_know_more: 'تعرف على المزيد حول مدى توافق هيكلك مع قانون حماية البيانات العامة الأوروبي (GDPR)'
 general_conditions_of_use: 'انا اوافق على شروط الاستعمال'
-generate_password: 'Générer un mot de passe'
-german_flag: Drapeau allemand
+generate_password: 'توليد كلمة السر'
+german_flag: العلم الألماني
 header_link_cfn: 'Le coffre-fort<span class="d-lg-block"> numérique</span>'
 header_link_contact: 'Nous<span class="d-lg-block"> contacter</span>'
 header_link_rp: 'La Solution<span class="d-lg-block"> Pro</span>'
@@ -334,66 +334,66 @@ home_who_we_are_p2: "Nous pensons que l'action sociale et le numérique gagnent 
 home_who_we_are_p3: "Depuis 2015, nous nous engageons auprès des bénéficiaires et des professionnels de l'action sociale, en créant des solutions pour répondre à leurs besoins."
 home_who_we_are_title: 'Qui sommes-nous ?'
 housing: Logement
-identity: Identité
+identity: الهوية
 improve_password_beneficiary: لمزيد من الأمان ، تم تحديث قواعد كلمة المرور. تحتاج إلى تغيير كلمة المرور الخاصة بك.
 improve_password_pro: في Reconnect، يعد أمان أدواتنا وبياناتك أولوية. لتعزيزها ، ندعوك لتحديث كلمة المرور الخاصة بك للوصول إلى الخزانة الرقمية . يحتاج الأشخاص المرافقون أيضا إلى تحديث كلمة المرور الخاصة بهم للوصول إلى الخزينة الرقمية الخاصة بهم.
-information: Informations
-innovative_solution_digital_divide: 'La solution pour répondre aux enjeux de la fracture numérique'
-invite_user_to_relay: Inviter l'utilisateur à un relai
-is_the_beneficiary_absent: "Le bénéficiaire n'est pas avec vous ?"
-is_the_beneficiary_present: 'Le bénéficiaire est avec vous ?'
-is_the_beneficiary_with_you: 'Le bénéficiaire est avec vous ?'
-lastname: Nom
-leave: Quitter
-leave_center: 'Quitter ce centre'
-leave_center_confirm: 'Êtes-vous sûr de vouloir quitter ce centre ?'
-leave_center_title: 'Quitter le centre %s'
+information: المعلومات
+innovative_solution_digital_divide: 'الحل للتعامل مع تحديات الهوة الرقمية'
+invite_user_to_relay: دعوة المستخدم للانضمام إلى رابط
+is_the_beneficiary_absent: "هل المستفيد ليس برفقتك؟"
+is_the_beneficiary_present: 'هل المستفيد برفقتك؟'
+is_the_beneficiary_with_you: 'هل المستفيد برفقتك؟'
+lastname: اسم
+leave: مغادرة
+leave_center: 'مغادرة هذا المركز'
+leave_center_confirm: 'هل أنت متأكد من مغادرة هذا المركز؟'
+leave_center_title: 'مغادرة هذا المركز%s'
 location: الموقع
 login_form_title: 'الوصول إلى الخزنة الرقمية'
 logout: قطع الاتصال
 mail_auth_code_content: 'إليك رمز تسجيل الدخول الخاص بك: '
 mail_auth_code_subject: 'RECONNECT - رمز تسجيل الدخول الخاص بك'
 mail_auth_code_title: مرحباً %username%!
-mail_reset_password_content_1: "Nous avons reçu une demande de renouvellement de mot de passe pour votre coffre-fort Reconnect. Si vous n'êtes pas à l'origine de cette demande, vous pouvez ignorer cet e-mail et aucun changement ne sera apporté à votre compte."
-mail_reset_password_content_2: 'Cliquez sur le lien pour réinitialiser votre mot de passe. Le lien sera actif pendant 24 heures.'
-mail_reset_password_title: 'Renouvellement du mot de passe'
-mail_shared_document_content_1: '%fullName% souhaite partager avec vous un document de son coffre-fort Reconnect.'
-mail_shared_document_content_1_anonymous: Une personne souhaite partager avec vous un document de son coffre-fort Reconnect.
-mail_shared_document_content_2: 'Pour télécharger ce document, rendez-vous sur le lien (valable 7 jours)'
-mail_shared_document_content_3: "CONFIDENTIALITÉ : Ce courriel (de même que les fichiers joints) est strictement réservé à l'usage de la personne ou de l'entité à qui il est adressé et peut contenir de l'information privilégiée et confidentielle. Toute divulgation, distribution ou copie de ce courriel est strictement prohibée. Si vous avez reçu ce courriel par erreur, veuillez nous en aviser sur-le-champ, détruire toutes les copies et le supprimer de votre système informatique."
-mail_shared_document_title: 'Partage de document'
-mail_subject_reset_password: 'RECONNECT- Changez votre mot de passe'
-mail_subject_share_document: 'RECONNECT - Partage de document'
+mail_reset_password_content_1: "لقد تلقينا طلبًا لإعادة تعيين كلمة مرور خزانتك الرقمية Reconnect. إذا لم تكن أنت من قام بتلك الطلب، يمكنك تجاهل هذا البريد الإلكتروني ولن يتم إجراء أي تغيير على حسابك."
+mail_reset_password_content_2: 'انقر فوق الرابط لإعادة تعيين كلمة المرور الخاصة بك. سيظل الرابط نشطًا لمدة 24 ساعة.'
+mail_reset_password_title: 'تجديد كلمة المرور'
+mail_shared_document_content_1: '%fullName%يرغب في مشاركة وثيقة من خزانة Reconnect الخاصة به معك.'
+mail_shared_document_content_1_anonymous: شخص ما يرغب في مشاركة مستند من خزانة Reconnect الخاصة به معك.
+mail_shared_document_content_2: 'لتحميل هذا المستند، قم بزيارة الرابط (صالح لمدة 7 أيام)'
+mail_shared_document_content_3: "خصوصية: هذا البريد الإلكتروني (بالإضافة إلى الملفات المرفقة) مخصص بدقة للاستخدام من قبل الشخص أو الكيان الذي يتم توجيهه إليه وقد يحتوي على معلومات سرية وسرية. يُمنع بشدة الكشف عن هذا البريد الإلكتروني أو توزيعه أو نسخه. إذا كنت قد تلقيت هذا البريد الإلكتروني عن طريق الخطأ ، فيرجى إخطارنا فوراً ، وتدمير جميع النسخ وحذفه من نظامك الحاسوبي."
+mail_shared_document_title: 'مشاركة الوثيقة'
+mail_subject_reset_password: 'RECONNECT - قم بتغيير كلمة مرورك'
+mail_subject_share_document: 'RECONNECT - مشاركة وثيقة'
 meetings: المستفيدين
 member_new_guide_title: 'Bienvenue sur Reconnect <span class="text-blue">Le coffre-fort numérique</span>'
-message: Message
+message: رسالة
 mfa: المصادقة ذات العاملين
 mfa_code_not_received: لم تتلقى الرمز؟
 mfa_enabled: المصادقة ذات العاملين مفعّلة
 mfa_maximum_retries_reach: لقد وصلت إلى الحد الأقصى لعدد محاولات الإعادة المسموح بها. إذا كنت غير قادر على تسجيل الدخول، يرجى الاتصال بالدعم.
 mfa_method: 'استلام الرمز عبر :'
-missing_secret_question: Question secrète non renseignée
-missing_secret_question_text: Vous n’avez pas encore renseigné de question et réponse secrète, vous pouvez le faire ci-dessous
-modal_message_contact_delete: 'Êtes vous sûr de vouloir supprimer le contact'
-modal_message_contact_deletev2: 'Êtes vous sûr de vouloir supprimer le contact %fullName% ?'
-modal_message_document_delete: 'Êtes vous sûr de vouloir supprimer le document'
-modal_message_document_deletev2: 'Êtes vous sûr de vouloir supprimer le document %name% ?'
-modal_message_event_delete: "Êtes vous sûr de vouloir supprimer l'événement"
-modal_message_event_deletev2: "Êtes vous sûr de vouloir supprimer l'événement %name% ?"
-modal_message_folder_delete: 'Êtes vous sûr de vouloir supprimer le dossier'
-modal_message_folder_deletev2: 'Êtes vous sûr de vouloir supprimer le dossier %name% ?'
-modal_message_note_delete: 'Êtes vous sûr de vouloir supprimer la note'
-modal_message_note_deletev2: 'Êtes vous sûr de vouloir supprimer la note %name% ?'
-move: Déplacer
-my_contacts: 'Mes contacts'
+missing_secret_question: لم يتم تعبئة السؤال السري
+missing_secret_question_text: لم تقم بتعبئة سؤال وجواب سري حتى الآن، يمكنك القيام بذلك أدناه
+modal_message_contact_delete: 'هل تريد بالتأكيد حذف جهة الاتصال هذه'
+modal_message_contact_deletev2: 'هل تريد بالتأكيد حذف جهة الاتصال هذه %fullName% ؟'
+modal_message_document_delete: 'هل أنت متأكد من أنك تريد حذف هذه الوثيقة'
+modal_message_document_deletev2: 'هل أنت متأكد من أنك تريد حذف هذه الوثيقة %name% ؟'
+modal_message_event_delete: "هل أنت متأكد من أنك تريد حذف هذا الحدث"
+modal_message_event_deletev2: "هل أنت متأكد من أنك تريد حذف هذا الحدث %name% ؟"
+modal_message_folder_delete: 'هل أنت متأكد أنك تريد حذف هذا المجلد'
+modal_message_folder_deletev2: 'هل أنت متأكد أنك تريد حذف المجلد %name% ؟'
+modal_message_note_delete: 'هل أنت متأكد أنك تريد حذف الملاحظة'
+modal_message_note_deletev2: 'هل أنت متأكد أنك تريد حذف الملاحظة %name% ؟'
+move: نقل
+my_contacts: 'جهات الاتصال الخاصة بي'
 my_documents: 'مواعيدي'
-my_events: 'Mes rappels'
-my_notes: 'Mes notes'
+my_events: 'تذكيراتي'
+my_notes: 'ملاحظاتي'
 my_reconnect_relays: 'Mes relais reconnect'
 my_relays: 'Mes relais'
 my_relays_title: Mes relais Reconnect
-name: Nom
-next: Suivant
+name: اسم
+next: التالي
 no: لا
 no_contact_yet: 'لا يوجد اتصال حتى الان. انقر فوق "إضافة" لإنشاء واحد.'
 no_document_yet: "لا يوجد أي ملف في الوقت الحاضر"
@@ -407,7 +407,7 @@ no_result: 'Aucun résultat'
 no_user_found_with_this_email_address: "لا يوجد أي مستخدم على هذا العنوان الإلكتروني"
 not_allowed_to_share_this_document: "Vous n'êtes pas autorisé à partager ce document"
 note_content: 'محتوى الملاحظات'
-note_created: 'Note créée'
+note_created: 'تم انشاء ملاحظة'
 note_deleted_successfully: 'لقد تم الغاء ملاحظاتك'
 note_updated: 'Note modifiée'
 notes: نقاط المناوبة  لريكونيكت الخاصة بي
