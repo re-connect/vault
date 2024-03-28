@@ -268,7 +268,7 @@ finish: إكمال
 firstname: الاسم
 folder: مجلد
 folder_contains_documents_alert: "Le dossier %name% contient des documents, si vous le supprimez, vous supprimez aussi l'ensemble des documents qu'il contient. Êtes-vous sûr de vouloir supprimer ce dossier et tous les documents qu'il contient ?"
-folder_content: 'Contenu du dossier :'
+folder_content: 'محتويات الملف :'
 folder_error_circular_dependency: 'Le dossier de destination est un sous dossier de celui qui est à déplacer.'
 folder_error_different_beneficiary: "Les dossiers n'appartiennent pas au même bénéficiaire."
 footer_CGS_rp: 'CGS de Reconnect Pro'
