@@ -11,13 +11,11 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class PersonalDataVoter extends Voter
 {
-    public const UPDATE = 'UPDATE';
-    public const TOGGLE_VISIBILITY = 'TOGGLE_VISIBILITY';
-    private AuthorizationCheckerInterface $checker;
+    public const string UPDATE = 'UPDATE';
+    public const string TOGGLE_VISIBILITY = 'TOGGLE_VISIBILITY';
 
-    public function __construct(AuthorizationCheckerInterface $checker)
+    public function __construct(private readonly AuthorizationCheckerInterface $checker)
     {
-        $this->checker = $checker;
     }
 
     /**
