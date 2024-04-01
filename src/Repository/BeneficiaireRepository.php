@@ -11,6 +11,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /** @extends ServiceEntityRepository<Beneficiaire> */
@@ -158,18 +159,15 @@ class BeneficiaireRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    /**
-     * @return Beneficiaire[]
-     */
-    public function findByAuthorizedProfessional(Membre $professional, string $search = null, Centre $relay = null): array
+    public static function addProAccessJoinsAndConditions(QueryBuilder $qb, string $rootAlias, int $proId): QueryBuilder
     {
-        $qb = $this->createQueryBuilder('b')
-            ->innerJoin('b.beneficiairesCentres', 'bc')
+        return $qb
+            ->innerJoin(sprintf('%s.beneficiairesCentres', $rootAlias), 'bc')
             ->innerJoin('bc.centre', 'c')
-            ->innerJoin('b.user', 'u')
+            ->innerJoin(sprintf('%s.user', $rootAlias), 'u')
             ->innerJoin('c.membresCentres', 'mc')
             ->innerJoin('mc.membre', 'm')
-            ->leftJoin('b.creationProcess', 'cp')
+            ->leftJoin(sprintf('%s.creationProcess', $rootAlias), 'cp')
             ->addSelect('u')
             ->addSelect('bc')
             ->addSelect('c')
@@ -178,12 +176,17 @@ class BeneficiaireRepository extends ServiceEntityRepository
             ->andWhere('m.id = :id')
             ->andWhere('mc.bValid = true')
             ->andWhere('mc.droits LIKE :access')
-            ->setParameter('id', $professional->getId())
+            ->setParameter('id', $proId)
             ->setParameter('access', sprintf('%%"%s";b:1%%', MembreCentre::MANAGE_BENEFICIARIES_PERMISSION));
+    }
+
+    /** @return Beneficiaire[] */
+    public function findByAuthorizedProfessional(Membre $professional, string $search = null, Centre $relay = null): array
+    {
+        $qb = self::addProAccessJoinsAndConditions($this->createQueryBuilder('b'), 'b', $professional->getId());
 
         if ($relay) {
-            $qb->andWhere('c = :relay')
-                ->setParameter('relay', $relay);
+            $qb->andWhere('c = :relay')->setParameter('relay', $relay);
         }
         $qb = $this->userRepository->addUserSearchConditions($qb, $search);
 
