@@ -12,11 +12,17 @@ use ApiPlatform\Metadata\Put;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
-    operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
+    operations: [
+        new Get(security: "is_granted('ROLE_OAUTH2_CONTACTS') or is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_CONTACTS') or is_granted('ROLE_USER')"),
+        new Post(),
+        new Put(),
+        new Patch(),
+        new Delete()],
     normalizationContext: ['groups' => ['v3:contact:read']],
     denormalizationContext: ['groups' => ['v3:contact:write']],
     openapiContext: ['tags' => ['Contacts']],
-    security: "is_granted('ROLE_OAUTH2_CENTERS')",
+    security: "is_granted('ROLE_OAUTH2_CONTACTS')",
 )]
 class Contact extends DonneePersonnelle
 {

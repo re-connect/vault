@@ -7,12 +7,10 @@ use ApiPlatform\State\ProviderInterface;
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Beneficiaire;
 
-class BeneficiaryStateProvider implements ProviderInterface
+readonly class BeneficiaryStateProvider implements ProviderInterface
 {
-    public function __construct(
-        private readonly ProviderInterface $itemProvider,
-        private readonly ApiClientManager $apiClientManager
-    ) {
+    public function __construct(private ProviderInterface $itemProvider, private ApiClientManager $apiClientManager)
+    {
     }
 
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null

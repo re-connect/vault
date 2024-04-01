@@ -22,11 +22,11 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[Vich\Uploadable]
 #[ApiResource(
     operations: [
-        new Get(),
+        new Get(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('ROLE_USER')"),
         new Put(),
         new Patch(),
         new Delete(),
-        new GetCollection(),
         new Post(
             controller: UploadDocumentController::class,
             openapiContext: [
@@ -57,8 +57,8 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
 {
     use SoftDeleteableEntity;
 
-    public const BROWSER_EXTENSIONS_NOT_VIEWABLE = ['doc', 'docx', 'txt', 'odt', 'xls', 'xlsx', 'csv'];
-    public const BROWSER_EXTENSIONS_VIEWABLE = ['jpg', 'jpeg', 'pdf', 'gif', 'png'];
+    public const array BROWSER_EXTENSIONS_NOT_VIEWABLE = ['doc', 'docx', 'txt', 'odt', 'xls', 'xlsx', 'csv'];
+    public const array BROWSER_EXTENSIONS_VIEWABLE = ['jpg', 'jpeg', 'pdf', 'gif', 'png'];
     protected ?\DateTime $dateEmission = null;
 
     #[Groups(['v3:document:write', 'v3:document:read'])]

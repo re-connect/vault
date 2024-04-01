@@ -17,7 +17,13 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 
 #[ApiResource(
     shortName: 'Event',
-    operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
+    operations: [
+        new Get(security: "is_granted('ROLE_OAUTH2_EVENTS') or is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_EVENTS') or is_granted('ROLE_USER')"),
+        new Post(),
+        new Put(),
+        new Patch(),
+        new Delete()],
     normalizationContext: ['groups' => ['v3:event:read']],
     denormalizationContext: ['groups' => ['v3:event:write']],
     openapiContext: ['tags' => ['Évènements']],

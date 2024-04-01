@@ -12,7 +12,13 @@ use ApiPlatform\Metadata\Put;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
-    operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
+    operations: [
+        new Get(security: "is_granted('ROLE_OAUTH2_NOTES') or is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_NOTES') or is_granted('ROLE_USER')"),
+        new Post(),
+        new Put(),
+        new Patch(),
+        new Delete()],
     normalizationContext: ['groups' => ['v3:note:read']],
     denormalizationContext: ['groups' => ['v3:note:write']],
     openapiContext: ['tags' => ['Notes']],

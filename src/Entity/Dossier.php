@@ -22,7 +22,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 #[ApiResource(
     shortName: 'folder',
-    operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
+    operations: [
+        new Get(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('ROLE_USER')"),
+        new Post(),
+        new Put(),
+        new Patch(),
+        new Delete(),
+    ],
     normalizationContext: ['groups' => ['v3:folder:read']],
     denormalizationContext: ['groups' => ['v3:folder:write']],
     openapiContext: ['tags' => ['Dossiers']],
