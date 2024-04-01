@@ -13,6 +13,7 @@ use App\Entity\Dossier;
 use App\Entity\Evenement;
 use App\Entity\Note;
 use App\Entity\User;
+use App\Repository\BeneficiaireRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -60,10 +61,13 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
             ->setParameter('beneficiaryId', $beneficiary->getId());
     }
 
-    private function filterBeneficiaries(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user)
+    private function filterBeneficiaries(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void
     {
-        if (!$user instanceof User || !$user->isMembre()) {
+        if (!$user instanceof User || !$user->isMembre() || !$user->getSubjectMembre()?->getId()) {
             return;
         }
+        $proId = $user->getSubjectMembre()?->getId();
+
+        BeneficiaireRepository::addProAccessJoinsAndConditions($queryBuilder, $rootAlias, $proId);
     }
 }

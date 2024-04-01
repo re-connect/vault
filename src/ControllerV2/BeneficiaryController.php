@@ -35,11 +35,7 @@ class BeneficiaryController extends AbstractController
             throw $this->createAccessDeniedException();
         }
 
-        $formModel = new FilterUserFormModel(
-            $query->get('search'),
-            $relay,
-        );
-
+        $formModel = new FilterUserFormModel($query->get('search'), $relay);
         $form = $this->createForm(FilterUserType::class, $formModel, [
             'action' => $this->generateUrl('list_beneficiaries'),
             'attr' => ['data-controller' => 'ajax-list-filter'],
