@@ -6,16 +6,16 @@ require 'recipe/symfony.php';
 // Config
 const MAX_CONNECTION_RETRY = 5;
 set('repository', 'git@github.com:re-connect/vault.git');
-set('branch', 'development');
 set('flush_cache_file_name', 'flush-cache.php');
 set('flush_cache_file_path', '{{current_path}}/public/{{flush_cache_file_name}}');
-set('homepage_url', 'https://preprod.reconnect.fr');
+set('ssh_multiplexing', true);
+set('config_file', '~/.ssh/config');
 
 add('shared_files', [
     '.env',
-    'config/secrets/preprod/preprod.decrypt.private.php',
 ]);
 add('shared_dirs', [
+    'config/jwt/',
     'var/log',
     'var/sessions',
     'var/oauth',
@@ -31,11 +31,20 @@ add('writable_dirs', []);
 // Hosts
 
 host('vault-pp')
-    ->setForwardAgent(true)
-    ->setSshMultiplexing(true)
-    ->set('config_file', '~/.ssh/config')
+    ->setLabels(['stage' => 'preprod'])
+    ->set('branch', 'development')
     ->set('deploy_path', '~/www')
-    ->set('http_user', 'preprod_coffre_reconnect_fr');
+    ->set('http_user', 'preprod_coffre_reconnect_fr')
+    ->set('homepage_url', 'https://preprod.reconnect.fr')
+    ->add('shared_files', ['config/secrets/preprod/preprod.decrypt.private.php']);
+
+host('vault-prod')
+    ->setLabels(['stage' => 'prod'])
+    ->set('branch', 'main')
+    ->set('deploy_path', '~/www-new')
+    ->set('http_user', 'coffre_reconnect_fr')
+    ->set('homepage_url', 'https://reconnect.fr')
+    ->add('shared_files', ['config/secrets/prod/prod.decrypt.private.php']);
 
 // Tasks
 
