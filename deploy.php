@@ -40,9 +40,9 @@ host('vault-pp')
 
 host('vault-prod')
     ->setLabels(['stage' => 'prod'])
-    ->set('branch', 'main')
+    ->set('branch', 'prod')
     ->set('deploy_path', '~/www-new')
-    ->set('http_user', 'coffre_reconnect_fr')
+    ->set('http_user', 'reconnect_fr')
     ->set('homepage_url', 'https://reconnect.fr')
     ->add('shared_files', ['config/secrets/prod/prod.decrypt.private.php']);
 
