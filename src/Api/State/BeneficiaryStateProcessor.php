@@ -9,12 +9,14 @@ use ApiPlatform\State\ProcessorInterface;
 use App\Api\Dto\BeneficiaryDto;
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Beneficiaire;
+use App\ServiceV2\Helper\RelayAssignationHelper;
 
-class BeneficiaryStateProcessor implements ProcessorInterface
+readonly class BeneficiaryStateProcessor implements ProcessorInterface
 {
     public function __construct(
-        private readonly ApiClientManager $apiClientManager,
-        private readonly ProcessorInterface $persistProcessor,
+        private ApiClientManager $apiClientManager,
+        private ProcessorInterface $persistProcessor,
+        private RelayAssignationHelper $relayAssignationHelper,
     ) {
     }
 
@@ -25,6 +27,7 @@ class BeneficiaryStateProcessor implements ProcessorInterface
             $externalLink?->setDistantId($data->getDistantId());
         } elseif ($data instanceof BeneficiaryDto && $operation instanceof Post) {
             $data = $data->toBeneficiary();
+            $this->relayAssignationHelper->assignRelaysFromIdsArray($data->getUser());
         }
 
         return $this->persistProcessor->process($data, $operation, $uriVariables, $context);

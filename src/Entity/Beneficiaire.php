@@ -30,35 +30,25 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 #[ApiResource(
     shortName: 'beneficiary',
     operations: [
-        new Get(
-            security: "is_granted('READ', object)",
-            provider: BeneficiaryStateProvider::class,
-        ),
-        new Patch(
-            security: "is_granted('UPDATE', object)",
-            processor: BeneficiaryStateProcessor::class,
-        ),
+        new Get(security: "is_granted('READ', object)", provider: BeneficiaryStateProvider::class),
+        new Patch(security: "is_granted('UPDATE', object)", processor: BeneficiaryStateProcessor::class),
         new Patch(
             uriTemplate: '/beneficiaries/{id}/unlink',
             controller: UnlinkBeneficiaryController::class,
             openapiContext: [
                 'summary' => 'Unlink a beneficiary from your oauth2 client',
-                'requestBody' => [
-                    'content' => [
-                        'application/json' => [
-                            'schema' => [
-                                'type' => 'object',
-                            ],
-                        ],
-                    ],
-                ],
+                'requestBody' => ['content' => ['application/json' => ['schema' => ['type' => 'object']]]],
                 'tags' => ['Beneficiaires'],
             ],
             description: 'Unlink a beneficiary from your oauth2 client',
             security: "is_granted('UPDATE', object)"
         ),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES') or is_granted('ROLE_USER')"),
-        new Post(input: BeneficiaryDto::class, processor: BeneficiaryStateProcessor::class),
+        new Post(
+            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES') or is_granted('ROLE_USER')",
+            input: BeneficiaryDto::class,
+            processor: BeneficiaryStateProcessor::class,
+        ),
     ],
     normalizationContext: ['groups' => ['v3:beneficiary:read', 'v3:user:read', 'v3:center:read', 'timed']],
     denormalizationContext: ['groups' => ['v3:beneficiary:write', 'v3:user:write']],

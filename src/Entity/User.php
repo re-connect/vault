@@ -217,6 +217,9 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     private string $mfaMethod = self::MFA_METHOD_EMAIL;
     private ?int $mfaRetryCount = 0;
 
+    /** @var string[] */
+    private array $relaysIds = [];
+
     public function __construct()
     {
         parent::__construct();
@@ -1139,6 +1142,20 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         $userRelay = $user->isBeneficiaire() ? new BeneficiaireCentre() : new MembreCentre();
 
         return $userRelay->setCentre($relay)->setUser($user)->setBValid($valid);
+    }
+
+    /** @return string[] */
+    public function getRelaysIds(): array
+    {
+        return $this->relaysIds;
+    }
+
+    /** @param string[] $relaysIds */
+    public function setRelaysIds(array $relaysIds): self
+    {
+        $this->relaysIds = $relaysIds;
+
+        return $this;
     }
 
     public function hasCreator(): bool
