@@ -3,16 +3,16 @@
         <a href="{{ path('event_detail', {'id': event.id}) }}" class="text-decoration-none d-block h-100 ps-3 py-2">
             <span class="bold text-primary">
                 {% if 'now'|date('d/m/Y') == event.date|date('d/m/Y') %}
-                    {{ 'today'|trans }} {{ event.date|date('H:i') }} :
+                    {{ 'today'|trans }} {{ event.date|date('H:i', event.timezone) }} :
                 {% else %}
-                    {{ event.date|format_datetime() }} :
+                    {{ event.date|format_datetime(timezone=event.timezone) }} :
                 {% endif %}
                 {{ event.nom }}
             </span>
             {% for reminder in event.rappels %}
                 <br>
                 <span class="text-light-grey">
-                    {{ 'reminder'|trans }} : {{ reminder.date|format_datetime() }}
+                    {{ 'reminder'|trans }} : {{ reminder.date|format_datetime(timezone=event.timezone) }}
                 </span>
             {% endfor %}
         </a>
