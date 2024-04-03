@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 class ExportModel
 {
     private Collection $centers;
-    private array $regions;
+    private Collection $regions;
     private \DateTime $startDate;
     private \DateTime $endDate;
 
@@ -29,12 +29,12 @@ class ExportModel
         $this->centers = $centers;
     }
 
-    public function getRegions(): array
+    public function getRegions(): Collection
     {
         return $this->regions;
     }
 
-    public function setRegions(array $regions): void
+    public function setRegions(Collection $regions): void
     {
         $this->regions = $regions;
     }
@@ -74,8 +74,8 @@ class ExportModel
         return $this->hasCenterFilter() || $this->hasRegionFilter();
     }
 
-    public function getFiltersCollection(): ArrayCollection
+    public function getFiltersCollection(): Collection
     {
-        return $this->hasCenterFilter() ? $this->getCenters() : new ArrayCollection($this->getRegions());
+        return $this->hasCenterFilter() ? $this->getCenters() : $this->getRegions();
     }
 }
