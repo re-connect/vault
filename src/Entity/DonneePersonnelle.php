@@ -174,16 +174,6 @@ abstract class DonneePersonnelle implements \JsonSerializable
         return $this;
     }
 
-    public function getDeposeParGetFullName(): string
-    {
-        $fullname = '';
-        if ($this->deposePar) {
-            $fullname = $this->deposePar->getPrenom().' '.$this->deposePar->getNom();
-        }
-
-        return $fullname;
-    }
-
     public function addCreator(Creator $creator): self
     {
         $this->creators[] = $creator;

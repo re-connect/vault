@@ -22,28 +22,22 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[Vich\Uploadable]
 #[ApiResource(
     operations: [
+        new Delete(security: "is_granted('UPDATE', object)"),
         new Get(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('ROLE_USER')"),
-        new Put(),
         new Patch(),
-        new Delete(),
+        new Put(security: "is_granted('UPDATE', object)"),
         new Post(
             controller: UploadDocumentController::class,
             openapiContext: [
                 'tags' => ['Documents'],
-                'requestBody' => [
-                    'content' => [
-                        'multipart/form-data' => [
-                            'schema' => [
-                                'type' => 'object',
-                                'properties' => [
-                                    'file' => ['type' => 'file'],
-                                    'distant_id' => ['type' => 'string', 'format' => 'string'],
-                                ],
-                            ],
-                        ],
+                'requestBody' => ['content' => ['multipart/form-data' => ['schema' => [
+                    'type' => 'object',
+                    'properties' => [
+                        'file' => ['type' => 'file'],
+                        'distant_id' => ['type' => 'string', 'format' => 'string'],
                     ],
-                ],
+                ],],],],
             ],
             deserialize: false,
         ),
@@ -229,7 +223,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
             'extension' => $this->extension,
             'folder_id' => $this->dossier?->getId(),
             'beneficiaire' => ['id' => $this->beneficiaire->getId()],
-            'depose_par_full_name' => $this->getDeposeParGetFullName(),
+            'depose_par_full_name' => $this->getCreatorUserFullName(),
             'beneficiaire_id' => $this->getBeneficiaire()->getId(),
             'object_key' => $this->objectKey,
             'thumbnail_key' => $this->thumbnailKey,
@@ -255,24 +249,6 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
         return max([0, ...$this->getActiveSharedDocuments()->map(function (SharedDocument $sharedDocument) {
             return round(($sharedDocument->getExpirationDate()->getTimestamp() - time()) / 86400);
         })->toArray()]);
-    }
-
-    public function getDeposeParGetFullName(): string
-    {
-        $fullname = '';
-        if ($creatorUser = $this->getCreatorUser()) {
-            $user = $creatorUser->getEntity();
-            if (null !== $user) {
-                $fullname = $user->getPrenom().' '.$user->getNom();
-            }
-        }
-
-        return $fullname;
-    }
-
-    public function getAuthorFullName(): string
-    {
-        return parent::getDeposeParGetFullName();
     }
 
     public function getNomSubstr(): string
