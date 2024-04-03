@@ -15,6 +15,8 @@ abstract class AbstractApiTest extends ApiTestCase
     protected Client $client;
     protected ?string $accessToken = null;
 
+    protected const BASE_URL = '/api/v3';
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -57,6 +59,6 @@ abstract class AbstractApiTest extends ApiTestCase
 
     public function generateUrl(string $url): string
     {
-        return sprintf('/api/v3%s?access_token=%s', $url, $this->accessToken);
+        return sprintf('%s%s?access_token=%s', self::BASE_URL, $url, $this->accessToken);
     }
 }

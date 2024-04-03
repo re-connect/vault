@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures\v2;
 
+use App\Tests\Factory\ClientFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -38,10 +39,19 @@ class ClientFixture extends Fixture implements FixtureGroupInterface
     public function load(ObjectManager $manager)
     {
         foreach (self::CLIENTS as $client) {
-            $client = (new Client($client['name'], $client['id'], $client['secret']))
+            $oauthClient = (new Client($client['name'], $client['id'], $client['secret']))
                 ->setGrants(new Grant($client['grantType']))
                 ->setScopes(new Scope($client['scopes']));
-            $manager->persist($client);
+            $manager->persist($oauthClient);
+
+            ClientFactory::createOne(
+                [
+                    'nom' => $client['name'],
+                    'randomId' => $client['id'],
+                    'secret' => $client['secret'],
+                    'allowedGrantTypes' => [$client['grantType']],
+                ]
+            );
         }
 
         $manager->flush();
