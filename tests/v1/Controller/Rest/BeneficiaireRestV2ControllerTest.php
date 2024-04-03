@@ -302,7 +302,7 @@ class BeneficiaireRestV2ControllerTest extends AbstractControllerTest
     public function testReconnectPro()
     {
         $em = $this->getEntityManager();
-        $client = $this->loginAsClient('axel');
+        $client = $this->loginAsClient('reconnect_pro');
         $center = $em->getRepository(Centre::class)->findByClientIdentifier($client->getIdentifier())[0];
         $beneficiaries = $em->getRepository(Beneficiaire::class)->findByClientIdentifier($client->getIdentifier());
         $beneficiaryId = $beneficiaries[0]->getId();

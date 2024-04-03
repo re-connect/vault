@@ -97,15 +97,6 @@ class BeneficiaireRepository extends ServiceEntityRepository
         }
     }
 
-    public function getEntitiesAxel()
-    {
-        return $this->createQueryBuilder('b')
-            ->join('b.externalLinks', 'c')
-            ->andWhere('c.client = :clientId')
-            ->setParameter('clientId', 6)
-            ->getQuery()->getResult();
-    }
-
     public function findByClientIdentifier(string $clientIdentifier): array
     {
         return $this->createQueryBuilder('b')
@@ -207,7 +198,7 @@ class BeneficiaireRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('b')
             ->leftJoin('b.externalLinks', 'el')
             ->leftJoin('el.client', 'c')
-            ->where('c.nom LIKE \'axel\'')
+            ->where('c.nom LIKE \'reconnect_pro\'')
             ->andWhere('el.beneficiaireCentre is null')
             ->getQuery()
             ->getResult();
