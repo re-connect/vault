@@ -349,6 +349,8 @@ leave_center: 'مغادرة هذا المركز'
 leave_center_confirm: 'هل أنت متأكد من مغادرة هذا المركز؟'
 leave_center_title: 'مغادرة هذا المركز%s'
 location: الموقع
+login_error_disabled_account: Votre compte est désactivé, veuillez contacter le support.
+login_error_account_in_creation: Votre compte est en cours de création, veuillez contacter le support.
 login_form_title: 'الوصول إلى الخزنة الرقمية'
 logout: قطع الاتصال
 mail_auth_code_content: 'إليك رمز تسجيل الدخول الخاص بك: '
@@ -580,7 +582,6 @@ unsupported_file_extension: "Erreur %fileName%, le format de fichier n'est pas s
 update_your_password: 'تغيير كلمة السر الخاصة بك'
 used_available: '%used% utilisé(s) sur %available% disponibles'
 user_do_not_have_account: "L'utilisateur ne possède pas de compte Reconnect ?"
-user_error_disabled_account: 'Votre compte est désactivé, veuillez contacter le support.'
 user_firstVisit_membre_intro: 'Cet outil a pour fonction première la sauvegarde d’informations personnelles des personnes accompagnées.'
 user_firstVisit_membre_intro_more: 'L’outil s’inscrit dans le cadre de l’accompagnement et pourra vous permettre d’assister les bénéficiaires dans la sauvegarde de leurs données.'
 user_firstVisit_membre_metaTitle: 'Bienvenue sur Reconnect le Coffre Fort Numérique'
@@ -636,4 +637,3 @@ duplicate_mail_subject: "[Coffre-Fort Numérique] Doublons bénéficiaire"
 duplicate_mail_title: 'Doublons de username bénéficiaire : %username%'
 duplicate_mail_created_by_client: 'Créé par (client) : %client%'
 duplicate_mail_created_by_pro: "Crée par le.a professionnel.le d'id %id%, affilié.e aux Centre(s) suivants :"
-dummy: Dummy translation
