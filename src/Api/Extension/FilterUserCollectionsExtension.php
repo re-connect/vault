@@ -53,6 +53,8 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
     {
         $beneficiary = $user->getSubjectBeneficiaire();
         if (!$beneficiary) {
+            $queryBuilder->andWhere('1 = 0');
+
             return;
         }
 

@@ -8,7 +8,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
+use App\Api\State\PersonalDataStateProcessor;
 use App\Entity\Interface\FolderableEntityInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -26,18 +26,16 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Delete(security: "is_granted('UPDATE', object)"),
         new Get(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('ROLE_USER')"),
-        new Patch(),
-        new Post(),
-        new Put(security: "is_granted('UPDATE', object)"),
+        new Post(security: "is_granted('ROLE_USER')", processor: PersonalDataStateProcessor::class),
+        new Patch(security: "is_granted('UPDATE', object)"),
     ],
     normalizationContext: ['groups' => ['v3:folder:read']],
     denormalizationContext: ['groups' => ['v3:folder:write']],
     openapiContext: ['tags' => ['Dossiers']],
-    security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
 )]
 class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 {
-    final public const AUTOCOMPLETE_NAMES = ['health', 'housing', 'identity', 'tax', 'work'];
+    final public const array AUTOCOMPLETE_NAMES = ['health', 'housing', 'identity', 'tax', 'work'];
 
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:folder:read'])]
     private Collection $documents;
@@ -101,10 +99,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
         ];
     }
 
-    /**
-     * get the folder image that was assigned to the client.
-     */
-    public function getDossierImage()
+    public function getDossierImage(): ?string
     {
         if (null !== ($beneficaire = $this->getBeneficiaire()) && null !== ($clients = $beneficaire->getExternalLinks())) {
             foreach ($clients as $beneficiaireClient) {
@@ -117,10 +112,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
         return '';
     }
 
-    /**
-     * @return Collection|Dossier[]
-     */
-    public function getSousDossiers()
+    public function getSousDossiers(): ArrayCollection|Collection|array
     {
         return $this->sousDossiers;
     }

@@ -40,27 +40,21 @@ abstract class DonneePersonnelle implements \JsonSerializable
         'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
         'v3:document:write', 'v3:folder:write', 'v3:event:write', 'v3:note:write', 'v3:contact:write',
         'document:read', 'read-personal-data', 'read-personal-data-v2', ])]
-    protected ?Beneficiaire $beneficiaire;
+    protected ?Beneficiaire $beneficiaire = null;
+
+    protected ?int $beneficiaireId = null;
 
     #[Groups([
         'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
-        'v3:document:write', 'v3:folder:write', 'v3:event:write', 'v3:note:write', 'v3:contact:write',
-        'document:read', 'read-personal-data', 'read-personal-data-v2', ])]
-    protected int $beneficiaireId;
-
-    #[Groups([
-        'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
-        'v3:document:write', 'v3:folder:write', 'v3:event:write', 'v3:note:write', 'v3:contact:write',
         'document:read', 'read-personal-data', 'read-personal-data-v2', ])]
     protected \DateTime $createdAt;
 
     #[Groups([
         'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
-        'v3:document:write', 'v3:folder:write', 'v3:event:write', 'v3:note:write', 'v3:contact:write',
         'document:read', 'read-personal-data', 'read-personal-data-v2', ])]
     protected \DateTime $updatedAt;
 
-    protected ?User $deposePar;
+    protected ?User $deposePar = null;
 
     public function __construct()
     {
@@ -152,6 +146,9 @@ abstract class DonneePersonnelle implements \JsonSerializable
         return $this;
     }
 
+    #[Groups([
+    'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
+    'document:read', 'read-personal-data', 'read-personal-data-v2', ])]
     public function getBeneficiaireId(): int
     {
         return $this->beneficiaire?->getId();

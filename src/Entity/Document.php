@@ -8,7 +8,6 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
 use App\Controller\Api\UploadDocumentController;
 use App\Entity\Interface\FolderableEntityInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -23,10 +22,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ApiResource(
     operations: [
         new Delete(security: "is_granted('UPDATE', object)"),
-        new Get(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('UPDATE', object)"),
-        new GetCollection(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('ROLE_USER')"),
-        new Patch(),
-        new Put(security: "is_granted('UPDATE', object)"),
+        new Get(security: "is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_USER')"),
+        new Patch(security: "is_granted('UPDATE', object)"),
         new Post(
             controller: UploadDocumentController::class,
             openapiContext: [
@@ -37,15 +35,15 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
                         'file' => ['type' => 'file'],
                         'distant_id' => ['type' => 'string', 'format' => 'string'],
                     ],
-                ],],],],
+                ], ], ], ],
             ],
+            security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
             deserialize: false,
         ),
     ],
     normalizationContext: ['groups' => ['v3:document:read']],
     denormalizationContext: ['groups' => ['v3:document:write']],
     openapiContext: ['tags' => ['Documents']],
-    security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
 )]
 class Document extends DonneePersonnelle implements FolderableEntityInterface
 {

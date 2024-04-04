@@ -89,3 +89,6 @@ services:
     App\Api\State\BeneficiaryStateProcessor:
         bind:
             $persistProcessor: '@api_platform.doctrine.orm.state.persist_processor'
+    App\Api\State\PersonalDataStateProcessor:
+        bind:
+            $persistProcessor: '@api_platform.doctrine.orm.state.persist_processor'
