@@ -64,7 +64,7 @@ class FixRPExternalLinkCommand extends Command
      */
     private function deleteLink(Beneficiaire $beneficiary): void
     {
-        $link = $beneficiary->getAxelExternalLink();
+        $link = $beneficiary->getReconnectProExternalLink();
         if (!$link) {
             throw new \Exception(sprintf('Beneficiary %s should have an external link to RP, but none was found', $beneficiary->getId()));
         }

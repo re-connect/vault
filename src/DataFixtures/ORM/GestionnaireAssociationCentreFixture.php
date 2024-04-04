@@ -31,7 +31,7 @@ class GestionnaireAssociationCentreFixture extends Fixture implements DependentF
 
         $this->createCentersForClient('applimobile');
         $this->createCentersForClient('rosalie');
-        $this->createCentersForClient('axel');
+        $this->createCentersForClient('reconnect_pro');
 
         $manager->flush();
     }

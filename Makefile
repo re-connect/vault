@@ -10,7 +10,8 @@ RECTOR          = $(BIN)/rector
 PHP_CS_FIXER    = $(BIN)/php-cs-fixer
 PHPSTAN_LEVEL   = 7
 
-cs: stan fixer
+cs: stan rector fixer
+ci: cs test
 
 stan:
 	@$(PHPSTAN) analyse -l $(PHPSTAN_LEVEL) --xdebug
@@ -30,6 +31,8 @@ fixture-v1:
 
 fixture-v2:
 	@$(CONSOLE) doctrine:fixtures:load --env=test --group=v2 -n
+
+test: fixture-v1 test-v1 fixture-v2 test-v2
 
 test-v1:
 	@$(PHPUNIT) tests/v1

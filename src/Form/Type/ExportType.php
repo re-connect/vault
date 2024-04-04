@@ -3,11 +3,11 @@
 namespace App\Form\Type;
 
 use App\Entity\Centre;
+use App\Entity\Region;
 use App\Form\Model\ExportModel;
 use App\Repository\CentreRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -31,14 +31,14 @@ class ExportType extends AbstractType
                         ->orderBy('c.nom', 'ASC');
                 },
             ])
-            ->add('regions', ChoiceType::class, [
+            ->add('regions', EntityType::class, [
+                'class' => Region::class,
                 'label' => 'regions',
                 'required' => false,
                 'multiple' => true,
                 'attr' => [
                     'class' => 'has-select2',
                 ],
-                'choices' => array_combine(Centre::REGIONS, Centre::REGIONS),
             ])
             ->add('start_date', DateType::class, [
                 'label' => 'date_period_start',
