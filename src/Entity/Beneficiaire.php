@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\Dto\BeneficiaryDto;
@@ -56,7 +57,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
             description: 'Unlink a beneficiary from your oauth2 client',
             security: "is_granted('UPDATE', object)"
         ),
-//        new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"),
         new Post(input: BeneficiaryDto::class, processor: BeneficiaryStateProcessor::class),
     ],
     normalizationContext: ['groups' => ['v3:beneficiary:read', 'v3:user:read', 'v3:center:read', 'timed']],
