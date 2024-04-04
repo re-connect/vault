@@ -94,7 +94,7 @@ class UserSimpleAdmin extends AbstractAdmin
                 'placeholder' => false,
                 'label' => 'mfa_method',
                 'choices' => array_combine(User::MFA_METHODS, User::MFA_METHODS),
-                'data' => User::MFA_METHOD_EMAIL,
+                'empty_data' => User::MFA_METHOD_EMAIL,
                 'expanded' => true,
                 'multiple' => false,
             ]);
