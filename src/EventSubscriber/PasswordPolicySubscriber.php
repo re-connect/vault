@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 class PasswordPolicySubscriber extends AbstractWebUserSubscriber implements EventSubscriberInterface
 {
-    private const ALLOWED_ROUTES = [...self::FIRST_VISIT_ROUTES, 'improve_password'];
+    private const array ALLOWED_ROUTES = [...self::FIRST_VISIT_ROUTES, 'improve_password'];
 
     public function checkUserHasUpdatePasswordWithLatestPolicy(RequestEvent $event): void
     {

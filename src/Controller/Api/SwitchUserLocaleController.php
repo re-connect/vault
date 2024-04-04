@@ -22,6 +22,6 @@ final class SwitchUserLocaleController extends AbstractController
             $em->flush();
         }
 
-        return $this->json($user);
+        return $this->json($user, 200, [], ['groups' => ['v3:user:read']]);
     }
 }

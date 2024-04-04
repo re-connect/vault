@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Traits\DeactivatableTrait;
 use Symfony\Component\Security\Core\User\LegacyPasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, UserInterface
 {
@@ -46,6 +47,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
      *
      * @var string|null
      */
+    #[Groups(['v3:user:write'])]
     protected $plainPassword;
 
     /**

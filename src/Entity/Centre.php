@@ -5,12 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
-use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
 use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -26,10 +22,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     operations: [
         new Get(security: "is_granted('ROLE_OAUTH2_CENTERS') or is_granted('VIEW', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_CENTERS') or is_granted('ROLE_USER')"),
-        new Post(),
-        new Put(),
-        new Patch(),
-        new Delete(),
     ],
     normalizationContext: ['groups' => ['v3:center:read']],
     denormalizationContext: ['groups' => ['v3:center:write']],
@@ -97,6 +89,7 @@ class Centre implements \JsonSerializable
      */
     #[Groups(['center:read', 'v3:center:read'])]
     private $telephone;
+
     /**
      * @var Collection|BeneficiaireCentre[]
      */

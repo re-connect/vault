@@ -38,7 +38,7 @@ class UserAdmin extends AbstractAdmin
                 'attr' => [
                     'read_only' => true,
                 ], ])
-            ->add('typeUser', 'choice', ['choices' => User::$arTypesUser])
+            ->add('typeUser', 'choice', ['choices' => User::USER_TYPES])
             ->end();
     }
 
@@ -49,7 +49,7 @@ class UserAdmin extends AbstractAdmin
             ->add('username', null, ['label' => "Nom d'utilisateur"])
             ->add('nom')
             ->add('prenom')
-            ->add('typeUser', 'doctrine_orm_string', ['label' => 'Type d\'utilisateur'], 'choice', ['choices' => User::$arTypesUser])
+            ->add('typeUser', 'doctrine_orm_string', ['label' => 'Type d\'utilisateur'], 'choice', ['choices' => User::USER_TYPES])
             ->add('derniereConnexionAt', null, ['label' => 'Dernière connexion'])
             ->add('createdAt', null, ['label' => 'Date de création']);
     }
@@ -62,7 +62,7 @@ class UserAdmin extends AbstractAdmin
             ->add('nom')
             ->add('prenom')
             ->add('typeUser', 'choice', [
-                'choices' => User::$arTypesUser,
+                'choices' => User::USER_TYPES,
                 'label' => 'Type d\'utilisateur',
             ])
             ->add('derniereConnexionAt', null, ['label' => 'Dernière connexion'])

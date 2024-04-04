@@ -32,6 +32,7 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
 
         match ($resourceClass) {
             Centre::class => $this->filterRelays($queryBuilder, $rootAlias, $user),
+            User::class => $this->filterUsers($queryBuilder, $rootAlias, $user),
             Beneficiaire::class => $this->filterBeneficiaries($queryBuilder, $rootAlias, $user),
             Document::class, Dossier::class, Contact::class, Note::class, Evenement::class => $this->filterPersonalData($queryBuilder, $rootAlias, $user),
             default => null,
@@ -71,5 +72,12 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
         $proId = $user->getSubjectMembre()?->getId();
 
         BeneficiaireRepository::addProAccessJoinsAndConditions($queryBuilder, $rootAlias, $proId);
+    }
+
+    private function filterUsers(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void
+    {
+        $queryBuilder
+            ->andWhere(sprintf('%s.id = :userId', $rootAlias))
+            ->setParameter('userId', $user->getId());
     }
 }

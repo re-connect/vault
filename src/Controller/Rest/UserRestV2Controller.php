@@ -176,6 +176,6 @@ class UserRestV2Controller extends REController
 
         $userManager->updatePassword($user, $password);
 
-        return $this->json($user);
+        return $this->json($user, 200, [], ['groups' => ['v3:user:read']]);
     }
 }
