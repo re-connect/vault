@@ -1,19 +1,38 @@
-no: Nein
-yes: Ja
+accept: Accepter
+accept_terms_of_use: "Ich akzeptiere die Nutzungsbedingungen"
 accepted: akzeptiert
 access: Zugang
-accompanying_person_propose_cfn_activation: 'Dein*e Sozialarbeiter*in %person.firstname% %person.lastname% aus der Einrichtung %center% lädt Dich ein, Deine Cloud zu aktivieren.'
-add_date: 'Erstellt am'
+accompanying_person_propose_cfn_activation: "Dein*e Sozialarbeiter*in %person.firstname% %person.lastname% aus der Einrichtung %center% lädt Dich ein, Deine Cloud zu aktivieren."
+actions: Aktionen
+actual_password: 'Aktuelles Passwort'
+add: Hinzufügen
+add_beneficiary: 'Klient*in hinzufügen'
+add_date: "Erstellt am"
 add_new_benef_big_title: 'Klient*in <span class="rp-blue text-blue">hinzufügen</span>'
 add_new_beneficiary: 'Klient*in hinzufügen'
+add_new_user: 'Ajouter un nouvel utilisateur'
+add_personal_email: 'Meine E-Mail-Adresse hinzufügen'
+add_personal_phone: 'Meine Telefonnummer hinzufügen'
+add_si_siao_number: 'Ajouter numéro SI-SIAO'
+add_si_siao_number_intro: 'Si vous le désirez, vous pouvez renseigner un numéro SI-SIAO pour ce bénéficiaire : '
 add_sms_reminder: 'SMS-Erinnerung hinzufügen'
+add_user: 'Ajouter un utilisateur'
 added_by: 'Erstellt von'
+admin.centres.statistiques.nbBeneficiaires: 'Nombre de beneficiaires'
+admin.centres.statistiques.nbMembres: 'Nombre de membres'
+admin.centres.statistiques.smsEnvoyes: 'Nombre de sms envoyés'
+all_rights_reserved: Alle Rechte vorbehalten
+all_your_data_will_be_deleted: Vos données seront supprimées et vous ne pourrez plus y accéder ni les structures sociales qui vous accompagnent.
 alt_logo_reconnect: 'Logo von Reconnect'
-an_error_occurred: 'Es ist ein Fehler aufgetreten'
+an_error_occurred: Es ist ein Fehler aufgetreten
 answer: Antwort
+answer_secret_question: 'Répondre à la question secrète'
 association: Verein
 at: um
-back_home: 'Zurück zur Startseite'
+auth_code_received: 'Anmeldecode erhalten über %method%:'
+auth_code_sms_text: 'Hier ist Ihr Anmeldecode: %code%'
+back: Zurück
+back_home: "Zurück zur Startseite"
 benef_has_account: 'Der/die Klient*in besitzt ein Konto'
 benef_has_no_account: 'Der/die Klient*in besitzt kein Konto'
 benef_new_guide_accept_button: '<span class="text-uppercase lighter">Akzeptieren</span><br/><small class="lighter">Ich möchte meine Cloud aktivieren</small>'
@@ -23,52 +42,106 @@ benef_new_guide_private_question: 'Sollen meine Dokumente an ausgewählte Sozial
 benef_new_guide_private_question_alt: 'Art der Freigabe'
 benef_new_guide_title: 'Willkommen bei Reconnect <span class="text-green">- Der Cloud für wohnungslose Menschen</span>'
 benef_new_guide_what_for_answer_1: 'Meine Informationen speichern'
-benef_new_guide_what_for_answer_2: 'Meinen Austausch mit Sozialarbeiter*innen<br/>erleichtern'
+benef_new_guide_what_for_answer_2: "Meinen Austausch mit Sozialarbeiter*innen<br/>erleichtern"
 benef_new_guide_what_for_question: 'Was bringt mir die Cloud?'
-documents: Dokumente
-reminders: Erinnerungen
-contacts: Kontakte
-notes: Notizen
 benef_new_guide_which_info_question: 'Welche Dokumente möchtest Du speichern'
-my_documents: 'Meine Dokumente'
-meetings: Termine
-beneficiaries_management: 'Verwaltung von Klient*innen'
+beneficiaries: Bénéficiaires
+beneficiaries_creation: Création de bénéficiaires
+beneficiaries_management: Verwaltung von Klient*innen
+beneficiary_added_to_relays: 'Le bénéficiaire a été ajouté aux relais selectionnés'
+beneficiary_already_affiliated_to_relay: Le bénéficiaire est déjà affilié à ce relais
+beneficiary_already_as_account_affiliate: 'Rattachez son coffre-fort à l’un de vos relais afin de lui partager des informations.'
+beneficiary_created_successfully: 'Le bénéficiaire a bien été créé'
+beneficiary_created_successfully_wait_activation: Le compte a bien été créé, le bénéficiaire vient de recevoir un SMS afin d’activer son coffre-fort numérique. Il peut dès à présent définir son mot de passe et la réponse à sa question secrète.
+beneficiary_creation_canceled: 'Annulation de la création du bénéficiaire'
+beneficiary_creation_client_sms: "Votre compte Coffre-fort Reconnect a été crée crée.\nvotre identifiant est %username%, vous pouvez vous connecter en cliquant sur le lien ci-dessous : %autoLoginLink% \nVous pouvez également télécharger l'application mobile : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
+beneficiary_creation_remotely_sms: "Votre accompagnant %pro.firstname% %pro.lastname% de la structure %center% vous propose d'activer votre coffre-fort numérique Reconnect \nConnectez-vous sur www.reconnect.fr \nIdentifiant : %username% \nMot de passe : %password% \nOu cliquez sur le lien : %autoLoginLink% \nVous pouvez également télécharger l'application mobile : \n- IOS (Apple) : %IOSAppLink% \n- Android : %androidAppLink%"
 beneficiary_delete_account: 'Sind Sie sicher, dass Sie ihr Konto löschen wollen?'
+beneficiary_has_no_account_create: "Créez-lui un compte puis rattachez-le à l’un de vos relais afin de lui partager des informations."
+beneficiary_has_no_email: Le bénéficiaire n'a pas renseigné d'adresse email
+beneficiary_has_no_phone_number: Le bénéficiaire n'a pas renseigné de numéro de téléphone
+beneficiary_has_no_secret_answer: Le bénéficiaire n'a pas renseigné de réponse secrète
+beneficiary_relay_affiliation_end: "Sinon, il pourra accepter l'invitation en se connectant à son compte Reconnect"
+beneficiary_relay_affiliation_intro: "Sélectionnez ci-contre le/les centres auxquels vous voulez affilier le bénéficiaire."
+beneficiary_relay_affiliation_options: "Si vous êtes avec le bénéficiaire, vous pouvez valider l’ajout à un/des centres en :"
+beneficiary_relay_affiliation_question: "Répondant avec lui à sa question secrète"
+beneficiary_relay_affiliation_sms: "Indiquant le code reçu par SMS par le bénéficiaire"
+beneficiary_reset_password_SMS_code: Code reçu par SMS
+beneficiary_reset_password_SMS_has_been_sent: Un SMS a été envoyé au bénéficiaire, il contient un code secret nécessaire pour renouveller son mot de passe
+beneficiary_reset_password_already_requested: Une demande de réinitialisation du mot de passe a déjà été effectuée pour ce bénéficiaire
+beneficiary_reset_password_already_requested_by_email: Une demande de réinitialisation du mot de passe a déjà été effectuée pour ce bénéficiaire par email
+beneficiary_reset_password_email_has_been_sent: Un email a été envoyé au bénéficiaire avec des instructions pour renouveller son mot de passe
+beneficiary_reset_password_success: Le mot de passe du bénéficiaire %fullName% a bien été mis à jour
+secret_question_mother_firstname: 'Wie lautet der Vorname der Mutter des/der Klient*in?'
+secret_question_pet: "Wie heißt das Haustier des/der Klient*in"
+secret_question_favorite_street: 'Wo hält sich der/die Klient*in am liebsten auf?'
+secret_question_secondary_school: 'Welche Grundschule hat der/die Klient*in besucht?'
+secret_question_nickname: 'Wie lautet der Spitzname des/der Klient*in?'
+secret_question_city_of_birth: 'Wo wurde der/die Klient*in geboren?'
+secret_question_mother_lastname: 'Wie lautet der Familienname der Mutter des/der Klient*in?'
+secret_question_custom: Andere Frage stellen
+beneficiary_will_give_you_secret_answer: Le bénéficiaire vous fournira la réponse à sa question secrète afin de réinitialiser son mot de passe
+beneficiary_will_give_you_secret_information: "Il vous communiquera le mot de passe qu'il souhaite utiliser ainsi qu'une question et une réponse secrète permettant de réinitialiser son mot de passe"
+beneficiary_will_receive_email_reset_request: Le bénéficiaire recevra un email lui permettant de réinitialiser son mot de passe directement
+beneficiary_will_receive_sms_account_information: 'Il recevra un sms pour activer son compte et compléter ses informations'
+beneficiary_will_receive_sms_reset_request: Le bénéficiaire recevra un code par SMS afin de réinitialiser son mot de passe
 birthDate: Geburtsdatum
-center_has_no_info: 'Keine Einrichtung kann auf Ihre Daten zugreifen'
+cancel: Abbrechen
+center_has_no_info: "Keine Einrichtung kann auf Ihre Daten zugreifen"
 centers: Einrichtungen
-relay_leaved_successfully: 'Du hast die Einrichtung verlassen'
 cfn_accessible_tool_alt_img: 'Ein leicht zugängliches Tool'
-cfn_accessible_tool_p: 'Die Cloud wurde so entwickelt, dass sie für möglichst viele Menschen zugänglich ist. Sie lässt sich schnell und intuitiv bedienen – auch ohne Vorkenntnisse. Für die Einrichtung eines Accounts ist weder eine Telefonnummer noch eine E-Mail-Adresse erforderlich. Die Cloud ist in mehrere Sprachen übersetzt und kann via PC oder Smartphone-App genutzt werden.'
+cfn_accessible_tool_p: "Die Cloud wurde so entwickelt, dass sie für möglichst viele Menschen zugänglich ist. Sie lässt sich schnell und intuitiv bedienen – auch ohne Vorkenntnisse. Für die Einrichtung eines Accounts ist weder eine Telefonnummer noch eine E-Mail-Adresse erforderlich. Die Cloud ist in mehrere Sprachen übersetzt und kann via PC oder Smartphone-App genutzt werden."
 cfn_accessible_tool_title: 'Ein leicht zugängliches Tool'
 cfn_complete_secure_alt_img: 'Deine Dokumente sicher speichern'
-cfn_complete_secure_p: 'In der Cloud kannst Du Deine wichtigen Dokumente sicher speichern. Außerdem lassen sich SMS-Benachrichtigungen sowie Kontakte und Notizen anlegen.'
+cfn_complete_secure_p: "In der Cloud kannst Du Deine wichtigen Dokumente sicher speichern. Außerdem lassen sich SMS-Benachrichtigungen sowie Kontakte und Notizen anlegen."
 cfn_complete_secure_title: 'Deine Dokumente sicher speichern'
 cfn_interface_social_workers_alt_img: 'Zugang für Sozialarbeiter*innen'
-cfn_interface_social_workers_p: 'Mit einem eigenen Zugang können Sozialarbeiter*innen alle verknüpften Konten einsehen und ggf. verwalten. Sie können außerdem neue Konten für Klient*innen erstellen.'
-cfn_interface_social_workers_title: 'Zugang für Sozialarbeiter*innen'
-cfn_page_hero_text: 'Die Cloud erleichtert Betroffenen den Zugang zum Hilfesystem und ermöglicht das Einfordern von Leistungen'
-cfn_social_care_alt_img: 'Eine Cloud, die in das Hilfesystem integriert ist'
+cfn_interface_social_workers_p: "Mit einem eigenen Zugang können Sozialarbeiter*innen alle verknüpften Konten einsehen und ggf. verwalten. Sie können außerdem neue Konten für Klient*innen erstellen."
+cfn_interface_social_workers_title: "Zugang für Sozialarbeiter*innen"
+cfn_page_hero_text: "Die Cloud erleichtert Betroffenen den Zugang zum Hilfesystem und ermöglicht das Einfordern von Leistungen"
+cfn_social_care_alt_img: "Eine Cloud, die in das Hilfesystem integriert ist"
 cfn_social_care_p: 'Im Bereich "Meine Einrichtungen" können Sie sich mit der für Sie zuständigen Einrichtung verknüpfen und Daten für Sozialarbeiter*innen freigeben. Die Freigabe kann jederzeit widerrufen werden.'
-cfn_social_care_title: 'Eine App, die in das Hilfesystem integriert ist'
+cfn_social_care_title: "Eine App, die in das Hilfesystem integriert ist"
 cfn_vault_easy_access_alt_img: 'Rechte leichter wahrnehmen'
-cfn_vault_easy_access_p: 'Die Cloud hilft wohnungslosen Menschen dabei, keine Dokumente mehr zu verlieren. Das schützt sie vor Konsqequenzen durch Berhörden, Ämtern und Institutionen.'
-cfn_vault_easy_access_title: 'Ansprüche einfordern'
-cfn_vault_exchange_info_alt_img: 'Informationsaustausch fördern'
+cfn_vault_easy_access_p: "Die Cloud hilft wohnungslosen Menschen dabei, keine Dokumente mehr zu verlieren. Das schützt sie vor Konsqequenzen durch Berhörden, Ämtern und Institutionen."
+cfn_vault_easy_access_title: "Ansprüche einfordern"
+cfn_vault_exchange_info_alt_img: "Informationsaustausch fördern"
 cfn_vault_exchange_info_p: 'Die Cloud unterstützt den Informationsaustausch von Klient*innen und Sozialarbeiter*innen. Klient*innen können sich so aktiv am eigenen Fortschritt beteiligen.'
-cfn_vault_exchange_info_title: 'Informationsaustausch fördern'
-cfn_vault_is_safe_alt_img: Sicherheit
+cfn_vault_exchange_info_title: "Informationsaustausch fördern"
+cfn_vault_is_safe_alt_img: 'Sicherheit'
 cfn_vault_is_safe_p: 'Die Cloud ist ein sicheres Tool und entspricht den Standards der DSGVO. Dabei hat der Schutz persönlicher Daten unserer Nutzer*innen höchste Priorität.'
-cfn_vault_is_safe_title: Sicherheit
-cfn_vault_is_title: 'Die Cloud bedeutet'
+cfn_vault_is_safe_title: 'Sicherheit'
+cfn_vault_is_satisfying_alt_img: 'Les professionnel.le.s sont très satisfait.e.s de la formation'
+cfn_vault_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s de la formation à l'utilisation du coffre-fort numérique"
+cfn_vault_is_satisfying_title: 95%
+cfn_vault_is_title: "Die Cloud bedeutet"
+choose: Choisir
+choose_beneficiary: Choisir un bénéficiaire
+choose_beneficiary_centers: 'Veuillez choisir le/les relais reconnect du bénéficiaire'
+choose_beneficiary_password: 'Veuillez choisir le mot de passe du bénéficiaire'
+choose_beneficiary_secret_question: 'Veuillez choisir la question secrète du bénéficiaire'
+choose_file: 'Eine Datei auswählen'
+choose_relay: 'Sélectionnez un centre'
+choose_relays: 'Cliquez sur le/les relais auxquels vous voulez affilier le bénéficiaire'
+choose_relays_and_permissions: Choix des relais et permissions
+choose_reset_password_method: Veuillez choisir la méthode de réinitialisation du mot de passe
+choose_user: Choisir un utilisateur
 city: Stadt
 comment: Kommentar
+communal_centre_for_social_action: "Centre Communal d'Action Social (CCAS)"
 confirm: Bestätigen
+confirm_beneficiary_creation_cancellation: 'Êtes vous sûr de vouloir annuler la création de ce bénéficiaire ?'
+confirm_beneficiary_creation_remotely: "En cliquant sur confirmer, un SMS sera envoyé au bénéficiaire lui permettant d’activer son compte et de définir son mot de passe et la réponse à sa question secrète. \n Il pourra choisir d’accepter ou non le partage de ses informations avec le(s) relais ci-dessus."
+confirm_new_password: Bestätigen Sie Ihr neues Passwort
+confirm_relay_affiliation_with_sms_code: 'Um Deine Anmeldung zu bestätigen, sende bitte den Bestätigungscode %code% an Deine Reconnect-Einrichtung bzw. Deine/n Sozialarbeiter*in'
 connect_reconnect_site: 'Melde dich unter www.reconnect.fr an'
-contact_deleted_successfully: 'Dein Kontakt wurde erfolgreich gelöscht'
-no_contact_yet: 'Du hast noch keine Kontakte. Klicke auf "Hinzufügen", um einen zu erstellen.'
 contact: Kontakt
+contact_created: 'Contact créé'
+contact_deleted_successfully: 'Dein Kontakt wurde erfolgreich gelöscht'
+contact_detail: Coordonnées
+contact_page_offices_city_aquitaine: Bordeaux
 contact_page_offices_city_aura: Lyon
+contact_page_offices_city_bretagne: Rennes
 contact_page_offices_city_canada: Montreal
 contact_page_offices_city_est: Strasbourg
 contact_page_offices_city_hdf: Lille
@@ -76,8 +149,11 @@ contact_page_offices_city_normandie: Rouen
 contact_page_offices_city_occitanie: Montpellier
 contact_page_offices_city_paca: Marseille
 contact_page_offices_city_paris: Paris
+contact_page_offices_city_pdl: Nantes
 contact_page_offices_contact: 'Es gibt die Cloud noch nicht in Ihrer Region?'
+contact_page_offices_region_aquitaine: 'Nouvelle Aquitaine'
 contact_page_offices_region_aura: Auvergne-Rhônes-Alpes
+contact_page_offices_region_bretagne: Bretagne
 contact_page_offices_region_canada: Canada
 contact_page_offices_region_est: 'Grand Est'
 contact_page_offices_region_hdf: 'Hauts de France'
@@ -85,51 +161,116 @@ contact_page_offices_region_normandie: Normandie
 contact_page_offices_region_occitanie: Occitanie
 contact_page_offices_region_paca: "Provence-Alpes-Côte d'Azur"
 contact_page_offices_region_paris: 'Île de France'
+contact_page_offices_region_pdl: 'Pays de la Loire'
 contact_page_offices_title: 'Nehmen Sie Kontakt auf'
 contact_page_title: Kontaktaufnahme
-contact_us_button: Kontaktaufnahme!
+contact_updated: 'Contact modifié'
+contact_us_button: 'Kontaktaufnahme!'
 contact_us_title: 'Sie möchten mehr erfahren?'
+contacts: Kontakte
 content: Inhalt
+continue: Weiter
+country: Pays
+create_account: Créer un compte
+create_folder: 'Ordner erstellen'
 create_new_benef: 'Klient*in <span class="rp-blue text-blue">anlegen</span>'
-database: Datenbank
+create_new_beneficiary: "Création d'un nouveau bénéficiaire"
+create_professional_help: Créez un compte utilisateur professionnel sur Reconnect et invitez le à rejoindre vos relais
+create_reconnect_account: 'Ein Konto erstellen'
+create_reconnect_account_remotely: 'Créer un compte Reconnect à distance'
+create_reconnect_account_with_beneficiary: 'Créer un compte Reconnect avec le bénéficiaire'
+data: Données
+database: 'Datenbank'
 date: Datum
+date_period_end: 'Date de fin de période'
+date_period_start: 'Date de début de période'
+decline: Ablehnen
 delete: Löschen
 delete_your_account: 'Wenn Du Dein Konto löschen möchtest, klicke hier'
+digital_care_is: "L'accompagnement numérique, c'est"
+digital_cares: "L'accompagnement \n numérique"
+digital_cares_acquire_skills_img_alt: "Permet d'acquérir des compétences"
+digital_cares_acquire_skills_text: 'des bénéficiaires qui estiment que les ateliers leur ont permis d’acquérir des compétences'
+digital_cares_acquire_skills_title: '90 %'
+digital_cares_appreciated_training_img_alt: 'Formation appréciée'
+digital_cares_appreciated_training_text: 'des bénéficiaires qui ont apprécié la formation'
+digital_cares_appreciated_training_title: '98 %'
+digital_cares_dynamic_workshop_img_alt: 'Ateliers dynamiques'
+digital_cares_dynamic_workshop_text: 'des bénéficiaires apprécient la dynamique des ateliers'
+digital_cares_dynamic_workshop_title: '89 %'
+digital_cares_improve_reintegration_pathways_img_alt: "Accompagnement pour faciliter les parcours d'insertion"
+digital_cares_improve_reintegration_pathways_text: 'Les ateliers numériques s’inscrivent dans l’accompagnement global des bénéficiaires et répondent à un besoin de formation aux usages du numérique afin de faciliter leur insertion sociale et professionnelle.'
+digital_cares_improve_reintegration_pathways_title: 'Un accompagnement pour faciliter les parcours d’insertion'
+digital_cares_knowledge_img_alt: 'Permet de réaliser les actions apprises'
+digital_cares_knowledge_text: 'des bénéficiaires qui se sentent capables de réaliser les actions apprises'
+digital_cares_knowledge_title: '84 %'
+digital_cares_logo_alt: 'Logo des accompagnements numériques'
+digital_cares_participatory_content_img_alt: 'Contenus ludiques et participatifs'
+digital_cares_participatory_content_text: 'Nos ateliers contiennent une dimension théorique et pratique afin de faciliter l’assimilation des informations. Les sessions sont construites à l’aide d’une méthodologie « gamifiée » qui facilite l’attention et améliore l’attractivité. Nous portons une attention particulière à la mise en pratique immédiate des formations proposées.'
+digital_cares_participatory_content_title: 'Des contenus ludiques et participatifs'
+digital_cares_personalized_text: 'Les contenus et supports de présentation sont préparés en amont par les équipes de Reconnect selon les thématiques identifiées par les professionnels de la structure et des spécificités du public. L’approche de Reconnect en matière de médiation numérique consiste à s’adapter en continu aux niveaux et besoins des bénéficiaires.'
+digital_cares_personalized_title: 'Un accompagnement adapté et personnalisé'
+digital_cares_qualiopi_content_img_alt: Formations certifiées Qualiopi
+digital_cares_qualiopi_content_text: Adaptation permanente aux besoins de nos publics, approche ludique, apport théorique et mise en œuvre pratique… Conçus avec et pour les bénéficiaires des structures sociales, tous nos ateliers visent à les aider à mieux maîtriser les outils numériques et à devenir autonomes dans leurs pratiques. Pour qu’ils.elles y parviennent, nous nous engageons à leur proposer des formations de qualité, au plus près de leurs besoins.
+digital_cares_qualiopi_content_title: 'Notre engagement : des formations de qualité pour lutter contre la fracture numérique'
+digital_cares_scalable_content_img_alt: 'Contenus évolutifs en fonction des retours terrain'
+digital_cares_scalable_content_text: 'Les bénéficiaires sont amenés à mesurer leur progression et à évaluer la formation, afin de faire évoluer nos contenus. Cette démarche est couplée à une veille des nouveautés du secteur de l’inclusion numérique pour que nos contenus répondent au mieux aux besoins des bénéficiaires.'
+digital_cares_scalable_content_title: 'Des contenus évolutifs en fonction des retours terrain'
 disabledAt: 'Deaktiviert am'
 disabledBy: 'Deaktiviert durch'
-no_document_yet: 'Du hast noch keine Dokumente.'
+disaffiliate_beneficiary: Arrêter le suivi d'un bénéficiaire
+disaffiliate_beneficiary_subtitle: 'Arrêter le suivi de'
+disaffiliate_user: Arrêter le suivi d'un utilisateur
+display_file: 'Eine Datei anzeigen'
+do_you_accept_to_share_your_information_in_contact_list: 'Du siehst zum ersten Mal die freigegebenen Elemente dieser Person. Bist du damit einverstanden, dass Dein Kontakt zur Liste der freigegebenen Kontakte dieser Person hinzugefügt wird?'
 document_deleted_successfully: 'Dein Dokument wurde erfolgreich gelöscht.'
-create_folder: 'Ordner erstellen'
-drop_files: 'Dokumente hochladen'
-folder: Ordner
 document_successfully_send_email: 'Du hast das Dokument erfolgreich per E-Mail verschickt'
+documents: Dokumente
 download: Herunterladen
-add: Hinzufügen
-you_can_not_delete_personal_data: 'Du hast nicht die Berechtigung zum Löschen der Datei'
-you_can_not_display_personal_data: 'Du hast nicht die Berechtigung zum Anzeigen der Daten'
-you_can_not_edit_personal_data: 'Du hast nicht die Berechtigung, die Daten zu bearbeiten'
-you_can_not_report_personal_data: 'Du hast nicht die Berechtigung, diese Daten zu melden'
-information: Informationen
-actions: Aktionen
-empty: leer
 download_document: 'Dokument herunterladen'
 download_document_click_button: 'Klicken, um das Dokument herunterzuladen'
+download_training_catalogue: 'Téléchargez le catalogue de formation'
+drop_files: 'Dokumente hochladen'
+duplicated_username: "Duplicat de nom d'utilisateur"
+duplicated_username_alert: "Il existe déjà un coffre-fort numérique à ce nom, prénom et date de naissance. S'il ne s'agit pas du bénéficiaire accompagné, vous pouvez poursuivre la création et un -1 sera ajouté à son identifiant."
 edit: Bearbeiten
+edit_file: 'Das Dokument bearbeiten'
+edit_si_siao_number: Modifier numéro SI-SIAO
 email: E-Mail
+empty: leer
+enable_mfa: Zwei-Faktor-Authentifizierung aktivieren
+enable_mfa_help: Durch Aktivieren dieses Kontrollkästchens erhalten Sie bei jeder Anmeldung einen Einmalcode, um Ihre Identität zu bestätigen und Ihr Konto zu sichern.
+enable_mfa_help_benef_creation: Durch Aktivieren dieses Kontrollkästchens erhält der Begünstigte bei jeder Anmeldung einen Einmalcode, um seine Identität zu bestätigen und sein Konto zu sichern.
+enable_mfa_help_pro_creation: Durch Aktivieren dieses Kontrollkästchens erhält der Benutzer bei jeder Anmeldung einen Einmalcode, um seine Identität zu bestätigen und sein Konto zu sichern.
 enabled: Aktiv
+english_flag: Drapeau anglais
+enter_email_address: 'Bitte gib Deine E-Mail-Adresse ein'
+enter_phone_number: 'Veuillez saisir votre téléphone.'
 error: Fehler
-event_removed_successfully: 'Du hast den Termin erfolgreich gelöscht'
-no_event_yet: 'Du hast noch keine Termine. Klick auf "Hinzufügen" um einen zu erstellen.'
-events: Termine
-title: Titel
+error_401: Vous n'êtes pas connecté
+error_403: Vous n'êtes pas autorisé à accéder à cette page
+error_404: Oups, il semble que cette page n'existe pas
+error_500: Il y a eu une erreur technique, le problème vient de nous, nous allons le traiter rapidement
+error_during_download: "Erreur : le téléchargement n'a pas pu aboutir"
 event: Termin
+event_created: 'Événement créé'
+event_removed_successfully: 'Du hast den Termin erfolgreich gelöscht'
+event_updated: 'Événement modifié'
+events: Termine
+export_subtitle_1: "Ce formulaire permet d'exporter le nombre de données créées sur une période par Centres OU par Régions."
+export_subtitle_2: 'Ne pas renseigner les filtres Centres et Régions retournera la totalité des données créées sur la période.'
+export_title: Statistiques
 faq_gdpr: 'F.A.Q. Datenschutz'
 faq_gdpr_no_content: 'Dieser Abschnitt ist aktuell leer'
-faq_gdpr_text: '<p>Sie haben Fragen zum Thema Datenschutz / DSGVO?</p><p>Dieses FAQ sollte die meisten Fragen beantworten.</p>'
-success: 'Das hat geklappt'
-folder_error_circular_dependency: 'Du kannst den Ordner nicht in einen Unterordner des Ordners verschieben.'
+faq_gdpr_text: "<p>Sie haben Fragen zum Thema Datenschutz / DSGVO?</p><p>Dieses FAQ sollte die meisten Fragen beantworten.</p>"
+fill_beneficiary_identity_information: "Veuillez renseigner l'identité du bénéficiaire"
+finish: Terminer
+firstname: Prénom
+folder: Ordner
+folder_contains_documents_alert: "Le dossier %name% contient des documents, si vous le supprimez, vous supprimez aussi l'ensemble des documents qu'il contient. Êtes-vous sûr de vouloir supprimer ce dossier et tous les documents qu'il contient ?"
 folder_content: 'Inhalt des Ordners :'
-folder_error_different_beneficiary: 'Die Dokumente gehören nicht zum gleichen Empfänger'
+folder_error_circular_dependency: 'Du kannst den Ordner nicht in einen Unterordner des Ordners verschieben.'
+folder_error_different_beneficiary: "Die Dokumente gehören nicht zum gleichen Empfänger"
 footer_CGS_rp: 'CGS von Reconnect Pro'
 footer_CGS_vault: 'CGS der Cloud'
 footer_alt_logo_afnic: 'logo afnic'
@@ -140,43 +281,45 @@ footer_confidentiality_vault: 'Datenschutzrichtlinien der Cloud für wohnungslos
 footer_copyright: 'Reconnect - Alle Rechte vorbehalten'
 footer_discover_rp: 'Entdecken Sie Reconnect Pro'
 footer_discover_vault: 'Entdecken Sie die Cloud für wohnungslose Menschen'
-footer_group_sos_text: 'Reconnect ist Teil der GROUPE SOS Solidarités, einem von neun Verbänden der GROUPE SOS, dem führenden Sozialunternehmen in Europa'
+footer_group_sos_text: "Reconnect ist Teil der GROUPE SOS Solidarités, einem von neun Verbänden der GROUPE SOS, dem führenden Sozialunternehmen in Europa"
 footer_partners_text: 'Reconnect wird unterstützt von: '
-you_must_choose_password: 'Du musst ein Passwort festlegen'
-password_wrong_format: 'Dein Passwort darf nur Buchstaben und Zahlen enthalten'
 form_connexion: Verbindung
-form_forgot_password: 'Ich habe mein Passwort oder meinen Benutzernamen vergessen'
-form_login: 'Benutzername oder E-Mail'
+form_contains_error: Ihre Änderungen wurden nicht gespeichert. Bitte überprüfen Sie die Informationen.
+form_forgot_password: "Ich habe mein Passwort oder meinen Benutzernamen vergessen"
+form_login: "Benutzername oder E-Mail"
+french_flag: Drapeau français
 gdpr_know_more: 'Mehr über den Datenschutz erfahren'
-logout: Abmelden
-parameters: Einstellungen
-my_reconnect_relays: 'Meine Einrichtungen'
+general_conditions_of_use: 'Nutzungsbedingungen'
+generate_password: 'Générer un mot de passe'
+german_flag: Drapeau allemand
 header_link_cfn: 'Cloud für<span class="d-lg-block"> wohnungslose Menschen</span>'
 header_link_contact: 'Kontakt<span class="d-lg-block"> aufnehmen</span>'
 header_link_rp: 'Lösung für<span class="d-lg-block"> Sozialarbeitende</span>'
 header_link_who_we_are: 'Wer sind<span class="d-lg-block"> wir ?</span>'
+header_link_our_blog: 'Notre <span class="d-lg-block">blog</span>'
 health: Verfassung
-home_meta_desc: 'Digitalisierung als Unterstützung der Sozialarbeit und Inklusion'
+home_meta_desc: "Digitalisierung als Unterstützung der Sozialarbeit und Inklusion"
 home_meta_title_contact: 'Reconnect - Kontakt aufnehmen'
+home_meta_title_digital_cares: "Reconnect - L'accompagnement numérique"
 home_meta_title_rp: 'Reconnect - Die Software für Sozialarbeiter*innen'
 home_meta_title_vault: 'Reconnect - Cloud für wohnungslose Menschen'
 home_our_solutions_CTA: 'Mehr erfahren'
 home_our_solutions_alt_logo_cfn: 'logo reconnect Cloud für wohnungslose Menschen'
 home_our_solutions_alt_logo_rp: 'logo reconnect pro'
-home_our_solutions_text_cfn: 'Das Tool, das Betroffenen den Zugang zu ihren Rechten und dem Sozialsystem erleichtert'
-home_our_solutions_text_rp: 'Das Tool zur Unterstützung bei der Wiedereingliederung'
+home_our_solutions_text_cfn: "Das Tool, das Betroffenen den Zugang zu ihren Rechten und dem Sozialsystem erleichtert"
+home_our_solutions_text_rp: "Das Tool zur Unterstützung bei der Wiedereingliederung"
 home_our_solutions_title: 'Unsere Lösungen'
 home_press_title: Erfahrungsberichte
-home_reconnect_centers_p: 'Die verknüpften Einrichtungen nutzen die Cloud und begleiten Klient*innen bei der Einrichtung und Nutzung.'
+home_reconnect_centers_p: "Die verknüpften Einrichtungen nutzen die Cloud und begleiten Klient*innen bei der Einrichtung und Nutzung."
 home_reconnect_centers_title: 'Verknüpfte Einrichtungen'
 home_solutions_list_accessible_alt_img: 'Icon einfache Lösung'
-home_solutions_list_accessible_p: 'Unsere Cloud wurde so gestaltet, dass auch unerfahrene User die Cloud intuitiv bedienen können.'
-home_solutions_list_accessible_title: 'Einfach nutzbar'
+home_solutions_list_accessible_p: "Unsere Cloud wurde so gestaltet, dass auch unerfahrene User die Cloud intuitiv bedienen können."
+home_solutions_list_accessible_title: Einfach nutzbar
 home_solutions_list_evolve_alt_img: 'icon Laufende Weiterentwicklung'
-home_solutions_list_evolve_p: 'Unsere Lösungen werden in Zusammenarbeit mit Trägern des Sozialwesens entwickelt und kontinuierlich optimiert. Besonders wichtig hierfür ist das Feedback der Nutzer*innen.'
+home_solutions_list_evolve_p: "Unsere Lösungen werden in Zusammenarbeit mit Trägern des Sozialwesens entwickelt und kontinuierlich optimiert. Besonders wichtig hierfür ist das Feedback der Nutzer*innen."
 home_solutions_list_evolve_title: Weiterentwicklung
 home_solutions_list_human_alt_img: 'icon Begleitung'
-home_solutions_list_human_p: 'Unsere institutionellen Nutzer*innen werden bei der Einführung und Nutzung der Cloud geschult. Es gibt außerdem einen durchgängigen Online Support.'
+home_solutions_list_human_p: "Unsere institutionellen Nutzer*innen werden bei der Einführung und Nutzung der Cloud geschult. Es gibt außerdem einen durchgängigen Online Support."
 home_solutions_list_human_title: Begleitung
 home_solutions_list_secure_alt_img: 'icon Eine sichere Lösung'
 home_solutions_list_secure_p: 'Die Sicherheit und der Schutz der persönlichen Daten unserer Nutzer*innen haben höchste Priorität. Unsere Tools sind DSGVO konform und werden mit Fokus auf Datensicherheit und ethische Werte entwickelt.'
@@ -186,206 +329,311 @@ home_solutions_list_solidarity_p: 'Unsere Tarife sind sind solidarisch nach Einr
 home_solutions_list_solidarity_title: Solidarität
 home_solutions_list_title: 'Unsere Lösungen sind'
 home_who_we_are_alt_img: 'reconnect - wer wir sind'
-home_who_we_are_p1: 'Reconnect ist ein gemeinnütziger Verein, dessen Ziel es ist, wohnungslosen Menschen die soziale Eingliederung zu erleichtern und deren Begleitung durch Fachkräfte zu vereinfachen.'
-home_who_we_are_p2: 'Wir sind der Ansicht, dass eine stärkere Integration von sozialer Arbeit und Digitalisierung die Wiedereingliederung Betroffener ermöglicht.'
-home_who_we_are_p3: 'Seit 2015 engagieren wir uns für Leistungsempfänger und Fachkräfte des Sozialwesens, indem wir Lösungen für ihre Bedürfnisse schaffen.'
+home_who_we_are_p1: "Reconnect ist ein gemeinnütziger Verein, dessen Ziel es ist, wohnungslosen Menschen die soziale Eingliederung zu erleichtern und deren Begleitung durch Fachkräfte zu vereinfachen."
+home_who_we_are_p2: "Wir sind der Ansicht, dass eine stärkere Integration von sozialer Arbeit und Digitalisierung die Wiedereingliederung Betroffener ermöglicht."
+home_who_we_are_p3: "Seit 2015 engagieren wir uns für Leistungsempfänger und Fachkräfte des Sozialwesens, indem wir Lösungen für ihre Bedürfnisse schaffen."
 home_who_we_are_title: 'Wer sind wir ?'
 housing: Unterkunft
 identity: Personalien
-is_the_beneficiary_absent: 'Der/die Klient*in ist nicht bei Dir?'
+improve_password_beneficiary: Zur Erhöhung der Sicherheit wurden die Passwortregeln aktualisiert. Sie müssen Ihr Passwort ändern.
+improve_password_pro: Bei Reconnect ist die Sicherheit unserer Tools und Ihrer Daten eine Priorität. Um sie zu stärken, bitten wir Sie, Ihr Passwort für den Zugang zum Digitalen Tresor zu aktualisieren. Die begleiteten Personen müssen ebenfalls ihr Passwort für den Zugriff auf ihren Digitalen Safe aktualisieren.
+information: Informationen
+innovative_solution_digital_divide: 'La solution pour répondre aux enjeux de la fracture numérique'
+invite_user_to_relay: Inviter l'utilisateur à un relai
+is_the_beneficiary_absent: "Der/die Klient*in ist nicht bei Dir?"
 is_the_beneficiary_present: 'Der/die Klient*in ist bei Dir?'
+is_the_beneficiary_with_you: 'Der/die Klient*in ist bei Dir?'
+lastname: Nom
+leave: Quitter
 leave_center: 'Einrichtung verlassen'
 leave_center_confirm: 'Sind Sie sich sicher ?'
 leave_center_title: 'Die Einrichtung verlassen %s'
 location: Ort
+login_error_disabled_account: Ihr Konto ist deaktiviert, bitte kontaktieren Sie den Support.
+login_error_account_in_creation: Ihr Konto wird erstellt, bitte kontaktieren Sie den Support.
 login_form_title: 'Zugang zur Cloud für Wohnungslose Menschen'
-mail_reset_password_content_1: 'Wir haben eine Anfrage zur Rücksetzung Ihres Passworts erhalten.Falls Sie keine Rücksetzung angefordert haben, können Sie diese Mail ignorieren und Ihr aktuelles Passwort bleibt bestehen.'
+logout: Abmelden
+mail_auth_code_content: 'Hier ist Ihr Anmeldecode: '
+mail_auth_code_subject: 'RECONNECT - Ihr Anmeldecode'
+mail_auth_code_title: Hallo %username%!
+mail_reset_password_content_1: "Wir haben eine Anfrage zur Rücksetzung Ihres Passworts erhalten.Falls Sie keine Rücksetzung angefordert haben, können Sie diese Mail ignorieren und Ihr aktuelles Passwort bleibt bestehen."
 mail_reset_password_content_2: 'Klicken Sie auf den unten stehenden Link, um ein neues Passwort zu wählen. Der Link ist für die nächsten 24 Stunden nutzbar.'
 mail_reset_password_title: 'Passwort zurücksetzen'
 mail_shared_document_content_1: '%fullName% möchte ein Dokument mit Ihnen teilen.'
+mail_shared_document_content_1_anonymous: Jemand möchte ein Dokument mit Ihnen teilen.
 mail_shared_document_content_2: 'Um dieses Dokument herunterzuladen, gehen Sie auf diesen Link (7 Tage gültig)'
-mail_shared_document_content_3: 'VERTRAULICHKEIT: Diese E-Mail (sowie die angehängten Dateien) ist ausschließlich für die Nutzung durch die Person oder Organisation bestimmt, an die sie gerichtet ist, und kann Insiderinformationen und vertrauliche Informationen enthalten. Jegliche Offenlegung, Verteilung oder Kopie dieser E-Mail ist strengstens untersagt. Wenn Sie diese E-Mail versehentlich erhalten haben, benachrichtigen Sie uns bitte umgehend, vernichten Sie alle Kopien und löschen Sie die E-Mail aus Ihrem Computersystem.'
-mail_shared_document_title: Dokumente
+mail_shared_document_content_3: "VERTRAULICHKEIT: Diese E-Mail (sowie die angehängten Dateien) ist ausschließlich für die Nutzung durch die Person oder Organisation bestimmt, an die sie gerichtet ist, und kann Insiderinformationen und vertrauliche Informationen enthalten. Jegliche Offenlegung, Verteilung oder Kopie dieser E-Mail ist strengstens untersagt. Wenn Sie diese E-Mail versehentlich erhalten haben, benachrichtigen Sie uns bitte umgehend, vernichten Sie alle Kopien und löschen Sie die E-Mail aus Ihrem Computersystem."
+mail_shared_document_title: 'Dokumente'
 mail_subject_reset_password: 'RECONNECT - Passwort zurücksetzen'
 mail_subject_share_document: 'RECONNECT - Dokument teilen'
-cancel: Abbrechen
-continue: Weiter
-edit_file: 'Das Dokument bearbeiten'
-you_can_not_see_page: 'Dir fehlt die Berechtigung zur Anzeige dieser Seite'
-decline: Ablehnen
-back: Zurück
-choose_file: 'Eine Datei auswählen'
-display_file: 'Eine Datei anzeigen'
+meetings: Termine
 member_new_guide_title: 'Willkommen bei Reconnect <span class="text-blue">- Der Cloud für wohnungslose Menschen</span>'
-is_the_beneficiary_with_you: 'Der/die Klient*in ist bei Dir?'
-the_beneficiary_is_not_with_you: 'Der/die Klient*in ist nicht bei Dir?'
-the_beneficiary_will_receive_sms_to_create_account: 'Er/Sie erhält eine SMS zur Bestätigung und Vervollständigung der Daten'
-remotely: 'Aus der Entfernung'
-with_beneficiary: 'Mit dem/der Klient*in'
-create_reconnect_account: 'Ein Konto erstellen'
-add_beneficiary: 'Klient*in hinzufügen'
-secret_question_mother_firstname: 'Wie lautet der Vorname der Mutter des/der Klient*in?'
-secret_question_pet: 'Wie heißt das Haustier des/der Klient*in'
-secret_question_favorite_street: 'Wo hält sich der/die Klient*in am liebsten auf?'
-secret_question_secondary_school: 'Welche Grundschule hat der/die Klient*in besucht?'
-secret_question_nickname: 'Wie lautet der Spitzname des/der Klient*in?'
-secret_question_city_of_birth: 'Wo wurde der/die Klient*in geboren?'
-secret_question_mother_lastname: 'Wie lautet der Familienname der Mutter des/der Klient*in?'
-secret_question_custom: 'Andere Frage stellen'
-professionals_management: 'Nutzer*innen Verwaltung'
-add_personal_email: 'Meine E-Mail-Adresse hinzufügen'
-add_personal_phone: 'Meine Telefonnummer hinzufügen'
-personal_phone_added_successfully: 'Du wurdest in die Kontaktliste des/der Klient*in aufgenommen.'
-do_you_accept_to_share_your_information_in_contact_list: 'Du siehst zum ersten Mal die freigegebenen Elemente dieser Person. Bist du damit einverstanden, dass Dein Kontakt zur Liste der freigegebenen Kontakte dieser Person hinzugefügt wird?'
-share_your_information: 'Deinen Kontakt teilen'
-confirm_relay_affiliation_with_sms_code: 'Um Deine Anmeldung zu bestätigen, sende bitte den Bestätigungscode %code% an Deine Reconnect-Einrichtung bzw. Deine/n Sozialarbeiter*in'
-login_error_disabled_account: Ihr Konto ist deaktiviert, bitte kontaktieren Sie den Support.
-login_error_account_in_creation: Ihr Konto wird erstellt, bitte kontaktieren Sie den Support.
 message: Nachricht
+mfa: Zwei-Faktor-Authentifizierung
+mfa_code_not_received: Haben Sie den Code nicht erhalten?
+mfa_enabled: Doppelte Authentifizierung aktiviert
+mfa_maximum_retries_reach: Sie haben die maximale Anzahl an erlaubten Wiederholungen erreicht. Wenn Sie sich nicht anmelden können, wenden Sie sich bitte an den Support.
+mfa_method: 'Code erhalten über :'
+missing_secret_question: Question secrète non renseignée
 missing_secret_question_text: Sie haben noch keine geheime Frage und Antwort eingegeben. Das können Sie unten tun
 modal_message_contact_delete: 'Bist du sicher, dass du diesen Kontakt löschen möchtest'
+modal_message_contact_deletev2: 'Êtes vous sûr de vouloir supprimer le contact %fullName% ?'
 modal_message_document_delete: 'Bist du sicher, dass du dieses Dokument löschen möchtest'
-modal_message_event_delete: 'Bist du sicher, dass du diesen Termin löschen möchtest'
+modal_message_document_deletev2: 'Êtes vous sûr de vouloir supprimer le document %name% ?'
+modal_message_event_delete: "Bist du sicher, dass du diesen Termin löschen möchtest"
+modal_message_event_deletev2: "Êtes vous sûr de vouloir supprimer l'événement %name% ?"
 modal_message_folder_delete: 'Bist du sicher, dass du diesen Ordner löschen möchtest'
+modal_message_folder_deletev2: 'Êtes vous sûr de vouloir supprimer le dossier %name% ?'
 modal_message_note_delete: 'Bist du sicher, dass du diese Notiz löschen möchtest'
+modal_message_note_deletev2: 'Êtes vous sûr de vouloir supprimer la note %name% ?'
 move: Verschieben
+my_contacts: 'Mes contacts'
+my_documents: 'Meine Dokumente'
+my_events: 'Mes rappels'
+my_notes: 'Mes notes'
+my_reconnect_relays: 'Meine Einrichtungen'
+my_relays: 'Mes relais'
+my_relays_title: Mes relais Reconnect
 name: Name
 next: Weiter
-not_allowed_to_share_this_document: 'Sie sind nicht zur Freigabe dieses Dokuments berechtigt'
-note_deleted_successfully: 'Die Notiz wurde gelöscht'
-note_content: Beschreibung
+no: Nein
+no_contact_yet: 'Du hast noch keine Kontakte. Klicke auf "Hinzufügen", um einen zu erstellen.'
+no_document_yet: "Du hast noch keine Dokumente."
+no_email_address: Sie haben sich entschieden, einen Anmeldecode per E-Mail zu erhalten, aber keine E-Mail-Adresse angegeben.
+no_event_yet: 'Du hast noch keine Termine. Klick auf "Hinzufügen" um einen zu erstellen.'
 no_note_yet: 'Es sind noch keine Notizen hinterlegt. Klicke auf "Hinzufügen" um eine Notiz zu erstellen.'
+no_phone_number: Sie haben sich entschieden, einen Anmeldecode per SMS zu erhalten, aber keine Telefonnummer angegeben.
+no_relay_selected: Aucun relais sélectionné
+no_relay_selected_alert: Vous n’avez affilié ce bénéficiaire à aucun relais. Si vous souhaitez poursuivre la création comme cela, cliquez sur continuer
+no_result: 'Aucun résultat'
+no_user_found_with_this_email_address: "Es wurde kein Konto mit dieser E-Mail-Adresse gefunden"
+not_allowed_to_share_this_document: "Sie sind nicht zur Freigabe dieses Dokuments berechtigt"
+note_content: 'Beschreibung'
+note_created: 'Note créée'
+note_deleted_successfully: 'Die Notiz wurde gelöscht'
+note_updated: 'Note modifiée'
+notes: Notizen
 number_of_docs: 'Anzahl Dokumente'
 or_click_link: 'Oder klicke auf den Link'
-password: Passwort
+parameters: Einstellungen
+password: 'Passwort'
 password_confirm: 'Passwort bestätigen'
+password_criterion_length: '%length% zeichen'
+password_criterion_lowercase: Kleinbuchstabe
+password_criterion_nonAlphabetic: Sonderzeichen/Nummer
+password_criterion_uppercase: Großbuchstabe
+password_expired: 'Votre mot de passe a expiré. Veuillez choisir un nouveau mot de passe.'
+password_help: Das Passwort muss lang sein (mindestens 9 Zeichen) mit 1 Großbuchstaben, 1 Kleinbuchstaben und 1 Zahl oder Sonderzeichen
+password_help_criteria: 'Il manque les critères ci-dessous :'
+password_new_should_be_different_from_current: 'Votre nouveau mot de passe doit être différent de votre mot de passe actuel.'
+password_renewal_due: "Votre mot de passe est sur le point d'expirer. Veuillez choisir un nouveau mot de passe."
+password_reset: 'Passwort zurücksetzen'
+password_too_short: 'Votre mot de passe doit contenir au moins {{ limit }} caractères'
+password_too_weak: 'Mot de passe trop faible'
 password_updated_successfully: 'Dein Passwort wurde geändert'
+password_valid: 'Mot de passe valide'
+password_wrong_format: 'Dein Passwort darf nur Buchstaben und Zahlen enthalten'
+passwords_mismatch: 'Die beiden Passwörter stimmen nicht überein'
+personal_phone_added_successfully: 'Du wurdest in die Kontaktliste des/der Klient*in aufgenommen.'
 phone: Telefon
-phone_does_not_exist: 'Es konnten kein*e Nutzer*innen mit der Telefonnummer gefunden werden'
+phone_does_not_exist: "Es konnten kein*e Nutzer*innen mit der Telefonnummer gefunden werden"
 phone_duplicate: 'Diese Telefonnummer ist mit mehreren Konten verknüpft. Bitte wenden Sie sich an den Support, wenn Sie sich nicht einloggen können.'
-postal_code: Postleitzahl
+postal_code: 'Postleitzahl'
 previous: Zurück
+print_account_creation_act: "N'oubliez pas d'imprimer l'acte d'ouverture du compte Reconnect afin d'obtenir la signature du bénéficiaire"
 private: Privat
+pro_already_affiliated_to_relay: L'utilisateur est déjà affilié à ce relais
+professionals: Professionnels
+professionals_management: 'Nutzer*innen Verwaltung'
 public_reset_password: 'Ich möchte mein Passwort zurücksetzen'
-public_reset_password_SMS_has_been_sent: 'Sie haben eine SMS mit einem Code erhalten, der für das Zurücksetzen des Passworts benötigt wird.'
+public_reset_password_SMS_has_been_sent: "Sie haben eine SMS mit einem Code erhalten, der für das Zurücksetzen des Passworts benötigt wird."
 public_reset_password_SMS_wrong_code: 'Der eingegebene Code stimmt nicht mit dem Code aus der SMS überein.'
 public_reset_password_SMS_your_code: 'Ihr Code aus der SMS'
 public_reset_password_already_requested: 'Sie haben in den letzten 24 Stunden bereits versucht Ihr Passwort zurückzusetzen.'
 public_reset_password_by_email: 'per E-Mail'
 public_reset_password_by_sms: 'per SMS'
-public_reset_password_email_has_been_sent: 'Sie haben eine Email zum Zurücksetzen Ihres Passworts erhalten. Bitte setzen Sie das Passwort innerhalb von 24 Stunden zurück.'
-public_reset_password_failure_not_in_time: 'Sie haben Ihr Passwort nicht in der vorgegebenen Zeit zurückgesetzt. Bitte wiederholen Sie den Vorgang.'
+public_reset_password_email_has_been_sent: "Sie haben eine Email zum Zurücksetzen Ihres Passworts erhalten. Bitte setzen Sie das Passwort innerhalb von 24 Stunden zurück."
+public_reset_password_failure_not_in_time: "Sie haben Ihr Passwort nicht in der vorgegebenen Zeit zurückgesetzt. Bitte wiederholen Sie den Vorgang."
 public_reset_password_success: 'Ihr Passwort wurde erfolgreich geändert. Sie können sich nun einloggen.'
 question: Frage
+reconnect: Reconnect
 reconnect_center: 'Reconnect Einrichtung'
-your_address: 'Deine private Adresse (optional)'
+reconnect_contact_mail: contact@reconnect.fr
+reconnect_phone_number: '01 55 28 95 33'
+reconnect_rgpd_mail: rgpd@reconnect.fr
+rediscover_our_solutions: '(re)Découvrez nos solutions'
+regions: Régions
+relay_affiliation_denied: "Du hast die Verbindung zur Einrichtung abgelehnt"
+relay_affiliation_successful: "Du hast die Verbindung zur Einrichtung angenommen"
+relay_has_no_address: "Le relais Reconnect n'a pas renseigné d'adresse"
+relay_leaved_successfully: 'Du hast die Einrichtung verlassen'
+relay_wishes_to_add_you: 'Eine Einrichtung möchte dich hinzufügen'
+relays: Relais
+relays_choice: Choix des relais
 reminder: Erinnerung
-reminder_sms: SMS-Erinnerung
+reminder_sms: 'SMS-Erinnerung'
 reminder_sms_content: "Hallo \nErinnerung an Deinen Termin: %name% \n%date%"
+reminders: Erinnerungen
+remotely: 'Aus der Entfernung'
+remove_access_for: Retirer l'accès de
+remove_from_relay: 'Retirer du relais'
+remove_from_relay_confirm: 'Êtes vous sûr de vouloir retirer le bénéficiaire %beneficiairy% ?'
+remove_from_relay_confirm_relay: Êtes vous sûr de vouloir retirer l'utilisateur %user% du relais %relay% ?
+remove_user_access: Retirer l'accès à un utilisateur
+removed_from_relay: Retiré
 rename: Umbenennen
-no_user_found_with_this_email_address: 'Es wurde kein Konto mit dieser E-Mail-Adresse gefunden'
-password_reset: 'Passwort zurücksetzen'
-enter_email_address: 'Bitte gib Deine E-Mail-Adresse ein'
-your_phone_number: 'Deine Telefonnummer'
+renew_password: 'Renouveler le mot de passe'
+resend_mfa_code: Klicken Sie hier, um ihn erneut zu senden.
+reset: Zurücksetzen
+reset_a_password: Réinitialiser un mot de passe
+reset_beneficiary_password: Réinitialisation du mot de passe de %username%
+reset_password_no_way: Le bénéficiaire n’a pas indiqué de numéro de téléphone, ni d’adresse e-mail, ni de réponse à la question secrète. Pour réinitialiser son mot de passe, merci de contacter le support, nous vous aiderons dans les plus brefs délais.
+reset_password_requested_by_SMS: 'La demande de réinitialisation actuelle a été effectuée par SMS'
+reset_password_requested_by_email: 'La demande de réinitialisation actuelle a été effectuée par email'
+results: Résultats
+rosalie: Rosalie
+rosalie_link: Liaison vers Rosalie
+rosalie_link_text: Si l'utilisateur doit être amené à relier des coffre-forts numérique à l'application de réservation hôtelière (Rosalie), cochez la case ci-dessous
 rp_is_adaptable_alt_img: 'bedarfsgerechte Anpassung'
 rp_is_adaptable_p: 'Sie können die Cloud an die Anforderungen Ihrer Einrichtung anpassen.'
 rp_is_adaptable_title: 'bedarfsgerechte Anpassung'
+rp_is_satisfying_alt_img: 'Des professionnel.le.s très satisfait.e.s de la formation'
+rp_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s de la formation à l'utilisation de Reconnect Pro"
+rp_is_satisfying_title: 80%
 rp_is_simple_alt_img: 'Benutzer*innenfreundlich'
-rp_is_simple_p: 'Bei der Entwicklung wurde besonders auf eine einfache Bedienung geachtet. So können Sie sich auf Ihre Klient*innen konzentrieren.'
+rp_is_simple_p: "Bei der Entwicklung wurde besonders auf eine einfache Bedienung geachtet. So können Sie sich auf Ihre Klient*innen konzentrieren."
 rp_is_simple_title: 'Benutzer*innenfreundlich'
-rp_is_specific_alt_img: 'Für die Sozialarbeit entwickelt'
+rp_is_specific_alt_img: "Für die Sozialarbeit entwickelt"
 rp_is_specific_p: 'Durch die gemeinsame Entwicklung mit Vertretern der Hilfesysteme können wir auf die speziellen Bedürfnisse des Bereichs eingehen.'
-rp_is_specific_title: 'Für die Sozialarbeit entwickelt'
-rp_is_title: 'Reconnect Pro ist'
-rp_page_hero_text: 'Ein Toll, das die Wiedereingliederung erleichtert und voranbringt.'
+rp_is_specific_title: "Für die Sozialarbeit entwickelt"
+rp_is_title: "Reconnect Pro ist"
+rp_page_hero_text: "Ein Toll, das die Wiedereingliederung erleichtert und voranbringt."
 rp_page_housing_management_alt_img: 'Verwaltung der Unterkünfte'
 rp_page_housing_management_p: 'Behalten Sie den Überblick über verfügbare Plätze der Einrichtung. Sie können außerdem feststellen, welcher Bewohner sich in welcher Unterkunft aufhält.'
 rp_page_housing_management_title: 'Verwaltung der Unterkünfte'
 rp_page_info_transmission_alt_img: 'Vereinfachter Informationsaustausch'
-rp_page_info_transmission_p: 'Informieren Sie Kollegen über die Entwicklung Ihrer Klient*innen, wenn diese sich ebenfalls um sie kümmern. Im Vertretungsfall können Sie sich schnell einen Überblick über laufende Prozesse verschaffen.'
-rp_page_info_transmission_title: 'Vereinfachter Informationsaustausch im Team'
+rp_page_info_transmission_p: "Informieren Sie Kollegen über die Entwicklung Ihrer Klient*innen, wenn diese sich ebenfalls um sie kümmern. Im Vertretungsfall können Sie sich schnell einen Überblick über laufende Prozesse verschaffen."
+rp_page_info_transmission_title: "Vereinfachter Informationsaustausch im Team"
 rp_page_stats_automation_alt_img: 'Automatische Statistiken'
-rp_page_stats_automation_p: 'Über die Auswertung statistischer Daten können Sie die Wirksamkeit Ihrer Arbeit beobachten und steigern.'
+rp_page_stats_automation_p: "Über die Auswertung statistischer Daten können Sie die Wirksamkeit Ihrer Arbeit beobachten und steigern."
 rp_page_stats_automation_title: 'Automatische Statistiken'
 rp_page_user_file_alt_img: 'Klient*innenakte'
-rp_page_user_file_p: 'Hier finden Sie alle Informationen, die Ihnen die Arbeit erleichtern: Sie können alle bisherigen Arbeitsschritte mit Klient*innen einsehen, neue einfügen, Protokolle erfassen sowie z.B. Fristen planen.'
-rp_page_user_file_title: "Klient*innenakte'"
+rp_page_user_file_p: "Hier finden Sie alle Informationen, die Ihnen die Arbeit erleichtern: Sie können alle bisherigen Arbeitsschritte mit Klient*innen einsehen, neue einfügen, Protokolle erfassen sowie z.B. Fristen planen."
+rp_page_user_file_title: 'Klient*innenakte'''
 search: Suche
+search_existing_beneficiary: 'Rechercher un bénéficiaire existant'
+search_professional_help: Vous pouvez rechercher un utilisateur professionnel existant afin de lui envoyer une invitation à rejoindre vos relais
 secret_answer: geheime Antwort
-secret_question: Sicherheitsfrage
+secret_question: 'Sicherheitsfrage'
 secret_question_other: 'Andere Sicherheitsfrage stellen'
+select_relays_for_disaffiliation: 'Cette personne est liée à un ou plusieurs relai(s) que vous gérez, sélectionnez le.les relais pour lesquels vous souhaitez arrêter le suivi'
+select_relays_for_disaffiliation_pro: Cet utilisateur professionnel est lié à un ou plusieurs relai(s) que vous gérez, sélectionnez le.les relais auxquels vous souhaitez lui retirer l’accès
 send: Abschicken
+send_sms_code: Recevoir un code par SMS
+sending_sms_account_activation: "Envoi du SMS d'activation du compte"
 set_secret_question: 'Tragen Sie hier Ihre Sicherheitsfrage ein'
 settings_saved_successfully: 'Die Einstellungen wurden gespeichert'
+settings_saved_successfully_username_updated: Vos parametres ont bien été enregistrés, veuillez noter que votre nom d'utilisateur a été mis à jour
 share_document: 'Dokument teilen'
-share_document_error_expired: 'Der Link ist nicht mehr gültig, bitte wiederholen Sie den Vorgang'
-share_document_error_no_shared_document: 'Dokument konnte nicht geteilt werden'
+share_document_error_expired: "Der Link ist nicht mehr gültig, bitte wiederholen Sie den Vorgang"
+share_document_error_no_shared_document: "Dokument konnte nicht geteilt werden"
 share_document_error_not_found: 'Empfänger oder Dokument nicht gefunden'
-share_document_success: 'Eine E-Mail mit einem Link zum Download des Dokuments wurde verschickt.'
+share_document_success: "Eine E-Mail mit einem Link zum Download des Dokuments wurde verschickt."
 share_document_with: 'Dokument per E-Mail teilen'
+share_your_information: 'Deinen Kontakt teilen'
 shared: Freigegeben
-status: Status
-street: Straße
-tax: Steuern
-today: Heute
-used_available: 'Du verwendest %used% von verfügbaren %available%'
-accept_terms_of_use: 'Ich akzeptiere die Nutzungsbedingungen'
-general_conditions_of_use: Nutzungsbedingungen
-welcome_on_solidarity_cloud: 'Willkommen bei Reconnect - Der Cloud für wohnungslose Menschen'
-user.firstVisit.membre.metaTitle: 'Willkommen bei Reconnect - Der Cloud für wohnungslose Menschen'
-update_your_password: 'Passwort ändern'
-actual_password: 'Aktuelles Passwort'
-user_settings: Einstellungen
-relay_affiliation_successful: 'Du hast die Verbindung zur Einrichtung angenommen'
-relay_affiliation_denied: 'Du hast die Verbindung zur Einrichtung abgelehnt'
-relay_wishes_to_add_you: 'Eine Einrichtung möchte dich hinzufügen'
+show_beneficiaries: Voir les bénéficiaires
+show_professionals: Voir les professionnels
+si_siao_number: 'Numéro SI-SIAO'
+si_siao_number_almost_found_rosalie: Ce numéro SI-SIAO correspond presque à un dossier trouvé sur l’application de réservation hôtelière (Rosalie)
+si_siao_number_already_linked: Ce numéro SI-SIAO est déjà lié à un bénéficiaire sur l'application de réservation hôtelière (Rosalie)
+si_siao_number_does_not_match_rosalie: Ce numéro SI-SIAO ne correspond pas aux informations renseignées pour ce bénéficiaire sur l'application de réservation hôtelière (Rosalie)
+si_siao_number_found_rosalie: Numéro SI-SIAO trouvé dans l'application de réservation hôtelière (Rosalie), liaison effectuée
+si_siao_number_not_found_rosalie: Numéro SI-SIAO inexistant dans l’application de réservation hôtelière (Rosalie)
+sms: SMS
+sms_code: Code reçu par sms
 sms_reset_password_code_is: 'Der Code zum Zurücksetzen Deines Passwortes ist %code%'
-user_not_found: 'Nutzer*in konnte nicht gefunden werden'
+sms_sent: 'SMS envoyé'
+sms_sent_at_date: 'Un sms contenant le code a été envoyé le %date% à %hour% sur le téléphone %phone%'
+sms_sent_failed: "L'envoi du SMS a échoué, veuillez vérifier que le numéro de téléphone est valide"
+spanish_flag: Drapeau espagnol
+status: Status
+steps_count: 'Étape %step%/%totalSteps%'
+street: Straße
+submit: Bestätigen
+subscribe_newsletter: Abonnez-vous à notre newsletter !
+subscription_confirmation: "Confirmation d'inscription"
+success: 'Das hat geklappt'
+summary: Récapitulatif
+summary_confirm_information: 'Récapitulatif, veuillez confirmer les informations enregistrées ci-dessous'
+switch_content_private: 'Basculer en privé'
+switch_content_private_confirm: "Êtes vous sûr de vouloir basculer ce contenu dans l'espace privé du bénéficiaire ?"
+take_away_account_data: Je souhaite récupérer mes données
+tax: Steuern
+team_management: Gestion d'équipe
+terms_of_use: "Charte d'utilisation"
+thank_you_for_subscription: 'Merci pour votre inscription !'
+the_beneficiary_is_not_with_you: 'Der/die Klient*in ist nicht bei Dir?'
+the_beneficiary_will_receive_sms_to_create_account: 'Er/Sie erhält eine SMS zur Bestätigung und Vervollständigung der Daten'
+title: Titel
+today: "Heute"
+toggle: Basculer
+unsupported_file_extension: "Erreur %fileName%, le format de fichier n'est pas supporté"
+update_your_password: 'Passwort ändern'
+used_available: 'Du verwendest %used% von verfügbaren %available%'
+user_do_not_have_account: "L'utilisateur ne possède pas de compte Reconnect ?"
+user_firstVisit_membre_intro: 'Cet outil a pour fonction première la sauvegarde d’informations personnelles des personnes accompagnées.'
+user_firstVisit_membre_intro_more: 'L’outil s’inscrit dans le cadre de l’accompagnement et pourra vous permettre d’assister les bénéficiaires dans la sauvegarde de leurs données.'
+user_firstVisit_membre_metaTitle: 'Bienvenue sur Reconnect le Coffre Fort Numérique'
+user_firstVisit_membre_outro: 'L’équipe de Reconnect vous souhaite la bienvenue sur sa plateforme et une bonne utilisation.'
+user_firstVisit_rgpd: 'Lors de votre utilisation du coffre-fort numérique, Reconnect est amenée à traiter des données personnelles vous concernant. Dans ce cadre, vous pouvez accéder à vos données personnelles pour les rectifier, demander leur effacement ou exercer votre droit à la limitation du traitement de ses données. Pour exercer ces droits ou pour toute question sur le traitement de vos données personnelles, il est possible de contacter Reconnect à l’adresse <a href="mailto:%mailRGPD%">%mailRGPD%</a> ou par téléphone au %phoneNumber%.'
+user_firstVisit_rgpd_more: 'Pour plus d’informations sur le traitement de vos données personnelles, nous vous invitons également à consulter la Politique de Confidentialité du coffre-fort numérique accessible suivant ce lien: <a href="%linkRGPD%">%linkRGPD%</a>'
+user_has_account: "L'utilisateur possède un compte Reconnect ?"
+user_not_found: "Nutzer*in konnte nicht gefunden werden"
 user_parameters_subtitle: 'Einstellungen von %subject%'
+user_settings: "Einstellungen"
 user_shared_document_with_you: 'Der Benutzer %nom% %prenom% möchte dieses Dokument mit Ihnen teilen: "%document%"'
-username: Benutzername
-vault: Cloud
+user_successfully_created: Opération réussie. L’utilisateur a bien été créé
+user_type: Type d'utilisateur
+user_update_password_subtitle: 'Passwort für %subject%'
+user_update_password_title: Passwort zurücksetzen
+username: "Benutzername"
+uses_rosalie: Utilisation de Rosalie
+validate: Bestätigen
+vault: 'Cloud'
+vault_meta_desc: "La plateforme de stockage et de partage qui facilite les démarches d'accompagnement social"
+vault_meta_title: 'Reconnect le coffre-fort numérique'
+verify_affiliation_search_informations: Assurez-vous avec le bénéficiaire que l’orthographe et la date de naissance sont corrects
 website_CGS: 'CGS du site'
 website_confidentiality: 'Datenschutzrichtlinie der Website'
 website_legal: 'Rechtliche Hinweise'
 website_title: Reconnect
+welcome_on_solidarity_cloud: 'Willkommen bei Reconnect - Der Cloud für wohnungslose Menschen'
+while_waiting_next_newsletter_1: 'En attendant la prochaine, vous pouvez'
+while_waiting_next_newsletter_2: 'retrouver nos actualités sur nos réseaux sociaux et notre blog !'
+with_beneficiary: 'Mit dem/der Klient*in'
 work: Arbeit
-you_can_download_mobile_app: 'Du kannst auch die mobile App herunterladen'
-you_must_provide_phone_number: 'Du musst eine Telefonnummer angeben'
-your_email: 'Ihre Email'
-all_rights_reserved: Alle Rechte vorbehalten
-reset: Zurücksetzen
-mail_shared_document_content_1_anonymous: Jemand möchte ein Dokument mit Ihnen teilen.
-password_criterion_length: '%length% zeichen'
-password_criterion_lowercase: Kleinbuchstabe
-password_criterion_nonAlphabetic: Sonderzeichen/Nummer
-password_criterion_uppercase: Großbuchstabe
-password_help: Das Passwort muss lang sein (mindestens 9 Zeichen) mit 1 Großbuchstaben, 1 Kleinbuchstaben und 1 Zahl oder Sonderzeichen
-user_update_password_title: Passwort zurücksetzen
-improve_password_pro: Bei Reconnect ist die Sicherheit unserer Tools und Ihrer Daten eine Priorität. Um sie zu stärken, bitten wir Sie, Ihr Passwort für den Zugang zum Digitalen Tresor zu aktualisieren. Die begleiteten Personen müssen ebenfalls ihr Passwort für den Zugriff auf ihren Digitalen Safe aktualisieren.
-improve_password_beneficiary: Zur Erhöhung der Sicherheit wurden die Passwortregeln aktualisiert. Sie müssen Ihr Passwort ändern.
+wrong_current_password: 'Votre mot de passe actuel est faux'
+wrong_secret_answer: 'La réponse à la question secrète est incorrecte'
+yes: Ja
+you_are_now_subscribed_for_newsletter: "Vous êtes maintenant inscrit.e sur notre liste d'envoi de newsletter"
+you_can_download_mobile_app: "Du kannst auch die mobile App herunterladen"
+you_can_not_delete_personal_data: "Du hast nicht die Berechtigung zum Löschen der Datei"
+you_can_not_display_personal_data: "Du hast nicht die Berechtigung zum Anzeigen der Daten"
+you_can_not_edit_personal_data: "Du hast nicht die Berechtigung, die Daten zu bearbeiten"
+you_can_not_report_personal_data: "Du hast nicht die Berechtigung, diese Daten zu melden"
+you_can_not_see_page: "Dir fehlt die Berechtigung zur Anzeige dieser Seite"
+you_can_not_update_default_permission: Vous ne pouvez pas modifier la permission par défaut
+you_can_unsubscribe_for_newsletter: 'Vous pouvez vous désabonner à tout moment de cette liste, grâce au lien que vous trouverez en bas de page de chaque newsletter'
+you_must_choose_password: 'Du musst ein Passwort festlegen'
+you_must_select_center_for_right_update: Sélectionnez un centre pour modifier les droits d’un utilisateur
+you_will_be_contacted_soon: Nous reviendrons vers vous dans les meilleurs délais à ce sujet.
+your_address: 'Deine private Adresse (optional)'
 your_new_password: Ihr neues Passwort
-confirm_new_password: Bestätigen Sie Ihr neues Passwort
-user_update_password_subtitle: Passwort für %subject%
-submit: Bestätigen
-enable_mfa: Zwei-Faktor-Authentifizierung aktivieren
-enable_mfa_help: Durch Aktivieren dieses Kontrollkästchens erhalten Sie bei jeder Anmeldung einen Einmalcode, um Ihre Identität zu bestätigen und Ihr Konto zu sichern.
-enable_mfa_help_benef_creation: Durch Aktivieren dieses Kontrollkästchens erhält der Begünstigte bei jeder Anmeldung einen Einmalcode, um seine Identität zu bestätigen und sein Konto zu sichern.
-enable_mfa_help_pro_creation: Durch Aktivieren dieses Kontrollkästchens erhält der Benutzer bei jeder Anmeldung einen Einmalcode, um seine Identität zu bestätigen und sein Konto zu sichern.
-mail_auth_code_title: Hallo %username%!
-mail_auth_code_content: 'Hier ist Ihr Anmeldecode: '
-mail_auth_code_subject: 'RECONNECT - Ihr Anmeldecode'
-auth_code_received: 'Anmeldecode erhalten über %method%:'
-validate: Bestätigen
-auth_code_sms_text: 'Hier ist Ihr Anmeldecode: %code%'
-mfa: Zwei-Faktor-Authentifizierung
-mfa_enabled: Doppelte Authentifizierung aktiviert
-mfa_method: 'Code erhalten über :'
-form_contains_error: Ihre Änderungen wurden nicht gespeichert. Bitte überprüfen Sie die Informationen.
-no_email_address: Sie haben sich entschieden, einen Anmeldecode per E-Mail zu erhalten, aber keine E-Mail-Adresse angegeben.
-no_phone_number: Sie haben sich entschieden, einen Anmeldecode per SMS zu erhalten, aber keine Telefonnummer angegeben.
-mfa_description: Die Zwei-Faktor-Authentifizierung ermöglicht es Ihnen, bei jeder Anmeldung einen Code per E-Mail oder SMS zu erhalten, um Ihre Identität zu bestätigen und Ihr Konto zu sichern. Wenn Sie diese Zwei-Faktor-Authentifizierung aktivieren möchten, aktivieren Sie das Kontrollkästchen unten und wählen Sie die Methode aus, mit der Sie Ihren Anmeldecode erhalten möchten.
-mfa_maximum_retries_reach: Sie haben die maximale Anzahl an erlaubten Wiederholungen erreicht. Wenn Sie sich nicht anmelden können, wenden Sie sich bitte an den Support.
-mfa_code_not_received: Haben Sie den Code nicht erhalten?
-resend_mfa_code: Klicken Sie hier, um ihn erneut zu senden.
-passwords_mismatch: Die beiden Passwörter stimmen nicht überein
+your_personal_data_has_already_been_requested: Vous avez déjà effectué une demande de récupération de vos données.
+your_personal_data_request_has_been_send_to_tech_team: Votre demande de récupération de vos données à été transmise à nos équipes dédiées.
+your_phone_number: 'Deine Telefonnummer'
+duplicate_mail_subject: "[Coffre-Fort Numérique] Doublons bénéficiaire"
+duplicate_mail_title: 'Doublons de username bénéficiaire : %username%'
+duplicate_mail_created_by_client: 'Créé par (client) : %client%'
+duplicate_mail_created_by_pro: "Crée par le.a professionnel.le d'id %id%, affilié.e aux Centre(s) suivants :"
