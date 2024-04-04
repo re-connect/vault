@@ -8,7 +8,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
+use App\Api\State\PersonalDataStateProcessor;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
@@ -16,24 +16,19 @@ use Symfony\Component\Serializer\Annotation\Groups;
         new Delete(security: "is_granted('UPDATE', object)"),
         new Get(security: "is_granted('ROLE_OAUTH2_NOTES') or is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_NOTES') or is_granted('ROLE_USER')"),
-        new Patch(),
-        new Post(),
-        new Put(security: "is_granted('UPDATE', object)"),
+        new Post(security: "is_granted('ROLE_USER')", processor: PersonalDataStateProcessor::class),
+        new Patch(security: "is_granted('UPDATE', object)"),
     ],
     normalizationContext: ['groups' => ['v3:note:read']],
     denormalizationContext: ['groups' => ['v3:note:write']],
     openapiContext: ['tags' => ['Notes']],
-    security: "is_granted('ROLE_OAUTH2_NOTES')",
 )]
 class Note extends DonneePersonnelle
 {
     #[Groups(['read-personal-data', 'write-personal-data', 'v3:note:write', 'v3:note:read'])]
     private $contenu;
 
-    /**
-     * @param Beneficiaire $beneficiaire
-     */
-    public function __construct($beneficiaire)
+    public function __construct(Beneficiaire $beneficiaire = null)
     {
         parent::__construct();
         $this->beneficiaire = $beneficiaire;
