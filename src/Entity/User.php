@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use App\Api\State\UserPasswordProcessor;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -16,27 +19,33 @@ use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
-/**
- * @ORM\Entity(repositoryClass=UserRepository::class)
- */
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ApiResource(
+    operations: [
+        new GetCollection(security: "is_granted('ROLE_USER')"),
+        new Patch(security: "is_granted('UPDATE', object)", processor: UserPasswordProcessor::class),
+    ],
+    normalizationContext: ['groups' => ['v3:user:read']],
+    denormalizationContext: ['groups' => ['v3:user:write']],
+)]
 class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, TwoFactorTextInterface
 {
-    private const BASE_USERNAME_REGEXP = '/^[a-z\-]+\.[a-z\-]+(\.[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3})?$/';
-    public const USER_TYPE_BENEFICIAIRE = 'ROLE_BENEFICIAIRE';
-    public const USER_TYPE_MEMBRE = 'ROLE_MEMBRE';
-    public const USER_TYPE_GESTIONNAIRE = 'ROLE_GESTIONNAIRE';
-    public const USER_TYPE_ASSOCIATION = 'ROLE_ASSOCIATION';
-    public const USER_TYPE_ADMINISTRATEUR = 'ROLE_ADMIN';
-    public const USER_TYPE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
-    public const USER_PASSWORD_LENGTH = 9;
+    private const string BASE_USERNAME_REGEXP = '/^[a-z\-]+\.[a-z\-]+(\.[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3})?$/';
+    public const string USER_TYPE_BENEFICIAIRE = 'ROLE_BENEFICIAIRE';
+    public const string USER_TYPE_MEMBRE = 'ROLE_MEMBRE';
+    public const string USER_TYPE_GESTIONNAIRE = 'ROLE_GESTIONNAIRE';
+    public const string USER_TYPE_ASSOCIATION = 'ROLE_ASSOCIATION';
+    public const string USER_TYPE_ADMINISTRATEUR = 'ROLE_ADMIN';
+    public const string USER_TYPE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+    public const int USER_PASSWORD_LENGTH = 9;
 
-    public const ADMIN_TYPES = [
+    public const array ADMIN_TYPES = [
         self::USER_TYPE_ADMINISTRATEUR => self::USER_TYPE_ADMINISTRATEUR,
         self::USER_TYPE_SUPER_ADMIN => self::USER_TYPE_SUPER_ADMIN,
     ];
-    public const DEFAULT_LANGUAGE = 'fr';
+    public const string DEFAULT_LANGUAGE = 'fr';
 
-    public static array $arTypesUser = [
+    public const array USER_TYPES = [
         self::USER_TYPE_BENEFICIAIRE => 'beneficiaire',
         self::USER_TYPE_MEMBRE => 'membre',
         self::USER_TYPE_GESTIONNAIRE => 'gestionnaire',
@@ -44,9 +53,9 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         self::USER_TYPE_ADMINISTRATEUR => 'administrateur',
     ];
 
-    public const MFA_METHOD_SMS = 'sms';
-    public const MFA_METHOD_EMAIL = 'email';
-    public const MFA_METHODS = [
+    public const string MFA_METHOD_SMS = 'sms';
+    public const string MFA_METHOD_EMAIL = 'email';
+    public const array MFA_METHODS = [
       self::MFA_METHOD_EMAIL,
       self::MFA_METHOD_SMS,
     ];
@@ -770,15 +779,12 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
             'type_user' => $this->typeUser,
             'email' => $this->email,
             'subject_id' => $this->getSubject()?->getId(),
-//            'enabled' => $this->enabled,
             'last_login' => null !== $this->derniereConnexionAt ? $this->derniereConnexionAt->format(\DateTime::W3C) : null,
-//            'groups' => $this->groups,
-//            'roles' => $this->roles,
             'created_at' => $this->createdAt->format(\DateTime::W3C),
             'updated_at' => $this->updatedAt->format(\DateTime::W3C),
-//            'b_actif' => $this->bActif,
             'b_first_mobile_connexion' => $this->bFirstMobileConnexion,
             'adresse' => $this->getAdresse(),
+            'centres' => $this->getUserRelays(),
         ];
 
         if ($withSubject) {
@@ -1130,7 +1136,9 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
             return null;
         }
 
-        return $this->getUserRelays()->filter(fn (UserCentre $userRelay) => $userRelay->getCentre() === $relay)->first() ?: null;
+        return $this->getUserRelays()
+            ->filter(fn (UserCentre $userRelay) => $userRelay->getCentre() === $relay)
+            ->first() ?: null;
     }
 
     public function getFirstUserRelay(): ?UserCentre

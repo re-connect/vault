@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted('ROLE_USER')]
 final class DocumentApiController extends AbstractController
 {
-    #[Route(path: '/{id}/share', requirements: ['id' => '\d{1,10}'], methods: ['POST'])]
+    #[Route(path: '/{id<\d+>}/share', requirements: ['id' => '\d{1,10}'], methods: ['POST'])]
     #[IsGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW, 'document')]
     public function shareDocument(Request $request, Document $document, SharedDocumentFactory $factory, MailerService $mailerService): JsonResponse
     {

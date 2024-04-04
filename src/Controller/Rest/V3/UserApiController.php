@@ -19,12 +19,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[IsGranted('ROLE_USER')]
 class UserApiController extends AbstractController
 {
-    #[Route(path: '/me', methods: ['GET'])]
-    public function getMe(): JsonResponse
-    {
-        return $this->json($this->getUser());
-    }
-
     #[Route(path: '/request-personal-account-data', methods: ['GET'])]
     #[Route(path: '/me/request-personal-account-data', methods: ['GET'])]
     public function requestPersonalAccountData(MailerService $mailer): Response
@@ -39,7 +33,7 @@ class UserApiController extends AbstractController
             $mailer->sendPersonalDataRequestEmail($user);
         }
 
-        return $this->json($user);
+        return $this->json($user, 200, [], ['groups' => ['v3:user:read']]);
     }
 
     #[Route(path: '/me/register-notification-token', methods: ['POST'])]
@@ -48,7 +42,7 @@ class UserApiController extends AbstractController
         $user = $this->getUser()->setFcnToken($request->request->get('notification_token'));
         $em->flush();
 
-        return $this->json($user);
+        return $this->json($user, 200, [], ['groups' => ['v3:user:read']]);
     }
 
     #[Route(path: '/me/switch-locale', methods: 'POST')]
@@ -61,7 +55,7 @@ class UserApiController extends AbstractController
             $em->flush();
         }
 
-        return $this->json($user);
+        return $this->json($user, 200, [], ['groups' => ['v3:user:read']]);
     }
 
     #[Route(path: '/me/update_password', methods: ['POST'])]
@@ -77,7 +71,7 @@ class UserApiController extends AbstractController
 
         $userManager->updatePassword($user, $password);
 
-        return $this->json($user);
+        return $this->json($user, 200, [], ['groups' => ['v3:user:read']]);
     }
 
     #[Route(path: '/public/secret-questions', methods: ['GET'])]
