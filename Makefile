@@ -4,6 +4,7 @@ SYMFONY         = symfony
 CONSOLE         = $(SYMFONY) console
 COMPOSER        = $(SYMFONY) composer
 BIN             = ./vendor/bin
+DEPLOYER      	= $(BIN)/dep
 PHPUNIT         = $(BIN)/simple-phpunit
 PHPSTAN         = $(BIN)/phpstan
 RECTOR          = $(BIN)/rector
@@ -23,8 +24,11 @@ fixer:
 	@$(PHP_CS_FIXER) fix src --allow-risky=yes --using-cache=no
 	@$(PHP_CS_FIXER) fix tests --allow-risky=yes --using-cache=no
 
-deploy:
-	@$(CONSOLE) deploy preprod
+deploy-preprod:
+	@$(DEPLOYER) deploy stage=preprod
+
+deploy-prod:
+	@$(CONSOLE) deploy prod
 
 fixture-v1:
 	@$(CONSOLE) doctrine:fixtures:load --env=test --group=v1 -n
@@ -39,5 +43,3 @@ test-v1:
 
 test-v2:
 	@$(PHPUNIT) tests/v2
-
-dep: deploy
