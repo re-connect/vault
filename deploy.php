@@ -81,6 +81,6 @@ before('deploy:setup', 'deploy:test_connection');
 before('deploy:build_frontend', 'deploy:dump_frontend_routes');
 before('deploy:build_frontend', 'deploy:install_frontend');
 before('deploy:cache:clear', 'deploy:build_frontend');
-before('deploy:symlink', 'database:migrate');
-after('deploy:symlink', 'deploy:reset-opcache');
+before('deploy:symlink', 'deploy:reset-opcache');
+after('deploy:reset-opcache', 'database:migrate');
 after('deploy:failed', 'deploy:unlock');
