@@ -27,7 +27,7 @@ class UniqueExternalLinkValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, UniqueExternalLink::class);
         }
 
-        if (null === $value || '' === $value || !$value->distantId) {
+        if (null === $value || '' === $value) {
             return;
         }
 

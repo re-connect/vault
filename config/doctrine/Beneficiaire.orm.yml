@@ -115,9 +115,4 @@ App\Entity\Beneficiaire:
             mappedBy: beneficiary
             joinColumn:
                 onDelete: "SET NULL"
-    manyToOne:
-        creePar:
-            targetEntity: App\Entity\User
-            joinColumn:
-                onDelete: "SET NULL"
     lifecycleCallbacks: { }

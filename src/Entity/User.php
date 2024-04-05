@@ -934,7 +934,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getCreatorClient(): ?CreatorClient
     {
-        $creator = $this->creators->filter(static function ($creator) {
+        $creator = $this->creators?->filter(static function ($creator) {
             return $creator instanceof CreatorClient;
         })->first();
 
@@ -959,6 +959,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
             $this->accessTokens = [];
             $this->adresse = null === $this->adresse ? null : clone $this->adresse;
             $this->canada = true;
+            $this->creators = new ArrayCollection();
             if (null !== $this->subjectBeneficiaire || null !== $this->subjectMembre) {
                 $creators = new ArrayCollection();
                 if ($creatorUser = $this->getCreatorUser()) {
@@ -967,12 +968,9 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
                 if ($creatorCentre = $this->getCreatorCentre()) {
                     $creators->add(clone $creatorCentre);
                 }
-                $this->creators = new ArrayCollection();
                 foreach ($creators as $creator) {
                     $this->addCreator($creator);
                 }
-            } else {
-                $this->creators = new ArrayCollection();
             }
 
             $this->refreshTokens = [];
@@ -986,7 +984,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getCreatorUser(): ?CreatorUser
     {
-        $creator = $this->creators->filter(static function ($creator) {
+        $creator = $this->creators?->filter(static function ($creator) {
             return $creator instanceof CreatorUser;
         })->first();
 
@@ -1000,7 +998,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getCreatorCentre(): ?CreatorCentre
     {
-        $creator = $this->creators->filter(static function ($creator) {
+        $creator = $this->creators?->filter(static function ($creator) {
             return $creator instanceof CreatorCentre;
         })->first();
 
