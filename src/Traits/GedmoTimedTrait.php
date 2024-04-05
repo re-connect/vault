@@ -6,10 +6,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 trait GedmoTimedTrait
 {
-    #[Groups(['read', 'timed'])]
+    #[Groups(['read', 'timed', 'v3:user:read', 'v3:beneficiary:read'])]
     private ?\DateTime $createdAt;
 
-    #[Groups(['read', 'timed'])]
+    #[Groups(['read', 'timed', 'v3:user:read', 'v3:beneficiary:read'])]
     private ?\DateTime $updatedAt;
 
     public function getCreatedAt(): ?\DateTime

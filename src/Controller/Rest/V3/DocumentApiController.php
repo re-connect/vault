@@ -5,7 +5,6 @@ namespace App\Controller\Rest\V3;
 use App\ControllerV2\AbstractController;
 use App\Entity\Document;
 use App\Factory\SharedDocumentFactory;
-use App\Security\Authorization\Voter\DonneePersonnelleVoter;
 use App\ServiceV2\Mailer\MailerService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +17,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 final class DocumentApiController extends AbstractController
 {
     #[Route(path: '/{id<\d+>}/share', requirements: ['id' => '\d{1,10}'], methods: ['POST'])]
-    #[IsGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW, 'document')]
+    #[IsGranted('UPDATE', 'document')]
     public function shareDocument(Request $request, Document $document, SharedDocumentFactory $factory, MailerService $mailerService): JsonResponse
     {
         $email = $request->request->get('email');

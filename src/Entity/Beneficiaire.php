@@ -59,9 +59,9 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 {
     use GedmoTimedTrait;
 
-    private const DEFAULT_BIRTHDATE = '01/01/1975';
-    public const MAX_VAULT_SIZE = 1024 * 1024 * 600; // 600Mo
-    public const SECRET_QUESTIONS = [
+    private const string DEFAULT_BIRTHDATE = '01/01/1975';
+    public const int|float MAX_VAULT_SIZE = 1024 * 1024 * 600; // 600Mo
+    public const array SECRET_QUESTIONS = [
         'secret_question_mother_firstname' => 'secret_question_mother_firstname',
         'secret_question_pet' => 'secret_question_pet',
         'secret_question_favorite_street' => 'secret_question_favorite_street',
@@ -122,8 +122,6 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     #[Groups(['read', 'beneficiary:read'])]
     private ?string $siSiaoNumber = null;
-
-    private ?User $creePar;
 
     #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
     private ?string $questionSecrete = null;
@@ -535,33 +533,6 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this->consultationsBeneficiaires;
     }
 
-    public function getCreePar(): ?User
-    {
-        return $this->creePar;
-    }
-
-    public function setCreePar(User $creePar = null): self
-    {
-        $this->creePar = $creePar;
-
-        return $this;
-    }
-
-    public function getCreeParSonata(): string
-    {
-        if (!$this->getExternalLinks()->isEmpty()) {
-            /** @var ClientBeneficiaire $client */
-            $client = $this->getExternalLinks()->first();
-
-            return $client->getClient()->getNom().' ('.$client->getDistantId().')';
-        }
-        if ($this->creePar) {
-            return $this->creePar->toSonataString();
-        }
-
-        return '';
-    }
-
     /** @return Collection<int, ClientBeneficiaire> */
     public function getExternalLinks(): Collection
     {
@@ -689,6 +660,8 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
             'centres' => $this->getCentreNoms()->toArray(),
             'question_secrete' => $this->questionSecrete,
             'reponse_secrete' => $this->reponseSecrete,
+            'created_at' => $this->createdAt->format(\DateTime::W3C),
+            'updated_at' => $this->updatedAt->format(\DateTime::W3C),
         ];
     }
 
@@ -782,7 +755,6 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
             $this->beneficiairesCentres = new ArrayCollection();
             $this->consultationsBeneficiaires = new ArrayCollection();
             $this->consultationsCentre = new ArrayCollection();
-            $this->creePar = null;
             $this->externalLinks = new ArrayCollection();
             $this->sms = new ArrayCollection();
             $contacts = [];
