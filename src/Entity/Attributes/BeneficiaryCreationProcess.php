@@ -50,7 +50,7 @@ class BeneficiaryCreationProcess
     {
         return (new self())
             ->setIsCreating(true)
-            ->setBeneficiary((new Beneficiaire())->setCreePar($user))
+            ->setBeneficiary(new Beneficiaire())
             ->setRemotely($remotely);
     }
 

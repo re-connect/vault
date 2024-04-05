@@ -19,7 +19,6 @@ use App\ManagerV2\UserManager as UserManagerV2;
 use App\Provider\BeneficiaireProvider;
 use App\Provider\CentreProvider;
 use App\Provider\UserProvider;
-use App\Repository\ClientRepository as OldClientRepository;
 use App\Validator\Constraints\Beneficiaire\Entity as BeneficiaireValidator;
 use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\ORM\EntityManagerInterface;
@@ -69,7 +68,7 @@ final class BeneficiaireRestV2Controller extends REController
                 ? $centreProvider->getBeneficiairesFromMembre($user->getSubjectMembre())
                 : $centreProvider->getBeneficiairesFromGestionnaire($user->getSubjectGestionnaire());
 
-            return $this->json($beneficiairesByCentre);
+            return $this->json($beneficiairesByCentre, 200, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
         } catch (AccessDeniedException $e) {
             return (new JsonResponseException($e))->getResponse();
         }
@@ -87,13 +86,13 @@ final class BeneficiaireRestV2Controller extends REController
             if ($user->isMembre()) {
                 $beneficiairesByCentre = $centreProvider->getBeneficiairesFromMembre($user->getSubjectMembre());
 
-                return $this->json($beneficiairesByCentre);
+                return $this->json($beneficiairesByCentre, 200, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
             }
 
             if ($user->isGestionnaire()) {
                 $beneficiairesByCentre = $centreProvider->getBeneficiairesFromGestionnaire($user->getSubjectGestionnaire());
 
-                return $this->json($beneficiairesByCentre);
+                return $this->json($beneficiairesByCentre, 200, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
             }
 
             throw $this->createAccessDeniedException('You must be connected as membre or gestionnaire');
@@ -111,7 +110,7 @@ final class BeneficiaireRestV2Controller extends REController
             $entity = $provider->getEntity($id);
             $SMSManager->sendSmsActivation($entity);
 
-            return $this->json($entity);
+            return $this->json($entity, 200, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -123,7 +122,7 @@ final class BeneficiaireRestV2Controller extends REController
     public function getEntity($id, BeneficiaireProvider $provider): JsonResponse
     {
         try {
-            return $this->json($provider->getEntity($id));
+            return $this->json($provider->getEntity($id), 200, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             return (new JsonResponseException($e))->getResponse();
         }
@@ -142,7 +141,7 @@ final class BeneficiaireRestV2Controller extends REController
 
             $this->entityManager->flush();
 
-            return $this->json($entity);
+            return $this->json($entity, 200, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
         } catch (NotFoundHttpException|AccessDeniedException|BadRequestHttpException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -242,7 +241,7 @@ final class BeneficiaireRestV2Controller extends REController
 
             $this->entityManager->flush();
 
-            return $this->json($entity);
+            return $this->json($entity, 200, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
         } catch (NotFoundHttpException|AccessDeniedException|BadRequestHttpException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -287,7 +286,7 @@ final class BeneficiaireRestV2Controller extends REController
 
             $this->entityManager->flush();
 
-            return $this->json($entity);
+            return $this->json($entity, 200, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
         } catch (NotFoundHttpException|AccessDeniedException|BadRequestHttpException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -330,7 +329,7 @@ final class BeneficiaireRestV2Controller extends REController
             return $this->json(array_merge(
                 $beneficiaire->jsonSerializeForClientV2($this->apiClientManager->getCurrentOldClient()),
                 ['password' => $password]
-            ), Response::HTTP_CREATED);
+            ), Response::HTTP_CREATED, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
         } catch (AccessDeniedException|NotFoundHttpException $e) {
             return (new JsonResponseException($e))->getResponse();
         }
@@ -417,7 +416,7 @@ final class BeneficiaireRestV2Controller extends REController
 
                 $entityManager->refresh($entity);
 
-                return $this->json($entity, Response::HTTP_CREATED);
+                return $this->json($entity, Response::HTTP_CREATED, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
             }
 
             $errorsArray = $this->getErrorMessages($form);
@@ -482,9 +481,9 @@ final class BeneficiaireRestV2Controller extends REController
                 return $this->json($errorsArray, Response::HTTP_BAD_REQUEST);
             }
 
-            $userManager->updateUser($user, true);
+            $userManager->updateUser($user);
 
-            return $this->json($entity);
+            return $this->json($entity, 200, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
         } catch (AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -498,7 +497,7 @@ final class BeneficiaireRestV2Controller extends REController
         try {
             $entity = $beneficiaryProvider->getEntityByUsername($username, null);
 
-            return $this->json($entity);
+            return $this->json($entity, 200, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -521,7 +520,7 @@ final class BeneficiaireRestV2Controller extends REController
                 $provider->save($entity);
             }
 
-            return $this->json($entity);
+            return $this->json($entity, 200, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
         } catch (NotFoundHttpException|AccessDeniedException|EntityNotFoundException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -529,8 +528,8 @@ final class BeneficiaireRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'beneficiaries/{id}/add-external-link', requirements: ['id' => '\d{1,10}'], name: 'add_external_link', methods: ['PATCH'])]
-    public function addExternalLink($id, BeneficiaireProvider $provider, CentreProvider $centreProvider, OldClientRepository $oldClientRepository): JsonResponse
+    #[Route(path: 'beneficiaries/{id}/add-external-link', name: 'add_external_link', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
+    public function addExternalLink($id, BeneficiaireProvider $provider, CentreProvider $centreProvider, string $env): JsonResponse
     {
         try {
             $distantId = $this->request->get('distant_id');
@@ -583,7 +582,7 @@ final class BeneficiaireRestV2Controller extends REController
 
             $provider->save($beneficiaire);
 
-            return $this->json($beneficiaire);
+            return $this->json($beneficiaire, 200, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 

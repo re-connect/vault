@@ -35,7 +35,7 @@ trait CreatorTrait
 
     public function getCreatorUser(): ?CreatorUser
     {
-        $creator = $this->creators->filter(static function ($creator) {
+        $creator = $this->creators?->filter(static function ($creator) {
             return $creator instanceof CreatorUser;
         })->first();
 
@@ -44,7 +44,7 @@ trait CreatorTrait
 
     public function getCreatorCentre(): ?CreatorCentre
     {
-        $creator = $this->creators->filter(static function ($creator) {
+        $creator = $this->creators?->filter(static function ($creator) {
             return $creator instanceof CreatorCentre;
         })->first();
 
@@ -53,7 +53,7 @@ trait CreatorTrait
 
     public function getCreatorClient(): ?CreatorClient
     {
-        $creator = $this->creators->filter(static function ($creator) {
+        $creator = $this->creators?->filter(static function ($creator) {
             return $creator instanceof CreatorClient;
         })->first();
 

@@ -8,7 +8,6 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
 use App\Controller\Api\UploadDocumentController;
 use App\Entity\Interface\FolderableEntityInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -18,49 +17,40 @@ use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\DocumentRepository")
- */
+/** @ORM\Entity(repositoryClass="App\Repository\DocumentRepository") */
 #[Vich\Uploadable]
 #[ApiResource(
     operations: [
-        new Get(),
-        new Put(),
-        new Patch(),
-        new Delete(),
-        new GetCollection(),
+        new Delete(security: "is_granted('UPDATE', object)"),
+        new Get(security: "is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_USER')"),
+        new Patch(security: "is_granted('UPDATE', object)"),
         new Post(
             controller: UploadDocumentController::class,
             openapiContext: [
                 'tags' => ['Documents'],
-                'requestBody' => [
-                    'content' => [
-                        'multipart/form-data' => [
-                            'schema' => [
-                                'type' => 'object',
-                                'properties' => [
-                                    'file' => ['type' => 'file'],
-                                    'distant_id' => ['type' => 'string', 'format' => 'string'],
-                                ],
-                            ],
-                        ],
+                'requestBody' => ['content' => ['multipart/form-data' => ['schema' => [
+                    'type' => 'object',
+                    'properties' => [
+                        'file' => ['type' => 'file'],
+                        'distant_id' => ['type' => 'string', 'format' => 'string'],
                     ],
-                ],
+                ], ], ], ],
             ],
+            security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
             deserialize: false,
         ),
     ],
     normalizationContext: ['groups' => ['v3:document:read']],
     denormalizationContext: ['groups' => ['v3:document:write']],
     openapiContext: ['tags' => ['Documents']],
-    security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
 )]
 class Document extends DonneePersonnelle implements FolderableEntityInterface
 {
     use SoftDeleteableEntity;
 
-    public const BROWSER_EXTENSIONS_NOT_VIEWABLE = ['doc', 'docx', 'txt', 'odt', 'xls', 'xlsx', 'csv'];
-    public const BROWSER_EXTENSIONS_VIEWABLE = ['jpg', 'jpeg', 'pdf', 'gif', 'png'];
+    public const array BROWSER_EXTENSIONS_NOT_VIEWABLE = ['doc', 'docx', 'txt', 'odt', 'xls', 'xlsx', 'csv'];
+    public const array BROWSER_EXTENSIONS_VIEWABLE = ['jpg', 'jpeg', 'pdf', 'gif', 'png'];
     protected ?\DateTime $dateEmission = null;
 
     #[Groups(['v3:document:write', 'v3:document:read'])]
@@ -231,7 +221,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
             'extension' => $this->extension,
             'folder_id' => $this->dossier?->getId(),
             'beneficiaire' => ['id' => $this->beneficiaire->getId()],
-            'depose_par_full_name' => $this->getDeposeParGetFullName(),
+            'depose_par_full_name' => $this->getCreatorUserFullName(),
             'beneficiaire_id' => $this->getBeneficiaire()->getId(),
             'object_key' => $this->objectKey,
             'thumbnail_key' => $this->thumbnailKey,
@@ -257,24 +247,6 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
         return max([0, ...$this->getActiveSharedDocuments()->map(function (SharedDocument $sharedDocument) {
             return round(($sharedDocument->getExpirationDate()->getTimestamp() - time()) / 86400);
         })->toArray()]);
-    }
-
-    public function getDeposeParGetFullName(): string
-    {
-        $fullname = '';
-        if ($creatorUser = $this->getCreatorUser()) {
-            $user = $creatorUser->getEntity();
-            if (null !== $user) {
-                $fullname = $user->getPrenom().' '.$user->getNom();
-            }
-        }
-
-        return $fullname;
-    }
-
-    public function getAuthorFullName(): string
-    {
-        return parent::getDeposeParGetFullName();
     }
 
     public function getNomSubstr(): string

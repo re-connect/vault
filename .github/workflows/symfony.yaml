@@ -15,7 +15,7 @@ jobs:
         strategy:
             matrix:
                 php-versions:
-                  [ "8.2" ]
+                  [ "8.3" ]
         name: PHP ${{ matrix.php-versions }} Test on ubuntu-latest
         steps:
             # —— Backend setup 🔧 ——————————————————————————————————————————————————
@@ -48,7 +48,7 @@ jobs:
                 run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
             # —— Check coding standards ✨ ————————————————————————————————————————————————————————————————
             -   name: Check CS
-                run: vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
+                run: PHP_CS_FIXER_IGNORE_ENV=true  vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
             -   name: Check Rector
                 run: vendor/bin/rector process --dry-run
             -   name: Dump routes

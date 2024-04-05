@@ -109,7 +109,13 @@ class MailerService implements AuthCodeMailerInterface
             $recipients->add($this->duplicateDefaultRecipient);
         }
 
-        $this->send(DuplicatedUsernameEmail::create($recipients->toArray(), 'fr', '', null, ['duplicatedUser' => $duplicatedUser, 'userLang' => 'fr', 'client' => $duplicatedUser->getCreatorClient(), 'centres' => $centres ?? [], 'pro' => $pro]));
+        $this->send(DuplicatedUsernameEmail::create($recipients->toArray(), 'fr', '', null, [
+            'duplicatedUser' => $duplicatedUser,
+            'userLang' => 'fr',
+            'client' => $duplicatedUser->getCreatorClient(),
+            'centres' => $centres ?? [],
+            'pro' => $pro,
+        ]));
     }
 
     public function sendPersonalDataRequestEmail(User $user): void

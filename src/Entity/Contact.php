@@ -8,15 +8,20 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
+use App\Api\State\PersonalDataStateProcessor;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
-    operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
+    operations: [
+        new Delete(security: "is_granted('UPDATE', object)"),
+        new Get(security: "is_granted('ROLE_OAUTH2_CONTACTS') or is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_CONTACTS') or is_granted('ROLE_USER')"),
+        new Post(security: "is_granted('ROLE_USER')", processor: PersonalDataStateProcessor::class),
+        new Patch(security: "is_granted('UPDATE', object)"),
+    ],
     normalizationContext: ['groups' => ['v3:contact:read']],
     denormalizationContext: ['groups' => ['v3:contact:write']],
     openapiContext: ['tags' => ['Contacts']],
-    security: "is_granted('ROLE_OAUTH2_CENTERS')",
 )]
 class Contact extends DonneePersonnelle
 {
@@ -49,7 +54,7 @@ class Contact extends DonneePersonnelle
     /**
      * Constructor.
      */
-    public function __construct(Beneficiaire $beneficiaire)
+    public function __construct(Beneficiaire $beneficiaire = null)
     {
         parent::__construct();
         $this->beneficiaire = $beneficiaire;

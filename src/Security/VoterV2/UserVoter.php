@@ -9,12 +9,11 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class UserVoter extends Voter
 {
-    public const DELETE = 'DELETE';
-    public const UPDATE = 'UPDATE';
+    public const string DELETE = 'DELETE';
+    public const string UPDATE = 'UPDATE';
 
-    public function __construct(
-        private readonly AuthorizationCheckerInterface $authorizationChecker,
-    ) {
+    public function __construct(private readonly AuthorizationCheckerInterface $authorizationChecker)
+    {
     }
 
     /**
