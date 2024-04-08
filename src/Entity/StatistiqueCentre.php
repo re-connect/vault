@@ -17,7 +17,7 @@ class StatistiqueCentre
             self::STATISTIQUECENTRE_NB_BENEFICIAIRES => 'admin.centres.statistiques.nbBeneficiaires',
             self::STATISTIQUECENTRE_NB_MEMBRES => 'admin.centres.statistiques.nbMembres',
             self::STATISTIQUECENTRE_SMS_ENVOYES => 'admin.centres.statistiques.smsEnvoyes',
-            ];
+        ];
     }
 
     /**
@@ -36,7 +36,7 @@ class StatistiqueCentre
     private $donnees;
 
     /**
-     * @var \App\Entity\Centre
+     * @var Centre
      */
     private $centre;
 
@@ -113,7 +113,7 @@ class StatistiqueCentre
     /**
      * Get centre.
      *
-     * @return \App\Entity\Centre
+     * @return Centre
      */
     public function getCentre()
     {

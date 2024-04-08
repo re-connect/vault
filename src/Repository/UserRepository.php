@@ -208,7 +208,7 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
         $this->getEntityManager()->flush();
     }
 
-    public function addUserSearchConditions(QueryBuilder $qb, string $search = null): QueryBuilder
+    public function addUserSearchConditions(QueryBuilder $qb, ?string $search = null): QueryBuilder
     {
         if (!$search) {
             return $qb;

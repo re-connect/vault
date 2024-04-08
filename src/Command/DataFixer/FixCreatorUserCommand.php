@@ -22,7 +22,7 @@ class FixCreatorUserCommand extends Command
         private readonly CreatorUserRepository $creatorUserRepository,
         private readonly EntityManagerInterface $em,
         private readonly UserRepository $userRepository,
-        string $name = null,
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }

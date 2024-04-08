@@ -26,7 +26,7 @@ class DocumentNormalizer implements NormalizerInterface, CacheableSupportsMethod
         return false;
     }
 
-    public function supportsNormalization($data, string $format = null, array $context = []): bool
+    public function supportsNormalization($data, ?string $format = null, array $context = []): bool
     {
         if (isset($context[self::ALREADY_CALLED])) {
             return false;
@@ -35,7 +35,7 @@ class DocumentNormalizer implements NormalizerInterface, CacheableSupportsMethod
         return $data instanceof Document;
     }
 
-    public function normalize($object, string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    public function normalize($object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         /* @var Document $object */
         $this->provider->hydrateDocumentWithUris($object);

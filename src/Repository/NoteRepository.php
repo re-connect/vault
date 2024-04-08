@@ -18,7 +18,7 @@ class NoteRepository extends ServiceEntityRepository
     /**
      * @return Note[]
      */
-    public function findByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, string $search = null): array
+    public function findByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, ?string $search = null): array
     {
         $qb = $this->createQueryBuilder('n')
             ->andWhere('n.beneficiaire = :beneficiary')

@@ -50,8 +50,8 @@ class ResetPasswordControllerTest extends AuthenticatedTestCase
         self::assertResponseStatusCodeSame(200);
         $form = $crawler->selectButton('Confirmer')->form();
         $form->setValues([
-                'reset_password_request_form[email]' => $this->user->getEmail(),
-            ]);
+            'reset_password_request_form[email]' => $this->user->getEmail(),
+        ]);
         $this->client->submit($form);
         self::assertResponseStatusCodeSame(200);
 
@@ -137,9 +137,9 @@ class ResetPasswordControllerTest extends AuthenticatedTestCase
         $form = $crawler->selectButton('Confirmer')->form();
         self::assertEquals($form->getName(), 'change_password_form');
         $form->setValues([
-             'change_password_form[plainPassword][first]' => 'newPassword1',
-             'change_password_form[plainPassword][second]' => 'newPassword1',
-         ]);
+            'change_password_form[plainPassword][first]' => 'newPassword1',
+            'change_password_form[plainPassword][second]' => 'newPassword1',
+        ]);
         $this->client->submit($form);
 
         // Get recent instance of EntityManager and test password

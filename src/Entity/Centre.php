@@ -175,7 +175,7 @@ class Centre implements \JsonSerializable
     /**
      * @throws \Exception
      */
-    public function setJustificatifFile(File $justificatif = null): void
+    public function setJustificatifFile(?File $justificatif = null): void
     {
         $this->justificatifFile = $justificatif;
         if ($justificatif) {
@@ -279,7 +279,7 @@ class Centre implements \JsonSerializable
         return $this->typeCentre;
     }
 
-    public function setTypeCentre(TypeCentre $typeCentre = null): self
+    public function setTypeCentre(?TypeCentre $typeCentre = null): self
     {
         $this->typeCentre = $typeCentre;
 
@@ -510,7 +510,7 @@ class Centre implements \JsonSerializable
         return $this->adresse;
     }
 
-    public function setAdresse(Adresse $adresse = null): self
+    public function setAdresse(?Adresse $adresse = null): self
     {
         $this->adresse = $adresse;
 
@@ -617,7 +617,7 @@ class Centre implements \JsonSerializable
         return $this->gestionnaire;
     }
 
-    public function setGestionnaire(Gestionnaire $gestionnaire = null): self
+    public function setGestionnaire(?Gestionnaire $gestionnaire = null): self
     {
         $this->gestionnaire = $gestionnaire;
 
@@ -629,7 +629,7 @@ class Centre implements \JsonSerializable
         return $this->region;
     }
 
-    public function setRegion(Region $region = null): self
+    public function setRegion(?Region $region = null): self
     {
         $this->region = $region;
 

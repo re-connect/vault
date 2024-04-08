@@ -26,7 +26,7 @@ class FolderableItemManager
     /**
      * @return array<Document|Dossier>
      */
-    public function getFoldersAndDocumentsWithUrl(Beneficiaire $beneficiary, Dossier $parentFolder = null, string $search = null): array
+    public function getFoldersAndDocumentsWithUrl(Beneficiaire $beneficiary, ?Dossier $parentFolder = null, ?string $search = null): array
     {
         return [
             ...$this->folderManager->getFolders($beneficiary, $parentFolder, $search),

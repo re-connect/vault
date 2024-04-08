@@ -17,7 +17,7 @@ class CreatorUser extends Creator
         return $this->getEntity()->toSonataString();
     }
 
-    public function __construct(User $user = null)
+    public function __construct(?User $user = null)
     {
         $this->entity = $user;
     }

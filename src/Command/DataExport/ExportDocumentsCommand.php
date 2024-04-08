@@ -22,7 +22,7 @@ class ExportDocumentsCommand extends Command
     public function __construct(
         private readonly EntityManagerInterface $em,
         private readonly ExportService $exportService,
-        string $name = null,
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }

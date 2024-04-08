@@ -21,8 +21,8 @@ class SecretQuestionTest extends AbstractControllerTest implements TestRouteInte
     public function testRoute(
         string $url,
         int $expectedStatusCode,
-        string $userMail = null,
-        string $expectedRedirect = null,
+        ?string $userMail = null,
+        ?string $expectedRedirect = null,
         string $method = 'GET',
         bool $isXmlHttpRequest = false,
         array $body = [],
@@ -60,7 +60,7 @@ class SecretQuestionTest extends AbstractControllerTest implements TestRouteInte
     }
 
     /** @dataProvider provideTestFormIsNotValid */
-    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, string $alternateSelector = null): void
+    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
         $beneficiary = BeneficiaireFactory::createOne()->object();
         $url = sprintf(self::URL, $beneficiary->getId());

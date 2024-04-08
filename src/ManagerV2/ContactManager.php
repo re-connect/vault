@@ -23,7 +23,7 @@ class ContactManager
     /**
      * @return Contact[]
      */
-    public function getContacts(Beneficiaire $beneficiary, string $search = null): array
+    public function getContacts(Beneficiaire $beneficiary, ?string $search = null): array
     {
         $user = $beneficiary->getUser();
 

@@ -52,7 +52,7 @@ class BeneficiaireCentre extends UserCentre
      *
      * @return BeneficiaireCentre
      */
-    public function setCentre(Centre $centre = null)
+    public function setCentre(?Centre $centre = null)
     {
         $this->centre = $centre;
 
@@ -74,7 +74,7 @@ class BeneficiaireCentre extends UserCentre
      *
      * @return BeneficiaireCentre
      */
-    public function setBeneficiaire(Beneficiaire $beneficiaire = null)
+    public function setBeneficiaire(?Beneficiaire $beneficiaire = null)
     {
         $this->beneficiaire = $beneficiaire;
 

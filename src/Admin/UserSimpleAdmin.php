@@ -24,8 +24,12 @@ class UserSimpleAdmin extends AbstractAdmin
     use UserAwareTrait;
     private EntityManagerInterface $entityManager;
 
-    public function __construct(string $code = null, string $class = null, string $baseControllerName = null, Security $security)
-    {
+    public function __construct(
+        ?string $code = null,
+        ?string $class = null,
+        ?string $baseControllerName = null,
+        Security $security,
+    ) {
         $this->security = $security;
         parent::__construct($code, $class, $baseControllerName);
     }

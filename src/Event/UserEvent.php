@@ -16,7 +16,7 @@ final class UserEvent extends REEvent
     private $user;
     protected $type;
 
-    public function __construct(User $user, bool $firstConnectionToday, Client $client = null)
+    public function __construct(User $user, bool $firstConnectionToday, ?Client $client = null)
     {
         if ($user->isBeneficiaire()) {
             $this->type = self::BENEFICIAIRE_CONNECTION;

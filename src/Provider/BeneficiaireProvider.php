@@ -330,7 +330,7 @@ final class BeneficiaireProvider
         $externalLink->setDistantId($distantId);
     }
 
-    public function save(Beneficiaire $beneficiaire, User $user = null, $firstCentre = null): void
+    public function save(Beneficiaire $beneficiaire, ?User $user = null, $firstCentre = null): void
     {
         if ($isCreating = !$beneficiaire->getId()) {
             $beneficiaire->addCreator((new CreatorClient())->setEntity($this->apiClientManager->getCurrentOldClient()));
@@ -406,7 +406,7 @@ final class BeneficiaireProvider
         return $entity;
     }
 
-    private function linkBeneficiaryToCenter(Beneficiaire $beneficiaire, Centre $centre, ClientBeneficiaire $externalLink = null, bool $forceAccept = false): void
+    private function linkBeneficiaryToCenter(Beneficiaire $beneficiaire, Centre $centre, ?ClientBeneficiaire $externalLink = null, bool $forceAccept = false): void
     {
         $beneficiaireCentre = (new BeneficiaireCentre())->setCentre($centre)->setBValid($forceAccept);
         if ($externalLink) {

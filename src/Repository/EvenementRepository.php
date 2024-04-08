@@ -18,7 +18,7 @@ class EvenementRepository extends ServiceEntityRepository
     /**
      * @return Evenement[]
      */
-    public function findFutureEventsByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, string $search = null): array
+    public function findFutureEventsByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, ?string $search = null): array
     {
         $now = new \DateTime();
         $nowLess12h05 = new \DateTime(date('Y-m-d H:i:s', strtotime($now->format('Y-m-d H:i:s').'-12 hours -5 minutes')));

@@ -16,15 +16,15 @@ class ReminderType extends AbstractType
     {
         $builder
             ->add('date', DateTimeType::class, [
-                    'label' => false,
-                    'date_widget' => 'single_text',
-                    'minutes' => [0, 15, 30, 45],
-                ]
+                'label' => false,
+                'date_widget' => 'single_text',
+                'minutes' => [0, 15, 30, 45],
+            ]
             )
             ->add('timezone', TimezoneType::class, [
-                    'attr' => ['data-controller' => 'timezone'],
-                    'row_attr' => ['class' => 'd-none'],
-                ]
+                'attr' => ['data-controller' => 'timezone'],
+                'row_attr' => ['class' => 'd-none'],
+            ]
             )->addEventSubscriber(new TimezoneListener());
     }
 

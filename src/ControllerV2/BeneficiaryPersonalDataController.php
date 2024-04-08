@@ -341,7 +341,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         ]);
     }
 
-    private function getSearchForm(string $url, SearchFormModel $formModel = null): FormInterface
+    private function getSearchForm(string $url, ?SearchFormModel $formModel = null): FormInterface
     {
         return $this->createForm(SearchType::class, $formModel, [
             'attr' => ['data-controller' => 'ajax-list-filter'],
