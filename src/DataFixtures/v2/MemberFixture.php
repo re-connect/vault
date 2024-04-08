@@ -28,6 +28,8 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
     public const MEMBER_FIRST_VISIT_WITH_MFA = 'v2_test_user_membre_first_visit_with_mfa@mail.com';
     public const MEMBER_WITH_MFA_ENABLE = 'v2_test_user_membre_with_mfa@mail.com';
 
+    public const MEMBER_WITH_CLIENT = 'test_membre_with_client';
+
     public function load(ObjectManager $manager)
     {
         $this->createMember(['email' => self::MEMBER_MAIL],
@@ -72,6 +74,11 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
             'password' => UserFactory::WEAK_PASSWORD_HASH,
         ]);
         $this->createMember(['email' => self::MEMBER_WITH_MFA_ENABLE, 'mfaEnabled' => true], [], false, false);
+        $this->createMember(['email' => self::MEMBER_WITH_CLIENT],
+            [
+                RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY_1]),
+            ],
+        );
     }
 
     /** @param array<Centre> $relays */
