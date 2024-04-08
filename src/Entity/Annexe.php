@@ -158,7 +158,7 @@ class Annexe
     /**
      * @param File|UploadedFile $fichierFile
      */
-    public function setFichierFile(File $fichierFile = null)
+    public function setFichierFile(?File $fichierFile = null)
     {
         $this->fichierFile = $fichierFile;
         if (null !== $fichierFile) {

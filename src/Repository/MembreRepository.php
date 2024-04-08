@@ -20,7 +20,7 @@ class MembreRepository extends ServiceEntityRepository
     /**
      * @throws NonUniqueResultException
      */
-    public function findByDistantId(null|int|string $distantId, string $clientIdentifier): ?Membre
+    public function findByDistantId(int|string|null $distantId, string $clientIdentifier): ?Membre
     {
         if (!$distantId) {
             return null;
@@ -64,7 +64,7 @@ class MembreRepository extends ServiceEntityRepository
     /**
      * @return Membre[]
      */
-    public function findByAuthorizedProfessional(Membre $professional, string $search = null, Centre $relay = null): array
+    public function findByAuthorizedProfessional(Membre $professional, ?string $search = null, ?Centre $relay = null): array
     {
         $qb = $this->createQueryBuilder('m')
             ->innerJoin('m.membresCentres', 'bc')

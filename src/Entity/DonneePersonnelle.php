@@ -139,7 +139,7 @@ abstract class DonneePersonnelle implements \JsonSerializable
         return $this->beneficiaire;
     }
 
-    public function setBeneficiaire(Beneficiaire $beneficiaire = null): static
+    public function setBeneficiaire(?Beneficiaire $beneficiaire = null): static
     {
         $this->beneficiaire = $beneficiaire;
 
@@ -147,8 +147,8 @@ abstract class DonneePersonnelle implements \JsonSerializable
     }
 
     #[Groups([
-    'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
-    'document:read', 'read-personal-data', 'read-personal-data-v2', ])]
+        'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
+        'document:read', 'read-personal-data', 'read-personal-data-v2', ])]
     public function getBeneficiaireId(): int
     {
         return $this->beneficiaire?->getId();
@@ -164,7 +164,7 @@ abstract class DonneePersonnelle implements \JsonSerializable
         return $this->deposePar;
     }
 
-    public function setDeposePar(User $deposePar = null): static
+    public function setDeposePar(?User $deposePar = null): static
     {
         $this->deposePar = $deposePar;
 

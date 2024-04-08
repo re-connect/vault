@@ -24,7 +24,7 @@ class PasswordPolicySubscriberTest extends WebTestCase
     /**
      * @dataProvider provideTestRedirectsToImprovePasswordPage
      */
-    public function testRedirectsToImprovePasswordPage(string $email, string $redirection = null): void
+    public function testRedirectsToImprovePasswordPage(string $email, ?string $redirection = null): void
     {
         self::ensureKernelShutdown();
         $client = static::createClient();

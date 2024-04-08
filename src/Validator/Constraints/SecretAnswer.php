@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraint;
 class SecretAnswer extends Constraint
 {
     #[HasNamedArguments]
-    public function __construct(public Beneficiaire $beneficiary, mixed $options = null, array $groups = null, mixed $payload = null)
+    public function __construct(public Beneficiaire $beneficiary, mixed $options = null, ?array $groups = null, mixed $payload = null)
     {
         parent::__construct($options, $groups, $payload);
     }

@@ -103,7 +103,7 @@ class Rappel implements \JsonSerializable
      *
      * @return Rappel
      */
-    public function setEvenement(Evenement $evenement = null)
+    public function setEvenement(?Evenement $evenement = null)
     {
         $this->evenement = $evenement;
 
@@ -149,7 +149,7 @@ class Rappel implements \JsonSerializable
      *
      * @return Rappel
      */
-    public function setSms(SMS $sms = null)
+    public function setSms(?SMS $sms = null)
     {
         $this->sms = $sms;
 

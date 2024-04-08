@@ -28,7 +28,7 @@ use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
@@ -341,7 +341,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         ]);
     }
 
-    private function getSearchForm(string $url, SearchFormModel $formModel = null): FormInterface
+    private function getSearchForm(string $url, ?SearchFormModel $formModel = null): FormInterface
     {
         return $this->createForm(SearchType::class, $formModel, [
             'attr' => ['data-controller' => 'ajax-list-filter'],

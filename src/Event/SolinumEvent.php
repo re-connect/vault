@@ -13,7 +13,7 @@ class SolinumEvent extends REEvent
     protected $type;
     protected $user;
 
-    public function __construct($type, Beneficiaire $beneficiaire = null)
+    public function __construct($type, ?Beneficiaire $beneficiaire = null)
     {
         $this->beneficiaire = $beneficiaire;
         $this->type = $type;

@@ -26,7 +26,7 @@ abstract class AbstractApiTest extends ApiTestCase
     /**
      * @param array<string, string> $expectedJson
      */
-    public function assertEndpoint(string $clientName, string $endpoint, string $method, int $expectedStatusCode, array $expectedJson = null, mixed $body = null): void
+    public function assertEndpoint(string $clientName, string $endpoint, string $method, int $expectedStatusCode, ?array $expectedJson = null, mixed $body = null): void
     {
         $this->loginAsClient($clientName);
         $options = ['json' => $body];

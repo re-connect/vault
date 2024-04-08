@@ -56,8 +56,8 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public const string MFA_METHOD_SMS = 'sms';
     public const string MFA_METHOD_EMAIL = 'email';
     public const array MFA_METHODS = [
-      self::MFA_METHOD_EMAIL,
-      self::MFA_METHOD_SMS,
+        self::MFA_METHOD_EMAIL,
+        self::MFA_METHOD_SMS,
     ];
 
     /**
@@ -481,7 +481,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->subjectBeneficiaire;
     }
 
-    public function setSubjectBeneficiaire(Beneficiaire $subjectBeneficiaire = null): self
+    public function setSubjectBeneficiaire(?Beneficiaire $subjectBeneficiaire = null): self
     {
         $this->subjectBeneficiaire = $subjectBeneficiaire;
 
@@ -502,7 +502,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->subjectGestionnaire;
     }
 
-    public function setSubjectGestionnaire(Gestionnaire $subjectGestionnaire = null): self
+    public function setSubjectGestionnaire(?Gestionnaire $subjectGestionnaire = null): self
     {
         $this->subjectGestionnaire = $subjectGestionnaire;
 
@@ -519,7 +519,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->subjectAssociation;
     }
 
-    public function setSubjectAssociation(Association $subjectAssociation = null): self
+    public function setSubjectAssociation(?Association $subjectAssociation = null): self
     {
         $this->subjectAssociation = $subjectAssociation;
 
@@ -546,7 +546,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->subjectMembre;
     }
 
-    public function setSubjectMembre(Membre $subjectMembre = null): self
+    public function setSubjectMembre(?Membre $subjectMembre = null): self
     {
         $this->subjectMembre = $subjectMembre;
 
@@ -567,7 +567,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->subjectAdministrateur;
     }
 
-    public function setSubjectAdministrateur(Administrateur $subjectAdministrateur = null): self
+    public function setSubjectAdministrateur(?Administrateur $subjectAdministrateur = null): self
     {
         $this->subjectAdministrateur = $subjectAdministrateur;
 
@@ -778,9 +778,9 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
             'username' => $this->username,
             'type_user' => $this->typeUser,
             'email' => $this->email,
-            'subject_id' => $this->getSubject()?->getId(),
-            'last_login' => null !== $this->derniereConnexionAt ? $this->derniereConnexionAt->format(\DateTime::W3C) : null,
             'created_at' => $this->createdAt->format(\DateTime::W3C),
+            'last_login' => null !== $this->derniereConnexionAt ? $this->derniereConnexionAt->format(\DateTime::W3C) : null,
+            'subject_id' => $this->getSubject()?->getId(),
             'updated_at' => $this->updatedAt->format(\DateTime::W3C),
             'b_first_mobile_connexion' => $this->bFirstMobileConnexion,
             'adresse' => $this->getAdresse(),
@@ -811,7 +811,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->adresse;
     }
 
-    public function setAdresse(Adresse $adresse = null): self
+    public function setAdresse(?Adresse $adresse = null): self
     {
         $this->adresse = $adresse;
 
@@ -1040,7 +1040,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->autoLoginToken;
     }
 
-    public function setAutoLoginToken(string $autoLoginToken = null): self
+    public function setAutoLoginToken(?string $autoLoginToken = null): self
     {
         $this->autoLoginToken = $autoLoginToken;
 
@@ -1064,7 +1064,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->fcnToken;
     }
 
-    public function setFcnToken(string $fcnToken = null): self
+    public function setFcnToken(?string $fcnToken = null): self
     {
         $this->fcnToken = $fcnToken;
 

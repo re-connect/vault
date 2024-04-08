@@ -181,7 +181,7 @@ class BeneficiaireRepository extends ServiceEntityRepository
     }
 
     /** @return Beneficiaire[] */
-    public function findByAuthorizedProfessional(Membre $professional, string $search = null, Centre $relay = null): array
+    public function findByAuthorizedProfessional(Membre $professional, ?string $search = null, ?Centre $relay = null): array
     {
         $qb = self::addProAccessJoinsAndConditions($this->createQueryBuilder('b'), 'b', $professional->getId());
 

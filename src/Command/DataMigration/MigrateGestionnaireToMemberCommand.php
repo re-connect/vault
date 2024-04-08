@@ -31,7 +31,7 @@ class MigrateGestionnaireToMemberCommand extends Command
         private readonly EntityManagerInterface $em,
         private readonly CentreRepository $relayRepository,
         private readonly ClientGestionnaireRepository $clientGestionnaireRepository,
-        string $name = null,
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }

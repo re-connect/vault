@@ -27,7 +27,7 @@ class MigrateRosalieIdsToSiSiaoIdsCommand extends Command
         private readonly BeneficiaireRepository $beneficiaireRepository,
         private readonly ClientRepository $clientRepository,
         private readonly EntityManagerInterface $em,
-        string $name = null,
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }

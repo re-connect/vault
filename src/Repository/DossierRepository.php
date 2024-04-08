@@ -19,7 +19,7 @@ class DossierRepository extends ServiceEntityRepository
     /**
      * @return Dossier[]
      */
-    public function findAllowed(Beneficiaire $beneficiaire, bool $isBeneficiaire, int $dossierParentId = null): array
+    public function findAllowed(Beneficiaire $beneficiaire, bool $isBeneficiaire, ?int $dossierParentId = null): array
     {
         $criteria = [
             'beneficiaire' => $beneficiaire,
@@ -35,7 +35,7 @@ class DossierRepository extends ServiceEntityRepository
     /**
      * @return Dossier[]
      */
-    public function findByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, Dossier $parentFolder = null, string $search = null): array
+    public function findByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, ?Dossier $parentFolder = null, ?string $search = null): array
     {
         $qb = $this->createQueryBuilder('d')
             ->andWhere('d.beneficiaire = :beneficiary')

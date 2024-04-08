@@ -174,7 +174,7 @@ class ExportService
         return $response;
     }
 
-    public function saveFileToDisk(Xlsx $xlsx, SymfonyStyle $io = null): void
+    public function saveFileToDisk(Xlsx $xlsx, ?SymfonyStyle $io = null): void
     {
         $filePath = sprintf('%s/var/export/%s.xlsx', $this->kernelProjectDir, $xlsx->getSpreadsheet()->getProperties()->getTitle());
 

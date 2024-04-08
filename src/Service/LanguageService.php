@@ -15,7 +15,7 @@ class LanguageService
     ) {
     }
 
-    public function setLocaleInSession(string $lang = null): void
+    public function setLocaleInSession(?string $lang = null): void
     {
         if ($lang) {
             $locale = $this->getLocaleFromLang($lang);

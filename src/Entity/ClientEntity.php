@@ -8,7 +8,7 @@ abstract class ClientEntity
 
     protected ?string $entity_name = null;
 
-    private null|int|string $distantId;
+    private int|string|null $distantId;
 
     private ?Client $client;
 
@@ -45,7 +45,7 @@ abstract class ClientEntity
         return $this->client;
     }
 
-    public function setClient(Client $client = null): self
+    public function setClient(?Client $client = null): self
     {
         $this->client = $client;
 
@@ -57,7 +57,7 @@ abstract class ClientEntity
         return $this->entity_name;
     }
 
-    public function setEntityName(string $entityName = null): self
+    public function setEntityName(?string $entityName = null): self
     {
         $this->entity_name = $entityName;
 
@@ -69,7 +69,7 @@ abstract class ClientEntity
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt = null): self
+    public function setCreatedAt(?\DateTime $createdAt = null): self
     {
         $this->createdAt = $createdAt;
 
@@ -81,7 +81,7 @@ abstract class ClientEntity
         return $this->updateAt;
     }
 
-    public function setUpdateAt(\DateTime $updateAt = null): self
+    public function setUpdateAt(?\DateTime $updateAt = null): self
     {
         $this->updateAt = $updateAt;
 

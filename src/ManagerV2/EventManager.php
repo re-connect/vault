@@ -30,7 +30,7 @@ class EventManager
     /**
      * @return Evenement[]
      */
-    public function getEvents(Beneficiaire $beneficiary, string $search = null): array
+    public function getEvents(Beneficiaire $beneficiary, ?string $search = null): array
     {
         $events = $this->eventRepository->findFutureEventsByBeneficiary(
             $beneficiary,

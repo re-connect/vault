@@ -41,7 +41,7 @@ class ButtonExtension extends AbstractExtension
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\LoaderError
      */
-    public function link(Environment $env, string $path, string $message, string $color, string $icon = null, string $attr = null): string
+    public function link(Environment $env, string $path, string $message, string $color, ?string $icon = null, ?string $attr = null): string
     {
         return $env->render('v2/common/_link_button.html.twig', [
             'path' => $path,
