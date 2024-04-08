@@ -15,7 +15,7 @@ abstract class LocalizedTemplatedEmail
      * @param array<int, string>   $recipients
      * @param array<string, mixed> $extraContent
      */
-    public static function create(array $recipients, string $lang, string $url, User $sender = null, array $extraContent = []): TemplatedEmail
+    public static function create(array $recipients, string $lang, string $url, ?User $sender = null, array $extraContent = []): TemplatedEmail
     {
         return (new TemplatedEmail())
             ->to(...$recipients)
@@ -27,7 +27,7 @@ abstract class LocalizedTemplatedEmail
     /**
      * @return string[]
      */
-    public static function getContext(string $lang, string $url, User $sender = null): array
+    public static function getContext(string $lang, string $url, ?User $sender = null): array
     {
         return [
             'url' => $url,

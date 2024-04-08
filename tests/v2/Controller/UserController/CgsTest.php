@@ -25,8 +25,8 @@ class CgsTest extends AbstractControllerTest implements TestRouteInterface, Test
     public function testRoute(
         string $url,
         int $expectedStatusCode,
-        string $userMail = null,
-        string $expectedRedirect = null,
+        ?string $userMail = null,
+        ?string $expectedRedirect = null,
         string $method = 'GET',
         bool $isXmlHttpRequest = false,
         array $body = [],
@@ -89,7 +89,7 @@ class CgsTest extends AbstractControllerTest implements TestRouteInterface, Test
     }
 
     /** @dataProvider provideTestFormIsNotValid */
-    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, string $alternateSelector = null): void
+    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
         $this->assertFormIsNotValid(self::URL, 'user_cgs', 'confirm', $values, $errors, $email, $alternateSelector);
     }

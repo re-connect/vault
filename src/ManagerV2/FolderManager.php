@@ -36,7 +36,7 @@ class FolderManager
     /**
      * @return Dossier[]
      */
-    public function getFolders(Beneficiaire $beneficiary, Dossier $parentFolder = null, string $search = null): array
+    public function getFolders(Beneficiaire $beneficiary, ?Dossier $parentFolder = null, ?string $search = null): array
     {
         return $this->folderRepository->findByBeneficiary(
             $beneficiary,

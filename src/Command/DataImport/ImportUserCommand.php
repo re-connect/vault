@@ -31,7 +31,7 @@ class ImportUserCommand extends Command
         private readonly string $kernelProjectDir,
         private readonly EntityManagerInterface $em,
         private readonly CentreRepository $centreRepository,
-        string $name = null
+        ?string $name = null
     ) {
         parent::__construct($name);
     }
@@ -128,7 +128,7 @@ class ImportUserCommand extends Command
         }
     }
 
-    private function createBeneficiary(User $user, int $relayId = null): void
+    private function createBeneficiary(User $user, ?int $relayId = null): void
     {
         $user->setTypeUser(User::USER_TYPE_BENEFICIAIRE);
         $beneficiary = (new Beneficiaire())
@@ -145,7 +145,7 @@ class ImportUserCommand extends Command
         $this->em->persist($beneficiary);
     }
 
-    private function createPro(User $user, int $relayId = null): void
+    private function createPro(User $user, ?int $relayId = null): void
     {
         $user->setTypeUser(User::USER_TYPE_MEMBRE);
         $pro = (new Membre())->setUser($user);

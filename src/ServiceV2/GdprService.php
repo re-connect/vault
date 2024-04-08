@@ -31,12 +31,12 @@ class GdprService
         return $this->getDaysBeforeExpiration() <= self::RENEWAL_DAYS_COUNT;
     }
 
-    public function isPasswordExpired(User $user = null): bool
+    public function isPasswordExpired(?User $user = null): bool
     {
         return $this->getDaysBeforeExpiration($user) <= self::EXPIRATION_DAYS_COUNT;
     }
 
-    private function getDaysBeforeExpiration(User $user = null): int
+    private function getDaysBeforeExpiration(?User $user = null): int
     {
         $user = $user ?: $this->getUser();
         $now = new \DateTimeImmutable();

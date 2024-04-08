@@ -42,7 +42,7 @@ abstract class Subject implements \JsonSerializable
         return $this->user;
     }
 
-    abstract public function setUser(User $user = null);
+    abstract public function setUser(?User $user = null);
 
     public function getId(): ?int
     {

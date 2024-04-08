@@ -26,27 +26,23 @@ class EventType extends AbstractType
                 'label' => 'title',
             ])
             ->add('date', DateTimeType::class, [
-                    'label' => 'date',
-                    'widget' => 'single_text',
-                    'minutes' => [0, 15, 30, 45],
-                    'data' => $event?->getId() ? $event->getDate() : (new \DateTime())->modify('+1 hour'),
-                ]
-            )
+                'label' => 'date',
+                'widget' => 'single_text',
+                'minutes' => [0, 15, 30, 45],
+                'data' => $event?->getId() ? $event->getDate() : (new \DateTime())->modify('+1 hour'),
+            ])
             ->add('timezone', TimezoneType::class, [
                 'attr' => ['data-controller' => 'timezone'],
                 'row_attr' => ['class' => 'd-none'],
-            ],
-            )
+            ])
             ->add('lieu', TextType::class, [
-                    'label' => 'location',
-                    'required' => false,
-                ]
-            )
+                'label' => 'location',
+                'required' => false,
+            ])
             ->add('commentaire', TextareaType::class, [
-                    'label' => 'comment',
-                    'required' => false,
-                ]
-            )
+                'label' => 'comment',
+                'required' => false,
+            ])
             ->add('rappels', LiveCollectionType::class, [
                 'entry_type' => ReminderType::class,
                 'allow_add' => true,
@@ -56,11 +52,11 @@ class EventType extends AbstractType
                 'label' => 'reminder_sms',
             ])
             ->add('bPrive', ChoiceType::class, [
-                    'label' => 'access',
-                    'expanded' => true,
-                    'choices' => DonneePersonnelle::getArBPrive(),
-                    'data' => $options['private'],
-                ]
+                'label' => 'access',
+                'expanded' => true,
+                'choices' => DonneePersonnelle::getArBPrive(),
+                'data' => $options['private'],
+            ]
             )
             ->addEventSubscriber(new TimezoneListener());
     }

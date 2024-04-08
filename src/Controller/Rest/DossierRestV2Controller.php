@@ -193,7 +193,7 @@ class DossierRestV2Controller extends REController
             if (0 === count($errors)) {
                 $mailManager->sendFolderWithMail($dossier, $email);
 
-                return $this->json('', RESPONSE::HTTP_NO_CONTENT);
+                return $this->json('', Response::HTTP_NO_CONTENT);
             }
 
             // this is *not* a valid email address

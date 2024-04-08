@@ -15,7 +15,7 @@ class AuthenticatedKernelTestCase extends KernelTestCase
     protected function loginUser(string $email): void
     {
         $container = static::getContainer();
-        /** @var \App\Entity\User $user */
+        /** @var User $user */
         $user = $this->getTestUserFromDb($email);
 
         $token = new UsernamePasswordToken($user, 'main', $user->getRoles());

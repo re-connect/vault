@@ -26,7 +26,7 @@ class UserProvider
      * Création d'un username pour le user (avec incrémentation si il existe déjà pour les membres)
      * Cas traités: bénficiaire (avec date de naissance) et les autres.
      */
-    public function formatUserName(User $user, \DateTime $dateDeNaissanceObject = null): void
+    public function formatUserName(User $user, ?\DateTime $dateDeNaissanceObject = null): void
     {
         $unwanted_array = ['Š' => 'S', 'š' => 's', 'Ž' => 'Z', 'ž' => 'z', 'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A', 'Æ' => 'A', 'Ç' => 'C', 'È' => 'E', 'É' => 'E',
             'Ê' => 'E', 'Ë' => 'E', 'Ì' => 'I', 'Í' => 'I', 'Î' => 'I', 'Ï' => 'I', 'Ñ' => 'N', 'Ò' => 'O', 'Ó' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'O', 'Ø' => 'O', 'Ù' => 'U',

@@ -47,7 +47,7 @@ class MembreCentre extends UserCentre
         return $this->centre;
     }
 
-    public function setCentre(Centre $centre = null): static
+    public function setCentre(?Centre $centre = null): static
     {
         $this->centre = $centre;
 
@@ -59,7 +59,7 @@ class MembreCentre extends UserCentre
         return $this->membre;
     }
 
-    public function setMembre(Membre $membre = null): static
+    public function setMembre(?Membre $membre = null): static
     {
         $this->membre = $membre;
 
