@@ -146,7 +146,7 @@ class UserManager
     public function handleUserLogin(User $user): void
     {
         if (!$user->hasLoginToday()) {
-            $user->setDerniereConnexionAt(new \DateTime());
+            $user->setLastLogin(new \DateTime());
             $this->em->flush();
         }
         $this->dispatcher->dispatch(new UserEvent($user, !$user->hasLoginToday()));
