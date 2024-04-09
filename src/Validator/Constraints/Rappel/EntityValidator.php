@@ -7,10 +7,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class EntityValidator extends ConstraintValidator
 {
-    public function __construct(private readonly EntityManagerInterface $entityManager)
+    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly TranslatorInterface $translator)
     {
     }
 
@@ -41,7 +42,7 @@ class EntityValidator extends ConstraintValidator
         $beneficiary = $reminder->getEvenement()->getBeneficiaire();
 
         if (null === $reminder->getId() && !$beneficiary?->getUser()?->getTelephone()) {
-            $this->context->addViolation('Pas de numéro de téléphone enregistré.');
+            $this->context->addViolation($this->translator->trans('no_phone_number_registered'));
         }
     }
 
@@ -55,7 +56,7 @@ class EntityValidator extends ConstraintValidator
             $dateBeforeUpdateToUtc = new \DateTime($dateBeforeUpdate->format('Y-m-d H:i:s'), new \DateTimeZone('UTC'));
 
             if ($reminder->getBEnvoye() && $reminder->getDateToUtcTimezone() !== $dateBeforeUpdateToUtc) {
-                $this->context->buildViolation($constraint->messageSMSAlreadySend)
+                $this->context->buildViolation($this->translator->trans('reminder_already_send'))
                     ->setParameter('{{ string }}', $dateBeforeUpdate->format('d/m/Y à H:i'))
                     ->addViolation();
             }
@@ -67,7 +68,7 @@ class EntityValidator extends ConstraintValidator
         $nowMinus12HoursUtc = (new \DateTime('now', new \DateTimeZone('UTC')))->modify('-12 hours -5 minutes');
 
         if (null === $reminder->getId() && $reminder->getDateToUtcTimezone() < $nowMinus12HoursUtc) {
-            $this->context->addViolation($constraint->messageRappelBeforeNow);
+            $this->context->addViolation($this->translator->trans('reminder_outdated'));
         }
     }
 }

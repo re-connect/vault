@@ -6,9 +6,14 @@ use App\Entity\Evenement;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class EntityValidator extends ConstraintValidator
 {
+    public function __construct(private readonly TranslatorInterface $translator)
+    {
+    }
+
     /**
      * @param Evenement $event
      *
@@ -24,26 +29,26 @@ class EntityValidator extends ConstraintValidator
             $event->setDate(new \DateTime($event->getDate()));
         }
 
-        $this->checkEventViolation($event, $constraint);
-        $this->checkRemindersViolation($event, $constraint);
+        $this->checkEventViolation($event);
+        $this->checkRemindersViolation($event);
     }
 
-    private function checkEventViolation(Evenement $event, Constraint $constraint): void
+    private function checkEventViolation(Evenement $event): void
     {
         $nowMinus12HoursUtc = (new \DateTime('now', new \DateTimeZone('UTC')))->modify('-12 hours -5 minutes');
 
         if ($event->getDateToUtcTimezone() < $nowMinus12HoursUtc) {
-            $this->context->buildViolation($constraint->messageRappelBeforeNow)
+            $this->context->buildViolation($this->translator->trans('event_outdated'))
                 ->atPath('date')
                 ->addViolation();
         }
     }
 
-    private function checkRemindersViolation(Evenement $event, Constraint $constraint): void
+    private function checkRemindersViolation(Evenement $event): void
     {
         foreach ($event->getRappels() as $rappel) {
             if ($rappel->getDateToUtcTimezone() > $event->getDateToUtcTimezone()) {
-                $this->context->addViolation($constraint->messageRappelAfterDateEvent);
+                $this->context->addViolation($this->translator->trans('reminder_should_not_outdate_event'));
 
                 return;
             }
