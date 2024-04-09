@@ -3,64 +3,46 @@
 namespace App\Validator\Constraints\Evenement;
 
 use App\Entity\Evenement;
-use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class EntityValidator extends ConstraintValidator
 {
-    private EntityManagerInterface $entityManager;
-    private ValidatorInterface $validator;
-
-    public function __construct(EntityManagerInterface $entityManager, ValidatorInterface $validator)
-    {
-        $this->entityManager = $entityManager;
-        $this->validator = $validator;
-    }
-
     /**
-     * @param Evenement $entity
+     * @param Evenement $event
      *
      * @throws \Exception
      */
-    public function validate($entity, Constraint $constraint)
+    public function validate(mixed $event, Constraint $constraint): void
     {
-        //        throw new \Exception(__METHOD__);
-        if (null === $entity || '' === $entity) {
-            return;
+        if (!$event instanceof Evenement) {
+            throw new UnexpectedTypeException($event, Evenement::class);
         }
 
-        if (!$entity->getDate() instanceof \DateTime) {
-            $entity->setDate(new \DateTime($entity->getDate()));
+        if (!$event->getDate() instanceof \DateTime) {
+            $event->setDate(new \DateTime($event->getDate()));
         }
 
+        $this->checkEventViolation($event, $constraint);
+        $this->checkRemindersViolation($event, $constraint);
+    }
+
+    private function checkEventViolation(Evenement $event, Constraint $constraint): void
+    {
         $nowMinus12HoursUtc = (new \DateTime('now', new \DateTimeZone('UTC')))->modify('-12 hours -5 minutes');
 
-        if ((null === $entity->getId()) && $entity->getDateToUtcTimezone() < $nowMinus12HoursUtc) {
+        if ($event->getDateToUtcTimezone() < $nowMinus12HoursUtc) {
             $this->context->buildViolation($constraint->messageRappelBeforeNow)
                 ->atPath('date')
                 ->addViolation();
-
-            return;
         }
+    }
 
-        $currentDate = $entity->getDate();
-
-        $originalRappel = $this->entityManager
-            ->getUnitOfWork()
-            ->getOriginalEntityData($entity);
-
-        if (null !== $originalRappel && !empty($originalRappel['date']) && $originalRappel['date'] !== $currentDate && $originalRappel['date'] < $nowMinus12HoursUtc) {
-            $this->context->buildViolation($constraint->messageRappelBeforeNow)
-                ->atPath('date')
-                ->addViolation();
-
-            return;
-        }
-
-        foreach ($entity->getRappels() as $rappel) {
-            if ($rappel->getDate() > $entity->getDate()) {
+    private function checkRemindersViolation(Evenement $event, Constraint $constraint): void
+    {
+        foreach ($event->getRappels() as $rappel) {
+            if ($rappel->getDateToUtcTimezone() > $event->getDateToUtcTimezone()) {
                 $this->context->addViolation($constraint->messageRappelAfterDateEvent);
 
                 return;
