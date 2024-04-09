@@ -19,6 +19,8 @@ class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $event = $options['data'] ?? null;
+
         $builder
             ->add('nom', TextType::class, [
                 'label' => 'title',
@@ -27,6 +29,7 @@ class EventType extends AbstractType
                 'label' => 'date',
                 'widget' => 'single_text',
                 'minutes' => [0, 15, 30, 45],
+                'data' => $event?->getId() ? $event->getDate() : (new \DateTime())->modify('+1 hour'),
             ]
             )
             ->add('timezone', TimezoneType::class, [
