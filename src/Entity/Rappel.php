@@ -59,6 +59,11 @@ class Rappel implements \JsonSerializable
         return new \DateTime($date->format('Y-m-d H:i:s'), new \DateTimeZone($timezone));
     }
 
+    public function getDateToUtcTimezone(): \DateTime
+    {
+        return $this->getDate()->setTimezone(new \DateTimeZone('UTC'));
+    }
+
     /**
      * Set date.
      *
