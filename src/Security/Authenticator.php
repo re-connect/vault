@@ -49,9 +49,9 @@ class Authenticator extends AbstractLoginFormAuthenticator
     {
         /** @var User $user */
         $user = $token->getUser();
-        $previousLogin = $user->getDerniereConnexionAt()?->format('Y-m-d');
+        $previousLogin = $user->getLastLogin()?->format('Y-m-d');
         $now = new \DateTime();
-        $user->setLastIp($request->getClientIp())->setDerniereConnexionAt($now);
+        $user->setLastIp($request->getClientIp());
 
         $this->weakPasswordUpgrader->markPasswordCompliant($user, $request->request->get('_password'));
         $this->em->persist($user);
