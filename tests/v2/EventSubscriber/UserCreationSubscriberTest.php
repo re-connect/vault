@@ -4,8 +4,10 @@ namespace App\Tests\v2\EventSubscriber;
 
 use App\Entity\Beneficiaire;
 use App\Tests\Factory\BeneficiaireFactory;
+use App\Tests\Factory\MembreFactory;
 use App\Tests\Factory\RelayFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Zenstruck\Foundry\ModelFactory;
 
 class UserCreationSubscriberTest extends KernelTestCase
 {
@@ -27,16 +29,23 @@ class UserCreationSubscriberTest extends KernelTestCase
         $this->assertEquals($expectedUsername, $user->getUsername());
     }
 
-    public function testAddCreatorRelay(): void
+    /**
+     * @dataProvider provideTestAddCreatorRelay
+     */
+    public function testAddCreatorRelay(ModelFactory $modelFactory): void
     {
         $relay = RelayFactory::createOne()->object();
-        /** @var Beneficiaire $beneficiary */
-        $beneficiary = BeneficiaireFactory::new()
+        $subject = $modelFactory
             ->linkToRelays([$relay])
             ->create()
             ->object();
-        $user = $beneficiary->getUser();
 
-        $this->assertEquals($relay, $user->getCreatorCentreRelay());
+        $this->assertEquals($relay, $subject->getUser()->getCreatorCentreRelay());
+    }
+
+    public function provideTestAddCreatorRelay(): \Generator
+    {
+        yield 'test' => [BeneficiaireFactory::new()];
+        yield 'test2' => [MembreFactory::new()];
     }
 }
