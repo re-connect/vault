@@ -254,6 +254,7 @@ error_500: Il y a eu une erreur technique, le problème vient de nous, nous allo
 error_during_download: "Erreur : le téléchargement n'a pas pu aboutir"
 event: Événement
 event_created: 'Événement créé'
+event_outdated: "La date de l'événement est déjà passée."
 event_removed_successfully: 'Ваш элемент успешно удалён'
 event_updated: 'Événement modifié'
 events: События
@@ -403,6 +404,7 @@ no_email_address: Vous avez choisi de recevoir un code de connexion par email, m
 no_event_yet: 'На данный момент нет событий. Нажмите «Добавить», чтобы создать его.'
 no_note_yet: 'Еще нет заметок. Нажмите «Добавить», чтобы создать его.'
 no_phone_number: Vous avez choisi de recevoir un code de connexion par SMS, mais vous n'avez pas renseigné de numéro de téléphone.
+no_phone_number_registered: Pas de numéro de téléphone enregistré.
 no_relay_selected: Aucun relais sélectionné
 no_relay_selected_alert: Vous n’avez affilié ce bénéficiaire à aucun relais. Si vous souhaitez poursuivre la création comme cela, cliquez sur continuer
 no_result: 'Aucun résultat'
@@ -471,6 +473,9 @@ relay_wishes_to_add_you: 'Посредник Reconnect хочет вас доб�
 relays: Relais
 relays_choice: Choix des relais
 reminder: Rappel
+reminder_already_send: "La date du rappel {{ string }} n'est pas modifiable car un SMS a déjà été envoyé."
+reminder_outdated: La date de rappel est déjà passée.
+reminder_should_not_outdate_event: "La date de rappel doit se situer avant la date de l'événement."
 reminder_sms: 'Rappel SMS'
 reminder_sms_content: "Bonjour \nRappel RDV : %name% \n%date%"
 reminders: Напомиание
