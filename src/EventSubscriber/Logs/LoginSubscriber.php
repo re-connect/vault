@@ -28,12 +28,26 @@ class LoginSubscriber implements EventSubscriberInterface
 
     public function onLoginSuccessEvent(LoginSuccessEvent $event): void
     {
-        $this->logger->logLogin();
+        $user = $this->getUser();
+        if (!$user || $user->isMfaEnabled()) {
+            return;
+        }
+        $user->setLastLogin(new \DateTime());
+        $this->em->flush();
+
+        $this->logger->logLogin($user);
     }
 
     public function onAuthenticationCompleteEvent(): void
     {
-        $this->getUser()->resetMfaRetryCount();
+        $user = $this->getUser();
+        if (!$user) {
+            return;
+        }
+        $user->resetMfaRetryCount();
+        $user->setLastLogin(new \DateTime());
         $this->em->flush();
+
+        $this->logger->logLogin($user);
     }
 }
