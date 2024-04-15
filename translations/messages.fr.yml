@@ -354,7 +354,7 @@ login_error_disabled_account: Votre compte est désactivé, veuillez contacter l
 login_error_account_in_creation: Votre compte est en cours de création, veuillez contacter le support.
 login_form_title: 'Accès au coffre-fort numérique'
 logout: Déconnexion
-mail_auth_code_content : 'Voici votre code de connexion : '
+mail_auth_code_content: 'Voici votre code de connexion : '
 mail_auth_code_subject: 'RECONNECT- Votre code de connexion'
 mail_auth_code_title: Bonjour %username% !
 mail_reset_password_content_1: "Nous avons reçu une demande de renouvellement de mot de passe pour votre coffre-fort Reconnect. Si vous n'êtes pas à l'origine de cette demande, vous pouvez ignorer cet e-mail et aucun changement ne sera apporté à votre compte."
