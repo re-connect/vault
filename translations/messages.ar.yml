@@ -254,6 +254,7 @@ error_500: حدث خطأ فني، المشكلة من جانبنا، سنعمل 
 error_during_download: "خطأ: فشل التنزيل"
 event: حدث
 event_created: 'تم إنشاء الحدث'
+event_outdated: "La date de l'événement est déjà passée."
 event_removed_successfully: 'لفد تم الغاء الحدث'
 event_updated: 'تم تعديل الحدث'
 events: احداث
@@ -349,6 +350,8 @@ leave_center: 'مغادرة هذا المركز'
 leave_center_confirm: 'هل أنت متأكد من مغادرة هذا المركز؟'
 leave_center_title: 'مغادرة هذا المركز%s'
 location: الموقع
+login_error_disabled_account: Votre compte est désactivé, veuillez contacter le support.
+login_error_account_in_creation: Votre compte est en cours de création, veuillez contacter le support.
 login_form_title: 'الوصول إلى الخزنة الرقمية'
 logout: قطع الاتصال
 mail_auth_code_content: 'إليك رمز تسجيل الدخول الخاص بك: '
@@ -401,6 +404,7 @@ no_email_address: لقد اخترت تلقي رمز تسجيل الدخول عب
 no_event_yet: 'لا توجد أحداث في هذا الوقت. انقر فوق "إضافة" لإنشاء واحد.'
 no_note_yet: 'لا توجد ملاحظات حتى الان. انقر فوق "إضافة" لإنشاء واحد.'
 no_phone_number: لقد اخترت تلقي رمز تسجيل الدخول عبر رسالة نصية، لكنك لم تقم بتقديم رقم هاتف.
+no_phone_number_registered: Pas de numéro de téléphone enregistré.
 no_relay_selected: Aucun relais sélectionné
 no_relay_selected_alert: Vous n’avez affilié ce bénéficiaire à aucun relais. Si vous souhaitez poursuivre la création comme cela, cliquez sur continuer
 no_result: 'Aucun résultat'
@@ -469,6 +473,9 @@ relay_wishes_to_add_you: 'ترغب نقطة مناوبة لريكونيكت بإ
 relays: Relais
 relays_choice: Choix des relais
 reminder: Rappel
+reminder_already_send: "La date du rappel {{ string }} n'est pas modifiable car un SMS a déjà été envoyé."
+reminder_outdated: La date de rappel est déjà passée.
+reminder_should_not_outdate_event: "La date de rappel doit se situer avant la date de l'événement."
 reminder_sms: 'Rappel SMS'
 reminder_sms_content: "Bonjour \nRappel RDV : %name% \n%date%"
 reminders: اشعارات التذكير
@@ -580,7 +587,6 @@ unsupported_file_extension: "Erreur %fileName%, le format de fichier n'est pas s
 update_your_password: 'تغيير كلمة السر الخاصة بك'
 used_available: '%used% utilisé(s) sur %available% disponibles'
 user_do_not_have_account: "L'utilisateur ne possède pas de compte Reconnect ?"
-user_error_disabled_account: 'Votre compte est désactivé, veuillez contacter le support.'
 user_firstVisit_membre_intro: 'Cet outil a pour fonction première la sauvegarde d’informations personnelles des personnes accompagnées.'
 user_firstVisit_membre_intro_more: 'L’outil s’inscrit dans le cadre de l’accompagnement et pourra vous permettre d’assister les bénéficiaires dans la sauvegarde de leurs données.'
 user_firstVisit_membre_metaTitle: 'Bienvenue sur Reconnect le Coffre Fort Numérique'
@@ -636,4 +642,3 @@ duplicate_mail_subject: "[Coffre-Fort Numérique] Doublons bénéficiaire"
 duplicate_mail_title: 'Doublons de username bénéficiaire : %username%'
 duplicate_mail_created_by_client: 'Créé par (client) : %client%'
 duplicate_mail_created_by_pro: "Crée par le.a professionnel.le d'id %id%, affilié.e aux Centre(s) suivants :"
-dummy: Dummy translation
