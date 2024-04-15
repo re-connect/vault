@@ -4,71 +4,71 @@ namespace App\Validator\Constraints\Rappel;
 
 use App\Entity\Rappel;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class EntityValidator extends ConstraintValidator
 {
-    /** @var EntityManagerInterface */
-    private $entityManager;
-    /** @var ValidatorInterface */
-    private $validator;
-
-    public function __construct(EntityManagerInterface $entityManager, ValidatorInterface $validator)
+    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly TranslatorInterface $translator)
     {
-        $this->entityManager = $entityManager;
-        $this->validator = $validator;
     }
 
     /**
-     * @param Rappel $entity
+     * @param Rappel $reminder
      *
      * @throws \Exception
      */
-    public function validate($entity, Constraint $constraint)
+    public function validate(mixed $reminder, Constraint $constraint): void
     {
-        if (null === $entity || '' === $entity) {
-            return;
+        if (!$reminder instanceof Rappel) {
+            throw new UnexpectedTypeException($reminder, Rappel::class);
         }
-        $currentDate = $entity->getDate();
+
+        $currentDate = $reminder->getDate();
 
         if (!$currentDate instanceof \DateTime) {
-            $entity->setDate(new \DateTime($currentDate));
+            $reminder->setDate(new \DateTime($currentDate));
         }
 
-        $beneficiary = $entity->getEvenement()->getBeneficiaire();
+        $this->checkBeneficiaryHasPhoneNumber($reminder);
+        $this->preventUpdateAlreadySendReminder($reminder, $constraint);
+        $this->checkNewReminderDatetime($reminder, $constraint);
+    }
 
-        if (null === $entity->getId() && $beneficiary && !$beneficiary->getUser()->getTelephone()) {
-            $this->context->addViolation('Pas de numéro de téléphone enregistré.');
+    private function checkBeneficiaryHasPhoneNumber(Rappel $reminder): void
+    {
+        $beneficiary = $reminder->getEvenement()->getBeneficiaire();
 
-            return;
+        if (null === $reminder->getId() && !$beneficiary?->getUser()?->getTelephone()) {
+            $this->context->addViolation($this->translator->trans('no_phone_number_registered'));
         }
+    }
 
-        if (null === $entity->getId() && $currentDate < new \DateTime()) {
-            $this->context->addViolation($constraint->messageRappelBeforeNow);
+    private function preventUpdateAlreadySendReminder(Rappel $reminder, Constraint $constraint): void
+    {
+        if ($reminder->getId()) {
+            $reminderBeforeUpdate = $this->entityManager
+                ->getUnitOfWork()
+                ->getOriginalEntityData($reminder);
+            $dateBeforeUpdate = $reminderBeforeUpdate['date'];
+            $dateBeforeUpdateToUtc = new \DateTime($dateBeforeUpdate->format('Y-m-d H:i:s'), new \DateTimeZone('UTC'));
 
-            return;
+            if ($reminder->getBEnvoye() && $reminder->getDateToUtcTimezone() !== $dateBeforeUpdateToUtc) {
+                $this->context->buildViolation($this->translator->trans('reminder_already_send'))
+                    ->setParameter('{{ string }}', $dateBeforeUpdate->format('d/m/Y à H:i'))
+                    ->addViolation();
+            }
         }
+    }
 
-        $originalRappel = $this->entityManager
-            ->getUnitOfWork()
-            ->getOriginalEntityData($entity);
+    private function checkNewReminderDatetime(Rappel $reminder, Constraint $constraint): void
+    {
+        $nowMinus12HoursUtc = (new \DateTime('now', new \DateTimeZone('UTC')))->modify('-12 hours -5 minutes');
 
-        $originalRappelExists = null !== $originalRappel && !empty($originalRappel['id']);
-
-        if ($originalRappelExists && $originalRappel['date'] !== $currentDate && null !== $entity->getSms()) {
-            $this->context->buildViolation($constraint->messageSMSAlreadySend)
-                ->setParameter('{{ string }}', $originalRappel['date']->format('d/m/Y à H:i'))
-                ->addViolation();
-
-            return;
-        }
-
-        if ($originalRappelExists && !$originalRappel['bEnvoye'] && $originalRappel['date'] !== $currentDate && $originalRappel['date'] < (new \DateTime())) {
-            $this->context->addViolation($constraint->messageRappelBeforeNow);
-
-            return;
+        if (null === $reminder->getId() && $reminder->getDateToUtcTimezone() < $nowMinus12HoursUtc) {
+            $this->context->addViolation($this->translator->trans('reminder_outdated'));
         }
     }
 }

@@ -13,10 +13,6 @@ App\Entity\Rappel:
     fields:
         date:
             type: datetime
-        timezone:
-            type: string
-            length: 255
-            nullable: true
         bEnvoye:
             type: boolean
         types:
