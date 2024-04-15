@@ -254,6 +254,7 @@ error_500: Il y a eu une erreur technique, le problème vient de nous, nous allo
 error_during_download: "Erreur : le téléchargement n'a pas pu aboutir"
 event: Event
 event_created: 'Event created'
+event_outdated: "La date de l'événement est déjà passée."
 event_removed_successfully: 'Your event has been deleted'
 event_updated: 'Event updated'
 events: Events
@@ -403,6 +404,7 @@ no_email_address: You have chosen to receive a login code via email, but you hav
 no_event_yet: 'There are no events at this time. Click "Add" to create one.'
 no_note_yet: 'There are no notes yet. Click "Add" to create one.'
 no_phone_number: You have chosen to receive a login code via SMS, but you have not provided a phone number.
+no_phone_number_registered: Pas de numéro de téléphone enregistré.
 no_relay_selected: No relay selected
 no_relay_selected_alert: You have not affiliated this beneficiary to any relay. If you want to continue creating like this, click continue
 no_result: 'No result'
@@ -471,6 +473,9 @@ relay_wishes_to_add_you: 'A Reconnect Center wishes to add you'
 relays: Relays
 relays_choice: Choose relays
 reminder: Reminder
+reminder_already_send: "La date du rappel {{ string }} n'est pas modifiable car un SMS a déjà été envoyé."
+reminder_outdated: La date de rappel est déjà passée.
+reminder_should_not_outdate_event: "La date de rappel doit se situer avant la date de l'événement."
 reminder_sms: 'SMS Reminder'
 reminder_sms_content: "Hello \nAppointment reminder : %name% \n%date%"
 reminders: Reminders
