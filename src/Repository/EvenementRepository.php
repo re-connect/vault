@@ -20,13 +20,16 @@ class EvenementRepository extends ServiceEntityRepository
      */
     public function findFutureEventsByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, string $search = null): array
     {
+        $now = new \DateTime();
+        $nowLess12h05 = new \DateTime(date('Y-m-d H:i:s', strtotime($now->format('Y-m-d H:i:s').'-12 hours -5 minutes')));
+
         $qb = $this->createQueryBuilder('e')
             ->leftJoin('e.rappels', 'r')
             ->andWhere('e.beneficiaire = :beneficiary')
-            ->andWhere('e.date > :date')
+            ->andWhere('e.date > :nowLess12h05')
             ->orderBy('e.date', 'ASC')
             ->setParameter('beneficiary', $beneficiary)
-            ->setParameter('date', new \DateTime());
+            ->setParameter('nowLess12h05', $nowLess12h05);
 
         if ($search) {
             $qb->andWhere('e.nom LIKE :search OR e.commentaire LIKE :search OR e.date LIKE :search')

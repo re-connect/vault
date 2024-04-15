@@ -20,9 +20,6 @@ class Rappel implements \JsonSerializable
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2'])]
     private $date;
 
-    #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2'])]
-    private ?string $timezone = null;
-
     /** @var Evenement */
     private $evenement;
     /** @var bool */
@@ -56,10 +53,15 @@ class Rappel implements \JsonSerializable
      */
     public function getDate()
     {
-        $timezone = $this->timezone ?? 'Europe/Paris';
+        $timezone = $this->evenement?->getTimezone() ?? 'Europe/Paris';
         $date = $this->date ?? new \DateTime();
 
         return new \DateTime($date->format('Y-m-d H:i:s'), new \DateTimeZone($timezone));
+    }
+
+    public function getDateToUtcTimezone(): \DateTime
+    {
+        return $this->getDate()->setTimezone(new \DateTimeZone('UTC'));
     }
 
     /**
@@ -72,18 +74,6 @@ class Rappel implements \JsonSerializable
     public function setDate($date)
     {
         $this->date = $date;
-
-        return $this;
-    }
-
-    public function getTimezone(): ?string
-    {
-        return $this->timezone;
-    }
-
-    public function setTimezone(?string $timezone): self
-    {
-        $this->timezone = $timezone;
 
         return $this;
     }
