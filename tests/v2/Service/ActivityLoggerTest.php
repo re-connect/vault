@@ -29,17 +29,8 @@ class ActivityLoggerTest extends TestCase
 
     public function testLogLoginShouldLog(): void
     {
-        $this->security->method('getUser')->willReturn(new User());
-        $this->activityLogger->logLogin();
+        $this->activityLogger->logLogin(new User());
 
         $this->assertTrue($this->testHandler->hasInfoThatContains('User logged in'));
-    }
-
-    public function testLogLoginShouldNotLog(): void
-    {
-        $this->security->method('getUser')->willReturn(null);
-        $this->activityLogger->logLogin();
-
-        $this->assertFalse($this->testHandler->hasInfoThatContains('User logged in'));
     }
 }

@@ -65,7 +65,7 @@ class UserSimpleAdmin extends AbstractAdmin
                 'attr' => ['read_only' => true],
                 'disabled' => true,
             ])
-            ->add('derniereConnexionAt', DateTimePickerType::class, [
+            ->add('lastLogin', DateTimePickerType::class, [
                 'label' => 'Dernière connexion',
                 'required' => false,
                 'attr' => ['read_only' => true],
@@ -94,7 +94,7 @@ class UserSimpleAdmin extends AbstractAdmin
                 'placeholder' => false,
                 'label' => 'mfa_method',
                 'choices' => array_combine(User::MFA_METHODS, User::MFA_METHODS),
-                'data' => User::MFA_METHOD_EMAIL,
+                'empty_data' => User::MFA_METHOD_EMAIL,
                 'expanded' => true,
                 'multiple' => false,
             ]);

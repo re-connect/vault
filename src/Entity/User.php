@@ -696,7 +696,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getPreviousLoginString(): ?string
     {
-        return $this->derniereConnexionAt ? $this->derniereConnexionAt->format('Y-m-d') : null;
+        return $this->lastLogin?->format('Y-m-d');
     }
 
     public function hasLoginToday(): bool
@@ -706,7 +706,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getDerniereConnexionAt(): ?\DateTime
     {
-        return $this->derniereConnexionAt;
+        return $this->lastLogin;
     }
 
     public function setDerniereConnexionAt(?\DateTime $derniereConnexionAt): self

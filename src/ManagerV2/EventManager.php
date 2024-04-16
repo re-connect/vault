@@ -32,11 +32,23 @@ class EventManager
      */
     public function getEvents(Beneficiaire $beneficiary, string $search = null): array
     {
-        return $this->eventRepository->findFutureEventsByBeneficiary(
+        $events = $this->eventRepository->findFutureEventsByBeneficiary(
             $beneficiary,
             $this->isLoggedInUser($beneficiary->getUser()),
             $search
         );
+
+        foreach ($events as $key => $event) {
+            $utcTimezone = new \DateTimeZone('UTC');
+            $nowUtc = new \DateTime('now', $utcTimezone);
+            $eventDateUtc = $event->getDate()->setTimezone($utcTimezone);
+
+            if ($eventDateUtc < $nowUtc) {
+                unset($events[$key]);
+            }
+        }
+
+        return $events;
     }
 
     public function toggleVisibility(Evenement $event): void
@@ -72,9 +84,9 @@ class EventManager
             foreach ($reminders as $reminder) {
                 $utcTimezone = new \DateTimeZone('UTC');
                 $nowUtc = new \DateTime('now', $utcTimezone);
-                $reminderDateUtc = $reminder->getDate()->setTimezone($utcTimezone);
+                $eventDateUtc = $reminder->getEvenement()->getDate()->setTimezone($utcTimezone);
 
-                if (!$reminder->getBEnvoye() && $reminderDateUtc < $nowUtc) {
+                if (!$reminder->getBEnvoye() && $eventDateUtc < $nowUtc) {
                     echo sprintf('Sending reminder : %s%s', $reminder->getId(), PHP_EOL);
                     $this->notificator->sendSmsReminder($reminder);
                 }
