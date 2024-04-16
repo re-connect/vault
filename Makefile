@@ -28,7 +28,7 @@ deploy-preprod:
 	@$(DEPLOYER) deploy stage=preprod
 
 deploy-prod:
-	@$(CONSOLE) deploy prod
+	@$(DEPLOYER) deploy stage=prod
 
 fixture-v1:
 	@$(CONSOLE) doctrine:fixtures:load --env=test --group=v1 -n
