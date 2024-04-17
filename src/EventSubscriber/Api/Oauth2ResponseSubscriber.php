@@ -38,6 +38,12 @@ readonly class Oauth2ResponseSubscriber
             return $event;
         }
 
+        if (!$user->isEnabled()) {
+            $event->setResponse(new JsonResponse(['login' => 'failure', 'disabled' => true], Response::HTTP_UNAUTHORIZED));
+        } elseif ($user->isBeingCreated()) {
+            $event->setResponse(new JsonResponse(['login' => 'failure', 'isBeingCreated' => true], Response::HTTP_UNAUTHORIZED));
+        }
+
         if (!$user->hasPasswordWithLatestPolicy()) {
             $event->setResponse(new JsonResponse(['login' => 'success', 'weak_password' => true]));
         } elseif (false === $user->isBeneficiaire() && $this->gdprService->isPasswordExpired($user) && $this->appliExpirePassword) {

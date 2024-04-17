@@ -1432,4 +1432,13 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     {
         return $this->isBeneficiaire() ? 'beneficiaire' : 'membre';
     }
+
+    public function isBeingCreated(): bool
+    {
+        if (!$this->subjectBeneficiaire) {
+            return false;
+        }
+
+        return $this->subjectBeneficiaire->isCreating();
+    }
 }
