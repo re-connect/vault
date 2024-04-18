@@ -1290,6 +1290,11 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         $this->personalAccountDataRequestedAt = $personalAccountDataRequestedAt;
     }
 
+    public function canRequestPersonalAccountData(): bool
+    {
+        return $this->isBeneficiaire() && ($this->telephone || $this->email);
+    }
+
     public function hasRequestedPersonalAccountData(): bool
     {
         return (bool) $this->personalAccountDataRequestedAt;

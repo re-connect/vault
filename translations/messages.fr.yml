@@ -8,6 +8,7 @@ actual_password: 'Votre mot de passe actuel'
 add: Ajouter
 add_beneficiary: 'Ajouter un beneficiaire'
 add_date: "Date d'ajout"
+add_email_or_phone_to_request_personal_data: Pour continuer la demande, ajouter un e-mail ou un numéro de téléphone.
 add_new_benef_big_title: 'Ajouter un nouveau <span class="rp-blue text-blue">bénéficiaire</span>'
 add_new_beneficiary: 'Ajouter un nouveau bénéficiaire'
 add_new_user: 'Ajouter un nouvel utilisateur'
@@ -626,6 +627,7 @@ you_can_download_mobile_app: "Vous pouvez également télécharger l'application
 you_can_not_delete_personal_data: "Vous n'avez pas le droit de supprimer cette donnée"
 you_can_not_display_personal_data: "Vous n'avez pas le droit d'afficher les données de ce beneficiaire"
 you_can_not_edit_personal_data: "Vous n'avez pas le droit d'éditer cette donnée"
+you_can_not_request_personal_data_without_phone_or_email: Vous devez avoir une adresse e-mail ou un numéro de téléphone pour que nous vous contactions pour vous transmettre vos données.
 you_can_not_report_personal_data: "Vous n'avez pas le droit de signaler cette donnée comme abusive"
 you_can_not_see_page: "Vous n'avez pas les droits pour visionner cette page"
 you_can_not_update_default_permission: Vous ne pouvez pas modifier la permission par défaut
