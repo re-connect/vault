@@ -1,0 +1,17 @@
+meta {
+  name: User
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{baseUrl}}/api/v3/users/9208
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "plainPassword": "coucou"
+  }
+}
