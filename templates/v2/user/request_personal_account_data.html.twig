@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="text-center text-primary col-md-6 m-auto my-3 card rounded-card p-4 shadow">
-        {% if user.hasRequestedPersonalAccountData %}
+        {% if hasAlreadyRequestedData %}
             <i class="fa-regular fa-hourglass-half fa-3x mb-3"></i>
             <p>{{ 'your_personal_data_has_already_been_requested'|trans }}</p>
             <p>{{ 'you_will_be_contacted_soon'|trans }}</p>
