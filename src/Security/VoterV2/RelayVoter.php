@@ -9,12 +9,15 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class RelayVoter extends Voter
 {
-    public const MANAGE_PRO = 'MANAGE_PRO';
-    public const MANAGE_BENEFICIARIES = 'MANAGE_BENEFICIARIES';
+    public const string VIEW = 'VIEW';
+    public const string MANAGE_PRO = 'MANAGE_PRO';
+    public const string MANAGE_BENEFICIARIES = 'MANAGE_BENEFICIARIES';
+
+    private const array PERMISSIONS = [self::VIEW, self::MANAGE_PRO, self::MANAGE_BENEFICIARIES];
 
     protected function supports(string $attribute, $subject): bool
     {
-        return in_array($attribute, [self::MANAGE_BENEFICIARIES, self::MANAGE_PRO]) && $subject instanceof Centre;
+        return in_array($attribute, self::PERMISSIONS) && $subject instanceof Centre;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
@@ -25,6 +28,7 @@ class RelayVoter extends Voter
         }
 
         return match ($attribute) {
+            self::VIEW => $user->getRelays()->contains($subject),
             self::MANAGE_BENEFICIARIES => $user->getAffiliatedRelaysWithBeneficiaryManagement()->contains($subject),
             self::MANAGE_PRO => $user->getAffiliatedRelaysWithProfessionalManagement()->contains($subject),
             default => false,

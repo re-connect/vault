@@ -12,12 +12,12 @@ class Rappel implements \JsonSerializable
     /**
      * @var int
      */
-    #[Groups(['read-personal-data', 'read-personal-data-v2'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
     private $id;
     /**
      * @var \DateTime
      */
-    #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2'])]
+    #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
     private $date;
 
     /** @var Evenement */

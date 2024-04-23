@@ -8,6 +8,7 @@ actual_password: 'Настоящий пароль'
 add: Добавить
 add_beneficiary: 'Ajouter un beneficiaire'
 add_date: "Date d'ajout"
+add_email_or_phone_to_request_personal_data: Pour continuer la demande, ajouter un e-mail ou un numéro de téléphone.
 add_new_benef_big_title: 'Ajouter un nouveau <span class="rp-blue text-blue">bénéficiaire</span>'
 add_new_beneficiary: 'Добавить нового получателя'
 add_new_user: 'Ajouter un nouvel utilisateur'
@@ -61,6 +62,9 @@ beneficiary_has_no_account_create: "Créez-lui un compte puis rattachez-le à l�
 beneficiary_has_no_email: Le bénéficiaire n'a pas renseigné d'adresse email
 beneficiary_has_no_phone_number: Le bénéficiaire n'a pas renseigné de numéro de téléphone
 beneficiary_has_no_secret_answer: Le bénéficiaire n'a pas renseigné de réponse secrète
+beneficiary_linked_rosalie: Ce bénéficiaire est lié à l'application de réservation hotelière (Rosalie)
+beneficiary_not_found: "Aucun bénéficiaire avec l'id %id% n'a été trouvé"
+beneficiary_not_linked_rosalie: Attention, ce bénéficiaire n'a pas été lié à l'application de réservation hotelière (Rosalie)
 beneficiary_relay_affiliation_end: "Sinon, il pourra accepter l'invitation en se connectant à son compte Reconnect"
 beneficiary_relay_affiliation_intro: "Sélectionnez ci-contre le/les centres auxquels vous voulez affilier le bénéficiaire."
 beneficiary_relay_affiliation_options: "Si vous êtes avec le bénéficiaire, vous pouvez valider l’ajout à un/des centres en :"
@@ -191,19 +195,19 @@ digital_care_is: "L'accompagnement numérique, c'est"
 digital_cares: "L'accompagnement \n numérique"
 digital_cares_acquire_skills_img_alt: "Permet d'acquérir des compétences"
 digital_cares_acquire_skills_text: 'des bénéficiaires qui estiment que les ateliers leur ont permis d’acquérir des compétences'
-digital_cares_acquire_skills_title: '90 %'
+digital_cares_acquire_skills_title: '98 %'
 digital_cares_appreciated_training_img_alt: 'Formation appréciée'
 digital_cares_appreciated_training_text: 'des bénéficiaires qui ont apprécié la formation'
-digital_cares_appreciated_training_title: '98 %'
+digital_cares_appreciated_training_title: '99 %'
 digital_cares_dynamic_workshop_img_alt: 'Ateliers dynamiques'
 digital_cares_dynamic_workshop_text: 'des bénéficiaires apprécient la dynamique des ateliers'
-digital_cares_dynamic_workshop_title: '89 %'
+digital_cares_dynamic_workshop_title: '91 %'
 digital_cares_improve_reintegration_pathways_img_alt: "Accompagnement pour faciliter les parcours d'insertion"
 digital_cares_improve_reintegration_pathways_text: 'Les ateliers numériques s’inscrivent dans l’accompagnement global des bénéficiaires et répondent à un besoin de formation aux usages du numérique afin de faciliter leur insertion sociale et professionnelle.'
 digital_cares_improve_reintegration_pathways_title: 'Un accompagnement pour faciliter les parcours d’insertion'
 digital_cares_knowledge_img_alt: 'Permet de réaliser les actions apprises'
 digital_cares_knowledge_text: 'des bénéficiaires qui se sentent capables de réaliser les actions apprises'
-digital_cares_knowledge_title: '84 %'
+digital_cares_knowledge_title: '95 %'
 digital_cares_logo_alt: 'Logo des accompagnements numériques'
 digital_cares_participatory_content_img_alt: 'Contenus ludiques et participatifs'
 digital_cares_participatory_content_text: 'Nos ateliers contiennent une dimension théorique et pratique afin de faciliter l’assimilation des informations. Les sessions sont construites à l’aide d’une méthodologie « gamifiée » qui facilite l’attention et améliore l’attractivité. Nous portons une attention particulière à la mise en pratique immédiate des formations proposées.'
@@ -496,6 +500,7 @@ reset_password_no_way: Le bénéficiaire n’a pas indiqué de numéro de télé
 reset_password_requested_by_SMS: 'La demande de réinitialisation actuelle a été effectuée par SMS'
 reset_password_requested_by_email: 'La demande de réinitialisation actuelle a été effectuée par email'
 results: Résultats
+retry: Réessayer
 rosalie: Rosalie
 rosalie_link: Liaison vers Rosalie
 rosalie_link_text: Si l'utilisateur doit être amené à relier des coffre-forts numérique à l'application de réservation hôtelière (Rosalie), cochez la case ci-dessous
@@ -626,6 +631,7 @@ you_can_download_mobile_app: "Vous pouvez également télécharger l'application
 you_can_not_delete_personal_data: "У вас нет прав удалять эту информацию"
 you_can_not_display_personal_data: "У вас нет прав доступа к данным этого получателя"
 you_can_not_edit_personal_data: "У вас нет права редактировать эту информацию"
+you_can_not_request_personal_data_without_phone_or_email: Vous devez avoir une adresse e-mail ou un numéro de téléphone pour que nous vous contactions pour vous transmettre vos données.
 you_can_not_report_personal_data: "У вас нет права отметить эту информацию как некорректную"
 you_can_not_see_page: "У вас нету прав доступа к этой странице"
 you_can_not_update_default_permission: Vous ne pouvez pas modifier la permission par défaut

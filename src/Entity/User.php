@@ -2,6 +2,10 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use App\Api\State\UserPasswordProcessor;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -15,27 +19,33 @@ use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
-/**
- * @ORM\Entity(repositoryClass=UserRepository::class)
- */
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ApiResource(
+    operations: [
+        new GetCollection(security: "is_granted('ROLE_USER')"),
+        new Patch(security: "is_granted('UPDATE', object)", processor: UserPasswordProcessor::class),
+    ],
+    normalizationContext: ['groups' => ['v3:user:read']],
+    denormalizationContext: ['groups' => ['v3:user:write']],
+)]
 class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, TwoFactorTextInterface
 {
-    private const BASE_USERNAME_REGEXP = '/^[a-z\-]+\.[a-z\-]+(\.[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3})?$/';
-    public const USER_TYPE_BENEFICIAIRE = 'ROLE_BENEFICIAIRE';
-    public const USER_TYPE_MEMBRE = 'ROLE_MEMBRE';
-    public const USER_TYPE_GESTIONNAIRE = 'ROLE_GESTIONNAIRE';
-    public const USER_TYPE_ASSOCIATION = 'ROLE_ASSOCIATION';
-    public const USER_TYPE_ADMINISTRATEUR = 'ROLE_ADMIN';
-    public const USER_TYPE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
-    public const USER_PASSWORD_LENGTH = 9;
+    private const string BASE_USERNAME_REGEXP = '/^[a-z\-]+\.[a-z\-]+(\.[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3})?$/';
+    public const string USER_TYPE_BENEFICIAIRE = 'ROLE_BENEFICIAIRE';
+    public const string USER_TYPE_MEMBRE = 'ROLE_MEMBRE';
+    public const string USER_TYPE_GESTIONNAIRE = 'ROLE_GESTIONNAIRE';
+    public const string USER_TYPE_ASSOCIATION = 'ROLE_ASSOCIATION';
+    public const string USER_TYPE_ADMINISTRATEUR = 'ROLE_ADMIN';
+    public const string USER_TYPE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+    public const int USER_PASSWORD_LENGTH = 9;
 
-    public const ADMIN_TYPES = [
+    public const array ADMIN_TYPES = [
         self::USER_TYPE_ADMINISTRATEUR => self::USER_TYPE_ADMINISTRATEUR,
         self::USER_TYPE_SUPER_ADMIN => self::USER_TYPE_SUPER_ADMIN,
     ];
-    public const DEFAULT_LANGUAGE = 'fr';
+    public const string DEFAULT_LANGUAGE = 'fr';
 
-    public static array $arTypesUser = [
+    public const array USER_TYPES = [
         self::USER_TYPE_BENEFICIAIRE => 'beneficiaire',
         self::USER_TYPE_MEMBRE => 'membre',
         self::USER_TYPE_GESTIONNAIRE => 'gestionnaire',
@@ -43,9 +53,9 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         self::USER_TYPE_ADMINISTRATEUR => 'administrateur',
     ];
 
-    public const MFA_METHOD_SMS = 'sms';
-    public const MFA_METHOD_EMAIL = 'email';
-    public const MFA_METHODS = [
+    public const string MFA_METHOD_SMS = 'sms';
+    public const string MFA_METHOD_EMAIL = 'email';
+    public const array MFA_METHODS = [
       self::MFA_METHOD_EMAIL,
       self::MFA_METHOD_SMS,
     ];
@@ -216,6 +226,9 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     private ?bool $mfaValid;    // This is only used when login from API
     private string $mfaMethod = self::MFA_METHOD_EMAIL;
     private ?int $mfaRetryCount = 0;
+
+    /** @var string[] */
+    private array $relaysIds = [];
 
     public function __construct()
     {
@@ -765,15 +778,13 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
             'username' => $this->username,
             'type_user' => $this->typeUser,
             'email' => $this->email,
-//            'enabled' => $this->enabled,
+            'subject_id' => $this->getSubject()?->getId(),
             'last_login' => null !== $this->derniereConnexionAt ? $this->derniereConnexionAt->format(\DateTime::W3C) : null,
-//            'groups' => $this->groups,
-//            'roles' => $this->roles,
             'created_at' => $this->createdAt->format(\DateTime::W3C),
             'updated_at' => $this->updatedAt->format(\DateTime::W3C),
-//            'b_actif' => $this->bActif,
             'b_first_mobile_connexion' => $this->bFirstMobileConnexion,
             'adresse' => $this->getAdresse(),
+            'centres' => $this->getUserRelays(),
         ];
 
         if ($withSubject) {
@@ -830,6 +841,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
             'username' => $this->username,
             'type_user' => $this->typeUser,
             'email' => $this->email,
+            'subject_id' => $this->getSubject()?->getId(),
             'last_login' => null !== $this->derniereConnexionAt ? $this->derniereConnexionAt->format(\DateTime::W3C) : null,
             'created_at' => $this->createdAt->format(\DateTime::W3C),
             'updated_at' => $this->updatedAt->format(\DateTime::W3C),
@@ -922,7 +934,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getCreatorClient(): ?CreatorClient
     {
-        $creator = $this->creators->filter(static function ($creator) {
+        $creator = $this->creators?->filter(static function ($creator) {
             return $creator instanceof CreatorClient;
         })->first();
 
@@ -947,6 +959,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
             $this->accessTokens = [];
             $this->adresse = null === $this->adresse ? null : clone $this->adresse;
             $this->canada = true;
+            $this->creators = new ArrayCollection();
             if (null !== $this->subjectBeneficiaire || null !== $this->subjectMembre) {
                 $creators = new ArrayCollection();
                 if ($creatorUser = $this->getCreatorUser()) {
@@ -955,12 +968,9 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
                 if ($creatorCentre = $this->getCreatorCentre()) {
                     $creators->add(clone $creatorCentre);
                 }
-                $this->creators = new ArrayCollection();
                 foreach ($creators as $creator) {
                     $this->addCreator($creator);
                 }
-            } else {
-                $this->creators = new ArrayCollection();
             }
 
             $this->refreshTokens = [];
@@ -974,7 +984,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getCreatorUser(): ?CreatorUser
     {
-        $creator = $this->creators->filter(static function ($creator) {
+        $creator = $this->creators?->filter(static function ($creator) {
             return $creator instanceof CreatorUser;
         })->first();
 
@@ -988,7 +998,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getCreatorCentre(): ?CreatorCentre
     {
-        $creator = $this->creators->filter(static function ($creator) {
+        $creator = $this->creators?->filter(static function ($creator) {
             return $creator instanceof CreatorCentre;
         })->first();
 
@@ -1124,7 +1134,9 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
             return null;
         }
 
-        return $this->getUserRelays()->filter(fn (UserCentre $userRelay) => $userRelay->getCentre() === $relay)->first() ?: null;
+        return $this->getUserRelays()
+            ->filter(fn (UserCentre $userRelay) => $userRelay->getCentre() === $relay)
+            ->first() ?: null;
     }
 
     public function getFirstUserRelay(): ?UserCentre
@@ -1137,6 +1149,20 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         $userRelay = $user->isBeneficiaire() ? new BeneficiaireCentre() : new MembreCentre();
 
         return $userRelay->setCentre($relay)->setUser($user)->setBValid($valid);
+    }
+
+    /** @return string[] */
+    public function getRelaysIds(): array
+    {
+        return $this->relaysIds;
+    }
+
+    /** @param string[] $relaysIds */
+    public function setRelaysIds(array $relaysIds): self
+    {
+        $this->relaysIds = $relaysIds;
+
+        return $this;
     }
 
     public function hasCreator(): bool
@@ -1290,6 +1316,11 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         $this->personalAccountDataRequestedAt = $personalAccountDataRequestedAt;
     }
 
+    public function canRequestPersonalAccountData(): bool
+    {
+        return $this->isBeneficiaire() && ($this->telephone || $this->email);
+    }
+
     public function hasRequestedPersonalAccountData(): bool
     {
         return (bool) $this->personalAccountDataRequestedAt;
@@ -1431,5 +1462,14 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public function getValidationGroup(): string
     {
         return $this->isBeneficiaire() ? 'beneficiaire' : 'membre';
+    }
+
+    public function isBeingCreated(): bool
+    {
+        if (!$this->subjectBeneficiaire) {
+            return false;
+        }
+
+        return $this->subjectBeneficiaire->isCreating();
     }
 }

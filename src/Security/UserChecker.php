@@ -35,7 +35,7 @@ readonly class UserChecker implements UserCheckerInterface
     {
         return match (true) {
             !$user->isEnabled() => 'login_error_disabled_account',
-            $user->getSubjectBeneficiaire()?->isCreating() => 'login_error_account_in_creation',
+            $user->isBeingCreated() => 'login_error_account_in_creation',
             default => null,
         };
     }

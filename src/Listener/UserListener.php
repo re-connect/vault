@@ -21,7 +21,6 @@ class UserListener
      */
     public function prePersist(User $user, LifecycleEventArgs $args): void
     {
-        //        $entityManager = $args->getEntityManager();
         try {
             if (null === ($request = $this->requestStack->getCurrentRequest())) {
                 throw new \RuntimeException('');

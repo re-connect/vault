@@ -32,7 +32,10 @@ class UniqueExternalLinkValidator extends ConstraintValidator
         }
 
         if ($value instanceof BeneficiaryDto) {
-            if ($this->beneficiaireRepository->findByDistantId($value->distantId, $this->apiClientManager->getCurrentOldClient()->getRandomId())) {
+            $oldClient = $this->apiClientManager->getCurrentOldClient();
+            $clientId = $oldClient?->getRandomId() ?? $this->apiClientManager->getCurrentClient()->getIdentifier();
+
+            if ($this->beneficiaireRepository->findByDistantId($value->distantId, $clientId)) {
                 $this->context->buildViolation($constraint->messageDistantIdDuplicate)
                     ->setParameter('{{ string }}', (string) $value->distantId)
                     ->atPath('external_link')

@@ -186,7 +186,7 @@ class UserController extends AbstractController
     ): Response {
         $manager->removeUserFromRelay($user, $relay);
 
-        return $this->json($user);
+        return $this->json($user, 200, [], ['groups' => ['v3:user:read']]);
     }
 
     #[Route(path: '/request-personal-account-data', name: 'request_personal_account_data', methods: ['GET'])]
@@ -198,12 +198,15 @@ class UserController extends AbstractController
         }
 
         $hasAlreadyRequestedData = $user->hasRequestedPersonalAccountData();
-        if (!$hasAlreadyRequestedData) {
+        if (!$user->hasRequestedPersonalAccountData() && $user->canRequestPersonalAccountData()) {
             $user->setPersonalAccountDataRequestedAt(new \DateTimeImmutable());
             $em->flush();
             $mailer->sendPersonalDataRequestEmail($user);
         }
 
-        return $this->render('v2/user/request_personal_account_data.html.twig', ['hasAlreadyRequestedData' => $hasAlreadyRequestedData]);
+        return $this->render('v2/user/request_personal_account_data.html.twig', [
+            'user' => $user,
+            'hasAlreadyRequestedData' => $hasAlreadyRequestedData,
+        ]);
     }
 }

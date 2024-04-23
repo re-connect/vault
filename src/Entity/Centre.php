@@ -2,13 +2,11 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
-use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
 use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -21,12 +19,16 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 #[ApiResource(
     shortName: 'center',
-    operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
+    operations: [
+        new Get(security: "is_granted('ROLE_OAUTH2_CENTERS') or is_granted('VIEW', object)"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_CENTERS') or is_granted('ROLE_USER')"),
+    ],
     normalizationContext: ['groups' => ['v3:center:read']],
     denormalizationContext: ['groups' => ['v3:center:write']],
     openapiContext: ['tags' => ['Centres']],
     security: "is_granted('ROLE_OAUTH2_CENTERS')",
 )]
+#[ApiFilter(SearchFilter::class, properties: ['beneficiairesCentres.beneficiaire'])]
 class Centre implements \JsonSerializable
 {
     public const REGIONS = ['Auvergne-Rhône-Alpes', 'Bourgogne-Franche-Comté', 'Bretagne', 'Centre-Val de Loire', 'Corse', 'Grand Est', 'Hauts-de-France', 'Ile-de-France', 'Normandie', 'Nouvelle-Aquitaine', 'Occitanie', 'Pays de la Loire', 'Provence-Alpes-Côte d’Azur', 'Autre'];
@@ -87,6 +89,7 @@ class Centre implements \JsonSerializable
      */
     #[Groups(['center:read', 'v3:center:read'])]
     private $telephone;
+
     /**
      * @var Collection|BeneficiaireCentre[]
      */
