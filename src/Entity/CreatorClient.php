@@ -17,6 +17,11 @@ class CreatorClient extends Creator
         return $this->getEntity()->getNom();
     }
 
+    public function getNom(): ?string
+    {
+        return $this->getEntity()?->getNom();
+    }
+
     /**
      * Get entity.
      *

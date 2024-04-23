@@ -34,16 +34,36 @@ final class BeneficiaryDto
     #[Groups(['v3:beneficiary:write'])]
     public ?string $distantId = null;
 
+    #[Groups(['v3:beneficiary:write'])]
+    public ?string $password = null;
+
+    /** @var ?string[] */
+    #[Groups(['v3:beneficiary:write'])]
+    public ?array $centers = null;
+
+    #[Groups(['v3:beneficiary:write'])]
+    public ?string $secretQuestion = null;
+
+    #[Groups(['v3:beneficiary:write'])]
+    public ?string $secretQuestionCustomText = null;
+
+    #[Groups(['v3:beneficiary:write'])]
+    public ?string $secretQuestionAnswer = null;
+
     public function toBeneficiary(): Beneficiaire
     {
         return (new Beneficiaire())
+            ->setDateNaissance($this->birthDate)
+            ->setDistantId($this->distantId)
+            ->setQuestionSecrete($this->secretQuestionCustomText ?? $this->secretQuestion)
+            ->setReponseSecrete($this->secretQuestionAnswer)
             ->setUser((new User())
                 ->setNom($this->lastName)
                 ->setPrenom($this->firstName)
+                ->setPlainPassword($this->password)
                 ->setEmail($this->email)
                 ->setTelephone($this->phone)
-            )
-            ->setDateNaissance($this->birthDate)
-            ->setDistantId($this->distantId);
+                ->setRelaysIds($this->centers)
+            );
     }
 }

@@ -8,7 +8,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
+use App\Api\State\PersonalDataStateProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
@@ -17,16 +17,21 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 
 #[ApiResource(
     shortName: 'Event',
-    operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
+    operations: [
+        new Delete(security: "is_granted('UPDATE', object)"),
+        new Get(security: "is_granted('ROLE_OAUTH2_EVENTS') or is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_EVENTS') or is_granted('ROLE_USER')"),
+        new Post(security: "is_granted('ROLE_USER')", processor: PersonalDataStateProcessor::class),
+        new Patch(security: "is_granted('UPDATE', object)"),
+    ],
     normalizationContext: ['groups' => ['v3:event:read']],
     denormalizationContext: ['groups' => ['v3:event:write']],
     openapiContext: ['tags' => ['Évènements']],
-    security: "is_granted('ROLE_OAUTH2_EVENTS')",
 )]
 class Evenement extends DonneePersonnelle
 {
-    public const EVENEMENT_RAPPEL_SMS = 'SMS';
-    public const EVENEMENT_RAPPEL_MAIL = 'Mail';
+    public const string EVENEMENT_RAPPEL_SMS = 'SMS';
+    public const string EVENEMENT_RAPPEL_MAIL = 'Mail';
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
     private $date;
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2'])]
@@ -35,13 +40,11 @@ class Evenement extends DonneePersonnelle
     private ?string $lieu = null;
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
     private ?string $commentaire = null;
-    #[Groups(['read-personal-data', 'v3:event:write', 'v3:event:read'])]
+    #[Groups(['read-personal-data', 'v3:event:read'])]
     private bool $bEnvoye = false;
-    #[Groups(['read-personal-data', 'write-personal-data', 'v3:event:write', 'v3:event:read'])]
     private ?int $heureRappel;
     private ?SMS $sms = null;
     private ?Membre $membre = null;
-    #[Groups(['read-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
     private bool $archive = false;
     private ?array $typeRappels = [];
     /**

@@ -18,6 +18,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Patch;
+use JetBrains\PhpStorm\Deprecated;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -48,6 +49,7 @@ class UserRestV2Controller extends REController
     /**
      * @Get("user", name="get_mine")
      */
+    #[Deprecated('This route belongs to the old API')]
     public function getMine(): JsonResponse
     {
         try {
@@ -69,6 +71,7 @@ class UserRestV2Controller extends REController
      *
      * @Patch("user/register-notification-token", name="register_notification_token")
      */
+    #[Deprecated('This route belongs to the old API')]
     public function setFcnToken(Request $request, EntityManagerInterface $em): JsonResponse
     {
         try {
@@ -173,6 +176,6 @@ class UserRestV2Controller extends REController
 
         $userManager->updatePassword($user, $password);
 
-        return $this->json($user);
+        return $this->json($user, 200, [], ['groups' => ['v3:user:read']]);
     }
 }

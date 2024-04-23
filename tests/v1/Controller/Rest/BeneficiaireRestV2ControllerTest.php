@@ -711,7 +711,6 @@ class BeneficiaireRestV2ControllerTest extends AbstractControllerTest
                 break;
             case self::EVENEMENT_ENTITY_NAME:
                 $this->assertArrayHasKey('dateToString', $content);
-                $this->assertArrayHasKey('archive', $content);
                 $this->assertArrayHasKey('date', $content);
                 $this->assertArrayHasKey('lieu', $content);
                 $this->assertArrayHasKey('commentaire', $content);
@@ -906,9 +905,11 @@ class BeneficiaireRestV2ControllerTest extends AbstractControllerTest
             $em->flush();
         }
 
+        $url = $this->generateUrl('beneficiaries/'.$beneficiary->getId().'/add-external-link');
+
         $this->client->request(
             Request::METHOD_PATCH,
-            $this->generateUrl('beneficiaries/'.$beneficiary->getId().'/add-external-link'),
+            $url,
             [
                 'distant_id' => $beneficiary->getId(),
                 'centre_id' => $center->getId(),

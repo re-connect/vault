@@ -6,11 +6,9 @@ use App\ControllerV2\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[AsController]
 final class SwitchUserLocaleController extends AbstractController
 {
     #[Route('api/v3/users/switch-locale', methods: 'PATCH')]
@@ -24,6 +22,6 @@ final class SwitchUserLocaleController extends AbstractController
             $em->flush();
         }
 
-        return $this->json($user);
+        return $this->json($user, 200, [], ['groups' => ['v3:user:read']]);
     }
 }
