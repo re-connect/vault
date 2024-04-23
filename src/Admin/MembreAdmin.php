@@ -16,7 +16,9 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\AdminType;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\DoctrineORMAdminBundle\Filter\CallbackFilter;
+use Sonata\DoctrineORMAdminBundle\Filter\DateFilter;
 use Sonata\Form\Type\CollectionType;
+use Sonata\Form\Type\DatePickerType;
 use Sonata\Form\Type\DateTimePickerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -188,7 +190,8 @@ class MembreAdmin extends AbstractAdmin
             ->add('user.nom', null, ['label' => 'Nom'])
             ->add('user.prenom', null, ['label' => 'Prénom'])
             ->add('user.telephone', null, ['label' => 'Téléphone portable'])
-            ->add('createdAt', null, ['label' => 'Dernière connexion'])
+            ->add('user.lastLogin', DateFilter::class, ['label' => 'Dernière connexion', 'field_type' => DatePickerType::class])
+            ->add('user.enabled', null, ['label' => 'enabled'])
             ->add('user.test', null, [
                 'label' => 'Compte test',
             ])
@@ -244,7 +247,7 @@ class MembreAdmin extends AbstractAdmin
             ->addIdentifier('user.username', null, ['label' => "Nom d'utilisateur", 'route' => ['name' => 'edit']])
             ->add('user.nom', null, ['label' => 'Nom'])
             ->add('user.prenom', null, ['label' => 'Prénom'])
-            ->add('user.derniereConnexionAt', null, ['label' => 'Dernière connexion'])
+            ->add('user.lastLogin', null, ['label' => 'Dernière connexion'])
             ->add('user.creatorUser', null, [
                 'label' => 'Créé par (utilisateur)',
             ])
