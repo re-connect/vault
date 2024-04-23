@@ -1,0 +1,26 @@
+meta {
+  name: Beneficiaries
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v3/beneficiaries
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "first_name": "Jean",
+      "last_name": "string",
+      "password": "string",
+      "confirm_password": "string",
+      "birth_date": "01/01/1995",
+      "centers": [44],
+      "phone": "string",
+      "secret_question": "string",
+      "secret_question_custom_text": "string",
+      "secret_question_answer": "string"
+  }
+}
