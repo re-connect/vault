@@ -8,6 +8,7 @@ actual_password: 'Current password'
 add: Add
 add_beneficiary: 'Add a beneficiary'
 add_date: "Added at"
+add_email_or_phone_to_request_personal_data: Pour continuer la demande, ajouter un e-mail ou un numéro de téléphone.
 add_new_benef_big_title: 'Ajouter un nouveau <span class="rp-blue text-blue">bénéficiaire</span>'
 add_new_beneficiary: 'Add new beneficiary'
 add_new_user: 'Ajouter un nouvel utilisateur'
@@ -61,6 +62,9 @@ beneficiary_has_no_account_create: "Create an account with the beneficiary or re
 beneficiary_has_no_email: The beneficiary does not have email address
 beneficiary_has_no_phone_number: The beneficiary does not have phone number
 beneficiary_has_no_secret_answer: The beneficiary does not have secret answer
+beneficiary_linked_rosalie: Ce bénéficiaire est lié à l'application de réservation hotelière (Rosalie)
+beneficiary_not_found: "Aucun bénéficiaire avec l'id %id% n'a été trouvé"
+beneficiary_not_linked_rosalie: Attention, ce bénéficiaire n'a pas été lié à l'application de réservation hotelière (Rosalie)
 beneficiary_relay_affiliation_end: "Sinon, il pourra accepter l'invitation en se connectant à son compte Reconnect"
 beneficiary_relay_affiliation_intro: "Sélectionnez ci-contre le/les centres auxquels vous voulez affilier le bénéficiaire."
 beneficiary_relay_affiliation_options: "Si vous êtes avec le bénéficiaire, vous pouvez valider l’ajout à un/des centres en :"
@@ -191,19 +195,19 @@ digital_care_is: "Digital care is"
 digital_cares: "Digital \n cares"
 digital_cares_acquire_skills_img_alt: "Helps to develop skills"
 digital_cares_acquire_skills_text: 'of beneficiaries feel that workshops have helped them to acquire skills'
-digital_cares_acquire_skills_title: '90 %'
+digital_cares_acquire_skills_title: '98 %'
 digital_cares_appreciated_training_img_alt: 'Appreciated training'
 digital_cares_appreciated_training_text: 'of beneficiaries appreciated the training'
-digital_cares_appreciated_training_title: '98 %'
+digital_cares_appreciated_training_title: '99 %'
 digital_cares_dynamic_workshop_img_alt: 'Dynamic workshops'
 digital_cares_dynamic_workshop_text: 'of beneficiaries appreciated the dynamics of the workshops'
-digital_cares_dynamic_workshop_title: '89 %'
+digital_cares_dynamic_workshop_title: '91 %'
 digital_cares_improve_reintegration_pathways_img_alt: "Support to improve integration pathways"
 digital_cares_improve_reintegration_pathways_text: 'Digital workshops are part of the overall support of the beneficiaries, and meet a need for training in the use of digital technology, to facilitate their social and professional integration.'
 digital_cares_improve_reintegration_pathways_title: 'A support to improve integration pathways'
 digital_cares_knowledge_img_alt: 'Carry out the learned actions'
 digital_cares_knowledge_text: 'of beneficiaries feel able to perform the learned actions'
-digital_cares_knowledge_title: '84 %'
+digital_cares_knowledge_title: '95 %'
 digital_cares_logo_alt: 'Digital cares logo'
 digital_cares_participatory_content_img_alt: 'Playful and participatory content'
 digital_cares_participatory_content_text: 'Our workshops contain a theoretical and practical dimension to facilitate the assimilation of information. The sessions are built using a "gamified" methodology that facilitates attention and improves attractiveness. We pay particular attention to the immediate practical application of the proposed training.'
@@ -496,6 +500,7 @@ reset_password_no_way: The beneficiary did not provide a phone number, email add
 reset_password_requested_by_SMS: 'Current reset request was made by SMS'
 reset_password_requested_by_email: 'Current reset request was made by email'
 results: Results
+retry: Réessayer
 rosalie: Rosalie
 rosalie_link: Liaison vers Rosalie
 rosalie_link_text: Si l'utilisateur doit être amené à relier des coffre-forts numérique à l'application de réservation hôtelière (Rosalie), cochez la case ci-dessous
@@ -626,6 +631,7 @@ you_can_download_mobile_app: "You can also download the mobile app"
 you_can_not_delete_personal_data: "You do not have the right to delete this information"
 you_can_not_display_personal_data: "You do not have the right to show the informations of this beneficiary."
 you_can_not_edit_personal_data: "You do not have the right to edit this information"
+you_can_not_request_personal_data_without_phone_or_email: Vous devez avoir une adresse e-mail ou un numéro de téléphone pour que nous vous contactions pour vous transmettre vos données.
 you_can_not_report_personal_data: "You do not have the right to signal this information as abusiv"
 you_can_not_see_page: "You don't have the rights to access this page"
 you_can_not_update_default_permission: You can't update default permission
