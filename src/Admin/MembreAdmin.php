@@ -275,10 +275,11 @@ class MembreAdmin extends AbstractAdmin
             'Email' => 'user.email',
             'Téléphone' => 'user.telephone',
             'Centres' => 'getCentresToString',
+            'Region' => 'getRegionToString',
             'Date de création' => 'user.createdAt',
             'Dernière connexion' => 'user.derniereConnexionAt',
+            'Activé' => 'user.enabled',
             'Compte test' => 'user.testToString',
-            'Region' => 'getRegionToString',
         ];
     }
 }
