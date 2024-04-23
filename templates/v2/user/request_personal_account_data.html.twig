@@ -2,13 +2,18 @@
 
 {% block content %}
     <div class="text-center text-primary col-md-6 m-auto my-3 card rounded-card p-4 shadow">
-        {% if not hasAlreadyRequestedData %}
-            <i class="fa-solid fa-envelope-circle-check fa-3x mb-3"></i>
-            <p>{{ 'your_personal_data_request_has_been_send_to_tech_team'|trans }}</p>
-        {% else %}
+        {% if hasAlreadyRequestedData %}
             <i class="fa-regular fa-hourglass-half fa-3x mb-3"></i>
             <p>{{ 'your_personal_data_has_already_been_requested'|trans }}</p>
+            <p>{{ 'you_will_be_contacted_soon'|trans }}</p>
+        {% elseif not user.canRequestPersonalAccountData %}
+            <i class="fa-solid fa-warning fa-3x mb-3 text-red"></i>
+            <p>{{ 'you_can_not_request_personal_data_without_phone_or_email'|trans }}</p>
+            <p>{{ 'add_email_or_phone_to_request_personal_data'|trans }}</p>
+        {% else %}
+            <i class="fa-solid fa-envelope-circle-check fa-3x mb-3"></i>
+            <p>{{ 'your_personal_data_request_has_been_send_to_tech_team'|trans }}</p>
+            <p>{{ 'you_will_be_contacted_soon'|trans }}</p>
         {% endif %}
-        <p>{{ 'you_will_be_contacted_soon'|trans }}</p>
     </div>
 {% endblock %}
