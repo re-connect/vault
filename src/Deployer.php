@@ -12,7 +12,7 @@ class Deployer extends DefaultDeployer
     protected const FLUSH_CACHE_FILE_PATH = self::PUBLIC_FILE_PATH.self::FLUSH_CACHE_FILE_NAME;
     protected const HOME_PAGE_URL = 'https://localhost:8000';
     protected string $server = 'vault-pp';
-    protected string $repositoryBranch = 'development';
+    protected string $repositoryBranch = 'dev';
     protected string $home = '/var/www/preprod_coffre_reconnect_fr';
     protected string $symfonyVaultDecryptKeyPath = '/preprod/preprod.decrypt.private.php';
 
