@@ -14,7 +14,7 @@ class CommonExtension extends AbstractExtension
         ];
     }
 
-    public function reDate($d, $format = '%d %B %Y'): string|array|null|false
+    public function reDate($d, $format = '%d %B %Y'): string|array|false|null
     {
         setlocale(LC_TIME, 'fr_FR.ISO-8859-1', 'fra');
 

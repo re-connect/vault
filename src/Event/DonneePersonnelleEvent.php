@@ -18,7 +18,7 @@ class DonneePersonnelleEvent extends REEvent
     protected $type;
     protected $user;
 
-    public function __construct(DonneePersonnelle $donneePersonnelle, UserInterface $user = null, $type = null)
+    public function __construct(DonneePersonnelle $donneePersonnelle, ?UserInterface $user = null, $type = null)
     {
         $this->donneePersonnelle = $donneePersonnelle;
         $this->type = $type;

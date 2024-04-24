@@ -179,10 +179,10 @@ class SMSManager implements AuthCodeTextInterface
             /** @var User $user */
             $user = $creatorUser->getEntity();
             $message .= $this->translator->trans('accompanying_person_propose_cfn_activation', [
-                    '%person.firstname%' => $user->getPrenom(),
-                    '%person.lastname%' => $user->getNom(),
-                    '%center%' => $centreFirst->getNom(),
-                ]).PHP_EOL;
+                '%person.firstname%' => $user->getPrenom(),
+                '%person.lastname%' => $user->getNom(),
+                '%center%' => $centreFirst->getNom(),
+            ]).PHP_EOL;
         }
         $beneficiaireUser = $beneficiaire->getUser();
         $number = $beneficiaireUser->getTelephone();

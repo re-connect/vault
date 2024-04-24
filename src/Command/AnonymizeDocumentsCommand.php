@@ -21,7 +21,7 @@ class AnonymizeDocumentsCommand extends Command
     public function __construct(
         EntityManagerInterface $entityManager,
         string $kernelEnvironment,
-        string $name = null
+        ?string $name = null
     ) {
         $this->env = $kernelEnvironment;
         $this->entityManager = $entityManager;

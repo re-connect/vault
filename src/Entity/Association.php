@@ -138,7 +138,7 @@ class Association extends Subject
      *
      * @return Association
      */
-    public function setUser(User $user = null)
+    public function setUser(?User $user = null)
     {
         $this->user = $user;
         $this->user->setTypeUser(User::USER_TYPE_ASSOCIATION);

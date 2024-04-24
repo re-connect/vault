@@ -4,7 +4,7 @@ namespace App\Entity;
 
 class ClientCentre extends ClientEntity
 {
-    public function setEntity(Centre $entity = null): self
+    public function setEntity(?Centre $entity = null): self
     {
         $this->entity = $entity;
 

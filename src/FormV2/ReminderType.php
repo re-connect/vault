@@ -14,11 +14,10 @@ class ReminderType extends AbstractType
     {
         $builder
             ->add('date', DateTimeType::class, [
-                    'label' => false,
-                    'date_widget' => 'single_text',
-                    'minutes' => [0, 15, 30, 45],
-                ]
-            );
+                'label' => false,
+                'date_widget' => 'single_text',
+                'minutes' => [0, 15, 30, 45],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

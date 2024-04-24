@@ -13,7 +13,7 @@ use App\Service\LanguageService;
 use App\ServiceV2\ResettingService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ExpiredResetPasswordTokenException;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
@@ -63,8 +63,8 @@ class ResetPasswordController extends AbstractController
                     $form = $this->createForm(
                         ResetPasswordSmsCheckFormType::class,
                         new ResetPasswordCheckSMSFormModel($user->getTelephone()), [
-                        'action' => $this->generateUrl('app_forgot_password_check_sms'),
-                    ])->handleRequest($request);
+                            'action' => $this->generateUrl('app_forgot_password_check_sms'),
+                        ])->handleRequest($request);
                 } else {
                     $this->addFlash('danger', 'reset_password_requested_by_email');
                 }
@@ -106,7 +106,7 @@ class ResetPasswordController extends AbstractController
     }
 
     #[Route(path: '/reset/sms/{token}', name: 'app_reset_password_sms', methods: ['GET', 'POST'])]
-    public function resetSms(Request $request, ResettingService $service, UserManager $userManager, string $token = null): Response
+    public function resetSms(Request $request, ResettingService $service, UserManager $userManager, ?string $token = null): Response
     {
         if ($token) {
             $this->storeTokenInSession($token);
@@ -158,7 +158,7 @@ class ResetPasswordController extends AbstractController
         Request $request,
         UserManager $userManager,
         LanguageService $languageService,
-        string $token = null,
+        ?string $token = null,
     ): Response {
         if ($token) {
             // We store lang in session once when user reach route for the first time, to allow update locale from dedicated component

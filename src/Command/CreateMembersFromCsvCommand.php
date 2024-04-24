@@ -24,7 +24,7 @@ class CreateMembersFromCsvCommand extends Command
 
     public function __construct(
         EntityManagerInterface $entityManager,
-        string $name = null
+        ?string $name = null
     ) {
         parent::__construct($name);
         $this->entityManager = $entityManager;

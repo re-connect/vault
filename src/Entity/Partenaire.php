@@ -52,7 +52,7 @@ class Partenaire
      *
      * @throws \Exception
      */
-    public function setImageFile(File $image = null)
+    public function setImageFile(?File $image = null)
     {
         $this->imageFile = $image;
         if ($image) {

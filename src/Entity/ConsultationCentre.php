@@ -16,12 +16,12 @@ class ConsultationCentre
     private $id;
 
     /**
-     * @var \App\Entity\Centre
+     * @var Centre
      */
     private $centre;
 
     /**
-     * @var \App\Entity\Beneficiaire
+     * @var Beneficiaire
      */
     private $beneficiaire;
 
@@ -56,7 +56,7 @@ class ConsultationCentre
     /**
      * Get centre.
      *
-     * @return \App\Entity\Centre
+     * @return Centre
      */
     public function getCentre()
     {
@@ -78,7 +78,7 @@ class ConsultationCentre
     /**
      * Get beneficiaire.
      *
-     * @return \App\Entity\Beneficiaire
+     * @return Beneficiaire
      */
     public function getBeneficiaire()
     {

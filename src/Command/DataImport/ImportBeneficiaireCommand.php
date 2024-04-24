@@ -21,7 +21,7 @@ class ImportBeneficiaireCommand extends Command
     private array $beneficaires;
     private EntityManagerInterface $em;
 
-    public function __construct(EntityManagerInterface $em, string $name = null)
+    public function __construct(EntityManagerInterface $em, ?string $name = null)
     {
         $this->em = $em;
         parent::__construct($name);

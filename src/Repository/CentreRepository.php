@@ -67,7 +67,7 @@ class CentreRepository extends ServiceEntityRepository
     }
 
     /** @return UserCentre[] */
-    public function findUserRelays(User $user, bool $isAccepted = null): array
+    public function findUserRelays(User $user, ?bool $isAccepted = null): array
     {
         $qb = $this
             ->getEntityManager()
