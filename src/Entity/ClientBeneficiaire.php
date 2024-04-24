@@ -8,7 +8,7 @@ class ClientBeneficiaire extends ClientEntity
 
     private ?int $membreDistantId = null;
 
-    public function setEntity(Beneficiaire $entity = null): ClientBeneficiaire
+    public function setEntity(?Beneficiaire $entity = null): ClientBeneficiaire
     {
         $this->entity = $entity;
 
@@ -44,7 +44,7 @@ class ClientBeneficiaire extends ClientEntity
         return $this;
     }
 
-    public static function createForMember(Client $client, string $externalId, int $memberExternalId = null): self
+    public static function createForMember(Client $client, string $externalId, ?int $memberExternalId = null): self
     {
         return (new ClientBeneficiaire($client, $externalId))->setMembreDistantId($memberExternalId);
     }

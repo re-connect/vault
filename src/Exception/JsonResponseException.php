@@ -43,10 +43,10 @@ final class JsonResponseException
 
         $response = [
             'error' => [
-                    'message' => $this->exception->getMessage(),
-                    'status' => $this->codeError,
-                    'code' => (string) (new ErrorCode($shortName)),
-                ],
+                'message' => $this->exception->getMessage(),
+                'status' => $this->codeError,
+                'code' => (string) (new ErrorCode($shortName)),
+            ],
         ];
 
         return new JsonResponse($response, $this->codeError);

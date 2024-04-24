@@ -164,7 +164,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
         return $this->dossierParent;
     }
 
-    public function setDossierParent(Dossier $dossierParent = null): self
+    public function setDossierParent(?Dossier $dossierParent = null): self
     {
         $this->dossierParent = $dossierParent;
 
@@ -188,8 +188,8 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
         array_map(
             fn (DonneePersonnelle $personalData) => $personalData->toggleVisibility(),
             [
-            ...$this->getSousDossiers()->filter(fn (Dossier $dossier) => $dossier->getBPrive() !== $this->getBPrive())->toArray(),
-            ...$this->getDocuments()->filter(fn (Document $document) => $document->getBPrive() !== $this->getBPrive())->toArray(),
+                ...$this->getSousDossiers()->filter(fn (Dossier $dossier) => $dossier->getBPrive() !== $this->getBPrive())->toArray(),
+                ...$this->getDocuments()->filter(fn (Document $document) => $document->getBPrive() !== $this->getBPrive())->toArray(),
             ],
         );
     }

@@ -42,7 +42,7 @@ class FirstVisitType extends AbstractType
                     'choices' => array_combine(User::MFA_METHODS, User::MFA_METHODS),
                     'expanded' => true,
                     'multiple' => false,
-                 ]);
+                ]);
         }
     }
 

@@ -15,7 +15,7 @@ class MembreEvent extends REEvent
     protected $type;
     protected $context = [];
 
-    public function __construct(Membre $membre, $type, User $user = null)
+    public function __construct(Membre $membre, $type, ?User $user = null)
     {
         $this->membre = $membre;
         $this->user = $user;

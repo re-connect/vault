@@ -41,7 +41,7 @@ class DocumentRepository extends ServiceEntityRepository
         return $qb->getQuery()->getSingleResult();
     }
 
-    public function findAllowed(Beneficiaire $beneficiaire, bool $isBeneficiaire, int $dossierId = null): array
+    public function findAllowed(Beneficiaire $beneficiaire, bool $isBeneficiaire, ?int $dossierId = null): array
     {
         $criteria = [
             'beneficiaire' => $beneficiaire,
@@ -57,7 +57,7 @@ class DocumentRepository extends ServiceEntityRepository
     /**
      * @return Document[]
      */
-    public function findByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, Dossier $folder = null, string $search = null): array
+    public function findByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, ?Dossier $folder = null, ?string $search = null): array
     {
         $qb = $this->createQueryBuilder('d')
             ->andWhere('d.beneficiaire = :beneficiary')

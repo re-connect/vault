@@ -24,8 +24,8 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
     public function testRoute(
         string $url,
         int $expectedStatusCode,
-        string $userMail = null,
-        string $expectedRedirect = null,
+        ?string $userMail = null,
+        ?string $expectedRedirect = null,
         string $method = 'GET',
         bool $isXmlHttpRequest = false,
         array $body = [],
@@ -115,7 +115,7 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
     /**
      * @dataProvider provideTestFormIsNotValid
      */
-    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, string $alternateSelector = null): void
+    public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
         $this->markTestSkipped();
         $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object();
@@ -152,7 +152,7 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
     /**
      * @dataProvider provideTestFormIsNotValidNoRelaysSelected
      */
-    public function testFormIsNotValidNoRelaysSelected(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, string $alternateSelector = null): void
+    public function testFormIsNotValidNoRelaysSelected(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
         $this->markTestSkipped();
         $beneficiary = BeneficiaireFactory::createOne()->object();

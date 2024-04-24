@@ -36,12 +36,12 @@ class UserBeneficiaireType extends AbstractType
                 ],
             ])
             ->add('telephone', null, [
-                    'required' => false,
-                    'label' => 'phone',
-                    'attr' => [
-                        'class' => 'intl-tel-input',
-                    ],
-                ]
+                'required' => false,
+                'label' => 'phone',
+                'attr' => [
+                    'class' => 'intl-tel-input',
+                ],
+            ]
             )
             ->addEventSubscriber(new AddFormattedPhoneSubscriber())
             ->add('email', EmailType::class, ['required' => false, 'label' => 'email'])

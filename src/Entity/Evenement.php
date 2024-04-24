@@ -53,7 +53,7 @@ class Evenement extends DonneePersonnelle
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
     private $rappels;
 
-    public function __construct(Beneficiaire $beneficiaire = null)
+    public function __construct(?Beneficiaire $beneficiaire = null)
     {
         parent::__construct();
         $this->beneficiaire = $beneficiaire;
@@ -248,7 +248,7 @@ class Evenement extends DonneePersonnelle
      *
      * @return Evenement
      */
-    public function setSms(SMS $sms = null)
+    public function setSms(?SMS $sms = null)
     {
         $this->sms = $sms;
 
@@ -270,7 +270,7 @@ class Evenement extends DonneePersonnelle
      *
      * @return Evenement
      */
-    public function setMembre(Membre $membre = null)
+    public function setMembre(?Membre $membre = null)
     {
         $this->membre = $membre;
 

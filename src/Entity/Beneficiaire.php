@@ -197,7 +197,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this;
     }
 
-    public function setUser(User $user = null): self
+    public function setUser(?User $user = null): self
     {
         $this->user = $user;
         $this->user->setTypeUser(User::USER_TYPE_BENEFICIAIRE);
@@ -544,7 +544,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this->idRosalie;
     }
 
-    public function setIdRosalie(int $idRosalie = null): Beneficiaire
+    public function setIdRosalie(?int $idRosalie = null): Beneficiaire
     {
         $this->idRosalie = $idRosalie;
 
@@ -967,7 +967,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
             : $this->externalLinks->filter(fn (ClientBeneficiaire $link) => $link->getClient() === $client);
     }
 
-    public function addClientExternalLink(Client $client, string $externalId, string $memberExternalId = null): self
+    public function addClientExternalLink(Client $client, string $externalId, ?string $memberExternalId = null): self
     {
         if (!$this->hasExternalLinkForClient($client)) {
             $this->addExternalLink(ClientBeneficiaire::createForMember($client, $externalId, $memberExternalId));

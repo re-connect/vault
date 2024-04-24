@@ -108,9 +108,9 @@ class MembreAdmin extends AbstractAdmin
             ])
             ->add('user', AdminType::class, [
                 'btn_add' => false, 'btn_delete' => false, ], [
-                'admin_code' => 'sonata.admin.user_simple',
-                'admin_code_external_links' => 'reo_auth.admin.client_membre',
-            ])
+                    'admin_code' => 'sonata.admin.user_simple',
+                    'admin_code_external_links' => 'reo_auth.admin.client_membre',
+                ])
             ->add('usesRosalie', null, ['label' => 'uses_rosalie'])
             ->end();
 
@@ -140,7 +140,7 @@ class MembreAdmin extends AbstractAdmin
                     ],
                     'disabled' => true,
                     'label' => 'disabledAt',
-                    ],
+                ],
                     [
                         'admin_code' => 'sonata.admin.user_simple',
                     ])
@@ -149,14 +149,14 @@ class MembreAdmin extends AbstractAdmin
         $form
             ->with('Centres')
             ->add('membresCentres', CollectionType::class, [
-                        'by_reference' => false,
-                        'label' => 'Centres',
-                        'required' => false,
-                    ], [
-                        'edit' => 'inline',
-                        'inline' => 'table',
-                        'sortable' => 'position',
-                    ])
+                'by_reference' => false,
+                'label' => 'Centres',
+                'required' => false,
+            ], [
+                'edit' => 'inline',
+                'inline' => 'table',
+                'sortable' => 'position',
+            ])
             ->end()
             ->with('Liaisons externe')
             ->add(

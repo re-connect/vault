@@ -244,7 +244,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    public function setLastLogin(\DateTime $time = null)
+    public function setLastLogin(?\DateTime $time = null)
     {
         $this->lastLogin = $time;
 

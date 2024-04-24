@@ -4,7 +4,7 @@ namespace App\Entity;
 
 class ClientGestionnaire extends ClientEntity
 {
-    public function setEntity(Gestionnaire $entity = null): self
+    public function setEntity(?Gestionnaire $entity = null): self
     {
         $this->entity = $entity;
 

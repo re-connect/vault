@@ -19,7 +19,7 @@ class DisableAssociationsCommand extends Command
     public function __construct(
         private readonly AssociationRepository $repository,
         private readonly EntityManagerInterface $em,
-        string $name = null,
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }

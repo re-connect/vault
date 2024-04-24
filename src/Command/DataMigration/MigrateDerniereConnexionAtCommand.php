@@ -17,7 +17,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class MigrateDerniereConnexionAtCommand extends Command
 {
-    public function __construct(private readonly EntityManagerInterface $em, private readonly UserRepository $userRepository, string $name = null)
+    public function __construct(private readonly EntityManagerInterface $em, private readonly UserRepository $userRepository, ?string $name = null)
     {
         parent::__construct($name);
     }

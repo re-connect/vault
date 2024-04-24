@@ -28,7 +28,7 @@ class Note extends DonneePersonnelle
     #[Groups(['read-personal-data', 'write-personal-data', 'v3:note:write', 'v3:note:read'])]
     private $contenu;
 
-    public function __construct(Beneficiaire $beneficiaire = null)
+    public function __construct(?Beneficiaire $beneficiaire = null)
     {
         parent::__construct();
         $this->beneficiaire = $beneficiaire;

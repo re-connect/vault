@@ -15,7 +15,7 @@ class GestionnaireEvent extends REEvent
     protected $type;
     protected $context = [];
 
-    public function __construct(Gestionnaire $gestionnaire, $type, User $user = null)
+    public function __construct(Gestionnaire $gestionnaire, $type, ?User $user = null)
     {
         $this->gestionnaire = $gestionnaire;
         $this->user = $user;
