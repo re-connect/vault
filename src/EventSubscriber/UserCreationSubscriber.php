@@ -92,8 +92,10 @@ class UserCreationSubscriber
 
     private function addCreatorRelay(?User $user): void
     {
-        if ($firstRelay = $user?->getFirstUserRelay()) {
-            $user->addCreatorRelay($firstRelay->getCentre());
+        $firstUserRelay = $user?->isBeneficiaire() ? $user->getFirstUserRelay() : $this->getUser()?->getFirstUserRelay();
+
+        if ($user && $firstUserRelay) {
+            $user->addCreatorRelay($firstUserRelay->getCentre());
         }
     }
 
