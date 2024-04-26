@@ -1,10 +1,10 @@
 {% extends 'v2/management_layout.html.twig' %}
 {% block metaTitle %}{{ 'choose_user'|trans }}{% endblock %}
-{% block delimiter %}{% endblock %}
-{% block subTitleIcon %}{% endblock %}
+{% block subTitle %}{{ 'search_existing_user'|trans|upper }}{% endblock %}
+{% block subTitleIconName %}user-plus{% endblock %}
 
 {% block content %}
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-12 col-md-4">
             {{ form_start(form, {
                 attr: {class: 'display-required-labels'},
