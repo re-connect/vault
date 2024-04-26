@@ -2,10 +2,14 @@
 
 namespace App\FormV2\UserAffiliation\Model;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class SearchProFormModel
 {
     public function __construct(
+        #[Assert\NotBlank]
         private ?string $firstname = '',
+        #[Assert\NotBlank]
         private ?string $lastname = '',
     ) {
     }
