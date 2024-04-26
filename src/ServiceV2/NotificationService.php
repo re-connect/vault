@@ -38,7 +38,7 @@ class NotificationService
         private readonly TexterInterface $texter,
         private readonly EntityManagerInterface $em,
         private readonly RouterInterface $router,
-        private RequestStack $requestStack,
+        private readonly RequestStack $requestStack,
         private readonly Security $security,
         private readonly LoginLinkHandlerInterface $loginLinkHandler,
         private readonly SecretQuestionsHelper $secretQuestionsHelper,

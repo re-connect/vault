@@ -30,7 +30,7 @@ class ResettingService
         private readonly NotificationService $notificator,
         private readonly ResetPasswordHelperInterface $resetPasswordHelper,
         private readonly UserManager $userManager,
-        private RequestStack $requestStack,
+        private readonly RequestStack $requestStack,
     ) {
     }
 

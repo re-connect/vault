@@ -25,7 +25,7 @@ class SharedDocumentManager
         private readonly MailerService $mailerService,
         private readonly UserRepository $userRepository,
         private readonly DocumentRepository $documentRepository,
-        private RequestStack $requestStack,
+        private readonly RequestStack $requestStack,
         private readonly Security $security,
     ) {
     }
