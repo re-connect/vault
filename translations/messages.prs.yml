@@ -1,28 +1,29 @@
+
+actual_password: رمز عبور فعلی شما
+confirm_new_password: رمز عبور جدید خود را تأیید کنید
 form_connexion: 'وارد شدن'
 form_forgot_password: 'رمز عبور یا نام کاربری خود را فراموش کرده ام.'
 form_login: 'نام کاربری   یا  آدرس ایمیل'
-login_form_title: 'دسترسی به گاوصندوق دیجیتالی'
-login_error_disabled_account: حساب شما غیرفعال شده است، لطفاً با پشتیبانی تماس بگیرید.
+improve_password_beneficiary: به منظور افزایش امنیت، قوانین رمز عبور به‌روزرسانی شده‌اند. شما باید رمز عبور خود را تغییر دهید.
+improve_password_pro: در Reconnect، امنیت ابزارها و داده‌های ما و شما اولویت است. برای تقویت آن، شما را دعوت می‌کنیم تا رمز عبور خود را به‌روزرسانی کنید تا به صندوق امن دیجیتال دسترسی پیدا کنید. افراد همراه نیز باید رمز عبور خود را به‌روزرسانی کنند تا به صندوق امن دیجیتال خود دسترسی داشته باشند.
 login_error_account_in_creation: حساب شما در حال ایجاد است، لطفاً با پشتیبانی تماس بگیرید.
+login_error_disabled_account: حساب شما غیرفعال شده است، لطفاً با پشتیبانی تماس بگیرید.
+login_form_title: 'دسترسی به گاوصندوق دیجیتالی'
 password_criterion_length: طول
 password_criterion_lowercase: حروف کوچک
 password_criterion_nonAlphabetic: ویژه/عدد
 password_criterion_uppercase: حرف بزرگ
-user_update_password_subtitle : رمز عبور %subject%
-submit: تایید
-user_update_password_title: تجدید رمز عبور
 password_help: رمز عبور باید حداقل 9 کاراکتر بلند باشد و شامل حداقل یک حرف بزرگ، یک حرف کوچک و یک عدد یا نماد ویژه باشد
-your_new_password: رمز عبور جدید شما
-confirm_new_password: رمز عبور جدید خود را تأیید کنید
-improve_password_pro: در Reconnect، امنیت ابزارها و داده‌های ما و شما اولویت است. برای تقویت آن، شما را دعوت می‌کنیم تا رمز عبور خود را به‌روزرسانی کنید تا به صندوق امن دیجیتال دسترسی پیدا کنید. افراد همراه نیز باید رمز عبور خود را به‌روزرسانی کنند تا به صندوق امن دیجیتال خود دسترسی داشته باشند.
-improve_password_beneficiary: به منظور افزایش امنیت، قوانین رمز عبور به‌روزرسانی شده‌اند. شما باید رمز عبور خود را تغییر دهید.
-actual_password: رمز عبور فعلی شما
 passwords_mismatch: رمز عبورها مطابقت ندارند
-secret_question_mother_firstname: نام کوچک مادر مددجو چیست؟
-secret_question_pet: نام حیوان خانگی مددجو چیست؟
-secret_question_favorite_street: نام خیابان مورد علاقه مددجو چیست؟
-secret_question_secondary_school: کدام مدرسه متوسط ​​مددجو به یاد دارد که به آن رفته است؟
-secret_question_nickname: لقب مددجو چیست؟
 secret_question_city_of_birth: شهر محل تولد مددجو کدام است؟
-secret_question_mother_lastname: نام خانوادگی مادر مددجو چیست؟
 secret_question_custom: سایر
+secret_question_favorite_street: نام خیابان مورد علاقه مددجو چیست؟
+secret_question_mother_firstname: نام کوچک مادر مددجو چیست؟
+secret_question_mother_lastname: نام خانوادگی مادر مددجو چیست؟
+secret_question_nickname: لقب مددجو چیست؟
+secret_question_pet: نام حیوان خانگی مددجو چیست؟
+secret_question_secondary_school: کدام مدرسه متوسط ​​مددجو به یاد دارد که به آن رفته است؟
+submit: تایید
+user_update_password_subtitle : رمز عبور %subject%
+user_update_password_title: تجدید رمز عبور
+your_new_password: رمز عبور جدید شما
