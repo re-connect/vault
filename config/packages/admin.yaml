@@ -47,6 +47,7 @@ services:
             - App\Entity\User
             - ~
             - '@Symfony\Bundle\SecurityBundle\Security'
+            - '@Symfony\Component\Routing\RouterInterface'
         calls:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
 
