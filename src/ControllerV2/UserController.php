@@ -209,4 +209,16 @@ class UserController extends AbstractController
             'hasAlreadyRequestedData' => $hasAlreadyRequestedData,
         ]);
     }
+
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route(path: '/{id<\d+>}/reset-mfa-retry-count', name: 'reset_mfa_retry_count', methods: ['GET'])]
+    public function resetMfaRetryCount(Request $request, User $user, EntityManagerInterface $em): Response
+    {
+        $user->resetMfaRetryCount();
+        $em->flush();
+
+        return $request->headers->get('referer')
+            ? $this->redirect($request->headers->get('referer'))
+            : $this->redirectToRoute('re_main_accueil');
+    }
 }
