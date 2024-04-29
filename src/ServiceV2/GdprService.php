@@ -17,13 +17,11 @@ class GdprService
     public const RENEWAL_DAYS_COUNT = 7;
     public const EXPIRATION_DAYS_COUNT = 0;
 
-    private TranslatorInterface $translator;
-
-    public function __construct(RequestStack $requestStack, Security $security, TranslatorInterface $translator)
-    {
-        $this->requestStack = $requestStack;
-        $this->security = $security;
-        $this->translator = $translator;
+    public function __construct(
+        private readonly RequestStack $requestStack,
+        private readonly Security $security,
+        private readonly TranslatorInterface $translator
+    ) {
     }
 
     public function isPasswordRenewalDue(): bool

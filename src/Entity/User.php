@@ -226,6 +226,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     private ?bool $mfaValid;    // This is only used when login from API
     private string $mfaMethod = self::MFA_METHOD_EMAIL;
     private ?int $mfaRetryCount = 0;
+    private ?\DateTimeInterface $mfaCodeGeneratedAt = null;
 
     /** @var string[] */
     private array $relaysIds = [];
@@ -1336,14 +1337,25 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->email;
     }
 
-    public function getEmailAuthCode(): string
+    public function getAuthCode(): string
     {
         return $this->authCode ?? '';
     }
 
+    public function getEmailAuthCode(): string
+    {
+        return $this->getAuthCode();
+    }
+
+    public function setAuthCode(string $authCode): void
+    {
+        $this->mfaCodeGeneratedAt = new \DateTimeImmutable();
+        $this->authCode = $authCode;
+    }
+
     public function setEmailAuthCode(string $authCode): void
     {
-        $this->authCode = $authCode;
+        $this->setAuthCode($authCode);
     }
 
     public function isTextAuthEnabled(): bool
@@ -1358,12 +1370,12 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getTextAuthCode(): string
     {
-        return $this->authCode ?? '';
+        return $this->getAuthCode();
     }
 
     public function setTextAuthCode(string $authCode): void
     {
-        $this->authCode = $authCode;
+        $this->setAuthCode($authCode);
     }
 
     public function isMfaEnabled(): ?bool
@@ -1454,14 +1466,46 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function increaseMfaRetryCount(): static
     {
+        if (null === $this->mfaRetryCount) {
+            $this->mfaRetryCount = 0;
+        }
+
         ++$this->mfaRetryCount;
 
         return $this;
     }
 
+    public function sendMfaCode(): void
+    {
+        $this->increaseMfaRetryCount();
+    }
+
     public function getValidationGroup(): string
     {
         return $this->isBeneficiaire() ? 'beneficiaire' : 'membre';
+    }
+
+    public function getMfaCodeGeneratedAt(): ?\DateTimeInterface
+    {
+        return $this->mfaCodeGeneratedAt;
+    }
+
+    public function setMfaCodeGeneratedAt(?\DateTimeInterface $mfaCodeGeneratedAt): static
+    {
+        $this->mfaCodeGeneratedAt = $mfaCodeGeneratedAt;
+
+        return $this;
+    }
+
+    public function isMfaCodeExpired(): bool
+    {
+        if (null === $this->mfaCodeGeneratedAt) {
+            return true;
+        }
+
+        $expiration = $this->mfaCodeGeneratedAt->add(new \DateInterval('PT5M'));
+
+        return $expiration < new \DateTimeImmutable();
     }
 
     public function isBeingCreated(): bool

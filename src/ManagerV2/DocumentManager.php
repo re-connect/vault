@@ -34,7 +34,7 @@ class DocumentManager
         private readonly EntityManagerInterface $em,
         private readonly Security $security,
         private readonly LoggerInterface $logger,
-        private RequestStack $requestStack,
+        private readonly RequestStack $requestStack,
         private readonly TranslatorInterface $translator,
         private readonly BucketService $bucketService,
     ) {
