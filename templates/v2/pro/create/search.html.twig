@@ -1,21 +1,26 @@
 {% extends 'v2/management_layout.html.twig' %}
 {% block metaTitle %}{{ 'choose_user'|trans }}{% endblock %}
-{% block delimiter %}{% endblock %}
-{% block subTitleIcon %}{% endblock %}
+{% block subTitle %}{{ 'search_existing_user'|trans|upper }}{% endblock %}
+{% block subTitleIconName %}user-plus{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-12 col-md-8 offset-md-2 mt-2" {{ stimulus_controller('ajax-search', {url: path('search_pro')}) }}>
-            {{ form_start(form) }}
-            {{ form_widget(form.search, {attr: {
-                class: '',
-                'data-ajax-search-target' : 'input',
-                'data-action' : 'ajax-search#search',
-            }}) }}
-            {{ form_end(form) }}
-            <div class="mt-3" {{ stimulus_target('ajax-search', 'results') }}>
-                {{ include('v2/pro/create/_search_results_card.html.twig', {pros}) }}
+    <div class="row mt-5">
+        <div class="col-12 col-md-4">
+            {{ form_start(form, {
+                attr: {class: 'display-required-labels'},
+            }) }}
+            {{ form_row(form.firstname) }}
+            {{ form_row(form.lastname) }}
+            <div class="mt-3">
+                {{ include('v2/common/_button.html.twig', {
+                    message: 'search'|trans,
+                    fullWidth: true,
+                }) }}
             </div>
+            {{ form_end(form) }}
+        </div>
+        <div class="col-12 col-md-8">
+            {{ include('v2/pro/create/_search_results_card.html.twig', {pros}) }}
         </div>
     </div>
 {% endblock %}
