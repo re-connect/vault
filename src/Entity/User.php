@@ -44,6 +44,18 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         self::USER_TYPE_SUPER_ADMIN => self::USER_TYPE_SUPER_ADMIN,
     ];
     public const string DEFAULT_LANGUAGE = 'fr';
+    public const array LANGUAGES = [
+        'ar' => 'ar',
+        'de' => 'de',
+        'en' => 'en',
+        'es' => 'es',
+        'fr' => 'fr',
+        'gb' => 'en',
+        'it' => 'it',
+        'ps' => 'ps',
+        'prs' => 'prs',
+        'ru' => 'ru',
+    ];
 
     public const array USER_TYPES = [
         self::USER_TYPE_BENEFICIAIRE => 'beneficiaire',
@@ -423,7 +435,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getLastLang(): ?string
     {
-        return $this->lastLang ?? self::DEFAULT_LANGUAGE;
+        return User::LANGUAGES[$this->lastLang] ?? self::DEFAULT_LANGUAGE;
     }
 
     public function setLastLang(?string $lastLang): self
