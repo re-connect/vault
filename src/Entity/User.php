@@ -1136,6 +1136,10 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     /** @return Collection<int, UserCentre> */
     public function getUserRelays(): Collection
     {
+        if (!$this->isBeneficiaire() && !$this->isMembre()) {
+            return new ArrayCollection();
+        }
+
         return $this->isBeneficiaire()
             ? $this->getSubjectBeneficiaire()->getBeneficiairesCentres()
             : $this->getSubjectMembre()->getMembresCentres();
