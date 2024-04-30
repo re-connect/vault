@@ -377,7 +377,6 @@ message: Message
 mfa: Authentification à deux facteurs
 mfa_code_not_received: Vous n'avez pas reçu le code ?
 mfa_enabled: Double authentification active
-mfa_maximum_retries_reach: Vous avez atteint le nombre maximum de renvois autorisés. Si vous ne parvenez pas à vous connecter, veuillez contacter le support.
 mfa_method: 'Recevoir le code par :'
 missing_secret_question: Question secrète non renseignée
 missing_secret_question_text: Non avete ancora inserito una domanda e una risposta segreta, potete farlo qui di seguito

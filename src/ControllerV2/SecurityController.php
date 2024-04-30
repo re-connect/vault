@@ -10,11 +10,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecurityController extends AbstractController
 {
-    public const MFA_MAX_RETRIES = 3;
-
     public function __construct(private readonly GdprService $gdprService)
     {
     }
@@ -63,7 +62,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/resend-auth-code', name: 'resend_auth_code', methods: ['GET'])]
-    public function resendAuthCode(MfaCodeSender $mfaCodeSender): RedirectResponse
+    public function resendAuthCode(MfaCodeSender $mfaCodeSender, TranslatorInterface $translator): RedirectResponse
     {
         $user = $this->getUser();
 
@@ -71,8 +70,8 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('re_main_login');
         }
 
-        if (self::MFA_MAX_RETRIES === $user->getMfaRetryCount()) {
-            $this->addFlash('danger', 'mfa_maximum_retries_reach');
+        if ($user->isMfaCodeCountLimitReach()) {
+            $this->addFlash('danger', $translator->trans('mfa_maximum_retries_reach', [], 'security'));
 
             return $this->redirectToRoute('2fa_login');
         }

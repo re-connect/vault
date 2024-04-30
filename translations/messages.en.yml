@@ -377,7 +377,6 @@ message: Message
 mfa: Two-factor authentication
 mfa_code_not_received: Did not receive the code?
 mfa_enabled: Two-factor authentication enabled
-mfa_maximum_retries_reach: You have reached the maximum number of allowed retries. If you are unable to log in, please contact support.
 mfa_method: 'Receive code via:'
 missing_secret_question: Secret question is missing
 missing_secret_question_text: You have not yet entered a secret question and answer, you can do so below

@@ -59,6 +59,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         self::MFA_METHOD_EMAIL,
         self::MFA_METHOD_SMS,
     ];
+    public const int MFA_MAX_SEND_CODE_COUNT = 3;
 
     /**
      * @var string
@@ -1478,6 +1479,11 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public function sendMfaCode(): void
     {
         $this->increaseMfaRetryCount();
+    }
+
+    public function isMfaCodeCountLimitReach(): bool
+    {
+        return $this->mfaRetryCount >= self::MFA_MAX_SEND_CODE_COUNT;
     }
 
     public function getValidationGroup(): string
