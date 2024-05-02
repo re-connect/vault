@@ -8,6 +8,11 @@
             <p>{{ authenticationError|trans(authenticationErrorData, 'security') }}</p>
         </div>
     {% endif %}
+    {% if app.user.mfaCodeCountLimitReach %}
+        <div class="alert alert-warning alert-dismissible fade show w-75 mx-auto " role="alert">
+            <p>{{ 'mfa_maximum_retries_reach'|trans({}, 'security') }}</p>
+        </div>
+    {% endif %}
     <form class="form" action="{{ checkPathUrl ? checkPathUrl : path(checkPathRoute) }}" method="post">
         <div class="d-flex justify-content-center align-items-center flex-column w-100">
             <p class="widget">

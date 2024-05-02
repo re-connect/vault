@@ -11,8 +11,8 @@ use Symfony\Component\Security\Core\Exception\BadCredentialsException;
  */
 class ExpiredTwoFactorCodeException extends BadCredentialsException
 {
-    public const MESSAGE = 'Expipred two-factor authentication code.';
-    private const MESSAGE_KEY = 'mfa_code_expired';
+    public const string MESSAGE = 'Expired two-factor authentication code.';
+    private const string MESSAGE_KEY = 'mfa_code_expired';
 
     public function getMessageKey(): string
     {

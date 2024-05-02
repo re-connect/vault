@@ -377,7 +377,6 @@ message: Message
 mfa: Autenticación de dos factores
 mfa_code_not_received: '¿No recibiste el código?'
 mfa_enabled: Autenticación de dos factores activada
-mfa_maximum_retries_reach: Has alcanzado el número máximo de reintentos permitidos. Si no puedes iniciar sesión, por favor contáctanos por el chat.
 mfa_method: 'Recibir código por:'
 missing_secret_question: Question secrète non renseignée
 missing_secret_question_text: No ha introducido una pregunta y respuesta secretas, puede hacerlo abajo
