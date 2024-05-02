@@ -60,13 +60,6 @@ readonly class ExpiringTwoFactorProvider implements TwoFactorProviderInterface
         return $this->formRenderer;
     }
 
-    public function resendAuthenticationCode($user): void
-    {
-        if ($user instanceof User) {
-            $this->getCodeGenerator($user)->reSend($user);
-        }
-    }
-
     private function getCodeGenerator(User $user): EmailCodeGeneratorInterface|TextCodeGeneratorInterface
     {
         return User::MFA_METHOD_EMAIL === $user->getMfaMethod()

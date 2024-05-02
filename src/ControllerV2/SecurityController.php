@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecurityController extends AbstractController
 {
@@ -62,18 +61,11 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/resend-auth-code', name: 'resend_auth_code', methods: ['GET'])]
-    public function resendAuthCode(MfaCodeSender $mfaCodeSender, TranslatorInterface $translator): RedirectResponse
+    public function resendAuthCode(MfaCodeSender $mfaCodeSender): RedirectResponse
     {
         $user = $this->getUser();
-
         if (!$user) {
             return $this->redirectToRoute('re_main_login');
-        }
-
-        if ($user->isMfaCodeCountLimitReach()) {
-            $this->addFlash('danger', $translator->trans('mfa_maximum_retries_reach', [], 'security'));
-
-            return $this->redirectToRoute('2fa_login');
         }
 
         $mfaCodeSender->sendCode($user);
