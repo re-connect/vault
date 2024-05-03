@@ -82,11 +82,10 @@ class EventManager
             echo sprintf('Nombre de rappels due : %s%s', count($reminders), PHP_EOL);
 
             foreach ($reminders as $reminder) {
-                $utcTimezone = new \DateTimeZone('UTC');
-                $nowUtc = new \DateTime('now', $utcTimezone);
-                $reminderDateUtc = $reminder->getDate()->setTimezone($utcTimezone);
+                $now = new \DateTime('now');
+                $eventDate = $reminder->getEvenement()->getDate()->setTimezone($now->getTimezone());
 
-                if (!$reminder->getBEnvoye() && $reminderDateUtc < $nowUtc) {
+                if (!$reminder->getBEnvoye() && $eventDate < $now) {
                     echo sprintf('Sending reminder : %s%s', $reminder->getId(), PHP_EOL);
                     $this->notificator->sendSmsReminder($reminder);
                 }
