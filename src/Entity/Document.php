@@ -51,6 +51,8 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
 
     public const array BROWSER_EXTENSIONS_NOT_VIEWABLE = ['doc', 'docx', 'txt', 'odt', 'xls', 'xlsx', 'csv'];
     public const array BROWSER_EXTENSIONS_VIEWABLE = ['jpg', 'jpeg', 'pdf', 'gif', 'png'];
+    public const array ALLOWED_FILE_EXTENSIONS = [...self::BROWSER_EXTENSIONS_NOT_VIEWABLE, ...self::BROWSER_EXTENSIONS_VIEWABLE];
+
     protected ?\DateTime $dateEmission = null;
 
     #[Groups(['v3:document:write', 'v3:document:read'])]

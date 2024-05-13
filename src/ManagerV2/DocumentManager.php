@@ -144,12 +144,7 @@ class DocumentManager
 
     private function isFileExtensionAllowed(UploadedFile $file): bool
     {
-        $allowedFileExtensions = array_merge(
-            Document::BROWSER_EXTENSIONS_VIEWABLE,
-            Document::BROWSER_EXTENSIONS_NOT_VIEWABLE,
-        );
-
-        if (!in_array($file->guessExtension(), $allowedFileExtensions)) {
+        if (!in_array($file->guessExtension(), Document::ALLOWED_FILE_EXTENSIONS)) {
             $this->addFlashMessage(
                 'danger',
                 $this->translator->trans('unsupported_file_extension', ['%fileName%' => $file->getClientOriginalName()]),

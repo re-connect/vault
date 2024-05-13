@@ -16,34 +16,40 @@ export default class extends Controller {
   static values = {
     locale: String,
     url: String,
+    allowedFileExtensions: Array
   };
 
   connect() {
     const sessionLocale = this.localeValue;
-
+    const allowedFileExtensionsWithDot = this.allowedFileExtensionsValue.map((fileExtension) => `.${fileExtension}`);
     const availableLocales = {
-      'fr': UppyFrench,
-      'de': UppyGerman,
-      'en': UppyEnglish,
-      'ru': UppyRussian,
-      'it': UppyItalian,
-      'es': UppySpanish,
-      'ar': UppyArabic,
-    }
+      fr: UppyFrench,
+      de: UppyGerman,
+      en: UppyEnglish,
+      ru: UppyRussian,
+      it: UppyItalian,
+      es: UppySpanish,
+      ar: UppyArabic
+    };
 
-    Uppy({locale: availableLocales[sessionLocale] ?? availableLocales['fr']})
+    Uppy({
+      locale: availableLocales[sessionLocale] ?? availableLocales.fr,
+      restrictions: {
+        allowedFileTypes: allowedFileExtensionsWithDot
+      }
+    })
       .use(Dashboard, {
         trigger: this.element,
         closeModalOnClickOutside: true,
         proudlyDisplayPoweredByUppy: false,
         closeAfterFinish: true,
-        theme: 'auto',
+        theme: 'auto'
       })
       .use(XHRUpload, {
         endpoint: this.urlValue
       })
       .on('complete', () => {
-        window.location.reload()
+        window.location.reload();
       });
   }
 }
