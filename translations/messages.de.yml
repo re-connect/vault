@@ -532,6 +532,7 @@ rp_page_user_file_p: "Hier finden Sie alle Informationen, die Ihnen die Arbeit e
 rp_page_user_file_title: 'Klient*innenakte'''
 search: Suche
 search_existing_beneficiary: 'Rechercher un bénéficiaire existant'
+search_existing_user: 'Rechercher un utilisateur existant'
 search_professional_help: Vous pouvez rechercher un utilisateur professionnel existant afin de lui envoyer une invitation à rejoindre vos relais
 secret_answer: geheime Antwort
 secret_question: 'Sicherheitsfrage'
