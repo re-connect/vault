@@ -17,6 +17,11 @@ trait DeactivatableTrait
         return $this->enabled;
     }
 
+    public function isEnabledToString(): string
+    {
+        return $this->enabled ? 'Oui' : 'Non';
+    }
+
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;

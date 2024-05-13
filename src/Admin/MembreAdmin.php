@@ -281,7 +281,7 @@ class MembreAdmin extends AbstractAdmin
             'Region' => 'getRegionToString',
             'Date de création' => 'user.createdAt',
             'Dernière connexion' => 'user.derniereConnexionAt',
-            'Activé' => 'user.enabled',
+            'Activé' => 'user.enabledToString',
             'Compte test' => 'user.testToString',
         ];
     }
