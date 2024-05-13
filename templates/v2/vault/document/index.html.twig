@@ -6,7 +6,7 @@
     <div class="list-container d-flex flex-column justify-content-center">
         {{ foldersAndDocuments is not empty
         ? include('v2/vault/document/_list.html.twig', {foldersAndDocuments})
-        : include('v2/vault/components/_empty_list_content.html.twig', {'message': 'no_document_yet'|trans})}}
+        : include('v2/vault/components/_empty_list_content.html.twig', {message: 'no_document_yet'|trans})}}
     </div>
 {% endblock %}
 
@@ -16,8 +16,8 @@
             <i class="fa fa-fw fa-folder-open"></i>
             <span class="d-none d-md-inline">{{ 'folder_content'|trans }} {{ currentFolder.nom }}</span>
             <a class="btn" href="{{ currentFolder.dossierParent
-                ? path('folder', {'id': currentFolder.dossierParent.id})
-                : path('list_documents', {'id': beneficiary.id})
+                ? path('folder', {id: currentFolder.dossierParent.id})
+                : path('list_documents', {id: beneficiary.id})
             }}"
             >
                 <i class="fas fa-undo-alt pointer text-primary"></i>
@@ -26,16 +26,17 @@
     {% endif %}
     <button class="btn {{ getUserButtonColor() }} text-white"
             {{ stimulus_controller('upload', {
-                'locale': app.session.get("_locale") ?: 'fr',
-                'url': path('upload_document', {'id': beneficiary.id, 'folder': currentFolder.id ?? ''})
+                locale: app.session.get("_locale") ?: 'fr',
+                url: path('upload_document', {'id': beneficiary.id, 'folder': currentFolder.id ?? ''}),
+                allowedFileExtensions: constant('App\\\Entity\\\Document::ALLOWED_FILE_EXTENSIONS')
             }) }}
     >
         <i class="fas fa-plus-circle me-md-1"></i>
         <span class="d-none d-sm-inline">{{ 'drop_files'|trans }}</span>
     </button>
     <a href="{{ currentFolder is defined
-        ? path('folder_create_subfolder', {'id': currentFolder.id})
-        : path('create_folder', {'id': beneficiary.id})
+        ? path('folder_create_subfolder', {id: currentFolder.id})
+        : path('create_folder', {id: beneficiary.id})
     }}"
        class="btn {{ getUserButtonColor() }} text-white ms-2">
         <i class="fas fa-folder-plus me-md-1"></i>
