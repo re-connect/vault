@@ -1,1 +1,3 @@
 code_invalid: Code is incorrect
+mfa_code_expired': Code expired (valid for 5 minutes)
+mfa_maximum_retries_reach: You have reached the maximum number of allowed retries. If you are unable to log in, please contact support.

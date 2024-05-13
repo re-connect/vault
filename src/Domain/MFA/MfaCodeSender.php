@@ -34,6 +34,14 @@ readonly class MfaCodeSender
 
     public function sendCode(User $user): void
     {
+        if ($user->isMfaCodeCountLimitReach()) {
+            if ($user->isMfaCodeExpired()) {
+                $user->resetMfaRetryCount();
+            } else {
+                return;
+            }
+        }
+
         User::MFA_METHOD_EMAIL === $user->getMfaMethod()
             ? $this->emailCodeGenerator->generateAndSend($user)
             : $this->smsCodeGenerator->generateAndSend($user);
