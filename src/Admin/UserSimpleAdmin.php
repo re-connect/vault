@@ -18,13 +18,14 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Routing\RouterInterface;
 
 class UserSimpleAdmin extends AbstractAdmin
 {
     use UserAwareTrait;
     private EntityManagerInterface $entityManager;
 
-    public function __construct(?string $code = null, ?string $class = null, ?string $baseControllerName = null, Security $security)
+    public function __construct(?string $code = null, ?string $class = null, ?string $baseControllerName = null, Security $security, private RouterInterface $router)
     {
         $this->security = $security;
         parent::__construct($code, $class, $baseControllerName);
@@ -88,6 +89,15 @@ class UserSimpleAdmin extends AbstractAdmin
                 'label' => 'mfa_enabled',
                 'disabled' => !$this->getUser()?->isSuperAdmin(),
             ])
+            ->add('resetMfaRetryCount', null, [
+                'mapped' => false,
+                'label' => 'Réinitialisation de l\'authentification à double facteur',
+                'required' => false,
+                'disabled' => true,
+                'help' => $this->getMfaResetTest(),
+                'help_html' => true,
+                'attr' => ['read_only' => true, 'style' => 'display:none'],
+            ])
             ->add('mfaMethod', ChoiceType::class, [
                 'disabled' => !$this->getUser()?->isSuperAdmin(),
                 'required' => false,
@@ -137,7 +147,7 @@ class UserSimpleAdmin extends AbstractAdmin
 
         if (0 < count($passwordRequests)) {
             $passwordRequest = $passwordRequests[0];
-            $resetTokenPath = sprintf('/user/%s/unlock-password-reset', $subject->getId());
+            $resetTokenPath = $this->router->generate('unlock_password_reset', ['id' => $subject->getId()]);
             $requestDate = $passwordRequest->getRequestedAt();
             $requestDateString = $requestDate->setTimezone(new \DateTimeZone('Europe/Paris'))->format('H\hi');
             $format = 'Statut : <span class="badge bg-green text-white">En cours de réinitialisation</span><p>Demande de réinitialisation effectuée à %s heure de Paris</p><a class="btn btn-success" href="%s">Permettre une nouvelle demande de réinitialisation</a>';
@@ -146,5 +156,24 @@ class UserSimpleAdmin extends AbstractAdmin
         }
 
         return $text;
+    }
+
+    public function getMfaResetTest(): string
+    {
+        /** @var User $user */
+        $user = $this->getSubject();
+
+        $row = 'Statut : <h5 class="badge bg-blue text-white">Pas d\'authentification en cours</h5>';
+
+        if ($user->isMfaEnabled() && 0 < $user->getMfaRetryCount()) {
+            $template = 'Statut : <span class="badge bg-green text-white">En cours d\'authentification</span><p>Nombre de renvois d\'un code : %d</p><a class="btn btn-success" href="%s">Réinitialiser le nombre de renvois</a>';
+            $row = sprintf(
+                $template,
+                $user->getMfaRetryCount(),
+                $this->router->generate('reset_mfa_retry_count', ['id' => $user->getId()]),
+            );
+        }
+
+        return $row;
     }
 }
