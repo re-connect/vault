@@ -99,4 +99,28 @@ class MembreRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    /**
+     * @return Membre[]
+     */
+    public function searchByUsernameInformation(User $loggedUser, ?string $firstname, ?string $lastname): array
+    {
+        if (!$firstname || !$lastname) {
+            return [];
+        }
+
+        return $this->createQueryBuilder('p')
+            ->innerJoin('p.user', 'u')
+            ->andWhere('u.prenom = :firstname')
+            ->andWhere('u.nom = :lastname')
+            ->andWhere('u != :loggedUser')
+            ->setParameters([
+                'loggedUser' => $loggedUser,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+            ])
+            ->orderBy('u.nom')
+            ->getQuery()
+            ->getResult();
+    }
 }
