@@ -49,7 +49,7 @@ class MemberBeneficiaryManager
                 $result = count($query->getResult());
             }
 
-            return 0 === $result;
+            return 1 === $result;
         }
 
         return false;
