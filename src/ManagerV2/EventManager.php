@@ -83,9 +83,9 @@ class EventManager
 
             foreach ($reminders as $reminder) {
                 $now = new \DateTime('now');
-                $eventDate = $reminder->getEvenement()->getDate()->setTimezone($now->getTimezone());
+                $reminderDate = $reminder->getDate()->setTimezone($now->getTimezone());
 
-                if (!$reminder->getBEnvoye() && $eventDate < $now) {
+                if (!$reminder->getBEnvoye() && $reminderDate < $now) {
                     echo sprintf('Sending reminder : %s%s', $reminder->getId(), PHP_EOL);
                     $this->notificator->sendSmsReminder($reminder);
                 }
