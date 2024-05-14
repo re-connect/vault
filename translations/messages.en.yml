@@ -455,8 +455,8 @@ public_reset_password_SMS_has_been_sent: "An SMS was sent to you containing a se
 public_reset_password_SMS_wrong_code: 'The code you entered does not correspond to the one you received by SMS'
 public_reset_password_SMS_your_code: 'Your code received by SMS'
 public_reset_password_already_requested: 'You have already tried to renew your password less than 24 hours ago.'
-public_reset_password_by_email: 'Par Email'
-public_reset_password_by_sms: 'Par SMS'
+public_reset_password_by_email: 'By Email'
+public_reset_password_by_sms: 'By Text Message'
 public_reset_password_email_has_been_sent: "An email was sent to you with instructions to renew your password. It is valid for 24 hours."
 public_reset_password_failure_not_in_time: "You did not renew your password within the time limit, please try again"
 public_reset_password_success: 'Your password has been changed, you can now connect to your account'
