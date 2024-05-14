@@ -84,9 +84,9 @@ class EventManager
             foreach ($reminders as $reminder) {
                 $utcTimezone = new \DateTimeZone('UTC');
                 $nowUtc = new \DateTime('now', $utcTimezone);
-                $eventDateUtc = $reminder->getEvenement()->getDate()->setTimezone($utcTimezone);
+                $reminderDateUtc = $reminder->getDate()->setTimezone($utcTimezone);
 
-                if (!$reminder->getBEnvoye() && $eventDateUtc < $nowUtc) {
+                if (!$reminder->getBEnvoye() && $reminderDateUtc < $nowUtc) {
                     echo sprintf('Sending reminder : %s%s', $reminder->getId(), PHP_EOL);
                     $this->notificator->sendSmsReminder($reminder);
                 }
