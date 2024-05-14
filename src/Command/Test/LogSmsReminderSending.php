@@ -3,6 +3,7 @@
 namespace App\Command\Test;
 
 use App\Repository\RappelRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -15,7 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class LogSmsReminderSending extends Command
 {
-    public function __construct(private readonly LoggerInterface $smsLogger, private readonly RappelRepository $reminderRepository, $name = null)
+    public function __construct(private readonly LoggerInterface $smsLogger, private readonly RappelRepository $reminderRepository, private readonly EntityManagerInterface $em, $name = null)
     {
         parent::__construct($name);
     }
@@ -25,12 +26,15 @@ class LogSmsReminderSending extends Command
         $reminders = $this->reminderRepository->getDueReminders();
         foreach ($reminders as $reminder) {
             $now = new \DateTime('now');
+            $reminderDate = $reminder->getDate()->setTimezone($now->getTimezone());
             $event = $reminder->getEvenement();
-            $eventDate = $event->getDate()->setTimezone($now->getTimezone());
 
-            if ($eventDate < $now) {
-                $this->smsLogger->log('info', sprintf('Sms reminder sent with date : %s. Event date : %s. User : %s',
+            if ($reminderDate < $now) {
+                $reminder->setBEnvoye(true);
+                $this->em->flush();
+                $this->smsLogger->info(sprintf('Sms reminder sent with date : %s. Event : %s %s. User : %s',
                     $reminder->getDate()->format('d/m/Y à H\hi'),
+                    $event->getNom(),
                     $event->getDate()->format('d/m/Y à H\hi'),
                     $event->getBeneficiaire()?->getUser()?->getId(),
                 ));
