@@ -32,7 +32,7 @@ add('writable_dirs', []);
 
 host('vault-pp')
     ->setLabels(['stage' => 'preprod'])
-    ->set('branch', 'development')
+    ->set('branch', 'dev')
     ->set('deploy_path', '~/www')
     ->set('http_user', 'preprod_coffre_reconnect_fr')
     ->set('homepage_url', 'https://preprod.reconnect.fr')

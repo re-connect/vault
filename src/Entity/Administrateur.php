@@ -22,7 +22,7 @@ class Administrateur extends Subject
      *
      * @return Administrateur
      */
-    public function setUser(User $user = null)
+    public function setUser(?User $user = null)
     {
         $this->user = $user;
         $this->user->setTypeUser(User::USER_TYPE_ADMINISTRATEUR);

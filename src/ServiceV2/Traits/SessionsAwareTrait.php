@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 trait SessionsAwareTrait
 {
-    private RequestStack $requestStack;
+    private readonly RequestStack $requestStack;
 
     private function clearFlashMessage(): void
     {

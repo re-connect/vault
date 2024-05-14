@@ -2,9 +2,9 @@ name: Symfony
 
 on:
     push:
-        branches: [ "main", "development" ]
+        branches: [ "main", "dev" ]
     pull_request:
-        branches: [ "main", "development" ]
+        branches: [ "main", "dev" ]
 
 permissions:
     contents: read
@@ -48,7 +48,7 @@ jobs:
                 run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
             # —— Check coding standards ✨ ————————————————————————————————————————————————————————————————
             -   name: Check CS
-                run: PHP_CS_FIXER_IGNORE_ENV=true  vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
+                run: vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
             -   name: Check Rector
                 run: vendor/bin/rector process --dry-run
             -   name: Dump routes

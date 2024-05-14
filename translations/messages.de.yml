@@ -377,7 +377,6 @@ message: Nachricht
 mfa: Zwei-Faktor-Authentifizierung
 mfa_code_not_received: Haben Sie den Code nicht erhalten?
 mfa_enabled: Doppelte Authentifizierung aktiviert
-mfa_maximum_retries_reach: Sie haben die maximale Anzahl an erlaubten Wiederholungen erreicht. Wenn Sie sich nicht anmelden können, wenden Sie sich bitte an den Support.
 mfa_method: 'Code erhalten über :'
 missing_secret_question: Question secrète non renseignée
 missing_secret_question_text: Sie haben noch keine geheime Frage und Antwort eingegeben. Das können Sie unten tun
@@ -532,6 +531,7 @@ rp_page_user_file_p: "Hier finden Sie alle Informationen, die Ihnen die Arbeit e
 rp_page_user_file_title: 'Klient*innenakte'''
 search: Suche
 search_existing_beneficiary: 'Rechercher un bénéficiaire existant'
+search_existing_user: 'Rechercher un utilisateur existant'
 search_professional_help: Vous pouvez rechercher un utilisateur professionnel existant afin de lui envoyer une invitation à rejoindre vos relais
 secret_answer: geheime Antwort
 secret_question: 'Sicherheitsfrage'

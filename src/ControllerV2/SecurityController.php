@@ -9,12 +9,10 @@ use App\ServiceV2\GdprService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class SecurityController extends AbstractController
 {
-    public const MFA_MAX_RETRIES = 3;
-
     public function __construct(private readonly GdprService $gdprService)
     {
     }
@@ -66,15 +64,8 @@ class SecurityController extends AbstractController
     public function resendAuthCode(MfaCodeSender $mfaCodeSender): RedirectResponse
     {
         $user = $this->getUser();
-
         if (!$user) {
             return $this->redirectToRoute('re_main_login');
-        }
-
-        if (self::MFA_MAX_RETRIES === $user->getMfaRetryCount()) {
-            $this->addFlash('danger', 'mfa_maximum_retries_reach');
-
-            return $this->redirectToRoute('2fa_login');
         }
 
         $mfaCodeSender->sendCode($user);

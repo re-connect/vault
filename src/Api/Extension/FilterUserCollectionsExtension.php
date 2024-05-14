@@ -25,7 +25,7 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
     }
 
     #[\Override]
-    public function applyToCollection(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, Operation $operation = null, array $context = []): void
+    public function applyToCollection(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, ?Operation $operation = null, array $context = []): void
     {
         $rootAlias = $queryBuilder->getRootAliases()[0];
         $user = $this->security->getUser();

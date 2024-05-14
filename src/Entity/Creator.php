@@ -28,7 +28,7 @@ abstract class Creator
         return $this->document;
     }
 
-    public function setDocument(Document $document = null): self
+    public function setDocument(?Document $document = null): self
     {
         $this->document = $document;
 
@@ -40,7 +40,7 @@ abstract class Creator
         return $this->user;
     }
 
-    public function setUser(User $user = null): self
+    public function setUser(?User $user = null): self
     {
         $this->user = $user;
 
@@ -52,7 +52,7 @@ abstract class Creator
         return $this->note;
     }
 
-    public function setNote(Note $note = null): self
+    public function setNote(?Note $note = null): self
     {
         $this->note = $note;
 
@@ -64,7 +64,7 @@ abstract class Creator
         return $this->evenement;
     }
 
-    public function setEvenement(Evenement $evenement = null): self
+    public function setEvenement(?Evenement $evenement = null): self
     {
         $this->evenement = $evenement;
 
@@ -76,7 +76,7 @@ abstract class Creator
         return $this->contact;
     }
 
-    public function setContact(Contact $contact = null): self
+    public function setContact(?Contact $contact = null): self
     {
         $this->contact = $contact;
 
@@ -88,7 +88,7 @@ abstract class Creator
         return $this->dossier;
     }
 
-    public function setDossier(Dossier $dossier = null): self
+    public function setDossier(?Dossier $dossier = null): self
     {
         $this->dossier = $dossier;
 

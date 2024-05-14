@@ -377,7 +377,6 @@ message: رسالة
 mfa: المصادقة ذات العاملين
 mfa_code_not_received: لم تتلقى الرمز؟
 mfa_enabled: المصادقة ذات العاملين مفعّلة
-mfa_maximum_retries_reach: لقد وصلت إلى الحد الأقصى لعدد محاولات الإعادة المسموح بها. إذا كنت غير قادر على تسجيل الدخول، يرجى الاتصال بالدعم.
 mfa_method: 'استلام الرمز عبر :'
 missing_secret_question: لم يتم تعبئة السؤال السري
 missing_secret_question_text: لم تقم بتعبئة سؤال وجواب سري حتى الآن، يمكنك القيام بذلك أدناه
@@ -532,6 +531,7 @@ rp_page_user_file_p: "Retrouvez toutes les informations nécessaires à l'accomp
 rp_page_user_file_title: 'Un dossier usager complet'
 search: بحث
 search_existing_beneficiary: 'Rechercher un bénéficiaire existant'
+search_existing_user: 'Rechercher un utilisateur existant'
 search_professional_help: Vous pouvez rechercher un utilisateur professionnel existant afin de lui envoyer une invitation à rejoindre vos relais
 secret_answer: الاجابة السرية
 secret_question: 'السؤال السري'

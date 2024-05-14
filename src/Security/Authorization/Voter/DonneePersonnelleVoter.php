@@ -28,13 +28,13 @@ class DonneePersonnelleVoter extends REVoter
     protected function supports(string $attribute, mixed $subject): bool
     {
         return in_array($attribute, [
-                self::DONNEEPERSONNELLE_CREATE,
-                self::DONNEEPERSONNELLE_VIEW,
-                self::DONNEEPERSONNELLE_EDIT,
-                self::DONNEEPERSONNELLE_DELETE,
-                self::DONNEEPERSONNELLE_REPORT_ABUSE,
-                self::DONNEEPERSONNELLE_TOGGLE_ACCESS,
-            ]) && $subject instanceof DonneePersonnelle;
+            self::DONNEEPERSONNELLE_CREATE,
+            self::DONNEEPERSONNELLE_VIEW,
+            self::DONNEEPERSONNELLE_EDIT,
+            self::DONNEEPERSONNELLE_DELETE,
+            self::DONNEEPERSONNELLE_REPORT_ABUSE,
+            self::DONNEEPERSONNELLE_TOGGLE_ACCESS,
+        ]) && $subject instanceof DonneePersonnelle;
     }
 
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool

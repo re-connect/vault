@@ -6,7 +6,7 @@ use App\ControllerV2\AbstractController;
 use App\Entity\Centre;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: '/api/v3/centers', format: 'json')]

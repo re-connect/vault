@@ -20,7 +20,7 @@ class MembreRepository extends ServiceEntityRepository
     /**
      * @throws NonUniqueResultException
      */
-    public function findByDistantId(null|int|string $distantId, string $clientIdentifier): ?Membre
+    public function findByDistantId(int|string|null $distantId, string $clientIdentifier): ?Membre
     {
         if (!$distantId) {
             return null;
@@ -64,7 +64,7 @@ class MembreRepository extends ServiceEntityRepository
     /**
      * @return Membre[]
      */
-    public function findByAuthorizedProfessional(Membre $professional, string $search = null, Centre $relay = null): array
+    public function findByAuthorizedProfessional(Membre $professional, ?string $search = null, ?Centre $relay = null): array
     {
         $qb = $this->createQueryBuilder('m')
             ->innerJoin('m.membresCentres', 'bc')
@@ -98,5 +98,29 @@ class MembreRepository extends ServiceEntityRepository
         $this->userRepository->addUserSearchConditions($qb, $search);
 
         return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @return Membre[]
+     */
+    public function searchByUsernameInformation(User $loggedUser, ?string $firstname, ?string $lastname): array
+    {
+        if (!$firstname || !$lastname) {
+            return [];
+        }
+
+        return $this->createQueryBuilder('p')
+            ->innerJoin('p.user', 'u')
+            ->andWhere('u.prenom = :firstname')
+            ->andWhere('u.nom = :lastname')
+            ->andWhere('u != :loggedUser')
+            ->setParameters([
+                'loggedUser' => $loggedUser,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+            ])
+            ->orderBy('u.nom')
+            ->getQuery()
+            ->getResult();
     }
 }

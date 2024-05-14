@@ -15,7 +15,7 @@ use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -208,5 +208,17 @@ class UserController extends AbstractController
             'user' => $user,
             'hasAlreadyRequestedData' => $hasAlreadyRequestedData,
         ]);
+    }
+
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route(path: '/{id<\d+>}/reset-mfa-retry-count', name: 'reset_mfa_retry_count', methods: ['GET'])]
+    public function resetMfaRetryCount(Request $request, User $user, EntityManagerInterface $em): Response
+    {
+        $user->resetMfaRetryCount();
+        $em->flush();
+
+        return $request->headers->get('referer')
+            ? $this->redirect($request->headers->get('referer'))
+            : $this->redirectToRoute('re_main_accueil');
     }
 }

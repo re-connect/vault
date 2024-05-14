@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -193,7 +193,7 @@ class DossierRestV2Controller extends REController
             if (0 === count($errors)) {
                 $mailManager->sendFolderWithMail($dossier, $email);
 
-                return $this->json('', RESPONSE::HTTP_NO_CONTENT);
+                return $this->json('', Response::HTTP_NO_CONTENT);
             }
 
             // this is *not* a valid email address

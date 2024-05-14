@@ -15,9 +15,9 @@ class BeneficiaireVoter extends REVoter
     protected function supports(string $attribute, mixed $subject): bool
     {
         return in_array($attribute, [
-                self::GESTION_BENEFICIAIRE,
-                self::ASSOCIATION_BENEFICIAIRE,
-            ]) && $subject instanceof Beneficiaire;
+            self::GESTION_BENEFICIAIRE,
+            self::ASSOCIATION_BENEFICIAIRE,
+        ]) && $subject instanceof Beneficiaire;
     }
 
     protected function voteOnAttribute(string $attribute, mixed $beneficiaire, TokenInterface $token): bool

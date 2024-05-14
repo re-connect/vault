@@ -6,7 +6,7 @@ use App\Entity\User;
 use App\Provider\CentreProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class BeneficiaryApiController extends AbstractController
 {

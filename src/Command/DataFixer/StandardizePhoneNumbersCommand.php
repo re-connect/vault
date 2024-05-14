@@ -21,7 +21,7 @@ class StandardizePhoneNumbersCommand extends Command
     private UserRepository $repository;
     private EntityManagerInterface $em;
 
-    public function __construct(EntityManagerInterface $em, UserRepository $repository, string $name = null)
+    public function __construct(EntityManagerInterface $em, UserRepository $repository, ?string $name = null)
     {
         parent::__construct($name);
         $this->repository = $repository;

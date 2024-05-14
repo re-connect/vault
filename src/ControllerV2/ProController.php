@@ -7,8 +7,8 @@ use App\Entity\Membre;
 use App\Entity\User;
 use App\FormV2\FilterUser\FilterUserFormModel;
 use App\FormV2\FilterUser\FilterUserType;
-use App\FormV2\Search\SearchFormModel;
-use App\FormV2\Search\SearchType;
+use App\FormV2\UserAffiliation\Model\SearchProFormModel;
+use App\FormV2\UserAffiliation\SearchProType;
 use App\FormV2\UserCreation\CreateUserType;
 use App\ManagerV2\UserManager;
 use App\Repository\CentreRepository;
@@ -19,7 +19,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: '/pro')]
@@ -77,11 +77,7 @@ class ProController extends AbstractController
     #[Route(path: '/create/home', name: 'create_pro_home', methods: ['GET'])]
     public function createProHome(): Response
     {
-        return $this->render('v2/pro/create/index.html.twig', [
-            'form' => $this->createForm(SearchType::class, new SearchFormModel(), [
-                'action' => $this->generateUrl('search_pro'),
-            ]),
-        ]);
+        return $this->render('v2/pro/create/index.html.twig');
     }
 
     #[Route(path: '/create', name: 'create_pro', methods: ['GET', 'POST'])]
@@ -105,26 +101,31 @@ class ProController extends AbstractController
     #[Route(path: '/search', name: 'search_pro', methods: ['GET', 'POST'])]
     public function searchPros(Request $request, MembreRepository $repository, PaginatorService $paginator): Response
     {
-        $search = new SearchFormModel($request->query->get('q'));
+        $formModel = new SearchProFormModel(
+            $request->query->getAlnum('firstname'),
+            $request->query->getAlnum('lastname'),
+        );
         $user = $this->getUser();
-        $form = $this->createForm(SearchType::class, $search, [
+        $form = $this->createForm(SearchProType::class, $formModel, [
             'action' => $this->generateUrl('search_pro'),
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            return $this->redirectToRoute('search_pro', ['q' => $search->getSearch()]);
+            return $this->redirectToRoute('search_pro', [
+                'firstname' => $formModel->getFirstname(),
+                'lastname' => $formModel->getLastname(),
+            ]);
         }
 
-        $pros = $user
-            ? $paginator->create(
-                $repository->search($user, $search->getSearch()),
-                $request->query->getInt('page', $request->query->getInt('page', 1)),
-            )
-            : [];
-
-        return $request->isXmlHttpRequest()
-            ? $this->render('v2/pro/create/_search_results_card.html.twig', ['pros' => $pros])
-            : $this->render('v2/pro/create/search.html.twig', ['form' => $form, 'pros' => $pros]);
+        return $this->render('v2/pro/create/search.html.twig', [
+            'form' => $form,
+            'pros' => $user
+                ? $paginator->create(
+                    $repository->searchByUsernameInformation($user, $formModel->getFirstname(), $formModel->getLastname()),
+                    $request->query->getInt('page', $request->query->getInt('page', 1)),
+                )
+                : [],
+        ]);
     }
 
     #[Route(

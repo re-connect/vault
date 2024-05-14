@@ -18,7 +18,7 @@ class ContactRepository extends ServiceEntityRepository
     /**
      * @return Contact[]
      */
-    public function findByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, string $search = null): array
+    public function findByBeneficiary(Beneficiaire $beneficiary, bool $isOwner, ?string $search = null): array
     {
         $qb = $this->createQueryBuilder('c')
             ->andWhere('c.beneficiaire = :beneficiary')

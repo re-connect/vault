@@ -21,14 +21,16 @@ rector:
 	@$(RECTOR) process --clear-cache
 
 fixer:
-	@PHP_CS_FIXER_IGNORE_ENV=true $(PHP_CS_FIXER) fix src --allow-risky=yes --using-cache=no
-	@PHP_CS_FIXER_IGNORE_ENV=true $(PHP_CS_FIXER) fix tests --allow-risky=yes --using-cache=no
+	@$(PHP_CS_FIXER) fix src --allow-risky=yes --using-cache=no
+	@$(PHP_CS_FIXER) fix tests --allow-risky=yes --using-cache=no
 
 deploy-preprod:
 	@$(DEPLOYER) deploy stage=preprod
 
 deploy-prod:
 	@$(DEPLOYER) deploy stage=prod
+
+dep: deploy-preprod
 
 fixture-v1:
 	@$(CONSOLE) doctrine:fixtures:load --env=test --group=v1 -n

@@ -17,13 +17,11 @@ class GdprService
     public const RENEWAL_DAYS_COUNT = 7;
     public const EXPIRATION_DAYS_COUNT = 0;
 
-    private TranslatorInterface $translator;
-
-    public function __construct(RequestStack $requestStack, Security $security, TranslatorInterface $translator)
-    {
-        $this->requestStack = $requestStack;
-        $this->security = $security;
-        $this->translator = $translator;
+    public function __construct(
+        private readonly RequestStack $requestStack,
+        private readonly Security $security,
+        private readonly TranslatorInterface $translator
+    ) {
     }
 
     public function isPasswordRenewalDue(): bool
@@ -31,12 +29,12 @@ class GdprService
         return $this->getDaysBeforeExpiration() <= self::RENEWAL_DAYS_COUNT;
     }
 
-    public function isPasswordExpired(User $user = null): bool
+    public function isPasswordExpired(?User $user = null): bool
     {
         return $this->getDaysBeforeExpiration($user) <= self::EXPIRATION_DAYS_COUNT;
     }
 
-    private function getDaysBeforeExpiration(User $user = null): int
+    private function getDaysBeforeExpiration(?User $user = null): int
     {
         $user = $user ?: $this->getUser();
         $now = new \DateTimeImmutable();

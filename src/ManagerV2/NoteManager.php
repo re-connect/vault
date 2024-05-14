@@ -23,7 +23,7 @@ class NoteManager
     /**
      * @return Note[]
      */
-    public function getNotes(Beneficiaire $beneficiary, string $search = null): array
+    public function getNotes(Beneficiaire $beneficiary, ?string $search = null): array
     {
         return $this->repository->findByBeneficiary(
             $beneficiary,

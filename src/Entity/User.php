@@ -44,6 +44,18 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         self::USER_TYPE_SUPER_ADMIN => self::USER_TYPE_SUPER_ADMIN,
     ];
     public const string DEFAULT_LANGUAGE = 'fr';
+    public const array LANGUAGES = [
+        'ar' => 'ar',
+        'de' => 'de',
+        'en' => 'en',
+        'es' => 'es',
+        'fr' => 'fr',
+        'gb' => 'en',
+        'it' => 'it',
+        'ps' => 'ps',
+        'prs' => 'prs',
+        'ru' => 'ru',
+    ];
 
     public const array USER_TYPES = [
         self::USER_TYPE_BENEFICIAIRE => 'beneficiaire',
@@ -56,9 +68,10 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public const string MFA_METHOD_SMS = 'sms';
     public const string MFA_METHOD_EMAIL = 'email';
     public const array MFA_METHODS = [
-      self::MFA_METHOD_EMAIL,
-      self::MFA_METHOD_SMS,
+        self::MFA_METHOD_EMAIL,
+        self::MFA_METHOD_SMS,
     ];
+    public const int MFA_MAX_SEND_CODE_COUNT = 3;
 
     /**
      * @var string
@@ -226,6 +239,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     private ?bool $mfaValid;    // This is only used when login from API
     private string $mfaMethod = self::MFA_METHOD_EMAIL;
     private ?int $mfaRetryCount = 0;
+    private ?\DateTimeInterface $mfaCodeGeneratedAt = null;
 
     /** @var string[] */
     private array $relaysIds = [];
@@ -422,7 +436,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getLastLang(): ?string
     {
-        return $this->lastLang ?? self::DEFAULT_LANGUAGE;
+        return User::LANGUAGES[$this->lastLang] ?? self::DEFAULT_LANGUAGE;
     }
 
     public function setLastLang(?string $lastLang): self
@@ -481,7 +495,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->subjectBeneficiaire;
     }
 
-    public function setSubjectBeneficiaire(Beneficiaire $subjectBeneficiaire = null): self
+    public function setSubjectBeneficiaire(?Beneficiaire $subjectBeneficiaire = null): self
     {
         $this->subjectBeneficiaire = $subjectBeneficiaire;
 
@@ -502,7 +516,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->subjectGestionnaire;
     }
 
-    public function setSubjectGestionnaire(Gestionnaire $subjectGestionnaire = null): self
+    public function setSubjectGestionnaire(?Gestionnaire $subjectGestionnaire = null): self
     {
         $this->subjectGestionnaire = $subjectGestionnaire;
 
@@ -519,7 +533,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->subjectAssociation;
     }
 
-    public function setSubjectAssociation(Association $subjectAssociation = null): self
+    public function setSubjectAssociation(?Association $subjectAssociation = null): self
     {
         $this->subjectAssociation = $subjectAssociation;
 
@@ -546,7 +560,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->subjectMembre;
     }
 
-    public function setSubjectMembre(Membre $subjectMembre = null): self
+    public function setSubjectMembre(?Membre $subjectMembre = null): self
     {
         $this->subjectMembre = $subjectMembre;
 
@@ -567,7 +581,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->subjectAdministrateur;
     }
 
-    public function setSubjectAdministrateur(Administrateur $subjectAdministrateur = null): self
+    public function setSubjectAdministrateur(?Administrateur $subjectAdministrateur = null): self
     {
         $this->subjectAdministrateur = $subjectAdministrateur;
 
@@ -778,9 +792,9 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
             'username' => $this->username,
             'type_user' => $this->typeUser,
             'email' => $this->email,
-            'subject_id' => $this->getSubject()?->getId(),
-            'last_login' => null !== $this->derniereConnexionAt ? $this->derniereConnexionAt->format(\DateTime::W3C) : null,
             'created_at' => $this->createdAt->format(\DateTime::W3C),
+            'last_login' => null !== $this->derniereConnexionAt ? $this->derniereConnexionAt->format(\DateTime::W3C) : null,
+            'subject_id' => $this->getSubject()?->getId(),
             'updated_at' => $this->updatedAt->format(\DateTime::W3C),
             'b_first_mobile_connexion' => $this->bFirstMobileConnexion,
             'adresse' => $this->getAdresse(),
@@ -811,7 +825,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->adresse;
     }
 
-    public function setAdresse(Adresse $adresse = null): self
+    public function setAdresse(?Adresse $adresse = null): self
     {
         $this->adresse = $adresse;
 
@@ -1040,7 +1054,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->autoLoginToken;
     }
 
-    public function setAutoLoginToken(string $autoLoginToken = null): self
+    public function setAutoLoginToken(?string $autoLoginToken = null): self
     {
         $this->autoLoginToken = $autoLoginToken;
 
@@ -1064,7 +1078,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->fcnToken;
     }
 
-    public function setFcnToken(string $fcnToken = null): self
+    public function setFcnToken(?string $fcnToken = null): self
     {
         $this->fcnToken = $fcnToken;
 
@@ -1336,14 +1350,25 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->email;
     }
 
-    public function getEmailAuthCode(): string
+    public function getAuthCode(): string
     {
         return $this->authCode ?? '';
     }
 
+    public function getEmailAuthCode(): string
+    {
+        return $this->getAuthCode();
+    }
+
+    public function setAuthCode(string $authCode): void
+    {
+        $this->mfaCodeGeneratedAt = new \DateTimeImmutable();
+        $this->authCode = $authCode;
+    }
+
     public function setEmailAuthCode(string $authCode): void
     {
-        $this->authCode = $authCode;
+        $this->setAuthCode($authCode);
     }
 
     public function isTextAuthEnabled(): bool
@@ -1358,12 +1383,12 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getTextAuthCode(): string
     {
-        return $this->authCode ?? '';
+        return $this->getAuthCode();
     }
 
     public function setTextAuthCode(string $authCode): void
     {
-        $this->authCode = $authCode;
+        $this->setAuthCode($authCode);
     }
 
     public function isMfaEnabled(): ?bool
@@ -1454,14 +1479,51 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function increaseMfaRetryCount(): static
     {
+        if (null === $this->mfaRetryCount) {
+            $this->mfaRetryCount = 0;
+        }
+
         ++$this->mfaRetryCount;
 
         return $this;
     }
 
+    public function sendMfaCode(): void
+    {
+        $this->increaseMfaRetryCount();
+    }
+
+    public function isMfaCodeCountLimitReach(): bool
+    {
+        return $this->mfaRetryCount >= self::MFA_MAX_SEND_CODE_COUNT;
+    }
+
     public function getValidationGroup(): string
     {
         return $this->isBeneficiaire() ? 'beneficiaire' : 'membre';
+    }
+
+    public function getMfaCodeGeneratedAt(): ?\DateTimeInterface
+    {
+        return $this->mfaCodeGeneratedAt;
+    }
+
+    public function setMfaCodeGeneratedAt(?\DateTimeInterface $mfaCodeGeneratedAt): static
+    {
+        $this->mfaCodeGeneratedAt = $mfaCodeGeneratedAt;
+
+        return $this;
+    }
+
+    public function isMfaCodeExpired(): bool
+    {
+        if (null === $this->mfaCodeGeneratedAt) {
+            return true;
+        }
+
+        $expiration = $this->mfaCodeGeneratedAt->add(new \DateInterval('PT5M'));
+
+        return $expiration < new \DateTimeImmutable();
     }
 
     public function isBeingCreated(): bool

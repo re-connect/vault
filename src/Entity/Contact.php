@@ -54,7 +54,7 @@ class Contact extends DonneePersonnelle
     /**
      * Constructor.
      */
-    public function __construct(Beneficiaire $beneficiaire = null)
+    public function __construct(?Beneficiaire $beneficiaire = null)
     {
         parent::__construct();
         $this->beneficiaire = $beneficiaire;

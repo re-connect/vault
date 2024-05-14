@@ -70,7 +70,7 @@ class SMS implements \JsonSerializable
     /**
      * Set centre.
      */
-    public function setCentre(Centre $centre = null): self
+    public function setCentre(?Centre $centre = null): self
     {
         $this->centre = $centre;
 

@@ -11,7 +11,7 @@ readonly class BeneficiaryCheckOnRosalie
     {
     }
 
-    public static function fromResponse(Beneficiaire $beneficiary, int $statusCode = null, string $payload = null): self
+    public static function fromResponse(Beneficiaire $beneficiary, ?int $statusCode = null, ?string $payload = null): self
     {
         $responseData = json_decode($payload, true);
         $similarity = $responseData['similarity'] ?? null;

@@ -17,6 +17,11 @@ trait DeactivatableTrait
         return $this->enabled;
     }
 
+    public function isEnabledToString(): string
+    {
+        return $this->enabled ? 'Oui' : 'Non';
+    }
+
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
@@ -48,7 +53,7 @@ trait DeactivatableTrait
         return $this;
     }
 
-    public function disable(User $user = null): self
+    public function disable(?User $user = null): self
     {
         $this->setDisabledAt(new \DateTime())->setDisabledBy($user);
         $this->enabled = false;

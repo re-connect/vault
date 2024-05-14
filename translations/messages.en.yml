@@ -377,7 +377,6 @@ message: Message
 mfa: Two-factor authentication
 mfa_code_not_received: Did not receive the code?
 mfa_enabled: Two-factor authentication enabled
-mfa_maximum_retries_reach: You have reached the maximum number of allowed retries. If you are unable to log in, please contact support.
 mfa_method: 'Receive code via:'
 missing_secret_question: Secret question is missing
 missing_secret_question_text: You have not yet entered a secret question and answer, you can do so below
@@ -532,6 +531,7 @@ rp_page_user_file_p: "Find all the information necessary to accompany your benef
 rp_page_user_file_title: 'A complete user file'
 search: Rechercher
 search_existing_beneficiary: 'Search for an existing beneficiary'
+search_existing_user: 'Rechercher un utilisateur existant'
 search_professional_help: Vous pouvez rechercher un utilisateur professionnel existant afin de lui envoyer une invitation à rejoindre vos relais
 secret_answer: Secret answer
 secret_question: 'Secret question'

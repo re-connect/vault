@@ -34,7 +34,7 @@ class DocumentManager
         private readonly EntityManagerInterface $em,
         private readonly Security $security,
         private readonly LoggerInterface $logger,
-        private RequestStack $requestStack,
+        private readonly RequestStack $requestStack,
         private readonly TranslatorInterface $translator,
         private readonly BucketService $bucketService,
     ) {
@@ -43,7 +43,7 @@ class DocumentManager
     /**
      * @return Document[]
      */
-    public function getDocumentsWithUrl(Beneficiaire $beneficiary, Dossier $folder = null, string $search = null): array
+    public function getDocumentsWithUrl(Beneficiaire $beneficiary, ?Dossier $folder = null, ?string $search = null): array
     {
         return $this->hydrateDocumentsAndThumbnailWithUrl(
             $this->repository->findByBeneficiary(
@@ -112,7 +112,7 @@ class DocumentManager
         return $document;
     }
 
-    public function uploadFile(UploadedFile $file, Beneficiaire $beneficiary, Dossier $folder = null): ?Document
+    public function uploadFile(UploadedFile $file, Beneficiaire $beneficiary, ?Dossier $folder = null): ?Document
     {
         if ($this->isFileExtensionAllowed($file)) {
             try {
@@ -137,19 +137,14 @@ class DocumentManager
      *
      * @return Document[]
      */
-    public function uploadFiles(array $files, Beneficiaire $beneficiary, Dossier $folder = null): array
+    public function uploadFiles(array $files, Beneficiaire $beneficiary, ?Dossier $folder = null): array
     {
         return array_map(fn (UploadedFile $file) => $this->uploadFile($file, $beneficiary, $folder), $files);
     }
 
     private function isFileExtensionAllowed(UploadedFile $file): bool
     {
-        $allowedFileExtensions = array_merge(
-            Document::BROWSER_EXTENSIONS_VIEWABLE,
-            Document::BROWSER_EXTENSIONS_NOT_VIEWABLE,
-        );
-
-        if (!in_array($file->guessExtension(), $allowedFileExtensions)) {
+        if (!in_array($file->guessExtension(), Document::ALLOWED_FILE_EXTENSIONS)) {
             $this->addFlashMessage(
                 'danger',
                 $this->translator->trans('unsupported_file_extension', ['%fileName%' => $file->getClientOriginalName()]),
