@@ -531,6 +531,7 @@ rp_page_user_file_p: "Retrouvez toutes les informations nécessaires à l'accomp
 rp_page_user_file_title: 'Un dossier usager complet'
 search: Искать
 search_existing_beneficiary: 'Rechercher un bénéficiaire existant'
+search_existing_user: 'Rechercher un utilisateur existant'
 search_professional_help: Vous pouvez rechercher un utilisateur professionnel existant afin de lui envoyer une invitation à rejoindre vos relais
 secret_answer: Секретный ответ
 secret_question: 'Секретный вопрос'
