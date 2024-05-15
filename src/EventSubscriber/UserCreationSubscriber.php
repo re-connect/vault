@@ -92,9 +92,9 @@ class UserCreationSubscriber
 
     private function addCreatorRelay(?User $user): void
     {
-        $firstUserRelay = $user?->isBeneficiaire() ? $user->getFirstUserRelay() : $this->getUser()?->getFirstUserRelay();
+        $firstUserRelay = $user?->getFirstUserRelay();
 
-        if ($user && $firstUserRelay) {
+        if ($firstUserRelay) {
             $user->addCreatorRelay($firstUserRelay->getCentre());
         }
     }
@@ -133,11 +133,16 @@ class UserCreationSubscriber
 
     private function addCreators(?User $user): void
     {
-        if ($user->getSubjectBeneficiaire() || $user->getSubjectMembre()) {
-            $this->addCreatorUser($user);
-            $this->addCreatorRelay($user);
-            $this->addCreatorClient($user);
+        if (!$user->getSubjectBeneficiaire() && !$user->getSubjectMembre()) {
+            return;
         }
+
+        if ($user->getSubjectBeneficiaire()) {
+            $this->addCreatorRelay($user);
+        }
+
+        $this->addCreatorUser($user);
+        $this->addCreatorClient($user);
     }
 
     private function hasUsernameInformationChanged(PreUpdateEventArgs $event): bool

@@ -56,7 +56,7 @@ class UserCreationSubscriberTest extends KernelTestCase
         $this->assertEquals(
             $createdUser->isBeneficiaire()
                 ? $relay
-                : $loggedUser->getFirstUserRelay()->getCentre(),
+                : null,
             $createdUser->getCreatorCentreRelay(),
         );
     }
@@ -64,6 +64,6 @@ class UserCreationSubscriberTest extends KernelTestCase
     public function provideTestAddCreatorRelay(): \Generator
     {
         yield 'Creator relay should be the first affiliated relay for beneficiary' => [BeneficiaireFactory::new()];
-        yield 'Creator relay should be the first affiliated relay of logged user for pro' => [MembreFactory::new()];
+        yield 'Pro user should not have creator relay' => [MembreFactory::new()];
     }
 }
