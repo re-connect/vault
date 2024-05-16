@@ -1,31 +1,32 @@
 <?php
 
-namespace App\Command;
+namespace App\Command\Scheduled;
 
-use App\Entity\Document;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Domain\Anonymization\Anonymizer;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
     name: 'app:anonymize-db',
     description: 'Anonymize documents',
 )]
-class AnonymizeDocumentsCommand extends Command
+class AnonymizeDatabaseCommand extends Command
 {
-    private EntityManagerInterface $entityManager;
-    private string $env;
-
     public function __construct(
-        EntityManagerInterface $entityManager,
-        string $kernelEnvironment,
+        private readonly Anonymizer $anonymizer,
+        private readonly string $env,
         ?string $name = null
     ) {
-        $this->env = $kernelEnvironment;
-        $this->entityManager = $entityManager;
         parent::__construct($name);
+    }
+
+    protected function configure(): void
+    {
+        parent::configure();
+        $this->addOption('noEmail', 'nomail', InputOption::VALUE_OPTIONAL, 'Prevent email from being sent', false);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -40,13 +41,7 @@ class AnonymizeDocumentsCommand extends Command
             return self::FAILURE;
         }
 
-        $q = $this->entityManager->createQuery('update '.Document::class.' e set e.objectKey = ?1 , e.thumbnailKey = ?2 , e.nom = ?3 , e.extension = ?4')
-            ->setParameter(1, 'anonymous.png')
-            ->setParameter(2, 'anonymous-thumbnail.png')
-            ->setParameter(3, 'Anonymous')
-            ->setParameter(4, 'png');
-
-        $q->execute();
+        $this->anonymizer->anonymizeDatabase(!$input->getOption('noEmail'));
 
         return self::SUCCESS;
     }

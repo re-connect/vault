@@ -54,7 +54,7 @@ class FixtureGenerator
         return sprintf('%d rue %s, %s', random_int(1, 60), self::RANDOM_STREET_NAME[random_int(0, 8)], self::RANDOM_CITIES[random_int(0, 9)]);
     }
 
-    public static function generateUsername(User $user, string $firstname, string $lastname, string $birthDate): string
+    public static function generateUsername(User $user, string $firstname, string $lastname, ?string $birthDate = null): string
     {
         $username = $user->isBeneficiaire() ? sprintf('%s.%s.%s', $firstname, $lastname, $birthDate) : sprintf('%s.%s', $lastname, $firstname);
 
