@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
@@ -225,5 +226,18 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
 
         return $qb->andWhere(implode(' OR ', $searchConditions))
             ->setParameter('search', '%'.$search.'%');
+    }
+
+    /**
+     * @return User[] array
+     */
+    public function findAnonymizables(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.test = false')
+            ->andWhere("u.email NOT LIKE '%@reconnect.fr'")
+            ->getQuery()
+            ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
+            ->getResult();
     }
 }
