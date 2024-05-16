@@ -32,7 +32,7 @@
 <main role="main" id="wrapper{% if app.user %}Connected{% endif %}">
     {% include('home/header.html.twig') %}
     {% block body %}
-        {{ include('home/flashMessages.html.twig') }}
+        {{ include('v2/flash_messages.html.twig', {textColor: 'text-primary', bgColor: 'bg-white'}) }}
 
         <div class="centeredContainer">
             {% include('ies_alert.html.twig') %}
