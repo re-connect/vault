@@ -9,7 +9,7 @@
         </div>
     {% endif %}
     {% if app.user.mfaCodeCountLimitReach %}
-        <div class="alert alert-warning alert-dismissible fade show w-75 mx-auto " role="alert">
+        <div class="alert alert-warning fade show w-75 mx-auto " role="alert">
             <p>{{ 'mfa_maximum_retries_reach'|trans({}, 'security') }}</p>
         </div>
     {% endif %}
