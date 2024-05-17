@@ -2,6 +2,7 @@
 
 namespace App\Domain\Anonymization;
 
+use App\Domain\Anonymization\DataAnonymizer\PersonalDataAnonymizer;
 use App\Domain\Anonymization\DataAnonymizer\UserAnonymizer;
 use App\Entity\Contact;
 use App\Entity\Document;
@@ -18,6 +19,7 @@ readonly class Anonymizer
         private LoggerInterface $logger,
         private AnonymizationMailer $anonymizationMailer,
         private UserAnonymizer $userAnonymizer,
+        private PersonalDataAnonymizer $personalDataAnonymizer,
     ) {
     }
 
@@ -42,13 +44,13 @@ readonly class Anonymizer
             var_dump('Anonymize Users');
             $this->userAnonymizer->anonymizeUsers($users);
             var_dump('Anonymize Documents');
-            $this->anonymizeDocuments();
+            $this->personalDataAnonymizer->anonymizeDocuments();
             var_dump('Anonymize Notes');
-            $this->anonymizeNotes();
+            $this->personalDataAnonymizer->anonymizeNotes();
             var_dump('Anonymize Contacts');
-            $this->anonymizeContacts();
+            $this->personalDataAnonymizer->anonymizeContacts();
             var_dump('Anonymize Events');
-            $this->anonymizeEvents();
+            $this->personalDataAnonymizer->anonymizeEvents();
             var_dump('Anonymization ended');
 
             if ($sendEmail) {
@@ -60,63 +62,5 @@ readonly class Anonymizer
             var_dump(sprintf('Error anonymizing database. cause: %s', $e->getMessage()));
             $this->logger->error(sprintf('Error anonymizing database. cause: %s', $e->getMessage()));
         }
-    }
-
-    private function anonymizeContacts(): void
-    {
-        foreach (FixtureGenerator::RANDOM_LAST_NAMES as $index => $lastName) {
-            $firstname = FixtureGenerator::generateRandomFirstName();
-            $dql = sprintf(
-                "UPDATE %s c
-                SET c.nom = '%s', c.prenom = '%s', c.email = '%s', c.telephone = '%s', c.commentaire = '%s'
-                WHERE MOD(c.id, 50) = %d",
-                Contact::class,
-                $lastName,
-                $firstname,
-                FixtureGenerator::generateRandomEmail($lastName, $firstname),
-                FixtureGenerator::generateRandomPhoneNumber(),
-                FixtureGenerator::ANONYMIZED_CONTENT,
-                $index,
-            );
-
-            $this->em->createQuery($dql)->execute();
-        }
-    }
-
-    private function anonymizeNotes(): void
-    {
-        $dql = sprintf(
-            "UPDATE %s n SET n.nom = '%s', n.contenu = '%s'",
-            Note::class,
-            FixtureGenerator::ANONYMIZED_SUBJECT,
-            FixtureGenerator::ANONYMIZED_CONTENT,
-        );
-
-        $this->em->createQuery($dql)->execute();
-    }
-
-    private function anonymizeEvents(): void
-    {
-        $dql = sprintf("UPDATE %s e SET e.nom = '%s', e.lieu = '%s', e.commentaire = '%s'",
-            Evenement::class,
-            FixtureGenerator::ANONYMIZED_SUBJECT,
-            FixtureGenerator::generateRandomAddress(),
-            FixtureGenerator::ANONYMIZED_CONTENT,
-        );
-
-        $this->em->createQuery($dql)->execute();
-    }
-
-    private function anonymizeDocuments(): void
-    {
-        $dql = sprintf("UPDATE %s d SET d.objectKey = '%s', d.thumbnailKey = '%s', d.nom = '%s', d.extension = '%s'",
-            Document::class,
-            'anonymous.png',
-            'anonymous-thumbnail.png',
-            'Document anonymisé',
-            'png',
-        );
-
-        $this->em->createQuery($dql)->execute();
     }
 }
