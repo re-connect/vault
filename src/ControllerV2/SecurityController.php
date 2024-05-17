@@ -68,8 +68,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('re_main_login');
         }
 
-        $codeWasSent = $mfaCodeSender->sendCode($user);
-        if ($codeWasSent) {
+        if ($mfaCodeSender->sendCode($user)) {
             $this->addFlash('success', 'mfa_new_code_sent');
         }
 
