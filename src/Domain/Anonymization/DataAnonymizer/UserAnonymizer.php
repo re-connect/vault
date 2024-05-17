@@ -4,23 +4,15 @@ namespace App\Domain\Anonymization\DataAnonymizer;
 
 use App\Domain\Anonymization\FixtureGenerator;
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 
-readonly class UserAnonymizer
+readonly class UserAnonymizer extends AbstractDataAnonymizer
 {
-    final public const string BASE_QUERY = 'UPDATE %s u SET %s WHERE u.id = %d';
-
-    public function __construct(private EntityManagerInterface $em)
-    {
-    }
-
-    private function createQuery(User $user, string $columnsUpdate): string
-    {
-        return sprintf(self::BASE_QUERY, User::class, $columnsUpdate, $user->getId());
-    }
+    final public const string CLASS_NAME = User::class;
 
     /**
      * @param User[] $users
+     *
+     * @throws \Exception
      */
     public function anonymizeUsers(array $users): void
     {
@@ -30,49 +22,46 @@ readonly class UserAnonymizer
             $birthDate = $user->getBirthDate()?->format('d/m/Y');
 
             $this->anonymizeUserInformation($user, $firstname, $lastname, $birthDate);
-
-            if ($user->getEmail()) {
-                $this->anonymizeEmail($user, FixtureGenerator::generateRandomEmail($lastname, $firstname));
-            }
-
-            if ($user->getTelephone()) {
-                $this->anonymizePhone($user, FixtureGenerator::generateRandomPhoneNumber());
-            }
+            $this->anonymizeEmail($user, FixtureGenerator::generateRandomEmail($lastname, $firstname));
+            $this->anonymizePhone($user, FixtureGenerator::generateRandomPhoneNumber());
         }
     }
 
     private function anonymizeUserInformation(User $user, string $firstname, string $lastname, ?string $birthDate = null): void
     {
         $dql = $this->createQuery(
-            $user,
+            self::CLASS_NAME,
             sprintf(
-                "u.prenom = '%s', u.nom = '%s', u.username = '%s'",
+                "d.prenom = '%s', d.nom = '%s', d.username = '%s'",
                 $firstname,
                 $lastname,
                 FixtureGenerator::generateUsername($user, $firstname, $lastname, $birthDate),
             ),
+            sprintf('WHERE d.id = %d', $user->getId()),
         );
 
-        $this->em->createQuery($dql)->execute();
+        $this->executeQuery($dql);
     }
 
     private function anonymizeEmail(User $user, string $newEmail): void
     {
         $dql = $this->createQuery(
-            $user,
-            sprintf("u.email = '%s'", $newEmail),
+            self::CLASS_NAME,
+            sprintf("d.email = '%s'", $newEmail),
+            sprintf('WHERE d.id = %d AND d.email IS NOT NULL', $user->getId()),
         );
 
-        $this->em->createQuery($dql)->execute();
+        $this->executeQuery($dql);
     }
 
     private function anonymizePhone(User $user, string $phone): void
     {
         $dql = $this->createQuery(
-            $user,
-            sprintf("u.telephone = '%s'", $phone),
+            self::CLASS_NAME,
+            sprintf("d.telephone = '%s'", $phone),
+            sprintf('WHERE d.id = %d AND d.telephone IS NOT NULL', $user->getId()),
         );
 
-        $this->em->createQuery($dql)->execute();
+        $this->executeQuery($dql);
     }
 }

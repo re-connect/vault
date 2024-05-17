@@ -7,21 +7,12 @@ use App\Entity\Contact;
 use App\Entity\Document;
 use App\Entity\Evenement;
 use App\Entity\Note;
-use Doctrine\ORM\EntityManagerInterface;
 
-readonly class PersonalDataAnonymizer
+readonly class PersonalDataAnonymizer extends AbstractDataAnonymizer
 {
-    final public const string BASE_QUERY = 'UPDATE %s d SET %s %s';
-
-    public function __construct(private EntityManagerInterface $em)
-    {
-    }
-
-    private function createQuery(string $className, string $columnsUpdate, ?string $whereStatement = null): string
-    {
-        return sprintf(self::BASE_QUERY, $className, $columnsUpdate, $whereStatement);
-    }
-
+    /**
+     * @throws \Exception
+     */
     public function anonymizeContacts(): void
     {
         $className = Contact::class;
@@ -30,7 +21,7 @@ readonly class PersonalDataAnonymizer
         foreach (FixtureGenerator::RANDOM_LAST_NAMES as $index => $lastName) {
             $firstname = FixtureGenerator::generateRandomFirstName();
             $nullableColumns['email'] = FixtureGenerator::generateRandomEmail($lastName, $firstname);
-            $nullableColumns['telephone'] = FixtureGenerator::generateRandomEmail($lastName, $firstname);
+            $nullableColumns['telephone'] = FixtureGenerator::generateRandomPhoneNumber();
             $nullableColumns['commentaire'] = FixtureGenerator::ANONYMIZED_CONTENT;
 
             $dql = $this->createQuery(
@@ -38,31 +29,28 @@ readonly class PersonalDataAnonymizer
                 sprintf("d.nom = '%s', d.prenom = '%s'", $lastName, $firstname),
                 sprintf('WHERE MOD(d.id, 50) = %d', $index),
             );
-            $this->em->createQuery($dql)->execute();
+            $this->executeQuery($dql);
 
-            foreach ($nullableColumns as $nullableColumn => $value) {
-                $dql = $this->createQuery(
-                    $className,
-                    sprintf("d.%s = '%s'", $nullableColumn, $value),
-                    sprintf('WHERE MOD(d.id, 50) = %d AND d.%s IS NOT NULL', $index, $nullableColumn),
-                );
-                $this->em->createQuery($dql)->execute();
-            }
+            $this->anonymizeNullableColumns($className, $nullableColumns, $index);
         }
     }
 
     public function anonymizeNotes(): void
     {
-        $dql = sprintf(
-            "UPDATE %s n SET n.nom = '%s', n.contenu = '%s'",
+        $dql = $this->createQuery(
             Note::class,
-            FixtureGenerator::ANONYMIZED_SUBJECT,
-            FixtureGenerator::ANONYMIZED_CONTENT,
+            sprintf("d.nom = '%s', d.contenu = '%s'",
+                FixtureGenerator::ANONYMIZED_SUBJECT,
+                FixtureGenerator::ANONYMIZED_CONTENT,
+            ),
         );
 
-        $this->em->createQuery($dql)->execute();
+        $this->executeQuery($dql);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function anonymizeEvents(): void
     {
         $className = Evenement::class;
@@ -79,29 +67,39 @@ readonly class PersonalDataAnonymizer
                 sprintf("d.nom = '%s'", FixtureGenerator::ANONYMIZED_SUBJECT),
                 sprintf('WHERE MOD(d.id, 50) = %d', $index),
             );
-            $this->em->createQuery($dql)->execute();
+            $this->executeQuery($dql);
 
-            foreach ($nullableColumns as $nullableColumn => $value) {
-                $dql = $this->createQuery(
-                    $className,
-                    sprintf("d.%s = '%s'", $nullableColumn, $value),
-                    sprintf('WHERE MOD(d.id, 50) = %d AND d.%s IS NOT NULL', $index, $nullableColumn),
-                );
-                $this->em->createQuery($dql)->execute();
-            }
+            $this->anonymizeNullableColumns($className, $nullableColumns, $index);
         }
     }
 
     public function anonymizeDocuments(): void
     {
-        $dql = sprintf("UPDATE %s d SET d.objectKey = '%s', d.thumbnailKey = '%s', d.nom = '%s', d.extension = '%s'",
+        $dql = $this->createQuery(
             Document::class,
-            'anonymous.png',
-            'anonymous-thumbnail.png',
-            'Document anonymisé',
-            'png',
+            sprintf("d.objectKey = '%s', d.thumbnailKey = '%s', d.nom = '%s', d.extension = '%s'",
+                'anonymous.png',
+                'anonymous-thumbnail.png',
+                'Document anonymisé',
+                'png',
+            ),
         );
 
-        $this->em->createQuery($dql)->execute();
+        $this->executeQuery($dql);
+    }
+
+    /**
+     * @param array<string, string> $columns
+     */
+    private function anonymizeNullableColumns(string $className, array $columns, int $index): void
+    {
+        foreach ($columns as $column => $value) {
+            $dql = $this->createQuery(
+                $className,
+                sprintf("d.%s = '%s'", $column, $value),
+                sprintf('WHERE MOD(d.id, 50) = %d AND d.%s IS NOT NULL', $index, $column),
+            );
+            $this->executeQuery($dql);
+        }
     }
 }
