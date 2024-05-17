@@ -2,6 +2,7 @@
 
 namespace App\Domain\Anonymization;
 
+use App\Domain\Anonymization\DataAnonymizer\UserAnonymizer;
 use App\Entity\Contact;
 use App\Entity\Document;
 use App\Entity\Evenement;
@@ -12,8 +13,12 @@ use Psr\Log\LoggerInterface;
 
 readonly class Anonymizer
 {
-    public function __construct(private EntityManagerInterface $em, private LoggerInterface $logger, private AnonymizationMailer $anonymizationMailer)
-    {
+    public function __construct(
+        private EntityManagerInterface $em,
+        private LoggerInterface $logger,
+        private AnonymizationMailer $anonymizationMailer,
+        private UserAnonymizer $userAnonymizer,
+    ) {
     }
 
     public function anonymizeDatabase(bool $sendEmail = true): void
@@ -35,7 +40,7 @@ readonly class Anonymizer
 
         try {
             var_dump('Anonymize Users');
-            $this->anonymizeUsers($users);
+            $this->userAnonymizer->anonymizeUsers($users);
             var_dump('Anonymize Documents');
             $this->anonymizeDocuments();
             var_dump('Anonymize Notes');
@@ -54,33 +59,6 @@ readonly class Anonymizer
         } catch (\Exception $e) {
             var_dump(sprintf('Error anonymizing database. cause: %s', $e->getMessage()));
             $this->logger->error(sprintf('Error anonymizing database. cause: %s', $e->getMessage()));
-        }
-    }
-
-    /**
-     * @param User[] $users
-     */
-    private function anonymizeUsers(array $users): void
-    {
-        foreach ($users as $user) {
-            $firstname = FixtureGenerator::generateRandomFirstName();
-            $lastname = FixtureGenerator::generateRandomLastName();
-            $birthDate = $user->getBirthDate()?->format('d/m/Y');
-            $email = FixtureGenerator::generateRandomEmail($lastname, $firstname);
-
-            $dql = sprintf(
-                "UPDATE %s u
-                SET u.prenom = '%s', u.nom = '%s', u.email = '%s', u.telephone = '%s', u.username = '%s'
-                WHERE u.id = %d",
-                User::class,
-                $firstname,
-                $lastname,
-                $email,
-                FixtureGenerator::generateRandomPhoneNumber(),
-                FixtureGenerator::generateUsername($user, $firstname, $lastname, $birthDate),
-                $user->getId(),
-            );
-            $this->em->createQuery($dql)->execute();
         }
     }
 
