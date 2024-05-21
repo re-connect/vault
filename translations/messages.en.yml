@@ -249,7 +249,7 @@ enable_mfa_help_pro_creation: By checking this box, the user will receive a one-
 enabled: Enabled
 english_flag: English flag
 enter_email_address: 'Please enter your Email address'
-enter_phone_number: 'Veuillez saisir votre téléphone.'
+enter_phone_number: 'Enter your phone number.'
 error: Error
 error_401: Vous n'êtes pas connecté
 error_403: Vous n'êtes pas autorisé à accéder à cette page
