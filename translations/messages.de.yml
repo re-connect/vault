@@ -378,6 +378,7 @@ mfa: Zwei-Faktor-Authentifizierung
 mfa_code_not_received: Haben Sie den Code nicht erhalten?
 mfa_enabled: Doppelte Authentifizierung aktiviert
 mfa_method: 'Code erhalten über :'
+mfa_new_code_sent: Un nouveau code vous a été envoyé.
 missing_secret_question: Question secrète non renseignée
 missing_secret_question_text: Sie haben noch keine geheime Frage und Antwort eingegeben. Das können Sie unten tun
 modal_message_contact_delete: 'Bist du sicher, dass du diesen Kontakt löschen möchtest'
