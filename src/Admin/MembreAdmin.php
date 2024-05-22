@@ -251,9 +251,6 @@ class MembreAdmin extends AbstractAdmin
             ->add('user.creatorUser', null, [
                 'label' => 'Créé par (utilisateur)',
             ])
-            ->add('user.creatorCentre', null, [
-                'label' => 'Créé par (centre)',
-            ])
             ->add('user.creatorClient', null, [
                 'label' => 'Créé par (client)',
             ])

@@ -90,6 +90,7 @@ class MfaTest extends AbstractControllerTest
 
         $this->client->request('GET', '/2fa');
         $this->assertRouteSame(self::MFA_ROUTE);
+        $this->assertSelectorTextContains('div.alert-dismissible', 'Un nouveau code vous a été envoyé.');
         $this->client->followRedirects();
 
         // Assert that the old code no longer works
@@ -116,6 +117,7 @@ class MfaTest extends AbstractControllerTest
         }
 
         $this->assertRouteSame(self::MFA_ROUTE);
+        $this->assertSelectorNotExists('div.alert-dismissible');
         $this->assertSelectorTextContains('div.alert', 'Vous avez atteint le nombre maximum de renvois autorisés. Si vous ne parvenez pas à vous connecter, veuillez contacter le support.');
     }
 

@@ -32,13 +32,13 @@ readonly class MfaCodeSender
         $this->em->flush();
     }
 
-    public function sendCode(User $user): void
+    public function sendCode(User $user): bool
     {
         if ($user->isMfaCodeCountLimitReach()) {
             if ($user->isMfaCodeExpired()) {
                 $user->resetMfaRetryCount();
             } else {
-                return;
+                return false;
             }
         }
 
@@ -47,5 +47,7 @@ readonly class MfaCodeSender
             : $this->smsCodeGenerator->generateAndSend($user);
         $user->increaseMfaRetryCount();
         $this->em->flush();
+
+        return true;
     }
 }

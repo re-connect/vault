@@ -597,7 +597,7 @@ class BeneficiaireRestV2ControllerTest extends AbstractControllerTest
         /**
          * je modifie un evenement.
          */
-        $date = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        $date = new \DateTime('now');
         $date->modify('+2 day');
         $editDate = $date->format('Y-m-d H:i:s');
 
@@ -857,7 +857,7 @@ class BeneficiaireRestV2ControllerTest extends AbstractControllerTest
 
     private function addEvenement($beneficiaireId)
     {
-        $date = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        $date = new \DateTime('now');
         $date->modify('+1 day');
 
         $this->client->request(Request::METHOD_POST, $this->generateUrl("beneficiaries/$beneficiaireId/events"), [

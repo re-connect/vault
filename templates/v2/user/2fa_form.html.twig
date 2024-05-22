@@ -9,7 +9,7 @@
         </div>
     {% endif %}
     {% if app.user.mfaCodeCountLimitReach %}
-        <div class="alert alert-warning alert-dismissible fade show w-75 mx-auto " role="alert">
+        <div class="alert alert-warning fade show w-75 mx-auto " role="alert">
             <p>{{ 'mfa_maximum_retries_reach'|trans({}, 'security') }}</p>
         </div>
     {% endif %}
@@ -38,7 +38,7 @@
                    type="submit" value="{{ "validate"|trans() }}">
         </div>
         <div class="w-100  d-flex mx-5">
-            <a href="{{ logoutPath }}">{{ "cancel"|trans() }}</a>
+            <a href="{{ logoutPath }}">{{ "back"|trans() }}</a>
         </div>
     </form>
 {% endblock %}

@@ -108,6 +108,17 @@ when@test:
                 path: '%kernel.logs_dir%/activity_test/affiliation.log'
                 channels: [ 'affiliation' ]
 
+when@preprod:
+    monolog:
+        channels:
+            - sms
+        handlers:
+            sms:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/activity_dev/sms.log'
+                channels: [ 'sms' ]
+
 when@prod:
     monolog:
         channels:

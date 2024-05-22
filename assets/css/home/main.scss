@@ -134,6 +134,17 @@ $position-values: (
   display: none;
 }
 
+.flash-container {
+  position: fixed;
+  right: 0;
+  top: 90px;
+  max-width: 300px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 @import './fonts.scss';
 @import './globalStructure.scss';
 @import '../language-selector.scss';

@@ -24,7 +24,6 @@ class SendRemindersSmsCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        date_default_timezone_set('UTC');
         try {
             $this->eventManager->sendReminders();
 
