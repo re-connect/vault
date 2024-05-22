@@ -11,9 +11,9 @@ use App\Tests\v2\Controller\TestRouteInterface;
 
 class CreateTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
-    public const URL = '/beneficiary/%s/events/create';
+    public const string URL = '/beneficiary/%s/events/create';
 
-    private const FORM_VALUES = [
+    private const array FORM_VALUES = [
         'event[nom]' => 'RDV CAF',
         'event[timezone]' => 'Europe/Paris',
         'event[lieu]' => 'CAF rue de Paris',
@@ -55,8 +55,6 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
 
     public function provideTestFormIsValid(): ?\Generator
     {
-        date_default_timezone_set('Europe/Paris');
-
         yield 'Should redirect when form is correct' => [
             self::URL,
             'confirm',
@@ -91,8 +89,6 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
 
     public function provideTestFormIsNotValid(): ?\Generator
     {
-        date_default_timezone_set('Europe/Paris');
-
         $values = $this->getTestValues();
         $values['event[nom]'] = '';
         yield 'Should return an error when nom is empty' => [
