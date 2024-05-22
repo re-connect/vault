@@ -1,0 +1,7 @@
+<div class="flash-container z-1" {{ stimulus_controller('flash-message') }}>
+    {% for key, flashMessages in app.session.flashbag.all %}
+        {% for flashMessage in flashMessages %}
+            {{ include('v2/_flash_message_card.html.twig', {textColor: textColor ?? 'text-white', bgColor: bgColor ?? getFlashMessageColor(key)}) }}
+        {% endfor %}
+    {% endfor %}
+</div>

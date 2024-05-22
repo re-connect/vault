@@ -56,7 +56,7 @@ class EventApiV3Test extends AbstractApiTest
         $this->markTestSkipped('Event api ressource is currently disabled');
         $event = [
             'nom' => 'testNom',
-            'date' => (new \DateTime('tomorrow', new \DateTimeZone('Europe/Paris')))->format('c'),
+            'date' => (new \DateTime('tomorrow'))->format('c'),
             'lieu' => 'testLieu',
             'b_prive' => true,
             'beneficiaire' => sprintf(
@@ -90,7 +90,7 @@ class EventApiV3Test extends AbstractApiTest
 
         $updatedProperties = [
             'nom' => 'testNomPUT',
-            'date' => (new \DateTime('tomorrow', new \DateTimeZone('Europe/Paris')))->format('c'),
+            'date' => (new \DateTime('tomorrow'))->format('c'),
             'lieu' => 'testLieuPut',
             'b_prive' => true,
             'created_at' => (new \DateTime())->format('c'),
@@ -120,7 +120,7 @@ class EventApiV3Test extends AbstractApiTest
 
         $updatedProperties = [
             'nom' => 'testNomPATCH',
-            'date' => (new \DateTime('tomorrow', new \DateTimeZone('Europe/Paris')))->format('c'),
+            'date' => (new \DateTime('tomorrow'))->format('c'),
             'lieu' => 'testLieuPatch',
             'b_prive' => true,
             'created_at' => $event->getCreatedAt()->format('c'),

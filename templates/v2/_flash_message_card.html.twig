@@ -1,0 +1,12 @@
+<div class="row alert alert-dismissible fade show py-1 mt-2 shadow {{ bgColor }} {{ textColor }}"
+     role="alert"
+     data-flash-message-target="alert"
+>
+    <div class="col-10 bold px-4 pt-3">
+        <small>{{ getFlashMessageTitle(key)|upper }}</small>
+    </div>
+    <a type="button" class="btn-close pe-5" data-bs-dismiss="alert" aria-label="Close"></a>
+    <div class="px-4 pb-3 mt-2">
+        <small>{{ flashMessage|trans()|raw }}</small>
+    </div>
+</div>
