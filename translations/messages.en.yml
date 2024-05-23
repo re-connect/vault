@@ -378,6 +378,7 @@ mfa: Two-factor authentication
 mfa_code_not_received: Did not receive the code?
 mfa_enabled: Two-factor authentication enabled
 mfa_method: 'Receive code via:'
+mfa_new_code_sent: Un nouveau code vous a été envoyé.
 missing_secret_question: Secret question is missing
 missing_secret_question_text: You have not yet entered a secret question and answer, you can do so below
 modal_message_contact_delete: 'Êtes vous sûr de vouloir supprimer le contact'
