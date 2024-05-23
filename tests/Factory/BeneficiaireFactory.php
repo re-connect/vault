@@ -38,7 +38,6 @@ final class BeneficiaireFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'totalFileSize' => self::faker()->randomNumber(),
             'dateNaissance' => self::faker()->dateTime(),
             'neverClickedMesDocuments' => self::faker()->boolean(),
             'questionSecrete' => 'question',
