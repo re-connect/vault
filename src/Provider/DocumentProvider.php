@@ -500,9 +500,6 @@ class DocumentProvider extends DonneePersonnelleProvider
                     ->setDossier($dossier);
             }
 
-            $totalFileSize = $beneficiaire->getTotalFileSize() + $file->getSize();
-            $beneficiaire->setTotalFileSize($totalFileSize);
-
             if ($log) {
                 $this->eventDispatcher->dispatch(
                     new DonneePersonnelleEvent($document, $byUser, DonneePersonnelleEvent::DONNEEPERSONNELLE_CREATED),
