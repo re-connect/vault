@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92918340881aee92dc1bde790e708cc2",
+    "content-hash": "2b838a3592b0897d0f066634a855aa52",
     "packages": [
         {
             "name": "api-platform/core",
@@ -4700,6 +4700,130 @@
                 "source": "https://github.com/mailjet/mailjet-apiv3-php/tree/v1.6.3"
             },
             "time": "2023-12-10T11:13:26+00:00"
+        },
+        {
+            "name": "makinacorpus/db-tools-bundle",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/makinacorpus/DbToolsBundle.git",
+                "reference": "cb3f304b32c96ed06885401aa90ceb5116d505ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/makinacorpus/DbToolsBundle/zipball/cb3f304b32c96ed06885401aa90ceb5116d505ea",
+                "reference": "cb3f304b32c96ed06885401aa90ceb5116d505ea",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "^2.10.0",
+                "makinacorpus/query-builder": "^1.6.1",
+                "php": ">=8.1",
+                "symfony/config": "^6.0|^7.0",
+                "symfony/console": "^6.0|^7.0",
+                "symfony/dependency-injection": "^6.0|^7.0",
+                "symfony/filesystem": "^6.0|^7.0",
+                "symfony/finder": "^6.0|^7.0",
+                "symfony/options-resolver": "^6.0|^7.0",
+                "symfony/password-hasher": "^6.0|^7.0",
+                "symfony/process": "^6.0|^7.0",
+                "symfony/yaml": "^6.0|^7.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.15|^3.0",
+                "friendsofphp/php-cs-fixer": "^3.34",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.4",
+                "symfony/framework-bundle": "^6.0|^7.0",
+                "symfony/validator": "^6.3|^7.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "MakinaCorpus\\DbToolsBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Makina Corpus",
+                    "homepage": "http://makina-corpus.com"
+                }
+            ],
+            "description": "A set of Symfony commands to dump/restore/anonymize database",
+            "support": {
+                "issues": "https://github.com/makinacorpus/DbToolsBundle/issues",
+                "source": "https://github.com/makinacorpus/DbToolsBundle/tree/1.2.0"
+            },
+            "time": "2024-05-28T13:25:33+00:00"
+        },
+        {
+            "name": "makinacorpus/query-builder",
+            "version": "1.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/makinacorpus/php-query-builder.git",
+                "reference": "e0022bbd3a8d9914474c430649fb4ed7c5492e49"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/makinacorpus/php-query-builder/zipball/e0022bbd3a8d9914474c430649fb4ed7c5492e49",
+                "reference": "e0022bbd3a8d9914474c430649fb4ed7c5492e49",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "symfony/polyfill-php83": "^1.29"
+            },
+            "conflict": {
+                "doctrine/dbal": "<3.7"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^3.7|^4.0",
+                "friendsofphp/php-cs-fixer": "^3.40",
+                "phpbench/phpbench": "^1.2",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.3",
+                "ramsey/uuid": ">=3.8",
+                "symfony/uid": ">=6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MakinaCorpus\\QueryBuilder\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pierre RINEAU",
+                    "email": "pierre.rineau@processus.org"
+                },
+                {
+                    "name": "Makina Corpus",
+                    "email": "pierre.rineau@processus.org"
+                }
+            ],
+            "description": "Driver agnostic SQL query builder.",
+            "homepage": "http://github.com/makinacorpus/php-query-builder",
+            "keywords": [
+                "mysql",
+                "postgresql",
+                "query-builder",
+                "sql",
+                "symfony"
+            ],
+            "support": {
+                "issues": "https://github.com/makinacorpus/php-query-builder/issues",
+                "source": "https://github.com/makinacorpus/php-query-builder/tree/1.6.1"
+            },
+            "time": "2024-04-24T15:44:19+00:00"
         },
         {
             "name": "markbaker/complex",
@@ -16447,7 +16571,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "ext-apcu": "*",
         "ext-ctype": "*",
         "ext-dom": "*",

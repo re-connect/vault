@@ -29,6 +29,7 @@
     "liip/imagine-bundle": "2.12.*",
     "maennchen/zipstream-php": "3.1.*",
     "mailjet/mailjet-apiv3-php": "1.6.*",
+    "makinacorpus/db-tools-bundle": "^1.2",
     "nelmio/cors-bundle": "2.3.*",
     "phpdocumentor/reflection-docblock": "5.3.*",
     "phpoffice/phpspreadsheet": "1.29.*",
