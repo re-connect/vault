@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b838a3592b0897d0f066634a855aa52",
+    "content-hash": "f6585e42e3773ae6a219d17c80af8de1",
     "packages": [
         {
             "name": "api-platform/core",
@@ -485,6 +485,54 @@
                 }
             ],
             "time": "2023-01-15T23:15:59+00:00"
+        },
+        {
+            "name": "dbtoolsbundle/pack-fr-fr",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DbToolsBundle/pack-fr-fr.git",
+                "reference": "f7651b6ae1114eed90cab34f5773131f94a1211c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DbToolsBundle/pack-fr-fr/zipball/f7651b6ae1114eed90cab34f5773131f94a1211c",
+                "reference": "f7651b6ae1114eed90cab34f5773131f94a1211c",
+                "shasum": ""
+            },
+            "require": {
+                "makinacorpus/db-tools-bundle": "^1.0.6|^1.1",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.34",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.3",
+                "symfony/framework-bundle": "^6.0",
+                "symfony/validator": "^6.3"
+            },
+            "type": "db-tools-bundle-pack",
+            "autoload": {
+                "psr-4": {
+                    "DbToolsBundle\\PackFrFR\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Makina Corpus",
+                    "homepage": "http://makina-corpus.com"
+                }
+            ],
+            "description": "A pack of anonymizers for fr-FR locale",
+            "support": {
+                "issues": "https://github.com/DbToolsBundle/pack-fr-fr/issues",
+                "source": "https://github.com/DbToolsBundle/pack-fr-fr/tree/0.3.0"
+            },
+            "time": "2024-03-18T09:52:23+00:00"
         },
         {
             "name": "defuse/php-encryption",
