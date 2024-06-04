@@ -913,6 +913,18 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this->dossiers->matching($criteria);
     }
 
+    /**
+     * @return Collection<int, Dossier>
+     */
+    public function getSharedRootDocuments(): Collection
+    {
+        $criteria = Criteria::create()
+            ->andWhere(Criteria::expr()->isNull('dossier'))
+            ->andWhere(Criteria::expr()->eq('bPrive', false));
+
+        return $this->documents->matching($criteria);
+    }
+
     public function getRegionToString(): string
     {
         return implode(', ', array_unique(array_map(fn (Centre $centre) => $centre?->getRegion(), $this->getCentres()->toArray())));
