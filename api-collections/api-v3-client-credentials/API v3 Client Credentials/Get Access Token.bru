@@ -1,0 +1,20 @@
+meta {
+  name: Get Access Token
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/token
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "grant_type": "client_credentials",
+    "scope": "{{oauthScopes}}",
+    "client_id": "{{oauthClientId}}",
+    "client_secret": "{{oauthClientSecret}}"
+  }
+}
