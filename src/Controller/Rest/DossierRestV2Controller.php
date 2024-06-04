@@ -4,6 +4,7 @@ namespace App\Controller\Rest;
 
 use App\Controller\REController;
 use App\Entity\Client;
+use App\Entity\Dossier;
 use App\Entity\User;
 use App\Exception\JsonResponseException;
 use App\Manager\MailManager;
@@ -152,9 +153,13 @@ class DossierRestV2Controller extends REController
 
             $user = $this->getUser();
             $isBeneficiaire = $user instanceof User ? $user->isBeneficiaire() : false;
-            $dossiers = $beneficiaire->getDossiers($isBeneficiaire);
 
-            return $this->json($dossiers);
+            $folderId = $this->request->query->get('folder');
+            $folders = $folderId
+                ? $beneficiaire->getDossiers($isBeneficiaire)->filter(fn (Dossier $folder) => $folder->getDossierParent()?->getId() === (int) $folderId)
+                : $beneficiaire->getSharedRootFolders();
+
+            return $this->json($folders);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 

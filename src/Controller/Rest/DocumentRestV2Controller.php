@@ -62,7 +62,8 @@ class DocumentRestV2Controller extends REController
 
             $dossierId = $this->request->query->get('folder');
             $dossier = null;
-            if (null !== $dossierId) {
+
+            if ($dossierId) {
                 /** @var Dossier $dossier */
                 $dossier = $beneficiaire->getDossiers()->filter(static function (Dossier $element) use ($dossierId) {
                     return $element->getId() === (int) $dossierId;
@@ -73,11 +74,11 @@ class DocumentRestV2Controller extends REController
                 if ((!$isBeneficiaire && $dossier->getBPrive()) || (null === $this->getUser() && false !== $dossier->getBPrive())) {
                     throw $this->createAccessDeniedException();
                 }
-            } elseif ('root' === $this->request->query->get('q')) {
-                $dossier = 'root';
             }
 
-            $entities = $beneficiaire->getDocuments($isBeneficiaire, $dossier);
+            $entities = $dossier
+                ? $beneficiaire->getDocuments($isBeneficiaire, $dossier)
+                : $beneficiaire->getSharedRootDocuments();
 
             foreach ($entities as $entity) {
                 $this->provider->generatePresignedUris($entity);
