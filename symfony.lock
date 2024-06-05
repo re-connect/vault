@@ -408,9 +408,6 @@
     "ramsey/uuid": {
         "version": "3.9.3"
     },
-    "reconnect/easy-deploy-bundle": {
-        "version": "v1.0.9"
-    },
     "reconnect/s3bundle": {
         "version": "1.2",
         "recipe": {
