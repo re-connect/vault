@@ -89,7 +89,13 @@ class FolderController extends AbstractController
             $this->denyAccessUnlessGranted('UPDATE', $parentFolder);
         }
         $initialParentFolder = $folder->getDossierParent();
-        $manager->move($folder, $parentFolder);
+
+        try {
+            $manager->move($folder, $parentFolder);
+        } catch (\Exception $e) {
+            $this->addFlash('danger', $e->getMessage());
+        }
+
         $destinationFolder = $request->query->get('tree-view') ? $folder->getDossierParent() : $initialParentFolder;
 
         return $this->getFolderPageRedirection($folder, $destinationFolder);

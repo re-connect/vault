@@ -83,4 +83,32 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
         $subFolder->remove();
         $parentFolder->remove();
     }
+
+    public function testCanNotMoveParentFolderIntoChild(): void
+    {
+        $errorMessage = "ERREUR Ce mouvement de dossier n'est pas valide";
+        $clientTest = static::createClient();
+        $clientTest->followRedirects();
+        $user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL])->object();
+        $clientTest->loginUser($user);
+        $beneficiary = $user->getSubjectBeneficiaire();
+
+        $parentFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary])->object();
+        $childFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'dossierParent' => $parentFolder])->object();
+        $grandChildFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'dossierParent' => $childFolder])->object();
+
+        self::assertNull($parentFolder->getDossierParent());
+        self::assertSame($parentFolder, $childFolder->getDossierParent());
+        self::assertSame($childFolder, $grandChildFolder->getDossierParent());
+
+        // Test error moving parent in child
+        $clientTest->request('GET', sprintf(self::URL, $parentFolder->getId(), $childFolder->getId()));
+        $this->assertSelectorTextContains('div.alert-dismissible', $errorMessage);
+        self::assertSame($parentFolder, $childFolder->getDossierParent());
+
+        // Test error moving parent in grandChild
+        $clientTest->request('GET', sprintf(self::URL, $parentFolder->getId(), $childFolder->getId()));
+        $this->assertSelectorTextContains('div.alert-dismissible', $errorMessage);
+        self::assertSame($childFolder, $grandChildFolder->getDossierParent());
+    }
 }
