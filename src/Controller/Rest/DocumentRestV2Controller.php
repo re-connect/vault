@@ -78,7 +78,7 @@ class DocumentRestV2Controller extends REController
 
             $entities = $dossier
                 ? $beneficiaire->getDocuments($isBeneficiaire, $dossier)
-                : $beneficiaire->getSharedRootDocuments();
+                : $beneficiaire->getRootDocuments($isBeneficiaire);
 
             foreach ($entities as $entity) {
                 $this->provider->generatePresignedUris($entity);

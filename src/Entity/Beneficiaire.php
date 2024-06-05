@@ -894,21 +894,13 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     /**
      * @return Collection<int, Dossier>
      */
-    public function getRootFolders(): Collection
+    public function getRootFolders(bool $isBeneficiary): Collection
     {
         $criteria = Criteria::create()->andWhere(Criteria::expr()->isNull('dossierParent'));
 
-        return $this->dossiers->matching($criteria);
-    }
-
-    /**
-     * @return Collection<int, Dossier>
-     */
-    public function getSharedRootFolders(): Collection
-    {
-        $criteria = Criteria::create()
-            ->andWhere(Criteria::expr()->isNull('dossierParent'))
-            ->andWhere(Criteria::expr()->eq('bPrive', false));
+        if (!$isBeneficiary) {
+            $criteria->andWhere(Criteria::expr()->eq('bPrive', false));
+        }
 
         return $this->dossiers->matching($criteria);
     }
@@ -916,11 +908,14 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     /**
      * @return Collection<int, Dossier>
      */
-    public function getSharedRootDocuments(): Collection
+    public function getRootDocuments(bool $isBeneficiary): Collection
     {
         $criteria = Criteria::create()
-            ->andWhere(Criteria::expr()->isNull('dossier'))
-            ->andWhere(Criteria::expr()->eq('bPrive', false));
+            ->andWhere(Criteria::expr()->isNull('dossier'));
+
+        if (!$isBeneficiary) {
+            $criteria->andWhere(Criteria::expr()->eq('bPrive', false));
+        }
 
         return $this->documents->matching($criteria);
     }
