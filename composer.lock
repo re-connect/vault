@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f6585e42e3773ae6a219d17c80af8de1",
+    "content-hash": "a6bb1816296fb51e7ca09a485643ba24",
     "packages": [
         {
             "name": "api-platform/core",
@@ -15752,68 +15752,6 @@
                 "source": "https://github.com/phpstan/phpstan-symfony/tree/1.3.9"
             },
             "time": "2024-03-16T16:50:20+00:00"
-        },
-        {
-            "name": "reconnect/easy-deploy-bundle",
-            "version": "v1.0.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/re-connect/easy-deploy-bundle.git",
-                "reference": "b32505fe0073acae56ea9176cddc454a367dec29"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/re-connect/easy-deploy-bundle/zipball/b32505fe0073acae56ea9176cddc454a367dec29",
-                "reference": "b32505fe0073acae56ea9176cddc454a367dec29",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2.0",
-                "symfony/config": "~5.0|~6.0|~7.0",
-                "symfony/console": "~5.0|~6.0|~7.0",
-                "symfony/dependency-injection": "~5.0|~6.0|~7.0",
-                "symfony/expression-language": "~5.0|~6.0|~7.0",
-                "symfony/filesystem": "~5.0|~6.0|~7.0",
-                "symfony/http-foundation": "~5.0|~6.0|~7.0",
-                "symfony/http-kernel": "~5.0|~6.0|~7.0",
-                "symfony/polyfill-mbstring": "^1.3",
-                "symfony/process": "~5.0|~6.0|~7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "9.5.*"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "EasyCorp\\Bundle\\EasyDeployBundle\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Thibaut Cheymol",
-                    "email": "thibaut.cheymol@gmail.com"
-                }
-            ],
-            "description": "The easiest way to deploy Symfony applications",
-            "homepage": "https://github.com/reconnect/easy-deploy-bundle",
-            "keywords": [
-                "deploy",
-                "deployer",
-                "deployment"
-            ],
-            "support": {
-                "source": "https://github.com/re-connect/easy-deploy-bundle/tree/v1.0.9"
-            },
-            "time": "2024-01-04T16:05:06+00:00"
         },
         {
             "name": "rector/rector",
