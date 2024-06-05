@@ -157,7 +157,7 @@ class DossierRestV2Controller extends REController
             $folderId = $this->request->query->get('folder');
             $folders = $folderId
                 ? $beneficiaire->getDossiers($isBeneficiaire)->filter(fn (Dossier $folder) => $folder->getDossierParent()?->getId() === (int) $folderId)
-                : $beneficiaire->getSharedRootFolders();
+                : $beneficiaire->getRootFolders($isBeneficiaire);
 
             return $this->json($folders);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
