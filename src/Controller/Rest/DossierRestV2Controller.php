@@ -152,6 +152,7 @@ class DossierRestV2Controller extends REController
 
             $user = $this->getUser();
             $isBeneficiaire = $user instanceof User ? $user->isBeneficiaire() : false;
+
             $dossiers = $beneficiaire->getDossiers($isBeneficiaire);
 
             return $this->json($dossiers);

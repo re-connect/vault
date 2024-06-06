@@ -62,6 +62,7 @@ class DocumentRestV2Controller extends REController
 
             $dossierId = $this->request->query->get('folder');
             $dossier = null;
+
             if (null !== $dossierId) {
                 /** @var Dossier $dossier */
                 $dossier = $beneficiaire->getDossiers()->filter(static function (Dossier $element) use ($dossierId) {

@@ -894,9 +894,13 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     /**
      * @return Collection<int, Dossier>
      */
-    public function getRootFolders(): Collection
+    public function getRootFolders(bool $isBeneficiary): Collection
     {
         $criteria = Criteria::create()->andWhere(Criteria::expr()->isNull('dossierParent'));
+
+        if (!$isBeneficiary) {
+            $criteria->andWhere(Criteria::expr()->eq('bPrive', false));
+        }
 
         return $this->dossiers->matching($criteria);
     }
@@ -904,13 +908,16 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     /**
      * @return Collection<int, Dossier>
      */
-    public function getSharedRootFolders(): Collection
+    public function getRootDocuments(bool $isBeneficiary): Collection
     {
         $criteria = Criteria::create()
-            ->andWhere(Criteria::expr()->isNull('dossierParent'))
-            ->andWhere(Criteria::expr()->eq('bPrive', false));
+            ->andWhere(Criteria::expr()->isNull('dossier'));
 
-        return $this->dossiers->matching($criteria);
+        if (!$isBeneficiary) {
+            $criteria->andWhere(Criteria::expr()->eq('bPrive', false));
+        }
+
+        return $this->documents->matching($criteria);
     }
 
     public function getRegionToString(): string
