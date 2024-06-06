@@ -252,6 +252,8 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     /** @var string[] */
     private array $relaysIds = [];
+    private ?string $externalRelayId = null;
+    private ?string $externalProId = null;
 
     public function __construct()
     {
@@ -1188,6 +1190,30 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public function setRelaysIds(array $relaysIds): self
     {
         $this->relaysIds = $relaysIds;
+
+        return $this;
+    }
+
+    public function getExternalRelayId(): ?string
+    {
+        return $this->externalRelayId;
+    }
+
+    public function setExternalRelayId(?string $relayId): self
+    {
+        $this->externalRelayId = $relayId;
+
+        return $this;
+    }
+
+    public function getExternalProId(): ?string
+    {
+        return $this->externalProId;
+    }
+
+    public function setExternalProId(?string $proId): self
+    {
+        $this->externalProId = $proId;
 
         return $this;
     }

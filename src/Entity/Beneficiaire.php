@@ -974,10 +974,12 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
             : $this->externalLinks->filter(fn (ClientBeneficiaire $link) => $link->getClient() === $client);
     }
 
-    public function addClientExternalLink(Client $client, string $externalId, ?string $memberExternalId = null): self
+    public function addClientExternalLink(Client $client, string $externalId, ?string $memberExternalId = null, ?BeneficiaireCentre $beneficiaireCentre = null): self
     {
         if (!$this->hasExternalLinkForClient($client)) {
-            $this->addExternalLink(ClientBeneficiaire::createForMember($client, $externalId, $memberExternalId));
+            $externalLink = ClientBeneficiaire::createForMember($client, $externalId, (int) $memberExternalId);
+            $externalLink->setBeneficiaireCentre($beneficiaireCentre);
+            $this->addExternalLink($externalLink);
         }
 
         return $this;
