@@ -119,7 +119,13 @@ class DocumentController extends AbstractController
             $this->denyAccessUnlessGranted('UPDATE', $folder);
         }
         $initialParentFolder = $document->getDossier();
-        $manager->move($document, $folder);
+
+        try {
+            $manager->move($document, $folder);
+        } catch (\Exception $e) {
+            $this->addFlash('danger', $e->getMessage());
+        }
+
         $destinationFolder = $request->query->get('tree-view') ? $document->getDossier() : $initialParentFolder;
 
         return $this->getDocumentPageRedirection($document, $destinationFolder);
