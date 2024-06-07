@@ -32,6 +32,7 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
         if ($data instanceof Beneficiaire && $operation instanceof Patch && $client) {
             $this->updateExternalLink($data, $client);
         } elseif ($data instanceof BeneficiaryDto && $operation instanceof Post) {
+            $data = $data->toBeneficiary();
             $this->createBeneficiary($data, $client);
         }
 
@@ -44,9 +45,8 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
         $externalLink?->setDistantId($data->getDistantId());
     }
 
-    private function createBeneficiary(BeneficiaryDto $data, ?Client $client): void
+    private function createBeneficiary(Beneficiaire $data, ?Client $client): void
     {
-        $data = $data->toBeneficiary();
         $this->relayAssignationHelper->assignRelaysFromIdsArray($data->getUser());
         if ($client) {
             $this->relayAssignationHelper->assignRelayFromExternalId($data->getUser(), $client);
