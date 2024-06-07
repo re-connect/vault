@@ -10,6 +10,7 @@ use App\Api\Dto\BeneficiaryDto;
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Beneficiaire;
 use App\Entity\Client;
+use App\ManagerV2\UserManager;
 use App\Repository\MembreRepository;
 use App\ServiceV2\Helper\RelayAssignationHelper;
 use Doctrine\ORM\NonUniqueResultException;
@@ -23,6 +24,7 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
         private RelayAssignationHelper $relayAssignationHelper,
         private MembreRepository $membreRepository,
         private LoggerInterface $apiLogger,
+        private UserManager $userManager,
     ) {
     }
 
@@ -33,6 +35,9 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
             $this->updateExternalLink($data, $client);
         } elseif ($data instanceof BeneficiaryDto && $operation instanceof Post) {
             $data = $data->toBeneficiary();
+            if (!$data->getUser()?->getPassword()) {
+                $data->getUser()?->setPlainPassword($this->userManager->getRandomPassword());
+            }
             $this->createBeneficiary($data, $client);
         }
 
