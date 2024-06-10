@@ -35,7 +35,7 @@ abstract class DonneePersonnelle implements \JsonSerializable
         'document:read', 'read-personal-data', 'read-personal-data-v2',
         'write-personal-data', 'write-personal-data-v2',
     ])]
-    #[Anonymize('fr-fr.lastname')]
+    #[Anonymize('reconnect.personal_data_name')]
     protected ?string $nom = null;
 
     #[Groups([
