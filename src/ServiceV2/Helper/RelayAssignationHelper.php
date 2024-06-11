@@ -24,13 +24,14 @@ readonly class RelayAssignationHelper
         }
     }
 
-    public function assignRelayFromExternalId(User $user, Client $client): void
+    public function assignRelayFromExternalId(User $user, Client $client, ?int $externalRelayId = null): void
     {
-        if (!$user->getExternalRelayId()) {
+        $externalRelayId = $externalRelayId ?? $user->getExternalRelayId();
+        if (!$externalRelayId) {
             return;
         }
         try {
-            $relay = $this->repository->findByDistantId($user->getExternalRelayId(), $client->getRandomId());
+            $relay = $this->repository->findByDistantId($externalRelayId, $client->getRandomId());
             /** @var BeneficiaireCentre $userRelay */
             $userRelay = User::createUserRelay($user, $relay);
             $user->getSubjectBeneficiaire()->addBeneficiairesCentre($userRelay);
@@ -42,7 +43,7 @@ readonly class RelayAssignationHelper
                 $beneficiary->addClientExternalLink($client, $distantId, $user->getExternalProId(), $userRelay);
             }
         } catch (\Exception $e) {
-            $this->apiLogger->error(sprintf('Did not find any center on vault for distant id %s when creating user %s from client %s', $user->getExternalRelayId(), $user->getId(), $client->getRandomId()));
+            $this->apiLogger->error(sprintf('Did not find any center on vault for distant id %s when creating user %s from client %s', $externalRelayId, $user->getId(), $client->getRandomId()));
         }
     }
 }

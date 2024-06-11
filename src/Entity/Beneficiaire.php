@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\Dto\BeneficiaryDto;
+use App\Api\Dto\LinkBeneficiaryDto;
 use App\Api\Filters\DistantIdFilter;
 use App\Api\State\BeneficiaryStateProcessor;
 use App\Api\State\BeneficiaryStateProvider;
@@ -31,7 +32,9 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     shortName: 'beneficiary',
     operations: [
         new Get(security: "is_granted('READ', object)", provider: BeneficiaryStateProvider::class),
-        new Patch(security: "is_granted('UPDATE', object)", processor: BeneficiaryStateProcessor::class),
+        new Patch(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES') or is_granted('UPDATE', object)",
+            input: LinkBeneficiaryDto::class,
+            processor: BeneficiaryStateProcessor::class),
         new Patch(
             uriTemplate: '/beneficiaries/{id}/unlink',
             controller: UnlinkBeneficiaryController::class,
