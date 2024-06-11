@@ -9,9 +9,11 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\State\PersonalDataStateProcessor;
+use App\Domain\Anonymization\AnonymizationHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
+use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
@@ -37,8 +39,10 @@ class Evenement extends DonneePersonnelle
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2'])]
     private ?string $timezone = null;
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
+    #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
     private ?string $lieu = null;
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
+    #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
     private ?string $commentaire = null;
     #[Groups(['read-personal-data', 'v3:event:read'])]
     private bool $bEnvoye = false;
