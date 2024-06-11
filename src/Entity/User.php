@@ -2,9 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
+use App\Api\Filters\UsernameFilter;
+use App\Api\State\SearchBeneficiaryProvider;
 use App\Api\State\UserPasswordProcessor;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -20,9 +24,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ApiFilter(UsernameFilter::class, properties: ['username' => 'exact'])]
 #[ApiResource(
     operations: [
-        new GetCollection(security: "is_granted('ROLE_USER')"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_USERS') or is_granted('ROLE_USER')", provider: SearchBeneficiaryProvider::class),
         new Patch(security: "is_granted('UPDATE', object)", processor: UserPasswordProcessor::class),
     ],
     normalizationContext: ['groups' => ['v3:user:read']],
