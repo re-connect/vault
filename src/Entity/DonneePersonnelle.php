@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Traits\CreatorTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 abstract class DonneePersonnelle implements \JsonSerializable
@@ -34,6 +35,7 @@ abstract class DonneePersonnelle implements \JsonSerializable
         'document:read', 'read-personal-data', 'read-personal-data-v2',
         'write-personal-data', 'write-personal-data-v2',
     ])]
+    #[Anonymize('reconnect.personal_data_name')]
     protected ?string $nom = null;
 
     #[Groups([

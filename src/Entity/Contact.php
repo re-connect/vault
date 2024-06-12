@@ -9,6 +9,8 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\State\PersonalDataStateProcessor;
+use App\Domain\Anonymization\AnonymizationHelper;
+use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
@@ -29,26 +31,31 @@ class Contact extends DonneePersonnelle
      * @var string
      */
     #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
+    #[Anonymize('fr-fr.firstname')]
     private $prenom;
     /**
      * @var string
      */
     #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
+    #[Anonymize('fr-fr.phone')]
     private $telephone;
     /**
      * @var string
      */
     #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
+    #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_EMAIL]])]
     private $email;
     /**
      * @var string
      */
     #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
+    #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
     private $commentaire;
     /**
      * @var string
      */
     #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
+    #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
     private $association;
 
     /**
