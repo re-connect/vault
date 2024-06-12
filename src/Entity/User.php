@@ -232,6 +232,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     private bool $canada = false;
     private ?string $fcnToken = null;
 
+    #[Anonymize('md5')]
     private ?string $oldUsername = null;
     /** @var ?Collection<int, SharedDocument> */
     private ?Collection $sharedDocuments;
