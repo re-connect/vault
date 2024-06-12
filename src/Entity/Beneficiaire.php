@@ -32,9 +32,14 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     shortName: 'beneficiary',
     operations: [
         new Get(security: "is_granted('READ', object)", provider: BeneficiaryStateProvider::class),
-        new Patch(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES') or is_granted('UPDATE', object)",
-            input: LinkBeneficiaryDto::class,
+        new Patch(security: "is_granted('UPDATE', object)",
             processor: BeneficiaryStateProcessor::class),
+        new Patch(
+            uriTemplate: '/beneficiaries/{id}/add-external-link',
+            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
+            input: LinkBeneficiaryDto::class,
+            processor: BeneficiaryStateProcessor::class,
+        ),
         new Patch(
             uriTemplate: '/beneficiaries/{id}/unlink',
             controller: UnlinkBeneficiaryController::class,
@@ -220,8 +225,10 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function addBeneficiairesCentre(BeneficiaireCentre $beneficiairesCentre): self
     {
-        $this->beneficiairesCentres[] = $beneficiairesCentre;
-        $beneficiairesCentre->setBeneficiaire($this);
+        if (!$this->beneficiairesCentres->contains($beneficiairesCentre)) {
+            $this->beneficiairesCentres[] = $beneficiairesCentre;
+            $beneficiairesCentre->setBeneficiaire($this);
+        }
 
         return $this;
     }
