@@ -5,6 +5,7 @@ namespace App\ServiceV2\Helper;
 use App\Entity\BeneficiaireCentre;
 use App\Entity\Client;
 use App\Entity\User;
+use App\Entity\UserCentre;
 use App\Repository\CentreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
@@ -33,7 +34,7 @@ readonly class RelayAssignationHelper
         try {
             $relay = $this->repository->findByDistantId($externalRelayId, $client->getRandomId());
             /** @var BeneficiaireCentre $userRelay */
-            $userRelay = User::createUserRelay($user, $relay);
+            $userRelay = $user->getUserRelays()->filter(fn (UserCentre $userCentre) => $relay === $userCentre->getCentre())->first() ?: User::createUserRelay($user, $relay);
             $user->getSubjectBeneficiaire()->addBeneficiairesCentre($userRelay);
             $this->em->persist($userRelay);
 

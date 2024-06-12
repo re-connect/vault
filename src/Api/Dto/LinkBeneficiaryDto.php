@@ -9,11 +9,11 @@ final class LinkBeneficiaryDto
 {
     #[Assert\NotNull()]
     #[Groups(['v3:beneficiary:write'])]
-    public ?string $distantId = null;
+    public ?int $distantId = null;
 
     #[Groups(['v3:beneficiary:write'])]
-    public ?string $externalCenter = null;
+    public ?int $externalCenter = null;
 
     #[Groups(['v3:beneficiary:write'])]
-    public ?string $externalProId = null;
+    public ?int $externalProId = null;
 }

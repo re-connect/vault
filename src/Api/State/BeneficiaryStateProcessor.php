@@ -37,12 +37,19 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): mixed
     {
         $client = $this->apiClientManager->getCurrentOldClient();
+
         if ($data instanceof LinkBeneficiaryDto && $operation instanceof Patch && $client) {
             $beneficiary = $this->beneficiaryRepository->find($uriVariables['id']);
-            $this->updateExternalLink($data, $client, $beneficiary);
+            $this->createExternalLink($data, $client, $beneficiary);
 
             return $beneficiary;
-        } elseif ($data instanceof BeneficiaryDto && $operation instanceof Post) {
+        }
+
+        if ($data instanceof Beneficiaire && $operation instanceof Patch && $client) {
+            $this->updateExternalLink($data, $client);
+        }
+
+        if ($data instanceof BeneficiaryDto && $operation instanceof Post) {
             $data = $data->toBeneficiary();
             if (!$data->getUser()?->getPassword()) {
                 $data->getUser()?->setPlainPassword($this->userManager->getRandomPassword());
@@ -53,24 +60,27 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
         return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
     }
 
-    private function updateExternalLink(LinkBeneficiaryDto $data, Client $client, ?Beneficiaire $beneficiary = null): void
+    private function updateExternalLink(Beneficiaire $data, Client $client): void
     {
-        $externalLink = $beneficiary?->getExternalLinkForClient($client);
+        $externalLink = $data->getExternalLinkForClient($client);
+        $externalLink?->setDistantId($data->getDistantId());
+    }
 
-        if (!$externalLink) {
-            if ($data->externalCenter) {
-                $beneficiary?->setDistantId($data->distantId);
-                $this->relayAssignationHelper->assignRelayFromExternalId($beneficiary?->getUser(), $client, intval($data->externalCenter));
-                $this->entityManager->flush();
-            } else {
-                $externalLink = ClientBeneficiaire::createForMember($client, $data->distantId, intval($data->externalProId));
-                $beneficiary?->addExternalLink($externalLink);
-                $this->entityManager->persist($externalLink);
-                $this->entityManager->flush();
-            }
-        } else {
-            $externalLink?->setDistantId($data->distantId);
+    private function createExternalLink(LinkBeneficiaryDto $data, Client $client, Beneficiaire $beneficiary): void
+    {
+        if ($data->externalCenter) {
+            $beneficiary->setDistantId($data->distantId);
+            $beneficiary->getUser()?->setExternalProId($data->externalProId);
+            $this->relayAssignationHelper->assignRelayFromExternalId($beneficiary->getUser(), $client, $data->externalCenter);
+            $this->entityManager->flush();
+
+            return;
         }
+
+        $externalLink = ClientBeneficiaire::createForMember($client, $data->distantId, $data->externalProId);
+        $beneficiary->addExternalLink($externalLink);
+        $this->entityManager->persist($externalLink);
+        $this->entityManager->flush();
     }
 
     private function createBeneficiary(Beneficiaire $data, ?Client $client): void
