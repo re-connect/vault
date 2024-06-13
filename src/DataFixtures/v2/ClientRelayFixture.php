@@ -1,0 +1,37 @@
+<?php
+
+namespace App\DataFixtures\v2;
+
+use App\Entity\ClientCentre;
+use App\Tests\Factory\ClientFactory;
+use App\Tests\Factory\RelayFactory;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Persistence\ObjectManager;
+
+class ClientRelayFixture extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
+{
+    public function load(ObjectManager $manager)
+    {
+        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
+        $relay = RelayFactory::find(['nom' => RelayFixture::DEFAULT_BENEFICIARY_RELAY]);
+        $clientRelay = new ClientCentre($client, 42);
+        $relay->addExternalLink($clientRelay);
+        $manager->persist($clientRelay);
+        $manager->flush();
+    }
+
+    /** @return string[] */
+    public static function getGroups(): array
+    {
+        return ['v2'];
+    }
+
+    /** @return array<class-string<FixtureInterface>> */
+    public function getDependencies(): array
+    {
+        return [BeneficiaryFixture::class, ClientFixture::class];
+    }
+}
