@@ -2,10 +2,19 @@
 
 namespace App\Tests\v2\API\v3\Beneficiary;
 
+use App\Repository\BeneficiaireRepository;
 use App\Tests\v2\API\v3\AbstractApiTest;
 
 class CreateTest extends AbstractApiTest
 {
+    private readonly BeneficiaireRepository $repo;
+
+    protected function setUp(): void
+    {
+        $this->repo = $this->getContainer()->get(BeneficiaireRepository::class);
+        parent::setUp();
+    }
+
     public function testCreateBeneficiary(): void
     {
         $this->assertEndpoint(
@@ -38,8 +47,16 @@ class CreateTest extends AbstractApiTest
                 'email' => 'api@test.com',
                 'phone' => '1234567890',
                 'distant_id' => '1200',
-                '',
+                'external_center' => '42',
+                'external_pro_id' => '4972',
             ]
         );
+        $benef = $this->repo->findByUsername('api.test.13/02/2023');
+        $this->assertNotNull($benef);
+        $this->assertNotEmpty($benef->getExternalLinks());
+        $externalLink = $benef->getExternalLinks()->first();
+        $this->assertEquals('reconnect_pro', $externalLink->getClient()->getNom());
+        $this->assertEquals($benef->getBeneficiairesCentres()->first(), $externalLink->getBeneficiaireCentre());
+        $this->assertEquals(1200, $benef->getExternalLinks()->first()->getDistantId());
     }
 }
