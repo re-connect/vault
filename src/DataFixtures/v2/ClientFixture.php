@@ -50,6 +50,7 @@ class ClientFixture extends Fixture implements FixtureGroupInterface
                     'randomId' => $client['id'],
                     'secret' => $client['secret'],
                     'allowedGrantTypes' => [$client['grantType']],
+                    'newClientIdentifier' => $client['id'],
                 ]
             );
         }
