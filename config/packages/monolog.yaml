@@ -17,6 +17,7 @@ when@dev:
             - relay
             - affiliation
             - sms
+            - api
         handlers:
             main:
                 type: fingers_crossed
@@ -58,6 +59,11 @@ when@dev:
                 type: stream
                 path: '%kernel.logs_dir%/activity_dev/sms.log'
                 channels: [ 'sms' ]
+            api:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/api_dev/v3.log'
+                channels: [ 'api' ]
             console:
                 type: console
                 process_psr_3_messages: false
@@ -71,6 +77,7 @@ when@test:
             - user
             - relay
             - affiliation
+            - api
         handlers:
             main:
                 type: fingers_crossed
@@ -107,17 +114,28 @@ when@test:
                 type: stream
                 path: '%kernel.logs_dir%/activity_test/affiliation.log'
                 channels: [ 'affiliation' ]
+            api:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/api_test/v3.log'
+                channels: [ 'api' ]
 
 when@preprod:
     monolog:
         channels:
             - sms
+            - api
         handlers:
             sms:
                 level: debug
                 type: stream
                 path: '%kernel.logs_dir%/activity_dev/sms.log'
                 channels: [ 'sms' ]
+            api:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/api_preprod/v3.log'
+                channels: [ 'api' ]
 
 when@prod:
     monolog:
@@ -167,3 +185,8 @@ when@prod:
                 type: stream
                 path: '%kernel.logs_dir%/activity/affiliation.log'
                 channels: [ 'affiliation' ]
+            api:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/api/v3.log'
+                channels: [ 'api' ]

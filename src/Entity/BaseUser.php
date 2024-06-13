@@ -50,7 +50,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
      *
      * @var string|null
      */
-    #[Groups(['v3:user:write'])]
+    #[Groups(['v3:user:write', 'v3:user:read'])]
     protected $plainPassword;
 
     /**
