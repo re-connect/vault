@@ -15,11 +15,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BeneficiaireType extends AbstractType
 {
-    private RequestStack $requestStack;
-
-    public function __construct(RequestStack $requestStack)
+    public function __construct(private readonly RequestStack $requestStack)
     {
-        $this->requestStack = $requestStack;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)

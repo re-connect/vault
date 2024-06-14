@@ -18,7 +18,7 @@ class NavExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('getUserNavItems', [$this, 'getUserNavItems']),
+            new TwigFunction('getUserNavItems', $this->getUserNavItems(...)),
         ];
     }
 

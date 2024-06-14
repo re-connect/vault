@@ -9,11 +9,9 @@ class PaginatorService
 {
     private const LIMIT = 7;
     public const LIST_USER_LIMIT = 10;
-    private PaginatorInterface $paginator;
 
-    public function __construct(PaginatorInterface $paginator)
+    public function __construct(private readonly PaginatorInterface $paginator)
     {
-        $this->paginator = $paginator;
     }
 
     /**

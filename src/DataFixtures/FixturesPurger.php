@@ -30,7 +30,7 @@ use League\Bundle\OAuth2ServerBundle\Model as OauthModel;
 
 class FixturesPurger implements ORMPurgerInterface
 {
-    private ?EntityManagerInterface $em;
+    private ?EntityManagerInterface $em = null;
 
     public function purge(): void
     {

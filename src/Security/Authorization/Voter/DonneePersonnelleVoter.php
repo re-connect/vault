@@ -68,9 +68,7 @@ class DonneePersonnelleVoter extends REVoter
             $clientBeneficiaire = $subject
                 ->getBeneficiaire()
                 ->getExternalLinks()
-                ->filter(static function (ClientBeneficiaire $element) use ($client) {
-                    return $element->getClient() === $client;
-                })->first();
+                ->filter(static fn (ClientBeneficiaire $element) => $element->getClient() === $client)->first();
             if (!$clientBeneficiaire) {
                 return false;
             }

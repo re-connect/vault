@@ -10,7 +10,7 @@ class CommonExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('reDate', [$this, 'reDate']),
+            new TwigFilter('reDate', $this->reDate(...)),
         ];
     }
 

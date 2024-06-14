@@ -14,11 +14,9 @@ class DocumentNormalizer implements NormalizerInterface, CacheableSupportsMethod
     use NormalizerAwareTrait;
 
     private const ALREADY_CALLED = 'DOCUMENT_NORMALIZER_ALREADY_CALLED';
-    private DocumentProvider $provider;
 
-    public function __construct(DocumentProvider $provider)
+    public function __construct(private DocumentProvider $provider)
     {
-        $this->provider = $provider;
     }
 
     public function hasCacheableSupportsMethod(): bool

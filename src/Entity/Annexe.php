@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[Vich\Uploadable]
-class Annexe
+class Annexe implements \Stringable
 {
     public const SERVER_PATH_TO_IMAGE_FOLDER = 'uploads/annexe';
     /**
@@ -118,7 +118,7 @@ class Annexe
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this::SERVER_PATH_TO_IMAGE_FOLDER.'/'.$this->getFichier();
     }

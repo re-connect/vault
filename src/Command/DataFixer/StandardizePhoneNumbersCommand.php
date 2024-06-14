@@ -18,14 +18,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class StandardizePhoneNumbersCommand extends Command
 {
-    private UserRepository $repository;
-    private EntityManagerInterface $em;
-
-    public function __construct(EntityManagerInterface $em, UserRepository $repository, ?string $name = null)
+    public function __construct(private readonly EntityManagerInterface $em, private readonly UserRepository $repository, ?string $name = null)
     {
         parent::__construct($name);
-        $this->repository = $repository;
-        $this->em = $em;
     }
 
     protected function configure()
@@ -46,7 +41,7 @@ class StandardizePhoneNumbersCommand extends Command
         /** @var User $user */
         foreach ($users as $user) {
             $phone = $user->getTelephone();
-            $phone = str_replace(' ', '', $phone);
+            $phone = str_replace(' ', '', (string) $phone);
             $phone = str_replace('.', '', $phone);
             if (10 === \strlen($phone) && $this->startsWith($phone, '0')) {
                 $phone = '+33'.ltrim($phone, '0');
@@ -72,7 +67,7 @@ class StandardizePhoneNumbersCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function startsWith($haystack, $needle): bool
+    private function startsWith(string $haystack, string $needle): bool
     {
         $length = \strlen($needle);
 

@@ -14,16 +14,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class UserVoter extends Voter
 {
     public const GESTION_USER = 'gestion beneficiaire';
-    private CentreProvider $provider;
     private BeneficiaireVoter $beneficiaireVoter;
     private MembreVoter $membreVoter;
 
     /**
      * UserVoter constructor.
      */
-    public function __construct(CentreProvider $provider)
+    public function __construct(private readonly CentreProvider $provider)
     {
-        $this->provider = $provider;
     }
 
     public function setBeneficiaireVoter(BeneficiaireVoter $beneficiaireVoter)

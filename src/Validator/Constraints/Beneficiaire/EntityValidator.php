@@ -12,11 +12,8 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class EntityValidator extends ConstraintValidator
 {
-    private $validator;
-
-    public function __construct(ValidatorInterface $validator)
+    public function __construct(private readonly ValidatorInterface $validator)
     {
-        $this->validator = $validator;
     }
 
     /**
@@ -48,16 +45,12 @@ class EntityValidator extends ConstraintValidator
         $errorBeneficiairesCentres = new ArrayCollection();
         $beneficiairesCentres = $entity->getBeneficiairesCentres();
         foreach ($beneficiairesCentres as $a) {
-            $countBeneficiairesCentres = $beneficiairesCentres->filter(static function ($b) use ($a) {
-                return $a->getCentre() === $b->getCentre();
-            })->count();
+            $countBeneficiairesCentres = $beneficiairesCentres->filter(static fn ($b) => $a->getCentre() === $b->getCentre())->count();
             if (($countBeneficiairesCentres > 1) && !$errorBeneficiairesCentres->contains($a->getCentre())) {
                 $errorBeneficiairesCentres->add($a->getCentre());
             }
 
-            $countClient = $beneficiairesCentres->filter(static function ($b) use ($a) {
-                return null !== $a->getExternalLink() && $a->getExternalLink() === $b->getExternalLink();
-            })->count();
+            $countClient = $beneficiairesCentres->filter(static fn ($b) => null !== $a->getExternalLink() && $a->getExternalLink() === $b->getExternalLink())->count();
             if (($countClient > 1) && !$errorUniqueClient->contains($a->getExternalLink())) {
                 $errorUniqueClient->add($a->getExternalLink());
             }

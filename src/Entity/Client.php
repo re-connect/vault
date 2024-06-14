@@ -10,7 +10,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")
  */
-class Client extends BaseClient
+class Client extends BaseClient implements \Stringable
 {
     public const CLIENT_APPLI_MOBILE = 'applimobile';
     public const CLIENT_ROSALIE = 'rosalie';
@@ -164,10 +164,7 @@ class Client extends BaseClient
         $this->dossierFile = $dossierFile;
     }
 
-    /**
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->nom;
     }

@@ -46,7 +46,7 @@ class Evenement extends DonneePersonnelle
     private ?string $commentaire = null;
     #[Groups(['read-personal-data', 'v3:event:read'])]
     private bool $bEnvoye = false;
-    private ?int $heureRappel;
+    private ?int $heureRappel = null;
     private ?SMS $sms = null;
     private ?Membre $membre = null;
     private bool $archive = false;
@@ -228,13 +228,13 @@ class Evenement extends DonneePersonnelle
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         if ($this->date) {
             return sprintf('%s le %s', $this->nom, $this->date->format('d/m/Y H:i'));
         }
 
-        return $this->nom;
+        return (string) $this->nom;
     }
 
     /**

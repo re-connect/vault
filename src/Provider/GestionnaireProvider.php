@@ -14,21 +14,8 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class GestionnaireProvider
 {
-    private EntityManagerInterface $em;
-    private UserManager $userManager;
-    private RequestStack $requestStack;
-    private EventDispatcherInterface $eventDispatcher;
-
-    public function __construct(
-        EntityManagerInterface $em,
-        EventDispatcherInterface $eventDispatcher,
-        UserManager $userManager,
-        RequestStack $requestStack,
-    ) {
-        $this->em = $em;
-        $this->eventDispatcher = $eventDispatcher;
-        $this->userManager = $userManager;
-        $this->requestStack = $requestStack;
+    public function __construct(private readonly EntityManagerInterface $em, private readonly EventDispatcherInterface $eventDispatcher, private readonly UserManager $userManager, private readonly RequestStack $requestStack)
+    {
     }
 
     public function save(Gestionnaire $entity, User $user): void

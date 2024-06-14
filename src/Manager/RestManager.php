@@ -23,14 +23,11 @@ class RestManager
     private $password;
     private $token;
 
-    private ValidatorInterface $validator;
-
     /**
      * RestManager constructor.
      */
-    public function __construct(ValidatorInterface $validator)
+    public function __construct(private readonly ValidatorInterface $validator)
     {
-        $this->validator = $validator;
         $this->returnType = self::RETURN_TYPE_JSON;
         $this->authType = self::AUTH_TOKEN;
     }
@@ -91,7 +88,7 @@ class RestManager
             case self::AUTH_TOKEN:
             default:
                 if ($this->token) {
-                    $query = parse_url($url, PHP_URL_QUERY);
+                    $query = parse_url((string) $url, PHP_URL_QUERY);
                     if ($query) {
                         $url .= '&access_token='.$this->token;
                     } else {
@@ -151,7 +148,7 @@ class RestManager
      * @param Constraint|Constraint[]                            $constraints The constraint(s) to validate against
      * @param string|GroupSequence|(string|GroupSequence)[]|null $groups      The validation groups to validate. If none is given, "Default" is assumed
      */
-    public function getJsonValidationError($value, $constraints = null, $groups = null): ?array
+    public function getJsonValidationError(mixed $value, $constraints = null, $groups = null): ?array
     {
         $errors = $this->validator->validate($value, $constraints, $groups);
 

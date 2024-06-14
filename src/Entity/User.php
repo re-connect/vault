@@ -235,17 +235,17 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     #[Anonymize('md5')]
     private ?string $oldUsername = null;
     /** @var ?Collection<int, SharedDocument> */
-    private ?Collection $sharedDocuments;
+    private ?Collection $sharedDocuments = null;
 
     private ?\DateTimeImmutable $cgsAcceptedAt = null;
     private ?\DateTimeImmutable $personalAccountDataRequestedAt = null;
 
     private bool $hasPasswordWithLatestPolicy = false;
 
-    private ?string $authCode;
-    private ?bool $mfaEnabled;
-    private ?bool $mfaPending;    // This is only used when login from API
-    private ?bool $mfaValid;    // This is only used when login from API
+    private ?string $authCode = null;
+    private ?bool $mfaEnabled = null;
+    private ?bool $mfaPending = null;    // This is only used when login from API
+    private ?bool $mfaValid = null;    // This is only used when login from API
     private string $mfaMethod = self::MFA_METHOD_EMAIL;
     private ?int $mfaRetryCount = 0;
     private ?\DateTimeInterface $mfaCodeGeneratedAt = null;
@@ -418,7 +418,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
      *
      * @throws \Exception
      */
-    public function setPrivateKey($privateKey)
+    public function setPrivateKey($privateKey): never
     {
         throw new \Exception('Private key is set at object construction');
     }
@@ -455,7 +455,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return sprintf('%s (id:%s)', $this->username, $this->id);
     }
@@ -886,7 +886,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getCentresToString(?string $item = 'id'): string
     {
-        $get = 'get'.ucfirst($item);
+        $get = 'get'.ucfirst((string) $item);
         $str = '';
         $centres = $this->getCentres();
         if (!$centres->isEmpty()) {
@@ -903,20 +903,12 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getCentres()
     {
-        switch ($this->getTypeUser()) {
-            case self::USER_TYPE_BENEFICIAIRE:
-                $subject = $this->getSubjectBeneficiaire();
-                break;
-            case self::USER_TYPE_MEMBRE:
-                $subject = $this->getSubjectMembre();
-                break;
-            case self::USER_TYPE_GESTIONNAIRE:
-                $subject = $this->getSubjectGestionnaire();
-                break;
-            default:
-                $subject = null;
-                break;
-        }
+        $subject = match ($this->getTypeUser()) {
+            self::USER_TYPE_BENEFICIAIRE => $this->getSubjectBeneficiaire(),
+            self::USER_TYPE_MEMBRE => $this->getSubjectMembre(),
+            self::USER_TYPE_GESTIONNAIRE => $this->getSubjectGestionnaire(),
+            default => null,
+        };
 
         return !$subject ? new ArrayCollection([]) : $subject->getCentres();
     }
@@ -941,9 +933,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getCreatorClient(): ?CreatorClient
     {
-        $creator = $this->creators?->filter(static function ($creator) {
-            return $creator instanceof CreatorClient;
-        })->first();
+        $creator = $this->creators?->filter(static fn ($creator) => $creator instanceof CreatorClient)->first();
 
         return false === $creator ? null : $creator;
     }
@@ -991,9 +981,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getCreatorUser(): ?CreatorUser
     {
-        $creator = $this->creators?->filter(static function ($creator) {
-            return $creator instanceof CreatorUser;
-        })->first();
+        $creator = $this->creators?->filter(static fn ($creator) => $creator instanceof CreatorUser)->first();
 
         return false === $creator ? null : $creator;
     }
@@ -1005,9 +993,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getCreatorCentre(): ?CreatorCentre
     {
-        $creator = $this->creators?->filter(static function ($creator) {
-            return $creator instanceof CreatorCentre;
-        })->first();
+        $creator = $this->creators?->filter(static fn ($creator) => $creator instanceof CreatorCentre)->first();
 
         return false === $creator ? null : $creator;
     }

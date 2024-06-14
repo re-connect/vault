@@ -14,12 +14,10 @@ use Doctrine\Persistence\ObjectManager;
 
 class MembreFixture extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
-    private FixtureManager $fixtureManager;
-    private ?ObjectManager $manager;
+    private ?ObjectManager $manager = null;
 
-    public function __construct(FixtureManager $fixtureManager)
+    public function __construct(private readonly FixtureManager $fixtureManager)
     {
-        $this->fixtureManager = $fixtureManager;
     }
 
     public function getDependencies(): array

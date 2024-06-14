@@ -9,13 +9,11 @@ class DossierEvent extends REEvent
     public const DOSSIER_ERROR_OUVERTURE = 1;
 
     protected $beneficiaire;
-    protected $type;
     protected $evenement;
 
-    public function __construct(Beneficiaire $beneficiaire, $type)
+    public function __construct(Beneficiaire $beneficiaire, protected $type)
     {
         $this->beneficiaire = $beneficiaire;
-        $this->type = $type;
     }
 
     public function getEvenement()

@@ -24,24 +24,11 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class CentreManager
 {
-    private AuthorizationCheckerInterface $authorizationChecker;
-    private EventDispatcherInterface $eventDispatcher;
-    private EntityManagerInterface $em;
-    private CentreProvider $provider;
-
     /**
      * Constructor.
      */
-    public function __construct(
-        CentreProvider $provider,
-        EntityManagerInterface $em,
-        EventDispatcherInterface $eventDispatcher,
-        AuthorizationCheckerInterface $authorizationChecker
-    ) {
-        $this->provider = $provider;
-        $this->em = $em;
-        $this->eventDispatcher = $eventDispatcher;
-        $this->authorizationChecker = $authorizationChecker;
+    public function __construct(private readonly CentreProvider $provider, private readonly EntityManagerInterface $em, private readonly EventDispatcherInterface $eventDispatcher, private readonly AuthorizationCheckerInterface $authorizationChecker)
+    {
     }
 
     /**

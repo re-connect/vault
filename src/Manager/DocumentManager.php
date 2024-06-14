@@ -10,11 +10,9 @@ use Symfony\Component\Uid\Uuid;
 
 class DocumentManager
 {
-    private S3Client $client;
-    private string $bucketName;
-    private LoggerInterface $logger;
+    private readonly S3Client $client;
 
-    public function __construct(string $bucketName, string $bucketEndpoint, string $bucketAccess, string $bucketSecret, LoggerInterface $logger)
+    public function __construct(private readonly string $bucketName, string $bucketEndpoint, string $bucketAccess, string $bucketSecret, private readonly LoggerInterface $logger)
     {
         $this->client = new S3Client([
             'endpoint' => $bucketEndpoint,
@@ -26,8 +24,6 @@ class DocumentManager
             'region' => 'eu-west-1',
             'version' => 'latest',
         ]);
-        $this->bucketName = $bucketName;
-        $this->logger = $logger;
     }
 
     /**

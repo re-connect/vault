@@ -62,7 +62,7 @@ class RosalieService
 
                 return true;
             }
-        } catch (NonUniqueResultException $e) {
+        } catch (NonUniqueResultException) {
             return false;
         }
 

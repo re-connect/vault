@@ -17,12 +17,9 @@ class UpdateAccessToDocumentsInFoldersCommand extends Command
 {
     // the name of the command (the part after "bin/console")
     private const BATCH_SIZE = 200;
-    private EntityManagerInterface $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(private readonly EntityManagerInterface $entityManager)
     {
-        $this->entityManager = $entityManager;
-
         parent::__construct();
     }
 

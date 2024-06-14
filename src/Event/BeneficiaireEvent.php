@@ -17,13 +17,11 @@ class BeneficiaireEvent extends REEvent
 
     protected $beneficiaire;
     protected $user;
-    protected $type;
 
-    public function __construct(Beneficiaire $beneficiaire, $type, ?User $user = null)
+    public function __construct(Beneficiaire $beneficiaire, protected $type, ?User $user = null)
     {
         $this->beneficiaire = $beneficiaire;
         $this->user = $user;
-        $this->type = $type;
 
         $this->context = [
             'user_id' => $beneficiaire->getUser()->getId(),

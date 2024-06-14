@@ -28,12 +28,12 @@ class UserManager
 
     private function sanitize($str, $charset = 'utf-8')
     {
-        $str = htmlentities($str, ENT_NOQUOTES, $charset);
+        $str = htmlentities((string) $str, ENT_NOQUOTES, $charset);
         $str = preg_replace('#&([A-za-z])(?:acute|cedil| caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
-        $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str); // pour les ligatures e.g. '&oelig;'
-        $str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractères
-        $str = preg_replace('#[^.a-zA-Z]#', '', $str); // supprime les autres caractères
-        $str = strtolower($str);
+        $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', (string) $str); // pour les ligatures e.g. '&oelig;'
+        $str = preg_replace('#&[^;]+;#', '', (string) $str); // supprime les autres caractères
+        $str = preg_replace('#[^.a-zA-Z]#', '', (string) $str); // supprime les autres caractères
+        $str = strtolower((string) $str);
 
         return $str;
     }
@@ -96,11 +96,11 @@ class UserManager
 
     public function compareSecretStrings($string1, $string2): bool
     {
-        $string1 = strtolower($string1);
+        $string1 = strtolower((string) $string1);
         $string1 = preg_replace('#[ _\-.]#', '', $string1);
         $string1 = $this->sanitize($string1);
 
-        $string2 = strtolower($string2);
+        $string2 = strtolower((string) $string2);
         $string2 = preg_replace('#[ _\-.]#', '', $string2);
         $string2 = $this->sanitize($string2);
 

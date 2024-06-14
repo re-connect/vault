@@ -52,9 +52,7 @@ class BeneficiaireAdmin extends AbstractAdmin
         /* @var BeneficiaireCentre $beneficiaireCentre */
         foreach ($object->getExternalLinks() as $externalLink) {
             if (null !== $externalLink->getBeneficiaireCentre()) {
-                $beneficiaireCentre = $object->getBeneficiairesCentres()->filter(static function (BeneficiaireCentre $element) use ($externalLink) {
-                    return $element->getId() === $externalLink->getBeneficiaireCentre()->getId();
-                })->first();
+                $beneficiaireCentre = $object->getBeneficiairesCentres()->filter(static fn (BeneficiaireCentre $element) => $element->getId() === $externalLink->getBeneficiaireCentre()->getId())->first();
                 if (false !== $beneficiaireCentre && null === $beneficiaireCentre->getExternalLink()) {
                     $externalLink->setBeneficiaireCentre(null);
                 }

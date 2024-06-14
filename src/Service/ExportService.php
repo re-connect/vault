@@ -59,9 +59,7 @@ class ExportService
 
     private function getExportSheetFiltersCount(ExportModel $exportModel): \Closure
     {
-        return function ($filter) use ($exportModel) {
-            return $this->getExportSheetCount($exportModel, $filter);
-        };
+        return fn ($filter) => $this->getExportSheetCount($exportModel, $filter);
     }
 
     private function getExportSheetCount(ExportModel $exportModel, $filter = null): array
@@ -90,7 +88,7 @@ class ExportService
 
         try {
             return $qb->getQuery()->getSingleScalarResult();
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return count($qb->getQuery()->getResult());
         }
     }

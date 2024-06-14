@@ -17,15 +17,11 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class FixtureManager
 {
-    private EntityManagerInterface $em;
-    private Generator $faker;
-    private UserPasswordHasherInterface $hasher;
+    private readonly Generator $faker;
 
-    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $hasher)
+    public function __construct(private readonly EntityManagerInterface $em, private readonly UserPasswordHasherInterface $hasher)
     {
-        $this->em = $em;
         $this->faker = FakerFactory::create('fr_FR');
-        $this->hasher = $hasher;
     }
 
     public function getNewRandomBeneficiaire(UserManager $usermanager): Beneficiaire
@@ -108,7 +104,7 @@ class FixtureManager
     public function getNewRandomCentre(): Centre
     {
         $typesCentres = $this->em->getRepository(TypeCentre::class)->findAll();
-        $randomIndex = rand(0, count($typesCentres) - 1);
+        $randomIndex = random_int(0, count($typesCentres) - 1);
 
         return (new Centre())
             ->setNom($this->faker->company())

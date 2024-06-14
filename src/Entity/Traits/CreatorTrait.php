@@ -35,27 +35,21 @@ trait CreatorTrait
 
     public function getCreatorUser(): ?CreatorUser
     {
-        $creator = $this->creators?->filter(static function ($creator) {
-            return $creator instanceof CreatorUser;
-        })->first();
+        $creator = $this->creators?->filter(static fn ($creator) => $creator instanceof CreatorUser)->first();
 
         return false === $creator ? null : $creator;
     }
 
     public function getCreatorCentre(): ?CreatorCentre
     {
-        $creator = $this->creators?->filter(static function ($creator) {
-            return $creator instanceof CreatorCentre;
-        })->first();
+        $creator = $this->creators?->filter(static fn ($creator) => $creator instanceof CreatorCentre)->first();
 
         return false === $creator ? null : $creator;
     }
 
     public function getCreatorClient(): ?CreatorClient
     {
-        $creator = $this->creators?->filter(static function ($creator) {
-            return $creator instanceof CreatorClient;
-        })->first();
+        $creator = $this->creators?->filter(static fn ($creator) => $creator instanceof CreatorClient)->first();
 
         return false === $creator ? null : $creator;
     }

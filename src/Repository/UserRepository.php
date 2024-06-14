@@ -76,16 +76,12 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
         $qb = $this->createQueryBuilder('a');
 
         foreach ($columns as $key => $column) {
-            // si il s'agit du premier élément
-            reset($columns);
-            if ($key === key($columns)) {
+            if ($key === array_key_first($columns)) {
                 $qb
                     ->where('a.'.$column.' IS NOT NULL');
             }
-
-            end($columns);
             // si il ne s'agit pas du premier élément
-            if ($key === key($columns)) {
+            if ($key === array_key_last($columns)) {
                 $qb
                     ->andWhere('a.'.$column.' IS NOT NULL');
             }
@@ -155,7 +151,7 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
 
         try {
             $user = $query->getOneOrNullResult();
-        } catch (NonUniqueResultException $e) {
+        } catch (NonUniqueResultException) {
             return null;
         }
 
@@ -177,7 +173,7 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
 
         try {
             $user = $query->getOneOrNullResult();
-        } catch (NonUniqueResultException $e) {
+        } catch (NonUniqueResultException) {
             return null;
         }
 

@@ -321,9 +321,7 @@ final class BeneficiaireProvider
             throw new \RuntimeException('No client connected.');
         }
         /** @var ClientBeneficiaire $externalLink */
-        $externalLink = $entity->getExternalLinks()->filter(static function (ClientBeneficiaire $clientBeneficiaire) use ($client) {
-            return $clientBeneficiaire->getClient()->getRandomId() === $client->getRandomId();
-        })->first();
+        $externalLink = $entity->getExternalLinks()->filter(static fn (ClientBeneficiaire $clientBeneficiaire) => $clientBeneficiaire->getClient()->getRandomId() === $client->getRandomId())->first();
         if (!$externalLink) {
             throw new EntityNotFoundException('Not found external link for client '.$client->getNom());
         }
@@ -362,9 +360,7 @@ final class BeneficiaireProvider
 
             /** Vérification si le bénéficiaire a accepté au moins un ajout d'un ces centres du client */
             /** @var \Doctrine\Common\Collections\Collection<int, ClientBeneficiaire> $externalLinks */
-            $externalLinks = $entity->getExternalLinks()->filter(static function (ClientBeneficiaire $element) use ($id, $oldClient) {
-                return $element->getDistantId() == $id && $element->getClient() === $oldClient;
-            });
+            $externalLinks = $entity->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $element->getDistantId() == $id && $element->getClient() === $oldClient);
             foreach ($externalLinks as $externalLink) {
                 if (!$externalLink->getBeneficiaireCentre()?->getBValid()) {
                     throw new AccessDeniedException('The beneficiary has not yet accepted your connection request.');

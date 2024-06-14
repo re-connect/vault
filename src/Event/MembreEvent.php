@@ -12,14 +12,12 @@ class MembreEvent extends REEvent
 
     protected $membre;
     protected $user;
-    protected $type;
     protected $context = [];
 
-    public function __construct(Membre $membre, $type, ?User $user = null)
+    public function __construct(Membre $membre, protected $type, ?User $user = null)
     {
         $this->membre = $membre;
         $this->user = $user;
-        $this->type = $type;
 
         $this->context = [
             'user_id' => $this->membre->getUser()->getId(),
@@ -44,6 +42,6 @@ class MembreEvent extends REEvent
 
     public function __toString(): string
     {
-        return $this->getConstName($this->type);
+        return (string) $this->getConstName($this->type);
     }
 }

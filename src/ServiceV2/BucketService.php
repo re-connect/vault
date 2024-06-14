@@ -7,7 +7,7 @@ use Psr\Log\LoggerInterface;
 
 class BucketService
 {
-    private S3Client $client;
+    private readonly S3Client $client;
 
     public function __construct(
         private readonly string $bucketName,

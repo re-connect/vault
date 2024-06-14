@@ -14,7 +14,7 @@ class NotificationExtension extends AbstractExtension
 
     public function getFunctions(): array
     {
-        return [new TwigFunction('getUserNotifications', [$this, 'getUserNotifications'])];
+        return [new TwigFunction('getUserNotifications', $this->getUserNotifications(...))];
     }
 
     public function getUserNotifications(): array

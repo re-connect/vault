@@ -78,7 +78,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     private bool $neverClickedMesDocuments = true;
 
     #[Groups(['beneficiary:read'])]
-    private ?string $lieuNaissance;
+    private ?string $lieuNaissance = null;
 
     /** @var Collection<int, BeneficiaireCentre> $beneficiairesCentres */
     #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
@@ -118,7 +118,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     private Collection $consultationsBeneficiaires;
 
     #[Groups(['read', 'beneficiary:read'])]
-    private ?int $idRosalie;
+    private ?int $idRosalie = null;
 
     #[Groups(['read', 'beneficiary:read'])]
     private ?string $siSiaoNumber = null;
@@ -175,7 +175,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function getReponseSecreteToLowerCase(): ?string
     {
-        return strtolower($this->reponseSecrete);
+        return strtolower((string) $this->reponseSecrete);
     }
 
     public function setReponseSecrete(?string $reponseSecrete): Beneficiaire
@@ -682,9 +682,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function jsonSerializeForClient(?Client $client): array
     {
-        $clientBeneficiaire = !$client ? null : $this->getExternalLinks()->filter(static function (ClientBeneficiaire $element) use ($client) {
-            return $client === $element->getClient();
-        })->first();
+        $clientBeneficiaire = !$client ? null : $this->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $client === $element->getClient())->first();
         $distantId = $clientBeneficiaire?->getDistantId();
 
         return [
@@ -714,9 +712,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function jsonSerializeForClientV2(?Client $client): array
     {
-        $clientBeneficiaire = !$client ? null : $this->getExternalLinks()->filter(static function (ClientBeneficiaire $element) use ($client) {
-            return $client === $element->getClient();
-        })->first();
+        $clientBeneficiaire = !$client ? null : $this->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $client === $element->getClient())->first();
 
         return [
             'distant_id' => $clientBeneficiaire?->getDistantId(),
@@ -782,9 +778,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
             $this->documents = new ArrayCollection();
             foreach ($documents as $document) {
                 if (null !== ($dossier = $document->getDossier())) {
-                    $dossier = $this->dossiers->filter(function (Dossier $element) use ($document) {
-                        return $element->getId() === $document->getDossier()->getId();
-                    })->first();
+                    $dossier = $this->dossiers->filter(fn (Dossier $element) => $element->getId() === $document->getDossier()->getId())->first();
                 }
                 $document->setDossier($dossier);
                 $this->addDocument($document);
