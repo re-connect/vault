@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class Entity extends Constraint
 {
+    #[\Override]
     public function getTargets(): string|array
     {
         return self::CLASS_CONSTRAINT;

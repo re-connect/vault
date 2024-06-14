@@ -13,7 +13,7 @@ use Doctrine\ORM\QueryBuilder;
 
 final readonly class ClientResourceCollectionExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface
 {
-    private const HANDLED_CLASSES = [
+    private const array HANDLED_CLASSES = [
         Beneficiaire::class,
         Document::class,
     ];
@@ -22,11 +22,13 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
     {
     }
 
+    #[\Override]
     public function applyToItem(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, array $identifiers, ?Operation $operation = null, array $context = []): void
     {
         $this->addClientExternalLinksFilter($queryBuilder, $resourceClass);
     }
 
+    #[\Override]
     public function applyToCollection(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, ?Operation $operation = null, array $context = []): void
     {
         $this->addClientExternalLinksFilter($queryBuilder, $resourceClass);

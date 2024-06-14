@@ -20,6 +20,7 @@ abstract class ClientEntity implements \Stringable
         $this->entity_name = (new \ReflectionClass($this))->getShortName();
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return $this->getClient()->getNom().': '.$this->getDistantId();

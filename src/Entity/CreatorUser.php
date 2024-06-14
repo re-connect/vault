@@ -7,6 +7,7 @@ namespace App\Entity;
  */
 class CreatorUser extends Creator implements \Stringable
 {
+    #[\Override]
     public function __toString(): string
     {
         return $this->getEntity()->toSonataString();

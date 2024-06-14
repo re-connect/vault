@@ -18,6 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EvenementSimpleType extends AbstractType
 {
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -97,6 +98,7 @@ class EvenementSimpleType extends AbstractType
             });
     }
 
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -104,6 +106,7 @@ class EvenementSimpleType extends AbstractType
         ]);
     }
 
+    #[\Override]
     public function getBlockPrefix(): string
     {
         return $this->getName();

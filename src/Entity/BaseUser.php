@@ -81,11 +81,13 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         $this->passwordUpdatedAt = new \DateTimeImmutable();
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return (string) $this->username;
     }
 
+    #[\Override]
     public function getUserIdentifier(): string
     {
         return $this->username;
@@ -105,6 +107,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
+    #[\Override]
     public function eraseCredentials()
     {
         $this->plainPassword = null;
@@ -125,6 +128,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this->usernameCanonical;
     }
 
+    #[\Override]
     public function getSalt(): ?string
     {
         return $this->salt;
@@ -135,6 +139,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this->emailCanonical;
     }
 
+    #[\Override]
     public function getPassword(): ?string
     {
         return $this->password;
@@ -165,6 +170,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this->confirmationToken;
     }
 
+    #[\Override]
     public function getRoles(): array
     {
         $roles = $this->roles;

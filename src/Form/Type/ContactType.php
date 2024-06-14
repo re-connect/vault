@@ -6,6 +6,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class ContactType extends ContactSimpleType
 {
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
@@ -13,6 +14,7 @@ class ContactType extends ContactSimpleType
             ->remove('bPrive');
     }
 
+    #[\Override]
     public function getName(): string
     {
         return 're_form_contact';

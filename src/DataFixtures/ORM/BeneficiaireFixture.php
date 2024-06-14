@@ -21,6 +21,7 @@ class BeneficiaireFixture extends Fixture implements DependentFixtureInterface, 
     {
     }
 
+    #[\Override]
     public function getDependencies(): array
     {
         return [
@@ -29,6 +30,7 @@ class BeneficiaireFixture extends Fixture implements DependentFixtureInterface, 
         ];
     }
 
+    #[\Override]
     public function load(ObjectManager $manager)
     {
         $this->manager = $manager;
@@ -63,6 +65,7 @@ class BeneficiaireFixture extends Fixture implements DependentFixtureInterface, 
     }
 
     /** @return string[] */
+    #[\Override]
     public static function getGroups(): array
     {
         return ['v1'];

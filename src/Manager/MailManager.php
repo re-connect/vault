@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class MailManager
 {
-    private const SHARE_FILE_MAIL_TEMPLATE_ID = [
+    private const array SHARE_FILE_MAIL_TEMPLATE_ID = [
         'fr' => 3008320,
         'de' => 3616016,
         'en' => 3633387,

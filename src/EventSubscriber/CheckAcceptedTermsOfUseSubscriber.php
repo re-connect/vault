@@ -25,6 +25,7 @@ class CheckAcceptedTermsOfUseSubscriber extends AbstractWebUserSubscriber implem
         }
     }
 
+    #[\Override]
     public static function getSubscribedEvents(): array
     {
         return [

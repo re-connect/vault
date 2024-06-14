@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormEvents;
 
 class AddFormattedPhoneSubscriber implements EventSubscriberInterface
 {
+    #[\Override]
     public static function getSubscribedEvents(): array
     {
         return [

@@ -7,7 +7,7 @@ use Knp\Component\Pager\PaginatorInterface;
 
 class PaginatorService
 {
-    private const LIMIT = 7;
+    private const int LIMIT = 7;
     public const LIST_USER_LIMIT = 10;
 
     public function __construct(private readonly PaginatorInterface $paginator)

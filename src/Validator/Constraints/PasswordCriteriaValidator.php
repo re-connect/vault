@@ -11,6 +11,7 @@ use Symfony\Component\Validator\ConstraintValidator;
  */
 class PasswordCriteriaValidator extends ConstraintValidator
 {
+    #[\Override]
     public function validate(mixed $value, Constraint $constraint): void
     {
         if (null === $value) {

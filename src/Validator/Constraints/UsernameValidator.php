@@ -10,6 +10,7 @@ use Symfony\Component\Validator\ConstraintValidator;
  */
 class UsernameValidator extends ConstraintValidator
 {
+    #[\Override]
     public function validate($value, Constraint $constraint)
     {
         /* @var Username $constraint */

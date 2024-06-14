@@ -33,6 +33,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
     public const BENEFICIARY_WITH_MFA_ENABLE = 'v2_test_user_beneficiary_with_mfa_enable@mail.com';
     public const BENEFICIARY_WITH_CLIENT_LINK = 'test_user_beneficiary_with_client_link@mail.com';
 
+    #[\Override]
     public function load(ObjectManager $manager)
     {
         $this->createTestBeneficiary(
@@ -115,6 +116,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
     }
 
     /** @return string[] */
+    #[\Override]
     public static function getGroups(): array
     {
         return ['v2'];

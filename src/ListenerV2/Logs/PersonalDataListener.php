@@ -21,22 +21,25 @@ class PersonalDataListener implements LogActivityListenerInterface
 {
     use UserAwareTrait;
 
-    private const PERSONAL_DATA_NAME = 'Personal data';
+    private const string PERSONAL_DATA_NAME = 'Personal data';
 
     public function __construct(private readonly LoggerInterface $personalDataLogger, private readonly Security $security)
     {
     }
 
+    #[\Override]
     public function postPersist(PostPersistEventArgs $args): void
     {
         $this->log($args, sprintf('%s created :', self::PERSONAL_DATA_NAME));
     }
 
+    #[\Override]
     public function preUpdate(PreUpdateEventArgs $args): void
     {
         $this->log($args, sprintf('%s updated :', self::PERSONAL_DATA_NAME));
     }
 
+    #[\Override]
     public function preRemove(PreRemoveEventArgs $args): void
     {
         $this->log($args, sprintf('%s removed :', self::PERSONAL_DATA_NAME));
@@ -45,6 +48,7 @@ class PersonalDataListener implements LogActivityListenerInterface
     /**
      * @param LifecycleEventArgs<ObjectManager> $args
      */
+    #[\Override]
     public function log(LifecycleEventArgs $args, string $logType): void
     {
         $object = $args->getObject();

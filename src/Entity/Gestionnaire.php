@@ -28,6 +28,7 @@ class Gestionnaire extends Subject implements UserHandleCentresInterface
         $this->updatedAt = new \DateTime();
     }
 
+    #[\Override]
     public function setUser(?User $user = null): self
     {
         $this->user = $user;
@@ -65,6 +66,7 @@ class Gestionnaire extends Subject implements UserHandleCentresInterface
     /**
      * @return Centre[]|Collection<Centre>
      */
+    #[\Override]
     public function getHandledCentres()
     {
         return $this->centres;
@@ -125,6 +127,7 @@ class Gestionnaire extends Subject implements UserHandleCentresInterface
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize(bool $withUser = true): array
     {
         $data = [

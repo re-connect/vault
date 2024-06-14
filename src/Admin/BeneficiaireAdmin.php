@@ -30,6 +30,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class BeneficiaireAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureFormOptions(array &$formOptions): void
     {
         $formOptions['validation_groups'] = ['password-admin', 'beneficiaire'];
@@ -37,6 +38,7 @@ class BeneficiaireAdmin extends AbstractAdmin
     }
     private UserManager $userManager;
 
+    #[\Override]
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues[DatagridInterface::PAGE] = 1;
@@ -47,6 +49,7 @@ class BeneficiaireAdmin extends AbstractAdmin
     /**
      * @param Beneficiaire $object
      */
+    #[\Override]
     public function preUpdate($object): void
     {
         /* @var BeneficiaireCentre $beneficiaireCentre */
@@ -69,6 +72,7 @@ class BeneficiaireAdmin extends AbstractAdmin
         $this->userManager = $userManager;
     }
 
+    #[\Override]
     protected function prePersist(object $object): void
     {
         $this->userManager->updatePasswordWithPlain($object->getUser());
@@ -76,6 +80,7 @@ class BeneficiaireAdmin extends AbstractAdmin
         parent::prePersist($object);
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $formMapper): void
     {
         /** @var ?Beneficiaire $subject */
@@ -163,6 +168,7 @@ class BeneficiaireAdmin extends AbstractAdmin
             ->end();
     }
 
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -304,6 +310,7 @@ class BeneficiaireAdmin extends AbstractAdmin
             ->add('user.canada', null, ['label' => 'Canada']);
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list
@@ -329,6 +336,7 @@ class BeneficiaireAdmin extends AbstractAdmin
             ]);
     }
 
+    #[\Override]
     public function configureExportFields(): array
     {
         return [

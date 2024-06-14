@@ -13,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DossierSimpleType extends AbstractType
 {
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         /** @var Dossier $dossier */
@@ -41,6 +42,7 @@ class DossierSimpleType extends AbstractType
             ->setAction('#');
     }
 
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -48,6 +50,7 @@ class DossierSimpleType extends AbstractType
         ]);
     }
 
+    #[\Override]
     public function getBlockPrefix(): string
     {
         return $this->getName();

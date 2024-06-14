@@ -132,6 +132,7 @@ class MailerService implements AuthCodeMailerInterface
         $this->send($email);
     }
 
+    #[\Override]
     public function sendAuthCode(TwoFactorInterface $user): void
     {
         /** @var User $user */

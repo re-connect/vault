@@ -12,17 +12,20 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20210506101107 extends AbstractMigration
 {
+    #[\Override]
     public function getDescription(): string
     {
         return 'Renamed properties';
     }
 
+    #[\Override]
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE user ADD smsPasswordResetCodeRequestedAt DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', ADD smsPasswordResetCodeMustBeVerifiedBefore DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', DROP smsForgotPasswordTokenRequestedAt, DROP smsForgotPasswordTokenMustBeVerifiedBefore');
     }
 
+    #[\Override]
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs

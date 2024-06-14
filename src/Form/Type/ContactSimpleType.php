@@ -14,6 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContactSimpleType extends AbstractType
 {
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -34,6 +35,7 @@ class ContactSimpleType extends AbstractType
             ->add('submit', SubmitType::class, ['label' => 'confirm', 'attr' => ['class' => 'btn btn-blue btn-green font-size-1 js-loading-container']]);
     }
 
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -47,6 +49,7 @@ class ContactSimpleType extends AbstractType
         return $this->getBlockPrefix();
     }
 
+    #[\Override]
     public function getBlockPrefix(): string
     {
         return 're_form_contactsimple';

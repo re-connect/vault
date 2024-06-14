@@ -164,6 +164,7 @@ class Client extends BaseClient implements \Stringable
         $this->dossierFile = $dossierFile;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return $this->nom;

@@ -27,6 +27,7 @@ class PasswordPolicySubscriber extends AbstractWebUserSubscriber implements Even
         }
     }
 
+    #[\Override]
     public static function getSubscribedEvents(): array
     {
         return [

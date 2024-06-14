@@ -28,12 +28,14 @@ use Symfony\Component\Form\FormEvents;
 
 class MembreAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureFormOptions(array &$formOptions): void
     {
         $formOptions['validation_groups'] = ['password-admin', 'membre', 'Default'];
         parent::configureFormOptions($formOptions);
     }
 
+    #[\Override]
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues[DatagridInterface::PAGE] = 1;
@@ -44,6 +46,7 @@ class MembreAdmin extends AbstractAdmin
     private EntityManagerInterface $entityManager;
     private UserManager $userManager;
 
+    #[\Override]
     public function preUpdate($object): void
     {
         $result = $this->entityManager->createQueryBuilder()
@@ -71,6 +74,7 @@ class MembreAdmin extends AbstractAdmin
         parent::preUpdate($object);
     }
 
+    #[\Override]
     protected function prePersist(object $object): void
     {
         $this->userManager->updatePasswordWithPlain($object->getUser());
@@ -78,6 +82,7 @@ class MembreAdmin extends AbstractAdmin
         parent::prePersist($object);
     }
 
+    #[\Override]
     public function preRemove($object): void
     {
         $creators = $this->entityManager->getRepository(CreatorUser::class)->findBy(['entity' => $object->getUser()->getId()]);
@@ -96,6 +101,7 @@ class MembreAdmin extends AbstractAdmin
         $this->userManager = $userManager;
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form
@@ -182,6 +188,7 @@ class MembreAdmin extends AbstractAdmin
         });
     }
 
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -240,6 +247,7 @@ class MembreAdmin extends AbstractAdmin
             ->add('user.canada', null, ['label' => 'Canada']);
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list
@@ -265,6 +273,7 @@ class MembreAdmin extends AbstractAdmin
                 ], ]);
     }
 
+    #[\Override]
     public function configureExportFields(): array
     {
         return [

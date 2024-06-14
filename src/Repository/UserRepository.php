@@ -158,6 +158,7 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
         return $user;
     }
 
+    #[\Override]
     public function loadUserByIdentifier(string $identifier): ?User
     {
         $entityManager = $this->getEntityManager();
@@ -198,6 +199,7 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
             ->getResult();
     }
 
+    #[\Override]
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
         $user->setPassword($newHashedPassword);

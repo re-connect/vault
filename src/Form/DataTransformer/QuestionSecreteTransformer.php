@@ -12,6 +12,7 @@ class QuestionSecreteTransformer implements DataTransformerInterface
     {
     }
 
+    #[\Override]
     public function transform($value): mixed
     {
         if (null === $value) {
@@ -21,6 +22,7 @@ class QuestionSecreteTransformer implements DataTransformerInterface
         return $value;
     }
 
+    #[\Override]
     public function reverseTransform($value): mixed
     {
         if (!$value) {

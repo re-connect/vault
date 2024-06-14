@@ -12,17 +12,20 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20210423083514 extends AbstractMigration
 {
+    #[\Override]
     public function getDescription(): string
     {
         return 'Added new properties related to password resetting';
     }
 
+    #[\Override]
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE user ADD forgotPasswordToken VARCHAR(255) DEFAULT NULL, ADD forgotPasswordTokenRequestedAt DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', ADD forgotPasswordTokenMustBeVerifiedBefore DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', ADD forgotPasswordTokenVerifiedAt DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\'');
     }
 
+    #[\Override]
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs

@@ -17,6 +17,7 @@ class MembreVoter extends Voter
     {
     }
 
+    #[\Override]
     protected function supports(string $attribute, mixed $subject): bool
     {
         return in_array($attribute, [
@@ -24,6 +25,7 @@ class MembreVoter extends Voter
         ]) && $subject instanceof Membre;
     }
 
+    #[\Override]
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         // get current logged in user

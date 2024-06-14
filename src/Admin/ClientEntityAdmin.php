@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ClientEntityAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $client = $this->getSubject()->getClient();

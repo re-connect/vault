@@ -20,11 +20,13 @@ class MembreFixture extends Fixture implements DependentFixtureInterface, Fixtur
     {
     }
 
+    #[\Override]
     public function getDependencies(): array
     {
         return [GestionnaireAssociationCentreFixture::class];
     }
 
+    #[\Override]
     public function load(ObjectManager $manager): void
     {
         $this->manager = $manager;
@@ -62,6 +64,7 @@ class MembreFixture extends Fixture implements DependentFixtureInterface, Fixtur
     }
 
     /** @return string[] */
+    #[\Override]
     public static function getGroups(): array
     {
         return ['v1'];

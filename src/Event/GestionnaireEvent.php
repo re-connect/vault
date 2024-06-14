@@ -40,6 +40,7 @@ class GestionnaireEvent extends REEvent
         return $this->type;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return (string) $this->getConstName($this->type);

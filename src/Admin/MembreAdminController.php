@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MembreAdminController extends CRUDController
 {
+    #[\Override]
     protected function preDelete(Request $request, object $object): ?Response
     {
         $errorMessage = $this->getErrorMessage($object);

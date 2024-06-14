@@ -22,6 +22,7 @@ class Administrateur extends Subject
      *
      * @return Administrateur
      */
+    #[\Override]
     public function setUser(?User $user = null)
     {
         $this->user = $user;
@@ -40,6 +41,7 @@ class Administrateur extends Subject
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [];

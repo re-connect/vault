@@ -12,11 +12,13 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20221123145811 extends AbstractMigration
 {
+    #[\Override]
     public function getDescription(): string
     {
         return '';
     }
 
+    #[\Override]
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
@@ -25,6 +27,7 @@ final class Version20221123145811 extends AbstractMigration
         $this->addSql('ALTER TABLE dossier ADD CONSTRAINT FK_3D48E037BC336E0D FOREIGN KEY (dossier_parent_id) REFERENCES dossier (id) ON DELETE SET NULL');
     }
 
+    #[\Override]
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs

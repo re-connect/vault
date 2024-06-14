@@ -75,6 +75,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
         return $this->documents->matching($criteria);
     }
 
+    #[\Override]
     public function jsonSerialize(): array
     {
         $sousDossiers = $this->sousDossiers->map(fn (Dossier $sousDossier) => ['id' => $sousDossier->getId()])->toArray();
@@ -176,6 +177,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
         return $this->documents->count() || $this->sousDossiers->exists(fn (int $key, Dossier $dossier) => $dossier->hasDocuments());
     }
 
+    #[\Override]
     public function toggleVisibility(): void
     {
         $this->setBPrive(!$this->getBPrive());
@@ -189,11 +191,13 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
         );
     }
 
+    #[\Override]
     public function hasParentFolder(): bool
     {
         return null !== $this->getDossierParent();
     }
 
+    #[\Override]
     public function move(?Dossier $parentFolder): void
     {
         $this->setDossierParent($parentFolder);

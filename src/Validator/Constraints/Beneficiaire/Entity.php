@@ -14,6 +14,7 @@ class Entity extends Constraint
     public $messageDuplicateCentreBeneficaireExternalLink = 'La liaison externe "{{ string }}" est déjà lié à un centre.';
     public $messageDuplicateBeneficiaireCentre = 'Le centre "{{ string }}" est déjà lié au bénéficiaire.';
 
+    #[\Override]
     public function getTargets(): string|array
     {
         return self::CLASS_CONSTRAINT;

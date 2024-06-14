@@ -18,7 +18,7 @@ class Region implements \Stringable
     #[Assert\Email]
     private ?string $email = null;
 
-    private readonly Collection $centres;
+    private ?Collection $centres = null;
 
     public function __construct()
     {
@@ -77,6 +77,7 @@ class Region implements \Stringable
         return $this;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return (string) $this->name;

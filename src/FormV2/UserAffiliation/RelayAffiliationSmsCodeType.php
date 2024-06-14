@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\EqualTo;
 
 class RelayAffiliationSmsCodeType extends AbstractType
 {
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         /** @var Beneficiaire $beneficiary */
@@ -25,6 +26,7 @@ class RelayAffiliationSmsCodeType extends AbstractType
         }
     }
 
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('data_class', Beneficiaire::class);

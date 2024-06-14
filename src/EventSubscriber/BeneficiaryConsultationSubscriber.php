@@ -18,6 +18,7 @@ readonly class BeneficiaryConsultationSubscriber implements EventSubscriberInter
         $this->memberBeneficiaryManager->recordBeneficiaryConsultation($event->getBeneficiary());
     }
 
+    #[\Override]
     public static function getSubscribedEvents(): array
     {
         return [

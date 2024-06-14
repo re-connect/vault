@@ -13,6 +13,7 @@ readonly class BeneficiaryStateProvider implements ProviderInterface
     {
     }
 
+    #[\Override]
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
     {
         $item = $this->itemProvider->provide($operation, $uriVariables, $context);

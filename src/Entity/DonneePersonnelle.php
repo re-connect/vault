@@ -156,6 +156,7 @@ abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
         return $this->beneficiaire?->getId();
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return (string) $this->nom;

@@ -189,6 +189,7 @@ class Contact extends DonneePersonnelle
         return $this;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return sprintf('%s %s', $this->nom, $this->prenom);
@@ -204,6 +205,7 @@ class Contact extends DonneePersonnelle
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [

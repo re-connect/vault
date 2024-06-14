@@ -224,16 +224,19 @@ class SMSManager implements AuthCodeTextInterface
         return $message;
     }
 
+    #[\Override]
     public function setMessageFormat(string $format): void
     {
         return;
     }
 
+    #[\Override]
     public function getMessageFormat(): string
     {
         return '';
     }
 
+    #[\Override]
     public function sendAuthCode(TwoFactorTextInterface $user, ?string $code): void
     {
         $message = $this->translator->trans('auth_code_sms_text', ['%code%' => $code]);

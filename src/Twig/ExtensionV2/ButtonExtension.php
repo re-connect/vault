@@ -8,6 +8,7 @@ use Twig\TwigFunction;
 
 class ButtonExtension extends AbstractExtension
 {
+    #[\Override]
     public function getFunctions(): array
     {
         return [

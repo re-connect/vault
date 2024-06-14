@@ -20,6 +20,7 @@ class DocumentExtension extends AbstractExtension
     /**
      * @return array|TwigFunction[]
      */
+    #[\Override]
     public function getFunctions()
     {
         return [
@@ -31,6 +32,7 @@ class DocumentExtension extends AbstractExtension
     /**
      * @return array|TwigFilter[]
      */
+    #[\Override]
     public function getFilters(): array
     {
         return [

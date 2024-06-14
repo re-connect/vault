@@ -13,12 +13,14 @@ class ClientVoter extends Voter
     public const WRITE = 'WRITE';
     public const DELETE = 'DELETE';
 
+    #[\Override]
     protected function supports(string $attribute, $subject): bool
     {
         return in_array($attribute, [self::READ, self::WRITE, self::DELETE])
             && $subject instanceof Centre;
     }
 
+    #[\Override]
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();

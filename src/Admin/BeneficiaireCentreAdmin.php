@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class BeneficiaireCentreAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         /** @var BeneficiaireCentre $beneficiaireCentre */
