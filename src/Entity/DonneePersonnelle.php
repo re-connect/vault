@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-abstract class DonneePersonnelle implements \JsonSerializable
+abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
 {
     use CreatorTrait;
 
@@ -156,9 +156,9 @@ abstract class DonneePersonnelle implements \JsonSerializable
         return $this->beneficiaire?->getId();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->nom;
+        return (string) $this->nom;
     }
 
     public function getDeposePar(): ?User

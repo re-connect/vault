@@ -189,7 +189,7 @@ class NotificationService
     private function getRelayInvitationNotifications(): array
     {
         return array_map(
-            [$this, 'createRelayInvitationNotification'],
+            $this->createRelayInvitationNotification(...),
             $this->relayManager->getPendingRelays($this->getUser())
         );
     }

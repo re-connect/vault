@@ -11,15 +11,8 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class UserProvider
 {
-    private EntityManagerInterface $em;
-    private AuthorizationCheckerInterface $authorizationChecker;
-
-    public function __construct(
-        EntityManagerInterface $em,
-        AuthorizationCheckerInterface $authorizationChecker
-    ) {
-        $this->em = $em;
-        $this->authorizationChecker = $authorizationChecker;
+    public function __construct(private readonly EntityManagerInterface $em, private readonly AuthorizationCheckerInterface $authorizationChecker)
+    {
     }
 
     /**
@@ -41,8 +34,8 @@ class UserProvider
         $prenom = strtr($user->getPrenom(), $unwanted_array);
         $nom = strtr($user->getNom(), $unwanted_array);
 
-        $prenom = strtolower(preg_replace("#[ \']#", '', $prenom));
-        $nom = strtolower(preg_replace("#[ \']#", '', $nom));
+        $prenom = strtolower((string) preg_replace("#[ \']#", '', $prenom));
+        $nom = strtolower((string) preg_replace("#[ \']#", '', $nom));
 
         $repository = $this->em->getRepository(User::class);
 

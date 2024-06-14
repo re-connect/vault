@@ -8,11 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class QuestionSecreteTransformer implements DataTransformerInterface
 {
-    private Request $request;
-
-    public function __construct(Request $request)
+    public function __construct(private readonly Request $request)
     {
-        $this->request = $request;
     }
 
     public function transform($value): mixed

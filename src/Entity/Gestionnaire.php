@@ -14,7 +14,7 @@ class Gestionnaire extends Subject implements UserHandleCentresInterface
      * @var Centre[]|Collection<Centre>
      */
     private $centres;
-    private ?Association $association;
+    private ?Association $association = null;
     /**
      * @var array|Collection
      */

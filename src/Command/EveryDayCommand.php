@@ -14,17 +14,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class EveryDayCommand extends Command
 {
-    private StatistiqueCentreManager $statistiqueCentreManager;
-    private SMSManager $SMSManager;
-
     public function __construct(
-        StatistiqueCentreManager $statistiqueCentreManager,
-        SMSManager $SMSManager,
+        private readonly StatistiqueCentreManager $statistiqueCentreManager,
+        private readonly SMSManager $SMSManager,
         $name = null
     ) {
         parent::__construct($name);
-        $this->statistiqueCentreManager = $statistiqueCentreManager;
-        $this->SMSManager = $SMSManager;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

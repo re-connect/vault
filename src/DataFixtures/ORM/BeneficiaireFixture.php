@@ -15,14 +15,10 @@ use Doctrine\Persistence\ObjectManager;
 
 class BeneficiaireFixture extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
-    private FixtureManager $fixtureManager;
-    private UserManager $userManager;
-    private ?ObjectManager $manager;
+    private ?ObjectManager $manager = null;
 
-    public function __construct(FixtureManager $fixtureManager, UserManager $userManager)
+    public function __construct(private readonly FixtureManager $fixtureManager, private readonly UserManager $userManager)
     {
-        $this->fixtureManager = $fixtureManager;
-        $this->userManager = $userManager;
     }
 
     public function getDependencies(): array

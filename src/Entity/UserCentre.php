@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Traits\GedmoTimedTrait;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-abstract class UserCentre implements \JsonSerializable
+abstract class UserCentre implements \JsonSerializable, \Stringable
 {
     use GedmoTimedTrait;
 
@@ -79,7 +79,7 @@ abstract class UserCentre implements \JsonSerializable
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getCentre()->getNom();
     }

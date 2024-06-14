@@ -9,14 +9,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SharedDocument
 {
-    private ?int $id;
+    private ?int $id = null;
     private ?\DateTime $sharedAt;
-    private ?\DateTime $expirationDate;
-    private ?string $token;
-    private ?string $selector;
-    private ?string $sharedWithEmail;
-    private ?User $sharedBy;
-    private ?Document $document;
+    private ?\DateTime $expirationDate = null;
+    private ?string $token = null;
+    private ?string $selector = null;
+    private ?string $sharedWithEmail = null;
+    private ?User $sharedBy = null;
+    private ?Document $document = null;
 
     public function __construct()
     {

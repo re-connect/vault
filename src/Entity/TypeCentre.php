@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\Collection;
 /**
  * TypeCentre.
  */
-class TypeCentre
+class TypeCentre implements \Stringable
 {
     use GedmoTimedTrait;
     /**
@@ -100,7 +100,7 @@ class TypeCentre
         return $this->centres;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->nom;
     }

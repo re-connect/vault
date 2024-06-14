@@ -18,7 +18,7 @@ class MailManager
         'en' => 3633387,
         'es' => 3633402,
     ];
-    private Client $mailjet;
+    private readonly Client $mailjet;
 
     public function __construct(
         $apikey,

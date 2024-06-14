@@ -189,7 +189,7 @@ class Contact extends DonneePersonnelle
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return sprintf('%s %s', $this->nom, $this->prenom);
     }

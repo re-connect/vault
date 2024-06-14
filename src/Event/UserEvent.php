@@ -53,6 +53,6 @@ final class UserEvent extends REEvent
 
     public function __toString(): string
     {
-        return $this->getConstName($this->type);
+        return (string) $this->getConstName($this->type);
     }
 }

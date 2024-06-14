@@ -52,7 +52,7 @@ class BeneficiaryAffiliationManager
 
     public function isSecretAnswerValid(Beneficiaire $beneficiary, ?string $secretAnswer): bool
     {
-        return $secretAnswer && strtolower($secretAnswer) === strtolower($beneficiary->getReponseSecrete());
+        return $secretAnswer && strtolower($secretAnswer) === strtolower((string) $beneficiary->getReponseSecrete());
     }
 
     /**

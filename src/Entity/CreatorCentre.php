@@ -5,14 +5,9 @@ namespace App\Entity;
 /**
  * CreatorCentre.
  */
-class CreatorCentre extends Creator
+class CreatorCentre extends Creator implements \Stringable
 {
-    /**
-     * @var Centre
-     */
-    private $entity;
-
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getEntity()->getNom();
     }
@@ -39,8 +34,8 @@ class CreatorCentre extends Creator
         return $this;
     }
 
-    public function __construct(?Centre $relay = null)
-    {
-        $this->entity = $relay;
+    public function __construct(
+        private ?Centre $entity = null
+    ) {
     }
 }

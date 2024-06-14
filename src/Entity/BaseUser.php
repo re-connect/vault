@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\LegacyPasswordAuthenticatedUserInterfac
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, UserInterface
+abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, UserInterface, \Stringable
 {
     use DeactivatableTrait;
 
@@ -81,10 +81,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         $this->passwordUpdatedAt = new \DateTimeImmutable();
     }
 
-    /**
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->username;
     }
@@ -96,7 +93,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
 
     public function addRole($role)
     {
-        $role = strtoupper($role);
+        $role = strtoupper((string) $role);
         if ('ROLE_USER' === $role) {
             return $this;
         }
@@ -175,7 +172,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
 
     public function hasRole($role)
     {
-        return in_array(strtoupper($role), $this->getRoles(), true);
+        return in_array(strtoupper((string) $role), $this->getRoles(), true);
     }
 
     public function isSuperAdmin()
@@ -185,7 +182,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
 
     public function removeRole($role)
     {
-        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
+        if (false !== $key = array_search(strtoupper((string) $role), $this->roles, true)) {
             unset($this->roles[$key]);
             $this->roles = array_values($this->roles);
         }

@@ -7,7 +7,7 @@ use App\Traits\GedmoTimedTrait;
 /**
  * SMS.
  */
-class SMS implements \JsonSerializable
+class SMS implements \JsonSerializable, \Stringable
 {
     use GedmoTimedTrait;
 
@@ -175,7 +175,7 @@ class SMS implements \JsonSerializable
         }
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return 'SMS To String';
     }

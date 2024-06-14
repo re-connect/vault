@@ -39,16 +39,13 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route(path: ['old' => '/api/', 'new' => '/api/v2/'], name: 're_api_document_')]
 class DocumentRestV2Controller extends REController
 {
-    private DocumentProvider $provider;
-
     public function __construct(
-        DocumentProvider $provider,
+        private readonly DocumentProvider $provider,
         RequestStack $requestStack,
         TranslatorInterface $translator,
         EntityManagerInterface $entityManager,
         ApiClientManager $apiClientManager,
     ) {
-        $this->provider = $provider;
         parent::__construct($requestStack, $translator, $entityManager, $apiClientManager);
     }
 
@@ -65,9 +62,7 @@ class DocumentRestV2Controller extends REController
 
             if (null !== $dossierId) {
                 /** @var Dossier $dossier */
-                $dossier = $beneficiaire->getDossiers()->filter(static function (Dossier $element) use ($dossierId) {
-                    return $element->getId() === (int) $dossierId;
-                })->first();
+                $dossier = $beneficiaire->getDossiers()->filter(static fn (Dossier $element) => $element->getId() === (int) $dossierId)->first();
                 if (!$dossier) {
                     throw $this->createNotFoundException('No folder found for id '.$dossierId);
                 }

@@ -130,6 +130,6 @@ class MigrateGestionnaireToMemberCommand extends Command
     {
         $user = $gestionnaire->getUser();
 
-        return str_contains($user->getUsername(), 'gestionnaire') || str_contains($user->getEmail(), '@reconnect.fr');
+        return str_contains((string) $user->getUsername(), 'gestionnaire') || str_contains((string) $user->getEmail(), '@reconnect.fr');
     }
 }

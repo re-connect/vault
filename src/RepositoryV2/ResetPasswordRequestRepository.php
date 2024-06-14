@@ -51,7 +51,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
 
         try {
             return $queryBuilder->getQuery()->getSingleResult();
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return null;
         }
     }

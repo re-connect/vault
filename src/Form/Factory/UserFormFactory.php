@@ -12,22 +12,10 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class UserFormFactory
 {
     /**
-     * @var AuthorizationCheckerInterface
-     */
-    private $authorizationChecker;
-
-    /**
-     * @var FormFactoryInterface
-     */
-    private $formFactory;
-
-    /**
      * Constructor.
      */
-    public function __construct(FormFactoryInterface $formFactory, AuthorizationCheckerInterface $authorizationChecker)
+    public function __construct(private readonly FormFactoryInterface $formFactory, private readonly AuthorizationCheckerInterface $authorizationChecker)
     {
-        $this->formFactory = $formFactory;
-        $this->authorizationChecker = $authorizationChecker;
     }
 
     public function getBeneficiaireForm($centres)

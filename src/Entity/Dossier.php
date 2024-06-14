@@ -77,9 +77,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 
     public function jsonSerialize(): array
     {
-        $sousDossiers = $this->sousDossiers->map(function (Dossier $sousDossier) {
-            return ['id' => $sousDossier->getId()];
-        })->toArray();
+        $sousDossiers = $this->sousDossiers->map(fn (Dossier $sousDossier) => ['id' => $sousDossier->getId()])->toArray();
 
         return [
             'id' => $this->id,

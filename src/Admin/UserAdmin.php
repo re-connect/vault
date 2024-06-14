@@ -49,7 +49,7 @@ class UserAdmin extends AbstractAdmin
             ->add('username', null, ['label' => "Nom d'utilisateur"])
             ->add('nom')
             ->add('prenom')
-            ->add('typeUser', 'doctrine_orm_string', ['label' => 'Type d\'utilisateur'], 'choice', ['choices' => User::USER_TYPES])
+            ->add('typeUser', 'doctrine_orm_string', ['label' => 'Type d\'utilisateur'], 'choice')
             ->add('derniereConnexionAt', null, ['label' => 'Dernière connexion'])
             ->add('createdAt', null, ['label' => 'Date de création']);
     }

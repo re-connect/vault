@@ -19,11 +19,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ImportBeneficiaireCommand extends Command
 {
     private array $beneficaires;
-    private EntityManagerInterface $em;
 
-    public function __construct(EntityManagerInterface $em, ?string $name = null)
+    public function __construct(private readonly EntityManagerInterface $em, ?string $name = null)
     {
-        $this->em = $em;
         parent::__construct($name);
     }
 
@@ -54,9 +52,9 @@ class ImportBeneficiaireCommand extends Command
         $row = 1;
         if (($handle = fopen($documentPath, 'r')) !== false) {
             while (($data = fgetcsv($handle, 1000, ';')) !== false) {
-                $prenom = trim($data[0]);
-                $nom = trim($data[1]);
-                $dateNaissance = trim($data[2]);
+                $prenom = trim((string) $data[0]);
+                $nom = trim((string) $data[1]);
+                $dateNaissance = trim((string) $data[2]);
                 if ('' === $prenom) {
                     $output->writeln('Il manque le champ Prénom à la ligne '.$row.'.');
                     exit;

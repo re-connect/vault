@@ -9,7 +9,7 @@ class DateNaissanceValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if (null !== $value && !preg_match("#^\d{2}/\d{2}/\d{4}$#", $value, $matches)) {
+        if (null !== $value && !preg_match("#^\d{2}/\d{2}/\d{4}$#", (string) $value, $matches)) {
             $this->context->buildViolation($constraint->message, ['%string%' => $value])->atPath('dateNaissance')->addViolation();
         }
     }

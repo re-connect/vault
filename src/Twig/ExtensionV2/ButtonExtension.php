@@ -11,11 +11,11 @@ class ButtonExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('button', [$this, 'button'], [
+            new TwigFunction('button', $this->button(...), [
                 'is_safe' => ['html'],
                 'needs_environment' => true,
             ]),
-            new TwigFunction('link', [$this, 'link'], [
+            new TwigFunction('link', $this->link(...), [
                 'is_safe' => ['html'],
                 'needs_environment' => true,
             ]),

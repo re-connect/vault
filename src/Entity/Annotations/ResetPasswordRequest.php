@@ -24,14 +24,7 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
      *
      * @ORM\Column(type="integer")
      */
-    private ?int $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class)
-     *
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private ?User $user;
+    private ?int $id = null;
 
     /**
      * @ORM\Column(type="datetime_immutable", name="expires_at")
@@ -58,9 +51,13 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
      */
     private ?string $smsToken = null;
 
-    public function __construct(User $user, \DateTimeInterface $expiresAt, string $selector, string $hashedToken)
+    public function __construct(/**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     *
+     * @ORM\JoinColumn(nullable=false)
+     */
+        private ?User $user, \DateTimeInterface $expiresAt, string $selector, string $hashedToken)
     {
-        $this->user = $user;
         $this->initialize($expiresAt, $selector, $hashedToken);
     }
 

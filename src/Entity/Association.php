@@ -154,7 +154,7 @@ class Association extends Subject
         return $this->gestionnaires;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         if (!empty($this->getNom())) {
             return $this->getNom();

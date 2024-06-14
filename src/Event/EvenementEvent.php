@@ -10,14 +10,12 @@ class EvenementEvent extends REEvent
     public const EVENEMENT_RAPPEL_MAIL = 2;
 
     protected $evenement;
-    protected $type;
     protected $rappel;
 
-    public function __construct(Rappel $rappel, $type)
+    public function __construct(Rappel $rappel, protected $type)
     {
         $this->rappel = $rappel;
         $this->evenement = $rappel->getEvenement();
-        $this->type = $type;
     }
 
     public function getEvenement()

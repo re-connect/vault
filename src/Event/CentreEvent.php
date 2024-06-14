@@ -12,14 +12,12 @@ class CentreEvent extends REEvent
 
     protected $subject;
     protected $user;
-    protected $type;
     protected $centre;
 
-    public function __construct(Centre $centre, $type, UserWithCentresInterface $subject)
+    public function __construct(Centre $centre, protected $type, UserWithCentresInterface $subject)
     {
         $this->centre = $centre;
         $this->subject = $subject;
-        $this->type = $type;
 
         $this->context = [
             'user_id' => $subject->getUser()->getId(),
