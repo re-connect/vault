@@ -7,6 +7,7 @@ namespace App\Entity;
  */
 class CreatorClient extends Creator implements \Stringable
 {
+    #[\Override]
     public function __toString(): string
     {
         return (string) $this->getEntity()->getNom();

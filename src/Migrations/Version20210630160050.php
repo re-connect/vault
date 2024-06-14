@@ -12,11 +12,13 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20210630160050 extends AbstractMigration
 {
+    #[\Override]
     public function getDescription(): string
     {
         return 'create shareddocument table';
     }
 
+    #[\Override]
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
@@ -26,6 +28,7 @@ final class Version20210630160050 extends AbstractMigration
         $this->addSql('DROP TABLE sharedocument');
     }
 
+    #[\Override]
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs

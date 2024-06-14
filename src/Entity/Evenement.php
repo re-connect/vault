@@ -228,6 +228,7 @@ class Evenement extends DonneePersonnelle
         return $this;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         if ($this->date) {
@@ -315,6 +316,7 @@ class Evenement extends DonneePersonnelle
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [

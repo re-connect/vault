@@ -18,11 +18,13 @@ class GestionnaireAssociationCentreFixture extends Fixture implements DependentF
     {
     }
 
+    #[\Override]
     public function getDependencies(): array
     {
         return [TypeCentreFixture::class];
     }
 
+    #[\Override]
     public function load(ObjectManager $manager)
     {
         $this->manager = $manager;
@@ -55,6 +57,7 @@ class GestionnaireAssociationCentreFixture extends Fixture implements DependentF
     }
 
     /** @return string[] */
+    #[\Override]
     public static function getGroups(): array
     {
         return ['v1'];

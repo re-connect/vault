@@ -97,6 +97,7 @@ class DossierProvider extends DonneePersonnelleProvider
         return $dossier->getId();
     }
 
+    #[\Override]
     public function delete(DonneePersonnelle $donneePersonnelle, bool $log = true): void
     {
         /** @var Dossier $donneePersonnelle */
@@ -114,6 +115,7 @@ class DossierProvider extends DonneePersonnelleProvider
         parent::delete($donneePersonnelle, $log);
     }
 
+    #[\Override]
     public function changePrive(DonneePersonnelle $donneePersonnelle, $bPrive = true): void
     {
         if (!$this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_EDIT, $donneePersonnelle)) {

@@ -211,6 +211,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [
@@ -364,11 +365,13 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
         return $this->getCreatorUserFullName();
     }
 
+    #[\Override]
     public function hasParentFolder(): bool
     {
         return null !== $this->getDossier();
     }
 
+    #[\Override]
     public function move(?Dossier $parentFolder): void
     {
         $this->setDossier($parentFolder);

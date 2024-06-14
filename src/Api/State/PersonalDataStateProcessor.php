@@ -16,6 +16,7 @@ readonly class PersonalDataStateProcessor implements ProcessorInterface
     }
 
     /** @param DonneePersonnelle $data */
+    #[\Override]
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): DonneePersonnelle
     {
         $user = $this->security->getUser();

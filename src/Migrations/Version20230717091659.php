@@ -12,16 +12,19 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20230717091659 extends AbstractMigration
 {
+    #[\Override]
     public function getDescription(): string
     {
         return '';
     }
 
+    #[\Override]
     public function up(Schema $schema): void
     {
         $this->addSql('ALTER TABLE beneficiaire CHANGE activationSmsCode relayInvitationSmsCode VARCHAR(255) DEFAULT NULL, CHANGE activationSmsCodeLastSend relayInvitationSmsCodeSendAt DATETIME DEFAULT NULL');
     }
 
+    #[\Override]
     public function down(Schema $schema): void
     {
         $this->addSql('ALTER TABLE beneficiaire CHANGE relayInvitationSmsCode activationSmsCode VARCHAR(255) DEFAULT NULL, CHANGE relayInvitationSmsCodeSendAt activationSmsCodeLastSend DATETIME DEFAULT NULL');

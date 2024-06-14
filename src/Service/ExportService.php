@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ExportService
 {
-    private const EXPORT_COLUMNS = [
+    private const array EXPORT_COLUMNS = [
         'Filtres',
         'Bénéficiaires',
         'Bénéficiaires avec email',

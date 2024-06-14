@@ -15,11 +15,13 @@ class RelayVoter extends Voter
 
     private const array PERMISSIONS = [self::VIEW, self::MANAGE_PRO, self::MANAGE_BENEFICIARIES];
 
+    #[\Override]
     protected function supports(string $attribute, $subject): bool
     {
         return in_array($attribute, self::PERMISSIONS) && $subject instanceof Centre;
     }
 
+    #[\Override]
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();

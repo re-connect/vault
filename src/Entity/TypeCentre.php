@@ -100,6 +100,7 @@ class TypeCentre implements \Stringable
         return $this->centres;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return $this->nom;

@@ -346,6 +346,7 @@ class Centre implements \JsonSerializable, \Stringable
         return $this->statistiquesCentre;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         if (null !== $this->nom) {
@@ -517,6 +518,7 @@ class Centre implements \JsonSerializable, \Stringable
         return $this;
     }
 
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [

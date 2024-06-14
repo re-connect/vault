@@ -21,6 +21,7 @@ class UniqueExternalLinkValidator extends ConstraintValidator
     ) {
     }
 
+    #[\Override]
     public function validate($value, Constraint $constraint): void
     {
         if (!$constraint instanceof UniqueExternalLink) {

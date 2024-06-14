@@ -10,6 +10,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class AdministrateurFixture extends Fixture implements FixtureGroupInterface
 {
+    #[\Override]
     public function load(ObjectManager $em)
     {
         $user = new User();
@@ -52,6 +53,7 @@ class AdministrateurFixture extends Fixture implements FixtureGroupInterface
     }
 
     /** @return string[] */
+    #[\Override]
     public static function getGroups(): array
     {
         return ['v1'];

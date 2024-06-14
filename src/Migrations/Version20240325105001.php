@@ -12,16 +12,19 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20240325105001 extends AbstractMigration
 {
+    #[\Override]
     public function getDescription(): string
     {
         return '';
     }
 
+    #[\Override]
     public function up(Schema $schema): void
     {
         $this->addSql('ALTER TABLE rappel DROP timezone');
     }
 
+    #[\Override]
     public function down(Schema $schema): void
     {
         $this->addSql('ALTER TABLE rappel ADD timezone VARCHAR(255) DEFAULT NULL');

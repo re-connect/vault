@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormEvents;
 
 class AdresseAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form
@@ -37,6 +38,7 @@ class AdresseAdmin extends AbstractAdmin
         });
     }
 
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -46,6 +48,7 @@ class AdresseAdmin extends AbstractAdmin
             ->add('codePostal');
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list

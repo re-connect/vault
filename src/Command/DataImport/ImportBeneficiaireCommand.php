@@ -25,6 +25,7 @@ class ImportBeneficiaireCommand extends Command
         parent::__construct($name);
     }
 
+    #[\Override]
     protected function configure()
     {
         $this
@@ -40,6 +41,7 @@ class ImportBeneficiaireCommand extends Command
             );
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $centre = $this->em->find(Centre::class, $input->getArgument('centre'));

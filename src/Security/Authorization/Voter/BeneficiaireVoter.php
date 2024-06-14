@@ -12,6 +12,7 @@ class BeneficiaireVoter extends REVoter
     public const GESTION_BENEFICIAIRE = 'gestion beneficiaire';
     public const ASSOCIATION_BENEFICIAIRE = 'association beneficiaire';
 
+    #[\Override]
     protected function supports(string $attribute, mixed $subject): bool
     {
         return in_array($attribute, [
@@ -20,6 +21,7 @@ class BeneficiaireVoter extends REVoter
         ]) && $subject instanceof Beneficiaire;
     }
 
+    #[\Override]
     protected function voteOnAttribute(string $attribute, mixed $beneficiaire, TokenInterface $token): bool
     {
         // get current logged in user

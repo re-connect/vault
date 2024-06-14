@@ -79,6 +79,7 @@ abstract class UserCentre implements \JsonSerializable, \Stringable
         return $this;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return $this->getCentre()->getNom();

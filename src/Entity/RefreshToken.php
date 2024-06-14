@@ -38,11 +38,13 @@ class RefreshToken implements TokenInterface
         return $this->getClient()->getPublicId();
     }
 
+    #[\Override]
     public function setExpiresAt($timestamp)
     {
         $this->expiresAt = $timestamp;
     }
 
+    #[\Override]
     public function getExpiresAt()
     {
         return $this->expiresAt;
@@ -66,6 +68,7 @@ class RefreshToken implements TokenInterface
         return false;
     }
 
+    #[\Override]
     public function setToken($token)
     {
         $this->token = $token;
@@ -76,6 +79,7 @@ class RefreshToken implements TokenInterface
         return $this->token;
     }
 
+    #[\Override]
     public function setScope($scope)
     {
         $this->scope = $scope;
@@ -86,11 +90,13 @@ class RefreshToken implements TokenInterface
         return $this->scope;
     }
 
+    #[\Override]
     public function setUser($user)
     {
         $this->user = $user;
     }
 
+    #[\Override]
     public function getUser()
     {
         return $this->user;
@@ -101,6 +107,7 @@ class RefreshToken implements TokenInterface
         return $this->getUser();
     }
 
+    #[\Override]
     public function setClient($client)
     {
         $this->client = $client;

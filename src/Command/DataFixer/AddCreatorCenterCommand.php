@@ -32,11 +32,13 @@ class AddCreatorCenterCommand extends Command
         parent::__construct($name);
     }
 
+    #[\Override]
     protected function configure(): void
     {
         $this->addArgument('fileName', InputArgument::REQUIRED, 'File name');
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);

@@ -19,6 +19,7 @@ class AdminUserAdmin extends AbstractAdmin
 
     private ResettingService $resettingService;
 
+    #[\Override]
     protected function prePersist(object $object): void
     {
         if ($object instanceof User) {
@@ -28,6 +29,7 @@ class AdminUserAdmin extends AbstractAdmin
         parent::prePersist($object);
     }
 
+    #[\Override]
     protected function postPersist(object $object): void
     {
         if ($object instanceof User) {
@@ -46,6 +48,7 @@ class AdminUserAdmin extends AbstractAdmin
         $this->userManager = $userManager;
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list
@@ -59,6 +62,7 @@ class AdminUserAdmin extends AbstractAdmin
             ->addIdentifier('createdAt', null, ['route' => ['name' => 'edit']]);
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form->add('email', EmailType::class, ['help' => 'L\'email doit être au format prenom.nom+admin@reconnect.fr'])
@@ -85,6 +89,7 @@ class AdminUserAdmin extends AbstractAdmin
                 ]);
     }
 
+    #[\Override]
     protected function configureQuery(ProxyQueryInterface $query): ProxyQueryInterface
     {
         $query = parent::configureQuery($query);

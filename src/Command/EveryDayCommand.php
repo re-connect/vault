@@ -22,6 +22,7 @@ class EveryDayCommand extends Command
         parent::__construct($name);
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         //      Mettre à null le champ 'SmsPasswordResetCode' pour les utilisateurs n'ayant pas réinitialisé leur mot de passe depuis plus de 24h.

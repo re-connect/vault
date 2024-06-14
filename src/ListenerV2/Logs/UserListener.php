@@ -21,17 +21,19 @@ class UserListener implements LogActivityListenerInterface
 {
     use UserAwareTrait;
 
-    private const USER_NAME = 'User';
+    private const string USER_NAME = 'User';
 
     public function __construct(private readonly LoggerInterface $userLogger, private readonly Security $security)
     {
     }
 
+    #[\Override]
     public function postPersist(PostPersistEventArgs $args): void
     {
         $this->log($args, sprintf('%s created :', self::USER_NAME));
     }
 
+    #[\Override]
     public function preUpdate(PreUpdateEventArgs $args): void
     {
         $isLoginEventUpdate =
@@ -44,6 +46,7 @@ class UserListener implements LogActivityListenerInterface
         }
     }
 
+    #[\Override]
     public function preRemove(PreRemoveEventArgs $args): void
     {
         $this->log($args, sprintf('%s removed :', self::USER_NAME));
@@ -52,6 +55,7 @@ class UserListener implements LogActivityListenerInterface
     /**
      * @param LifecycleEventArgs<ObjectManager> $args
      */
+    #[\Override]
     public function log(LifecycleEventArgs $args, string $logType): void
     {
         $object = $args->getObject();

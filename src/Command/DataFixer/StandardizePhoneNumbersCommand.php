@@ -23,11 +23,13 @@ class StandardizePhoneNumbersCommand extends Command
         parent::__construct($name);
     }
 
+    #[\Override]
     protected function configure()
     {
         $this->addOption('delete', 'd', InputOption::VALUE_NONE, 'Delete wrongly formatted numbers');
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);

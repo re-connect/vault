@@ -12,6 +12,7 @@ class UniqueExternalLink extends Constraint
     public string $messageDuplicate = 'The client "{{ string }}" is already linked';
     public string $messageDistantIdDuplicate = 'You already have a beneficiary with the distant id "{{ string }}"';
 
+    #[\Override]
     public function getTargets(): array
     {
         return [self::CLASS_CONSTRAINT, self::PROPERTY_CONSTRAINT];

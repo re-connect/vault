@@ -17,11 +17,13 @@ class ApiVoter extends Voter
     {
     }
 
+    #[\Override]
     protected function supports(string $attribute, mixed $subject): bool
     {
         return in_array($attribute, [self::READ, self::UPDATE]) && $subject instanceof ClientResourceInterface;
     }
 
+    #[\Override]
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         if (!$token instanceof OAuth2Token) {

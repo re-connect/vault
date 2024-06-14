@@ -17,6 +17,7 @@ class SecretQuestionType extends AbstractType
     {
     }
 
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->addFields($builder, $builder->getData());
@@ -56,6 +57,7 @@ class SecretQuestionType extends AbstractType
             ->addEventSubscriber($this->secretQuestionsHelper->createSecretQuestionListener());
     }
 
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(['data_class' => Beneficiaire::class]);

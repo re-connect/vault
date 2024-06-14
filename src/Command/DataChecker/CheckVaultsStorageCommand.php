@@ -30,12 +30,14 @@ class CheckVaultsStorageCommand extends Command
         parent::__construct();
     }
 
+    #[\Override]
     protected function configure(): void
     {
         $this
             ->addArgument('firstIndex', InputArgument::OPTIONAL, 'Offsets the query to batch process', null);
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);

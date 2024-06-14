@@ -81,6 +81,7 @@ class Adresse implements \JsonSerializable, \Stringable
         return $this;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return sprintf(
@@ -137,6 +138,7 @@ class Adresse implements \JsonSerializable, \Stringable
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [

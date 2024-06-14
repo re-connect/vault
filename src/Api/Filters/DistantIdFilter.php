@@ -23,6 +23,7 @@ class DistantIdFilter extends AbstractFilter
         parent::__construct($managerRegistry, $logger, $properties, $nameConverter);
     }
 
+    #[\Override]
     protected function filterProperty(string $property, $value, QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, ?Operation $operation = null, array $context = []): void
     {
         // otherwise filter is applied to order and page as well
@@ -43,6 +44,7 @@ class DistantIdFilter extends AbstractFilter
             ]);
     }
 
+    #[\Override]
     public function getDescription(string $resourceClass): array
     {
         return [];

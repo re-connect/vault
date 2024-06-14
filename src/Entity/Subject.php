@@ -13,6 +13,7 @@ abstract class Subject implements \JsonSerializable, \Stringable
     #[Groups(['read', 'v3:user:read', 'v3:beneficiary:write'])]
     protected ?User $user = null;
 
+    #[\Override]
     public function __toString(): string
     {
         $str = '';

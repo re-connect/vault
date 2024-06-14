@@ -118,6 +118,7 @@ class Annexe implements \Stringable
         return $this;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return $this::SERVER_PATH_TO_IMAGE_FOLDER.'/'.$this->getFichier();

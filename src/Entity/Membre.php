@@ -71,6 +71,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
      *
      * @return Membre
      */
+    #[\Override]
     public function setUser(?User $user = null)
     {
         $this->user = $user;
@@ -160,16 +161,19 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     }
 
     /** @return Collection<int, MembreCentre> */
+    #[\Override]
     public function getUserCentres(): Collection
     {
         return $this->getMembresCentres();
     }
 
+    #[\Override]
     public function getUserCentresCount()
     {
         return $this->getMembresCentres()->count();
     }
 
+    #[\Override]
     public function getUserCentre(Centre $centre)
     {
         foreach ($this->getMembresCentres() as $membreCentre) {
@@ -191,11 +195,13 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return $this->membresCentres;
     }
 
+    #[\Override]
     public function isBeneficiaire()
     {
         return false;
     }
 
+    #[\Override]
     public function isMembre()
     {
         return true;
@@ -204,6 +210,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     /**
      * @return ArrayCollection|Centre[]
      */
+    #[\Override]
     public function getHandledCentres()
     {
         $arRet = new ArrayCollection();
@@ -217,6 +224,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     /**
      * @return MembreCentre[]|UserCentre|ArrayCollection|Collection
      */
+    #[\Override]
     public function getUsersCentres()
     {
         return $this->getMembresCentres();
@@ -330,6 +338,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize($withUser = true): array
     {
         $data = [

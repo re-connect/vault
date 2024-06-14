@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class DossierAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues[DatagridInterface::PAGE] = 1;
@@ -23,6 +24,7 @@ class DossierAdmin extends AbstractAdmin
         $sortValues[DatagridInterface::SORT_BY] = 'id';
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form
@@ -34,6 +36,7 @@ class DossierAdmin extends AbstractAdmin
             ->end();
     }
 
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -70,6 +73,7 @@ class DossierAdmin extends AbstractAdmin
             ->add('beneficiaire.user.canada', null, ['label' => 'Canada']);
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list
@@ -82,6 +86,7 @@ class DossierAdmin extends AbstractAdmin
             ->add('beneficiaire.user.canada', null, ['label' => 'Canada']);
     }
 
+    #[\Override]
     protected function configureRoutes(RouteCollectionInterface $collection): void
     {
         $collection->remove('create');

@@ -11,6 +11,7 @@ use Sonata\AdminBundle\Route\RouteCollectionInterface;
 
 class SMSAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues[DatagridInterface::PAGE] = 1;
@@ -18,6 +19,7 @@ class SMSAdmin extends AbstractAdmin
         $sortValues[DatagridInterface::SORT_BY] = 'id';
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form
@@ -29,6 +31,7 @@ class SMSAdmin extends AbstractAdmin
             ->add('beneficiaire.user.nom', null, ['attr' => ['read_only' => true], 'disabled' => true]);
     }
 
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -40,6 +43,7 @@ class SMSAdmin extends AbstractAdmin
             ->add('createdAt');
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list
@@ -50,6 +54,7 @@ class SMSAdmin extends AbstractAdmin
             ->addIdentifier('createdAt', null, ['route' => ['name' => 'edit']]);
     }
 
+    #[\Override]
     protected function configureRoutes(RouteCollectionInterface $collection): void
     {
         $collection->remove('create');

@@ -27,7 +27,7 @@ readonly class RelayAssignationHelper
 
     public function assignRelayFromExternalId(User $user, Client $client, ?int $externalRelayId = null): void
     {
-        $externalRelayId = $externalRelayId ?? $user->getExternalRelayId();
+        $externalRelayId ??= $user->getExternalRelayId();
         if (!$externalRelayId) {
             return;
         }
@@ -43,7 +43,7 @@ readonly class RelayAssignationHelper
             if ($distantId) {
                 $beneficiary->addClientExternalLink($client, $distantId, $user->getExternalProId(), $userRelay);
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $this->apiLogger->error(sprintf('Did not find any center on vault for distant id %s when creating user %s from client %s', $externalRelayId, $user->getId(), $client->getRandomId()));
         }
     }

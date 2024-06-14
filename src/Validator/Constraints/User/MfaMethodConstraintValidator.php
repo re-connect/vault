@@ -17,6 +17,7 @@ class MfaMethodConstraintValidator extends ConstraintValidator
     /**
      * @param User $user
      * */
+    #[\Override]
     public function validate(mixed $user, Constraint $constraint): void
     {
         if (!$user instanceof User) {

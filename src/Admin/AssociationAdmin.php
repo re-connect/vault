@@ -30,6 +30,7 @@ class AssociationAdmin extends AbstractAdmin
         $this->em = $em;
     }
 
+    #[\Override]
     protected function prePersist(object $object): void
     {
         $this->userManager->updatePasswordWithPlain($object->getUser());
@@ -37,6 +38,7 @@ class AssociationAdmin extends AbstractAdmin
         parent::prePersist($object);
     }
 
+    #[\Override]
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues[DatagridInterface::PAGE] = 1;
@@ -44,6 +46,7 @@ class AssociationAdmin extends AbstractAdmin
         $sortValues[DatagridInterface::SORT_BY] = 'id';
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $formOptions = $this->getSubject()->getId()
@@ -68,6 +71,7 @@ class AssociationAdmin extends AbstractAdmin
         $form->getFormBuilder()->addEventSubscriber(new AssociationCreationSubscriber($this->em, $this->userManager));
     }
 
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filters): void
     {
         $filters
@@ -82,6 +86,7 @@ class AssociationAdmin extends AbstractAdmin
             ->add('user.canada', null, ['label' => 'Canada']);
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list

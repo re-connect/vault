@@ -198,6 +198,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         }
     }
 
+    #[\Override]
     public function getEntitiesFromBeneficiaire(Beneficiaire $beneficiaire): array
     {
         if (false === $this->authorizationChecker->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $beneficiaire)) {
@@ -311,6 +312,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         });
     }
 
+    #[\Override]
     public function delete(DonneePersonnelle $donneePersonnelle, bool $log = true): void
     {
         if ($donneePersonnelle instanceof Document) {
@@ -512,6 +514,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         }
     }
 
+    #[\Override]
     public function rename(DonneePersonnelle $donneePersonnelle, $newNameWithOrWithoutExtension, bool $andPersist = true)
     {
         /** @var Document $donneePersonnelle */

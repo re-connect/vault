@@ -30,6 +30,7 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
 
     public const MEMBER_WITH_CLIENT = 'test_membre_with_client';
 
+    #[\Override]
     public function load(ObjectManager $manager)
     {
         $this->createMember(['email' => self::MEMBER_MAIL],
@@ -100,12 +101,14 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
     }
 
     /** @return string[]     */
+    #[\Override]
     public static function getGroups(): array
     {
         return ['v2'];
     }
 
     /** @return array<class-string<FixtureInterface>> */
+    #[\Override]
     public function getDependencies(): array
     {
         return [RelayFixture::class];

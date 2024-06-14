@@ -135,6 +135,7 @@ class SMS implements \JsonSerializable, \Stringable
         return $this;
     }
 
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [
@@ -175,6 +176,7 @@ class SMS implements \JsonSerializable, \Stringable
         }
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return 'SMS To String';

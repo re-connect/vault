@@ -13,6 +13,7 @@ use Symfony\Component\Form\FormEvents;
 
 class MembreCentreAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form

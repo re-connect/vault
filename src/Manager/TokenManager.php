@@ -21,28 +21,33 @@ class TokenManager implements TokenManagerInterface
         $this->repository = $repository;
     }
 
+    #[\Override]
     public function getClass()
     {
         return AccessToken::class;
     }
 
+    #[\Override]
     public function findTokenBy(array $criteria)
     {
         return $this->repository->findOneBy($criteria);
     }
 
+    #[\Override]
     public function updateToken(TokenInterface $token)
     {
         $this->em->persist($token);
         $this->em->flush();
     }
 
+    #[\Override]
     public function deleteToken(TokenInterface $token)
     {
         $this->em->remove($token);
         $this->em->flush();
     }
 
+    #[\Override]
     public function deleteExpired()
     {
         $qb = $this->repository->createQueryBuilder('t');
@@ -54,6 +59,7 @@ class TokenManager implements TokenManagerInterface
         return $qb->getQuery()->execute();
     }
 
+    #[\Override]
     public function createToken()
     {
         $class = $this->getClass();
@@ -61,6 +67,7 @@ class TokenManager implements TokenManagerInterface
         return new $class();
     }
 
+    #[\Override]
     public function findTokenByToken($token)
     {
         return $this->findTokenBy(['token' => $token]);

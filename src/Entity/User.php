@@ -275,6 +275,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $user;
     }
 
+    #[\Override]
     public function getUserIdentifier(): string
     {
         return $this->username;
@@ -462,6 +463,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return sprintf('%s (id:%s)', $this->username, $this->id);
@@ -798,6 +800,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize($withSubject = false): array
     {
         $data = [
@@ -1370,11 +1373,13 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return (bool) $this->personalAccountDataRequestedAt;
     }
 
+    #[\Override]
     public function isEmailAuthEnabled(): bool
     {
         return $this->isMfaEnabled() && self::MFA_METHOD_EMAIL === $this->mfaMethod;
     }
 
+    #[\Override]
     public function getEmailAuthRecipient(): string
     {
         return $this->email;
@@ -1385,6 +1390,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->authCode ?? '';
     }
 
+    #[\Override]
     public function getEmailAuthCode(): string
     {
         return $this->getAuthCode();
@@ -1396,26 +1402,31 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         $this->authCode = $authCode;
     }
 
+    #[\Override]
     public function setEmailAuthCode(string $authCode): void
     {
         $this->setAuthCode($authCode);
     }
 
+    #[\Override]
     public function isTextAuthEnabled(): bool
     {
         return $this->isMfaEnabled() && self::MFA_METHOD_SMS === $this->mfaMethod;
     }
 
+    #[\Override]
     public function getTextAuthRecipient(): string
     {
         return $this->email;
     }
 
+    #[\Override]
     public function getTextAuthCode(): string
     {
         return $this->getAuthCode();
     }
 
+    #[\Override]
     public function setTextAuthCode(string $authCode): void
     {
         $this->setAuthCode($authCode);

@@ -16,7 +16,7 @@ use Symfony\Component\Process\Process;
 )]
 class CheckDiskCapacityCommand extends Command
 {
-    private const CAPACITY_ALERT_THRESHOLD = 85;
+    private const int CAPACITY_ALERT_THRESHOLD = 85;
 
     /**
      * @param string[] $adminMails
@@ -29,6 +29,7 @@ class CheckDiskCapacityCommand extends Command
         parent::__construct();
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $process = Process::fromShellCommandline("df -h | grep $(findmnt -T $(pwd) -o SOURCE -n) | awk '{print $5}'");

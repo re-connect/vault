@@ -19,6 +19,7 @@ class UserVoter extends Voter
     /**
      * @param object $subject
      */
+    #[\Override]
     protected function supports(string $attribute, $subject): bool
     {
         return in_array($attribute, [self::DELETE, self::UPDATE])
@@ -28,6 +29,7 @@ class UserVoter extends Voter
     /**
      * @param User $subject
      */
+    #[\Override]
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();

@@ -14,11 +14,13 @@ class ProRelayLinkVoter extends Voter
     {
     }
 
+    #[\Override]
     protected function supports(string $attribute, $subject): bool
     {
         return in_array($attribute, MembreCentre::PERMISSIONS) && $subject instanceof MembreCentre;
     }
 
+    #[\Override]
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();

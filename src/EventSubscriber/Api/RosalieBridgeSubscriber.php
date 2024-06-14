@@ -19,6 +19,7 @@ class RosalieBridgeSubscriber implements EventSubscriberInterface
         return $event;
     }
 
+    #[\Override]
     public static function getSubscribedEvents(): array
     {
         return [

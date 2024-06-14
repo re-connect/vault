@@ -36,6 +36,7 @@ class UserSimpleAdmin extends AbstractAdmin
         $this->entityManager = $entityManager;
     }
 
+    #[\Override]
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues[DatagridInterface::PAGE] = 1;
@@ -43,6 +44,7 @@ class UserSimpleAdmin extends AbstractAdmin
         $sortValues[DatagridInterface::SORT_BY] = 'id';
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form
@@ -110,6 +112,7 @@ class UserSimpleAdmin extends AbstractAdmin
             ]);
     }
 
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -120,6 +123,7 @@ class UserSimpleAdmin extends AbstractAdmin
             ->add('createdAt');
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list
@@ -130,6 +134,7 @@ class UserSimpleAdmin extends AbstractAdmin
             ->addIdentifier('createdAt', null, ['route' => ['name' => 'edit']]);
     }
 
+    #[\Override]
     protected function configureRoutes(RouteCollectionInterface $collection): void
     {
         $collection->remove('create');
