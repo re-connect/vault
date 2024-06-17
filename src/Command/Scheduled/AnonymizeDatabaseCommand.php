@@ -29,12 +29,14 @@ class AnonymizeDatabaseCommand extends Command
         parent::__construct($name);
     }
 
+    #[\Override]
     protected function configure(): void
     {
         parent::configure();
         $this->addOption('noEmail', 'nomail', InputOption::VALUE_OPTIONAL, 'Prevent email from being sent', false);
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if ('prod' === $this->env) {

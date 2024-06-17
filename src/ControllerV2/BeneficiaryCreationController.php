@@ -92,7 +92,7 @@ class BeneficiaryCreationController extends AbstractController
         return $this->redirectToRoute('list_beneficiaries');
     }
 
-    public function createStepForm(Beneficiaire $beneficiary, BeneficiaryCreationProcess $creationProcess): ?FormInterface
+    public function createStepForm(?Beneficiaire $beneficiary, BeneficiaryCreationProcess $creationProcess): ?FormInterface
     {
         return $this->createForm(CreateBeneficiaryType::class, $beneficiary, [
             'action' => $this->generateUrl('create_beneficiary', [

@@ -30,12 +30,18 @@ class MemberBeneficiaryController extends AbstractController
             return new JsonResponse(null, Response::HTTP_UNAUTHORIZED);
         }
 
+        if (!$user?->getNom() || !$user->getPrenom()) {
+            $this->addFlash('error', 'error');
+
+            return new JsonResponse(null, Response::HTTP_UNAUTHORIZED);
+        }
+
         $formData = (array) $request->request->all()['first_member_visit'];
         $contact = (new Contact($beneficiary))
-            ->setNom($user?->getNom())
-            ->setPrenom($user?->getPrenom())
-            ->setTelephone(array_key_exists('sharePhone', $formData) ? $user?->getTelephone() : null)
-            ->setEmail(array_key_exists('shareMail', $formData) ? $user?->getEmail() : null);
+            ->setNom($user->getNom())
+            ->setPrenom($user->getPrenom())
+            ->setTelephone(array_key_exists('sharePhone', $formData) ? $user->getTelephone() : null)
+            ->setEmail(array_key_exists('shareMail', $formData) ? $user->getEmail() : null);
 
         $em->persist($contact);
         $em->flush();
