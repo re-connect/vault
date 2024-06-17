@@ -9,6 +9,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class TypeCentreFixture extends Fixture implements FixtureGroupInterface
 {
+    #[\Override]
     public function load(ObjectManager $manager): void
     {
         $arTypes = ['CHRS', 'CHU', 'LHSS', 'CADA', 'CAARUD', 'CSAPA', 'ACT', 'Résidence Sociale', 'PSA', 'Autre'];
@@ -22,6 +23,7 @@ class TypeCentreFixture extends Fixture implements FixtureGroupInterface
     }
 
     /** @return string[] */
+    #[\Override]
     public static function getGroups(): array
     {
         return ['v1'];

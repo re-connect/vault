@@ -42,6 +42,7 @@ class BeneficiaireCentre extends UserCentre
      *
      * @return Centre
      */
+    #[\Override]
     public function getCentre()
     {
         return $this->centre;
@@ -91,6 +92,7 @@ class BeneficiaireCentre extends UserCentre
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [
@@ -113,6 +115,7 @@ class BeneficiaireCentre extends UserCentre
         return $this;
     }
 
+    #[\Override]
     public function setUser(User $user): self
     {
         $this->beneficiaire = $user->getSubjectBeneficiaire();
@@ -120,6 +123,7 @@ class BeneficiaireCentre extends UserCentre
         return $this;
     }
 
+    #[\Override]
     public function getUser(): User
     {
         return $this->beneficiaire?->getUser();

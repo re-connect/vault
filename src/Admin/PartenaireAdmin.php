@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class PartenaireAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues[DatagridInterface::PAGE] = 1;
@@ -17,6 +18,7 @@ class PartenaireAdmin extends AbstractAdmin
         $sortValues[DatagridInterface::SORT_BY] = 'id';
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form
@@ -26,6 +28,7 @@ class PartenaireAdmin extends AbstractAdmin
             ->add('link');
     }
 
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -36,6 +39,7 @@ class PartenaireAdmin extends AbstractAdmin
             ->add('canada', null, ['label' => 'Canada']);
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list

@@ -12,19 +12,19 @@ use Doctrine\Persistence\ObjectManager;
 
 class GestionnaireAssociationCentreFixture extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
-    private FixtureManager $fixtureManager;
-    private ?ObjectManager $manager;
+    private ?ObjectManager $manager = null;
 
-    public function __construct(FixtureManager $fixtureManager)
+    public function __construct(private readonly FixtureManager $fixtureManager)
     {
-        $this->fixtureManager = $fixtureManager;
     }
 
+    #[\Override]
     public function getDependencies(): array
     {
         return [TypeCentreFixture::class];
     }
 
+    #[\Override]
     public function load(ObjectManager $manager)
     {
         $this->manager = $manager;
@@ -57,6 +57,7 @@ class GestionnaireAssociationCentreFixture extends Fixture implements DependentF
     }
 
     /** @return string[] */
+    #[\Override]
     public static function getGroups(): array
     {
         return ['v1'];

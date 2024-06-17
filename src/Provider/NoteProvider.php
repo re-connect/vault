@@ -39,6 +39,7 @@ class NoteProvider extends DonneePersonnelleProvider
     /**
      * @param Note $entity
      */
+    #[\Override]
     public function populate($entity, Client $client): void
     {
         parent::populate($entity, $client);

@@ -8,13 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class QuestionSecreteTransformer implements DataTransformerInterface
 {
-    private Request $request;
-
-    public function __construct(Request $request)
+    public function __construct(private readonly Request $request)
     {
-        $this->request = $request;
     }
 
+    #[\Override]
     public function transform($value): mixed
     {
         if (null === $value) {
@@ -24,6 +22,7 @@ class QuestionSecreteTransformer implements DataTransformerInterface
         return $value;
     }
 
+    #[\Override]
     public function reverseTransform($value): mixed
     {
         if (!$value) {

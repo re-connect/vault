@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class EvenementType extends EvenementSimpleType
 {
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
@@ -16,6 +17,7 @@ class EvenementType extends EvenementSimpleType
             ->add('submit', SubmitType::class, ['label' => 'confirm', 'attr' => ['class' => 'btn btn-green btn-blue font-size-1 js-loading-container']]);
     }
 
+    #[\Override]
     public function getName(): string
     {
         return 're_form_evenement';

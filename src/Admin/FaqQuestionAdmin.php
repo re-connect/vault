@@ -11,6 +11,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class FaqQuestionAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues[DatagridInterface::PAGE] = 1;
@@ -18,6 +19,7 @@ class FaqQuestionAdmin extends AbstractAdmin
         $sortValues[DatagridInterface::SORT_BY] = 'id';
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form
@@ -29,6 +31,7 @@ class FaqQuestionAdmin extends AbstractAdmin
             ->add('position');
     }
 
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -39,6 +42,7 @@ class FaqQuestionAdmin extends AbstractAdmin
             ->add('createdAt');
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list

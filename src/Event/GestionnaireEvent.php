@@ -12,14 +12,12 @@ class GestionnaireEvent extends REEvent
 
     protected $gestionnaire;
     protected $user;
-    protected $type;
     protected $context = [];
 
-    public function __construct(Gestionnaire $gestionnaire, $type, ?User $user = null)
+    public function __construct(Gestionnaire $gestionnaire, protected $type, ?User $user = null)
     {
         $this->gestionnaire = $gestionnaire;
         $this->user = $user;
-        $this->type = $type;
 
         $this->context = [
             'user_id' => $this->gestionnaire->getUser()->getId(),
@@ -42,8 +40,9 @@ class GestionnaireEvent extends REEvent
         return $this->type;
     }
 
+    #[\Override]
     public function __toString(): string
     {
-        return $this->getConstName($this->type);
+        return (string) $this->getConstName($this->type);
     }
 }

@@ -18,6 +18,7 @@ class ClientAdmin extends AbstractAdmin
 {
     private EntityManagerInterface $entityManager;
 
+    #[\Override]
     public function preRemove($object): void
     {
         $creators = $this->entityManager->getRepository(CreatorClient::class)->findBy(['entity' => $object->getId()]);
@@ -31,6 +32,7 @@ class ClientAdmin extends AbstractAdmin
         $this->entityManager = $entityManager;
     }
 
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -42,6 +44,7 @@ class ClientAdmin extends AbstractAdmin
             ->add('allowedGrantTypes');
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list
@@ -55,6 +58,7 @@ class ClientAdmin extends AbstractAdmin
             ->add('newClientIdentifier');
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         /** @var Client $client */
@@ -139,6 +143,7 @@ class ClientAdmin extends AbstractAdmin
             ]);
     }
 
+    #[\Override]
     protected function configureShowFields(ShowMapper $show): void
     {
         $show

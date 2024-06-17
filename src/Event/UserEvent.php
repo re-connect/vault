@@ -7,11 +7,11 @@ use App\Entity\User;
 
 final class UserEvent extends REEvent
 {
-    public const BENEFICIAIRE_CONNECTION = 1;
-    public const MEMBRE_CONNECTION = 2;
-    public const GESTIONNAIRE_CONNECTION = 3;
-    public const ASSOCIATION_CONNECTION = 4;
-    public const ADMINISTRATEUR_CONNECTION = 5;
+    public const int BENEFICIAIRE_CONNECTION = 1;
+    public const int MEMBRE_CONNECTION = 2;
+    public const int GESTIONNAIRE_CONNECTION = 3;
+    public const int ASSOCIATION_CONNECTION = 4;
+    public const int ADMINISTRATEUR_CONNECTION = 5;
 
     private $user;
     protected $type;
@@ -51,8 +51,9 @@ final class UserEvent extends REEvent
         return $this->type;
     }
 
+    #[\Override]
     public function __toString(): string
     {
-        return $this->getConstName($this->type);
+        return (string) $this->getConstName($this->type);
     }
 }

@@ -15,16 +15,13 @@ use Doctrine\Persistence\ObjectManager;
 
 class BeneficiaireFixture extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
-    private FixtureManager $fixtureManager;
-    private UserManager $userManager;
-    private ?ObjectManager $manager;
+    private ?ObjectManager $manager = null;
 
-    public function __construct(FixtureManager $fixtureManager, UserManager $userManager)
+    public function __construct(private readonly FixtureManager $fixtureManager, private readonly UserManager $userManager)
     {
-        $this->fixtureManager = $fixtureManager;
-        $this->userManager = $userManager;
     }
 
+    #[\Override]
     public function getDependencies(): array
     {
         return [
@@ -33,6 +30,7 @@ class BeneficiaireFixture extends Fixture implements DependentFixtureInterface, 
         ];
     }
 
+    #[\Override]
     public function load(ObjectManager $manager)
     {
         $this->manager = $manager;
@@ -67,6 +65,7 @@ class BeneficiaireFixture extends Fixture implements DependentFixtureInterface, 
     }
 
     /** @return string[] */
+    #[\Override]
     public static function getGroups(): array
     {
         return ['v1'];

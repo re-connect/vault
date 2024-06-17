@@ -18,6 +18,7 @@ class BeneficiaryVoter extends Voter
     {
     }
 
+    #[\Override]
     protected function supports(string $attribute, $subject): bool
     {
         if (self::MANAGE === $attribute && !$subject) {
@@ -34,6 +35,7 @@ class BeneficiaryVoter extends Voter
     /**
      * @param Beneficiaire $subject
      */
+    #[\Override]
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();

@@ -15,10 +15,11 @@ class NavExtension extends AbstractExtension
     {
     }
 
+    #[\Override]
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('getUserNavItems', [$this, 'getUserNavItems']),
+            new TwigFunction('getUserNavItems', $this->getUserNavItems(...)),
         ];
     }
 

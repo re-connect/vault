@@ -12,17 +12,20 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20210602140514 extends AbstractMigration
 {
+    #[\Override]
     public function getDescription(): string
     {
         return 'Create a verbatim table';
     }
 
+    #[\Override]
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE verbatim (id INT AUTO_INCREMENT NOT NULL, content VARCHAR(255) NOT NULL, author VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET UTF8 COLLATE `UTF8_unicode_ci` ENGINE = InnoDB');
     }
 
+    #[\Override]
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs

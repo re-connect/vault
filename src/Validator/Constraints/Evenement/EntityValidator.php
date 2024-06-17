@@ -19,6 +19,7 @@ class EntityValidator extends ConstraintValidator
      *
      * @throws \Exception
      */
+    #[\Override]
     public function validate(mixed $event, Constraint $constraint): void
     {
         if (!$event instanceof Evenement) {

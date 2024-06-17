@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-abstract class ClientEntity
+abstract class ClientEntity implements \Stringable
 {
     protected mixed $entity;
 
@@ -10,19 +10,17 @@ abstract class ClientEntity
 
     private int|string|null $distantId;
 
-    private ?Client $client;
-
     private ?\DateTime $createdAt = null;
 
     private ?\DateTime $updateAt = null;
 
-    public function __construct($client = null, $distantId = null)
+    public function __construct(private ?Client $client = null, $distantId = null)
     {
-        $this->client = $client;
         $this->distantId = (string) $distantId;
         $this->entity_name = (new \ReflectionClass($this))->getShortName();
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return $this->getClient()->getNom().': '.$this->getDistantId();

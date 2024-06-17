@@ -13,6 +13,7 @@ use Sonata\AdminBundle\Route\RouteCollectionInterface;
 
 class UserAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues[DatagridInterface::PAGE] = 1;
@@ -20,6 +21,7 @@ class UserAdmin extends AbstractAdmin
         $sortValues[DatagridInterface::SORT_BY] = 'id';
     }
 
+    #[\Override]
     public function preUpdate($object = null): void
     {
         if ($object->getPlainPassword()) {
@@ -27,6 +29,7 @@ class UserAdmin extends AbstractAdmin
         }
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form
@@ -42,6 +45,7 @@ class UserAdmin extends AbstractAdmin
             ->end();
     }
 
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -49,11 +53,12 @@ class UserAdmin extends AbstractAdmin
             ->add('username', null, ['label' => "Nom d'utilisateur"])
             ->add('nom')
             ->add('prenom')
-            ->add('typeUser', 'doctrine_orm_string', ['label' => 'Type d\'utilisateur'], 'choice', ['choices' => User::USER_TYPES])
+            ->add('typeUser', 'doctrine_orm_string', ['label' => 'Type d\'utilisateur'], 'choice')
             ->add('derniereConnexionAt', null, ['label' => 'Dernière connexion'])
             ->add('createdAt', null, ['label' => 'Date de création']);
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list
@@ -69,6 +74,7 @@ class UserAdmin extends AbstractAdmin
             ->add('createdAt', null, ['label' => 'Date de création']);
     }
 
+    #[\Override]
     protected function configureRoutes(RouteCollectionInterface $collection): void
     {
         $collection->remove('create');

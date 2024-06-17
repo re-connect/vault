@@ -34,6 +34,7 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
     ) {
     }
 
+    #[\Override]
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): mixed
     {
         $client = $this->apiClientManager->getCurrentOldClient();
@@ -94,7 +95,7 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
             if ($pro) {
                 $data->getUser()->addCreatorUser($pro->getUser());
             }
-        } catch (NonUniqueResultException $e) {
+        } catch (NonUniqueResultException) {
             $this->apiLogger->error(sprintf('Multiple pros found for distant id %s and client %s', $data->getUser()->getExternalProId(), $client->getRandomId()));
         }
     }

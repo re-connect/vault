@@ -12,12 +12,14 @@ class AdminFixture extends Fixture implements FixtureGroupInterface
 {
     public const ADMIN_MAIL = 'admin@mail.com';
 
+    #[\Override]
     public function load(ObjectManager $manager)
     {
         UserFactory::createOne(['email' => self::ADMIN_MAIL, 'roles' => ['ROLE_ADMIN', 'ROLE_SONATA_ADMIN'], 'firstVisit' => false, 'typeUser' => User::USER_TYPE_ADMINISTRATEUR]);
     }
 
     /** @return string[] */
+    #[\Override]
     public static function getGroups(): array
     {
         return ['v2'];

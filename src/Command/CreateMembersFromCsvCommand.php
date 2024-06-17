@@ -20,16 +20,14 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class CreateMembersFromCsvCommand extends Command
 {
-    private EntityManagerInterface $entityManager;
-
     public function __construct(
-        EntityManagerInterface $entityManager,
+        private readonly EntityManagerInterface $entityManager,
         ?string $name = null
     ) {
         parent::__construct($name);
-        $this->entityManager = $entityManager;
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);

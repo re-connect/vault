@@ -128,12 +128,12 @@ class ResettingService
             $this->sendEmail($user, $resetToken);
             $this->requestStack->getCurrentRequest()->getSession()->set('ResetPasswordPublicToken', $resetToken);
             $this->addFlashMessage('success', 'public_reset_password_email_has_been_sent');
-        } catch (TooManyPasswordRequestsException $e) {
+        } catch (TooManyPasswordRequestsException) {
             $this->addFlashMessage('danger', 'public_reset_password_already_requested');
             if ($this->isRequestingBySMS($user)) {
                 $this->addFlashMessage('danger', 'reset_password_requested_by_SMS');
             }
-        } catch (ResetPasswordExceptionInterface $e) {
+        } catch (ResetPasswordExceptionInterface) {
             $this->addFlashMessage('danger', 'error');
         }
     }
@@ -160,11 +160,11 @@ class ResettingService
         try {
             // in order to create request
             $this->resetPasswordHelper->generateResetToken($user);
-        } catch (TooManyPasswordRequestsException $e) {
+        } catch (TooManyPasswordRequestsException) {
             $this->addFlashMessage('danger', 'public_reset_password_already_requested');
 
             return $user;
-        } catch (ResetPasswordExceptionInterface $e) {
+        } catch (ResetPasswordExceptionInterface) {
             $this->addFlashMessage('danger', 'error');
 
             return null;

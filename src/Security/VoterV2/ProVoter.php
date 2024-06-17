@@ -18,6 +18,7 @@ class ProVoter extends Voter
     {
     }
 
+    #[\Override]
     protected function supports(string $attribute, $subject): bool
     {
         if (self::MANAGE === $attribute && !$subject) {
@@ -31,6 +32,7 @@ class ProVoter extends Voter
         return false;
     }
 
+    #[\Override]
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();

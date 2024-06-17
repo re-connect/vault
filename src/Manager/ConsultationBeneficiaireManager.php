@@ -13,15 +13,8 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class ConsultationBeneficiaireManager
 {
-    private EntityManagerInterface $em;
-    private TokenStorageInterface $tokenStorage;
-    private RequestStack $requestStack;
-
-    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage, RequestStack $requestStack)
+    public function __construct(private readonly EntityManagerInterface $em, private readonly TokenStorageInterface $tokenStorage, private readonly RequestStack $requestStack)
     {
-        $this->em = $em;
-        $this->tokenStorage = $tokenStorage;
-        $this->requestStack = $requestStack;
     }
 
     /**

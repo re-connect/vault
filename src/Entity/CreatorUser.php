@@ -5,21 +5,17 @@ namespace App\Entity;
 /**
  * CreatorUser.
  */
-class CreatorUser extends Creator
+class CreatorUser extends Creator implements \Stringable
 {
-    /**
-     * @var User
-     */
-    private $entity;
-
-    public function __toString()
+    #[\Override]
+    public function __toString(): string
     {
         return $this->getEntity()->toSonataString();
     }
 
-    public function __construct(?User $user = null)
-    {
-        $this->entity = $user;
+    public function __construct(
+        private ?User $entity = null
+    ) {
     }
 
     /**

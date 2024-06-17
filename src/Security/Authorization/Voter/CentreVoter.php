@@ -14,18 +14,13 @@ class CentreVoter extends Voter
     public const PAIEMENT_CENTRE = 'paiement centre';
 
     /**
-     * @var CentreProvider
-     */
-    private $provider;
-
-    /**
      * CentreVoter constructor.
      */
-    public function __construct(CentreProvider $provider)
+    public function __construct(private readonly CentreProvider $provider)
     {
-        $this->provider = $provider;
     }
 
+    #[\Override]
     protected function supports(string $attribute, mixed $subject): bool
     {
         return in_array($attribute, [
@@ -34,6 +29,7 @@ class CentreVoter extends Voter
         ]) && $subject instanceof Centre;
     }
 
+    #[\Override]
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         // get current logged in user

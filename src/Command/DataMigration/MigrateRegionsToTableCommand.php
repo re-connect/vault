@@ -41,6 +41,7 @@ class MigrateRegionsToTableCommand extends Command
         'Autre' => 'support@reconnect.fr',
     ];
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);

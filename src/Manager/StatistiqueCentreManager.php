@@ -9,14 +9,11 @@ use Doctrine\ORM\Query;
 
 class StatistiqueCentreManager
 {
-    private EntityManagerInterface $em;
-
     /**
      * Constructor.
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
     /**
@@ -102,19 +99,11 @@ class StatistiqueCentreManager
      */
     private function getStatisticValue(Centre $centre, $statKey)
     {
-        switch ($statKey) {
-            case StatistiqueCentre::STATISTIQUECENTRE_NB_BENEFICIAIRES:
-                return count($centre->getBeneficiairesCentres());
-                break;
-            case StatistiqueCentre::STATISTIQUECENTRE_NB_MEMBRES:
-                return count($centre->getMembresCentres());
-                break;
-            case StatistiqueCentre::STATISTIQUECENTRE_SMS_ENVOYES:
-                return count($centre->getSMS());
-                break;
-            default:
-                return null;
-                break;
-        }
+        return match ($statKey) {
+            StatistiqueCentre::STATISTIQUECENTRE_NB_BENEFICIAIRES => count($centre->getBeneficiairesCentres()),
+            StatistiqueCentre::STATISTIQUECENTRE_NB_MEMBRES => count($centre->getMembresCentres()),
+            StatistiqueCentre::STATISTIQUECENTRE_SMS_ENVOYES => count($centre->getSMS()),
+            default => null,
+        };
     }
 }

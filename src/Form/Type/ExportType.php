@@ -14,6 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ExportType extends AbstractType
 {
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -26,10 +27,8 @@ class ExportType extends AbstractType
                 'attr' => [
                     'class' => 'has-select2',
                 ],
-                'query_builder' => function (CentreRepository $repository) {
-                    return $repository->createQueryBuilder('c')
-                        ->orderBy('c.nom', 'ASC');
-                },
+                'query_builder' => fn (CentreRepository $repository) => $repository->createQueryBuilder('c')
+                    ->orderBy('c.nom', 'ASC'),
             ])
             ->add('regions', EntityType::class, [
                 'class' => Region::class,
@@ -52,6 +51,7 @@ class ExportType extends AbstractType
             ]);
     }
 
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

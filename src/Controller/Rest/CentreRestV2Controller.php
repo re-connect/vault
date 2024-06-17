@@ -109,9 +109,7 @@ class CentreRestV2Controller extends REController
                 throw $this->createAccessDeniedException('Il faut être bénéficiaire pour accéder à cette fonctionnalité');
             }
 
-            $beneficiaireCentres = $user->getSubjectBeneficiaire()->getBeneficiairesCentres()->filter(static function (BeneficiaireCentre $beneficiaireCentre) {
-                return false === $beneficiaireCentre->getBValid();
-            });
+            $beneficiaireCentres = $user->getSubjectBeneficiaire()->getBeneficiairesCentres()->filter(static fn (BeneficiaireCentre $beneficiaireCentre) => false === $beneficiaireCentre->getBValid());
 
             $entities = [];
             foreach ($beneficiaireCentres as $beneficiaireCentre) {

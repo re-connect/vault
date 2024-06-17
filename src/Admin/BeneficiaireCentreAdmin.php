@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class BeneficiaireCentreAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         /** @var BeneficiaireCentre $beneficiaireCentre */
@@ -27,15 +28,13 @@ class BeneficiaireCentreAdmin extends AbstractAdmin
             ->add('externalLink', EntityType::class, [
                 'label' => 'Liaison externe',
                 'class' => ClientBeneficiaire::class,
-                'query_builder' => static function (EntityRepository $er) use ($beneficiaireId) {
-                    return $er->createQueryBuilder('cb')
-                        ->andWhere('cb.entity = :beneficiaireId')
-                        ->andWhere('cb.entity_name = :entityName')
-                        ->setParameters([
-                            'beneficiaireId' => $beneficiaireId,
-                            'entityName' => 'ClientBeneficiaire',
-                        ]);
-                },
+                'query_builder' => static fn (EntityRepository $er) => $er->createQueryBuilder('cb')
+                    ->andWhere('cb.entity = :beneficiaireId')
+                    ->andWhere('cb.entity_name = :entityName')
+                    ->setParameters([
+                        'beneficiaireId' => $beneficiaireId,
+                        'entityName' => 'ClientBeneficiaire',
+                    ]),
                 'required' => false,
             ])
             ->add('bValid', null, ['label' => 'Accepté']);

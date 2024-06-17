@@ -47,7 +47,7 @@ class SharedDocumentManager
     public function validateTokenAndFetchDocument(string $token): ?SharedDocument
     {
         $decodedToken = $this->decodeSharedDocumentToken($token);
-        list('selector' => $selector, 'user_id' => $userId, 'document_id' => $documentId) = $decodedToken;
+        ['selector' => $selector, 'user_id' => $userId, 'document_id' => $documentId] = $decodedToken;
         $sharedDocument = $this->repository->findOneBy(['selector' => $selector]);
 
         if ($errorMessage = $this->getErrorMessage($sharedDocument, (int) $userId, (int) $documentId)) {

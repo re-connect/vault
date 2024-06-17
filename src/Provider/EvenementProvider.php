@@ -46,6 +46,7 @@ class EvenementProvider extends DonneePersonnelleProvider
             ->getResult();
     }
 
+    #[\Override]
     public function delete(DonneePersonnelle $entity, bool $log = true): void
     {
         if (false === $this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_DELETE, $entity)) {
@@ -93,6 +94,7 @@ class EvenementProvider extends DonneePersonnelleProvider
      *
      * @throws \Exception
      */
+    #[\Override]
     public function populate($entity, Client $client): void
     {
         parent::populate($entity, $client);

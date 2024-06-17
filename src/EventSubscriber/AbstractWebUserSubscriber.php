@@ -36,6 +36,7 @@ abstract class AbstractWebUserSubscriber implements EventSubscriberInterface
         return $token instanceof OAuth2Token && $this->oauth2Helper->getClient($token);
     }
 
+    #[\Override]
     public static function getSubscribedEvents(): array
     {
         return [];

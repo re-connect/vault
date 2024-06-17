@@ -15,13 +15,11 @@ class DonneePersonnelleEvent extends REEvent
     public const DONNEEPERSONNELLE_SETPUBLIC = 5;
 
     protected $donneePersonnelle;
-    protected $type;
     protected $user;
 
-    public function __construct(DonneePersonnelle $donneePersonnelle, ?UserInterface $user = null, $type = null)
+    public function __construct(DonneePersonnelle $donneePersonnelle, ?UserInterface $user = null, protected $type = null)
     {
         $this->donneePersonnelle = $donneePersonnelle;
-        $this->type = $type;
         $this->user = $user;
 
         $this->context = [
@@ -31,7 +29,7 @@ class DonneePersonnelleEvent extends REEvent
         ];
 
         $m = [];
-        if (preg_match('#\\\\([a-zA-Z]+)$#', get_class($this->donneePersonnelle), $m)) {
+        if (preg_match('#\\\\([a-zA-Z]+)$#', $this->donneePersonnelle::class, $m)) {
             $this->context['entity'] = $m[1];
         }
     }

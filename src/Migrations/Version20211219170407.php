@@ -12,11 +12,13 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20211219170407 extends AbstractMigration
 {
+    #[\Override]
     public function getDescription(): string
     {
         return '';
     }
 
+    #[\Override]
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
@@ -36,6 +38,7 @@ final class Version20211219170407 extends AbstractMigration
         $this->addSql('ALTER TABLE client_permission ADD CONSTRAINT FK_701DAFEB19EB6921 FOREIGN KEY (client_id) REFERENCES oauth2_client (identifier)');
     }
 
+    #[\Override]
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs

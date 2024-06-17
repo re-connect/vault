@@ -4,11 +4,8 @@ namespace App\FormV2\Search;
 
 class SearchFormModel
 {
-    private ?string $search;
-
-    public function __construct(?string $search = '')
+    public function __construct(private ?string $search = '')
     {
-        $this->search = $search;
     }
 
     public function getSearch(): ?string

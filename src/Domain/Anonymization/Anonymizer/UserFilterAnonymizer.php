@@ -13,6 +13,7 @@ use MakinaCorpus\QueryBuilder\Query\Update;
 )]
 class UserFilterAnonymizer extends AbstractAnonymizer
 {
+    #[\Override]
     public function anonymize(Update $update): void
     {
         $update->getWhere()->raw("user.test IS FALSE AND (user.email NOT LIKE '%@reconnect.fr' OR user.email IS NULL)");

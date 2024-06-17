@@ -11,22 +11,24 @@ use App\Entity\Document;
 use App\Security\HelperV2\Oauth2Helper;
 use Doctrine\ORM\QueryBuilder;
 
-final class ClientResourceCollectionExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface
+final readonly class ClientResourceCollectionExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface
 {
-    private const HANDLED_CLASSES = [
+    private const array HANDLED_CLASSES = [
         Beneficiaire::class,
         Document::class,
     ];
 
-    public function __construct(private readonly Oauth2Helper $oauth2Helper)
+    public function __construct(private Oauth2Helper $oauth2Helper)
     {
     }
 
+    #[\Override]
     public function applyToItem(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, array $identifiers, ?Operation $operation = null, array $context = []): void
     {
         $this->addClientExternalLinksFilter($queryBuilder, $resourceClass);
     }
 
+    #[\Override]
     public function applyToCollection(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, ?Operation $operation = null, array $context = []): void
     {
         $this->addClientExternalLinksFilter($queryBuilder, $resourceClass);
