@@ -14,7 +14,7 @@ class PasswordPolicySubscriber extends AbstractWebUserSubscriber implements Even
     {
         $user = $this->getUser();
 
-        if (!$this->isAuthenticatedWebUser($user)) {
+        if (!$user || !$this->isAuthenticatedWebUser($user)) {
             return;
         }
 
