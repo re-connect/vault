@@ -43,4 +43,5 @@ return [
     Symfony\UX\StimulusBundle\StimulusBundle::class => ['all' => true],
     Scheb\TwoFactorBundle\SchebTwoFactorBundle::class => ['all' => true],
     Erkens\Security\TwoFactorTextBundle\TwoFactorTextBundle::class => ['all' => true],
+    MakinaCorpus\DbToolsBundle\DbToolsBundle::class => ['all' => true],
 ];

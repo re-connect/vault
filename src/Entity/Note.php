@@ -9,6 +9,8 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\State\PersonalDataStateProcessor;
+use App\Domain\Anonymization\AnonymizationHelper;
+use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
@@ -26,6 +28,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Note extends DonneePersonnelle
 {
     #[Groups(['read-personal-data', 'write-personal-data', 'v3:note:write', 'v3:note:read'])]
+    #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
     private $contenu;
 
     public function __construct(?Beneficiaire $beneficiaire = null)
