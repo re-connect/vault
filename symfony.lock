@@ -303,6 +303,9 @@
     "mailjet/mailjet-apiv3-php": {
         "version": "v1.4.1"
     },
+    "makinacorpus/db-tools-bundle": {
+        "version": "1.2.0"
+    },
     "markbaker/complex": {
         "version": "3.0.1"
     },
@@ -407,9 +410,6 @@
     },
     "ramsey/uuid": {
         "version": "3.9.3"
-    },
-    "reconnect/easy-deploy-bundle": {
-        "version": "v1.0.9"
     },
     "reconnect/s3bundle": {
         "version": "1.2",

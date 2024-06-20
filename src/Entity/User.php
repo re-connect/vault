@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 use Erkens\Security\TwoFactorTextBundle\Model\TwoFactorTextInterface;
+use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
@@ -28,6 +29,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
     normalizationContext: ['groups' => ['v3:user:read']],
     denormalizationContext: ['groups' => ['v3:user:write']],
 )]
+#[Anonymize('reconnect.user_filter')]
 class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, TwoFactorTextInterface
 {
     private const string BASE_USERNAME_REGEXP = '/^[a-z\-]+\.[a-z\-]+(\.[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3})?$/';
@@ -77,12 +79,14 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
      * @var string
      */
     #[Groups(['read', 'user:read', 'v3:user:read'])]
+    #[Anonymize('md5')]
     protected $username = '';
 
     /**
      * @var string
      */
     #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
+    #[Anonymize('email', options: ['domain' => 'yopmail.com'])]
     protected $email;
 
     /**
@@ -113,21 +117,25 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
      * @var string
      */
     #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
+    #[Anonymize('fr-fr.firstname')]
     private $prenom;
 
     /**
      * @var string
      */
     #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
+    #[Anonymize('fr-fr.lastname')]
     private $nom;
 
     #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
+    #[Anonymize('date', options: ['min' => '1950-01-01 00:00:00', 'max' => '2013-01-01 00:00:00'])]
     private ?\DateTime $birthDate = null;
 
     /**
      * @var string
      */
     #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
+    #[Anonymize('fr-fr.phone')]
     private $telephone;
 
     /** @var string */
@@ -224,6 +232,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     private bool $canada = false;
     private ?string $fcnToken = null;
 
+    #[Anonymize('md5')]
     private ?string $oldUsername = null;
     /** @var ?Collection<int, SharedDocument> */
     private ?Collection $sharedDocuments;

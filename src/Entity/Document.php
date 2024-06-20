@@ -9,11 +9,13 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Controller\Api\UploadDocumentController;
+use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Interface\FolderableEntityInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -59,6 +61,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
     protected ?Dossier $dossier = null;
 
     #[Groups(['document:read', 'read-personal-data', 'read-personal-data-v2', 'v3:document:read'])]
+    #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_DOCUMENT_EXTENSION]])]
     protected string $extension = '';
 
     protected ?int $taille = null;
@@ -82,9 +85,11 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
     private ?string $thumbnailPresignedUrl = null;
 
     #[Groups(['document:read', 'v3:document:read'])]
+    #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_DOCUMENT_OBJECT_KEY]])]
     private ?string $objectKey = '';
 
     #[Groups(['document:read', 'v3:document:read'])]
+    #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_DOCUMENT_THUMBNAIL_KEY]])]
     private ?string $thumbnailKey = null;
 
     #[Groups(['document:read', 'read-personal-data', 'v3:document:read'])]
