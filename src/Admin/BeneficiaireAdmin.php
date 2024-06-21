@@ -342,7 +342,7 @@ class BeneficiaireAdmin extends AbstractAdmin
             'Question secrète' => 'questionSecrete',
             'Réponse secrète' => 'reponseSecrete',
             'En cours de création' => 'isCreatingToString',
-            'Dernière Connexion' => 'user.lastLogin',
+            'Dernière Connexion' => 'user.lastLoginToString',
             'Création' => 'user.created_at',
             'Centres' => 'getBeneficiairesCentresStr',
             'Créé par (user)' => 'user.creatorUser',
