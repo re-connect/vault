@@ -721,15 +721,6 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->test ? 'Oui' : '';
     }
 
-    public function derniereConnexionAtToString(): ?string
-    {
-        if (null !== ($derniereConnexionAt = $this->getDerniereConnexionAt())) {
-            return $derniereConnexionAt->format('d/m/Y H:i');
-        }
-
-        return null;
-    }
-
     public function getPreviousLoginString(): ?string
     {
         return $this->lastLogin?->format('Y-m-d');
@@ -795,7 +786,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
             'type_user' => $this->typeUser,
             'email' => $this->email,
             'created_at' => $this->createdAt->format(\DateTime::W3C),
-            'last_login' => null !== $this->derniereConnexionAt ? $this->derniereConnexionAt->format(\DateTime::W3C) : null,
+            'last_login' => null !== $this->lastLogin ? $this->lastLogin->format(\DateTime::W3C) : null,
             'subject_id' => $this->getSubject()?->getId(),
             'updated_at' => $this->updatedAt->format(\DateTime::W3C),
             'b_first_mobile_connexion' => $this->bFirstMobileConnexion,
@@ -858,7 +849,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
             'type_user' => $this->typeUser,
             'email' => $this->email,
             'subject_id' => $this->getSubject()?->getId(),
-            'last_login' => null !== $this->derniereConnexionAt ? $this->derniereConnexionAt->format(\DateTime::W3C) : null,
+            'last_login' => null !== $this->lastLogin ? $this->lastLogin->format(\DateTime::W3C) : null,
             'created_at' => $this->createdAt->format(\DateTime::W3C),
             'updated_at' => $this->updatedAt->format(\DateTime::W3C),
             'b_first_mobile_connexion' => $this->bFirstMobileConnexion,

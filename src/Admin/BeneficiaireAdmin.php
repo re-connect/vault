@@ -297,7 +297,7 @@ class BeneficiaireAdmin extends AbstractAdmin
                 'field_type' => EntityType::class,
                 'field_options' => ['class' => Client::class, 'multiple' => true],
             ])
-            ->add('user.derniereConnexionAt', DateRangeFilter::class, ['label' => 'Dernière connexion'])
+            ->add('user.lastLogin', DateRangeFilter::class, ['label' => 'Dernière connexion'])
             ->add('createdAt', DateRangeFilter::class, ['label' => 'Créé le'])
             ->add('user.test', null, [
                 'label' => 'Compte test',
@@ -311,7 +311,7 @@ class BeneficiaireAdmin extends AbstractAdmin
         $list
             ->addIdentifier('id', null, ['route' => ['name' => 'edit']])
             ->addIdentifier('user.username', null, ['label' => "Nom d'utilisateur", 'route' => ['name' => 'edit']])
-            ->add('user.derniereConnexionAt', null, ['label' => 'Dernière connexion'])
+            ->add('user.lastLogin', null, ['label' => 'Dernière connexion'])
             ->add('user.creatorUser', null, [
                 'label' => 'Créé par (utilisateur)',
             ])
@@ -342,7 +342,7 @@ class BeneficiaireAdmin extends AbstractAdmin
             'Question secrète' => 'questionSecrete',
             'Réponse secrète' => 'reponseSecrete',
             'En cours de création' => 'isCreatingToString',
-            'Dernière Connexion' => 'user.derniereConnexionAt',
+            'Dernière Connexion' => 'user.lastLogin',
             'Création' => 'user.created_at',
             'Centres' => 'getBeneficiairesCentresStr',
             'Créé par (user)' => 'user.creatorUser',

@@ -37,7 +37,7 @@ class UserListener implements LogActivityListenerInterface
         $isLoginEventUpdate =
             2 === count($args->getEntityChangeSet())
             && $args->hasChangedField('updatedAt')
-            && ($args->hasChangedField('derniereConnexionAt') || $args->hasChangedField('lastLogin'));
+            && ($args->hasChangedField('lastLogin'));
 
         if (!$isLoginEventUpdate) {
             $this->log($args, sprintf('%s updated :', self::USER_NAME));
