@@ -31,7 +31,7 @@ answer_secret_question: 'Répondre à la question secrète'
 association: Association
 at: à
 auth_code_received: 'Código de inicio de sesión recibido a través de %method%:'
-auth_code_sms_text: 'Aquí está tu código de inicio de sesión: %code%'
+auth_code_sms_text: 'Reconnect - Aquí está tu código de inicio de sesión: %code%'
 back: Retour
 back_home: "Retour à l'accueil"
 benef_has_account: 'Le bénéficiaire possède un compte Reconnect ?'
