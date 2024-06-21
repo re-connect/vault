@@ -733,7 +733,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function getDerniereConnexionAt(): ?\DateTime
     {
-        return $this->lastLogin;
+        return $this->derniereConnexionAt;
     }
 
     public function getAvatar(): ?string
