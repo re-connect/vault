@@ -160,6 +160,11 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this->lastLogin;
     }
 
+    public function getLastLoginToString(): ?string
+    {
+        return $this->lastLogin?->format('d/m/Y H:i');
+    }
+
     public function getConfirmationToken()
     {
         return $this->confirmationToken;
