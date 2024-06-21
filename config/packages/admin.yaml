@@ -51,15 +51,6 @@ services:
         calls:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
 
-    sonata.admin.user:
-        class: App\Admin\UserAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "Utilisateurs" }
-        arguments:
-            - ~
-            - App\Entity\User
-            - ~
-
     sonata.admin.beneficiaire:
         class: App\Admin\BeneficiaireAdmin
         arguments: [ ~, App\Entity\Beneficiaire, ~ ]
