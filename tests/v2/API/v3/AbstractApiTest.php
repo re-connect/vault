@@ -29,9 +29,9 @@ abstract class AbstractApiTest extends ApiTestCase
     public function assertEndpoint(string $clientName, string $endpoint, string $method, int $expectedStatusCode, ?array $expectedJson = null, mixed $body = null): void
     {
         $this->loginAsClient($clientName);
-        $options = ['json' => $body];
-        if (Request::METHOD_PATCH === $method) {
-            $options['headers'] = ['Content-Type' => 'application/merge-patch+json'];
+        $options = ['body' => json_encode($body)];
+        if (in_array($method, [Request::METHOD_PATCH, Request::METHOD_POST])) {
+            $options['headers'] = ['Content-Type' => 'application/json'];
         }
         $this->client->request($method, $this->generateUrl($endpoint), $options);
 
@@ -43,14 +43,13 @@ abstract class AbstractApiTest extends ApiTestCase
 
     public function loginAsClient(string $clientName, string $grantType = 'client_credentials'): void
     {
-        /** @var \League\Bundle\OAuth2ServerBundle\Model\Client $client */
-        $client = ClientFactory::find(['name' => $clientName])->object();
+        $client = ClientFactory::find(['nom' => $clientName])->object(); // We use the same value in old client table to access properties easily
 
         $response = $this->client->request('POST', '/oauth/v2/token', ['json' => [
             'grant_type' => $grantType,
-            'client_id' => $client->getIdentifier(),
+            'client_id' => $client->getRandomId(),
             'client_secret' => $client->getSecret(),
-            'scope' => 'centers beneficiaries documents notes contacts pros events',
+            'scope' => 'centers beneficiaries documents notes contacts pros events users',
         ]]);
 
         $content = json_decode($response->getContent(), true);
@@ -59,6 +58,11 @@ abstract class AbstractApiTest extends ApiTestCase
 
     public function generateUrl(string $url): string
     {
-        return sprintf('%s%s?access_token=%s', self::BASE_URL, $url, $this->accessToken);
+        return sprintf('%s%s%saccess_token=%s', self::BASE_URL, $url, $this->getQueryDelimiter($url), $this->accessToken);
+    }
+
+    private function getQueryDelimiter(string $url): string
+    {
+        return str_contains($url, '?') ? '&' : '?';
     }
 }

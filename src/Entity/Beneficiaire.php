@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\Dto\BeneficiaryDto;
+use App\Api\Dto\LinkBeneficiaryDto;
 use App\Api\Filters\DistantIdFilter;
 use App\Api\State\BeneficiaryStateProcessor;
 use App\Api\State\BeneficiaryStateProvider;
@@ -31,7 +32,14 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     shortName: 'beneficiary',
     operations: [
         new Get(security: "is_granted('READ', object)", provider: BeneficiaryStateProvider::class),
-        new Patch(security: "is_granted('UPDATE', object)", processor: BeneficiaryStateProcessor::class),
+        new Patch(security: "is_granted('UPDATE', object)",
+            processor: BeneficiaryStateProcessor::class),
+        new Patch(
+            uriTemplate: '/beneficiaries/{id}/add-external-link',
+            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
+            input: LinkBeneficiaryDto::class,
+            processor: BeneficiaryStateProcessor::class,
+        ),
         new Patch(
             uriTemplate: '/beneficiaries/{id}/unlink',
             controller: UnlinkBeneficiaryController::class,
@@ -217,8 +225,10 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function addBeneficiairesCentre(BeneficiaireCentre $beneficiairesCentre): self
     {
-        $this->beneficiairesCentres[] = $beneficiairesCentre;
-        $beneficiairesCentre->setBeneficiaire($this);
+        if (!$this->beneficiairesCentres->contains($beneficiairesCentre)) {
+            $this->beneficiairesCentres[] = $beneficiairesCentre;
+            $beneficiairesCentre->setBeneficiaire($this);
+        }
 
         return $this;
     }
@@ -974,10 +984,12 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
             : $this->externalLinks->filter(fn (ClientBeneficiaire $link) => $link->getClient() === $client);
     }
 
-    public function addClientExternalLink(Client $client, string $externalId, ?string $memberExternalId = null): self
+    public function addClientExternalLink(Client $client, string $externalId, ?string $memberExternalId = null, ?BeneficiaireCentre $beneficiaireCentre = null): self
     {
         if (!$this->hasExternalLinkForClient($client)) {
-            $this->addExternalLink(ClientBeneficiaire::createForMember($client, $externalId, $memberExternalId));
+            $externalLink = ClientBeneficiaire::createForMember($client, $externalId, (int) $memberExternalId);
+            $externalLink->setBeneficiaireCentre($beneficiaireCentre);
+            $this->addExternalLink($externalLink);
         }
 
         return $this;

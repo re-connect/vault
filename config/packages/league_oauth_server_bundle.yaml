@@ -22,5 +22,6 @@ league_oauth2_server:
             - contacts
             - pros
             - si_siao_numbers
+            - users
         default:
             - default

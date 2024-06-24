@@ -2,9 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
+use App\Api\Filters\UsernameFilter;
+use App\Api\State\SearchBeneficiaryProvider;
 use App\Api\State\UserPasswordProcessor;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -21,9 +25,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ApiFilter(UsernameFilter::class, properties: ['username' => 'exact'])]
 #[ApiResource(
     operations: [
-        new GetCollection(security: "is_granted('ROLE_USER')"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_USERS') or is_granted('ROLE_USER')", provider: SearchBeneficiaryProvider::class),
         new Patch(security: "is_granted('UPDATE', object)", processor: UserPasswordProcessor::class),
     ],
     normalizationContext: ['groups' => ['v3:user:read']],
@@ -252,6 +257,8 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     /** @var string[] */
     private array $relaysIds = [];
+    private ?string $externalRelayId = null;
+    private ?string $externalProId = null;
 
     public function __construct()
     {
@@ -1188,6 +1195,30 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public function setRelaysIds(array $relaysIds): self
     {
         $this->relaysIds = $relaysIds;
+
+        return $this;
+    }
+
+    public function getExternalRelayId(): ?string
+    {
+        return $this->externalRelayId;
+    }
+
+    public function setExternalRelayId(?string $relayId): self
+    {
+        $this->externalRelayId = $relayId;
+
+        return $this;
+    }
+
+    public function getExternalProId(): ?string
+    {
+        return $this->externalProId;
+    }
+
+    public function setExternalProId(?string $proId): self
+    {
+        $this->externalProId = $proId;
 
         return $this;
     }

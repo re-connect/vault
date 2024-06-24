@@ -15,6 +15,7 @@ use App\Entity\Note;
 use App\Entity\User;
 use App\Repository\BeneficiaireRepository;
 use Doctrine\ORM\QueryBuilder;
+use League\Bundle\OAuth2ServerBundle\Security\User\NullUser;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -76,6 +77,9 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
 
     private function filterUsers(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void
     {
+        if (!$user || $user instanceof NullUser) {
+            return;
+        }
         $queryBuilder
             ->andWhere(sprintf('%s.id = :userId', $rootAlias))
             ->setParameter('userId', $user->getId());

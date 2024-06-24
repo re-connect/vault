@@ -1,0 +1,19 @@
+meta {
+  name: Add external link
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{baseUrl}}/api/v3/beneficiaries/24965/add-external-link
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "distantId": 122629,
+      "externalCenter": 99,
+      "externalProId": 2054
+  }
+}
