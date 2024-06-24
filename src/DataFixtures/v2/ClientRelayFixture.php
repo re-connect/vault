@@ -13,6 +13,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class ClientRelayFixture extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
+    #[\Override]
     public function load(ObjectManager $manager)
     {
         $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
@@ -24,12 +25,14 @@ class ClientRelayFixture extends Fixture implements FixtureGroupInterface, Depen
     }
 
     /** @return string[] */
+    #[\Override]
     public static function getGroups(): array
     {
         return ['v2'];
     }
 
     /** @return array<class-string<FixtureInterface>> */
+    #[\Override]
     public function getDependencies(): array
     {
         return [BeneficiaryFixture::class, ClientFixture::class];
