@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Traits\DeactivatableTrait;
+use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Security\Core\User\LegacyPasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -21,11 +22,13 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
     /**
      * @var string
      */
+    #[Anonymize('md5')]
     protected $usernameCanonical;
 
     /**
      * @var string
      */
+    #[Anonymize('email', options: ['domain' => 'yopmail.com'])]
     protected $emailCanonical;
 
     /**
