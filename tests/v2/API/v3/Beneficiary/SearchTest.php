@@ -2,22 +2,14 @@
 
 namespace App\Tests\v2\API\v3\Beneficiary;
 
-use App\Repository\BeneficiaireRepository;
+use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\v2\API\v3\AbstractApiTest;
 
 class SearchTest extends AbstractApiTest
 {
-    private readonly BeneficiaireRepository $repo;
-
-    protected function setUp(): void
-    {
-        $this->repo = $this->getContainer()->get(BeneficiaireRepository::class);
-        parent::setUp();
-    }
-
     public function testSearchBeneficiary(): void
     {
-        $beneficiary = $this->repo->findAll()[0];
+        $beneficiary = BeneficiaireFactory::first();
         $user = $beneficiary->getUser();
         $this->assertEndpoint(
             'reconnect_pro',
