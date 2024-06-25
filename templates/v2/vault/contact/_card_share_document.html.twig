@@ -13,6 +13,7 @@
                class="btn {{ getUserButtonColor() }} {{ hasNoEmail ? 'disabled' : '' }}"
                     {{ stimulus_controller('alert', {
                         confirmButtonText: 'submit'|trans,
+                        confirmButtonColor: getUserThemeColor(),
                         cancelButtonText: 'cancel'|trans,
                         message: 'confirm_send_document_to_contact'|trans({'%contactName%' : contact.fullName }),
                         url: path,
