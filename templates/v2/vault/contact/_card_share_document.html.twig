@@ -5,11 +5,14 @@
 {% block toggle_visibility_button %}{% endblock %}
 
 {% block action %}
+    {% set hasNoEmail = not contact.email %}
     <td class="bg-white borderless">
-        <a href="{{ path('document_share_with_contact', {id: document.id, contactId: contact.id}) }}"
-           class="btn {{ getUserButtonColor() }} {{ contact.email ? '' : 'disabled' }}"
-        >
-            {{ 'send'|trans }}
-        </a>
+        <div {% if hasNoEmail %}{{ stimulus_controller('tooltip', {title: 'contact_has_no_email'|trans}) }}{% endif %}>
+            <a href="{{ path('document_share_with_contact', {id: document.id, contactId: contact.id}) }}"
+               class="btn {{ getUserButtonColor() }} {{ hasNoEmail ? 'disabled' : '' }}"
+            >
+                {{ 'send'|trans }}
+            </a>
+        </div>
     </td>
 {% endblock %}
