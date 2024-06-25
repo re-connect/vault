@@ -31,7 +31,7 @@ answer_secret_question: 'الرد على السؤال السري'
 association: المؤسسة
 at: الى
 auth_code_received: 'تم استلام رمز تسجيل الدخول عبر %method%:'
-auth_code_sms_text: 'إليك رمز تسجيل الدخول الخاص بك: %code%'
+auth_code_sms_text: 'Reconnect - إليك رمز تسجيل الدخول الخاص بك: %code%'
 back: عودة
 back_home: "العودة الى الصفحة الرئيسية"
 benef_has_account: 'هل المستفيد يمتلك حسابًا في Reconnect ؟'

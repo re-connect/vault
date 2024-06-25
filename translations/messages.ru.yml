@@ -31,7 +31,7 @@ answer_secret_question: 'Répondre à la question secrète'
 association: Ассоциация
 at: à
 auth_code_received: 'Code de connexion reçu par %method% :'
-auth_code_sms_text: 'Voici votre code de connexion :  %code%'
+auth_code_sms_text: 'Reconnect - Voici votre code de connexion :  %code%'
 back: Назад
 back_home: "Вернуться в главное меню"
 benef_has_account: 'Le bénéficiaire possède un compte Reconnect ?'

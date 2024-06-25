@@ -31,7 +31,7 @@ answer_secret_question: 'Répondre à la question secrète'
 association: Verein
 at: um
 auth_code_received: 'Anmeldecode erhalten über %method%:'
-auth_code_sms_text: 'Hier ist Ihr Anmeldecode: %code%'
+auth_code_sms_text: 'Reconnect - Hier ist Ihr Anmeldecode: %code%'
 back: Zurück
 back_home: "Zurück zur Startseite"
 benef_has_account: 'Der/die Klient*in besitzt ein Konto'
