@@ -49,7 +49,7 @@ abstract class AbstractApiTest extends ApiTestCase
             'grant_type' => $grantType,
             'client_id' => $client->getRandomId(),
             'client_secret' => $client->getSecret(),
-            'scope' => 'centers beneficiaries documents notes contacts pros events',
+            'scope' => 'centers beneficiaries documents notes contacts pros events users',
         ]]);
 
         $content = json_decode($response->getContent(), true);
@@ -58,6 +58,11 @@ abstract class AbstractApiTest extends ApiTestCase
 
     public function generateUrl(string $url): string
     {
-        return sprintf('%s%s?access_token=%s', self::BASE_URL, $url, $this->accessToken);
+        return sprintf('%s%s%saccess_token=%s', self::BASE_URL, $url, $this->getQueryDelimiter($url), $this->accessToken);
+    }
+
+    private function getQueryDelimiter(string $url): string
+    {
+        return str_contains($url, '?') ? '&' : '?';
     }
 }

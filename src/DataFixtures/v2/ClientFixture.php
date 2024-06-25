@@ -25,7 +25,7 @@ class ClientFixture extends Fixture implements FixtureGroupInterface
             'secret' => '4x0abo81dlkw8oso8gs8cg44gow000c0s8g8gwsw4g48880c8g',
             'name' => 'reconnect_pro',
             'grantType' => 'client_credentials',
-            'scopes' => 'centers beneficiaries documents notes contacts pros events',
+            'scopes' => 'centers beneficiaries documents notes contacts pros events users',
         ],
         [
             'id' => '1e5430a7f64ab17d3aea672f9eca115b',
