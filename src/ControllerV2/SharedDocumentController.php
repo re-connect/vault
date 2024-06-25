@@ -19,7 +19,7 @@ class SharedDocumentController extends AbstractController
 {
     private const int CONTACT_LIST_LIMIT = 4;
 
-    #[Route(path: 'document/{id}/share', name: 'document_share', methods: ['GET', 'POST'])]
+    #[Route(path: 'document/{id<\d+>}/share', name: 'document_share', methods: ['GET', 'POST'])]
     #[IsGranted('UPDATE', 'document')]
     public function share(
         Request $request,
@@ -56,7 +56,7 @@ class SharedDocumentController extends AbstractController
         ]);
     }
 
-    #[Route(path: 'document/{id}/share-with-contact/{contactId}', name: 'document_share_with_contact', methods: ['GET', 'POST'])]
+    #[Route(path: 'document/{id<\d+>}/share-with-contact/{contactId<\d+>}', name: 'document_share_with_contact', methods: ['GET'])]
     #[IsGranted('UPDATE', 'document')]
     #[IsGranted('UPDATE', 'contact')]
     public function shareWithContact(

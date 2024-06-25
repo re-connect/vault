@@ -1,0 +1,15 @@
+{% extends 'v2/vault/contact/_card.html.twig' %}
+
+{% block phone %}{% endblock %}
+
+{% block toggle_visibility_button %}{% endblock %}
+
+{% block action %}
+    <td class="bg-white borderless">
+        <a href="{{ path('document_share_with_contact', {id: document.id, contactId: contact.id}) }}"
+           class="btn {{ getUserButtonColor() }} {{ contact.email ? '' : 'disabled' }}"
+        >
+            {{ 'send'|trans }}
+        </a>
+    </td>
+{% endblock %}
