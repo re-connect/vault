@@ -277,7 +277,7 @@ class MembreAdmin extends AbstractAdmin
             'Centres' => 'getCentresToString',
             'Region' => 'getRegionToString',
             'Date de création' => 'user.createdAt',
-            'Dernière connexion' => 'user.derniereConnexionAt',
+            'Dernière connexion' => 'user.lastLoginToString',
             'Activé' => 'user.enabledToString',
             'Compte test' => 'user.testToString',
         ];

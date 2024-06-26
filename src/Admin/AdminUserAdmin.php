@@ -71,7 +71,7 @@ class AdminUserAdmin extends AbstractAdmin
                 'attr' => ['read_only' => true],
                 'disabled' => true,
             ])
-            ->add('derniereConnexionAt', DateTimePickerType::class, [
+            ->add('lastLogin', DateTimePickerType::class, [
                 'label' => 'Dernière connexion',
                 'required' => false,
                 'attr' => ['read_only' => true],
