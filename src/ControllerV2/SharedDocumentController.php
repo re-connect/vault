@@ -28,6 +28,11 @@ class SharedDocumentController extends AbstractController
         ContactManager $contactManager,
         PaginatorService $paginatorService,
     ): Response {
+        // We need this check because we show beneficiary's contacts on this route
+        if (!$this->isGranted('UPDATE', $document->getBeneficiaire())) {
+            return $this->redirectToRoute('redirect_user');
+        }
+
         $form = $this->createFormBuilder()
             ->add('email', EmailType::class, ['label' => 'share_document_with'])
             ->setAction($this->generateUrl('document_share', ['id' => $document->getId()]))
