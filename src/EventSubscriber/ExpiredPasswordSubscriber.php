@@ -15,7 +15,7 @@ class ExpiredPasswordSubscriber
 {
     use UserAwareTrait;
 
-    private const array ALLOWED_ROUTES = ['app_update_password', 'improve_password', '2fa_login', 'resend_auth_code'];
+    private const array ALLOWED_ROUTES = ['user_first_visit', 'user_cgs', 'app_update_password', 'improve_password', '2fa_login', 'resend_auth_code'];
 
     public function __construct(
         private readonly Security $security,
