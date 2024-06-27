@@ -1,0 +1,12 @@
+{% extends 'v2/vault/contact/_list.html.twig'%}
+
+{% block list_header %}
+    <th class="bg-grey borderless">{{ 'name'|trans }}</th>
+    <th class="bg-grey borderless">{{ 'firstname'|trans }}</th>
+    <th class="bg-grey borderless d-none d-lg-table-cell">{{ 'email'|trans }}</th>
+    <th class="bg-grey borderless">{{ 'actions'|trans }}</th>
+{% endblock %}
+
+{% block card %}
+    {{ include('v2/vault/contact/_card_share_document.html.twig') }}
+{% endblock %}

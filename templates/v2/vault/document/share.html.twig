@@ -9,13 +9,24 @@
         </h3>
         <span><u>{{ document.nom }}</u></span>
         <hr class="hr-2">
-        {{ form_start(form) }}
-        <div class="col-9 col-sm-6 col-md-4 mx-auto text-start mt-5">
-            {{ form_row(form.email) }}
-            <div class="text-end">
-            {{ button('submit', 'confirm', 'green') }}
+        <div class="row mt-5">
+            <div class="col-12 col-md-4 text-start">
+                <h5 class="text-center">{{ 'enter_an_email'|trans }}</h5>
+                <div class="mt-md-3">
+                    {{ form_start(form) }}
+                    {{ form_row(form.email) }}
+                    <div class="text-end">
+                        {{ button('submit', 'confirm', 'green') }}
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+            <div class="col-12 col-md-7 offset-md-1 mt-5 mt-md-0">
+                <h5>{{ 'send_to_contact'|trans }}</h5>
+                <div style="scale: 0.9">
+                    {{ include('v2/vault/contact/_list_share_document.html.twig', {contacts}) }}
+                </div>
             </div>
         </div>
-        {{ form_end(form) }}
     </div>
 {% endblock %}

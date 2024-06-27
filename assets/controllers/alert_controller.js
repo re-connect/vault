@@ -9,6 +9,7 @@ export default class extends Controller {
     message: String,
     confirmButtonText: String,
     cancelButtonText: String,
+    confirmButtonColor: String,
   };
 
   confirm(event) {
@@ -18,6 +19,7 @@ export default class extends Controller {
       ...getSwalDefaultOptions(
         this.messageValue,
         this.confirmButtonTextValue,
+        this.confirmButtonColorValue,
         this.cancelButtonTextValue
       ),
     }).then((result) => {
