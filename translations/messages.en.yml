@@ -653,3 +653,4 @@ our_activity_report: Our activity report
 contact_has_no_email: Sending is impossible without an email address in the contact.
 enter_an_email: Enter an email
 send_to_contact: Send to a beneficiary contact
+confirm_send_document_to_contact: Are you sure you want to send this document to %contactName% ?
