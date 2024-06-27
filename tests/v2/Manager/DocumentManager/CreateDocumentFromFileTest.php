@@ -5,6 +5,7 @@ namespace App\Tests\v2\Manager\DocumentManager;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\ManagerV2\DocumentManager;
+use App\ManagerV2\FolderManager;
 use App\Repository\DocumentRepository;
 use App\ServiceV2\BucketService;
 use App\Tests\Factory\BeneficiaireFactory;
@@ -36,6 +37,7 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
         $loggerMock = $this->createMock(LoggerInterface::class);
         $translatorMock = $this->createMock(TranslatorInterface::class);
         $bucketServiceMock = $this->createMock(BucketService::class);
+        $folderManager = $this->createMock(FolderManager::class);
         $this->manager = new DocumentManager(
             $s3ClientMock,
             $repositoryMock,
@@ -45,6 +47,7 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
             $requestStackMock,
             $translatorMock,
             $bucketServiceMock,
+            $folderManager,
         );
     }
 
