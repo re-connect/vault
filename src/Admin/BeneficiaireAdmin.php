@@ -32,7 +32,7 @@ class BeneficiaireAdmin extends AbstractAdmin
 {
     protected function configureFormOptions(array &$formOptions): void
     {
-        $formOptions['validation_groups'] = ['password-admin', 'beneficiaire'];
+        $formOptions['validation_groups'] = ['password-admin', 'beneficiaire', 'Default'];
         parent::configureFormOptions($formOptions);
     }
     private UserManager $userManager;
