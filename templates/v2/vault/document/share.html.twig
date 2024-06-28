@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="col-12 col-md-7 offset-md-1 mt-5 mt-md-0 text-center">
-            <h5>{{ 'send_to_contact'|trans }}</h5>
+            <h5>{{ app.user.isBeneficiaire ? 'my_contacts'|trans : 'send_to_contact'|trans }}</h5>
             <div style="scale: 0.9">
                 {{ include('v2/vault/contact/_list_share_document.html.twig', {contacts}) }}
             </div>
