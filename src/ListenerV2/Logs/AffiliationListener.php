@@ -21,17 +21,19 @@ class AffiliationListener implements LogActivityListenerInterface
 {
     use UserAwareTrait;
 
-    private const AFFILIATION_NAME = 'Affiliation link';
+    private const string AFFILIATION_NAME = 'Affiliation link';
 
     public function __construct(private readonly LoggerInterface $affiliationLogger, private readonly Security $security)
     {
     }
 
+    #[\Override]
     public function postPersist(PostPersistEventArgs $args): void
     {
         $this->log($args, sprintf('%s created :', self::AFFILIATION_NAME));
     }
 
+    #[\Override]
     public function preUpdate(PreUpdateEventArgs $args): void
     {
         if (!$args->hasChangedField('bValid')) {
@@ -44,12 +46,14 @@ class AffiliationListener implements LogActivityListenerInterface
         }
     }
 
+    #[\Override]
     public function preRemove(PreRemoveEventArgs $args): void
     {
         $this->log($args, sprintf('%s deleted :', self::AFFILIATION_NAME));
     }
 
     /** @param LifecycleEventArgs<ObjectManager> $args */
+    #[\Override]
     public function log(LifecycleEventArgs $args, string $logType): void
     {
         $userCentre = $args->getObject();

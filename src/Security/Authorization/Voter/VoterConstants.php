@@ -4,6 +4,6 @@ namespace App\Security\Authorization\Voter;
 
 final class VoterConstants
 {
-    public const READ = 'READ';
-    public const WRITE = 'WRITE';
+    public const string READ = 'READ';
+    public const string WRITE = 'WRITE';
 }

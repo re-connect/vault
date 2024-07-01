@@ -28,6 +28,7 @@ class CentreAdmin extends AbstractAdmin
         'validation_groups' => ['centre'],
     ];
 
+    #[\Override]
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues[DatagridInterface::PAGE] = 1;
@@ -38,6 +39,7 @@ class CentreAdmin extends AbstractAdmin
     /**
      * @param Centre $object
      */
+    #[\Override]
     public function preUpdate($object = null): void
     {
         if (!$object->getAdresse()->getNom()) {
@@ -49,6 +51,7 @@ class CentreAdmin extends AbstractAdmin
     /**
      * @param Centre $object
      */
+    #[\Override]
     public function preRemove($object): void
     {
         $creators = $this->entityManager->getRepository(CreatorCentre::class)->findBy(['entity' => $object->getId()]);
@@ -67,6 +70,7 @@ class CentreAdmin extends AbstractAdmin
         $this->userManager = $userManager;
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form
@@ -129,6 +133,7 @@ class CentreAdmin extends AbstractAdmin
         $form->getFormBuilder()->addEventSubscriber(new AssociationCreationSubscriber($this->entityManager, $this->userManager));
     }
 
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -143,6 +148,7 @@ class CentreAdmin extends AbstractAdmin
             ->add('canada', null, ['label' => 'Canada']);
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list
@@ -158,6 +164,7 @@ class CentreAdmin extends AbstractAdmin
             ]);
     }
 
+    #[\Override]
     protected function configureExportFields(): array
     {
         return [

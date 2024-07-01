@@ -10,34 +10,33 @@ use Twig\TwigFunction;
 
 class DocumentExtension extends AbstractExtension
 {
-    private DocumentProvider $documentProvider;
-
     /**
      * DocumentExtension constructor.
      */
-    public function __construct(DocumentProvider $documentProvider)
+    public function __construct(private readonly DocumentProvider $documentProvider)
     {
-        $this->documentProvider = $documentProvider;
     }
 
     /**
      * @return array|TwigFunction[]
      */
+    #[\Override]
     public function getFunctions()
     {
         return [
-            new TwigFunction('getMaxSizeForBeneficiaire', [$this, 'getMaxSizeForBeneficiaire']),
-            new TwigFunction('maxSizeSoonReached', [$this, 'maxSizeSoonReached']),
+            new TwigFunction('getMaxSizeForBeneficiaire', $this->getMaxSizeForBeneficiaire(...)),
+            new TwigFunction('maxSizeSoonReached', $this->maxSizeSoonReached(...)),
         ];
     }
 
     /**
      * @return array|TwigFilter[]
      */
+    #[\Override]
     public function getFilters(): array
     {
         return [
-            new TwigFilter('printFileSize', [$this, 'printFileSize']),
+            new TwigFilter('printFileSize', $this->printFileSize(...)),
         ];
     }
 

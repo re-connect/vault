@@ -17,6 +17,7 @@ use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 
 class EventType extends AbstractType
 {
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $event = $options['data'] ?? null;
@@ -61,6 +62,7 @@ class EventType extends AbstractType
             ->addEventSubscriber(new TimezoneListener());
     }
 
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

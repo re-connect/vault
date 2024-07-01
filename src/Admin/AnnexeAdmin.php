@@ -11,6 +11,7 @@ use Vich\UploaderBundle\Form\Type\VichFileType;
 
 final class AnnexeAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -21,6 +22,7 @@ final class AnnexeAdmin extends AbstractAdmin
             ->add('dateAjout');
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list
@@ -36,6 +38,7 @@ final class AnnexeAdmin extends AbstractAdmin
             ]);
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form
@@ -48,6 +51,7 @@ final class AnnexeAdmin extends AbstractAdmin
             ->add('actif');
     }
 
+    #[\Override]
     protected function configureShowFields(ShowMapper $show): void
     {
         $show

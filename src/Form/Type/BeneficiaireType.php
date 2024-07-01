@@ -15,13 +15,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BeneficiaireType extends AbstractType
 {
-    private RequestStack $requestStack;
-
-    public function __construct(RequestStack $requestStack)
+    public function __construct(private readonly RequestStack $requestStack)
     {
-        $this->requestStack = $requestStack;
     }
 
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $request = $this->requestStack->getCurrentRequest();
@@ -46,6 +44,7 @@ class BeneficiaireType extends AbstractType
             ->remove('avatar');
     }
 
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -55,6 +54,7 @@ class BeneficiaireType extends AbstractType
         ]);
     }
 
+    #[\Override]
     public function getBlockPrefix(): string
     {
         return 're_form_beneficiaire';

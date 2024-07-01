@@ -30,6 +30,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
     /**
      * @throws \Exception
      */
+    #[\Override]
     public function createResetPasswordRequest(object $user, \DateTimeInterface $expiresAt, string $selector, string $hashedToken): ResetPasswordRequestInterface
     {
         if ($user instanceof User) {
@@ -51,7 +52,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
 
         try {
             return $queryBuilder->getQuery()->getSingleResult();
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return null;
         }
     }

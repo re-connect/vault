@@ -13,6 +13,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class ClientMemberFixture extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
+    #[\Override]
     public function load(ObjectManager $manager)
     {
         $client = ClientFactory::find(['nom' => 'applimobile'])->object();
@@ -23,12 +24,14 @@ class ClientMemberFixture extends Fixture implements FixtureGroupInterface, Depe
     }
 
     /** @return string[]     */
+    #[\Override]
     public static function getGroups(): array
     {
         return ['v2'];
     }
 
     /** @return array<class-string<FixtureInterface>> */
+    #[\Override]
     public function getDependencies(): array
     {
         return [MemberFixture::class, ClientFixture::class];

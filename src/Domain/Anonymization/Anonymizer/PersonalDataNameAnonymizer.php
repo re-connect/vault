@@ -13,6 +13,7 @@ use MakinaCorpus\DbToolsBundle\Attribute\AsAnonymizer;
 )]
 class PersonalDataNameAnonymizer extends LastNameAnonymizer
 {
+    #[\Override]
     protected function getSample(): array
     {
         return match ($this->tableName) {

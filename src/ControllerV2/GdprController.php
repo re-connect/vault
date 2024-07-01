@@ -40,7 +40,7 @@ class GdprController extends AbstractController
     {
         $user = $this->getUser();
         $form = $this->createPasswordForm()->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $user) {
             $user->setHasPasswordWithLatestPolicy(true);
             $userManager->updatePassword($user, $form->get('plainPassword')->getData());
             $this->addFlash('success', 'password_updated_successfully');
@@ -56,7 +56,7 @@ class GdprController extends AbstractController
         return $this->createForm(ChangePasswordFormType::class);
     }
 
-    private function renderPasswordPage(User $user, FormInterface $form): Response
+    private function renderPasswordPage(?User $user, FormInterface $form): Response
     {
         return $this->render('v2/user/update_password_form.html.twig', [
             'user' => $user,

@@ -12,11 +12,13 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20210628153852 extends AbstractMigration
 {
+    #[\Override]
     public function getDescription(): string
     {
         return 'Create sharedocument table';
     }
 
+    #[\Override]
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
@@ -25,6 +27,7 @@ final class Version20210628153852 extends AbstractMigration
         $this->addSql('ALTER TABLE sharedocument ADD CONSTRAINT FK_EE4DC1975AF81F68 FOREIGN KEY (beneficiaire_id) REFERENCES beneficiaire (id)');
     }
 
+    #[\Override]
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs

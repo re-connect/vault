@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class TypeCentreAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues[DatagridInterface::PAGE] = 1;
@@ -17,6 +18,7 @@ class TypeCentreAdmin extends AbstractAdmin
         $sortValues[DatagridInterface::SORT_BY] = 'id';
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form
@@ -26,6 +28,7 @@ class TypeCentreAdmin extends AbstractAdmin
     }
 
     // Fields to be shown on filter forms
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -35,6 +38,7 @@ class TypeCentreAdmin extends AbstractAdmin
     }
 
     // Fields to be shown on lists
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list

@@ -7,10 +7,11 @@ use Twig\TwigTest;
 
 class TestTypeExtension extends AbstractExtension
 {
+    #[\Override]
     public function getTests(): array
     {
         return [
-            'instanceof' => new TwigTest('instanceof', [$this, 'isInstanceOf']),
+            'instanceof' => new TwigTest('instanceof', $this->isInstanceOf(...)),
         ];
     }
 

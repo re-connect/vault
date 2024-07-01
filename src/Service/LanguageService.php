@@ -7,7 +7,7 @@ use Symfony\Component\Translation\LocaleSwitcher;
 
 class LanguageService
 {
-    private const ALLOWED_LANGUAGES = ['fr', 'de', 'es', 'en'];
+    private const array ALLOWED_LANGUAGES = ['fr', 'de', 'es', 'en'];
 
     public function __construct(
         private readonly RequestStack $request,

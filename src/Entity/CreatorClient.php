@@ -5,16 +5,12 @@ namespace App\Entity;
 /**
  * CreatorClient.
  */
-class CreatorClient extends Creator
+class CreatorClient extends Creator implements \Stringable
 {
-    /**
-     * @var Client
-     */
-    private $entity;
-
-    public function __toString()
+    #[\Override]
+    public function __toString(): string
     {
-        return $this->getEntity()->getNom();
+        return (string) $this->getEntity()->getNom();
     }
 
     public function getNom(): ?string
@@ -44,8 +40,8 @@ class CreatorClient extends Creator
         return $this;
     }
 
-    public function __construct(?Client $client = null)
-    {
-        $this->entity = $client;
+    public function __construct(
+        private ?Client $entity = null
+    ) {
     }
 }

@@ -25,31 +25,38 @@ class RelayController extends AbstractController
     #[Route(path: '/{id<\d+>}/accept', name: 'accept_relay', methods: ['GET'])]
     public function acceptRelay(Request $request, Centre $relay, RelayManager $manager): Response
     {
-        $manager->acceptRelay($this->getUser(), $relay);
-        $this->addFlash('success', 'relay_affiliation_successful');
+        $user = $this->getUser();
+        if ($user) {
+            $manager->acceptRelay($user, $relay);
+            $this->addFlash('success', 'relay_affiliation_successful');
+        }
 
-        return $this->redirect($request->headers->get('referer'));
+        return $this->redirectToReferer($request->headers->get('referer'));
     }
 
     #[Route(path: '/{id<\d+>}/deny', name: 'deny_relay', methods: ['GET'])]
     public function denyInvitation(Request $request, Centre $relay, RelayManager $manager): Response
     {
-        $manager->leaveRelay($this->getUser(), $relay);
-        $this->addFlash('success', 'relay_affiliation_denied');
+        $user = $this->getUser();
+        if ($user) {
+            $manager->leaveRelay($user, $relay);
+            $this->addFlash('success', 'relay_affiliation_denied');
+        }
 
-        return $this->redirect($request->headers->get('referer'));
+        return $this->redirectToReferer($request->headers->get('referer'));
     }
 
     #[Route(path: '/{id<\d+>}/leave', name: 'leave_relay', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     public function leave(Request $request, Centre $relay, RelayManager $manager): Response
     {
+        $user = $this->getUser();
         $form = $this->createFormBuilder()
             ->setAction($this->generateUrl('leave_relay', ['id' => $relay->getId()]))
             ->getForm()
             ->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager->leaveRelay($this->getUser(), $relay);
+        if ($form->isSubmitted() && $form->isValid() && $user) {
+            $manager->leaveRelay($user, $relay);
             $this->addFlash('success', 'relay_leaved_successfully');
 
             return $this->redirectToRoute('my_relays');

@@ -36,6 +36,7 @@ class ContactProvider extends DonneePersonnelleProvider
         return $entity;
     }
 
+    #[\Override]
     public function populate($entity, Client $client): void
     {
         parent::populate($entity, $client);

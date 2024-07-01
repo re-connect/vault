@@ -12,11 +12,13 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20200819154712 extends AbstractMigration
 {
+    #[\Override]
     public function getDescription(): string
     {
         return 'Add external link to BeneficiaireCentre.';
     }
 
+    #[\Override]
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
@@ -25,6 +27,7 @@ final class Version20200819154712 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_5B8E0FDBF15C33B ON client_entity (beneficiaire_centre_id)');
     }
 
+    #[\Override]
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs

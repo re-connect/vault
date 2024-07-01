@@ -30,8 +30,9 @@ use League\Bundle\OAuth2ServerBundle\Model as OauthModel;
 
 class FixturesPurger implements ORMPurgerInterface
 {
-    private ?EntityManagerInterface $em;
+    private ?EntityManagerInterface $em = null;
 
+    #[\Override]
     public function purge(): void
     {
         $this->truncateTables([
@@ -80,6 +81,7 @@ class FixturesPurger implements ORMPurgerInterface
         }
     }
 
+    #[\Override]
     public function setEntityManager(EntityManagerInterface $em): self
     {
         $this->em = $em;

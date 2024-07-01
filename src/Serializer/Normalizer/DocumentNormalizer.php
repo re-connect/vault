@@ -13,19 +13,19 @@ class DocumentNormalizer implements NormalizerInterface, CacheableSupportsMethod
 {
     use NormalizerAwareTrait;
 
-    private const ALREADY_CALLED = 'DOCUMENT_NORMALIZER_ALREADY_CALLED';
-    private DocumentProvider $provider;
+    private const string ALREADY_CALLED = 'DOCUMENT_NORMALIZER_ALREADY_CALLED';
 
-    public function __construct(DocumentProvider $provider)
+    public function __construct(private DocumentProvider $provider)
     {
-        $this->provider = $provider;
     }
 
+    #[\Override]
     public function hasCacheableSupportsMethod(): bool
     {
         return false;
     }
 
+    #[\Override]
     public function supportsNormalization($data, ?string $format = null, array $context = []): bool
     {
         if (isset($context[self::ALREADY_CALLED])) {
@@ -35,6 +35,7 @@ class DocumentNormalizer implements NormalizerInterface, CacheableSupportsMethod
         return $data instanceof Document;
     }
 
+    #[\Override]
     public function normalize($object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         /* @var Document $object */

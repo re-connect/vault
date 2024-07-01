@@ -78,7 +78,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     private bool $neverClickedMesDocuments = true;
 
     #[Groups(['beneficiary:read'])]
-    private ?string $lieuNaissance;
+    private ?string $lieuNaissance = null;
 
     /** @var Collection<int, BeneficiaireCentre> $beneficiairesCentres */
     #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
@@ -118,7 +118,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     private Collection $consultationsBeneficiaires;
 
     #[Groups(['read', 'beneficiary:read'])]
-    private ?int $idRosalie;
+    private ?int $idRosalie = null;
 
     #[Groups(['read', 'beneficiary:read'])]
     private ?string $siSiaoNumber = null;
@@ -175,7 +175,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function getReponseSecreteToLowerCase(): ?string
     {
-        return strtolower($this->reponseSecrete);
+        return strtolower((string) $this->reponseSecrete);
     }
 
     public function setReponseSecrete(?string $reponseSecrete): Beneficiaire
@@ -197,6 +197,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this;
     }
 
+    #[\Override]
     public function setUser(?User $user = null): self
     {
         $this->user = $user;
@@ -382,6 +383,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this->sms;
     }
 
+    #[\Override]
     public function getUserCentre(Centre $centre): ?BeneficiaireCentre
     {
         foreach ($this->getBeneficiairesCentres() as $beneficiaireCentre) {
@@ -394,27 +396,32 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     }
 
     /** @return Collection<int, BeneficiaireCentre> */
+    #[\Override]
     public function getUserCentres(): Collection
     {
         return $this->getBeneficiairesCentres();
     }
 
     /** @return Collection<int, BeneficiaireCentre> */
+    #[\Override]
     public function getUsersCentres(): Collection
     {
         return $this->getBeneficiairesCentres();
     }
 
+    #[\Override]
     public function getUserCentresCount()
     {
         return $this->getBeneficiairesCentres()->count();
     }
 
+    #[\Override]
     public function isBeneficiaire(): bool
     {
         return true;
     }
 
+    #[\Override]
     public function isMembre(): bool
     {
         return false;
@@ -534,6 +541,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     }
 
     /** @return Collection<int, ClientBeneficiaire> */
+    #[\Override]
     public function getExternalLinks(): Collection
     {
         return $this->externalLinks;
@@ -620,6 +628,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize($withUser = true, $withSecretResponse = false): mixed
     {
         $data = [
@@ -682,9 +691,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function jsonSerializeForClient(?Client $client): array
     {
-        $clientBeneficiaire = !$client ? null : $this->getExternalLinks()->filter(static function (ClientBeneficiaire $element) use ($client) {
-            return $client === $element->getClient();
-        })->first();
+        $clientBeneficiaire = !$client ? null : $this->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $client === $element->getClient())->first();
         $distantId = $clientBeneficiaire?->getDistantId();
 
         return [
@@ -714,9 +721,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function jsonSerializeForClientV2(?Client $client): array
     {
-        $clientBeneficiaire = !$client ? null : $this->getExternalLinks()->filter(static function (ClientBeneficiaire $element) use ($client) {
-            return $client === $element->getClient();
-        })->first();
+        $clientBeneficiaire = !$client ? null : $this->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $client === $element->getClient())->first();
 
         return [
             'distant_id' => $clientBeneficiaire?->getDistantId(),
@@ -782,9 +787,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
             $this->documents = new ArrayCollection();
             foreach ($documents as $document) {
                 if (null !== ($dossier = $document->getDossier())) {
-                    $dossier = $this->dossiers->filter(function (Dossier $element) use ($document) {
-                        return $element->getId() === $document->getDossier()->getId();
-                    })->first();
+                    $dossier = $this->dossiers->filter(fn (Dossier $element) => $element->getId() === $document->getDossier()->getId())->first();
                 }
                 $document->setDossier($dossier);
                 $this->addDocument($document);
@@ -956,11 +959,13 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this;
     }
 
+    #[\Override]
     public function hasExternalLinkForClient(Client $client): bool
     {
         return $this->externalLinks->exists(fn (int $key, ClientBeneficiaire $link) => $link->getClient() === $client);
     }
 
+    #[\Override]
     public function getExternalLinkForClient(?Client $client): ?ClientBeneficiaire
     {
         return $this->getExternalLinksForClient($client)?->first() ?: null;
@@ -1026,6 +1031,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this;
     }
 
+    #[\Override]
     public function getDefaultUsername(): string
     {
         return sprintf('%s.%s.%s',

@@ -9,11 +9,13 @@ use Doctrine\Persistence\ObjectManager;
 
 class RegionFixture extends Fixture implements FixtureGroupInterface
 {
+    #[\Override]
     public function load(ObjectManager $manager)
     {
         RegionFactory::createOne(['name' => 'Occitanie']);
     }
 
+    #[\Override]
     public static function getGroups(): array
     {
         return ['v2'];

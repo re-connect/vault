@@ -30,6 +30,7 @@ class FixRPExternalLinkCommand extends Command
         parent::__construct($name);
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);

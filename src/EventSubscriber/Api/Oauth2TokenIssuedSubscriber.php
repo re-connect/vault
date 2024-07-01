@@ -34,7 +34,7 @@ readonly class Oauth2TokenIssuedSubscriber
         }
         $this->userManager->handleUserLogin($user);
 
-        parse_str($event->getRequest()->getServerParams()['QUERY_STRING'], $queryParams);
+        parse_str((string) $event->getRequest()->getServerParams()['QUERY_STRING'], $queryParams);
         $this->weakPasswordUpgrader->checkUpdateWeakPassword($user, $queryParams['_new_password'] ?? null);
         $this->mfaCodeSender->checkCode($user, $queryParams['_auth_code'] ?? null);
     }

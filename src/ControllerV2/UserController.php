@@ -27,7 +27,7 @@ class UserController extends AbstractController
     public function cgs(Request $request, TranslatorInterface $translator, EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
-        if (!$user->isFirstVisit()) {
+        if (!$user?->isFirstVisit()) {
             return $this->redirectToRoute('redirect_user');
         }
 
@@ -47,7 +47,7 @@ class UserController extends AbstractController
     #[Route(path: '/first-visit', name: 'user_first_visit', methods: ['GET'])]
     public function firstVisit(): Response
     {
-        return $this->getUser()->isFirstVisit()
+        return $this->getUser()?->isFirstVisit()
             ? $this->render('v2/user/first_visit/first_visit.html.twig')
             : $this->redirectToRoute('redirect_user');
     }
@@ -118,7 +118,7 @@ class UserController extends AbstractController
 
         $form = $this->createFormBuilder()->getForm()->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $user) {
             $userManager->remove($user);
             $request->getSession()->invalidate();
             $tokenStorage->setToken(null);
@@ -151,7 +151,10 @@ class UserController extends AbstractController
     #[Route(path: '/{id<\d+>}/invite', name: 'invite_user', methods: ['GET'])]
     public function inviteUser(User $user): Response
     {
-        return $this->render('v2/user/affiliation/invite.html.twig', ['user' => $user, 'relays' => $this->getUser()->getAffiliatedRelaysWithProfessionalManagement()]);
+        return $this->render('v2/user/affiliation/invite.html.twig', [
+            'user' => $user,
+            'relays' => $this->getUser()?->getAffiliatedRelaysWithProfessionalManagement() ?? [],
+        ]);
     }
 
     #[Route(

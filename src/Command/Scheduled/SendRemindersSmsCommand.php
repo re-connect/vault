@@ -20,6 +20,7 @@ class SendRemindersSmsCommand extends Command
         parent::__construct($name);
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);

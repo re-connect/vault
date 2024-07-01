@@ -52,7 +52,7 @@ class BeneficiaryAffiliationManager
 
     public function isSecretAnswerValid(Beneficiaire $beneficiary, ?string $secretAnswer): bool
     {
-        return $secretAnswer && strtolower($secretAnswer) === strtolower($beneficiary->getReponseSecrete());
+        return $secretAnswer && strtolower($secretAnswer) === strtolower((string) $beneficiary->getReponseSecrete());
     }
 
     /**
@@ -72,7 +72,7 @@ class BeneficiaryAffiliationManager
     {
         $professional = $this->getUser();
 
-        if (!$this->authorizationChecker->isGranted('ROLE_MEMBRE', $professional)) {
+        if (!$professional || !$this->authorizationChecker->isGranted('ROLE_MEMBRE', $professional)) {
             return;
         }
 
@@ -91,14 +91,17 @@ class BeneficiaryAffiliationManager
 
     public function disaffiliateBeneficiary(Beneficiaire $beneficiary, Centre $relay): void
     {
-        $this->relayManager->removeUserFromRelay($beneficiary->getUser(), $relay);
+        $user = $beneficiary->getUser();
+        if ($user) {
+            $this->relayManager->removeUserFromRelay($user, $relay);
+        }
     }
 
     public function forceAcceptInvitations(Beneficiaire $beneficiary): void
     {
         $user = $this->getUser();
         foreach ($beneficiary->getUserCentres() as $userCentre) {
-            if ($user->hasValidLinkToRelay($userCentre->getCentre())) {
+            if ($user?->hasValidLinkToRelay($userCentre->getCentre())) {
                 $userCentre->setBValid(true);
             }
         }

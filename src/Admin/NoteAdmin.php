@@ -22,6 +22,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class NoteAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues[DatagridInterface::PAGE] = 1;
@@ -29,6 +30,7 @@ class NoteAdmin extends AbstractAdmin
         $sortValues[DatagridInterface::SORT_BY] = 'id';
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form
@@ -46,6 +48,7 @@ class NoteAdmin extends AbstractAdmin
             ->end();
     }
 
+    #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -140,6 +143,7 @@ class NoteAdmin extends AbstractAdmin
             ->add('beneficiaire.user.canada', null, ['label' => 'Canada']);
     }
 
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list
@@ -160,11 +164,13 @@ class NoteAdmin extends AbstractAdmin
             ->add('beneficiaire.user.canada', null, ['label' => 'Canada']);
     }
 
+    #[\Override]
     protected function configureRoutes(RouteCollectionInterface $collection): void
     {
         $collection->remove('create');
     }
 
+    #[\Override]
     public function configureExportFields(): array
     {
         return [

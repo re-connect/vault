@@ -199,7 +199,7 @@ class DocumentManager
             $this->em->remove($document);
             $this->em->flush();
             $this->addFlashMessage('success', 'document_deleted_successfully');
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $this->addFlashMessage('danger', 'error');
         }
     }

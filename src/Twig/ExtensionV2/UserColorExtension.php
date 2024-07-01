@@ -15,13 +15,14 @@ class UserColorExtension extends AbstractExtension
     {
     }
 
+    #[\Override]
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('getUserBackgroundColor', [$this, 'getUserBackgroundColor']),
-            new TwigFunction('getUserButtonColor', [$this, 'getUserButtonColor']),
-            new TwigFunction('getUserTextColor', [$this, 'getUserTextColor']),
-            new TwigFunction('getUserThemeColor', [$this, 'getUserThemeColor']),
+            new TwigFunction('getUserBackgroundColor', $this->getUserBackgroundColor(...)),
+            new TwigFunction('getUserButtonColor', $this->getUserButtonColor(...)),
+            new TwigFunction('getUserTextColor', $this->getUserTextColor(...)),
+            new TwigFunction('getUserThemeColor', $this->getUserThemeColor(...)),
         ];
     }
 

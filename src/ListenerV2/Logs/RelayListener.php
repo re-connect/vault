@@ -21,22 +21,25 @@ class RelayListener implements LogActivityListenerInterface
 {
     use UserAwareTrait;
 
-    private const RELAY_NAME = 'Relay';
+    private const string RELAY_NAME = 'Relay';
 
     public function __construct(private readonly LoggerInterface $relayLogger, private readonly Security $security)
     {
     }
 
+    #[\Override]
     public function postPersist(PostPersistEventArgs $args): void
     {
         $this->log($args, sprintf('%s created :', self::RELAY_NAME));
     }
 
+    #[\Override]
     public function preUpdate(PreUpdateEventArgs $args): void
     {
         $this->log($args, sprintf('%s updated :', self::RELAY_NAME));
     }
 
+    #[\Override]
     public function preRemove(PreRemoveEventArgs $args): void
     {
         $this->log($args, sprintf('%s removed :', self::RELAY_NAME));
@@ -45,6 +48,7 @@ class RelayListener implements LogActivityListenerInterface
     /**
      * @param LifecycleEventArgs<ObjectManager> $args
      */
+    #[\Override]
     public function log(LifecycleEventArgs $args, string $logType): void
     {
         $object = $args->getObject();

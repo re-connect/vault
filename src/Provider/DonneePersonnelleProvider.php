@@ -200,11 +200,11 @@ abstract class DonneePersonnelleProvider
 
     public function sanitize($str, $charset = 'utf-8')
     {
-        $str = htmlentities($str, ENT_NOQUOTES, $charset);
+        $str = htmlentities((string) $str, ENT_NOQUOTES, $charset);
         $str = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
-        $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str); // pour les ligatures e.g. '&oelig;'
-        $str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractères
-        $str = preg_replace('#[^0-9-_a-zA-Z ().]#', '', $str); // supprime les autres caractères
+        $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', (string) $str); // pour les ligatures e.g. '&oelig;'
+        $str = preg_replace('#&[^;]+;#', '', (string) $str); // supprime les autres caractères
+        $str = preg_replace('#[^0-9-_a-zA-Z ().]#', '', (string) $str); // supprime les autres caractères
 
         return $str;
     }
@@ -249,9 +249,7 @@ abstract class DonneePersonnelleProvider
             $centre = false;
 
             foreach ($beneficiaire->getCentres() as $centre) {
-                $centreCommun = $user->getCentres()->filter(static function (Centre $element) use ($centre) {
-                    return $element === $centre;
-                })->first();
+                $centreCommun = $user->getCentres()->filter(static fn (Centre $element) => $element === $centre)->first();
                 if (false !== $centreCommun) {
                     $centre = $centreCommun;
                     break;

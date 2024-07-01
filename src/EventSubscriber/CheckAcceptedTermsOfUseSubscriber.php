@@ -12,7 +12,7 @@ class CheckAcceptedTermsOfUseSubscriber extends AbstractWebUserSubscriber implem
     {
         $user = $this->getUser();
 
-        if (!$this->isAuthenticatedWebUser($user)) {
+        if (!$user || !$this->isAuthenticatedWebUser($user)) {
             return;
         }
 
@@ -25,6 +25,7 @@ class CheckAcceptedTermsOfUseSubscriber extends AbstractWebUserSubscriber implem
         }
     }
 
+    #[\Override]
     public static function getSubscribedEvents(): array
     {
         return [

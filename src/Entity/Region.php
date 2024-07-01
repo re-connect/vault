@@ -8,7 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[UniqueEntity('name')]
-class Region
+class Region implements \Stringable
 {
     private ?int $id = null;
 
@@ -18,7 +18,7 @@ class Region
     #[Assert\Email]
     private ?string $email = null;
 
-    private Collection $centres;
+    private ?Collection $centres = null;
 
     public function __construct()
     {
@@ -77,8 +77,9 @@ class Region
         return $this;
     }
 
+    #[\Override]
     public function __toString(): string
     {
-        return $this->name;
+        return (string) $this->name;
     }
 }

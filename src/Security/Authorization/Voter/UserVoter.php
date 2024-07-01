@@ -14,16 +14,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class UserVoter extends Voter
 {
     public const GESTION_USER = 'gestion beneficiaire';
-    private CentreProvider $provider;
     private BeneficiaireVoter $beneficiaireVoter;
     private MembreVoter $membreVoter;
 
     /**
      * UserVoter constructor.
      */
-    public function __construct(CentreProvider $provider)
+    public function __construct(private readonly CentreProvider $provider)
     {
-        $this->provider = $provider;
     }
 
     public function setBeneficiaireVoter(BeneficiaireVoter $beneficiaireVoter)
@@ -36,6 +34,7 @@ class UserVoter extends Voter
         $this->membreVoter = $membreVoter;
     }
 
+    #[\Override]
     protected function supports(string $attribute, mixed $subject): bool
     {
         return in_array($attribute, [
@@ -43,6 +42,7 @@ class UserVoter extends Voter
         ]) && $subject instanceof UserInterface;
     }
 
+    #[\Override]
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         // get current logged in user

@@ -13,7 +13,7 @@ readonly class BeneficiaryCheckOnRosalie
 
     public static function fromResponse(Beneficiaire $beneficiary, ?int $statusCode = null, ?string $payload = null): self
     {
-        $responseData = json_decode($payload, true);
+        $responseData = json_decode((string) $payload, true);
         $similarity = $responseData['similarity'] ?? null;
 
         return new BeneficiaryCheckOnRosalie($beneficiary, $statusCode, self::computeSimilarityPercentage($similarity));

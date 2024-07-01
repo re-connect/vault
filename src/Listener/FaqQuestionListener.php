@@ -48,9 +48,7 @@ class FaqQuestionListener
         $this->faqQuestionToPersist[] = $entity;
         $position = $entity->getPosition();
         $faqQuestionsWithHigherOrEqualPosition = $this->repository->findGreaterThanOrEqual($position);
-        $faqQuestionsWithHigherOrEqualPosition = array_values(array_filter($faqQuestionsWithHigherOrEqualPosition, function ($faq) use ($entity) {
-            return $faq->getId() !== $entity->getId();
-        }));
+        $faqQuestionsWithHigherOrEqualPosition = array_values(array_filter($faqQuestionsWithHigherOrEqualPosition, fn ($faq) => $faq->getId() !== $entity->getId()));
         if (null === $position) {
             $highestPosition = $this->repository->findOneBy([], ['position' => 'DESC'])->getPosition();
             $entity->setPosition($highestPosition + 1);

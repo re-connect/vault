@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class RegionAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureListFields(ListMapper $list): void
     {
         $list
@@ -16,6 +17,7 @@ class RegionAdmin extends AbstractAdmin
             ->add('email');
     }
 
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $form

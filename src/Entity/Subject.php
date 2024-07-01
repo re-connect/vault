@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ReadableCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-abstract class Subject implements \JsonSerializable
+abstract class Subject implements \JsonSerializable, \Stringable
 {
     #[Groups(['read', 'read-personal-data', 'read-personal-data-v2', 'v3:user:read'])]
     protected ?int $id = null;
@@ -13,6 +13,7 @@ abstract class Subject implements \JsonSerializable
     #[Groups(['read', 'v3:user:read', 'v3:beneficiary:write'])]
     protected ?User $user = null;
 
+    #[\Override]
     public function __toString(): string
     {
         $str = '';

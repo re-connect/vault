@@ -19,6 +19,6 @@ class ResetPasswordSecretAnswerFormModel
 
     public function getSecretAnswerToLowerCase(): string
     {
-        return strtolower($this->secretAnswer);
+        return strtolower((string) $this->secretAnswer);
     }
 }

@@ -73,6 +73,7 @@ class Note extends DonneePersonnelle
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [

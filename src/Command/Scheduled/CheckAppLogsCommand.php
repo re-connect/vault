@@ -16,7 +16,7 @@ use Symfony\Component\Process\Process;
 )]
 class CheckAppLogsCommand extends Command
 {
-    private const LOG_FILES = ['login', 'personal_data', 'user', 'relay', 'affiliation'];
+    private const array LOG_FILES = ['login', 'personal_data', 'user', 'relay', 'affiliation'];
 
     /**
      * @param string[] $adminMails
@@ -29,6 +29,7 @@ class CheckAppLogsCommand extends Command
         parent::__construct();
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $logDir = sprintf('%s/var/log/activity', $this->kernelProjectDir);
