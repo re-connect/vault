@@ -2,13 +2,13 @@
 
 namespace App\ListenerV2;
 
+use App\Api\Manager\ApiClientManager;
+use App\Entity\CreatorClient;
 use App\Entity\CreatorUser;
 use App\Entity\DonneePersonnelle;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Events;
-use Doctrine\Persistence\Event\LifecycleEventArgs;
-use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\SecurityBundle\Security;
 
 #[AsEntityListener(event: Events::prePersist, method: 'prePersist', entity: DonneePersonnelle::class)]
@@ -16,23 +16,21 @@ class CreatorListener
 {
     use UserAwareTrait;
 
-    public function __construct(private readonly Security $security)
+    public function __construct(private readonly Security $security, private readonly ApiClientManager $apiClientManager)
     {
     }
 
-    /**
-     * @param LifecycleEventArgs<ObjectManager> $args
-     */
-    public function prePersist(DonneePersonnelle $personalData, LifecycleEventArgs $args): void
+    public function prePersist(DonneePersonnelle $personalData): void
     {
         $user = $this->getUser();
-        $personalData = $args->getObject();
+        $client = $this->apiClientManager->getCurrentOldClient();
 
-        if (!$personalData instanceof DonneePersonnelle || !$user) {
-            return;
+        if ($user) {
+            $personalData->addCreator((new CreatorUser())->setEntity($user));
         }
 
-        $creator = (new CreatorUser())->setEntity($user);
-        $personalData->addCreator($creator);
+        if ($client) {
+            $personalData->addCreator((new CreatorClient())->setEntity($client));
+        }
     }
 }
