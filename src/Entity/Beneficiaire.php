@@ -115,7 +115,6 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     private Collection $sms;
 
-    #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
     private int $totalFileSize = 0;
 
     private ?string $relayInvitationSmsCode = null;
@@ -437,35 +436,10 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return false;
     }
 
+    #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
     public function getTotalFileSize(): ?int
     {
-        return $this->totalFileSize;
-    }
-
-    public function getTotalFileSizeInMo(): ?int
-    {
-        return $this->totalFileSize / (1024 * 1024);
-    }
-
-    public function setTotalFileSize(?int $totalFileSize): self
-    {
-        $this->totalFileSize = $totalFileSize;
-
-        return $this;
-    }
-
-    public function useVaultSpace(int $additionalSpace): self
-    {
-        $this->totalFileSize += $additionalSpace;
-
-        return $this;
-    }
-
-    public function freeVaultSpace(int $additionalSpace): self
-    {
-        $this->totalFileSize -= $additionalSpace;
-
-        return $this;
+        return $this->documents->reduce(fn (int $acc, Document $document) => $acc + $document->getTaille(), 0);
     }
 
     public function isCreating(): bool
@@ -644,7 +618,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         $data = [
             'id' => $this->id,
             'date_naissance' => $this->dateNaissance->format(\DateTime::W3C),
-            'total_file_size' => $this->totalFileSize,
+            'total_file_size' => $this->getTotalFileSize(),
             'created_at' => $this->createdAt->format(\DateTime::W3C),
             'updated_at' => $this->updatedAt->format(\DateTime::W3C),
             'centres' => $this->getCentreNoms()->toArray(),
@@ -675,7 +649,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return [
             'subject_id' => $this->id,
             'date_naissance' => $this->dateNaissance->format(\DateTime::W3C),
-            'total_file_size' => $this->totalFileSize,
+            'total_file_size' => $this->getTotalFileSize(),
             'centres' => $this->getCentreNoms()->toArray(),
             'question_secrete' => $this->questionSecrete,
             'reponse_secrete' => $this->reponseSecrete,

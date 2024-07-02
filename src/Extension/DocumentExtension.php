@@ -45,7 +45,7 @@ class DocumentExtension extends AbstractExtension
         return $this->documentProvider->getMaxSizeForBeneficiaire();
     }
 
-    public function maxSizeSoonReached(Beneficiaire $beneficiaire)
+    public function maxSizeSoonReached(Beneficiaire $beneficiaire): bool
     {
         return $this->documentProvider->maxSizeSoonReached($beneficiaire);
     }
