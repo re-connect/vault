@@ -1,21 +1,27 @@
-{% extends 'v2/vault/standard_layout.html.twig' %}
+{% extends 'v2/management_layout.html.twig' %}
+
+{% block metaTitle %}{{ 'share_document'|trans }}{% endblock metaTitle %}
+{% block subTitleIconName %}paper-plane{% endblock %}
+{% block subTitle %}<u>{{ document.nom }}</u>{% endblock %}
 
 {% block content %}
-    <div class="container-fluid max-width-lg text-primary text-center mt-4">
-        <h3>
-            <i class="fas fa-paper-plane pl-2"
-               aria-hidden="true"></i>
-            {{ 'share_document'|trans }}
-        </h3>
-        <span><u>{{ document.nom }}</u></span>
-        <hr class="hr-2">
-        {{ form_start(form) }}
-        <div class="col-9 col-sm-6 col-md-4 mx-auto text-start mt-5">
-            {{ form_row(form.email) }}
-            <div class="text-end">
-            {{ button('submit', 'confirm', 'green') }}
+    <div class="row mt-5">
+        <div class="col-12 col-md-4 text-start">
+            <h5 class="text-center">{{ 'enter_an_email'|trans }}</h5>
+            <div class="mt-md-3">
+                {{ form_start(form) }}
+                {{ form_row(form.email) }}
+                <div class="text-end">
+                    {{ button('submit', 'send', 'green') }}
+                </div>
+                {{ form_end(form) }}
             </div>
         </div>
-        {{ form_end(form) }}
+        <div class="col-12 col-md-7 offset-md-1 mt-5 mt-md-0 text-center">
+            <h5>{{ app.user.isBeneficiaire ? 'my_contacts'|trans : 'send_to_contact'|trans }}</h5>
+            <div style="scale: 0.9">
+                {{ include('v2/vault/contact/_list_share_document.html.twig', {contacts}) }}
+            </div>
+        </div>
     </div>
 {% endblock %}

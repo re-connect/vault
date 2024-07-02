@@ -1,44 +1,50 @@
 <tr class="text-primary text-center align-middle">
-    <td class="bg-white borderless p-0 h-100">
+    <td class="bg-white borderless p-0">
         <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
             {{ contact.nom|upper }}
         </a>
     </td>
-    <td class="bg-white borderless p-0 h-100">
+    <td class="bg-white borderless p-0">
         <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
             {{ contact.prenom }}
         </a>
     </td>
-    <td class="bg-white borderless d-none d-lg-table-cell p-0 h-100">
-        <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
-            {{ contact.telephone }}
-        </a>
-    </td>
-    <td class="bg-white borderless d-none d-lg-table-cell p-0 h-100">
+    {% block phone %}
+        <td class="bg-white borderless d-none d-lg-table-cell p-0">
+            <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
+                {{ contact.telephone }}
+            </a>
+        </td>
+    {% endblock %}
+    <td class="bg-white borderless d-none d-lg-table-cell p-0">
         <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
             {{ contact.email }}
         </a>
     </td>
-    {% if app.user.isBeneficiaire %}
-        <td class="bg-white borderless">
-            {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
-                'url': path('contact_toggle_visibility', {'id': contact.id}),
-                'private': contact.bPrive,
+    {% block toggle_visibility_button %}
+        {% if app.user.isBeneficiaire %}
+            <td class="bg-white borderless">
+                {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
+                    'url': path('contact_toggle_visibility', {'id': contact.id}),
+                    'private': contact.bPrive,
+                }) }}
+            </td>
+        {% endif %}
+    {% endblock %}
+    {% block action %}
+        <td class="bg-white borderless" {{ stimulus_controller('dropdown-menu') }}>
+            {{ include('v2/vault/components/_action_dropdown.html.twig', {
+                'editPath': path('contact_edit', {'id': contact.id}),
+                'detailPath': path('contact_detail', {'id': contact.id}),
+                'delete': {
+                    'path': path('contact_delete', {'id': contact.id}),
+                    'message': 'modal_message_contact_deletev2'|trans({'%fullName%': contact.fullName}),
+                },
+                'switchPrivate': {
+                    'path': path('contact_toggle_visibility', {'id': contact.id}),
+                    'message': 'switch_content_private_confirm'|trans,
+                },
             }) }}
         </td>
-    {% endif %}
-    <td class="bg-white borderless" {{ stimulus_controller('dropdown-menu') }}>
-        {{ include('v2/vault/components/_action_dropdown.html.twig', {
-            'editPath': path('contact_edit', {'id': contact.id}),
-            'detailPath': path('contact_detail', {'id': contact.id}),
-            'delete': {
-                'path': path('contact_delete', {'id': contact.id}),
-                'message': 'modal_message_contact_deletev2'|trans({'%fullName%': contact.fullName}),
-            },
-            'switchPrivate': {
-                'path': path('contact_toggle_visibility', {'id': contact.id}),
-                'message': 'switch_content_private_confirm'|trans,
-            },
-        }) }}
-    </td>
+    {% endblock %}
 </tr>

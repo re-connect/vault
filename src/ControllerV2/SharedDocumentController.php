@@ -2,9 +2,13 @@
 
 namespace App\ControllerV2;
 
+use App\Entity\Contact;
 use App\Entity\Document;
+use App\ManagerV2\ContactManager;
 use App\ManagerV2\DocumentManager;
 use App\ManagerV2\SharedDocumentManager;
+use App\ServiceV2\PaginatorService;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,10 +17,22 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class SharedDocumentController extends AbstractController
 {
-    #[Route(path: 'document/{id}/share', name: 'document_share', methods: ['GET', 'POST'])]
+    private const int CONTACT_LIST_LIMIT = 4;
+
+    #[Route(path: 'document/{id<\d+>}/share', name: 'document_share', methods: ['GET', 'POST'])]
     #[IsGranted('UPDATE', 'document')]
-    public function share(Request $request, Document $document, SharedDocumentManager $sharedDocumentManager): Response
-    {
+    public function share(
+        Request $request,
+        Document $document,
+        SharedDocumentManager $sharedDocumentManager,
+        ContactManager $contactManager,
+        PaginatorService $paginatorService,
+    ): Response {
+        // We need this check because we show beneficiary's contacts on this route
+        if (!$this->isGranted('UPDATE', $document->getBeneficiaire())) {
+            return $this->redirectToRoute('redirect_user');
+        }
+
         $form = $this->createFormBuilder()
             ->add('email', EmailType::class, ['label' => 'share_document_with'])
             ->setAction($this->generateUrl('document_share', ['id' => $document->getId()]))
@@ -37,7 +53,36 @@ class SharedDocumentController extends AbstractController
             'form' => $form,
             'document' => $document,
             'beneficiary' => $document->getBeneficiaire(),
+            'contacts' => $paginatorService->create(
+                $contactManager->getContacts($document->getBeneficiaire()),
+                $request->query->getInt('page', 1),
+                self::CONTACT_LIST_LIMIT,
+            ),
         ]);
+    }
+
+    #[Route(path: 'document/{id<\d+>}/share-with-contact/{contactId<\d+>}', name: 'document_share_with_contact', methods: ['GET'])]
+    #[IsGranted('UPDATE', 'document')]
+    #[IsGranted('UPDATE', 'contact')]
+    public function shareWithContact(
+        Request $request,
+        Document $document,
+        #[MapEntity(id: 'contactId')] Contact $contact,
+        SharedDocumentManager $sharedDocumentManager,
+    ): Response {
+        if (!$contact->getEmail()) {
+            $this->addFlash('error', 'contact_has_no_email');
+
+            return $this->redirectToRoute('document_share', ['id' => $document->getId()]);
+        }
+
+        $sharedDocumentManager->generateSharedDocumentAndSendEmail(
+            $document,
+            $contact->getEmail(),
+            $request->getLocale(),
+        );
+
+        return $this->redirectToRoute('list_documents', ['id' => $document->getBeneficiaire()?->getId()]);
     }
 
     #[Route(path: '/public/download-shared-document/{token}', name: 'download_shared_document', methods: ['GET'])]
