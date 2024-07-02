@@ -650,3 +650,7 @@ duplicate_mail_title: 'Doublons de username bénéficiaire : %username%'
 duplicate_mail_created_by_client: 'Créé par (client) : %client%'
 duplicate_mail_created_by_pro: "Crée par le.a professionnel.le d'id %id%, affilié.e aux Centre(s) suivants :"
 our_activity_report: Notre rapport d'activité
+contact_has_no_email: L'envoi est impossible sans adresse e-mail dans le contact.
+enter_an_email: Entrer un email
+send_to_contact: Envoyer à un contact du bénéficiaire
+confirm_send_document_to_contact: Êtes vous sûr de vouloir envoyer ce document à %contactName% ?
