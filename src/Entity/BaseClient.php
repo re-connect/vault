@@ -31,8 +31,8 @@ class BaseClient
 
     public function __construct()
     {
-        $this->setRandomId($this->generateToken());
-        $this->setSecret($this->generateToken());
+        $this->setRandomId(static::generateToken());
+        $this->setSecret(static::generateToken());
     }
 
     public function getId()

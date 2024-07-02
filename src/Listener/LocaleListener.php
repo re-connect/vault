@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 #[AsEventListener(event: KernelEvents::REQUEST, method: 'onKernelRequest', priority: 17)]
 class LocaleListener
 {
-    public function __construct(private string $defaultLocale = 'fr')
+    public function __construct(private readonly string $defaultLocale = 'fr')
     {
     }
 

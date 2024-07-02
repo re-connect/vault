@@ -4,7 +4,7 @@ namespace App\Event;
 
 use Symfony\Contracts\EventDispatcher\Event;
 
-class REEvent extends Event
+class REEvent extends Event implements \Stringable
 {
     public const RE_EVENT_BENEFICIAIRE = 're.event.beneficiaire';
     public const RE_EVENT_MEMBRE = 're.event.membre';
@@ -28,11 +28,12 @@ class REEvent extends Event
         return $this;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         /* @var string $string */
         if (!empty($this->type)) {
-            return $this->getConstName($this->type);
+            return (string) $this->getConstName($this->type);
         }
 
         return '';
@@ -40,7 +41,7 @@ class REEvent extends Event
 
     protected function getConstName($cstName)
     {
-        $fooClass = new \ReflectionClass(get_class($this));
+        $fooClass = new \ReflectionClass(static::class);
         $constants = $fooClass->getConstants();
 
         $constName = null;

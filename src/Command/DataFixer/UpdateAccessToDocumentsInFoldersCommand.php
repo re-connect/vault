@@ -16,22 +16,21 @@ use Symfony\Component\Console\Output\OutputInterface;
 class UpdateAccessToDocumentsInFoldersCommand extends Command
 {
     // the name of the command (the part after "bin/console")
-    private const BATCH_SIZE = 200;
-    private EntityManagerInterface $entityManager;
+    private const int BATCH_SIZE = 200;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(private readonly EntityManagerInterface $entityManager)
     {
-        $this->entityManager = $entityManager;
-
         parent::__construct();
     }
 
+    #[\Override]
     protected function configure()
     {
         $this
             ->setHelp('This command update access to documents in folders.');
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $documents = $this->entityManager->createQuery('SELECT d FROM '.Document::class.' d WHERE d.dossier IS NOT NULL')->iterate();

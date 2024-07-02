@@ -17,8 +17,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 abstract class DonneePersonnelleRestController extends REController
 {
     protected $provider;
-    protected RestManager $restManager;
-    protected BeneficiaireProvider $beneficiaireProvider;
     protected ?string $entityName = null;
     protected ?string $accessRead = null;
     protected ?string $accessWrite = null;
@@ -28,14 +26,11 @@ abstract class DonneePersonnelleRestController extends REController
         RequestStack $requestStack,
         TranslatorInterface $translator,
         EntityManagerInterface $entityManager,
-        RestManager $restManager,
-        BeneficiaireProvider $beneficiaireProvider,
+        protected RestManager $restManager,
+        protected BeneficiaireProvider $beneficiaireProvider,
         ApiClientManager $apiClientManager,
     ) {
         parent::__construct($requestStack, $translator, $entityManager, $apiClientManager);
-
-        $this->restManager = $restManager;
-        $this->beneficiaireProvider = $beneficiaireProvider;
     }
 
     protected function editAction(int $id): JsonResponse

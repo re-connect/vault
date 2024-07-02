@@ -42,6 +42,7 @@ class MembreCentre extends UserCentre
         ];
     }
 
+    #[\Override]
     public function getCentre(): ?Centre
     {
         return $this->centre;
@@ -66,6 +67,7 @@ class MembreCentre extends UserCentre
         return $this;
     }
 
+    #[\Override]
     public function getDroits(): array
     {
         return $this->droits;
@@ -78,6 +80,7 @@ class MembreCentre extends UserCentre
         return $this;
     }
 
+    #[\Override]
     public function setUser(User $user): static
     {
         $this->membre = $user->getSubjectMembre();
@@ -85,6 +88,7 @@ class MembreCentre extends UserCentre
         return $this;
     }
 
+    #[\Override]
     public function getUser(): User
     {
         return $this->membre?->getUser();
@@ -145,6 +149,7 @@ class MembreCentre extends UserCentre
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [

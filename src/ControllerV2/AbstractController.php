@@ -4,9 +4,11 @@ namespace App\ControllerV2;
 
 use App\Entity\Membre;
 use App\Entity\User;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
 {
+    #[\Override]
     public function getUser(): ?User
     {
         /** @var User $user */
@@ -23,5 +25,12 @@ class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\Abst
     protected function isLoggedInUser(User $user): bool
     {
         return $this->getUser() === $user;
+    }
+
+    protected function redirectToReferer(?string $referer): RedirectResponse
+    {
+        return $referer
+            ? $this->redirect($referer)
+            : $this->redirectToRoute('redirect_user');
     }
 }

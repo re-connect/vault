@@ -14,6 +14,7 @@ readonly class UserChecker implements UserCheckerInterface
     {
     }
 
+    #[\Override]
     public function checkPreAuth(UserInterface $user): void
     {
         if (!$user instanceof User) {
@@ -27,6 +28,7 @@ readonly class UserChecker implements UserCheckerInterface
         }
     }
 
+    #[\Override]
     public function checkPostAuth(UserInterface $user): void
     {
     }

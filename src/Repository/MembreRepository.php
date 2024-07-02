@@ -45,7 +45,7 @@ class MembreRepository extends ServiceEntityRepository
                 ->join('m.user', 'user')
                 ->where('user.test = false')
                 ->getQuery()->getSingleScalarResult();
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return 0;
         }
     }

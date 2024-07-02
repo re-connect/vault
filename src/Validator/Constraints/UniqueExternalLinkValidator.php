@@ -21,6 +21,7 @@ class UniqueExternalLinkValidator extends ConstraintValidator
     ) {
     }
 
+    #[\Override]
     public function validate($value, Constraint $constraint): void
     {
         if (!$constraint instanceof UniqueExternalLink) {
@@ -66,11 +67,9 @@ class UniqueExternalLinkValidator extends ConstraintValidator
             ]);
 
             if (null !== $externalLink) {
-                $externalLinks = $value->filter(static function ($element) use ($externalLink) {
-                    return $element->getClient() === $externalLink->getClient()
-                        && $element->getDistantId() === $externalLink->getDistantId()
-                        && $element->getEntity() === $externalLink->getEntity();
-                });
+                $externalLinks = $value->filter(static fn ($element) => $element->getClient() === $externalLink->getClient()
+                    && $element->getDistantId() === $externalLink->getDistantId()
+                    && $element->getEntity() === $externalLink->getEntity());
             }
 
             if (null !== $externalLink && !$externalLinkAlreadyLinks->contains($externalLink) && (!$externalLinks->first() || $externalLinks->count() > 1)) {

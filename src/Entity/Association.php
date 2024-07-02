@@ -138,6 +138,7 @@ class Association extends Subject
      *
      * @return Association
      */
+    #[\Override]
     public function setUser(?User $user = null)
     {
         $this->user = $user;
@@ -154,7 +155,8 @@ class Association extends Subject
         return $this->gestionnaires;
     }
 
-    public function __toString()
+    #[\Override]
+    public function __toString(): string
     {
         if (!empty($this->getNom())) {
             return $this->getNom();
@@ -197,6 +199,7 @@ class Association extends Subject
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [];
@@ -264,6 +267,7 @@ class Association extends Subject
         return $this;
     }
 
+    #[\Override]
     public function getDefaultUsername(): string
     {
         return (new AsciiSlugger())->slug($this->nom)->replaceMatches("#[ \'-]#", '')->lower()->toString();

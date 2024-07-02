@@ -17,6 +17,7 @@ readonly class UserPasswordProcessor implements ProcessorInterface
     }
 
     /** @param User $data */
+    #[\Override]
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): mixed
     {
         if (!$data->getPlainPassword()) {

@@ -40,7 +40,7 @@ class RestClient
     protected function _makeUrl($pParams)
     {
         return $this->_url
-            .(strpos($this->_url, '?') ? '' : '?')
+            .(strpos((string) $this->_url, '?') ? '' : '?')
             .http_build_query($pParams);
     }
 

@@ -20,6 +20,7 @@ class EntityValidator extends ConstraintValidator
      *
      * @throws \Exception
      */
+    #[\Override]
     public function validate(mixed $reminder, Constraint $constraint): void
     {
         if (!$reminder instanceof Rappel) {

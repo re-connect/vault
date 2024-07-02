@@ -21,6 +21,7 @@ class LogSmsReminderSending extends Command
         parent::__construct($name);
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $reminders = $this->reminderRepository->getDueReminders();

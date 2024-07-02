@@ -12,17 +12,20 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20220912125347 extends AbstractMigration
 {
+    #[\Override]
     public function getDescription(): string
     {
         return '';
     }
 
+    #[\Override]
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE user DROP password_requested_at, DROP smsPasswordResetCode, DROP smsPasswordResetDate, DROP emailForgotPasswordToken, DROP emailForgotPasswordTokenRequestedAt, DROP emailForgotPasswordTokenMustBeVerifiedBefore, DROP emailForgotPasswordTokenVerifiedAt, DROP smsForgotPasswordToken, DROP smsForgotPasswordTokenVerifiedAt, DROP smsPasswordResetCodeRequestedAt, DROP smsPasswordResetCodeMustBeVerifiedBefore');
     }
 
+    #[\Override]
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs

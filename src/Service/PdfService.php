@@ -22,7 +22,7 @@ class PdfService
             }
 
             $sepa = '/';                // using '/' as file separation for nfs on linux.
-            $target = dirname($source).$sepa.$target;
+            $target = dirname((string) $source).$sepa.$target;
             $size = intval($size);            // only use as integer, default is 256
             $page = intval($page);            // only use as integer, default is 1
 

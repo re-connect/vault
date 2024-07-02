@@ -14,6 +14,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class CreatorAdmin extends AbstractAdmin
 {
+    #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
         $subject = $this->getSubject();

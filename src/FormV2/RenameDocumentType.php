@@ -10,12 +10,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RenameDocumentType extends AbstractType
 {
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nom', TextType::class, ['label' => false]);
     }
 
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

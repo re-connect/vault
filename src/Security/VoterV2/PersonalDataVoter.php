@@ -21,6 +21,7 @@ class PersonalDataVoter extends Voter
     /**
      * @param object $subject
      */
+    #[\Override]
     protected function supports(string $attribute, $subject): bool
     {
         return in_array($attribute, [self::UPDATE, self::TOGGLE_VISIBILITY])
@@ -30,6 +31,7 @@ class PersonalDataVoter extends Voter
     /**
      * @param DonneePersonnelle $subject
      */
+    #[\Override]
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();

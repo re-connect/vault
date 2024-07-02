@@ -10,13 +10,11 @@ class SolinumEvent extends REEvent
     public const SOLINUM_WEB = 2;
 
     protected $beneficiaire;
-    protected $type;
     protected $user;
 
-    public function __construct($type, ?Beneficiaire $beneficiaire = null)
+    public function __construct(protected $type, ?Beneficiaire $beneficiaire = null)
     {
         $this->beneficiaire = $beneficiaire;
-        $this->type = $type;
 
         $this->context = [
             'beneficiaire_id' => (null === $beneficiaire) ? false : $beneficiaire->getId(),

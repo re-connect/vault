@@ -13,13 +13,11 @@ class MembreVoter extends Voter
 {
     public const GESTION_MEMBRE = 'gestion membre';
 
-    private $provider;
-
-    public function __construct(CentreProvider $provider)
+    public function __construct(private readonly CentreProvider $provider)
     {
-        $this->provider = $provider;
     }
 
+    #[\Override]
     protected function supports(string $attribute, mixed $subject): bool
     {
         return in_array($attribute, [
@@ -27,6 +25,7 @@ class MembreVoter extends Voter
         ]) && $subject instanceof Membre;
     }
 
+    #[\Override]
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         // get current logged in user

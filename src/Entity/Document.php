@@ -153,7 +153,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
     public function getNameWithoutExtension(): string
     {
         $m = [];
-        if (preg_match('#(.+)\\..{2,4}$#', $this->nom, $m)) {
+        if (preg_match('#(.+)\\..{2,4}$#', (string) $this->nom, $m)) {
             return $m[1];
         }
 
@@ -211,6 +211,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [
@@ -239,9 +240,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
 
     public function getActiveSharedDocuments(): ?Collection
     {
-        return $this->sharedDocuments->filter(function (SharedDocument $sharedDocument) {
-            return !$sharedDocument->isExpired();
-        });
+        return $this->sharedDocuments->filter(fn (SharedDocument $sharedDocument) => !$sharedDocument->isExpired());
     }
 
     public function isCurrentlyShared(): int
@@ -251,9 +250,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
 
     public function getDaysBeforeSharingExpires(): int
     {
-        return max([0, ...$this->getActiveSharedDocuments()->map(function (SharedDocument $sharedDocument) {
-            return round(($sharedDocument->getExpirationDate()->getTimestamp() - time()) / 86400);
-        })->toArray()]);
+        return max([0, ...$this->getActiveSharedDocuments()->map(fn (SharedDocument $sharedDocument) => round(($sharedDocument->getExpirationDate()->getTimestamp() - time()) / 86400))->toArray()]);
     }
 
     public function getNomSubstr(): string
@@ -368,11 +365,13 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
         return $this->getCreatorUserFullName();
     }
 
+    #[\Override]
     public function hasParentFolder(): bool
     {
         return null !== $this->getDossier();
     }
 
+    #[\Override]
     public function move(?Dossier $parentFolder): void
     {
         $this->setDossier($parentFolder);

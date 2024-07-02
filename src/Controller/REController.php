@@ -23,6 +23,7 @@ abstract class REController extends AbstractController
         $this->request = $requestStack->getCurrentRequest();
     }
 
+    #[\Override]
     public function getUser(): ?UserInterface
     {
         return parent::getUser();

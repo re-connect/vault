@@ -36,6 +36,7 @@ class ClientFixtures extends Fixture implements FixtureGroupInterface
         ],
     ];
 
+    #[\Override]
     public function load(ObjectManager $manager)
     {
         foreach (self::CLIENTS as $client) {
@@ -69,6 +70,7 @@ class ClientFixtures extends Fixture implements FixtureGroupInterface
     }
 
     /** @return string[] */
+    #[\Override]
     public static function getGroups(): array
     {
         return ['v1'];

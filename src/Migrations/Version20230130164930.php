@@ -12,11 +12,13 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20230130164930 extends AbstractMigration
 {
+    #[\Override]
     public function getDescription(): string
     {
         return '';
     }
 
+    #[\Override]
     public function up(Schema $schema): void
     {
         $this->addSql('ALTER TABLE user ADD disabledAt DATETIME DEFAULT NULL, ADD disabledBy_id INT DEFAULT NULL');
@@ -25,6 +27,7 @@ final class Version20230130164930 extends AbstractMigration
         $this->addSql('UPDATE user SET enabled = true');
     }
 
+    #[\Override]
     public function down(Schema $schema): void
     {
         $this->addSql('ALTER TABLE user DROP FOREIGN KEY FK_8D93D6493F1E31AA');

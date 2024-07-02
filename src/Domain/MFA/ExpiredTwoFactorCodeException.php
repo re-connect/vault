@@ -14,6 +14,7 @@ class ExpiredTwoFactorCodeException extends BadCredentialsException
     public const string MESSAGE = 'Expired two-factor authentication code.';
     private const string MESSAGE_KEY = 'mfa_code_expired';
 
+    #[\Override]
     public function getMessageKey(): string
     {
         return self::MESSAGE_KEY;

@@ -12,11 +12,13 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20200825153131 extends AbstractMigration
 {
+    #[\Override]
     public function getDescription(): string
     {
         return '';
     }
 
+    #[\Override]
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
@@ -24,6 +26,7 @@ final class Version20200825153131 extends AbstractMigration
         $this->addSql('ALTER TABLE client_entity ADD membre_distant_id INT UNSIGNED DEFAULT NULL COMMENT \'Identifier of the external initiator member (No entity link).\'');
     }
 
+    #[\Override]
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs

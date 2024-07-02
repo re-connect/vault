@@ -2,7 +2,9 @@
 
 namespace App\ManagerV2;
 
+use App\Api\Manager\ApiClientManager;
 use App\Entity\Beneficiaire;
+use App\Entity\Client;
 use App\Entity\Document;
 use App\Entity\Dossier;
 use App\Repository\DossierRepository;
@@ -30,6 +32,7 @@ class FolderManager
         private readonly TranslatorInterface $translator,
         private readonly DossierRepository $folderRepository,
         private readonly Security $security,
+        private readonly ApiClientManager $apiClientManager,
     ) {
     }
 
@@ -120,5 +123,25 @@ class FolderManager
     public function getAutocompleteFolderNames(): array
     {
         return array_map(fn ($name) => $this->translator->trans($name), Dossier::AUTOCOMPLETE_NAMES);
+    }
+
+    public function getOrCreateClientFolder(Beneficiaire $beneficiary): ?Dossier
+    {
+        $client = $this->apiClientManager->getCurrentOldClient();
+
+        if (Client::CLIENT_ROSALIE !== $client?->getNom()) {
+            return null;
+        }
+
+        $folder = $beneficiary->getDossiers()->filter(fn (Dossier $folder) => $folder->getNom() === $client->getDossierNom())->first();
+
+        if (!$folder) {
+            $folder = (new Dossier())
+                ->setBeneficiaire($beneficiary)
+                ->setNom($client->getDossierNom());
+            $this->em->persist($folder);
+        }
+
+        return $folder;
     }
 }

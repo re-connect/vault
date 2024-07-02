@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class FixturesPurgerFactory implements PurgerFactory
 {
+    #[\Override]
     public function createForEntityManager(?string $emName, EntityManagerInterface $em, array $excluded = [], bool $purgeWithTruncate = false): PurgerInterface
     {
         return (new FixturesPurger())->setEntityManager($em);

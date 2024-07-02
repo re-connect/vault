@@ -8,14 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class JsonResponseException
 {
-    private \Exception $exception;
-    private int $codeError;
-
-    public function __construct(\Exception $exception, int $codeError = Response::HTTP_INTERNAL_SERVER_ERROR)
+    public function __construct(private readonly \Exception $exception, private int $codeError = Response::HTTP_INTERNAL_SERVER_ERROR)
     {
-        $this->exception = $exception;
-        $this->codeError = $codeError;
-
         $this->initialize();
     }
 
@@ -37,7 +31,7 @@ final class JsonResponseException
         try {
             $ref = new \ReflectionClass($this->exception);
             $shortName = $ref->getShortName();
-        } catch (\ReflectionException $e) {
+        } catch (\ReflectionException) {
             $shortName = null;
         }
 

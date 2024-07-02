@@ -50,12 +50,9 @@ use ZipStream\ZipStream;
 
 class DocumentProvider extends DonneePersonnelleProvider
 {
-    protected DocumentManager $manager;
     protected string $entityName = Document::class;
     protected string $formType = DocumentType::class;
     protected string $formSimpleType = DocumentSimpleType::class;
-    private RouterInterface $router;
-    protected PdfService $pdfService;
 
     public function __construct(
         FormFactoryInterface $formFactory,
@@ -66,9 +63,9 @@ class DocumentProvider extends DonneePersonnelleProvider
         ValidatorInterface $validator,
         TranslatorInterface $translator,
         RequestStack $requestStack,
-        DocumentManager $manager,
-        RouterInterface $router,
-        PdfService $pdfService,
+        protected DocumentManager $manager,
+        private readonly RouterInterface $router,
+        protected PdfService $pdfService,
         OldClientRepository $oldClientRepository,
         ClientRepository $clientRepository,
         ApiClientManager $apiClientManager,
@@ -86,9 +83,6 @@ class DocumentProvider extends DonneePersonnelleProvider
             $clientRepository,
             $apiClientManager,
         );
-        $this->manager = $manager;
-        $this->router = $router;
-        $this->pdfService = $pdfService;
     }
 
     public function findOneBy($criteria)
@@ -204,6 +198,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         }
     }
 
+    #[\Override]
     public function getEntitiesFromBeneficiaire(Beneficiaire $beneficiaire): array
     {
         if (false === $this->authorizationChecker->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $beneficiaire)) {
@@ -317,6 +312,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         });
     }
 
+    #[\Override]
     public function delete(DonneePersonnelle $donneePersonnelle, bool $log = true): void
     {
         if ($donneePersonnelle instanceof Document) {
@@ -366,9 +362,7 @@ class DocumentProvider extends DonneePersonnelleProvider
     {
         if (null !== $dossierNom = $client->getDossierNom()) {
             $beneficiaire = $entity->getBeneficiaire();
-            $dossier = $beneficiaire->getDossiers()->filter(static function (Dossier $dossier) use ($dossierNom) {
-                return $dossier->getNom() === $dossierNom;
-            })->first();
+            $dossier = $beneficiaire->getDossiers()->filter(static fn (Dossier $dossier) => $dossier->getNom() === $dossierNom)->first();
 
             if (!$dossier) {
                 $dossier = new Dossier();
@@ -440,7 +434,7 @@ class DocumentProvider extends DonneePersonnelleProvider
                 throw new ExtensionFileException('Extension not allowed '.$file->guessExtension());
             }
 
-            $extension = str_replace('jpeg', 'jpg', $file->guessExtension());
+            $extension = str_replace('jpeg', 'jpg', (string) $file->guessExtension());
 
             $document = new Document();
 
@@ -520,6 +514,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         }
     }
 
+    #[\Override]
     public function rename(DonneePersonnelle $donneePersonnelle, $newNameWithOrWithoutExtension, bool $andPersist = true)
     {
         /** @var Document $donneePersonnelle */
@@ -528,7 +523,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         }
 
         $sanitizedString = $this->sanitize($newNameWithOrWithoutExtension);
-        $sanitizedString = preg_replace('#.'.$donneePersonnelle->getExtension().'$#', '', $sanitizedString);
+        $sanitizedString = preg_replace('#.'.$donneePersonnelle->getExtension().'$#', '', (string) $sanitizedString);
 
         $newNameWithoutExtension = $sanitizedString;
 

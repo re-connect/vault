@@ -20,6 +20,7 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
     ) {
     }
 
+    #[\Override]
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): mixed
     {
         if ($data instanceof Beneficiaire && $operation instanceof Patch) {

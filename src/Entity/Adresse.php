@@ -5,10 +5,10 @@ namespace App\Entity;
 use JsonSerializable;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-class Adresse implements \JsonSerializable
+class Adresse implements \JsonSerializable, \Stringable
 {
     #[Groups('read')]
-    private ?int $id;
+    private ?int $id = null;
 
     #[Groups('read')]
     private ?string $nom = null;
@@ -81,6 +81,7 @@ class Adresse implements \JsonSerializable
         return $this;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return sprintf(
@@ -137,6 +138,7 @@ class Adresse implements \JsonSerializable
      *
      * @since 5.4.0
      */
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [

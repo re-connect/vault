@@ -29,7 +29,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     security: "is_granted('ROLE_OAUTH2_CENTERS')",
 )]
 #[ApiFilter(SearchFilter::class, properties: ['beneficiairesCentres.beneficiaire'])]
-class Centre implements \JsonSerializable
+class Centre implements \JsonSerializable, \Stringable
 {
     public const REGIONS = ['Auvergne-Rhône-Alpes', 'Bourgogne-Franche-Comté', 'Bretagne', 'Centre-Val de Loire', 'Corse', 'Grand Est', 'Hauts-de-France', 'Ile-de-France', 'Normandie', 'Nouvelle-Aquitaine', 'Occitanie', 'Pays de la Loire', 'Provence-Alpes-Côte d’Azur', 'Autre'];
     /**
@@ -346,6 +346,7 @@ class Centre implements \JsonSerializable
         return $this->statistiquesCentre;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         if (null !== $this->nom) {
@@ -517,6 +518,7 @@ class Centre implements \JsonSerializable
         return $this;
     }
 
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [
@@ -546,9 +548,7 @@ class Centre implements \JsonSerializable
     public function jsonSerializeForClient($client): array
     {
         /** @var ClientCentre $clientEntity */
-        $clientEntity = $this->getExternalLinks()->filter(static function (ClientCentre $element) use ($client) {
-            return $client === $element->getClient();
-        })->first();
+        $clientEntity = $this->getExternalLinks()->filter(static fn (ClientCentre $element) => $client === $element->getClient())->first();
 
         return ['distant_id' => $clientEntity?->getDistantId(), 'nom' => $this->nom];
     }

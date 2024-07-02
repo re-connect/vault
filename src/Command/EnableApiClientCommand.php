@@ -27,11 +27,13 @@ class EnableApiClientCommand extends Command
         parent::__construct($name);
     }
 
+    #[\Override]
     protected function configure(): void
     {
         $this->addArgument('clientName', InputArgument::REQUIRED, 'Client to enable');
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);

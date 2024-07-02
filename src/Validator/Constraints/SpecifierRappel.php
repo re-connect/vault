@@ -12,6 +12,7 @@ class SpecifierRappel extends Constraint
     public $message = 'Vous devez renseigner un rappel.';
     public $messageRappelAfterDateEvent = 'La date de rappel doit se situer avant la date de l\'événement.';
 
+    #[\Override]
     public function getTargets(): string|array
     {
         return self::CLASS_CONSTRAINT;

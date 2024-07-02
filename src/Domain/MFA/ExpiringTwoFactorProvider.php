@@ -19,6 +19,7 @@ readonly class ExpiringTwoFactorProvider implements TwoFactorProviderInterface
     ) {
     }
 
+    #[\Override]
     public function beginAuthentication(AuthenticationContextInterface $context): bool
     {
         $user = $context->getUser();
@@ -29,6 +30,7 @@ readonly class ExpiringTwoFactorProvider implements TwoFactorProviderInterface
         return $user->isMfaEnabled();
     }
 
+    #[\Override]
     public function prepareAuthentication(object $user): void
     {
         if ($user instanceof User) {
@@ -36,6 +38,7 @@ readonly class ExpiringTwoFactorProvider implements TwoFactorProviderInterface
         }
     }
 
+    #[\Override]
     public function validateAuthenticationCode(object $user, string $authenticationCode): bool
     {
         if (!($user instanceof User)) {
@@ -55,6 +58,7 @@ readonly class ExpiringTwoFactorProvider implements TwoFactorProviderInterface
         return true;
     }
 
+    #[\Override]
     public function getFormRenderer(): TwoFactorFormRenderer
     {
         return $this->formRenderer;

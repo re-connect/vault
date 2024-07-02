@@ -28,11 +28,13 @@ class Authenticator extends AbstractLoginFormAuthenticator
     ) {
     }
 
+    #[\Override]
     protected function getLoginUrl(Request $request): string
     {
         return $this->router->generate('re_main_login');
     }
 
+    #[\Override]
     public function authenticate(Request $request): Passport
     {
         $username = $request->request->get('_username');
@@ -45,6 +47,7 @@ class Authenticator extends AbstractLoginFormAuthenticator
         );
     }
 
+    #[\Override]
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         /** @var User $user */

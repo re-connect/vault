@@ -8,21 +8,20 @@ use Twig\TwigFunction;
 
 class FlashMessageExtension extends AbstractExtension
 {
-    private const TYPE_SUCCESS = 'success';
-    private const TYPE_ERROR = 'error';
-    private const TYPE_DANGER = 'danger';
-    private TranslatorInterface $translator;
+    private const string TYPE_SUCCESS = 'success';
+    private const string TYPE_ERROR = 'error';
+    private const string TYPE_DANGER = 'danger';
 
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(private readonly TranslatorInterface $translator)
     {
-        $this->translator = $translator;
     }
 
+    #[\Override]
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('getFlashMessageColor', [$this, 'getFlashMessageColor']),
-            new TwigFunction('getFlashMessageTitle', [$this, 'getFlashMessageTitle']),
+            new TwigFunction('getFlashMessageColor', $this->getFlashMessageColor(...)),
+            new TwigFunction('getFlashMessageTitle', $this->getFlashMessageTitle(...)),
         ];
     }
 

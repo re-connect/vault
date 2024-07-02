@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormEvents;
 
 class TimezoneListener implements EventSubscriberInterface
 {
+    #[\Override]
     public static function getSubscribedEvents(): array
     {
         return [

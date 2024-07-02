@@ -37,6 +37,7 @@ class DocumentManager
         private readonly RequestStack $requestStack,
         private readonly TranslatorInterface $translator,
         private readonly BucketService $bucketService,
+        private readonly FolderManager $folderManager,
     ) {
     }
 
@@ -88,6 +89,7 @@ class DocumentManager
         ?Dossier $folder,
     ): Document {
         $user = $this->getUser();
+        $folder ??= $this->folderManager->getOrCreateClientFolder($beneficiary);
         $document = (new Document())
             ->setExtension($file->guessExtension())
             ->setTaille($file->getSize())
@@ -197,7 +199,7 @@ class DocumentManager
             $this->em->remove($document);
             $this->em->flush();
             $this->addFlashMessage('success', 'document_deleted_successfully');
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $this->addFlashMessage('danger', 'error');
         }
     }

@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class CheckboxHierarchyType extends AbstractType
 {
+    #[\Override]
     public function getParent(): ?string
     {
         return ChoiceType::class;

@@ -40,16 +40,13 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route(path: ['old' => '/api/', 'new' => '/api/v2/'], name: 're_api_beneficiaire_')]
 final class BeneficiaireRestV2Controller extends REController
 {
-    private RestManager $restManager;
-
     public function __construct(
         RequestStack $requestStack,
         TranslatorInterface $translator,
         EntityManagerInterface $entityManager,
-        RestManager $restManager,
+        private readonly RestManager $restManager,
         ApiClientManager $apiClientManager,
     ) {
-        $this->restManager = $restManager;
         parent::__construct($requestStack, $translator, $entityManager, $apiClientManager);
     }
 
@@ -197,7 +194,7 @@ final class BeneficiaireRestV2Controller extends REController
                 throw new BadRequestHttpException('Code sms non recu');
             }
 
-            $bResult = strtolower($entity->getRelayInvitationSmsCode()) === strtolower($codeSms);
+            $bResult = strtolower((string) $entity->getRelayInvitationSmsCode()) === strtolower((string) $codeSms);
             if ($bResult) {
                 $centreManager->accepterTousCentreEnCommun($entity->getUser()->getSubject(), $subject);
             }
@@ -540,13 +537,9 @@ final class BeneficiaireRestV2Controller extends REController
                 $beneficiaire = $provider->getEntityById($id);
                 $centre = $centreProvider->getEntityByDistantId($centreDistantId);
 
-                $externalLink = $beneficiaire->getExternalLinks()->filter(static function (ClientBeneficiaire $element) use ($oldClient, $distantId) {
-                    return $element->getClient() === $oldClient && $element->getDistantId() == (string) $distantId && null === $element->getBeneficiaireCentre();
-                })->first();
+                $externalLink = $beneficiaire->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $element->getClient() === $oldClient && $element->getDistantId() == (string) $distantId && null === $element->getBeneficiaireCentre())->first();
 
-                $beneficiaireCentre = $beneficiaire->getBeneficiairesCentres()->filter(static function (BeneficiaireCentre $element) use ($centre) {
-                    return $element->getCentre() === $centre && null === $element->getExternalLink();
-                })->first();
+                $beneficiaireCentre = $beneficiaire->getBeneficiairesCentres()->filter(static fn (BeneficiaireCentre $element) => $element->getCentre() === $centre && null === $element->getExternalLink())->first();
 
                 if (!$beneficiaireCentre) {
                     $beneficiaireCentre = (new BeneficiaireCentre())->setCentre($centre);

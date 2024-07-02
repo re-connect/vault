@@ -25,6 +25,7 @@ class DonneePersonnelleVoter extends REVoter
             ->getOriginalEntityData($donneePersonnelle);
     }
 
+    #[\Override]
     protected function supports(string $attribute, mixed $subject): bool
     {
         return in_array($attribute, [
@@ -37,6 +38,7 @@ class DonneePersonnelleVoter extends REVoter
         ]) && $subject instanceof DonneePersonnelle;
     }
 
+    #[\Override]
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         if ($this->isClientAllowed()) {
@@ -68,9 +70,7 @@ class DonneePersonnelleVoter extends REVoter
             $clientBeneficiaire = $subject
                 ->getBeneficiaire()
                 ->getExternalLinks()
-                ->filter(static function (ClientBeneficiaire $element) use ($client) {
-                    return $element->getClient() === $client;
-                })->first();
+                ->filter(static fn (ClientBeneficiaire $element) => $element->getClient() === $client)->first();
             if (!$clientBeneficiaire) {
                 return false;
             }

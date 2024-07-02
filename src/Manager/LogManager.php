@@ -14,13 +14,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class LogManager
 {
-    private RequestStack $requestStack;
-    private LoggerInterface $logger;
-
-    public function __construct(RequestStack $requestStack, LoggerInterface $logger)
+    public function __construct(private readonly RequestStack $requestStack, private readonly LoggerInterface $logger)
     {
-        $this->requestStack = $requestStack;
-        $this->logger = $logger;
     }
 
     public function onDonneePersonnelleEvent(DonneePersonnelleEvent $event): void
