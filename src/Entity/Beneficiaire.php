@@ -23,6 +23,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\Mapping as ORM;
+use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
@@ -81,6 +82,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     ];
 
     #[Groups(['read', 'write', 'beneficiary:read', 'v3:beneficiary:write', 'v3:beneficiary:read'])]
+    #[Anonymize('date', options: ['min' => 'now -70 years', 'max' => 'now -15 years'])]
     private ?\DateTime $dateNaissance = null;
 
     private bool $neverClickedMesDocuments = true;
