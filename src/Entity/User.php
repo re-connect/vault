@@ -128,7 +128,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     private $nom;
 
     #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
-    #[Anonymize('date', options: ['min' => '1950-01-01 00:00:00', 'max' => '2013-01-01 00:00:00'])]
+    #[Anonymize('date', options: ['min' => 'now -70 years', 'max' => 'now -15 years'])]
     private ?\DateTime $birthDate = null;
 
     /**

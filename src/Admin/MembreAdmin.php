@@ -153,7 +153,7 @@ class MembreAdmin extends AbstractAdmin
                 ->end();
         }
         $form
-            ->with('Centres')
+            ->with('Centres', ['description' => 'Veillez à bien vérifier les droits du professionnel sur les centres ajoutés avant validation'])
             ->add('membresCentres', CollectionType::class, [
                 'by_reference' => false,
                 'label' => 'Centres',
