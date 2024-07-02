@@ -861,24 +861,13 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
         switch ($this->typeUser) {
             case self::USER_TYPE_BENEFICIAIRE:
-                //                $data = array_merge($data , [
-                //                   'id' => $this->subjectBeneficiaire->getId(),
-                //                   'date_naissance' => $this->subjectBeneficiaire->getDateNaissance()->format(DateTime::W3C),
-                //                   'total_file_size' => $this->subjectBeneficiaire->getTotalFileSize(),
-                //                   'centres' => $this->subjectBeneficiaire->getCentreNoms()->toArray(),
-                //                   'question_secrete' => $this->subjectBeneficiaire->getQuestionSecrete(),
-                //               ]);
-
                 $data = array_merge($data, $this->subjectBeneficiaire->jsonSerializeAPI());
-                //                $data['beneficiaire'] = $this->subjectBeneficiaire->jsonSerialize(false);
                 break;
             case self::USER_TYPE_MEMBRE:
                 $data = array_merge($data, $this->subjectMembre->jsonSerializeAPI());
-                //                $data['membre'] = $this->subjectMembre->jsonSerialize(false);
                 break;
             case self::USER_TYPE_GESTIONNAIRE:
                 $data = array_merge($data, $this->subjectGestionnaire->jsonSerializeAPI());
-                //                $data['gestionnaire'] = $this->subjectGestionnaire->jsonSerialize(false);
                 break;
             default:
                 break;

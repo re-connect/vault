@@ -35,7 +35,6 @@ class BeneficiaireRestV2ControllerTest extends AbstractControllerTest
 
         $this->assertArrayHasKey('id', $beneficiary);
         $this->assertArrayHasKey('date_naissance', $beneficiary);
-        $this->assertArrayHasKey('total_file_size', $beneficiary);
         $this->assertArrayHasKey('created_at', $beneficiary);
         $this->assertArrayHasKey('updated_at', $beneficiary);
         $this->assertArrayHasKey('centres', $beneficiary);

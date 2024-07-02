@@ -10,6 +10,7 @@ App\Entity\Beneficiaire:
                 strategy: AUTO
     fields:
         totalFileSize:
+            nullable: true
             type: integer
             options:
                 default: 0
