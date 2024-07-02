@@ -23,6 +23,7 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
     public const MEMBER_PASSWORD_EXPIRED_MAIL = 'v2_test_user_membre_password_expired@mail.com';
     public const MEMBER_PASSWORD_OVERDUE_MAIL = 'v2_test_user_membre_password_overdue@mail.com';
     public const MEMBER_FIRST_VISIT = 'v2_test_user_membre_first_visit@mail.com';
+    public const MEMBER_FIRST_VISIT_AND_EXPIRED_PASSWORD = 'v2_test_user_membre_first_visit_and_expired_password@mail.com';
     public const MEMBER_DISABLED = 'v2_test_user_membre_disabled@mail.com';
     public const MEMBER_PASSWORD_WEAK = 'v2_test_user_membre_weak_password@mail.com';
     public const MEMBER_FIRST_VISIT_WITH_MFA = 'v2_test_user_membre_first_visit_with_mfa@mail.com';
@@ -67,6 +68,7 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
         );
         $this->createMember(['email' => self::MEMBER_MAIL_NO_RELAY_NO_PERMISSION], [], false, false);
         $this->createMember(['email' => self::MEMBER_FIRST_VISIT, 'firstVisit' => true, 'telephone' => null], [], false, false);
+        $this->createMember(['email' => self::MEMBER_FIRST_VISIT_AND_EXPIRED_PASSWORD, 'firstVisit' => true, 'telephone' => null, 'passwordUpdatedAt' => new \DateTime('2 years ago')], [], false, false);
         $this->createMember(['email' => self::MEMBER_FIRST_VISIT_WITH_MFA, 'firstVisit' => true, 'mfaEnabled' => true], [], false, false);
         $this->createMember(['email' => self::MEMBER_DISABLED, 'enabled' => false]);
         $this->createMember([
