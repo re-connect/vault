@@ -2,6 +2,10 @@ App\Entity\Dossier:
     type: entity
     table: "dossier"
     repositoryClass: App\Repository\DossierRepository
+    fields:
+        iconName:
+            type: string
+            nullable: true
     manyToOne:
         beneficiaire:
             targetEntity: App\Entity\Beneficiaire

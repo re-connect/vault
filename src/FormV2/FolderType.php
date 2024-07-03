@@ -20,6 +20,12 @@ class FolderType extends AbstractType
                 'attr' => [
                     'data-action' => 'click->autocomplete#autocomplete',
                 ],
+            ])
+            ->add('iconName', ChoiceType::class, [
+                'required' => false,
+                'label' => 'icon',
+                'choices' => array_combine(Dossier::ICON_NAMES, Dossier::ICON_NAMES),
+                'placeholder' => 'no_icon',
             ]);
 
         if (!$options['rename_only']) {
