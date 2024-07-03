@@ -5,11 +5,12 @@
 {% endblock %}
 
 {% block content %}
-    <div {{ stimulus_controller('autocomplete', {'source': autocompleteNames}) }}>
+    <div {{ stimulus_controller('autocomplete', {'source': autocompleteNames})|stimulus_controller('folder-icon') }} >
         {{ include('v2/vault/form/_personal_data_form.html.twig', {
             'title': 'create_folder',
             'icon' : 'fas fa-folder-plus',
             'cancelPath': path('list_documents', {'id': beneficiary.id}),
+            'folderIconSrc': asset('build/images/appV2/folderIcons/folder.png'),
         }) }}
     </div>
 {% endblock %}

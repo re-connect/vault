@@ -37,7 +37,8 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 {
     final public const array AUTOCOMPLETE_NAMES = ['health', 'housing', 'identity', 'tax', 'work'];
     final public const string DEFAULT_ICON_NAME = 'folder';
-    final public const array ICON_NAMES = []; // TODO complete with icon names
+    final public const array CUSTOM_ICON_NAMES = []; // TODO complete with icon names
+    final public const array ICON_NAMES = [self::DEFAULT_ICON_NAME, ...self::CUSTOM_ICON_NAMES];
 
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:folder:read'])]
     private Collection $documents;
