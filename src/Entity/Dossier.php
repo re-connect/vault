@@ -89,26 +89,12 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
             'nom' => $this->nom,
             'created_at' => $this->createdAt->format(\DateTimeInterface::W3C),
             'updated_at' => $this->updatedAt->format(\DateTimeInterface::W3C),
-            'dossier_image' => $this->getDossierImage(),
             'is_folder' => $this->getIsFolder(),
             'beneficiaire' => ['id' => $this->beneficiaire->getId()],
             'beneficiaire_id' => $this->getBeneficiaire()->getId(),
             'dossier_parent_id' => $this->dossierParent?->getId(),
             'sous_dossiers' => $sousDossiers,
         ];
-    }
-
-    public function getDossierImage(): ?string
-    {
-        if (null !== ($beneficaire = $this->getBeneficiaire()) && null !== ($clients = $beneficaire->getExternalLinks())) {
-            foreach ($clients as $beneficiaireClient) {
-                if ($beneficiaireClient->getClient()->getDossierNom() === $this->getNom()) {
-                    return $beneficiaireClient->getClient()->getDossierImage();
-                }
-            }
-        }
-
-        return '';
     }
 
     public function getSousDossiers(): ArrayCollection|Collection|array

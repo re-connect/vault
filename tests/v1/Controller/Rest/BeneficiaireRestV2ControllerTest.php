@@ -695,7 +695,6 @@ class BeneficiaireRestV2ControllerTest extends AbstractControllerTest
                 break;
             case self::DOSSIER_ENTITY_NAME:
                 $this->assertArrayHasKey('documents', $content);
-                $this->assertArrayHasKey('dossier_image', $content);
                 $this->assertArrayHasKey('is_folder', $content);
                 $this->assertArrayHasKey('beneficiaire', $content);
                 break;
