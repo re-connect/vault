@@ -18,7 +18,9 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class UserSimpleAdmin extends AbstractAdmin
 {
@@ -51,9 +53,10 @@ class UserSimpleAdmin extends AbstractAdmin
             ->add('nom')
             ->add('prenom', null, ['label' => 'Prénom'])
             ->add('email', null, ['required' => false, 'attr' => ['autocomplete' => 'off']])
-            ->add('telephone', null, [
+            ->add('telephone', TelType::class, [
                 'label' => 'Numéro de portable (attention il faut mettre un +33)',
                 'required' => false,
+                'constraints' => [new Regex('/^[0-9\+]+$/')],
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'required' => false,
