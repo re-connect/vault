@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\DataChecker;
+namespace App\Command\DataFixer;
 
 use App\Entity\Beneficiaire;
 use App\Entity\Document;
