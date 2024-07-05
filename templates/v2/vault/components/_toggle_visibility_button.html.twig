@@ -8,7 +8,12 @@
 
     >
     </i>
-    <div class="form-check form-switch form-switch-vault-visibility mx-2">
+    <div class="form-check form-switch form-switch-vault-visibility mx-2"
+         data-next-toggle-tooltip='{{ private ? 'switch_private'|trans : 'switch_shared'|trans }}'
+        {{ stimulus_target('ajax-toggle', 'switch')|stimulus_controller('tooltip', {
+            title: private ? 'switch_shared'|trans : 'switch_private'|trans,
+        }) }}
+    >
         <input type="checkbox"
                class="form-check-input form-check-vault-visibility text-white me-0"
                {{ stimulus_action('ajax-toggle', 'toggle') }}
