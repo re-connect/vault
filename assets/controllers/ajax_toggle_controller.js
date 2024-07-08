@@ -13,19 +13,36 @@ export default class extends Controller {
     axiosInstance.patch(this.urlValue)
       .then(function () {
         icons.forEach(
-          (icon) => icon.dataset.toggleClasses.split(' ').forEach(
-            (cssClass) => icon.classList.toggle(cssClass)
-          )
+          (icon) => {
+              updateTooltipTitle(icon);
+              icon.dataset.toggleClasses.split(' ').forEach(
+                  (cssClass) => icon.classList.toggle(cssClass)
+              );
+          }
         )
 
-        const tooltip = Tooltip.getInstance(toggleSwitch)
-        const currentTooltip = tooltip._config.title;
-        tooltip._config.title = toggleSwitch.dataset.nextToggleTooltip;
-        toggleSwitch.dataset.nextToggleTooltip = currentTooltip
-        tooltip.update();
+        updateTooltipTitle(toggleSwitch);
       })
       .catch(() => {
         event.target.classList.toggle('bg-red');
       })
   }
+}
+
+function updateTooltipTitle(element) {
+    const tooltip = Tooltip.getInstance(element);
+    const nextTooltipTitle = element.dataset.nextToggleTooltip;
+
+    if (tooltip) {
+        const currentTooltip = tooltip._config.title;
+        tooltip._config.title = nextTooltipTitle;
+        element.dataset.nextToggleTooltip = currentTooltip
+        tooltip.update();
+    } else {
+        new Tooltip(element, {
+            trigger: 'hover',
+            container: element.parentNode,
+            title: nextTooltipTitle,
+        });
+    }
 }
