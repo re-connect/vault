@@ -64,6 +64,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     openapiContext: ['tags' => ['Beneficiaires']],
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"
 )]
+#[Anonymize('reconnect.beneficiary_filter')]
 class Beneficiaire extends Subject implements UserWithCentresInterface, ClientResourceInterface
 {
     use GedmoTimedTrait;
