@@ -31,7 +31,6 @@
                     {% if hasSecretQuestion or hasTelephone %}
                         <div class="py-1">{{'beneficiary_relay_affiliation_options'|trans }}</div>
                     {% endif %}
-                <br>
                 {% block frame %}
                     <turbo-frame id="force-affiliation-form" class="mt-2">
                         {% if hasSecretQuestion %}
