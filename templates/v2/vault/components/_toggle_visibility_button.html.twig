@@ -1,10 +1,11 @@
 <div class="d-flex justify-content-center align-items-center"
     {{ stimulus_controller('ajax-toggle', {'url': url })}}
 >
-    <i class="fas fa-lock{{ private ? ' text-primary' : '-open text-light-grey' }} me-2 green-tooltip"
+    <i class="fas fa-lock{{ private ? ' text-primary' : '-open text-light-grey' }} me-2"
        {{ stimulus_target('ajax-toggle', 'icon') }}
        data-toggle-classes='text-light-grey fa-lock-open fa-lock'
-            {{ stimulus_controller('tooltip', {title: 'private'|trans}) }}
+       data-next-toggle-tooltip='{{ private ? '' : 'private'|trans }}'
+        {{ stimulus_controller('tooltip', {title: private ? 'private'|trans : ''}) }}
 
     >
     </i>
@@ -20,10 +21,11 @@
                 {{ private ? '' : 'checked' }}
         >
     </div>
-    <i class="fas fa-share {{ private ? 'text-light-grey' : 'text-green' }} green-tooltip"
+    <i class="fas fa-share {{ private ? 'text-light-grey' : 'text-green' }}"
         {{ stimulus_target('ajax-toggle', 'icon') }}
        data-toggle-classes='text-light-grey text-green'
-            {{ stimulus_controller('tooltip', {title: 'shared'|trans}) }}
+       data-next-toggle-tooltip='{{ private ? 'shared'|trans : '' }}'
+        {{ stimulus_controller('tooltip', {title: private ? '' : 'shared'|trans}) }}
     >
     </i>
 </div>
