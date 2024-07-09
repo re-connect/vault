@@ -211,8 +211,8 @@ class BeneficiaireAdmin extends AbstractAdmin
 
                     $query
                         ->innerJoin($alias.'.beneficiairesCentres', 'bc2')
-                        ->innerJoin('bc2.centre', 'c')
-                        ->andWhere('c1.id IN (:c)')
+                        ->innerJoin('bc2.centre', 'c2')
+                        ->andWhere('c2.id IN (:c)')
                         ->setParameter('c', $value);
 
                     return true;
