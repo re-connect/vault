@@ -2,7 +2,7 @@
 
 namespace App\EventSubscriber;
 
-use App\Helper\TermsOfUseHelper;
+use App\Domain\TermsOfUse\TermsOfUseHelper;
 use App\Security\HelperV2\Oauth2Helper;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -13,8 +13,6 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class CheckAcceptedTermsOfUseSubscriber extends AbstractWebUserSubscriber implements EventSubscriberInterface
 {
-    public const string CGS_FEATURE_FLAG_NAME = 'NEW_CGS';
-
     public function __construct(Security $security, RouterInterface $router, TokenStorageInterface $tokenStorage, Oauth2Helper $oauth2Helper, private readonly TermsOfUseHelper $termsOfUseHelper)
     {
         parent::__construct($security, $router, $tokenStorage, $oauth2Helper);

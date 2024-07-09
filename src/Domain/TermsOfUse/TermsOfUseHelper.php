@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Helper;
+namespace App\Domain\TermsOfUse;
 
 use App\Checker\FeatureFlagChecker;
 use App\Entity\User;
 
 class TermsOfUseHelper
 {
-    private const string CGS_FEATURE_FLAG_NAME = 'NEW_CGS';
+    public const string CGS_FEATURE_FLAG_NAME = 'new-cgs';
 
     public function __construct(private readonly FeatureFlagChecker $featureFlagChecker)
     {
