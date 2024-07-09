@@ -24,33 +24,24 @@
         </h4>
         <div class="row my-4">
             <div class="col-12 col-md-5 mb-4">
-                <h4 class="text-center">{{ 'relays'|trans }} :</h4>
-                {{ include('v2/user_creation/components/_relays_checkboxes.html.twig', {user: beneficiary.user}) }}
+                {{ include('v2/user_affiliation/beneficiary/_relays_card.html.twig', {title: 'beneficiary_relay_choice'|trans , user: beneficiary.user}) }}
             </div>
-            <div class="d-flex flex-column mx-auto mt-3 col-12 col-md-6 font-size-1-2">
-                <div>
-                    <span>{{ 'beneficiary_relay_affiliation_intro'|trans }}</span>
+            <div class="d-flex flex-column mx-auto col-12 col-md-6 font-size-1-2">
+                    <div class="pb-2">{{ 'beneficiary_relay_affiliation_intro'|trans }}</div>
                     {% if hasSecretQuestion or hasTelephone %}
-                        <span>{{'beneficiary_relay_affiliation_options'|trans }}</span>
-                        <ul class="mx-auto pt-2">
-                            {% if hasSecretQuestion %}<li>{{ 'beneficiary_relay_affiliation_question'|trans }}</li>{% endif %}
-                            {% if hasTelephone %}<li>{{ 'beneficiary_relay_affiliation_sms'|trans }}</li>{% endif %}
-                        </ul>
-                        <span>{{ 'beneficiary_relay_affiliation_end'|trans }}</span>
+                        <div class="py-1">{{'beneficiary_relay_affiliation_options'|trans }}</div>
                     {% endif %}
-                </div>
-                <br>
                 {% block frame %}
-                    <turbo-frame id="force-affiliation-form" class="text-center mt-3">
+                    <turbo-frame id="force-affiliation-form" class="mt-2">
                         {% if hasSecretQuestion %}
-                            <a class="btn btn-blue text-white shadow-sm"
+                            <a class="btn btn-blue text-white shadow-sm my-1"
                                href="{{ path('affiliate_beneficiary_relays_secret_question', {id: beneficiary.id}) }}"
                             >
                                 {{ 'answer_secret_question'|trans }}
                             </a>
                         {% endif %}
                         {% if hasTelephone %}
-                            <a class="btn btn-blue text-white shadow-sm"
+                            <a class="btn btn-blue text-white shadow-sm my-1"
                                href="{{ path('affiliate_beneficiary_relays_sms_code', {id: beneficiary.id}) }}"
                             >
                                 {{ 'send_sms_code'|trans }}

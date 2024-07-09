@@ -12,6 +12,7 @@ export default class extends Controller {
     cancelButtonText: String,
     disableFiredButton: Boolean,
     updatedButtonMessage: String,
+    confirmButtonColor: String,
   };
 
   alert(event) {
@@ -22,6 +23,7 @@ export default class extends Controller {
       ...getSwalDefaultOptions(
         this.messageValue,
         this.confirmButtonTextValue,
+        this.confirmButtonColorValue,
         this.cancelButtonTextValue
       ),
       preConfirm: () => axiosInstance.get(this.urlValue)

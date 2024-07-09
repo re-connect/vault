@@ -22,6 +22,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\Mapping as ORM;
+use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
@@ -55,6 +56,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     openapiContext: ['tags' => ['Beneficiaires']],
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"
 )]
+#[Anonymize('reconnect.beneficiary_filter')]
 class Beneficiaire extends Subject implements UserWithCentresInterface, ClientResourceInterface
 {
     use GedmoTimedTrait;
@@ -73,6 +75,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     ];
 
     #[Groups(['read', 'write', 'beneficiary:read', 'v3:beneficiary:write', 'v3:beneficiary:read'])]
+    #[Anonymize('date', options: ['min' => 'now -70 years', 'max' => 'now -15 years'])]
     private ?\DateTime $dateNaissance = null;
 
     private bool $neverClickedMesDocuments = true;
