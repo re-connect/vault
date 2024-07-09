@@ -2,12 +2,12 @@
 
 namespace App\ControllerV2;
 
+use App\Domain\TermsOfUse\TermsOfUseHelper;
 use App\Entity\Centre;
 use App\Entity\User;
 use App\FormV2\ChangePasswordFormType;
 use App\FormV2\FirstVisitType;
 use App\FormV2\UserType;
-use App\Helper\TermsOfUseHelper;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
 use App\ServiceV2\Mailer\MailerService;
