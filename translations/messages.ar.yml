@@ -540,7 +540,7 @@ secret_question_other: 'Autre question secrète'
 select_relays_for_disaffiliation: 'Cette personne est liée à un ou plusieurs relai(s) que vous gérez, sélectionnez le.les relais pour lesquels vous souhaitez arrêter le suivi'
 select_relays_for_disaffiliation_pro: Cet utilisateur professionnel est lié à un ou plusieurs relai(s) que vous gérez, sélectionnez le.les relais auxquels vous souhaitez lui retirer l’accès
 send: Envoyer
-send_sms_code: Recevoir un code par SMS
+send_sms_code: Le code reçu par SMS par le bénéficiaire
 sending_sms_account_activation: "Envoi du SMS d'activation du compte"
 set_secret_question: 'Entrez votre question secrète'
 settings_saved_successfully: 'تم تسجيل قيمك المدخلة في الكمبيوتر'
@@ -654,3 +654,6 @@ contact_has_no_email: L'envoi est impossible sans adresse e-mail dans le contact
 enter_an_email: Entrer un email
 send_to_contact: Envoyer à un contact du bénéficiaire
 confirm_send_document_to_contact: Êtes vous sûr de vouloir envoyer ce document à %contactName% ?
+beneficiary_relay_choice: Choix des relais du bénéficiaire
+switch_private: Passer privé
+switch_shared: Passer partagé

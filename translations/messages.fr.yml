@@ -27,7 +27,7 @@ all_your_data_will_be_deleted: Vos données seront supprimées et vous ne pourre
 alt_logo_reconnect: 'logo association reconnect'
 an_error_occurred: Une erreur s'est produite !
 answer: Réponse
-answer_secret_question: 'Répondre à la question secrète'
+answer_secret_question: 'La réponse à sa question secrète'
 association: Association
 at: à
 auth_code_received: 'Code de connexion reçu par %method% :'
@@ -66,8 +66,8 @@ beneficiary_linked_rosalie: Ce bénéficiaire est lié à l'application de rése
 beneficiary_not_found: "Aucun bénéficiaire avec l'id %id% n'a été trouvé"
 beneficiary_not_linked_rosalie: Attention, ce bénéficiaire n'a pas été lié à l'application de réservation hotelière (Rosalie)
 beneficiary_relay_affiliation_end: "Sinon, il pourra accepter l'invitation en se connectant à son compte Reconnect"
-beneficiary_relay_affiliation_intro: "Sélectionnez ci-contre le/les centres auxquels vous voulez affilier le bénéficiaire."
-beneficiary_relay_affiliation_options: "Si vous êtes avec le bénéficiaire, vous pouvez valider l’ajout à un/des centres en :"
+beneficiary_relay_affiliation_intro: "Si le bénéficiaire n’est pas avec vous, il pourra accepter l'invitation en se connectant à son compte Reconnect."
+beneficiary_relay_affiliation_options: "Si le bénéficiaire est avec vous, vous pouvez valider l’ajout à un/des relais en indiquant :"
 beneficiary_relay_affiliation_question: "Répondant avec lui à sa question secrète"
 beneficiary_relay_affiliation_sms: "Indiquant le code reçu par SMS par le bénéficiaire"
 beneficiary_reset_password_SMS_code: Code reçu par SMS
@@ -540,7 +540,7 @@ secret_question_other: 'Autre question secrète'
 select_relays_for_disaffiliation: 'Cette personne est liée à un ou plusieurs relai(s) que vous gérez, sélectionnez le.les relais pour lesquels vous souhaitez arrêter le suivi'
 select_relays_for_disaffiliation_pro: Cet utilisateur professionnel est lié à un ou plusieurs relai(s) que vous gérez, sélectionnez le.les relais auxquels vous souhaitez lui retirer l’accès
 send: Envoyer
-send_sms_code: Recevoir un code par SMS
+send_sms_code: Le code reçu par SMS par le bénéficiaire
 sending_sms_account_activation: "Envoi du SMS d'activation du compte"
 set_secret_question: 'Entrez votre question secrète'
 settings_saved_successfully: 'Vos parametres ont bien été enregistrés'
@@ -654,3 +654,6 @@ contact_has_no_email: L'envoi est impossible sans adresse e-mail dans le contact
 enter_an_email: Entrer un email
 send_to_contact: Envoyer à un contact du bénéficiaire
 confirm_send_document_to_contact: Êtes vous sûr de vouloir envoyer ce document à %contactName% ?
+beneficiary_relay_choice: Choix des relais du bénéficiaire
+switch_private: Passer privé
+switch_shared: Passer partagé
