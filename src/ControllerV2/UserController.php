@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\FormV2\ChangePasswordFormType;
 use App\FormV2\FirstVisitType;
 use App\FormV2\UserType;
+use App\Helper\TermsOfUseHelper;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
 use App\ServiceV2\Mailer\MailerService;
@@ -24,10 +25,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class UserController extends AbstractController
 {
     #[Route(path: '/cgs', name: 'user_cgs', methods: ['GET', 'POST'])]
-    public function cgs(Request $request, TranslatorInterface $translator, EntityManagerInterface $em): Response
+    public function cgs(Request $request, TranslatorInterface $translator, EntityManagerInterface $em, TermsOfUseHelper $termsOfUseHelper): Response
     {
         $user = $this->getUser();
-        if (!$user?->isFirstVisit()) {
+        if (!$termsOfUseHelper->mustAcceptTermsOfUse($user)) {
             return $this->redirectToRoute('redirect_user');
         }
 
