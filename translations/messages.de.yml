@@ -286,7 +286,7 @@ footer_confidentiality_vault: 'Datenschutzrichtlinien der Cloud für wohnungslos
 footer_copyright: 'Reconnect - Alle Rechte vorbehalten'
 footer_discover_rp: 'Entdecken Sie Reconnect Pro'
 footer_discover_vault: 'Entdecken Sie die Cloud für wohnungslose Menschen'
-footer_group_sos_text: "Reconnect ist Teil der GROUPE SOS Solidarités, einem von neun Verbänden der GROUPE SOS, dem führenden Sozialunternehmen in Europa"
+footer_group_sos_text: "Reconnect ist ein Verein der SOS-Gruppe, der in Zusammenarbeit mit dem Verein SOS Solidarités tätig ist"
 footer_partners_text: 'Reconnect wird unterstützt von: '
 form_connexion: Verbindung
 form_contains_error: Ihre Änderungen wurden nicht gespeichert. Bitte überprüfen Sie die Informationen.
@@ -657,3 +657,4 @@ confirm_send_document_to_contact: Êtes vous sûr de vouloir envoyer ce document
 beneficiary_relay_choice: Choix des relais du bénéficiaire
 switch_private: Passer privé
 switch_shared: Passer partagé
+open_in_tab: Ouvrir dans un nouvel onglet

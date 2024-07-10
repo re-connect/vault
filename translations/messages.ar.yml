@@ -286,7 +286,7 @@ footer_confidentiality_vault: 'سياسة الخصوصية للخزانة الر
 footer_copyright: 'Reconnect - جميع الحقوق محفوظة'
 footer_discover_rp: 'اكتشاف Reconnect Pro'
 footer_discover_vault: 'اكتشاف الخزنة الرقمية'
-footer_group_sos_text: "Reconnect هي جمعية تابعة Groupe SOS Solidarités، وهي واحدة من تسع أنشطة تابعة لمجموعة \n Groupe SOS، التي تعمل على إدماج الأشخاص الذين يعانون من الضعف"
+footer_group_sos_text: "تعد Reconnect جمعية ضمن مجموعة SOS تعمل بالتعاون مع جمعية SOS Solidarités"
 footer_partners_text: 'يتم دعم Reconnect من قبل :'
 form_connexion: تسجيل دخول
 form_contains_error: لم يتم حفظ تغييراتك. يرجى التحقق من المعلومات.
@@ -657,3 +657,4 @@ confirm_send_document_to_contact: Êtes vous sûr de vouloir envoyer ce document
 beneficiary_relay_choice: Choix des relais du bénéficiaire
 switch_private: Passer privé
 switch_shared: Passer partagé
+open_in_tab: Ouvrir dans un nouvel onglet
