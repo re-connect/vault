@@ -95,7 +95,7 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
             if ($pro) {
                 $data->getUser()->addCreatorUser($pro->getUser());
             }
-        } catch (NonUniqueResultException $e) {
+        } catch (NonUniqueResultException) {
             $this->apiLogger->error(sprintf('Multiple pros found for distant id %s and client %s', $data->getUser()->getExternalProId(), $client->getRandomId()));
         }
     }

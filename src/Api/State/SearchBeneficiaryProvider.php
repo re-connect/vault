@@ -13,6 +13,7 @@ readonly class SearchBeneficiaryProvider implements ProviderInterface
     ) {
     }
 
+    #[\Override]
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
     {
         if (!$context['filters']) {
@@ -23,7 +24,7 @@ readonly class SearchBeneficiaryProvider implements ProviderInterface
         if (!$username) {
             return null;
         }
-        $user = $this->userRepository->findByUsername(trim($username, '"'));
+        $user = $this->userRepository->findByUsername(trim((string) $username, '"'));
 
         return $user ? ['beneficiary' => $user->getSubjectBeneficiaire()] : null;
     }

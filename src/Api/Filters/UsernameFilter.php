@@ -9,6 +9,7 @@ use Doctrine\ORM\QueryBuilder;
 
 class UsernameFilter extends AbstractFilter
 {
+    #[\Override]
     protected function filterProperty(string $property, $value, QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, ?Operation $operation = null, array $context = []): void
     {
         if ('username' !== $property) {
@@ -22,6 +23,7 @@ class UsernameFilter extends AbstractFilter
             ]);
     }
 
+    #[\Override]
     public function getDescription(string $resourceClass): array
     {
         return [];
