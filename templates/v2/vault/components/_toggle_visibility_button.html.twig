@@ -1,24 +1,31 @@
 <div class="d-flex justify-content-center align-items-center"
     {{ stimulus_controller('ajax-toggle', {'url': url })}}
 >
-    <i class="fas fa-lock{{ private ? ' text-primary' : '-open text-light-grey' }} me-2 green-tooltip"
+    <i class="fas fa-lock{{ private ? ' text-primary' : '-open text-light-grey' }} me-2"
        {{ stimulus_target('ajax-toggle', 'icon') }}
        data-toggle-classes='text-light-grey fa-lock-open fa-lock'
-            {{ stimulus_controller('tooltip', {title: 'private'|trans}) }}
+       data-next-toggle-tooltip='{{ private ? '' : 'private'|trans }}'
+        {{ stimulus_controller('tooltip', {title: private ? 'private'|trans : ''}) }}
 
     >
     </i>
-    <div class="form-check form-switch form-switch-vault-visibility mx-2">
+    <div class="form-check form-switch form-switch-vault-visibility mx-2"
+         data-next-toggle-tooltip='{{ private ? 'switch_private'|trans : 'switch_shared'|trans }}'
+        {{ stimulus_target('ajax-toggle', 'switch')|stimulus_controller('tooltip', {
+            title: private ? 'switch_shared'|trans : 'switch_private'|trans,
+        }) }}
+    >
         <input type="checkbox"
                class="form-check-input form-check-vault-visibility text-white me-0"
                {{ stimulus_action('ajax-toggle', 'toggle') }}
                 {{ private ? '' : 'checked' }}
         >
     </div>
-    <i class="fas fa-share {{ private ? 'text-light-grey' : 'text-green' }} green-tooltip"
+    <i class="fas fa-share {{ private ? 'text-light-grey' : 'text-green' }}"
         {{ stimulus_target('ajax-toggle', 'icon') }}
        data-toggle-classes='text-light-grey text-green'
-            {{ stimulus_controller('tooltip', {title: 'shared'|trans}) }}
+       data-next-toggle-tooltip='{{ private ? 'shared'|trans : '' }}'
+        {{ stimulus_controller('tooltip', {title: private ? '' : 'shared'|trans}) }}
     >
     </i>
 </div>

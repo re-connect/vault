@@ -42,6 +42,12 @@ final class BeneficiaryDto
     public ?array $centers = null;
 
     #[Groups(['v3:beneficiary:write'])]
+    public ?string $externalCenter = null;
+
+    #[Groups(['v3:beneficiary:write'])]
+    public ?string $externalProId = null;
+
+    #[Groups(['v3:beneficiary:write'])]
     public ?string $secretQuestion = null;
 
     #[Groups(['v3:beneficiary:write'])]
@@ -63,7 +69,9 @@ final class BeneficiaryDto
                 ->setPlainPassword($this->password)
                 ->setEmail($this->email)
                 ->setTelephone($this->phone)
-                ->setRelaysIds($this->centers)
+                ->setRelaysIds($this->centers ?? [])
+                ->setExternalRelayId($this->externalCenter)
+                ->setExternalProId($this->externalProId)
             );
     }
 }
