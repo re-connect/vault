@@ -1,6 +1,8 @@
 <tr class="text-primary text-center draggable" data-id="{{ document.id }}" data-type="document" {{ stimulus_controller('modal') }}>
     <td class="bg-white borderless text-start align-middle">
-        {{ include('v2/vault/document/_thumbnail.html.twig', {'document': document}) }}
+        <button class="btn p-0" {{ stimulus_action('modal', 'open') }}>
+            {{ include('v2/vault/document/_thumbnail.html.twig', {'document': document}) }}
+        </button>
     </td>
     <td class="bg-white borderless text-start align-middle w-100">
         <button class="btn text-decoration-none text-start text-primary d-block w-100" {{ stimulus_action('modal', 'open') }}>

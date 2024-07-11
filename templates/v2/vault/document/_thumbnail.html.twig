@@ -5,9 +5,7 @@
 {% endif %}
 
 <div class="d-flex justify-content-center align-items-center rounded thumbnail-size">
-    <a href="{{ document.presignedUrl }}" target="_blank" class="border rounded">
-        <img class="img-fluid bg-white rounded shadow-sm p-1 thumbnail-size " src="{{ document.thumbnailPresignedUrl ?? url ?? '' }}"
-             alt="{{ document.nom }}"
-        />
-    </a>
+    <img class="img-fluid bg-white rounded shadow-sm p-1 thumbnail-size border rounded" src="{{ document.thumbnailPresignedUrl ?? url ?? '' }}"
+         alt="{{ document.nom }}"
+    />
 </div>
