@@ -239,3 +239,8 @@ services:
         arguments: [ ~, App\Entity\ClientGestionnaire, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Client }
+    sonata.admin.feature_toggle:
+        class: App\Admin\FeatureToggle
+        arguments: [ ~, App\Entity\Attributes\FeatureFlag, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Outils SuperAdmin", label: "Feature Toggle" }
