@@ -11,6 +11,7 @@ use ApiPlatform\Metadata\Post;
 use App\Controller\Api\UploadDocumentController;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Interface\FolderableEntityInterface;
+use App\Repository\DocumentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -19,7 +20,6 @@ use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/** @ORM\Entity(repositoryClass="App\Repository\DocumentRepository") */
 #[Vich\Uploadable]
 #[ApiResource(
     operations: [
@@ -47,6 +47,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     denormalizationContext: ['groups' => ['v3:document:write']],
     openapiContext: ['tags' => ['Documents']],
 )]
+#[ORM\Entity(repositoryClass: DocumentRepository::class)]
 class Document extends DonneePersonnelle implements FolderableEntityInterface
 {
     use SoftDeleteableEntity;

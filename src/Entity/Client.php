@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
+use App\Repository\ClientRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")
- */
+#[ORM\Entity(repositoryClass: ClientRepository::class)]
 class Client extends BaseClient implements \Stringable
 {
     public const CLIENT_APPLI_MOBILE = 'applimobile';
