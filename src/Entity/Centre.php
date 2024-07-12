@@ -7,6 +7,7 @@ use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use App\Controller\Rest\V3\LinkedCentersController;
 use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -22,6 +23,13 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     operations: [
         new Get(security: "is_granted('ROLE_OAUTH2_CENTERS') or is_granted('VIEW', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_CENTERS') or is_granted('ROLE_USER')"),
+        new GetCollection(
+            uriTemplate: '/linked-centers/{id}',
+            requirements: ['id' => '\d+'],
+            controller: LinkedCentersController::class,
+            security: "is_granted('ROLE_OAUTH2_CENTERS')",
+            deserialize: false,
+        ),
     ],
     normalizationContext: ['groups' => ['v3:center:read']],
     denormalizationContext: ['groups' => ['v3:center:write']],
