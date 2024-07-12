@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use App\Repository\MembreRepository;
 use App\Traits\GedmoTimedTrait;
 use App\Validator\Constraints as CustomAssert;
 use App\Validator\Constraints\UniqueExternalLink;
@@ -18,9 +19,6 @@ use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\MembreRepository")
- */
 #[ApiResource(
     shortName: 'pro',
     operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
@@ -29,6 +27,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     openapiContext: ['tags' => ['Professionnels']],
     security: "is_granted('ROLE_OAUTH2_PROS')",
 )]
+#[ORM\Entity(repositoryClass: MembreRepository::class)]
 class Membre extends Subject implements UserWithCentresInterface, UserHandleCentresInterface
 {
     use GedmoTimedTrait;
