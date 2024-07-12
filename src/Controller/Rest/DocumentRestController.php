@@ -131,9 +131,6 @@ class DocumentRestController extends REController
         }
     }
 
-    /**
-     * Report abuse Route annotation.
-     */
     #[Route(path: '/documents/{id}/report-abuse', name: 'report_abuse', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
     public function reportAbuseAction(int $id, DocumentProvider $provider): JsonResponse
     {

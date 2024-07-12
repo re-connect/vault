@@ -23,7 +23,7 @@ doctrine:
                 alias: AppAttributes
             AppAnnotations:
                 is_bundle: false
-                type: annotation
+                type: attribute
                 dir: '%kernel.project_dir%/src/Entity/Annotations'
                 prefix: 'App\Entity\Annotations'
                 alias: AppAnnotations
