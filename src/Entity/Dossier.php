@@ -13,6 +13,7 @@ use ApiPlatform\Metadata\Post;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Entity\Interface\FolderableEntityInterface;
+use App\Repository\DocumentRepository;
 use App\Validator\Constraints\Folder as AssertFolder;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -20,9 +21,6 @@ use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\DocumentRepository")
- */
 #[ApiResource(
     shortName: 'folder',
     operations: [
@@ -51,6 +49,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     openapiContext: ['tags' => ['Folders']],
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
 )]
+#[ORM\Entity(repositoryClass: DocumentRepository::class)]
 class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 {
     final public const array AUTOCOMPLETE_NAMES = ['health', 'housing', 'identity', 'tax', 'work'];
