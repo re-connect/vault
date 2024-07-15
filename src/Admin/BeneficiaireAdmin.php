@@ -182,9 +182,9 @@ class BeneficiaireAdmin extends AbstractAdmin
                     $value = $data->getValue();
 
                     $query
-                        ->innerJoin($alias.'.beneficiairesCentres', 'bc')
-                        ->innerJoin('bc.centre', 'c')
-                        ->innerJoin('c.region', 'r')
+                        ->innerJoin($alias.'.beneficiairesCentres', 'bc1')
+                        ->innerJoin('bc1.centre', 'c1')
+                        ->innerJoin('c1.region', 'r')
                         ->andWhere('r.name IN (:regions)')
                         ->setParameter('regions', $value);
 
@@ -210,9 +210,9 @@ class BeneficiaireAdmin extends AbstractAdmin
                     $value = $data->getValue();
 
                     $query
-                        ->innerJoin($alias.'.beneficiairesCentres', 'bc')
-                        ->innerJoin('bc.centre', 'c')
-                        ->andWhere('c.id IN (:c)')
+                        ->innerJoin($alias.'.beneficiairesCentres', 'bc2')
+                        ->innerJoin('bc2.centre', 'c2')
+                        ->andWhere('c2.id IN (:c)')
                         ->setParameter('c', $value);
 
                     return true;
