@@ -1,0 +1,33 @@
+{% if document.extension in ['doc', 'docx', 'txt', 'odt'] %}
+    {% set url = asset('build/images/icons/word.png') %}
+{% elseif document.extension in ['xls', 'xlsx', 'csv'] %}
+    {% set url = asset('build/images/icons/excel.PNG') %}
+{% endif %}
+
+<div class="modal fade" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="{{ document.nom }}"
+    {{ stimulus_target('modal', 'modal') }}
+>
+    <div class="modal-dialog">
+        <div class="modal-content text-primary bg-white p-3 rounded">
+            <div class="modal-header d-flex">
+                <h4 class="modal-title bold">
+                    {{ document.nom }}
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                    <a href="{{ document.presignedUrl }}" target="_blank">
+                        {% if document.extension == 'pdf' %}
+                            <img class="img-fluid img-thumbnail" src="{{ document.thumbnailPresignedUrl }}"
+                                 alt="{{ document.nom }}"/>
+                        {% elseif document.thumbnailPresignedUrl %}
+                            <img src="{{ document.presignedUrl }}" alt="{{ document.nom }}" class="img-fluid w-100 border rounded shadow-sm p-1">
+                        {% else %}
+                            <img src="{{ url ?? '' }}" alt="{{ document.nom }}" class="img-fluid w-100 border rounded shadow-sm p-1" style="max-width: 85px">
+                        {% endif %}
+                    </a>
+                <p class="mt-4 mb-0">{{ 'add_date'|trans }} : {{ document.createdAt|date('d/m/Y') }}</p>
+            </div>
+        </div>
+    </div>
+</div>
