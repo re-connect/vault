@@ -7,5 +7,4 @@ return [
     'MJ_APIKEY_PUBLIC' => null,
     'ROSALIE_BASE_URL' => null,
     'ROSALIE_BASIC_TOKEN' => null,
-    'SENDINBLUE_DSN' => null,
 ];

@@ -1,7 +1,7 @@
 framework:
     notifier:
         texter_transports:
-            sendinblue: '%env(SENDINBLUE_DSN)%'
+            brevo: '%env(BREVO_DSN)%'
         chatter_transports:
         channel_policy:
             urgent: [ 'sms' ]

@@ -2,11 +2,10 @@
 
 namespace App\Entity;
 
+use App\Repository\VerbatimRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\VerbatimRepository")
- */
+#[ORM\Entity(repositoryClass: VerbatimRepository::class)]
 class Verbatim
 {
     private $id;
