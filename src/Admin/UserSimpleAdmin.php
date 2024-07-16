@@ -2,6 +2,8 @@
 
 namespace App\Admin;
 
+use App\Checker\FeatureFlagChecker;
+use App\Domain\TermsOfUse\TermsOfUseHelper;
 use App\Entity\Annotations\ResetPasswordRequest;
 use App\Entity\User;
 use App\ServiceV2\Traits\UserAwareTrait;
@@ -33,6 +35,7 @@ class UserSimpleAdmin extends AbstractAdmin
         ?string $baseControllerName = null,
         ?Security $security = null,
         private readonly ?RouterInterface $router = null,
+        private readonly ?FeatureFlagChecker $featureFlagChecker = null,
     ) {
         $this->security = $security;
         parent::__construct($code, $class, $baseControllerName);
@@ -54,6 +57,7 @@ class UserSimpleAdmin extends AbstractAdmin
     #[\Override]
     protected function configureFormFields(FormMapper $form): void
     {
+        $cgsFeatureDate = $this->featureFlagChecker->isEnabled(TermsOfUseHelper::CGS_FEATURE_FLAG_NAME) ? $this->featureFlagChecker->getEnableDate(TermsOfUseHelper::CGS_FEATURE_FLAG_NAME) : null;
         $form
             ->add('nom')
             ->add('prenom', null, ['label' => 'Prénom'])
@@ -81,6 +85,13 @@ class UserSimpleAdmin extends AbstractAdmin
                 'required' => false,
                 'attr' => ['read_only' => true],
                 'disabled' => true,
+            ])
+            ->add('cgsAcceptedAt', DateTimePickerType::class, [
+                'label' => 'Date d\'acceptation des CGU',
+                'required' => false,
+                'attr' => ['read_only' => true],
+                'disabled' => true,
+                'help' => $cgsFeatureDate ? sprintf('Nouvelles CGU en ligne depuis le %s', $cgsFeatureDate->format('d/m/Y')) : '',
             ])
             ->add('test', CheckboxType::class, [
                 'label' => 'Compte test',

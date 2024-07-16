@@ -48,6 +48,7 @@ services:
             - ~
             - '@Symfony\Bundle\SecurityBundle\Security'
             - '@Symfony\Component\Routing\RouterInterface'
+            - '@App\Checker\FeatureFlagChecker'
         calls:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
 
