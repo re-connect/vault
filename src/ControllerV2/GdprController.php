@@ -2,6 +2,8 @@
 
 namespace App\ControllerV2;
 
+use App\Checker\FeatureFlagChecker;
+use App\Domain\TermsOfUse\TermsOfUseHelper;
 use App\Entity\User;
 use App\FormV2\ChangePasswordFormType;
 use App\ManagerV2\UserManager;
@@ -49,6 +51,14 @@ class GdprController extends AbstractController
         }
 
         return $this->renderPasswordPage($user, $form);
+    }
+
+    #[Route(path: '/cgs', name: 'cgs', methods: ['GET'])]
+    public function cgs(FeatureFlagChecker $featureFlagChecker): Response
+    {
+        $url = $featureFlagChecker->isEnabled(TermsOfUseHelper::CGS_FEATURE_FLAG_NAME) ? 'new-cgs' : 'cgs-cs';
+
+        return $this->redirectToRoute('re_admin_annexe', ['url' => $url]);
     }
 
     private function createPasswordForm(): FormInterface

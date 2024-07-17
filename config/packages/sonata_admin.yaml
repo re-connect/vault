@@ -40,6 +40,7 @@ sonata_admin:
                 icon: '<i class="fa fa-cat"></i>'
                 items:
                     - sonata.admin.admin
+                    - sonata.admin.feature_toggle
                 roles:
                     - ROLE_SUPER_ADMIN
 
