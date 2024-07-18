@@ -22,5 +22,4 @@ return [
     'OAUTH_ENCRYPTION_KEY' => null,
     'ROSALIE_BASE_URL' => null,
     'ROSALIE_BASIC_TOKEN' => null,
-    'SENDINBLUE_DSN' => null,
 ];
