@@ -8,6 +8,7 @@ use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
 use App\Entity\Beneficiaire;
 use App\Entity\Document;
+use App\Entity\Note;
 use App\Security\HelperV2\Oauth2Helper;
 use Doctrine\ORM\QueryBuilder;
 
@@ -16,6 +17,7 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
     private const array HANDLED_CLASSES = [
         Beneficiaire::class,
         Document::class,
+        Note::class,
     ];
 
     public function __construct(private Oauth2Helper $oauth2Helper)
@@ -50,6 +52,11 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
         if (Document::class === $resourceClass) {
             $beneficiaryAlias = 'beneficiary';
             $queryBuilder->innerJoin(sprintf('%s.beneficiary', $rootAlias), $beneficiaryAlias);
+        }
+
+        if (Note::class === $resourceClass) {
+            $beneficiaryAlias = 'beneficiaire';
+            $queryBuilder->innerJoin(sprintf('%s.beneficiaire', $rootAlias), $beneficiaryAlias);
         }
 
         $queryBuilder

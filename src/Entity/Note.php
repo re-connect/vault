@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\State\PersonalDataStateProcessor;
@@ -24,6 +25,20 @@ use Symfony\Component\Serializer\Annotation\Groups;
     normalizationContext: ['groups' => ['v3:note:read']],
     denormalizationContext: ['groups' => ['v3:note:write']],
     openapiContext: ['tags' => ['Notes']],
+)]
+#[ApiResource(
+    uriTemplate: '/beneficiaries/{id}/notes',
+    operations: [new GetCollection()],
+    uriVariables: [
+        'id' => new Link(
+            fromProperty: 'notes',
+            fromClass: Beneficiaire::class
+        ),
+    ],
+    normalizationContext: ['groups' => ['v3:note:read']],
+    denormalizationContext: ['groups' => ['v3:note:write']],
+    openapiContext: ['tags' => ['Notes']],
+    security: "is_granted('ROLE_OAUTH2_NOTES')",
 )]
 class Note extends DonneePersonnelle
 {

@@ -53,6 +53,12 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
 
     private function filterPersonalData(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void
     {
+        if (!$user || $user instanceof NullUser) {
+            $queryBuilder->andWhere(sprintf('%s.bPrive = false', $rootAlias));
+
+            return;
+        }
+
         $beneficiary = $user->getSubjectBeneficiaire();
         if (!$beneficiary) {
             $queryBuilder->andWhere('1 = 0');
