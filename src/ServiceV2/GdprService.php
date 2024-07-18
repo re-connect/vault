@@ -14,19 +14,25 @@ class GdprService
     use SessionsAwareTrait;
     use UserAwareTrait;
 
-    public const RENEWAL_DAYS_COUNT = 7;
-    public const EXPIRATION_DAYS_COUNT = 0;
+    public const int RENEWAL_DAYS_COUNT = 7;
+    public const int EXPIRATION_DAYS_COUNT = 0;
 
     public function __construct(
         private readonly RequestStack $requestStack,
         private readonly Security $security,
-        private readonly TranslatorInterface $translator
+        private readonly TranslatorInterface $translator,
+        private readonly bool $appliExpirePassword,
     ) {
     }
 
     public function isPasswordRenewalDue(): bool
     {
         return $this->getDaysBeforeExpiration() <= self::RENEWAL_DAYS_COUNT;
+    }
+
+    public function mustRenewPassword(?User $user = null): bool
+    {
+        return false === $user->isBeneficiaire() && $this->isPasswordExpired($user) && $this->appliExpirePassword;
     }
 
     public function isPasswordExpired(?User $user = null): bool
