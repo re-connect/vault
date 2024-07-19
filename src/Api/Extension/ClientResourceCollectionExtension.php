@@ -7,7 +7,10 @@ use ApiPlatform\Doctrine\Orm\Extension\QueryItemExtensionInterface;
 use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
 use App\Entity\Beneficiaire;
+use App\Entity\Contact;
 use App\Entity\Document;
+use App\Entity\DonneePersonnelle;
+use App\Entity\Evenement;
 use App\Entity\Note;
 use App\Security\HelperV2\Oauth2Helper;
 use Doctrine\ORM\QueryBuilder;
@@ -16,8 +19,11 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
 {
     private const array HANDLED_CLASSES = [
         Beneficiaire::class,
+        DonneePersonnelle::class,
         Document::class,
         Note::class,
+        Evenement::class,
+        Contact::class,
     ];
 
     public function __construct(private Oauth2Helper $oauth2Helper)
@@ -49,14 +55,13 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
         $rootAlias = $rootAliases[0];
         $beneficiaryAlias = $rootAlias;
 
-        if (Document::class === $resourceClass) {
-            $beneficiaryAlias = 'beneficiary';
-            $queryBuilder->innerJoin(sprintf('%s.beneficiary', $rootAlias), $beneficiaryAlias);
-        }
-
-        if (Note::class === $resourceClass) {
+        if (is_subclass_of($resourceClass, DonneePersonnelle::class)) {
             $beneficiaryAlias = 'beneficiaire';
             $queryBuilder->innerJoin(sprintf('%s.beneficiaire', $rootAlias), $beneficiaryAlias);
+            if (Evenement::class === $resourceClass) {
+                $queryBuilder->andWhere(sprintf('%s.date > :today', $rootAlias))
+                ->setParameter('today', new \DateTime());
+            }
         }
 
         $queryBuilder
