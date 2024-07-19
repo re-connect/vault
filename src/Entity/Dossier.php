@@ -36,11 +36,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 {
     final public const array AUTOCOMPLETE_NAMES = ['health', 'housing', 'identity', 'tax', 'work'];
+    final public const string DEFAULT_ICON_NAME = 'folder';
+    final public const array CUSTOM_ICON_NAMES = []; // TODO complete with icon names
+    final public const array ICON_NAMES = [self::DEFAULT_ICON_NAME, ...self::CUSTOM_ICON_NAMES];
 
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:folder:read'])]
     private Collection $documents;
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:folder:read'])]
-    private ?string $dossierImage = null;
+    private ?string $iconName = null;
+
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
     #[AssertFolder\NoCircularDependency]
     private ?Dossier $dossierParent = null;
@@ -86,26 +90,12 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
             'nom' => $this->nom,
             'created_at' => $this->createdAt->format(\DateTimeInterface::W3C),
             'updated_at' => $this->updatedAt->format(\DateTimeInterface::W3C),
-            'dossier_image' => $this->getDossierImage(),
             'is_folder' => $this->getIsFolder(),
             'beneficiaire' => ['id' => $this->beneficiaire->getId()],
             'beneficiaire_id' => $this->getBeneficiaire()->getId(),
             'dossier_parent_id' => $this->dossierParent?->getId(),
             'sous_dossiers' => $sousDossiers,
         ];
-    }
-
-    public function getDossierImage(): ?string
-    {
-        if (null !== ($beneficaire = $this->getBeneficiaire()) && null !== ($clients = $beneficaire->getExternalLinks())) {
-            foreach ($clients as $beneficiaireClient) {
-                if ($beneficiaireClient->getClient()->getDossierNom() === $this->getNom()) {
-                    return $beneficiaireClient->getClient()->getDossierImage();
-                }
-            }
-        }
-
-        return '';
     }
 
     public function getSousDossiers(): ArrayCollection|Collection|array
@@ -213,5 +203,17 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     public function isParentFolderInHierarchy(Dossier $childFolder): bool
     {
         return $this->sousDossiers->exists(fn (int $key, Dossier $subFolder) => $subFolder === $childFolder || $subFolder->isParentFolderInHierarchy($childFolder));
+    }
+
+    public function getIconName(): ?string
+    {
+        return $this->iconName ?? self::DEFAULT_ICON_NAME;
+    }
+
+    public function setIconName(?string $iconName): static
+    {
+        $this->iconName = $iconName;
+
+        return $this;
     }
 }
