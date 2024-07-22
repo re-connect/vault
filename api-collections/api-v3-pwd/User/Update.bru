@@ -1,13 +1,13 @@
 meta {
-  name: User
+  name: Update
   type: http
   seq: 3
 }
 
-patch {
-  url: {{baseUrl}}/api/v3/users/9208
+put {
+  url: {{baseUrl}}/api/v3/users/{id}
   body: json
-  auth: none
+  auth: inherit
 }
 
 body:json {
