@@ -66,22 +66,18 @@ class EventApiV3Test extends AbstractApiTest
 
     public function testPost(): void
     {
-        $this->markTestSkipped('Event api ressource is currently disabled');
         $event = [
+            'beneficiaire_id' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK)->object()->getId(),
             'nom' => 'testNom',
             'date' => (new \DateTime('tomorrow'))->format('c'),
             'lieu' => 'testLieu',
-            'b_prive' => true,
-            'beneficiaire' => sprintf(
-                '/api/v3/beneficiaries/%d',
-                BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object()->getId(),
-            ),
+            'b_prive' => false,
             'created_at' => (new \DateTime())->format('c'),
             'updated_at' => (new \DateTime())->format('c'),
         ];
 
         $this->assertEndpoint(
-            'rosalie',
+            'reconnect_pro',
             '/events',
             'POST',
             201,

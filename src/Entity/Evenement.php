@@ -24,7 +24,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
         new Delete(security: "is_granted('UPDATE', object)"),
         new Get(security: "is_granted('ROLE_OAUTH2_EVENTS') or is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_EVENTS') or is_granted('ROLE_USER')"),
-        new Post(security: "is_granted('ROLE_USER')", processor: PersonalDataStateProcessor::class),
+        new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_BENEFICIARIES')", processor: PersonalDataStateProcessor::class),
         new Patch(security: "is_granted('UPDATE', object)"),
     ],
     normalizationContext: ['groups' => ['v3:event:read']],
