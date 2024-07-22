@@ -66,28 +66,27 @@ class ContactApiV3Test extends AbstractApiTest
 
     public function testPost(): void
     {
-        $this->markTestSkipped('Contact api ressource is currently disabled');
         $contact = [
-            'nom' => 'testNom',
-            'prenom' => 'testPrenom',
-            'b_prive' => true,
-            'beneficiaire' => sprintf(
-                '/api/v3/beneficiaries/%d',
-                BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object()->getId()
-            ),
-            'created_at' => (new \DateTime())->format('c'),
-            'updated_at' => (new \DateTime())->format('c'),
+            'beneficiaireId' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK)->object()->getId(),
+            'nom' => 'CONTACT',
+            'prenom' => 'test',
+            'telephone' => '+33620746411',
+            'email' => 'contact.test@mail.com',
+            'commentaire' => null,
         ];
 
         $this->assertEndpoint(
-            'rosalie',
+            'reconnect_pro',
             '/contacts',
             'POST',
             201,
             [
                 '@context' => '/api/contexts/Contact',
                 '@type' => 'Contact',
-                ...$contact,
+                'nom' => 'CONTACT',
+                'prenom' => 'test',
+                'telephone' => '+33620746411',
+                'email' => 'contact.test@mail.com',
             ],
             $contact
         );
