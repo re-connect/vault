@@ -72,7 +72,7 @@ class ContactApiV3Test extends AbstractApiTest
             'prenom' => 'test',
             'telephone' => '+33620746411',
             'email' => 'contact.test@mail.com',
-            'commentaire' => null,
+            'commentaire' => 'Un commentaire',
         ];
 
         $this->assertEndpoint(
@@ -87,6 +87,7 @@ class ContactApiV3Test extends AbstractApiTest
                 'prenom' => 'test',
                 'telephone' => '+33620746411',
                 'email' => 'contact.test@mail.com',
+                'commentaire' => 'Un commentaire',
             ],
             $contact
         );

@@ -31,14 +31,13 @@ readonly class PersonalDataStateProcessor implements ProcessorInterface
         }
 
         if ($data->beneficiaireId) {
-            $benef = $this->beneficiaireRepository->find($data->beneficiaireId);
-            if ($benef && $benef->hasExternalLinkForClient($this->apiClientManager->getCurrentOldClient())) {
-                $data->setBeneficiaire($benef);
-
-                return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
+            $beneficiary = $this->beneficiaireRepository->find($data->beneficiaireId);
+            if (!$beneficiary || !$beneficiary->hasExternalLinkForClient($this->apiClientManager->getCurrentOldClient())) {
+                throw new NotFoundHttpException('Beneficiaire Not Found');
             }
+            $data->setBeneficiaire($beneficiary);
 
-            throw new NotFoundHttpException('Beneficiaire Not Found');
+            return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
         }
 
         throw new BadRequestHttpException('BeneficiaireId missing');
