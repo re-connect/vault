@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\State\PersonalDataStateProcessor;
@@ -18,12 +19,26 @@ use Symfony\Component\Serializer\Annotation\Groups;
         new Delete(security: "is_granted('UPDATE', object)"),
         new Get(security: "is_granted('ROLE_OAUTH2_CONTACTS') or is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_CONTACTS') or is_granted('ROLE_USER')"),
-        new Post(security: "is_granted('ROLE_USER')", processor: PersonalDataStateProcessor::class),
+        new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_BENEFICIARIES')", processor: PersonalDataStateProcessor::class),
         new Patch(security: "is_granted('UPDATE', object)"),
     ],
     normalizationContext: ['groups' => ['v3:contact:read']],
     denormalizationContext: ['groups' => ['v3:contact:write']],
     openapiContext: ['tags' => ['Contacts']],
+)]
+#[ApiResource(
+    uriTemplate: '/beneficiaries/{id}/contacts',
+    operations: [new GetCollection()],
+    uriVariables: [
+        'id' => new Link(
+            fromProperty: 'contacts',
+            fromClass: Beneficiaire::class
+        ),
+    ],
+    normalizationContext: ['groups' => ['v3:contact:read']],
+    denormalizationContext: ['groups' => ['v3:contact:write']],
+    openapiContext: ['tags' => ['Contacts']],
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
 )]
 class Contact extends DonneePersonnelle
 {

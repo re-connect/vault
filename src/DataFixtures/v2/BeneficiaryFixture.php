@@ -93,6 +93,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
     {
         ContactFactory::createOne(['beneficiaire' => $beneficiary])->object();
         NoteFactory::createOne(['beneficiaire' => $beneficiary])->object();
+        NoteFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
         EventFactory::createOne(['beneficiaire' => $beneficiary])->object();
         DocumentFactory::createOne(['beneficiaire' => $beneficiary])->object();
         FolderFactory::createMany(2, ['beneficiaire' => $beneficiary]);

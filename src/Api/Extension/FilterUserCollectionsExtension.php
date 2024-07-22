@@ -15,7 +15,6 @@ use App\Entity\Note;
 use App\Entity\User;
 use App\Repository\BeneficiaireRepository;
 use Doctrine\ORM\QueryBuilder;
-use League\Bundle\OAuth2ServerBundle\Security\User\NullUser;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -53,16 +52,21 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
 
     private function filterPersonalData(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void
     {
-        $beneficiary = $user->getSubjectBeneficiaire();
-        if (!$beneficiary) {
-            $queryBuilder->andWhere('1 = 0');
+        if ($this->isAuthenticatedAsClient($user)) {
+            $queryBuilder->andWhere(sprintf('%s.bPrive = false', $rootAlias));
+
+            return;
+        }
+
+        if (!$user->isBeneficiaire()) {
+            $queryBuilder->andWhere('1 = 0'); // Always failing condition to return null result
 
             return;
         }
 
         $queryBuilder
             ->andWhere(sprintf('%s.beneficiaire = :beneficiaryId', $rootAlias))
-            ->setParameter('beneficiaryId', $beneficiary->getId());
+            ->setParameter('beneficiaryId', $user->getSubjectBeneficiaire()->getId());
     }
 
     private function filterBeneficiaries(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void
@@ -77,11 +81,16 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
 
     private function filterUsers(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void
     {
-        if (!$user || $user instanceof NullUser) {
+        if ($this->isAuthenticatedAsClient($user)) {
             return;
         }
         $queryBuilder
             ->andWhere(sprintf('%s.id = :userId', $rootAlias))
             ->setParameter('userId', $user->getId());
+    }
+
+    private function isAuthenticatedAsClient(?UserInterface $user): bool
+    {
+        return !$user instanceof User;
     }
 }
