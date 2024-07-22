@@ -1,13 +1,13 @@
 meta {
-  name: Events
+  name: Update
   type: http
-  seq: 2
+  seq: 3
 }
 
-post {
-  url: {{baseUrl}}/api/v3/events
+put {
+  url: {{baseUrl}}/api/v3/events/{id}
   body: json
-  auth: none
+  auth: inherit
 }
 
 body:json {
