@@ -45,6 +45,8 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
      */
     protected $password;
 
+    protected $currentPassword;
+
     /**
      * Plain password. Used for model validation. Must not be persisted.
      *
@@ -110,6 +112,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
     #[\Override]
     public function eraseCredentials()
     {
+        $this->currentPassword = null;
         $this->plainPassword = null;
     }
 
@@ -148,6 +151,18 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
     public function getPlainPassword()
     {
         return $this->plainPassword;
+    }
+
+    public function getCurrentPassword(): ?string
+    {
+        return $this->currentPassword;
+    }
+
+    public function setCurrentPassword($currentPassword): self
+    {
+        $this->currentPassword = $currentPassword;
+
+        return $this;
     }
 
     /**

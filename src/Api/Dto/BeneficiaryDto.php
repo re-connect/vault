@@ -37,6 +37,9 @@ final class BeneficiaryDto
     #[Groups(['v3:beneficiary:write'])]
     public ?string $password = null;
 
+    #[Groups(['v3:beneficiary:write'])]
+    public ?string $plainPassword = null;
+
     /** @var ?string[] */
     #[Groups(['v3:beneficiary:write'])]
     public ?array $centers = null;
@@ -66,7 +69,8 @@ final class BeneficiaryDto
             ->setUser((new User())
                 ->setNom($this->lastName)
                 ->setPrenom($this->firstName)
-                ->setPlainPassword($this->password)
+                ->setPlainPassword($this->plainPassword)
+                ->setCurrentPassword($this->password)
                 ->setEmail($this->email)
                 ->setTelephone($this->phone)
                 ->setRelaysIds($this->centers ?? [])
