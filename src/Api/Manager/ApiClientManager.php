@@ -9,12 +9,12 @@ use League\Bundle\OAuth2ServerBundle\Security\Authentication\Token\OAuth2Token;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-readonly class ApiClientManager
+class ApiClientManager
 {
     public function __construct(
-        private TokenStorageInterface $tokenStorage,
-        private ClientRepository $clientRepository,
-        private OldClientRepository $oldClientRepository,
+        private readonly TokenStorageInterface $tokenStorage,
+        private readonly ClientRepository $clientRepository,
+        private readonly OldClientRepository $oldClientRepository,
     ) {
     }
 

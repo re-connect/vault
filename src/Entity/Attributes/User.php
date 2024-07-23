@@ -4,11 +4,14 @@ namespace App\Entity\Attributes;
 
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
+use App\Api\Dto\UserDto;
 use App\Api\Filters\UsernameFilter;
 use App\Api\State\SearchBeneficiaryProvider;
 use App\Api\State\UserPasswordProcessor;
+use App\Api\State\UserStateProcessor;
 use App\Controller\Api\MeController;
 use App\Entity\UserWithCentresInterface;
 use App\Repository\UserRepository;
@@ -41,7 +44,8 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
     operations: [
         new GetCollection(security: "is_granted('ROLE_OAUTH2_USERS') or is_granted('ROLE_USER')", provider: SearchBeneficiaryProvider::class),
         new Patch(security: "is_granted('UPDATE', object)", processor: UserPasswordProcessor::class),
-        new Get(uriTemplate: '/me', controller: MeController::class, openapiContext: ['tags' => ['User']], read: false),
+        new Get(uriTemplate: '/me', controller: MeController::class, security: "is_granted('ROLE_USER')", read: false),
+        new Patch(security: "is_granted('UPDATE', object)", input: UserDto::class, processor: UserStateProcessor::class),
     ],
     normalizationContext: ['groups' => ['v3:user:read']],
     denormalizationContext: ['groups' => ['v3:user:write']],
@@ -123,17 +127,17 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     private $updatedAt;
 
     #[ORM\Column(name: 'prenom', type: 'string', length: 255, nullable: true)]
-    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
+    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:user:write', 'v3:beneficiary:write'])]
     #[Anonymize('fr-fr.firstname')]
     private $prenom;
 
     #[ORM\Column(name: 'nom', type: 'string', length: 255, nullable: true)]
-    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
+    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:user:write', 'v3:beneficiary:write'])]
     #[Anonymize('fr-fr.lastname')]
     private $nom;
 
     #[ORM\Column(name: 'birthDate', type: 'date', nullable: true)]
-    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
+    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:user:write', 'v3:beneficiary:write'])]
     #[Anonymize('date', options: ['min' => 'now -70 years', 'max' => 'now -15 years'])]
     private ?\DateTime $birthDate = null;
 
@@ -346,6 +350,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public function setBirthDate(?\DateTime $birthDate): self
     {
         $this->birthDate = $birthDate;
+        $this->subjectBeneficiaire?->setDateNaissance($birthDate);
 
         return $this;
     }
@@ -1558,5 +1563,19 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         }
 
         return $this->subjectBeneficiaire->isCreating();
+    }
+
+    public function setSecretQuestion(?string $secretQuestion): self
+    {
+        $this->subjectBeneficiaire?->setQuestionSecrete($secretQuestion);
+
+        return $this;
+    }
+
+    public function setSecretAnswer(?string $secretAnswer): self
+    {
+        $this->subjectBeneficiaire?->setReponseSecrete($secretAnswer);
+
+        return $this;
     }
 }
