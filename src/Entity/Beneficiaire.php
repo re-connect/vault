@@ -701,7 +701,9 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     public function setDateNaissance(?\DateTime $dateNaissance): self
     {
         $this->dateNaissance = $dateNaissance;
-        $this->user?->setBirthDate($dateNaissance);
+        if ($dateNaissance !== $this->user?->getBirthDate()) {
+            $this->user?->setBirthDate($dateNaissance);
+        }
 
         return $this;
     }
