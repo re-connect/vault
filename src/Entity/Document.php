@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
@@ -9,6 +10,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Api\Filters\FolderIdFilter;
 use App\Controller\Api\UploadDocumentController;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Interface\FolderableEntityInterface;
@@ -48,6 +50,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     denormalizationContext: ['groups' => ['v3:document:write']],
     openapiContext: ['tags' => ['Documents']],
 )]
+#[ApiFilter(FolderIdFilter::class, properties: ['folderId' => 'exact'])]
 #[ApiResource(
     uriTemplate: '/beneficiaries/{id}/documents',
     operations: [new GetCollection()],
