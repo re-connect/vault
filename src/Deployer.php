@@ -21,7 +21,7 @@ class Deployer extends DefaultDeployer
     {
         return $this->getConfigBuilder()
             ->server($this->server)
-            ->deployDir($this->getAbsolutePath('/www'))
+            ->deployDir($this->getAbsolutePath('/www-new'))
             ->repositoryUrl('git@github.com:re-connect/vault.git')
             ->repositoryBranch($this->repositoryBranch)
             ->remoteComposerBinaryPath($this->getAbsolutePath('/composer.phar'))
