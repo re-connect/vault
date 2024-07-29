@@ -21,7 +21,7 @@ class GdprServiceTest extends TestCase
         $this->security = $this->createMock(Security::class);
         $translator = $this->createMock(TranslatorInterface::class);
 
-        $this->gdprService = new GdprService($requestStack, $this->security, $translator);
+        $this->gdprService = new GdprService($requestStack, $this->security, $translator, true);
     }
 
     /** @dataProvider  provideTestGetDaysBeforeExpiration */

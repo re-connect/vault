@@ -2,6 +2,8 @@
 
 namespace App\EventSubscriber\Api;
 
+use App\Domain\TermsOfUse\TermsOfUseHelper;
+use App\Entity\User;
 use App\Repository\UserRepository;
 use App\ServiceV2\GdprService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,45 +24,38 @@ readonly class Oauth2ResponseSubscriber
         private UserRepository $repository,
         private EntityManagerInterface $em,
         private GdprService $gdprService,
-        private bool $appliExpirePassword,
+        private TermsOfUseHelper $termsOfUseHelper,
     ) {
     }
 
     public function onTokenResolve(TokenRequestResolveEvent $event): TokenRequestResolveEvent
     {
-        $username = $this->extractUserIdFromResponse($event->getResponse());
-        if (!$username) {
-            return $event;
-        }
-
-        $user = $this->repository->findByUsername($username);
+        $user = $this->findUser($event);
         if (!$user) {
             return $event;
         }
 
+        if ($user->isMfaEnabled()) {
+            if ($user->isMfaPending()) {
+                return $event->setResponse(new JsonResponse(['login' => 'success', 'two_factor_complete' => false]));
+            } elseif (!$user->isMfaValid()) {
+                return $event->setResponse(new JsonResponse(['login' => 'failure', 'two_factor_complete' => false], Response::HTTP_UNAUTHORIZED));
+            } else {
+                $user->resetAuthCodes();
+                $this->em->flush();
+            }
+        }
+
         if (!$user->isEnabled()) {
-            $event->setResponse(new JsonResponse(['login' => 'failure', 'disabled' => true], Response::HTTP_UNAUTHORIZED));
+            return $event->setResponse(new JsonResponse(['login' => 'failure', 'disabled' => true], Response::HTTP_UNAUTHORIZED));
         } elseif ($user->isBeingCreated()) {
-            $event->setResponse(new JsonResponse(['login' => 'failure', 'isBeingCreated' => true], Response::HTTP_UNAUTHORIZED));
-        }
-
-        if (!$user->hasPasswordWithLatestPolicy()) {
-            $event->setResponse(new JsonResponse(['login' => 'success', 'weak_password' => true]));
-        } elseif (false === $user->isBeneficiaire() && $this->gdprService->isPasswordExpired($user) && $this->appliExpirePassword) {
-            $event->setResponse(new JsonResponse(['login' => 'success', 'expired_password' => true]));
-        }
-
-        if (!$user->isMfaEnabled()) {
-            return $event;
-        }
-
-        if ($user->isMfaPending()) {
-            $event->setResponse(new JsonResponse(['login' => 'success', 'two_factor_complete' => false]));
-        } elseif (!$user->isMfaValid()) {
-            $event->setResponse(new JsonResponse(['login' => 'failure', 'two_factor_complete' => false], Response::HTTP_UNAUTHORIZED));
-        } else {
-            $user->resetAuthCodes();
-            $this->em->flush();
+            return $event->setResponse(new JsonResponse(['login' => 'failure', 'isBeingCreated' => true], Response::HTTP_UNAUTHORIZED));
+        } elseif (!$user->hasPasswordWithLatestPolicy()) {
+            return $event->setResponse(new JsonResponse(['login' => 'success', 'weak_password' => true]));
+        } elseif ($this->gdprService->mustRenewPassword($user)) {
+            return $event->setResponse(new JsonResponse(['login' => 'success', 'expired_password' => true]));
+        } elseif ($this->termsOfUseHelper->mustAcceptTermsOfUse($user)) {
+            return $event->setResponse(new JsonResponse(['login' => 'success', 'cgs_not_accepted' => true]));
         }
 
         return $event;
@@ -99,5 +94,15 @@ readonly class Oauth2ResponseSubscriber
         return (string) $token
             ->claims()
             ->get('sub');
+    }
+
+    private function findUser(TokenRequestResolveEvent $event): ?User
+    {
+        $username = $this->extractUserIdFromResponse($event->getResponse());
+        if (!$username) {
+            return null;
+        }
+
+        return $this->repository->findByUsername($username);
     }
 }

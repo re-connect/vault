@@ -4,12 +4,13 @@ namespace App\Domain\TermsOfUse;
 
 use App\Checker\FeatureFlagChecker;
 use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 
-class TermsOfUseHelper
+readonly class TermsOfUseHelper
 {
     public const string CGS_FEATURE_FLAG_NAME = 'new-cgs';
 
-    public function __construct(private readonly FeatureFlagChecker $featureFlagChecker)
+    public function __construct(private FeatureFlagChecker $featureFlagChecker, private EntityManagerInterface $em)
     {
     }
 
@@ -25,5 +26,13 @@ class TermsOfUseHelper
     private function mustAcceptNewTerms(User $user): bool
     {
         return !$user->getCgsAcceptedAt() || $user->getCgsAcceptedAt() < $this->featureFlagChecker->getEnableDate(self::CGS_FEATURE_FLAG_NAME);
+    }
+
+    public function checkAcceptTermsOfUse(User $user, mixed $shouldAccept = null): void
+    {
+        if ($shouldAccept) {
+            $user->acceptTermsOfUse();
+            $this->em->flush($user);
+        }
     }
 }

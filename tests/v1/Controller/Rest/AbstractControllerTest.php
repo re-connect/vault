@@ -81,6 +81,7 @@ abstract class AbstractControllerTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
 
         $content = json_decode($this->client->getResponse()->getContent(), true);
+
         $this->accessToken = $content['access_token'];
 
         return $member;
