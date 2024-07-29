@@ -70,8 +70,6 @@ class NoteApiV3Test extends AbstractApiTest
             'nom' => 'testNom',
             'contenu' => 'testContenu',
             'beneficiaire_id' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK)->object()->getId(),
-            'created_at' => (new \DateTime())->format('c'),
-            'updated_at' => (new \DateTime())->format('c'),
         ];
 
         $this->assertEndpoint(
