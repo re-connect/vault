@@ -1,5 +1,5 @@
 accept: Accepter
-accept_terms_of_use: "J'accepte les conditions d'utilisation"
+accept_terms_of_use: "J’accepte les conditions générales d’utilisation du service"
 accepted: Accepté
 access: Accès
 accompanying_person_propose_cfn_activation: "Votre accompagnant %person.firstname% %person.lastname% de la structure %center% vous propose d'activer votre coffre-fort numérique Reconnect"
@@ -294,7 +294,7 @@ form_forgot_password: "زما پاسورډ بیا تنظیم کړئ"
 form_login: "کاروونکي نوم یا بریښنالیک"
 french_flag: Drapeau français
 gdpr_know_more: 'En savoir plus sur la conformité RGPD de votre structure'
-general_conditions_of_use: 'Conditions générales du service'
+general_conditions_of_use: 'Conditions générales d''utilisation du service'
 generate_password: 'Générer un mot de passe'
 german_flag: Drapeau allemand
 header_link_cfn: 'Le coffre-fort<span class="d-lg-block"> numérique</span>'
