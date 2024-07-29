@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Api\Filters\FolderIdFilter;
 use App\Controller\Api\UploadDocumentController;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Interface\FolderableEntityInterface;
@@ -46,6 +49,21 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     normalizationContext: ['groups' => ['v3:document:read']],
     denormalizationContext: ['groups' => ['v3:document:write']],
     openapiContext: ['tags' => ['Documents']],
+)]
+#[ApiFilter(FolderIdFilter::class, properties: ['folderId' => 'exact'])]
+#[ApiResource(
+    uriTemplate: '/beneficiaries/{id}/documents',
+    operations: [new GetCollection()],
+    uriVariables: [
+        'id' => new Link(
+            fromProperty: 'documents',
+            fromClass: Beneficiaire::class
+        ),
+    ],
+    normalizationContext: ['groups' => ['v3:document:read']],
+    denormalizationContext: ['groups' => ['v3:document:write']],
+    openapiContext: ['tags' => ['Documents']],
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
 )]
 class Document extends DonneePersonnelle implements FolderableEntityInterface
 {

@@ -7,9 +7,13 @@ meta {
 get {
   url: {{baseUrl}}/api/v3/users?username=first.last.12/12/12
   body: none
-  auth: none
+  auth: bearer
 }
 
 query {
   username: first.last.12/12/12
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
 }

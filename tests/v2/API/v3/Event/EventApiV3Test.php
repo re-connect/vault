@@ -3,25 +3,38 @@
 namespace App\Tests\v2\API\v3\Event;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
+use App\Entity\Beneficiaire;
+use App\Repository\BeneficiaireRepository;
 use App\Tests\Factory\BeneficiaireFactory;
+use App\Tests\Factory\ClientFactory;
 use App\Tests\Factory\EventFactory;
 use App\Tests\v2\API\v3\AbstractApiTest;
 
 class EventApiV3Test extends AbstractApiTest
 {
+    private readonly BeneficiaireRepository $beneficiaireRepository;
+
+    protected function setUp(): void
+    {
+        $this->beneficiaireRepository = $this->getContainer()->get(BeneficiaireRepository::class);
+        parent::setUp();
+    }
+
     public function testGetCollection(): void
     {
-        $this->markTestSkipped('Event api ressource is currently disabled');
+        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
+        /** @var Beneficiaire $beneficiary */
+        $beneficiary = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
         $this->assertEndpoint(
-            'rosalie',
-            '/events',
+            'reconnect_pro',
+            sprintf('/beneficiaries/%s/events', $beneficiary->getId()),
             'GET',
             200,
             [
                 '@context' => '/api/contexts/Event',
-                '@id' => '/api/v3/events',
+                '@id' => sprintf('/api/v3/beneficiaries/%s/events', $beneficiary->getId()),
                 '@type' => 'hydra:Collection',
-                'hydra:totalItems' => count(EventFactory::all()),
+                'hydra:totalItems' => count(EventFactory::findBy(['beneficiaire' => $beneficiary->getId(), 'bPrive' => false])),
             ]
         );
     }
@@ -53,22 +66,16 @@ class EventApiV3Test extends AbstractApiTest
 
     public function testPost(): void
     {
-        $this->markTestSkipped('Event api ressource is currently disabled');
         $event = [
+            'beneficiaire_id' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK)->object()->getId(),
             'nom' => 'testNom',
             'date' => (new \DateTime('tomorrow'))->format('c'),
             'lieu' => 'testLieu',
-            'b_prive' => true,
-            'beneficiaire' => sprintf(
-                '/api/v3/beneficiaries/%d',
-                BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object()->getId(),
-            ),
-            'created_at' => (new \DateTime())->format('c'),
-            'updated_at' => (new \DateTime())->format('c'),
+            'b_prive' => false,
         ];
 
         $this->assertEndpoint(
-            'rosalie',
+            'reconnect_pro',
             '/events',
             'POST',
             201,

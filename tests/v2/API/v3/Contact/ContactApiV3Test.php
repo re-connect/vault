@@ -3,25 +3,38 @@
 namespace App\Tests\v2\API\v3\Contact;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
+use App\Entity\Beneficiaire;
+use App\Repository\BeneficiaireRepository;
 use App\Tests\Factory\BeneficiaireFactory;
+use App\Tests\Factory\ClientFactory;
 use App\Tests\Factory\ContactFactory;
 use App\Tests\v2\API\v3\AbstractApiTest;
 
 class ContactApiV3Test extends AbstractApiTest
 {
+    private readonly BeneficiaireRepository $beneficiaireRepository;
+
+    protected function setUp(): void
+    {
+        $this->beneficiaireRepository = $this->getContainer()->get(BeneficiaireRepository::class);
+        parent::setUp();
+    }
+
     public function testGetCollection(): void
     {
-        $this->markTestSkipped('Contact api ressource is currently disabled');
+        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
+        /** @var Beneficiaire $beneficiary */
+        $beneficiary = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
         $this->assertEndpoint(
-            'rosalie',
-            '/contacts',
+            'reconnect_pro',
+            sprintf('/beneficiaries/%s/contacts', $beneficiary->getId()),
             'GET',
             200,
             [
                 '@context' => '/api/contexts/Contact',
-                '@id' => '/api/v3/contacts',
+                '@id' => sprintf('/api/v3/beneficiaries/%s/contacts', $beneficiary->getId()),
                 '@type' => 'hydra:Collection',
-                'hydra:totalItems' => count(ContactFactory::all()),
+                'hydra:totalItems' => count(ContactFactory::findBy(['beneficiaire' => $beneficiary->getId(), 'bPrive' => false])),
             ]
         );
     }
@@ -53,21 +66,17 @@ class ContactApiV3Test extends AbstractApiTest
 
     public function testPost(): void
     {
-        $this->markTestSkipped('Contact api ressource is currently disabled');
         $contact = [
-            'nom' => 'testNom',
-            'prenom' => 'testPrenom',
-            'b_prive' => true,
-            'beneficiaire' => sprintf(
-                '/api/v3/beneficiaries/%d',
-                BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object()->getId()
-            ),
-            'created_at' => (new \DateTime())->format('c'),
-            'updated_at' => (new \DateTime())->format('c'),
+            'beneficiaire_id' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK)->object()->getId(),
+            'nom' => 'CONTACT',
+            'prenom' => 'test',
+            'telephone' => '+33620746411',
+            'email' => 'contact.test@mail.com',
+            'commentaire' => 'Un commentaire',
         ];
 
         $this->assertEndpoint(
-            'rosalie',
+            'reconnect_pro',
             '/contacts',
             'POST',
             201,

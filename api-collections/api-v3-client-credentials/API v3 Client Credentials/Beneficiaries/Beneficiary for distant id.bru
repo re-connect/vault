@@ -7,9 +7,13 @@ meta {
 get {
   url: {{baseUrl}}/api/v3/beneficiaries?distantId=523
   body: none
-  auth: none
+  auth: bearer
 }
 
 query {
   distantId: 523
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
 }

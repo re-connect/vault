@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Entity\Interface\FolderableEntityInterface;
 use App\Validator\Constraints\Folder as AssertFolder;
@@ -32,6 +35,21 @@ use Symfony\Component\Serializer\Annotation\Groups;
     normalizationContext: ['groups' => ['v3:folder:read']],
     denormalizationContext: ['groups' => ['v3:folder:write']],
     openapiContext: ['tags' => ['Dossiers']],
+)]
+#[ApiFilter(FolderIdFilter::class, properties: ['folderId' => 'exact'])]
+#[ApiResource(
+    uriTemplate: '/beneficiaries/{id}/folders',
+    operations: [new GetCollection()],
+    uriVariables: [
+        'id' => new Link(
+            fromProperty: 'dossiers',
+            fromClass: Beneficiaire::class
+        ),
+    ],
+    normalizationContext: ['groups' => ['v3:folder:read']],
+    denormalizationContext: ['groups' => ['v3:folder:write']],
+    openapiContext: ['tags' => ['Folders']],
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
 )]
 class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 {
