@@ -44,4 +44,5 @@ return [
     Scheb\TwoFactorBundle\SchebTwoFactorBundle::class => ['all' => true],
     Erkens\Security\TwoFactorTextBundle\TwoFactorTextBundle::class => ['all' => true],
     MakinaCorpus\DbToolsBundle\DbToolsBundle::class => ['all' => true],
+    EasyCorp\Bundle\EasyDeployBundle\EasyDeployBundle::class => ['dev' => true, 'test' => true],
 ];
