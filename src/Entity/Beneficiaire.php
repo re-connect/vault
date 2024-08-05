@@ -14,6 +14,7 @@ use App\Api\Filters\DistantIdFilter;
 use App\Api\State\BeneficiaryStateProcessor;
 use App\Api\State\BeneficiaryStateProvider;
 use App\Controller\Api\UnlinkBeneficiaryController;
+use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Traits\GedmoTimedTrait;
@@ -137,6 +138,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     private ?string $questionSecrete = null;
 
     #[Groups(['write'])]
+    #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_SECRET_ANSWER]])]
     private ?string $reponseSecrete = null;
 
     /** @var Collection<ClientBeneficiaire> */
