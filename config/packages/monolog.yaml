@@ -6,7 +6,7 @@ monolog:
             type: rotating_file
             channels: [ deprecation ]
             path: "%kernel.logs_dir%/deprecations/%kernel.environment%.deprecations.log"
-            max_files: 30
+            max_files: 10
 
 when@dev:
     monolog:
@@ -123,19 +123,70 @@ when@test:
 when@preprod:
     monolog:
         channels:
-            - sms
+            - login
+            - personal_data
+            - user
+            - relay
+            - affiliation
             - api
+            - sms
         handlers:
+            main:
+                type: fingers_crossed
+                action_level: error
+                handler: nested
+                excluded_http_codes: [ 404, 405 ]
+                buffer_size: 50 # How many messages should be saved? Prevent memory leaks
+            nested:
+                type: rotating_file
+                path: "%kernel.logs_dir%/%kernel.environment%.log"
+                level: debug
+                max_files: 10
+            console:
+                type: console
+                process_psr_3_messages: false
+                channels: [ "!event", "!doctrine" ]
+            activity:
+                level: debug
+                type: rotating_file
+                path: '%kernel.logs_dir%/activity_preprod/login/login.log'
+                channels: [ 'login' ]
+                max_files: 365
+            personal_data:
+                level: debug
+                type: rotating_file
+                path: '%kernel.logs_dir%/activity_preprod/personal_data/personal_data.log'
+                channels: [ 'personal_data' ]
+                max_files: 365
+            user:
+                level: debug
+                type: rotating_file
+                path: '%kernel.logs_dir%/activity_preprod/user/user.log'
+                channels: [ 'user' ]
+                max_files: 365
+            relay:
+                level: debug
+                type: rotating_file
+                path: '%kernel.logs_dir%/activity_preprod/relay/relay.log'
+                channels: [ 'relay' ]
+                max_files: 365
+            affiliation:
+                level: debug
+                type: rotating_file
+                path: '%kernel.logs_dir%/activity_preprod/affiliation/affiliation.log'
+                channels: [ 'affiliation' ]
+                max_files: 365
+            api:
+                level: debug
+                type: rotating_file
+                path: '%kernel.logs_dir%/api_preprod/v3.log'
+                channels: [ 'api' ]
+                max_files: 10
             sms:
                 level: debug
                 type: stream
-                path: '%kernel.logs_dir%/activity_dev/sms.log'
+                path: '%kernel.logs_dir%/activity_preprod/sms.log'
                 channels: [ 'sms' ]
-            api:
-                level: debug
-                type: stream
-                path: '%kernel.logs_dir%/api_preprod/v3.log'
-                channels: [ 'api' ]
 
 when@prod:
     monolog:
@@ -154,40 +205,48 @@ when@prod:
                 excluded_http_codes: [ 404, 405 ]
                 buffer_size: 50 # How many messages should be saved? Prevent memory leaks
             nested:
-                type: stream
+                type: rotating_file
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
                 level: debug
+                max_files: 10
             console:
                 type: console
                 process_psr_3_messages: false
                 channels: [ "!event", "!doctrine" ]
             activity:
                 level: debug
-                type: stream
-                path: '%kernel.logs_dir%/activity/login.log'
+                type: rotating_file
+                path: '%kernel.logs_dir%/activity/login/login.log'
                 channels: [ 'login' ]
+                max_files: 365
             personal_data:
                 level: debug
-                type: stream
-                path: '%kernel.logs_dir%/activity/personal_data.log'
+                type: rotating_file
+                path: '%kernel.logs_dir%/activity/personal_data/personal_data.log'
                 channels: [ 'personal_data' ]
+                max_files: 365
             user:
                 level: debug
-                type: stream
-                path: '%kernel.logs_dir%/activity/user.log'
+                type: rotating_file
+                path: '%kernel.logs_dir%/activity/user/user.log'
                 channels: [ 'user' ]
+                max_files: 365
             relay:
                 level: debug
-                type: stream
-                path: '%kernel.logs_dir%/activity/relay.log'
+                type: rotating_file
+                path: '%kernel.logs_dir%/activity/relay/relay.log'
                 channels: [ 'relay' ]
+                max_files: 365
             affiliation:
                 level: debug
-                type: stream
-                path: '%kernel.logs_dir%/activity/affiliation.log'
+                type: rotating_file
+                path: '%kernel.logs_dir%/activity/affiliation/affiliation.log'
                 channels: [ 'affiliation' ]
+                max_files: 365
             api:
                 level: debug
-                type: stream
+                type: rotating_file
                 path: '%kernel.logs_dir%/api/v3.log'
                 channels: [ 'api' ]
+                max_files: 10
+
