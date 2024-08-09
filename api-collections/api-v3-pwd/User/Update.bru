@@ -1,0 +1,26 @@
+meta {
+  name: Update
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{baseUrl}}/api/v3/users/{{userId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "birth_date": "2024-07-24T00:00:00+02:00",
+    "firstName": "jean",
+    "lastName": "claude",
+    "email": "jean.claude@yopmail.com",
+    "phone": "+33777777777",
+    "secretQuestion": "chem",
+    "secretQuestionCustomText": "chem",
+    "secretQuestionAnswer": "chem",
+    "password": "AncienPassword1",
+    "newPassword": "NouveauPassword1"
+  }
+}

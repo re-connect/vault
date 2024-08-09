@@ -100,7 +100,7 @@ final class BeneficiaireRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'beneficiaries/{id}/send-sms-activation-code', requirements: ['id' => '\d{1,10}'], name: 'send_activation_code', methods: ['PATCH'])]
+    #[Route(path: 'beneficiaries/{id}/send-sms-activation-code', name: 'send_activation_code', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
     public function sendActivationCode($id, BeneficiaireProvider $provider, SMSManager $SMSManager): JsonResponse
     {
         try {
@@ -115,7 +115,7 @@ final class BeneficiaireRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'beneficiaries/{id}', requirements: ['id' => '\d{1,10}'], name: 'get_beneficiaire', methods: ['GET'])]
+    #[Route(path: 'beneficiaries/{id}', name: 'get_beneficiaire', requirements: ['id' => '\d{1,10}'], methods: ['GET'])]
     public function getEntity($id, BeneficiaireProvider $provider): JsonResponse
     {
         try {
@@ -125,7 +125,7 @@ final class BeneficiaireRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'beneficiaries/{id}/phone-number', requirements: ['id' => '\d{1,10}'], name: 'update_phone_number', methods: ['PATCH'])]
+    #[Route(path: 'beneficiaries/{id}/phone-number', name: 'update_phone_number', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
     public function updatePhoneNumber($id, BeneficiaireProvider $provider): JsonResponse
     {
         try {
