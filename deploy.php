@@ -50,6 +50,9 @@ host('vault-prod')
 
 // Test connection in order to avoid "Failed to connect to secondary target" error
 task('deploy:test_connection', function () {
+    // Override first ssh connection in order to avoid bug that appeared after Wallix upgrade
+    runLocally("ssh '-F' {{config_file}} '-A' '-o' 'ControlMaster=auto' '-o' 'ControlPersist=60' '-o' 'ControlPath=~/.ssh/{{hostname}}' '{{hostname}}' ': bash -ls'");
+
     $i = 0;
     while (MAX_CONNECTION_RETRY > $i) {
         if (run('echo test', no_throw: true)) {
