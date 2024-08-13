@@ -233,7 +233,7 @@ class BeneficiaireAdmin extends AbstractAdmin
                     $query
                         ->join($alias.'.externalLinks', 'external_link')
                         ->join('external_link.client', 'client')
-                        ->where('client.id IN (:client)')
+                        ->andWhere('client.id IN (:client)')
                         ->setParameter('client', $value);
 
                     return true;
@@ -252,10 +252,10 @@ class BeneficiaireAdmin extends AbstractAdmin
                     $query
                         ->join(CreatorUser::class, 'creator_user', 'WITH', $alias.'.id = creator_user.user')
                         ->join('creator_user.entity', 'u')
-                        ->where('u.username like :value')
-                        ->orWhere('u.nom like :value')
-                        ->orWhere('u.prenom like :value')
-                        ->setParameter('value', '%'.$value.'%');
+                        ->andWhere('u.username like :creatorUserName')
+                        ->orWhere('u.nom like :creatorUserName')
+                        ->orWhere('u.prenom like :creatorUserName')
+                        ->setParameter('creatorUserName', '%'.$value.'%');
 
                     return true;
                 },
@@ -272,8 +272,8 @@ class BeneficiaireAdmin extends AbstractAdmin
                     $query
                         ->join(CreatorCentre::class, 'creator_centre', 'WITH', $alias.'.id = creator_centre.user')
                         ->join('creator_centre.entity', 'centre')
-                        ->where('centre IN (:value)')
-                        ->setParameter('value', $value);
+                        ->andWhere('centre IN (:centreName)')
+                        ->setParameter('centreName', $value);
 
                     return true;
                 },
@@ -293,8 +293,8 @@ class BeneficiaireAdmin extends AbstractAdmin
                     $query
                         ->join(CreatorClient::class, 'creator_client', 'WITH', $alias.'.id = creator_client.user')
                         ->join('creator_client.entity', 'client')
-                        ->where('client IN (:value)')
-                        ->setParameter('value', $value);
+                        ->andWhere('client IN (:creatorClientName)')
+                        ->setParameter('creatorClientName', $value);
 
                     return true;
                 },
