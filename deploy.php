@@ -80,7 +80,7 @@ task('deploy:reset-opcache', function () {
 
 // Hooks
 
-before('deploy:setup', 'deploy:test_connection');
+before('deploy:info', 'deploy:test_connection');
 before('deploy:build_frontend', 'deploy:dump_frontend_routes');
 before('deploy:build_frontend', 'deploy:install_frontend');
 before('deploy:cache:clear', 'deploy:build_frontend');
