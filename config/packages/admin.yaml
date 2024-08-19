@@ -245,3 +245,8 @@ services:
         arguments: [ ~, App\Entity\Attributes\FeatureFlag, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Outils SuperAdmin", label: "Feature Toggle" }
+    sonata.admin.folder_icon:
+        class: App\Admin\FolderIconAdmin
+        arguments: [ ~, App\Entity\Attributes\FolderIcon, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Autres", label: "Dossier logo" }
