@@ -96,4 +96,9 @@ class FolderIcon implements \Stringable
 
         return $this;
     }
+
+    public function getPublicFilePath(): string
+    {
+        return sprintf('%s/%s', self::PUBLIC_PATH_TO_ICON_FOLDER, $this->getFileName());
+    }
 }

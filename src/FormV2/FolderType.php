@@ -2,7 +2,9 @@
 
 namespace App\FormV2;
 
+use App\Entity\Attributes\FolderIcon;
 use App\Entity\Dossier;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -33,6 +35,13 @@ class FolderType extends AbstractType
                         'shared' => false,
                     ],
                     'data' => $options['private'],
+                ])
+                ->add('icon', EntityType::class, [
+                    'class' => FolderIcon::class,
+                    'required' => false,
+                    'label' => 'icon',
+                    'choice_label' => 'name',
+                    'placeholder' => 'no_icon',
                 ]);
         }
     }
