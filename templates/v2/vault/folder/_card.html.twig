@@ -3,7 +3,7 @@
 >
     <td class="bg-white borderless text-start align-middle">
         <a href="{{ path('folder', {'id': folder.id}) }}" class="text-decoration-none text-primary d-block">
-            <i class="fa fa-fw fa-folder-open fa-3x"></i>
+            <img src="{{ asset(folder.getIconFilePath) }}" style="width: 63px" alt="{{ 'folder_icon'|trans }}">
         </a>
     </td>
     <td class="bg-white borderless text-start align-middle w-100">

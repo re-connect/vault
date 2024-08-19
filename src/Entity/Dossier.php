@@ -55,6 +55,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 {
     final public const array AUTOCOMPLETE_NAMES = ['health', 'housing', 'identity', 'tax', 'work'];
+    final public const string DEFAULT_ICON_FILE_PATH = 'img/folder_icon/neutral.svg';
 
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:folder:read'])]
     private Collection $documents;
@@ -261,5 +262,10 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
         $this->icon = $icon;
 
         return $this;
+    }
+
+    public function getIconFilePath(): ?string
+    {
+        return $this->icon?->getPublicFilePath() ?? self::DEFAULT_ICON_FILE_PATH;
     }
 }
