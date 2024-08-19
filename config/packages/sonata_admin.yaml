@@ -35,13 +35,13 @@ sonata_admin:
                     - reo_auth.admin.client
                     - re_admin.admin.annexe
                     - re_admin.admin.region
-                    - sonata.admin.folder_icon
             superAdminFeatures:
                 label: "Outils SuperAdmin"
                 icon: '<i class="fa fa-cat"></i>'
                 items:
                     - sonata.admin.admin
                     - sonata.admin.feature_toggle
+                    - sonata.admin.folder_icon
                 roles:
                     - ROLE_SUPER_ADMIN
 
