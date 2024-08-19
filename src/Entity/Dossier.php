@@ -12,6 +12,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
+use App\Entity\Attributes\FolderIcon;
 use App\Entity\Attributes\SharedFolder;
 use App\Entity\Interface\FolderableEntityInterface;
 use App\Entity\Interface\ShareablePersonalData;
@@ -71,6 +72,8 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface, Sh
     private Collection $sharedFolders;
 
     private ?string $publicDownloadUrl = null;
+
+    private ?FolderIcon $icon = null;
 
     public function __construct()
     {
@@ -303,5 +306,17 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface, Sh
     public static function createShareablePersonalData(): SharedFolder
     {
         return new SharedFolder();
+    }
+
+    public function getIcon(): ?FolderIcon
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?FolderIcon $icon): static
+    {
+        $this->icon = $icon;
+
+        return $this;
     }
 }
