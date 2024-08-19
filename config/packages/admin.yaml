@@ -249,4 +249,4 @@ services:
         class: App\Admin\FolderIconAdmin
         arguments: [ ~, App\Entity\Attributes\FolderIcon, ~ ]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Autres", label: "Dossier logo" }
+            - { name: sonata.admin, manager_type: orm, group: "Outils SuperAdmin", label: "Image de dossier" }
