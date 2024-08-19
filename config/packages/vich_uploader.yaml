@@ -8,3 +8,10 @@ vich_uploader:
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
+        folder_icon:
+            uri_prefix: "/img/folder_icon"
+            upload_destination: "%kernel.project_dir%/public/img/folder_icon"
+            namer: vich_uploader.namer_origname
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true

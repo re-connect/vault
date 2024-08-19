@@ -12,6 +12,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
+use App\Entity\Attributes\FolderIcon;
 use App\Entity\Interface\FolderableEntityInterface;
 use App\Validator\Constraints\Folder as AssertFolder;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -64,6 +65,9 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     private ?Dossier $dossierParent = null;
     #[Groups(['read-personal-data', 'read-personal-data-v2'])]
     private Collection $sousDossiers;
+
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
+    private ?FolderIcon $icon = null;
 
     public function __construct()
     {
@@ -245,5 +249,17 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     public function isParentFolderInHierarchy(Dossier $childFolder): bool
     {
         return $this->sousDossiers->exists(fn (int $key, Dossier $subFolder) => $subFolder === $childFolder || $subFolder->isParentFolderInHierarchy($childFolder));
+    }
+
+    public function getIcon(): ?FolderIcon
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?FolderIcon $icon): static
+    {
+        $this->icon = $icon;
+
+        return $this;
     }
 }
