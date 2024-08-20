@@ -58,7 +58,10 @@ class FixtureManager
             ->setLastIp($this->faker->ipv4())
             ->setEnabled(true)
             ->setAdresse($this->getNewRandomAdresse())
-            ->setPasswordUpdatedAt(new \DateTimeImmutable());
+            ->setPasswordUpdatedAt(new \DateTimeImmutable())
+            ->setCgsAcceptedAt(new \DateTimeImmutable())
+            ->setFirstVisit()
+        ;
         $user->setPassword($this->hasher->hashPassword($user, $password));
 
         return $user;
