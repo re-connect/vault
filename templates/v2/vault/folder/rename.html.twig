@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block content %}
-    {{ include('v2/vault/form/_personal_data_form.html.twig', {
-        'title': 'rename',
-        'cancelPath': folder.dossierParent
-        ? path('folder', {'id': folder.dossierParent.id})
-        : path('list_documents', {'id': folder.beneficiaire.id})
-    }) }}
+    <div {{ stimulus_controller('folder-icon') }}>
+        {{ include('v2/vault/form/_personal_data_form.html.twig', {
+            title: 'rename',
+            cancelPath: folder.dossierParent
+            ? path('folder', {'id': folder.dossierParent.id})
+            : path('list_documents', {'id': folder.beneficiaire.id})
+        }) }}
+    </div>
 {% endblock %}

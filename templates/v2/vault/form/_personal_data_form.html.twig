@@ -7,6 +7,11 @@
             {{ title|trans }}
         </h4>
         <hr class="text-light-grey">
+        {% if folder is defined %}
+            <div class="text-center">
+                <img src="{{ asset(folder.iconFilePath) }}" style="width: 80px" alt="{{ 'folder_icon'|trans }}" {{ stimulus_target('folder-icon', 'img') }}>
+            </div>
+        {% endif %}
         {{ form_start(form) }}
         {{ form_widget(form) }}
         <div class="row mx-1 mt-2">
