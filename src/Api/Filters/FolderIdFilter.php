@@ -5,20 +5,30 @@ namespace App\Api\Filters;
 use ApiPlatform\Doctrine\Orm\Filter\AbstractFilter;
 use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
+use App\Entity\Dossier;
 use Doctrine\ORM\QueryBuilder;
 
-class UsernameFilter extends AbstractFilter
+class FolderIdFilter extends AbstractFilter
 {
     #[\Override]
     protected function filterProperty(string $property, $value, QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, ?Operation $operation = null, array $context = []): void
     {
-        if ('username' !== $property) {
+        if ('folderId' !== $property) {
+            return;
+        }
+
+        $folderProperty = Dossier::class === $resourceClass ? 'dossierParent' : 'dossier';
+
+        if ('root' === $value) {
+            $queryBuilder
+                ->andWhere(sprintf('%s.%s is null', $queryBuilder->getRootAliases()[0], $folderProperty));
+
             return;
         }
 
         $queryBuilder
-            ->andWhere(sprintf('%s.username = :username', $queryBuilder->getRootAliases()[0]))
-            ->setParameter('username', $value);
+            ->andWhere(sprintf('%s.%s = :folderId', $queryBuilder->getRootAliases()[0], $folderProperty))
+            ->setParameter('folderId', $value);
     }
 
     #[\Override]
