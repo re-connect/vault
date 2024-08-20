@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use App\Api\Filters\UsernameFilter;
@@ -1310,6 +1309,13 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public function setCgsAcceptedAt(?\DateTimeImmutable $cgsAcceptedAt): static
     {
         $this->cgsAcceptedAt = $cgsAcceptedAt;
+
+        return $this;
+    }
+
+    public function acceptTermsOfUse(): static
+    {
+        $this->cgsAcceptedAt = new \DateTimeImmutable();
 
         return $this;
     }
