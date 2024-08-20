@@ -336,7 +336,7 @@ class BeneficiaryPersonalDataController extends AbstractController
 
         return $this->render('v2/vault/folder/create.html.twig', [
             'form' => $form,
-            'beneficiary' => $beneficiary,
+            'folder' => $folder,
             'autocompleteNames' => $manager->getAutocompleteFolderNames(),
         ]);
     }
