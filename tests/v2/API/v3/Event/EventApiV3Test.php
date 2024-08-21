@@ -72,8 +72,6 @@ class EventApiV3Test extends AbstractApiTest
             'date' => (new \DateTime('tomorrow'))->format('c'),
             'lieu' => 'testLieu',
             'b_prive' => false,
-            'created_at' => (new \DateTime())->format('c'),
-            'updated_at' => (new \DateTime())->format('c'),
         ];
 
         $this->assertEndpoint(
