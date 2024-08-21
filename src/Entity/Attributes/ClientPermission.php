@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Annotations;
+namespace App\Entity\Attributes;
 
 use App\Repository\ClientPermissionRepository;
 use Doctrine\ORM\Mapping as ORM;

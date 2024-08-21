@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Annotations;
+namespace App\Entity\Attributes;
 
 use App\Entity\User;
 use App\RepositoryV2\ResetPasswordRequestRepository;
