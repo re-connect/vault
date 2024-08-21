@@ -16,11 +16,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class BeneficiaireRestV2ControllerTest extends AbstractControllerTest
 {
-    public const CONTACT_ENTITY_NAME = 'contacts';
-    public const NOTE_ENTITY_NAME = 'notes';
-    public const EVENEMENT_ENTITY_NAME = 'events';
-    public const DOCUMENT_ENTITY_NAME = 'documents';
-    public const DOSSIER_ENTITY_NAME = 'folders';
+    public const string CONTACT_ENTITY_NAME = 'contacts';
+    public const string NOTE_ENTITY_NAME = 'notes';
+    public const string EVENEMENT_ENTITY_NAME = 'events';
+    public const string DOCUMENT_ENTITY_NAME = 'documents';
+    public const string DOSSIER_ENTITY_NAME = 'folders';
 
     public function testGetMine()
     {
@@ -45,9 +45,6 @@ class BeneficiaireRestV2ControllerTest extends AbstractControllerTest
     public function testAddExternalLink()
     {
         $member = $this->loginAsMember();
-        /**
-         * le centre existe / le lien externe existe pour ce bénéficiaire.
-         */
         $em = $this->getEntityManager();
         $centreProvider = self::getContainer()->get(CentreProvider::class);
         /** @var Beneficiaire $beneficiaire */
@@ -58,8 +55,6 @@ class BeneficiaireRestV2ControllerTest extends AbstractControllerTest
         $centres = $em->getRepository(Centre::class)->findByClientIdentifier($client->getRandomId());
 
         $centre2 = $centres[1];
-        $centre3 = $centres[2];
-        $centre4 = $centres[3];
         $centre5 = $centres[4];
         $centre6 = $centres[5];
 

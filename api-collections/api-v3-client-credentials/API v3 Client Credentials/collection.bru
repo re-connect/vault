@@ -1,0 +1,18 @@
+auth {
+  mode: oauth2
+}
+
+auth:oauth2 {
+  grant_type: client_credentials
+  access_token_url: {{baseUrl}}/api/token
+  client_id: {{oauthClientId}}
+  client_secret: {{oauthClientSecret}}
+  scope: {{oauthScopes}}
+}
+
+script:post-response {
+  var token = res.body.access_token;
+    if (token) {
+      bru.setVar('oauth2_token', token)
+    }
+}

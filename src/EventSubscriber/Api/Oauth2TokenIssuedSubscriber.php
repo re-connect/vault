@@ -4,6 +4,7 @@ namespace App\EventSubscriber\Api;
 
 use App\Domain\MFA\MfaCodeSender;
 use App\Domain\PasswordStrength\WeakPasswordUpgrader;
+use App\Domain\TermsOfUse\TermsOfUseHelper;
 use App\ManagerV2\UserManager;
 use App\Repository\UserRepository;
 use League\OAuth2\Server\RequestAccessTokenEvent;
@@ -18,6 +19,7 @@ readonly class Oauth2TokenIssuedSubscriber
         private UserManager $userManager,
         private MfaCodeSender $mfaCodeSender,
         private WeakPasswordUpgrader $weakPasswordUpgrader,
+        private TermsOfUseHelper $termsOfUseHelper,
     ) {
     }
 
@@ -35,6 +37,7 @@ readonly class Oauth2TokenIssuedSubscriber
         $this->userManager->handleUserLogin($user);
 
         parse_str((string) $event->getRequest()->getServerParams()['QUERY_STRING'], $queryParams);
+        $this->termsOfUseHelper->checkAcceptTermsOfUse($user, $queryParams['_accept_terms_of_use'] ?? null);
         $this->weakPasswordUpgrader->checkUpdateWeakPassword($user, $queryParams['_new_password'] ?? null);
         $this->mfaCodeSender->checkCode($user, $queryParams['_auth_code'] ?? null);
     }
