@@ -39,8 +39,7 @@ final class FolderIconAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->add('name', null, $this->isCurrentRoute('edit') ? ['attr' => [
-                'read_only' => true, ], 'disabled' => true] : [])
+            ->add('name', null, ['label' => 'Nom'])
             ->add('imageFile', VichFileType::class, [
                 'required' => false,
                 'label' => 'Fichier',

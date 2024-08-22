@@ -147,6 +147,7 @@ class FolderController extends AbstractController
         return $this->render('v2/vault/folder/create.html.twig', [
             'form' => $form,
             'folder' => $folder,
+            'beneficiary' => $folder->getBeneficiaire(),
             'autocompleteNames' => $manager->getAutocompleteFolderNames(),
         ]);
     }
