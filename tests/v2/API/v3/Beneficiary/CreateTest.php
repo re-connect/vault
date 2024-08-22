@@ -55,8 +55,10 @@ class CreateTest extends AbstractApiTest
         $this->assertNotNull($benef);
         $this->assertNotEmpty($benef->getExternalLinks());
         $externalLink = $benef->getExternalLinks()->first();
+        $beneficiaireCentre = $benef->getBeneficiairesCentres()->first();
         $this->assertEquals('reconnect_pro', $externalLink->getClient()->getNom());
-        $this->assertEquals($benef->getBeneficiairesCentres()->first(), $externalLink->getBeneficiaireCentre());
+        $this->assertEquals($beneficiaireCentre, $externalLink->getBeneficiaireCentre());
         $this->assertEquals(1200, $benef->getExternalLinks()->first()->getDistantId());
+        $this->assertTrue($beneficiaireCentre->getBValid());
     }
 }
