@@ -34,7 +34,7 @@ class FolderType extends AbstractType
                 'label' => 'choose_picture',
                 'choice_label' => 'name',
                 'choice_translation_domain' => 'messages',
-                'placeholder' => 'neutral',
+                'placeholder' => 'no_picture',
                 'placeholder_attr' => [
                     'data-icon-file-path' => $this->packages->getUrl(Dossier::DEFAULT_ICON_FILE_PATH),
                 ],
