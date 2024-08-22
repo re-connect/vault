@@ -26,7 +26,9 @@ readonly class Oauth2UserResolveSubscriber
         $isUserPasswordInvalid = $user instanceof LegacyPasswordAuthenticatedUserInterface && !$this->hasher->isPasswordValid($user, $event->getPassword());
         $event->setUser($isUserPasswordInvalid ? null : $user);
 
-        $this->weakPasswordUpgrader->markPasswordCompliant($user, $event->getPassword());
+        if ($user) {
+            $this->weakPasswordUpgrader->markPasswordCompliant($user, $event->getPassword());
+        }
 
         return $event;
     }
