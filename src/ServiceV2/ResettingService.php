@@ -2,7 +2,7 @@
 
 namespace App\ServiceV2;
 
-use App\Entity\Attributes\ResetPasswordRequest;
+use App\Entity\Annotations\ResetPasswordRequest;
 use App\Entity\Beneficiaire;
 use App\Entity\User;
 use App\ManagerV2\UserManager;

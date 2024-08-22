@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\Doctrine\Set\DoctrineSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Symfony\CodeQuality\Rector\ClassMethod\ActionSuffixRemoverRector;
 use Rector\Symfony\CodeQuality\Rector\ClassMethod\ParamTypeFromRouteRequiredRegexRector;
@@ -23,6 +22,5 @@ return static function (RectorConfig $rectorConfig): void {
         SymfonySetList::SYMFONY_CODE_QUALITY,
         SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
         SymfonySetList::ANNOTATIONS_TO_ATTRIBUTES,
-        DoctrineSetList::ANNOTATIONS_TO_ATTRIBUTES,
     ]);
 };
