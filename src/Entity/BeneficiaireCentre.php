@@ -9,12 +9,10 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use App\Repository\BeneficiaireCentreRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\BeneficiaireCentreRepository")
- */
 #[ApiResource(
     shortName: 'beneficiary_center',
     operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
@@ -23,6 +21,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     openapiContext: ['tags' => ['Centres Beneficiaires']],
     security: "is_granted('ROLE_OAUTH2_CENTERS')",
 )]
+#[ORM\Entity(repositoryClass: BeneficiaireCentreRepository::class)]
 class BeneficiaireCentre extends UserCentre
 {
     /**
