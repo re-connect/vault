@@ -74,7 +74,7 @@ readonly class Oauth2ResponseSubscriber
 
     public function decodeAccessTokenFromResponse(Response $response): string
     {
-        return json_decode($response->getContent() ?: '')->access_token;
+        return json_decode($response->getContent() ?: '')->access_token ?? '';
     }
 
     public function extractUserIdFromJwt(string $jwt): string
