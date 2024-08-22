@@ -33,6 +33,10 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
     #[\Override]
     public function applyToItem(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, array $identifiers, ?Operation $operation = null, array $context = []): void
     {
+        if (str_contains((string) $operation->getName(), 'add-external-link')) {
+            return;
+        }
+
         $this->addClientExternalLinksFilter($queryBuilder, $resourceClass);
     }
 
