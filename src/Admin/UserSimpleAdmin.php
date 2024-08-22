@@ -4,7 +4,7 @@ namespace App\Admin;
 
 use App\Checker\FeatureFlagChecker;
 use App\Domain\TermsOfUse\TermsOfUseHelper;
-use App\Entity\Annotations\ResetPasswordRequest;
+use App\Entity\Attributes\ResetPasswordRequest;
 use App\Entity\User;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;

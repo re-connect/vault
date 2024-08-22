@@ -17,6 +17,7 @@ use App\Controller\Api\UnlinkBeneficiaryController;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
 use App\Entity\Interface\ClientResourceInterface;
+use App\Repository\BeneficiaireRepository;
 use App\Traits\GedmoTimedTrait;
 use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -28,7 +29,6 @@ use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
-/** @ORM\Entity(repositoryClass="App\Repository\BeneficiaireRepository") */
 #[ApiFilter(DistantIdFilter::class, properties: ['distantId'])]
 #[ApiResource(
     shortName: 'beneficiary',
@@ -66,6 +66,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"
 )]
 #[Anonymize('reconnect.beneficiary_filter')]
+#[ORM\Entity(repositoryClass: BeneficiaireRepository::class)]
 class Beneficiaire extends Subject implements UserWithCentresInterface, ClientResourceInterface
 {
     use GedmoTimedTrait;
