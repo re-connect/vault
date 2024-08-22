@@ -1,13 +1,13 @@
 meta {
-  name: Relays
+  name: GetCollection
   type: http
   seq: 1
 }
 
 get {
   url: {{baseUrl}}/api/v3/centers
-  body: json
-  auth: none
+  body: none
+  auth: inherit
 }
 
 body:json {

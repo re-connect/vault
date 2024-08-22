@@ -1,0 +1,24 @@
+meta {
+  name: Login
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/oauth/v2/token
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  grant_type: password
+  scope: default
+  client_id: {{oauthPasswordClientId}}
+  client_secret: {{oauthPasswordClientSecret}}
+  username: {{oauthPasswordUsername}}
+  password: {{oauthPasswordPassword}}
+}
+
+vars:post-response {
+  token: res.body.access_token
+}
