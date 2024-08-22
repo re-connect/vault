@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\SharedDocumentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: SharedDocumentRepository::class)]
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\SharedDocumentRepository")
+ */
 class SharedDocument
 {
     private ?int $id = null;

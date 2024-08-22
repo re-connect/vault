@@ -108,7 +108,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
     }
 
     #[\Override]
-    public function eraseCredentials(): void
+    public function eraseCredentials()
     {
         $this->plainPassword = null;
     }
