@@ -170,6 +170,9 @@
             ".php-cs-fixer.dist.php"
         ]
     },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.2"
+    },
     "friendsofsymfony/ckeditor-bundle": {
         "version": "2.4",
         "recipe": {
@@ -232,6 +235,9 @@
     },
     "knplabs/knp-paginator-bundle": {
         "version": "v5.5.1"
+    },
+    "laminas/laminas-code": {
+        "version": "3.4.1"
     },
     "lcobucci/clock": {
         "version": "2.0.0"
@@ -759,6 +765,9 @@
     },
     "symfony/property-info": {
         "version": "v4.4.9"
+    },
+    "symfony/proxy-manager-bridge": {
+        "version": "v5.4.0"
     },
     "symfony/psr-http-message-bridge": {
         "version": "v2.1.2"

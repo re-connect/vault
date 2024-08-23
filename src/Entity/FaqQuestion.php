@@ -2,14 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\FaqQuestionRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: FaqQuestionRepository::class)]
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\FaqQuestionRepository")
+ */
 class FaqQuestion
 {
-    private readonly int $id;
+    private int $id;
     private string $text;
     private string $answer;
     #[Assert\PositiveOrZero]
