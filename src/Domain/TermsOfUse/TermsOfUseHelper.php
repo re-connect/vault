@@ -32,6 +32,7 @@ readonly class TermsOfUseHelper
     {
         if ($shouldAccept) {
             $user->acceptTermsOfUse();
+            $user->setFirstVisit();
             $this->em->flush($user);
         }
     }
