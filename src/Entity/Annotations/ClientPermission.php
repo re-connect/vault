@@ -1,31 +1,47 @@
 <?php
 
-namespace App\Entity\Attributes;
+namespace App\Entity\Annotations;
 
 use App\Repository\ClientPermissionRepository;
 use Doctrine\ORM\Mapping as ORM;
 use League\Bundle\OAuth2ServerBundle\Model\Client;
 
-#[ORM\Entity(repositoryClass: ClientPermissionRepository::class)]
-#[ORM\Table(name: 'client_permission')]
+/**
+ * @ORM\Entity(repositoryClass=ClientPermissionRepository::class)
+ *
+ * @ORM\Table(name="client_permission")
+ */
 class ClientPermission
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Id
+     *
+     * @ORM\GeneratedValue
+     *
+     * @ORM\Column(type="integer")
+     */
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: Client::class)]
-    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'identifier')]
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class)
+     *
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="identifier")
+     */
     private Client $client;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private string $objectClass;
 
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Column(type="integer")
+     */
     private int $objectId;
 
-    #[ORM\Column(type: 'array')]
+    /**
+     * @ORM\Column(type="array")
+     */
     private array $permissions = [];
 
     public function getId(): ?int

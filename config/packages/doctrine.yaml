@@ -21,6 +21,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity/Attributes'
                 prefix: 'App\Entity\Attributes'
                 alias: AppAttributes
+            AppAnnotations:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Entity/Annotations'
+                prefix: 'App\Entity\Annotations'
+                alias: AppAnnotations
             App:
                 is_bundle: false
                 type: yml
@@ -34,12 +40,9 @@ doctrine:
 when@test:
     doctrine:
         dbal:
-            default_connection: default
-            connections:
-                default:
-                    dbname_suffix: '_test%env(default::TEST_TOKEN)%'
-                    logging: false
-                    use_savepoints: true
+            # "TEST_TOKEN" is typically set by ParaTest
+            dbname_suffix: '_test%env(default::TEST_TOKEN)%'
+            logging: false
 
 when@prod:
     doctrine:
