@@ -25,7 +25,7 @@ readonly class RelayAssignationHelper
         }
     }
 
-    public function assignRelayFromExternalId(User $user, Client $client, ?int $externalRelayId = null): void
+    public function assignRelayFromExternalId(User $user, Client $client, ?int $externalRelayId = null, bool $acceptRelay = false): void
     {
         $externalRelayId ??= $user->getExternalRelayId();
         if (!$externalRelayId) {
@@ -34,7 +34,7 @@ readonly class RelayAssignationHelper
         try {
             $relay = $this->repository->findByDistantId($externalRelayId, $client->getRandomId());
             /** @var BeneficiaireCentre $userRelay */
-            $userRelay = $user->getUserRelays()->filter(fn (UserCentre $userCentre) => $relay === $userCentre->getCentre())->first() ?: User::createUserRelay($user, $relay);
+            $userRelay = $user->getUserRelays()->filter(fn (UserCentre $userCentre) => $relay === $userCentre->getCentre())->first() ?: User::createUserRelay($user, $relay, $acceptRelay);
             $user->getSubjectBeneficiaire()->addBeneficiairesCentre($userRelay);
             $this->em->persist($userRelay);
 
