@@ -16,7 +16,7 @@ class AddExternalLinkTest extends AbstractApiTest
         parent::setUp();
     }
 
-    public function testSearchBeneficiary(): void
+    public function testAddExternalLink(): void
     {
         $beneficiary = BeneficiaireFactory::createOne();
         $user = $beneficiary->getUser();
