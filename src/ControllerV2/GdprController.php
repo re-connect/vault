@@ -56,7 +56,7 @@ class GdprController extends AbstractController
     #[Route(path: '/cgs', name: 'cgs', methods: ['GET'])]
     public function cgs(FeatureFlagChecker $featureFlagChecker): Response
     {
-        $url = $featureFlagChecker->isEnabled(TermsOfUseHelper::CGS_FEATURE_FLAG_NAME) ? 'new-cgs' : 'cgs-cs';
+        $url = $featureFlagChecker->isEnabled(TermsOfUseHelper::CGS_FEATURE_FLAG_NAME) ? 'cgs' : 'cgs-cs';
 
         return $this->redirectToRoute('re_admin_annexe', ['url' => $url]);
     }
