@@ -222,7 +222,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 
         if ($parentFolder && $parentFolder !== $this) {
             $parentFolder->addSousDossier($this);
-            if ($parentFolder->getBPrive() !== $this->getBPrive()) {
+            if ($parentFolder->isPrivate() && !$this->isPrivate()) {
                 $this->toggleVisibility();
             }
         }

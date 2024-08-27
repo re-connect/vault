@@ -153,7 +153,7 @@ class DocumentAdmin extends AbstractAdmin
             ->add('creatorCentre', null, ['label' => 'Déposé par (centre)'])
             ->add('creatorClient', null, ['label' => 'Déposé par (client)'])
             ->add('createdAt', null, ['label' => 'Créé le'])
-            ->add('isPrivate', null, ['label' => 'Accès'])
+            ->add('isPrivateToString', null, ['label' => 'Accès'])
             ->add('dossier.id', null, ['label' => 'Id dossier'])
             ->add('dossier.nom', null, ['label' => 'Nom du dossier'])
             ->add('beneficiaire.user.canada', null, ['label' => 'Canada']);

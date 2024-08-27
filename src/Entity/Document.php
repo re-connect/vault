@@ -393,9 +393,10 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
     public function move(?Dossier $parentFolder): void
     {
         $this->setDossier($parentFolder);
-        if ($parentFolder) {
-            $parentFolder->addDocument($this);
-            $this->setBPrive($parentFolder->getBPrive());
+        $parentFolder->addDocument($this);
+
+        if ($parentFolder?->isPrivate()) {
+            $this->setBPrive(true);
         }
     }
 }

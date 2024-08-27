@@ -48,19 +48,22 @@ class TreeViewMoveTest extends AbstractControllerTest implements TestRouteInterf
 
     public function provideTestTreeViewMove(): ?\Generator
     {
-        yield 'Shared document should be hydrated with parent visibility' => [false];
-        yield 'Private document should be hydrated with parent visibility' => [true];
+        yield 'Shared document moved in shared folder should be shared' => [false, false, false];
+        yield 'Shared document moved in private folder should be private' => [false, true, true];
+        yield 'Private document moved in shared folder should be private' => [true, false, true];
+        yield 'Private document moved in private folder should be private' => [true, true, true];
     }
 
     /** @dataProvider provideTestTreeViewMove */
-    public function testTreeViewMove(bool $isPrivate): void
+    public function testTreeViewMove(bool $isPrivateDoc, bool $isPrivateFolder, bool $shouldBePrivate): void
     {
+        self::ensureKernelShutdown();
         $clientTest = static::createClient();
         $user = $this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL);
         $clientTest->loginUser($user);
         $beneficiary = $user->getSubjectBeneficiaire();
 
-        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate])->object();
+        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivateDoc])->object();
 
         // We access first folder link in the tree view, and access folderId
         $crawler = $clientTest->request('GET', sprintf(self::URL, $document->getId()));
@@ -70,12 +73,13 @@ class TreeViewMoveTest extends AbstractControllerTest implements TestRouteInterf
         $folder = FolderFactory::find(['id' => $folderId])->object();
 
         // We hydrate folder with desired visibility before moving document inside for test purposes
-        $folder->setBprive(!$isPrivate);
+        $folder->setBprive($isPrivateFolder);
+        $this->getEntityManager()->flush();
 
         $clientTest->request('GET', $treeViewMoveUri);
         $document = DocumentFactory::find($document)->object();
         $folder = FolderFactory::find($folder)->object();
         self::assertSame($folder, $document->getDossier());
-        self::assertEquals($folder->getBprive(), $document->getBPrive());
+        self::assertEquals($shouldBePrivate, $document->getBPrive());
     }
 }

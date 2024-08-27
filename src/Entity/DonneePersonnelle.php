@@ -118,7 +118,7 @@ abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
     /**
      * Dans le cadre de l'admin.
      */
-    public function isPrivate(): string
+    public function isPrivateToString(): string
     {
         if ($this->bPrive) {
             return 'privé';
@@ -201,5 +201,10 @@ abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
     public function toggleVisibility(): void
     {
         $this->setBPrive(!$this->getBPrive());
+    }
+
+    public function isPrivate(): bool
+    {
+        return true === $this->getBPrive();
     }
 }
