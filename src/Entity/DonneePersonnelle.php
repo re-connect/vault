@@ -198,13 +198,25 @@ abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
         return $this->creators;
     }
 
-    public function toggleVisibility(): void
+    public function setPrivate(bool $isPrivate): static
     {
-        $this->setBPrive(!$this->getBPrive());
+        $this->bPrive = $isPrivate;
+
+        return $this;
     }
 
     public function isPrivate(): bool
     {
-        return true === $this->getBPrive();
+        return $this->bPrive;
+    }
+
+    public function toggleVisibility(): void
+    {
+        $this->setPrivate(!$this->isPrivate());
+    }
+
+    public function makePrivate(): void
+    {
+        $this->setPrivate(true);
     }
 }
