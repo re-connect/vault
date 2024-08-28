@@ -42,7 +42,7 @@ class EntityValidator extends ConstraintValidator
     {
         $beneficiary = $reminder->getEvenement()->getBeneficiaire();
 
-        if (null === $reminder->getId() && !$beneficiary?->getUser()?->getTelephone()) {
+        if (!$beneficiary?->getUser()?->getTelephone()) {
             $this->context->addViolation($this->translator->trans('no_phone_number_registered'));
         }
     }
