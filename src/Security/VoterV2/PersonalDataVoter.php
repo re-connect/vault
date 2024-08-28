@@ -60,7 +60,7 @@ class PersonalDataVoter extends Voter
 
     private function canToggleVisibility(User $user, DonneePersonnelle $subject): bool
     {
-        if ($subject instanceof FolderableEntityInterface && $subject->hasParentFolder()) {
+        if ($subject instanceof FolderableEntityInterface && !$subject->canToggleVisibility()) {
             return false;
         }
 

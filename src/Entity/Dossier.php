@@ -224,6 +224,12 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     }
 
     #[\Override]
+    public function canToggleVisibility(): bool
+    {
+        return !$this->hasParentFolder() || !$this->getDossierParent()->isPrivate();
+    }
+
+    #[\Override]
     public function move(?Dossier $parentFolder): void
     {
         $this->setDossierParent($parentFolder);
