@@ -88,9 +88,10 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
     private function createBeneficiary(Beneficiaire $data, ?Client $client): void
     {
         $this->relayAssignationHelper->assignRelaysFromIdsArray($data->getUser());
-        if ($client) {
-            $this->relayAssignationHelper->assignRelayFromExternalId($data->getUser(), $client);
+        if (!$client) {
+            return;
         }
+        $this->relayAssignationHelper->assignRelayFromExternalId($data->getUser(), $client, null, true);
         try {
             $pro = $this->membreRepository->findByDistantId($data->getUser()->getExternalProId(), $client->getRandomId());
             if ($pro) {
