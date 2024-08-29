@@ -202,15 +202,23 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     #[\Override]
     public function toggleVisibility(): void
     {
-        $this->setBPrive(!$this->getBPrive());
+        $this->setPrivate(!$this->isPrivate());
 
         array_map(
             fn (DonneePersonnelle $personalData) => $personalData->toggleVisibility(),
             [
-                ...$this->getSousDossiers()->filter(fn (Dossier $dossier) => $dossier->getBPrive() !== $this->getBPrive())->toArray(),
-                ...$this->getDocuments()->filter(fn (Document $document) => $document->getBPrive() !== $this->getBPrive())->toArray(),
+                ...$this->getSousDossiers()->filter(fn (Dossier $dossier) => $dossier->isPrivate() !== $this->isPrivate())->toArray(),
+                ...$this->getDocuments()->filter(fn (Document $document) => $document->isPrivate() !== $this->isPrivate())->toArray(),
             ],
         );
+    }
+
+    #[\Override]
+    public function makePrivate(): void
+    {
+        if (!$this->isPrivate()) {
+            $this->toggleVisibility();
+        }
     }
 
     #[\Override]
@@ -220,14 +228,20 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     }
 
     #[\Override]
+    public function canToggleVisibility(): bool
+    {
+        return !$this->hasParentFolder() || !$this->getDossierParent()->isPrivate();
+    }
+
+    #[\Override]
     public function move(?Dossier $parentFolder): void
     {
         $this->setDossierParent($parentFolder);
 
         if ($parentFolder && $parentFolder !== $this) {
             $parentFolder->addSousDossier($this);
-            if ($parentFolder->getBPrive() !== $this->getBPrive()) {
-                $this->toggleVisibility();
+            if ($parentFolder->isPrivate()) {
+                $this->makePrivate();
             }
         }
     }
