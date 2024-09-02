@@ -2,6 +2,7 @@
 
 namespace App\EventSubscriber\Api;
 
+use App\Domain\TermsOfUse\TermsOfUseHelper;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use App\ServiceV2\GdprService;
@@ -23,6 +24,7 @@ readonly class Oauth2ResponseSubscriber
         private UserRepository $repository,
         private EntityManagerInterface $em,
         private GdprService $gdprService,
+        private TermsOfUseHelper $termsOfUseHelper,
     ) {
     }
 
@@ -52,6 +54,8 @@ readonly class Oauth2ResponseSubscriber
             return $event->setResponse(new JsonResponse(['login' => 'success', 'weak_password' => true]));
         } elseif ($this->gdprService->mustRenewPassword($user)) {
             return $event->setResponse(new JsonResponse(['login' => 'success', 'expired_password' => true]));
+        } elseif ($this->termsOfUseHelper->mustAcceptTermsOfUse($user)) {
+            return $event->setResponse(new JsonResponse(['login' => 'success', 'cgs_not_accepted' => true]));
         }
 
         return $event;
