@@ -1,7 +1,7 @@
 <section id="reconnect-centers" class="bg-success py-5">
     <div class="container">
         <div class="row py-4 align-items-center">
-            <div class=" {{ isCanada ?  'col-12 offset-md-2 col-md-8 text-center' : 'col-12 col-md-6 col-lg-6 pe-lg-5 text-center text-md-start' }}">
+            <div class="col-12 col-md-6 col-lg-6 pe-lg-5 text-center text-md-start">
                 <h2 class="h2 text-primary pb-1 text-uppercase">{{ 'home_reconnect_centers_title'| trans }}</h2>
                 <p class="text-primary">{{ 'home_reconnect_centers_p'| trans }}</p>
                 <div id="carousel-reconnect-centers" class="carousel slide py-3 mx-auto" data-bs-ride="carousel">
@@ -46,7 +46,7 @@
                     </button>
                 </div>
             </div>
-            <div class="col-12 col-md-6 {{ isCanada ? 'd-none' : ''}}">
+            <div class="col-12 col-md-6">
                 <div id="reconnect-centers-map" class="box-shadow-white"
                      data-marker={{ asset('build/images/home/map-marker-white.png') }}></div>
             </div>
