@@ -10,6 +10,7 @@ use App\Manager\MailManager;
 use App\Manager\RestManager;
 use App\Provider\BeneficiaireProvider;
 use App\Provider\DossierProvider;
+use App\Repository\FolderIconRepository;
 use App\Security\Authorization\Voter\BeneficiaireVoter;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +28,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route(path: ['old' => '/api/', 'new' => '/api/v2/'], name: 're_api_dossier_')]
 class DossierRestV2Controller extends REController
 {
-    #[Route(path: 'folders/{id}', name: 'delete', methods: ['DELETE'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'folders/{id}', name: 'delete', requirements: ['id' => '\d{1,10}'], methods: ['DELETE'])]
     public function delete(int $id, DossierProvider $provider): JsonResponse
     {
         try {
@@ -43,11 +44,12 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'beneficiaries/{beneficiaryId}/folders', methods: ['POST'], name: 'add', requirements: ['beneficiaryId' => '\d{1,10}'])]
+    #[Route(path: 'beneficiaries/{beneficiaryId}/folders', name: 'add', requirements: ['beneficiaryId' => '\d{1,10}'], methods: ['POST'])]
     public function add(
         int $beneficiaryId,
         DossierProvider $provider,
-        BeneficiaireProvider $beneficiaireProvider
+        BeneficiaireProvider $beneficiaireProvider,
+        FolderIconRepository $folderIconRepository,
     ): JsonResponse {
         try {
             $beneficiaire = $beneficiaireProvider->getEntity($beneficiaryId, Client::ACCESS_DOCUMENT_WRITE);
@@ -63,6 +65,9 @@ class DossierRestV2Controller extends REController
                     switch ($key) {
                         case 'nom':
                             $entity->setNom($item);
+                            break;
+                        case 'icon_id':
+                            $entity->setIcon($folderIconRepository->find($item));
                             break;
                         case 'b_prive':
                             if (!array_key_exists('dossier_parent_id', $data)) {

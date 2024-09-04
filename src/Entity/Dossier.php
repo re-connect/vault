@@ -74,6 +74,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface, Sh
 
     private ?string $publicDownloadUrl = null;
 
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
     private ?FolderIcon $icon = null;
 
     public function __construct()
@@ -321,7 +322,6 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface, Sh
         return $this;
     }
 
-    #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:folder:read'])]
     public function getIconFilePath(): ?string
     {
         return $this->icon?->getPublicFilePath() ?? self::DEFAULT_ICON_FILE_PATH;
