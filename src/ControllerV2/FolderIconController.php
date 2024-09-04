@@ -23,6 +23,7 @@ class FolderIconController extends AbstractController
     public function list(FolderIconRepository $repository, TranslatorInterface $translator): JsonResponse
     {
         return $this->json(array_map(fn (FolderIcon $folderIcon) => [
+            'id' => $folderIcon->getId(),
             'name' => $translator->trans($folderIcon->getName()),
             'url' => $folderIcon->getPublicFilePath(),
         ], $repository->findAll()));
