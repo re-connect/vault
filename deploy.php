@@ -25,6 +25,7 @@ add('shared_dirs', [
     'public/js/',
     'public/uploads/',
     'public/build/',
+    'public/img/folder_icon/',
 ]);
 add('writable_dirs', []);
 
