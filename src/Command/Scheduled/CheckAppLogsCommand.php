@@ -16,7 +16,7 @@ use Symfony\Component\Process\Process;
 )]
 class CheckAppLogsCommand extends Command
 {
-    private const array LOG_FILES = ['login', 'personal_data', 'user', 'relay', 'affiliation'];
+    private const array LOG_SUB_DIR = ['login', 'personal_data', 'user', 'relay', 'affiliation'];
 
     /**
      * @param string[] $adminMails
@@ -32,9 +32,9 @@ class CheckAppLogsCommand extends Command
     #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $logDir = sprintf('%s/var/log/activity', $this->kernelProjectDir);
+        $activityLogDir = sprintf('%s/var/log/activity', $this->kernelProjectDir);
 
-        $brokenLogs = $this->checkBrokenLogs($logDir);
+        $brokenLogs = $this->checkBrokenLogs($activityLogDir);
 
         if (!empty($brokenLogs)) {
             $this->mailer->send(
@@ -54,20 +54,22 @@ class CheckAppLogsCommand extends Command
     /**
      * @return string[]
      */
-    private function checkBrokenLogs(string $logDir): array
+    private function checkBrokenLogs(string $activityLogDir): array
     {
         return array_filter(
-            self::LOG_FILES,
-            fn (string $logFile) => !$this->assertLogDuringLastWeek(sprintf('%s/%s.log', $logDir, $logFile))
+            self::LOG_SUB_DIR,
+            fn (string $logSubDir) => !$this->assertLogDuringLastWeek(sprintf('%s/%s/', $activityLogDir, $logSubDir))
         );
     }
 
-    private function assertLogDuringLastWeek(string $filePath): bool
+    /*
+     * Since we use a rotation strategy, the presence of a file created within the past week indicates the presence of logs.
+     */
+    private function assertLogDuringLastWeek(string $logSubDirPath): bool
     {
-        $process = Process::fromShellCommandline(sprintf("tail -1 %s | awk '{print $1}'", $filePath));
+        $process = Process::fromShellCommandline(sprintf('find %s -type f -mtime -7', $logSubDirPath));
         $process->run();
-        $logDate = new \DateTime(str_replace(['[', ']'], '', $process->getOutput()));
 
-        return $logDate > (new \DateTime())->modify('-1 week');
+        return 0 === $process->getExitCode();
     }
 }
