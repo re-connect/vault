@@ -154,7 +154,7 @@ class ContactAdmin extends AbstractAdmin
                 'label' => 'Créé par (client)',
             ])
             ->add('createdAt', null, ['label' => 'Créé le'])
-            ->add('isPrivate', null, ['label' => 'Accès'])
+            ->add('isPrivateToString', null, ['label' => 'Accès'])
             ->add('beneficiaire.user.canada', null, ['label' => 'Canada']);
     }
 

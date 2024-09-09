@@ -84,20 +84,38 @@ class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteIn
 
     public function provideTestCanNotToggleVisibiltyWithParentFolder(): ?\Generator
     {
-        yield 'Should return 403 status code when authenticated as beneficiaire and folder has parent folder' => [
+        yield 'Should return 403 status code when authenticated as beneficiaire and folder has private parent folder' => [
             BeneficiaryFixture::BENEFICIARY_MAIL,
+            true,
+            403,
         ];
-        yield 'Should return 403 status code when authenticated as member with relay in common and folder has parent folder' => [
+        yield 'Should return 200 status code when authenticated as beneficiaire and folder has shared parent folder' => [
+            BeneficiaryFixture::BENEFICIARY_MAIL,
+            false,
+            200,
+        ];
+        yield 'Should return 403 status code when authenticated as member with relay in common and folder has private parent folder' => [
             MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES,
+            true,
+            403,
+        ];
+        yield 'Should return 200 status code when authenticated as member with relay in common and folder has shared parent folder' => [
+            MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES,
+            false,
+            200,
         ];
     }
 
     /** @dataProvider provideTestCanNotToggleVisibiltyWithParentFolder */
-    public function testCanNotToggleVisibiltyWithParentFolder(string $userMail): void
+    public function testCanNotToggleVisibiltyWithPrivateParentFolder(string $userMail, bool $isPrivateParentFolder, int $statusCode): void
     {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'dossierParent' => FolderFactory::random()])->object();
+        $folder = FolderFactory::findOrCreate([
+            'bPrive' => false,
+            'beneficiaire' => $beneficiary,
+            'dossierParent' => FolderFactory::random(['bPrive' => $isPrivateParentFolder]),
+        ])->object();
 
-        $this->assertRoute(sprintf(self::URL, $folder->getId()), 403, $userMail, null, 'PATCH', true);
+        $this->assertRoute(sprintf(self::URL, $folder->getId()), $statusCode, $userMail, null, 'PATCH', true);
     }
 }

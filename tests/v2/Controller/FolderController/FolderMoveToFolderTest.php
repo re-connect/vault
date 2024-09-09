@@ -57,7 +57,7 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
         yield 'Should return 403 status code when authenticated as member with no relay in common' => [self::URL, 403, MemberFixture::MEMBER_MAIL];
     }
 
-    public function testMoveToFolder(): void
+    public function testShouldNotMoveToOtherBeneficiary(): void
     {
         $clientTest = static::createClient();
         $user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL])->object();
@@ -65,23 +65,12 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
 
         $testedBeneficiary = $user->getSubjectBeneficiaire();
         $randomBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS)->object();
-        $parentFolder = FolderFactory::createOne(['beneficiaire' => $testedBeneficiary, 'bPrive' => true])->object();
-        $subFolder = FolderFactory::createOne(['beneficiaire' => $testedBeneficiary, 'bPrive' => false])->object();
+        $folder = FolderFactory::createOne(['beneficiaire' => $testedBeneficiary, 'bPrive' => false])->object();
         $randomFolder = FolderFactory::createOne(['beneficiaire' => $randomBeneficiary])->object();
 
         // Tested beneficiary tries to move folder inside random beneficiarie's folder
-        $clientTest->request('GET', sprintf(self::URL, $subFolder->getId(), $randomFolder->getId()));
+        $clientTest->request('GET', sprintf(self::URL, $folder->getId(), $randomFolder->getId()));
         self::assertResponseStatusCodeSame(403);
-
-        // Then move in a folder that belongs to him
-        $clientTest->request('GET', sprintf(self::URL, $subFolder->getId(), $parentFolder->getId()));
-        $parentFolder = FolderFactory::find(['id' => $parentFolder->getId()]);
-        $subFolder = FolderFactory::find(['id' => $subFolder->getId()]);
-        self::assertEquals($parentFolder->object()->getSousDossiers()->last()->getId(), $subFolder->object()->getId());
-        self::assertEquals($parentFolder->object()->getSousDossiers()->last()->getBprive(), $subFolder->object()->getBprive());
-
-        $subFolder->remove();
-        $parentFolder->remove();
     }
 
     public function testCanNotMoveParentFolderIntoChild(): void
@@ -110,5 +99,34 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
         $clientTest->request('GET', sprintf(self::URL, $parentFolder->getId(), $childFolder->getId()));
         $this->assertSelectorTextContains('div.alert-dismissible', $errorMessage);
         self::assertSame($childFolder, $grandChildFolder->getDossierParent());
+    }
+
+    public function provideTestMoveToFolder(): ?\Generator
+    {
+        yield 'Shared folder moved in shared folder should be shared' => [false, false, false];
+        yield 'Shared folder moved in private folder should be private' => [false, true, true];
+        yield 'Private folder moved in shared folder should be private' => [true, false, true];
+        yield 'Private folder moved in private folder should be private' => [true, true, true];
+    }
+
+    /** @dataProvider provideTestMoveToFolder */
+    public function testMoveToFolder(bool $isPrivateFolder, bool $isPrivateParentFolder, bool $shouldBePrivate): void
+    {
+        $clientTest = static::createClient();
+        $user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL])->object();
+        $clientTest->loginUser($user);
+
+        $testedBeneficiary = $user->getSubjectBeneficiaire();
+        $parentFolder = FolderFactory::createOne(['beneficiaire' => $testedBeneficiary, 'bPrive' => $isPrivateFolder])->object();
+        $subFolder = FolderFactory::createOne(['beneficiaire' => $testedBeneficiary, 'bPrive' => $isPrivateParentFolder])->object();
+
+        $clientTest->request('GET', sprintf(self::URL, $subFolder->getId(), $parentFolder->getId()));
+        $parentFolder = FolderFactory::find(['id' => $parentFolder->getId()]);
+        $subFolder = FolderFactory::find(['id' => $subFolder->getId()]);
+        self::assertEquals($parentFolder->object()->getSousDossiers()->last()->getId(), $subFolder->object()->getId());
+        self::assertEquals($shouldBePrivate, $subFolder->object()->getBprive());
+
+        $subFolder->remove();
+        $parentFolder->remove();
     }
 }
