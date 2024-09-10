@@ -77,12 +77,14 @@ class MoveToFolderTest extends AbstractControllerTest implements TestRouteInterf
 
     public function provideTestMoveToFolder(): ?\Generator
     {
-        yield 'Shared document should be hydrated with parent visibility' => [false];
-        yield 'Private document should be hydrated with parent visibility' => [true];
+        yield 'Shared document moved in shared folder should be shared' => [false, false, false];
+        yield 'Shared document moved in private folder should be private' => [false, true, true];
+        yield 'Private document moved in shared folder should be private' => [true, false, true];
+        yield 'Private document moved in private folder should be private' => [true, true, true];
     }
 
     /** @dataProvider provideTestMoveToFolder */
-    public function testMoveToFolder(bool $isPrivate): void
+    public function testMoveToFolder(bool $isPrivateDoc, bool $isPrivateFolder, bool $shouldBePrivate): void
     {
         $clientTest = static::createClient();
         $user = $this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL);
@@ -90,14 +92,14 @@ class MoveToFolderTest extends AbstractControllerTest implements TestRouteInterf
         $beneficiary = $user->getSubjectBeneficiaire();
 
         // Document and destination folder have different visibility
-        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate])->object();
-        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => !$isPrivate])->object();
+        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivateDoc])->object();
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivateFolder])->object();
 
         $clientTest->request('GET', sprintf(self::URL, $document->getId(), $folder->getId()));
         $document = DocumentFactory::find($document)->object();
         $folder = FolderFactory::find($folder)->object();
 
         self::assertEquals($folder->getId(), $document->getDossier()->getId());
-        self::assertEquals($folder->getBPrive(), $document->getBprive());
+        self::assertEquals($shouldBePrivate, $document->getBprive());
     }
 }
