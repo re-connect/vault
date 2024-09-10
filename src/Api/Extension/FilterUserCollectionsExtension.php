@@ -52,7 +52,7 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
 
     private function filterPersonalData(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void
     {
-        if ($this->isAuthenticatedAsClient($user)) {
+        if ($this->isAuthenticatedAsClient()) {
             $queryBuilder->andWhere(sprintf('%s.bPrive = false', $rootAlias));
 
             return;
@@ -81,7 +81,7 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
 
     private function filterUsers(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void
     {
-        if ($this->isAuthenticatedAsClient($user)) {
+        if ($this->isAuthenticatedAsClient()) {
             return;
         }
         $queryBuilder
@@ -89,8 +89,8 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
             ->setParameter('userId', $user->getId());
     }
 
-    private function isAuthenticatedAsClient(?UserInterface $user): bool
+    private function isAuthenticatedAsClient(): bool
     {
-        return !$user instanceof User;
+        return !($this->security->getUser() instanceof User);
     }
 }
