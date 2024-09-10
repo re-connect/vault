@@ -521,7 +521,6 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return self::USER_TYPE_BENEFICIAIRE === $this->typeUser || $this->subjectBeneficiaire;
     }
 
-
     #[Groups('v3:user:read')]
     public function getSecretAnswer(): string
     {
