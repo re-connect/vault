@@ -17,8 +17,8 @@ abstract class UserCentre implements \JsonSerializable, \Stringable
     protected ?int $id = null;
 
     #[ORM\Column(name: 'bValid', type: 'boolean', nullable: false)]
-    #[Groups(['v3:center:read', 'v3:center:write'])]
-    private bool $bValid = false;
+    #[Groups(['v3:center:read', 'v3:center:write' , 'v3:user:read'])]
+    private ?bool $bValid = false;
 
     #[ORM\ManyToOne(targetEntity: Membre::class)]
     #[ORM\JoinColumn(name: 'initiateur_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
@@ -63,6 +63,18 @@ abstract class UserCentre implements \JsonSerializable, \Stringable
     public function __toString(): string
     {
         return $this->getCentre()->getNom();
+    }
+
+    #[Groups(['v3:user:read'])]
+    public function getName(): string
+    {
+        return (string) $this;
+    }
+
+    #[Groups(['v3:user:read'])]
+    public function getIdCentre(): int
+    {
+        return $this?->getCentre()?->getId();
     }
 
     abstract public function getCentre(): ?Centre;
