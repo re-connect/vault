@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[AsController]
-final class MeController extends AbstractController
+final class UserController extends AbstractController
 {
     #[IsGranted('ROLE_USER')]
     #[Route(path: '/api/v3/users/me', name: 'me', methods: ['GET'])]
