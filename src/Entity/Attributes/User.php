@@ -4,14 +4,12 @@ namespace App\Entity\Attributes;
 
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use App\Api\Dto\UserDto;
 use App\Api\Filters\UsernameFilter;
 use App\Api\State\SearchBeneficiaryProvider;
 use App\Api\State\UserStateProcessor;
-use App\Controller\Api\MeController;
 use App\Entity\UserWithCentresInterface;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -42,7 +40,6 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 #[ApiResource(
     operations: [
         new GetCollection(security: "is_granted('ROLE_OAUTH2_USERS') or is_granted('ROLE_USER')", provider: SearchBeneficiaryProvider::class),
-        new Get(uriTemplate: '/me', controller: MeController::class, security: "is_granted('ROLE_USER')", read: false),
         new Patch(security: 'object == user', input: UserDto::class, processor: UserStateProcessor::class),
     ],
     normalizationContext: ['groups' => ['v3:user:read']],

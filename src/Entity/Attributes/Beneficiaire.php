@@ -35,7 +35,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     shortName: 'beneficiary',
     operations: [
-        new Get(security: "is_granted('READ', object)", provider: BeneficiaryStateProvider::class),
+        new Get(security: "is_granted('UPDATE', object)", provider: BeneficiaryStateProvider::class),
         new Patch(security: "is_granted('UPDATE', object)",
             processor: BeneficiaryStateProcessor::class),
         new Patch(
