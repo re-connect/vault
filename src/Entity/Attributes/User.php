@@ -1037,12 +1037,16 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function addCreatorClient(Client $client): self
     {
-        return $this->addCreator(new CreatorClient($client));
+        $creator = (new CreatorClient($client))->setUser($this);
+
+        return $this->addCreator($creator);
     }
 
     public function addCreatorUser(User $user): self
     {
-        return $this->addCreator(new CreatorUser($user));
+        $creator = (new CreatorUser($user))->setUser($this);
+
+        return $this->addCreator($creator);
     }
 
     public function getAutoLoginToken(): ?string
@@ -1214,6 +1218,16 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public function hasCreator(): bool
     {
         return $this->creators->count() > 0;
+    }
+
+    public function hasCreatorUser(): bool
+    {
+        return null !== $this->getCreatorUser();
+    }
+
+    public function hasCreatorClient(): bool
+    {
+        return null !== $this->getCreatorClient();
     }
 
     public function getSluggedFirstName(): string

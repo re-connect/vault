@@ -10,9 +10,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\EntityManagerInterface;
 
-class RelayManager
+readonly class RelayManager
 {
-    public function __construct(private readonly EntityManagerInterface $em, private readonly CentreRepository $relayRepository)
+    public function __construct(private EntityManagerInterface $em, private CentreRepository $relayRepository)
     {
     }
 
@@ -41,18 +41,6 @@ class RelayManager
         $this->em->flush();
     }
 
-    /**
-     * @param ReadableCollection<int, Centre> $newRelays
-     * @param ReadableCollection<int, Centre> $loggedInUserRelays
-     */
-    public function updateUserRelays(User $user, ReadableCollection $newRelays, ReadableCollection $loggedInUserRelays): void
-    {
-        $this->addNewRelays($user, $newRelays);
-        $this->removeOutdatedRelays($user, $newRelays, $loggedInUserRelays);
-
-        $this->em->flush();
-    }
-
     public function toggleUserInvitationToRelay(User $user, Centre $relay): void
     {
         if ($user->isLinkedToRelay($relay)) {
@@ -75,19 +63,6 @@ class RelayManager
         return !$user || !($user->isBeneficiaire() || $user->isMembre())
             ? []
             : $this->relayRepository->findUserRelays($user, false);
-    }
-
-    /**
-     * @param ReadableCollection<int, Centre> $newRelays
-     * @param ReadableCollection<int, Centre> $loggedInUserRelays
-     */
-    public function removeOutdatedRelays(User $user, ReadableCollection $newRelays, ReadableCollection $loggedInUserRelays): void
-    {
-        foreach ($user->getUserRelays() as $userRelay) {
-            if ($loggedInUserRelays->contains($userRelay->getCentre()) && !$newRelays->contains($userRelay->getCentre())) {
-                $this->em->remove($userRelay);
-            }
-        }
     }
 
     /** @param ReadableCollection<int, Centre> $newRelays */
