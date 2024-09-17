@@ -7,9 +7,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 final class LinkBeneficiaryDto
 {
-    #[Assert\NotNull()]
+    #[Assert\NotNull]
     #[Groups(['v3:beneficiary:write'])]
-    public ?int $distantId = null;
+    public string|int|null $distantId = null;
 
     #[Groups(['v3:beneficiary:write'])]
     public ?int $externalCenter = null;
