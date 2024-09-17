@@ -33,15 +33,17 @@ class DistantIdFilter extends AbstractFilter
 
         $rootAlias = $queryBuilder->getRootAliases()[0];
 
+        if (!in_array('externalLink', $queryBuilder->getAllAliases())) {
+            $queryBuilder
+                ->innerJoin(sprintf('%s.externalLinks', $rootAlias), 'externalLink')
+                ->innerJoin('externalLink.client', 'client')
+                ->andWhere('client = :client')
+                ->setParameter('client', $this->apiClientManager->getCurrentOldClient());
+        }
+
         $queryBuilder
-            ->innerJoin(sprintf('%s.externalLinks', $rootAlias), 'externalLink')
-            ->innerJoin('externalLink.client', 'client')
-            ->andWhere('client = :client')
             ->andWhere('externalLink.distantId = :distantId')
-            ->setParameters([
-                'client' => $this->apiClientManager->getCurrentOldClient(),
-                'distantId' => $value,
-            ]);
+            ->setParameter('distantId', $value);
     }
 
     #[\Override]
