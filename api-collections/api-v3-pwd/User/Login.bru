@@ -6,17 +6,20 @@ meta {
 
 post {
   url: {{baseUrl}}/oauth/v2/token
-  body: multipartForm
+  body: json
   auth: none
 }
 
-body:multipart-form {
-  grant_type: password
-  scope: default
-  client_id: {{oauthPasswordClientId}}
-  client_secret: {{oauthPasswordClientSecret}}
-  username: {{oauthPasswordUsername}}
-  password: {{oauthPasswordPassword}}
+body:json {
+  {
+    "grant_type": "password",
+    "scope": "default",
+    "client_id": "{{oauthPasswordClientId}}",
+    "client_secret": "{{oauthPasswordClientSecret}}",
+    // "username": "{{oauthPasswordUsername}}",
+    "username": "{{oauthPasswordProUsername}}",
+    "password": "{{oauthPasswordPassword}}"
+  }
 }
 
 vars:post-response {

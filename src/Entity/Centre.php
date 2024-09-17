@@ -39,7 +39,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ApiFilter(SearchFilter::class, properties: ['beneficiairesCentres.beneficiaire'])]
 class Centre implements \JsonSerializable, \Stringable
 {
-    public const REGIONS = ['Auvergne-Rhône-Alpes', 'Bourgogne-Franche-Comté', 'Bretagne', 'Centre-Val de Loire', 'Corse', 'Grand Est', 'Hauts-de-France', 'Ile-de-France', 'Normandie', 'Nouvelle-Aquitaine', 'Occitanie', 'Pays de la Loire', 'Provence-Alpes-Côte d’Azur', 'Autre'];
+    public const array REGIONS = ['Auvergne-Rhône-Alpes', 'Bourgogne-Franche-Comté', 'Bretagne', 'Centre-Val de Loire', 'Corse', 'Grand Est', 'Hauts-de-France', 'Ile-de-France', 'Normandie', 'Nouvelle-Aquitaine', 'Occitanie', 'Pays de la Loire', 'Provence-Alpes-Côte d’Azur', 'Autre'];
     /**
      * @var \DateTime
      */

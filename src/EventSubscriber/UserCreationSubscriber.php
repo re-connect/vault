@@ -21,18 +21,18 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 #[AsDoctrineListener(event: Events::preUpdate)]
 #[AsDoctrineListener(event: Events::prePersist)]
 #[AsDoctrineListener(event: Events::postPersist)]
-class UserCreationSubscriber
+readonly class UserCreationSubscriber
 {
     use UserAwareTrait;
 
     public function __construct(
-        private readonly ApiClientManager $apiClientManager,
-        private readonly NotificationService $notificationService,
-        private readonly MailerService $mailerService,
-        private readonly UserManager $manager,
-        private readonly UserPasswordHasherInterface $hasher,
-        private readonly Security $security,
-        private readonly string $env,
+        private ApiClientManager $apiClientManager,
+        private NotificationService $notificationService,
+        private MailerService $mailerService,
+        private UserManager $manager,
+        private UserPasswordHasherInterface $hasher,
+        private Security $security,
+        private string $env,
     ) {
     }
 
@@ -48,11 +48,9 @@ class UserCreationSubscriber
     public function prePersist(LifecycleEventArgs $args): void
     {
         $object = $args->getObject();
-
         if ($object instanceof Beneficiaire) {
             $user = $object->getUser();
             $this->initPassword($user);
-            $this->addCreators($user);
             $this->setupClientLink($object);
         } elseif ($object instanceof User) {
             $user = $object;
@@ -117,14 +115,16 @@ class UserCreationSubscriber
 
     private function addCreatorUser(User $user): void
     {
-        if ($this->getUser() instanceof User) {
+        if ($this->getUser() instanceof User && !$user->hasCreatorUser()) {
             $user->addCreatorUser($this->getUser());
         }
     }
 
     private function addCreatorClient(User $user): void
     {
-        if ($client = $this->apiClientManager->getCurrentOldClient()) {
+        $client = $this->apiClientManager->getCurrentOldClient();
+
+        if ($client && !$user->hasCreatorClient()) {
             $user->addCreatorClient($client);
         }
     }

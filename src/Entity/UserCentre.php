@@ -14,7 +14,7 @@ abstract class UserCentre implements \JsonSerializable, \Stringable
      */
     protected $id;
 
-    #[Groups(['v3:center:read', 'v3:center:write'])]
+    #[Groups(['v3:center:read', 'v3:center:write', 'v3:user:read'])]
     private ?bool $bValid = false;
 
     /**
@@ -83,6 +83,18 @@ abstract class UserCentre implements \JsonSerializable, \Stringable
     public function __toString(): string
     {
         return $this->getCentre()->getNom();
+    }
+
+    #[Groups(['v3:user:read'])]
+    public function getName(): string
+    {
+        return (string) $this;
+    }
+
+    #[Groups(['v3:user:read'])]
+    public function getIdCentre(): int
+    {
+        return $this->getCentre()?->getId();
     }
 
     /**

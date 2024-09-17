@@ -41,18 +41,6 @@ class RelayManager
         $this->em->flush();
     }
 
-    /**
-     * @param ReadableCollection<int, Centre> $newRelays
-     * @param ReadableCollection<int, Centre> $loggedInUserRelays
-     */
-    public function updateUserRelays(User $user, ReadableCollection $newRelays, ReadableCollection $loggedInUserRelays): void
-    {
-        $this->addNewRelays($user, $newRelays);
-        $this->removeOutdatedRelays($user, $newRelays, $loggedInUserRelays);
-
-        $this->em->flush();
-    }
-
     public function toggleUserInvitationToRelay(User $user, Centre $relay): void
     {
         if ($user->isLinkedToRelay($relay)) {
@@ -75,19 +63,6 @@ class RelayManager
         return !$user || !($user->isBeneficiaire() || $user->isMembre())
             ? []
             : $this->relayRepository->findUserRelays($user, false);
-    }
-
-    /**
-     * @param ReadableCollection<int, Centre> $newRelays
-     * @param ReadableCollection<int, Centre> $loggedInUserRelays
-     */
-    public function removeOutdatedRelays(User $user, ReadableCollection $newRelays, ReadableCollection $loggedInUserRelays): void
-    {
-        foreach ($user->getUserRelays() as $userRelay) {
-            if ($loggedInUserRelays->contains($userRelay->getCentre()) && !$newRelays->contains($userRelay->getCentre())) {
-                $this->em->remove($userRelay);
-            }
-        }
     }
 
     /** @param ReadableCollection<int, Centre> $newRelays */
