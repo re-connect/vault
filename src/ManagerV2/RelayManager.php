@@ -10,9 +10,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\EntityManagerInterface;
 
-readonly class RelayManager
+class RelayManager
 {
-    public function __construct(private EntityManagerInterface $em, private CentreRepository $relayRepository)
+    public function __construct(private readonly EntityManagerInterface $em, private readonly CentreRepository $relayRepository)
     {
     }
 
