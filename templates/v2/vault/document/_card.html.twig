@@ -18,13 +18,15 @@
         }) }}
     </td>
     <td class="bg-white borderless w-25 align-middle">
-        {% if app.user.isBeneficiaire and document.canToggleVisibility %}
-            {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
-                'url': path('document_toggle_visibility', {'id': document.id}),
-                'private': document.bPrive,
-            }) }}
-        {% else %}
-            <i class="fas fa-lock text-primary me-2" {{ stimulus_controller('tooltip', {title: 'private'|trans}) }}></i>
+        {% if app.user.isBeneficiaire %}
+            {% if document.canToggleVisibility %}
+                {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
+                    'url': path('document_toggle_visibility', {'id': document.id}),
+                    'private': document.bPrive,
+                }) }}
+            {% else %}
+                <i class="fas fa-lock text-primary me-2" {{ stimulus_controller('tooltip', {title: 'private'|trans}) }}></i>
+            {% endif %}
         {% endif %}
     </td>
     <td class="bg-white borderless text-end pe-3 pe-sm-4 align-middle" {{ stimulus_controller('dropdown-menu') }}>
