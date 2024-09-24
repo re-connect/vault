@@ -97,4 +97,9 @@ class FeatureFlag
     {
         return $this->enableDate && $this->enableDate < new \DateTime();
     }
+
+    public function shouldEnable(): bool
+    {
+        return !$this->isEnabled() && $this->isEnableDateDue();
+    }
 }
