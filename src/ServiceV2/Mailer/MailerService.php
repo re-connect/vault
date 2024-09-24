@@ -2,9 +2,9 @@
 
 namespace App\ServiceV2\Mailer;
 
+use App\Entity\Attributes\SharedDocument;
 use App\Entity\Centre;
 use App\Entity\Region;
-use App\Entity\SharedDocument;
 use App\Entity\User;
 use App\ServiceV2\Mailer\Email\AuthCodeEmail;
 use App\ServiceV2\Mailer\Email\DuplicatedUsernameEmail;
