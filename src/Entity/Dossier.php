@@ -14,6 +14,7 @@ use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Entity\Attributes\SharedFolder;
 use App\Entity\Interface\FolderableEntityInterface;
+use App\Entity\Interface\ShareablePersonalData;
 use App\Validator\Constraints\Folder as AssertFolder;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -52,7 +53,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     openapiContext: ['tags' => ['Folders']],
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
 )]
-class Dossier extends DonneePersonnelle implements FolderableEntityInterface
+class Dossier extends DonneePersonnelle implements FolderableEntityInterface, ShareablePersonalData
 {
     final public const array AUTOCOMPLETE_NAMES = ['health', 'housing', 'identity', 'tax', 'work'];
 
@@ -68,6 +69,8 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 
     #[ORM\OneToMany(mappedBy: 'folder', targetEntity: SharedFolder::class, orphanRemoval: true)]
     private Collection $sharedFolders;
+
+    private ?string $publicDownloadUrl;
 
     public function __construct()
     {
@@ -280,5 +283,22 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
         }
 
         return $this;
+    }
+
+    public function getPublicDownloadUrl(): ?string
+    {
+        return $this->publicDownloadUrl;
+    }
+
+    public function setPublicDownloadUrl(string $publicDownloadUrl): static
+    {
+        $this->publicDownloadUrl = $publicDownloadUrl;
+
+        return $this;
+    }
+
+    public static function createShareablePersonalData(): SharedFolder
+    {
+        return new SharedFolder();
     }
 }
