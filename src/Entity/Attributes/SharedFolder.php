@@ -3,6 +3,7 @@
 namespace App\Entity\Attributes;
 
 use App\Entity\Dossier;
+use App\Entity\Interface\ShareablePersonalData;
 use App\Repository\SharedFolderRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -32,6 +33,20 @@ class SharedFolder extends SharedPersonalData
     public function setFolder(?Dossier $folder): static
     {
         $this->folder = $folder;
+
+        return $this;
+    }
+
+    public function getPersonalData(): ShareablePersonalData
+    {
+        return $this->folder;
+    }
+
+    public function setPersonalData(ShareablePersonalData $shareablePersonalData): static
+    {
+        if ($shareablePersonalData instanceof Dossier) {
+            $this->folder = $shareablePersonalData;
+        }
 
         return $this;
     }

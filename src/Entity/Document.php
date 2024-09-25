@@ -15,6 +15,7 @@ use App\Controller\Api\UploadDocumentController;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Attributes\SharedDocument;
 use App\Entity\Interface\FolderableEntityInterface;
+use App\Entity\Interface\ShareablePersonalData;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -66,7 +67,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     openapiContext: ['tags' => ['Documents']],
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES') or is_granted('ROLE_USER')",
 )]
-class Document extends DonneePersonnelle implements FolderableEntityInterface
+class Document extends DonneePersonnelle implements FolderableEntityInterface, ShareablePersonalData
 {
     use SoftDeleteableEntity;
 
@@ -405,5 +406,20 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
         if ($parentFolder?->isPrivate()) {
             $this->makePrivate();
         }
+    }
+
+    public function getPublicDownloadUrl(): ?string
+    {
+        return $this->presignedUrl;
+    }
+
+    public function setPublicDownloadUrl(string $publicDownloadUrl): static
+    {
+        return $this->setPresignedUrl($publicDownloadUrl);
+    }
+
+    public static function createShareablePersonalData(): SharedDocument
+    {
+        return new SharedDocument();
     }
 }

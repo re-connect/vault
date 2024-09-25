@@ -2,6 +2,7 @@
 
 namespace App\Entity\Attributes;
 
+use App\Entity\Interface\ShareablePersonalData;
 use App\Entity\User;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -112,4 +113,8 @@ abstract class SharedPersonalData
 
         return $this;
     }
+
+    abstract public function getPersonalData(): ShareablePersonalData;
+
+    abstract public function setPersonalData(ShareablePersonalData $shareablePersonalData): static;
 }

@@ -3,6 +3,7 @@
 namespace App\Entity\Attributes;
 
 use App\Entity\Document;
+use App\Entity\Interface\ShareablePersonalData;
 use App\Repository\SharedDocumentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +32,20 @@ class SharedDocument extends SharedPersonalData
     public function setDocument(Document $document): self
     {
         $this->document = $document;
+
+        return $this;
+    }
+
+    public function getPersonalData(): ShareablePersonalData
+    {
+        return $this->document;
+    }
+
+    public function setPersonalData(ShareablePersonalData $shareablePersonalData): static
+    {
+        if ($shareablePersonalData instanceof Document) {
+            $this->document = $shareablePersonalData;
+        }
 
         return $this;
     }
