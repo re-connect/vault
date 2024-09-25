@@ -16,7 +16,7 @@ class FeatureFlagChecker
     public function isEnabled(string $featureName): bool
     {
         $featureFlag = $this->repository->findOneBy(['name' => $featureName]);
-        if ($featureFlag?->isEnableDateDue()) {
+        if ($featureFlag?->shouldEnable()) {
             $this->enable($featureFlag->getName());
         }
 

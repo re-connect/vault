@@ -2,6 +2,7 @@
 
 namespace App\Validator\Constraints\Rappel;
 
+use App\Entity\Beneficiaire;
 use App\Entity\Rappel;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
@@ -40,9 +41,14 @@ class EntityValidator extends ConstraintValidator
 
     private function checkBeneficiaryHasPhoneNumber(Rappel $reminder): void
     {
-        $beneficiary = $reminder->getEvenement()->getBeneficiaire();
+        $event = $reminder->getEvenement();
+        $beneficiary = $event->getBeneficiaire();
 
-        if (null === $reminder->getId() && !$beneficiary?->getUser()?->getTelephone()) {
+        if (!$beneficiary && $event->beneficiaireId) {
+            $beneficiary = $this->entityManager->getRepository(Beneficiaire::class)->find($event->beneficiaireId);
+        }
+
+        if (!$beneficiary?->getUser()?->getTelephone()) {
             $this->context->addViolation($this->translator->trans('no_phone_number_registered'));
         }
     }
