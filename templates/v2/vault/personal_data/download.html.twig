@@ -1,4 +1,4 @@
-{% extends 'home/base.html.twig' %}
+{% extends '/home/base.html.twig' %}
 {% block metaTitle %}{{ 'password_reset'|trans }}{% endblock metaTitle %}
 
 {% block bodyCentered %}
@@ -23,9 +23,9 @@
                             {% endfor %}
                         {% endfor %}
                         <div class="row">
-                            {% if sharedDocument is not null %}
+                            {% if sharedPersonalData is not null %}
                                 <div class="py-3">
-                                    <p class="text-primary px-4">{{ 'user_shared_document_with_you'|trans({'%nom%': sharedDocument.sharedBy.nom, '%prenom%': sharedDocument.sharedBy.prenom, '%document%': sharedDocument.document.nom }) }}</p>
+                                    <p class="text-primary px-4">{{ 'user_shared_document_with_you'|trans({'%nom%': sharedPersonalData.sharedBy.nom, '%prenom%': sharedPersonalData.sharedBy.prenom, '%document%': sharedPersonalData.personalData.nom }) }}</p>
                                     <p class="text-primary px-4">{{ 'download_document_click_button'|trans }}</p>
                                     <a target="_blank" download href="{{ downloadLink }}"
                                        class="btn btn-primary">{{ 'download_document'|trans }}</a>

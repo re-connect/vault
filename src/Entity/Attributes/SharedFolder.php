@@ -37,11 +37,13 @@ class SharedFolder extends SharedPersonalData
         return $this;
     }
 
+    #[\Override]
     public function getPersonalData(): ShareablePersonalData
     {
         return $this->folder;
     }
 
+    #[\Override]
     public function setPersonalData(ShareablePersonalData $shareablePersonalData): static
     {
         if ($shareablePersonalData instanceof Dossier) {
