@@ -38,6 +38,7 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
     #[\Override]
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): mixed
     {
+        $this->entityManager->clear();
         $client = $this->apiClientManager->getCurrentOldClient();
 
         if ($data instanceof LinkBeneficiaryDto && $operation instanceof Patch && $client) {
