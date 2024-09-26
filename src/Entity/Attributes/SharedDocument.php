@@ -36,11 +36,13 @@ class SharedDocument extends SharedPersonalData
         return $this;
     }
 
+    #[\Override]
     public function getPersonalData(): ShareablePersonalData
     {
         return $this->document;
     }
 
+    #[\Override]
     public function setPersonalData(ShareablePersonalData $shareablePersonalData): static
     {
         if ($shareablePersonalData instanceof Document) {

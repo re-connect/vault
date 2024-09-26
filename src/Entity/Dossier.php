@@ -75,7 +75,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface, Sh
     #[ORM\OneToMany(mappedBy: 'folder', targetEntity: SharedFolder::class, orphanRemoval: true)]
     private Collection $sharedFolders;
 
-    private ?string $publicDownloadUrl;
+    private ?string $publicDownloadUrl = null;
 
     public function __construct()
     {
@@ -308,11 +308,13 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface, Sh
         return $this;
     }
 
+    #[\Override]
     public function getPublicDownloadUrl(): ?string
     {
         return $this->publicDownloadUrl;
     }
 
+    #[\Override]
     public function setPublicDownloadUrl(string $publicDownloadUrl): static
     {
         $this->publicDownloadUrl = $publicDownloadUrl;
@@ -320,6 +322,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface, Sh
         return $this;
     }
 
+    #[\Override]
     public static function createShareablePersonalData(): SharedFolder
     {
         return new SharedFolder();

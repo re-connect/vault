@@ -2,8 +2,9 @@
 
 namespace App\ServiceV2\Mailer;
 
-use App\Entity\Attributes\SharedDocument;
+use App\Entity\Attributes\SharedPersonalData;
 use App\Entity\Centre;
+use App\Entity\Interface\ShareablePersonalData;
 use App\Entity\Region;
 use App\Entity\User;
 use App\ServiceV2\Mailer\Email\AuthCodeEmail;
@@ -76,16 +77,16 @@ class MailerService implements AuthCodeMailerInterface
         ));
     }
 
-    public function sendSharedDocumentLink(SharedDocument $sharedDocument, string $email): void
+    public function sendSharedDocumentLink(SharedPersonalData $sharedPersonalData, string $email): void
     {
-        $document = $sharedDocument->getDocument();
-        $user = $document?->getBeneficiaire()?->getUser();
+        $personalData = $sharedPersonalData->getPersonalData();
+        $user = $personalData->getBeneficiaire()?->getUser();
 
-        if ($document && $user) {
+        if ($user && $personalData instanceof ShareablePersonalData) {
             $this->send(ShareDocumentLinkEmail::create(
                 [$email],
                 User::DEFAULT_LANGUAGE,
-                $document->getPresignedUrl(),
+                $personalData->getPublicDownloadUrl(),
                 $user,
             ));
         }

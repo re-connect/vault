@@ -12,7 +12,7 @@ use App\Tests\v2\Controller\TestRouteInterface;
 
 class ShareWithContactTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const URL = 'document/%s/share-with-contact/%s';
+    private const URL = 'personal-data/%s/share-with-contact/%s';
 
     public function provideTestRoute(): ?\Generator
     {

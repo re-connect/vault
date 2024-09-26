@@ -408,16 +408,19 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface, S
         }
     }
 
+    #[\Override]
     public function getPublicDownloadUrl(): ?string
     {
         return $this->presignedUrl;
     }
 
+    #[\Override]
     public function setPublicDownloadUrl(string $publicDownloadUrl): static
     {
         return $this->setPresignedUrl($publicDownloadUrl);
     }
 
+    #[\Override]
     public static function createShareablePersonalData(): SharedDocument
     {
         return new SharedDocument();
