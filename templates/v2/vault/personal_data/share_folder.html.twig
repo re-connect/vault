@@ -3,3 +3,11 @@
 {% block metaTitle %}
     {{ 'share_folder'|trans }}
 {% endblock metaTitle %}
+
+{% block contact_list %}
+    {{ include('v2/vault/contact/_list_share_personal_data.html.twig', {
+        contacts,
+        confirmMessage: 'confirm_send_folder_to_contact'|trans,
+        routeName: 'folder_share_with_contact',
+    }) }}
+{% endblock %}

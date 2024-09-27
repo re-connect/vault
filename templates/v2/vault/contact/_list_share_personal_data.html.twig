@@ -8,5 +8,8 @@
 {% endblock %}
 
 {% block card %}
-    {{ include('v2/vault/contact/_card_share_document.html.twig') }}
+    {{ include('v2/vault/contact/_card_share_personal_data.html.twig', {
+        confirmMessage,
+        routeName,
+    }) }}
 {% endblock %}

@@ -139,10 +139,10 @@ class SharedPersonalDataController extends AbstractController
         ]);
     }
 
-    #[Route(path: 'personal-data/{id<\d+>}/share-with-contact/{contactId<\d+>}', name: 'personal_data_share_with_contact', methods: ['GET'])]
+    #[Route(path: 'document/{id<\d+>}/share-with-contact/{contactId<\d+>}', name: 'document_share_with_contact', methods: ['GET'])]
     #[IsGranted('UPDATE', 'document')]
     #[IsGranted('UPDATE', 'contact')]
-    public function shareWithContact(
+    public function shareDocumentWithContact(
         Request $request,
         Document $document,
         #[MapEntity(id: 'contactId')] Contact $contact,
@@ -160,6 +160,29 @@ class SharedPersonalDataController extends AbstractController
         );
 
         return $this->redirectToRoute('list_documents', ['id' => $document->getBeneficiaire()?->getId()]);
+    }
+
+    #[Route(path: 'folder/{id<\d+>}/share-with-contact/{contactId<\d+>}', name: 'folder_share_with_contact', methods: ['GET'])]
+    #[IsGranted('UPDATE', 'folder')]
+    #[IsGranted('UPDATE', 'contact')]
+    public function shareFolderWithContact(
+        Request $request,
+        Dossier $folder,
+        #[MapEntity(id: 'contactId')] Contact $contact,
+    ): Response {
+        if (!$contact->getEmail()) {
+            $this->addFlash('error', 'contact_has_no_email');
+
+            return $this->redirectToRoute('folder_share', ['id' => $folder->getId()]);
+        }
+
+        $this->sharedPersonalDataManager->generateSharedPersonalDataAndSendEmail(
+            $folder,
+            $contact->getEmail(),
+            $request->getLocale(),
+        );
+
+        return $this->redirectToRoute('list_documents', ['id' => $folder->getBeneficiaire()?->getId()]);
     }
 
     #[Route(path: '/public/download-shared-personal-data/{token}', name: 'download_shared_personal_data', methods: ['GET'])]
