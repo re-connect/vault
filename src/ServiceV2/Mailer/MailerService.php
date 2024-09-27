@@ -10,7 +10,6 @@ use App\Entity\User;
 use App\ServiceV2\Mailer\Email\AuthCodeEmail;
 use App\ServiceV2\Mailer\Email\DuplicatedUsernameEmail;
 use App\ServiceV2\Mailer\Email\ResetPasswordEmail;
-use App\ServiceV2\Mailer\Email\ShareDocumentLinkEmail;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Psr\Log\LoggerInterface;
@@ -83,7 +82,7 @@ class MailerService implements AuthCodeMailerInterface
         $user = $personalData->getBeneficiaire()?->getUser();
 
         if ($user && $personalData instanceof ShareablePersonalData) {
-            $this->send(ShareDocumentLinkEmail::create(
+            $this->send($sharedPersonalData::getEmailTemplateFqcn()::create(
                 [$email],
                 User::DEFAULT_LANGUAGE,
                 $personalData->getPublicDownloadUrl(),

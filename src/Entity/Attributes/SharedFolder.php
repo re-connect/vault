@@ -5,6 +5,7 @@ namespace App\Entity\Attributes;
 use App\Entity\Dossier;
 use App\Entity\Interface\ShareablePersonalData;
 use App\Repository\SharedFolderRepository;
+use App\ServiceV2\Mailer\Email\ShareFolderLinkEmail;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SharedFolderRepository::class)]
@@ -51,5 +52,11 @@ class SharedFolder extends SharedPersonalData
         }
 
         return $this;
+    }
+
+    #[\Override]
+    public static function getEmailTemplateFqcn(): string
+    {
+        return ShareFolderLinkEmail::class;
     }
 }
