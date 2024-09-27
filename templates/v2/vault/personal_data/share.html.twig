@@ -1,6 +1,6 @@
 {% extends 'v2/management_layout.html.twig' %}
 
-{% block metaTitle %}{{ 'share_document'|trans }}{% endblock metaTitle %}
+{% block metaTitle %}{% endblock metaTitle %}
 {% block subTitleIconName %}paper-plane{% endblock %}
 {% block subTitle %}<u>{{ personalData.nom }}</u>{% endblock %}
 
@@ -20,7 +20,7 @@
         <div class="col-12 col-md-7 offset-md-1 mt-5 mt-md-0 text-center">
             <h5>{{ app.user.isBeneficiaire ? 'my_contacts'|trans : 'send_to_contact'|trans }}</h5>
             <div style="scale: 0.9">
-                {{ include('v2/vault/contact/_list_share_document.html.twig', {contacts}) }}
+                {% block contact_list %}{% endblock %}
             </div>
         </div>
     </div>
