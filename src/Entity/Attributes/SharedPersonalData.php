@@ -117,4 +117,6 @@ abstract class SharedPersonalData
     abstract public function getPersonalData(): ShareablePersonalData;
 
     abstract public function setPersonalData(ShareablePersonalData $shareablePersonalData): static;
+
+    abstract public static function getEmailTemplateFqcn(): string;
 }

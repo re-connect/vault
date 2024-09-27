@@ -5,6 +5,7 @@ namespace App\Entity\Attributes;
 use App\Entity\Document;
 use App\Entity\Interface\ShareablePersonalData;
 use App\Repository\SharedDocumentRepository;
+use App\ServiceV2\Mailer\Email\ShareDocumentLinkEmail;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SharedDocumentRepository::class)]
@@ -50,5 +51,11 @@ class SharedDocument extends SharedPersonalData
         }
 
         return $this;
+    }
+
+    #[\Override]
+    public static function getEmailTemplateFqcn(): string
+    {
+        return ShareDocumentLinkEmail::class;
     }
 }
