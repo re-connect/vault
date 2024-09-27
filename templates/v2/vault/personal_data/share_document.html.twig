@@ -1,0 +1,9 @@
+{% extends 'v2/vault/personal_data/share.html.twig' %}
+
+{% block metaTitle %}
+    {{ 'share_document'|trans }}
+{% endblock metaTitle %}
+
+{% block contact_list %}
+    {{ include('v2/vault/contact/_list_share_document.html.twig', {contacts}) }}
+{% endblock %}

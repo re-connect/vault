@@ -1,5 +1,5 @@
 {% extends '/home/base.html.twig' %}
-{% block metaTitle %}{{ 'password_reset'|trans }}{% endblock metaTitle %}
+{% block metaTitle %}{{ 'download'|trans }}{% endblock metaTitle %}
 
 {% block bodyCentered %}
     <section class="bg-green mt-5 py-5 pt-md-5">
@@ -11,7 +11,6 @@
                 </div>
                 <div class="col-12 offset-md-1 col-md-7 offset-lg-2 col-lg-6">
                     <div style="background-color:#9ee3a9;" class="card border-radius-20 box-shadow-white my-5 py-3">
-                        <h3 class="text-primary">{{ 'download_document'|trans }}</h3>
                         {% for label, messages in app.flashes(['danger']) %}
                             {% for message in messages %}
                                 <div class="w-75 mx-auto alert alert-{{ label }} alert-dismissible fade show"
@@ -25,10 +24,13 @@
                         <div class="row">
                             {% if sharedPersonalData is not null %}
                                 <div class="py-3">
-                                    <p class="text-primary px-4">{{ 'user_shared_document_with_you'|trans({'%nom%': sharedPersonalData.sharedBy.nom, '%prenom%': sharedPersonalData.sharedBy.prenom, '%document%': sharedPersonalData.personalData.nom }) }}</p>
-                                    <p class="text-primary px-4">{{ 'download_document_click_button'|trans }}</p>
-                                    <a target="_blank" download href="{{ downloadLink }}"
-                                       class="btn btn-primary">{{ 'download_document'|trans }}</a>
+                                    {{ sharedPersonalData.document is defined
+                                    ? include('v2/vault/personal_data/_download_document_instruction.html.twig', {sharedPersonalData})
+                                    : include('v2/vault/personal_data/_download_folder_instruction.html.twig', {sharedPersonalData})
+                                    }}
+                                    <a target="_blank" download href="{{ downloadLink }}" class="btn btn-primary">
+                                        {{ 'download'|trans }}
+                                    </a>
                                 </div>
                             {% endif %}
                         </div>

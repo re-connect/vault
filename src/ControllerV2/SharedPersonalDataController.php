@@ -58,15 +58,16 @@ class SharedPersonalDataController extends AbstractController
             return $this->redirectToRoute('list_documents', ['id' => $document->getBeneficiaire()?->getId()]);
         }
 
-        return $this->renderShareView(
-            $form,
-            $document,
-            $paginatorService->create(
+        return $this->render('v2/vault/personal_data/share_document.html.twig', [
+            'form' => $form,
+            'personalData' => $document,
+            'beneficiary' => $document->getBeneficiaire(),
+            'contacts' => $paginatorService->create(
                 $contactManager->getContacts($document->getBeneficiaire()),
                 $request->query->getInt('page', 1),
                 self::CONTACT_LIST_LIMIT,
-            )
-        );
+            ),
+        ]);
     }
 
     #[Route(path: 'folder/{id<\d+>}/share', name: 'folder_share', methods: ['GET', 'POST'])]
@@ -96,15 +97,16 @@ class SharedPersonalDataController extends AbstractController
             return $this->redirectToRoute('list_documents', ['id' => $folder->getBeneficiaire()?->getId()]);
         }
 
-        return $this->renderShareView(
-            $form,
-            $folder,
-            $paginatorService->create(
+        return $this->render('v2/vault/personal_data/share_folder.html.twig', [
+            'form' => $form,
+            'personalData' => $folder,
+            'beneficiary' => $folder->getBeneficiaire(),
+            'contacts' => $paginatorService->create(
                 $contactManager->getContacts($folder->getBeneficiaire()),
                 $request->query->getInt('page', 1),
                 self::CONTACT_LIST_LIMIT,
-            )
-        );
+            ),
+        ]);
     }
 
     private function generateShareForm(string $action): FormInterface
