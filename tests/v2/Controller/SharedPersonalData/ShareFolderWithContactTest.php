@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Tests\v2\Controller\SharedDocument;
+namespace App\Tests\v2\Controller\SharedPersonalData;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\ContactFactory;
 use App\Tests\Factory\DocumentFactory;
+use App\Tests\Factory\FolderFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 
-class ShareWithContactTest extends AbstractControllerTest implements TestRouteInterface
+class ShareFolderWithContactTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const string URL = 'document/%s/share-with-contact/%s';
+    private const string URL = 'folder/%s/share-with-contact/%s';
 
     public function provideTestRoute(): ?\Generator
     {
@@ -34,10 +35,10 @@ class ShareWithContactTest extends AbstractControllerTest implements TestRouteIn
         array $body = [],
     ): void {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
         $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'email' => 'test@yopmail.com'])->object();
 
-        $url = sprintf($url, $document->getId(), $contact->getId());
+        $url = sprintf($url, $folder->getId(), $contact->getId());
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : '';
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
@@ -51,10 +52,10 @@ class ShareWithContactTest extends AbstractControllerTest implements TestRouteIn
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
         $clientTest->loginUser($beneficiary->getUser());
 
-        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary])->object();
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary])->object();
         $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'email' => $email])->object();
 
-        $clientTest->request('GET', sprintf(self::URL, $document->getId(), $contact->getId()));
+        $clientTest->request('GET', sprintf(self::URL, $folder->getId(), $contact->getId()));
         $this->assertEmailCount($email ? 1 : 0);
     }
 
