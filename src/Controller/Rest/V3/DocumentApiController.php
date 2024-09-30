@@ -4,7 +4,7 @@ namespace App\Controller\Rest\V3;
 
 use App\ControllerV2\AbstractController;
 use App\Entity\Document;
-use App\Factory\SharedDocumentFactory;
+use App\Factory\SharedPersonalDataFactory;
 use App\ServiceV2\Mailer\MailerService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +18,7 @@ final class DocumentApiController extends AbstractController
 {
     #[Route(path: '/{id<\d+>}/share', requirements: ['id' => '\d{1,10}'], methods: ['POST'])]
     #[IsGranted('UPDATE', 'document')]
-    public function shareDocument(Request $request, Document $document, SharedDocumentFactory $factory, MailerService $mailerService): JsonResponse
+    public function shareDocument(Request $request, Document $document, SharedPersonalDataFactory $factory, MailerService $mailerService): JsonResponse
     {
         $email = $request->request->get('email');
         if (!$email) {
@@ -26,7 +26,7 @@ final class DocumentApiController extends AbstractController
         }
 
         $user = $this->getUser();
-        $sharedDocument = $factory->generateSharedDocument($user, $document, $email, $user->getLastLang());
+        $sharedDocument = $factory->generateSharedPersonalData($user, $document, $email, $user->getLastLang());
         $mailerService->sendSharedDocumentLink($sharedDocument, $email);
 
         return $this->json($sharedDocument, Response::HTTP_OK);

@@ -13,7 +13,9 @@ use ApiPlatform\Metadata\Post;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Entity\Attributes\FolderIcon;
+use App\Entity\Attributes\SharedFolder;
 use App\Entity\Interface\FolderableEntityInterface;
+use App\Entity\Interface\ShareablePersonalData;
 use App\Validator\Constraints\Folder as AssertFolder;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -52,7 +54,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     openapiContext: ['tags' => ['Folders']],
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
 )]
-class Dossier extends DonneePersonnelle implements FolderableEntityInterface
+class Dossier extends DonneePersonnelle implements FolderableEntityInterface, ShareablePersonalData
 {
     final public const array AUTOCOMPLETE_NAMES = ['health', 'housing', 'identity', 'tax', 'work'];
     final public const string DEFAULT_ICON_FILE_PATH = 'img/folder_icon/neutral.svg';
@@ -70,6 +72,11 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
     private ?FolderIcon $icon = null;
 
+    #[ORM\OneToMany(mappedBy: 'folder', targetEntity: SharedFolder::class, orphanRemoval: true)]
+    private Collection $sharedFolders;
+
+    private ?string $publicDownloadUrl = null;
+
     public function __construct()
     {
         parent::__construct();
@@ -77,6 +84,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
         $this->sousDossiers = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->sharedFolders = new ArrayCollection();
     }
 
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:folder:read'])]
@@ -268,5 +276,55 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     public function getIconFilePath(): ?string
     {
         return $this->icon?->getPublicFilePath() ?? self::DEFAULT_ICON_FILE_PATH;
+    }
+
+    /**
+     * @return Collection<int, SharedFolder>
+     */
+    public function getSharedFolders(): Collection
+    {
+        return $this->sharedFolders;
+    }
+
+    public function addSharedFolder(SharedFolder $sharedFolder): static
+    {
+        if (!$this->sharedFolders->contains($sharedFolder)) {
+            $this->sharedFolders->add($sharedFolder);
+            $sharedFolder->setFolder($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSharedFolder(SharedFolder $sharedFolder): static
+    {
+        if ($this->sharedFolders->removeElement($sharedFolder)) {
+            // set the owning side to null (unless already changed)
+            if ($sharedFolder->getFolder() === $this) {
+                $sharedFolder->setFolder(null);
+            }
+        }
+
+        return $this;
+    }
+
+    #[\Override]
+    public function getPublicDownloadUrl(): ?string
+    {
+        return $this->publicDownloadUrl;
+    }
+
+    #[\Override]
+    public function setPublicDownloadUrl(string $publicDownloadUrl): static
+    {
+        $this->publicDownloadUrl = $publicDownloadUrl;
+
+        return $this;
+    }
+
+    #[\Override]
+    public static function createShareablePersonalData(): SharedFolder
+    {
+        return new SharedFolder();
     }
 }

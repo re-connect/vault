@@ -6,7 +6,7 @@
 
 {% block action %}
     {% set hasNoEmail = not contact.email %}
-    {% set path = path('document_share_with_contact', {id: document.id, contactId: contact.id}) %}
+    {% set path = path(routeName, {id: personalData.id, contactId: contact.id}) %}
     <td class="bg-white borderless">
         <div {% if hasNoEmail %}{{ stimulus_controller('tooltip', {title: 'contact_has_no_email'|trans}) }}{% endif %}>
             <a href="{{ path }}"
@@ -15,10 +15,10 @@
                         confirmButtonText: 'submit'|trans,
                         confirmButtonColor: getUserThemeColor(),
                         cancelButtonText: 'cancel'|trans,
-                        message: 'confirm_send_document_to_contact'|trans({'%contactName%' : contact.fullName }),
+                        message: confirmMessage|trans({'%contactName%' : contact.fullName }),
                         url: path,
                     }) }}
-               {{ stimulus_action('alert', 'confirm') }}
+                    {{ stimulus_action('alert', 'confirm') }}
             >
                 {{ 'send'|trans }}
             </a>

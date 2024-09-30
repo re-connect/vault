@@ -2,14 +2,14 @@
 
 namespace App\ServiceV2\Mailer;
 
+use App\Entity\Attributes\SharedPersonalData;
 use App\Entity\Centre;
+use App\Entity\Interface\ShareablePersonalData;
 use App\Entity\Region;
-use App\Entity\SharedDocument;
 use App\Entity\User;
 use App\ServiceV2\Mailer\Email\AuthCodeEmail;
 use App\ServiceV2\Mailer\Email\DuplicatedUsernameEmail;
 use App\ServiceV2\Mailer\Email\ResetPasswordEmail;
-use App\ServiceV2\Mailer\Email\ShareDocumentLinkEmail;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Psr\Log\LoggerInterface;
@@ -76,16 +76,16 @@ class MailerService implements AuthCodeMailerInterface
         ));
     }
 
-    public function sendSharedDocumentLink(SharedDocument $sharedDocument, string $email): void
+    public function sendSharedDocumentLink(SharedPersonalData $sharedPersonalData, string $email): void
     {
-        $document = $sharedDocument->getDocument();
-        $user = $document?->getBeneficiaire()?->getUser();
+        $personalData = $sharedPersonalData->getPersonalData();
+        $user = $personalData->getBeneficiaire()?->getUser();
 
-        if ($document && $user) {
-            $this->send(ShareDocumentLinkEmail::create(
+        if ($user && $personalData instanceof ShareablePersonalData) {
+            $this->send($sharedPersonalData::getEmailTemplateFqcn()::create(
                 [$email],
                 User::DEFAULT_LANGUAGE,
-                $document->getPresignedUrl(),
+                $personalData->getPublicDownloadUrl(),
                 $user,
             ));
         }

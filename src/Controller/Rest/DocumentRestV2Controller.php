@@ -11,9 +11,10 @@ use App\Entity\Membre;
 use App\Entity\User;
 use App\EventV2\BeneficiaryConsultationEvent;
 use App\Exception\JsonResponseException;
+use App\Exception\SharedPersonalData\SharedPersonalDataException;
 use App\Manager\MailManager;
 use App\Manager\RestManager;
-use App\ManagerV2\SharedDocumentManager;
+use App\ManagerV2\SharedPersonalDataManager;
 use App\Provider\BeneficiaireProvider;
 use App\Provider\DocumentProvider;
 use App\Provider\DossierProvider;
@@ -345,8 +346,12 @@ class DocumentRestV2Controller extends REController
     }
 
     #[Route(path: 'documents/{id}/share', name: 'api_share_document', requirements: ['id' => '\d{1,10}'], methods: ['POST'])]
-    public function shareDocument(Request $request, AuthorizationCheckerInterface $authorizationChecker, Document $document, SharedDocumentManager $manager): JsonResponse
-    {
+    public function shareDocument(
+        Request $request,
+        AuthorizationCheckerInterface $authorizationChecker,
+        Document $document,
+        SharedPersonalDataManager $manager
+    ): JsonResponse {
         $errors = [];
         $status = Response::HTTP_NO_CONTENT;
         if (false === $authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW, $document)) {
@@ -362,7 +367,12 @@ class DocumentRestV2Controller extends REController
                 $errors[] = 'User not found';
                 $status = Response::HTTP_BAD_REQUEST;
             } else {
-                $manager->generateSharedDocumentAndSendEmail($document, $email, $request->getLocale());
+                try {
+                    $sharedPersonalData = $manager->generateSharedPersonalData($document, $email, $request->getLocale());
+                    $manager->sendSharedPersonalDataEmail($sharedPersonalData, $email);
+                } catch (SharedPersonalDataException $e) {
+                    $errors[] = $this->translator->trans($e->getMessage());
+                }
             }
         }
         $jsonBody = [

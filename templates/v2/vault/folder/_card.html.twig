@@ -42,6 +42,7 @@
             'editPath': path('folder_rename', {'id': folder.id}),
             'detailPath': path('folder_detail', {'id': folder.id}),
             'movePath': path('folder_tree_view_move', {'id': folder.id}),
+            'sendPath': path('folder_share', {'id': folder.id}),
             'delete': {
                 'path': path('folder_delete', {'id': folder.id}),
                 'message': deleteMessage|trans({'%name%': folder.nom}),
