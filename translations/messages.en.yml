@@ -682,3 +682,11 @@ SamusocialParis: SamusocialParis
 Santé: Santé
 Scolarité: Scolarité
 URSSAF: URSSAF
+user_shared_folder_with_you: 'The user %lastname% %firstname% would like to share this folder with you: "%folder%"'
+download_folder: Download folder
+download_folder_click_button: Click on the button below to download the folder
+mail_subject_share_folder: RECONNECT - Folder Sharing
+mail_shared_folder_content_1: '%fullName% would like to share a folder from their Reconnect safe with you.'
+mail_shared_folder_content_2: To download this folder, please visit the link (valid for 7 days)
+confirm_send_folder_to_contact: Are you sure you want to send this folder to %contactName% ?
+share_folder: Share folder

@@ -682,3 +682,11 @@ SamusocialParis: SamusocialParis
 Santé: Santé
 Scolarité: Scolarité
 URSSAF: URSSAF
+user_shared_folder_with_you: 'L''utilisateur %lastname% %firstname% souhaite partager ce dossier avec vous: "%folder%"'
+download_folder: Télécharger un dossier
+download_folder_click_button: Cliquer sur le bouton ci-dessous pour télécharger le dossier
+mail_subject_share_folder: RECONNECT - Partage de dossier
+mail_shared_folder_content_1: '%fullName% souhaite partager avec vous un dossier de son coffre-fort Reconnect.'
+mail_shared_folder_content_2: Pour télécharger ce dossier, rendez-vous sur le lien (valable 7 jours)
+confirm_send_folder_to_contact: Êtes vous sûr de vouloir envoyer ce dossier à %contactName% ?
+share_folder: Partager le dossier
