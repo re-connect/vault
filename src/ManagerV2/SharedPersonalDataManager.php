@@ -8,6 +8,7 @@ use App\Entity\Attributes\SharedPersonalData;
 use App\Entity\Document;
 use App\Entity\DonneePersonnelle;
 use App\Entity\Dossier;
+use App\Exception\SharedPersonalData\SharedPersonalDataException;
 use App\Factory\SharedPersonalDataFactory;
 use App\Repository\UserRepository;
 use App\ServiceV2\Mailer\MailerService;
@@ -33,21 +34,28 @@ class SharedPersonalDataManager
     ) {
     }
 
-    public function generateSharedPersonalDataAndSendEmail(DonneePersonnelle $personalData, string $email, string $locale = 'fr'): void
+    /**
+     * @throws SharedPersonalDataException
+     */
+    public function generateSharedPersonalData(DonneePersonnelle $personalData, string $email, string $locale = 'fr'): ?SharedPersonalData
     {
         $user = $this->getUser();
         if (!$user || !$personalData->getBeneficiaire()) {
-            $this->addFlashMessage('danger', 'user_not_found');
-
-            return;
+            throw new SharedPersonalDataException('user_not_found');
         }
-        $sharedPersonalData = $this->factory->generateSharedPersonalData($user, $personalData, $email, $locale);
-        $this->mailerService->sendSharedDocumentLink($sharedPersonalData, $email);
 
-        $this->addFlashMessage('success', 'share_document_success');
+        return $this->factory->generateSharedPersonalData($user, $personalData, $email, $locale);
     }
 
-    public function validateTokenAndFetchPersonalData(string $token): ?SharedPersonalData
+    public function sendSharedPersonalDataEmail(SharedPersonalData $sharedPersonalData, string $email): void
+    {
+        $this->mailerService->sendSharedDocumentLink($sharedPersonalData, $email);
+    }
+
+    /**
+     * @throws SharedPersonalDataException
+     */
+    public function fetchPersonalData(string $token): ?SharedPersonalData
     {
         $decodedToken = $this->decodeSharedPersonalDataToken($token);
         [
@@ -63,7 +71,7 @@ class SharedPersonalDataManager
         $errorMessage = $this->getErrorMessage($sharedPersonalData, (int) $userId, (string) $personalDataClass, (int) $personalDataId);
 
         if ($errorMessage) {
-            $this->addFlashMessage('danger', $errorMessage);
+            throw new SharedPersonalDataException($errorMessage);
         }
 
         return $sharedPersonalData;
