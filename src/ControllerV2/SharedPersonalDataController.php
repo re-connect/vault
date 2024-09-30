@@ -9,6 +9,7 @@ use App\Entity\Document;
 use App\Entity\DonneePersonnelle;
 use App\Entity\Dossier;
 use App\Entity\Interface\ShareablePersonalData;
+use App\Exception\SharedPersonalData\SharedPersonalDataException;
 use App\ManagerV2\ContactManager;
 use App\ManagerV2\DocumentManager;
 use App\ManagerV2\FolderManager;
@@ -49,7 +50,7 @@ class SharedPersonalDataController extends AbstractController
         )->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->handleShareFormSubmission(
+            $this->sharePersonalData(
                 $document,
                 $form->get('email')->getData(),
                 $request->getLocale(),
@@ -88,7 +89,7 @@ class SharedPersonalDataController extends AbstractController
         )->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->handleShareFormSubmission(
+            $this->sharePersonalData(
                 $folder,
                 $form->get('email')->getData(),
                 $request->getLocale(),
@@ -117,13 +118,16 @@ class SharedPersonalDataController extends AbstractController
             ->getForm();
     }
 
-    public function handleShareFormSubmission(DonneePersonnelle $personalData, string $email, string $locale): void
+    public function sharePersonalData(DonneePersonnelle $personalData, string $email, string $locale): void
     {
-        $this->sharedPersonalDataManager->generateSharedPersonalDataAndSendEmail(
-            $personalData,
-            $email,
-            $locale,
-        );
+        try {
+            $sharedPersonalData = $this->sharedPersonalDataManager->generateSharedPersonalData($personalData, $email, $locale);
+            $this->sharedPersonalDataManager->sendSharedPersonalDataEmail($sharedPersonalData, $email);
+
+            $this->addFlash('success', 'share_document_success');
+        } catch (SharedPersonalDataException $e) {
+            $this->addFlash('danger', $e->getMessage());
+        }
     }
 
     /**
@@ -153,11 +157,7 @@ class SharedPersonalDataController extends AbstractController
             return $this->redirectToRoute('document_share', ['id' => $document->getId()]);
         }
 
-        $this->sharedPersonalDataManager->generateSharedPersonalDataAndSendEmail(
-            $document,
-            $contact->getEmail(),
-            $request->getLocale(),
-        );
+        $this->sharePersonalData($document, $contact->getEmail(), $request->getLocale());
 
         return $this->redirectToRoute('list_documents', ['id' => $document->getBeneficiaire()?->getId()]);
     }
@@ -176,11 +176,7 @@ class SharedPersonalDataController extends AbstractController
             return $this->redirectToRoute('folder_share', ['id' => $folder->getId()]);
         }
 
-        $this->sharedPersonalDataManager->generateSharedPersonalDataAndSendEmail(
-            $folder,
-            $contact->getEmail(),
-            $request->getLocale(),
-        );
+        $this->sharePersonalData($folder, $contact->getEmail(), $request->getLocale());
 
         return $this->redirectToRoute('list_documents', ['id' => $folder->getBeneficiaire()?->getId()]);
     }
@@ -191,7 +187,13 @@ class SharedPersonalDataController extends AbstractController
         DocumentManager $documentManager,
         UrlGeneratorInterface $urlGenerator,
     ): Response {
-        $sharedPersonalData = $this->sharedPersonalDataManager->validateTokenAndFetchPersonalData($token);
+        try {
+            $sharedPersonalData = $this->sharedPersonalDataManager->fetchPersonalData($token);
+        } catch (SharedPersonalDataException $e) {
+            $sharedPersonalData = null;
+            $this->addFlash('danger', $e->getMessage());
+        }
+
         $personalData = $sharedPersonalData?->getPersonalData();
 
         if (!$sharedPersonalData || !$personalData instanceof ShareablePersonalData) {
@@ -217,7 +219,13 @@ class SharedPersonalDataController extends AbstractController
         string $token,
         FolderManager $folderManager,
     ): Response {
-        $sharedFolder = $this->sharedPersonalDataManager->validateTokenAndFetchPersonalData($token);
+        try {
+            $sharedFolder = $this->sharedPersonalDataManager->fetchPersonalData($token);
+        } catch (SharedPersonalDataException $e) {
+            $sharedFolder = null;
+            $this->addFlash('danger', $e->getMessage());
+        }
+
         if (!$sharedFolder instanceof SharedFolder) {
             return $this->redirectToRoute('home');
         }
