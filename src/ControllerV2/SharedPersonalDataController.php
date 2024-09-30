@@ -222,7 +222,7 @@ class SharedPersonalDataController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        $streamedResponse = $folderManager->getZipFromFolder($sharedFolder->getFolder());
+        $streamedResponse = $folderManager->getZipFromFolder($sharedFolder->getFolder(), $sharedFolder->isSharedByOwner());
 
         if (!$streamedResponse) {
             $this->addFlash('error', 'error_during_download');

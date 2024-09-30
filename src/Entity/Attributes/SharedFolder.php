@@ -59,4 +59,11 @@ class SharedFolder extends SharedPersonalData
     {
         return ShareFolderLinkEmail::class;
     }
+
+    public function isSharedByOwner(): bool
+    {
+        $beneficiary = $this->folder->getBeneficiaire();
+
+        return $beneficiary && $beneficiary->getUser() === $this->sharedBy;
+    }
 }
