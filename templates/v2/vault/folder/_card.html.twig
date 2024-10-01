@@ -1,3 +1,4 @@
+{% set hasDocuments = folder.documents is not empty %}
 <tr class="text-primary text-center draggable droppable"
         {{ stimulus_target('drag_n_drop', 'folder') }} data-id="{{ folder.id }}"
 >
@@ -14,7 +15,7 @@
         </a>
     </td>
     <td class="bg-white borderless align-middle">
-        {% if folder.documents is not empty %}
+        {% if hasDocuments %}
             {{ include('v2/vault/components/_download_folder_document_button.html.twig', {
                 'path': path('folder_download', {'id': folder.id}),
             }) }}
@@ -36,23 +37,28 @@
             {% endif %}
         {% endif %}
     </td>
-    <td class="bg-white borderless text-end pe-3 pe-sm-4 align-middle" {{ stimulus_controller('dropdown-menu') }}>
-        {% set deleteMessage = folder.hasDocuments ? 'folder_contains_documents_alert' : 'modal_message_folder_deletev2'%}
-        {{ include('v2/vault/components/_action_dropdown.html.twig', {
-            'editPath': path('folder_rename', {'id': folder.id}),
-            'detailPath': path('folder_detail', {'id': folder.id}),
-            'movePath': path('folder_tree_view_move', {'id': folder.id}),
+    {% set deleteMessage = folder.hasDocuments ? 'folder_contains_documents_alert' : 'modal_message_folder_deletev2'%}
+    {% set actions = {
+        'editPath': path('folder_rename', {'id': folder.id}),
+        'detailPath': path('folder_detail', {'id': folder.id}),
+        'movePath': path('folder_tree_view_move', {'id': folder.id}),
+        'delete': {
+            'path': path('folder_delete', {'id': folder.id}),
+            'message': deleteMessage|trans({'%name%': folder.nom}),
+        },
+        'switchPrivate': folder.dossierParent
+        ? null
+        : {
+            'path': path('folder_toggle_visibility', {'id': folder.id}),
+            'message': 'switch_content_private_confirm'|trans,
+        },
+    } %}
+    {% if hasDocuments %}
+        {% set actions = actions|merge({
             'sendPath': path('folder_share', {'id': folder.id}),
-            'delete': {
-                'path': path('folder_delete', {'id': folder.id}),
-                'message': deleteMessage|trans({'%name%': folder.nom}),
-            },
-            'switchPrivate': folder.dossierParent
-            ? null
-            : {
-                'path': path('folder_toggle_visibility', {'id': folder.id}),
-                'message': 'switch_content_private_confirm'|trans,
-            },
-        }) }}
+        }) %}
+    {% endif %}
+    <td class="bg-white borderless text-end pe-3 pe-sm-4 align-middle" {{ stimulus_controller('dropdown-menu') }}>
+        {{ include('v2/vault/components/_action_dropdown.html.twig', actions) }}
     </td>
 </tr>
