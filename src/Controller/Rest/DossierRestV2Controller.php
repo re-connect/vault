@@ -100,8 +100,8 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'folders/{id}', name: 'patch', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
-    public function patch(int $id, DossierProvider $provider): JsonResponse
+    #[Route(path: 'folders/{id}', name: 'patch', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
+    public function patch(int $id, DossierProvider $provider, FolderIconRepository $folderIconRepository): JsonResponse
     {
         try {
             $entity = $provider->getEntity($id, Client::ACCESS_DOCUMENT_WRITE);
@@ -113,6 +113,9 @@ class DossierRestV2Controller extends REController
                         case 'nom':
                             $entity->setNom($item);
                             $this->entityManager->flush();
+                            break;
+                        case 'icon_id':
+                            $entity->setIcon($folderIconRepository->find($item));
                             break;
                         case 'b_prive':
                             $bPrive = filter_var($item, FILTER_VALIDATE_BOOLEAN);
