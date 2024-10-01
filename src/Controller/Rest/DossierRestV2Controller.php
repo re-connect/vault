@@ -100,7 +100,7 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'folders/{id}', name: 'patch', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'folders/{id}', name: 'patch', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
     public function patch(int $id, DossierProvider $provider): JsonResponse
     {
         try {
@@ -145,14 +145,14 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'beneficiaries/{beneficiaryId}/folders', name: 'list', methods: ['GET'], requirements: ['beneficiaryId' => '\d{1,10}'])]
+    #[Route(path: 'beneficiaries/{beneficiaryId}/folders', name: 'list', requirements: ['beneficiaryId' => '\d{1,10}'], methods: ['GET'])]
     public function list(int $beneficiaryId, BeneficiaireProvider $beneficiaireProvider, AuthorizationCheckerInterface $authorizationChecker): JsonResponse
     {
         try {
             $beneficiaire = $beneficiaireProvider->getEntity($beneficiaryId, Client::ACCESS_DOCUMENT_READ);
 
             if (false === $authorizationChecker->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $beneficiaire)) {
-                throw new AccessDeniedException("Vous n'avez pas le droit d'accéder aux dossiers de ce bénéficiaire.");
+                throw $this->createAccessDeniedException("Vous n'avez pas le droit d'accéder aux dossiers de ce bénéficiaire.");
             }
 
             $user = $this->getUser();
@@ -168,7 +168,7 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'folders/{id}/send', name: 'send', methods: ['POST'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'folders/{id}/send', name: 'send', requirements: ['id' => '\d{1,10}'], methods: ['POST'])]
     public function send(
         int $id,
         Request $request,
@@ -181,7 +181,7 @@ class DossierRestV2Controller extends REController
         try {
             $dossier = $provider->getEntity($id, Client::ACCESS_DOCUMENT_READ);
             if ($dossier->getDocuments()->isEmpty()) {
-                return $this->json($restManager->getErrorsToJson(['folder' => $translator->trans('folder.envoyerParEmail.dossierVide')]), Response::HTTP_BAD_REQUEST);
+                return $this->json($restManager->getErrorsToJson(['folder' => $translator->trans('empty')]), Response::HTTP_BAD_REQUEST);
             }
 
             if (null === $email = $request->request->get('email')) {
@@ -206,14 +206,14 @@ class DossierRestV2Controller extends REController
             $errorMessage = $errors[0]->getMessage();
 
             throw new BadRequestHttpException($errorMessage);
-        } catch (NotFoundHttpException|AccessDeniedException|BadRequestHttpException $e) {
+        } catch (NotFoundHttpException|AccessDeniedException|BadRequestHttpException|\Exception $e) {
             $jsonResponseException = new JsonResponseException($e);
 
             return $jsonResponseException->getResponse();
         }
     }
 
-    #[Route(path: 'folders/{id}/toggle-access', name: 'toggle_access', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'folders/{id}/toggle-access', name: 'toggle_access', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
     public function toggleAccess(int $id, DossierProvider $provider): JsonResponse
     {
         try {
@@ -229,7 +229,7 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'folders/{id}/name', name: 'rename', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'folders/{id}/name', name: 'rename', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
     public function renameAction(int $id, Request $request, DossierProvider $provider): JsonResponse
     {
         try {
