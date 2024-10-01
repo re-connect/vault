@@ -124,7 +124,7 @@ class SharedPersonalDataController extends AbstractController
             $sharedPersonalData = $this->sharedPersonalDataManager->generateSharedPersonalData($personalData, $email, $locale);
             $this->sharedPersonalDataManager->sendSharedPersonalDataEmail($sharedPersonalData, $email);
 
-            $this->addFlash('success', 'share_document_success');
+            $this->addFlash('success', $personalData instanceof Document ? 'share_document_success' : 'share_folder_success');
         } catch (SharedPersonalDataException $e) {
             $this->addFlash('danger', $e->getMessage());
         }
