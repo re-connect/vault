@@ -690,3 +690,4 @@ mail_shared_folder_content_1: '%fullName% would like to share a folder from thei
 mail_shared_folder_content_2: To download this folder, please visit the link (valid for 7 days)
 confirm_send_folder_to_contact: Are you sure you want to send this folder to %contactName% ?
 share_folder: Share folder
+share_folder_success: An email with a link to download this folder has been sent to the email address provided.

@@ -690,3 +690,4 @@ mail_shared_folder_content_1: '%fullName% souhaite partager avec vous un dossier
 mail_shared_folder_content_2: Pour télécharger ce dossier, rendez-vous sur le lien (valable 7 jours)
 confirm_send_folder_to_contact: Êtes vous sûr de vouloir envoyer ce dossier à %contactName% ?
 share_folder: Partager le dossier
+share_folder_success: Un email avec un lien valable 7 jours et permettant de télécharger ce dossier a été envoyé à l'adresse mail renseignée.
