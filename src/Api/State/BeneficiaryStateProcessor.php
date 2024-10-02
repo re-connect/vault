@@ -19,6 +19,7 @@ use App\ServiceV2\Helper\RelayAssignationHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 readonly class BeneficiaryStateProcessor implements ProcessorInterface
 {
@@ -42,6 +43,9 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
 
         if ($data instanceof LinkBeneficiaryDto && $operation instanceof Patch && $client) {
             $beneficiary = $this->beneficiaryRepository->find($uriVariables['id']);
+            if (!$beneficiary->getExternalLinksForClient($client)->isEmpty()) {
+                throw new UnprocessableEntityHttpException('This beneficiary already has a link for this client.');
+            }
             $this->createExternalLink($data, $client, $beneficiary);
 
             return $beneficiary;
