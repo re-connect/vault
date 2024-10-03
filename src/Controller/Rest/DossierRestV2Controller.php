@@ -67,7 +67,7 @@ class DossierRestV2Controller extends REController
                             $entity->setNom($item);
                             break;
                         case 'icon_id':
-                            $entity->setIcon($folderIconRepository->find($item));
+                            $entity->setIcon($item ? $folderIconRepository->find($item) : null);
                             break;
                         case 'b_prive':
                             if (!array_key_exists('dossier_parent_id', $data)) {
