@@ -12,7 +12,7 @@ export default class extends Controller {
       modules: {toolbar: this.getToolbarOptions()},
     });
 
-    this.quill.container.firstChild.innerHTML = input.value;
+    this.quill.clipboard.dangerouslyPasteHTML(input.value)
 
     this.handleFocusOnEditor();
 
