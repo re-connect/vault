@@ -115,7 +115,7 @@ class DossierRestV2Controller extends REController
                             $this->entityManager->flush();
                             break;
                         case 'icon_id':
-                            $entity->setIcon($folderIconRepository->find($item));
+                            $entity->setIcon($item ? $folderIconRepository->find($item) : null);
                             $this->entityManager->flush();
                             break;
                         case 'b_prive':
