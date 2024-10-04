@@ -1,5 +1,20 @@
-<tr class="text-primary text-center align-middle">
-    <td class="bg-white borderless p-0">
+<tr class="text-primary text-center align-middle"
+    {{ stimulus_controller('ajax-toggle', {'url': path('contact_toggle_visibility', {'id': contact.id}) })}}
+>
+    {% set cardClasses = ['bg-white', 'borderless', 'p-0', 'position-relative'] %}
+    {% if app.user.isBeneficiaire %}
+        {% set cardClasses = cardClasses|merge(['personal-data-card']) %}
+    {% endif %}
+    {% if contact.bPrive %}
+        {% set cardClasses = cardClasses|merge(['private']) %}
+    {% else %}
+        {% set cardClasses = cardClasses|merge(['shared']) %}
+    {% endif %}
+
+    <td class="{{ cardClasses|join(' ') }}"
+        {{ stimulus_target('ajax-toggle', 'card') }}
+        data-toggle-classes="shared private"
+    >
         <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
             {{ contact.nom|upper }}
         </a>
