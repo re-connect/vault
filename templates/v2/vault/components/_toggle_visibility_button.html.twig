@@ -1,6 +1,4 @@
-<div class="d-flex justify-content-center align-items-center"
-    {{ stimulus_controller('ajax-toggle', {'url': url })}}
->
+<div class="d-flex justify-content-center align-items-center">
     <i class="fas fa-lock{{ private ? ' text-primary' : '-open text-light-grey' }} me-2"
        {{ stimulus_target('ajax-toggle', 'icon') }}
        data-toggle-classes='text-light-grey fa-lock-open fa-lock'

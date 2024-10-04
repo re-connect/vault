@@ -1,5 +1,6 @@
-<tr class="text-primary text-center align-middle">
-    <td class="bg-white borderless p-0">
+<tr class="text-primary text-center align-middle" {{ stimulus_controller('ajax-toggle', {'url': path('contact_toggle_visibility', {'id': contact.id}) })}}>
+    <td class="bg-white borderless p-0 personal-data-card {{ contact.bPrive ? 'private' : 'shared' }} position-relative"{{ stimulus_target('ajax-toggle', 'card') }}
+        data-toggle-classes="shared private">
         <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
             {{ contact.nom|upper }}
         </a>
