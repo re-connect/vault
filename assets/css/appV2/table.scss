@@ -12,6 +12,24 @@ th:last-child{
   border-radius: 0 10px 10px 0;
 }
 
+.personal-data-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  border-radius: 0 0 0 30px;
+  background-color: theme-color('primary');
+}
+.shared::before {
+  background-color: theme-color('green');
+}
+
+.private::before {
+  background-color: theme-color('primary');
+}
+
 .borderless{
   border: none;
 }

@@ -4,28 +4,32 @@ import {Tooltip} from "bootstrap-next";
 
 export default class extends Controller {
   static values = {url: String};
-  static targets = ['icon', 'switch']
+  static targets = ['icon', 'switch', 'card'];
 
   toggle(event) {
     const icons = this.iconTargets;
     const toggleSwitch = this.switchTarget;
+    const card = this.cardTarget;
 
     axiosInstance.patch(this.urlValue)
       .then(function () {
         icons.forEach(
           (icon) => {
-              updateTooltipTitle(icon);
-              icon.dataset.toggleClasses.split(' ').forEach(
-                  (cssClass) => icon.classList.toggle(cssClass)
-              );
+            updateTooltipTitle(icon);
+            icon.dataset.toggleClasses.split(' ').forEach(
+              (cssClass) => icon.classList.toggle(cssClass)
+            );
           }
-        )
+        );
 
         updateTooltipTitle(toggleSwitch);
+          card.dataset.toggleClasses.split(' ').forEach(
+          (cssClass) => card.classList.toggle(cssClass)
+        );
       })
       .catch(() => {
         event.target.classList.toggle('bg-red');
-      })
+      });
   }
 }
 
