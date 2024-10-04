@@ -134,7 +134,7 @@ class ExportService
     {
         return $this->em->getRepository(Beneficiaire::class)
             ->createQueryBuilder('b')
-            ->select('COUNT(b)')
+            ->select('b')
             ->leftJoin('b.documents', 'd')
             ->innerJoin('b.user', 'u')
             ->andWhere('u.test != true')
