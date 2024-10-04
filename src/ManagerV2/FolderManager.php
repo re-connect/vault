@@ -71,12 +71,12 @@ class FolderManager
         $this->em->flush();
     }
 
-    public function getZipFromFolder(Dossier $folder): ?StreamedResponse
+    public function getZipFromFolder(Dossier $folder, bool $forceAddPrivateDocuments = false): ?StreamedResponse
     {
         return 0 === $folder->getDocuments()->count()
             ? null
             : new StreamedResponse(
-                fn () => $this->createZipFromFolder($folder),
+                fn () => $this->createZipFromFolder($folder, $forceAddPrivateDocuments),
                 Response::HTTP_OK,
                 [
                     'Content-Type' => 'application/zip',
@@ -88,11 +88,13 @@ class FolderManager
             );
     }
 
-    private function createZipFromFolder(Dossier $folder): void
+    private function createZipFromFolder(Dossier $folder, bool $forceAddPrivateDocuments = false): void
     {
         $zip = new ZipStream(outputName: sprintf('%s.zip', $folder->getNom()));
 
-        $documents = $folder->getDocuments($this->getUser() === $folder->getBeneficiaire()->getUser())
+        $addPrivateDocuments = $forceAddPrivateDocuments || $this->getUser() === $folder->getBeneficiaire()->getUser();
+
+        $documents = $folder->getDocuments($addPrivateDocuments)
             ->filter(fn (Document $document) => is_resource($this->bucketService->getObjectStream($document->getObjectKey())));
 
         foreach ($documents as $document) {

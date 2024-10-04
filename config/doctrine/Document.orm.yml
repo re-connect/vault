@@ -41,7 +41,7 @@ App\Entity\Document:
             cascade: [ "persist", "remove" ]
             mappedBy: document
         sharedDocuments:
-            targetEntity: App\Entity\SharedDocument
+            targetEntity: App\Entity\Attributes\SharedDocument
             cascade: [ "remove" ]
             mappedBy: document
     lifecycleCallbacks: { }

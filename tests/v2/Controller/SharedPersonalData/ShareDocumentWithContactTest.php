@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\v2\Controller\SharedDocument;
+namespace App\Tests\v2\Controller\SharedPersonalData;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
@@ -10,9 +10,9 @@ use App\Tests\Factory\DocumentFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 
-class ShareWithContactTest extends AbstractControllerTest implements TestRouteInterface
+class ShareDocumentWithContactTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const URL = 'document/%s/share-with-contact/%s';
+    private const string URL = 'document/%s/share-with-contact/%s';
 
     public function provideTestRoute(): ?\Generator
     {

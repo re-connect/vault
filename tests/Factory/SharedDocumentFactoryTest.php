@@ -6,7 +6,7 @@ use ApiPlatform\Api\UrlGeneratorInterface;
 use App\Entity\Beneficiaire;
 use App\Entity\Document;
 use App\Entity\User;
-use App\Factory\SharedDocumentFactory;
+use App\Factory\SharedPersonalDataFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -17,7 +17,7 @@ class SharedDocumentFactoryTest extends KernelTestCase
     private Beneficiaire $beneficiaire;
     private Document $document;
     private User $user;
-    private SharedDocumentFactory $factory;
+    private SharedPersonalDataFactory $factory;
 
     protected function setUp(): void
     {
@@ -25,7 +25,7 @@ class SharedDocumentFactoryTest extends KernelTestCase
         $this->em = self::getContainer()->get('doctrine')->getManager();
         $urlGenerator = self::getContainer()->get(UrlGeneratorInterface::class);
         $tokenManager = $this->createMock(JWTTokenManagerInterface::class);
-        $this->factory = new SharedDocumentFactory($this->em, $tokenManager, $urlGenerator);
+        $this->factory = new SharedPersonalDataFactory($this->em, $tokenManager, $urlGenerator);
         $this->user = $this->generateOrFindUser();
         $this->em->persist($this->user);
         $this->beneficiaire = $this->generateBeneficiaire();
@@ -37,14 +37,14 @@ class SharedDocumentFactoryTest extends KernelTestCase
 
     public function testGenerateSharedDocument(): void
     {
-        $sharedDocument = $this->factory->generateSharedDocument($this->user, $this->document, 'marcanmalas@gmail.com');
+        $sharedDocument = $this->factory->generateSharedPersonalData($this->user, $this->document, 'marcanmalas@gmail.com');
         $this->assertIsObject($sharedDocument);
-        $this->assertIsObject($sharedDocument->getDocument());
+        $this->assertIsObject($sharedDocument->getPersonalData());
         $this->assertIsObject($sharedDocument->getSharedAt());
         $this->assertIsObject($sharedDocument->getExpirationDate());
         $this->assertIsObject($sharedDocument->getSharedBy());
         $this->assertIsInt($sharedDocument->getSharedBy()->getId());
-        $this->assertIsInt($sharedDocument->getDocument()->getId());
+        $this->assertIsInt($sharedDocument->getPersonalData()->getId());
         $this->assertIsString($sharedDocument->getSharedWithEmail());
         $this->assertIsString($sharedDocument->getSelector());
     }

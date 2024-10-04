@@ -1,0 +1,15 @@
+{% extends 'v2/email/templated_email_base.html.twig' %}
+
+{% block content %}{% endblock %}
+
+{% block link %}
+    <button href="{{ url }}" class="green radius-15">{{ 'download'|trans({}, 'messages', userLang) }}</button>
+{% endblock %}
+
+{% block confidentialitySection %}
+    <row>
+        <columns>
+            <p class="text-primary">{{ 'mail_shared_document_content_3'|trans({}, 'messages', userLang) }}</p>
+        </columns>
+    </row
+{% endblock %}

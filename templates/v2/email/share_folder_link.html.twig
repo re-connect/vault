@@ -1,0 +1,7 @@
+{% extends 'v2/email/share_personal_data_link.html.twig' %}
+
+{% block content %}
+    <p class="text-primary">{{ 'mail_shared_folder_content_1'|trans({'%fullName%': senderFullName|upper}, 'messages', userLang) }}</p>
+    <spacer size="20"></spacer>
+    <p class="text-primary">{{ 'mail_shared_folder_content_2'|trans({}, 'messages', userLang) }}</p>
+{% endblock %}
