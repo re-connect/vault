@@ -1,7 +1,11 @@
-<tr class="text-primary text-center draggable droppable"
-        {{ stimulus_target('drag_n_drop', 'folder') }} data-id="{{ folder.id }}"
+<tr class="text-primary text-center draggable droppable position-relative"
+    {{ stimulus_controller('ajax-toggle', {'url': path('folder_toggle_visibility', {'id': folder.id}) })|stimulus_target('drag_n_drop', 'folder') }}
+    data-id="{{ folder.id }}"
 >
-    <td class="bg-white borderless text-start align-middle">
+    <td class="bg-white borderless text-start align-middle  personal-data-card position-relative {{ folder.bPrive ? 'private' : 'shared' }}"
+        {{ stimulus_target('ajax-toggle', 'card') }}
+        data-toggle-classes="shared private"
+    >
         <a href="{{ path('folder', {'id': folder.id}) }}" class="text-decoration-none text-primary d-block">
             <i class="fa fa-fw fa-folder-open fa-3x"></i>
         </a>
