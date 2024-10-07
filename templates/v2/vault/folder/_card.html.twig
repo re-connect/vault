@@ -35,6 +35,7 @@
             {% if folder.canToggleVisibility %}
                 {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
                     'url': path('folder_toggle_visibility', {'id': folder.id}),
+                    'isFolder': true,
                     'private': folder.bPrive,
                 }) }}
             {% else %}
