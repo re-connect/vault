@@ -17,6 +17,9 @@ App\Entity\Dossier:
         icon:
             targetEntity: App\Entity\Attributes\FolderIcon
             inversedBy: folders
+            joinColumn:
+                name: icon_id
+                onDelete: SET NULL
     oneToMany:
         documents:
             targetEntity: App\Entity\Document
