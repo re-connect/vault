@@ -8,9 +8,8 @@ use App\Repository\UserRepository;
 
 readonly class SearchBeneficiaryProvider implements ProviderInterface
 {
-    public function __construct(
-        private readonly UserRepository $userRepository,
-    ) {
+    public function __construct(private UserRepository $userRepository)
+    {
     }
 
     #[\Override]

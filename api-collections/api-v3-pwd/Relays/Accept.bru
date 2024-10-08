@@ -1,0 +1,11 @@
+meta {
+  name: Accept
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{baseUrl}}/api/v3/centers/{{id}}/accept
+  body: none
+  auth: inherit
+}

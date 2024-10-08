@@ -10,8 +10,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class ApiVoter extends Voter
 {
-    public const READ = 'READ';
-    public const UPDATE = 'UPDATE';
+    public const string UPDATE = 'UPDATE';
 
     public function __construct(private readonly Oauth2Helper $oauth2Helper)
     {
@@ -20,7 +19,7 @@ class ApiVoter extends Voter
     #[\Override]
     protected function supports(string $attribute, mixed $subject): bool
     {
-        return in_array($attribute, [self::READ, self::UPDATE]) && $subject instanceof ClientResourceInterface;
+        return self::UPDATE === $attribute && $subject instanceof ClientResourceInterface;
     }
 
     #[\Override]

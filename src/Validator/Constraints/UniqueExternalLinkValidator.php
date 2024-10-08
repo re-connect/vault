@@ -33,6 +33,10 @@ class UniqueExternalLinkValidator extends ConstraintValidator
         }
 
         if ($value instanceof BeneficiaryDto) {
+            if (null === $value->distantId) {
+                return;
+            }
+
             $oldClient = $this->apiClientManager->getCurrentOldClient();
             $clientId = $oldClient?->getRandomId() ?? $this->apiClientManager->getCurrentClient()->getIdentifier();
 
