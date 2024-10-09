@@ -40,18 +40,7 @@
     {% endblock %}
     {% block action %}
         <td class="bg-white borderless" {{ stimulus_controller('dropdown-menu') }}>
-            {{ include('v2/vault/components/_action_dropdown.html.twig', {
-                'editPath': path('contact_edit', {'id': contact.id}),
-                'detailPath': path('contact_detail', {'id': contact.id}),
-                'delete': {
-                    'path': path('contact_delete', {'id': contact.id}),
-                    'message': 'modal_message_contact_deletev2'|trans({'%fullName%': contact.fullName}),
-                },
-                'switchPrivate': {
-                    'path': path('contact_toggle_visibility', {'id': contact.id}),
-                    'message': 'switch_content_private_confirm'|trans,
-                },
-            }) }}
+            {{ include('v2/vault/components/_action_dropdown.html.twig', {personalData: contact}) }}
         </td>
     {% endblock %}
 </tr>

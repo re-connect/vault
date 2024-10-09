@@ -33,17 +33,6 @@
         </td>
     {% endif %}
     <td class="bg-white borderless pt-2 w-25 pe-3" {{ stimulus_controller('dropdown-menu') }} data-turbo="false">
-        {{ include('v2/vault/components/_action_dropdown.html.twig', {
-            'editPath': path('event_edit', {'id': event.id}),
-            'detailPath': path('event_detail', {'id': event.id}),
-            'delete': {
-                'path': path('event_delete', {'id': event.id}),
-                'message': 'modal_message_event_deletev2'|trans({'%name%': event.nom}),
-            },
-            'switchPrivate': {
-                'path': path('event_toggle_visibility', {'id': event.id}),
-                'message': 'switch_content_private_confirm'|trans,
-            },
-        }) }}
+        {{ include('v2/vault/components/_action_dropdown.html.twig', {personalData: event}) }}
     </td>
 </tr>
