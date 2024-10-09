@@ -691,3 +691,5 @@ mail_shared_folder_content_2: To download this folder, please visit the link (va
 confirm_send_folder_to_contact: Are you sure you want to send this folder to %contactName% ?
 share_folder: Share folder
 share_folder_success: An email with a link to download this folder has been sent to the email address provided.
+confirm_switch_shared_folder_content: Are you sure you want to share all the contents of this folder ?
+confirm_switch_private_folder_content: Are you sure you want to make all the contents of this folder private ?
