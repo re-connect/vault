@@ -1,7 +1,17 @@
 <tr class="text-primary text-center align-middle"
     {{ stimulus_controller('ajax-toggle', {'url': path('contact_toggle_visibility', {'id': contact.id}) })}}
 >
-    <td class="bg-white borderless p-0 personal-data-card position-relative {{ contact.bPrive ? 'private' : 'shared' }}"
+    {% set cardClasses = ['bg-white', 'borderless', 'p-0', 'position-relative'] %}
+    {% if app.user.isBeneficiaire %}
+        {% set cardClasses = cardClasses|merge(['personal-data-card']) %}
+    {% endif %}
+    {% if contact.bPrive %}
+        {% set cardClasses = cardClasses|merge(['private']) %}
+    {% else %}
+        {% set cardClasses = cardClasses|merge(['shared']) %}
+    {% endif %}
+
+    <td class="{{ cardClasses|join(' ') }}"
         {{ stimulus_target('ajax-toggle', 'card') }}
         data-toggle-classes="shared private"
     >
