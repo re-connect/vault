@@ -2,6 +2,7 @@
 
 namespace App\Tests\v2\Entity;
 
+use App\Entity\Attributes\FolderIcon;
 use App\Entity\Dossier;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Validator\Constraints\Folder\NoCircularDependency;
@@ -20,6 +21,29 @@ class FolderTest extends AbstractEntityTest
     public function testEntityIsNotValid(Dossier $entity, string $property, string $constraintClass): void
     {
         $this->assertEntityIsNotValid($entity, $property, $constraintClass);
+    }
+
+    public function testRemoveIcon(): void
+    {
+        $folder = $this->getValidEntity();
+        $icon = (new FolderIcon())->setName('dummy')->setFileName('dummy');
+
+        self::assertNull($folder->getIcon());
+
+        $folder->setIcon($icon);
+        $this->em->persist($icon);
+        $this->em->persist($folder);
+        $this->em->flush();
+
+        $this->em->refresh($folder);
+        self::assertNotNull($folder->getIcon());
+        self::assertSame($folder->getIcon(), $icon);
+
+        $this->em->remove($icon);
+        $this->em->flush();
+
+        $this->em->refresh($folder);
+        self::assertNull($folder->getIcon());
     }
 
     public function provideInvalidEntities(): \Generator

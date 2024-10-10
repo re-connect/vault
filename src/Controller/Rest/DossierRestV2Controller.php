@@ -10,6 +10,7 @@ use App\Manager\MailManager;
 use App\Manager\RestManager;
 use App\Provider\BeneficiaireProvider;
 use App\Provider\DossierProvider;
+use App\Repository\FolderIconRepository;
 use App\Security\Authorization\Voter\BeneficiaireVoter;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +28,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route(path: ['old' => '/api/', 'new' => '/api/v2/'], name: 're_api_dossier_')]
 class DossierRestV2Controller extends REController
 {
-    #[Route(path: 'folders/{id}', name: 'delete', methods: ['DELETE'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'folders/{id}', name: 'delete', requirements: ['id' => '\d{1,10}'], methods: ['DELETE'])]
     public function delete(int $id, DossierProvider $provider): JsonResponse
     {
         try {
@@ -43,11 +44,12 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'beneficiaries/{beneficiaryId}/folders', methods: ['POST'], name: 'add', requirements: ['beneficiaryId' => '\d{1,10}'])]
+    #[Route(path: 'beneficiaries/{beneficiaryId}/folders', name: 'add', requirements: ['beneficiaryId' => '\d{1,10}'], methods: ['POST'])]
     public function add(
         int $beneficiaryId,
         DossierProvider $provider,
-        BeneficiaireProvider $beneficiaireProvider
+        BeneficiaireProvider $beneficiaireProvider,
+        FolderIconRepository $folderIconRepository,
     ): JsonResponse {
         try {
             $beneficiaire = $beneficiaireProvider->getEntity($beneficiaryId, Client::ACCESS_DOCUMENT_WRITE);
@@ -63,6 +65,9 @@ class DossierRestV2Controller extends REController
                     switch ($key) {
                         case 'nom':
                             $entity->setNom($item);
+                            break;
+                        case 'icon_id':
+                            $entity->setIcon($item ? $folderIconRepository->find($item) : null);
                             break;
                         case 'b_prive':
                             if (!array_key_exists('dossier_parent_id', $data)) {
@@ -95,8 +100,8 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'folders/{id}', name: 'patch', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
-    public function patch(int $id, DossierProvider $provider): JsonResponse
+    #[Route(path: 'folders/{id}', name: 'patch', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
+    public function patch(int $id, DossierProvider $provider, FolderIconRepository $folderIconRepository): JsonResponse
     {
         try {
             $entity = $provider->getEntity($id, Client::ACCESS_DOCUMENT_WRITE);
@@ -107,6 +112,10 @@ class DossierRestV2Controller extends REController
                     switch ($key) {
                         case 'nom':
                             $entity->setNom($item);
+                            $this->entityManager->flush();
+                            break;
+                        case 'icon_id':
+                            $entity->setIcon($item ? $folderIconRepository->find($item) : null);
                             $this->entityManager->flush();
                             break;
                         case 'b_prive':
@@ -140,14 +149,14 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'beneficiaries/{beneficiaryId}/folders', name: 'list', methods: ['GET'], requirements: ['beneficiaryId' => '\d{1,10}'])]
+    #[Route(path: 'beneficiaries/{beneficiaryId}/folders', name: 'list', requirements: ['beneficiaryId' => '\d{1,10}'], methods: ['GET'])]
     public function list(int $beneficiaryId, BeneficiaireProvider $beneficiaireProvider, AuthorizationCheckerInterface $authorizationChecker): JsonResponse
     {
         try {
             $beneficiaire = $beneficiaireProvider->getEntity($beneficiaryId, Client::ACCESS_DOCUMENT_READ);
 
             if (false === $authorizationChecker->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $beneficiaire)) {
-                throw new AccessDeniedException("Vous n'avez pas le droit d'accéder aux dossiers de ce bénéficiaire.");
+                throw $this->createAccessDeniedException("Vous n'avez pas le droit d'accéder aux dossiers de ce bénéficiaire.");
             }
 
             $user = $this->getUser();
@@ -163,7 +172,7 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'folders/{id}/send', name: 'send', methods: ['POST'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'folders/{id}/send', name: 'send', requirements: ['id' => '\d{1,10}'], methods: ['POST'])]
     public function send(
         int $id,
         Request $request,
@@ -176,7 +185,7 @@ class DossierRestV2Controller extends REController
         try {
             $dossier = $provider->getEntity($id, Client::ACCESS_DOCUMENT_READ);
             if ($dossier->getDocuments()->isEmpty()) {
-                return $this->json($restManager->getErrorsToJson(['folder' => $translator->trans('folder.envoyerParEmail.dossierVide')]), Response::HTTP_BAD_REQUEST);
+                return $this->json($restManager->getErrorsToJson(['folder' => $translator->trans('empty')]), Response::HTTP_BAD_REQUEST);
             }
 
             if (null === $email = $request->request->get('email')) {
@@ -201,14 +210,14 @@ class DossierRestV2Controller extends REController
             $errorMessage = $errors[0]->getMessage();
 
             throw new BadRequestHttpException($errorMessage);
-        } catch (NotFoundHttpException|AccessDeniedException|BadRequestHttpException $e) {
+        } catch (NotFoundHttpException|AccessDeniedException|BadRequestHttpException|\Exception $e) {
             $jsonResponseException = new JsonResponseException($e);
 
             return $jsonResponseException->getResponse();
         }
     }
 
-    #[Route(path: 'folders/{id}/toggle-access', name: 'toggle_access', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'folders/{id}/toggle-access', name: 'toggle_access', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
     public function toggleAccess(int $id, DossierProvider $provider): JsonResponse
     {
         try {
@@ -224,7 +233,7 @@ class DossierRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'folders/{id}/name', name: 'rename', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'])]
+    #[Route(path: 'folders/{id}/name', name: 'rename', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
     public function renameAction(int $id, Request $request, DossierProvider $provider): JsonResponse
     {
         try {
