@@ -23,10 +23,6 @@ jobs:
                 with:
                     php-version: ${{ matrix.php-versions }}
             -   uses: actions/checkout@v3
-            -   name: Local PHP Security Checker
-                uses: pplotka/local-php-security-checker-github-actions@1.1.2
-                with:
-                    path: ./composer.lock
             -   name: Cache Composer packages
                 id: composer-cache
                 uses: actions/cache@v3
@@ -46,6 +42,8 @@ jobs:
                 run: cat .env.ci >> .env.test
             -   name: Install Dependencies
                 run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+            -   name: Composer audit
+                run: composer audit
             # —— Check coding standards ✨ ————————————————————————————————————————————————————————————————
             -   name: Check CS
                 run: vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
