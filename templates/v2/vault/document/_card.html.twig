@@ -37,21 +37,6 @@
         {% endif %}
     </td>
     <td class="bg-white borderless text-end pe-3 pe-sm-4 align-middle" {{ stimulus_controller('dropdown-menu') }}>
-        {{ include('v2/vault/components/_action_dropdown.html.twig', {
-            'editPath': path('document_rename', {'id': document.id}),
-            'detailPath': path('document_detail', {'id': document.id}),
-            'sendPath': path('document_share', {'id': document.id}),
-            'movePath': path('document_tree_view_move', {'id': document.id}),
-            'delete': {
-                'path': path('document_delete', {'id': document.id}),
-                'message': 'modal_message_document_deletev2'|trans({'%name%': document.nom}),
-            },
-            'switchPrivate': document.dossier
-            ? null
-            : {
-                'path': path('document_toggle_visibility', {'id': document.id}),
-                'message': 'switch_content_private_confirm'|trans,
-            },
-        }) }}
+        {{ include('v2/vault/components/_action_dropdown.html.twig', {personalData: document}) }}
     </td>
 </tr>

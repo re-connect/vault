@@ -153,7 +153,7 @@ class FolderController extends AbstractController
     }
 
     #[Route(path: 'folder/{id}/delete', name: 'folder_delete', requirements: ['id' => '\d+'], methods: ['GET'])]
-    #[IsGranted('UPDATE', 'folder')]
+    #[IsGranted('DELETE', 'folder')]
     public function delete(Dossier $folder, FolderManager $manager): Response
     {
         $parentFolder = $folder->getDossierParent();
