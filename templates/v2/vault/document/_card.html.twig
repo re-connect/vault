@@ -3,17 +3,9 @@
     data-type="document"
     {{ stimulus_controller('ajax-toggle', {'url': path('document_toggle_visibility', {'id': document.id}) })|stimulus_controller('modal') }}
 >
-    {% set cardClasses = ['bg-white', 'borderless', 'text-start', 'align-middle', 'position-relative'] %}
-    {% if app.user.isBeneficiaire %}
-        {% set cardClasses = cardClasses|merge(['personal-data-card']) %}
-    {% endif %}
-    {% if document.bPrive %}
-        {% set cardClasses = cardClasses|merge(['private']) %}
-    {% else %}
-        {% set cardClasses = cardClasses|merge(['shared']) %}
-    {% endif %}
-
-    <td class="{{ cardClasses|join(' ') }}"
+    <td class="bg-white borderless text-start align-middle position-relative
+        {{ document.bPrive ? 'private' : 'shared' }}
+        {{ app.user.isBeneficiaire ? 'personal-data-card' : '' }}"
         {{ stimulus_target('ajax-toggle', 'card') }}
         data-toggle-classes="shared private"
     >
