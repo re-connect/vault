@@ -2,17 +2,10 @@
     {{ stimulus_controller('ajax-toggle', {'url': path('folder_toggle_visibility', {'id': folder.id}) })|stimulus_target('drag_n_drop', 'folder') }}
     data-id="{{ folder.id }}"
 >
-    {% set cardClasses = ['bg-white', 'borderless', 'text-start', 'align-middle', 'position-relative'] %}
-    {% if app.user.isBeneficiaire %}
-        {% set cardClasses = cardClasses|merge(['personal-data-card']) %}
-    {% endif %}
-    {% if folder.bPrive %}
-        {% set cardClasses = cardClasses|merge(['private']) %}
-    {% else %}
-        {% set cardClasses = cardClasses|merge(['shared']) %}
-    {% endif %}
-    <td class="{{ cardClasses|join(' ') }}"
-            {{ stimulus_target('ajax-toggle', 'card') }}
+    <td class="bg-white borderless text-start align-middle position-relative
+        {{ folder.bPrive ? 'private' : 'shared' }}
+        {{ app.user.isBeneficiaire ? 'personal-data-card' : '' }}"
+        {{ stimulus_target('ajax-toggle', 'card') }}
         data-toggle-classes="shared private"
     >
         <a href="{{ path('folder', {'id': folder.id}) }}" class="text-decoration-none text-primary d-block">

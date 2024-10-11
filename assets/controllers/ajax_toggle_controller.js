@@ -16,16 +16,12 @@ export default class extends Controller {
         icons.forEach(
           (icon) => {
             updateTooltipTitle(icon);
-            icon.dataset.toggleClasses.split(' ').forEach(
-              (cssClass) => icon.classList.toggle(cssClass)
-            );
+            toggleIconClasses(icon);
           }
         );
 
         updateTooltipTitle(toggleSwitch);
-          card.dataset.toggleClasses.split(' ').forEach(
-          (cssClass) => card.classList.toggle(cssClass)
-        );
+        toggleIconClasses(card);
       })
       .catch(() => {
         event.target.classList.toggle('bg-red');
@@ -50,3 +46,10 @@ function updateTooltipTitle(element) {
         });
     }
 }
+
+function toggleIconClasses(icon) {
+    icon.dataset.toggleClasses.split(' ').forEach(
+        (cssClass) => icon.classList.toggle(cssClass)
+    );
+}
+
