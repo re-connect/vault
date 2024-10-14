@@ -41,6 +41,7 @@ sonata_admin:
                 items:
                     - sonata.admin.admin
                     - sonata.admin.feature_toggle
+                    - sonata.admin.folder_icon
                 roles:
                     - ROLE_SUPER_ADMIN
 

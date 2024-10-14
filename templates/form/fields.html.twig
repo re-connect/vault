@@ -25,17 +25,21 @@
 
 
 {% block vich_file_widget %}
+    {% set isUpdating = object.id is not null %}
     {% apply spaceless %}
         <div class="vich-file">
             {{ form_widget(form.file) }}
-            {% if download_uri is not null and object.url is not null  %}
-                <a href="" class="btn btnUploadFile">{% trans %}edit_file{% endtrans %}</a>
-                &nbsp; <span class="filenameLabel"><a
-                        href="{{ path('re_admin_annexe', {'url': object.url ? object.url : download_uri })}}">{% trans %}display_file{% endtrans %}</a></span>
-            {% else %}
-                <a href="" class="btn btnUploadFile">{% trans %}choose_file{% endtrans %}</a>
-                &nbsp; <span class="filenameLabel"></span>
-            {% endif %}
+            <button class="btn btnUploadFile">{{ isUpdating ? 'edit_file'|trans : 'choose_file'|trans }}</button>
+            &nbsp;
+            <span class="filenameLabel">
+                {% if isUpdating %}
+                    {% set path = object is instanceof('App\\\Entity\\\Attributes\\\FolderIcon')
+                        ? path('folder_icon_display', {'name': object.name })
+                        : path('re_admin_annexe', {'url': object.url })
+                    %}
+                    <a class="btn" target="_blank" href="{{ path }}">{{ 'display_file'|trans }}</a>
+                {% endif %}
+            </span>
         </div>
     {% endapply %}
 {% endblock %}
