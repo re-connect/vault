@@ -2,7 +2,9 @@
     {{ stimulus_controller('ajax-toggle', {'url': path('folder_toggle_visibility', {'id': folder.id}) })|stimulus_target('drag_n_drop', 'folder') }}
     data-id="{{ folder.id }}"
 >
-    <td class="bg-white borderless text-start align-middle  personal-data-card position-relative {{ folder.bPrive ? 'private' : 'shared' }}"
+    <td class="bg-white borderless text-start align-middle position-relative
+        {{ folder.bPrive ? 'private' : 'shared' }}
+        {{ app.user.isBeneficiaire ? 'personal-data-card' : '' }}"
         {{ stimulus_target('ajax-toggle', 'card') }}
         data-toggle-classes="shared private"
     >

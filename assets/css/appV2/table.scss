@@ -19,7 +19,7 @@ th:last-child{
   top: 0;
   height: 100%;
   width: 5px;
-  border-radius: 0 0 0 30px;
+  border-radius: 30px 0 0 30px;
   background-color: theme-color('primary');
 }
 .shared::before {

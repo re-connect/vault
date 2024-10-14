@@ -56,15 +56,13 @@ function toggleVisibility(event, card, icons, toggleSwitch, url) {
       icons.forEach(
         (icon) => {
           updateTooltipTitle(icon);
-          icon.dataset.toggleClasses.split(' ').forEach(
-            (cssClass) => icon.classList.toggle(cssClass)
+          toggleIconClasses(icon
           );
         }
       );
 
       updateTooltipTitle(toggleSwitch);
-      card.dataset.toggleClasses.split(' ').forEach(
-        (cssClass) => card.classList.toggle(cssClass)
+      toggleIconClasses(card
       );
 
       return true;
@@ -93,3 +91,10 @@ function updateTooltipTitle(element) {
     });
   }
 }
+
+function toggleIconClasses(icon) {
+    icon.dataset.toggleClasses.split(' ').forEach(
+        (cssClass) => icon.classList.toggle(cssClass)
+    );
+}
+

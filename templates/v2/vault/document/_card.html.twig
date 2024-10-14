@@ -3,7 +3,9 @@
     data-type="document"
     {{ stimulus_controller('ajax-toggle', {'url': path('document_toggle_visibility', {'id': document.id}) })|stimulus_controller('modal') }}
 >
-    <td class="bg-white borderless text-start align-middle  personal-data-card position-relative {{ document.bPrive ? 'private' : 'shared' }}"
+    <td class="bg-white borderless text-start align-middle position-relative
+        {{ document.bPrive ? 'private' : 'shared' }}
+        {{ app.user.isBeneficiaire ? 'personal-data-card' : '' }}"
         {{ stimulus_target('ajax-toggle', 'card') }}
         data-toggle-classes="shared private"
     >
