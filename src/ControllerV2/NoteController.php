@@ -48,7 +48,7 @@ class NoteController extends AbstractController
     }
 
     #[Route(path: '/note/{id}/delete', name: 'note_delete', requirements: ['id' => '\d+'], methods: ['GET'])]
-    #[IsGranted('UPDATE', 'note')]
+    #[IsGranted('DELETE', 'note')]
     public function delete(Note $note, EntityManagerInterface $em): Response
     {
         $em->remove($note);

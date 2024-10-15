@@ -1,15 +1,15 @@
-{% set menuItems = [
+{% set actions = [
     {
         icon: 'times-circle',
-        message: 'remove_from_relay'|trans,
+        text: 'remove_from_relay'|trans,
         path: removeFromRelay.path
     },
 ] %}
 {% if resetPasswordPath is defined %}
-    {% set menuItems = menuItems|merge([
+    {% set actions = actions|merge([
         {
             icon: 'redo',
-            message: 'renew_password'|trans,
+            text: 'renew_password'|trans,
             path: resetPasswordPath
         },
     ]) %}
@@ -23,8 +23,8 @@
 <div class="position-relative d-none" {{ stimulus_target('dropdown-menu', 'menu') }}>
     <ul class="action-dropdown shadow border-1 position-absolute z-1 bg-white list-group font-size-1 mt-2 end-0"
         style="width: 240px">
-        {% for menuItem in menuItems %}
-            {{ include('v2/vault/components/_action_dropdown_item.html.twig', {item: menuItem}) }}
+        {% for action in actions %}
+            {{ include('v2/vault/components/_action_dropdown_item.html.twig', {action}) }}
         {% endfor %}
     </ul>
 </div>

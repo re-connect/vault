@@ -49,7 +49,7 @@ class EventController extends AbstractController
     }
 
     #[Route(path: '/event/{id}/delete', name: 'event_delete', requirements: ['id' => '\d+'], methods: ['GET'])]
-    #[IsGranted('UPDATE', 'event')]
+    #[IsGranted('DELETE', 'event')]
     public function delete(Evenement $event, EntityManagerInterface $em): Response
     {
         $em->remove($event);

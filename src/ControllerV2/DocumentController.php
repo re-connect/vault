@@ -29,7 +29,7 @@ class DocumentController extends AbstractController
     }
 
     #[Route(path: '/document/{id}/delete', name: 'document_delete', requirements: ['id' => '\d+'], methods: ['GET'])]
-    #[IsGranted('UPDATE', 'document')]
+    #[IsGranted('DELETE', 'document')]
     public function delete(Document $document, DocumentManager $manager): Response
     {
         $folder = $document->getDossier();

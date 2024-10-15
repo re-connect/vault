@@ -44,21 +44,6 @@
         {% endif %}
     </td>
     <td class="bg-white borderless text-end pe-3 pe-sm-4 align-middle" {{ stimulus_controller('dropdown-menu') }}>
-        {% set deleteMessage = folder.hasDocuments ? 'folder_contains_documents_alert' : 'modal_message_folder_deletev2'%}
-        {{ include('v2/vault/components/_action_dropdown.html.twig', {
-            'editPath': path('folder_rename', {'id': folder.id}),
-            'detailPath': path('folder_detail', {'id': folder.id}),
-            'movePath': path('folder_tree_view_move', {'id': folder.id}),
-            'delete': {
-                'path': path('folder_delete', {'id': folder.id}),
-                'message': deleteMessage|trans({'%name%': folder.nom}),
-            },
-            'switchPrivate': folder.dossierParent
-            ? null
-            : {
-                'path': path('folder_toggle_visibility', {'id': folder.id}),
-                'message': 'switch_content_private_confirm'|trans,
-            },
-        }) }}
+        {{ include('v2/vault/components/_action_dropdown.html.twig', {personalData: folder}) }}
     </td>
 </tr>
