@@ -12,6 +12,13 @@
         {{ stimulus_target('ajax-toggle', 'switch')|stimulus_controller('tooltip', {
             title: private ? 'switch_shared'|trans : 'switch_private'|trans,
         }) }}
+        {% if isFolder is defined and isFolder %}
+            data-confirm-toggle-message="{{ private ? 'confirm_switch_shared_folder_content'|trans : 'confirm_switch_private_folder_content'|trans }}"
+            data-next-confirm-toggle-message="{{ private ? 'confirm_switch_private_folder_content'|trans : 'confirm_switch_shared_folder_content'|trans }}"
+            data-confirm-button-color="{{ getUserThemeColor() }}"
+            data-confirm-text="{{ 'confirm'|trans }}"
+            data-cancel-text="{{ 'cancel'|trans }}"
+        {% endif %}
     >
         <input type="checkbox"
                class="form-check-input form-check-vault-visibility text-white me-0"
