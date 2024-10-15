@@ -119,9 +119,7 @@ class ResettingService
             return;
         }
 
-        $user = $userRepository->findOneBy([
-            'email' => $email,
-        ]);
+        $user = $userRepository->findOneBy(['email' => $email]);
 
         try {
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
