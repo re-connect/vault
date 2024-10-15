@@ -1,11 +1,11 @@
 meta {
-  name: Event
+  name: Get
   type: http
   seq: 5
 }
 
-delete {
-  url: {{baseUrl}}/api/v3/events/{id}
+get {
+  url: {{baseUrl}}/api/v3/contacts/{id}
   body: none
   auth: inherit
 }

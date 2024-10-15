@@ -33,7 +33,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 #[ApiResource(
     shortName: 'beneficiary',
     operations: [
-        new Get(security: "is_granted('READ', object)", provider: BeneficiaryStateProvider::class),
+        new Get(security: "is_granted('UPDATE', object)", provider: BeneficiaryStateProvider::class),
         new Patch(security: "is_granted('UPDATE', object)",
             processor: BeneficiaryStateProcessor::class),
         new Patch(
@@ -703,7 +703,9 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     public function setDateNaissance(?\DateTime $dateNaissance): self
     {
         $this->dateNaissance = $dateNaissance;
-        $this->user?->setBirthDate($dateNaissance);
+        if ($dateNaissance !== $this->user?->getBirthDate()) {
+            $this->user?->setBirthDate($dateNaissance);
+        }
 
         return $this;
     }
