@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Tests\v2\Controller\DocumentController;
+namespace App\Tests\v2\Controller\FolderController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\BeneficiaireFactory;
-use App\Tests\Factory\DocumentFactory;
+use App\Tests\Factory\FolderFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 
 class DeleteTest extends AbstractControllerTest implements TestRouteInterface
 {
-    private const URL = '/document/%s/delete';
+    private const URL = '/folder/%s/delete';
 
     public function provideTestRoute(): ?\Generator
     {
@@ -33,16 +33,16 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
         array $body = [],
     ): void {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
 
-        $url = sprintf($url, $document->getId());
+        $url = sprintf($url, $folder->getId());
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : '';
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $newDocument = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
-            $newUrl = sprintf(self::URL, $newDocument->getId());
+            $newFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+            $newUrl = sprintf(self::URL, $newFolder->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
         }
     }
