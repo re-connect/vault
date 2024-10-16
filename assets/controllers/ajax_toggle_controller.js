@@ -37,17 +37,17 @@ function askToggleVisibilty(event, card, icons, toggleSwitch, url, confirmMessag
       confirmMessage,
       toggleSwitch.dataset.confirmText,
       toggleSwitch.dataset.confirmButtonColor,
-      toggleSwitch.dataset.cancelText
+      toggleSwitch.dataset.cancelText,
     )
   }).then((result) => {
     if (result.isConfirmed && toggleVisibility(event, card, icons, toggleSwitch, url)) {
-      const nextConfirmMessage = toggleSwitch.dataset.nextConfirmToggleMessage
+      const nextConfirmMessage = toggleSwitch.dataset.nextConfirmToggleMessage;
 
       toggleSwitch.dataset.nextConfirmToggleMessage = confirmMessage;
       toggleSwitch.dataset.confirmToggleMessage = nextConfirmMessage;
       event.target.checked = !event.target.checked;
     }
-  });
+  })
 }
 
 function toggleVisibility(event, card, icons, toggleSwitch, url) {
@@ -56,14 +56,12 @@ function toggleVisibility(event, card, icons, toggleSwitch, url) {
       icons.forEach(
         (icon) => {
           updateTooltipTitle(icon);
-          toggleIconClasses(icon
-          );
+          toggleIconClasses(icon);
         }
       );
 
       updateTooltipTitle(toggleSwitch);
-      toggleIconClasses(card
-      );
+      toggleIconClasses(card);
 
       return true;
     })
@@ -93,8 +91,7 @@ function updateTooltipTitle(element) {
 }
 
 function toggleIconClasses(icon) {
-    icon.dataset.toggleClasses.split(' ').forEach(
-        (cssClass) => icon.classList.toggle(cssClass)
-    );
+  icon.dataset.toggleClasses.split(' ').forEach(
+    (cssClass) => icon.classList.toggle(cssClass)
+  );
 }
-

@@ -1,7 +1,7 @@
 <tr class="text-primary text-center align-middle"
         {{ stimulus_controller('ajax-toggle', {'url': path('note_toggle_visibility', {'id': note.id}) })}}
 >
-    <td class="bg-white borderless text-start align-middle position-relative
+    <td class="bg-white borderless text-start p-0 w-100 me-auto position-relative
         {{ note.bPrive ? 'private' : 'shared' }}
         {{ app.user.isBeneficiaire ? 'personal-data-card' : '' }}"
         {{ stimulus_target('ajax-toggle', 'card') }}
