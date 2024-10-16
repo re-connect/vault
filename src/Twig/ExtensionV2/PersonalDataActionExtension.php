@@ -86,7 +86,7 @@ class PersonalDataActionExtension extends AbstractExtension
                 : [],
             'edit' => $this->getEditAction(
                 $this->urlGenerator->generate('folder_rename', ['id' => $folder->getId()]),
-                $this->translator->trans('rename'),
+                $this->translator->trans('edit'),
             ),
             'detail' => $this->getDetailAction($this->urlGenerator->generate('folder_detail', ['id' => $folder->getId()])),
             'move' => $this->getMoveAction($this->urlGenerator->generate('folder_tree_view_move', ['id' => $folder->getId()])),
