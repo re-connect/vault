@@ -1,6 +1,7 @@
-
 actual_password: رمز عبور فعلی شما
 confirm_new_password: رمز عبور جدید خود را تأیید کنید
+document_added: سند جدید
+document_added_to_vault: یک سند به صندوقچه شما اضافه شد Reconnect
 form_connexion: 'وارد شدن'
 form_forgot_password: 'رمز عبور یا نام کاربری خود را فراموش کرده ام.'
 form_login: 'نام کاربری   یا  آدرس ایمیل'

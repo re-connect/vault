@@ -227,6 +227,8 @@ disaffiliate_beneficiary_subtitle: 'Arrêter le suivi de'
 disaffiliate_user: Arrêter le suivi d'un utilisateur
 display_file: 'Voir le fichier'
 do_you_accept_to_share_your_information_in_contact_list: 'Vous consultez pour la première fois les éléments partagés de cet usager. Acceptez vous que votre contact soit ajouté à la liste des contacts partagés de cet usager ?'
+document_added: نوی سند
+document_added_to_vault: یو سند ستاسو په خوندي ځای کې اضافه شو Reconnect
 document_deleted_successfully: 'Votre document a bien été supprimé'
 document_successfully_send_email: 'Votre document a bien été envoyé par mail'
 documents: Documents

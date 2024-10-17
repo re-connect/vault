@@ -14,17 +14,20 @@ class FeatureFlag
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?bool $enabled = null;
+    private ?bool $enabled;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $enableDate = null;
+
+    public function __construct(#[ORM\Column(length: 255)]
+        private ?string $name)
+    {
+        $this->enabled = false;
+    }
 
     public function getId(): ?int
     {
