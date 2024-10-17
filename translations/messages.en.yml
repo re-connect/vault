@@ -227,6 +227,8 @@ disaffiliate_beneficiary_subtitle: 'Stop the following of'
 disaffiliate_user: Remove user
 display_file: 'See the file'
 do_you_accept_to_share_your_information_in_contact_list: 'You consult for the first time the shared elements of this user. Do You agree that yout contact be added to the shared contacts list of this user?'
+document_added: New document
+document_added_to_vault: A document has been added to your Reconnect vault
 document_deleted_successfully: 'Your documents has been deleted.'
 document_successfully_send_email: 'Your document has been sent by Email'
 documents: Documents
