@@ -2,6 +2,7 @@
 
 namespace App\Checker;
 
+use App\Entity\Attributes\FeatureFlag;
 use App\Repository\FeatureFlagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -16,6 +17,11 @@ class FeatureFlagChecker
     public function isEnabled(string $featureName): bool
     {
         $featureFlag = $this->repository->findOneBy(['name' => $featureName]);
+        if (null === $featureFlag) {
+            $featureFlag = new FeatureFlag($featureName);
+            $this->em->persist($featureFlag);
+            $this->em->flush();
+        }
         if ($featureFlag?->shouldEnable()) {
             $this->enable($featureFlag->getName());
         }
