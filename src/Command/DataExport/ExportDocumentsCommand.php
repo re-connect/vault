@@ -42,6 +42,13 @@ class ExportDocumentsCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $startDate = date_create($input->getOption('startDate'));
         $endDate = date_create($input->getOption('endDate'));
+
+        if (!$startDate || !$endDate) {
+            $io->error('Documents exported');
+
+            return Command::FAILURE;
+        }
+
         $startDateToString = $startDate->format('dmY');
         $endDateToString = $endDate->format('dmY');
 

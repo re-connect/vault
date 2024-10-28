@@ -98,9 +98,9 @@ class ImportUserCommand extends Command
 
         if ($birthDate) {
             $user->setBirthDate(date_create_from_format('d/m/Y', $birthDate));
-            $this->createBeneficiary($user, $relayId);
+            $this->createBeneficiary($user, $relayId ? (int) $relayId : null);
         } else {
-            $this->createPro($user, $relayId);
+            $this->createPro($user, $relayId ? (int) $relayId : null);
         }
 
         $this->em->flush();

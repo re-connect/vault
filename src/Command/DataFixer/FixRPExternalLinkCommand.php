@@ -31,9 +31,10 @@ class FixRPExternalLinkCommand extends Command
     }
 
     #[\Override]
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
+        /** @var QuestionHelper $helper */
         $helper = $this->getHelper('question');
 
         /** @var array<Beneficiaire> $beneficiaries */

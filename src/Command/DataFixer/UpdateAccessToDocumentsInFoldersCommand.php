@@ -24,7 +24,7 @@ class UpdateAccessToDocumentsInFoldersCommand extends Command
     }
 
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setHelp('This command update access to documents in folders.');

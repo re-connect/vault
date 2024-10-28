@@ -18,6 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class ImportBeneficiaireCommand extends Command
 {
+    /** @var Beneficiaire[] */
     private array $beneficaires;
 
     public function __construct(private readonly EntityManagerInterface $em, ?string $name = null)
@@ -70,7 +71,7 @@ class ImportBeneficiaireCommand extends Command
                     exit;
                 }
                 [$jour, $mois, $annee] = explode('/', $dateNaissance);
-                if (!checkdate($mois, $jour, $annee)) {
+                if (!checkdate((int) $mois, (int) $jour, (int) $annee)) {
                     $output->writeln('Date de naissance au mauvais format (d/M/Y) à la ligne '.$row.'.');
                     exit;
                 }
@@ -79,12 +80,15 @@ class ImportBeneficiaireCommand extends Command
             }
             fclose($handle);
         }
-        $this->createCSV();
 
-        return Command::SUCCESS;
+        if ($this->createCSV()) {
+            return Command::SUCCESS;
+        }
+
+        return Command::FAILURE;
     }
 
-    private function createBeneficiaire($prenom, $nom, $dateNaissance, $centre, $telephone = null)
+    private function createBeneficiaire(string $prenom, string $nom, string $dateNaissance, Centre $centre, ?string $telephone = null): void
     {
         $user = new User();
         $password = 'stada';
@@ -101,11 +105,11 @@ class ImportBeneficiaireCommand extends Command
         $beneficiaire->setUser($user);
 
         $beneficiaire
-            ->setDateNaissance(date_create_from_format('d/m/Y', $dateNaissance))
+            ->setDateNaissance(date_create_from_format('d/m/Y', $dateNaissance) ?: null)
             ->addCentre($centre);
 
-        $beneficiaireCentre = $beneficiaire->getBeneficiairesCentres()->first();
-        $beneficiaireCentre->setBValid(true);
+        $beneficiaireCentre = $beneficiaire->getBeneficiairesCentres()->first() ?: null;
+        $beneficiaireCentre?->setBValid(true);
 
         $this->em->persist($user);
         $this->em->persist($beneficiaire);
@@ -116,28 +120,34 @@ class ImportBeneficiaireCommand extends Command
         $this->beneficaires[] = $beneficiaire;
     }
 
-    private function createCSV()
+    private function createCSV(): bool
     {
         $date = (new \DateTime())->format('Ymd_His');
         $fileName = $date.'_beneficiaires.csv';
         $delimiteur = ';';
         $fichier_csv = fopen('public/beneficiaire-import-files/out/'.$fileName, 'w+');
 
-        $data = [];
-        foreach ($this->beneficaires as $beneficaire) {
-            $data[] = [
-                $beneficaire->getUser()->getPrenom(),
-                $beneficaire->getUser()->getNom(),
-                $beneficaire->getDateNaissance()->format('d/m/Y'),
-                $beneficaire->getUser()->getTelephone(),
-                $beneficaire->getUser()->getUsername(),
-                $beneficaire->getUser()->getPlainPassword(),
-            ];
+        if ($fichier_csv) {
+            $data = [];
+            foreach ($this->beneficaires as $beneficaire) {
+                $data[] = [
+                    $beneficaire->getUser()->getPrenom(),
+                    $beneficaire->getUser()->getNom(),
+                    $beneficaire->getDateNaissance()->format('d/m/Y'),
+                    $beneficaire->getUser()->getTelephone(),
+                    $beneficaire->getUser()->getUsername(),
+                    $beneficaire->getUser()->getPlainPassword(),
+                ];
+            }
+
+            foreach ($data as $row) {
+                fputcsv($fichier_csv, $row, $delimiteur);
+            }
+            fclose($fichier_csv);
+
+            return true;
         }
 
-        foreach ($data as $row) {
-            fputcsv($fichier_csv, $row, $delimiteur);
-        }
-        fclose($fichier_csv);
+        return false;
     }
 }
