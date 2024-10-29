@@ -203,7 +203,7 @@ App\Entity\User:
             mappedBy: user
             cascade: [ "persist", "remove" ]
         accessTokens:
-            targetEntity: App\Entity\AccessToken
+            targetEntity: App\Entity\Attributes\AccessToken
             mappedBy: user
             cascade: [ "persist", "remove" ]
         creators:
