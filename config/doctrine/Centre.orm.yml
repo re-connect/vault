@@ -116,6 +116,6 @@ App\Entity\Centre:
                 onDelete: "SET NULL"
     oneToOne:
         adresse:
-            targetEntity: App\Entity\Adresse
+            targetEntity: App\Entity\Attributes\Adresse
             cascade: [ "persist", "remove" ]
     lifecycleCallbacks: { }

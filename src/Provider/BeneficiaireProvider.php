@@ -3,7 +3,7 @@
 namespace App\Provider;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Adresse;
+use App\Entity\Attributes\Adresse;
 use App\Entity\Beneficiaire;
 use App\Entity\BeneficiaireCentre;
 use App\Entity\Centre;

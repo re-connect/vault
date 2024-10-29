@@ -1,30 +1,41 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use JsonSerializable;
+use App\Repository\AdresseRepository;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ORM\Entity(repositoryClass: AdresseRepository::class)]
 class Adresse implements \JsonSerializable, \Stringable
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
     #[Groups('read')]
     private ?int $id = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
     #[Groups('read')]
     private ?string $nom = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
     #[Groups('read')]
     private ?string $ville = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
     #[Groups('read')]
     private ?string $codePostal = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
     #[Groups('read')]
     private ?string $pays = null;
 
+    #[ORM\Column(type: 'float', nullable: true)]
     #[Groups('read')]
     private ?float $lat = null;
 
+    #[ORM\Column(type: 'float', nullable: true)]
     #[Groups('read')]
     private ?float $lng = null;
 
@@ -38,7 +49,7 @@ class Adresse implements \JsonSerializable, \Stringable
         return $this->nom;
     }
 
-    public function setNom(?string $nom): self
+    public function setNom(?string $nom): static
     {
         $this->nom = $nom;
 
@@ -50,7 +61,7 @@ class Adresse implements \JsonSerializable, \Stringable
         return $this->ville;
     }
 
-    public function setVille(?string $ville): self
+    public function setVille(?string $ville): static
     {
         $this->ville = $ville;
 
@@ -62,7 +73,7 @@ class Adresse implements \JsonSerializable, \Stringable
         return $this->codePostal;
     }
 
-    public function setCodePostal(?string $codePostal): self
+    public function setCodePostal(?string $codePostal): static
     {
         $this->codePostal = $codePostal;
 
@@ -74,7 +85,7 @@ class Adresse implements \JsonSerializable, \Stringable
         return $this->pays;
     }
 
-    public function setPays(?string $pays): self
+    public function setPays(?string $pays): static
     {
         $this->pays = $pays;
 
@@ -109,7 +120,7 @@ class Adresse implements \JsonSerializable, \Stringable
         return $this->lat;
     }
 
-    public function setLat(?float $lat): self
+    public function setLat(?float $lat): static
     {
         $this->lat = $lat;
 
@@ -121,7 +132,7 @@ class Adresse implements \JsonSerializable, \Stringable
         return $this->lng;
     }
 
-    public function setLng(?float $lng): self
+    public function setLng(?float $lng): static
     {
         $this->lng = $lng;
 
