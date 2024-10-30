@@ -30,7 +30,7 @@ App\Entity\Gestionnaire:
                 nullable: false
     oneToMany:
         centres:
-            targetEntity: Centre
+            targetEntity: App\Entity\Attributes\Centre
             mappedBy: gestionnaire
         externalLinks:
             targetEntity: App\Entity\ClientGestionnaire

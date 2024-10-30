@@ -47,6 +47,6 @@ App\Entity\Association:
             targetEntity: App\Entity\Gestionnaire
             mappedBy: association
         centres:
-            targetEntity: App\Entity\Centre
+            targetEntity: App\Entity\Attributes\Centre
             mappedBy: association
     lifecycleCallbacks: { }

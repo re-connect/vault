@@ -16,6 +16,7 @@ use App\Api\State\BeneficiaryStateProvider;
 use App\Controller\Api\UnlinkBeneficiaryController;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
+use App\Entity\Attributes\Centre;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Traits\GedmoTimedTrait;
 use App\Validator\Constraints\UniqueExternalLink;

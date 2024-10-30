@@ -3,7 +3,7 @@
 namespace App\Admin;
 
 use App\Entity\Association;
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Entity\CreatorCentre;
 use App\Entity\Region;
 use App\EventSubscriber\AssociationCreationSubscriber;

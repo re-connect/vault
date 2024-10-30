@@ -2,7 +2,7 @@
 
 namespace App\Command\DataMigration;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Entity\Region;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;

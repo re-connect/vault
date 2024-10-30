@@ -2,7 +2,7 @@
 
 namespace App\FormV2\UserAffiliation\Model;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\ReadableCollection;
 

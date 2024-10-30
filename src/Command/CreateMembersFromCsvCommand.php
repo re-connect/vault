@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;
 use App\Entity\User;

@@ -2,7 +2,7 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Entity\Region;
 use App\Form\Model\ExportModel;
 use App\Repository\CentreRepository;

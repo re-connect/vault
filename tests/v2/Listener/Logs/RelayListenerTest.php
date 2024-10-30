@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2\Listener\Logs;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\ListenerV2\Logs\RelayListener;
 use App\Tests\Factory\RelayFactory;
 use Doctrine\ORM\EntityManagerInterface;

@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures\v2;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Tests\Factory\MembreFactory;
 use App\Tests\Factory\RelayFactory;
 use App\Tests\Factory\UserFactory;

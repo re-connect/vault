@@ -4,7 +4,7 @@ App\Entity\BeneficiaireCentre:
     repositoryClass: App\Repository\BeneficiaireCentreRepository
     manyToOne:
         centre:
-            targetEntity: App\Entity\Centre
+            targetEntity: App\Entity\Attributes\Centre
             inversedBy: beneficiairesCentres
             joinColumn:
                 nullable: false

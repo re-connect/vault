@@ -4,7 +4,7 @@ namespace App\Tests\v2\Controller\ProController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Entity\MembreCentre;
 use App\Entity\User;
 use App\Repository\MembreCentreRepository;
