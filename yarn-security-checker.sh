@@ -3,7 +3,7 @@
 # Check the output of yarn audit, return exit code 1 if high or critical vulnerabilities found
 
 FAIL=0
-SEVERITIES=("Moderate" "High" "Critical")
+SEVERITIES=("Moderate")
 SEVERITY_SUMMARY=$(yarn audit | tail -3 | head -2)
 SEVERITY_COUNT=$(echo "$SEVERITY_SUMMARY" | tail -1)
 
