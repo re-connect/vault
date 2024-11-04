@@ -168,6 +168,8 @@ App\Entity\User:
             type: string
             length: '255'
             nullable: true
+            options:
+                default: 'email'
         mfaRetryCount:
             type: integer
             nullable: true
