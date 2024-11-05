@@ -94,7 +94,7 @@ class Centre implements \JsonSerializable, \Stringable
 
     #[ORM\Column(name: 'regionAsString', type: 'string', length: 255, nullable: true)]
     #[Groups(['center:read', 'v3:center:read'])]
-    private string $regionAsString = '';
+    private ?string $regionAsString = '';
 
     #[ORM\Column(name: 'code', type: 'string', length: 255, nullable: false)]
     private string $code;
