@@ -1,32 +1,41 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
+use App\Entity\Client;
+use App\Entity\TokenInterface;
+use App\Entity\User;
+use Doctrine\ORM\Mapping as ORM;
+use League\Bundle\OAuth2ServerBundle\Repository\AccessTokenRepository;
+
+#[ORM\Table(name: 'accesstoken')]
+#[ORM\Index(columns: ['user_id'], name: 'IDX_B39617F5A76ED395')]
+#[ORM\Index(columns: ['client_id'], name: 'IDX_B39617F519EB6921')]
+#[ORM\UniqueConstraint(name: 'UNIQ_B39617F55F37A13B', columns: ['token'])]
+#[ORM\Entity(repositoryClass: AccessTokenRepository::class)]
 class AccessToken implements TokenInterface
 {
-    /**
-     * @var int
-     */
-    protected $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    protected ?int $id = null;
 
-    protected $client;
+    #[ORM\JoinColumn(name: 'client_id', referencedColumnName: 'id', nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Client::class)]
+    protected Client $client;
 
-    /**
-     * @var string
-     */
-    protected $token;
+    #[ORM\Column(name: 'token', type: 'string', length: 255, nullable: false)]
+    protected string $token;
 
-    /**
-     * @var int
-     */
-    protected $expiresAt;
+    #[ORM\Column(name: 'expiresAt', type: 'integer', nullable: true)]
+    protected ?int $expiresAt = null;
 
-    /**
-     * @var string
-     */
-    protected $scope;
+    #[ORM\Column(name: 'scope', type: 'string', length: 255, nullable: true)]
+    protected ?string $scope = null;
 
-    protected $user;
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: true)]
+    protected ?User $user = null;
 
     public function getId()
     {

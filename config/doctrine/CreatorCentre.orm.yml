@@ -4,5 +4,5 @@ App\Entity\CreatorCentre:
   repositoryClass: App\Repository\CreatorCentreRepository
   manyToOne:
     entity:
-      targetEntity: App\Entity\Centre
+      targetEntity: App\Entity\Attributes\Centre
   lifecycleCallbacks: {  }

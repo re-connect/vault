@@ -2,7 +2,7 @@
 
 namespace App\ManagerV2;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Entity\User;
 use App\Entity\UserCentre;
 use App\Repository\CentreRepository;

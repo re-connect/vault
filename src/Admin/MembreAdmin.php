@@ -2,7 +2,7 @@
 
 namespace App\Admin;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Entity\CreatorUser;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;

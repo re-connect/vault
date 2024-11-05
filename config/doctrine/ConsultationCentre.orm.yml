@@ -24,7 +24,7 @@ App\Entity\ConsultationCentre:
                     on: update
     manyToOne:
         centre:
-            targetEntity: App\Entity\Centre
+            targetEntity: App\Entity\Attributes\Centre
             inversedBy: consultationsCentre
             joinColumn:
                 nullable: false

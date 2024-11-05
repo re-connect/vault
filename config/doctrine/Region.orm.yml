@@ -18,6 +18,6 @@ App\Entity\Region:
       nullable: true
   oneToMany:
     centres:
-      targetEntity: Centre
+      targetEntity: App\Entity\Attributes\Centre
       mappedBy: region
       cascade: [ "persist" ]

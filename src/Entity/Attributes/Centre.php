@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\ApiFilter;
@@ -8,9 +8,24 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\Controller\Rest\V3\LinkedCentersController;
+use App\Entity\Association;
+use App\Entity\Beneficiaire;
+use App\Entity\BeneficiaireCentre;
+use App\Entity\ClientCentre;
+use App\Entity\ConsultationCentre;
+use App\Entity\Gestionnaire;
+use App\Entity\Membre;
+use App\Entity\MembreCentre;
+use App\Entity\Region;
+use App\Entity\SMS;
+use App\Entity\StatistiqueCentre;
+use App\Entity\TypeCentre;
+use App\Repository\CentreRepository;
 use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -18,6 +33,13 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @Vich\Uploadable
  */
+#[ORM\Table(name: 'centre')]
+#[ORM\Index(columns: ['region_id'], name: 'IDX_C6A0EA7598260155')]
+#[ORM\Index(columns: ['gestionnaire_id'], name: 'IDX_C6A0EA756885AC1B')]
+#[ORM\Index(columns: ['typeCentre_id'], name: 'IDX_C6A0EA7527F237FC')]
+#[ORM\Index(columns: ['association_id'], name: 'IDX_C6A0EA75EFB9C8A5')]
+#[ORM\UniqueConstraint(name: 'UNIQ_C6A0EA754DE7DC5C', columns: ['adresse_id'])]
+#[ORM\Entity(repositoryClass: CentreRepository::class)]
 #[ApiResource(
     shortName: 'center',
     operations: [
@@ -39,12 +61,19 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ApiFilter(SearchFilter::class, properties: ['beneficiairesCentres.beneficiaire'])]
 class Centre implements \JsonSerializable, \Stringable
 {
-    public const REGIONS = ['Auvergne-Rhône-Alpes', 'Bourgogne-Franche-Comté', 'Bretagne', 'Centre-Val de Loire', 'Corse', 'Grand Est', 'Hauts-de-France', 'Ile-de-France', 'Normandie', 'Nouvelle-Aquitaine', 'Occitanie', 'Pays de la Loire', 'Provence-Alpes-Côte d’Azur', 'Autre'];
-    /**
-     * @var \DateTime
-     */
+    public const array REGIONS = ['Auvergne-Rhône-Alpes', 'Bourgogne-Franche-Comté', 'Bretagne', 'Centre-Val de Loire', 'Corse', 'Grand Est', 'Hauts-de-France', 'Ile-de-France', 'Normandie', 'Nouvelle-Aquitaine', 'Occitanie', 'Pays de la Loire', 'Provence-Alpes-Côte d’Azur', 'Autre'];
+
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
     #[Groups(['read-personal-data', 'center:read', 'read-personal-data-v2', 'v3:center:read'])]
-    private $createdAt;
+    private ?int $id = null;
+
+    #[ORM\Column(name: 'createdAt', type: 'datetime', nullable: false)]
+    #[Gedmo\Timestampable(on: 'create')]
+    #[Groups(['read-personal-data', 'center:read', 'read-personal-data-v2', 'v3:center:read'])]
+    private ?\DateTime $createdAt = null;
+
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
@@ -53,108 +82,92 @@ class Centre implements \JsonSerializable, \Stringable
      * @var File
      */
     protected $justificatifFile;
-    /**
-     * @var \DateTime
-     */
-    #[Groups(['read-personal-data', 'center:read', 'read-personal-data-v2', 'v3:center:read'])]
-    private $updatedAt;
-    /**
-     * @var int
-     */
-    #[Groups(['read-personal-data', 'center:read', 'read-personal-data-v2', 'v3:center:read'])]
-    private $id;
-    /**
-     * @var string
-     */
-    #[Groups(['read-personal-data', 'write-personal-data', 'center:read', 'read-personal-data-v2', 'v3:center:read', 'v3:center:write'])]
-    private $nom = '';
-    /**
-     * @var string
-     */
-    #[Groups(['center:read', 'v3:center:read'])]
-    private $regionAsString = '';
-    /**
-     * @var string
-     */
-    private $code;
-    /**
-     * @var string
-     */
-    #[Groups(['center:read', 'v3:center:read'])]
-    private $siret;
-    /**
-     * @var string
-     */
-    #[Groups(['center:read', 'v3:center:read'])]
-    private $finess;
-    /**
-     * @var Adresse
-     */
-    #[Groups(['center:read', 'v3:center:read'])]
-    private $adresse;
-    /**
-     * @var string
-     */
-    #[Groups(['center:read', 'v3:center:read'])]
-    private $telephone;
 
-    /**
-     * @var Collection|BeneficiaireCentre[]
-     */
-    private $beneficiairesCentres;
-    /**
-     * @var Collection
-     */
-    private $membresCentres;
-    /**
-     * @var Gestionnaire
-     */
-    private $gestionnaire;
-    /**
-     * @var TypeCentre
-     */
-    private $typeCentre;
-    /**
-     * @var Collection
-     */
-    private $sms;
-    /**
-     * @var Collection
-     */
-    private $consultationsCentre;
-    /**
-     * @var Collection
-     */
-    private $statistiquesCentre;
-    /**
-     * @var string
-     */
-    private $justificatifName;
-    /**
-     * @var \DateTime
-     */
-    private $dateFinCotisation;
-    /**
-     * @var string
-     */
-    private $budgetAnnuel;
-    /**
-     * @var int
-     */
-    private $smsCount = 0;
+    #[ORM\Column(name: 'updatedAt', type: 'datetime', nullable: false)]
+    #[Gedmo\Timestampable(on: 'update')]
+    #[Groups(['read-personal-data', 'center:read', 'read-personal-data-v2', 'v3:center:read'])]
+    private ?\DateTime $updatedAt = null;
+
+    #[ORM\Column(name: 'nom', type: 'string', length: 255, nullable: false)]
+    #[Groups(['read-personal-data', 'write-personal-data', 'center:read', 'read-personal-data-v2', 'v3:center:read', 'v3:center:write'])]
+    private string $nom = '';
+
+    #[ORM\Column(name: 'regionAsString', type: 'string', length: 255, nullable: true)]
+    #[Groups(['center:read', 'v3:center:read'])]
+    private string $regionAsString = '';
+
+    #[ORM\Column(name: 'code', type: 'string', length: 255, nullable: false)]
+    private string $code;
+
+    #[ORM\Column(name: 'siret', type: 'string', length: 255, nullable: true)]
+    #[Groups(['center:read', 'v3:center:read'])]
+    private ?string $siret = null;
+
+    #[ORM\Column(name: 'finess', type: 'string', length: 255, nullable: true)]
+    #[Groups(['center:read', 'v3:center:read'])]
+    private ?string $finess = null;
+
+    #[ORM\JoinColumn(name: 'adresse_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: Adresse::class, cascade: ['persist', 'remove'])]
+    #[Groups(['center:read', 'v3:center:read'])]
+    private ?Adresse $adresse = null;
+
+    #[ORM\Column(name: 'telephone', type: 'string', length: 255, nullable: true)]
+    #[Groups(['center:read', 'v3:center:read'])]
+    private ?string $telephone = null;
+
+    #[ORM\OneToMany(mappedBy: 'centre', targetEntity: BeneficiaireCentre::class, cascade: ['persist', 'remove'])]
+    private Collection $beneficiairesCentres;
+
+    #[ORM\OneToMany(mappedBy: 'centre', targetEntity: MembreCentre::class, cascade: ['persist', 'remove'])]
+    private Collection $membresCentres;
+
+    #[ORM\JoinColumn(name: 'gestionnaire_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
+    #[ORM\ManyToOne(targetEntity: Gestionnaire::class)]
+    private ?Gestionnaire $gestionnaire = null;
+
+    #[ORM\JoinColumn(name: 'typeCentre_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: TypeCentre::class)]
+    private ?TypeCentre $typeCentre = null;
+
+    #[ORM\OneToMany(mappedBy: 'centre', targetEntity: SMS::class, cascade: ['persist', 'remove'])]
+    private Collection $sms;
+
+    #[ORM\OneToMany(mappedBy: 'centre', targetEntity: ConsultationCentre::class, cascade: ['persist', 'remove'])]
+    private ?Collection $consultationsCentre = null;
+
+    #[ORM\OneToMany(mappedBy: 'centre', targetEntity: StatistiqueCentre::class, cascade: ['persist', 'remove'])]
+    private ?Collection $statistiquesCentre = null;
+
+    #[ORM\Column(name: 'justificatifName', type: 'string', length: 255, nullable: true)]
+    private ?string $justificatifName = null;
+
+    #[ORM\Column(name: 'dateFinCotisation', type: 'datetime', nullable: true)]
+    private ?\DateTime $dateFinCotisation = null;
+
+    #[ORM\Column(name: 'budgetAnnuel', type: 'string', length: 255, nullable: true)]
+    private ?string $budgetAnnuel = null;
+
+    #[ORM\Column(name: 'smsCount', type: 'integer', nullable: false, options: ['default' => 0])]
+    private int $smsCount = 0;
     private $map;
-    /**
-     * @var bool
-     */
-    private $test = false;
-    /**
-     * @var Collection|array
-     */
+
+    #[ORM\Column(name: 'test', type: 'boolean', nullable: false)]
+    private bool $test = false;
+
+    #[ORM\OneToMany(mappedBy: 'entity', targetEntity: ClientCentre::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     #[UniqueExternalLink]
-    private $externalLinks;
+    private Collection $externalLinks;
+
+    #[ORM\Column(name: 'canada', type: 'boolean', nullable: false, options: ['default' => false])]
     private bool $canada = false;
+
+    #[ORM\JoinColumn(name: 'association_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: Association::class)]
     private ?Association $association = null;
 
+    #[ORM\JoinColumn(name: 'region_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
+    #[ORM\ManyToOne(targetEntity: Region::class)]
     private ?Region $region = null;
 
     #[Groups(['v3:center:read'])]

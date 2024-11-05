@@ -2,7 +2,7 @@
 
 namespace App\Manager;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Entity\StatistiqueCentre;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;

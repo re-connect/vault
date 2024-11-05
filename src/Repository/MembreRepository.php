@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Entity\Membre;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
