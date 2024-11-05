@@ -9,9 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
 use League\Bundle\OAuth2ServerBundle\Repository\AccessTokenRepository;
 
 #[ORM\Table(name: 'accesstoken')]
-#[ORM\Index(columns: ['user_id'], name: 'IDX_B39617F5A76ED395')]
-#[ORM\Index(columns: ['client_id'], name: 'IDX_B39617F519EB6921')]
-#[ORM\UniqueConstraint(name: 'UNIQ_B39617F55F37A13B', columns: ['token'])]
+#[ORM\Index(columns: ['user_id'], name: 'idx_f4cbb726a76ed395')]
+#[ORM\Index(columns: ['client_id'], name: 'idx_f4cbb72619eb6921')]
+#[ORM\UniqueConstraint(name: 'uniq_f4cbb7265f37a13b', columns: ['token'])]
 #[ORM\Entity(repositoryClass: AccessTokenRepository::class)]
 class AccessToken implements TokenInterface
 {
