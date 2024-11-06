@@ -2,6 +2,7 @@
 
 namespace App\ControllerV2;
 
+use App\Domain\Export\BeneficiaryData\BeneficiaryDataExporter;
 use App\Entity\Beneficiaire;
 use App\FormV2\FilterUser\FilterUserFormModel;
 use App\FormV2\FilterUser\FilterUserType;
@@ -74,5 +75,12 @@ class BeneficiaryController extends AbstractController
         }
 
         return $this->redirectToRoute('redirect_user');
+    }
+
+    #[Route(path: '/{id<\d+>}/export', name: 'beneficiary_export', methods: ['GET'])]
+    #[IsGranted('ROLE_SUPER_ADMIN')]
+    public function export(Beneficiaire $beneficiary, BeneficiaryDataExporter $exporter): Response
+    {
+        return $exporter->export($beneficiary);
     }
 }
