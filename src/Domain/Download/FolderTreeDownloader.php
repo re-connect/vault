@@ -22,12 +22,12 @@ readonly class FolderTreeDownloader
     {
     }
 
-    public function downloadZipFromFolder(Dossier $folder): ?StreamedResponse
+    public function downloadZip(Dossier $folder): ?StreamedResponse
     {
         return 0 === $folder->getDocuments()->count()
             ? null
             : new StreamedResponse(
-                fn () => $this->createZipFromFolder($folder),
+                fn () => $this->createZip($folder),
                 Response::HTTP_OK,
                 [
                     'Content-Type' => 'application/zip',
@@ -39,22 +39,11 @@ readonly class FolderTreeDownloader
             );
     }
 
-    private function createZipFromFolder(Dossier $folder): void
+    private function createZip(Dossier $folder): void
     {
         $zip = new ZipStream(outputName: sprintf('%s.zip', $folder->getNom()));
 
-        $documents = $folder->getDocuments($this->getUser() === $folder->getBeneficiaire()->getUser())
-            ->filter(fn (Document $document) => is_resource($this->bucketService->getObjectStream($document->getObjectKey())));
-
-        foreach ($documents as $document) {
-            $objectStream = $this->bucketService->getObjectStream($document->getObjectKey());
-            if ($objectStream) {
-                $zip->addFileFromStream(
-                    $document->getNom(),
-                    $objectStream,
-                );
-            }
-        }
+        $this->addFolderTreeRecursively($zip, $folder);
 
         try {
             $zip->finish();
@@ -66,5 +55,35 @@ readonly class FolderTreeDownloader
                 $e->getMessage(),
             ));
         }
+    }
+
+    private function addFolderTreeRecursively(ZipStream $zip, Dossier $folder, string $folderPath = ''): void
+    {
+        $documents = $folder->getDocuments($this->getUser() === $folder->getBeneficiaire()->getUser())
+            ->filter(fn (Document $document) => is_resource($this->bucketService->getObjectStream($document->getObjectKey())));
+
+        foreach ($documents as $document) {
+            $documentName = $this->sanitizeNode($document->getNom());
+            $objectStream = $this->bucketService->getObjectStream($document->getObjectKey());
+            if ($objectStream) {
+                $zip->addFileFromStream(
+                    !$folder->hasParentFolder()
+                        ? $documentName
+                        : sprintf('%s/%s', $folderPath, $documentName),
+                    $objectStream,
+                );
+            }
+        }
+
+        $subFolders = $folder->getSousDossiers()->filter(fn (Dossier $folder) => !$folder->isPrivate() || $this->getUser() === $folder->getBeneficiaire()->getUser());
+
+        foreach ($subFolders as $folder) {
+            $this->addFolderTreeRecursively($zip, $folder, sprintf('%s/%s', $folderPath, $this->sanitizeNode($folder->getNom())));
+        }
+    }
+
+    private function sanitizeNode(string $nodeName): string
+    {
+        return str_replace('/', '-', $nodeName);
     }
 }

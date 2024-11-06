@@ -177,7 +177,7 @@ class FolderController extends AbstractController
     #[IsGranted('UPDATE', 'folder')]
     public function download(Dossier $folder, FolderTreeDownloader $downloader): Response
     {
-        if (!$streamedResponse = $downloader->downloadZipFromFolder($folder)) {
+        if (!$streamedResponse = $downloader->downloadZip($folder)) {
             $this->addFlash('error', 'error_during_download');
             $parentFolder = $folder->getDossierParent();
 
