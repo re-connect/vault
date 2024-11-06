@@ -2,6 +2,7 @@
 
 namespace App\Domain\Export\BeneficiaryData;
 
+use App\Domain\Download\FolderTreeDownloader;
 use App\Entity\Beneficiaire;
 use App\Entity\Contact;
 use App\Entity\Evenement;
@@ -16,8 +17,11 @@ use ZipStream\ZipStream;
 
 readonly class BeneficiaryDataExporter
 {
-    public function __construct(private EntityManagerInterface $em, private LoggerInterface $logger)
-    {
+    public function __construct(
+        private EntityManagerInterface $em,
+        private LoggerInterface $logger,
+        private FolderTreeDownloader $folderTreeDownloader,
+    ) {
     }
 
     private const array EXPORTED_ENTITIES_CSV = [Contact::class, Note::class, Evenement::class];
@@ -36,7 +40,11 @@ readonly class BeneficiaryDataExporter
 
     public function export(Beneficiaire $beneficiary): StreamedResponse
     {
-        $zipName = sprintf('beneficiary_data_%d.zip', $beneficiary->getId());
+        $zipName = sprintf(
+            '%s_beneficiary_data_%d.zip',
+            (new \DateTime())->format('d_m_Y'),
+            $beneficiary->getId(),
+        );
 
         return new StreamedResponse(
             fn () => $this->createZip($zipName, $beneficiary),
@@ -57,6 +65,7 @@ readonly class BeneficiaryDataExporter
 
         try {
             $this->exportBeneficiaryData($zip, $beneficiary);
+            $this->folderTreeDownloader->addFolderTreeRecursively($zip, $beneficiary, 'Documents');
             $zip->finish();
         } catch (\Exception $e) {
             $this->logger->error(sprintf('Error during beneficiary data export, cause : %s', $e->getMessage()));
