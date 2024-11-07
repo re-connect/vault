@@ -65,7 +65,7 @@ readonly class BeneficiaryDataExporter
 
         try {
             $this->exportBeneficiaryData($zip, $beneficiary);
-            $this->folderTreeDownloader->addFolderTreeRecursively($zip, $beneficiary, 'Documents');
+            $this->folderTreeDownloader->addFolderContentRecursively($zip, $beneficiary, null, 'Documents');
             $zip->finish();
         } catch (\Exception $e) {
             $this->logger->error(sprintf('Error during beneficiary data export, cause : %s', $e->getMessage()));

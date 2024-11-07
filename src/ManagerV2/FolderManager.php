@@ -44,7 +44,9 @@ class FolderManager
      */
     public function getRootFolders(Beneficiaire $beneficiary): Collection
     {
-        return $beneficiary->getRootFolders($this->getUser() === $beneficiary->getUser());
+        return $this->getUser() === $beneficiary->getUser()
+            ? $beneficiary->getRootFolders()
+            : $beneficiary->getPrivateRootFolders();
     }
 
     public function toggleVisibility(Dossier $folder): void
