@@ -30,12 +30,12 @@ readonly class FolderTreeDownloader
     ) {
     }
 
-    public function downloadZip(Dossier $folder): ?StreamedResponse
+    public function downloadZip(Beneficiaire $beneficiary, Dossier $folder): ?StreamedResponse
     {
         return 0 === $folder->getDocuments()->count()
             ? null
             : new StreamedResponse(
-                fn () => $this->createZip($folder),
+                fn () => $this->createZip($beneficiary, $folder),
                 Response::HTTP_OK,
                 [
                     'Content-Type' => 'application/zip',
@@ -47,11 +47,11 @@ readonly class FolderTreeDownloader
             );
     }
 
-    private function createZip(Dossier $folder): void
+    private function createZip(Beneficiaire $beneficiary, Dossier $folder): void
     {
         $zip = new ZipStream(outputName: sprintf('%s.zip', $folder->getNom()));
 
-        $this->addFolderContentRecursively($zip, $folder);
+        $this->addFolderContentRecursively($zip, $beneficiary, $folder);
 
         try {
             $zip->finish();
@@ -65,37 +65,40 @@ readonly class FolderTreeDownloader
         }
     }
 
-    private function addFolderContentRecursively(ZipStream $zip, Dossier $folder, string $folderPath = ''): void
+    public function addFolderContentRecursively(ZipStream $zip, Beneficiaire $beneficiary, ?Dossier $folder = null, string $folderPath = ''): void
     {
-        $documents = $folder
-            ->getDocuments($this->authorizationChecker->isGranted(PersonalDataVoter::DOWNLOAD, $folder))
-            ->filter(fn (Document $document) => is_resource($this->bucketService->getObjectStream($document->getObjectKey())));
+        $documents = $this->getDocumentsInFolder($beneficiary, $folder);
         $this->addDocuments($zip, $documents, $folderPath);
 
-        $subFolders = $folder->getSousDossiers()->filter(
-            fn (Dossier $folder) => $this->authorizationChecker->isGranted(PersonalDataVoter::DOWNLOAD, $folder)
-        );
-
-        foreach ($subFolders as $folder) {
-            $this->addFolderContentRecursively($zip, $folder, sprintf('%s/%s', $folderPath, $this->sanitizeNode($folder->getNom())));
+        $folders = $this->getFoldersInFolder($beneficiary, $folder);
+        foreach ($folders as $folder) {
+            $this->addFolderContentRecursively($zip, $beneficiary, $folder, sprintf('%s/%s', $folderPath, $this->sanitizeNode($folder->getNom())));
         }
     }
 
-    public function addFolderTreeRecursively(ZipStream $zip, Beneficiaire $beneficiary, string $folderPath = ''): void
+    /**
+     * @return Collection<int, Document>
+     */
+    private function getDocumentsInFolder(Beneficiaire $beneficiary, ?Dossier $folder = null): Collection
     {
-        $documents = $beneficiary->getDocuments()->filter(
-            fn (Document $document) => is_resource($this->bucketService->getObjectStream($document->getObjectKey())) && !$document->getDossier()
+        $documents = $folder?->getDocuments() ?? $beneficiary->getRootDocuments();
+
+        return $documents->filter(
+            fn (Document $document) => is_resource($this->bucketService->getObjectStream($document->getObjectKey()))
                 && $this->authorizationChecker->isGranted(PersonalDataVoter::DOWNLOAD, $document)
         );
-        $this->addDocuments($zip, $documents, $folderPath);
+    }
 
-        $subFolders = $beneficiary->getDossiers()->filter(
-            fn (Dossier $folder) => !$folder->hasParentFolder() && $this->authorizationChecker->isGranted(PersonalDataVoter::DOWNLOAD, $folder),
+    /**
+     * @return Collection<int, Dossier>
+     */
+    private function getFoldersInFolder(Beneficiaire $beneficiary, ?Dossier $folder = null): Collection
+    {
+        $folders = $folder?->getSousDossiers() ?? $beneficiary->getRootFolders();
+
+        return $folders->filter(
+            fn (Dossier $folder) => $this->authorizationChecker->isGranted(PersonalDataVoter::DOWNLOAD, $folder)
         );
-
-        foreach ($subFolders as $folder) {
-            $this->addFolderContentRecursively($zip, $folder, sprintf('%s/%s', $folderPath, $this->sanitizeNode($folder->getNom())));
-        }
     }
 
     /**
