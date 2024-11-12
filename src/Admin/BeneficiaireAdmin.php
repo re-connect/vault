@@ -365,7 +365,7 @@ class BeneficiaireAdmin extends AbstractAdmin
     {
         /** @var Beneficiaire $subject */
         $subject = $this->getSubject();
-        if (!$subject) {
+        if (!$subject?->getId()) {
             return '';
         }
 
