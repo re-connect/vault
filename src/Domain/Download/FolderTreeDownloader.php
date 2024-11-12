@@ -18,15 +18,17 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use ZipStream\Exception\OverflowException;
 use ZipStream\ZipStream;
 
-readonly class FolderTreeDownloader
+class FolderTreeDownloader
 {
     use UserAwareTrait;
 
+    private array $folderPaths = [];
+
     public function __construct(
-        private BucketService $bucketService,
-        private Security $security,
-        private LoggerInterface $logger,
-        private AuthorizationCheckerInterface $authorizationChecker,
+        private readonly BucketService $bucketService,
+        private readonly Security $security,
+        private readonly LoggerInterface $logger,
+        private readonly AuthorizationCheckerInterface $authorizationChecker,
     ) {
     }
 
@@ -71,9 +73,20 @@ readonly class FolderTreeDownloader
         $this->addDocuments($zip, $documents, $folderPath);
 
         $folders = $this->getFoldersInFolder($beneficiary, $folder);
+
         foreach ($folders as $folder) {
-            $this->addFolderContentRecursively($zip, $beneficiary, $folder, sprintf('%s/%s', $folderPath, $this->sanitizeNode($folder->getNom())));
+            $this->addFolderContentRecursively($zip, $beneficiary, $folder, $this->formatUniquePath($folder, $folderPath));
         }
+    }
+
+    public function formatUniquePath(Dossier $folder, string $path): string
+    {
+        $subPath = sprintf('%s/%s', $path, $this->sanitizeNode($folder->getNom()));
+
+        $this->folderPaths[] = $subPath;
+        $duplicatedPathsCount = count(array_filter($this->folderPaths, fn (string $folderPath) => $folderPath === $subPath));
+
+        return $duplicatedPathsCount > 1 ? sprintf('%s(%d)', $subPath, $duplicatedPathsCount) : $subPath;
     }
 
     /**

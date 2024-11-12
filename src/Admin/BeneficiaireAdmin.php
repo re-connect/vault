@@ -28,6 +28,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class BeneficiaireAdmin extends AbstractAdmin
 {
@@ -36,6 +37,7 @@ class BeneficiaireAdmin extends AbstractAdmin
         ?string $class = null,
         ?string $baseControllerName = null,
         private readonly ?RouterInterface $router = null,
+        private readonly ?AuthorizationCheckerInterface $authorizationChecker = null,
     ) {
         parent::__construct($code, $class, $baseControllerName);
     }
@@ -177,7 +179,7 @@ class BeneficiaireAdmin extends AbstractAdmin
             )
             ->end();
 
-        if ($this->isGranted('ROLE_SUPER_ADMIN')) {
+        if ($this->authorizationChecker->isGranted('ROLE_SUPER_ADMIN')) {
             $formMapper
                 ->with('Exporter les données du compte')
                 ->add('exportBeneficiaryData', null, [
@@ -365,7 +367,7 @@ class BeneficiaireAdmin extends AbstractAdmin
     {
         /** @var Beneficiaire $subject */
         $subject = $this->getSubject();
-        if (!$subject) {
+        if (!$subject?->getId()) {
             return '';
         }
 
