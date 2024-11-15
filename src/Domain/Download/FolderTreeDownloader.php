@@ -70,7 +70,9 @@ class FolderTreeDownloader
     public function addFolderContentRecursively(ZipStream $zip, Beneficiaire $beneficiary, ?Dossier $folder = null, string $folderPath = ''): void
     {
         $documents = $this->getDocumentsInFolder($beneficiary, $folder);
-        $this->addDocuments($zip, $documents, $folderPath);
+        $documents->isEmpty()
+            ? $this->addEmptyFolder($zip, $folderPath)
+            : $this->addDocuments($zip, $documents, $folderPath);
 
         $folders = $this->getFoldersInFolder($beneficiary, $folder);
 
@@ -86,7 +88,7 @@ class FolderTreeDownloader
         $this->folderPaths[] = $subPath;
         $duplicatedPathsCount = count(array_filter($this->folderPaths, fn (string $folderPath) => $folderPath === $subPath));
 
-        return $duplicatedPathsCount > 1 ? sprintf('%s(%d)', $subPath, $duplicatedPathsCount) : $subPath;
+        return $duplicatedPathsCount > 1 ? sprintf('%s(%d)', $subPath, $duplicatedPathsCount - 1) : $subPath;
     }
 
     /**
@@ -129,6 +131,11 @@ class FolderTreeDownloader
                 );
             }
         }
+    }
+
+    private function addEmptyFolder(ZipStream $zip, string $folderPath): void
+    {
+        $zip->addDirectory($folderPath);
     }
 
     private function sanitizeNode(string $nodeName): string
