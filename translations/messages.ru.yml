@@ -227,8 +227,8 @@ disaffiliate_beneficiary_subtitle: 'Arrêter le suivi de'
 disaffiliate_user: Arrêter le suivi d'un utilisateur
 display_file: 'Открыть файл'
 do_you_accept_to_share_your_information_in_contact_list: 'Вы впервые открываете элементы, которыми поделился этот пользователь. Вы соглашаетесь с тем, что ваши контактные данные будут добавлены в список контактов этого пользователя?'
-document_added: Новый документ
-document_added_to_vault: Документ был добавлен в ваш сейф Reconnect
+document_added: Nouveau document
+document_added_to_vault: Un document a été ajouté sur votre coffre-fort Reconnect
 document_deleted_successfully: 'Документ успешно удалён'
 document_successfully_send_email: 'Документ успешно отправлен по электронной почте'
 documents: Документы
