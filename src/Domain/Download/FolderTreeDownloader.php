@@ -2,32 +2,42 @@
 
 namespace App\Domain\Download;
 
+use App\Entity\Beneficiaire;
 use App\Entity\Document;
 use App\Entity\Dossier;
+use App\Security\VoterV2\PersonalDataVoter;
 use App\ServiceV2\BucketService;
 use App\ServiceV2\Traits\UserAwareTrait;
+use Doctrine\Common\Collections\Collection;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use ZipStream\Exception\OverflowException;
 use ZipStream\ZipStream;
 
-readonly class FolderTreeDownloader
+class FolderTreeDownloader
 {
     use UserAwareTrait;
 
-    public function __construct(private BucketService $bucketService, private Security $security, private LoggerInterface $logger)
-    {
+    private array $folderPaths = [];
+
+    public function __construct(
+        private readonly BucketService $bucketService,
+        private readonly Security $security,
+        private readonly LoggerInterface $logger,
+        private readonly AuthorizationCheckerInterface $authorizationChecker,
+    ) {
     }
 
-    public function downloadZip(Dossier $folder): ?StreamedResponse
+    public function downloadZip(Beneficiaire $beneficiary, Dossier $folder): ?StreamedResponse
     {
         return 0 === $folder->getDocuments()->count()
             ? null
             : new StreamedResponse(
-                fn () => $this->createZip($folder),
+                fn () => $this->createZip($beneficiary, $folder),
                 Response::HTTP_OK,
                 [
                     'Content-Type' => 'application/zip',
@@ -39,11 +49,11 @@ readonly class FolderTreeDownloader
             );
     }
 
-    private function createZip(Dossier $folder): void
+    private function createZip(Beneficiaire $beneficiary, Dossier $folder): void
     {
         $zip = new ZipStream(outputName: sprintf('%s.zip', $folder->getNom()));
 
-        $this->addFolderTreeRecursively($zip, $folder);
+        $this->addFolderContentRecursively($zip, $beneficiary, $folder);
 
         try {
             $zip->finish();
@@ -57,29 +67,75 @@ readonly class FolderTreeDownloader
         }
     }
 
-    private function addFolderTreeRecursively(ZipStream $zip, Dossier $folder, string $folderPath = ''): void
+    public function addFolderContentRecursively(ZipStream $zip, Beneficiaire $beneficiary, ?Dossier $folder = null, string $folderPath = ''): void
     {
-        $documents = $folder->getDocuments($this->getUser() === $folder->getBeneficiaire()->getUser())
-            ->filter(fn (Document $document) => is_resource($this->bucketService->getObjectStream($document->getObjectKey())));
+        $documents = $this->getDocumentsInFolder($beneficiary, $folder);
+        $documents->isEmpty()
+            ? $this->addEmptyFolder($zip, $folderPath)
+            : $this->addDocuments($zip, $documents, $folderPath);
 
+        $folders = $this->getFoldersInFolder($beneficiary, $folder);
+
+        foreach ($folders as $folder) {
+            $this->addFolderContentRecursively($zip, $beneficiary, $folder, $this->formatUniquePath($folder, $folderPath));
+        }
+    }
+
+    public function formatUniquePath(Dossier $folder, string $path): string
+    {
+        $subPath = sprintf('%s/%s', $path, $this->sanitizeNode($folder->getNom()));
+
+        $this->folderPaths[] = $subPath;
+        $duplicatedPathsCount = count(array_filter($this->folderPaths, fn (string $folderPath) => $folderPath === $subPath));
+
+        return $duplicatedPathsCount > 1 ? sprintf('%s(%d)', $subPath, $duplicatedPathsCount - 1) : $subPath;
+    }
+
+    /**
+     * @return Collection<int, Document>
+     */
+    private function getDocumentsInFolder(Beneficiaire $beneficiary, ?Dossier $folder = null): Collection
+    {
+        $documents = $folder?->getDocuments() ?? $beneficiary->getRootDocuments();
+
+        return $documents->filter(
+            fn (Document $document) => is_resource($this->bucketService->getObjectStream($document->getObjectKey()))
+                && $this->authorizationChecker->isGranted(PersonalDataVoter::DOWNLOAD, $document)
+        );
+    }
+
+    /**
+     * @return Collection<int, Dossier>
+     */
+    private function getFoldersInFolder(Beneficiaire $beneficiary, ?Dossier $folder = null): Collection
+    {
+        $folders = $folder?->getSousDossiers() ?? $beneficiary->getRootFolders();
+
+        return $folders->filter(
+            fn (Dossier $folder) => $this->authorizationChecker->isGranted(PersonalDataVoter::DOWNLOAD, $folder)
+        );
+    }
+
+    /**
+     * @param Collection<int, Document> $documents
+     */
+    private function addDocuments(ZipStream $zip, Collection $documents, string $folderPath): void
+    {
         foreach ($documents as $document) {
             $documentName = $this->sanitizeNode($document->getNom());
             $objectStream = $this->bucketService->getObjectStream($document->getObjectKey());
             if ($objectStream) {
                 $zip->addFileFromStream(
-                    !$folder->hasParentFolder()
-                        ? $documentName
-                        : sprintf('%s/%s', $folderPath, $documentName),
+                    sprintf('%s/%s', $folderPath, $documentName),
                     $objectStream,
                 );
             }
         }
+    }
 
-        $subFolders = $folder->getSousDossiers()->filter(fn (Dossier $folder) => !$folder->isPrivate() || $this->getUser() === $folder->getBeneficiaire()->getUser());
-
-        foreach ($subFolders as $folder) {
-            $this->addFolderTreeRecursively($zip, $folder, sprintf('%s/%s', $folderPath, $this->sanitizeNode($folder->getNom())));
-        }
+    private function addEmptyFolder(ZipStream $zip, string $folderPath): void
+    {
+        $zip->addDirectory($folderPath);
     }
 
     private function sanitizeNode(string $nodeName): string
