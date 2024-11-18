@@ -2,9 +2,9 @@
 
 namespace App\Admin;
 
+use App\Entity\Attributes\Centre;
 use App\Entity\Beneficiaire;
 use App\Entity\BeneficiaireCentre;
-use App\Entity\Centre;
 use App\Entity\Client;
 use App\Entity\CreatorCentre;
 use App\Entity\CreatorClient;

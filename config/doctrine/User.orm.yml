@@ -168,6 +168,8 @@ App\Entity\User:
             type: string
             length: '255'
             nullable: true
+            options:
+                default: 'email'
         mfaRetryCount:
             type: integer
             nullable: true
@@ -195,7 +197,7 @@ App\Entity\User:
             targetEntity: App\Entity\Gestionnaire
             mappedBy: user
         adresse:
-            targetEntity: App\Entity\Adresse
+            targetEntity: App\Entity\Attributes\Adresse
             cascade: [ "persist", "remove" ]
     oneToMany:
         refreshTokens:
@@ -203,7 +205,7 @@ App\Entity\User:
             mappedBy: user
             cascade: [ "persist", "remove" ]
         accessTokens:
-            targetEntity: App\Entity\AccessToken
+            targetEntity: App\Entity\Attributes\AccessToken
             mappedBy: user
             cascade: [ "persist", "remove" ]
         creators:

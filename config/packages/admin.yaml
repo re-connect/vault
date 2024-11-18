@@ -28,7 +28,7 @@ services:
 
     re_admin.admin.annexe:
         class: App\Admin\AnnexeAdmin
-        arguments: [ ~, App\Entity\Annexe, ~ ]
+        arguments: [ ~, App\Entity\Attributes\Annexe, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Annexe }
 
@@ -102,7 +102,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "Centres" }
         arguments:
             - ~
-            - App\Entity\Centre
+            - App\Entity\Attributes\Centre
             - ~
         calls:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
@@ -177,7 +177,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Autres", label: "Adresse", show_in_dashboard: false }
         arguments:
             - ~
-            - App\Entity\Adresse
+            - App\Entity\Attributes\Adresse
             - ~
 
     sonata.admin.creator:

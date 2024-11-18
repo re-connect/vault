@@ -2,7 +2,7 @@
 
 namespace App\Admin;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;

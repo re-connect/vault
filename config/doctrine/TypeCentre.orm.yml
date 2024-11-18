@@ -26,6 +26,6 @@ App\Entity\TypeCentre:
                     on: update
     oneToMany:
         centres:
-            targetEntity: Centre
+            targetEntity: App\Entity\Attributes\Centre
             mappedBy: typeCentre
     lifecycleCallbacks: {  }

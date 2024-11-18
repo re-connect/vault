@@ -2,7 +2,7 @@
 
 namespace App\Command\DataMigration;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Entity\ClientGestionnaire;
 use App\Entity\ClientMembre;
 use App\Entity\Gestionnaire;

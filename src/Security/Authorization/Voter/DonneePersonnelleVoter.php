@@ -2,7 +2,7 @@
 
 namespace App\Security\Authorization\Voter;
 
-use App\Entity\AccessToken;
+use App\Entity\Attributes\AccessToken;
 use App\Entity\ClientBeneficiaire;
 use App\Entity\DonneePersonnelle;
 use App\Entity\User;

@@ -26,7 +26,7 @@ App\Entity\SMS:
           on: update
   manyToOne:
     centre:
-      targetEntity: Centre
+      targetEntity: App\Entity\Attributes\Centre
       inversedBy: sms
       joinColumn:
         nullable: true

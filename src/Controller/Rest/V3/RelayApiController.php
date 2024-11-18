@@ -3,7 +3,7 @@
 namespace App\Controller\Rest\V3;
 
 use App\ControllerV2\AbstractController;
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;

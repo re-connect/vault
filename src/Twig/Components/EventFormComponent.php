@@ -24,6 +24,7 @@ class EventFormComponent extends AbstractController
     #[LiveProp]
     public Beneficiaire $beneficiary;
 
+    #[\Override]
     protected function instantiateForm(): FormInterface
     {
         return $this->createForm(

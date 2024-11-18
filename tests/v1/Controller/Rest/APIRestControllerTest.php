@@ -2,7 +2,7 @@
 
 namespace App\Tests\v1\Controller\Rest;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use League\Bundle\OAuth2ServerBundle\Model\Client;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

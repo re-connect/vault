@@ -180,7 +180,7 @@ class MainController extends AbstractController
         $event = new InteractiveLoginEvent($request, $token);
         $eventDispatcher->dispatch($event, 'security.interactive_login');
 
-        return $this->redirect($this->generateUrl('redirect_user'));
+        return $this->redirectToRoute('redirect_user');
     }
 
     #[Route('/public/resetting-mail-translation', name: 'resetting_mail_translation', methods: ['GET'])]

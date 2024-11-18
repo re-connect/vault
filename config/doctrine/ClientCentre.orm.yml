@@ -3,6 +3,6 @@ App\Entity\ClientCentre:
   repositoryClass: App\Repository\ClientCentreRepository
   manyToOne:
     entity:
-      targetEntity: App\Entity\Centre
+      targetEntity: App\Entity\Attributes\Centre
       inversedBy: externalLinks
   lifecycleCallbacks: {  }

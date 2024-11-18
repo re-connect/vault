@@ -17,7 +17,7 @@ App\Entity\StatistiqueCentre:
 
     manyToOne:
         centre:
-            targetEntity: Centre
+            targetEntity: App\Entity\Attributes\Centre
             inversedBy: statistiquesCentre
             joinColumn:
                 nullable: false
