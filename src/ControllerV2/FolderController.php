@@ -2,6 +2,7 @@
 
 namespace App\ControllerV2;
 
+use App\Domain\Download\FolderTreeDownloader;
 use App\Entity\Dossier;
 use App\FormV2\FolderType;
 use App\FormV2\Search\SearchType;
@@ -174,9 +175,9 @@ class FolderController extends AbstractController
 
     #[Route(path: 'folder/{id}/download', name: 'folder_download', methods: ['GET'])]
     #[IsGranted('UPDATE', 'folder')]
-    public function download(Dossier $folder, FolderManager $manager): Response
+    public function download(Dossier $folder, FolderTreeDownloader $downloader): Response
     {
-        if (!$streamedResponse = $manager->getZipFromFolder($folder)) {
+        if (!$streamedResponse = $downloader->downloadZip($folder->getBeneficiaire(), $folder)) {
             $this->addFlash('error', 'error_during_download');
             $parentFolder = $folder->getDossierParent();
 
