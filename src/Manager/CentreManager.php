@@ -2,8 +2,8 @@
 
 namespace App\Manager;
 
+use App\Entity\Attributes\Centre;
 use App\Entity\BeneficiaireCentre;
-use App\Entity\Centre;
 use App\Entity\ClientBeneficiaire;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;

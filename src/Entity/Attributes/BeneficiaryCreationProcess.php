@@ -59,7 +59,7 @@ class BeneficiaryCreationProcess
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\OneToOne(inversedBy: 'creationProcess', targetEntity: Beneficiaire::class, cascade: ['remove'])]
+    #[ORM\OneToOne(mappedBy: 'creationProcess', targetEntity: Beneficiaire::class, cascade: ['remove'])]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Beneficiaire $beneficiary = null;
 

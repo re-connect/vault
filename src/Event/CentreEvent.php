@@ -2,7 +2,7 @@
 
 namespace App\Event;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Entity\UserWithCentresInterface;
 
 class CentreEvent extends REEvent

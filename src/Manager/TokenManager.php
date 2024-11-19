@@ -2,7 +2,7 @@
 
 namespace App\Manager;
 
-use App\Entity\AccessToken;
+use App\Entity\Attributes\AccessToken;
 use App\Entity\TokenInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;

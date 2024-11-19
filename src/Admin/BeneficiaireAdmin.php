@@ -2,9 +2,9 @@
 
 namespace App\Admin;
 
+use App\Entity\Attributes\Centre;
 use App\Entity\Beneficiaire;
 use App\Entity\BeneficiaireCentre;
-use App\Entity\Centre;
 use App\Entity\Client;
 use App\Entity\CreatorCentre;
 use App\Entity\CreatorClient;
@@ -27,9 +27,21 @@ use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class BeneficiaireAdmin extends AbstractAdmin
 {
+    public function __construct(
+        ?string $code = null,
+        ?string $class = null,
+        ?string $baseControllerName = null,
+        private readonly ?RouterInterface $router = null,
+        private readonly ?AuthorizationCheckerInterface $authorizationChecker = null,
+    ) {
+        parent::__construct($code, $class, $baseControllerName);
+    }
+
     #[\Override]
     protected function configureFormOptions(array &$formOptions): void
     {
@@ -166,6 +178,21 @@ class BeneficiaireAdmin extends AbstractAdmin
                 ]
             )
             ->end();
+
+        if ($this->authorizationChecker->isGranted('ROLE_SUPER_ADMIN')) {
+            $formMapper
+                ->with('Exporter les données du compte')
+                ->add('exportBeneficiaryData', null, [
+                    'mapped' => false,
+                    'label' => "L'export comprend l'ensemble des notes, contacts, et événements au format csv, ainsi que la totalité des documents et dossiers",
+                    'required' => false,
+                    'disabled' => true,
+                    'help' => $this->getExportButton(),
+                    'help_html' => true,
+                    'attr' => ['read_only' => true, 'style' => 'display:none'],
+                ])
+                ->end();
+        }
     }
 
     #[\Override]
@@ -334,6 +361,19 @@ class BeneficiaireAdmin extends AbstractAdmin
                     'edit' => [],
                 ],
             ]);
+    }
+
+    private function getExportButton(): string
+    {
+        /** @var Beneficiaire $subject */
+        $subject = $this->getSubject();
+        if (!$subject?->getId()) {
+            return '';
+        }
+
+        $exportUrl = $this->router->generate('beneficiary_export', ['id' => $subject->getId()]);
+
+        return sprintf('<a class="btn btn-success" href="%s">Exporter</a>', $exportUrl);
     }
 
     #[\Override]

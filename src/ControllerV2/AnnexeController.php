@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Annexe;
+use App\Entity\Attributes\Annexe;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;

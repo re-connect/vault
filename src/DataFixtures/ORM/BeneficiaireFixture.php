@@ -2,8 +2,8 @@
 
 namespace App\DataFixtures\ORM;
 
+use App\Entity\Attributes\Centre;
 use App\Entity\BeneficiaireCentre;
-use App\Entity\Centre;
 use App\Entity\Client;
 use App\Entity\ClientBeneficiaire;
 use App\Manager\FixtureManager;

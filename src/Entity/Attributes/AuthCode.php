@@ -1,36 +1,43 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
+use App\Entity\Client;
+use App\Entity\User;
+use Doctrine\ORM\Mapping as ORM;
+use League\Bundle\OAuth2ServerBundle\Repository\AuthCodeRepository;
+
+#[ORM\Table(name: 'authcode')]
+#[ORM\Index(columns: ['client_id'], name: 'IDX_A8931C1F19EB6921')]
+#[ORM\Index(columns: ['user_id'], name: 'IDX_A8931C1FA76ED395')]
+#[ORM\UniqueConstraint(name: 'UNIQ_A8931C1F5F37A13B', columns: ['token'])]
+#[ORM\Entity(repositoryClass: AuthCodeRepository::class)]
 class AuthCode
 {
-    /**
-     * @var string
-     */
-    protected $redirectUri;
-    /**
-     * @var int
-     */
-    protected $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    protected ?int $id = null;
 
-    protected $client;
+    #[ORM\Column(name: 'token', type: 'string', length: 255, nullable: false)]
+    protected string $token;
 
-    /**
-     * @var string
-     */
-    protected $token;
+    #[ORM\Column(name: 'expiresAt', type: 'integer', nullable: true)]
+    protected ?int $expiresAt = null;
 
-    /**
-     * @var int
-     */
-    protected $expiresAt;
+    #[ORM\Column(name: 'scope', type: 'string', length: 255, nullable: true)]
+    protected ?string $scope = null;
 
-    /**
-     * @var string
-     */
-    protected $scope;
+    #[ORM\Column(name: 'redirectUri', type: 'text', length: 0, nullable: true)]
+    protected ?string $redirectUri = null;
 
-    protected $user;
+    #[ORM\JoinColumn(name: 'client_id', referencedColumnName: 'id', nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Client::class)]
+    protected Client $client;
+
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    protected ?User $user = null;
 
     public function getId()
     {

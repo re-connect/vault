@@ -2,7 +2,7 @@
 
 namespace App\FormV2\FilterUser;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\SecurityBundle\Security;
