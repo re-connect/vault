@@ -7,7 +7,7 @@ meta {
 post {
   url: {{baseUrl}}/api/v3/beneficiaries
   body: json
-  auth: inherit
+  auth: bearer
 }
 
 body:json {
@@ -23,4 +23,8 @@ body:json {
       "secret_question_custom_text": "string",
       "secret_question_answer": "string"
   }
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
 }

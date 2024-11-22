@@ -1,7 +1,19 @@
 auth {
-  mode: bearer
+  mode: oauth2
 }
 
-auth:bearer {
-  token: {{token}}
+auth:oauth2 {
+  grant_type: password
+  access_token_url: {{baseUrl}}/api/token
+  client_id: {{oauthClientId}}
+  client_secret: {{oauthClientSecret}}
+  username: {{oauthUsername}}
+  password: {{oauthPassword}}
+}
+
+script:post-response {
+  var token = res.body.access_token;
+    if (token) {
+      bru.setVar('oauth2_token', token)
+    }
 }
