@@ -7,11 +7,15 @@ meta {
 post {
   url: {{baseUrl}}/api/v3/documents/{id}/share
   body: json
-  auth: inherit
+  auth: bearer
 }
 
 body:json {
   {
       "email": "thibaut.cheymol@gmail.com"
   }
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
 }
