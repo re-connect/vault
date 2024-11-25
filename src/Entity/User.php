@@ -34,7 +34,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
     operations: [
         new GetCollection(security: "is_granted('ROLE_OAUTH2_USERS') or is_granted('ROLE_USER')", provider: SearchBeneficiaryProvider::class),
         new Patch(security: "is_granted('UPDATE', object)", processor: UserPasswordProcessor::class),
-        new Get(uriTemplate: '/me', controller: MeController::class, openapiContext: ['tags' => ['User']], read: false),
+        new Get(uriTemplate: '/me', controller: MeController::class, security: "is_granted('ROLE_USER')", read: false),
     ],
     normalizationContext: ['groups' => ['v3:user:read']],
     denormalizationContext: ['groups' => ['v3:user:write']],
@@ -126,18 +126,18 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     /**
      * @var string
      */
-    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
+    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:user:write', 'v3:beneficiary:write'])]
     #[Anonymize('fr-fr.firstname')]
     private $prenom;
 
     /**
      * @var string
      */
-    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
+    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:user:write', 'v3:beneficiary:write'])]
     #[Anonymize('fr-fr.lastname')]
     private $nom;
 
-    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
+    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:user:write', 'v3:beneficiary:write'])]
     #[Anonymize('date', options: ['min' => 'now -70 years', 'max' => 'now -15 years'])]
     private ?\DateTime $birthDate = null;
 
@@ -347,6 +347,9 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public function setBirthDate(?\DateTime $birthDate): self
     {
         $this->birthDate = $birthDate;
+        if (!$this->subjectBeneficiaire->getDateNaissance() || $birthDate !== $this->subjectBeneficiaire->getDateNaissance()) {
+            $this->subjectBeneficiaire->setDateNaissance($birthDate);
+        }
 
         return $this;
     }
@@ -1559,5 +1562,19 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         }
 
         return $this->subjectBeneficiaire->isCreating();
+    }
+
+    public function setSecretQuestion(?string $secretQuestion): self
+    {
+        $this->subjectBeneficiaire?->setQuestionSecrete($secretQuestion);
+
+        return $this;
+    }
+
+    public function setSecretAnswer(?string $secretAnswer): self
+    {
+        $this->subjectBeneficiaire?->setReponseSecrete($secretAnswer);
+
+        return $this;
     }
 }
