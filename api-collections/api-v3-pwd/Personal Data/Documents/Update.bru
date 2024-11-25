@@ -7,11 +7,15 @@ meta {
 patch {
   url: {{baseUrl}}/api/v3/documents/{id}
   body: json
-  auth: inherit
+  auth: bearer
 }
 
 body:json {
   {
     "folderId": 12
   }
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
 }

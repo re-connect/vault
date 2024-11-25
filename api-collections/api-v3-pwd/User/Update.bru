@@ -5,13 +5,17 @@ meta {
 }
 
 put {
-  url: {{baseUrl}}/api/v3/users/{id}
+  url: {{baseUrl}}/api/v3/users/{{userId}}
   body: json
-  auth: inherit
+  auth: bearer
 }
 
 body:json {
   {
       "plainPassword": "coucou"
   }
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
 }
