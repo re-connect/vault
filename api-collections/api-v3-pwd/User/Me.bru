@@ -7,9 +7,13 @@ meta {
 get {
   url: {{baseUrl}}/api/v3/me
   body: none
-  auth: inherit
+  auth: bearer
 }
 
 vars:post-response {
   userId: res.body.id
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
 }

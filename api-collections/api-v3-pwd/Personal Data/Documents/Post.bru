@@ -7,9 +7,13 @@ meta {
 post {
   url: {{baseUrl}}/api/v3/documents
   body: multipartForm
-  auth: inherit
+  auth: bearer
 }
 
 body:multipart-form {
   file: undefined
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
 }
