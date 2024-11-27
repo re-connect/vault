@@ -10,10 +10,10 @@ get {
   auth: bearer
 }
 
-vars:post-response {
-  userId: res.body.id
-}
-
 auth:bearer {
   token: {{oauth2_token}}
+}
+
+vars:post-response {
+  userId: res.body.id
 }
