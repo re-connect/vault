@@ -10,6 +10,10 @@ get {
   auth: bearer
 }
 
+auth:bearer {
+  token: {{oauth2_token}}
+}
+
 body:json {
   {
     "secretQuestion": "Coucou",
@@ -19,6 +23,6 @@ body:json {
   }
 }
 
-auth:bearer {
-  token: {{oauth2_token}}
+vars:post-response {
+  centerId: res.body['hydra:member'][0].id
 }
