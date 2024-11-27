@@ -7,9 +7,11 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
+use App\Api\Dto\UserDto;
 use App\Api\Filters\UsernameFilter;
 use App\Api\State\SearchBeneficiaryProvider;
 use App\Api\State\UserPasswordProcessor;
+use App\Api\State\UserStateProcessor;
 use App\Controller\Api\MeController;
 use App\Entity\Attributes\AccessToken;
 use App\Entity\Attributes\Adresse;
@@ -35,6 +37,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
         new GetCollection(security: "is_granted('ROLE_OAUTH2_USERS') or is_granted('ROLE_USER')", provider: SearchBeneficiaryProvider::class),
         new Patch(security: "is_granted('UPDATE', object)", processor: UserPasswordProcessor::class),
         new Get(uriTemplate: '/me', controller: MeController::class, security: "is_granted('ROLE_USER')", read: false),
+        new Patch(security: "is_granted('UPDATE', object)", input: UserDto::class, processor: UserStateProcessor::class),
     ],
     normalizationContext: ['groups' => ['v3:user:read']],
     denormalizationContext: ['groups' => ['v3:user:write']],
