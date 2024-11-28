@@ -297,6 +297,12 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->prenom;
     }
 
+    #[Groups('v3:user:read')]
+    public function getFirstName(): ?string
+    {
+        return $this->prenom;
+    }
+
     /**
      * @param string $prenom
      *
@@ -313,6 +319,12 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
      * @return string
      */
     public function getNom()
+    {
+        return $this->nom;
+    }
+
+    #[Groups('v3:user:read')]
+    public function getLastName(): ?string
     {
         return $this->nom;
     }
@@ -337,6 +349,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this;
     }
 
+    #[Groups('v3:user:read')]
     public function getEmail()
     {
         return $this->email;
@@ -368,6 +381,12 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
      * @return ?string
      */
     public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    #[Groups('v3:user:read')]
+    public function getPhone(): ?string
     {
         return $this->telephone;
     }
@@ -509,11 +528,19 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return self::USER_TYPE_BENEFICIAIRE === $this->typeUser || $this->subjectBeneficiaire;
     }
 
+    #[Groups('v3:user:read')]
+    public function getSubjectId(): ?int
+    {
+        return $this->getSubject()?->getId();
+    }
+
+    #[Groups('v3:user:read')]
     public function getSecretAnswer(): string
     {
         return !$this->getSubjectBeneficiaire() ? '' : $this->getSubjectBeneficiaire()->getReponseSecrete();
     }
 
+    #[Groups('v3:user:read')]
     public function getSecretQuestion(): string
     {
         return !$this->getSubjectBeneficiaire() ? '' : $this->getSubjectBeneficiaire()->getQuestionSecrete();
@@ -1092,6 +1119,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     }
 
     /** @return Collection<int, UserCentre> */
+    #[Groups('v3:user:read')]
     public function getUserCentres(): Collection
     {
         $subject = $this->getSubject();
