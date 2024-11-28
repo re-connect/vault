@@ -50,7 +50,8 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
     {
         $rootAliases = $queryBuilder->getRootAliases();
         if (
-            $this->oauth2Helper->isClientGrantedAllPrivileges()
+            !$this->oauth2Helper->isAuthenticatedAsClient()
+            || $this->oauth2Helper->isClientGrantedAllPrivileges()
             || !in_array($resourceClass, self::HANDLED_CLASSES)
             || 0 === count($rootAliases)
         ) {
@@ -63,8 +64,9 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
             $beneficiaryAlias = 'beneficiaire';
             $queryBuilder->innerJoin(sprintf('%s.beneficiaire', $rootAlias), $beneficiaryAlias);
             if (Evenement::class === $resourceClass) {
-                $queryBuilder->andWhere(sprintf('%s.date > :today', $rootAlias))
-                ->setParameter('today', new \DateTime());
+                $queryBuilder
+                    ->andWhere(sprintf('%s.date > :today', $rootAlias))
+                    ->setParameter('today', new \DateTime());
             }
         }
 

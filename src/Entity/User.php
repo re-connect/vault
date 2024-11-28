@@ -529,6 +529,12 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     }
 
     #[Groups('v3:user:read')]
+    public function getSubjectId(): ?int
+    {
+        return $this->getSubject()?->getId();
+    }
+
+    #[Groups('v3:user:read')]
     public function getSecretAnswer(): string
     {
         return !$this->getSubjectBeneficiaire() ? '' : $this->getSubjectBeneficiaire()->getReponseSecrete();
