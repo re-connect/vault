@@ -18,7 +18,7 @@ class ClientFixture extends Fixture implements FixtureGroupInterface
             'secret' => '1bhcu6uphfz4gc4cwo48ok4gkswgss04gokwgkkws0o8sgos44',
             'name' => 'rosalie',
             'grantType' => 'client_credentials',
-            'scopes' => 'centers beneficiaries documents notes contacts pros events',
+            'scopes' => 'centers beneficiaries documents notes contacts pros events users',
         ],
         [
             'id' => 'm5tu4aqwedscccs4sogcgkk8w0wccg8s8c8ogwkso8w8c0ws0',

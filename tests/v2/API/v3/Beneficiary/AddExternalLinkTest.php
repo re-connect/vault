@@ -51,11 +51,11 @@ class AddExternalLinkTest extends AbstractApiTest
     public function testShouldNotAddExternalLink(): void
     {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK);
-        $client = $this->clientRepository->findOneBy(['nom' => 'reconnect_pro']);
+        $client = $this->clientRepository->findOneBy(['nom' => 'rosalie']);
         $this->assertNotNull($beneficiary->getExternalLinksForClient($client)->first());
 
         $this->assertEndpoint(
-            'reconnect_pro',
+            'rosalie',
             sprintf('/beneficiaries/%s/add-external-link', $beneficiary->getId()),
             'PATCH',
             422,
