@@ -43,7 +43,7 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
 
         if ($data instanceof LinkBeneficiaryDto && $operation instanceof Patch && $client) {
             $beneficiary = $this->beneficiaryRepository->find($uriVariables['id']);
-            if (!$beneficiary->getExternalLinksForClient($client)->isEmpty() && Client::CLIENT_RECONNECT_PRO !== $client->getNom()) {
+            if (!$beneficiary->canAddExternalLinkForClient($client, $data->distantId)) {
                 throw new UnprocessableEntityHttpException('This beneficiary already has a link for this client.');
             }
 
