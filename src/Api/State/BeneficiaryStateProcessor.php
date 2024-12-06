@@ -46,6 +46,7 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
             if (!$beneficiary->getExternalLinksForClient($client)->isEmpty() && Client::CLIENT_RECONNECT_PRO !== $client->getNom()) {
                 throw new UnprocessableEntityHttpException('This beneficiary already has a link for this client.');
             }
+
             $this->createExternalLink($data, $client, $beneficiary);
 
             return $beneficiary;
