@@ -32,6 +32,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
     public const BENEFICIARY_PASSWORD_WEAK = 'v2_test_user_beneficiary_weak_password@mail.com';
     public const BENEFICIARY_WITH_MFA_ENABLE = 'v2_test_user_beneficiary_with_mfa_enable@mail.com';
     public const BENEFICIARY_WITH_CLIENT_LINK = 'test_user_beneficiary_with_client_link@mail.com';
+    public const BENEFICIARY_WITH_RP_LINK = 'test_user_beneficiary_with_rp_link@mail.com';
 
     #[\Override]
     public function load(ObjectManager $manager)
@@ -56,6 +57,13 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
         );
         $this->createTestBeneficiary(
             $this->getTestUser(self::BENEFICIARY_WITH_CLIENT_LINK),
+            [],
+            [
+                RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY_1]),
+            ]
+        );
+        $this->createTestBeneficiary(
+            $this->getTestUser(self::BENEFICIARY_WITH_RP_LINK),
             [],
             [
                 RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY_1]),

@@ -67,7 +67,7 @@ class ContactApiV3Test extends AbstractApiTest
     public function testPost(): void
     {
         $contact = [
-            'beneficiaire_id' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK)->object()->getId(),
+            'beneficiaire_id' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK)->object()->getId(),
             'nom' => 'CONTACT',
             'prenom' => 'test',
             'telephone' => '+33620746411',
