@@ -205,4 +205,9 @@ class Client extends BaseClient implements \Stringable
 
         return $this;
     }
+
+    public function allowsMultipleLinks(): bool
+    {
+        return self::CLIENT_RECONNECT_PRO === $this->getNom();
+    }
 }
