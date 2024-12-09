@@ -19,12 +19,12 @@ class GetTest extends AbstractApiTest
 
     public function testGetBeneficiary(): void
     {
-        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
+        $client = ClientFactory::find(['nom' => 'rosalie'])->object();
         /** @var Beneficiaire $beneficiary */
         $beneficiary = $this->repo->findByClientIdentifier($client->getRandomId())[0];
         $user = $beneficiary->getUser();
         $this->assertEndpoint(
-            'reconnect_pro',
+            'rosalie',
             sprintf('/beneficiaries/%s', $beneficiary->getId()),
             'GET',
             200,
