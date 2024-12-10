@@ -970,13 +970,20 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function addClientExternalLink(Client $client, string $externalId, ?string $memberExternalId = null, ?BeneficiaireCentre $beneficiaireCentre = null): self
     {
-        if (!$this->hasExternalLinkForClient($client)) {
+        if ($this->canAddExternalLinkForClient($client, $externalId)) {
             $externalLink = ClientBeneficiaire::createForMember($client, $externalId, (int) $memberExternalId);
             $externalLink->setBeneficiaireCentre($beneficiaireCentre);
             $this->addExternalLink($externalLink);
         }
 
         return $this;
+    }
+
+    public function externalLinkExists(Client $client, string $distantId): bool
+    {
+        $links = $this->externalLinks->filter(fn (ClientBeneficiaire $link) => $link->getClient() === $client && $link->getDistantId() === $distantId);
+
+        return count($links) > 0;
     }
 
     public function hasBeneficiaryRelayForRelay(Centre $relay): bool
@@ -1077,5 +1084,10 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     public function getReconnectProExternalLink(): ?ClientBeneficiaire
     {
         return $this->getExternalLinks()->filter(fn (ClientBeneficiaire $link) => Client::CLIENT_RECONNECT_PRO === $link->getClient()?->getNom())->first() ?: null;
+    }
+
+    public function canAddExternalLinkForClient(Client $client, string $externalId): bool
+    {
+        return !$this->hasExternalLinkForClient($client) || ($client->allowsMultipleLinks() && !$this->externalLinkExists($client, $externalId));
     }
 }
