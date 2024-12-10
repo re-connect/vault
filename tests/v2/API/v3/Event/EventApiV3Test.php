@@ -67,7 +67,7 @@ class EventApiV3Test extends AbstractApiTest
     public function testPost(): void
     {
         $event = [
-            'beneficiaire_id' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK)->object()->getId(),
+            'beneficiaire_id' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK)->object()->getId(),
             'nom' => 'testNom',
             'date' => (new \DateTime('tomorrow'))->format('c'),
             'lieu' => 'testLieu',

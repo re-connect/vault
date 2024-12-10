@@ -69,7 +69,7 @@ class NoteApiV3Test extends AbstractApiTest
         $note = [
             'nom' => 'testNom',
             'contenu' => 'testContenu',
-            'beneficiaire_id' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK)->object()->getId(),
+            'beneficiaire_id' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK)->object()->getId(),
         ];
 
         $this->assertEndpoint(
