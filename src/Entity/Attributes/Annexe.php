@@ -30,7 +30,7 @@ class Annexe implements \Stringable
     private ?File $fichierFile = null;
 
     #[ORM\Column(name: 'fichier', type: 'string', length: 255, nullable: false)]
-    private string $fichier;
+    private ?string $fichier = null;
 
     #[Gedmo\Timestampable(on: 'create')]
     #[ORM\Column(name: 'date_ajout', type: 'datetime', nullable: false)]
@@ -166,7 +166,7 @@ class Annexe implements \Stringable
     {
         $this->fichierFile = $fichierFile;
         if (null !== $fichierFile) {
-            $this->dateAjout = new \DateTimeImmutable('now');
+            $this->dateAjout = new \DateTime('now');
         }
     }
 }
