@@ -47,6 +47,14 @@ host('vault-prod')
     ->set('homepage_url', 'https://reconnect.fr')
     ->add('shared_files', ['config/secrets/prod/prod.decrypt.private.php']);
 
+host('migration-vault-pp')
+    ->setLabels(['stage' => 'migration-preprod'])
+    ->set('branch', 'dev')
+    ->set('deploy_path', '~/www-test')
+    ->set('http_user', 'preprod_reconnect_fr')
+    ->set('homepage_url', 'https://migration-preprod.reconnect.fr/')
+    ->add('shared_files', ['config/secrets/preprod/preprod.decrypt.private.php']);
+
 // Tasks
 
 // Test connection in order to avoid "Failed to connect to secondary target" error
