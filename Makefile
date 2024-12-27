@@ -27,6 +27,9 @@ fixer:
 deploy-preprod:
 	@$(DEPLOYER) deploy stage=preprod
 
+deploy-migration-preprod:
+	@$(DEPLOYER) deploy stage=migration-preprod
+
 deploy-prod:
 	@$(DEPLOYER) deploy stage=prod
 
