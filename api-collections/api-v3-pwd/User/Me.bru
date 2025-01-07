@@ -5,7 +5,16 @@ meta {
 }
 
 get {
-  url: {{baseUrl}}/api/v3/users
+  url: {{baseUrl}}/api/v3/me
   body: none
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
+}
+
+vars:post-response {
+  userId: res.body.id
+  beneficiaryId: res.body.subject_id
 }
