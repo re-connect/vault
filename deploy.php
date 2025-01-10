@@ -47,6 +47,14 @@ host('vault-prod')
     ->set('homepage_url', 'https://reconnect.fr')
     ->add('shared_files', ['config/secrets/prod/prod.decrypt.private.php']);
 
+host('migration-vault-pp')
+    ->setLabels(['stage' => 'migration-preprod'])
+    ->set('branch', 'dev')
+    ->set('deploy_path', '~/www')
+    ->set('http_user', 'preprod_reconnect_fr')
+    ->set('homepage_url', 'https://migration-preprod.reconnect.fr/')
+    ->add('shared_files', ['config/secrets/preprod/preprod.decrypt.private.php']);
+
 // Tasks
 
 // Test connection in order to avoid "Failed to connect to secondary target" error
@@ -63,10 +71,10 @@ task('deploy:test_connection', function () {
     }
 });
 task('deploy:install_frontend', function () {
-    run('cd {{release_path}} && ~/.yarn/bin/yarn install');
+    run('cd {{release_path}} && yarn install');
 });
 task('deploy:build_frontend', function () {
-    run('cd {{release_path}} && ~/.yarn/bin/yarn build');
+    run('cd {{release_path}} && yarn build');
 });
 task('deploy:dump_frontend_routes', function () {
     run('cd {{release_path}} && {{bin/console}} fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json');
