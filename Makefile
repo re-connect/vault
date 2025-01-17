@@ -24,8 +24,14 @@ fixer:
 	@$(PHP_CS_FIXER) fix src --allow-risky=yes --using-cache=no
 	@$(PHP_CS_FIXER) fix tests --allow-risky=yes --using-cache=no
 
-deploy-preprod:
+deploy-preprod-old:
 	@$(DEPLOYER) deploy stage=preprod
+
+deploy-preprod-new:
+	@$(DEPLOYER) deploy stage=migration-preprod
+
+deploy-preprod:
+	@$(DEPLOYER) deploy stage=preprod,stage=migration-preprod
 
 deploy-prod:
 	@$(DEPLOYER) deploy stage=prod
