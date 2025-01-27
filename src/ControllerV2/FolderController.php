@@ -197,11 +197,13 @@ class FolderController extends AbstractController
     public function treeViewMove(Dossier $folder, FolderManager $folderManager): Response
     {
         $beneficiary = $folder->getBeneficiaire();
+        $isOwner = $this->isLoggedInUser($beneficiary->getUser());
 
         return $this->render('v2/vault/folder/tree_view.html.twig', [
             'folders' => $beneficiary ? $folderManager->getRootFolders($beneficiary) : [],
             'element' => $folder,
             'beneficiary' => $beneficiary,
+            'isOwner' => $isOwner,
         ]);
     }
 

@@ -146,6 +146,7 @@ class DocumentController extends AbstractController
             'folders' => $beneficiary ? $folderManager->getRootFolders($beneficiary) : [],
             'element' => $document,
             'beneficiary' => $document->getBeneficiaire(),
+            'isOwner' => $this->isLoggedInUser($beneficiary->getUser()),
         ]);
     }
 
