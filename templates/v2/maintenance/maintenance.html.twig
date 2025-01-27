@@ -1,15 +1,13 @@
 {% extends '@Twig/Exception/generic_page.html.twig' %}
 
 {% block body %}
-    <div class="container py-5 justify-content-center">
-        {% set translationKey = 'error_' ~ code %}
+    <div class="container pt-5 justify-content-center">
+        {% set code = 500 %}
         <h1>
-            {{ translationKey|trans }}
+            {{ 'maintenance'|trans }}
         </h1>
         <div class="img-container">
             <img src="{{ asset('img/error/'~code~'.png') }}" alt="{{ 'error'~code }}" class="img-fluid image mx-auto"/>
         </div>
-        <a class="back-link"
-           href="{{ path('redirect_user') }}">{{ 'back'|trans }}</a>
     </div>
 {% endblock %}
