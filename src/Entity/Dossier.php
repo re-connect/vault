@@ -136,9 +136,9 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
         return $this->sousDossiers;
     }
 
-    public function getVisibleSubFolders(bool $isOwner): ArrayCollection|Collection|array
+    public function getVisibleSubFolders(User $user): ArrayCollection|Collection|array
     {
-        return $isOwner ? $this->sousDossiers : $this->sousDossiers->filter(fn (Dossier $dossier) => !$dossier->isPrivate());
+        return $user === $this->getBeneficiaire()?->getUser() ? $this->sousDossiers : $this->sousDossiers->filter(fn (Dossier $dossier) => !$dossier->isPrivate());
     }
 
     public function addSousDossier(Dossier $sousDossier): self
