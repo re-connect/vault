@@ -3,6 +3,7 @@
 namespace App\ListenerV2;
 
 use App\Checker\FeatureFlagChecker;
+use App\Command\ToggleMaintenanceCommand;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -18,7 +19,7 @@ readonly class MaintenanceListener
 
     public function onKernelRequest(RequestEvent $event): void
     {
-        if ($event->isMainRequest() && $this->featureFlagChecker->isEnabled('maintenance')) {
+        if ($event->isMainRequest() && $this->featureFlagChecker->isEnabled(ToggleMaintenanceCommand::FEATURE_FLAG_NAME)) {
             $event->setResponse(new Response($this->environment->render('v2/maintenance/maintenance.html.twig')));
         }
     }
