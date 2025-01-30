@@ -510,7 +510,7 @@ rp_is_adaptable_alt_img: 'Adaptable to your needs'
 rp_is_adaptable_p: 'The configuration allows you to meet the specific needs of your organization''s operations.'
 rp_is_adaptable_title: 'Adaptable to your needs'
 rp_is_satisfying_alt_img: 'Professionals are very satisfied by the training'
-rp_is_satisfying_p: "of professionals are very satisfied by the training"
+rp_is_satisfying_p: "of professionals are very satisfied by <a href=\"%link%\" target=\"_blank\">the training</a>"
 rp_is_satisfying_title: 80%
 rp_is_simple_alt_img: 'simple and pleasant tool'
 rp_is_simple_p: "The ergonomics have been particularly worked out so that the handling is very simple and allows you to focus on the support."
