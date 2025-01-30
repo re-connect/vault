@@ -31,12 +31,12 @@ add('writable_dirs', []);
 
 // Hosts
 
-host('vault-pp')
+host('migration-vault-pp')
     ->setLabels(['stage' => 'preprod'])
     ->set('branch', 'dev')
     ->set('deploy_path', '~/www')
-    ->set('yarn_path', '~/.yarn/bin/yarn')
-    ->set('http_user', 'preprod_coffre_reconnect_fr')
+    ->set('yarn_path', 'yarn')
+    ->set('http_user', 'preprod_reconnect_fr')
     ->set('homepage_url', 'https://preprod.reconnect.fr')
     ->add('shared_files', ['config/secrets/preprod/preprod.decrypt.private.php']);
 
@@ -48,15 +48,6 @@ host('vault-prod')
     ->set('http_user', 'reconnect_fr')
     ->set('homepage_url', 'https://reconnect.fr')
     ->add('shared_files', ['config/secrets/prod/prod.decrypt.private.php']);
-
-host('migration-vault-pp')
-    ->setLabels(['stage' => 'migration-preprod'])
-    ->set('branch', 'dev')
-    ->set('deploy_path', '~/www')
-    ->set('yarn_path', 'yarn')
-    ->set('http_user', 'preprod_reconnect_fr')
-    ->set('homepage_url', 'https://migration-preprod.reconnect.fr/')
-    ->add('shared_files', ['config/secrets/preprod/preprod.decrypt.private.php']);
 
 // Tasks
 
