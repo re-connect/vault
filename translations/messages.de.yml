@@ -510,7 +510,7 @@ rp_is_adaptable_alt_img: 'bedarfsgerechte Anpassung'
 rp_is_adaptable_p: 'Sie können die Cloud an die Anforderungen Ihrer Einrichtung anpassen.'
 rp_is_adaptable_title: 'bedarfsgerechte Anpassung'
 rp_is_satisfying_alt_img: 'Des professionnel.le.s très satisfait.e.s de la formation'
-rp_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s de la formation à l'utilisation de Reconnect Pro"
+rp_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s <a href='https://reconnect.fr/annexe/formation-rp' target='_blank'>de la formation à l'utilisation de Reconnect Pro</a>"
 rp_is_satisfying_title: 80%
 rp_is_simple_alt_img: 'Benutzer*innenfreundlich'
 rp_is_simple_p: "Bei der Entwicklung wurde besonders auf eine einfache Bedienung geachtet. So können Sie sich auf Ihre Klient*innen konzentrieren."
