@@ -116,7 +116,7 @@ cfn_vault_is_safe_alt_img: 'informations en securité'
 cfn_vault_is_safe_p: 'Le coffre-fort numérique est un outil éthique et sécurisé. Il est conforme à la loi RGPD. La protection des données personnelles de nos utilisateurs est notre priorité absolue.'
 cfn_vault_is_safe_title: 'Des informations en sécurité'
 cfn_vault_is_satisfying_alt_img: 'Les professionnel.le.s sont très satisfait.e.s de la formation'
-cfn_vault_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s de la formation à l'utilisation du coffre-fort numérique"
+cfn_vault_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s <a href=\"%link%\" target=\"_blank\">de la formation à l'utilisation du coffre-fort numérique</a>"
 cfn_vault_is_satisfying_title: 95%
 cfn_vault_is_title: "Le coffre-fort numérique, c'est"
 choose: Choisir
