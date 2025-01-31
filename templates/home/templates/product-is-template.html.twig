@@ -8,7 +8,9 @@
                     <img class="mx-auto d-block pb-2 product-is-icon" src="{{ asset(icon_path) }}"
                          alt="{{ item.icon_alt|trans }}">
                     <h5 class="py-3">{{ item.title |trans }}</h5>
-                    <p class="font-size-1-1">{{ item.text|trans }}</p>
+                    <p class="font-size-1-1">
+                        {{ item.text|trans({'%link%': 'https://reconnect.fr/annexe/formation-rp'})|sanitize_html|raw }}
+                    </p>
                 </article>
             {% endfor %}
         </div>
