@@ -9,7 +9,13 @@
                          alt="{{ item.icon_alt|trans }}">
                     <h5 class="py-3">{{ item.title |trans }}</h5>
                     <p class="font-size-1-1">
-                        {{ item.text|trans({'%link%': 'https://reconnect.fr/annexe/formation-rp'})|sanitize_html|raw }}
+                        {% if item.text == 'rp_is_satisfying_p' %}
+                            {{ item.text|trans({'%link%': 'https://reconnect.fr/annexe/formation-rp'})|sanitize_html|raw }}
+                        {% elseif item.text == 'cfn_vault_is_satisfying_p' %}
+                            {{ item.text|trans({'%link%': 'https://reconnect.fr/annexe/formation-cfn'})|sanitize_html|raw }}
+                        {% else %}
+                            {{ item.text|trans }}
+                        {% endif %}
                     </p>
                 </article>
             {% endfor %}
