@@ -31,7 +31,7 @@ add('writable_dirs', []);
 
 // Hosts
 
-host('migration-vault-pp')
+host('vault-pp')
     ->setLabels(['stage' => 'preprod'])
     ->set('branch', 'dev')
     ->set('deploy_path', '~/www')
