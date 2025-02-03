@@ -180,12 +180,6 @@ class HomeProvider
             'text' => 'digital_cares_acquire_skills_text',
         ],
         [
-            'icon_file_name' => 'logo_digital_cares_bulb.png',
-            'icon_alt' => 'digital_cares_dynamic_workshop_img_alt',
-            'title' => 'digital_cares_dynamic_workshop_title',
-            'text' => 'digital_cares_dynamic_workshop_text',
-        ],
-        [
             'icon_file_name' => 'logo_digital_cares_knowledge.png',
             'icon_alt' => 'digital_cares_knowledge_img_alt',
             'title' => 'digital_cares_knowledge_title',
