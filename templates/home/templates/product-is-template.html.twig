@@ -1,7 +1,7 @@
 <section class="py-5">
     <div class="container">
         <h2 class="h2 text-primary text-uppercase text-center">{{ section_title| trans }}</h2>
-        <div class="row pt-3 pt-md-4 pb-3">
+        <div class="row justify-content-between pt-3 pt-md-4 pb-3">
             {% for item in product_is %}
                 <article class="offset-1 col-10 offset-md-0 col-md-3 px-5 text-primary my-4 text-center">
                     {% set icon_path = 'build/images/home/' ~ item.icon_file_name %}
