@@ -9,8 +9,8 @@
                          alt="{{ item.icon_alt|trans }}">
                     <h5 class="py-3">{{ item.title |trans }}</h5>
                     <p class="font-size-1-1">
-                        {% if item.link is defined %}
-                            {{ item.text|trans({'%link%': path('re_admin_annexe', { url: item.link })})|raw }}
+                        {% if item.annexe_name is defined %}
+                            {{ item.text|trans({'%link%': path('re_admin_annexe', { url: item.annexe_name })})|raw }}
                         {% else %}
                             {{ item.text|trans }}
                         {% endif %}
