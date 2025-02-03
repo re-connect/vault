@@ -64,6 +64,7 @@ class HomeProvider
             'icon_alt' => 'cfn_vault_is_satisfying_alt_img',
             'title' => 'cfn_vault_is_satisfying_title',
             'text' => 'cfn_vault_is_satisfying_p',
+            'annexe_name' => 'formation-cfn',
         ],
     ];
 
@@ -123,6 +124,7 @@ class HomeProvider
             'icon_alt' => 'rp_is_satisfying_alt_img',
             'title' => 'rp_is_satisfying_title',
             'text' => 'rp_is_satisfying_p',
+            'annexe_name' => 'formation-rp',
         ],
     ];
 
