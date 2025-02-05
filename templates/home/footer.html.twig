@@ -56,11 +56,11 @@
                     <a target="_self" class="d-block text-decoration-none my-3"
                        href="{{ path('re_main_page_RP') }}">{{ 'footer_discover_rp'|trans }}</a>
                     <a target="_self" class="d-block text-decoration-none my-3"
-                       href="https://pro.reconnect.fr/login">{{ 'form_connexion'|trans }}</a>
+                       href="{{ reconnectProEndpoint~'/login' }}">{{ 'form_connexion'|trans }}</a>
                     <a target="_blank" class="d-block text-decoration-none my-3"
-                       href="https://pro.reconnect.fr/legal/service.pdf">{{ 'footer_CGS_rp'|trans }}</a>
+                       href="{{ reconnectProEndpoint~'/legal/service.pdf' }}">{{ 'footer_CGS_rp'|trans }}</a>
                     <a target="_blank" class="d-block text-decoration-none my-3"
-                       href="https://pro.reconnect.fr/legal/privacy.pdf">{{ 'footer_confidentiality_rp'|trans }}</a>
+                       href="{{ reconnectProEndpoint~'/legal/privacy.pdf' }}">{{ 'footer_confidentiality_rp'|trans }}</a>
                 </div>
             </div>
             <div class="col-12 mt-2">

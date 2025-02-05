@@ -12,10 +12,10 @@ class DocumentManager
 {
     private readonly S3Client $client;
 
-    public function __construct(private readonly string $bucketName, string $bucketEndpoint, string $bucketAccess, string $bucketSecret, private readonly LoggerInterface $logger)
+    public function __construct(private readonly string $bucketName, string $bucketHost, string $bucketAccess, string $bucketSecret, private readonly LoggerInterface $logger)
     {
         $this->client = new S3Client([
-            'endpoint' => $bucketEndpoint,
+            'endpoint' => $bucketHost,
             'credentials' => [
                 'key' => $bucketAccess,
                 'secret' => $bucketSecret,
