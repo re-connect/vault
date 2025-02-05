@@ -6,7 +6,6 @@ return [
     'APP_SECRET' => null,
     'BREVO_DSN' => null,
     'BUCKET_ACCESS_KEY' => null,
-    'BUCKET_ENDPOINT' => null,
     'BUCKET_HOST' => null,
     'BUCKET_KEY' => null,
     'BUCKET_NAME' => null,
