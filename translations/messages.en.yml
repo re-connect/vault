@@ -116,7 +116,7 @@ cfn_vault_is_safe_alt_img: 'security information'
 cfn_vault_is_safe_p: 'The digital safe is an ethical and secured tool. It is compliant with the RGPD law. The protection of our users'' personal data is our top priority.'
 cfn_vault_is_safe_title: 'security information'
 cfn_vault_is_satisfying_alt_img: 'Professionals are very satisfied by the training'
-cfn_vault_is_satisfying_p: "of professionals are very satisfied by the training"
+cfn_vault_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s <a href=\"%link%\" target=\"_blank\">de la formation à l'utilisation du coffre-fort numérique</a>"
 cfn_vault_is_satisfying_title: 95%
 cfn_vault_is_title: "The digital safe is"
 choose: Choose
@@ -194,10 +194,10 @@ delete_your_account: 'If You want to delete Your account click here.'
 digital_care_is: "Digital care is"
 digital_cares: "Digital \n cares"
 digital_cares_acquire_skills_img_alt: "Helps to develop skills"
-digital_cares_acquire_skills_text: 'of beneficiaries feel that workshops have helped them to acquire skills'
+digital_cares_acquire_skills_text: 'des participants estiment que les ateliers leur ont permis d’acquérir des compétences'
 digital_cares_acquire_skills_title: '98 %'
 digital_cares_appreciated_training_img_alt: 'Appreciated training'
-digital_cares_appreciated_training_text: 'of beneficiaries appreciated the training'
+digital_cares_appreciated_training_text: 'des participants ont aimé la formation'
 digital_cares_appreciated_training_title: '99 %'
 digital_cares_dynamic_workshop_img_alt: 'Dynamic workshops'
 digital_cares_dynamic_workshop_text: 'of beneficiaries appreciated the dynamics of the workshops'
@@ -206,8 +206,8 @@ digital_cares_improve_reintegration_pathways_img_alt: "Support to improve integr
 digital_cares_improve_reintegration_pathways_text: 'Digital workshops are part of the overall support of the beneficiaries, and meet a need for training in the use of digital technology, to facilitate their social and professional integration.'
 digital_cares_improve_reintegration_pathways_title: 'A support to improve integration pathways'
 digital_cares_knowledge_img_alt: 'Carry out the learned actions'
-digital_cares_knowledge_text: 'of beneficiaries feel able to perform the learned actions'
-digital_cares_knowledge_title: '95 %'
+digital_cares_knowledge_text: 'des participants se sentent capables de réaliser les actions apprises'
+digital_cares_knowledge_title: '97 %'
 digital_cares_logo_alt: 'Digital cares logo'
 digital_cares_participatory_content_img_alt: 'Playful and participatory content'
 digital_cares_participatory_content_text: 'Our workshops contain a theoretical and practical dimension to facilitate the assimilation of information. The sessions are built using a "gamified" methodology that facilitates attention and improves attractiveness. We pay particular attention to the immediate practical application of the proposed training.'
@@ -510,7 +510,7 @@ rp_is_adaptable_alt_img: 'Adaptable to your needs'
 rp_is_adaptable_p: 'The configuration allows you to meet the specific needs of your organization''s operations.'
 rp_is_adaptable_title: 'Adaptable to your needs'
 rp_is_satisfying_alt_img: 'Professionals are very satisfied by the training'
-rp_is_satisfying_p: "of professionals are very satisfied by <a href=\"%link%\" target=\"_blank\">the training</a>"
+rp_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s <a href=\"%link%\" target=\"_blank\">de la formation à l'utilisation de Reconnect Pro</a>"
 rp_is_satisfying_title: 80%
 rp_is_simple_alt_img: 'simple and pleasant tool'
 rp_is_simple_p: "The ergonomics have been particularly worked out so that the handling is very simple and allows you to focus on the support."
