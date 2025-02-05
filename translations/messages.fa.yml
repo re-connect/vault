@@ -116,7 +116,7 @@ cfn_vault_is_safe_alt_img: 'informations en securité'
 cfn_vault_is_safe_p: 'Le coffre-fort numérique est un outil éthique et sécurisé. Il est conforme à la loi RGPD. La protection des données personnelles de nos utilisateurs est notre priorité absolue.'
 cfn_vault_is_safe_title: 'Des informations en sécurité'
 cfn_vault_is_satisfying_alt_img: 'Les professionnel.le.s sont très satisfait.e.s de la formation'
-cfn_vault_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s de la formation à l'utilisation du coffre-fort numérique"
+cfn_vault_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s <a href=\"%link%\" target=\"_blank\">de la formation à l'utilisation du coffre-fort numérique</a>"
 cfn_vault_is_satisfying_title: 95%
 cfn_vault_is_title: "Le coffre-fort numérique, c'est"
 choose: Choisir
@@ -191,13 +191,13 @@ date_period_start: 'Date de début de période'
 decline: Refuser
 delete: Supprimer
 delete_your_account: 'Si vous désirez supprimer votre compte cliquez-ici'
-digital_care_is: "L'accompagnement numérique, c'est"
+digital_care_is: "Ateliers numériques 2024 : vos retours en chiffres"
 digital_cares: "L'accompagnement \n numérique"
 digital_cares_acquire_skills_img_alt: "Permet d'acquérir des compétences"
-digital_cares_acquire_skills_text: 'des bénéficiaires qui estiment que les ateliers leur ont permis d’acquérir des compétences'
+digital_cares_acquire_skills_text: 'des participants estiment que les ateliers leur ont permis d’acquérir des compétences'
 digital_cares_acquire_skills_title: '98 %'
 digital_cares_appreciated_training_img_alt: 'Formation appréciée'
-digital_cares_appreciated_training_text: 'des bénéficiaires qui ont apprécié la formation'
+digital_cares_appreciated_training_text: 'des participants ont aimé la formation'
 digital_cares_appreciated_training_title: '99 %'
 digital_cares_dynamic_workshop_img_alt: 'Ateliers dynamiques'
 digital_cares_dynamic_workshop_text: 'des bénéficiaires apprécient la dynamique des ateliers'
@@ -206,8 +206,8 @@ digital_cares_improve_reintegration_pathways_img_alt: "Accompagnement pour facil
 digital_cares_improve_reintegration_pathways_text: 'Les ateliers numériques s’inscrivent dans l’accompagnement global des bénéficiaires et répondent à un besoin de formation aux usages du numérique afin de faciliter leur insertion sociale et professionnelle.'
 digital_cares_improve_reintegration_pathways_title: 'Un accompagnement pour faciliter les parcours d’insertion'
 digital_cares_knowledge_img_alt: 'Permet de réaliser les actions apprises'
-digital_cares_knowledge_text: 'des bénéficiaires qui se sentent capables de réaliser les actions apprises'
-digital_cares_knowledge_title: '95 %'
+digital_cares_knowledge_text: 'des participants se sentent capables de réaliser les actions apprises'
+digital_cares_knowledge_title: '97 %'
 digital_cares_logo_alt: 'Logo des accompagnements numériques'
 digital_cares_participatory_content_img_alt: 'Contenus ludiques et participatifs'
 digital_cares_participatory_content_text: 'Nos ateliers contiennent une dimension théorique et pratique afin de faciliter l’assimilation des informations. Les sessions sont construites à l’aide d’une méthodologie « gamifiée » qui facilite l’attention et améliore l’attractivité. Nous portons une attention particulière à la mise en pratique immédiate des formations proposées.'
@@ -510,7 +510,7 @@ rp_is_adaptable_alt_img: 'adaptable aux besoins'
 rp_is_adaptable_p: 'Le paramétrage permet de répondre aux besoins propres du fonctionnement de votre structure.'
 rp_is_adaptable_title: 'Adaptable à vos besoins'
 rp_is_satisfying_alt_img: 'Des professionnel.le.s très satisfait.e.s de la formation'
-rp_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s de la formation à l'utilisation de Reconnect Pro"
+rp_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s <a href=\"%link%\" target=\"_blank\">de la formation à l'utilisation de Reconnect Pro</a>"
 rp_is_satisfying_title: 80%
 rp_is_simple_alt_img: 'outil simple et agreable'
 rp_is_simple_p: "L'ergonomie a été particulièrement travaillée afin que la prise en main soit très simple et vous permette de vous concentrer sur l'accompagnement."
@@ -695,3 +695,4 @@ share_folder: Partager le dossier
 share_folder_success: Un email avec un lien valable 7 jours et permettant de télécharger ce dossier a été envoyé à l'adresse mail renseignée.
 confirm_switch_shared_folder_content: Êtes vous sûr de vouloir partager tout le contenu de ce dossier ?
 confirm_switch_private_folder_content: Êtes vous sûr de vouloir basculer tout le contenu de ce dossier en privé ?
+maintenance: Le site est actuellement en maintenance. Nous travaillons activement pour en rétablir l'accès dans les plus brefs délais. Veuillez nous excuser pour la gêne occasionnée, merci de votre compréhension.
