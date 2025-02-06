@@ -116,7 +116,7 @@ cfn_vault_is_safe_alt_img: 'المعلومات بأمان'
 cfn_vault_is_safe_p: 'الخزانة الرقمية هي أداة أخلاقية وآمنة. تتوافق مع قانون حماية البيانات العامة العامة الأوروبي (GDPR). حماية بيانات المستخدمين الشخصية هي أولويتنا المطلقة.'
 cfn_vault_is_safe_title: 'المعلومات بأمان'
 cfn_vault_is_satisfying_alt_img: 'المحترفون يشعرون برضا كبير عن التدريب'
-cfn_vault_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s <a href=\"%link%\" target=\"_blank\">de la formation à l'utilisation du coffre-fort numérique</a>"
+cfn_vault_is_satisfying_p: "المحترفون يشعرون برضا كبير <a href='%link%' target='_blank'>عن التدريب على استخدام الخزانة الرقمية</a>"
 cfn_vault_is_satisfying_title: 95%
 cfn_vault_is_title: "الخزانة الرقمية، هي"
 choose: اختار
