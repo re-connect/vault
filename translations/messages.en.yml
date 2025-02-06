@@ -116,7 +116,7 @@ cfn_vault_is_safe_alt_img: 'security information'
 cfn_vault_is_safe_p: 'The digital safe is an ethical and secured tool. It is compliant with the RGPD law. The protection of our users'' personal data is our top priority.'
 cfn_vault_is_safe_title: 'security information'
 cfn_vault_is_satisfying_alt_img: 'Professionals are very satisfied by the training'
-cfn_vault_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s <a href=\"%link%\" target=\"_blank\">de la formation à l'utilisation du coffre-fort numérique</a>"
+cfn_vault_is_satisfying_p: "of professionals are very satisfied by <a href=\"%link%\" target=\"_blank\">the training </a>"
 cfn_vault_is_satisfying_title: 95%
 cfn_vault_is_title: "The digital safe is"
 choose: Choose
@@ -194,10 +194,10 @@ delete_your_account: 'If You want to delete Your account click here.'
 digital_care_is: "Digital Workshops 2024: Your feedback in numbers"
 digital_cares: "Digital \n cares"
 digital_cares_acquire_skills_img_alt: "Helps to develop skills"
-digital_cares_acquire_skills_text: 'des participants estiment que les ateliers leur ont permis d’acquérir des compétences'
+digital_cares_acquire_skills_text: 'of participants feel that workshops have helped them to acquire skills'
 digital_cares_acquire_skills_title: '98 %'
 digital_cares_appreciated_training_img_alt: 'Appreciated training'
-digital_cares_appreciated_training_text: 'des participants ont aimé la formation'
+digital_cares_appreciated_training_text: 'of participants appreciated the training'
 digital_cares_appreciated_training_title: '99 %'
 digital_cares_dynamic_workshop_img_alt: 'Dynamic workshops'
 digital_cares_dynamic_workshop_text: 'of beneficiaries appreciated the dynamics of the workshops'
@@ -206,7 +206,7 @@ digital_cares_improve_reintegration_pathways_img_alt: "Support to improve integr
 digital_cares_improve_reintegration_pathways_text: 'Digital workshops are part of the overall support of the beneficiaries, and meet a need for training in the use of digital technology, to facilitate their social and professional integration.'
 digital_cares_improve_reintegration_pathways_title: 'A support to improve integration pathways'
 digital_cares_knowledge_img_alt: 'Carry out the learned actions'
-digital_cares_knowledge_text: 'des participants se sentent capables de réaliser les actions apprises'
+digital_cares_knowledge_text: 'of participants feel able to perform the learned actions'
 digital_cares_knowledge_title: '97 %'
 digital_cares_logo_alt: 'Digital cares logo'
 digital_cares_participatory_content_img_alt: 'Playful and participatory content'
