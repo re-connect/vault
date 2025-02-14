@@ -5,9 +5,9 @@ meta {
 }
 
 put {
-  url: {{baseUrl}}/api/v3/beneficiaries/me/enable
+  url: {{baseUrl}}/api/v3/beneficiaries/{id}/enable
   body: json
-  auth: none
+  auth: bearer
 }
 
 body:json {
@@ -17,4 +17,8 @@ body:json {
     "secretAnswer": "coucou",
     "password": "{{benefPwd}}"
   }
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
 }
