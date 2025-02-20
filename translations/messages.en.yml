@@ -697,4 +697,5 @@ confirm_switch_shared_folder_content: Are you sure you want to share all the con
 confirm_switch_private_folder_content: Are you sure you want to make all the contents of this folder private ?
 maintenance: The site is currently under maintenance. We are actively working to restore access as soon as possible. We apologize for the inconvenience and appreciate your understanding.
 download_accessible_training_catalogue: Find the accessible version here
-referencing_ms3_ah_corridor: Currently being certified on the MS3 AH corridor
+referencing_ms3_ah_corridor: Currently being <strong>certified</strong> on the MS3 AH corridor
+segur_alt_logo: logo Ségur du numérique
