@@ -10,10 +10,14 @@
                 <img class="img-fluid w-50" src="{{ asset('build/images/home/watermark_digital_cares.png') }}"
                      alt="{{ 'innovative_solution_digital_divide' |trans }}">
             </div>
-            <div class="mt-1 mb-4 pb-5 mx-auto col-12 col-md-7">
+            <div class="d-flex justify-content-end mt-1 mb-4 pb-5 mx-auto col-12 col-md-7">
                     <a class="btn btn-primary text-decoration-none p-2 w-50 rounded-pill font-size-1-3" target="_blank"
-                       href="{{ path('re_admin_annexe', { url: 'catalogue-de-formation'}) }}">{{ 'download_training_catalogue'|trans }}</a>
-                </div>
+                       href="{{ path('re_admin_annexe', { url: 'catalogue-de-formation'}) }}">{{ 'download_training_catalogue'|trans }}
+                    </a>
+                    <a class="align-self-center ms-3" target="_blank" href="{{ path('re_admin_annexe', { url: 'catalogue-formation-accessible' }) }}">
+                        {{ 'download_accessible_training_catalogue'|trans }}
+                    </a>
+            </div>
         </div>
     </div>
 </section>
