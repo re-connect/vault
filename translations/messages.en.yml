@@ -116,7 +116,7 @@ cfn_vault_is_safe_alt_img: 'security information'
 cfn_vault_is_safe_p: 'The digital safe is an ethical and secured tool. It is compliant with the RGPD law. The protection of our users'' personal data is our top priority.'
 cfn_vault_is_safe_title: 'security information'
 cfn_vault_is_satisfying_alt_img: 'Professionals are very satisfied by the training'
-cfn_vault_is_satisfying_p: "of professionals are very satisfied by <a href=\"%link%\" target=\"_blank\">the training in 2024</a>"
+cfn_vault_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s <a href=\"%link%\" target=\"_blank\">de la formation à l'utilisation du coffre-fort numérique en 2024</a>"
 cfn_vault_is_satisfying_title: 96%
 cfn_vault_is_title: "The digital safe is"
 choose: Choose
@@ -510,7 +510,7 @@ rp_is_adaptable_alt_img: 'Adaptable to your needs'
 rp_is_adaptable_p: 'The configuration allows you to meet the specific needs of your organization''s operations.'
 rp_is_adaptable_title: 'Adaptable to your needs'
 rp_is_satisfying_alt_img: 'Professionals are very satisfied by the training'
-rp_is_satisfying_p: "of professionals are very satisfied by <a href=\"%link%\" target=\"_blank\">the training in 2024</a>"
+rp_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s <a href=\"%link%\" target=\"_blank\">de la formation à l'utilisation de Reconnect Pro en 2024</a>"
 rp_is_satisfying_title: 78%
 rp_is_simple_alt_img: 'simple and pleasant tool'
 rp_is_simple_p: "The ergonomics have been particularly worked out so that the handling is very simple and allows you to focus on the support."
@@ -697,7 +697,7 @@ confirm_switch_shared_folder_content: Are you sure you want to share all the con
 confirm_switch_private_folder_content: Are you sure you want to make all the contents of this folder private ?
 maintenance: The site is currently under maintenance. We are actively working to restore access as soon as possible. We apologize for the inconvenience and appreciate your understanding.
 download_accessible_training_catalogue: Find the accessible version here
-referencing_ms3_ah_corridor: Currently being <strong>certified</strong> on the MS3 AHI corridor
+referencing_ms3_ah_corridor: En cours de <strong>référencement</strong> sur le couloir MS3 AHI
 segur_alt_logo: logo Ségur du numérique
 engagement_ms3_ahi_referencing: Since early 2022, we have been involved in the work of the Digital Health Agency for the implementation of the Digital Health Ségur for social and medico-social services in the MS3 corridor for Reception, Housing, Integration and are currently in the certification process for this corridor.
 segur_digital_certification: Ségur Digital Certification
