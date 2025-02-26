@@ -10,7 +10,7 @@
     {% for feature in features %}
         {{ include ('home/sections/feature-rp-section.html.twig',
             {
-                direction: loop.index is even ? 'row' : 'row-reverse',
+                direction: loop.index is even ? 'row-reverse' : 'row',
                 feature
             }) }}
     {% endfor %}

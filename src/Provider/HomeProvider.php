@@ -70,11 +70,22 @@ class HomeProvider
 
     public const RP_FEATURES_CONTENT = [
         [
+            'title' => 'segur_digital_certification',
+            'text' => 'engagement_ms3_ahi_referencing',
+            'img_fileName' => 'logo_numeric_segur.png',
+            'img_alt' => 'segur_alt_logo',
+            'is_mobile' => false,
+            'img_logo_text' => 'referencing_ms3_ah_corridor',
+            'is_img_border' => true,
+        ],
+        [
             'title' => 'rp_page_user_file_title',
             'text' => 'rp_page_user_file_p',
             'img_fileName' => 'feature1_rp.png',
             'img_alt' => 'rp_page_user_file_alt_img',
             'is_mobile' => false,
+            'img_logo_text' => '',
+            'is_img_border' => false,
         ],
         [
             'title' => 'rp_page_info_transmission_title',
@@ -82,6 +93,8 @@ class HomeProvider
             'img_fileName' => 'feature2_rp.png',
             'img_alt' => 'rp_page_info_transmission_alt_img',
             'is_mobile' => true,
+            'img_logo_text' => '',
+            'is_img_border' => false,
         ],
         [
             'title' => 'rp_page_housing_management_title',
@@ -89,6 +102,8 @@ class HomeProvider
             'img_fileName' => 'feature3_rp.png',
             'img_alt' => 'rp_page_housing_management_alt_img',
             'is_mobile' => false,
+            'img_logo_text' => '',
+            'is_img_border' => false,
         ],
         [
             'title' => 'rp_page_stats_automation_title',
@@ -97,6 +112,8 @@ class HomeProvider
             'img_fileName' => 'feature4_rp.png',
             'img_alt' => 'rp_page_stats_automation_alt_img',
             'is_mobile' => false,
+            'img_logo_text' => '',
+            'is_img_border' => false,
         ],
     ];
 
