@@ -116,8 +116,8 @@ cfn_vault_is_safe_alt_img: 'Sicherheit'
 cfn_vault_is_safe_p: 'Die Cloud ist ein sicheres Tool und entspricht den Standards der DSGVO. Dabei hat der Schutz persönlicher Daten unserer Nutzer*innen höchste Priorität.'
 cfn_vault_is_safe_title: 'Sicherheit'
 cfn_vault_is_satisfying_alt_img: 'Les professionnel.le.s sont très satisfait.e.s de la formation'
-cfn_vault_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s <a href=\"%link%\" target=\"_blank\">de la formation à l'utilisation du coffre-fort numérique</a>"
-cfn_vault_is_satisfying_title: 95%
+cfn_vault_is_satisfying_p: "Die Fachleute sind sehr zufrieden <a href=\"%link%\" target=\"_blank\">mit der Schulung zur Nutzung des digitalen Tresors im Jahr 2024</a>"
+cfn_vault_is_satisfying_title: 96%
 cfn_vault_is_title: "Die Cloud bedeutet"
 choose: Choisir
 choose_beneficiary: Choisir un bénéficiaire
@@ -510,8 +510,8 @@ rp_is_adaptable_alt_img: 'bedarfsgerechte Anpassung'
 rp_is_adaptable_p: 'Sie können die Cloud an die Anforderungen Ihrer Einrichtung anpassen.'
 rp_is_adaptable_title: 'bedarfsgerechte Anpassung'
 rp_is_satisfying_alt_img: 'Des professionnel.le.s très satisfait.e.s de la formation'
-rp_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s <a href=\"%link%\" target=\"_blank\">de la formation à l'utilisation de Reconnect Pro</a>"
-rp_is_satisfying_title: 80%
+rp_is_satisfying_p: "der Fachleute sind sehr zufrieden <a href=\"%link%\" target=\"_blank\">mit der Schulung zur Nutzung von Reconnect Pro im Jahr 2024</a>"
+rp_is_satisfying_title: 78%
 rp_is_simple_alt_img: 'Benutzer*innenfreundlich'
 rp_is_simple_p: "Bei der Entwicklung wurde besonders auf eine einfache Bedienung geachtet. So können Sie sich auf Ihre Klient*innen konzentrieren."
 rp_is_simple_title: 'Benutzer*innenfreundlich'
@@ -696,3 +696,8 @@ share_folder_success: Un email avec un lien valable 7 jours et permettant de té
 confirm_switch_shared_folder_content: Êtes vous sûr de vouloir partager tout le contenu de ce dossier ?
 confirm_switch_private_folder_content: Êtes vous sûr de vouloir basculer tout le contenu de ce dossier en privé ?
 maintenance: Die Website wird derzeit gewartet. Wir arbeiten aktiv daran, den Zugang so schnell wie möglich wiederherzustellen. Wir entschuldigen uns für die Unannehmlichkeiten und danken Ihnen für Ihr Verständnis.
+download_accessible_training_catalogue: Retrouvez ici la version accessible
+referencing_ms3_ah_corridor: En cours de <strong>référencement</strong> sur le couloir MS3 AHI
+segur_alt_logo: logo Ségur du numérique
+engagement_ms3_ahi_referencing: Depuis début 2022, nous sommes engagés dans les travaux de l'Agence du Numérique en Santé pour l'application du Ségur du numérique en santé pour le social et le médico-social dans le couloir MS3 Accueil, Hébergement, Insertion (AHI) et sommes en cours de référencement sur ce couloir.
+segur_digital_certification: Référencement Ségur du Numérique
