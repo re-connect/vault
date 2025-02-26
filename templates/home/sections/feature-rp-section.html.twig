@@ -13,7 +13,7 @@
                 <img class="{{ feature.is_mobile ? 'feature-transmission-mockup' : '' }} {{ feature.is_img_border ? 'object-fit-contain w-25' : 'box-shadow-light-blue w-100' }} border-radius-20"
                      src="{{ asset(img_path) }}" alt="{{ feature.img_alt|trans }}">
                 {% if feature.img_logo_text is defined and feature.img_logo_text is not empty %}
-                    <p class="text-sm-start text-primary align-self-center fs-6 mx-2">{{ feature.img_logo_text|trans}}</p>
+                    <p class="text-sm-start text-primary align-self-center fs-6 mx-2">{{ feature.img_logo_text|trans|raw}}</p>
                 {% endif %}
             </div>
         </div>
