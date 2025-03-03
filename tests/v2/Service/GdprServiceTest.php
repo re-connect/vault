@@ -45,8 +45,8 @@ class GdprServiceTest extends TestCase
 
     public function provideTestGetDaysBeforeExpiration(): \Generator
     {
-        yield 'Should return 365 when password has been updated today' => [new \DateTimeImmutable('now'), 365];
-        yield 'Should return 5 when password has been updated 360 days ago' => [(new \DateTimeImmutable('now'))->sub(new \DateInterval('P360D')), 5];
+        yield 'Should return 364 when password has been updated today' => [new \DateTimeImmutable('now'), 364];
+        yield 'Should return 4 when password has been updated 360 days ago' => [(new \DateTimeImmutable('now'))->sub(new \DateInterval('P360D')), 4];
         yield 'Should return 0 when password has been updated a year ago' => [(new \DateTimeImmutable('now'))->sub(new \DateInterval('P1Y')), 0];
         yield 'Should return 0 when password has been updated two year ago' => [(new \DateTimeImmutable('now'))->sub(new \DateInterval('P2Y')), 0];
     }
