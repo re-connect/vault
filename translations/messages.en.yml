@@ -301,7 +301,7 @@ generate_password: 'Generate password'
 german_flag: German flag
 header_link_cfn: 'The digital<span class="d-lg-block"> safe</span>'
 header_link_contact: 'Contact<span class="d-lg-block"> us</span>'
-header_link_rp: 'The pro<span class="d-lg-block"> solution</span>'
+header_link_rp: 'Reconnect<span class="d-lg-block"> Pro</span>'
 header_link_who_we_are: 'Who we<span class="d-lg-block"> are</span>'
 header_link_our_blog: 'Notre <span class="d-lg-block">blog</span>'
 health: Health
