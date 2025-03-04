@@ -301,7 +301,7 @@ generate_password: 'Générer un mot de passe'
 german_flag: Drapeau allemand
 header_link_cfn: 'Cloud für<span class="d-lg-block"> wohnungslose Menschen</span>'
 header_link_contact: 'Kontakt<span class="d-lg-block"> aufnehmen</span>'
-header_link_rp: 'Lösung für<span class="d-lg-block"> Sozialarbeitende</span>'
+header_link_rp: 'Reconnect<span class="d-lg-block"> Pro</span>'
 header_link_who_we_are: 'Wer sind<span class="d-lg-block"> wir ?</span>'
 header_link_our_blog: 'Notre <span class="d-lg-block">blog</span>'
 health: Verfassung
