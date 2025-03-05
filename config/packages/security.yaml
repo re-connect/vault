@@ -71,7 +71,7 @@ security:
             # switch_user: true
 
     access_control:
-        - { path: ^/($|api/doc|login|oauth|reconnect-le-coffre-fort-numerique|reconnect-la-solution-pro|nous-contacter|faq-rgpd|reconnect-accompagnement-numerique|public|reinitialiser-mot-de-passe|annexe|cgs), roles: PUBLIC_ACCESS }
+        - { path: ^/($|api/doc|login|oauth|reconnect-le-coffre-fort-numerique|reconnect-pro|reconnect-la-solution-pro|nous-contacter|faq-rgpd|reconnect-accompagnement-numerique|public|reinitialiser-mot-de-passe|annexe|cgs), roles: PUBLIC_ACCESS }
         - { path: ^/admin/app/user, roles: ROLE_SUPER_ADMIN }
         - { path: ^/admin, roles: ROLE_ADMIN }
         # This ensures that the form can only be accessed when two-factor authentication is in progress.
