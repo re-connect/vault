@@ -77,7 +77,7 @@ class MainController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/reconnect-la-solution-pro', name: 're_main_page_RP', methods: ['GET'])]
+    #[Route(path: '/reconnect-pro', name: 're_main_page_RP', methods: ['GET'])]
     public function pageRP(): Response
     {
         return $this->render('home/pages/page-rp.html.twig', [
