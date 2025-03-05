@@ -214,4 +214,10 @@ class MainController extends AbstractController
     {
         return new Response(file_get_contents('https://xzk0s.mjt.lu/wgt/xzk0s/54y/form?c=2e04c0ed') ?: null);
     }
+
+    #[Route(path: '/reconnect-la-solution-pro', name: 're_main_page_RP_old', methods: ['GET'])]
+    public function redirectPageRP(): Response
+    {
+        return $this->redirectToRoute('re_main_page_RP', status: 301);
+    }
 }
