@@ -1,0 +1,15 @@
+meta {
+  name: GetCollection
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/v3/events
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
+}

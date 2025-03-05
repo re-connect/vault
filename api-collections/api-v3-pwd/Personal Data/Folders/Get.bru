@@ -1,0 +1,24 @@
+meta {
+  name: Get
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/v3/folders/{id}
+  body: none
+  auth: none
+}
+
+body:json {
+  {
+  //   "dossier_parent": "string",
+    "b_prive": true,
+    "nom": "string"
+  //   "beneficiaire": "string",
+  }
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
+}
