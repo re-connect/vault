@@ -4,11 +4,11 @@ namespace App\Provider;
 
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Attributes\Centre;
+use App\Entity\Attributes\Subject;
 use App\Entity\Beneficiaire;
 use App\Entity\Gestionnaire;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;
-use App\Entity\Subject;
 use App\Entity\User;
 use App\Entity\UserWithCentresInterface;
 use Doctrine\Common\Collections\Collection;
