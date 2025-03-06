@@ -191,7 +191,7 @@ App\Entity\User:
             mappedBy: user
             cascade: [ "persist" ]
         subjectAssociation:
-            targetEntity: App\Entity\Association
+            targetEntity: App\Entity\Attributes\Association
             mappedBy: user
         subjectGestionnaire:
             targetEntity: App\Entity\Gestionnaire

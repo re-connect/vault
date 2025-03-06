@@ -1,57 +1,57 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use App\Entity\Attributes\Centre;
-use App\Traits\GedmoTimedTrait;
+use App\Entity\Gestionnaire;
+use App\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
-/**
- * Association.
- */
+#[ORM\Entity]
+#[ORM\Table(name: 'association')]
+#[ORM\UniqueConstraint(name: 'UNIQ_FD8521CCA76ED395', columns: ['user_id'])]
 class Association extends Subject
 {
-    use GedmoTimedTrait;
+    use TimestampableEntity;
+
     public const ASSOCIATION_CATEGORIEJURIDIQUE_ASSOCIATION = 'association';
     public const ASSOCIATION_CATEGORIEJURIDIQUE_CCAS = 'ccas';
-    /**
-     * @var string
-     */
-    private $nom;
 
-    /**
-     * @var string
-     */
-    private $siren;
-    /**
-     * @var string
-     */
-    private $urlSite;
-    /**
-     * @var string
-     */
-    private $categorieJuridique;
-    /**
-     * @var Collection
-     */
-    private $gestionnaires;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    protected ?int $id = null;
 
-    /**
-     * @var Collection Centre
-     */
+    #[ORM\Column(name: 'nom', type: 'string', length: 255, nullable: false)]
+    private string $nom;
+
+    #[ORM\Column(name: 'categorieJuridique', type: 'string', length: 255, nullable: true)]
+    private ?string $categorieJuridique = null;
+
+    #[ORM\Column(name: 'siren', type: 'string', length: 255, nullable: true)]
+    private ?string $siren = null;
+
+    #[ORM\Column(name: 'urlSite', type: 'string', length: 255, nullable: true)]
+    private ?string $urlSite = null;
+
+    #[ORM\OneToOne(inversedBy: 'subjectAssociation', targetEntity: User::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    protected ?User $user = null;
+
+    #[ORM\OneToMany(mappedBy: 'association', targetEntity: Gestionnaire::class, cascade: ['persist', 'remove'])]
+    private Collection $gestionnaires;
+
+    #[ORM\OneToMany(mappedBy: 'association', targetEntity: Centre::class, cascade: ['persist', 'remove'])]
     private Collection $centres;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->gestionnaires = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
-        //        $this->user = new User();
     }
 
     public static function getAllCategories()
@@ -62,85 +62,44 @@ class Association extends Subject
         ];
     }
 
-    /**
-     * Get siren.
-     *
-     * @return string
-     */
-    public function getSiren()
+    public function getSiren(): ?string
     {
         return $this->siren;
     }
 
-    /**
-     * Set siren.
-     *
-     * @param string $siren
-     *
-     * @return Association
-     */
-    public function setSiren($siren)
+    public function setSiren(string $siren): self
     {
         $this->siren = $siren;
 
         return $this;
     }
 
-    /**
-     * Get urlSite.
-     *
-     * @return string
-     */
-    public function getUrlSite()
+    public function getUrlSite(): ?string
     {
         return $this->urlSite;
     }
 
-    /**
-     * Set urlSite.
-     *
-     * @param string $urlSite
-     *
-     * @return Association
-     */
-    public function setUrlSite($urlSite)
+    public function setUrlSite(string $urlSite): self
     {
         $this->urlSite = $urlSite;
 
         return $this;
     }
 
-    /**
-     * Get categorieJuridique.
-     *
-     * @return string
-     */
-    public function getCategorieJuridique()
+    public function getCategorieJuridique(): ?string
     {
         return $this->categorieJuridique;
     }
 
-    /**
-     * Set categorieJuridique.
-     *
-     * @param string $categorieJuridique
-     *
-     * @return Association
-     */
-    public function setCategorieJuridique($categorieJuridique)
+    public function setCategorieJuridique(string $categorieJuridique): self
     {
         $this->categorieJuridique = $categorieJuridique;
 
         return $this;
     }
 
-    /**
-     * Set user.
-     *
-     * @return Association
-     */
     #[\Override]
-    public function setUser(?User $user = null)
+    public function setUser(?User $user = null): self
     {
         $this->user = $user;
         $this->user->setTypeUser(User::USER_TYPE_ASSOCIATION);
@@ -151,7 +110,7 @@ class Association extends Subject
     /**
      * @return Collection|Gestionnaire[]
      */
-    public function getGestionnaires()
+    public function getGestionnaires(): Collection
     {
         return $this->gestionnaires;
     }
@@ -166,24 +125,12 @@ class Association extends Subject
         return '';
     }
 
-    /**
-     * Get nom.
-     *
-     * @return string
-     */
-    public function getNom()
+    public function getNom(): string
     {
         return $this->nom;
     }
 
-    /**
-     * Set nom.
-     *
-     * @param string $nom
-     *
-     * @return Association
-     */
-    public function setNom($nom)
+    public function setNom(string $nom): self
     {
         $this->nom = $nom;
 
@@ -224,10 +171,7 @@ class Association extends Subject
         }
     }
 
-    /**
-     * Remove gestionnaires.
-     */
-    public function removeGestionnaire(Gestionnaire $gestionnaire)
+    public function removeGestionnaire(Gestionnaire $gestionnaire): void
     {
         $this->gestionnaires->removeElement($gestionnaire);
 
@@ -239,12 +183,7 @@ class Association extends Subject
         }
     }
 
-    /**
-     * Add gestionnaires.
-     *
-     * @return Association
-     */
-    public function addGestionnaire(Gestionnaire $gestionnaires)
+    public function addGestionnaire(Gestionnaire $gestionnaires): self
     {
         $this->gestionnaires[] = $gestionnaires;
         $gestionnaires->setAssociation($this);
@@ -252,9 +191,6 @@ class Association extends Subject
         return $this;
     }
 
-    /**
-     * @return Collection <int, Centre>
-     */
     public function getCentre(): Collection
     {
         return $this->centres;
