@@ -2,7 +2,7 @@
 
 namespace App\Admin;
 
-use App\Entity\Association;
+use App\Entity\Attributes\Association;
 use App\Entity\Attributes\Centre;
 use App\Entity\CreatorCentre;
 use App\Entity\Region;
