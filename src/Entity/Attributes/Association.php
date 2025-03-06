@@ -41,10 +41,10 @@ class Association extends Subject
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     protected ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'association', targetEntity: Gestionnaire::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'association', targetEntity: Gestionnaire::class)]
     private Collection $gestionnaires;
 
-    #[ORM\OneToMany(mappedBy: 'association', targetEntity: Centre::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'association', targetEntity: Centre::class)]
     private Collection $centres;
 
     public function __construct()
@@ -67,7 +67,7 @@ class Association extends Subject
         return $this->siren;
     }
 
-    public function setSiren(string $siren): self
+    public function setSiren(string $siren): static
     {
         $this->siren = $siren;
 
@@ -79,7 +79,7 @@ class Association extends Subject
         return $this->urlSite;
     }
 
-    public function setUrlSite(string $urlSite): self
+    public function setUrlSite(string $urlSite): static
     {
         $this->urlSite = $urlSite;
 
@@ -91,7 +91,7 @@ class Association extends Subject
         return $this->categorieJuridique;
     }
 
-    public function setCategorieJuridique(string $categorieJuridique): self
+    public function setCategorieJuridique(string $categorieJuridique): static
     {
         $this->categorieJuridique = $categorieJuridique;
 
@@ -99,7 +99,7 @@ class Association extends Subject
     }
 
     #[\Override]
-    public function setUser(?User $user = null): self
+    public function setUser(?User $user = null): static
     {
         $this->user = $user;
         $this->user->setTypeUser(User::USER_TYPE_ASSOCIATION);
@@ -130,7 +130,7 @@ class Association extends Subject
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
+    public function setNom(string $nom): static
     {
         $this->nom = $nom;
 
@@ -183,7 +183,7 @@ class Association extends Subject
         }
     }
 
-    public function addGestionnaire(Gestionnaire $gestionnaires): self
+    public function addGestionnaire(Gestionnaire $gestionnaires): static
     {
         $this->gestionnaires[] = $gestionnaires;
         $gestionnaires->setAssociation($this);
@@ -196,7 +196,7 @@ class Association extends Subject
         return $this->centres;
     }
 
-    public function addCentre(Centre $centre): self
+    public function addCentre(Centre $centre): static
     {
         $this->centres[] = $centre;
         $centre->setAssociation($this);
