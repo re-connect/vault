@@ -10,7 +10,7 @@
             </div>
             <div class="col-12 {{ direction == 'row-reverse' ? '' : 'offset-md-2' }} {{ feature.is_img_border == true ? ' d-flex border border-primary border-2 rounded-3 p-2 h-25 align-self-center' : '' }} col-md-5 text-center">
                 {% set img_path = 'build/images/home/'~ feature.img_fileName %}
-                <img class="{{ feature.is_mobile ? 'feature-transmission-mockup' : '' }} {{ feature.is_img_border ? 'object-fit-contain w-25' : 'box-shadow-light-blue w-100' }} border-radius-20"
+                <img class="{{ feature.is_mobile ? 'feature-transmission-mockup' : '' }} {{ feature.img_class }}"
                      src="{{ asset(img_path) }}" alt="{{ feature.img_alt|trans }}">
                 {% if feature.img_logo_text is defined and feature.img_logo_text is not empty %}
                     <p class="text-sm-start text-primary align-self-center fs-6 mx-2 mb-0">{{ feature.img_logo_text|trans|raw}}</p>
