@@ -2,7 +2,7 @@
 
 namespace App\ManagerV2;
 
-use App\Entity\Administrateur;
+use App\Entity\Attributes\Administrateur;
 use App\Entity\Attributes\Association;
 use App\Entity\Beneficiaire;
 use App\Entity\Gestionnaire;

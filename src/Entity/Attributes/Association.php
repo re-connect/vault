@@ -54,6 +54,12 @@ class Association extends Subject
         $this->updatedAt = new \DateTime();
     }
 
+    #[\Override]
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
     public static function getAllCategories()
     {
         return [

@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures\ORM;
 
-use App\Entity\Administrateur;
+use App\Entity\Attributes\Administrateur;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
