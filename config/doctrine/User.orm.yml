@@ -180,7 +180,7 @@ App\Entity\User:
 
     oneToOne:
         subjectAdministrateur:
-            targetEntity: App\Entity\Administrateur
+            targetEntity: App\Entity\Attributes\Administrateur
             mappedBy: user
         subjectBeneficiaire:
             targetEntity: App\Entity\Beneficiaire
