@@ -2,9 +2,9 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Administrateur;
-use App\Entity\Association;
 use App\Entity\Attributes\AccessToken;
+use App\Entity\Attributes\Administrateur;
+use App\Entity\Attributes\Association;
 use App\Entity\Attributes\Centre;
 use App\Entity\Beneficiaire;
 use App\Entity\BeneficiaireCentre;

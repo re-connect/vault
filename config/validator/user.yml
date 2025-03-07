@@ -102,7 +102,7 @@ App\Entity\Gestionnaire:
         user:
             -   Valid: ~
 
-App\Entity\Association:
+App\Entity\Attributes\Association:
     properties:
         nom:
             -   App\Validator\Constraints\ContainsAlphanumeric: ~

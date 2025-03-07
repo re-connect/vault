@@ -2,8 +2,8 @@
 
 namespace App\Manager;
 
-use App\Entity\Association;
 use App\Entity\Attributes\Adresse;
+use App\Entity\Attributes\Association;
 use App\Entity\Attributes\Centre;
 use App\Entity\Beneficiaire;
 use App\Entity\Gestionnaire;
