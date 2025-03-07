@@ -10,6 +10,7 @@ use App\Api\Filters\UsernameFilter;
 use App\Api\State\SearchBeneficiaryProvider;
 use App\Api\State\UserPasswordProcessor;
 use App\Entity\Attributes\AccessToken;
+use App\Entity\Attributes\Administrateur;
 use App\Entity\Attributes\Adresse;
 use App\Entity\Attributes\Association;
 use App\Entity\Attributes\Centre;
