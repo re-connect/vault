@@ -4,6 +4,8 @@ namespace App\Provider;
 
 class HomeProvider
 {
+    protected const DEFAULT_IMG_CLASS = 'box-shadow-light-blue w-100';
+
     public const VAULT_FEATURES_CONTENT = [
         [
             'title' => 'cfn_complete_secure_title',
@@ -77,6 +79,7 @@ class HomeProvider
             'is_mobile' => false,
             'img_logo_text' => 'referencing_ms3_ah_corridor',
             'is_img_border' => true,
+            'img_class' => 'object-fit-contain w-25',
         ],
         [
             'title' => 'rp_page_user_file_title',
@@ -86,6 +89,7 @@ class HomeProvider
             'is_mobile' => false,
             'img_logo_text' => '',
             'is_img_border' => false,
+            'img_class' => self::DEFAULT_IMG_CLASS,
         ],
         [
             'title' => 'rp_page_info_transmission_title',
@@ -95,6 +99,7 @@ class HomeProvider
             'is_mobile' => true,
             'img_logo_text' => '',
             'is_img_border' => false,
+            'img_class' => 'box-shadow-light-blue',
         ],
         [
             'title' => 'rp_page_housing_management_title',
@@ -104,6 +109,7 @@ class HomeProvider
             'is_mobile' => false,
             'img_logo_text' => '',
             'is_img_border' => false,
+            'img_class' => self::DEFAULT_IMG_CLASS,
         ],
         [
             'title' => 'rp_page_stats_automation_title',
@@ -114,6 +120,7 @@ class HomeProvider
             'is_mobile' => false,
             'img_logo_text' => '',
             'is_img_border' => false,
+            'img_class' => self::DEFAULT_IMG_CLASS,
         ],
     ];
 
