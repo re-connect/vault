@@ -1,4 +1,4 @@
-<section class="{{ background ?? 'bg-success' }} py-5">
+<section id="solutions-heading" class="{{ background ?? 'bg-success' }} py-5" aria-labelledby="solutions-heading">
     <div class="container">
         <h2 class="h2 pb-1 text-primary text-uppercase text-center">{{ title ?? 'home_our_solutions_title'|trans }}</h2>
         <div class="row py-4 my-auto justify-content-between">
@@ -8,7 +8,11 @@
                          alt="{{ 'home_our_solutions_alt_logo_cfn'|trans }}">
                     <p class="my-4 text-primary">{{ 'home_our_solutions_text_cfn'|trans }}</p>
                 </div>
-                <a class="btn-primary text-decoration-none mt-3 py-2 px-3 border-radius-40 font-size-1-1" href="{{ path('re_main_page_vault') }}">{{ 'home_our_solutions_CTA'|trans }}</a>
+                <a class="btn-primary text-decoration-none mt-3 py-2 px-3 border-radius-40 font-size-1-1"
+                   href="{{ path('re_main_page_vault') }}"
+                   aria-label="{{ 'home_our_solutions_CTA'|trans }} {{ 'home_our_solutions_alt_logo_cfn'| trans }}">
+                    {{ 'home_our_solutions_CTA'| trans }}
+                </a>
             </article>
             <article class="offset-2 col-8 offset-md-0 col-md-5 col-lg-3 offset-lg-0 d-flex flex-column align-items-center justify-content-between py-5 px-4 my-3 bg-white text-center rounded {{ rpBoxShadow ?? '' }}">
                 <div>
@@ -22,7 +26,10 @@
                     <p class="text-sm-start text-primary align-self-center small mb-0">{{ 'referencing_ms3_ah_corridor'| trans|raw }}</p>
                 </div>
                 <a class="btn-primary text-decoration-none mt-3 py-2 px-3 border-radius-40 font-size-1-1"
-                   href="{{ path('re_main_page_RP') }}">{{ 'home_our_solutions_CTA'|trans }}</a>
+                   href="{{ path('re_main_page_RP') }}"
+                   aria-label="{{ 'home_our_solutions_CTA'|trans }} {{ 'home_our_solutions_alt_logo_rp'| trans }}">
+                    {{ 'home_our_solutions_CTA'| trans }}
+                </a>
             </article>
             <article class="offset-2 col-8 offset-md-0 col-md-5 col-lg-3 offset-lg-0 d-flex flex-column align-items-center justify-content-around py-5 px-4 my-3 bg-white text-center rounded {{ digitalCaresBoxShadow ?? '' }}">
                 <img class="mb-3 w-100 mt-1" src="{{ asset('build/images/home/logo_digital_cares_yellow.png') }}"
@@ -31,7 +38,10 @@
                 <img class="w-75 h-75"
                      src="{{ asset('build/images/home/digital_cares_qualiopi.png') }}" alt="{{ 'digital_cares_qualiopi_content_img_alt'|trans }}">
                 <a class="btn-primary text-decoration-none mt-3 py-2 px-3 border-radius-40 font-size-1-1"
-                   href="{{ path('digital_cares') }}">{{ 'home_our_solutions_CTA'|trans }}</a>
+                   href="{{ path('digital_cares') }}"
+                   aria-label="{{ 'home_our_solutions_CTA'|trans }} {{ 'digital_cares_logo_alt'| trans }}">
+                    {{ 'home_our_solutions_CTA'| trans }}
+                </a>
             </article>
         </div>
     </div>
