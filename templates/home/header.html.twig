@@ -1,7 +1,7 @@
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border-bottom border-primary py-2 py-lg-0">
+<header role="banner">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border-bottom border-primary py-2 py-lg-0" aria-label="navigation principal">
         <div class="container-fluid">
-            <a target="_self" href="{{ path('re_main_accueil') }}">
+            <a class="navbar-brand" href="{{ path('re_main_accueil') }}">
                 <img id="logo-header-reconnect" src="{{ asset('build/images/home/logo_reconnect_simple.png') }}"
                      alt="{{ 'alt_logo_reconnect'| trans }}">
             </a>
@@ -11,24 +11,38 @@
                     data-bs-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup"
                     aria-expanded="false"
-                    aria-label="Toggle navigation">
+                    aria-label="toggle menu">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-                <div class="navbar-nav text-center font-size-1-3 d-flex justify-content-around">
-                    <a target="_self" class="nav-item nav-link nav-links px-5"
-                       href="{{ path('re_main_page_vault') }}">{{ 'header_link_cfn'|trans|raw }}</a>
-                    <a target="_self" class="nav-item nav-link nav-links px-5"
-                       href="{{ path('re_main_page_RP') }}">{{ 'header_link_rp'|trans|raw }}</a>
-                    <a target="_self" class="nav-item nav-link nav-links px-5"
-                       href="{{ path('digital_cares') }}">{{ 'digital_cares'|trans|nl2br }}</a>
-                    <a target="_self" class="nav-item nav-link nav-links px-5"
-                       href="{{ path('re_main_accueil') }}#qui-sommes-nous">{{ 'header_link_who_we_are'|trans|raw }}</a>
-                    <a target="_blank" class="nav-item nav-link nav-links text-primary px-5"
-                       href="https://medium.com/reconnect">{{ 'header_link_our_blog'|trans|raw }}</a>
-                    <a target="_self" class="nav-item nav-link nav-links px-5"
-                       href="{{ path('re_main_contactV2') }}">{{ 'header_link_contact'|trans|raw }}</a>
-                </div>
+                <ul class="navbar-nav text-center font-size-1-3 d-flex justify-content-around">
+                    <li class="nav-item">
+                        <a target="_self" class="nav-link nav-links px-5"
+                           href="{{ path('re_main_page_vault') }}">{{ 'header_link_cfn'|trans|raw }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a target="_self" class="nav-link nav-links px-5"
+                           href="{{ path('re_main_page_RP') }}">{{ 'header_link_rp'|trans|raw }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a target="_self" class="nav-link nav-links px-5"
+                           href="{{ path('digital_cares') }}">{{ 'digital_cares'|trans|nl2br }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a target="_self" class="nav-link nav-links px-5"
+                           href="{{ path('re_main_accueil') }}#qui-sommes-nous">{{ 'header_link_who_we_are'|trans|raw }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a target="_blank" class="nav-link nav-links text-primary px-5"
+                           href="https://medium.com/reconnect"
+                           rel="noopener"
+                           aria-label="{{ 'header_link_our_blog'|trans }} (s'ouvre dans un nouvel onglet)">{{ 'header_link_our_blog'|trans|raw }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a target="_self" class="nav-link nav-links px-5"
+                           href="{{ path('re_main_contactV2') }}">{{ 'header_link_contact'|trans|raw }}</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
