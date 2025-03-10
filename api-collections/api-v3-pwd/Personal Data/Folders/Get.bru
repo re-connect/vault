@@ -1,12 +1,12 @@
 meta {
-  name: Folders
+  name: Get
   type: http
-  seq: 2
+  seq: 5
 }
 
-post {
-  url: {{baseUrl}}/api/v3/folders
-  body: json
+get {
+  url: {{baseUrl}}/api/v3/folders/{id}
+  body: none
   auth: none
 }
 
@@ -17,4 +17,8 @@ body:json {
     "nom": "string"
   //   "beneficiaire": "string",
   }
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
 }

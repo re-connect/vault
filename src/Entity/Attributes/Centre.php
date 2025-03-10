@@ -608,10 +608,10 @@ class Centre implements \JsonSerializable, \Stringable
     {
         if ($this->id) {
             $this->adresse = clone $this->adresse;
-            $this->consultationsCentre = [];
-            $this->externalLinks = [];
-            $this->sms = [];
-            $this->statistiquesCentre = [];
+            $this->consultationsCentre = new ArrayCollection();
+            $this->externalLinks = new ArrayCollection();
+            $this->sms = new ArrayCollection();
+            $this->statistiquesCentre = new ArrayCollection();
             $this->typeCentre = clone $this->typeCentre;
             $this->canada = true;
             $beneficiairesCentres = new ArrayCollection();
