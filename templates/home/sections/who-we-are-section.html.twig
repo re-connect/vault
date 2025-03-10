@@ -1,6 +1,6 @@
-<section id="qui-sommes-nous" class="py-5">
+<section id="qui-sommes-nous" class="py-5" aria-labelledby="qui-sommes-nous-title">
     <div class="container px-5 px-sm-2 px-md-0">
-        <h2 class="h2 pb-1 text-primary text-uppercase text-center">{{ 'home_who_we_are_title'| trans }}</h2>
+        <h2 class="h2 pb-1 text-primary text-uppercase text-center">{{ 'home_who_we_are_title'|trans }}</h2>
         <div class="row py-4">
             <div class="py-2 col-12 col-sm-12 col-md-5 offset-lg-1 col-lg-4">
                 <img class="w-100 box-shadow-primary rounded"
@@ -8,14 +8,14 @@
                      alt="{{ 'home_who_we_are_alt_img'| trans }}">
             </div>
             <div class="py-2 col-12 col-sm-12 col-md-6 offset-md-1 col-lg-5">
-                <p class="text-primary">{{ 'home_who_we_are_p1'| trans }}</p>
-                <p class="text-primary">{{ 'home_who_we_are_p2'| trans }}</p>
-                <p class="text-primary">{{ 'home_who_we_are_p3'| trans }}</p>
+                <p class="text-primary">{{ 'home_who_we_are_p1'|trans }}</p>
+                <p class="text-primary">{{ 'home_who_we_are_p2'|trans }}</p>
+                <p class="text-primary">{{ 'home_who_we_are_p3'|trans }}</p>
             </div>
         </div>
         <div class="text-center mt-2">
             <a class="btn btn-primary text-decoration-none py-2 px-3 rounded-pill font-size-1-3" target="_blank"
-               href="{{ path('re_admin_annexe', {url: 'rapport-activite'}) }}"
+               href="{{ path('re_admin_annexe', {url: 'rapport-activite'}) }}" aria-label="{{ 'our_activity_report'|trans }}"
             >
                 {{ 'our_activity_report'|trans }}
             </a>
