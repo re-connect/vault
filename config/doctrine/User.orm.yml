@@ -183,7 +183,7 @@ App\Entity\User:
             targetEntity: App\Entity\Attributes\Administrateur
             mappedBy: user
         subjectBeneficiaire:
-            targetEntity: App\Entity\Beneficiaire
+            targetEntity: App\Entity\Attributes\Beneficiaire
             mappedBy: user
             cascade: [ "persist" ]
         subjectMembre:

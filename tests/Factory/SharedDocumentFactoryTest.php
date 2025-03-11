@@ -3,7 +3,7 @@
 namespace App\Tests\Factory;
 
 use ApiPlatform\Api\UrlGeneratorInterface;
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Document;
 use App\Entity\User;
 use App\Factory\SharedDocumentFactory;

@@ -2,7 +2,7 @@
 
 namespace App\ServiceV2;
 
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Evenement;
 use App\Entity\Helper\Notification\Notification;
 use App\Entity\Helper\Notification\NotificationAction;

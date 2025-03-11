@@ -2,7 +2,7 @@
 
 namespace App\FormV2\UserCreation;
 
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Helper\SecretQuestionsHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

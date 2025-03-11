@@ -34,7 +34,7 @@ App\Entity\Evenement:
     lifecycleCallbacks: { }
     manyToOne:
         beneficiaire:
-            targetEntity: App\Entity\Beneficiaire
+            targetEntity: App\Entity\Attributes\Beneficiaire
             inversedBy: evenements
             joinColumn:
                 nullable: false

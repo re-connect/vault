@@ -2,7 +2,7 @@
 
 namespace App\Command\DataMigration;
 
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Client;
 use App\Entity\ClientBeneficiaire;
 use App\Repository\BeneficiaireRepository;
