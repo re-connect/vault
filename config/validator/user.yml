@@ -64,29 +64,6 @@ App\Entity\Membre:
         user:
             -   Valid: ~
 
-App\Entity\Attributes\Beneficiaire:
-    constraints:
-        -   App\Validator\Constraints\Beneficiaire\Entity:
-                groups: [ beneficiaire ]
-    properties:
-        questionSecrete:
-            -   NotBlank:
-                    message: secret_question_not_empty
-                    groups: [ beneficiaireQuestionSecrete ]
-        reponseSecrete:
-            -   NotBlank:
-                    message: secret_answer_not_empty
-                    groups: [ beneficiaireQuestionSecrete ]
-            -   Length:
-                    min: 3
-                    groups: [ beneficiaireQuestionSecrete ]
-        dateNaissance:
-            -   NotBlank:
-                    message: birthdate_not_empty
-                    groups: [ beneficiaire ]
-        user:
-            -   Valid: ~
-
 App\Entity\Gestionnaire:
     properties:
         association:

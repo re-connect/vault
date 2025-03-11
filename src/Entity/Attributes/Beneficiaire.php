@@ -31,6 +31,7 @@ use App\Entity\Note;
 use App\Entity\SMS;
 use App\Entity\User;
 use App\Entity\UserWithCentresInterface;
+use App\Validator\Constraints\Beneficiaire as CustomAssert;
 use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -42,6 +43,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiFilter(DistantIdFilter::class, properties: ['distantId'])]
 #[ApiResource(
@@ -80,6 +82,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"
 )]
 #[Anonymize('reconnect.beneficiary_filter')]
+#[CustomAssert\Entity(groups: ['beneficiaire'])]
 #[ORM\Entity(repositoryClass: \App\Repository\BeneficiaireRepository::class)]
 #[ORM\Table(name: 'beneficiaire')]
 #[ORM\Index(name: 'IDX_B140D802B660D3F4', columns: ['creePar_id'])]
@@ -109,16 +112,20 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     private ?int $totalFileSize = 0;
 
     #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
+    #[Assert\NotBlank(message: 'secret_question_not_empty', groups: ['beneficiaireQuestionSecrete'])]
     #[ORM\Column(name: 'questionSecrete', type: 'string', length: 255, nullable: true)]
     private ?string $questionSecrete = null;
 
     #[Groups(['write'])]
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_SECRET_ANSWER]])]
+    #[Assert\NotBlank(message: 'secret_answer_not_empty', groups: ['beneficiaireQuestionSecrete'])]
+    #[Assert\Length(min: 3, groups: ['beneficiaireQuestionSecrete'])]
     #[ORM\Column(name: 'reponseSecrete', type: 'string', length: 255, nullable: true)]
     private ?string $reponseSecrete = null;
 
     #[Groups(['read', 'write', 'beneficiary:read', 'v3:beneficiary:write', 'v3:beneficiary:read'])]
     #[Anonymize('date', options: ['min' => 'now -70 years', 'max' => 'now -15 years'])]
+    #[Assert\NotBlank(message: 'birthdate_not_empty', groups: ['beneficiaire'])]
     #[ORM\Column(name: 'dateNaissance', type: 'date', nullable: false)]
     private \DateTime $dateNaissance;
 
@@ -150,6 +157,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     #[ORM\JoinColumn(name: 'creationProcess_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     private ?BeneficiaryCreationProcess $creationProcess = null;
 
+    #[Assert\Valid]
     #[ORM\OneToOne(inversedBy: 'subjectBeneficiaire', targetEntity: User::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: true)]
     protected ?User $user = null;
