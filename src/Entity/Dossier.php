@@ -12,6 +12,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\FolderIcon;
 use App\Entity\Interface\FolderableEntityInterface;
 use App\Validator\Constraints\Folder as AssertFolder;

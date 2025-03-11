@@ -56,7 +56,7 @@ services:
         class: App\Admin\BeneficiaireAdmin
         arguments:
             - ~
-            - App\Entity\Beneficiaire
+            - App\Entity\Attributes\Beneficiaire
             - ~
             - '@Symfony\Component\Routing\RouterInterface'
             - '@Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface'

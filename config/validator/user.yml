@@ -64,7 +64,7 @@ App\Entity\Membre:
         user:
             -   Valid: ~
 
-App\Entity\Beneficiaire:
+App\Entity\Attributes\Beneficiaire:
     constraints:
         -   App\Validator\Constraints\Beneficiaire\Entity:
                 groups: [ beneficiaire ]

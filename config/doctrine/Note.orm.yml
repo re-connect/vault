@@ -8,7 +8,7 @@ App\Entity\Note:
   lifecycleCallbacks: {  }
   manyToOne:
     beneficiaire:
-      targetEntity: App\Entity\Beneficiaire
+      targetEntity: App\Entity\Attributes\Beneficiaire
       inversedBy: notes
       joinColumn:
         nullable: false

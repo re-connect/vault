@@ -3,7 +3,7 @@
 namespace App\Provider;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Client;
 use App\Entity\CreatorClient;
 use App\Entity\CreatorUser;
