@@ -3,7 +3,7 @@
 namespace App\ControllerV2;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Membre;
 use App\Repository\BeneficiaireRepository;
 use App\Security\VoterV2\ProVoter;

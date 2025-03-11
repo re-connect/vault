@@ -29,7 +29,7 @@ App\Entity\ConsultationCentre:
             joinColumn:
                 nullable: false
         beneficiaire:
-            targetEntity: App\Entity\Beneficiaire
+            targetEntity: App\Entity\Attributes\Beneficiaire
             inversedBy: consultationsCentre
             joinColumn:
                 nullable: false

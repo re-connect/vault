@@ -9,7 +9,7 @@ use ApiPlatform\State\ProcessorInterface;
 use App\Api\Dto\BeneficiaryDto;
 use App\Api\Dto\LinkBeneficiaryDto;
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Client;
 use App\Entity\ClientBeneficiaire;
 use App\ManagerV2\UserManager;

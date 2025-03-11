@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2\Validator;
 
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Validator\Constraints\SecretAnswer;
 use App\Validator\Constraints\SecretAnswerValidator;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;

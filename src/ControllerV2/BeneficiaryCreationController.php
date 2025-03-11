@@ -2,8 +2,8 @@
 
 namespace App\ControllerV2;
 
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
-use App\Entity\Beneficiaire;
 use App\FormV2\UserCreation\CreateBeneficiaryType;
 use App\ManagerV2\BeneficiaryCreationManager;
 use Doctrine\ORM\EntityManagerInterface;
