@@ -4,9 +4,7 @@ namespace App\Validator\Constraints\Beneficiaire;
 
 use Symfony\Component\Validator\Constraint;
 
-/**
- * @Annotation
- */
+#[\Attribute]
 class Entity extends Constraint
 {
     public $message = '';
