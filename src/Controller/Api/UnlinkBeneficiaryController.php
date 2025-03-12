@@ -3,7 +3,7 @@
 namespace App\Controller\Api;
 
 use App\ControllerV2\AbstractController;
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Repository\BeneficiaireRepository;
 use App\ServiceV2\BeneficiaryClientLinkService;
 use Doctrine\ORM\EntityManagerInterface;

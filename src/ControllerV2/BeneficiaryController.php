@@ -3,7 +3,7 @@
 namespace App\ControllerV2;
 
 use App\Domain\Export\BeneficiaryData\BeneficiaryDataExporter;
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\FormV2\FilterUser\FilterUserFormModel;
 use App\FormV2\FilterUser\FilterUserType;
 use App\FormV2\UserCreation\SecretQuestionType;

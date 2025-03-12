@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Attributes\Beneficiaire;
+
 class ClientBeneficiaire extends ClientEntity
 {
     private ?BeneficiaireCentre $beneficiaireCentre = null;

@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\FormV2\AnswerSecretQuestionType;
 use App\FormV2\UserAffiliation\Model\SearchBeneficiaryFormModel;
 use App\FormV2\UserAffiliation\RelayAffiliationSmsCodeType;

@@ -38,7 +38,7 @@ App\Entity\Gestionnaire:
             orphanRemoval: true
     manyToOne:
         association:
-            targetEntity: App\Entity\Association
+            targetEntity: App\Entity\Attributes\Association
             inversedBy: gestionnaires
             joinColumn:
                 nullable: false
