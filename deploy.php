@@ -40,6 +40,15 @@ host('vault-pp')
     ->set('homepage_url', 'https://preprod.reconnect.fr')
     ->add('shared_files', ['config/secrets/preprod/preprod.decrypt.private.php']);
 
+host('migration-vault-prod')
+    ->setLabels(['stage' => 'migration-prod'])
+    ->set('branch', 'main')
+    ->set('deploy_path', '~/www')
+    ->set('yarn_path', 'yarn')
+    ->set('http_user', 'reconnect_fr')
+    ->set('homepage_url', 'https://migration.reconnect.fr')
+    ->add('shared_files', ['config/secrets/prod/prod.decrypt.private.php']);
+
 host('vault-prod')
     ->setLabels(['stage' => 'prod'])
     ->set('branch', 'main')
