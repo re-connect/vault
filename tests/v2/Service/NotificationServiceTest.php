@@ -3,7 +3,7 @@
 namespace App\Tests\v2\Service;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Evenement;
 use App\Entity\Rappel;
 use App\Entity\SMS;

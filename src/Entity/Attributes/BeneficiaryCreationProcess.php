@@ -2,7 +2,6 @@
 
 namespace App\Entity\Attributes;
 
-use App\Entity\Beneficiaire;
 use App\Entity\User;
 use App\RepositoryV2\BeneficiaryCreationProcessRepository;
 use Doctrine\ORM\Mapping as ORM;

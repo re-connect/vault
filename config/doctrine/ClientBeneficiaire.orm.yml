@@ -11,7 +11,7 @@ App\Entity\ClientBeneficiaire:
         comment: Identifier of the external initiator member (No entity link).
   manyToOne:
     entity:
-      targetEntity: App\Entity\Beneficiaire
+      targetEntity: App\Entity\Attributes\Beneficiaire
       inversedBy: externalLinks
   oneToOne:
     beneficiaireCentre:
