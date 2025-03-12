@@ -19,7 +19,7 @@ class Administrateur extends Subject
     protected ?int $id = null;
 
     #[ORM\OneToOne(inversedBy: 'subjectAdministrateur', targetEntity: User::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: false)]
     protected ?User $user = null;
 
     #[\Override]

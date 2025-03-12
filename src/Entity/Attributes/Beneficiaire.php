@@ -85,7 +85,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[CustomAssert\Entity(groups: ['beneficiaire'])]
 #[ORM\Entity(repositoryClass: \App\Repository\BeneficiaireRepository::class)]
 #[ORM\Table(name: 'beneficiaire')]
-#[ORM\Index(name: 'IDX_B140D802B660D3F4', columns: ['creePar_id'])]
 #[ORM\UniqueConstraint(name: 'UNIQ_B140D80292D7762C', columns: ['creationProcess_id'])]
 #[ORM\UniqueConstraint(name: 'UNIQ_B140D802A76ED395', columns: ['user_id'])]
 class Beneficiaire extends Subject implements UserWithCentresInterface, ClientResourceInterface
@@ -105,7 +104,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     protected ?int $id = null;
 
     #[ORM\Column(name: 'totalFileSize', type: 'integer', nullable: true)]
@@ -159,12 +158,8 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     #[Assert\Valid]
     #[ORM\OneToOne(inversedBy: 'subjectBeneficiaire', targetEntity: User::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: true)]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: false)]
     protected ?User $user = null;
-
-    #[ORM\ManyToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(name: 'creePar_id', referencedColumnName: 'id', nullable: true)]
-    private ?User $creePar = null;
 
     #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: Document::class, cascade: ['persist', 'remove'])]
     private Collection $documents;
@@ -183,7 +178,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
     #[SerializedName('centres')]
-    #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: BeneficiaireCentre::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: BeneficiaireCentre::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $beneficiairesCentres;
 
     #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: ConsultationCentre::class, cascade: ['persist', 'remove'])]
@@ -196,7 +191,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     private Collection $consultationsBeneficiaires;
 
     #[UniqueExternalLink]
-    #[ORM\OneToMany(mappedBy: 'entity', targetEntity: ClientBeneficiaire::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'entity', targetEntity: ClientBeneficiaire::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $externalLinks;
 
     #[Gedmo\Timestampable(on: 'create')]
