@@ -8,7 +8,6 @@
             </div>
         {% endfor %}
     {% endfor %}
-
     {% if auth_error %}
         <div class="alert alert-danger">{{ auth_error.messageKey|trans(auth_error.messageData, 'security') }}</div>
     {% endif %}
