@@ -43,7 +43,7 @@ class FolderTreeDownloader
                     'Content-Type' => 'application/zip',
                     'Content-Disposition' => HeaderUtils::makeDisposition(
                         HeaderUtils::DISPOSITION_ATTACHMENT,
-                        sprintf('%s.zip', $folder->getNom()),
+                        sprintf('%s.zip', $folder->getSluggedName()),
                     ),
                 ]
             );
