@@ -1,10 +1,14 @@
-<div class="{{ loop.index is same as(1) ? 'carousel-item active' : 'carousel-item'  }}">
+<div class="{{ loop.index is same as(1) ? 'carousel-item active' : 'carousel-item' }}"
+     aria-roledescription="slide"
+     aria-label="citation {{ loop.index }} de {{ verbatims|length }}">
     <article class="offset-1 col-10 offset-lg-1 col-lg-10 text-center py-3">
         {% set verbatimContentKey = 'verbatim_content_'~loop.index %}
         {% set verbatimAuthorKey = 'verbatim_author_'~loop.index %}
-        <p class="h3 mb-3">" {{ verbatim.content }} "</p>
-        <div class="text-center">
-            <p>{{ verbatim.author }}</p>
-        </div>
+        <blockquote class="m-0">
+            <p class="h3 mb-3">" {{ verbatim.content }} "</p>
+            <footer>
+                <cite>{{ verbatim.author }}</cite>
+            </footer>
+        </blockquote>
     </article>
 </div>
