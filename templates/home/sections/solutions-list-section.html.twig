@@ -1,6 +1,6 @@
-<section class="py-5">
+<section class="py-5" aria-labelledby="solutions-heading">
     <div class="container">
-        <h2 class="h2 text-primary pb-1 text-uppercase text-center">{{ 'home_solutions_list_title'| trans }}</h2>
+        <h2 id="solutions-heading" class="h2 text-primary pb-1 text-uppercase text-center">{{ 'home_solutions_list_title'| trans }}</h2>
         <div class="row py-4">
             <div class="col-11 col-md-6 px-5">
                 {% set solutions_left = [
@@ -24,13 +24,14 @@
                     },
                 ] %}
                 {% for solution in solutions_left %}
-                    <article class="d-flex my-3 mx-0 w-100">
+                    <article class="d-flex my-3 mx-0 w-100" aria-labelledby="title-{{ loop.index }}">
                         <div>
                             <img class="solutions-list-icon" src="{{ asset(solution.img) }}"
-                                 alt="{{ solution.alt_img| trans }}">
+                                 alt="{{ solution.alt_img| trans }}"
+                                 aria-hidden="true">
                         </div>
                         <div class="ps-3 text-primary">
-                            <h3 class="h3">{{ solution.title| trans }}</h3>
+                            <h3 id="title-{{ loop.index }}" class="h3">{{ solution.title| trans }}</h3>
                             <p>{{ solution.text| trans }}</p>
                         </div>
                     </article>
@@ -52,13 +53,14 @@
                     }
                 ] %}
                 {% for solution in solutions_right %}
-                    <article class="d-flex my-3 mx-0 w-100">
+                    <article class="d-flex my-3 mx-0 w-100" aria-labelledby="title-right-{{ loop.index }}">
                         <div>
                             <img class="solutions-list-icon" src="{{ asset(solution.img) }}"
-                                 alt="{{ solution.alt_img| trans }}">
+                                 alt="{{ solution.alt_img| trans }}"
+                                 aria-hidden="true">
                         </div>
                         <div class="ps-3 text-primary">
-                            <h3 class="h3">{{ solution.title| trans }}</h3>
+                            <h3 id="title-right-{{ loop.index }}" class="h3">{{ solution.title| trans }}</h3>
                             <p>{{ solution.text| trans }}</p>
                         </div>
                     </article>
