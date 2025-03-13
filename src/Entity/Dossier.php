@@ -20,6 +20,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DocumentRepository")
@@ -273,5 +274,10 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     public function getIconFilePath(): ?string
     {
         return $this->icon?->getPublicFilePath() ?? self::DEFAULT_ICON_FILE_PATH;
+    }
+
+    public function getSluggedName(): string
+    {
+        return (new AsciiSlugger())->slug($this->nom);
     }
 }
