@@ -12,6 +12,7 @@ use App\ManagerV2\BeneficiaryAffiliationManager;
 use App\ServiceV2\PaginatorService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -26,8 +27,13 @@ class BeneficiaryAffiliationController extends AbstractController
     }
 
     #[Route(path: '/beneficiary/affiliate/search', name: 'affiliate_beneficiary_search', methods: ['GET', 'POST'])]
-    public function search(Request $request, BeneficiaryAffiliationManager $manager, PaginatorService $paginator): Response
-    {
+    public function search(
+        Request $request,
+        BeneficiaryAffiliationManager $manager,
+        PaginatorService $paginator,
+        #[MapQueryParameter] ?string $firstname,
+        #[MapQueryParameter] ?string $lastname,
+    ): Response {
         $birthDate = null;
         try {
             $birthDate = new \DateTime($request->query->getAlnum('birthdate'));
@@ -35,8 +41,8 @@ class BeneficiaryAffiliationController extends AbstractController
         }
 
         $searchBeneficiaryModel = (new SearchBeneficiaryFormModel(
-            $request->query->getAlnum('firstname'),
-            $request->query->getAlnum('lastname'),
+            $firstname,
+            $lastname,
             $birthDate,
         ));
 
