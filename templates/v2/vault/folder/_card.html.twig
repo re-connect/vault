@@ -1,11 +1,12 @@
+{% set isBenef = app.user.isBeneficiaire %}
 <tr class="text-primary text-center draggable droppable position-relative"
-    {{ stimulus_controller('ajax-toggle', {'url': path('folder_toggle_visibility', {'id': folder.id}) })|stimulus_target('drag_n_drop', 'folder') }}
+        {{ stimulus_controller('ajax-toggle', {'url': path('folder_toggle_visibility', {'id': folder.id}) })|stimulus_target('drag_n_drop', 'folder') }}
     data-id="{{ folder.id }}"
 >
     <td class="bg-white borderless text-start align-middle position-relative
         {{ folder.bPrive ? 'private' : 'shared' }}
-        {{ app.user.isBeneficiaire ? 'personal-data-card' : '' }}"
-        {{ stimulus_target('ajax-toggle', 'card') }}
+        {{ isBenef ? 'personal-data-card' : '' }}"
+            {{ stimulus_target('ajax-toggle', 'card') }}
         data-toggle-classes="shared private"
     >
         <a href="{{ path('folder', {'id': folder.id}) }}" class="text-decoration-none text-primary d-block">
@@ -19,7 +20,7 @@
             <span class="text-light-grey">{{ folder.createdAt|date('d/m/Y') }}</span>
         </a>
     </td>
-    <td class="bg-white borderless align-middle">
+    <td class="bg-white borderless align-middle {{ isBenef  ? '' : 'text-end' }}">
         {% if folder.documents is not empty %}
             {{ include('v2/vault/components/_download_folder_document_button.html.twig', {
                 'path': path('folder_download', {'id': folder.id}),
@@ -30,8 +31,8 @@
             </i>
         {% endif %}
     </td>
-    <td class="bg-white borderless w-25 align-middle">
-        {% if app.user.isBeneficiaire %}
+    {% if isBenef %}
+        <td class="bg-white borderless w-25 align-middle">
             {% if folder.canToggleVisibility %}
                 {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
                     'url': path('folder_toggle_visibility', {'id': folder.id}),
@@ -41,8 +42,8 @@
             {% else %}
                 <i class="fas fa-lock text-primary me-2" {{ stimulus_controller('tooltip', {title: 'private'|trans}) }}></i>
             {% endif %}
-        {% endif %}
-    </td>
+        </td>
+    {% endif %}
     <td class="bg-white borderless text-end pe-3 pe-sm-4 align-middle" {{ stimulus_controller('dropdown-menu') }}>
         {{ include('v2/vault/components/_action_dropdown.html.twig', {personalData: folder}) }}
     </td>

@@ -1,12 +1,13 @@
+{% set isBenef = app.user.isBeneficiaire %}
 <tr class="text-primary text-center draggable position-relative"
     data-id="{{ document.id }}"
     data-type="document"
-    {{ stimulus_controller('ajax-toggle', {'url': path('document_toggle_visibility', {'id': document.id}) })|stimulus_controller('modal') }}
+        {{ stimulus_controller('ajax-toggle', {'url': path('document_toggle_visibility', {'id': document.id}) })|stimulus_controller('modal') }}
 >
     <td class="bg-white borderless text-start align-middle position-relative
         {{ document.bPrive ? 'private' : 'shared' }}
-        {{ app.user.isBeneficiaire ? 'personal-data-card' : '' }}"
-        {{ stimulus_target('ajax-toggle', 'card') }}
+        {{ isBenef ? 'personal-data-card' : '' }}"
+            {{ stimulus_target('ajax-toggle', 'card') }}
         data-toggle-classes="shared private"
     >
         <button class="btn p-0" {{ stimulus_action('modal', 'open') }}>
@@ -21,13 +22,13 @@
         </button>
         {{ include('v2/vault/document/modal.html.twig') }}
     </td>
-    <td class="bg-white borderless align-middle">
+    <td class="bg-white borderless align-middle {{ isBenef  ? '' : 'text-end' }}">
         {{ include('v2/vault/components/_download_folder_document_button.html.twig', {
             'path': path('document_download', {'id': document.id}),
         }) }}
     </td>
-    <td class="bg-white borderless w-25 align-middle">
-        {% if app.user.isBeneficiaire %}
+    {% if isBenef %}
+        <td class="bg-white borderless w-25 align-middle">
             {% if document.canToggleVisibility %}
                 {{ include('v2/vault/components/_toggle_visibility_button.html.twig', {
                     'url': path('document_toggle_visibility', {'id': document.id}),
@@ -36,8 +37,8 @@
             {% else %}
                 <i class="fas fa-lock text-primary me-2" {{ stimulus_controller('tooltip', {title: 'private'|trans}) }}></i>
             {% endif %}
-        {% endif %}
-    </td>
+        </td>
+    {% endif %}
     <td class="bg-white borderless text-end pe-3 pe-sm-4 align-middle" {{ stimulus_controller('dropdown-menu') }}>
         {{ include('v2/vault/components/_action_dropdown.html.twig', {personalData: document}) }}
     </td>
