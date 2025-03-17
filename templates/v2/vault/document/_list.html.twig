@@ -4,25 +4,25 @@
         <th class="bg-grey borderless text-start"></th>
         <th class="bg-grey borderless text-start w-100">{{ 'name'|trans }}</th>
         <th class="bg-grey borderless px-0 px-sm-5"></th>
-        <th class="bg-grey borderless pe-3 w-25">
-            {% if app.user.isBeneficiaire and currentFolder is not defined %}
+        {% if app.user.isBeneficiaire and currentFolder is not defined %}
+            <th class="bg-grey borderless pe-3 w-25">
                 {{ 'access'|trans }}
-            {% endif %}
-        </th>
+            </th>
+        {% endif %}
         <th class="bg-grey borderless text-end pe-2 pe-sm-3">{{ 'actions'|trans }}</th>
     </tr>
     </thead>
     <tbody {{ stimulus_target('drag_n_drop', 'folderList') }}>
     {% for element in foldersAndDocuments %}
         {% if element is instanceof('App\\Entity\\Dossier') %}
-                {{ include('v2/vault/folder/_card.html.twig', {'folder': element}) }}
-        {% endif  %}
+            {{ include('v2/vault/folder/_card.html.twig', {'folder': element}) }}
+        {% endif %}
     {% endfor %}
     </tbody>
     <tbody {{ stimulus_target('drag_n_drop', 'documentList') }}>
     {% for element in foldersAndDocuments %}
         {% if element is instanceof('App\\Entity\\Document') %}
-                {{ include('v2/vault/document/_card.html.twig', {'document': element}) }}
+            {{ include('v2/vault/document/_card.html.twig', {'document': element}) }}
         {% endif %}
     {% endfor %}
     </tbody>
