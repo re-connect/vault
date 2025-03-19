@@ -2,17 +2,45 @@
     <div class="container">
         <h2 class="h2 pb-1 text-primary text-uppercase text-center">{{ 'home_press_title'| trans }}</h2>
         <div class="row py-4 text-primary">
-            <div id="carousel-verbatim" class="carousel slide py-3" data-bs-ride="carousel">
+            <div id="carousel-verbatim"
+                 class="carousel slide py-3"
+                 data-bs-ride="carousel"
+                 aria-roledescription="carousel"
+                 aria-label="carousel verbatim">
+
                 <div class="carousel-indicators">
-                    {% for verbatim in verbatims  %}
-                        <button type="button" data-bs-target="#carousel-verbatim" data-bs-slide-to="{{ loop.index0 }}" class="{{ loop.index0 == 0 ? 'active' }} px-1 py-1 bg-primary border-0 mx-1 rounded-circle" aria-current="true" aria-label="Slide {{ loop.index0 }}"></button>
+                    {% for verbatim in verbatims %}
+                        <button type="button"
+                                data-bs-target="#carousel-verbatim"
+                                data-bs-slide-to="{{ loop.index0 }}"
+                                class="{{ loop.index0 == 0 ? 'active' }} px-1 py-1 bg-primary border-0 mx-1 rounded-circle"
+                                aria-current="{{ loop.index0 == 0 ? 'true' : 'false' }}"
+                                aria-label="citation de {{ verbatim.author|striptags }}">
+                        </button>
                     {% endfor %}
                 </div>
+
                 <div class="carousel-inner">
-                    {% for verbatim in verbatims  %}
+                    {% for verbatim in verbatims %}
                         {{ include('home/templates/verbatim-template.html.twig') }}
                     {% endfor %}
                 </div>
+
+                <button class="carousel-control-prev"
+                        type="button"
+                        data-bs-target="#carousel-verbatim"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">{{ 'previous'|trans }}</span>
+                </button>
+
+                <button class="carousel-control-next"
+                        type="button"
+                        data-bs-target="#carousel-verbatim"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">{{ 'next'|trans }}</span>
+                </button>
             </div>
         </div>
     </div>

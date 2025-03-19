@@ -1,26 +1,26 @@
 {% extends 'home/base.html.twig' %}
 
-    {% block title %}{{ 'home_meta_title_contact'| trans }}{% endblock %}
-    {% block meta_title %}{{ 'home_meta_title_contact'| trans }}{% endblock %}
+{% block title %}{{ 'home_meta_title_contact'| trans }}{% endblock %}
+{% block meta_title %}{{ 'home_meta_title_contact'| trans }}{% endblock %}
 
 {% block body %}
-    <section class="bg-light-purple mt-5 py-5 text-white">
+    <section class="bg-light-purple mt-5 py-5 text-white" aria-labelledby="contact-page-title">
         <div class="container mt-5">
             <div class="row pb-4">
                 <div class="col-12 offset-md-1 col-md-6 text-center mb-4">
-                    <h2 class="h2 text-uppercase py-3 mt-md-4 py-md-4 mt-lg-5 pt-lg-1 pb-lg-5">{{ 'contact_page_title'| trans }}</h2>
+                    <h2 id="contact-page-title" class="h2 text-uppercase py-3 mt-md-4 py-md-4 mt-lg-5 pt-lg-1 pb-lg-5">{{ 'contact_page_title'| trans }}</h2>
                     {{ include('home/pages/components/_reconnect_information.html.twig') }}
                 </div>
                 <div class="col-6 offset-3 col-md-4 offset-md-1">
                     <img class="img-fluid w-100" src="{{ asset('build/images/home/watermark_contact.png') }}"
-                         alt="{{ 'alt_logo_reconnect'| trans }}">
+                         alt="" aria-hidden="true">
                 </div>
             </div>
         </div>
     </section>
-    <section class="text-primary py-5">
+    <section class="text-primary py-5" aria-labelledby="offices-title">
         <div class="container">
-            <h2 class="text-uppercase">{{ 'contact_page_offices_title' |trans }}</h2>
+            <h2 id="offices-title" class="text-uppercase">{{ 'contact_page_offices_title' |trans }}</h2>
             <div class="row pt-4 pb-2">
                 {% set offices = [
                     {'region': 'contact_page_offices_region_aura', 'city': 'contact_page_offices_city_aura', 'link': 'aura@reconnect.fr' },
@@ -36,11 +36,13 @@
                     {'region': 'contact_page_offices_region_canada', 'city': 'contact_page_offices_city_canada', 'link': 'canada@reconnect.fr' },
                 ] %}
                 {% for office in offices %}
-                    <article class="col-6 col-lg-3 py-1 mb-3 mb-lg-4">
+                    <article class="col-6 col-lg-3 py-1 mb-3 mb-lg-4" aria-labelledby="office-{{ loop.index }}">
+                        <h3 id="office-{{ loop.index }}" class="visually-hidden">{{ office.region |trans }} - {{ office.city |trans }}</h3>
                         <p class="mb-0">{{ office.region |trans }}</p>
                         <p class="text-uppercase mb-0">{{ office.city |trans }}</p>
                         <a class="text-decoration-none font-size-1-1"
-                           href="mailto:{{ office.link }}">{{ office.link }}</a>
+                           href="mailto:{{ office.link }}"
+                           aria-label="{{ 'contact_by_email'|trans }} {{ office.region |trans }} {{ office.city |trans }}">{{ office.link }}</a>
                     </article>
                 {% endfor %}
             </div>
