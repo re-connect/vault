@@ -1,8 +1,8 @@
-<section class="{{ direction == 'row' ? 'bg-light-yellow' : '' }} py-2 py-md-5 px-4 px-md-0">
+<section class="{{ direction == 'row' ? 'bg-light-yellow' : '' }} py-2 py-md-5 px-4 px-md-0" aria-labelledby="feature-title-{{ feature.id}}">
     <div class="container py-3">
         <div class="row text-primary flex-{{ direction }}">
             <div class="col-12 {{ direction == 'row-reverse' ? 'offset-md-2' : '' }} col-md-5 p-3 d-flex flex-column justify-content-center">
-                <h2 class="h2 text-uppercase pb-2">{{ feature.title|trans }}</h2>
+                <h2 id="feature-title-{{ feature.id}}" class="h2 text-uppercase pb-2">{{ feature.title|trans }}</h2>
                 <p class="pt-2">{{ feature.text|trans }}</p>
             </div>
             <div class="col-12 {{ direction == 'row-reverse' ? '' : 'offset-md-2' }} col-md-5 text-center my-auto">
