@@ -35,7 +35,6 @@ host('vault-pp')
     ->setLabels(['stage' => 'preprod'])
     ->set('branch', 'dev')
     ->set('deploy_path', '~/www')
-    ->set('yarn_path', 'yarn')
     ->set('http_user', 'preprod_reconnect_fr')
     ->set('homepage_url', 'https://preprod.reconnect.fr')
     ->add('shared_files', ['config/secrets/preprod/preprod.decrypt.private.php']);
@@ -44,7 +43,6 @@ host('vault-prod')
     ->setLabels(['stage' => 'prod'])
     ->set('branch', 'main')
     ->set('deploy_path', '~/www')
-    ->set('yarn_path', '~/.yarn/bin/yarn')
     ->set('http_user', 'reconnect_fr')
     ->set('homepage_url', 'https://reconnect.fr')
     ->add('shared_files', ['config/secrets/prod/prod.decrypt.private.php']);
@@ -65,10 +63,10 @@ task('deploy:test_connection', function () {
     }
 });
 task('deploy:install_frontend', function () {
-    run('cd {{release_path}} && {{yarn_path}} install');
+    run('cd {{release_path}} && yarn install');
 });
 task('deploy:build_frontend', function () {
-    run('cd {{release_path}} && {{yarn_path}} build');
+    run('cd {{release_path}} && yarn build');
 });
 task('deploy:dump_frontend_routes', function () {
     run('cd {{release_path}} && {{bin/console}} fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json');
