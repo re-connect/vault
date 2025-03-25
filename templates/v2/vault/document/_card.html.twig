@@ -15,11 +15,11 @@
         </button>
     </td>
     <td class="bg-white borderless text-start align-middle w-100">
-        <button class="btn text-decoration-none text-start text-primary d-block w-100" {{ stimulus_action('modal', 'open') }}>
+        <a tabindex="0" role="button" class="btn text-decoration-none text-start text-primary d-block w-100" {{ stimulus_action('modal', 'open') }}>
             <span class="font-size-1">{{ document.nom }}</span>
             <br>
             <span class="text-light-grey">{{ document.createdAt|date('d/m/Y') }}</span>
-        </button>
+        </a>
         {{ include('v2/vault/document/modal.html.twig') }}
     </td>
     <td class="bg-white borderless align-middle {{ isBenef  ? '' : 'text-end' }}">
