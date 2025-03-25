@@ -6,7 +6,7 @@ monolog:
             type: rotating_file
             channels: [ deprecation ]
             path: "%kernel.logs_dir%/deprecations/%kernel.environment%.deprecations.log"
-            max_files: 10
+            max_files: 2
 
 when@dev:
     monolog:
