@@ -1,13 +1,13 @@
 meta {
-  name: Event
+  name: Delete
   type: http
   seq: 5
 }
 
 delete {
-  url: {{baseUrl}}/api/v3/events/{id}
+  url: {{baseUrl}}/api/v3/folders/{id}
   body: none
-  auth: bearer
+  auth: none
 }
 
 auth:bearer {

@@ -1,11 +1,11 @@
 meta {
-  name: GetCollection
+  name: Get
   type: http
-  seq: 1
+  seq: 5
 }
 
 get {
-  url: {{baseUrl}}/api/v3/beneficiaries/24977/documents
+  url: {{baseUrl}}/api/v3/events/{id}
   body: none
   auth: bearer
 }
