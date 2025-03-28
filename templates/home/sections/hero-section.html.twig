@@ -1,11 +1,12 @@
-<section class="home-main-section mt-5 pb-5 position-relative"
+<section class="home-main-section mt-5 pb-5 position-relative" aria-labelledby="main-heading"
          style="min-height: calc(100vh - 40px); background-image: url('{{ asset('build/images/home/banner_blue.jpg') }}');">
     <div class="container h-100 position-relative" style="z-index: 1">
         <div class="row">
             <div class="mx-auto offset-1 col-10 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-5 offset-lg-3 d-flex flex-column justify-content-evenly mt-md-5">
-                <img class=" w-100 px-1 pt-4 py-sm-5 mt-5 mt-md-4"
+                <h1 id="main-heading" class="visually-hidden">{{ 'reconnect'|trans }}</h1>
+                <img class="w-100 px-1 pt-4 py-sm-5 mt-5 mt-md-4"
                      src="{{ asset('build/images/home/logo_reconnect_light.png') }}"
-                     alt="logo-reconnect">
+                     alt="{{ 'alt_logo_reconnect'|trans }}">
             </div>
             <div class="row mx-auto">
                 <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
@@ -14,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div style="width: 100px; right: 5%; z-index: 1" class="position-absolute rounded">
+    <div style="width: 100px; right: 5%; z-index: 1" class="position-absolute rounded" aria-label="selecteur de langue">
         {{ include('home/_language-selector.html.twig') }}
     </div>
 </section>
