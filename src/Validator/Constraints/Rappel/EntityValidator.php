@@ -2,7 +2,7 @@
 
 namespace App\Validator\Constraints\Rappel;
 
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Rappel;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;

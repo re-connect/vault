@@ -2,7 +2,7 @@
 
 namespace App\EventSubscriber;
 
-use App\Entity\Association;
+use App\Entity\Attributes\Association;
 use App\Entity\Attributes\Centre;
 use App\Entity\User;
 use App\ManagerV2\UserManager;

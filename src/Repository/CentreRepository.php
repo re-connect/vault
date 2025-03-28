@@ -2,8 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
-use App\Entity\Beneficiaire;
 use App\Entity\BeneficiaireCentre;
 use App\Entity\MembreCentre;
 use App\Entity\User;

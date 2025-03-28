@@ -2,8 +2,8 @@
 
 namespace App\Controller\Rest;
 
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
-use App\Entity\Beneficiaire;
 use App\Entity\Contact;
 use App\Entity\Evenement;
 use App\Entity\Gestionnaire;

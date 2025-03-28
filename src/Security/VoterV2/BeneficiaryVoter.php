@@ -2,7 +2,7 @@
 
 namespace App\Security\VoterV2;
 
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\MembreCentre;
 use App\Entity\User;
 use App\Security\HelperV2\UserHelper;
