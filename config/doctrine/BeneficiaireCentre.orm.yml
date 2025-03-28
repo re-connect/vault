@@ -9,7 +9,7 @@ App\Entity\BeneficiaireCentre:
             joinColumn:
                 nullable: false
         beneficiaire:
-            targetEntity: App\Entity\Beneficiaire
+            targetEntity: App\Entity\Attributes\Beneficiaire
             inversedBy: beneficiairesCentres
             joinColumn:
                 nullable: false

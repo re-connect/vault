@@ -3,7 +3,7 @@
 namespace App\Domain\Export\BeneficiaryData;
 
 use App\Domain\Download\FolderTreeDownloader;
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Contact;
 use App\Entity\Evenement;
 use App\Entity\Note;

@@ -21,7 +21,7 @@ App\Entity\ConsultationBeneficiaire:
             joinColumn:
                 nullable: false
         beneficiaire:
-            targetEntity: App\Entity\Beneficiaire
+            targetEntity: App\Entity\Attributes\Beneficiaire
             inversedBy: consultationsBeneficiaires
             joinColumn:
                 nullable: false

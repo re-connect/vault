@@ -2,7 +2,7 @@
 
 namespace App\Api\Dto;
 
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\User;
 use App\Validator\Constraints\UniqueExternalLink;
 use Symfony\Component\Serializer\Annotation\Groups;

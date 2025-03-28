@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\FormV2\ResetPassword\BeneficiaryRequest\ResetPasswordSecretAnswerFormModel;
 use App\FormV2\ResetPassword\BeneficiaryRequest\ResetPasswordSecretAnswerType;
 use App\FormV2\ResetPassword\BeneficiaryRequest\ResetPasswordSmsFormModel;
