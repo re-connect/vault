@@ -1,4 +1,4 @@
-accept: Accepter
+accept: قبول کردن
 accept_terms_of_use: "J’accepte les conditions générales d’utilisation du service"
 accepted: Accepté
 access: Accès
@@ -76,14 +76,14 @@ beneficiary_reset_password_already_requested: Une demande de réinitialisation d
 beneficiary_reset_password_already_requested_by_email: Une demande de réinitialisation du mot de passe a déjà été effectuée pour ce bénéficiaire par email
 beneficiary_reset_password_email_has_been_sent: Un email a été envoyé au bénéficiaire avec des instructions pour renouveller son mot de passe
 beneficiary_reset_password_success: Le mot de passe du bénéficiaire %fullName% a bien été mis à jour
-secret_question_mother_firstname: 'Quel est le prénom de la mère du bénéficiaire ?'
-secret_question_pet: "Quel est le nom de l'animal de compagnie du bénéficiaire ?"
-secret_question_favorite_street: 'Quel est le nom de la rue préférée du bénéficiaire ?'
-secret_question_secondary_school: 'Quel établissement du secondaire le bénéficiaire se souvient avoir fréquenté ?'
-secret_question_nickname: 'Quel est le surnom du bénéficiaire ?'
-secret_question_city_of_birth: 'Quelle est la ville de naissance du bénéficiaire ?'
-secret_question_mother_lastname: 'Quel est le nom de famille de la mère du bénéficiaire ?'
-secret_question_custom: Autre
+secret_question_mother_firstname: 'ما اسم کوچک مادر مددجو است؟'
+secret_question_pet: "اسم حیوان خانگی مددجو چیست؟"
+secret_question_favorite_street: 'نام خیابان مورد علاقه مددجو چیست؟'
+secret_question_secondary_school: 'کدام مدرسه متوسط ​​مددجو به یاد دارد که به آن رفته است؟'
+secret_question_nickname: 'لقب مددجو چیست؟'
+secret_question_city_of_birth: 'شهر محل تولد مددجو کدام است؟'
+secret_question_mother_lastname: 'نام خانوادگی مادر مددجو چیست؟'
+secret_question_custom: دیگر
 beneficiary_will_give_you_secret_answer: Le bénéficiaire vous fournira la réponse à sa question secrète afin de réinitialiser son mot de passe
 beneficiary_will_give_you_secret_information: "Il vous communiquera le mot de passe qu'il souhaite utiliser ainsi qu'une question et une réponse secrète permettant de réinitialiser son mot de passe"
 beneficiary_will_receive_email_reset_request: Le bénéficiaire recevra un email lui permettant de réinitialiser son mot de passe directement
@@ -290,10 +290,10 @@ footer_discover_rp: 'Découvrir Reconnect Pro'
 footer_discover_vault: 'Découvrir le coffre-fort numérique'
 footer_group_sos_text: "Reconnect est une association du Groupe SOS intervenant auprès de l’association Groupe SOS Solidarités"
 footer_partners_text: 'Reconnect est soutenu par :'
-form_connexion: Connexion
+form_connexion: وارد شدن
 form_contains_error: Vos modifications n'ont pas été enregistrées. Veuillez vérifier les informations.
-form_forgot_password: "J'ai oublié mon mot de passe ou mon identifiant"
-form_login: "Nom d'utilisateur ou Email"
+form_forgot_password: "رمز عبور یا نام کاربری خود را فراموش کرده ام."
+form_login: "نام کاربری   یا  آدرس ایمیل"
 french_flag: Drapeau français
 gdpr_know_more: 'En savoir plus sur la conformité RGPD de votre structure'
 general_conditions_of_use: 'Conditions générales d''utilisation du service'
@@ -356,9 +356,9 @@ leave_center: 'Quitter ce centre'
 leave_center_confirm: 'Êtes-vous sûr de vouloir quitter ce centre ?'
 leave_center_title: 'Quitter le centre %s'
 location: Lieu
-login_error_disabled_account: Votre compte est désactivé, veuillez contacter le support.
-login_error_account_in_creation: Votre compte est en cours de création, veuillez contacter le support.
-login_form_title: 'Accès au coffre-fort numérique'
+login_error_disabled_account: حساب کاربری شما غیرفعال است، لطفا با پشتیبانی تماس بگیرید.
+login_error_account_in_creation: حساب کاربری شما در حال ایجاد است، لطفا با پشتیبانی تماس بگیرید.
+login_form_title: 'دسترسی به گاوصندوق دیجیتالی'
 logout: Déconnexion
 mail_auth_code_content: 'Voici votre code de connexion : '
 mail_auth_code_subject: 'RECONNECT- Votre code de connexion'
