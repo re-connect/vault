@@ -3,7 +3,7 @@
 namespace App\EventSubscriber;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Client;
 use App\Entity\User;
 use App\ManagerV2\UserManager;

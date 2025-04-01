@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use App\Entity\Attributes\Centre;
+use App\Entity\User;
 use Doctrine\Common\Collections\ReadableCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 

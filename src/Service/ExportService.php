@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Contact;
 use App\Entity\Document;
 use App\Entity\Evenement;

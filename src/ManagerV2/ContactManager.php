@@ -2,7 +2,7 @@
 
 namespace App\ManagerV2;
 
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Contact;
 use App\Repository\ContactRepository;
 use App\ServiceV2\Traits\UserAwareTrait;

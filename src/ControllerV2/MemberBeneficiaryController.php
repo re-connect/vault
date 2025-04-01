@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Contact;
 use App\FormV2\FirstMemberVisitType;
 use App\ManagerV2\MemberBeneficiaryManager;

@@ -8,8 +8,6 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\Controller\Rest\V3\LinkedCentersController;
-use App\Entity\Association;
-use App\Entity\Beneficiaire;
 use App\Entity\BeneficiaireCentre;
 use App\Entity\ClientCentre;
 use App\Entity\ConsultationCentre;

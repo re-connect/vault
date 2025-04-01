@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
@@ -15,21 +15,36 @@ use App\Api\State\BeneficiaryStateProcessor;
 use App\Api\State\BeneficiaryStateProvider;
 use App\Controller\Api\UnlinkBeneficiaryController;
 use App\Domain\Anonymization\AnonymizationHelper;
-use App\Entity\Attributes\BeneficiaryCreationProcess;
-use App\Entity\Attributes\Centre;
+use App\Entity\BeneficiaireCentre;
+use App\Entity\Client;
+use App\Entity\ClientBeneficiaire;
+use App\Entity\ConsultationBeneficiaire;
+use App\Entity\ConsultationCentre;
+use App\Entity\Contact;
+use App\Entity\Creator;
+use App\Entity\CreatorUser;
+use App\Entity\Document;
+use App\Entity\Dossier;
+use App\Entity\Evenement;
 use App\Entity\Interface\ClientResourceInterface;
-use App\Traits\GedmoTimedTrait;
+use App\Entity\Note;
+use App\Entity\SMS;
+use App\Entity\User;
+use App\Entity\UserWithCentresInterface;
+use App\Validator\Constraints\Beneficiaire as CustomAssert;
 use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\ReadableCollection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/** @ORM\Entity(repositoryClass="App\Repository\BeneficiaireRepository") */
 #[ApiFilter(DistantIdFilter::class, properties: ['distantId'])]
 #[ApiResource(
     shortName: 'beneficiary',
@@ -67,10 +82,13 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"
 )]
 #[Anonymize('reconnect.beneficiary_filter')]
+#[CustomAssert\Entity(groups: ['beneficiaire'])]
+#[ORM\Entity(repositoryClass: \App\Repository\BeneficiaireRepository::class)]
+#[ORM\Table(name: 'beneficiaire')]
+#[ORM\UniqueConstraint(name: 'UNIQ_B140D80292D7762C', columns: ['creationProcess_id'])]
+#[ORM\UniqueConstraint(name: 'UNIQ_B140D802A76ED395', columns: ['user_id'])]
 class Beneficiaire extends Subject implements UserWithCentresInterface, ClientResourceInterface
 {
-    use GedmoTimedTrait;
-
     private const string DEFAULT_BIRTHDATE = '01/01/1975';
     public const int|float MAX_VAULT_SIZE = 1024 * 1024 * 600; // 600Mo
     public const array SECRET_QUESTIONS = [
@@ -84,67 +102,107 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         'secret_question_custom' => 'secret_question_custom',
     ];
 
-    #[Groups(['read', 'write', 'beneficiary:read', 'v3:beneficiary:write', 'v3:beneficiary:read'])]
-    #[Anonymize('date', options: ['min' => 'now -70 years', 'max' => 'now -15 years'])]
-    private ?\DateTime $dateNaissance = null;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    protected ?int $id = null;
 
-    private bool $neverClickedMesDocuments = true;
-
-    #[Groups(['beneficiary:read'])]
-    private ?string $lieuNaissance = null;
-
-    /** @var Collection<int, BeneficiaireCentre> $beneficiairesCentres */
-    #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
-    #[SerializedName('centres')]
-    private Collection $beneficiairesCentres;
-
-    /** @var Collection<int, ConsultationCentre> */
-    private Collection $consultationsCentre;
-
-    /** @var Collection<int, Document> */
-    private Collection $documents;
-
-    /** @var Collection<int, Dossier> */
-    private Collection $dossiers;
-
-    /** @var Collection<int, Contact> */
-    private Collection $contacts;
-
-    /** @var Collection<int, Note> */
-    private Collection $notes;
-
-    /** @var Collection<int, Evenement> */
-    private Collection $evenements;
-
-    private ?string $archiveName = null;
-
-    private Collection $sms;
-
-    private int $totalFileSize = 0;
-
-    private ?string $relayInvitationSmsCode = null;
-
-    private ?\DateTime $relayInvitationSmsCodeSendAt = null;
-
-    /** @var Collection<int, ConsultationBeneficiaire> */
-    private Collection $consultationsBeneficiaires;
-
-    #[Groups(['read', 'beneficiary:read'])]
-    private ?int $idRosalie = null;
-
-    #[Groups(['read', 'beneficiary:read'])]
-    private ?string $siSiaoNumber = null;
+    #[ORM\Column(name: 'totalFileSize', type: 'integer', nullable: true)]
+    private ?int $totalFileSize = 0;
 
     #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
+    #[Assert\NotBlank(message: 'secret_question_not_empty', groups: ['beneficiaireQuestionSecrete'])]
+    #[ORM\Column(name: 'questionSecrete', type: 'string', length: 255, nullable: true)]
     private ?string $questionSecrete = null;
 
     #[Groups(['write'])]
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_SECRET_ANSWER]])]
+    #[Assert\NotBlank(message: 'secret_answer_not_empty', groups: ['beneficiaireQuestionSecrete'])]
+    #[Assert\Length(min: 3, groups: ['beneficiaireQuestionSecrete'])]
+    #[ORM\Column(name: 'reponseSecrete', type: 'string', length: 255, nullable: true)]
     private ?string $reponseSecrete = null;
 
-    /** @var Collection<ClientBeneficiaire> */
+    #[Groups(['read', 'write', 'beneficiary:read', 'v3:beneficiary:write', 'v3:beneficiary:read'])]
+    #[Anonymize('date', options: ['min' => 'now -70 years', 'max' => 'now -15 years'])]
+    #[Assert\NotBlank(message: 'birthdate_not_empty', groups: ['beneficiaire'])]
+    #[ORM\Column(name: 'dateNaissance', type: 'date', nullable: false)]
+    private \DateTime $dateNaissance;
+
+    #[Groups(['beneficiary:read'])]
+    #[ORM\Column(name: 'lieuNaissance', type: 'string', length: 255, nullable: true)]
+    private ?string $lieuNaissance = null;
+
+    #[ORM\Column(name: 'archiveName', type: 'string', length: 255, nullable: true)]
+    private ?string $archiveName = null;
+
+    #[ORM\Column(name: 'relayInvitationSmsCode', type: 'string', length: 255, nullable: true)]
+    private ?string $relayInvitationSmsCode = null;
+
+    #[ORM\Column(name: 'relayInvitationSmsCodeSendAt', type: 'datetime', nullable: true)]
+    private ?\DateTime $relayInvitationSmsCodeSendAt = null;
+
+    #[ORM\Column(name: 'neverClickedMesDocuments', type: 'boolean', nullable: false, options: ['default' => '1'])]
+    private bool $neverClickedMesDocuments = true;
+
+    #[Groups(['read', 'beneficiary:read'])]
+    #[ORM\Column(name: 'idRosalie', type: 'integer', nullable: true)]
+    private ?int $idRosalie = null;
+
+    #[Groups(['read', 'beneficiary:read'])]
+    #[ORM\Column(name: 'siSiaoNumber', type: 'string', length: 255, nullable: true)]
+    private ?string $siSiaoNumber = null;
+
+    #[ORM\OneToOne(inversedBy: 'beneficiary', targetEntity: BeneficiaryCreationProcess::class)]
+    #[ORM\JoinColumn(name: 'creationProcess_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    private ?BeneficiaryCreationProcess $creationProcess = null;
+
+    #[Assert\Valid]
+    #[ORM\OneToOne(inversedBy: 'subjectBeneficiaire', targetEntity: User::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: false)]
+    protected ?User $user = null;
+
+    #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: Document::class, cascade: ['persist', 'remove'])]
+    private Collection $documents;
+
+    #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: Dossier::class, cascade: ['persist', 'remove'])]
+    private Collection $dossiers;
+
+    #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: Contact::class, cascade: ['persist', 'remove'])]
+    private Collection $contacts;
+
+    #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: Note::class, cascade: ['persist', 'remove'])]
+    private Collection $notes;
+
+    #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: Evenement::class, cascade: ['persist', 'remove'])]
+    private Collection $evenements;
+
+    #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
+    #[SerializedName('centres')]
+    #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: BeneficiaireCentre::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+    private Collection $beneficiairesCentres;
+
+    #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: ConsultationCentre::class, cascade: ['persist', 'remove'])]
+    private Collection $consultationsCentre;
+
+    #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: SMS::class, cascade: ['persist', 'remove'])]
+    private Collection $sms;
+
+    #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: ConsultationBeneficiaire::class, cascade: ['persist', 'remove'])]
+    private Collection $consultationsBeneficiaires;
+
     #[UniqueExternalLink]
+    #[ORM\OneToMany(mappedBy: 'entity', targetEntity: ClientBeneficiaire::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $externalLinks;
+
+    #[Gedmo\Timestampable(on: 'create')]
+    #[Groups(['v3:beneficiary:read'])]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    protected $createdAt;
+
+    #[Gedmo\Timestampable(on: 'update')]
+    #[Groups(['v3:beneficiary:read'])]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    protected $updatedAt;
 
     /** @var ?ArrayCollection<int, Centre> */
     public ?ArrayCollection $relays = null;
@@ -155,8 +213,6 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     #[Groups(['v3:beneficiary:read', 'v3:beneficiary:write'])]
     public ?string $distantId = '';
-
-    private ?BeneficiaryCreationProcess $creationProcess = null;
 
     public function __construct()
     {
@@ -174,6 +230,30 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
         $this->dateNaissance = new \DateTime(self::DEFAULT_BIRTHDATE);
+    }
+
+    public function setCreatedAt(\DateTime $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setUpdatedAt(\DateTime $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
     }
 
     public static function getDefaultBirthDate(): \DateTime
