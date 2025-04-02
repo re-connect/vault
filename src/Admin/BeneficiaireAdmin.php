@@ -381,7 +381,6 @@ class BeneficiaireAdmin extends AbstractAdmin
     {
         return [
             'id' => 'id',
-            "Nom d'utilisateur" => 'user.username',
             'Email' => 'user.email',
             'Télephone' => 'user.telephone',
             'Date de naissance' => 'dateNaissanceStr',
