@@ -294,7 +294,7 @@ form_connexion: وارد شدن
 form_contains_error: Vos modifications n'ont pas été enregistrées. Veuillez vérifier les informations.
 form_forgot_password: "رمز عبور یا نام کاربری خود را فراموش کرده ام."
 form_login: "نام کاربری   یا  آدرس ایمیل"
-french_flag: Drapeau français
+french_flag: پرچم فرانسه
 gdpr_know_more: 'En savoir plus sur la conformité RGPD de votre structure'
 general_conditions_of_use: 'Conditions générales d''utilisation du service'
 generate_password: 'Générer un mot de passe'
