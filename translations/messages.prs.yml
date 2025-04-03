@@ -495,7 +495,7 @@ removed_from_relay: Retiré
 rename: Renommer
 renew_password: 'Renouveler le mot de passe'
 resend_mfa_code: Cliquez ici pour le renvoyer
-reset: Réinitialisation
+reset: بازنشانی
 reset_a_password: Réinitialiser un mot de passe
 reset_beneficiary_password: Réinitialisation du mot de passe de %username%
 reset_password_no_way: Le bénéficiaire n’a pas indiqué de numéro de téléphone, ni d’adresse e-mail, ni de réponse à la question secrète. Pour réinitialiser son mot de passe, merci de contacter le support, nous vous aiderons dans les plus brefs délais.
