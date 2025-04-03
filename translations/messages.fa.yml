@@ -292,7 +292,7 @@ footer_group_sos_text: "Reconnect est une association du Groupe SOS intervenant 
 footer_partners_text: 'Reconnect est soutenu par :'
 form_connexion: وارد شدن
 form_contains_error: Vos modifications n'ont pas été enregistrées. Veuillez vérifier les informations.
-form_forgot_password: "رمز عبور یا نام کاربری خود را فراموش کرده ام"
+form_forgot_password: "رمز عبور یا نام کاربری خود را فراموش کرده ام."
 form_login: "نام کاربری   یا  آدرس ایمیل"
 french_flag: پرچم فرانسه
 gdpr_know_more: 'En savoir plus sur la conformité RGPD de votre structure'
@@ -357,7 +357,7 @@ leave_center_confirm: 'Êtes-vous sûr de vouloir quitter ce centre ?'
 leave_center_title: 'Quitter le centre %s'
 location: Lieu
 login_error_disabled_account: حساب کاربری شما غیرفعال است، لطفا با پشتیبانی تماس بگیرید.
-login_error_account_in_creation: Votre compte est en cours de création, veuillez contacter le support.
+login_error_account_in_creation: حساب کاربری شما در حال ایجاد است، لطفا با پشتیبانی تماس بگیرید.
 login_form_title: 'دسترسی به گاوصندوق دیجیتالی'
 logout: Déconnexion
 mail_auth_code_content: 'Voici votre code de connexion : '
