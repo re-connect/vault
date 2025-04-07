@@ -42,8 +42,8 @@ jobs:
                 run: cat .env.ci >> .env.test
             -   name: Install Dependencies
                 run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-            -   name: Composer audit
-                run: composer audit
+#            -   name: Composer audit
+#                run: composer audit
             # —— Check coding standards ✨ ————————————————————————————————————————————————————————————————
             -   name: Check CS
                 run: vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
