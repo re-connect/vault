@@ -187,6 +187,7 @@ class HomeProvider
             'img_fileName' => 'digital_cares_qualiopi.png',
             'img_alt' => 'digital_cares_qualiopi_content_img_alt',
             'is_mobile' => false,
+            'annexe_name' => 'certificat-qualiopi',
         ],
     ];
 
