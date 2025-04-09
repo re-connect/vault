@@ -3,8 +3,8 @@
 namespace App\DataFixtures\ORM;
 
 use App\Entity\Attributes\Centre;
+use App\Entity\Attributes\Client;
 use App\Entity\BeneficiaireCentre;
-use App\Entity\Client;
 use App\Entity\ClientBeneficiaire;
 use App\Manager\FixtureManager;
 use App\Manager\UserManager;

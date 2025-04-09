@@ -5,7 +5,7 @@ namespace App\Provider;
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
-use App\Entity\Client;
+use App\Entity\Attributes\Client;
 use App\Entity\Contact;
 use App\Entity\CreatorCentre;
 use App\Entity\CreatorClient;

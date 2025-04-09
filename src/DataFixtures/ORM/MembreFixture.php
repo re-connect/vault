@@ -3,7 +3,7 @@
 namespace App\DataFixtures\ORM;
 
 use App\Entity\Attributes\Centre;
-use App\Entity\Client;
+use App\Entity\Attributes\Client;
 use App\Entity\ClientMembre;
 use App\Entity\MembreCentre;
 use App\Manager\FixtureManager;

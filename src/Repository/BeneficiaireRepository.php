@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
-use App\Entity\Client;
+use App\Entity\Attributes\Client;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\Client;
 
 class ClientBeneficiaire extends ClientEntity
 {

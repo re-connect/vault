@@ -2,7 +2,7 @@
 
 namespace App\Provider;
 
-use App\Entity\Client;
+use App\Entity\Attributes\Client;
 use App\Entity\DonneePersonnelle;
 use App\Entity\Evenement;
 use App\Entity\Rappel;

@@ -38,5 +38,5 @@ App\Entity\ClientEntity:
           on: update
   manyToOne:
     client:
-      targetEntity: Client
+      targetEntity: App\Entity\Attributes\Client
   lifecycleCallbacks: {  }
