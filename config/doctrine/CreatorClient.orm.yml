@@ -4,5 +4,5 @@ App\Entity\CreatorClient:
   repositoryClass: App\Repository\CreatorClientRepository
   manyToOne:
     entity:
-      targetEntity: App\Entity\Client
+      targetEntity: App\Entity\Attributes\Client
   lifecycleCallbacks: {  }

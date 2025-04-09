@@ -2,7 +2,7 @@
 
 namespace App\Admin;
 
-use App\Entity\Client;
+use App\Entity\Attributes\Client;
 use App\Entity\CreatorClient;
 use App\Form\Type\CheckboxHierarchyType;
 use Doctrine\ORM\EntityManagerInterface;

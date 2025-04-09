@@ -210,7 +210,7 @@ services:
     # OAuth
     reo_auth.admin.client:
         class: App\Admin\ClientAdmin
-        arguments: [ ~, App\Entity\Client, ~ ]
+        arguments: [ ~, App\Entity\Attributes\Client, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Client }
         calls:

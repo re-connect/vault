@@ -4,7 +4,7 @@ namespace App\ManagerV2;
 
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Client;
+use App\Entity\Attributes\Client;
 use App\Entity\Dossier;
 use App\Repository\DossierRepository;
 use App\ServiceV2\Traits\UserAwareTrait;

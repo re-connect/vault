@@ -15,6 +15,7 @@ use App\Entity\Attributes\Adresse;
 use App\Entity\Attributes\Association;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
+use App\Entity\Attributes\Client;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

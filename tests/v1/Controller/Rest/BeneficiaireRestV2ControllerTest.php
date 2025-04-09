@@ -4,8 +4,8 @@ namespace App\Tests\v1\Controller\Rest;
 
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
+use App\Entity\Attributes\Client;
 use App\Entity\BeneficiaireCentre;
-use App\Entity\Client;
 use App\Entity\ClientBeneficiaire;
 use App\Entity\Document;
 use App\Entity\Membre;

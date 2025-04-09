@@ -2,7 +2,7 @@
 
 namespace App\Entity\Interface;
 
-use App\Entity\Client;
+use App\Entity\Attributes\Client;
 use App\Entity\ClientEntity;
 use Doctrine\Common\Collections\Collection;
 
