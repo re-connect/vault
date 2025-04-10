@@ -12,7 +12,6 @@ use App\Entity\ClientCentre;
 use App\Entity\ConsultationCentre;
 use App\Entity\Gestionnaire;
 use App\Entity\Membre;
-use App\Entity\MembreCentre;
 use App\Entity\Region;
 use App\Entity\SMS;
 use App\Entity\StatistiqueCentre;

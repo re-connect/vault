@@ -3,11 +3,11 @@
 namespace App\Command\DataMigration;
 
 use App\Entity\Attributes\Centre;
+use App\Entity\Attributes\MembreCentre;
 use App\Entity\ClientGestionnaire;
 use App\Entity\ClientMembre;
 use App\Entity\Gestionnaire;
 use App\Entity\Membre;
-use App\Entity\MembreCentre;
 use App\Entity\User;
 use App\Repository\CentreRepository;
 use App\Repository\ClientGestionnaireRepository;
