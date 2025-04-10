@@ -56,7 +56,7 @@ final class BeneficiaireProvider
     {
         $result = $this->entityManager->createQueryBuilder()
             ->select('b', 'u', 'bc', 'c')
-            ->from('App:Beneficiaire', 'b')
+            ->from('App:Attributes\Beneficiaire', 'b')
             ->innerJoin('b.user', 'u')
             ->innerJoin('b.beneficiairesCentres', 'bc')
             ->innerJoin('bc.centre', 'c')
@@ -76,7 +76,7 @@ final class BeneficiaireProvider
     {
         $result = $this->entityManager->createQueryBuilder()
             ->select('b', 'u', 'bc', 'c')
-            ->from('App:Beneficiaire', 'b')
+            ->from('App:Attributes\Beneficiaire', 'b')
             ->innerJoin('b.user', 'u')
             ->join('b.beneficiairesCentres', 'bc')
             ->join('bc.centre', 'c')

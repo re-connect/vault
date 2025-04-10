@@ -64,7 +64,7 @@ class CentreProvider
     {
         return $this->em->createQueryBuilder()
             ->select('b', 'bc', 'c', 'g', 'u')
-            ->from('App:Beneficiaire', 'b')
+            ->from('App:Attributes\Beneficiaire', 'b')
             ->innerJoin('b.beneficiairesCentres', 'bc')
             ->innerJoin('bc.centre', 'c')
             ->innerJoin('c.gestionnaire', 'g')
