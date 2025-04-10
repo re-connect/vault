@@ -2,7 +2,7 @@
 
 namespace App\Admin;
 
-use App\Entity\BeneficiaireCentre;
+use App\Entity\Attributes\BeneficiaireCentre;
 use App\Entity\ClientBeneficiaire;
 use Doctrine\ORM\EntityRepository;
 use Sonata\AdminBundle\Admin\AbstractAdmin;

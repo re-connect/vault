@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
@@ -9,14 +9,16 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Centre;
+use App\Entity\ClientBeneficiaire;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\BeneficiaireCentreRepository")
- */
+#[ORM\Entity]
+#[ORM\Table(name: 'beneficiairecentre')]
+#[ORM\Index(columns: ['centre_id'], name: 'IDX_6D65B3FC463CD7C3')]
+#[ORM\Index(columns: ['beneficiaire_id'], name: 'IDX_6D65B3FC5AF81F68')]
+#[ORM\Index(columns: ['initiateur_id'], name: 'IDX_6D65B3FC56D142FC')]
 #[ApiResource(
     shortName: 'beneficiary_center',
     operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
@@ -27,57 +29,38 @@ use Symfony\Component\Serializer\Annotation\Groups;
 )]
 class BeneficiaireCentre extends UserCentre
 {
-    /**
-     * @var Centre
-     */
+    #[ORM\ManyToOne(targetEntity: Beneficiaire::class, inversedBy: 'beneficiairesCentres')]
+    #[ORM\JoinColumn(name: 'beneficiaire_id', referencedColumnName: 'id', nullable: false)]
     #[Groups(['v3:center:read', 'v3:center:write'])]
-    private $centre;
-    /**
-     * @var Beneficiaire
-     */
+    private Beneficiaire $beneficiaire;
+
+    #[ORM\ManyToOne(targetEntity: Centre::class, inversedBy: 'beneficiairesCentres')]
+    #[ORM\JoinColumn(name: 'centre_id', referencedColumnName: 'id', nullable: false)]
     #[Groups(['v3:center:read', 'v3:center:write'])]
-    private $beneficiaire;
+    private Centre $centre;
+
+    #[ORM\OneToOne(mappedBy: 'beneficiaireCentre', targetEntity: ClientBeneficiaire::class, cascade: ['persist', 'remove'])]
     private ?ClientBeneficiaire $externalLink = null;
 
-    /**
-     * Get centre.
-     *
-     * @return Centre
-     */
     #[\Override]
-    public function getCentre()
+    public function getCentre(): Centre
     {
         return $this->centre;
     }
 
-    /**
-     * Set centre.
-     *
-     * @return BeneficiaireCentre
-     */
-    public function setCentre(?Centre $centre = null)
+    public function setCentre(?Centre $centre = null): static
     {
         $this->centre = $centre;
 
         return $this;
     }
 
-    /**
-     * Get beneficiaire.
-     *
-     * @return Beneficiaire
-     */
-    public function getBeneficiaire()
+    public function getBeneficiaire(): Beneficiaire
     {
         return $this->beneficiaire;
     }
 
-    /**
-     * Set beneficiaire.
-     *
-     * @return BeneficiaireCentre
-     */
-    public function setBeneficiaire(?Beneficiaire $beneficiaire = null)
+    public function setBeneficiaire(?Beneficiaire $beneficiaire = null): static
     {
         $this->beneficiaire = $beneficiaire;
 
@@ -118,7 +101,7 @@ class BeneficiaireCentre extends UserCentre
     }
 
     #[\Override]
-    public function setUser(User $user): self
+    public function setUser(User $user): static
     {
         $this->beneficiaire = $user->getSubjectBeneficiaire();
 
@@ -138,7 +121,7 @@ class BeneficiaireCentre extends UserCentre
         $this->setInitiateur(null);
     }
 
-    public static function createValid(Centre $relay): self
+    public static function createValid(Centre $relay): static
     {
         return (new BeneficiaireCentre())->setCentre($relay)->setBValid(true);
     }

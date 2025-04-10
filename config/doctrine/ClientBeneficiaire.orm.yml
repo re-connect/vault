@@ -15,7 +15,7 @@ App\Entity\ClientBeneficiaire:
       inversedBy: externalLinks
   oneToOne:
     beneficiaireCentre:
-      targetEntity: App\Entity\BeneficiaireCentre
+      targetEntity: App\Entity\Attributes\BeneficiaireCentre
       inversedBy: externalLink
       joinColumn:
         name: 'beneficiaire_centre_id'
