@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\UserCentre;
+use App\Entity\Membre;
+use App\Entity\User;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-/**
- * MembreCentre.
- */
+#[ORM\Entity]
+#[ORM\Table(name: 'membrecentre')]
+#[ORM\Index(columns: ['centre_id'], name: 'IDX_FABE0968463CD7C3')]
+#[ORM\Index(columns: ['membre_id'], name: 'IDX_FABE09686A99F74A')]
+#[ORM\Index(columns: ['initiateur_id'], name: 'IDX_FABE096856D142FC')]
 class MembreCentre extends UserCentre
 {
     public const DEFAULT_PERMISSION_CREATE_BENEFICIARIES = 'creationbeneficiaires';
@@ -19,13 +22,21 @@ class MembreCentre extends UserCentre
         self::MANAGE_PROS_PERMISSION,
     ];
 
-    #[Groups(['v3:center:read', 'v3:center:write'])]
-    private ?Centre $centre = null;
+    /**
+     * @var array
+     */
+    #[ORM\Column(name: 'droits', type: 'array', nullable: false)]
+    private $droits = [];
 
+    #[ORM\ManyToOne(targetEntity: Membre::class, inversedBy: 'membresCentres')]
+    #[ORM\JoinColumn(name: 'membre_id', referencedColumnName: 'id', nullable: false)]
     #[Groups(['v3:center:read', 'v3:center:write'])]
     private ?Membre $membre = null;
 
-    private ?array $droits = [];
+    #[ORM\ManyToOne(targetEntity: Centre::class, inversedBy: 'membresCentres')]
+    #[ORM\JoinColumn(name: 'centre_id', referencedColumnName: 'id', nullable: false)]
+    #[Groups(['v3:center:read', 'v3:center:write'])]
+    private ?Centre $centre = null;
 
     public static function getArDroits()
     {
