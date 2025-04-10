@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Attributes\Centre;
+use App\Entity\Attributes\UserCentre;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -44,7 +45,7 @@ class MembreCentre extends UserCentre
     }
 
     #[\Override]
-    public function getCentre(): ?Centre
+    public function getCentre(): Centre
     {
         return $this->centre;
     }

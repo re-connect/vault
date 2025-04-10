@@ -3,8 +3,8 @@
 namespace App\Controller\Rest;
 
 use App\Controller\REController;
+use App\Entity\Attributes\BeneficiaireCentre;
 use App\Entity\Attributes\Client;
-use App\Entity\BeneficiaireCentre;
 use App\Entity\User;
 use App\Exception\JsonResponseException;
 use App\Manager\CentreManager;

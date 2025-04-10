@@ -67,7 +67,7 @@ services:
 
     sonata.admin.beneficiairecentre:
         class: App\Admin\BeneficiaireCentreAdmin
-        arguments: [ ~, App\Entity\BeneficiaireCentre, ~ ]
+        arguments: [ ~, App\Entity\Attributes\BeneficiaireCentre;, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "BeneficiaireCentre", show_in_dashboard: false }
 
