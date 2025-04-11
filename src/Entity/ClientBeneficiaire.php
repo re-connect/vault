@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\BeneficiaireCentre;
 use App\Entity\Attributes\Client;
+use App\Entity\Attributes\ClientEntity;
 
 class ClientBeneficiaire extends ClientEntity
 {
