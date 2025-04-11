@@ -3,7 +3,7 @@
 namespace App\Entity\Interface;
 
 use App\Entity\Attributes\Client;
-use App\Entity\ClientEntity;
+use App\Entity\Attributes\ClientEntity;
 use Doctrine\Common\Collections\Collection;
 
 interface ClientResourceInterface

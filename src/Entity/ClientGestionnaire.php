@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Attributes\ClientEntity;
+
 class ClientGestionnaire extends ClientEntity
 {
     public function setEntity(?Gestionnaire $entity = null): self

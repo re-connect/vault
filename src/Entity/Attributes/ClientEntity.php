@@ -1,23 +1,52 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use App\Entity\Attributes\Client;
+use App\Entity\ClientBeneficiaire;
+use App\Entity\ClientCentre;
+use App\Entity\ClientGestionnaire;
+use App\Entity\ClientMembre;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Entity]
+#[ORM\Table(name: 'client_entity')]
+#[ORM\Index(columns: ['entity_id'], name: 'IDX_5B8E0FDB81257D5D')]
+#[ORM\Index(columns: ['beneficiaire_centre_id'], name: 'IDX_5B8E0FDBF15C33B')]
+#[ORM\Index(columns: ['client_id'], name: 'IDX_5B8E0FDB19EB6921')]
+#[ORM\InheritanceType('SINGLE_TABLE')]
+#[ORM\DiscriminatorColumn(name: 'discr', type: 'string')]
+#[ORM\DiscriminatorMap([
+    'clientCentre' => ClientCentre::class,
+    'clientMembre' => ClientMembre::class,
+    'clientBeneficiaire' => ClientBeneficiaire::class,
+    'clientGestionnaire' => ClientGestionnaire::class,
+])]
 abstract class ClientEntity implements \Stringable
 {
     protected mixed $entity;
 
-    protected ?string $entity_name = null;
-
+    #[ORM\Column(name: 'distant_id', type: 'string', length: 255, options: ['unsigned' => true])]
+    #[ORM\Id]
     private int|string|null $distantId;
 
-    private ?\DateTime $createdAt = null;
+    #[ORM\Column(name: 'entity_name', type: 'string', length: 255, nullable: false, options: ['unsigned' => true])]
+    #[ORM\Id]
+    protected mixed $entity_name;
 
-    private ?\DateTime $updateAt = null;
+    #[ORM\Column(name: 'created_at', type: 'datetime', nullable: false)]
+    private $createdAt;
 
-    public function __construct(private ?Client $client = null, $distantId = null)
-    {
+    #[ORM\Column(name: 'update_at', type: 'datetime', nullable: false)]
+    private $updateAt;
+
+
+    public function __construct(
+        #[ORM\Id]
+        #[ORM\OneToOne(targetEntity: Client::class)]
+        #[ORM\JoinColumn(name: 'client_id', referencedColumnName: 'id')]
+        private ?Client $client = null,
+        $distantId = null,
+    ) {
         $this->distantId = (string) $distantId;
         $this->entity_name = (new \ReflectionClass($this))->getShortName();
     }

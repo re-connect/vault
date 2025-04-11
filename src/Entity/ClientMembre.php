@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Attributes\ClientEntity;
+
 class ClientMembre extends ClientEntity
 {
     public function setEntity(?Membre $entity = null): self
