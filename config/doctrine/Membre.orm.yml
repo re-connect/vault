@@ -53,7 +53,7 @@ App\Entity\Membre:
             cascade: [ "persist" ]
             mappedBy: membre
         externalLinks:
-            targetEntity: App\Entity\ClientMembre
+            targetEntity: App\Entity\Attributes\ClientMembre
             mappedBy: entity
             cascade: [ "persist", "remove" ]
             orphanRemoval: true

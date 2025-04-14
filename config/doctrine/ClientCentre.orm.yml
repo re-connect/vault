@@ -1,8 +1,0 @@
-App\Entity\ClientCentre:
-  type: entity
-  repositoryClass: App\Repository\ClientCentreRepository
-  manyToOne:
-    entity:
-      targetEntity: App\Entity\Attributes\Centre
-      inversedBy: externalLinks
-  lifecycleCallbacks: {  }

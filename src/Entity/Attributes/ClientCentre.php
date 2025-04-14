@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\ClientEntity;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Entity]
 class ClientCentre extends ClientEntity
 {
+    #[ORM\ManyToOne(targetEntity: Centre::class, inversedBy: 'externalLink')]
+    protected mixed $entity = null;
+
     public function setEntity(?Centre $entity = null): self
     {
         $this->entity = $entity;

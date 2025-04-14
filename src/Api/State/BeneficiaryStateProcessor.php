@@ -11,7 +11,7 @@ use App\Api\Dto\LinkBeneficiaryDto;
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Client;
-use App\Entity\ClientBeneficiaire;
+use App\Entity\Attributes\ClientBeneficiaire;
 use App\ManagerV2\UserManager;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\MembreRepository;

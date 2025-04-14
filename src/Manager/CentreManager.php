@@ -4,8 +4,8 @@ namespace App\Manager;
 
 use App\Entity\Attributes\BeneficiaireCentre;
 use App\Entity\Attributes\Centre;
+use App\Entity\Attributes\ClientBeneficiaire;
 use App\Entity\Attributes\MembreCentre;
-use App\Entity\ClientBeneficiaire;
 use App\Entity\Membre;
 use App\Entity\UserHandleCentresInterface;
 use App\Entity\UserWithCentresInterface;

@@ -15,7 +15,6 @@ use App\Api\State\BeneficiaryStateProcessor;
 use App\Api\State\BeneficiaryStateProvider;
 use App\Controller\Api\UnlinkBeneficiaryController;
 use App\Domain\Anonymization\AnonymizationHelper;
-use App\Entity\ClientBeneficiaire;
 use App\Entity\ConsultationBeneficiaire;
 use App\Entity\ConsultationCentre;
 use App\Entity\Contact;
