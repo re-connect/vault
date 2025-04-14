@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\BeneficiaireCentre;
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\ClientEntity;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Entity]
 class ClientBeneficiaire extends ClientEntity
 {
+    #[ORM\ManyToOne(targetEntity: Beneficiaire::class, inversedBy: 'externalLink')]
+    protected mixed $entity = null;
+
+    #[ORM\ManyToOne(targetEntity: BeneficiaireCentre::class, inversedBy: 'externalLink')]
+    #[ORM\JoinColumn(name: 'beneficiaire_centre_id', referencedColumnName: 'id')]
     private ?BeneficiaireCentre $beneficiaireCentre = null;
 
+    #[ORM\Column(name: 'membre_distant_id', type: 'integer', nullable: true, options: ['unsigned' => true, 'comment' => 'Identifier of the external initiator member (No entity link).'])]
     private ?int $membreDistantId = null;
 
     public function setEntity(?Beneficiaire $entity = null): ClientBeneficiaire

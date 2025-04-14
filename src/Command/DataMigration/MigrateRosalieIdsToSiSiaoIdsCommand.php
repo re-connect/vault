@@ -4,7 +4,7 @@ namespace App\Command\DataMigration;
 
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Client;
-use App\Entity\ClientBeneficiaire;
+use App\Entity\Attributes\ClientBeneficiaire;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\ClientRepository;
 use Doctrine\ORM\EntityManagerInterface;

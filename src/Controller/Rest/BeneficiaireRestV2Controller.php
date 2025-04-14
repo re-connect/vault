@@ -7,7 +7,7 @@ use App\Controller\REController;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\BeneficiaireCentre;
 use App\Entity\Attributes\Centre;
-use App\Entity\ClientBeneficiaire;
+use App\Entity\Attributes\ClientBeneficiaire;
 use App\Entity\User;
 use App\Exception\JsonResponseException;
 use App\Form\Factory\UserFormFactory;

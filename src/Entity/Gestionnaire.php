@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Attributes\Association;
 use App\Entity\Attributes\Centre;
+use App\Entity\Attributes\ClientGestionnaire;
 use App\Entity\Attributes\Subject;
 use App\Traits\GedmoTimedTrait;
 use Doctrine\Common\Collections\ArrayCollection;

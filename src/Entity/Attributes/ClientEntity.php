@@ -2,11 +2,8 @@
 
 namespace App\Entity\Attributes;
 
-use App\Entity\ClientBeneficiaire;
-use App\Entity\ClientCentre;
-use App\Entity\ClientGestionnaire;
-use App\Entity\ClientMembre;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'client_entity')]
@@ -34,11 +31,12 @@ abstract class ClientEntity implements \Stringable
     protected mixed $entity_name;
 
     #[ORM\Column(name: 'created_at', type: 'datetime', nullable: false)]
+    #[Gedmo\Timestampable(on: 'create')]
     private $createdAt;
 
     #[ORM\Column(name: 'update_at', type: 'datetime', nullable: false)]
+    #[Gedmo\Timestampable(on: 'update')]
     private $updateAt;
-
 
     public function __construct(
         #[ORM\Id]

@@ -7,7 +7,7 @@ use App\Entity\Attributes\Adresse;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\BeneficiaireCentre;
 use App\Entity\Attributes\Centre;
-use App\Entity\ClientBeneficiaire;
+use App\Entity\Attributes\ClientBeneficiaire;
 use App\Entity\CreatorCentre;
 use App\Entity\CreatorClient;
 use App\Entity\User;

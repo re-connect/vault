@@ -224,25 +224,25 @@ services:
 
     reo_auth.admin.client_membre:
         class: App\Admin\ClientEntityAdmin
-        arguments: [ ~, App\Entity\ClientMembre, ~ ]
+        arguments: [ ~, App\Entity\Attributes\ClientMembre, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Client }
 
     reo_auth.admin.client_beneficiaire:
         class: App\Admin\ClientEntityAdmin
-        arguments: [ ~, App\Entity\ClientBeneficiaire, ~ ]
+        arguments: [ ~, App\Entity\Attributes\ClientBeneficiaire, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Client }
 
     reo_auth.admin.client_centre:
         class: App\Admin\ClientEntityAdmin
-        arguments: [ ~, App\Entity\ClientCentre, ~ ]
+        arguments: [ ~, App\Entity\Attributes\ClientCentre, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Client }
 
     reo_auth.admin.client_gestionnaire:
         class: App\Admin\ClientEntityAdmin
-        arguments: [ ~, App\Entity\ClientGestionnaire, ~ ]
+        arguments: [ ~, App\Entity\Attributes\ClientGestionnaire, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Client }
     sonata.admin.feature_toggle:
