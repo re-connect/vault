@@ -3,21 +3,21 @@
 {% set permissions = [
     {
         name: 'beneficiaries_creation'|trans,
-        value: constant('App\\Entity\\MembreCentre::DEFAULT_PERMISSION_CREATE_BENEFICIARIES'),
+        value: constant('App\\Entity\\Attributes\\MembreCentre::DEFAULT_PERMISSION_CREATE_BENEFICIARIES'),
         icon: 'user-plus',
         isOwned: true,
         isUpdatable: false,
     },
     {
         name: 'beneficiaries_management'|trans,
-        value: constant('App\\Entity\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION'),
+        value: constant('App\\Entity\\Attributes\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION'),
         icon: 'user',
         isOwned: userRelay and userRelay.canManageBeneficiaries,
         isUpdatable: is_granted('MANAGE_BENEFICIARIES', relay),
     },
     {
         name: 'team_management'|trans,
-        value: constant('App\\Entity\\MembreCentre::MANAGE_PROS_PERMISSION'),
+        value: constant('App\\Entity\\Attributes\\MembreCentre::MANAGE_PROS_PERMISSION'),
         icon: 'user-cog',
         isOwned: userRelay and userRelay.canManageProfessionals,
         isUpdatable: is_granted('MANAGE_PRO', relay),

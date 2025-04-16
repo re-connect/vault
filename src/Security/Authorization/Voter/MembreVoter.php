@@ -2,8 +2,8 @@
 
 namespace App\Security\Authorization\Voter;
 
+use App\Entity\Attributes\MembreCentre;
 use App\Entity\Membre;
-use App\Entity\MembreCentre;
 use App\Provider\CentreProvider;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
