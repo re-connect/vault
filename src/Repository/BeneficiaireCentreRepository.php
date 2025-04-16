@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\BeneficiaireCentre;
+use App\Entity\Attributes\BeneficiaireCentre;
 use Doctrine\ORM\EntityRepository;
 
 /**

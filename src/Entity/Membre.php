@@ -11,6 +11,8 @@ use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
+use App\Entity\Attributes\ClientMembre;
+use App\Entity\Attributes\MembreCentre;
 use App\Entity\Attributes\Subject;
 use App\Traits\GedmoTimedTrait;
 use App\Validator\Constraints as CustomAssert;

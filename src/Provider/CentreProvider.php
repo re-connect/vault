@@ -5,10 +5,10 @@ namespace App\Provider;
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
+use App\Entity\Attributes\MembreCentre;
 use App\Entity\Attributes\Subject;
 use App\Entity\Gestionnaire;
 use App\Entity\Membre;
-use App\Entity\MembreCentre;
 use App\Entity\User;
 use App\Entity\UserWithCentresInterface;
 use Doctrine\Common\Collections\Collection;
@@ -64,7 +64,7 @@ class CentreProvider
     {
         return $this->em->createQueryBuilder()
             ->select('b', 'bc', 'c', 'g', 'u')
-            ->from('App:Beneficiaire', 'b')
+            ->from('App:Attributes\Beneficiaire', 'b')
             ->innerJoin('b.beneficiairesCentres', 'bc')
             ->innerJoin('bc.centre', 'c')
             ->innerJoin('c.gestionnaire', 'g')

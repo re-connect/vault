@@ -2,9 +2,9 @@
 
 namespace App\Tests\v2\Listener\Logs;
 
-use App\Entity\BeneficiaireCentre;
-use App\Entity\MembreCentre;
-use App\Entity\UserCentre;
+use App\Entity\Attributes\BeneficiaireCentre;
+use App\Entity\Attributes\MembreCentre;
+use App\Entity\Attributes\UserCentre;
 use App\ListenerV2\Logs\AffiliationListener;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\MembreFactory;

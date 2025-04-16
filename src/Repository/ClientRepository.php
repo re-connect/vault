@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Client;
+use App\Entity\Attributes\Client;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
