@@ -22,11 +22,8 @@ class MembreCentre extends UserCentre
         self::MANAGE_PROS_PERMISSION,
     ];
 
-    /**
-     * @var array
-     */
     #[ORM\Column(name: 'droits', type: 'array', nullable: false)]
-    private $droits = [];
+    private array $droits = [];
 
     #[ORM\ManyToOne(targetEntity: Membre::class, inversedBy: 'membresCentres')]
     #[ORM\JoinColumn(name: 'membre_id', referencedColumnName: 'id', nullable: false)]

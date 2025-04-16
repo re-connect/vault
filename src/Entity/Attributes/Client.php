@@ -64,7 +64,7 @@ class Client extends BaseClient implements \Stringable
     #[ORM\Column(name: 'dossier_image', type: 'string', length: 255, nullable: true)]
     private ?string $dossierImage = null;
 
-    #[ORM\Column(name: 'actif', type: 'boolean', nullable: false, options: ['default' => '1'])]
+    #[ORM\Column(name: 'actif', type: 'boolean', nullable: false, options: ['default' => true])]
     private bool $actif = true;
 
     #[ORM\Column(name: 'access', type: 'array', nullable: false)]
