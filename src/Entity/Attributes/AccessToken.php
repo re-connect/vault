@@ -2,7 +2,6 @@
 
 namespace App\Entity\Attributes;
 
-use App\Entity\Client;
 use App\Entity\TokenInterface;
 use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;

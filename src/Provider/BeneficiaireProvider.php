@@ -5,9 +5,9 @@ namespace App\Provider;
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Attributes\Adresse;
 use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\BeneficiaireCentre;
 use App\Entity\Attributes\Centre;
-use App\Entity\BeneficiaireCentre;
-use App\Entity\ClientBeneficiaire;
+use App\Entity\Attributes\ClientBeneficiaire;
 use App\Entity\CreatorCentre;
 use App\Entity\CreatorClient;
 use App\Entity\User;
@@ -56,7 +56,7 @@ final class BeneficiaireProvider
     {
         $result = $this->entityManager->createQueryBuilder()
             ->select('b', 'u', 'bc', 'c')
-            ->from('App:Beneficiaire', 'b')
+            ->from('App:Attributes\Beneficiaire', 'b')
             ->innerJoin('b.user', 'u')
             ->innerJoin('b.beneficiairesCentres', 'bc')
             ->innerJoin('bc.centre', 'c')
@@ -76,7 +76,7 @@ final class BeneficiaireProvider
     {
         $result = $this->entityManager->createQueryBuilder()
             ->select('b', 'u', 'bc', 'c')
-            ->from('App:Beneficiaire', 'b')
+            ->from('App:Attributes\Beneficiaire', 'b')
             ->innerJoin('b.user', 'u')
             ->join('b.beneficiairesCentres', 'bc')
             ->join('bc.centre', 'c')

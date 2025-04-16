@@ -1,27 +1,30 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use App\Entity\Attributes\Centre;
-use App\Traits\GedmoTimedTrait;
+use App\Entity\Membre;
+use App\Entity\User;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ORM\MappedSuperclass]
 abstract class UserCentre implements \JsonSerializable, \Stringable
 {
-    use GedmoTimedTrait;
+    use TimestampableEntity;
 
-    /**
-     * @var int
-     */
-    protected $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(name: 'id', type: 'integer')]
+    protected ?int $id = null;
 
+    #[ORM\Column(name: 'bValid', type: 'boolean', nullable: false)]
     #[Groups(['v3:center:read', 'v3:center:write', 'v3:user:read'])]
-    private ?bool $bValid = false;
+    private bool $bValid = false;
 
-    /**
-     * @var Membre
-     */
-    private $initiateur;
+    #[ORM\ManyToOne(targetEntity: Membre::class)]
+    #[ORM\JoinColumn(name: 'initiateur_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
+    private Membre $initiateur;
 
     public function __construct()
     {
@@ -29,51 +32,29 @@ abstract class UserCentre implements \JsonSerializable, \Stringable
         $this->updatedAt = new \DateTime();
     }
 
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * Get bValid.
-     *
-     * @return bool
-     */
-    public function getBValid()
+    public function getBValid(): bool
     {
         return $this->bValid;
     }
 
-    /**
-     * Set bValid.
-     *
-     * @param bool $bValid
-     *
-     * @return UserCentre
-     */
-    public function setBValid($bValid)
+    public function setBValid(bool $bValid): static
     {
         $this->bValid = $bValid;
 
         return $this;
     }
 
-    /**
-     * Get initiateur.
-     *
-     * @return Membre
-     */
-    public function getInitiateur()
+    public function getInitiateur(): Membre
     {
         return $this->initiateur;
     }
 
-    public function setInitiateur(?Membre $initiateur): self
+    public function setInitiateur(?Membre $initiateur): static
     {
         $this->initiateur = $initiateur;
 
@@ -98,10 +79,7 @@ abstract class UserCentre implements \JsonSerializable, \Stringable
         return $this->getCentre()?->getId();
     }
 
-    /**
-     * @return Centre
-     */
-    abstract public function getCentre();
+    abstract public function getCentre(): Centre;
 
     abstract public function setUser(User $user): self;
 

@@ -3,10 +3,10 @@
 namespace App\Tests\v1\Controller\Rest;
 
 use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\BeneficiaireCentre;
 use App\Entity\Attributes\Centre;
-use App\Entity\BeneficiaireCentre;
-use App\Entity\Client;
-use App\Entity\ClientBeneficiaire;
+use App\Entity\Attributes\Client;
+use App\Entity\Attributes\ClientBeneficiaire;
 use App\Entity\Document;
 use App\Entity\Membre;
 use App\Provider\CentreProvider;

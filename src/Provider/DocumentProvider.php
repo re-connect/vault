@@ -4,7 +4,7 @@ namespace App\Provider;
 
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Client;
+use App\Entity\Attributes\Client;
 use App\Entity\CreatorClient;
 use App\Entity\CreatorUser;
 use App\Entity\Document;

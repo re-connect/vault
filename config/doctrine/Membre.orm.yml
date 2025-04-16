@@ -41,7 +41,7 @@ App\Entity\Membre:
                 nullable: false
     oneToMany:
         membresCentres:
-            targetEntity: App\Entity\MembreCentre
+            targetEntity: App\Entity\Attributes\MembreCentre
             cascade: [ "persist", "remove" ]
             mappedBy: membre
         consultationsBeneficiaires:
@@ -53,7 +53,7 @@ App\Entity\Membre:
             cascade: [ "persist" ]
             mappedBy: membre
         externalLinks:
-            targetEntity: App\Entity\ClientMembre
+            targetEntity: App\Entity\Attributes\ClientMembre
             mappedBy: entity
             cascade: [ "persist", "remove" ]
             orphanRemoval: true

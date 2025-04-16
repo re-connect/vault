@@ -33,7 +33,7 @@ App\Entity\Gestionnaire:
             targetEntity: App\Entity\Attributes\Centre
             mappedBy: gestionnaire
         externalLinks:
-            targetEntity: App\Entity\ClientGestionnaire
+            targetEntity: App\Entity\Attributes\ClientGestionnaire
             mappedBy: entity
             orphanRemoval: true
     manyToOne:
