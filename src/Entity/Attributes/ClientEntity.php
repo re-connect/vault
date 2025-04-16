@@ -3,7 +3,7 @@
 namespace App\Entity\Attributes;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'client_entity')]
@@ -20,6 +20,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 ])]
 abstract class ClientEntity implements \Stringable
 {
+    use TimestampableEntity;
+
     protected mixed $entity;
 
     #[ORM\Column(name: 'distant_id', type: 'string', length: 255, options: ['unsigned' => true])]
@@ -29,14 +31,6 @@ abstract class ClientEntity implements \Stringable
     #[ORM\Column(name: 'entity_name', type: 'string', length: 255, nullable: false, options: ['unsigned' => true])]
     #[ORM\Id]
     protected mixed $entity_name;
-
-    #[ORM\Column(name: 'created_at', type: 'datetime', nullable: false)]
-    #[Gedmo\Timestampable(on: 'create')]
-    private $createdAt;
-
-    #[ORM\Column(name: 'update_at', type: 'datetime', nullable: false)]
-    #[Gedmo\Timestampable(on: 'update')]
-    private $updateAt;
 
     public function __construct(
         #[ORM\Id]
@@ -91,26 +85,14 @@ abstract class ClientEntity implements \Stringable
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(?\DateTime $createdAt = null): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
     public function getUpdateAt(): ?\DateTime
     {
-        return $this->updateAt;
+        return $this->updatedAt;
     }
 
-    public function setUpdateAt(?\DateTime $updateAt = null): self
+    public function setUpdateAt(?\DateTime $updatedAt = null): self
     {
-        $this->updateAt = $updateAt;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
