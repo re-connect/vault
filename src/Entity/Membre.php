@@ -12,6 +12,7 @@ use ApiPlatform\Metadata\Put;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\ClientMembre;
+use App\Entity\Attributes\ConsultationBeneficiaire;
 use App\Entity\Attributes\MembreCentre;
 use App\Entity\Attributes\Subject;
 use App\Traits\GedmoTimedTrait;
@@ -20,12 +21,8 @@ use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ReadableCollection;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\MembreRepository")
- */
 #[ApiResource(
     shortName: 'pro',
     operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
