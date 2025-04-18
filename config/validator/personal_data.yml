@@ -5,11 +5,6 @@ App\Entity\Attributes\DonneePersonnelle:
     bPrive:
       - Type: boolean
 
-App\Entity\Note:
-  properties:
-    contenu:
-      - NotBlank: ~
-
 App\Entity\Evenement:
   constraints:
     - App\Validator\Constraints\Evenement\Entity: ~

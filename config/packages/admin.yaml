@@ -137,7 +137,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Notes" }
         arguments:
             - ~
-            - App\Entity\Note
+            - App\Entity\Attributes\Note
             - ~
 
     sonata.admin.document:

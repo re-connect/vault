@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Note;
+use App\Entity\Attributes\Note;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

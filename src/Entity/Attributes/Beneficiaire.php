@@ -20,7 +20,6 @@ use App\Entity\CreatorUser;
 use App\Entity\Dossier;
 use App\Entity\Evenement;
 use App\Entity\Interface\ClientResourceInterface;
-use App\Entity\Note;
 use App\Entity\SMS;
 use App\Entity\User;
 use App\Entity\UserWithCentresInterface;

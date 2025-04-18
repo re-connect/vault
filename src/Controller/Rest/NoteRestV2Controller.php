@@ -3,7 +3,7 @@
 namespace App\Controller\Rest;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Note;
+use App\Entity\Attributes\Note;
 use App\Entity\User;
 use App\Exception\JsonResponseException;
 use App\Manager\RestManager;
