@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Contact;
+use App\Entity\Attributes\Contact;
 use App\Entity\Document;
 use App\ManagerV2\ContactManager;
 use App\ManagerV2\DocumentManager;

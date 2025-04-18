@@ -32,7 +32,7 @@ App\Entity\Creator:
       targetEntity: App\Entity\Evenement
       inversedBy: creators
     contact:
-      targetEntity: App\Entity\Contact
+      targetEntity: App\Entity\Attributes\Contact
       inversedBy: creators
     dossier:
       targetEntity: App\Entity\Dossier

@@ -1,14 +1,19 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Creator;
 use App\Entity\Traits\CreatorTrait;
+use App\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ORM\MappedSuperclass]
 abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
 {
     use CreatorTrait;
@@ -16,12 +21,16 @@ abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
     public const PRIVE = true;
     public const PARTAGE = false;
 
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
     #[Groups([
         'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
         'document:read', 'read-personal-data', 'read-personal-data-v2',
     ])]
     protected ?int $id = null;
 
+    #[ORM\Column(type: 'boolean')]
     #[Groups([
         'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
         'v3:document:write', 'v3:folder:write', 'v3:event:write', 'v3:note:write', 'v3:contact:write',
@@ -30,6 +39,7 @@ abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
     ])]
     protected bool $bPrive = self::PARTAGE;
 
+    #[ORM\Column(name: 'nom', type: 'string', length: 255)]
     #[Groups([
         'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
         'v3:document:write', 'v3:folder:write', 'v3:event:write', 'v3:note:write', 'v3:contact:write',
@@ -50,16 +60,22 @@ abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
         'v3:contact:write', 'v3:note:write', 'v3:event:write'])]
     public ?int $beneficiaireId = null;
 
+    #[Gedmo\Timestampable(on: 'create')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups([
         'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
         'document:read', 'read-personal-data', 'read-personal-data-v2', ])]
     protected \DateTime $createdAt;
 
+    #[Gedmo\Timestampable(on: 'update')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups([
         'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
         'document:read', 'read-personal-data', 'read-personal-data-v2', ])]
     protected \DateTime $updatedAt;
 
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: 'deposePar_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
     protected ?User $deposePar = null;
 
     public function __construct()

@@ -3,7 +3,7 @@
 namespace App\Tests\v2\Listener\Logs;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
-use App\Entity\Contact;
+use App\Entity\Attributes\Contact;
 use App\ListenerV2\Logs\PersonalDataListener;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\ContactFactory;
