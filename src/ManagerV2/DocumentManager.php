@@ -3,7 +3,7 @@
 namespace App\ManagerV2;
 
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Document;
+use App\Entity\Attributes\Document;
 use App\Entity\Dossier;
 use App\Repository\DocumentRepository;
 use App\ServiceV2\BucketService;

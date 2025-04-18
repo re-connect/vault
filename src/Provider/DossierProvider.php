@@ -3,8 +3,8 @@
 namespace App\Provider;
 
 use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\Document;
 use App\Entity\Attributes\DonneePersonnelle;
-use App\Entity\Document;
 use App\Entity\Dossier;
 use App\Event\DonneePersonnelleEvent;
 use App\Event\REEvent;

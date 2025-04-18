@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Attributes\Contact;
+use App\Entity\Attributes\Document;
 use App\Entity\Attributes\DonneePersonnelle;
 
 abstract class Creator

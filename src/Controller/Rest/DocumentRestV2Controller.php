@@ -5,7 +5,7 @@ namespace App\Controller\Rest;
 use App\Api\Manager\ApiClientManager;
 use App\Controller\REController;
 use App\Entity\Attributes\Client;
-use App\Entity\Document;
+use App\Entity\Attributes\Document;
 use App\Entity\Dossier;
 use App\Entity\Membre;
 use App\Entity\User;
