@@ -7,7 +7,7 @@ use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
-use App\Entity\Contact;
+use App\Entity\Attributes\Contact;
 use App\Entity\Document;
 use App\Entity\Dossier;
 use App\Entity\Evenement;

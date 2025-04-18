@@ -1,16 +1,9 @@
-App\Entity\DonneePersonnelle:
+App\Entity\Attributes\DonneePersonnelle:
   properties:
     nom:
       - NotBlank: ~
     bPrive:
       - Type: boolean
-
-App\Entity\Contact:
-  properties:
-    prenom:
-      - NotBlank: ~
-    email:
-      - Email: ~
 
 App\Entity\Note:
   properties:

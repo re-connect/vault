@@ -3,7 +3,7 @@
 namespace App\ManagerV2;
 
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Contact;
+use App\Entity\Attributes\Contact;
 use App\Repository\ContactRepository;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;

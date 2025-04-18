@@ -5,7 +5,7 @@ namespace App\Api\State;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use App\Api\Manager\ApiClientManager;
-use App\Entity\DonneePersonnelle;
+use App\Entity\Attributes\DonneePersonnelle;
 use App\Entity\User;
 use App\Repository\BeneficiaireRepository;
 use Symfony\Bundle\SecurityBundle\Security;

@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Attributes\Contact;
+use App\Entity\Attributes\DonneePersonnelle;
+
 abstract class Creator
 {
     private ?int $id = null;

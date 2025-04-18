@@ -13,8 +13,10 @@ use ApiPlatform\Metadata\Post;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\DonneePersonnelle;
 use App\Entity\Attributes\FolderIcon;
 use App\Entity\Interface\FolderableEntityInterface;
+use App\Repository\DossierRepository;
 use App\Validator\Constraints\Folder as AssertFolder;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -23,9 +25,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\DocumentRepository")
- */
+#[ORM\Entity(repositoryClass: DossierRepository::class)]
 #[ApiResource(
     shortName: 'folder',
     operations: [

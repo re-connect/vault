@@ -3,7 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Contact;
+use App\Entity\Attributes\Contact;
 use App\Entity\Document;
 use App\Entity\Evenement;
 use App\Entity\Note;

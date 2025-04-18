@@ -2,7 +2,7 @@
 
 namespace App\FormV2;
 
-use App\Entity\DonneePersonnelle;
+use App\Entity\Attributes\DonneePersonnelle;
 use App\Entity\Evenement;
 use App\ListenerV2\TimezoneListener;
 use Symfony\Component\Form\AbstractType;
