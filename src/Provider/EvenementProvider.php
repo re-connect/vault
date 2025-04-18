@@ -3,7 +3,7 @@
 namespace App\Provider;
 
 use App\Entity\Attributes\Client;
-use App\Entity\DonneePersonnelle;
+use App\Entity\Attributes\DonneePersonnelle;
 use App\Entity\Evenement;
 use App\Entity\Rappel;
 use App\Event\DonneePersonnelleEvent;

@@ -2,7 +2,7 @@
 
 namespace App\Command\DataMigration;
 
-use App\Entity\Contact;
+use App\Entity\Attributes\Contact;
 use App\Entity\CreatorUser;
 use App\Entity\Document;
 use App\Entity\Dossier;

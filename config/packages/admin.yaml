@@ -173,7 +173,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Contacts" }
         arguments:
             - ~
-            - App\Entity\Contact
+            - App\Entity\Attributes\Contact
             - ~
 
     sonata.admin.adresse:

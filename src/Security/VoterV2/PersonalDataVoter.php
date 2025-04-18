@@ -2,7 +2,7 @@
 
 namespace App\Security\VoterV2;
 
-use App\Entity\DonneePersonnelle;
+use App\Entity\Attributes\DonneePersonnelle;
 use App\Entity\Interface\FolderableEntityInterface;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;

@@ -2,7 +2,7 @@
 
 namespace App\Event;
 
-use App\Entity\DonneePersonnelle;
+use App\Entity\Attributes\DonneePersonnelle;
 use App\Entity\User;
 use Symfony\Component\Security\Core\User\UserInterface;
 
