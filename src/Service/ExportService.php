@@ -4,7 +4,7 @@ namespace App\Service;
 
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Contact;
-use App\Entity\Document;
+use App\Entity\Attributes\Document;
 use App\Entity\Evenement;
 use App\Entity\Note;
 use App\Form\Model\ExportModel;

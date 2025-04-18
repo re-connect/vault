@@ -13,6 +13,7 @@ use ApiPlatform\Metadata\Post;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\Document;
 use App\Entity\Attributes\DonneePersonnelle;
 use App\Entity\Attributes\FolderIcon;
 use App\Entity\Interface\FolderableEntityInterface;

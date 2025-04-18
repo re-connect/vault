@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
@@ -13,9 +13,10 @@ use ApiPlatform\Metadata\Post;
 use App\Api\Filters\FolderIdFilter;
 use App\Controller\Api\UploadDocumentController;
 use App\Domain\Anonymization\AnonymizationHelper;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\DonneePersonnelle;
+use App\Entity\Creator;
+use App\Entity\Dossier;
 use App\Entity\Interface\FolderableEntityInterface;
+use App\Entity\SharedDocument;
 use App\Repository\DocumentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -26,6 +27,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: DocumentRepository::class)]
+#[ORM\Table(name: 'document')]
+#[ORM\Index(columns: ['dossier_id'], name: 'IDX_D8698A76611C0C56')]
+#[ORM\Index(columns: ['beneficiaire_id'], name: 'IDX_D8698A765AF81F68')]
+#[ORM\Index(columns: ['deposePar_id'], name: 'IDX_D8698A76F2AB781')]
 #[Vich\Uploadable]
 #[ApiResource(
     operations: [
@@ -78,13 +83,17 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
 
     protected ?\DateTime $dateEmission = null;
 
+    #[ORM\ManyToOne(targetEntity: Dossier::class, inversedBy: 'documents')]
+    #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id')]
     #[Groups(['v3:document:write', 'v3:document:read'])]
     protected ?Dossier $dossier = null;
 
+    #[ORM\Column(name: 'extension', type: 'string', length: 255, nullable: true)]
     #[Groups(['document:read', 'read-personal-data', 'read-personal-data-v2', 'v3:document:read'])]
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_DOCUMENT_EXTENSION]])]
     protected string $extension = '';
 
+    #[ORM\Column(name: 'taille', type: 'integer', nullable: false)]
     protected ?int $taille = null;
 
     #[Groups(['document:read', 'read-personal-data', 'read-personal-data-v2', 'v3:document:read'])]
@@ -105,13 +114,19 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
     #[Groups(['document:read', 'v3:document:read'])]
     private ?string $thumbnailPresignedUrl = null;
 
+    #[ORM\Column(name: 'objectKey', type: 'string', length: 255, nullable: true)]
     #[Groups(['document:read', 'v3:document:read'])]
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_DOCUMENT_OBJECT_KEY]])]
     private ?string $objectKey = '';
 
+    #[ORM\Column(name: 'thumbnailKey', type: 'string', length: 255, nullable: true)]
     #[Groups(['document:read', 'v3:document:read'])]
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_DOCUMENT_THUMBNAIL_KEY]])]
     private ?string $thumbnailKey = null;
+
+    #[ORM\ManyToOne(targetEntity: Beneficiaire::class, inversedBy: 'documents')]
+    #[ORM\JoinColumn(name: 'beneficiaire_id', referencedColumnName: 'id', nullable: false)]
+    protected ?Beneficiaire $beneficiaire = null;
 
     #[Groups(['document:read', 'read-personal-data', 'v3:document:read'])]
     private ?string $renameUrl = null;
@@ -125,7 +140,12 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
     #[Groups(['document:read', 'read-personal-data', 'read-personal-data-v2', 'v3:document:read'])]
     private ?string $deposeParFullName = null;
 
+    #[ORM\OneToMany(mappedBy: 'document', targetEntity: SharedDocument::class, cascade: ['remove'])]
+    #[ORM\JoinColumn(name: 'shared_document_id', referencedColumnName: 'id')]
     private ?Collection $sharedDocuments;
+
+    #[ORM\OneToMany(mappedBy: 'document', targetEntity: Creator::class, cascade: ['persist', 'remove'])]
+    protected Collection $creators;
 
     public function __construct()
     {

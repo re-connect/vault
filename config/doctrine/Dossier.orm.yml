@@ -22,7 +22,7 @@ App\Entity\Dossier:
                 onDelete: SET NULL
     oneToMany:
         documents:
-            targetEntity: App\Entity\Document
+            targetEntity: App\Entity\Attributes\Document
             mappedBy: dossier
             cascade: [ "persist", "remove" ]
         sousDossiers:

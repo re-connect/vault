@@ -3,7 +3,7 @@
 namespace App\ControllerV2;
 
 use App\Entity\Attributes\Contact;
-use App\Entity\Document;
+use App\Entity\Attributes\Document;
 use App\ManagerV2\ContactManager;
 use App\ManagerV2\DocumentManager;
 use App\ManagerV2\SharedDocumentManager;
