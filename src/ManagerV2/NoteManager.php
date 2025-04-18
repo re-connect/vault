@@ -3,7 +3,7 @@
 namespace App\ManagerV2;
 
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Note;
+use App\Entity\Attributes\Note;
 use App\Repository\NoteRepository;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;

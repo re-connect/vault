@@ -4,10 +4,10 @@ namespace App\Command\DataMigration;
 
 use App\Entity\Attributes\Contact;
 use App\Entity\Attributes\Document;
+use App\Entity\Attributes\Note;
 use App\Entity\CreatorUser;
 use App\Entity\Dossier;
 use App\Entity\Evenement;
-use App\Entity\Note;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;

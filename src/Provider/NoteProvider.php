@@ -3,7 +3,7 @@
 namespace App\Provider;
 
 use App\Entity\Attributes\Client;
-use App\Entity\Note;
+use App\Entity\Attributes\Note;
 use App\Form\Type\NoteSimpleType;
 use App\Form\Type\NoteType;
 use App\Security\Authorization\Voter\DonneePersonnelleVoter;
