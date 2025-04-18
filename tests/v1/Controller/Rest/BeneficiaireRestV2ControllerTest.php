@@ -7,7 +7,7 @@ use App\Entity\Attributes\BeneficiaireCentre;
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\Client;
 use App\Entity\Attributes\ClientBeneficiaire;
-use App\Entity\Document;
+use App\Entity\Attributes\Document;
 use App\Entity\Membre;
 use App\Provider\CentreProvider;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

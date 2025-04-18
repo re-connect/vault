@@ -20,7 +20,7 @@ App\Entity\Creator:
           unsigned: true
   manyToOne:
     document:
-      targetEntity: App\Entity\Document
+      targetEntity: App\Entity\Attributes\Document
       inversedBy: creators
     user:
       targetEntity: App\Entity\User

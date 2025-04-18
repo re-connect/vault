@@ -8,7 +8,7 @@ use ApiPlatform\Metadata\Operation;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\Contact;
-use App\Entity\Document;
+use App\Entity\Attributes\Document;
 use App\Entity\Dossier;
 use App\Entity\Evenement;
 use App\Entity\Note;

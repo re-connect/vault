@@ -2,7 +2,7 @@
 
 namespace App\Manager;
 
-use App\Entity\Document;
+use App\Entity\Attributes\Document;
 use App\Entity\Dossier;
 use App\Provider\DocumentProvider;
 use Mailjet\Client;

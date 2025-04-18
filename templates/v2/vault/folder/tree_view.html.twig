@@ -9,7 +9,7 @@
             <hr class="text-light-grey">
             <div class="mb-2">
                 <a href="{{ path(
-                    element is instanceof ('App\\Entity\\Document')
+                    element is instanceof ('App\\Entity\\Attributes\\Document')
                     ? 'document_move_to_folder'
                     : 'folder_move_to_folder',
                     {'id': element.id, 'tree-view': true}

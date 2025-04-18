@@ -146,7 +146,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Documents" }
         arguments:
             - ~
-            - App\Entity\Document
+            - App\Entity\Attributes\Document
             - ~
 
     sonata.admin.dossier:
