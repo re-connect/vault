@@ -155,7 +155,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Dossiers" }
         arguments:
             - ~
-            - App\Entity\Dossier
+            - App\Entity\Attributes\Dossier
             - ~
 
     sonata.admin.evenement:

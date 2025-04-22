@@ -35,6 +35,6 @@ App\Entity\Creator:
       targetEntity: App\Entity\Attributes\Contact
       inversedBy: creators
     dossier:
-      targetEntity: App\Entity\Dossier
+      targetEntity: App\Entity\Attributes\Dossier
       inversedBy: creators
   lifecycleCallbacks: {  }

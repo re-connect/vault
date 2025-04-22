@@ -17,7 +17,6 @@ use App\Controller\Api\UnlinkBeneficiaryController;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Creator;
 use App\Entity\CreatorUser;
-use App\Entity\Dossier;
 use App\Entity\Evenement;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Entity\SMS;

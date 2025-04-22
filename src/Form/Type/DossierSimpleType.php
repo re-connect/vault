@@ -3,7 +3,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Attributes\DonneePersonnelle;
-use App\Entity\Dossier;
+use App\Entity\Attributes\Dossier;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;

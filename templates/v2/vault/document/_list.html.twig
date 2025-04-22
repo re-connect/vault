@@ -14,7 +14,7 @@
     </thead>
     <tbody {{ stimulus_target('drag_n_drop', 'folderList') }}>
     {% for element in foldersAndDocuments %}
-        {% if element is instanceof('App\\Entity\\Dossier') %}
+        {% if element is instanceof('App\\Entity\\Attributes\\Dossier') %}
                 {{ include('v2/vault/folder/_card.html.twig', {'folder': element}) }}
         {% endif  %}
     {% endfor %}
