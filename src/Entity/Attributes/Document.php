@@ -14,7 +14,6 @@ use App\Api\Filters\FolderIdFilter;
 use App\Controller\Api\UploadDocumentController;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Creator;
-use App\Entity\Dossier;
 use App\Entity\Interface\FolderableEntityInterface;
 use App\Entity\SharedDocument;
 use App\Repository\DocumentRepository;

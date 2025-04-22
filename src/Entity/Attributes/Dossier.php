@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
@@ -12,11 +12,9 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Document;
-use App\Entity\Attributes\DonneePersonnelle;
-use App\Entity\Attributes\FolderIcon;
+use App\Entity\Creator;
 use App\Entity\Interface\FolderableEntityInterface;
+use App\Entity\User;
 use App\Repository\DossierRepository;
 use App\Validator\Constraints\Folder as AssertFolder;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -27,6 +25,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[ORM\Entity(repositoryClass: DossierRepository::class)]
+#[ORM\Table(name: 'dossier')]
+#[ORM\Index(columns: ['deposePar_id'], name: 'IDX_3D48E037F2AB781')]
+#[ORM\Index(columns: ['beneficiaire_id'], name: 'IDX_3D48E0375AF81F68')]
+#[ORM\Index(columns: ['dossier_parent_id'], name: 'IDX_3D48E037BC336E0D')]
+#[ORM\Index(columns: ['icon_id'], name: 'IDX_3D48E03754B9D732')]
 #[ApiResource(
     shortName: 'folder',
     operations: [
@@ -60,18 +63,34 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     final public const array AUTOCOMPLETE_NAMES = ['health', 'housing', 'identity', 'tax', 'work'];
     final public const string DEFAULT_ICON_FILE_PATH = 'img/folder_icon/neutral.svg';
 
+    #[ORM\ManyToOne(targetEntity: Beneficiaire::class, inversedBy: 'dossiers')]
+    #[ORM\JoinColumn(name: 'beneficiaire_id', referencedColumnName: 'id', nullable: false)]
+    protected ?Beneficiaire $beneficiaire = null;
+
+    #[ORM\OneToMany(mappedBy: 'dossier', targetEntity: Document::class, cascade: ['persist', 'remove'])]
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:folder:read'])]
     private Collection $documents;
+
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:folder:read'])]
     private ?string $dossierImage = null;
+
+    #[ORM\ManyToOne(targetEntity: Dossier::class, inversedBy: 'sousDossiers')]
+    #[ORM\JoinColumn(name: 'dossier_parent_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
     #[AssertFolder\NoCircularDependency]
     private ?Dossier $dossierParent = null;
+
+    #[ORM\OneToMany(mappedBy: 'dossierParent', targetEntity: Dossier::class, cascade: ['persist', 'remove'])]
     #[Groups(['read-personal-data', 'read-personal-data-v2'])]
     private Collection $sousDossiers;
 
+    #[ORM\ManyToOne(targetEntity: FolderIcon::class)]
+    #[ORM\JoinColumn(name: 'icon_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
     private ?FolderIcon $icon = null;
+
+    #[ORM\OneToMany(mappedBy: 'dossier', targetEntity: Creator::class, cascade: ['persist', 'remove'])]
+    protected Collection $creators;
 
     public function __construct()
     {
