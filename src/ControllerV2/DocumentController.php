@@ -3,7 +3,7 @@
 namespace App\ControllerV2;
 
 use App\Entity\Attributes\Document;
-use App\Entity\Dossier;
+use App\Entity\Attributes\Dossier;
 use App\FormV2\RenameDocumentType;
 use App\ManagerV2\DocumentManager;
 use App\ManagerV2\FolderableItemManager;

@@ -3,7 +3,7 @@
 namespace App\Manager;
 
 use App\Entity\Attributes\Document;
-use App\Entity\Dossier;
+use App\Entity\Attributes\Dossier;
 use App\Provider\DocumentProvider;
 use Mailjet\Client;
 use Mailjet\Resources;
