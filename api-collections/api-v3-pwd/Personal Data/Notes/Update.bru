@@ -1,0 +1,23 @@
+meta {
+  name: Update
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/api/v3/notes/{id}
+  body: json
+  auth: bearer
+}
+
+body:json {
+  {
+    "contenu": "string",
+    "b_prive": true,
+    "nom": "string"
+  }
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
+}
