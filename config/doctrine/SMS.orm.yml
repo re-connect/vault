@@ -43,7 +43,7 @@ App\Entity\SMS:
 ###################################
 #  A supprimer
     evenement:
-      targetEntity: App\Entity\Evenement
+      targetEntity: App\Entity\Attributes\Evenement
       inversedBy: sms
       joinColumn:
         nullable: true
