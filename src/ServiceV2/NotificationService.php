@@ -3,8 +3,8 @@
 namespace App\ServiceV2;
 
 use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\Evenement;
 use App\Entity\Attributes\UserCentre;
-use App\Entity\Evenement;
 use App\Entity\Helper\Notification\Notification;
 use App\Entity\Helper\Notification\NotificationAction;
 use App\Entity\Helper\Notification\NotificationForm;

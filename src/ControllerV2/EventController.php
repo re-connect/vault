@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Evenement;
+use App\Entity\Attributes\Evenement;
 use App\FormV2\EventType;
 use App\ManagerV2\EventManager;
 use Doctrine\ORM\EntityManagerInterface;
