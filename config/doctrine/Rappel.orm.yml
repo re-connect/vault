@@ -23,7 +23,7 @@ App\Entity\Rappel:
                 default: 0
     manyToOne:
         evenement:
-            targetEntity: App\Entity\Evenement
+            targetEntity: App\Entity\Attributes\Evenement
             inversedBy: rappels
     oneToOne:
         sms:

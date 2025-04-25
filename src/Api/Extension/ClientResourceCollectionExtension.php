@@ -10,8 +10,8 @@ use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Contact;
 use App\Entity\Attributes\Document;
 use App\Entity\Attributes\DonneePersonnelle;
+use App\Entity\Attributes\Evenement;
 use App\Entity\Attributes\Note;
-use App\Entity\Evenement;
 use App\Security\HelperV2\Oauth2Helper;
 use Doctrine\ORM\QueryBuilder;
 

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Attributes\Evenement;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 class Rappel implements \JsonSerializable

@@ -4,7 +4,7 @@ namespace App\Twig\Components;
 
 use App\ControllerV2\AbstractController;
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Evenement;
+use App\Entity\Attributes\Evenement;
 use App\FormV2\EventType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;

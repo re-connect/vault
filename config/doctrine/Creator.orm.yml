@@ -29,7 +29,7 @@ App\Entity\Creator:
       targetEntity: App\Entity\Attributes\Note
       inversedBy: creators
     evenement:
-      targetEntity: App\Entity\Evenement
+      targetEntity: App\Entity\Attributes\Evenement
       inversedBy: creators
     contact:
       targetEntity: App\Entity\Attributes\Contact

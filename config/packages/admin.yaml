@@ -164,7 +164,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Evenements" }
         arguments:
             - ~
-            - App\Entity\Evenement
+            - App\Entity\Attributes\Evenement
             - ~
 
     sonata.admin.contact:

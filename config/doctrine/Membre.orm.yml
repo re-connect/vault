@@ -49,7 +49,7 @@ App\Entity\Membre:
             cascade: ["remove"]
             mappedBy: membre
         evenements:
-            targetEntity: App\Entity\Evenement
+            targetEntity: App\Entity\Attributes\Evenement
             cascade: [ "persist" ]
             mappedBy: membre
         externalLinks:
