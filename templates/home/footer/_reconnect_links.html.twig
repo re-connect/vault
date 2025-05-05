@@ -1,25 +1,32 @@
+{% set links = [
+    {name: 'home_who_we_are_title', url: path('re_main_accueil')~'#qui-sommes-nous', target: '_self'},
+    {name: 'contact_page_title', url: path('re_main_contactV2'), target: '_self'},
+    {name: 'faq_gdpr', url: path('re_main_faq'), target: '_self'},
+    {name: 'Groupe SOS', url: 'https://www.groupe-sos.org', target: '_blank'},
+] %}
+
+{% set icon_links = [
+    {icon: 'facebook-square', url: 'https://www.facebook.com/reconnectlecloudsolidaire'},
+    {icon: 'linkedin', url: 'https://www.linkedin.com/company/reconnect_2/'},
+    {icon: 'twitter-square', url: 'https://twitter.com/ReconnectCloud'},
+    {icon: 'youtube-square', url: 'https://www.youtube.com/channel/UCYQOlpeG9KrVvCiKHgUNZcA'},
+    {icon: 'medium', url: 'https://medium.com/reconnect'},
+    {icon: 'github', url: 'https://github.com/re-connect/vault'},
+] %}
+
 <div class="col-12 mt-1 pb-1 text-center col-sm-3 text-sm-start">
     <h5 class="pb-1">Reconnect</h5>
-    <a target="_self" class="d-block text-decoration-none my-3"
-       href="{{ path('re_main_accueil') }}#qui-sommes-nous">{{ 'home_who_we_are_title'|trans }}</a>
-    <a target="_self" class="d-block text-decoration-none my-3"
-       href="{{ path('re_main_contactV2') }}">{{ 'contact_page_title'|trans }}</a>
-    <a target="_self" class="d-block text-decoration-none my-3"
-       href="{{ path('re_main_faq') }}">{{ 'faq_gdpr'|trans }}</a>
-    <a target="_blank" class="d-block text-decoration-none my-3"
-       href="https://www.groupe-sos.org">Groupe SOS</a>
+    {% for link in links %}
+        <a target="{{ link.target }}"
+           class="d-block text-decoration-none my-3"
+           href="{{ link.url }}"
+        >
+            {{ link.name|trans }}
+        </a>
+    {% endfor %}
     <div class="mb-3">
-        <a target="_blank" href="https://www.facebook.com/reconnectlecloudsolidaire"><i
-                    class="fab fa-facebook-square font-size-1-3 mx-1"></i></a>
-        <a target="_blank" href="https://www.linkedin.com/company/reconnect_2/"><i
-                    class="fab fa-linkedin font-size-1-3 mx-1"></i></a>
-        <a target="_blank" href="https://twitter.com/ReconnectCloud"><i
-                    class="fab fa-twitter-square font-size-1-3 mx-1"></i></a>
-        <a target="_blank" href="https://www.youtube.com/channel/UCYQOlpeG9KrVvCiKHgUNZcA"><i
-                    class="fab fa-youtube-square font-size-1-3 mx-1"></i></a>
-        <a target="_blank" href="https://medium.com/reconnect"><i
-                    class="fab fa-medium font-size-1-3 mx-1"></i></a>
-        <a target="_blank" href="https://github.com/re-connect/vault"><i
-                    class="fab fa-github font-size-1-3 mx-1"></i></a>
+        {% for link in icon_links %}
+            <a target="_blank" href="{{ link.url }}"><i class="fab fa-{{ link.icon }} font-size-1-3 mx-1"></i></a>
+        {% endfor %}
     </div>
 </div>

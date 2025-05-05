@@ -1,11 +1,18 @@
+{% set links = [
+    {name: 'footer_discover_rp', url: path('re_main_page_RP'), target: '_self'},
+    {name: 'form_connexion', url: reconnectProEndpoint~'/login', target: '_self'},
+    {name: 'footer_CGS_rp', url: reconnectProEndpoint~'/legal/service.pdf', target: '_blank'},
+    {name: 'footer_confidentiality_rp', url: reconnectProEndpoint~'/legal/privacy.pdf', target: '_blank'},
+] %}
+
 <div class="col-12 mt-1 pb-1 text-center col-sm-3 text-sm-start">
     <h5 class="pb-1">Reconnect Pro</h5>
-    <a target="_self" class="d-block text-decoration-none my-3"
-       href="{{ path('re_main_page_RP') }}">{{ 'footer_discover_rp'|trans }}</a>
-    <a target="_self" class="d-block text-decoration-none my-3"
-       href="{{ reconnectProEndpoint~'/login' }}">{{ 'form_connexion'|trans }}</a>
-    <a target="_blank" class="d-block text-decoration-none my-3"
-       href="{{ reconnectProEndpoint~'/legal/service.pdf' }}">{{ 'footer_CGS_rp'|trans }}</a>
-    <a target="_blank" class="d-block text-decoration-none my-3"
-       href="{{ reconnectProEndpoint~'/legal/privacy.pdf' }}">{{ 'footer_confidentiality_rp'|trans }}</a>
+    {% for link in links %}
+        <a target="{{ link.target }}"
+           class="d-block text-decoration-none my-3"
+           href="{{ link.url }}"
+        >
+            {{ link.name|trans }}
+        </a>
+    {% endfor %}
 </div>
