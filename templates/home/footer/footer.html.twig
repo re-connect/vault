@@ -1,0 +1,27 @@
+<footer class="bg-white pb-3">
+    <div class="bg-primary py-2"></div>
+    <div class="container py-2 pt-sm-4">
+        <div class="text-primary text-center text-lg-end col-12 offset-lg-4 col-lg-8">
+            <div class="row">
+                <div class="offset-lg-3 col-12 col-lg-6">
+                    <p class="font-size-1">{{ 'footer_group_sos_text'|trans }}</p>
+                </div>
+                <div class="col-12 col-lg-3 mb-3 mb-lg-0">
+                    <img style="width:180px;" src="{{ asset('build/images/home/logo-sos-solidarite-new.png') }}"
+                         alt="{{ 'footer_alt_logo_groupe_sos_solidarite' | trans }}">
+                </div>
+            </div>
+        </div>
+        <hr class="text-primary">
+        <div class="row text-primary d-flex flex-md-row flex-column-reverse">
+            <div class="col-12 row mx-0">
+                {{ include('home/footer/_reconnect_links.html.twig') }}
+                {{ include('home/footer/_vault_links.html.twig') }}
+                {{ include('home/footer/_pro_links.html.twig') }}
+            </div>
+        {{ include('home/footer/_partners.html.twig') }}
+        </div>
+        <hr class="text-primary">
+        {{ include('home/footer/_bottom_links.html.twig') }}
+    </div>
+</footer>
