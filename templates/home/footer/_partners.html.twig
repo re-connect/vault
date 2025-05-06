@@ -1,0 +1,36 @@
+{% set partners = {
+    first_row: [
+        {src: 'build/images/ue.png', alt: 'logo UE', style: 'width: 100px;'},
+        {src: 'build/images/home/logo-ffe-new.png', alt: 'footer_alt_logo_ffe', style: 'width: 100px;'},
+        {src: 'build/images/home/logo-afnic.png', alt: 'footer_alt_logo_afnic', style: 'width: 140px;'},
+        {src: 'build/images/feder.png', alt: 'logo FEDER', style: 'width: 130px; height: 72px'},
+        {src: 'build/images/idf.png', alt: 'logo IDF', style: 'width: 130px; height: 32px'},
+        {src: 'build/images/home/logo-dreets.png', alt: 'logo DREETS', style: 'width: 240px;'},
+        {src: 'build/images/home/logo-interreg.jpg', alt: 'logo Interreg', style: 'width: 240px;'}
+    ],
+    second_row: [
+        {src: 'build/images/home/logo_feder_hdf.png', alt: 'logo Feder Hauts de France', style: 'width: 240px;'}
+    ]
+}
+%}
+<div class="col-12 mt-2">
+    <p class="font-size-1 mb-0 text-center text-md-start">{{ 'footer_partners_text' | trans }}</p>
+    <div class="text-center d-lg-flex justify-content-between align-items-center">
+        {% for partner in partners.first_row %}
+            <img class="img-fluid"
+                 style="{{ partner.style }}"
+                 src="{{ asset(partner.src) }}"
+                 alt="{{ partner.alt|trans }}"
+            >
+        {% endfor %}
+    </div>
+    <div class="text-center d-lg-flex justify-content-between align-items-center mt-2">
+        {% for partner in partners.second_row %}
+            <img class="img-fluid"
+                 style="{{ partner.style }}"
+                 src="{{ asset(partner.src) }}"
+                 alt="{{ partner.alt|trans }}"
+            >
+        {% endfor %}
+    </div>
+</div>

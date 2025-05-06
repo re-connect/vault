@@ -1,0 +1,12 @@
+<div class="col-12 mt-1 pb-1 text-center col-sm-3 text-sm-start">
+    <h5 class="pb-1">{{ 'digital_care'|trans }}</h5>
+    {% set links = [
+        {name: 'training_provision', url: 'cgv-formation'},
+        {name: 'training_internal_rules', url: 'règlement interieur'},
+        {name: 'training_information_booklet', url: "Livret d'informations - Formations Reconnect"}
+    ] %}
+    {% for link in links %}
+        <a target="_blank" class="d-block text-decoration-none my-3"
+           href="{{ path('re_admin_annexe', { url: link.url}) }}">{{ link.name|trans }}</a>
+    {% endfor %}
+</div>

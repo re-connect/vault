@@ -1,0 +1,18 @@
+{% set links = [
+    {name: 'footer_discover_vault', url: path('re_main_page_vault'), target: '_self'},
+    {name: 'form_connexion', url: path('re_main_page_vault'), target: '_self'},
+    {name: 'footer_CGS_vault', url: path('cgs'), target: '_blank'},
+    {name: 'footer_confidentiality_vault', url: path('re_admin_annexe', { url: 'confidentialite-cs'}), target: '_blank'},
+] %}
+
+<div class="col-12 mt-1 pb-1 text-center col-sm-3 text-sm-start">
+    <h5 class="pb-1">{{ 'vault'|trans }}</h5>
+    {% for link in links %}
+        <a target="{{ link.target }}"
+           class="d-block text-decoration-none my-3"
+           href="{{ link.url }}"
+        >
+            {{ link.name|trans }}
+        </a>
+    {% endfor %}
+</div>
