@@ -5,7 +5,7 @@ namespace App\Tests\v2\Service;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Evenement;
-use App\Entity\Rappel;
+use App\Entity\Attributes\Rappel;
 use App\Entity\SMS;
 use App\Entity\User;
 use App\Helper\SecretQuestionsHelper;

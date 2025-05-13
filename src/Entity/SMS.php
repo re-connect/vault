@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\Evenement;
+use App\Entity\Attributes\Rappel;
 use App\Traits\GedmoTimedTrait;
 
 /**
