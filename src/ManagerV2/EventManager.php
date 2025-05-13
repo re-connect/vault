@@ -4,7 +4,7 @@ namespace App\ManagerV2;
 
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Evenement;
-use App\Entity\Rappel;
+use App\Entity\Attributes\Rappel;
 use App\Repository\EvenementRepository;
 use App\Repository\RappelRepository;
 use App\ServiceV2\NotificationService;

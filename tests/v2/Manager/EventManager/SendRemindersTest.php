@@ -4,7 +4,7 @@ namespace App\Tests\v2\Manager\EventManager;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Entity\Attributes\Evenement;
-use App\Entity\Rappel;
+use App\Entity\Attributes\Rappel;
 use App\ManagerV2\EventManager;
 use App\Tests\Factory\BeneficiaireFactory;
 use Doctrine\ORM\EntityManagerInterface;

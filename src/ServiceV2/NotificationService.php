@@ -4,11 +4,11 @@ namespace App\ServiceV2;
 
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Evenement;
+use App\Entity\Attributes\Rappel;
 use App\Entity\Attributes\UserCentre;
 use App\Entity\Helper\Notification\Notification;
 use App\Entity\Helper\Notification\NotificationAction;
 use App\Entity\Helper\Notification\NotificationForm;
-use App\Entity\Rappel;
 use App\Entity\SMS;
 use App\Entity\User;
 use App\FormV2\UserCreation\SecretQuestionType;

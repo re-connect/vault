@@ -2,7 +2,7 @@
 
 namespace App\Event;
 
-use App\Entity\Rappel;
+use App\Entity\Attributes\Rappel;
 
 class EvenementEvent extends REEvent
 {

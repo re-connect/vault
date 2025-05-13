@@ -13,7 +13,7 @@ use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Creator;
 use App\Entity\Membre;
-use App\Entity\Rappel;
+use App\Repository\EvenementRepository;
 use App\Validator\Constraints\Evenement as CustomAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -24,7 +24,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: EvenementRepository::class)]
 #[ORM\Table(name: 'evenement')]
 #[ORM\Index(columns: ['deposePar_id'], name: 'IDX_B26681EF2AB781')]
 #[ORM\Index(columns: ['beneficiaire_id'], name: 'IDX_B26681E5AF81F68')]
@@ -64,6 +64,7 @@ class Evenement extends DonneePersonnelle
 
     #[ORM\Column(name: 'date', type: 'datetime', nullable: false)]
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
+    #[Assert\NotBlank]
     #[Assert\Type(\DateTimeInterface::class)]
     private \DateTime $date;
 
@@ -87,6 +88,7 @@ class Evenement extends DonneePersonnelle
 
     #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Rappel::class, cascade: ['persist', 'remove'])]
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
+    #[Assert\Valid]
     private Collection $rappels;
 
     #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Creator::class, cascade: ['persist', 'remove'])]
