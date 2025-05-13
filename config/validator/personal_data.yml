@@ -5,20 +5,3 @@ App\Entity\Attributes\DonneePersonnelle:
     bPrive:
       - Type: boolean
 
-App\Entity\Evenement:
-  constraints:
-    - App\Validator\Constraints\Evenement\Entity: ~
-  properties:
-    date:
-      - NotBlank: ~
-      - Type: datetime
-    rappels:
-      - Valid: ~
-
-App\Entity\Rappel:
-  constraints:
-    - App\Validator\Constraints\Rappel\Entity: ~
-  properties:
-    date:
-      - NotBlank: ~
-      - Type: datetime

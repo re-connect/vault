@@ -37,7 +37,7 @@ App\Entity\SMS:
         nullable: false
   oneToOne:
     rappel:
-      targetEntity: App\Entity\Rappel
+      targetEntity: App\Entity\Attributes\Rappel
       inversedBy: sms
 #      cascade: ["persist"]
 ###################################
