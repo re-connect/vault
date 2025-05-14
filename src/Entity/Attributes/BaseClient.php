@@ -1,33 +1,27 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
+
+use Doctrine\ORM\Mapping as ORM;
 
 class BaseClient
 {
-    /**
-     * @var int
-     */
-    protected $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    protected ?int $id = null;
 
-    /**
-     * @var string
-     */
-    protected $randomId;
+    #[ORM\Column(name: 'random_id', type: 'string', length: 255, nullable: false)]
+    protected string $randomId;
 
-    /**
-     * @var string
-     */
-    protected $secret;
+    #[ORM\Column(name: 'secret', type: 'string', length: 255, nullable: false)]
+    protected string $secret;
 
-    /**
-     * @var array
-     */
-    protected $redirectUris = [];
+    #[ORM\Column(name: 'redirect_uris', type: 'array', nullable: false)]
+    protected array $redirectUris = [];
 
-    /**
-     * @var array
-     */
-    protected $allowedGrantTypes = [];
+    #[ORM\Column(name: 'allowed_grant_types', type: 'array', nullable: false)]
+    protected array $allowedGrantTypes = [];
 
     public function __construct()
     {
@@ -64,22 +58,22 @@ class BaseClient
         return $this;
     }
 
-    public function getSecret()
+    public function getSecret(): string
     {
         return $this->secret;
     }
 
-    public function checkSecret($secret)
+    public function checkSecret($secret): bool
     {
         return null === $this->secret || $secret === $this->secret;
     }
 
-    public function setRedirectUris(array $redirectUris)
+    public function setRedirectUris(array $redirectUris): void
     {
         $this->redirectUris = $redirectUris;
     }
 
-    public function getRedirectUris()
+    public function getRedirectUris(): array
     {
         return $this->redirectUris;
     }
@@ -91,12 +85,12 @@ class BaseClient
         return $this;
     }
 
-    public function getAllowedGrantTypes()
+    public function getAllowedGrantTypes(): array
     {
         return $this->allowedGrantTypes;
     }
 
-    public static function generateToken()
+    public static function generateToken(): string
     {
         $bytes = random_bytes(32);
 

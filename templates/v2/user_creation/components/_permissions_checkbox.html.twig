@@ -1,4 +1,4 @@
-{% set isDefaultPermission = (permission.value == constant('App\\Entity\\MembreCentre::DEFAULT_PERMISSION_CREATE_BENEFICIARIES')) %}
+{% set isDefaultPermission = (permission.value == constant('App\\Entity\\Attributes\\MembreCentre::DEFAULT_PERMISSION_CREATE_BENEFICIARIES')) %}
 {% set isUpdatable = permission.isUpdatable %}
 
 {% if isDefaultPermission or isUpdatable %}

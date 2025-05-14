@@ -24,7 +24,7 @@ App\Entity\RefreshToken:
             nullable: true
     manyToOne:
         client:
-            targetEntity: App\Entity\Client
+            targetEntity: App\Entity\Attributes\Client
             joinColumn:
                 nullable: false
         user:

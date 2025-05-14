@@ -2,7 +2,7 @@
 
 namespace App\ListenerV2;
 
-use App\Entity\MembreCentre;
+use App\Entity\Attributes\MembreCentre;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Events;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;

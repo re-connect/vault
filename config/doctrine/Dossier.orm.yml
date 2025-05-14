@@ -4,7 +4,7 @@ App\Entity\Dossier:
     repositoryClass: App\Repository\DossierRepository
     manyToOne:
         beneficiaire:
-            targetEntity: App\Entity\Beneficiaire
+            targetEntity: App\Entity\Attributes\Beneficiaire
             inversedBy: dossiers
             joinColumn:
                 nullable: false

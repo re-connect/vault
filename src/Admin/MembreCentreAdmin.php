@@ -2,7 +2,7 @@
 
 namespace App\Admin;
 
-use App\Entity\MembreCentre;
+use App\Entity\Attributes\MembreCentre;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;

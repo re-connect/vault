@@ -3,8 +3,8 @@
 namespace App\Command;
 
 use App\Entity\Attributes\Centre;
+use App\Entity\Attributes\MembreCentre;
 use App\Entity\Membre;
-use App\Entity\MembreCentre;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use League\Csv\Reader;

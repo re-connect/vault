@@ -2,9 +2,9 @@
 
 namespace App\ManagerV2;
 
+use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\BeneficiaireCentre;
 use App\Entity\Attributes\Centre;
-use App\Entity\Beneficiaire;
-use App\Entity\BeneficiaireCentre;
 use App\Entity\User;
 use App\FormV2\UserAffiliation\Model\SearchBeneficiaryFormModel;
 use App\Repository\BeneficiaireRepository;

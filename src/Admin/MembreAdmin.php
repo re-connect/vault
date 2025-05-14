@@ -51,7 +51,7 @@ class MembreAdmin extends AbstractAdmin
     {
         $result = $this->entityManager->createQueryBuilder()
             ->select('mc')
-            ->from('App:MembreCentre', 'mc')
+            ->from('App:Attributes\MembreCentre', 'mc')
             ->innerJoin('mc.membre', 'm')
             ->where('m.id = '.$object->getId())
             ->getQuery()

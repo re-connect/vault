@@ -2,7 +2,7 @@
 
 namespace App\ListenerV2;
 
-use App\Entity\MembreCentre;
+use App\Entity\Attributes\MembreCentre;
 use App\Entity\User;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;

@@ -1,9 +1,16 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
+use App\Entity\Gestionnaire;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
 class ClientGestionnaire extends ClientEntity
 {
+    #[ORM\ManyToOne(targetEntity: Centre::class, inversedBy: 'externalLinks')]
+    protected mixed $entity = null;
+
     public function setEntity(?Gestionnaire $entity = null): self
     {
         $this->entity = $entity;

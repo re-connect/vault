@@ -2,7 +2,7 @@
 
 namespace App\Api\Manager;
 
-use App\Entity\Client;
+use App\Entity\Attributes\Client;
 use App\Repository\ClientRepository as OldClientRepository;
 use League\Bundle\OAuth2ServerBundle\Repository\ClientRepository;
 use League\Bundle\OAuth2ServerBundle\Security\Authentication\Token\OAuth2Token;

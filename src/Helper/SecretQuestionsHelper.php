@@ -2,7 +2,7 @@
 
 namespace App\Helper;
 
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 use App\Form\Event\SecretQuestionListener;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bundle\SecurityBundle\Security;

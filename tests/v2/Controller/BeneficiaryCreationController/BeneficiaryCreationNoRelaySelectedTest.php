@@ -3,7 +3,7 @@
 namespace App\Tests\v2\Controller\BeneficiaryCreationController;
 
 use App\DataFixtures\v2\MemberFixture;
-use App\Entity\BeneficiaireCentre;
+use App\Entity\Attributes\BeneficiaireCentre;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\BeneficiaryCreationProcessFactory;
 use App\Tests\Factory\RelayFactory;

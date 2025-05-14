@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
 use App\Traits\GedmoTimedTrait;
 

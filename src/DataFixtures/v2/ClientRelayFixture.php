@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures\v2;
 
-use App\Entity\ClientCentre;
+use App\Entity\Attributes\ClientCentre;
 use App\Tests\Factory\ClientFactory;
 use App\Tests\Factory\RelayFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;

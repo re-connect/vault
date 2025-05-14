@@ -2,7 +2,7 @@
 
 namespace App\Admin;
 
-use App\Entity\Client;
+use App\Entity\Attributes\Client;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

@@ -2,7 +2,7 @@
 
 namespace App\Event;
 
-use App\Entity\Client;
+use App\Entity\Attributes\Client;
 use App\Entity\User;
 
 final class UserEvent extends REEvent
