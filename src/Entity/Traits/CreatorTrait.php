@@ -2,7 +2,7 @@
 
 namespace App\Entity\Traits;
 
-use App\Entity\Creator;
+use App\Entity\Attributes\Creator;
 use App\Entity\CreatorCentre;
 use App\Entity\CreatorClient;
 use App\Entity\CreatorUser;

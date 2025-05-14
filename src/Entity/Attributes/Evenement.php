@@ -11,7 +11,6 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
-use App\Entity\Creator;
 use App\Entity\Membre;
 use App\Repository\EvenementRepository;
 use App\Validator\Constraints\Evenement as CustomAssert;
