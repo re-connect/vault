@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Attributes\Centre;
+use App\Entity\Attributes\Creator;
 
 /**
  * CreatorCentre.

@@ -15,7 +15,6 @@ use App\Api\State\BeneficiaryStateProcessor;
 use App\Api\State\BeneficiaryStateProvider;
 use App\Controller\Api\UnlinkBeneficiaryController;
 use App\Domain\Anonymization\AnonymizationHelper;
-use App\Entity\Creator;
 use App\Entity\CreatorUser;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Entity\SMS;
