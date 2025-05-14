@@ -2,7 +2,7 @@
 
 namespace App\Event;
 
-use App\Entity\Membre;
+use App\Entity\Attributes\Membre;
 use App\Entity\User;
 
 class MembreEvent extends REEvent

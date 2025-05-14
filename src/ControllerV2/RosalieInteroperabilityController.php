@@ -4,7 +4,7 @@ namespace App\ControllerV2;
 
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Membre;
+use App\Entity\Attributes\Membre;
 use App\Repository\BeneficiaireRepository;
 use App\Security\VoterV2\ProVoter;
 use App\ServiceV2\RosalieService;

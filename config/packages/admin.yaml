@@ -83,7 +83,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "Professionnels" }
         arguments:
             - ~
-            - App\Entity\Membre
+            - App\Entity\Attributes\Membre
             - App\Admin\MembreAdminController
         calls:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]

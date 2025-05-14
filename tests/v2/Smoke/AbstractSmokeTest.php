@@ -5,7 +5,7 @@ namespace App\Tests\v2\Smoke;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Membre;
+use App\Entity\Attributes\Membre;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\MembreFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
