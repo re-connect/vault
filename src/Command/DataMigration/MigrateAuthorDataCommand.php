@@ -3,11 +3,11 @@
 namespace App\Command\DataMigration;
 
 use App\Entity\Attributes\Contact;
+use App\Entity\Attributes\CreatorUser;
 use App\Entity\Attributes\Document;
 use App\Entity\Attributes\Dossier;
 use App\Entity\Attributes\Evenement;
 use App\Entity\Attributes\Note;
-use App\Entity\CreatorUser;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
