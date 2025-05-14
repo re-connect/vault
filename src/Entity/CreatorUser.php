@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Attributes\Creator;
+
 /**
  * CreatorUser.
  */

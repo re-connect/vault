@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Attributes\Client;
+use App\Entity\Attributes\Creator;
 
 /**
  * CreatorClient.

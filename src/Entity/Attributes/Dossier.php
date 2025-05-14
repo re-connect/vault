@@ -12,7 +12,6 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
-use App\Entity\Creator;
 use App\Entity\Interface\FolderableEntityInterface;
 use App\Entity\User;
 use App\Repository\DossierRepository;

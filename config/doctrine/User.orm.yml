@@ -209,7 +209,7 @@ App\Entity\User:
             mappedBy: user
             cascade: [ "persist", "remove" ]
         creators:
-            targetEntity: App\Entity\Creator
+            targetEntity: App\Entity\Attributes\Creator
             cascade: [ "persist", "remove" ]
             mappedBy: user
             orphanRemoval: true
