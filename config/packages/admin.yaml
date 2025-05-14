@@ -14,7 +14,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Autres", label: "Partenaires" }
         arguments:
             - ~
-            - App\Entity\Partenaire
+            - App\Entity\Attributes\Partenaire
             - ~
 
     sonata.admin.faq:
