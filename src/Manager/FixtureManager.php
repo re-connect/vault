@@ -6,7 +6,7 @@ use App\Entity\Attributes\Adresse;
 use App\Entity\Attributes\Association;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
-use App\Entity\Gestionnaire;
+use App\Entity\Attributes\Gestionnaire;
 use App\Entity\Membre;
 use App\Entity\TypeCentre;
 use App\Entity\User;

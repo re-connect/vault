@@ -5,7 +5,7 @@ namespace App\ManagerV2;
 use App\Entity\Attributes\Administrateur;
 use App\Entity\Attributes\Association;
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Gestionnaire;
+use App\Entity\Attributes\Gestionnaire;
 use App\Entity\Membre;
 use App\Entity\User;
 use App\Event\UserEvent;
