@@ -1,20 +1,30 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\FaqQuestionRepository")
- */
+#[ORM\Entity]
+#[ORM\Table(name: 'faq_question')]
 class FaqQuestion
 {
-    private int $id;
+    #[ORM\Column(name: 'id', type: 'integer', nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    private ?int $id = null;
+
+    #[ORM\Column(name: 'text', type: 'string', length: 255, nullable: false)]
     private string $text;
+
+    #[ORM\Column(name: 'answer', type: 'text', length: 0, nullable: false)]
     private string $answer;
+
+    #[ORM\Column(name: 'position', type: 'integer', nullable: true)]
     #[Assert\PositiveOrZero]
     private ?int $position = null;
+
+    #[ORM\Column(name: 'createdAt', type: 'datetime', nullable: false)]
     private \DateTime $createdAt;
 
     public function __construct()
@@ -32,7 +42,7 @@ class FaqQuestion
         return $this->text;
     }
 
-    public function setText(string $text): self
+    public function setText(string $text): static
     {
         $this->text = $text;
 
@@ -44,7 +54,7 @@ class FaqQuestion
         return $this->answer;
     }
 
-    public function setAnswer(string $answer): self
+    public function setAnswer(string $answer): static
     {
         $this->answer = $answer;
 
@@ -56,7 +66,7 @@ class FaqQuestion
         return $this->position;
     }
 
-    public function setPosition(?int $position): self
+    public function setPosition(?int $position): static
     {
         $this->position = $position;
 
@@ -68,7 +78,7 @@ class FaqQuestion
         return $this->createdAt->format('Y-m-d');
     }
 
-    public function setCreatedAt(\DateTime $createdAt): self
+    public function setCreatedAt(\DateTime $createdAt): static
     {
         $this->createdAt = $createdAt;
 
