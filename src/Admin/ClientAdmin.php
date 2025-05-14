@@ -3,7 +3,7 @@
 namespace App\Admin;
 
 use App\Entity\Attributes\Client;
-use App\Entity\CreatorClient;
+use App\Entity\Attributes\CreatorClient;
 use App\Form\Type\CheckboxHierarchyType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sonata\AdminBundle\Admin\AbstractAdmin;

@@ -2,9 +2,6 @@
 
 namespace App\Entity\Attributes;
 
-use App\Entity\CreatorCentre;
-use App\Entity\CreatorClient;
-use App\Entity\CreatorUser;
 use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 

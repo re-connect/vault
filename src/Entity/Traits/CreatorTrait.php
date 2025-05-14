@@ -3,9 +3,9 @@
 namespace App\Entity\Traits;
 
 use App\Entity\Attributes\Creator;
-use App\Entity\CreatorCentre;
-use App\Entity\CreatorClient;
-use App\Entity\CreatorUser;
+use App\Entity\Attributes\CreatorCentre;
+use App\Entity\Attributes\CreatorClient;
+use App\Entity\Attributes\CreatorUser;
 use Doctrine\Common\Collections\Collection;
 
 trait CreatorTrait

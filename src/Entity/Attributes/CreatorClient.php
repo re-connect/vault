@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\Creator;
+use Doctrine\ORM\Mapping as ORM;
 
-/**
- * CreatorClient.
- */
+#[ORM\Entity]
 class CreatorClient extends Creator implements \Stringable
 {
     #[\Override]
@@ -21,22 +18,12 @@ class CreatorClient extends Creator implements \Stringable
         return $this->getEntity()?->getNom();
     }
 
-    /**
-     * Get entity.
-     *
-     * @return Client|null
-     */
-    public function getEntity()
+    public function getEntity(): ?Client
     {
         return $this->entity;
     }
 
-    /**
-     * Set entity.
-     *
-     * @return CreatorClient
-     */
-    public function setEntity(Client $entity)
+    public function setEntity(Client $entity): static
     {
         $this->entity = $entity;
 
@@ -44,6 +31,7 @@ class CreatorClient extends Creator implements \Stringable
     }
 
     public function __construct(
+        #[ORM\ManyToOne(targetEntity: Client::class)]
         private ?Client $entity = null
     ) {
     }

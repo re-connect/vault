@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\CreatorUser;
+use App\Entity\Attributes\CreatorUser;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
