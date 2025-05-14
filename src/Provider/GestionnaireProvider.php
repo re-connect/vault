@@ -2,7 +2,7 @@
 
 namespace App\Provider;
 
-use App\Entity\Gestionnaire;
+use App\Entity\Attributes\Gestionnaire;
 use App\Entity\User;
 use App\Event\GestionnaireEvent;
 use App\Event\REEvent;

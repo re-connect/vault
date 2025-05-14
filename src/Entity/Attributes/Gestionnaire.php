@@ -1,28 +1,50 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use App\Entity\Attributes\Association;
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\ClientGestionnaire;
-use App\Entity\Attributes\Subject;
-use App\Traits\GedmoTimedTrait;
+use App\Entity\User;
+use App\Entity\UserHandleCentresInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ORM\Entity]
+#[ORM\Table(name: 'gestionnaire')]
+#[ORM\Index(columns: ['association_id'], name: 'IDX_F4461B20EFB9C8A5')]
+#[ORM\UniqueConstraint(name: 'UNIQ_F4461B20A76ED395', columns: ['user_id'])]
 class Gestionnaire extends Subject implements UserHandleCentresInterface
 {
-    use GedmoTimedTrait;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    protected ?int $id = null;
 
-    /**
-     * @var Centre[]|Collection<Centre>
-     */
+    #[ORM\OneToMany(mappedBy: 'gestionnaire', targetEntity: Centre::class)]
     private $centres;
+
+    #[ORM\ManyToOne(targetEntity: \Association::class, inversedBy: 'gestionnaire')]
+    #[ORM\JoinColumn(name: 'association_id', referencedColumnName: 'id', nullable: false)]
     private ?Association $association = null;
-    /**
-     * @var array|Collection
-     */
-    private $externalLinks;
+
+    #[ORM\OneToMany(mappedBy: 'entity', targetEntity: ClientGestionnaire::class, orphanRemoval: true)]
+    private Collection $externalLinks;
+
+    #[ORM\OneToOne(inversedBy: 'subjectGestionnaire', targetEntity: User::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: false)]
+    protected ?User $user = null;
+
+    #[Gedmo\Timestampable(on: 'create')]
+    #[Groups(['read', 'timed', 'v3:user:read', 'v3:beneficiary:read'])]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private \DateTime $createdAt;
+
+    #[Gedmo\Timestampable(on: 'update')]
+    #[Groups(['read', 'timed', 'v3:user:read', 'v3:beneficiary:read'])]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private \DateTime $updatedAt;
 
     public function __construct()
     {
@@ -32,8 +54,32 @@ class Gestionnaire extends Subject implements UserHandleCentresInterface
         $this->updatedAt = new \DateTime();
     }
 
+    public function setCreatedAt(\DateTime $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setUpdatedAt(\DateTime $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+
     #[\Override]
-    public function setUser(?User $user = null): self
+    public function setUser(?User $user = null): static
     {
         $this->user = $user;
         $this->user->setTypeUser(User::USER_TYPE_GESTIONNAIRE);
@@ -41,7 +87,7 @@ class Gestionnaire extends Subject implements UserHandleCentresInterface
         return $this;
     }
 
-    public function addCentre(Centre $centre): self
+    public function addCentre(Centre $centre): static
     {
         $this->centres[] = $centre;
         $centre->setGestionnaire($this);
@@ -60,7 +106,7 @@ class Gestionnaire extends Subject implements UserHandleCentresInterface
         return $this->association;
     }
 
-    public function setAssociation(?Association $association = null): self
+    public function setAssociation(?Association $association = null): static
     {
         $this->association = $association;
 
@@ -68,10 +114,10 @@ class Gestionnaire extends Subject implements UserHandleCentresInterface
     }
 
     /**
-     * @return Centre[]|Collection<Centre>
+     * @return Collection<int, Centre>
      */
     #[\Override]
-    public function getHandledCentres()
+    public function getHandledCentres(): Collection
     {
         return $this->centres;
     }
@@ -106,7 +152,10 @@ class Gestionnaire extends Subject implements UserHandleCentresInterface
         return $str;
     }
 
-    public function getCentres()
+    /**
+     * @return Collection<int, Centre>
+     */
+    public function getCentres(): Collection
     {
         return $this->centres;
     }
@@ -167,7 +216,7 @@ class Gestionnaire extends Subject implements UserHandleCentresInterface
         ];
     }
 
-    public function addExternalLink(ClientGestionnaire $externalLink): Gestionnaire
+    public function addExternalLink(ClientGestionnaire $externalLink): static
     {
         $this->externalLinks[] = $externalLink;
         $externalLink->setEntity($this);
@@ -189,7 +238,7 @@ class Gestionnaire extends Subject implements UserHandleCentresInterface
     {
         if ($this->id) {
             $this->association = null;
-            $this->externalLinks = [];
+            $this->externalLinks = new ArrayCollection();
 
             $this->user = clone $this->user;
 
