@@ -2,7 +2,6 @@
 
 namespace App\Entity\Attributes;
 
-use App\Entity\Membre;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]

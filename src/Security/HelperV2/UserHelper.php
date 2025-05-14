@@ -3,7 +3,7 @@
 namespace App\Security\HelperV2;
 
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Membre;
+use App\Entity\Attributes\Membre;
 use App\Entity\User;
 
 class UserHelper

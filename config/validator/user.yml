@@ -59,12 +59,12 @@ App\Entity\User:
             -   NotBlank:
                     message: phone_not_empty
                     groups: [ beneficiaire-remotely ]
-App\Entity\Membre:
+App\Entity\Attributes\Membre:
     properties:
         user:
             -   Valid: ~
 
-App\Entity\Gestionnaire:
+App\Entity\Attributes\Gestionnaire:
     properties:
         association:
             -   NotBlank:
