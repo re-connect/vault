@@ -1,8 +1,0 @@
-App\Entity\CreatorClient:
-  type: entity
-  table: null
-  repositoryClass: App\Repository\CreatorClientRepository
-  manyToOne:
-    entity:
-      targetEntity: App\Entity\Attributes\Client
-  lifecycleCallbacks: {  }

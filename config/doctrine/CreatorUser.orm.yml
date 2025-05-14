@@ -1,8 +1,0 @@
-App\Entity\CreatorUser:
-  type: entity
-  table: null
-  repositoryClass: App\Repository\CreatorUserRepository
-  manyToOne:
-    entity:
-      targetEntity: App\Entity\User
-  lifecycleCallbacks: {  }
