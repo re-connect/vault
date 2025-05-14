@@ -3,7 +3,7 @@
 namespace App\Provider;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Membre;
+use App\Entity\Attributes\Membre;
 use App\Entity\User;
 use App\Event\MembreEvent;
 use App\Event\REEvent;

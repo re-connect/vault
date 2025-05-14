@@ -8,7 +8,6 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\Controller\Rest\V3\LinkedCentersController;
-use App\Entity\Membre;
 use App\Entity\Region;
 use App\Entity\SMS;
 use App\Entity\StatistiqueCentre;

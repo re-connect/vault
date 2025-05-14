@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Membre;
+use App\Entity\Attributes\Membre;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 

@@ -2,7 +2,7 @@
 
 namespace App\Tests\v1\Controller\Rest;
 
-use App\Entity\Membre;
+use App\Entity\Attributes\Membre;
 use Doctrine\ORM\EntityManagerInterface;
 use League\Bundle\OAuth2ServerBundle\Model\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
