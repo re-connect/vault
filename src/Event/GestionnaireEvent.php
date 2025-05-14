@@ -2,7 +2,7 @@
 
 namespace App\Event;
 
-use App\Entity\Gestionnaire;
+use App\Entity\Attributes\Gestionnaire;
 use App\Entity\User;
 
 class GestionnaireEvent extends REEvent

@@ -21,6 +21,7 @@ use App\Entity\Attributes\Creator;
 use App\Entity\Attributes\CreatorCentre;
 use App\Entity\Attributes\CreatorClient;
 use App\Entity\Attributes\CreatorUser;
+use App\Entity\Attributes\Gestionnaire;
 use App\Entity\Attributes\MembreCentre;
 use App\Entity\Attributes\UserCentre;
 use App\Repository\UserRepository;
