@@ -24,7 +24,7 @@ $(document).ready(($) => {
     const getPopupTemplate = (centers) => {
         $.each(centers, (key, center) => {
                 const {lat, lng, pays, nom, ville} = center.adresse;
-                if (lat !== null && lng !== null && pays.toLowerCase() === 'france') {
+                if (lat !== null && lng !== null) {
                     let marker = L.marker([lat, lng], {icon: greenIcon}).addTo(map);
                     marker.bindPopup(`<b>
                                             <div>
