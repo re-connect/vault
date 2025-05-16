@@ -115,7 +115,7 @@ cfn_vault_exchange_info_title: "Un échange d'informations favorisé avec les ac
 cfn_vault_is_safe_alt_img: 'informations en securité'
 cfn_vault_is_safe_p: 'Le coffre-fort numérique est un outil éthique et sécurisé. Il est conforme à la loi RGPD. La protection des données personnelles de nos utilisateurs est notre priorité absolue.'
 cfn_vault_is_safe_title: 'Des informations en sécurité'
-cfn_vault_is_satisfying_alt_img: 'Les professionnel.le.s sont très satisfait.e.s de la formation'
+cfn_vault_is_satisfying_alt_img: 'Les professionnel.le.s sont très satisfait.e.s de l''accompagnement'
 cfn_vault_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s de l'accompagnement à l'utilisation du coffre-fort numérique en 2024"
 cfn_vault_is_satisfying_title: 96%
 cfn_vault_is_title: "Le coffre-fort numérique, c'est"
@@ -509,8 +509,8 @@ rosalie_link_text: Si l'utilisateur doit être amené à relier des coffre-forts
 rp_is_adaptable_alt_img: 'adaptable aux besoins'
 rp_is_adaptable_p: 'Le paramétrage permet de répondre aux besoins propres du fonctionnement de votre structure.'
 rp_is_adaptable_title: 'Adaptable à vos besoins'
-rp_is_satisfying_alt_img: 'Des professionnel.le.s très satisfait.e.s de la formation'
-rp_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s <a href=\"%link%\" target=\"_blank\">de la formation à l'utilisation de Reconnect Pro en 2024</a>"
+rp_is_satisfying_alt_img: 'Des professionnel.le.s très satisfait.e.s de l''accompagnement'
+rp_is_satisfying_p: "des professionnel.le.s sont très satisfait.e.s de l'accompagnement à l'utilisation de Reconnect Pro en 2024"
 rp_is_satisfying_title: 78%
 rp_is_simple_alt_img: 'outil simple et agreable'
 rp_is_simple_p: "L'ergonomie a été particulièrement travaillée afin que la prise en main soit très simple et vous permette de vous concentrer sur l'accompagnement."
