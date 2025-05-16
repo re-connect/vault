@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
@@ -9,23 +9,23 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\ClientMembre;
-use App\Entity\Attributes\MembreCentre;
-use App\Entity\Attributes\Subject;
-use App\Traits\GedmoTimedTrait;
+use App\Entity\User;
+use App\Entity\UserHandleCentresInterface;
+use App\Entity\UserWithCentresInterface;
+use App\Repository\MembreRepository;
 use App\Validator\Constraints as CustomAssert;
 use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ReadableCollection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\MembreRepository")
- */
+#[ORM\Entity(repositoryClass: MembreRepository::class)]
+#[ORM\Table(name: 'membre')]
+#[ORM\UniqueConstraint(name: 'UNIQ_F6B4FB29A76ED395', columns: ['user_id'])]
 #[ApiResource(
     shortName: 'pro',
     operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
@@ -36,28 +36,50 @@ use Symfony\Component\Serializer\Annotation\Groups;
 )]
 class Membre extends Subject implements UserWithCentresInterface, UserHandleCentresInterface
 {
-    use GedmoTimedTrait;
+    #[ORM\Column(name: 'id', type: 'integer', nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    protected ?int $id = null;
 
-    /**
-     * @var Collection|MembreCentre[]
-     */
     #[Groups(['v3:member:read'])]
     #[CustomAssert\RelayUnique]
-    private $membresCentres;
-    /** @var string */
-    private $activationSmsCode;
-    /** @var \DateTime */
-    private $activationSmsCodeLastSend;
-    /** @var Collection */
-    private $consultationsBeneficiaires;
-    /** @var Collection */
-    private $evenements;
-    /** @var Collection */
+    #[ORM\OneToMany(mappedBy: 'membre', targetEntity: MembreCentre::class, cascade: ['persist', 'remove'])]
+    private Collection $membresCentres;
+
+    #[ORM\Column(name: 'activationSmsCode', type: 'string', length: 255, nullable: true)]
+    private ?string $activationSmsCode = null;
+
+    private \DateTime $activationSmsCodeLastSend;
+
+    #[ORM\OneToMany(mappedBy: 'membre', targetEntity: ConsultationBeneficiaire::class, cascade: ['remove'])]
+    private Collection $consultationsBeneficiaires;
+
+    #[ORM\OneToMany(mappedBy: 'membre', targetEntity: Evenement::class, cascade: ['persist'])]
+    private Collection $evenements;
+
+    #[ORM\OneToMany(mappedBy: 'entity', targetEntity: ClientMembre::class, cascade: ['persist', 'remove'])]
     #[UniqueExternalLink]
-    private $externalLinks;
+    private Collection $externalLinks;
+
+    #[ORM\Column(name: 'wasGestionnaire', type: 'boolean', nullable: false, options: ['default' => false])]
     private ?bool $wasGestionnaire = false;
 
+    #[ORM\Column(name: 'usesRosalie', type: 'boolean', nullable: false, options: ['default' => false])]
     private ?bool $usesRosalie = false;
+
+    #[ORM\OneToOne(inversedBy: 'subjectMembre', targetEntity: User::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: false)]
+    protected ?User $user = null;
+
+    #[Gedmo\Timestampable(on: 'create')]
+    #[Groups(['read', 'timed', 'v3:user:read', 'v3:beneficiary:read'])]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private \DateTime $createdAt;
+
+    #[Gedmo\Timestampable(on: 'update')]
+    #[Groups(['read', 'timed', 'v3:user:read', 'v3:beneficiary:read'])]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private \DateTime $updatedAt;
 
     /**
      * Constructor.
@@ -71,13 +93,32 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         $this->updatedAt = new \DateTime();
     }
 
-    /**
-     * Set user.
-     *
-     * @return Membre
-     */
+    public function setCreatedAt(\DateTime $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setUpdatedAt(\DateTime $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+
     #[\Override]
-    public function setUser(?User $user = null)
+    public function setUser(?User $user = null): static
     {
         $this->user = $user;
         $this->user->setTypeUser(User::USER_TYPE_MEMBRE);
@@ -86,12 +127,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return $this;
     }
 
-    /**
-     * Add membresCentres.
-     *
-     * @return Membre
-     */
-    public function addMembresCentre(MembreCentre $membresCentres)
+    public function addMembresCentre(MembreCentre $membresCentres): static
     {
         $this->membresCentres[] = $membresCentres;
         $membresCentres->setMembre($this);
@@ -99,66 +135,36 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function addBeneficiaire(Beneficiaire $beneficiaire, Centre $centre)
+    public function addBeneficiaire(Beneficiaire $beneficiaire, Centre $centre): static
     {
         $centre->addBeneficiaire($beneficiaire);
 
         return $this;
     }
 
-    /**
-     * Remove membresCentres.
-     */
-    public function removeMembresCentre(MembreCentre $membresCentres)
+    public function removeMembresCentre(MembreCentre $membresCentres): void
     {
         $this->membresCentres->removeElement($membresCentres);
     }
 
-    /**
-     * Get activationSmsCode.
-     *
-     * @return string
-     */
-    public function getActivationSmsCode()
+    public function getActivationSmsCode(): string
     {
         return $this->activationSmsCode;
     }
 
-    /**
-     * Set activationSmsCode.
-     *
-     * @param string $activationSmsCode
-     *
-     * @return Membre
-     */
-    public function setActivationSmsCode($activationSmsCode)
+    public function setActivationSmsCode($activationSmsCode): static
     {
         $this->activationSmsCode = $activationSmsCode;
 
         return $this;
     }
 
-    /**
-     * Get activationSmsCodeLastSend.
-     *
-     * @return \DateTime
-     */
-    public function getActivationSmsCodeLastSend()
+    public function getActivationSmsCodeLastSend(): \DateTime
     {
         return $this->activationSmsCodeLastSend;
     }
 
-    /**
-     * Set activationSmsCodeLastSend.
-     *
-     * @param \DateTime $activationSmsCodeLastSend
-     *
-     * @return Membre
-     */
-    public function setActivationSmsCodeLastSend($activationSmsCodeLastSend)
+    public function setActivationSmsCodeLastSend($activationSmsCodeLastSend): static
     {
         $this->activationSmsCodeLastSend = $activationSmsCodeLastSend;
 
@@ -179,7 +185,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     }
 
     #[\Override]
-    public function getUserCentre(Centre $centre)
+    public function getUserCentre(Centre $centre): ?MembreCentre
     {
         foreach ($this->getMembresCentres() as $membreCentre) {
             if ($membreCentre->getCentre() == $centre) {
@@ -191,23 +197,21 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     }
 
     /**
-     * Get membresCentres.
-     *
-     * @return MembreCentre[]|ArrayCollection
+     * @return Collection<int, MembreCentre>
      */
-    public function getMembresCentres()
+    public function getMembresCentres(): Collection
     {
         return $this->membresCentres;
     }
 
     #[\Override]
-    public function isBeneficiaire()
+    public function isBeneficiaire(): bool
     {
         return false;
     }
 
     #[\Override]
-    public function isMembre()
+    public function isMembre(): bool
     {
         return true;
     }
@@ -235,72 +239,47 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return $this->getMembresCentres();
     }
 
-    /**
-     * Add consultationsBeneficiaire.
-     *
-     * @return Membre
-     */
-    public function addConsultationsBeneficiaire(ConsultationBeneficiaire $consultationsBeneficiaire)
+    public function addConsultationsBeneficiaire(ConsultationBeneficiaire $consultationsBeneficiaire): static
     {
         $this->consultationsBeneficiaires[] = $consultationsBeneficiaire;
 
         return $this;
     }
 
-    /**
-     * Remove consultationsBeneficiaire.
-     */
-    public function removeConsultationsBeneficiaire(ConsultationBeneficiaire $consultationsBeneficiaire)
+    public function removeConsultationsBeneficiaire(ConsultationBeneficiaire $consultationsBeneficiaire): void
     {
         $this->consultationsBeneficiaires->removeElement($consultationsBeneficiaire);
     }
 
     /**
-     * Get consultationsBeneficiaires.
-     *
-     * @return Collection
+     * @return Collection<int, ConsultationBeneficiaire>
      */
-    public function getConsultationsBeneficiaires()
+    public function getConsultationsBeneficiaires(): Collection
     {
         return $this->consultationsBeneficiaires;
     }
 
-    /**
-     * Add evenement.
-     *
-     * @return Membre
-     */
-    public function addEvenement(Evenement $evenement)
+    public function addEvenement(Evenement $evenement): static
     {
         $this->evenements[] = $evenement;
 
         return $this;
     }
 
-    /**
-     * Remove evenement.
-     */
-    public function removeEvenement(Evenement $evenement)
+    public function removeEvenement(Evenement $evenement): void
     {
         $this->evenements->removeElement($evenement);
     }
 
     /**
-     * Get evenements.
-     *
-     * @return Collection
+     * @return Collection<int, Evenement>
      */
-    public function getEvenements()
+    public function getEvenements(): Collection
     {
         return $this->evenements;
     }
 
-    /**
-     * Get beneficiairesCentres.
-     *
-     * @return string
-     */
-    public function getCentresToString()
+    public function getCentresToString(): string
     {
         /** @var MembreCentre[] $centres */
         $str = '';
@@ -316,8 +295,6 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     }
 
     /**
-     * Retourne un tableau des centres.
-     *
      * @return Centre[]|ArrayCollection
      */
     public function getCentres()
@@ -383,12 +360,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return $data;
     }
 
-    /**
-     * Add externalLink.
-     *
-     * @return Membre
-     */
-    public function addExternalLink(ClientMembre $externalLink)
+    public function addExternalLink(ClientMembre $externalLink): static
     {
         $this->externalLinks[] = $externalLink;
         $externalLink->setEntity($this);
@@ -407,19 +379,14 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     }
 
     /**
-     * Get externalLinks.
-     *
-     * @return Collection
+     * @return Collection<int, ClientMembre>
      */
-    public function getExternalLinks()
+    public function getExternalLinks(): Collection
     {
         return $this->externalLinks;
     }
 
-    /**
-     * @return $this
-     */
-    public function addCreator(Creator $creator)
+    public function addCreator(Creator $creator): static
     {
         $this->user->addCreator($creator);
 

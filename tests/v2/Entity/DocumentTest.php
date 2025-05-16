@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2\Entity;
 
-use App\Entity\Document;
+use App\Entity\Attributes\Document;
 use PHPUnit\Framework\TestCase;
 
 class DocumentTest extends TestCase

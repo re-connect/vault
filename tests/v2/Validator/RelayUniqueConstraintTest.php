@@ -3,8 +3,8 @@
 namespace App\Tests\v2\Validator;
 
 use App\Entity\Attributes\Centre;
+use App\Entity\Attributes\Membre;
 use App\Entity\Attributes\MembreCentre;
-use App\Entity\Membre;
 use App\Validator\Constraints\RelayUnique;
 use App\Validator\Constraints\RelayUniqueValidator;
 use Doctrine\Common\Collections\ArrayCollection;

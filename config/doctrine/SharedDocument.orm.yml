@@ -28,7 +28,7 @@ App\Entity\SharedDocument:
             nullable: false
     manyToOne:
         document:
-            targetEntity: App\Entity\Document
+            targetEntity: App\Entity\Attributes\Document
             inversedBy: sharedDocuments
         sharedBy:
             targetEntity: App\Entity\User

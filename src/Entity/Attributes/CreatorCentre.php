@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use App\Entity\Attributes\Centre;
+use Doctrine\ORM\Mapping as ORM;
 
-/**
- * CreatorCentre.
- */
+#[ORM\Entity]
 class CreatorCentre extends Creator implements \Stringable
 {
     #[\Override]
@@ -15,22 +13,12 @@ class CreatorCentre extends Creator implements \Stringable
         return $this->getEntity()->getNom();
     }
 
-    /**
-     * Get entity.
-     *
-     * @return Centre|null
-     */
-    public function getEntity()
+    public function getEntity(): ?Centre
     {
         return $this->entity;
     }
 
-    /**
-     * Set entity.
-     *
-     * @return CreatorCentre
-     */
-    public function setEntity(Centre $entity)
+    public function setEntity(Centre $entity): static
     {
         $this->entity = $entity;
 
@@ -38,6 +26,7 @@ class CreatorCentre extends Creator implements \Stringable
     }
 
     public function __construct(
+        #[ORM\ManyToOne(targetEntity: Centre::class)]
         private ?Centre $entity = null
     ) {
     }

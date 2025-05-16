@@ -3,11 +3,11 @@
 namespace App\ControllerV2;
 
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Contact;
-use App\Entity\DonneePersonnelle;
-use App\Entity\Dossier;
-use App\Entity\Evenement;
-use App\Entity\Note;
+use App\Entity\Attributes\Contact;
+use App\Entity\Attributes\DonneePersonnelle;
+use App\Entity\Attributes\Dossier;
+use App\Entity\Attributes\Evenement;
+use App\Entity\Attributes\Note;
 use App\EventV2\BeneficiaryConsultationEvent;
 use App\FormV2\ContactType;
 use App\FormV2\EventType;

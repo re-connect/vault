@@ -3,7 +3,7 @@
 namespace App\Controller\Rest;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Contact;
+use App\Entity\Attributes\Contact;
 use App\Entity\User;
 use App\Exception\JsonResponseException;
 use App\Manager\RestManager;
@@ -22,9 +22,6 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class ContactRestControllerV2.
- */
 #[Route(path: ['old' => '/api/', 'new' => '/api/v2/'], name: 're_api_contact_')]
 final class ContactRestV2Controller extends DonneePersonnelleRestController
 {

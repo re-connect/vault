@@ -14,7 +14,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Autres", label: "Partenaires" }
         arguments:
             - ~
-            - App\Entity\Partenaire
+            - App\Entity\Attributes\Partenaire
             - ~
 
     sonata.admin.faq:
@@ -83,7 +83,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "Professionnels" }
         arguments:
             - ~
-            - App\Entity\Membre
+            - App\Entity\Attributes\Membre
             - App\Admin\MembreAdminController
         calls:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
@@ -137,7 +137,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Notes" }
         arguments:
             - ~
-            - App\Entity\Note
+            - App\Entity\Attributes\Note
             - ~
 
     sonata.admin.document:
@@ -146,7 +146,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Documents" }
         arguments:
             - ~
-            - App\Entity\Document
+            - App\Entity\Attributes\Document
             - ~
 
     sonata.admin.dossier:
@@ -155,7 +155,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Dossiers" }
         arguments:
             - ~
-            - App\Entity\Dossier
+            - App\Entity\Attributes\Dossier
             - ~
 
     sonata.admin.evenement:
@@ -164,7 +164,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Evenements" }
         arguments:
             - ~
-            - App\Entity\Evenement
+            - App\Entity\Attributes\Evenement
             - ~
 
     sonata.admin.contact:
@@ -173,7 +173,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Contacts" }
         arguments:
             - ~
-            - App\Entity\Contact
+            - App\Entity\Attributes\Contact
             - ~
 
     sonata.admin.adresse:

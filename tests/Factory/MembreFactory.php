@@ -3,8 +3,8 @@
 namespace App\Tests\Factory;
 
 use App\Entity\Attributes\Centre;
+use App\Entity\Attributes\Membre;
 use App\Entity\Attributes\MembreCentre;
-use App\Entity\Membre;
 use App\Repository\MembreRepository;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;

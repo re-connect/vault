@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2\API\v2;
 
-use App\Entity\Membre;
+use App\Entity\Attributes\Membre;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\API\v3\AbstractApiTest;
 use Doctrine\ORM\EntityManagerInterface;
