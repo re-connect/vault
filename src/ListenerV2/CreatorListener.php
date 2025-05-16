@@ -3,9 +3,9 @@
 namespace App\ListenerV2;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\CreatorClient;
-use App\Entity\CreatorUser;
-use App\Entity\DonneePersonnelle;
+use App\Entity\Attributes\CreatorClient;
+use App\Entity\Attributes\CreatorUser;
+use App\Entity\Attributes\DonneePersonnelle;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Events;

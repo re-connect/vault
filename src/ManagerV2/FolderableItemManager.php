@@ -3,8 +3,8 @@
 namespace App\ManagerV2;
 
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Document;
-use App\Entity\Dossier;
+use App\Entity\Attributes\Document;
+use App\Entity\Attributes\Dossier;
 use App\Entity\Interface\FolderableEntityInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;

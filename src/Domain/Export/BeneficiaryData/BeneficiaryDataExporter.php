@@ -4,9 +4,9 @@ namespace App\Domain\Export\BeneficiaryData;
 
 use App\Domain\Download\FolderTreeDownloader;
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Contact;
-use App\Entity\Evenement;
-use App\Entity\Note;
+use App\Entity\Attributes\Contact;
+use App\Entity\Attributes\Evenement;
+use App\Entity\Attributes\Note;
 use Doctrine\ORM\EntityManagerInterface;
 use League\Csv\Writer;
 use Psr\Log\LoggerInterface;

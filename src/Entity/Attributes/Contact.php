@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
@@ -11,10 +11,15 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
-use App\Entity\Attributes\Beneficiaire;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
+#[ORM\Entity]
+#[ORM\Table(name: 'contact')]
+#[ORM\Index(columns: ['deposePar_id'], name: 'IDX_4C62E638F2AB781')]
 #[ApiResource(
     operations: [
         new Delete(security: "is_granted('UPDATE', object)"),
@@ -43,162 +48,100 @@ use Symfony\Component\Serializer\Annotation\Groups;
 )]
 class Contact extends DonneePersonnelle
 {
-    /**
-     * @var string
-     */
+    #[ORM\Column(name: 'prenom', type: 'string', length: 255, nullable: false)]
     #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
     #[Anonymize('fr-fr.firstname')]
-    private $prenom;
-    /**
-     * @var string
-     */
+    #[Assert\NotBlank]
+    private ?string $prenom = null;
+
+    #[ORM\Column(name: 'telephone', type: 'string', length: 255, nullable: true)]
     #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
     #[Anonymize('fr-fr.phone')]
-    private $telephone;
-    /**
-     * @var string
-     */
+    private ?string $telephone = null;
+
+    #[ORM\Column(name: 'email', type: 'string', length: 255, nullable: true)]
     #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_EMAIL]])]
-    private $email;
-    /**
-     * @var string
-     */
-    #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
-    #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
-    private $commentaire;
-    /**
-     * @var string
-     */
-    #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
-    #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
-    private $association;
+    #[Assert\Email]
+    private ?string $email = null;
 
-    /**
-     * Constructor.
-     */
-    public function __construct(?Beneficiaire $beneficiaire = null)
+    #[ORM\Column(name: 'commentaire', type: 'text', length: 0, nullable: true)]
+    #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
+    #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
+    private ?string $commentaire = null;
+
+    #[ORM\Column(name: 'association', type: 'string', length: 255, nullable: true)]
+    #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
+    #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
+    private ?string $association = null;
+
+    #[ORM\OneToMany(mappedBy: 'contact', targetEntity: Creator::class, cascade: ['persist', 'remove'])]
+    protected Collection $creators;
+
+    public function __construct(
+        #[ORM\ManyToOne(targetEntity: Beneficiaire::class, inversedBy: 'contacts')]
+        #[ORM\JoinColumn(name: 'beneficiaire_id', referencedColumnName: 'id', nullable: false)]
+        protected ?Beneficiaire $beneficiaire = null)
     {
         parent::__construct();
-        $this->beneficiaire = $beneficiaire;
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
     }
 
-    /**
-     * Get prenom.
-     *
-     * @return string
-     */
-    public function getPrenom()
+    public function getPrenom(): string
     {
         return $this->prenom;
     }
 
-    /**
-     * Set prenom.
-     *
-     * @param string $prenom
-     *
-     * @return Contact
-     */
-    public function setPrenom($prenom)
+    public function setPrenom(?string $prenom = null): static
     {
         $this->prenom = $prenom;
 
         return $this;
     }
 
-    /**
-     * Get telephone.
-     *
-     * @return string
-     */
-    public function getTelephone()
+    public function getTelephone(): ?string
     {
         return $this->telephone;
     }
 
-    /**
-     * Set telephone.
-     *
-     * @param string $telephone
-     *
-     * @return Contact
-     */
-    public function setTelephone($telephone)
+    public function setTelephone(?string $telephone): static
     {
         $this->telephone = $telephone;
 
         return $this;
     }
 
-    /**
-     * Get email.
-     *
-     * @return string
-     */
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * Set email.
-     *
-     * @param string $email
-     *
-     * @return Contact
-     */
-    public function setEmail($email)
+    public function setEmail(?string $email): static
     {
         $this->email = $email;
 
         return $this;
     }
 
-    /**
-     * Get commentaire.
-     *
-     * @return string
-     */
-    public function getCommentaire()
+    public function getCommentaire(): ?string
     {
         return $this->commentaire;
     }
 
-    /**
-     * Set commentaire.
-     *
-     * @param string $commentaire
-     *
-     * @return Contact
-     */
-    public function setCommentaire($commentaire)
+    public function setCommentaire(?string $commentaire): static
     {
         $this->commentaire = $commentaire;
 
         return $this;
     }
 
-    /**
-     * Get association.
-     *
-     * @return string
-     */
-    public function getAssociation()
+    public function getAssociation(): ?string
     {
         return $this->association;
     }
 
-    /**
-     * Set association.
-     *
-     * @param string $association
-     *
-     * @return Contact
-     */
-    public function setAssociation($association)
+    public function setAssociation($association): static
     {
         $this->association = $association;
 

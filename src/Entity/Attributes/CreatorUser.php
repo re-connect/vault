@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-/**
- * CreatorUser.
- */
+use App\Entity\User;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
 class CreatorUser extends Creator implements \Stringable
 {
     #[\Override]
@@ -14,6 +15,7 @@ class CreatorUser extends Creator implements \Stringable
     }
 
     public function __construct(
+        #[ORM\ManyToOne(targetEntity: User::class)]
         private ?User $entity = null
     ) {
     }

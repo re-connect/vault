@@ -2,7 +2,6 @@
 
 namespace App\Entity\Attributes;
 
-use App\Entity\Membre;
 use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;

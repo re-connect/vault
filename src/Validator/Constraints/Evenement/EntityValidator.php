@@ -2,7 +2,7 @@
 
 namespace App\Validator\Constraints\Evenement;
 
-use App\Entity\Evenement;
+use App\Entity\Attributes\Evenement;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;

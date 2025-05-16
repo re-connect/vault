@@ -8,9 +8,6 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\Controller\Rest\V3\LinkedCentersController;
-use App\Entity\ConsultationCentre;
-use App\Entity\Gestionnaire;
-use App\Entity\Membre;
 use App\Entity\Region;
 use App\Entity\SMS;
 use App\Entity\StatistiqueCentre;
@@ -25,10 +22,8 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * @Vich\Uploadable
- */
 #[ORM\Table(name: 'centre')]
+#[Vich\Uploadable]
 #[ORM\Index(columns: ['region_id'], name: 'IDX_C6A0EA7598260155')]
 #[ORM\Index(columns: ['gestionnaire_id'], name: 'IDX_C6A0EA756885AC1B')]
 #[ORM\Index(columns: ['typeCentre_id'], name: 'IDX_C6A0EA7527F237FC')]

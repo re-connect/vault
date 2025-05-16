@@ -3,7 +3,7 @@
 namespace App\ManagerV2;
 
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\ConsultationBeneficiaire;
+use App\Entity\Attributes\ConsultationBeneficiaire;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;

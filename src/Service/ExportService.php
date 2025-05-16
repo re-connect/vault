@@ -3,10 +3,10 @@
 namespace App\Service;
 
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Contact;
-use App\Entity\Document;
-use App\Entity\Evenement;
-use App\Entity\Note;
+use App\Entity\Attributes\Contact;
+use App\Entity\Attributes\Document;
+use App\Entity\Attributes\Evenement;
+use App\Entity\Attributes\Note;
 use App\Form\Model\ExportModel;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;

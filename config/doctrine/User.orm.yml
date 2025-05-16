@@ -187,14 +187,14 @@ App\Entity\User:
             mappedBy: user
             cascade: [ "persist" ]
         subjectMembre:
-            targetEntity: App\Entity\Membre
+            targetEntity: App\Entity\Attributes\Membre
             mappedBy: user
             cascade: [ "persist" ]
         subjectAssociation:
             targetEntity: App\Entity\Attributes\Association
             mappedBy: user
         subjectGestionnaire:
-            targetEntity: App\Entity\Gestionnaire
+            targetEntity: App\Entity\Attributes\Gestionnaire
             mappedBy: user
         adresse:
             targetEntity: App\Entity\Attributes\Adresse
@@ -209,7 +209,7 @@ App\Entity\User:
             mappedBy: user
             cascade: [ "persist", "remove" ]
         creators:
-            targetEntity: App\Entity\Creator
+            targetEntity: App\Entity\Attributes\Creator
             cascade: [ "persist", "remove" ]
             mappedBy: user
             orphanRemoval: true

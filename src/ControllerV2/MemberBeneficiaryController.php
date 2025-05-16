@@ -3,7 +3,7 @@
 namespace App\ControllerV2;
 
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Contact;
+use App\Entity\Attributes\Contact;
 use App\FormV2\FirstMemberVisitType;
 use App\ManagerV2\MemberBeneficiaryManager;
 use Doctrine\ORM\EntityManagerInterface;

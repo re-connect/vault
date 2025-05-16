@@ -3,7 +3,7 @@
 namespace App\Admin;
 
 use App\Entity\Attributes\Centre;
-use App\Entity\CreatorUser;
+use App\Entity\Attributes\CreatorUser;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;

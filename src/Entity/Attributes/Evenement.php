@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
@@ -11,14 +11,23 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
-use App\Entity\Attributes\Beneficiaire;
+use App\Repository\EvenementRepository;
+use App\Validator\Constraints\Evenement as CustomAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\Mapping as ORM;
 use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
 
+#[ORM\Entity(repositoryClass: EvenementRepository::class)]
+#[ORM\Table(name: 'evenement')]
+#[ORM\Index(columns: ['deposePar_id'], name: 'IDX_B26681EF2AB781')]
+#[ORM\Index(columns: ['beneficiaire_id'], name: 'IDX_B26681E5AF81F68')]
+#[ORM\Index(columns: ['membre_id'], name: 'IDX_B26681E6A99F74A')]
+#[CustomAssert\Entity]
 #[ApiResource(
     shortName: 'Event',
     operations: [
@@ -50,40 +59,52 @@ class Evenement extends DonneePersonnelle
 {
     public const string EVENEMENT_RAPPEL_SMS = 'SMS';
     public const string EVENEMENT_RAPPEL_MAIL = 'Mail';
+
+    #[ORM\Column(name: 'date', type: 'datetime', nullable: false)]
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
-    private $date;
+    #[Assert\NotBlank]
+    #[Assert\Type(\DateTimeInterface::class)]
+    private \DateTime $date;
+
+    #[ORM\Column(name: 'timezone', type: 'string', length: 255, nullable: true)]
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2'])]
     private ?string $timezone = null;
+
+    #[ORM\Column(name: 'lieu', type: 'string', length: 255, nullable: true)]
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
     private ?string $lieu = null;
+
+    #[ORM\Column(name: 'commentaire', type: 'text', length: 0, nullable: true)]
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
     private ?string $commentaire = null;
-    #[Groups(['read-personal-data', 'v3:event:read'])]
-    private bool $bEnvoye = false;
-    private ?int $heureRappel = null;
-    private ?SMS $sms = null;
-    private ?Membre $membre = null;
-    private bool $archive = false;
-    private ?array $typeRappels = [];
-    /**
-     * @var Collection|Rappel[]
-     */
-    #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
-    private $rappels;
 
-    public function __construct(?Beneficiaire $beneficiaire = null)
-    {
+    #[ORM\ManyToOne(targetEntity: Membre::class)]
+    #[ORM\JoinColumn(name: 'membre_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
+    private ?Membre $membre = null;
+
+    #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Rappel::class, cascade: ['persist', 'remove'])]
+    #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
+    #[Assert\Valid]
+    private Collection $rappels;
+
+    #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Creator::class, cascade: ['persist', 'remove'])]
+    protected Collection $creators;
+
+    public function __construct(
+        #[ORM\ManyToOne(targetEntity: Beneficiaire::class, inversedBy: 'evenements')]
+        #[ORM\JoinColumn(name: 'beneficiaire_id', referencedColumnName: 'id', nullable: false)]
+        protected ?Beneficiaire $beneficiaire = null,
+    ) {
         parent::__construct();
-        $this->beneficiaire = $beneficiaire;
         $this->date = new \DateTime();
         $this->rappels = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
     }
 
-    public function getDate()
+    public function getDate(): \DateTime
     {
         $timezone = $this->timezone ?? 'Europe/Paris';
         $date = $this->date ?? new \DateTime();
@@ -91,7 +112,7 @@ class Evenement extends DonneePersonnelle
         return new \DateTime($date->format('Y-m-d H:i:s'), new \DateTimeZone($timezone));
     }
 
-    public function setDate($date)
+    public function setDate($date): static
     {
         $this->date = $date;
 
@@ -103,67 +124,38 @@ class Evenement extends DonneePersonnelle
         return $this->timezone;
     }
 
-    public function setTimezone(?string $timezone): self
+    public function setTimezone(?string $timezone): static
     {
         $this->timezone = $timezone;
 
         return $this;
     }
 
-    /**
-     * Get lieu.
-     *
-     * @return string
-     */
-    public function getLieu()
+    public function getLieu(): ?string
     {
         return $this->lieu;
     }
 
-    /**
-     * Set lieu.
-     *
-     * @param string $lieu
-     *
-     * @return Evenement
-     */
-    public function setLieu($lieu)
+    public function setLieu($lieu): static
     {
         $this->lieu = $lieu;
 
         return $this;
     }
 
-    /**
-     * Get commentaire.
-     *
-     * @return string
-     */
-    public function getCommentaire()
+    public function getCommentaire(): ?string
     {
         return $this->commentaire;
     }
 
-    /**
-     * Set commentaire.
-     *
-     * @param string $commentaire
-     *
-     * @return Evenement
-     */
-    public function setCommentaire($commentaire)
+    public function setCommentaire(?string $commentaire): static
     {
         $this->commentaire = $commentaire;
 
         return $this;
     }
 
-    /**
-     * Fonction pour l'export sonata admin.
-     *
-     * @return string
-     */
-    public function getRappelsToString()
+    public function getRappelsToString(): string
     {
         $str = '';
         if (null !== $this->rappels) {
@@ -178,72 +170,6 @@ class Evenement extends DonneePersonnelle
         return $str;
     }
 
-    /**
-     * Fonction pour l'export sonata admin.
-     *
-     * @return string|null
-     */
-    public function getBEnvoyeToString()
-    {
-        if (null !== $this->rappels) {
-            foreach ($this->rappels as $rappel) {
-                if (self::EVENEMENT_RAPPEL_SMS === $rappel || self::EVENEMENT_RAPPEL_MAIL === $rappel) {
-                    return $this->bEnvoye ? 'Oui' : 'Non';
-                }
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Get bEnvoye.
-     *
-     * @return bool
-     */
-    public function getBEnvoye()
-    {
-        return $this->bEnvoye;
-    }
-
-    /**
-     * Set bEnvoye.
-     *
-     * @param bool $bEnvoye
-     *
-     * @return Evenement
-     */
-    public function setBEnvoye($bEnvoye)
-    {
-        $this->bEnvoye = $bEnvoye;
-
-        return $this;
-    }
-
-    /**
-     * Get heureRappel.
-     *
-     * @return int
-     */
-    public function getHeureRappel()
-    {
-        return $this->heureRappel;
-    }
-
-    /**
-     * Set heureRappel.
-     *
-     * @param int $heureRappel
-     *
-     * @return Evenement
-     */
-    public function setHeureRappel($heureRappel)
-    {
-        $this->heureRappel = $heureRappel;
-
-        return $this;
-    }
-
     #[\Override]
     public function __toString(): string
     {
@@ -254,70 +180,14 @@ class Evenement extends DonneePersonnelle
         return (string) $this->nom;
     }
 
-    /**
-     * Get sms.
-     *
-     * @return SMS
-     */
-    public function getSms()
-    {
-        return $this->sms;
-    }
-
-    /**
-     * Set sms.
-     *
-     * @return Evenement
-     */
-    public function setSms(?SMS $sms = null)
-    {
-        $this->sms = $sms;
-
-        return $this;
-    }
-
-    /**
-     * Get membre.
-     *
-     * @return Membre
-     */
-    public function getMembre()
+    public function getMembre(): ?Membre
     {
         return $this->membre;
     }
 
-    /**
-     * Set membre.
-     *
-     * @return Evenement
-     */
-    public function setMembre(?Membre $membre = null)
+    public function setMembre(?Membre $membre = null): static
     {
         $this->membre = $membre;
-
-        return $this;
-    }
-
-    /**
-     * Get archive.
-     *
-     * @return bool
-     */
-    public function getArchive()
-    {
-        return $this->archive;
-    }
-
-    /**
-     * Set archive.
-     *
-     * @param bool $archive
-     *
-     * @return Evenement
-     */
-    public function setArchive($archive)
-    {
-        $this->archive = $archive;
 
         return $this;
     }
@@ -344,7 +214,6 @@ class Evenement extends DonneePersonnelle
             'commentaire' => $this->commentaire,
             'lieu' => $this->lieu,
             'date' => $this->getDate()->format(\DateTime::W3C),
-            'archive' => $this->archive,
             'dateToString' => $this->getDateToString(),
             'rappels' => $this->getRappels(false)->toArray(),
             'beneficiaire_id' => $this->getBeneficiaire()->getId(),
@@ -353,7 +222,7 @@ class Evenement extends DonneePersonnelle
 
     #[Groups(['read-personal-data-v2', 'v3:event:read'])]
     #[SerializedName('dateToString')]
-    public function getDateToString()
+    public function getDateToString(): string
     {
         setlocale(LC_TIME, 'fr_FR');
         $str = '';
@@ -371,10 +240,6 @@ class Evenement extends DonneePersonnelle
     }
 
     /**
-     * Get rappels.
-     *
-     * @param bool $archive
-     *
      * @return Collection|Rappel[]
      */
     public function getRappels($archive = true)
@@ -390,43 +255,14 @@ class Evenement extends DonneePersonnelle
     /**
      * @param Rappel[]|Collection $rappels
      */
-    public function setRappels($rappels): Evenement
+    public function setRappels($rappels): static
     {
         $this->rappels = $rappels;
 
         return $this;
     }
 
-    /**
-     * Get typeRappels.
-     *
-     * @return array
-     */
-    public function getTypeRappels()
-    {
-        return $this->typeRappels;
-    }
-
-    /**
-     * Set typeRappels.
-     *
-     * @param array $typeRappels
-     *
-     * @return Evenement
-     */
-    public function setTypeRappels($typeRappels)
-    {
-        $this->typeRappels = $typeRappels;
-
-        return $this;
-    }
-
-    /**
-     * Add rappel.
-     *
-     * @return Evenement
-     */
-    public function addRappel(Rappel $rappel)
+    public function addRappel(Rappel $rappel): static
     {
         $this->rappels[] = $rappel;
         $rappel->setEvenement($this);
@@ -434,11 +270,6 @@ class Evenement extends DonneePersonnelle
         return $this;
     }
 
-    /**
-     * Remove rappel.
-     *
-     * @return bool TRUE if this collection contained the specified element, FALSE otherwise
-     */
     public function removeRappel(Rappel $rappel)
     {
         return $this->rappels->removeElement($rappel);

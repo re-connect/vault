@@ -4,9 +4,9 @@ namespace App\Admin;
 
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\Client;
-use App\Entity\CreatorCentre;
-use App\Entity\CreatorClient;
-use App\Entity\CreatorUser;
+use App\Entity\Attributes\CreatorCentre;
+use App\Entity\Attributes\CreatorClient;
+use App\Entity\Attributes\CreatorUser;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
