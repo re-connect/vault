@@ -115,8 +115,8 @@ cfn_vault_exchange_info_title: "تبادل المعلومات ميسَّر مع 
 cfn_vault_is_safe_alt_img: 'المعلومات بأمان'
 cfn_vault_is_safe_p: 'الخزانة الرقمية هي أداة أخلاقية وآمنة. تتوافق مع قانون حماية البيانات العامة العامة الأوروبي (GDPR). حماية بيانات المستخدمين الشخصية هي أولويتنا المطلقة.'
 cfn_vault_is_safe_title: 'المعلومات بأمان'
-cfn_vault_is_satisfying_alt_img: 'المحترفون يشعرون برضا كبير عن التدريب'
-cfn_vault_is_satisfying_p: "المحترفون يشعرون برضا كبير <a href='%link%' target='_blank'>عن التدريب على استخدام الخزانة الرقمية في عام 2024</a>"
+cfn_vault_is_satisfying_alt_img: 'المحترفون يشعرون برضا كبير عن المواكبة'
+cfn_vault_is_satisfying_p: "المحترفون يشعرون برضا كبير عن المواكبة على استخدام الخزانة الرقمية في عام 2024"
 cfn_vault_is_satisfying_title: 96%
 cfn_vault_is_title: "الخزانة الرقمية، هي"
 choose: اختار
@@ -509,8 +509,8 @@ rosalie_link_text: Si l'utilisateur doit être amené à relier des coffre-forts
 rp_is_adaptable_alt_img: 'adaptable aux besoins'
 rp_is_adaptable_p: 'Le paramétrage permet de répondre aux besoins propres du fonctionnement de votre structure.'
 rp_is_adaptable_title: 'Adaptable à vos besoins'
-rp_is_satisfying_alt_img: 'Des professionnel.le.s très satisfait.e.s de la formation'
-rp_is_satisfying_p: "المحترفون يشعرون برضا كبير <a href='%link%' target='_blank'>عن التدريب على استخدام الخزانة الرقمية في عام 2024</a>"
+rp_is_satisfying_alt_img: 'Des professionnel.le.s très satisfait.e.s de l''accompagnement'
+rp_is_satisfying_p: "المحترفون يشعرون برضا كبير عن المواكبة المقدمة لاستخدام الخزانة الرقمية في عام 2024"
 rp_is_satisfying_title: 78%
 rp_is_simple_alt_img: 'outil simple et agreable'
 rp_is_simple_p: "L'ergonomie a été particulièrement travaillée afin que la prise en main soit très simple et vous permette de vous concentrer sur l'accompagnement."
