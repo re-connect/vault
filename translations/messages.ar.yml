@@ -115,8 +115,8 @@ cfn_vault_exchange_info_title: "تبادل المعلومات ميسَّر مع 
 cfn_vault_is_safe_alt_img: 'المعلومات بأمان'
 cfn_vault_is_safe_p: 'الخزانة الرقمية هي أداة أخلاقية وآمنة. تتوافق مع قانون حماية البيانات العامة العامة الأوروبي (GDPR). حماية بيانات المستخدمين الشخصية هي أولويتنا المطلقة.'
 cfn_vault_is_safe_title: 'المعلومات بأمان'
-cfn_vault_is_satisfying_alt_img: 'المحترفون يشعرون برضا كبير عن التدريب'
-cfn_vault_is_satisfying_p: "المحترفون يشعرون برضا كبير <a href='%link%' target='_blank'>عن التدريب على استخدام الخزانة الرقمية في عام 2024</a>"
+cfn_vault_is_satisfying_alt_img: 'المحترفون يشعرون برضا كبير عن المواكبة'
+cfn_vault_is_satisfying_p: "المحترفون يشعرون برضا كبير عن المواكبة على استخدام الخزانة الرقمية في عام 2024"
 cfn_vault_is_satisfying_title: 96%
 cfn_vault_is_title: "الخزانة الرقمية، هي"
 choose: اختار
