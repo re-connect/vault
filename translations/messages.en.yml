@@ -115,8 +115,8 @@ cfn_vault_exchange_info_title: "A facilitated exchange of information with careg
 cfn_vault_is_safe_alt_img: 'security information'
 cfn_vault_is_safe_p: 'The digital safe is an ethical and secured tool. It is compliant with the RGPD law. The protection of our users'' personal data is our top priority.'
 cfn_vault_is_safe_title: 'security information'
-cfn_vault_is_satisfying_alt_img: 'Professionals are very satisfied by the training'
-cfn_vault_is_satisfying_p: "of professionals are very satisfied by <a href=\"%link%\" target=\"_blank\">the training in 2024</a>"
+cfn_vault_is_satisfying_alt_img: 'Professionals are very satisfied by the guidance'
+cfn_vault_is_satisfying_p: "of professionals are very satisfied by the guidance in 2024"
 cfn_vault_is_satisfying_title: 96%
 cfn_vault_is_title: "The digital safe is"
 choose: Choose
