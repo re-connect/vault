@@ -116,7 +116,7 @@ cfn_vault_is_safe_alt_img: 'Sicherheit'
 cfn_vault_is_safe_p: 'Die Cloud ist ein sicheres Tool und entspricht den Standards der DSGVO. Dabei hat der Schutz persönlicher Daten unserer Nutzer*innen höchste Priorität.'
 cfn_vault_is_safe_title: 'Sicherheit'
 cfn_vault_is_satisfying_alt_img: 'Les professionnel.le.s sont très satisfait.e.s de la formation'
-cfn_vault_is_satisfying_p: "Die Fachleute sind sehr zufrieden <a href=\"%link%\" target=\"_blank\">mit der Schulung zur Nutzung des digitalen Tresors im Jahr 2024</a>"
+cfn_vault_is_satisfying_p: "Die Fachleute sind sehr zufrieden mit der Begleitung zur Nutzung des digitalen Tresors im Jahr 2024"
 cfn_vault_is_satisfying_title: 96%
 cfn_vault_is_title: "Die Cloud bedeutet"
 choose: Choisir
