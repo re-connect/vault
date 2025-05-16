@@ -115,8 +115,8 @@ cfn_vault_exchange_info_title: "A facilitated exchange of information with careg
 cfn_vault_is_safe_alt_img: 'security information'
 cfn_vault_is_safe_p: 'The digital safe is an ethical and secured tool. It is compliant with the RGPD law. The protection of our users'' personal data is our top priority.'
 cfn_vault_is_safe_title: 'security information'
-cfn_vault_is_satisfying_alt_img: 'Professionals are very satisfied by the training'
-cfn_vault_is_satisfying_p: "of professionals are very satisfied by <a href=\"%link%\" target=\"_blank\">the training in 2024</a>"
+cfn_vault_is_satisfying_alt_img: 'Professionals are very satisfied by the guidance'
+cfn_vault_is_satisfying_p: "of professionals are very satisfied by the guidance in 2024"
 cfn_vault_is_satisfying_title: 96%
 cfn_vault_is_title: "The digital safe is"
 choose: Choose
@@ -509,8 +509,8 @@ rosalie_link_text: Si l'utilisateur doit être amené à relier des coffre-forts
 rp_is_adaptable_alt_img: 'Adaptable to your needs'
 rp_is_adaptable_p: 'The configuration allows you to meet the specific needs of your organization''s operations.'
 rp_is_adaptable_title: 'Adaptable to your needs'
-rp_is_satisfying_alt_img: 'Professionals are very satisfied by the training'
-rp_is_satisfying_p: "of professionals are very satisfied by <a href=\"%link%\" target=\"_blank\">the training in 2024</a>"
+rp_is_satisfying_alt_img: 'Professionals are very satisfied by the guidance'
+rp_is_satisfying_p: "of professionals are very satisfied by the guidance in 2024"
 rp_is_satisfying_title: 78%
 rp_is_simple_alt_img: 'simple and pleasant tool'
 rp_is_simple_p: "The ergonomics have been particularly worked out so that the handling is very simple and allows you to focus on the support."
