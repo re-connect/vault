@@ -214,7 +214,7 @@ App\Entity\User:
             mappedBy: user
             orphanRemoval: true
         sharedDocuments:
-            targetEntity: App\Entity\SharedDocument
+            targetEntity: App\Entity\Attributes\SharedDocument
             mappedBy: sharedBy
             cascade: [ "remove" ]
     manyToOne:
