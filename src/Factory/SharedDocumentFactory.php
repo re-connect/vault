@@ -3,7 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Attributes\Document;
-use App\Entity\SharedDocument;
+use App\Entity\Attributes\SharedDocument;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;

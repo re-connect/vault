@@ -21,7 +21,7 @@ use App\Entity\Attributes\Membre;
 use App\Entity\Attributes\MembreCentre;
 use App\Entity\Attributes\Note;
 use App\Entity\Attributes\RefreshToken;
-use App\Entity\SharedDocument;
+use App\Entity\Attributes\SharedDocument;
 use App\Entity\TypeCentre;
 use App\Entity\User;
 use Doctrine\Common\DataFixtures\Purger\ORMPurgerInterface;
