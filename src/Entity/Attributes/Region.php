@@ -1,22 +1,29 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use App\Entity\Attributes\Centre;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[ORM\Entity]
+#[ORM\Table(name: 'region')]
 #[UniqueEntity('name')]
 class Region implements \Stringable
 {
+    #[ORM\Column(name: 'id', type: 'integer', nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     private ?int $id = null;
 
     #[Assert\NotBlank]
+    #[ORM\Column(name: 'name', type: 'string', length: 255, nullable: false)]
     private ?string $name = null;
 
     #[Assert\Email]
+    #[ORM\Column(name: 'email', type: 'string', length: 255, nullable: true)]
     private ?string $email = null;
 
     private ?Collection $centres = null;
