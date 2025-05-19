@@ -201,7 +201,7 @@ App\Entity\User:
             cascade: [ "persist", "remove" ]
     oneToMany:
         refreshTokens:
-            targetEntity: App\Entity\RefreshToken
+            targetEntity: App\Entity\Attributes\RefreshToken
             mappedBy: user
             cascade: [ "persist", "remove" ]
         accessTokens:

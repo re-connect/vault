@@ -24,6 +24,7 @@ use App\Entity\Attributes\CreatorUser;
 use App\Entity\Attributes\Gestionnaire;
 use App\Entity\Attributes\Membre;
 use App\Entity\Attributes\MembreCentre;
+use App\Entity\Attributes\RefreshToken;
 use App\Entity\Attributes\UserCentre;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;

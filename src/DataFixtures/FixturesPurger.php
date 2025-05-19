@@ -20,7 +20,7 @@ use App\Entity\Attributes\Gestionnaire;
 use App\Entity\Attributes\Membre;
 use App\Entity\Attributes\MembreCentre;
 use App\Entity\Attributes\Note;
-use App\Entity\RefreshToken;
+use App\Entity\Attributes\RefreshToken;
 use App\Entity\SharedDocument;
 use App\Entity\TypeCentre;
 use App\Entity\User;
