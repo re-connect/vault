@@ -3,7 +3,7 @@
 namespace App\ServiceV2\Mailer;
 
 use App\Entity\Attributes\Centre;
-use App\Entity\Region;
+use App\Entity\Attributes\Region;
 use App\Entity\SharedDocument;
 use App\Entity\User;
 use App\ServiceV2\Mailer\Email\AuthCodeEmail;
