@@ -119,7 +119,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Types et Catégories", label: "Types de centres" }
         arguments:
             - ~
-            - App\Entity\TypeCentre
+            - App\Entity\Attributes\TypeCentre
             - ~
 
     sonata.admin.sms:

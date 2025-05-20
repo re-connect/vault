@@ -8,7 +8,7 @@ use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\Gestionnaire;
 use App\Entity\Attributes\Membre;
-use App\Entity\TypeCentre;
+use App\Entity\Attributes\TypeCentre;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Faker\Factory as FakerFactory;
