@@ -128,7 +128,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Autres", label: "SMS de rappel envoyés" }
         arguments:
             - ~
-            - App\Entity\SMS
+            - App\Entity\Attributes\SMS
             - ~
 
     sonata.admin.note:

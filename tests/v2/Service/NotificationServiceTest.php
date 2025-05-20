@@ -6,7 +6,7 @@ use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Evenement;
 use App\Entity\Attributes\Rappel;
-use App\Entity\SMS;
+use App\Entity\Attributes\SMS;
 use App\Entity\User;
 use App\Helper\SecretQuestionsHelper;
 use App\ManagerV2\RelayManager;
