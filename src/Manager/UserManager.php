@@ -3,7 +3,7 @@
 namespace App\Manager;
 
 use App\Entity\Attributes\Association;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;

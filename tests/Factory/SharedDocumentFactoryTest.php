@@ -5,7 +5,7 @@ namespace App\Tests\Factory;
 use ApiPlatform\Api\UrlGeneratorInterface;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Document;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Factory\SharedDocumentFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;

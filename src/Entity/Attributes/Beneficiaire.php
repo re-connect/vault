@@ -16,8 +16,6 @@ use App\Api\State\BeneficiaryStateProvider;
 use App\Controller\Api\UnlinkBeneficiaryController;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Interface\ClientResourceInterface;
-use App\Entity\SMS;
-use App\Entity\User;
 use App\Entity\UserWithCentresInterface;
 use App\Validator\Constraints\Beneficiaire as CustomAssert;
 use App\Validator\Constraints\UniqueExternalLink;

@@ -2,7 +2,7 @@
 
 namespace App\Admin;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\ManagerV2\UserManager;
 use App\ServiceV2\ResettingService;
 use Sonata\AdminBundle\Admin\AbstractAdmin;

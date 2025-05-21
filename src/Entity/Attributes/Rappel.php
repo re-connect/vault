@@ -2,7 +2,6 @@
 
 namespace App\Entity\Attributes;
 
-use App\Entity\SMS;
 use App\Repository\RappelRepository;
 use App\Validator\Constraints\Rappel as CustomAssert;
 use Doctrine\ORM\Mapping as ORM;

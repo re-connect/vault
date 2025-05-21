@@ -2,7 +2,7 @@
 
 namespace App\EventSubscriber;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Security\HelperV2\Oauth2Helper;
 use App\ServiceV2\Traits\UserAwareTrait;
 use League\Bundle\OAuth2ServerBundle\Security\Authentication\Token\OAuth2Token;

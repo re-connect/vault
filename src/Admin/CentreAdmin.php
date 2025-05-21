@@ -5,7 +5,7 @@ namespace App\Admin;
 use App\Entity\Attributes\Association;
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\CreatorCentre;
-use App\Entity\Region;
+use App\Entity\Attributes\Region;
 use App\EventSubscriber\AssociationCreationSubscriber;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;

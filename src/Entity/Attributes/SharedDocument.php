@@ -1,21 +1,42 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use App\Entity\Attributes\Document;
 use App\Repository\SharedDocumentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SharedDocumentRepository::class)]
+#[ORM\Table(name: 'shareddocument')]
+#[ORM\Index(columns: ['sharedBy_id'], name: 'IDX_8DF667BC8CF51483')]
+#[ORM\Index(columns: ['document_id'], name: 'IDX_8DF667BCC33F7837')]
 class SharedDocument
 {
+    #[ORM\Column(name: 'id', type: 'integer', nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     private ?int $id = null;
+
+    #[ORM\Column(name: 'sharedAt', type: 'datetime', nullable: false)]
     private ?\DateTime $sharedAt;
+
+    #[ORM\Column(name: 'expirationDate', type: 'datetime', nullable: false)]
     private ?\DateTime $expirationDate = null;
+
+    #[ORM\Column(name: 'token', type: 'text', nullable: false)]
     private ?string $token = null;
+
+    #[ORM\Column(name: 'selector', type: 'string', length: 255, nullable: false)]
     private ?string $selector = null;
+
+    #[ORM\Column(name: 'sharedWithEmail', type: 'string', length: 255, nullable: false)]
     private ?string $sharedWithEmail = null;
+
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: 'sharedBy_id', referencedColumnName: 'id')]
     private ?User $sharedBy = null;
+
+    #[ORM\ManyToOne(targetEntity: Document::class)]
+    #[ORM\JoinColumn(name: 'document_id', referencedColumnName: 'id')]
     private ?Document $document = null;
 
     public function __construct()
@@ -33,7 +54,7 @@ class SharedDocument
         return $this->sharedAt;
     }
 
-    public function setSharedAt(\DateTime $sharedAt): self
+    public function setSharedAt(\DateTime $sharedAt): static
     {
         $this->sharedAt = $sharedAt;
 
@@ -45,7 +66,7 @@ class SharedDocument
         return $this->expirationDate;
     }
 
-    public function setExpirationDate(\DateTime $expirationDate): self
+    public function setExpirationDate(\DateTime $expirationDate): static
     {
         $this->expirationDate = $expirationDate;
 
@@ -62,7 +83,7 @@ class SharedDocument
         return $this->token;
     }
 
-    public function setToken(string $token): self
+    public function setToken(string $token): static
     {
         $this->token = $token;
 
@@ -74,7 +95,7 @@ class SharedDocument
         return $this->selector;
     }
 
-    public function setSelector(string $selector): self
+    public function setSelector(string $selector): static
     {
         $this->selector = $selector;
 
@@ -86,7 +107,7 @@ class SharedDocument
         return $this->sharedWithEmail;
     }
 
-    public function setSharedWithEmail(string $sharedWithEmail): self
+    public function setSharedWithEmail(string $sharedWithEmail): static
     {
         $this->sharedWithEmail = $sharedWithEmail;
 
@@ -103,7 +124,7 @@ class SharedDocument
         return $this->document?->getObjectKey();
     }
 
-    public function setDocument($document): self
+    public function setDocument($document): static
     {
         $this->document = $document;
 

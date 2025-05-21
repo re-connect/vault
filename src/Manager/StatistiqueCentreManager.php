@@ -3,7 +3,7 @@
 namespace App\Manager;
 
 use App\Entity\Attributes\Centre;
-use App\Entity\StatistiqueCentre;
+use App\Entity\Attributes\StatistiqueCentre;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 

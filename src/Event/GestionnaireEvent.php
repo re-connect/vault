@@ -3,7 +3,7 @@
 namespace App\Event;
 
 use App\Entity\Attributes\Gestionnaire;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 
 class GestionnaireEvent extends REEvent
 {
