@@ -5,7 +5,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Autres", label: "Verbatims" }
         arguments:
             - ~
-            - App\Entity\Verbatim
+            - App\Entity\Attributes\Verbatim
             - ~
 
     sonata.admin.partenaire:

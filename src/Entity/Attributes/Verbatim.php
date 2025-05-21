@@ -1,19 +1,23 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\VerbatimRepository")
- */
+#[ORM\Entity]
+#[ORM\Table(name: 'verbatim')]
 class Verbatim
 {
-    private $id;
+    #[ORM\Column(name: 'id', type: 'integer', nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
+    private ?int $id = null;
 
-    private $content;
+    #[ORM\Column(name: 'content', type: 'string', length: 255, nullable: false)]
+    private string $content;
 
-    private $author;
+    #[ORM\Column(name: 'author', type: 'string', length: 255, nullable: false)]
+    private string $author;
 
     public function getId(): ?int
     {
