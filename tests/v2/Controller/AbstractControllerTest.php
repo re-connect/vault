@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2\Controller;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\AuthenticatedTestCase;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;

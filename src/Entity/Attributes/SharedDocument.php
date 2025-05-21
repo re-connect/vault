@@ -2,7 +2,6 @@
 
 namespace App\Entity\Attributes;
 
-use App\Entity\User;
 use App\Repository\SharedDocumentRepository;
 use Doctrine\ORM\Mapping as ORM;
 

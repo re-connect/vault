@@ -2,7 +2,7 @@
 
 namespace App\Entity\Annotations;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\RepositoryV2\ResetPasswordRequestRepository;
 use Doctrine\ORM\Mapping as ORM;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface;

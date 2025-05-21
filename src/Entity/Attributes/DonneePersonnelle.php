@@ -3,7 +3,6 @@
 namespace App\Entity\Attributes;
 
 use App\Entity\Traits\CreatorTrait;
-use App\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;

@@ -15,7 +15,7 @@ use App\Entity\Attributes\DonneePersonnelle;
 use App\Entity\Attributes\Dossier;
 use App\Entity\Attributes\Evenement;
 use App\Entity\Attributes\Note;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Event\DonneePersonnelleEvent;
 use App\Event\REEvent;
 use App\Exception\JsonResponseException;

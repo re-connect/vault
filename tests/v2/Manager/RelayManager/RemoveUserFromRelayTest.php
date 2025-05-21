@@ -3,7 +3,7 @@
 namespace App\Tests\v2\Manager\RelayManager;
 
 use App\DataFixtures\v2\MemberFixture;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\ManagerV2\RelayManager;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

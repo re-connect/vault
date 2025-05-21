@@ -2,7 +2,7 @@
 
 namespace App\Domain\PasswordStrength;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\ManagerV2\UserManager;
 use App\ServiceV2\Helper\PasswordHelper;
 use Doctrine\ORM\EntityManagerInterface;

@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2\Admin;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\RepositoryV2\ResetPasswordRequestRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

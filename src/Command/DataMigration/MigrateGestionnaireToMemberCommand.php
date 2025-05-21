@@ -8,7 +8,7 @@ use App\Entity\Attributes\ClientMembre;
 use App\Entity\Attributes\Gestionnaire;
 use App\Entity\Attributes\Membre;
 use App\Entity\Attributes\MembreCentre;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Repository\CentreRepository;
 use App\Repository\ClientGestionnaireRepository;
 use App\Repository\GestionnaireRepository;

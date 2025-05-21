@@ -10,7 +10,7 @@ use App\Entity\Attributes\CreatorUser;
 use App\Entity\Attributes\Document;
 use App\Entity\Attributes\DonneePersonnelle;
 use App\Entity\Attributes\Dossier;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Event\DonneePersonnelleEvent;
 use App\Event\REEvent;
 use App\Form\Type\DocumentSimpleType;

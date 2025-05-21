@@ -7,7 +7,7 @@ use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Evenement;
 use App\Entity\Attributes\Rappel;
 use App\Entity\Attributes\SMS;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Helper\SecretQuestionsHelper;
 use App\ManagerV2\RelayManager;
 use App\ServiceV2\NotificationService;

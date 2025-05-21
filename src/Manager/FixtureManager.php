@@ -9,7 +9,7 @@ use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\Gestionnaire;
 use App\Entity\Attributes\Membre;
 use App\Entity\Attributes\TypeCentre;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Faker\Factory as FakerFactory;
 use Faker\Generator;

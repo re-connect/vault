@@ -44,7 +44,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "Utilisateurs simples", show_in_dashboard: false }
         arguments:
             - ~
-            - App\Entity\User
+            - App\Entity\Attributes\User
             - ~
             - '@Symfony\Bundle\SecurityBundle\Security'
             - '@Symfony\Component\Routing\RouterInterface'
@@ -202,7 +202,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Outils SuperAdmin", label: "Admins" }
         arguments:
             - ~
-            - App\Entity\User
+            - App\Entity\Attributes\User
             - ~
         calls:
             - [ setUserManager, [ '@App\ManagerV2\UserManager' ] ]

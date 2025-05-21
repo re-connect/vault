@@ -4,7 +4,7 @@ namespace App\Controller\Rest;
 
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Attributes\Evenement;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Exception\JsonResponseException;
 use App\Manager\RestManager;
 use App\Provider\BeneficiaireProvider;

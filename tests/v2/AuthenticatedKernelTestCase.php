@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
