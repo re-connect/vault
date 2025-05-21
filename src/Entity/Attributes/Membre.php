@@ -9,7 +9,6 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
-use App\Entity\User;
 use App\Entity\UserHandleCentresInterface;
 use App\Entity\UserWithCentresInterface;
 use App\Repository\MembreRepository;

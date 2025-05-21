@@ -23,7 +23,7 @@ use App\Entity\Attributes\Note;
 use App\Entity\Attributes\RefreshToken;
 use App\Entity\Attributes\SharedDocument;
 use App\Entity\Attributes\TypeCentre;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use Doctrine\Common\DataFixtures\Purger\ORMPurgerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use League\Bundle\OAuth2ServerBundle\Model as OauthModel;

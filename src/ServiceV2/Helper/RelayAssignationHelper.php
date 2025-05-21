@@ -4,8 +4,8 @@ namespace App\ServiceV2\Helper;
 
 use App\Entity\Attributes\BeneficiaireCentre;
 use App\Entity\Attributes\Client;
+use App\Entity\Attributes\User;
 use App\Entity\Attributes\UserCentre;
-use App\Entity\User;
 use App\Repository\CentreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;

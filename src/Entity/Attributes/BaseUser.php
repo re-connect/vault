@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
 use App\Entity\Traits\DeactivatableTrait;
+use Doctrine\ORM\Mapping as ORM;
 use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Security\Core\User\LegacyPasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -12,37 +13,26 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
 {
     use DeactivatableTrait;
 
+    #[ORM\Column(name: 'id', type: 'integer', nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     protected $id;
 
-    /**
-     * @var string
-     */
+    #[ORM\Column(name: 'username', type: 'string', length: 180, nullable: false)]
     protected $username = '';
 
-    /**
-     * @var string
-     */
+    #[ORM\Column(name: 'username_canonical', type: 'string', length: 180, nullable: false)]
     #[Anonymize('md5')]
     protected $usernameCanonical;
 
-    /**
-     * @var string
-     */
+    #[ORM\Column(name: 'emailCanonical', type: 'string', length: 255, nullable: true)]
     #[Anonymize('email', options: ['domain' => 'yopmail.com'])]
     protected $emailCanonical;
 
-    /**
-     * The salt to use for hashing.
-     *
-     * @var string
-     */
+    #[ORM\Column(name: 'salt', type: 'string', length: 255, nullable: true)]
     protected $salt;
 
-    /**
-     * Encrypted password. Must be persisted.
-     *
-     * @var string
-     */
+    #[ORM\Column(name: 'password', type: 'string', length: 255, nullable: false)]
     protected $password;
 
     protected ?string $currentPassword = null;
@@ -55,23 +45,16 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
     #[Groups(['v3:user:write', 'v3:user:read'])]
     protected $plainPassword;
 
-    /**
-     * @var \DateTime|null
-     */
+    #[ORM\Column(name: 'last_login', type: 'datetime', nullable: true)]
     protected $lastLogin;
 
-    /**
-     * Random string sent to the user email address in order to verify it.
-     *
-     * @var string|null
-     */
+    #[ORM\Column(name: 'confirmation_token', type: 'string', length: 180, nullable: true)]
     protected $confirmationToken;
 
-    /**
-     * @var array
-     */
+    #[ORM\Column(name: 'roles', type: 'array', length: 0, nullable: false)]
     protected $roles;
 
+    #[ORM\Column(name: 'password_updated_at', type: 'datetime_immutable', nullable: true)]
     protected ?\DateTimeImmutable $passwordUpdatedAt;
 
     /**

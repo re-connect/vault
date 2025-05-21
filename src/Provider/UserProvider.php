@@ -2,7 +2,7 @@
 
 namespace App\Provider;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Security\Authorization\Voter\UserVoter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;

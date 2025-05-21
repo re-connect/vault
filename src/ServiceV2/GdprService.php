@@ -2,7 +2,7 @@
 
 namespace App\ServiceV2;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\ServiceV2\Traits\SessionsAwareTrait;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bundle\SecurityBundle\Security;

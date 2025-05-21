@@ -4,7 +4,7 @@ namespace App\Tests\v2\Entity;
 
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\MembreCentre;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class UserTest extends KernelTestCase

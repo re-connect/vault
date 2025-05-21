@@ -13,7 +13,7 @@ security:
             algorithm: sha512
             encode_as_base64: false
             iterations: 1
-        App\Entity\User:
+        App\Entity\Attributes\User:
             algorithm: auto
             migrate_from:
                 - sha512
@@ -21,7 +21,7 @@ security:
     providers:
         user_provider:
             entity:
-                class: App\Entity\User
+                class: App\Entity\Attributes\User
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

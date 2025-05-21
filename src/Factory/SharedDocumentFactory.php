@@ -4,7 +4,7 @@ namespace App\Factory;
 
 use App\Entity\Attributes\Document;
 use App\Entity\Attributes\SharedDocument;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;

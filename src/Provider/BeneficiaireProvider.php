@@ -10,7 +10,7 @@ use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\ClientBeneficiaire;
 use App\Entity\Attributes\CreatorCentre;
 use App\Entity\Attributes\CreatorClient;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Event\BeneficiaireEvent;
 use App\Event\REEvent;
 use App\Manager\UserManager;

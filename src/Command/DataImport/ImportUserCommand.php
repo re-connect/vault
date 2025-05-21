@@ -5,7 +5,7 @@ namespace App\Command\DataImport;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Membre;
 use App\Entity\Attributes\MembreCentre;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Repository\CentreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use League\Csv\Exception;

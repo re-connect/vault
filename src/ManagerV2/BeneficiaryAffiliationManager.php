@@ -5,7 +5,7 @@ namespace App\ManagerV2;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\BeneficiaireCentre;
 use App\Entity\Attributes\Centre;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\FormV2\UserAffiliation\Model\SearchBeneficiaryFormModel;
 use App\Repository\BeneficiaireRepository;
 use App\ServiceV2\Traits\UserAwareTrait;

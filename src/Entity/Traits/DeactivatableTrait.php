@@ -2,14 +2,19 @@
 
 namespace App\Entity\Traits;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
+use Doctrine\ORM\Mapping as ORM;
 
 trait DeactivatableTrait
 {
+    #[ORM\Column(name: 'enabled', type: 'boolean', nullable: false)]
     protected bool $enabled = true;
 
+    #[ORM\ManyToOne(targetEntity: \User::class)]
+    #[ORM\JoinColumn(name: 'disabledBy_id', referencedColumnName: 'id')]
     protected ?User $disabledBy = null;
 
+    #[ORM\Column(name: 'disabledAt', type: 'datetime', nullable: true)]
     protected ?\DateTime $disabledAt = null;
 
     public function isEnabled(): bool

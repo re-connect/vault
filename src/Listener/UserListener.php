@@ -2,7 +2,7 @@
 
 namespace App\Listener;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
