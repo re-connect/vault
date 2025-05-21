@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
@@ -9,24 +9,7 @@ use ApiPlatform\Metadata\Patch;
 use App\Api\Filters\UsernameFilter;
 use App\Api\State\SearchBeneficiaryProvider;
 use App\Api\State\UserPasswordProcessor;
-use App\Entity\Attributes\AccessToken;
-use App\Entity\Attributes\Administrateur;
-use App\Entity\Attributes\Adresse;
-use App\Entity\Attributes\Association;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\BeneficiaireCentre;
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\Creator;
-use App\Entity\Attributes\CreatorCentre;
-use App\Entity\Attributes\CreatorClient;
-use App\Entity\Attributes\CreatorUser;
-use App\Entity\Attributes\Gestionnaire;
-use App\Entity\Attributes\Membre;
-use App\Entity\Attributes\MembreCentre;
-use App\Entity\Attributes\RefreshToken;
-use App\Entity\Attributes\SharedDocument;
-use App\Entity\Attributes\UserCentre;
+use App\Entity\UserWithCentresInterface;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -34,6 +17,7 @@ use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 use Erkens\Security\TwoFactorTextBundle\Model\TwoFactorTextInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -42,6 +26,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Table(name: 'user')]
+#[ORM\Index(columns: ['disabledBy_id'], name: 'IDX_8D93D6493F1E31AA')]
+#[ORM\UniqueConstraint(name: 'UNIQ_8D93D64992FC23A8', columns: ['username_canonical'])]
+#[ORM\UniqueConstraint(name: 'UNIQ_8D93D649F85E0677', columns: ['username'])]
+#[ORM\UniqueConstraint(name: 'UNIQ_8D93D649C05FB297', columns: ['confirmation_token'])]
+#[ORM\UniqueConstraint(name: 'UNIQ_8D93D6494DE7DC5C', columns: ['adresse_id'])]
+#[ORM\UniqueConstraint(name: 'UNIQ_8D93D649E7927C74', columns: ['email'])]
+#[ORM\UniqueConstraint(name: 'UNIQ_8D93D649885281E', columns: ['emailCanonical'])]
+#[ORM\UniqueConstraint(name: 'UNIQ_8D93D6496F55C0C', columns: ['oldUsername'])]
 #[ApiFilter(UsernameFilter::class, properties: ['username' => 'exact'])]
 #[ApiResource(
     operations: [
@@ -97,179 +90,171 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     ];
     public const int MFA_MAX_SEND_CODE_COUNT = 3;
 
-    /**
-     * @var string
-     */
+    #[ORM\Column(name: 'username', type: 'string', length: 180, nullable: false)]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
     #[Anonymize('md5')]
     protected $username = '';
 
-    /**
-     * @var string
-     */
+    #[ORM\Column(name: 'email', type: 'string', length: 255, nullable: true)]
     #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
     #[Anonymize('email', options: ['domain' => 'yopmail.com'])]
     protected $email;
 
-    /**
-     * @var \DateTime|null
-     */
+    #[ORM\Column(name: 'last_login', type: 'datetime', nullable: true)]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
     protected $lastLogin;
 
-    /**
-     * @var int
-     */
+    #[ORM\Column(name: 'id', type: 'integer', nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
     protected $id;
 
-    /**
-     * @var \DateTime
-     */
+    #[ORM\Column(name: 'createdAt', type: 'datetime', nullable: false)]
+    #[Gedmo\Timestampable(on: 'create')]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
     private $createdAt;
 
-    /**
-     * @var \DateTime
-     */
+    #[ORM\Column(name: 'updatedAt', type: 'datetime', nullable: false)]
+    #[Gedmo\Timestampable(on: 'update')]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
     private $updatedAt;
 
-    /**
-     * @var string
-     */
+    #[ORM\Column(name: 'prenom', type: 'string', length: 255, nullable: true)]
     #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
     #[Anonymize('fr-fr.firstname')]
     private $prenom;
 
-    /**
-     * @var string
-     */
+    #[ORM\Column(name: 'nom', type: 'string', length: 255, nullable: true)]
     #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
     #[Anonymize('fr-fr.lastname')]
     private $nom;
 
+    #[ORM\Column(name: 'birthDate', type: 'date', nullable: true)]
     #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
     #[Anonymize('date', options: ['min' => 'now -70 years', 'max' => 'now -15 years'])]
     private ?\DateTime $birthDate = null;
 
-    /**
-     * @var string
-     */
+    #[ORM\Column(name: 'telephone', type: 'string', length: 255, nullable: true)]
     #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
     #[Anonymize('fr-fr.phone')]
     private $telephone;
 
-    /** @var string */
+    #[ORM\Column(name: 'telephoneFixe', type: 'string', length: 255, nullable: true)]
     private $telephoneFixe;
 
-    /**
-     * @var bool
-     */
+    #[ORM\Column(name: 'bActif', type: 'boolean', nullable: false)]
     #[Groups(['read', 'user:read'])]
     private $bActif = false;
 
-    /**
-     * @var string
-     */
+    #[ORM\Column(name: 'typeUser', type: 'string', length: 255, nullable: false)]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
     private $typeUser;
 
-    /** @var string */
+    #[ORM\Column(name: 'privateKey', type: 'string', length: 255, nullable: false)]
     private $privateKey = '';
-    /**
-     * @var string
-     */
+
+    #[ORM\Column(name: 'lastIp', type: 'string', length: 20, nullable: false)]
     #[Groups(['read', 'user:read'])]
     private $lastIp;
 
+    #[ORM\Column(name: 'lastLang', type: 'string', length: 3, nullable: true)]
     private ?string $lastLang = null;
 
-    /** @var Administrateur */
-    private $subjectAdministrateur;
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Administrateur::class)]
+    private ?Administrateur $subjectAdministrateur = null;
 
-    /** @var Beneficiaire */
-    private $subjectBeneficiaire;
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Beneficiaire::class, cascade: ['persist'])]
+    private ?Beneficiaire $subjectBeneficiaire = null;
 
-    /** @var Membre */
-    private $subjectMembre;
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Membre::class, cascade: ['persist'])]
+    private ?Membre $subjectMembre = null;
 
-    /** @var Association */
-    private $subjectAssociation;
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Association::class)]
+    private ?Association $subjectAssociation = null;
 
-    /** @var Gestionnaire */
-    private $subjectGestionnaire;
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Gestionnaire::class)]
+    private ?Gestionnaire $subjectGestionnaire = null;
 
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Adresse::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: 'adresse_id', referencedColumnName: 'id', nullable: true)]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
     private ?Adresse $adresse = null;
 
-    /**
-     * @var bool
-     */
+    #[ORM\Column(name: 'firstVisit', type: 'boolean', nullable: false, options: ['default' => true])]
     private $firstVisit = true;
 
-    /**
-     * @var bool
-     */
+    #[ORM\Column(name: 'bFirstMobileConnexion', type: 'boolean', nullable: false, options: ['default' => false])]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
     private $bFirstMobileConnexion = false;
 
-    /**
-     * @var Collection
-     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: RefreshToken::class, cascade: ['persist', 'remove'])]
     private $refreshTokens;
 
-    /**
-     * @var Collection
-     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: AccessToken::class, cascade: ['persist', 'remove'])]
     private $accessTokens;
 
-    /**
-     * @var \DateTime
-     */
+    #[ORM\Column(name: 'derniereConnexionAt', type: 'datetime', nullable: true)]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
     private $derniereConnexionAt;
 
-    /**
-     * @var string
-     */
     #[Groups(['read', 'user:read'])]
+    #[ORM\Column(name: 'avatar', type: 'string', length: 255, nullable: true)]
     private $avatar;
 
-    /**
-     * @var bool
-     */
+    #[ORM\Column(name: 'test', type: 'boolean', nullable: false)]
     private $test = false;
 
-    /**
-     * @var string
-     */
+    #[ORM\Column(name: 'autoLoginToken', type: 'string', length: 36, nullable: true)]
     private $autoLoginToken;
 
-    /**
-     * @var \DateTime
-     */
+    #[ORM\Column(name: 'autoLoginTokenDeliveredAt', type: 'datetime', nullable: true)]
     private $autoLoginTokenDeliveredAt;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Creator::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private $creators;
+
+    #[ORM\Column(name: 'canada', type: 'boolean', nullable: false, options: ['default' => false])]
     private bool $canada = false;
+
+    #[ORM\Column(name: 'fcnToken', type: 'string', length: 255, nullable: true)]
     private ?string $fcnToken = null;
 
+    #[ORM\Column(name: 'oldUsername', type: 'string', length: 180, nullable: true)]
     #[Anonymize('md5')]
     private ?string $oldUsername = null;
     /** @var ?Collection<int, SharedDocument> */
+    #[ORM\OneToMany(mappedBy: 'sharedBy', targetEntity: SharedDocument::class, cascade: ['remove'])]
     private ?Collection $sharedDocuments = null;
 
+    #[ORM\Column(name: 'cgsAcceptedAt', type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeImmutable $cgsAcceptedAt = null;
+
+    #[ORM\Column(name: 'personalAccountDataRequestedAt', type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeImmutable $personalAccountDataRequestedAt = null;
 
+    #[ORM\Column(name: 'hasPasswordWithLatestPolicy', type: 'boolean', nullable: false, options: ['default' => false])]
     private bool $hasPasswordWithLatestPolicy = false;
 
+    #[ORM\Column(name: 'authCode', type: 'string', length: 255, nullable: true)]
     private ?string $authCode = null;
+
+    #[ORM\Column(name: 'mfaEnabled', type: 'boolean', nullable: true)]
     private ?bool $mfaEnabled = null;
+
+    #[ORM\Column(name: 'mfaPending', type: 'boolean', nullable: true)]
     private ?bool $mfaPending = null;    // This is only used when login from API
+
+    #[ORM\Column(name: 'mfaValid', type: 'boolean', nullable: true)]
     private ?bool $mfaValid = null;    // This is only used when login from API
+
+    #[ORM\Column(name: 'mfaMethod', type: 'string', length: 255, nullable: true, options: ['default' => self::MFA_METHOD_EMAIL])]
     private string $mfaMethod = self::MFA_METHOD_EMAIL;
+
+    #[ORM\Column(name: 'mfaRetryCount', type: 'integer', nullable: true)]
     private ?int $mfaRetryCount = 0;
+
+    #[ORM\Column(name: 'mfaCodeGeneratedAt', type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $mfaCodeGeneratedAt = null;
 
     /** @var string[] */
@@ -1221,7 +1206,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function hasSuffixedUsername(): bool
     {
-        return !preg_match(self::BASE_USERNAME_REGEXP, $this->username);
+        return !preg_match(self::BASE_USERNAME_REGEXP, (string) $this->username);
     }
 
     /**
@@ -1303,7 +1288,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public function formatPhone(): static
     {
         if (preg_match('/^0[1-9][0-9]{8}$/', $this->telephone ?? '')) {
-            $this->telephone = preg_replace('/^0/', '+33', $this->telephone);
+            $this->telephone = preg_replace('/^0/', '+33', (string) $this->telephone);
         }
 
         return $this;

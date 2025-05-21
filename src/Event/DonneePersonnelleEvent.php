@@ -3,7 +3,7 @@
 namespace App\Event;
 
 use App\Entity\Attributes\DonneePersonnelle;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class DonneePersonnelleEvent extends REEvent

@@ -3,7 +3,7 @@
 namespace App\Tests\v2\Listener\Logs;
 
 use App\DataFixtures\v2\MemberFixture;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Tests\Factory\MembreFactory;
 use App\Tests\v2\AuthenticatedKernelTestCase;
 

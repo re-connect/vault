@@ -5,7 +5,7 @@ namespace App\ServiceV2\Mailer;
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\Region;
 use App\Entity\Attributes\SharedDocument;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\ServiceV2\Mailer\Email\AuthCodeEmail;
 use App\ServiceV2\Mailer\Email\DuplicatedUsernameEmail;
 use App\ServiceV2\Mailer\Email\ResetPasswordEmail;

@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\Membre;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;

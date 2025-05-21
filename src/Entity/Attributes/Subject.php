@@ -2,7 +2,6 @@
 
 namespace App\Entity\Attributes;
 
-use App\Entity\User;
 use Doctrine\Common\Collections\ReadableCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 

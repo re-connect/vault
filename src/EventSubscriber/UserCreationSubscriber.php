@@ -5,7 +5,7 @@ namespace App\EventSubscriber;
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Client;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\ManagerV2\UserManager;
 use App\ServiceV2\Mailer\MailerService;
 use App\ServiceV2\NotificationService;

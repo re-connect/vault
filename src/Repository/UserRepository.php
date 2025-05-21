@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
@@ -165,7 +165,7 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
 
         $query = $entityManager->createQuery(
             'SELECT u
-                FROM App\Entity\User u
+                FROM App\Entity\Attributes\User u
                 WHERE u.username = :query
                 OR u.email = :query
                 OR u.oldUsername = :query'

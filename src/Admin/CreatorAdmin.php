@@ -7,7 +7,7 @@ use App\Entity\Attributes\Client;
 use App\Entity\Attributes\CreatorCentre;
 use App\Entity\Attributes\CreatorClient;
 use App\Entity\Attributes\CreatorUser;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

@@ -7,7 +7,7 @@ use App\Entity\Attributes\Association;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Gestionnaire;
 use App\Entity\Attributes\Membre;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Event\UserEvent;
 use App\Repository\UserRepository;
 use App\ServiceV2\Helper\PasswordHelper;

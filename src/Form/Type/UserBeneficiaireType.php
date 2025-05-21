@@ -2,7 +2,7 @@
 
 namespace App\Form\Type;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\EventSubscriber\AddFormattedPhoneSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;

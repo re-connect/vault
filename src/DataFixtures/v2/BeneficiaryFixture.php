@@ -3,7 +3,7 @@
 namespace App\DataFixtures\v2;
 
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\BeneficiaryCreationProcessFactory;
 use App\Tests\Factory\ContactFactory;

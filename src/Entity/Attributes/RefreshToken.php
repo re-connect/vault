@@ -3,7 +3,6 @@
 namespace App\Entity\Attributes;
 
 use App\Entity\TokenInterface;
-use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 

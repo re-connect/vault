@@ -4,7 +4,7 @@ namespace App\ServiceV2;
 
 use App\Entity\Annotations\ResetPasswordRequest;
 use App\Entity\Attributes\Beneficiaire;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\ManagerV2\UserManager;
 use App\RepositoryV2\ResetPasswordRequestRepository;
 use App\Service\TokenGeneratorInterface;
