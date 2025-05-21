@@ -9,7 +9,7 @@ use App\Entity\Attributes\Gestionnaire;
 use App\Entity\Attributes\Membre;
 use App\Entity\Attributes\MembreCentre;
 use App\Entity\Attributes\Subject;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Entity\UserWithCentresInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;

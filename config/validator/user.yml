@@ -1,4 +1,4 @@
-App\Entity\User:
+App\Entity\Attributes\User:
     constraints:
         -   Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
                 fields: username

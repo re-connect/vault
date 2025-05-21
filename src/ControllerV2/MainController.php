@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Form\Type\LoginTypeV2;
 use App\Provider\CentreProvider;
 use App\Provider\HomeProvider;

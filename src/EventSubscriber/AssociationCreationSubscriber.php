@@ -4,7 +4,7 @@ namespace App\EventSubscriber;
 
 use App\Entity\Attributes\Association;
 use App\Entity\Attributes\Centre;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

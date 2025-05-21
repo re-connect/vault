@@ -8,7 +8,7 @@ use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\BeneficiaireCentre;
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\ClientBeneficiaire;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Exception\JsonResponseException;
 use App\Form\Factory\UserFormFactory;
 use App\Manager\CentreManager;

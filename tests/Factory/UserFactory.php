@@ -2,7 +2,7 @@
 
 namespace App\Tests\Factory;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Repository\UserRepository;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;

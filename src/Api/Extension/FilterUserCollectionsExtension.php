@@ -12,7 +12,7 @@ use App\Entity\Attributes\Document;
 use App\Entity\Attributes\Dossier;
 use App\Entity\Attributes\Evenement;
 use App\Entity\Attributes\Note;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Repository\BeneficiaireRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\SecurityBundle\Security;

@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2\Service;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;

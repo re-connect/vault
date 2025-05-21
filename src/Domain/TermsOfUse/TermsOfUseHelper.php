@@ -3,7 +3,7 @@
 namespace App\Domain\TermsOfUse;
 
 use App\Checker\FeatureFlagChecker;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use Doctrine\ORM\EntityManagerInterface;
 
 readonly class TermsOfUseHelper
