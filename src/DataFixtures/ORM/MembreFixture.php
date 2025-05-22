@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures\ORM;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Entity\Client;
 use App\Entity\ClientMembre;
 use App\Entity\MembreCentre;

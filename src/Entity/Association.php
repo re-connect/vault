@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Attributes\Centre;
 use App\Traits\GedmoTimedTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

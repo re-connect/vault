@@ -16,6 +16,7 @@ use App\Api\State\BeneficiaryStateProvider;
 use App\Controller\Api\UnlinkBeneficiaryController;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
+use App\Entity\Attributes\Centre;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Traits\GedmoTimedTrait;
 use App\Validator\Constraints\UniqueExternalLink;
@@ -888,13 +889,9 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     /**
      * @return Collection<int, Dossier>
      */
-    public function getRootFolders(bool $isBeneficiary): Collection
+    public function getRootFolders(): Collection
     {
         $criteria = Criteria::create()->andWhere(Criteria::expr()->isNull('dossierParent'));
-
-        if (!$isBeneficiary) {
-            $criteria->andWhere(Criteria::expr()->eq('bPrive', false));
-        }
 
         return $this->dossiers->matching($criteria);
     }
@@ -902,14 +899,25 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     /**
      * @return Collection<int, Dossier>
      */
-    public function getRootDocuments(bool $isBeneficiary): Collection
+    public function getPrivateRootFolders(): Collection
     {
-        $criteria = Criteria::create()
-            ->andWhere(Criteria::expr()->isNull('dossier'));
+        return $this->getRootFolders()->filter(fn (Dossier $folder) => $folder->isPrivate());
+    }
 
-        if (!$isBeneficiary) {
-            $criteria->andWhere(Criteria::expr()->eq('bPrive', false));
-        }
+    /**
+     * @return Collection<int, Dossier>
+     */
+    public function getSharedRootFolders(): Collection
+    {
+        return $this->getRootFolders()->filter(fn (Dossier $folder) => !$folder->isPrivate());
+    }
+
+    /**
+     * @return Collection<int, Dossier>
+     */
+    public function getRootDocuments(): Collection
+    {
+        $criteria = Criteria::create()->andWhere(Criteria::expr()->isNull('dossier'));
 
         return $this->documents->matching($criteria);
     }
@@ -972,13 +980,20 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function addClientExternalLink(Client $client, string $externalId, ?string $memberExternalId = null, ?BeneficiaireCentre $beneficiaireCentre = null): self
     {
-        if (!$this->hasExternalLinkForClient($client)) {
+        if ($this->canAddExternalLinkForClient($client, $externalId)) {
             $externalLink = ClientBeneficiaire::createForMember($client, $externalId, (int) $memberExternalId);
             $externalLink->setBeneficiaireCentre($beneficiaireCentre);
             $this->addExternalLink($externalLink);
         }
 
         return $this;
+    }
+
+    public function externalLinkExists(Client $client, string $distantId): bool
+    {
+        $links = $this->externalLinks->filter(fn (ClientBeneficiaire $link) => $link->getClient() === $client && $link->getDistantId() === $distantId);
+
+        return count($links) > 0;
     }
 
     public function hasBeneficiaryRelayForRelay(Centre $relay): bool
@@ -1079,5 +1094,10 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     public function getReconnectProExternalLink(): ?ClientBeneficiaire
     {
         return $this->getExternalLinks()->filter(fn (ClientBeneficiaire $link) => Client::CLIENT_RECONNECT_PRO === $link->getClient()?->getNom())->first() ?: null;
+    }
+
+    public function canAddExternalLinkForClient(Client $client, string $externalId): bool
+    {
+        return !$this->hasExternalLinkForClient($client) || ($client->allowsMultipleLinks() && !$this->externalLinkExists($client, $externalId));
     }
 }

@@ -73,7 +73,7 @@ class ExportService
             $this->getCount($this->getItemsCountBaseQb(Evenement::class), $exportModel, $filter),
             $this->getCount($this->getItemsCountBaseQb(Contact::class), $exportModel, $filter),
             $this->getCount($this->getItemsCountBaseQb(Document::class), $exportModel, $filter),
-            $this->getCount($this->getItemsBaseQb(Document::class), $exportModel, $filter),
+            $this->getCount($this->getBeneficiariesWithDocsCountBaseQb(), $exportModel, $filter),
         ];
     }
 
@@ -128,6 +128,19 @@ class ExportService
             ->andWhere('u.test != true')
             ->andWhere('i.createdAt > :startDate')
             ->andWhere('i.createdAt < :endDate');
+    }
+
+    private function getBeneficiariesWithDocsCountBaseQb(): QueryBuilder
+    {
+        return $this->em->getRepository(Beneficiaire::class)
+            ->createQueryBuilder('b')
+            ->select('b')
+            ->leftJoin('b.documents', 'd')
+            ->innerJoin('b.user', 'u')
+            ->andWhere('u.test != true')
+            ->andWhere('d.createdAt > :startDate')
+            ->andWhere('d.createdAt < :endDate')
+            ->groupBy('b.id');
     }
 
     public function exportDataToXlsx(string $title, string $intro, array $header, array $data): Xlsx

@@ -1,0 +1,4 @@
+// Fix rendering of bullet lists outside of quill editor
+div:not([contenteditable="true"]) > ol > li[data-list="bullet"] {
+  list-style-type: circle
+}

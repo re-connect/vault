@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use App\Entity\Attributes\Centre;
 use App\Traits\GedmoTimedTrait;
 use App\Validator\Constraints as CustomAssert;
 use App\Validator\Constraints\UniqueExternalLink;

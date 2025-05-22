@@ -1,30 +1,42 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Attributes;
 
-use JsonSerializable;
+use App\Repository\AdresseRepository;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ORM\Table(name: 'adresse')]
+#[ORM\Entity(repositoryClass: AdresseRepository::class)]
 class Adresse implements \JsonSerializable, \Stringable
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
     #[Groups('read')]
     private ?int $id = null;
 
+    #[ORM\Column(name: 'nom', type: 'string', length: 255, nullable: true)]
     #[Groups('read')]
     private ?string $nom = null;
 
+    #[ORM\Column(name: 'ville', type: 'string', length: 255, nullable: true)]
     #[Groups('read')]
     private ?string $ville = null;
 
+    #[ORM\Column(name: 'codePostal', type: 'string', length: 255, nullable: true)]
     #[Groups('read')]
     private ?string $codePostal = null;
 
+    #[ORM\Column(name: 'pays', type: 'string', length: 255, nullable: true)]
     #[Groups('read')]
     private ?string $pays = null;
 
+    #[ORM\Column(name: 'lat', type: 'float', precision: 10, scale: 0, nullable: true)]
     #[Groups('read')]
     private ?float $lat = null;
 
+    #[ORM\Column(name: 'lng', type: 'float', precision: 10, scale: 0, nullable: true)]
     #[Groups('read')]
     private ?float $lng = null;
 

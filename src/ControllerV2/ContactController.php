@@ -48,7 +48,7 @@ class ContactController extends AbstractController
     }
 
     #[Route(path: '/contact/{id}/delete', name: 'contact_delete', requirements: ['id' => '\d+'], methods: ['GET'])]
-    #[IsGranted('UPDATE', 'contact')]
+    #[IsGranted('DELETE', 'contact')]
     public function delete(Contact $contact, EntityManagerInterface $em): Response
     {
         $em->remove($contact);

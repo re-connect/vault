@@ -77,7 +77,7 @@ class MainController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/reconnect-la-solution-pro', name: 're_main_page_RP', methods: ['GET'])]
+    #[Route(path: '/reconnect-pro', name: 're_main_page_RP', methods: ['GET'])]
     public function pageRP(): Response
     {
         return $this->render('home/pages/page-rp.html.twig', [
@@ -180,7 +180,7 @@ class MainController extends AbstractController
         $event = new InteractiveLoginEvent($request, $token);
         $eventDispatcher->dispatch($event, 'security.interactive_login');
 
-        return $this->redirect($this->generateUrl('redirect_user'));
+        return $this->redirectToRoute('redirect_user');
     }
 
     #[Route('/public/resetting-mail-translation', name: 'resetting_mail_translation', methods: ['GET'])]
@@ -213,5 +213,11 @@ class MainController extends AbstractController
     public function getMailjetForm(): Response
     {
         return new Response(file_get_contents('https://xzk0s.mjt.lu/wgt/xzk0s/54y/form?c=2e04c0ed') ?: null);
+    }
+
+    #[Route(path: '/reconnect-la-solution-pro', name: 're_main_page_RP_old', methods: ['GET'])]
+    public function redirectPageRP(): Response
+    {
+        return $this->redirectToRoute('re_main_page_RP', status: 301);
     }
 }

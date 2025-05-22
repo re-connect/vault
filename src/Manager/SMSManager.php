@@ -2,8 +2,8 @@
 
 namespace App\Manager;
 
+use App\Entity\Attributes\Centre;
 use App\Entity\Beneficiaire;
-use App\Entity\Centre;
 use App\Entity\Evenement;
 use App\Entity\User;
 use App\Event\EvenementEvent;

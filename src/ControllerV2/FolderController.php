@@ -2,6 +2,7 @@
 
 namespace App\ControllerV2;
 
+use App\Domain\Download\FolderTreeDownloader;
 use App\Entity\Dossier;
 use App\FormV2\FolderType;
 use App\FormV2\Search\SearchType;
@@ -146,13 +147,14 @@ class FolderController extends AbstractController
 
         return $this->render('v2/vault/folder/create.html.twig', [
             'form' => $form,
-            'beneficiary' => $parentFolder->getBeneficiaire(),
+            'folder' => $folder,
+            'beneficiary' => $folder->getBeneficiaire(),
             'autocompleteNames' => $manager->getAutocompleteFolderNames(),
         ]);
     }
 
     #[Route(path: 'folder/{id}/delete', name: 'folder_delete', requirements: ['id' => '\d+'], methods: ['GET'])]
-    #[IsGranted('UPDATE', 'folder')]
+    #[IsGranted('DELETE', 'folder')]
     public function delete(Dossier $folder, FolderManager $manager): Response
     {
         $parentFolder = $folder->getDossierParent();
@@ -173,9 +175,9 @@ class FolderController extends AbstractController
 
     #[Route(path: 'folder/{id}/download', name: 'folder_download', methods: ['GET'])]
     #[IsGranted('UPDATE', 'folder')]
-    public function download(Dossier $folder, FolderManager $manager): Response
+    public function download(Dossier $folder, FolderTreeDownloader $downloader): Response
     {
-        if (!$streamedResponse = $manager->getZipFromFolder($folder)) {
+        if (!$streamedResponse = $downloader->downloadZip($folder->getBeneficiaire(), $folder)) {
             $this->addFlash('error', 'error_during_download');
             $parentFolder = $folder->getDossierParent();
 

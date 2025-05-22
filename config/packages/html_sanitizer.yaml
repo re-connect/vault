@@ -6,3 +6,5 @@ framework:
                 allow_static_elements: true
                 block_elements:
                     - script
+                allow_elements:
+                    li: ['data-list']

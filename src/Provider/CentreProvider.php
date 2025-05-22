@@ -3,8 +3,8 @@
 namespace App\Provider;
 
 use App\Api\Manager\ApiClientManager;
+use App\Entity\Attributes\Centre;
 use App\Entity\Beneficiaire;
-use App\Entity\Centre;
 use App\Entity\Gestionnaire;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;
@@ -50,7 +50,7 @@ class CentreProvider
     {
         return $this->em->createQueryBuilder()
             ->select('c', 'a')
-            ->from('App:Centre', 'c')
+            ->from(Centre::class, 'c')
             ->innerJoin('c.adresse', 'a')
             ->getQuery()
             ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
@@ -192,7 +192,7 @@ class CentreProvider
         } elseif ($subject instanceof Membre) {
             return $this->em->createQueryBuilder()
                 ->select('c', 'a', 'bc', 'b', 'u')
-                ->from('App:Centre', 'c')
+                ->from(Centre::class, 'c')
                 ->leftJoin('c.adresse', 'a')
                 ->leftJoin('c.membresCentres', 'mc')
                 ->leftJoin('c.beneficiairesCentres', 'bc')
@@ -206,7 +206,7 @@ class CentreProvider
         } elseif ($subject instanceof Beneficiaire) {
             return $this->em->createQueryBuilder()
                 ->select('c', 'a')
-                ->from('App:Centre', 'c')
+                ->from(Centre::class, 'c')
                 ->leftJoin('c.adresse', 'a')
                 ->innerJoin('c.beneficiairesCentres', 'bc')
                 ->innerJoin('bc.beneficiaire', 'b')
@@ -313,7 +313,7 @@ class CentreProvider
     {
         return $this->em->createQueryBuilder()
             ->select('c', 'mc')
-            ->from('App:Centre', 'c')
+            ->from(Centre::class, 'c')
             ->leftJoin('c.membresCentres', 'mc')
             ->where('c.gestionnaire = '.$gestionnaire->getId())
             ->getQuery()
@@ -327,7 +327,7 @@ class CentreProvider
     {
         return $this->em->createQueryBuilder()
             ->select('c', 'mc', 'bc', 'sms')
-            ->from('App:Centre', 'c')
+            ->from(Centre::class, 'c')
             ->leftJoin('c.membresCentres', 'mc')
             ->leftJoin('c.beneficiairesCentres', 'bc')
             ->leftJoin('c.sms', 'sms')

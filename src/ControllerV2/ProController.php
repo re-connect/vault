@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Entity\Membre;
 use App\Entity\User;
 use App\FormV2\FilterUser\FilterUserFormModel;
@@ -19,6 +19,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -99,11 +100,16 @@ class ProController extends AbstractController
     }
 
     #[Route(path: '/search', name: 'search_pro', methods: ['GET', 'POST'])]
-    public function searchPros(Request $request, MembreRepository $repository, PaginatorService $paginator): Response
-    {
+    public function searchPros(
+        Request $request,
+        MembreRepository $repository,
+        PaginatorService $paginator,
+        #[MapQueryParameter] ?string $firstname,
+        #[MapQueryParameter] ?string $lastname,
+    ): Response {
         $formModel = new SearchProFormModel(
-            $request->query->getAlnum('firstname'),
-            $request->query->getAlnum('lastname'),
+            $firstname,
+            $lastname,
         );
         $user = $this->getUser();
         $form = $this->createForm(SearchProType::class, $formModel, [

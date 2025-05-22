@@ -12,6 +12,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
+use App\Entity\Attributes\FolderIcon;
 use App\Entity\Interface\FolderableEntityInterface;
 use App\Validator\Constraints\Folder as AssertFolder;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -19,6 +20,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DocumentRepository")
@@ -54,6 +56,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 {
     final public const array AUTOCOMPLETE_NAMES = ['health', 'housing', 'identity', 'tax', 'work'];
+    final public const string DEFAULT_ICON_FILE_PATH = 'img/folder_icon/neutral.svg';
 
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:folder:read'])]
     private Collection $documents;
@@ -64,6 +67,9 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     private ?Dossier $dossierParent = null;
     #[Groups(['read-personal-data', 'read-personal-data-v2'])]
     private Collection $sousDossiers;
+
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
+    private ?FolderIcon $icon = null;
 
     public function __construct()
     {
@@ -129,6 +135,11 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     public function getSousDossiers(): ArrayCollection|Collection|array
     {
         return $this->sousDossiers;
+    }
+
+    public function getVisibleSubFolders(User $user): ArrayCollection|Collection|array
+    {
+        return $user === $this->getBeneficiaire()?->getUser() ? $this->sousDossiers : $this->sousDossiers->filter(fn (Dossier $dossier) => !$dossier->isPrivate());
     }
 
     public function addSousDossier(Dossier $sousDossier): self
@@ -245,5 +256,28 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     public function isParentFolderInHierarchy(Dossier $childFolder): bool
     {
         return $this->sousDossiers->exists(fn (int $key, Dossier $subFolder) => $subFolder === $childFolder || $subFolder->isParentFolderInHierarchy($childFolder));
+    }
+
+    public function getIcon(): ?FolderIcon
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?FolderIcon $icon): static
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
+    public function getIconFilePath(): ?string
+    {
+        return $this->icon?->getPublicFilePath() ?? self::DEFAULT_ICON_FILE_PATH;
+    }
+
+    public function getSluggedName(): string
+    {
+        return (new AsciiSlugger())->slug($this->nom);
     }
 }

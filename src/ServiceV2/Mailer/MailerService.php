@@ -2,7 +2,7 @@
 
 namespace App\ServiceV2\Mailer;
 
-use App\Entity\Centre;
+use App\Entity\Attributes\Centre;
 use App\Entity\Region;
 use App\Entity\SharedDocument;
 use App\Entity\User;

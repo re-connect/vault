@@ -11,10 +11,10 @@
             <i class="fa fa-folder-open me-2" aria-hidden="true"></i>
             {{ folder.nom }}
         </a>
-        {% if folder.sousDossiers|length > 0 and not isSelectedFolder %}
+        {% if folder.visibleSubFolders(app.user)|length > 0 and not isSelectedFolder %}
             <ul>
                 {{ include('v2/vault/folder/_tree_view_item.html.twig', {
-                    'folders': folder.sousDossiers,
+                    'folders': folder.visibleSubFolders(app.user),
                     'element': element,
                 }) }}
             </ul>

@@ -7,7 +7,7 @@ App\Entity\MembreCentre:
             type: array
     manyToOne:
         centre:
-            targetEntity: App\Entity\Centre
+            targetEntity: App\Entity\Attributes\Centre
             inversedBy: membresCentres
             joinColumn:
                 nullable: false

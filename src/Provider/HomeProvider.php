@@ -4,6 +4,8 @@ namespace App\Provider;
 
 class HomeProvider
 {
+    protected const DEFAULT_IMG_CLASS = 'box-shadow-light-blue w-100';
+
     public const VAULT_FEATURES_CONTENT = [
         [
             'title' => 'cfn_complete_secure_title',
@@ -64,16 +66,30 @@ class HomeProvider
             'icon_alt' => 'cfn_vault_is_satisfying_alt_img',
             'title' => 'cfn_vault_is_satisfying_title',
             'text' => 'cfn_vault_is_satisfying_p',
+            'annexe_name' => 'formation-cfn',
         ],
     ];
 
     public const RP_FEATURES_CONTENT = [
+        [
+            'title' => 'segur_digital_certification',
+            'text' => 'engagement_ms3_ahi_referencing',
+            'img_fileName' => 'logo_numeric_segur.png',
+            'img_alt' => 'segur_alt_logo',
+            'is_mobile' => false,
+            'img_logo_text' => 'referencing_ms3_ah_corridor',
+            'is_img_border' => true,
+            'img_class' => 'object-fit-contain w-25',
+        ],
         [
             'title' => 'rp_page_user_file_title',
             'text' => 'rp_page_user_file_p',
             'img_fileName' => 'feature1_rp.png',
             'img_alt' => 'rp_page_user_file_alt_img',
             'is_mobile' => false,
+            'img_logo_text' => '',
+            'is_img_border' => false,
+            'img_class' => self::DEFAULT_IMG_CLASS,
         ],
         [
             'title' => 'rp_page_info_transmission_title',
@@ -81,6 +97,9 @@ class HomeProvider
             'img_fileName' => 'feature2_rp.png',
             'img_alt' => 'rp_page_info_transmission_alt_img',
             'is_mobile' => true,
+            'img_logo_text' => '',
+            'is_img_border' => false,
+            'img_class' => 'box-shadow-light-blue',
         ],
         [
             'title' => 'rp_page_housing_management_title',
@@ -88,6 +107,9 @@ class HomeProvider
             'img_fileName' => 'feature3_rp.png',
             'img_alt' => 'rp_page_housing_management_alt_img',
             'is_mobile' => false,
+            'img_logo_text' => '',
+            'is_img_border' => false,
+            'img_class' => self::DEFAULT_IMG_CLASS,
         ],
         [
             'title' => 'rp_page_stats_automation_title',
@@ -96,6 +118,9 @@ class HomeProvider
             'img_fileName' => 'feature4_rp.png',
             'img_alt' => 'rp_page_stats_automation_alt_img',
             'is_mobile' => false,
+            'img_logo_text' => '',
+            'is_img_border' => false,
+            'img_class' => self::DEFAULT_IMG_CLASS,
         ],
     ];
 
@@ -123,6 +148,7 @@ class HomeProvider
             'icon_alt' => 'rp_is_satisfying_alt_img',
             'title' => 'rp_is_satisfying_title',
             'text' => 'rp_is_satisfying_p',
+            'annexe_name' => 'formation-rp',
         ],
     ];
 
@@ -161,6 +187,7 @@ class HomeProvider
             'img_fileName' => 'digital_cares_qualiopi.png',
             'img_alt' => 'digital_cares_qualiopi_content_img_alt',
             'is_mobile' => false,
+            'annexe_name' => 'certificat-qualiopi',
         ],
     ];
 
@@ -176,12 +203,6 @@ class HomeProvider
             'icon_alt' => 'digital_cares_acquire_skills_img_alt',
             'title' => 'digital_cares_acquire_skills_title',
             'text' => 'digital_cares_acquire_skills_text',
-        ],
-        [
-            'icon_file_name' => 'logo_digital_cares_bulb.png',
-            'icon_alt' => 'digital_cares_dynamic_workshop_img_alt',
-            'title' => 'digital_cares_dynamic_workshop_title',
-            'text' => 'digital_cares_dynamic_workshop_text',
         ],
         [
             'icon_file_name' => 'logo_digital_cares_knowledge.png',
