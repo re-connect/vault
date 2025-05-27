@@ -5,7 +5,7 @@ meta {
 }
 
 put {
-  url: {{baseUrl}}/api/v3/beneficiaries/{id}/enable
+  url: {{baseUrl}}/api/v3/beneficiaries/me/enable
   body: json
   auth: inherit
 }
@@ -13,8 +13,8 @@ put {
 body:json {
   {
     "secretQuestion": "Coucou",
-    "otherSecretQuestion": "Coucasasou",
+  //   "otherSecretQuestion": "Coucasasou",
     "secretAnswer": "coucou",
-    "password": "{{benefPwd}}"
+    "password": "StrongPassword123"
   }
 }
