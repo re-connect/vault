@@ -7,6 +7,7 @@ use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
 use App\Controller\Rest\V3\LinkedCentersController;
 use App\Repository\CentreRepository;
 use App\Validator\Constraints\UniqueExternalLink;
@@ -38,6 +39,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
             security: "is_granted('ROLE_OAUTH2_CENTERS')",
             deserialize: false,
         ),
+        new Post(security: "is_granted('ROLE_OAUTH2_CENTERS')"),
     ],
     normalizationContext: ['groups' => ['v3:center:read']],
     denormalizationContext: ['groups' => ['v3:center:write']],
