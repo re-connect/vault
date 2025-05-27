@@ -1,0 +1,27 @@
+meta {
+  name: Login
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/token
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "grant_type": "password",
+    "scope": "default",
+    "client_id": "{{oauthPasswordClientId}}",
+    "client_secret": "{{oauthPasswordClientSecret}}",
+    // "username": "{{oauthPasswordUsername}}",
+    "username": "{{oauthPasswordProUsername}}",
+    "password": "{{oauthPasswordPassword}}"
+  }
+}
+
+vars:post-response {
+  token: res.body.access_token
+}

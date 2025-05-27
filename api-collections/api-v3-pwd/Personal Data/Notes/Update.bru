@@ -1,0 +1,19 @@
+meta {
+  name: Update
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/v3/notes/{id}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "contenu": "string",
+    "b_prive": true,
+    "nom": "string"
+  }
+}
