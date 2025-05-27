@@ -55,9 +55,9 @@ use Symfony\Component\Validator\Constraints as Assert;
             description: 'Unlink a beneficiary from your oauth2 client',
             security: "is_granted('UPDATE', object)"
         ),
-        new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES') or is_granted('ROLE_USER')"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES') or is_granted('ROLE_MEMBRE')"),
         new Post(
-            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES') or is_granted('ROLE_USER')",
+            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES') or is_granted('ROLE_MEMBRE')",
             input: BeneficiaryDto::class,
             processor: BeneficiaryStateProcessor::class,
         ),
