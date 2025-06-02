@@ -4,10 +4,10 @@ meta {
   seq: 4
 }
 
-put {
+patch {
   url: {{baseUrl}}/api/v3/folders/{id}
   body: json
-  auth: none
+  auth: inherit
 }
 
 body:json {
