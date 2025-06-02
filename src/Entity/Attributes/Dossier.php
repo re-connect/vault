@@ -84,7 +84,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 
     #[ORM\ManyToOne(targetEntity: FolderIcon::class)]
     #[ORM\JoinColumn(name: 'icon_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
-    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write'])]
     private ?FolderIcon $icon = null;
 
     #[ORM\OneToMany(mappedBy: 'dossier', targetEntity: Creator::class, cascade: ['persist', 'remove'])]
