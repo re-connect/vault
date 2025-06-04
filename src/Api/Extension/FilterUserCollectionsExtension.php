@@ -41,13 +41,27 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
 
     public function filterRelays(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void
     {
-        $queryBuilder
-            ->leftJoin(sprintf('%s.membresCentres', $rootAlias), 'membresCentres')
-            ->leftJoin(sprintf('%s.beneficiairesCentres', $rootAlias), 'beneficiairesCentres')
-            ->leftJoin('beneficiairesCentres.beneficiaire', 'beneficiaire')
-            ->leftJoin('membresCentres.membre', 'membre')
-            ->andWhere('membre.user = :current_user OR beneficiaire.user = :current_user')
-            ->setParameter('current_user', $user);
+        if (!$user instanceof User || !$user->isBeneficiaire() && !$user->isMembre()) {
+            $this->returnEmptyResult($queryBuilder);
+
+            return;
+        }
+
+        if ($user->isBeneficiaire()) {
+            $queryBuilder
+                ->leftJoin(sprintf('%s.beneficiairesCentres', $rootAlias), 'beneficiairesCentres')
+                ->leftJoin('beneficiairesCentres.beneficiaire', 'beneficiaire')
+                ->andWhere('beneficiaire.user = :current_user');
+        }
+
+        if ($user->isMembre()) {
+            $queryBuilder
+                ->leftJoin(sprintf('%s.membresCentres', $rootAlias), 'membresCentres')
+                ->leftJoin('membresCentres.membre', 'membre')
+                ->andWhere('membre.user = :current_user');
+        }
+
+        $queryBuilder->setParameter('current_user', $user);
     }
 
     private function filterPersonalData(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void
@@ -59,7 +73,7 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
         }
 
         if (!$user->isBeneficiaire()) {
-            $queryBuilder->andWhere('1 = 0'); // Always failing condition to return null result
+            $this->returnEmptyResult($queryBuilder);
 
             return;
         }
@@ -92,5 +106,10 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
     private function isAuthenticatedAsClient(): bool
     {
         return !($this->security->getUser() instanceof User);
+    }
+
+    private function returnEmptyResult(QueryBuilder $queryBuilder): void
+    {
+        $queryBuilder->andWhere('1 = 0'); // Always failing condition to return null result
     }
 }
