@@ -7,20 +7,20 @@ meta {
 post {
   url: {{baseUrl}}/api/v3/beneficiaries
   body: json
-  auth: none
+  auth: inherit
 }
 
 body:json {
+  // This operation is only allowed when logged as Professionnal
   {
       "first_name": "Jean",
-      "last_name": "string",
+      "last_name": "String",
       "password": "string",
       "confirm_password": "string",
       "birth_date": "01/01/1995",
-      "centers": [44],
       "phone": "string",
       "secret_question": "string",
-      "secret_question_custom_text": "string",
+      "secret_question_custom_text": "stringcustom",
       "secret_question_answer": "string"
   }
 }

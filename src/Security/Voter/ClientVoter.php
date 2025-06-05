@@ -9,14 +9,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class ClientVoter extends Voter
 {
-    public const READ = 'READ';
-    public const WRITE = 'WRITE';
-    public const DELETE = 'DELETE';
+    public const string WRITE = 'WRITE';
+    public const string DELETE = 'DELETE';
 
     #[\Override]
     protected function supports(string $attribute, $subject): bool
     {
-        return in_array($attribute, [self::READ, self::WRITE, self::DELETE])
+        return in_array($attribute, [self::WRITE, self::DELETE])
             && $subject instanceof Centre;
     }
 
@@ -31,7 +30,7 @@ class ClientVoter extends Voter
         switch ($attribute) {
             case self::WRITE:
             case self::DELETE:
-            case self::READ:
+            default:
                 break;
         }
 

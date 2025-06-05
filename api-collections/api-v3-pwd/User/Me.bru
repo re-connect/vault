@@ -5,7 +5,11 @@ meta {
 }
 
 get {
-  url: {{baseUrl}}/api/v3/users
+  url: {{baseUrl}}/api/v3/users/me
   body: none
-  auth: none
+  auth: inherit
+}
+
+vars:post-response {
+  userId: res.body.id
 }
