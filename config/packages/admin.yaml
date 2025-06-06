@@ -23,7 +23,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Autres", label: "FAQ" }
         arguments:
             - ~
-            - App\Entity\FaqQuestion
+            - App\Entity\Attributes\FaqQuestion
             - ~
 
     re_admin.admin.annexe:
@@ -34,7 +34,7 @@ services:
 
     re_admin.admin.region:
         class: App\Admin\RegionAdmin
-        arguments: [ ~, App\Entity\Attribute\Region, ~ ]
+        arguments: [ ~, App\Entity\Attributes\Region, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Régions }
 
