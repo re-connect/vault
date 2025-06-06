@@ -24,7 +24,7 @@ class Rappel implements \JsonSerializable
     #[Groups(['read-personal-data', 'write-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:event:write', 'v3:event:read'])]
     #[Assert\NotBlank]
     #[Assert\Type(\DateTimeInterface::class)]
-    private \DateTime $date;
+    private ?\DateTime $date = null;
 
     #[ORM\ManyToOne(targetEntity: Evenement::class)]
     #[ORM\JoinColumn(name: 'evenement_id', referencedColumnName: 'id')]
@@ -57,7 +57,7 @@ class Rappel implements \JsonSerializable
         return $this->getDate()->setTimezone(new \DateTimeZone('UTC'));
     }
 
-    public function setDate(\DateTime $date): static
+    public function setDate(?\DateTime $date): static
     {
         $this->date = $date;
 
