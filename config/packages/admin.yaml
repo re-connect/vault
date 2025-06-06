@@ -23,7 +23,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Autres", label: "FAQ" }
         arguments:
             - ~
-            - App\Entity\FaqQuestion
+            - App\Entity\Attributes\FaqQuestion
             - ~
 
     re_admin.admin.annexe:
