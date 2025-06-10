@@ -44,6 +44,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
                     'properties' => [
                         'file' => ['type' => 'file'],
                         'distant_id' => ['type' => 'string', 'format' => 'string'],
+                        'beneficiary_id' => ['type' => 'string', 'format' => 'string'],
+                        'folder_id' => ['type' => 'string', 'format' => 'string'],
                     ],
                 ], ], ], ],
             ],
