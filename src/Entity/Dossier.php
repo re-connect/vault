@@ -31,7 +31,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
         new Delete(security: "is_granted('UPDATE', object)"),
         new Get(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('ROLE_USER')"),
-        new Post(security: "is_granted('ROLE_USER')", processor: PersonalDataStateProcessor::class),
+        new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_DOCUMENTS')", processor: PersonalDataStateProcessor::class),
         new Patch(security: "is_granted('UPDATE', object)"),
     ],
     normalizationContext: ['groups' => ['v3:folder:read']],
@@ -65,6 +65,9 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
     #[AssertFolder\NoCircularDependency]
     private ?Dossier $dossierParent = null;
+
+    #[Groups(['v3:folder:write', 'v3:folder:read'])]
+    public ?int $dossierParentId = null;
     #[Groups(['read-personal-data', 'read-personal-data-v2'])]
     private Collection $sousDossiers;
 
