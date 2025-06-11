@@ -71,7 +71,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     #[Groups(['read-personal-data', 'read-personal-data-v2'])]
     private Collection $sousDossiers;
 
-    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2'])]
     private ?FolderIcon $icon = null;
 
     public function __construct()
