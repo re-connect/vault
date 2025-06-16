@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2\EventSubscriber;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\EventSubscriber\Logs\LoginSubscriber;
 use App\ServiceV2\ActivityLogger;
 use Doctrine\ORM\EntityManagerInterface;

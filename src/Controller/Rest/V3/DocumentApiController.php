@@ -3,7 +3,7 @@
 namespace App\Controller\Rest\V3;
 
 use App\ControllerV2\AbstractController;
-use App\Entity\Document;
+use App\Entity\Attributes\Document;
 use App\Factory\SharedDocumentFactory;
 use App\ServiceV2\Mailer\MailerService;
 use Symfony\Component\HttpFoundation\JsonResponse;

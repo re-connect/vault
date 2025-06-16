@@ -2,8 +2,8 @@
 
 namespace App\ManagerV2;
 
-use App\Entity\Document;
-use App\Entity\SharedDocument;
+use App\Entity\Attributes\Document;
+use App\Entity\Attributes\SharedDocument;
 use App\Factory\SharedDocumentFactory;
 use App\Repository\DocumentRepository;
 use App\Repository\SharedDocumentRepository;

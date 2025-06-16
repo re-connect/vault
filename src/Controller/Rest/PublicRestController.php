@@ -2,13 +2,13 @@
 
 namespace App\Controller\Rest;
 
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
-use App\Entity\Beneficiaire;
-use App\Entity\Contact;
-use App\Entity\Evenement;
-use App\Entity\Gestionnaire;
-use App\Entity\Membre;
-use App\Entity\Note;
+use App\Entity\Attributes\Contact;
+use App\Entity\Attributes\Evenement;
+use App\Entity\Attributes\Gestionnaire;
+use App\Entity\Attributes\Membre;
+use App\Entity\Attributes\Note;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

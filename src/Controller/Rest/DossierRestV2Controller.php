@@ -3,8 +3,8 @@
 namespace App\Controller\Rest;
 
 use App\Controller\REController;
-use App\Entity\Client;
-use App\Entity\User;
+use App\Entity\Attributes\Client;
+use App\Entity\Attributes\User;
 use App\Exception\JsonResponseException;
 use App\Manager\MailManager;
 use App\Manager\RestManager;

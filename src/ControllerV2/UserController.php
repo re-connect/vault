@@ -4,7 +4,7 @@ namespace App\ControllerV2;
 
 use App\Domain\TermsOfUse\TermsOfUseHelper;
 use App\Entity\Attributes\Centre;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\FormV2\ChangePasswordFormType;
 use App\FormV2\FirstVisitType;
 use App\FormV2\UserType;

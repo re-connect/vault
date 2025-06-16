@@ -2,8 +2,8 @@
 
 namespace App\Repository;
 
-use App\Entity\Beneficiaire;
-use App\Entity\Contact;
+use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\Contact;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

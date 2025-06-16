@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraint;
 /**
  * @Annotation
  */
-class Entity extends Constraint
+#[\Attribute] class Entity extends Constraint
 {
     #[\Override]
     public function getTargets(): string|array

@@ -2,7 +2,7 @@
 
 namespace App\Domain\MFA;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use Erkens\Security\TwoFactorTextBundle\Generator\CodeGeneratorInterface as TextCodeGeneratorInterface;
 use Scheb\TwoFactorBundle\Security\TwoFactor\AuthenticationContextInterface;
 use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Email\Generator\CodeGeneratorInterface as EmailCodeGeneratorInterface;

@@ -2,8 +2,8 @@
 
 namespace App\FormV2;
 
+use App\Entity\Attributes\Dossier;
 use App\Entity\Attributes\FolderIcon;
-use App\Entity\Dossier;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Form\AbstractType;

@@ -2,7 +2,7 @@
     {% set isSelectedFolder = folder == element %}
     <li class="list-group-item w-100">
         <a href="{{ path(
-            element is instanceof ('App\\Entity\\Document')
+            element is instanceof ('App\\Entity\\Attributes\\Document')
             ? 'document_move_to_folder'
             : 'folder_move_to_folder',
             {'id': element.id, 'folderId': folder.id, 'tree-view': true},

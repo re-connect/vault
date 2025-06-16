@@ -4,9 +4,9 @@ namespace App\Controller\Rest;
 
 use App\Api\Manager\ApiClientManager;
 use App\Controller\REController;
-use App\Entity\Beneficiaire;
-use App\Entity\Membre;
-use App\Entity\User;
+use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\Membre;
+use App\Entity\Attributes\User;
 use App\Exception\JsonResponseException;
 use App\Manager\CentreManager;
 use App\Manager\UserManager;

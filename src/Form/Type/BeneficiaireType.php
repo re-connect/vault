@@ -2,8 +2,8 @@
 
 namespace App\Form\Type;
 
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
-use App\Entity\Beneficiaire;
 use App\Form\DataTransformer\QuestionSecreteTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

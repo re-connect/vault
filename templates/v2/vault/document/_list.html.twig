@@ -14,14 +14,14 @@
     </thead>
     <tbody {{ stimulus_target('drag_n_drop', 'folderList') }}>
     {% for element in foldersAndDocuments %}
-        {% if element is instanceof('App\\Entity\\Dossier') %}
+        {% if element is instanceof('App\\Entity\\Attributes\\Dossier') %}
             {{ include('v2/vault/folder/_card.html.twig', {'folder': element}) }}
-        {% endif %}
+        {% endif  %}
     {% endfor %}
     </tbody>
     <tbody {{ stimulus_target('drag_n_drop', 'documentList') }}>
     {% for element in foldersAndDocuments %}
-        {% if element is instanceof('App\\Entity\\Document') %}
+        {% if element is instanceof('App\\Entity\\Attributes\\Document') %}
             {{ include('v2/vault/document/_card.html.twig', {'document': element}) }}
         {% endif %}
     {% endfor %}

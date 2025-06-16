@@ -4,7 +4,7 @@ namespace App\Tests\v2\Controller\BeneficiaryConsultation;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
-use App\Entity\ConsultationBeneficiaire;
+use App\Entity\Attributes\ConsultationBeneficiaire;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;

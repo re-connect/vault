@@ -2,7 +2,7 @@
 
 namespace App\Event;
 
-use App\Entity\Beneficiaire;
+use App\Entity\Attributes\Beneficiaire;
 
 class DossierEvent extends REEvent
 {

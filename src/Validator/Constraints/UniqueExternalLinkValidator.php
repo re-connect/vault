@@ -4,7 +4,7 @@ namespace App\Validator\Constraints;
 
 use App\Api\Dto\BeneficiaryDto;
 use App\Api\Manager\ApiClientManager;
-use App\Entity\ClientBeneficiaire;
+use App\Entity\Attributes\ClientBeneficiaire;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\ClientEntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;

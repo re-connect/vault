@@ -2,12 +2,12 @@
 
 namespace App\Twig\ExtensionV2;
 
-use App\Entity\Contact;
-use App\Entity\Document;
-use App\Entity\DonneePersonnelle;
-use App\Entity\Dossier;
-use App\Entity\Evenement;
-use App\Entity\Note;
+use App\Entity\Attributes\Contact;
+use App\Entity\Attributes\Document;
+use App\Entity\Attributes\DonneePersonnelle;
+use App\Entity\Attributes\Dossier;
+use App\Entity\Attributes\Evenement;
+use App\Entity\Attributes\Note;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
