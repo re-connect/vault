@@ -2,7 +2,7 @@
 
 namespace App\Listener;
 
-use App\Entity\FaqQuestion;
+use App\Entity\Attributes\FaqQuestion;
 use App\Repository\FaqQuestionRepository;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Event\PostFlushEventArgs;

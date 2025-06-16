@@ -2,7 +2,7 @@
 
 namespace App\Domain\PushNotification\Notification;
 
-use App\Entity\Document;
+use App\Entity\Attributes\Document;
 
 readonly class DocumentAddedPushNotification implements PushNotificationInterface
 {

@@ -2,9 +2,9 @@
 
 namespace App\FormV2\UserCreation;
 
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
-use App\Entity\Beneficiaire;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\FormV2\Field\PasswordField;
 use App\FormV2\UserType;
 use App\ServiceV2\Traits\UserAwareTrait;

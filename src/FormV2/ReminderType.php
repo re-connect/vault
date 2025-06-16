@@ -2,7 +2,7 @@
 
 namespace App\FormV2;
 
-use App\Entity\Rappel;
+use App\Entity\Attributes\Rappel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;

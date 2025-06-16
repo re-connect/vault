@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures\ORM;
 
-use App\Entity\TypeCentre;
+use App\Entity\Attributes\TypeCentre;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;

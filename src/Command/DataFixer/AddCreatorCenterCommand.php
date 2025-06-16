@@ -2,7 +2,7 @@
 
 namespace App\Command\DataFixer;
 
-use App\Entity\CreatorCentre;
+use App\Entity\Attributes\CreatorCentre;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\CentreRepository;
 use Doctrine\ORM\EntityManagerInterface;

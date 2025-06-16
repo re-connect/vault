@@ -3,9 +3,9 @@
 namespace App\DataFixtures\ORM;
 
 use App\Entity\Attributes\Centre;
-use App\Entity\Client;
-use App\Entity\ClientMembre;
-use App\Entity\MembreCentre;
+use App\Entity\Attributes\Client;
+use App\Entity\Attributes\ClientMembre;
+use App\Entity\Attributes\MembreCentre;
 use App\Manager\FixtureManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;

@@ -3,8 +3,8 @@
 namespace App\ControllerV2;
 
 use App\Entity\Attributes\Centre;
-use App\Entity\Membre;
-use App\Entity\User;
+use App\Entity\Attributes\Membre;
+use App\Entity\Attributes\User;
 use App\FormV2\FilterUser\FilterUserFormModel;
 use App\FormV2\FilterUser\FilterUserType;
 use App\FormV2\UserAffiliation\Model\SearchProFormModel;

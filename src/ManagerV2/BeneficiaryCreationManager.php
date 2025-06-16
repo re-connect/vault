@@ -2,9 +2,9 @@
 
 namespace App\ManagerV2;
 
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\BeneficiaryCreationProcess;
-use App\Entity\Beneficiaire;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\ServiceV2\NotificationService;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;

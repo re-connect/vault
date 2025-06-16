@@ -2,7 +2,7 @@
 
 namespace App\ListenerV2;
 
-use App\Entity\Evenement;
+use App\Entity\Attributes\Evenement;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -21,7 +21,7 @@ class TimezoneListener implements EventSubscriberInterface
     {
         $data = $event->getData();
 
-        if (!$data instanceof Evenement || !$data->getDate() || !$data->getTimezone()) {
+        if (!$data instanceof Evenement || !$data->getTimezone()) {
             return;
         }
 

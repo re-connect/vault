@@ -4,9 +4,9 @@ namespace App\Tests\v2\Listener;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
-use App\Entity\Beneficiaire;
-use App\Entity\Membre;
-use App\Entity\User;
+use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\Membre;
+use App\Entity\Attributes\User;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\MembreFactory;
 use App\Tests\Factory\UserFactory;

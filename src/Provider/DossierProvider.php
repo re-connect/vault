@@ -2,10 +2,10 @@
 
 namespace App\Provider;
 
-use App\Entity\Beneficiaire;
-use App\Entity\Document;
-use App\Entity\DonneePersonnelle;
-use App\Entity\Dossier;
+use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\Document;
+use App\Entity\Attributes\DonneePersonnelle;
+use App\Entity\Attributes\Dossier;
 use App\Event\DonneePersonnelleEvent;
 use App\Event\REEvent;
 use App\Form\Type\DossierSimpleType;

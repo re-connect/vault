@@ -2,9 +2,9 @@
 
 namespace App\Repository;
 
-use App\Entity\Beneficiaire;
-use App\Entity\Document;
-use App\Entity\Dossier;
+use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\Document;
+use App\Entity\Attributes\Dossier;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\NonUniqueResultException;

@@ -2,7 +2,7 @@
 
 namespace App\ListenerV2\Logs;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PostPersistEventArgs;

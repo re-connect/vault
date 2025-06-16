@@ -5,7 +5,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Autres", label: "Verbatims" }
         arguments:
             - ~
-            - App\Entity\Verbatim
+            - App\Entity\Attributes\Verbatim
             - ~
 
     sonata.admin.partenaire:
@@ -14,7 +14,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Autres", label: "Partenaires" }
         arguments:
             - ~
-            - App\Entity\Partenaire
+            - App\Entity\Attributes\Partenaire
             - ~
 
     sonata.admin.faq:
@@ -23,7 +23,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Autres", label: "FAQ" }
         arguments:
             - ~
-            - App\Entity\FaqQuestion
+            - App\Entity\Attributes\FaqQuestion
             - ~
 
     re_admin.admin.annexe:
@@ -34,7 +34,7 @@ services:
 
     re_admin.admin.region:
         class: App\Admin\RegionAdmin
-        arguments: [ ~, App\Entity\Region, ~ ]
+        arguments: [ ~, App\Entity\Attributes\Region, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Régions }
 
@@ -44,7 +44,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "Utilisateurs simples", show_in_dashboard: false }
         arguments:
             - ~
-            - App\Entity\User
+            - App\Entity\Attributes\User
             - ~
             - '@Symfony\Bundle\SecurityBundle\Security'
             - '@Symfony\Component\Routing\RouterInterface'
@@ -56,7 +56,7 @@ services:
         class: App\Admin\BeneficiaireAdmin
         arguments:
             - ~
-            - App\Entity\Beneficiaire
+            - App\Entity\Attributes\Beneficiaire
             - ~
             - '@Symfony\Component\Routing\RouterInterface'
             - '@Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface'
@@ -67,13 +67,13 @@ services:
 
     sonata.admin.beneficiairecentre:
         class: App\Admin\BeneficiaireCentreAdmin
-        arguments: [ ~, App\Entity\BeneficiaireCentre, ~ ]
+        arguments: [ ~, App\Entity\Attributes\BeneficiaireCentre, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "BeneficiaireCentre", show_in_dashboard: false }
 
     sonata.admin.membrecentre:
         class: App\Admin\MembreCentreAdmin
-        arguments: [ ~, App\Entity\MembreCentre, ~ ]
+        arguments: [ ~, App\Entity\Attributes\MembreCentre, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "MembreCentre", show_in_dashboard: false }
 
@@ -83,7 +83,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "Professionnels" }
         arguments:
             - ~
-            - App\Entity\Membre
+            - App\Entity\Attributes\Membre
             - App\Admin\MembreAdminController
         calls:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
@@ -95,7 +95,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Utilisateurs et Centres", label: "Associations" }
         arguments:
             - ~
-            - App\Entity\Association
+            - App\Entity\Attributes\Association
             - ~
         calls:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
@@ -119,7 +119,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Types et Catégories", label: "Types de centres" }
         arguments:
             - ~
-            - App\Entity\TypeCentre
+            - App\Entity\Attributes\TypeCentre
             - ~
 
     sonata.admin.sms:
@@ -128,7 +128,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Autres", label: "SMS de rappel envoyés" }
         arguments:
             - ~
-            - App\Entity\SMS
+            - App\Entity\Attributes\SMS
             - ~
 
     sonata.admin.note:
@@ -137,7 +137,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Notes" }
         arguments:
             - ~
-            - App\Entity\Note
+            - App\Entity\Attributes\Note
             - ~
 
     sonata.admin.document:
@@ -146,7 +146,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Documents" }
         arguments:
             - ~
-            - App\Entity\Document
+            - App\Entity\Attributes\Document
             - ~
 
     sonata.admin.dossier:
@@ -155,7 +155,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Dossiers" }
         arguments:
             - ~
-            - App\Entity\Dossier
+            - App\Entity\Attributes\Dossier
             - ~
 
     sonata.admin.evenement:
@@ -164,7 +164,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Evenements" }
         arguments:
             - ~
-            - App\Entity\Evenement
+            - App\Entity\Attributes\Evenement
             - ~
 
     sonata.admin.contact:
@@ -173,7 +173,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Données personnelles", label: "Contacts" }
         arguments:
             - ~
-            - App\Entity\Contact
+            - App\Entity\Attributes\Contact
             - ~
 
     sonata.admin.adresse:
@@ -202,7 +202,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Outils SuperAdmin", label: "Admins" }
         arguments:
             - ~
-            - App\Entity\User
+            - App\Entity\Attributes\User
             - ~
         calls:
             - [ setUserManager, [ '@App\ManagerV2\UserManager' ] ]
@@ -210,7 +210,7 @@ services:
     # OAuth
     reo_auth.admin.client:
         class: App\Admin\ClientAdmin
-        arguments: [ ~, App\Entity\Client, ~ ]
+        arguments: [ ~, App\Entity\Attributes\Client, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Client }
         calls:
@@ -224,25 +224,25 @@ services:
 
     reo_auth.admin.client_membre:
         class: App\Admin\ClientEntityAdmin
-        arguments: [ ~, App\Entity\ClientMembre, ~ ]
+        arguments: [ ~, App\Entity\Attributes\ClientMembre, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Client }
 
     reo_auth.admin.client_beneficiaire:
         class: App\Admin\ClientEntityAdmin
-        arguments: [ ~, App\Entity\ClientBeneficiaire, ~ ]
+        arguments: [ ~, App\Entity\Attributes\ClientBeneficiaire, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Client }
 
     reo_auth.admin.client_centre:
         class: App\Admin\ClientEntityAdmin
-        arguments: [ ~, App\Entity\ClientCentre, ~ ]
+        arguments: [ ~, App\Entity\Attributes\ClientCentre, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Client }
 
     reo_auth.admin.client_gestionnaire:
         class: App\Admin\ClientEntityAdmin
-        arguments: [ ~, App\Entity\ClientGestionnaire, ~ ]
+        arguments: [ ~, App\Entity\Attributes\ClientGestionnaire, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Client }
     sonata.admin.feature_toggle:

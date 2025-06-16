@@ -2,7 +2,7 @@
 
 namespace App\Security\HelperV2;
 
-use App\Entity\Client;
+use App\Entity\Attributes\Client;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Repository\ClientRepository;
 use League\Bundle\OAuth2ServerBundle\Security\Authentication\Token\OAuth2Token;

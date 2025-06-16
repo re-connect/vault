@@ -2,7 +2,7 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Provider\CentreProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

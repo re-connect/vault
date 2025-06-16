@@ -2,10 +2,10 @@
 
 namespace App\ServiceV2\Helper;
 
-use App\Entity\BeneficiaireCentre;
-use App\Entity\Client;
-use App\Entity\User;
-use App\Entity\UserCentre;
+use App\Entity\Attributes\BeneficiaireCentre;
+use App\Entity\Attributes\Client;
+use App\Entity\Attributes\User;
+use App\Entity\Attributes\UserCentre;
 use App\Repository\CentreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;

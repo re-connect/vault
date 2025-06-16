@@ -2,8 +2,8 @@
 
 namespace App\Command\DataFixer;
 
-use App\Entity\Beneficiaire;
-use App\Entity\Document;
+use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\Document;
 use App\Repository\BeneficiaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;

@@ -3,8 +3,8 @@
 namespace App\Tests\v2\Listener;
 
 use App\DataFixtures\v2\MemberFixture;
-use App\Entity\MembreCentre;
-use App\Entity\User;
+use App\Entity\Attributes\MembreCentre;
+use App\Entity\Attributes\User;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\AuthenticatedKernelTestCase;
 use Doctrine\ORM\EntityManagerInterface;

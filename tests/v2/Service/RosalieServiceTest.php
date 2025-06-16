@@ -2,9 +2,9 @@
 
 namespace App\Tests\v2\Service;
 
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
-use App\Entity\Beneficiaire;
-use App\Entity\User;
+use App\Entity\Attributes\User;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\ClientBeneficiaireRepository;
 use App\Repository\ClientRepository;

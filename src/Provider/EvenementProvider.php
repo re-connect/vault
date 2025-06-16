@@ -2,10 +2,10 @@
 
 namespace App\Provider;
 
-use App\Entity\Client;
-use App\Entity\DonneePersonnelle;
-use App\Entity\Evenement;
-use App\Entity\Rappel;
+use App\Entity\Attributes\Client;
+use App\Entity\Attributes\DonneePersonnelle;
+use App\Entity\Attributes\Evenement;
+use App\Entity\Attributes\Rappel;
 use App\Event\DonneePersonnelleEvent;
 use App\Event\REEvent;
 use App\Form\Type\EvenementSimpleType;
@@ -60,11 +60,7 @@ class EvenementProvider extends DonneePersonnelleProvider
             );
         }
 
-        if (null !== $entity->getSms()) {
-            $entity->setArchive(true);
-        } else {
-            $this->em->remove($entity);
-        }
+        $this->em->remove($entity);
         $this->em->flush();
     }
 

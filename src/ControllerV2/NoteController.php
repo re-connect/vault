@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Note;
+use App\Entity\Attributes\Note;
 use App\FormV2\NoteType;
 use App\ManagerV2\NoteManager;
 use Doctrine\ORM\EntityManagerInterface;

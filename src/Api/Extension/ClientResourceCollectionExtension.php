@@ -6,12 +6,12 @@ use ApiPlatform\Doctrine\Orm\Extension\QueryCollectionExtensionInterface;
 use ApiPlatform\Doctrine\Orm\Extension\QueryItemExtensionInterface;
 use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
-use App\Entity\Beneficiaire;
-use App\Entity\Contact;
-use App\Entity\Document;
-use App\Entity\DonneePersonnelle;
-use App\Entity\Evenement;
-use App\Entity\Note;
+use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Attributes\Contact;
+use App\Entity\Attributes\Document;
+use App\Entity\Attributes\DonneePersonnelle;
+use App\Entity\Attributes\Evenement;
+use App\Entity\Attributes\Note;
 use App\Security\HelperV2\Oauth2Helper;
 use Doctrine\ORM\QueryBuilder;
 

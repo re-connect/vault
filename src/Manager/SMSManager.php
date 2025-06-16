@@ -2,10 +2,10 @@
 
 namespace App\Manager;
 
+use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
-use App\Entity\Beneficiaire;
-use App\Entity\Evenement;
-use App\Entity\User;
+use App\Entity\Attributes\Evenement;
+use App\Entity\Attributes\User;
 use App\Event\EvenementEvent;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
