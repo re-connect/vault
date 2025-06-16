@@ -46,7 +46,7 @@ abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
 
     #[Groups([
         'v3:contact:read', 'v3:note:read', 'v3:event:read',
-        'v3:contact:write', 'v3:note:write', 'v3:event:write'])]
+        'v3:contact:write', 'v3:note:write', 'v3:event:write', 'v3:folder:read', 'v3:folder:write'])]
     public ?int $beneficiaireId = null;
 
     #[Groups([
