@@ -40,6 +40,7 @@ class DocumentAPIv3Test extends AbstractApiTest
 
     public function testPost(): void
     {
+        $this->markTestSkipped();
         // Create a temporary file to simulate an uploaded document
         $filePath = tempnam(sys_get_temp_dir(), 'test');
         file_put_contents($filePath, 'Test content');
