@@ -417,7 +417,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return $this->notes->matching($criteria);
     }
 
-    public function getEvenements(?bool $accesPrive = true, ?bool $archive = true, ?bool $beforeNow = true): Collection
+    public function getEvenements(?bool $accesPrive = true, ?bool $beforeNow = true): Collection
     {
         $criteria = Criteria::create()->orderBy(['date' => Criteria::ASC]);
         if (!$beforeNow) {
@@ -425,9 +425,6 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         }
         if (!$accesPrive) {
             $criteria->andWhere(Criteria::expr()->eq('bPrive', false));
-        }
-        if (!$archive) {
-            $criteria->andWhere(Criteria::expr()->eq('archive', false));
         }
 
         return $this->evenements->matching($criteria);
