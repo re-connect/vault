@@ -65,7 +65,7 @@ abstract class UserCentre implements \JsonSerializable, \Stringable
         return $this->getCentre()->getNom();
     }
 
-    abstract public function getCentre(): Centre;
+    abstract public function getCentre(): ?Centre;
 
     abstract public function setUser(User $user): self;
 

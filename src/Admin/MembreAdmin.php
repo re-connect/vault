@@ -4,6 +4,7 @@ namespace App\Admin;
 
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\CreatorUser;
+use App\Entity\Attributes\MembreCentre;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
@@ -51,7 +52,7 @@ class MembreAdmin extends AbstractAdmin
     {
         $result = $this->entityManager->createQueryBuilder()
             ->select('mc')
-            ->from('App:Attributes\MembreCentre', 'mc')
+            ->from(MembreCentre::class, 'mc')
             ->innerJoin('mc.membre', 'm')
             ->where('m.id = '.$object->getId())
             ->getQuery()

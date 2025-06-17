@@ -41,7 +41,7 @@ class BeneficiaireCentre extends UserCentre
     private ?ClientBeneficiaire $externalLink = null;
 
     #[\Override]
-    public function getCentre(): Centre
+    public function getCentre(): ?Centre
     {
         return $this->centre;
     }
