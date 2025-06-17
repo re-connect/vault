@@ -13,7 +13,6 @@ use App\Entity\Attributes\DonneePersonnelle;
 use App\Entity\Attributes\Evenement;
 use App\Entity\Attributes\Note;
 use App\Entity\Attributes\User;
-
 use App\Security\HelperV2\Oauth2Helper;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\SecurityBundle\Security;
