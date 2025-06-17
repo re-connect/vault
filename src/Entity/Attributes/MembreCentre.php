@@ -51,7 +51,7 @@ class MembreCentre extends UserCentre
     }
 
     #[\Override]
-    public function getCentre(): Centre
+    public function getCentre(): ?Centre
     {
         return $this->centre;
     }
