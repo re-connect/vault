@@ -43,6 +43,7 @@ class EnableApiClientCommand extends Command
         foreach ($this->clientManager->list(null) as $client) {
             if ($client->getName() === $clientName) {
                 $client->setGrants(new Grant('client_credentials'));
+                $client->setActive(true);
                 $this->em->flush();
             }
         }
