@@ -57,7 +57,7 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
      * @param array        $columns
      *                              Ajout au 'query builder' les colonnes spécifié et non null
      */
-    public function andWhereColumnsNotNull($qb, $columns)
+    public function andWhereColumnsNotNull($qb, $columns): void
     {
         foreach ($columns as $column) {
             $qb

@@ -25,7 +25,7 @@ class GestionnaireAssociationCentreFixture extends Fixture implements DependentF
     }
 
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $this->manager = $manager;
 

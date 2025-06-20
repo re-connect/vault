@@ -40,7 +40,7 @@ class RefreshToken implements TokenInterface
         return $this->id;
     }
 
-    public function getClientId()
+    public function getClientId(): string
     {
         return $this->getClient()->getPublicId();
     }

@@ -24,14 +24,14 @@ class Partenaire
     private string $nom;
 
     #[ORM\Column(name: 'imageName', type: 'string', length: 255, nullable: false)]
-    private $imageName;
+    private ?string $imageName = null;
 
     #[ORM\Column(name: 'link', type: 'string', length: 255, nullable: true)]
-    private $link;
+    private ?string $link = null;
 
     #[ORM\Column(name: 'canada', type: 'boolean', nullable: false, options: ['default' => false])]
     private bool $canada = false;
-    private $imageFile;
+    private ?File $imageFile = null;
 
     #[Gedmo\Timestampable(on: 'create')]
     #[Groups(['read', 'timed', 'v3:user:read', 'v3:beneficiary:read'])]

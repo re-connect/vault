@@ -22,7 +22,7 @@ class EntityValidator extends ConstraintValidator
      * @throws \Exception
      */
     #[\Override]
-    public function validate($entity, Constraint $constraint)
+    public function validate($entity, Constraint $constraint): void
     {
         if (null === $entity || '' === $entity) {
             return;
