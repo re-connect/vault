@@ -2,7 +2,7 @@
 
 namespace App\Domain\MFA;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Erkens\Security\TwoFactorTextBundle\Generator\CodeGeneratorInterface as SMSCodeGenerator;
 use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Email\Generator\CodeGeneratorInterface;

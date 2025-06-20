@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2\Service;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\ServiceV2\ActivityLogger;
 use Doctrine\ORM\EntityManagerInterface;
 use Monolog\Handler\TestHandler;

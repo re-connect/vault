@@ -2,8 +2,8 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Attributes\Membre;
-use App\Entity\Attributes\User;
+use App\Entity\Membre;
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController

@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Attributes\Centre;
+use App\Entity\Centre;
 use App\ManagerV2\RelayManager;
 use App\Repository\CentreRepository;
 use Symfony\Component\HttpFoundation\Request;

@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Attributes\Contact;
+use App\Entity\Contact;
 use App\FormV2\ContactType;
 use App\ManagerV2\ContactManager;
 use Doctrine\ORM\EntityManagerInterface;

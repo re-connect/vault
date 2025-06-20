@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\UserCentre;
 use Doctrine\Common\Collections\Collection;
 
 interface UserWithCentresInterface
