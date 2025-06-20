@@ -2,8 +2,8 @@
 
 namespace App\Form\Factory;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\User;
 use App\Form\Type\BeneficiaireType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;

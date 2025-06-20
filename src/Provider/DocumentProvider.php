@@ -3,14 +3,14 @@
 namespace App\Provider;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\CreatorClient;
-use App\Entity\Attributes\CreatorUser;
-use App\Entity\Attributes\Document;
-use App\Entity\Attributes\DonneePersonnelle;
-use App\Entity\Attributes\Dossier;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\Client;
+use App\Entity\CreatorClient;
+use App\Entity\CreatorUser;
+use App\Entity\Document;
+use App\Entity\DonneePersonnelle;
+use App\Entity\Dossier;
+use App\Entity\User;
 use App\Event\DonneePersonnelleEvent;
 use App\Event\REEvent;
 use App\Form\Type\DocumentSimpleType;

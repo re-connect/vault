@@ -2,8 +2,8 @@
 
 namespace App\DataFixtures\ORM;
 
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\ClientCentre;
+use App\Entity\Client;
+use App\Entity\ClientCentre;
 use App\Manager\FixtureManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;

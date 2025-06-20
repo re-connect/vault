@@ -2,9 +2,9 @@
 
 namespace App\ManagerV2;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Document;
-use App\Entity\Attributes\Dossier;
+use App\Entity\Beneficiaire;
+use App\Entity\Document;
+use App\Entity\Dossier;
 use App\Repository\DocumentRepository;
 use App\ServiceV2\BucketService;
 use App\ServiceV2\Traits\SessionsAwareTrait;
@@ -21,7 +21,6 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Process\Process;
 use Symfony\Contracts\Translation\TranslatorInterface;
-
 use function Symfony\Component\String\u;
 
 class DocumentManager

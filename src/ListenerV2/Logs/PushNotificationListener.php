@@ -3,7 +3,7 @@
 namespace App\ListenerV2\Logs;
 
 use App\Domain\PushNotification\Notificator;
-use App\Entity\Attributes\Document;
+use App\Entity\Document;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PostPersistEventArgs;
 use Doctrine\ORM\Events;
