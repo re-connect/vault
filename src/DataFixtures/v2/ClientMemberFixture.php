@@ -14,7 +14,7 @@ use Doctrine\Persistence\ObjectManager;
 class ClientMemberFixture extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $client = ClientFactory::find(['nom' => 'applimobile'])->object();
         $membre = MembreFactory::findByEmail(MemberFixture::MEMBER_WITH_CLIENT)->object();

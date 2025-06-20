@@ -37,7 +37,7 @@ class ClientFixture extends Fixture implements FixtureGroupInterface
     ];
 
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         foreach (self::CLIENTS as $client) {
             $oauthClient = (new Client($client['name'], $client['id'], $client['secret']))

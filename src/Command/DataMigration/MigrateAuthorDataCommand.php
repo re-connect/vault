@@ -23,7 +23,7 @@ class MigrateAuthorDataCommand extends Command
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
-        $name = null,
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }
