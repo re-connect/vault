@@ -57,7 +57,7 @@ class UserProvider
         $user->setUsername($usernameNew)->setUsernameCanonical($usernameNew);
     }
 
-    public function getEntity($id): User
+    public function getEntity(string $id): User
     {
         if (!$entity = $this->em->find(User::class, $id)) {
             throw new NotFoundHttpException('No user found for id '.$id);

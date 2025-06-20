@@ -27,7 +27,7 @@ class AdresseAdmin extends AbstractAdmin
             ->add('lng')
             ->end();
 
-        $form->getFormBuilder()->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+        $form->getFormBuilder()->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event): void {
             $data = $event->getData();
             if (!$data instanceof Adresse || $data->getPays()) {
                 return;

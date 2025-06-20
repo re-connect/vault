@@ -124,7 +124,7 @@ class SharedDocument
         return $this->document?->getObjectKey();
     }
 
-    public function setDocument($document): static
+    public function setDocument(?Document $document): static
     {
         $this->document = $document;
 

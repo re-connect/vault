@@ -10,11 +10,11 @@ class PdfService
      * @param int $size
      * @param int $page
      *
-     * @return bool|string
+     * @return false|string
      *
      * @throws \ImagickException
      */
-    public function genPdfThumbnail($source, $target, $size = 256, $page = 1)
+    public function genPdfThumbnail(string $source, $target, $size = 256, $page = 1): false|string
     {
         if (file_exists($source) && !is_dir($source)) { // source path must be available and not be a directory
             if ('application/pdf' != \mime_content_type($source)) {

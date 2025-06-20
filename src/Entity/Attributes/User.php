@@ -116,12 +116,12 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     #[ORM\Column(name: 'createdAt', type: 'datetime', nullable: false)]
     #[Gedmo\Timestampable(on: 'create')]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
-    private $createdAt;
+    private ?\DateTime $createdAt = null;
 
     #[ORM\Column(name: 'updatedAt', type: 'datetime', nullable: false)]
     #[Gedmo\Timestampable(on: 'update')]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
-    private $updatedAt;
+    private ?\DateTime $updatedAt = null;
 
     #[ORM\Column(name: 'prenom', type: 'string', length: 255, nullable: true)]
     #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
@@ -148,14 +148,14 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     #[ORM\Column(name: 'bActif', type: 'boolean', nullable: false)]
     #[Groups(['read', 'user:read'])]
-    private $bActif = false;
+    private bool $bActif = false;
 
     #[ORM\Column(name: 'typeUser', type: 'string', length: 255, nullable: false)]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
-    private $typeUser;
+    private ?string $typeUser = null;
 
     #[ORM\Column(name: 'privateKey', type: 'string', length: 255, nullable: false)]
-    private $privateKey = '';
+    private string $privateKey = '';
 
     #[ORM\Column(name: 'lastIp', type: 'string', length: 20, nullable: false)]
     #[Groups(['read', 'user:read'])]
@@ -185,17 +185,17 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     private ?Adresse $adresse = null;
 
     #[ORM\Column(name: 'firstVisit', type: 'boolean', nullable: false, options: ['default' => true])]
-    private $firstVisit = true;
+    private ?bool $firstVisit = true;
 
     #[ORM\Column(name: 'bFirstMobileConnexion', type: 'boolean', nullable: false, options: ['default' => false])]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
-    private $bFirstMobileConnexion = false;
+    private ?bool $bFirstMobileConnexion = false;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: RefreshToken::class, cascade: ['persist', 'remove'])]
-    private $refreshTokens;
+    private Collection $refreshTokens;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: AccessToken::class, cascade: ['persist', 'remove'])]
-    private $accessTokens;
+    private ?Collection $accessTokens = null;
 
     #[ORM\Column(name: 'derniereConnexionAt', type: 'datetime', nullable: true)]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
@@ -203,19 +203,19 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     #[Groups(['read', 'user:read'])]
     #[ORM\Column(name: 'avatar', type: 'string', length: 255, nullable: true)]
-    private $avatar;
+    private ?string $avatar = null;
 
     #[ORM\Column(name: 'test', type: 'boolean', nullable: false)]
-    private $test = false;
+    private ?bool $test = false;
 
     #[ORM\Column(name: 'autoLoginToken', type: 'string', length: 36, nullable: true)]
-    private $autoLoginToken;
+    private \Ramsey\Uuid\UuidInterface|string|null $autoLoginToken = null;
 
     #[ORM\Column(name: 'autoLoginTokenDeliveredAt', type: 'datetime', nullable: true)]
-    private $autoLoginTokenDeliveredAt;
+    private ?\DateTime $autoLoginTokenDeliveredAt = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Creator::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
-    private $creators;
+    private Collection $creators;
 
     #[ORM\Column(name: 'canada', type: 'boolean', nullable: false, options: ['default' => false])]
     private bool $canada = false;
@@ -299,7 +299,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
      *
      * @return User
      */
-    public function setPrenom($prenom)
+    public function setPrenom($prenom): static
     {
         $this->prenom = $prenom;
 
@@ -319,14 +319,14 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
      *
      * @return User
      */
-    public function setNom($nom)
+    public function setNom($nom): static
     {
         $this->nom = $nom;
 
         return $this;
     }
 
-    public function setEmail($email)
+    public function setEmail($email): static
     {
         $this->email = $email;
         $this->emailCanonical = $email;
@@ -371,7 +371,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
      *
      * @return User
      */
-    public function setTelephone($telephone = null)
+    public function setTelephone($telephone = null): static
     {
         $this->telephone = $telephone;
 
@@ -391,37 +391,29 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
      *
      * @return User
      */
-    public function setTelephoneFixe($telephoneFixe)
+    public function setTelephoneFixe($telephoneFixe): static
     {
         $this->telephoneFixe = $telephoneFixe;
 
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function getBActif()
+    public function getBActif(): bool
     {
         return $this->bActif;
     }
 
     /**
-     * @param bool $bActif
-     *
      * @return User
      */
-    public function setBActif($bActif)
+    public function setBActif(bool $bActif): static
     {
         $this->bActif = $bActif;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getPrivateKey()
+    public function getPrivateKey(): string
     {
         return $this->privateKey;
     }
@@ -449,7 +441,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
      *
      * @return User
      */
-    public function setLastIp($lastIp)
+    public function setLastIp($lastIp): static
     {
         $this->lastIp = $lastIp;
 
@@ -474,10 +466,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return sprintf('%s (id:%s)', $this->username, $this->id);
     }
 
-    /**
-     * @return Administrateur|Association|Beneficiaire|Gestionnaire|Membre|null
-     */
-    public function getSubject()
+    public function getSubject(): Beneficiaire|Gestionnaire|Membre|Association|Administrateur|null
     {
         if ($this->isBeneficiaire()) {
             return $this->getSubjectBeneficiaire();
@@ -675,7 +664,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     /**
      * @return Collection
      */
-    public function getRefreshTokens()
+    public function getRefreshTokens(): ArrayCollection|array
     {
         return $this->refreshTokens;
     }
@@ -697,7 +686,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     /**
      * @return Collection
      */
-    public function getAccessTokens()
+    public function getAccessTokens(): ?array
     {
         return $this->accessTokens;
     }
@@ -856,14 +845,14 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
      *
      * @see https://php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return mixed data which can be serialized by <b>json_encode</b>,
-     *               which is a value of any type other than a resource
+     * @return mixed[] data which can be serialized by <b>json_encode</b>,
+     *                 which is a value of any type other than a resource
      *
      * @throws \Exception
      *
      * @since 5.4.0
      */
-    public function jsonSerializeAPI()
+    public function jsonSerializeAPI(): array
     {
         $data = [
             'id' => $this->id,
@@ -938,10 +927,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->creators->removeElement($creator);
     }
 
-    /**
-     * @return Collection|Creator[]
-     */
-    public function getCreators()
+    public function getCreators(): Collection
     {
         return $this->creators;
     }
@@ -968,7 +954,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public function __clone()
     {
         if ($this->id) {
-            $this->accessTokens = [];
+            $this->accessTokens = new ArrayCollection();
             $this->adresse = null === $this->adresse ? null : clone $this->adresse;
             $this->canada = true;
             $this->creators = new ArrayCollection();
@@ -985,7 +971,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
                 }
             }
 
-            $this->refreshTokens = [];
+            $this->refreshTokens = new ArrayCollection();
             $this->subjectAdministrateur = null;
             $this->subjectAssociation = null;
             $this->subjectBeneficiaire = null;
@@ -1080,7 +1066,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     }
 
     #[ORM\PreUpdate]
-    public function refreshLastPasswordUpdateDate(PreUpdateEventArgs $event)
+    public function refreshLastPasswordUpdateDate(PreUpdateEventArgs $event): void
     {
         if ($event->hasChangedField('password')) {
             $this->setPasswordUpdatedAt(new \DateTimeImmutable());

@@ -9,28 +9,22 @@ class GestionnaireEvent extends REEvent
 {
     public const GESTIONNAIRE_CREATED = 1;
     public const GESTIONNAIRE_MODIFIED = 2;
-
-    protected $gestionnaire;
-    protected $user;
     protected $context = [];
 
-    public function __construct(Gestionnaire $gestionnaire, protected $type, ?User $user = null)
+    public function __construct(protected Gestionnaire $gestionnaire, protected $type, protected ?User $user = null)
     {
-        $this->gestionnaire = $gestionnaire;
-        $this->user = $user;
-
         $this->context = [
             'user_id' => $this->gestionnaire->getUser()->getId(),
             'by_user_id' => (null !== $this->user) ? $this->user->getId() : null,
         ];
     }
 
-    public function getGestionnaire()
+    public function getGestionnaire(): Gestionnaire
     {
         return $this->gestionnaire;
     }
 
-    public function getUser()
+    public function getUser(): ?User
     {
         return $this->user;
     }

@@ -29,29 +29,29 @@ class BaseClient
         $this->setSecret(static::generateToken());
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setRandomId($random): self
+    public function setRandomId(string $random): self
     {
         $this->randomId = $random;
 
         return $this;
     }
 
-    public function getRandomId()
+    public function getRandomId(): string
     {
         return $this->randomId;
     }
 
-    public function getPublicId()
+    public function getPublicId(): string
     {
         return sprintf('%s_%s', $this->getId(), $this->getRandomId());
     }
 
-    public function setSecret($secret): self
+    public function setSecret(string $secret): self
     {
         $this->secret = $secret;
 

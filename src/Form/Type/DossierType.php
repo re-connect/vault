@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 class DossierType extends DossierSimpleType
 {
     #[\Override]
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         parent::buildForm($builder, $options);
         $builder

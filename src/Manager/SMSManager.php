@@ -50,7 +50,7 @@ class SMSManager implements AuthCodeTextInterface
         }
     }
 
-    public function sendSmsActivation($subject): void
+    public function sendSmsActivation(object $subject): void
     {
         $telephone = $subject->getUser()->getTelephone();
         if (!$telephone) {
@@ -70,14 +70,14 @@ class SMSManager implements AuthCodeTextInterface
         $this->em->flush();
     }
 
-    public function getRandomSmallSmsCode($length = 5)
+    public function getRandomSmallSmsCode($length = 5): string
     {
         $chars = '012345678901234567890123456789';
 
         return substr(str_shuffle($chars), 0, $length);
     }
 
-    private function doSendSmsActivation($code, $number): void
+    private function doSendSmsActivation(string $code, string $number): void
     {
         $message = $this->translator->trans('confirm_relay_affiliation_with_sms_code', ['%code%' => $code]);
 
@@ -116,7 +116,7 @@ class SMSManager implements AuthCodeTextInterface
     /**
      * @throws \Exception
      */
-    public function sendSmsResetPassword($code, $number): void
+    public function sendSmsResetPassword($code, string $number): void
     {
         $message = $this->translator->trans('sms_reset_password_code_is', ['%code%' => $code]);
         $this->doSendSms($number, $message);
@@ -169,7 +169,7 @@ class SMSManager implements AuthCodeTextInterface
     /**
      * @throws \Exception
      */
-    public function sendSMSBeneficiaryAddremotely(Beneficiaire $beneficiaire, $password): void
+    public function sendSMSBeneficiaryAddremotely(Beneficiaire $beneficiaire, string $password): void
     {
         /** @var Centre $centreFirst */
         $centreFirst = $beneficiaire->getCentres()->first();

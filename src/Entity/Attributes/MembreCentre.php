@@ -33,7 +33,7 @@ class MembreCentre extends UserCentre
     #[Groups(['v3:center:read', 'v3:center:write'])]
     private ?Centre $centre = null;
 
-    public static function getArDroits()
+    public static function getArDroits(): array
     {
         return [
             self::MANAGE_BENEFICIARIES_PERMISSION => 'beneficiaries_management',
@@ -81,7 +81,7 @@ class MembreCentre extends UserCentre
         return $this->droits;
     }
 
-    public function setDroits($droits = []): static
+    public function setDroits(array $droits = []): static
     {
         $this->droits = $droits;
 
