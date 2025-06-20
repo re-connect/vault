@@ -84,7 +84,7 @@ class ImportBeneficiaireCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function createBeneficiaire($prenom, $nom, $dateNaissance, $centre, $telephone = null)
+    private function createBeneficiaire(string $prenom, string $nom, string $dateNaissance, Centre $centre, $telephone = null): void
     {
         $user = new User();
         $password = 'stada';
@@ -116,7 +116,7 @@ class ImportBeneficiaireCommand extends Command
         $this->beneficaires[] = $beneficiaire;
     }
 
-    private function createCSV()
+    private function createCSV(): void
     {
         $date = (new \DateTime())->format('Ymd_His');
         $fileName = $date.'_beneficiaires.csv';

@@ -181,7 +181,7 @@ abstract class DonneePersonnelleProvider
         $this->em->flush();
     }
 
-    public function rename(DonneePersonnelle $donneePersonnelle, $newName)
+    public function rename(DonneePersonnelle $donneePersonnelle, $newName): string|array|null
     {
         if (false === $this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_EDIT, $donneePersonnelle)) {
             throw new AccessDeniedException($this->translator->trans('you_can_not_edit_personal_data'));
@@ -198,7 +198,7 @@ abstract class DonneePersonnelleProvider
         return $sanitizedString;
     }
 
-    public function sanitize($str, $charset = 'utf-8')
+    public function sanitize($str, $charset = 'utf-8'): string|array|null
     {
         $str = htmlentities((string) $str, ENT_NOQUOTES, $charset);
         $str = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
@@ -305,7 +305,7 @@ abstract class DonneePersonnelleProvider
     /**
      * @param Contact|Note|Evenement|Document|Dossier $entity
      */
-    public function populate($entity, Client $client): void
+    public function populate(DonneePersonnelle $entity, Client $client): void
     {
         $bPrive = filter_var($this->request->get('b_prive'), FILTER_VALIDATE_BOOLEAN);
         $entity

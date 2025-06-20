@@ -6,6 +6,7 @@ use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\User;
 use App\Form\Type\BeneficiaireType;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -18,7 +19,7 @@ class UserFormFactory
     {
     }
 
-    public function getBeneficiaireForm($centres)
+    public function getBeneficiaireForm($centres): FormInterface
     {
         if (
             false === $this->authorizationChecker->isGranted('ROLE_ADMIN')

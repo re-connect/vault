@@ -52,7 +52,7 @@ class DossierProvider extends DonneePersonnelleProvider
         return $dossier;
     }
 
-    public function getEntity($id, $accessAttribute = null): Dossier
+    public function getEntity(string $id, $accessAttribute = null): Dossier
     {
         /** @var Dossier $entity */
         if (!$entity = $this->em->getRepository(Dossier::class)->find($id)) {

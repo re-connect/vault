@@ -17,8 +17,8 @@ class RestManager
     public const AUTH_TOKEN_BEARER = 'AUTH_TOKEN_BEARER';
     public const AUTH_TOKEN = 'AUTH_TOKEN';
 
-    private $returnType;
-    private $authType;
+    private string $returnType;
+    private string $authType;
     private $user;
     private $password;
     private $token;
@@ -32,12 +32,12 @@ class RestManager
         $this->authType = self::AUTH_TOKEN;
     }
 
-    public function setReturnType($returnType): void
+    public function setReturnType(string $returnType): void
     {
         $this->returnType = $returnType;
     }
 
-    public function setAuthType($authType): void
+    public function setAuthType(string $authType): void
     {
         $this->authType = $authType;
     }
@@ -66,7 +66,7 @@ class RestManager
         $this->password = $password;
     }
 
-    public function request($url, $method = Request::METHOD_POST, $parameters = null, $json = true)
+    public function request(string $url, $method = Request::METHOD_POST, $parameters = null, $json = true)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -148,7 +148,7 @@ class RestManager
      * @param Constraint|Constraint[]                            $constraints The constraint(s) to validate against
      * @param string|GroupSequence|(string|GroupSequence)[]|null $groups      The validation groups to validate. If none is given, "Default" is assumed
      */
-    public function getJsonValidationError(mixed $value, $constraints = null, $groups = null): ?array
+    public function getJsonValidationError(mixed $value, Constraint|array|null $constraints = null, string|GroupSequence|array|null $groups = null): ?array
     {
         $errors = $this->validator->validate($value, $constraints, $groups);
 
@@ -164,7 +164,7 @@ class RestManager
         return null;
     }
 
-    public function getErrorsToJson($errors)
+    public function getErrorsToJson($errors): array
     {
         return [
             'error' => [

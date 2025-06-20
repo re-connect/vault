@@ -19,7 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class EvenementSimpleType extends AbstractType
 {
     #[\Override]
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nom', null, [
@@ -84,7 +84,7 @@ class EvenementSimpleType extends AbstractType
             )
             ->add('submit', SubmitType::class, ['label' => 'confirm', 'attr' => ['class' => 'btn-blue btn btn-green font-size-1 js-loading-container']])
             ->setAction('#')
-            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event): void {
                 $data = $event->getData();
                 if (!$data instanceof Evenement || !$data->getDate() || !$data->getTimezone()) {
                     return;
@@ -99,7 +99,7 @@ class EvenementSimpleType extends AbstractType
     }
 
     #[\Override]
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Evenement::class,

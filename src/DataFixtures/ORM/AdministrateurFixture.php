@@ -11,7 +11,7 @@ use Doctrine\Persistence\ObjectManager;
 class AdministrateurFixture extends Fixture implements FixtureGroupInterface
 {
     #[\Override]
-    public function load(ObjectManager $em)
+    public function load(ObjectManager $em): void
     {
         $user = new User();
         $user->setUsername('pleuh');

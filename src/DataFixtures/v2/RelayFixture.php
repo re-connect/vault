@@ -17,7 +17,7 @@ class RelayFixture extends Fixture implements FixtureGroupInterface
     public const SHARED_PRO_PRO_RELAY_2 = 'Centre test pro + pro 2';
 
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $this->createTestRelay(self::DEFAULT_PRO_RELAY);
         $this->createTestRelay(self::DEFAULT_BENEFICIARY_RELAY);
