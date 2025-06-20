@@ -18,7 +18,6 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->sets([
-        SetList::TYPE_DECLARATION,
         LevelSetList::UP_TO_PHP_83,
         SymfonySetList::SYMFONY_64,
         SymfonySetList::SYMFONY_CODE_QUALITY,
