@@ -3,8 +3,8 @@
 namespace App\Controller\Rest;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Attributes\Contact;
-use App\Entity\Attributes\User;
+use App\Entity\Contact;
+use App\Entity\User;
 use App\Exception\JsonResponseException;
 use App\Manager\RestManager;
 use App\Provider\BeneficiaireProvider;

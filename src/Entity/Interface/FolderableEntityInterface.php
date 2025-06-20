@@ -2,7 +2,7 @@
 
 namespace App\Entity\Interface;
 
-use App\Entity\Attributes\Dossier;
+use App\Entity\Dossier;
 
 interface FolderableEntityInterface
 {

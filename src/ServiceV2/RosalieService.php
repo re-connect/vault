@@ -2,7 +2,7 @@
 
 namespace App\ServiceV2;
 
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 use App\Entity\Helper\BeneficiaryCheckOnRosalie;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\ClientBeneficiaireRepository;
