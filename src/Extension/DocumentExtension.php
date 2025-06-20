@@ -2,7 +2,7 @@
 
 namespace App\Extension;
 
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 use App\Provider\DocumentProvider;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;

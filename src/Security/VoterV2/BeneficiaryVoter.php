@@ -2,9 +2,9 @@
 
 namespace App\Security\VoterV2;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\MembreCentre;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\MembreCentre;
+use App\Entity\User;
 use App\Security\HelperV2\UserHelper;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;

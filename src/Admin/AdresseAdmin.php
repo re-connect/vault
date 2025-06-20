@@ -2,7 +2,7 @@
 
 namespace App\Admin;
 
-use App\Entity\Attributes\Adresse;
+use App\Entity\Adresse;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
