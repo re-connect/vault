@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Attributes\ClientPermission;
+use App\Entity\ClientPermission;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

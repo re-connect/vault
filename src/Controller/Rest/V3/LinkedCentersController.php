@@ -4,7 +4,7 @@ namespace App\Controller\Rest\V3;
 
 use App\Api\Manager\ApiClientManager;
 use App\ControllerV2\AbstractController;
-use App\Entity\Attributes\Centre;
+use App\Entity\Centre;
 use App\Repository\CentreRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\Request;

@@ -2,9 +2,9 @@
 
 namespace App\Tests\v2\Security\Helper;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Membre;
-use App\Entity\Attributes\MembreCentre;
+use App\Entity\Beneficiaire;
+use App\Entity\Membre;
+use App\Entity\MembreCentre;
 use App\Security\HelperV2\UserHelper;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\MembreFactory;

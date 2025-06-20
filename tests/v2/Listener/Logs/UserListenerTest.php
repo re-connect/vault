@@ -3,7 +3,7 @@
 namespace App\Tests\v2\Listener\Logs;
 
 use App\DataFixtures\v2\MemberFixture;
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\ListenerV2\Logs\UserListener;
 use App\Tests\Factory\UserFactory;
 use Doctrine\ORM\EntityManagerInterface;

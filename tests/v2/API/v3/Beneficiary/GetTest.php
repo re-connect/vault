@@ -2,6 +2,7 @@
 
 namespace App\Tests\v2\API\v3\Beneficiary;
 
+use App\Entity\Beneficiaire;
 use App\Repository\BeneficiaireRepository;
 use App\Tests\v2\API\v3\AbstractApiTest;
 

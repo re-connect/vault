@@ -3,7 +3,7 @@
 namespace App\Controller\Rest;
 
 use App\Controller\REController;
-use App\Entity\Attributes\Document;
+use App\Entity\Document;
 use App\Exception\JsonResponseException;
 use App\Manager\MailManager;
 use App\Provider\BeneficiaireProvider;

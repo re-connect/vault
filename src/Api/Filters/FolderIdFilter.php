@@ -5,7 +5,7 @@ namespace App\Api\Filters;
 use ApiPlatform\Doctrine\Orm\Filter\AbstractFilter;
 use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
-use App\Entity\Attributes\Dossier;
+use App\Entity\Dossier;
 use Doctrine\ORM\QueryBuilder;
 
 class FolderIdFilter extends AbstractFilter
