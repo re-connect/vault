@@ -2,8 +2,8 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Attributes\DonneePersonnelle;
-use App\Entity\Attributes\Note;
+use App\Entity\DonneePersonnelle;
+use App\Entity\Note;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

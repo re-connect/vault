@@ -2,7 +2,7 @@
 
 namespace App\Listener;
 
-use App\Entity\Attributes\Document;
+use App\Entity\Document;
 use App\Provider\DocumentProvider;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Event\PreUpdateEventArgs;

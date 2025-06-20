@@ -4,7 +4,7 @@ namespace App\Tests\v2\Controller\UserController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
-use App\Entity\Attributes\MembreCentre;
+use App\Entity\MembreCentre;
 use App\Tests\Factory\MembreFactory;
 use App\Tests\Factory\RelayFactory;
 use App\Tests\Factory\UserFactory;

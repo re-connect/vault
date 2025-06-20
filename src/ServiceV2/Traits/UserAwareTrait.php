@@ -2,7 +2,7 @@
 
 namespace App\ServiceV2\Traits;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use Symfony\Bundle\SecurityBundle\Security;
 
 trait UserAwareTrait

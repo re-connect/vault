@@ -4,7 +4,7 @@ namespace App\Controller\Api;
 
 use App\Api\Manager\ApiClientManager;
 use App\ControllerV2\AbstractController;
-use App\Entity\Attributes\Document;
+use App\Entity\Document;
 use App\ManagerV2\DocumentManager;
 use App\Repository\BeneficiaireRepository;
 use Symfony\Component\HttpFoundation\Request;
