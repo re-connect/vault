@@ -15,9 +15,6 @@ use App\Provider\MembreProvider;
 use App\Provider\UserProvider;
 use App\ServiceV2\Helper\PasswordHelper;
 use Doctrine\ORM\EntityManagerInterface;
-use FOS\RestBundle\Controller\Annotations as Rest;
-use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\Controller\Annotations\Patch;
 use JetBrains\PhpStorm\Deprecated;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,10 +43,8 @@ class UserRestV2Controller extends REController
         parent::__construct($requestStack, $translator, $entityManager, $apiClientManager);
     }
 
-    /**
-     * @Get("user", name="get_mine")
-     */
     #[Deprecated('This route belongs to the old API')]
+    #[Route(path: 'user', name: 'get_mine', methods: ['GET'])]
     public function getMine(): JsonResponse
     {
         try {
@@ -68,10 +63,9 @@ class UserRestV2Controller extends REController
 
     /**
      * Register device notification token.
-     *
-     * @Patch("user/register-notification-token", name="register_notification_token")
      */
     #[Deprecated('This route belongs to the old API')]
+    #[Route(path: 'user/register-notification-token', name: 'register_notification_token', methods: ['PATCH'])]
     public function setFcnToken(Request $request, EntityManagerInterface $em): JsonResponse
     {
         try {
@@ -91,14 +85,7 @@ class UserRestV2Controller extends REController
         }
     }
 
-    /**
-     * @Rest\Put("users/{id}",
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     },
-     *     name="edit"
-     * )
-     */
+    #[Route(path: 'users/{id}', name: 'edit', requirements: ['id' => '\d+'], methods: ['PUT'])]
     public function edit(
         int $id,
         BeneficiaireProvider $beneficiaireProvider,
