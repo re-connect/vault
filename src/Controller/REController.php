@@ -40,7 +40,7 @@ abstract class REController extends AbstractController
         $this->addFlash('success', $message);
     }
 
-    protected function errorFlashTranslate(string $message, $domain = null): void
+    protected function errorFlashTranslate(string $message, ?string $domain = null): void
     {
         $message = $this->translator->trans($message, [], $domain);
         $this->addFlash('error', $message);

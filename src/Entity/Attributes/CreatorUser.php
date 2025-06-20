@@ -24,7 +24,7 @@ class CreatorUser extends Creator implements \Stringable
      *
      * @return User|null
      */
-    public function getEntity()
+    public function getEntity(): ?User
     {
         return $this->entity;
     }
@@ -34,7 +34,7 @@ class CreatorUser extends Creator implements \Stringable
      *
      * @return CreatorUser
      */
-    public function setEntity(User $entity)
+    public function setEntity(User $entity): static
     {
         $this->entity = $entity;
 

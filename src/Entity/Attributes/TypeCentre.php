@@ -46,7 +46,7 @@ class TypeCentre implements \Stringable
         return $this->id;
     }
 
-    public function setNom($nom): static
+    public function setNom(string $nom): static
     {
         $this->nom = $nom;
 

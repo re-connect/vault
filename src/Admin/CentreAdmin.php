@@ -40,7 +40,7 @@ class CentreAdmin extends AbstractAdmin
      * @param Centre $object
      */
     #[\Override]
-    public function preUpdate($object = null): void
+    public function preUpdate(object $object = null): void
     {
         if (!$object->getAdresse()->getNom()) {
             $object->setAdresse();

@@ -223,7 +223,7 @@ class Centre implements \JsonSerializable, \Stringable
         return $this;
     }
 
-    public function getBeneficiairesCentre()
+    public function getBeneficiairesCentre(): Collection
     {
         return $this->beneficiairesCentres;
     }
@@ -263,7 +263,7 @@ class Centre implements \JsonSerializable, \Stringable
     /**
      * @return ArrayCollection|Collection
      */
-    public function getBeneficiairesCentres()
+    public function getBeneficiairesCentres(): Collection
     {
         return $this->beneficiairesCentres;
     }
@@ -276,7 +276,7 @@ class Centre implements \JsonSerializable, \Stringable
     /**
      * @return Collection|MembreCentre[]
      */
-    public function getMembresCentres()
+    public function getMembresCentres(): Collection
     {
         return $this->membresCentres;
     }
@@ -308,7 +308,7 @@ class Centre implements \JsonSerializable, \Stringable
     /**
      * @return Collection
      */
-    public function getSms()
+    public function getSms(): Collection
     {
         return $this->sms;
     }
@@ -328,7 +328,7 @@ class Centre implements \JsonSerializable, \Stringable
     /**
      * @return Collection
      */
-    public function getConsultationsCentre()
+    public function getConsultationsCentre(): ?Collection
     {
         return $this->consultationsCentre;
     }
@@ -348,7 +348,7 @@ class Centre implements \JsonSerializable, \Stringable
     /**
      * @return Collection
      */
-    public function getStatistiquesCentre()
+    public function getStatistiquesCentre(): ?Collection
     {
         return $this->statistiquesCentre;
     }

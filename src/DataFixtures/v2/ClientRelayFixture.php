@@ -14,7 +14,7 @@ use Doctrine\Persistence\ObjectManager;
 class ClientRelayFixture extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
         $relay = RelayFactory::find(['nom' => RelayFixture::DEFAULT_BENEFICIARY_RELAY]);

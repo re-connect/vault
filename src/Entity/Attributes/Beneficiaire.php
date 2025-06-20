@@ -183,12 +183,12 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     #[Gedmo\Timestampable(on: 'create')]
     #[Groups(['v3:beneficiary:read'])]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    protected $createdAt;
+    protected \DateTime $createdAt;
 
     #[Gedmo\Timestampable(on: 'update')]
     #[Groups(['v3:beneficiary:read'])]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    protected $updatedAt;
+    protected \DateTime $updatedAt;
 
     /** @var ?ArrayCollection<int, Centre> */
     public ?ArrayCollection $relays = null;
@@ -488,7 +488,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     }
 
     #[\Override]
-    public function getUserCentresCount()
+    public function getUserCentresCount(): int
     {
         return $this->getBeneficiairesCentres()->count();
     }

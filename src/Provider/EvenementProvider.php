@@ -67,7 +67,7 @@ class EvenementProvider extends DonneePersonnelleProvider
     /**
      * @param string|null $accessAttribute
      */
-    public function getEntity($id, $accessAttribute = null): Evenement
+    public function getEntity(string $id, $accessAttribute = null): Evenement
     {
         /** @var Evenement $entity */
         if (!$entity = $this->em->find(Evenement::class, $id)) {
@@ -91,7 +91,7 @@ class EvenementProvider extends DonneePersonnelleProvider
      * @throws \Exception
      */
     #[\Override]
-    public function populate($entity, Client $client): void
+    public function populate(DonneePersonnelle $entity, Client $client): void
     {
         parent::populate($entity, $client);
 

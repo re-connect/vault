@@ -35,7 +35,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
     public const BENEFICIARY_WITH_RP_LINK = 'test_user_beneficiary_with_rp_link@mail.com';
 
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $this->createTestBeneficiary(
             $this->getTestUser(self::BENEFICIARY_MAIL)->setTelephone(self::BENEFICIARY_PHONE),

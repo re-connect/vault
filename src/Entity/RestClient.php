@@ -9,14 +9,14 @@ class RestClient
 {
     private $_url;
 
-    public function setUrl($pUrl)
+    public function setUrl($pUrl): static
     {
         $this->_url = $pUrl;
 
         return $this;
     }
 
-    public function get($pParams = [])
+    public function get($pParams = []): array|false
     {
         return $this->_launch(
             $this->_makeUrl($pParams),
@@ -24,7 +24,7 @@ class RestClient
         );
     }
 
-    protected function _launch($pUrl, $context)
+    protected function _launch($pUrl, $context): array|false
     {
         if (($stream = fopen($pUrl, 'r', false, $context)) !== false) {
             $content = stream_get_contents($stream);
@@ -37,7 +37,7 @@ class RestClient
         }
     }
 
-    protected function _makeUrl($pParams)
+    protected function _makeUrl($pParams): string
     {
         return $this->_url
             .(strpos((string) $this->_url, '?') ? '' : '?')
@@ -62,7 +62,7 @@ class RestClient
         return stream_context_create($opts);
     }
 
-    public function post($pPostParams = [], $pGetParams = [])
+    public function post($pPostParams = [], $pGetParams = []): array|false
     {
         return $this->_launch(
             $this->_makeUrl($pGetParams),
@@ -70,7 +70,7 @@ class RestClient
         );
     }
 
-    public function put($pContent = null, $pGetParams = [])
+    public function put($pContent = null, $pGetParams = []): array|false
     {
         return $this->_launch(
             $this->_makeUrl($pGetParams),
@@ -78,7 +78,7 @@ class RestClient
         );
     }
 
-    public function delete($pContent = null, $pGetParams = [])
+    public function delete($pContent = null, $pGetParams = []): array|false
     {
         return $this->_launch(
             $this->_makeUrl($pGetParams),

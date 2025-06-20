@@ -30,7 +30,7 @@ class MailManager
         $this->mailjet = new Client($apikey, $apisecret, true, ['version' => 'v3.1']);
     }
 
-    private function sendTemplate($id, $dest, $variables = [], $attachment = null)
+    private function sendTemplate(int $id, $dest, array $variables = [], $attachment = null): \Mailjet\Response
     {
         $body = [
             'Messages' => [
@@ -54,7 +54,7 @@ class MailManager
         return $this->mailjet->post(Resources::$Email, ['body' => $body]);
     }
 
-    public function sendFileWithMail(Document $document, $dest)
+    public function sendFileWithMail(Document $document, $dest): void
     {
         $user = $this->security->getUser();
         if ($user instanceof UserInterface) {
@@ -98,7 +98,7 @@ class MailManager
     /**
      * @throws \Exception
      */
-    public function sendFolderWithMail(Dossier $dossier, $dest)
+    public function sendFolderWithMail(Dossier $dossier, $dest): void
     {
         $user = $this->security->getUser();
         if ($user instanceof UserInterface) {
