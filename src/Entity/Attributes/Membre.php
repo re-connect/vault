@@ -151,7 +151,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return $this->activationSmsCode;
     }
 
-    public function setActivationSmsCode($activationSmsCode): static
+    public function setActivationSmsCode(?string $activationSmsCode): static
     {
         $this->activationSmsCode = $activationSmsCode;
 
@@ -163,7 +163,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return $this->activationSmsCodeLastSend;
     }
 
-    public function setActivationSmsCodeLastSend($activationSmsCodeLastSend): static
+    public function setActivationSmsCodeLastSend(\DateTime $activationSmsCodeLastSend): static
     {
         $this->activationSmsCodeLastSend = $activationSmsCodeLastSend;
 
@@ -178,7 +178,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
     }
 
     #[\Override]
-    public function getUserCentresCount()
+    public function getUserCentresCount(): int
     {
         return $this->getMembresCentres()->count();
     }
@@ -219,7 +219,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
      * @return ArrayCollection|Centre[]
      */
     #[\Override]
-    public function getHandledCentres()
+    public function getHandledCentres(): ArrayCollection
     {
         $arRet = new ArrayCollection();
         foreach ($this->getUsersCentres() as $userCentre) {
@@ -229,11 +229,8 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return $arRet;
     }
 
-    /**
-     * @return MembreCentre[]|UserCentre|ArrayCollection|Collection
-     */
     #[\Override]
-    public function getUsersCentres()
+    public function getUsersCentres(): Collection
     {
         return $this->getMembresCentres();
     }
@@ -337,10 +334,8 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
 
     /**
      * Retourne les centres.
-     *
-     * @return ArrayCollection
      */
-    public function getCentreNoms()
+    public function getCentreNoms(): ArrayCollection
     {
         $centres = new ArrayCollection();
         if (null !== $this->membresCentres) {
@@ -352,7 +347,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         return $centres;
     }
 
-    public function jsonSerializeAPI()
+    public function jsonSerializeAPI(): array
     {
         $data = ['subject_id' => $this->id, 'membres_centres' => $this->getCentreNoms()->toArray()];
 

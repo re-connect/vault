@@ -100,7 +100,7 @@ class CentreProvider
     /**
      * @return array
      */
-    public function getBeneficiairesFromMembreByCentre(Membre $membre, $takeUnvalid = false)
+    public function getBeneficiairesFromMembreByCentre(Membre $membre, ?bool $takeUnvalid = false): array
     {
         /** @var Beneficiaire $beneficiaire */
         $beneficiaires = $this->getBeneficiairesFromMembre($membre, $takeUnvalid);
@@ -162,7 +162,7 @@ class CentreProvider
      * @throws NonUniqueResultException
      * @throws NoResultException
      */
-    public function getScalarBeneficaireForMembre($id, $membreId)
+    public function getScalarBeneficaireForMembre(string $id, string $membreId)
     {
         $qb = $this->em->createQueryBuilder()
             ->select('count(b.id)')
@@ -254,7 +254,7 @@ class CentreProvider
     /**
      * @return array
      */
-    public function getOtherMembresFromMembreByCentre(Membre $membre)
+    public function getOtherMembresFromMembreByCentre(Membre $membre): array
     {
         $otherMembres = $this->getOtherMembresFromMembre($membre);
 
@@ -278,7 +278,7 @@ class CentreProvider
     /**
      * @return array
      */
-    public function getOtherMembresFromMembre(Membre $membre)
+    public function getOtherMembresFromMembre(Membre $membre): array
     {
         $results = $this->em->createQueryBuilder()
             ->select('m', 'mc', 'c', 'omc', 'om', 'u')
@@ -336,7 +336,7 @@ class CentreProvider
             ->getResult();
     }
 
-    public function getEntity($id): Centre
+    public function getEntity(string $id): Centre
     {
         /** @var Centre $entity */
         if (!$entity = $this->em->find(Centre::class, $id)) {
@@ -346,7 +346,7 @@ class CentreProvider
         return $entity;
     }
 
-    public function getEntityByDistantId($distantId): Centre
+    public function getEntityByDistantId(string $distantId): Centre
     {
         $client = $this->apiClientManager->getCurrentOldClient();
         /** @var Centre $entity */

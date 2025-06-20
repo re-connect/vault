@@ -58,7 +58,7 @@ class Association extends Subject
         return $this->id;
     }
 
-    public static function getAllCategories()
+    public static function getAllCategories(): array
     {
         return [
             self::ASSOCIATION_CATEGORIEJURIDIQUE_ASSOCIATION => 'association',

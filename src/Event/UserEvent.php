@@ -13,7 +13,7 @@ final class UserEvent extends REEvent
     public const int ASSOCIATION_CONNECTION = 4;
     public const int ADMINISTRATEUR_CONNECTION = 5;
 
-    private $user;
+    private readonly User $user;
     protected $type;
 
     public function __construct(User $user, bool $firstConnectionToday, ?Client $client = null)

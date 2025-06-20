@@ -48,7 +48,7 @@ class MembreAdmin extends AbstractAdmin
     private UserManager $userManager;
 
     #[\Override]
-    public function preUpdate($object): void
+    public function preUpdate(object $object): void
     {
         $result = $this->entityManager->createQueryBuilder()
             ->select('mc')
@@ -180,7 +180,7 @@ class MembreAdmin extends AbstractAdmin
             )
             ->end();
 
-        $form->getFormBuilder()->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+        $form->getFormBuilder()->addEventListener(FormEvents::SUBMIT, function (FormEvent $event): void {
             $form = $event->getForm();
 
             if ($this->isCurrentRoute('create') && !$form->get('user')->get('plainPassword')->getData()) {

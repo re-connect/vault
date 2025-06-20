@@ -24,12 +24,12 @@ class UserVoter extends Voter
     {
     }
 
-    public function setBeneficiaireVoter(BeneficiaireVoter $beneficiaireVoter)
+    public function setBeneficiaireVoter(BeneficiaireVoter $beneficiaireVoter): void
     {
         $this->beneficiaireVoter = $beneficiaireVoter;
     }
 
-    public function setMembreVoter(MembreVoter $membreVoter)
+    public function setMembreVoter(MembreVoter $membreVoter): void
     {
         $this->membreVoter = $membreVoter;
     }

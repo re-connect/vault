@@ -7,6 +7,7 @@ use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\ClientBeneficiaire;
 use App\Entity\Attributes\Membre;
 use App\Entity\Attributes\MembreCentre;
+use App\Entity\Attributes\Subject;
 use App\Entity\UserHandleCentresInterface;
 use App\Entity\UserWithCentresInterface;
 use App\Event\CentreEvent;
@@ -37,7 +38,7 @@ class CentreManager
      *
      * @return bool
      */
-    public function associateUserWithCentres($subject, Centre $centre, $initiateur, $arDroits = null, $bForceAccept = false)
+    public function associateUserWithCentres($subject, Centre $centre, $initiateur, ?array $arDroits = null, $bForceAccept = false): bool
     {
         foreach ($subject->getUsersCentres() as $userCentre) {
             if ($userCentre->getCentre() === $centre) {
@@ -66,7 +67,7 @@ class CentreManager
         return true;
     }
 
-    public function deassociateUserWithCentres($subject, Centre $centre)
+    public function deassociateUserWithCentres($subject, Centre $centre): void
     {
         if ($subject->isBeneficiaire() && false === $this->authorizationChecker->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $subject)) {
             throw new AccessDeniedException("Vous n'avez pas le droit de désassocier ce beneficiaire de ce centre");
@@ -130,7 +131,7 @@ class CentreManager
      *
      * @throws \Exception
      */
-    public function getCentreCommunUserWithCentres($subject, $subject2)
+    public function getCentreCommunUserWithCentres(Subject $subject, $subject2): array
     {
         $arRet = [];
         $centres1 = $this->provider->getCentresFromUserWithCentre($subject);
@@ -148,7 +149,7 @@ class CentreManager
         return $arRet;
     }
 
-    public function accepterCentre(UserWithCentresInterface $subject, Centre $centre)
+    public function accepterCentre(UserWithCentresInterface $subject, Centre $centre): void
     {
         foreach ($subject->getUsersCentres() as $userCentre) {
             if ($userCentre->getCentre() === $centre) {
@@ -160,7 +161,7 @@ class CentreManager
         }
     }
 
-    public function refuserCentre(UserWithCentresInterface $subject, Centre $centre)
+    public function refuserCentre(UserWithCentresInterface $subject, Centre $centre): void
     {
         foreach ($subject->getUsersCentres() as $userCentre) {
             if ($userCentre->getCentre() === $centre) {
@@ -171,7 +172,7 @@ class CentreManager
         }
     }
 
-    public function switchDroitMembreCentre(Membre $membre, Centre $centre, $droit)
+    public function switchDroitMembreCentre(Membre $membre, Centre $centre, $droit): void
     {
         if ($membreCentre = $membre->getUserCentre($centre)) {
             if (null === $membreCentre->getDroits()) {
