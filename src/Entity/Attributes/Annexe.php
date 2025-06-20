@@ -44,7 +44,7 @@ class Annexe implements \Stringable
      *
      * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -54,7 +54,7 @@ class Annexe implements \Stringable
      *
      * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }
@@ -62,11 +62,10 @@ class Annexe implements \Stringable
     /**
      * Set url.
      *
-     * @param string $url
      *
      * @return Annexe
      */
-    public function setUrl($url)
+    public function setUrl(string $url): static
     {
         $this->url = $url;
 
@@ -78,7 +77,7 @@ class Annexe implements \Stringable
      *
      * @return \DateTime
      */
-    public function getDateAjout()
+    public function getDateAjout(): \DateTime
     {
         return $this->dateAjout;
     }
@@ -86,11 +85,10 @@ class Annexe implements \Stringable
     /**
      * Set dateAjout.
      *
-     * @param \DateTime $dateAjout
      *
      * @return Annexe
      */
-    public function setDateAjout($dateAjout)
+    public function setDateAjout(\DateTime $dateAjout): static
     {
         $this->dateAjout = $dateAjout;
 
@@ -102,7 +100,7 @@ class Annexe implements \Stringable
      *
      * @return bool
      */
-    public function getActif()
+    public function getActif(): bool
     {
         return $this->actif;
     }
@@ -110,11 +108,10 @@ class Annexe implements \Stringable
     /**
      * Set actif.
      *
-     * @param bool $actif
      *
      * @return Annexe
      */
-    public function setActif($actif)
+    public function setActif(bool $actif): static
     {
         $this->actif = $actif;
 
@@ -132,7 +129,7 @@ class Annexe implements \Stringable
      *
      * @return string
      */
-    public function getFichier()
+    public function getFichier(): ?string
     {
         return $this->fichier;
     }
@@ -144,7 +141,7 @@ class Annexe implements \Stringable
      *
      * @return Annexe
      */
-    public function setFichier($fichier)
+    public function setFichier(?string $fichier): static
     {
         $this->fichier = $fichier;
 
@@ -154,7 +151,7 @@ class Annexe implements \Stringable
     /**
      * @return File
      */
-    public function getFichierFile()
+    public function getFichierFile(): ?File
     {
         return $this->fichierFile;
     }
@@ -162,7 +159,7 @@ class Annexe implements \Stringable
     /**
      * @param File|UploadedFile $fichierFile
      */
-    public function setFichierFile(?File $fichierFile = null)
+    public function setFichierFile(?File $fichierFile = null): void
     {
         $this->fichierFile = $fichierFile;
         if (null !== $fichierFile) {

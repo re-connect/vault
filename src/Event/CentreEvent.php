@@ -9,28 +9,22 @@ class CentreEvent extends REEvent
 {
     public const CENTRE_USERWITHCENTRES_ASSOCIATED = 1;
     public const CENTRE_USERWITHCENTRES_DESASSOCIATED = 2;
-
-    protected $subject;
     protected $user;
-    protected $centre;
 
-    public function __construct(Centre $centre, protected $type, UserWithCentresInterface $subject)
+    public function __construct(protected Centre $centre, protected $type, protected UserWithCentresInterface $subject)
     {
-        $this->centre = $centre;
-        $this->subject = $subject;
-
         $this->context = [
-            'user_id' => $subject->getUser()->getId(),
-            'centre_id' => $centre->getId(),
+            'user_id' => $this->subject->getUser()->getId(),
+            'centre_id' => $this->centre->getId(),
         ];
     }
 
-    public function getSubject()
+    public function getSubject(): UserWithCentresInterface
     {
         return $this->subject;
     }
 
-    public function getCentre()
+    public function getCentre(): Centre
     {
         return $this->centre;
     }

@@ -33,7 +33,7 @@ class MembreCentreAdmin extends AbstractAdmin
             ])
             ->end();
 
-        $form->getFormBuilder()->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
+        $form->getFormBuilder()->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event): void {
             $data = $event->getData();
             if (!$data instanceof MembreCentre || $data->getId()) {
                 return;

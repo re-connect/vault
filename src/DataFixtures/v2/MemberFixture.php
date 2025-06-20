@@ -32,7 +32,7 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
     public const MEMBER_WITH_CLIENT = 'test_membre_with_client';
 
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $this->createMember([
             'email' => self::MEMBER_MAIL,

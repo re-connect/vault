@@ -19,7 +19,7 @@ class StatistiqueCentreManager
     /**
      * @throws \Exception
      */
-    public function storeStatistics()
+    public function storeStatistics(): void
     {
         $iterableResult = $this->em->createQueryBuilder()
             ->select('c', 'b', 'bc', 'mc', 'm', 'sc', 'sms')
@@ -72,7 +72,7 @@ class StatistiqueCentreManager
     /**
      * @throws \Exception
      */
-    private function updateStatisticValue(Centre $centre, $statKey)
+    private function updateStatisticValue(Centre $centre, string $statKey): void
     {
         $foundStat = null;
         foreach ($centre->getStatistiquesCentre() as $statistique) {
@@ -97,7 +97,7 @@ class StatistiqueCentreManager
     /**
      * @return int|null
      */
-    private function getStatisticValue(Centre $centre, $statKey)
+    private function getStatisticValue(Centre $centre, string $statKey): ?int
     {
         return match ($statKey) {
             StatistiqueCentre::STATISTIQUECENTRE_NB_BENEFICIAIRES => count($centre->getBeneficiairesCentres()),

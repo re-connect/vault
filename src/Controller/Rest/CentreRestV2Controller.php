@@ -27,7 +27,7 @@ class CentreRestV2Controller extends REController
 
     #[Route(path: 'beneficiaries/{beneficiaryId}/centers', methods: ['GET'], requirements: ['beneficiaryId' => '\d{1,10}'], name: 'get_centres_from_beneficiaire')]
     public function getCentresFromBeneficiaire(
-        $beneficiaryId,
+        int|string $beneficiaryId,
         CentreProvider $provider,
         BeneficiaireProvider $beneficiaireProvider
     ): JsonResponse {
@@ -45,7 +45,7 @@ class CentreRestV2Controller extends REController
     }
 
     #[Route(path: 'beneficiaries/{beneficiaryId}/pending-centers', methods: ['GET'], requirements: ['beneficiaryId' => '\d{1,10}'], name: 'get_pending_centres_from_beneficiaire')]
-    public function getPendingCentresFromBeneficiaire($beneficiaryId, CentreProvider $provider, BeneficiaireProvider $beneficiaireProvider): JsonResponse
+    public function getPendingCentresFromBeneficiaire(int|string $beneficiaryId, CentreProvider $provider, BeneficiaireProvider $beneficiaireProvider): JsonResponse
     {
         try {
             $beneficiaire = $beneficiaireProvider->getEntity($beneficiaryId, $this->accessRead);
@@ -125,7 +125,7 @@ class CentreRestV2Controller extends REController
     }
 
     #[Route(path: 'centers/{id}/accept', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'], name: 'accept')]
-    public function accept($id, CentreProvider $provider, CentreManager $manager): JsonResponse
+    public function accept(string $id, CentreProvider $provider, CentreManager $manager): JsonResponse
     {
         try {
             $user = $this->getUser();
@@ -146,7 +146,7 @@ class CentreRestV2Controller extends REController
     }
 
     #[Route(path: 'centers/{id}/refuse', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'], name: 'refuse')]
-    public function refuse($id, CentreProvider $provider, CentreManager $manager): JsonResponse
+    public function refuse(string $id, CentreProvider $provider, CentreManager $manager): JsonResponse
     {
         try {
             $user = $this->getUser();
@@ -167,7 +167,7 @@ class CentreRestV2Controller extends REController
     }
 
     #[Route(path: 'users/{userId}/centers/{id}/leave', methods: ['PATCH'], requirements: ['userId' => '\d{1,10}', 'id' => '\d{1,10}'], name: 'leave_center')]
-    public function leaveCenter($userId, $id, UserProvider $userProvider, CentreProvider $provider, CentreManager $manager): JsonResponse
+    public function leaveCenter(string $userId, string $id, UserProvider $userProvider, CentreProvider $provider, CentreManager $manager): JsonResponse
     {
         try {
             if (!$this->getUser() instanceof User) {

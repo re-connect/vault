@@ -35,29 +35,29 @@ class AccessToken implements TokenInterface
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: true)]
     protected ?User $user = null;
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getClientId()
+    public function getClientId(): string
     {
         return $this->getClient()->getPublicId();
     }
 
     #[\Override]
-    public function setExpiresAt($timestamp)
+    public function setExpiresAt($timestamp): void
     {
         $this->expiresAt = $timestamp;
     }
 
     #[\Override]
-    public function getExpiresAt()
+    public function getExpiresAt(): ?int
     {
         return $this->expiresAt;
     }
 
-    public function getExpiresIn()
+    public function getExpiresIn(): int
     {
         if ($this->expiresAt) {
             return $this->expiresAt - time();
@@ -66,7 +66,7 @@ class AccessToken implements TokenInterface
         return PHP_INT_MAX;
     }
 
-    public function hasExpired()
+    public function hasExpired(): bool
     {
         if ($this->expiresAt) {
             return time() > $this->expiresAt;
@@ -76,51 +76,51 @@ class AccessToken implements TokenInterface
     }
 
     #[\Override]
-    public function setToken($token)
+    public function setToken($token): void
     {
         $this->token = $token;
     }
 
-    public function getToken()
+    public function getToken(): string
     {
         return $this->token;
     }
 
     #[\Override]
-    public function setScope($scope)
+    public function setScope($scope): void
     {
         $this->scope = $scope;
     }
 
-    public function getScope()
+    public function getScope(): ?string
     {
         return $this->scope;
     }
 
     #[\Override]
-    public function setUser($user)
+    public function setUser($user): void
     {
         $this->user = $user;
     }
 
     #[\Override]
-    public function getUser()
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function getData()
+    public function getData(): ?User
     {
         return $this->getUser();
     }
 
     #[\Override]
-    public function setClient($client)
+    public function setClient($client): void
     {
         $this->client = $client;
     }
 
-    public function getClient()
+    public function getClient(): Client
     {
         return $this->client;
     }

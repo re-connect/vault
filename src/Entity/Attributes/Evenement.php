@@ -119,7 +119,7 @@ class Evenement extends DonneePersonnelle
         return new \DateTime($date->format('Y-m-d H:i:s'), new \DateTimeZone($timezone));
     }
 
-    public function setDate($date): static
+    public function setDate(\DateTime $date): static
     {
         $this->date = $date;
 
@@ -143,7 +143,7 @@ class Evenement extends DonneePersonnelle
         return $this->lieu;
     }
 
-    public function setLieu($lieu): static
+    public function setLieu(?string $lieu): static
     {
         $this->lieu = $lieu;
 
@@ -262,7 +262,7 @@ class Evenement extends DonneePersonnelle
     /**
      * @param Rappel[]|Collection $rappels
      */
-    public function setRappels($rappels): static
+    public function setRappels(Collection $rappels): static
     {
         $this->rappels = $rappels;
 

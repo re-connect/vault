@@ -13,7 +13,7 @@ class StatistiqueCentre
     public const STATISTIQUECENTRE_NB_MEMBRES = 'nbMembres';
     public const STATISTIQUECENTRE_SMS_ENVOYES = 'smsEnvoyes';
 
-    public static function getArStats()
+    public static function getArStats(): array
     {
         return [
             self::STATISTIQUECENTRE_NB_BENEFICIAIRES => 'admin.centres.statistiques.nbBeneficiaires',
@@ -28,10 +28,10 @@ class StatistiqueCentre
     private ?int $id = null;
 
     #[ORM\Column(name: 'nom', type: 'string', length: 255, nullable: false)]
-    private $nom;
+    private ?string $nom = null;
 
     #[ORM\Column(name: 'donnees', type: 'array', nullable: false)]
-    private $donnees;
+    private ?array $donnees = null;
 
     #[ORM\ManyToOne(targetEntity: Centre::class, inversedBy: 'statistiquesCentre')]
     #[ORM\JoinColumn(name: 'centre_id', referencedColumnName: 'id', nullable: false)]
