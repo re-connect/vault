@@ -2,9 +2,9 @@
 
 namespace App\Provider;
 
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\Contact;
-use App\Entity\Attributes\DonneePersonnelle;
+use App\Entity\Client;
+use App\Entity\Contact;
+use App\Entity\DonneePersonnelle;
 use App\Form\Type\ContactSimpleType;
 use App\Form\Type\ContactType;
 use App\Security\Authorization\Voter\DonneePersonnelleVoter;

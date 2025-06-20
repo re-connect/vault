@@ -2,7 +2,7 @@
 
 namespace App\Event;
 
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 
 class SolinumEvent extends REEvent
 {

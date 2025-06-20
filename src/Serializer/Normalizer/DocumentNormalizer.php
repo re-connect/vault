@@ -2,7 +2,7 @@
 
 namespace App\Serializer\Normalizer;
 
-use App\Entity\Attributes\Document;
+use App\Entity\Document;
 use App\Provider\DocumentProvider;
 use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;

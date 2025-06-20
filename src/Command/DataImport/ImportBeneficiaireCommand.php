@@ -2,9 +2,9 @@
 
 namespace App\Command\DataImport;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\Centre;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
