@@ -2,10 +2,10 @@
 
 namespace App\Manager;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\ConsultationBeneficiaire;
-use App\Entity\Attributes\Membre;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\ConsultationBeneficiaire;
+use App\Entity\Membre;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Symfony\Component\HttpFoundation\RequestStack;

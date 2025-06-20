@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures\v2;
 
-use App\Entity\Attributes\ClientBeneficiaire;
+use App\Entity\ClientBeneficiaire;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\ClientFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;

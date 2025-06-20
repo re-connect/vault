@@ -2,8 +2,8 @@
 
 namespace App\Event;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\User;
 
 class BeneficiaireEvent extends REEvent
 {

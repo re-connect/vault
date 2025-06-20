@@ -5,7 +5,7 @@ namespace App\Domain\PushNotification;
 use App\Checker\FeatureFlagChecker;
 use App\Domain\PushNotification\Notification\DocumentAddedPushNotification;
 use App\Domain\PushNotification\Notification\PushNotificationInterface;
-use App\Entity\Attributes\Document;
+use App\Entity\Document;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;

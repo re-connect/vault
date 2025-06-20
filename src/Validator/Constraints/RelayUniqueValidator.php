@@ -2,7 +2,7 @@
 
 namespace App\Validator\Constraints;
 
-use App\Entity\Attributes\MembreCentre;
+use App\Entity\MembreCentre;
 use Doctrine\Common\Collections\ReadableCollection;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;

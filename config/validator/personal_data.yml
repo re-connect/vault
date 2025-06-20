@@ -1,4 +1,4 @@
-App\Entity\Attributes\DonneePersonnelle:
+App\Entity\DonneePersonnelle:
   properties:
     nom:
       - NotBlank: ~
