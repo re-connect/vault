@@ -10,10 +10,6 @@ use App\Manager\RestManager;
 use App\Provider\BeneficiaireProvider;
 use App\Provider\ContactProvider;
 use Doctrine\ORM\EntityManagerInterface;
-use FOS\RestBundle\Controller\Annotations as Rest;
-use FOS\RestBundle\Controller\Annotations\Delete;
-use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\Controller\Annotations\Patch;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,27 +35,13 @@ final class ContactRestV2Controller extends DonneePersonnelleRestController
         parent::__construct($requestStack, $translator, $entityManager, $restManager, $beneficiaireProvider, $apiClientManager);
     }
 
-    /**
-     * @Delete("contacts/{id}",
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     },
-     *     name="delete"
-     * )
-     */
+    #[Route(path: 'contacts/{id}', name: 'delete', requirements: ['id' => '\d+'], methods: ['DELETE'])]
     public function delete(int $id): JsonResponse
     {
         return $this->deleteAction($id);
     }
 
-    /**
-     * @Get("beneficiaries/{beneficiaryId}/contacts",
-     *     requirements={
-     *          "beneficiaryId": "\d{1,10}"
-     *     },
-     *     name="list"
-     * )
-     */
+    #[Route(path: 'beneficiaries/{beneficiaryId}/contacts', name: 'list', requirements: ['beneficiaryId' => '\d+'], methods: ['GET'])]
     public function list(int $beneficiaryId): JsonResponse
     {
         try {
@@ -77,61 +59,25 @@ final class ContactRestV2Controller extends DonneePersonnelleRestController
         }
     }
 
-    /**
-     * Toggle access a contact given. (access write).
-     *
-     * @Patch("contacts/{id}/toggle-access",
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     },
-     *     name="toggle_access"
-     * )
-     */
+    #[Route(path: 'contacts/{id}/toggle-access', name: 'toggle_access', requirements: ['id' => '\d+'], methods: ['PATCH'])]
     public function toggleAccess(int $id): JsonResponse
     {
         return $this->toggleAccessAction($id);
     }
 
-    /**
-     * Edit a contact given. (access write).
-     *
-     * @Rest\Put("contacts/{id}",
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     },
-     *     name="edit"
-     * )
-     */
+    #[Route(path: 'contacts/{id}', name: 'edit', requirements: ['id' => '\d+'], methods: ['PUT'])]
     public function edit(int $id): JsonResponse
     {
         return $this->editAction($id);
     }
 
-    /**
-     * Add a note for a beneficiary given. (access write).
-     *
-     * @Rest\Post("beneficiaries/{beneficiaryId}/contacts",
-     *     requirements={
-     *          "beneficiaryId": "\d{1,10}"
-     *     },
-     *     name="add"
-     * )
-     */
+    #[Route(path: 'beneficiaries/{beneficiaryId}/contacts', name: 'add', requirements: ['beneficiaryId' => '\d+'], methods: ['POST'])]
     public function add(int $beneficiaryId): JsonResponse
     {
         return $this->addAction($beneficiaryId);
     }
 
-    /**
-     * Get a contact given. (access read).
-     *
-     * @Rest\Get("contacts/{id}",
-     *     requirements={
-     *          "id": "\d{1,10}"
-     *     },
-     *     name="get"
-     * )
-     */
+    #[Route(path: 'contacts/{id}', name: 'get', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function getEntity(int $id): JsonResponse
     {
         return $this->getEntityAction($id);
