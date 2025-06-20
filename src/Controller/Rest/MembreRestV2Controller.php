@@ -63,7 +63,7 @@ class MembreRestV2Controller extends REController
      * )
      */
     public function changerDroitsMembreCentre(
-        $id,
+        string $id,
         Request $request,
         MembreProvider $provider,
         CentreManager $centreManager,

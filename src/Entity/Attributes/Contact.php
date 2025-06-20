@@ -150,7 +150,7 @@ class Contact extends DonneePersonnelle implements ClientResourceInterface
         return $this->association;
     }
 
-    public function setAssociation($association): static
+    public function setAssociation(?string $association): static
     {
         $this->association = $association;
 

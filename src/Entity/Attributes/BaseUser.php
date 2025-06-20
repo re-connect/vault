@@ -73,7 +73,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this->username;
     }
 
-    public function addRole($role)
+    public function addRole($role): static
     {
         $role = strtoupper((string) $role);
         if ('ROLE_USER' === $role) {
@@ -88,7 +88,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
     }
 
     #[\Override]
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         $this->plainPassword = null;
     }
@@ -161,17 +161,17 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return array_values(array_unique($roles));
     }
 
-    public function hasRole($role)
+    public function hasRole($role): bool
     {
         return in_array(strtoupper((string) $role), $this->getRoles(), true);
     }
 
-    public function isSuperAdmin()
+    public function isSuperAdmin(): bool
     {
         return $this->hasRole('ROLE_SUPER_ADMIN');
     }
 
-    public function removeRole($role)
+    public function removeRole($role): static
     {
         if (false !== $key = array_search(strtoupper((string) $role), $this->roles, true)) {
             unset($this->roles[$key]);
@@ -181,7 +181,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    public function setUsername($username)
+    public function setUsername($username): static
     {
         $this->username = $username;
         $this->usernameCanonical = $username;
@@ -189,35 +189,35 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    public function setUsernameCanonical($usernameCanonical)
+    public function setUsernameCanonical($usernameCanonical): static
     {
         $this->usernameCanonical = $usernameCanonical;
 
         return $this;
     }
 
-    public function setSalt($salt)
+    public function setSalt($salt): static
     {
         $this->salt = $salt;
 
         return $this;
     }
 
-    public function setEmailCanonical($emailCanonical)
+    public function setEmailCanonical($emailCanonical): static
     {
         $this->emailCanonical = $emailCanonical;
 
         return $this;
     }
 
-    public function setPassword($password)
+    public function setPassword($password): static
     {
         $this->password = $password;
 
         return $this;
     }
 
-    public function setSuperAdmin($boolean)
+    public function setSuperAdmin($boolean): static
     {
         if (true === $boolean) {
             $this->addRole('ROLE_SUPER_ADMIN');
@@ -228,28 +228,28 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    public function setPlainPassword($password)
+    public function setPlainPassword($password): static
     {
         $this->plainPassword = $password;
 
         return $this;
     }
 
-    public function setLastLogin(?\DateTime $time = null)
+    public function setLastLogin(?\DateTime $time = null): static
     {
         $this->lastLogin = $time;
 
         return $this;
     }
 
-    public function setConfirmationToken($confirmationToken)
+    public function setConfirmationToken($confirmationToken): static
     {
         $this->confirmationToken = $confirmationToken;
 
         return $this;
     }
 
-    public function setRoles(array $roles)
+    public function setRoles(array $roles): static
     {
         $this->roles = [];
 
@@ -260,7 +260,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
         return $this;
     }
 
-    public function isEqualTo(UserInterface $user)
+    public function isEqualTo(UserInterface $user): bool
     {
         if (!$user instanceof self) {
             return false;

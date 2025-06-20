@@ -14,7 +14,7 @@ use Doctrine\Persistence\ObjectManager;
 class ClientBeneficiaryFixture extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $clients = ClientFactory::all();
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK)->object();

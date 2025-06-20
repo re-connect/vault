@@ -114,7 +114,7 @@ class Rappel implements \JsonSerializable
         return $this->archive;
     }
 
-    public function setArchive($archive): static
+    public function setArchive(bool $archive): static
     {
         $this->archive = $archive;
 

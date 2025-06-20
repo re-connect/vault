@@ -27,7 +27,7 @@ class AddCreatorCenterCommand extends Command
         private readonly BeneficiaireRepository $beneficiaryRepository,
         private readonly CentreRepository $centreRepository,
         private readonly string $kernelProjectDir,
-        $name = null
+        ?string $name = null
     ) {
         parent::__construct($name);
     }

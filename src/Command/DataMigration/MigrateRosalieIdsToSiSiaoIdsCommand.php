@@ -36,7 +36,7 @@ class MigrateRosalieIdsToSiSiaoIdsCommand extends Command
     {
         return array_reduce(
             $records,
-            function (array $carry, array $item) {
+            function (array $carry, array $item): array {
                 $carry[$item['uid']] = $item['cle'];
 
                 return $carry;
