@@ -2,7 +2,7 @@
 
 namespace App\Tests\Factory;
 
-use App\Entity\Attributes\BeneficiaireCentre;
+use App\Entity\BeneficiaireCentre;
 use App\Repository\BeneficiaireCentreRepository;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;

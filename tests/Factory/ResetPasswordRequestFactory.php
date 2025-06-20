@@ -2,7 +2,7 @@
 
 namespace App\Tests\Factory;
 
-use App\Entity\Attributes\ResetPasswordRequest;
+use App\Entity\ResetPasswordRequest;
 use App\RepositoryV2\ResetPasswordRequestRepository;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;

@@ -2,9 +2,9 @@
 
 namespace App\Tests\v2\API\v2\Beneficiary;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\ConsultationBeneficiaire;
-use App\Entity\Attributes\Membre;
+use App\Entity\Beneficiaire;
+use App\Entity\ConsultationBeneficiaire;
+use App\Entity\Membre;
 use App\Tests\v2\API\v2\AbstractApiV2Test;
 use League\Bundle\OAuth2ServerBundle\Model\Client;
 use Symfony\Component\HttpFoundation\Request;

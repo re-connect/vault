@@ -2,7 +2,7 @@
 
 namespace App\Validator\Constraints;
 
-use App\Entity\Attributes\Evenement;
+use App\Entity\Evenement;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 

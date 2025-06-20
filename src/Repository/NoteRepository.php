@@ -2,8 +2,8 @@
 
 namespace App\Repository;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Note;
+use App\Entity\Beneficiaire;
+use App\Entity\Note;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

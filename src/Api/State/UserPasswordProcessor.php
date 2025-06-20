@@ -4,8 +4,8 @@ namespace App\Api\State;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
-use App\Entity\Attributes\User;
 use App\ManagerV2\UserManager;
+use App\Entity\User;
 
 /** @implements ProcessorInterface<User, User|void> */
 readonly class UserPasswordProcessor implements ProcessorInterface

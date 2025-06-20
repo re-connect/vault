@@ -2,7 +2,7 @@
 
 namespace App\FormV2\FilterUser;
 
-use App\Entity\Attributes\Centre;
+use App\Entity\Centre;
 
 class FilterUserFormModel
 {

@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Attributes\SharedDocument;
+use App\Entity\SharedDocument;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
