@@ -87,7 +87,7 @@ final class ContactRestV2Controller extends DonneePersonnelleRestController
      *     name="toggle_access"
      * )
      */
-    public function toggleAccess($id): JsonResponse
+    public function toggleAccess(int $id): JsonResponse
     {
         return $this->toggleAccessAction($id);
     }
@@ -102,7 +102,7 @@ final class ContactRestV2Controller extends DonneePersonnelleRestController
      *     name="edit"
      * )
      */
-    public function edit($id): JsonResponse
+    public function edit(int $id): JsonResponse
     {
         return $this->editAction($id);
     }
@@ -117,7 +117,7 @@ final class ContactRestV2Controller extends DonneePersonnelleRestController
      *     name="add"
      * )
      */
-    public function add($beneficiaryId): JsonResponse
+    public function add(int $beneficiaryId): JsonResponse
     {
         return $this->addAction($beneficiaryId);
     }

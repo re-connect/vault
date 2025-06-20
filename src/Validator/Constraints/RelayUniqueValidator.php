@@ -13,7 +13,7 @@ class RelayUniqueValidator extends ConstraintValidator
      * @param ReadableCollection<MembreCentre> $value
      */
     #[\Override]
-    public function validate(mixed $value, Constraint $constraint)
+    public function validate(mixed $value, Constraint $constraint): void
     {
         $duplicates = $this->getDuplicates($value);
         array_map(fn ($duplicate) => $this->context->buildViolation($constraint->message)

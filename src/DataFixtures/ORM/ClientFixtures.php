@@ -37,7 +37,7 @@ class ClientFixtures extends Fixture implements FixtureGroupInterface
     ];
 
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         foreach (self::CLIENTS as $client) {
             $this->createClient($manager, $client['id'], $client['secret'], $client['name'], $client['grantType'], $client['scopes']);
@@ -46,7 +46,7 @@ class ClientFixtures extends Fixture implements FixtureGroupInterface
         $manager->flush();
     }
 
-    private function createClient(ObjectManager $manager, string $id, string $secret, string $name, string $grantType, string $scopes = '')
+    private function createClient(ObjectManager $manager, string $id, string $secret, string $name, string $grantType, string $scopes = ''): void
     {
         $oldClient = (new OldClient())
             ->setAllowedGrantTypes([$grantType])

@@ -7,13 +7,10 @@ use App\Entity\Attributes\Beneficiaire;
 class DossierEvent extends REEvent
 {
     public const DOSSIER_ERROR_OUVERTURE = 1;
-
-    protected $beneficiaire;
     protected $evenement;
 
-    public function __construct(Beneficiaire $beneficiaire, protected $type)
+    public function __construct(protected Beneficiaire $beneficiaire, protected $type)
     {
-        $this->beneficiaire = $beneficiaire;
     }
 
     public function getEvenement()
