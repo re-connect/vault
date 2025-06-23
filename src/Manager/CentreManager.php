@@ -35,8 +35,6 @@ class CentreManager
     /**
      * @param null $arDroits
      * @param bool $bForceAccept
-     *
-     * @return bool
      */
     public function associateUserWithCentres($subject, Centre $centre, $initiateur, ?array $arDroits = null, $bForceAccept = false): bool
     {
@@ -126,8 +124,6 @@ class CentreManager
 
     /**
      * @param UserHandleCentresInterface $subject2
-     *
-     * @return array
      *
      * @throws \Exception
      */
