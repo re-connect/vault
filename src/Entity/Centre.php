@@ -305,9 +305,6 @@ class Centre implements \JsonSerializable, \Stringable
         $this->sms->removeElement($sms);
     }
 
-    /**
-     * @return Collection
-     */
     public function getSms(): Collection
     {
         return $this->sms;
@@ -325,9 +322,6 @@ class Centre implements \JsonSerializable, \Stringable
         $this->consultationsCentre->removeElement($consultationsCentre);
     }
 
-    /**
-     * @return Collection
-     */
     public function getConsultationsCentre(): ?Collection
     {
         return $this->consultationsCentre;
@@ -345,9 +339,6 @@ class Centre implements \JsonSerializable, \Stringable
         $this->statistiquesCentre->removeElement($statistiquesCentre);
     }
 
-    /**
-     * @return Collection
-     */
     public function getStatistiquesCentre(): ?Collection
     {
         return $this->statistiquesCentre;

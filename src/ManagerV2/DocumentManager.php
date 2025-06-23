@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Contracts\Translation\TranslatorInterface;
+
 use function Symfony\Component\String\u;
 
 class DocumentManager

@@ -97,9 +97,6 @@ class CentreProvider
             ->getResult();
     }
 
-    /**
-     * @return array
-     */
     public function getBeneficiairesFromMembreByCentre(Membre $membre, ?bool $takeUnvalid = false): array
     {
         /** @var Beneficiaire $beneficiaire */
@@ -251,9 +248,6 @@ class CentreProvider
         return [];
     }
 
-    /**
-     * @return array
-     */
     public function getOtherMembresFromMembreByCentre(Membre $membre): array
     {
         $otherMembres = $this->getOtherMembresFromMembre($membre);
@@ -275,9 +269,6 @@ class CentreProvider
         return $arRet;
     }
 
-    /**
-     * @return array
-     */
     public function getOtherMembresFromMembre(Membre $membre): array
     {
         $results = $this->em->createQueryBuilder()
