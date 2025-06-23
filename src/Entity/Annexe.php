@@ -41,8 +41,6 @@ class Annexe implements \Stringable
 
     /**
      * Get id.
-     *
-     * @return int
      */
     public function getId(): ?int
     {
@@ -51,8 +49,6 @@ class Annexe implements \Stringable
 
     /**
      * Get url.
-     *
-     * @return string
      */
     public function getUrl(): string
     {
@@ -61,7 +57,6 @@ class Annexe implements \Stringable
 
     /**
      * Set url.
-     *
      *
      * @return Annexe
      */
@@ -74,8 +69,6 @@ class Annexe implements \Stringable
 
     /**
      * Get dateAjout.
-     *
-     * @return \DateTime
      */
     public function getDateAjout(): \DateTime
     {
@@ -84,7 +77,6 @@ class Annexe implements \Stringable
 
     /**
      * Set dateAjout.
-     *
      *
      * @return Annexe
      */
@@ -97,8 +89,6 @@ class Annexe implements \Stringable
 
     /**
      * Get actif.
-     *
-     * @return bool
      */
     public function getActif(): bool
     {
@@ -107,7 +97,6 @@ class Annexe implements \Stringable
 
     /**
      * Set actif.
-     *
      *
      * @return Annexe
      */
@@ -126,8 +115,6 @@ class Annexe implements \Stringable
 
     /**
      * Get fichier.
-     *
-     * @return string
      */
     public function getFichier(): ?string
     {
@@ -136,8 +123,6 @@ class Annexe implements \Stringable
 
     /**
      * Set fichier.
-     *
-     * @param string $fichier
      *
      * @return Annexe
      */
@@ -148,9 +133,6 @@ class Annexe implements \Stringable
         return $this;
     }
 
-    /**
-     * @return File
-     */
     public function getFichierFile(): ?File
     {
         return $this->fichierFile;
