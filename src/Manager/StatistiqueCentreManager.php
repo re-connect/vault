@@ -94,9 +94,6 @@ class StatistiqueCentreManager
         $this->em->persist($foundStat);
     }
 
-    /**
-     * @return int|null
-     */
     private function getStatisticValue(Centre $centre, string $statKey): ?int
     {
         return match ($statKey) {

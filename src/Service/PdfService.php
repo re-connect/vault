@@ -10,8 +10,6 @@ class PdfService
      * @param int $size
      * @param int $page
      *
-     * @return false|string
-     *
      * @throws \ImagickException
      */
     public function genPdfThumbnail(string $source, $target, $size = 256, $page = 1): false|string

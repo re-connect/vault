@@ -7,14 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestTrait;
 
-
 #[ORM\Entity(repositoryClass: ResetPasswordRequestRepository::class)]
 #[ORM\Table(name: 'reset_password_request')]
 class ResetPasswordRequest implements ResetPasswordRequestInterface
 {
     use ResetPasswordRequestTrait;
 
-    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
