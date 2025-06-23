@@ -40,6 +40,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 #[ORM\UniqueConstraint(name: 'UNIQ_8D93D649885281E', columns: ['emailCanonical'])]
 #[ORM\UniqueConstraint(name: 'UNIQ_8D93D6496F55C0C', columns: ['oldUsername'])]
 #[ApiFilter(UsernameFilter::class, properties: ['username' => 'exact'])]
+#[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     operations: [
         new GetCollection(security: "is_granted('ROLE_OAUTH2_USERS') or is_granted('ROLE_USER')", provider: SearchBeneficiaryProvider::class),
@@ -1101,6 +1102,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this;
     }
 
+    #[ORM\PreUpdate]
     public function refreshLastPasswordUpdateDate(PreUpdateEventArgs $event)
     {
         if ($event->hasChangedField('password')) {
