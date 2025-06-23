@@ -82,10 +82,8 @@ class FixturesPurger implements ORMPurgerInterface
     }
 
     #[\Override]
-    public function setEntityManager(EntityManagerInterface $em): self
+    public function setEntityManager(EntityManagerInterface $em): void
     {
         $this->em = $em;
-
-        return $this;
     }
 }
