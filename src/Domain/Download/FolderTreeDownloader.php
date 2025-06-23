@@ -2,9 +2,9 @@
 
 namespace App\Domain\Download;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Document;
-use App\Entity\Attributes\Dossier;
+use App\Entity\Beneficiaire;
+use App\Entity\Document;
+use App\Entity\Dossier;
 use App\Security\VoterV2\PersonalDataVoter;
 use App\ServiceV2\BucketService;
 use App\ServiceV2\Traits\UserAwareTrait;

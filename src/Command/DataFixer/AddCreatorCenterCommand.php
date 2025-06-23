@@ -2,7 +2,7 @@
 
 namespace App\Command\DataFixer;
 
-use App\Entity\Attributes\CreatorCentre;
+use App\Entity\CreatorCentre;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\CentreRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,7 +27,7 @@ class AddCreatorCenterCommand extends Command
         private readonly BeneficiaireRepository $beneficiaryRepository,
         private readonly CentreRepository $centreRepository,
         private readonly string $kernelProjectDir,
-        $name = null
+        ?string $name = null
     ) {
         parent::__construct($name);
     }

@@ -2,8 +2,8 @@
 
 namespace App\FormV2;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\User;
 use App\EventSubscriber\AddFormattedPhoneSubscriber;
 use App\FormV2\UserCreation\SecretQuestionType;
 use App\ServiceV2\Traits\UserAwareTrait;

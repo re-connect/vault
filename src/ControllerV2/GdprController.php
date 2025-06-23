@@ -4,7 +4,7 @@ namespace App\ControllerV2;
 
 use App\Checker\FeatureFlagChecker;
 use App\Domain\TermsOfUse\TermsOfUseHelper;
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\FormV2\ChangePasswordFormType;
 use App\ManagerV2\UserManager;
 use App\ServiceV2\GdprService;

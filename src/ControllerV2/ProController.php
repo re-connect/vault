@@ -2,9 +2,9 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\Membre;
-use App\Entity\Attributes\User;
+use App\Entity\Centre;
+use App\Entity\Membre;
+use App\Entity\User;
 use App\FormV2\FilterUser\FilterUserFormModel;
 use App\FormV2\FilterUser\FilterUserType;
 use App\FormV2\UserAffiliation\Model\SearchProFormModel;
@@ -139,8 +139,8 @@ class ProController extends AbstractController
         name: 'toggle_pro_permission',
         methods: ['GET', 'POST'],
         condition: "params['permission'] in [
-        constant('App\\\Entity\\\Attributes\\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION'),
-        constant('App\\\Entity\\\Attributes\\\MembreCentre::MANAGE_PROS_PERMISSION'),
+        constant('App\\\Entity\\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION'),
+        constant('App\\\Entity\\\MembreCentre::MANAGE_PROS_PERMISSION'),
         ]",
     )]
     #[IsGranted('UPDATE', 'pro')]

@@ -2,7 +2,7 @@
 
 namespace App\Validator\Constraints;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 

@@ -2,7 +2,7 @@
 
 namespace App\Security\Authorization\Voter;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\Provider\CentreProvider;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
@@ -24,12 +24,12 @@ class UserVoter extends Voter
     {
     }
 
-    public function setBeneficiaireVoter(BeneficiaireVoter $beneficiaireVoter)
+    public function setBeneficiaireVoter(BeneficiaireVoter $beneficiaireVoter): void
     {
         $this->beneficiaireVoter = $beneficiaireVoter;
     }
 
-    public function setMembreVoter(MembreVoter $membreVoter)
+    public function setMembreVoter(MembreVoter $membreVoter): void
     {
         $this->membreVoter = $membreVoter;
     }

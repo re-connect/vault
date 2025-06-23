@@ -3,8 +3,8 @@
 namespace App\Provider;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Attributes\Membre;
-use App\Entity\Attributes\User;
+use App\Entity\Membre;
+use App\Entity\User;
 use App\Event\MembreEvent;
 use App\Event\REEvent;
 use App\Manager\UserManager;
@@ -44,7 +44,7 @@ class MembreProvider
         $this->eventDispatcher->dispatch(new MembreEvent($membre, $eventType, $user), REEvent::RE_EVENT_MEMBRE);
     }
 
-    public function getEntityByDistantId($distantId, $secured = true): Membre
+    public function getEntityByDistantId(string $distantId, $secured = true): Membre
     {
         $oldClient = $this->apiClientManager->getCurrentOldClient();
         if (!$entity = $this->em->getRepository(Membre::class)->findByDistantId($distantId, $oldClient->getRandomId())) {
@@ -61,7 +61,7 @@ class MembreProvider
     /**
      * @throws \Exception
      */
-    public function populate(Membre $entity)
+    public function populate(Membre $entity): void
     {
         $request = $this->requestStack->getCurrentRequest();
         if (null === $request) {
@@ -75,7 +75,7 @@ class MembreProvider
             ->setEmail($request->get('email'));
     }
 
-    public function getEntity($id): Membre
+    public function getEntity(string $id): Membre
     {
         if (!$entity = $this->em->find(Membre::class, $id)) {
             throw new NotFoundHttpException('No member found for id '.$id);

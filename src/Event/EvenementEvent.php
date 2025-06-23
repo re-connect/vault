@@ -2,28 +2,27 @@
 
 namespace App\Event;
 
-use App\Entity\Attributes\Rappel;
+use App\Entity\Evenement;
+use App\Entity\Rappel;
 
 class EvenementEvent extends REEvent
 {
     public const EVENEMENT_RAPPEL_SMS = 1;
     public const EVENEMENT_RAPPEL_MAIL = 2;
 
-    protected $evenement;
-    protected $rappel;
+    protected Evenement $evenement;
 
-    public function __construct(Rappel $rappel, protected $type)
+    public function __construct(protected Rappel $rappel, protected $type)
     {
-        $this->rappel = $rappel;
-        $this->evenement = $rappel->getEvenement();
+        $this->evenement = $this->rappel->getEvenement();
     }
 
-    public function getEvenement()
+    public function getEvenement(): Evenement
     {
         return $this->evenement;
     }
 
-    public function getRappel()
+    public function getRappel(): Rappel
     {
         return $this->rappel;
     }

@@ -2,8 +2,9 @@
 
 namespace App\Provider;
 
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\Note;
+use App\Entity\Client;
+use App\Entity\DonneePersonnelle;
+use App\Entity\Note;
 use App\Form\Type\NoteSimpleType;
 use App\Form\Type\NoteType;
 use App\Security\Authorization\Voter\DonneePersonnelleVoter;
@@ -19,7 +20,7 @@ class NoteProvider extends DonneePersonnelleProvider
     /**
      * @param string|null $accessAttribute
      */
-    public function getEntity($id, $accessAttribute = null): Note
+    public function getEntity(string $id, $accessAttribute = null): Note
     {
         if (!$entity = $this->em->find(Note::class, $id)) {
             throw new NotFoundHttpException('No note found for id '.$id);
@@ -40,7 +41,7 @@ class NoteProvider extends DonneePersonnelleProvider
      * @param Note $entity
      */
     #[\Override]
-    public function populate($entity, Client $client): void
+    public function populate(DonneePersonnelle $entity, Client $client): void
     {
         parent::populate($entity, $client);
 

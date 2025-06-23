@@ -3,7 +3,7 @@
 namespace App\Tests\v2\API\v3\Note;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 use App\Repository\BeneficiaireRepository;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\ClientFactory;

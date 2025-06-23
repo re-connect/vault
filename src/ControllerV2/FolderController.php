@@ -3,7 +3,7 @@
 namespace App\ControllerV2;
 
 use App\Domain\Download\FolderTreeDownloader;
-use App\Entity\Attributes\Dossier;
+use App\Entity\Dossier;
 use App\FormV2\FolderType;
 use App\FormV2\Search\SearchType;
 use App\ManagerV2\FolderableItemManager;

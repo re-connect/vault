@@ -2,7 +2,7 @@
 
 namespace App\Command\DataFixer;
 
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 use App\Repository\BeneficiaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -31,7 +31,7 @@ class FixRPExternalLinkCommand extends Command
     }
 
     #[\Override]
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         $helper = $this->getHelper('question');

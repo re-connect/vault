@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures\v2;
 
-use App\Entity\Attributes\ClientBeneficiaire;
+use App\Entity\ClientBeneficiaire;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\ClientFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -14,7 +14,7 @@ use Doctrine\Persistence\ObjectManager;
 class ClientBeneficiaryFixture extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $client = ClientFactory::find(['nom' => 'applimobile'])->object();
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK)->object();

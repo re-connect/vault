@@ -3,15 +3,13 @@
 namespace App\Controller\Rest;
 
 use App\Controller\REController;
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\User;
+use App\Entity\Centre;
+use App\Entity\User;
 use App\Exception\JsonResponseException;
 use App\Manager\CentreManager;
 use App\Manager\RestManager;
 use App\Provider\CentreProvider;
 use App\Provider\MembreProvider;
-use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\Controller\Annotations\Patch;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,11 +22,8 @@ class MembreRestV2Controller extends REController
 {
     /**
      * Get members for the connected user. (member/manager access) (access write) (grant_type: password).
-     *
-     * @Get("members",
-     *     name="get_membres_from_user_handles_centre"
-     * )
      */
+    #[Route(path: 'members', name: 'get_membres_from_user_handles_centre', methods: ['GET'])]
     public function getMembresFromUserHandlesCentre(CentreProvider $centreProvider): JsonResponse
     {
         try {
@@ -57,13 +52,10 @@ class MembreRestV2Controller extends REController
 
     /**
      * Change right for a member given. (member access) (access write) (grant_type: password).
-     *
-     * @Patch("members/{id}/change-right",
-     *     name="changer_droits_membre_centre"
-     * )
      */
+    #[Route(path: 'members/{id}/change-right', name: 'changer_droits_membre_centre', methods: ['PATCH'])]
     public function changerDroitsMembreCentre(
-        $id,
+        string $id,
         Request $request,
         MembreProvider $provider,
         CentreManager $centreManager,

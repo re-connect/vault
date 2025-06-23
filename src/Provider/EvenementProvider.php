@@ -2,10 +2,10 @@
 
 namespace App\Provider;
 
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\DonneePersonnelle;
-use App\Entity\Attributes\Evenement;
-use App\Entity\Attributes\Rappel;
+use App\Entity\Client;
+use App\Entity\DonneePersonnelle;
+use App\Entity\Evenement;
+use App\Entity\Rappel;
 use App\Event\DonneePersonnelleEvent;
 use App\Event\REEvent;
 use App\Form\Type\EvenementSimpleType;
@@ -67,7 +67,7 @@ class EvenementProvider extends DonneePersonnelleProvider
     /**
      * @param string|null $accessAttribute
      */
-    public function getEntity($id, $accessAttribute = null): Evenement
+    public function getEntity(string $id, $accessAttribute = null): Evenement
     {
         /** @var Evenement $entity */
         if (!$entity = $this->em->find(Evenement::class, $id)) {
@@ -91,7 +91,7 @@ class EvenementProvider extends DonneePersonnelleProvider
      * @throws \Exception
      */
     #[\Override]
-    public function populate($entity, Client $client): void
+    public function populate(DonneePersonnelle $entity, Client $client): void
     {
         parent::populate($entity, $client);
 
