@@ -26,7 +26,7 @@ class ImportBeneficiaireCommand extends Command
     }
 
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->addArgument(
