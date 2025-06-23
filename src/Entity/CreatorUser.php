@@ -21,8 +21,6 @@ class CreatorUser extends Creator implements \Stringable
 
     /**
      * Get entity.
-     *
-     * @return User|null
      */
     public function getEntity(): ?User
     {
