@@ -30,6 +30,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiFilter(DistantIdFilter::class, properties: ['distantId'])]
@@ -63,10 +64,10 @@ use Symfony\Component\Validator\Constraints as Assert;
             processor: BeneficiaryStateProcessor::class,
         ),
     ],
-    normalizationContext: ['groups' => ['v3:beneficiary:read', 'v3:user:read', 'v3:center:read', 'timed']],
+    normalizationContext: ['groups' => ['v3:beneficiary:read', 'v3:user:read', 'v3:center:read', 'timed'], 'enable_max_depth' => true],
     denormalizationContext: ['groups' => ['v3:beneficiary:write', 'v3:user:write']],
     openapiContext: ['tags' => ['Beneficiaires']],
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')"
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
 )]
 #[Anonymize('reconnect.beneficiary_filter')]
 #[CustomAssert\Entity(groups: ['beneficiaire'])]
@@ -166,6 +167,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
     #[SerializedName('centres')]
     #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: BeneficiaireCentre::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[MaxDepth(5)]
     private Collection $beneficiairesCentres;
 
     #[ORM\OneToMany(mappedBy: 'beneficiaire', targetEntity: ConsultationCentre::class, cascade: ['persist', 'remove'])]
