@@ -4,6 +4,7 @@ namespace App\Api\State;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
+use App\Api\ApiRoutes;
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Attributes\DonneePersonnelle;
 use App\Entity\Attributes\Dossier;
@@ -49,6 +50,14 @@ readonly class PersonalDataStateProcessor implements ProcessorInterface
                     throw new BadRequestHttpException('Dossier parent not found');
                 }
                 $data->setDossierParent($dossierParent);
+            }
+
+            return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
+        }
+
+        if ($data instanceof DonneePersonnelle && str_starts_with((string) $context['operation']->getName(), (string) ApiRoutes::TOGGLE_VISIBILITY)) {
+            if (!$user instanceof User) {
+                $data->setBPrive(true);
             }
 
             return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
