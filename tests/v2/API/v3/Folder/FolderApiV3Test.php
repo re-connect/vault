@@ -65,4 +65,38 @@ class FolderApiV3Test extends AbstractApiTest
             $folder
         );
     }
+
+    public function testToggleVisibility(): void
+    {
+        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
+        /** @var \App\Entity\Attributes\Beneficiaire $beneficiary */
+        $beneficiary = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
+        $folder = FolderFactory::findOrCreate([
+            'beneficiaire' => $beneficiary,
+            'bPrive' => false,
+        ])->object();
+        $folderId = $folder->getId();
+
+        $this->assertEndpoint(
+            'reconnect_pro',
+            sprintf('/folders/%s/toggle-visibility', $folderId),
+            'PATCH',
+            200,
+            [
+                '@context' => '/api/contexts/folder',
+                '@id' => sprintf('/api/v3/folders/%s/toggle-visibility', $folderId),
+                '@type' => 'folder',
+            ],
+            []
+        );
+        // Once item has been set to private, it should not be found
+        $this->assertEndpoint(
+            'reconnect_pro',
+            sprintf('/folders/%s/toggle-visibility', $folderId),
+            'PATCH',
+            404,
+            null,
+            []
+        );
+    }
 }

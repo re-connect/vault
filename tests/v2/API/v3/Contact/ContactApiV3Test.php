@@ -161,4 +161,38 @@ class ContactApiV3Test extends AbstractApiTest
             204,
         );
     }
+
+    public function testToggleVisibility(): void
+    {
+        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
+        /** @var Beneficiaire $beneficiary */
+        $beneficiary = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
+        $contact = ContactFactory::findOrCreate([
+            'beneficiaire' => $beneficiary,
+            'bPrive' => false,
+        ])->object();
+        $contactId = $contact->getId();
+
+        $this->assertEndpoint(
+            'reconnect_pro',
+            sprintf('/contacts/%s/toggle-visibility', $contactId),
+            'PATCH',
+            200,
+            [
+                '@context' => '/api/contexts/Contact',
+                '@id' => sprintf('/api/v3/contacts/%s/toggle-visibility', $contactId),
+                '@type' => 'Contact',
+            ],
+            []
+        );
+        // Once item has been set to private, it should not be found
+        $this->assertEndpoint(
+            'reconnect_pro',
+            sprintf('/contacts/%s/toggle-visibility', $contactId),
+            'PATCH',
+            404,
+            null,
+            []
+        );
+    }
 }

@@ -162,4 +162,38 @@ class EventApiV3Test extends AbstractApiTest
             204,
         );
     }
+
+    public function testToggleVisibility(): void
+    {
+        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
+        /** @var Beneficiaire $beneficiary */
+        $beneficiary = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
+        $event = EventFactory::findOrCreate([
+            'beneficiaire' => $beneficiary,
+            'bPrive' => false,
+        ])->object();
+        $eventId = $event->getId();
+
+        $this->assertEndpoint(
+            'reconnect_pro',
+            sprintf('/events/%s/toggle-visibility', $eventId),
+            'PATCH',
+            200,
+            [
+                '@context' => '/api/contexts/Event',
+                '@id' => sprintf('/api/v3/events/%s/toggle-visibility', $eventId),
+                '@type' => 'Event',
+            ],
+            []
+        );
+        // Once item has been set to private, it should not be found
+        $this->assertEndpoint(
+            'reconnect_pro',
+            sprintf('/events/%s/toggle-visibility', $eventId),
+            'PATCH',
+            404,
+            null,
+            []
+        );
+    }
 }
