@@ -9,7 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-use App\Api\ApiRoutes;
+use App\Api\ApiOperations;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Repository\EvenementRepository;
@@ -40,7 +40,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(
             uriTemplate: '/events/{id}/toggle-visibility',
             security: "is_granted('ROLE_OAUTH2_EVENTS')",
-            name: ApiRoutes::TOGGLE_VISIBILITY.'_event',
+            name: ApiOperations::TOGGLE_VISIBILITY.'_event',
             processor: PersonalDataStateProcessor::class
         ),
     ],

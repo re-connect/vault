@@ -4,13 +4,13 @@ namespace App\Api\State;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
-use App\Api\ApiRoutes;
+use App\Api\ApiOperations;
 use App\Api\Manager\ApiClientManager;
 use App\Entity\Attributes\DonneePersonnelle;
 use App\Entity\Attributes\Dossier;
-use App\Entity\Attributes\User;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\DossierRepository;
+use App\Security\HelperV2\Oauth2Helper;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -20,6 +20,7 @@ readonly class PersonalDataStateProcessor implements ProcessorInterface
 {
     public function __construct(
         private Security $security,
+        private Oauth2Helper $oauth2Helper,
         private ProcessorInterface $persistProcessor,
         private BeneficiaireRepository $beneficiaireRepository,
         private ApiClientManager $apiClientManager,
@@ -32,7 +33,7 @@ readonly class PersonalDataStateProcessor implements ProcessorInterface
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): ?DonneePersonnelle
     {
         $user = $this->security->getUser();
-        if ($user instanceof User && $user->isBeneficiaire() && $user->getSubjectBeneficiaire()) {
+        if (!$this->oauth2Helper->isAuthenticatedAsClient() && $user->isBeneficiaire() && $user->getSubjectBeneficiaire()) {
             $data->setBeneficiaire($user->getSubjectBeneficiaire());
 
             return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
@@ -55,10 +56,8 @@ readonly class PersonalDataStateProcessor implements ProcessorInterface
             return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
         }
 
-        if ($data instanceof DonneePersonnelle && str_starts_with((string) $context['operation']->getName(), (string) ApiRoutes::TOGGLE_VISIBILITY)) {
-            if (!$user instanceof User) {
-                $data->setBPrive(true);
-            }
+        if ($data instanceof DonneePersonnelle && ApiOperations::isSameOperation($operation, ApiOperations::TOGGLE_VISIBILITY)) {
+            $data->setBPrive(!$data->getBPrive());
 
             return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
         }

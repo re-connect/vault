@@ -10,7 +10,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-use App\Api\ApiRoutes;
+use App\Api\ApiOperations;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Controller\Api\UploadDocumentController;
@@ -40,7 +40,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
         new Patch(
             uriTemplate: '/documents/{id}/toggle-visibility',
             security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
-            name: ApiRoutes::TOGGLE_VISIBILITY.'_document',
+            name: ApiOperations::TOGGLE_VISIBILITY.'_document',
             processor: PersonalDataStateProcessor::class
         ),
         new Post(
