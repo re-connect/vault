@@ -82,4 +82,38 @@ class DocumentAPIv3Test extends AbstractApiTest
         // Clean up the temporary file
         unlink($filePath);
     }
+
+    public function testToggleVisibility(): void
+    {
+        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
+        /** @var \App\Entity\Attributes\Beneficiaire $beneficiary */
+        $beneficiary = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
+        $document = DocumentFactory::findOrCreate([
+            'beneficiaire' => $beneficiary,
+            'bPrive' => false,
+        ])->object();
+        $documentId = $document->getId();
+
+        $this->assertEndpoint(
+            'reconnect_pro',
+            sprintf('/documents/%s/toggle-visibility', $documentId),
+            'PATCH',
+            200,
+            [
+                '@context' => '/api/contexts/Document',
+                '@id' => sprintf('/api/v3/documents/%s/toggle-visibility', $documentId),
+                '@type' => 'Document',
+            ],
+            []
+        );
+        // Once item has been set to private, it should not be found
+        $this->assertEndpoint(
+            'reconnect_pro',
+            sprintf('/documents/%s/toggle-visibility', $documentId),
+            'PATCH',
+            404,
+            null,
+            []
+        );
+    }
 }
