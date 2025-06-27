@@ -43,6 +43,6 @@ class Oauth2Helper
 
     public function isAuthenticatedAsClient(): bool
     {
-        return !($this->security->getUser() instanceof User);
+        return $this->tokenStorage->getToken() instanceof OAuth2Token && !($this->security->getUser() instanceof User);
     }
 }

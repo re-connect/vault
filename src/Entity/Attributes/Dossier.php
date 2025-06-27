@@ -10,7 +10,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-use App\Api\ApiRoutes;
+use App\Api\ApiOperations;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Entity\Interface\FolderableEntityInterface;
@@ -40,7 +40,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
         new Patch(
             uriTemplate: '/folders/{id}/toggle-visibility',
             security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
-            name: ApiRoutes::TOGGLE_VISIBILITY.'_folder',
+            name: ApiOperations::TOGGLE_VISIBILITY.'_folder',
             processor: PersonalDataStateProcessor::class
         ),
     ],

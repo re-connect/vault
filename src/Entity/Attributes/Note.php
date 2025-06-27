@@ -9,7 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-use App\Api\ApiRoutes;
+use App\Api\ApiOperations;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
 use Doctrine\Common\Collections\Collection;
@@ -32,7 +32,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(
             uriTemplate: '/notes/{id}/toggle-visibility',
             security: "is_granted('ROLE_OAUTH2_NOTES')",
-            name: ApiRoutes::TOGGLE_VISIBILITY.'_note',
+            name: ApiOperations::TOGGLE_VISIBILITY.'_note',
             processor: PersonalDataStateProcessor::class
         ),
     ],

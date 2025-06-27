@@ -9,7 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-use App\Api\ApiRoutes;
+use App\Api\ApiOperations;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
 use Doctrine\Common\Collections\Collection;
@@ -31,7 +31,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(
             uriTemplate: '/contacts/{id}/toggle-visibility',
             security: "is_granted('ROLE_OAUTH2_CONTACTS')",
-            name: ApiRoutes::TOGGLE_VISIBILITY.'_contact',
+            name: ApiOperations::TOGGLE_VISIBILITY.'_contact',
             processor: PersonalDataStateProcessor::class
         ),
     ],
