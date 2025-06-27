@@ -5,15 +5,11 @@ meta {
 }
 
 get {
-  url: {{baseUrl}}/api/v3/beneficiaries/24977/folders?folderId=29612
+  url: {{baseUrl}}/api/v3/beneficiaries/29952/folders?folderId=29612
   body: none
-  auth: bearer
+  auth: inherit
 }
 
-query {
+params:query {
   folderId: 29612
-}
-
-auth:bearer {
-  token: {{oauth2_token}}
 }

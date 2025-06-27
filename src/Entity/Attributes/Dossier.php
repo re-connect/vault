@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Api\ApiRoutes;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Entity\Interface\FolderableEntityInterface;
@@ -36,6 +37,12 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
         new GetCollection(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('ROLE_USER')"),
         new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_DOCUMENTS')", processor: PersonalDataStateProcessor::class),
         new Patch(security: "is_granted('UPDATE', object)"),
+        new Patch(
+            uriTemplate: '/folders/{id}/toggle-visibility',
+            security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
+            name: ApiRoutes::TOGGLE_VISIBILITY.'_folder',
+            processor: PersonalDataStateProcessor::class
+        ),
     ],
     normalizationContext: ['groups' => ['v3:folder:read']],
     denormalizationContext: ['groups' => ['v3:folder:write']],
