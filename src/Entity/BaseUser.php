@@ -39,8 +39,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
 
     /**
      * Plain password. Used for model validation. Must not be persisted.
-     *
-     * @var string|null
      */
     #[Groups(['v3:user:write', 'v3:user:read'])]
     protected $plainPassword;

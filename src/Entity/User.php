@@ -194,9 +194,11 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     #[Groups(['read', 'user:read', 'v3:user:read'])]
     private ?bool $bFirstMobileConnexion = false;
 
+    /** @var ?Collection<int, RefreshToken> */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: RefreshToken::class, cascade: ['persist', 'remove'])]
-    private Collection $refreshTokens;
+    private ?Collection $refreshTokens = null;
 
+    /** @var ?Collection<int, AccessToken> */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: AccessToken::class, cascade: ['persist', 'remove'])]
     private ?Collection $accessTokens = null;
 
@@ -272,7 +274,9 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     {
         parent::__construct();
         $this->refreshTokens = new ArrayCollection();
+        $this->accessTokens = new ArrayCollection();
         $this->creators = new ArrayCollection();
+        $this->sharedDocuments = new ArrayCollection();
     }
 
     public static function createPro(): self
@@ -683,10 +687,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this;
     }
 
-    /**
-     * @return Collection
-     */
-    public function getRefreshTokens(): ArrayCollection|array
+    public function getRefreshTokens(): Collection
     {
         return $this->refreshTokens;
     }
@@ -705,10 +706,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this;
     }
 
-    /**
-     * @return Collection
-     */
-    public function getAccessTokens(): ?array
+    public function getAccessTokens(): ?Collection
     {
         return $this->accessTokens;
     }
