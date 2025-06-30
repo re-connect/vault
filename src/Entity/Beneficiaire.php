@@ -8,6 +8,8 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\OpenApi\Model\Operation;
+use ApiPlatform\OpenApi\Model\RequestBody;
 use App\Api\Dto\BeneficiaryDto;
 use App\Api\Dto\LinkBeneficiaryDto;
 use App\Api\Filters\DistantIdFilter;
@@ -47,11 +49,15 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(
             uriTemplate: '/beneficiaries/{id}/unlink',
             controller: UnlinkBeneficiaryController::class,
-            openapiContext: [
-                'summary' => 'Unlink a beneficiary from your oauth2 client',
-                'requestBody' => ['content' => ['application/json' => ['schema' => ['type' => 'object']]]],
-                'tags' => ['Beneficiaires'],
-            ],
+            openapi: new Operation(
+                tags: ['Beneficiaires'],
+                summary: 'Unlink a beneficiary from your oauth2 client',
+                requestBody: new RequestBody(
+                    content: new \ArrayObject([
+                        'application/json' => ['schema' => ['type' => 'object']],
+                    ])
+                )
+            ),
             description: 'Unlink a beneficiary from your oauth2 client',
             security: "is_granted('UPDATE', object)"
         ),
@@ -64,7 +70,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     ],
     normalizationContext: ['groups' => ['v3:beneficiary:read', 'v3:user:read', 'v3:center:read', 'timed'], 'enable_max_depth' => true],
     denormalizationContext: ['groups' => ['v3:beneficiary:write', 'v3:user:write']],
-    openapiContext: ['tags' => ['Beneficiaires']],
+    openapi: new Operation(
+        tags: ['Beneficiaires'],
+    ),
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
 )]
 #[Anonymize('reconnect.beneficiary_filter')]

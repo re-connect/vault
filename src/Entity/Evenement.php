@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\ApiOperations;
+use ApiPlatform\OpenApi\Model\Operation;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Repository\EvenementRepository;
@@ -46,7 +47,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     ],
     normalizationContext: ['groups' => ['v3:event:read']],
     denormalizationContext: ['groups' => ['v3:event:write']],
-    openapiContext: ['tags' => ['Évènements']],
+    openapi: new Operation(
+        tags: ['Évènements'],
+    ),
 )]
 #[ApiResource(
     uriTemplate: '/beneficiaries/{id}/events',
@@ -59,7 +62,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     ],
     normalizationContext: ['groups' => ['v3:event:read']],
     denormalizationContext: ['groups' => ['v3:event:write']],
-    openapiContext: ['tags' => ['Events']],
+    openapi: new Operation(
+        tags: ['Events'],
+    ),
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
 )]
 class Evenement extends DonneePersonnelle

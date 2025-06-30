@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use ApiPlatform\OpenApi\Model\Operation;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -22,8 +23,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
     operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
     normalizationContext: ['groups' => ['v3:center:read']],
     denormalizationContext: ['groups' => ['v3:center:write']],
-    openapiContext: ['tags' => ['Centres Beneficiaires']],
-    security: "is_granted('ROLE_OAUTH2_CENTERS')",
+    openapi: new Operation(
+        tags: ['Centres Beneficiaires'],
+    ),
+    security: "is_granted('ROLE_OAUTH2_CENTERS')"
 )]
 class BeneficiaireCentre extends UserCentre
 {
