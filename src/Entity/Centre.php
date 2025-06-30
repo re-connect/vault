@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Api\Dto\CentreDto;
 use App\Api\State\CentreStateProcessor;
+use ApiPlatform\OpenApi\Model\Operation;
 use App\Controller\Rest\V3\LinkedCentersController;
 use App\Entity\Traits\CreatorTrait;
 use App\Repository\CentreRepository;
@@ -50,7 +51,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     ],
     normalizationContext: ['groups' => ['v3:center:read']],
     denormalizationContext: ['groups' => ['v3:center:write']],
-    openapiContext: ['tags' => ['Centres']],
+    openapi: new Operation(
+        tags: ['Centres'],
+    ),
     security: "is_granted('ROLE_OAUTH2_CENTERS')",
 )]
 #[ApiFilter(SearchFilter::class, properties: ['beneficiairesCentres.beneficiaire'])]

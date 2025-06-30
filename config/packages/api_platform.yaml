@@ -25,3 +25,8 @@ api_platform:
     patch_formats:
         json: [ 'application/json' ]
         jsonapi: [ 'application/vnd.api+json' ]
+    formats:
+        json: [ 'application/json' ]
+        jsonld: ['application/ld+json']
+    use_symfony_listeners: false
+    inflector: api_platform.metadata.inflector
