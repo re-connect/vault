@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use ApiPlatform\OpenApi\Model\Operation;
 use App\Repository\MembreRepository;
 use App\Validator\Constraints as CustomAssert;
 use App\Validator\Constraints\UniqueExternalLink;
@@ -28,7 +29,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
     operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
     normalizationContext: ['groups' => ['v3:member:read', 'v3:user:read']],
     denormalizationContext: ['groups' => ['v3:member:write', 'v3:user:write']],
-    openapiContext: ['tags' => ['Professionnels']],
+    openapi: new Operation(
+        tags: ['Professionnels'],
+    ),
     security: "is_granted('ROLE_OAUTH2_PROS')",
 )]
 class Membre extends Subject implements UserWithCentresInterface, UserHandleCentresInterface

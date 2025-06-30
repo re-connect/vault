@@ -10,6 +10,8 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\OpenApi\Model\Operation;
+use ApiPlatform\OpenApi\Model\RequestBody;
 use App\Api\Filters\FolderIdFilter;
 use App\Controller\Api\UploadDocumentController;
 use App\Domain\Anonymization\AnonymizationHelper;
@@ -37,23 +39,31 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
         new Patch(security: "is_granted('UPDATE', object)"),
         new Post(
             controller: UploadDocumentController::class,
-            openapiContext: [
-                'tags' => ['Documents'],
-                'requestBody' => ['content' => ['multipart/form-data' => ['schema' => [
-                    'type' => 'object',
-                    'properties' => [
-                        'file' => ['type' => 'file'],
-                        'distant_id' => ['type' => 'string', 'format' => 'string'],
-                    ],
-                ], ], ], ],
-            ],
+            openapi: new Operation(
+                tags: ['Documents'],
+                requestBody: new RequestBody(
+                    content: new \ArrayObject([
+                        'multipart/form-data' => [
+                            'schema' => [
+                                'type' => 'object',
+                                'properties' => [
+                                    'file' => ['type' => 'file'],
+                                    'distant_id' => ['type' => 'string', 'format' => 'string'],
+                                ],
+                            ],
+                        ],
+                    ])
+                )
+            ),
             security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
             deserialize: false,
         ),
     ],
     normalizationContext: ['groups' => ['v3:document:read']],
     denormalizationContext: ['groups' => ['v3:document:write']],
-    openapiContext: ['tags' => ['Documents']],
+    openapi: new Operation(
+        tags: ['Documents'],
+    ),
 )]
 #[ApiFilter(FolderIdFilter::class, properties: ['folderId' => 'exact'])]
 #[ApiResource(
@@ -67,7 +77,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     ],
     normalizationContext: ['groups' => ['v3:document:read']],
     denormalizationContext: ['groups' => ['v3:document:write']],
-    openapiContext: ['tags' => ['Documents']],
+    openapi: new Operation(
+        tags: ['Documents'],
+    ),
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
 )]
 class Document extends DonneePersonnelle implements FolderableEntityInterface

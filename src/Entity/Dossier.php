@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\OpenApi\Model\Operation;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Entity\Interface\FolderableEntityInterface;
@@ -39,7 +40,9 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
     ],
     normalizationContext: ['groups' => ['v3:folder:read']],
     denormalizationContext: ['groups' => ['v3:folder:write']],
-    openapiContext: ['tags' => ['Dossiers']],
+    openapi: new Operation(
+        tags: ['Dossiers'],
+    ),
 )]
 #[ApiFilter(FolderIdFilter::class, properties: ['folderId' => 'exact'])]
 #[ApiResource(
@@ -53,7 +56,9 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
     ],
     normalizationContext: ['groups' => ['v3:folder:read']],
     denormalizationContext: ['groups' => ['v3:folder:write']],
-    openapiContext: ['tags' => ['Folders']],
+    openapi: new Operation(
+        tags: ['Folders'],
+    ),
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
 )]
 class Dossier extends DonneePersonnelle implements FolderableEntityInterface

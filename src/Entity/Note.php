@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\OpenApi\Model\Operation;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
 use Doctrine\Common\Collections\Collection;
@@ -31,7 +32,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     ],
     normalizationContext: ['groups' => ['v3:note:read']],
     denormalizationContext: ['groups' => ['v3:note:write']],
-    openapiContext: ['tags' => ['Notes']],
+    openapi: new Operation(
+        tags: ['Notes'],
+    ),
 )]
 #[ApiResource(
     uriTemplate: '/beneficiaries/{id}/notes',
@@ -44,7 +47,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     ],
     normalizationContext: ['groups' => ['v3:note:read']],
     denormalizationContext: ['groups' => ['v3:note:write']],
-    openapiContext: ['tags' => ['Notes']],
+    openapi: new Operation(
+        tags: ['Notes'],
+    ),
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
 )]
 class Note extends DonneePersonnelle
