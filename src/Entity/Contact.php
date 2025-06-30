@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\ApiOperations;
+use ApiPlatform\OpenApi\Model\Operation;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Interface\ClientResourceInterface;
@@ -38,7 +39,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     ],
     normalizationContext: ['groups' => ['v3:contact:read']],
     denormalizationContext: ['groups' => ['v3:contact:write']],
-    openapiContext: ['tags' => ['Contacts']],
+    openapi: new Operation(
+        tags: ['Contacts'],
+    ),
 )]
 #[ApiResource(
     uriTemplate: '/beneficiaries/{id}/contacts',
@@ -51,7 +54,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     ],
     normalizationContext: ['groups' => ['v3:contact:read']],
     denormalizationContext: ['groups' => ['v3:contact:write']],
-    openapiContext: ['tags' => ['Contacts']],
+    openapi: new Operation(
+        tags: ['Contacts'],
+    ),
     security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ')",
 )]
 class Contact extends DonneePersonnelle implements ClientResourceInterface
