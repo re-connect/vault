@@ -24,7 +24,7 @@ class ClientBeneficiaryFixture extends Fixture implements FixtureGroupInterface,
         $rosalieExternalLink = (new ClientBeneficiaire($client, $beneficiary->getId()))->setEntity($beneficiary);
         $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK)->object();
-        $reconnectProExternalLink = (new ClientBeneficiaire($client, $beneficiary->getId()))->setEntity($beneficiary);
+        $reconnectProExternalLink = (new ClientBeneficiaire($client, $beneficiary->getId()))->setEntity($beneficiary)->setBeneficiaireCentre($beneficiary->getBeneficiairesCentres()->first() ?: null);
         $manager->persist($mobileExternalLink);
         $manager->persist($rosalieExternalLink);
         $manager->persist($reconnectProExternalLink);

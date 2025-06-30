@@ -17,9 +17,11 @@ use App\Tests\Factory\RelayFactory;
 use App\Tests\Factory\UserFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
+class BeneficiaryFixture extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
     public const BENEFICIARY_MAIL = 'v2_test_user_beneficiary@mail.com';
     public const BENEFICIARY_MAIL_SETTINGS = 'v2_test_user_beneficiary_settings@mail.com';
@@ -66,7 +68,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
             $this->getTestUser(self::BENEFICIARY_WITH_RP_LINK),
             [],
             [
-                RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY_1]),
+                RelayFactory::findOrCreate(['nom' => RelayFixture::DEFAULT_BENEFICIARY_RELAY]),
             ]
         );
         $mfaEnabledUser = $this->getTestUser(self::BENEFICIARY_WITH_MFA_ENABLE);
@@ -129,5 +131,12 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface
     public static function getGroups(): array
     {
         return ['v2'];
+    }
+
+    /** @return array<class-string<FixtureInterface>> */
+    #[\Override]
+    public function getDependencies(): array
+    {
+        return [RelayFixture::class];
     }
 }
