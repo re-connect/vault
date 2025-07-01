@@ -26,6 +26,7 @@ use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -350,6 +351,9 @@ class BeneficiaryPersonalDataController extends AbstractController
         ]);
     }
 
+    /**
+     * @param class-string<FormTypeInterface<DonneePersonnelle>> $formTypeClassName
+     */
     private function getCreateForm(string $formTypeClassName, DonneePersonnelle $entity, string $url): FormInterface
     {
         $user = $entity->getBeneficiaire()?->getUser();
