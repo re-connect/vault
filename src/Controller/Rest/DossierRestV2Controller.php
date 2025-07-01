@@ -93,7 +93,6 @@ class DossierRestV2Controller extends REController
             $provider->save($entity);
 
             return $this->createJsonResponse($entity, Response::HTTP_CREATED, ['read-personal-data-v2']);
-
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
