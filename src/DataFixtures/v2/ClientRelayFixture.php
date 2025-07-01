@@ -22,6 +22,12 @@ class ClientRelayFixture extends Fixture implements FixtureGroupInterface, Depen
         $relay->addExternalLink($clientRelay);
         $manager->persist($clientRelay);
         $manager->flush();
+        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
+        $relay = RelayFactory::find(['nom' => RelayFixture::DEFAULT_PRO_RELAY]);
+        $clientRelay = new ClientCentre($client, 43);
+        $relay->addExternalLink($clientRelay);
+        $manager->persist($clientRelay);
+        $manager->flush();
     }
 
     /** @return string[] */
