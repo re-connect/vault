@@ -125,10 +125,10 @@ class Centre implements \JsonSerializable, \Stringable
     private Collection $sms;
 
     #[ORM\OneToMany(mappedBy: 'centre', targetEntity: ConsultationCentre::class, cascade: ['persist', 'remove'])]
-    private ?Collection $consultationsCentre = null;
+    private Collection $consultationsCentre;
 
     #[ORM\OneToMany(mappedBy: 'centre', targetEntity: StatistiqueCentre::class, cascade: ['persist', 'remove'])]
-    private ?Collection $statistiquesCentre = null;
+    private Collection $statistiquesCentre;
 
     #[ORM\Column(name: 'justificatifName', type: 'string', length: 255, nullable: true)]
     private ?string $justificatifName = null;
@@ -172,6 +172,9 @@ class Centre implements \JsonSerializable, \Stringable
         $this->beneficiairesCentres = new ArrayCollection();
         $this->membresCentres = new ArrayCollection();
         $this->externalLinks = new ArrayCollection();
+        $this->statistiquesCentre = new ArrayCollection();
+        $this->consultationsCentre = new ArrayCollection();
+        $this->sms = new ArrayCollection();
         $letters = 'abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $this->code = substr(str_shuffle($letters), 0, 8);
     }
@@ -327,7 +330,7 @@ class Centre implements \JsonSerializable, \Stringable
         $this->consultationsCentre->removeElement($consultationsCentre);
     }
 
-    public function getConsultationsCentre(): ?Collection
+    public function getConsultationsCentre(): Collection
     {
         return $this->consultationsCentre;
     }
@@ -344,7 +347,7 @@ class Centre implements \JsonSerializable, \Stringable
         $this->statistiquesCentre->removeElement($statistiquesCentre);
     }
 
-    public function getStatistiquesCentre(): ?Collection
+    public function getStatistiquesCentre(): Collection
     {
         return $this->statistiquesCentre;
     }
