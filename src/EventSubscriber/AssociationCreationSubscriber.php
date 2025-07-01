@@ -66,6 +66,7 @@ class AssociationCreationSubscriber implements EventSubscriberInterface
 
     private function createUserAssociation(Association $association, bool $isTest = false): User
     {
+        /** @var User $userAssociation */
         $userAssociation = (new User())
             ->setPlainPassword($this->userManager->getRandomPassword())
             ->setNom($association->getNom())
