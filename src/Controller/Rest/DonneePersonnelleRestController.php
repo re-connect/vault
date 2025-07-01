@@ -51,7 +51,7 @@ abstract class DonneePersonnelleRestController extends REController
         $this->provider->populate($entity, $this->apiClientManager->getCurrentOldClient());
 
         if (null !== $data = $this->restManager->getJsonValidationError($entity)) {
-            return $this->json($data, Response::HTTP_BAD_REQUEST);
+            return $this->createJsonResponse($data, Response::HTTP_BAD_REQUEST);
         }
 
         $statusCode = null === $entity->getId() ? Response::HTTP_CREATED : Response::HTTP_OK;
@@ -67,7 +67,7 @@ abstract class DonneePersonnelleRestController extends REController
             $data = $entity;
         }
 
-        return $this->json($data, $statusCode);
+        return $this->createJsonResponse($data, $statusCode);
     }
 
     protected function toggleAccessAction(int $id): JsonResponse
@@ -79,7 +79,7 @@ abstract class DonneePersonnelleRestController extends REController
                     || $user->isAdministrateur())) {
                 $this->provider->changePrive($entity);
 
-                return $this->json($entity, Response::HTTP_ACCEPTED);
+                return $this->createJsonResponse($entity, Response::HTTP_ACCEPTED);
             }
 
             $this->provider->reportAbuse($entity);
@@ -144,11 +144,16 @@ abstract class DonneePersonnelleRestController extends REController
         try {
             $entity = $this->provider->getEntity($id, $this->accessRead);
 
-            return $this->json($entity);
+            return $this->createJsonResponse($entity);
         } catch (\Exception $e) {
             $jsonResponseException = new JsonResponseException($e);
 
             return $jsonResponseException->getResponse();
         }
+    }
+
+    protected function createJsonResponse(mixed $entity, int $statusCode = 200, array $serializationGroups = []): JsonResponse
+    {
+        return $this->json($entity, $statusCode, [], ['groups' => ['read-personal-data-v2']]);
     }
 }

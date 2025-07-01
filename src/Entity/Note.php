@@ -62,7 +62,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Note extends DonneePersonnelle
 {
     #[ORM\Column(name: 'contenu', type: 'text', length: 0, nullable: false)]
-    #[Groups(['read-personal-data', 'write-personal-data', 'v3:note:write', 'v3:note:read'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data', 'v3:note:write', 'v3:note:read'])]
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
     #[Assert\NotBlank]
     private ?string $contenu = null;
