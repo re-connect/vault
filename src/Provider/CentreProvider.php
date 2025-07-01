@@ -273,7 +273,7 @@ class CentreProvider
     {
         $results = $this->em->createQueryBuilder()
             ->select('m', 'mc', 'c', 'omc', 'om', 'u')
-            ->from('App:Membre', 'om')
+            ->from(Membre::class, 'om')
             ->leftJoin('om.user', 'u')
             ->leftJoin('om.membresCentres', 'omc')
             ->leftJoin('omc.centre', 'c')

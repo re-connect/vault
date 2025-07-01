@@ -42,7 +42,7 @@ class MembreRestV2Controller extends REController
                 throw new AccessDeniedException('You must be connected as member or manager.');
             }
 
-            return $this->json($membresByCentre);
+            return $this->createJsonResponse($membresByCentre, 200, ['v3:member:read']);
         } catch (AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -80,7 +80,7 @@ class MembreRestV2Controller extends REController
 
             $centreManager->switchDroitMembreCentre($entity, $centre, $droit);
 
-            return $this->json($entity);
+            return $this->createJsonResponse($entity, 200, ['v3:member:read']);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
