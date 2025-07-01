@@ -54,7 +54,7 @@ class AddExternalLinkTest extends AbstractApiTest
         $this->assertNotNull($beneficiary->getExternalLinksForClient($client)->first());
     }
 
-    public function testShouldNotAddExternalLink(): void
+    public function testShouldNotAddExternalLinkWhenAlreadyExists(): void
     {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK);
         $client = $this->clientRepository->findOneBy(['nom' => 'rosalie']);
@@ -68,6 +68,7 @@ class AddExternalLinkTest extends AbstractApiTest
             [
                 '@context' => '/api/contexts/Error',
                 '@type' => 'hydra:Error',
+                'hydra:description' => 'This beneficiary already has a link for this client.',
             ],
             [
                 'distant_id' => 1200,
@@ -136,5 +137,31 @@ class AddExternalLinkTest extends AbstractApiTest
         $this->assertCount(1, $beneficiaireCentres);
         $externalLinks = $this->clientBeneficiaireRepository->findBy(['entity' => $beneficiary, 'client' => $client]);
         $this->assertCount(1, $externalLinks);
+    }
+
+    public function testShouldNotAddExternalLinkWithInvalidExternalCenterId(): void
+    {
+        $beneficiary = BeneficiaireFactory::createOne();
+        // With no Relay or external links
+        $this->assertFalse($beneficiary->getBeneficiairesCentres()->first());
+        $client = $this->clientRepository->findOneBy(['nom' => 'reconnect_pro']);
+        $this->assertFalse($beneficiary->getExternalLinksForClient($client)->first());
+
+        $this->assertEndpoint(
+            'reconnect_pro',
+            sprintf('/beneficiaries/%s/add-external-link', $beneficiary->getId()),
+            'PATCH',
+            422,
+            [
+                '@context' => '/api/contexts/Error',
+                '@type' => 'hydra:Error',
+                'hydra:description' => 'Invalid external center id',
+            ],
+            [
+                'distant_id' => 1200,
+                'external_center' => 666, // Invalid external center ID
+                'external_pro_id' => 4972,
+            ]
+        );
     }
 }
