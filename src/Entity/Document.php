@@ -162,7 +162,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface, C
 
     #[ORM\OneToMany(mappedBy: 'document', targetEntity: SharedDocument::class, cascade: ['remove'])]
     #[ORM\JoinColumn(name: 'shared_document_id', referencedColumnName: 'id')]
-    private ?Collection $sharedDocuments;
+    private Collection $sharedDocuments;
 
     #[ORM\OneToMany(mappedBy: 'document', targetEntity: Creator::class, cascade: ['persist', 'remove'])]
     protected Collection $creators;
@@ -299,7 +299,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface, C
         ];
     }
 
-    public function getActiveSharedDocuments(): ?Collection
+    public function getActiveSharedDocuments(): Collection
     {
         return $this->sharedDocuments->filter(fn (SharedDocument $sharedDocument) => !$sharedDocument->isExpired());
     }
