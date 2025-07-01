@@ -50,7 +50,7 @@ final class EvenementRestV2Controller extends DonneePersonnelleRestController
             $isBeneficiaire = $user instanceof User ? $user->isBeneficiaire() : false;
             $entities = $beneficiaire->getEvenements($isBeneficiaire, false)->toArray();
 
-            return $this->json($entities, Response::HTTP_ACCEPTED);
+            return $this->createJsonResponse($entities, Response::HTTP_ACCEPTED);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 

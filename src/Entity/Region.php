@@ -26,7 +26,7 @@ class Region implements \Stringable
     #[ORM\Column(name: 'email', type: 'string', length: 255, nullable: true)]
     private ?string $email = null;
 
-    private ?Collection $centres = null;
+    private Collection $centres;
 
     public function __construct()
     {

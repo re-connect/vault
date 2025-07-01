@@ -89,6 +89,7 @@ class Membre extends Subject implements UserWithCentresInterface, UserHandleCent
         $this->membresCentres = new ArrayCollection();
         $this->consultationsBeneficiaires = new ArrayCollection();
         $this->externalLinks = new ArrayCollection();
+        $this->evenements = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
     }

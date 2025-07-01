@@ -13,6 +13,7 @@ use App\Api\ApiOperations;
 use ApiPlatform\OpenApi\Model\Operation;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
@@ -62,29 +63,29 @@ class Contact extends DonneePersonnelle
 {
     public const TOGGLE_VISIBILITY_API_ROUTE = 'ToggleVisibility';
     #[ORM\Column(name: 'prenom', type: 'string', length: 255, nullable: false)]
-    #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
     #[Anonymize('fr-fr.firstname')]
     #[Assert\NotBlank]
     private ?string $prenom = null;
 
     #[ORM\Column(name: 'telephone', type: 'string', length: 255, nullable: true)]
-    #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
     #[Anonymize('fr-fr.phone')]
     private ?string $telephone = null;
 
     #[ORM\Column(name: 'email', type: 'string', length: 255, nullable: true)]
-    #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_EMAIL]])]
     #[Assert\Email]
     private ?string $email = null;
 
     #[ORM\Column(name: 'commentaire', type: 'text', length: 0, nullable: true)]
-    #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
     private ?string $commentaire = null;
 
     #[ORM\Column(name: 'association', type: 'string', length: 255, nullable: true)]
-    #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
     private ?string $association = null;
 
@@ -99,6 +100,7 @@ class Contact extends DonneePersonnelle
         parent::__construct();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->creators = new ArrayCollection();
     }
 
     public function getPrenom(): string
