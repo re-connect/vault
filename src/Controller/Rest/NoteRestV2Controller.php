@@ -51,7 +51,7 @@ final class NoteRestV2Controller extends DonneePersonnelleRestController
 
             $entities = $beneficiaire->getNotes($isBeneficiaire)->toArray();
 
-            return $this->json($entities, Response::HTTP_ACCEPTED);
+            return $this->createJsonResponse($entities, Response::HTTP_ACCEPTED);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 

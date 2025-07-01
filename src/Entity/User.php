@@ -190,13 +190,11 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     #[Groups(['read', 'user:read', 'v3:user:read'])]
     private ?bool $bFirstMobileConnexion = false;
 
-    /** @var ?Collection<int, RefreshToken> */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: RefreshToken::class, cascade: ['persist', 'remove'])]
-    private ?Collection $refreshTokens = null;
+    private Collection $refreshTokens;
 
-    /** @var ?Collection<int, AccessToken> */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: AccessToken::class, cascade: ['persist', 'remove'])]
-    private ?Collection $accessTokens = null;
+    private Collection $accessTokens;
 
     #[ORM\Column(name: 'derniereConnexionAt', type: 'datetime', nullable: true)]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
@@ -227,9 +225,9 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     #[ORM\Column(name: 'oldUsername', type: 'string', length: 180, nullable: true)]
     #[Anonymize('md5')]
     private ?string $oldUsername = null;
-    /** @var ?Collection<int, SharedDocument> */
+
     #[ORM\OneToMany(mappedBy: 'sharedBy', targetEntity: SharedDocument::class, cascade: ['remove'])]
-    private ?Collection $sharedDocuments = null;
+    private Collection $sharedDocuments;
 
     #[ORM\Column(name: 'cgsAcceptedAt', type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeImmutable $cgsAcceptedAt = null;
@@ -683,7 +681,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this;
     }
 
-    public function getAccessTokens(): ?Collection
+    public function getAccessTokens(): Collection
     {
         return $this->accessTokens;
     }

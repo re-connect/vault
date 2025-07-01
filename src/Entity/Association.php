@@ -48,6 +48,7 @@ class Association extends Subject
     public function __construct()
     {
         $this->gestionnaires = new ArrayCollection();
+        $this->centres = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
     }
