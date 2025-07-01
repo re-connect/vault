@@ -152,6 +152,7 @@ abstract class DonneePersonnelleRestController extends REController
         }
     }
 
+    #[\Override]
     protected function createJsonResponse(mixed $entity, int $statusCode = 200, array $serializationGroups = []): JsonResponse
     {
         return $this->json($entity, $statusCode, [], ['groups' => ['read-personal-data-v2']]);
