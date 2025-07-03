@@ -4,12 +4,22 @@ namespace App\Tests\v2\Controller\GdprController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
+use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
+    private UserPasswordHasherInterface $hasher;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->hasher = self::getContainer()->get(UserPasswordHasherInterface::class);
+    }
+
     private const URL = '/update-password';
 
     public function provideTestRoute(): \Generator
@@ -153,5 +163,29 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
     public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
         $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email);
+    }
+
+    public function testPasswordIsUpdated(): void
+    {
+        self::ensureKernelShutdown();
+        $today = (new \DateTime())->format('Y-m-d');
+        $client = static::createClient();
+        $user = $this->getTestUserFromDb(MemberFixture::MEMBER_MAIL);
+        $client->loginUser($user);
+        self::assertTrue($this->hasher->isPasswordValid($user, UserFactory::STRONG_PASSWORD_CLEAR));
+        self::assertFalse($today === $user->getPasswordUpdatedAt()->format('Y-m-d'));
+
+        $crawler = $client->request('GET', self::URL);
+        $form = $crawler->selectButton('Valider')->form();
+        $form->setValues([
+            'change_password_form[plainPassword][first]' => 'NewPassword1!',
+            'change_password_form[plainPassword][second]' => 'NewPassword1!',
+        ]);
+        $client->submit($form);
+
+        $user = $this->getTestUserFromDb(MemberFixture::MEMBER_MAIL);
+        self::assertFalse($this->hasher->isPasswordValid($user, UserFactory::STRONG_PASSWORD_CLEAR));
+        self::assertTrue($this->hasher->isPasswordValid($user, 'NewPassword1!'));
+        self::assertTrue($today === $user->getPasswordUpdatedAt()->format('Y-m-d'));
     }
 }

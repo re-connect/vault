@@ -34,7 +34,10 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
     #[\Override]
     public function load(ObjectManager $manager)
     {
-        $this->createMember(['email' => self::MEMBER_MAIL],
+        $this->createMember([
+            'email' => self::MEMBER_MAIL,
+            'passwordUpdatedAt' => new \DateTime('- 3 days'),
+        ],
             [
                 RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_PRO_RELAY_1]),
                 RelayFactory::findOrCreate(['nom' => RelayFixture::SHARED_PRO_PRO_RELAY_2]),
