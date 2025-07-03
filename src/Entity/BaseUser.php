@@ -16,24 +16,24 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
     #[ORM\Column(name: 'id', type: 'integer', nullable: false)]
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
-    protected $id;
+    protected ?int $id = null;
 
     #[ORM\Column(name: 'username', type: 'string', length: 180, nullable: false)]
-    protected $username = '';
+    protected ?string $username = '';
 
     #[ORM\Column(name: 'username_canonical', type: 'string', length: 180, nullable: false)]
     #[Anonymize('md5')]
-    protected $usernameCanonical;
+    protected ?string $usernameCanonical = null;
 
     #[ORM\Column(name: 'emailCanonical', type: 'string', length: 255, nullable: true)]
     #[Anonymize('email', options: ['domain' => 'yopmail.com'])]
-    protected $emailCanonical;
+    protected ?string $emailCanonical = null;
 
     #[ORM\Column(name: 'salt', type: 'string', length: 255, nullable: true)]
-    protected $salt;
+    protected ?string $salt = null;
 
     #[ORM\Column(name: 'password', type: 'string', length: 255, nullable: false)]
-    protected $password;
+    protected ?string $password = null;
 
     protected ?string $currentPassword = null;
 
@@ -41,23 +41,20 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
      * Plain password. Used for model validation. Must not be persisted.
      */
     #[Groups(['v3:user:write', 'v3:user:read'])]
-    protected $plainPassword;
+    protected ?string $plainPassword = null;
 
     #[ORM\Column(name: 'last_login', type: 'datetime', nullable: true)]
-    protected $lastLogin;
+    protected ?\DateTime $lastLogin = null;
 
     #[ORM\Column(name: 'confirmation_token', type: 'string', length: 180, nullable: true)]
-    protected $confirmationToken;
+    protected ?string $confirmationToken = null;
 
     #[ORM\Column(name: 'roles', type: 'array', length: 0, nullable: false)]
-    protected $roles;
+    protected array $roles;
 
     #[ORM\Column(name: 'password_updated_at', type: 'datetime_immutable', nullable: true)]
     protected ?\DateTimeImmutable $passwordUpdatedAt;
 
-    /**
-     * User constructor.
-     */
     public function __construct()
     {
         $this->roles = [];
