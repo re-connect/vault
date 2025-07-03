@@ -6,7 +6,6 @@ use App\Repository\AnnexeRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Table(name: 'annexe')]
@@ -39,27 +38,16 @@ class Annexe implements \Stringable
     #[ORM\Column(name: 'actif', type: 'boolean', nullable: false, options: ['default' => '1'])]
     private bool $actif = true;
 
-    /**
-     * Get id.
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * Get url.
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * Set url.
-     *
-     * @return Annexe
-     */
     public function setUrl(string $url): static
     {
         $this->url = $url;
@@ -67,19 +55,11 @@ class Annexe implements \Stringable
         return $this;
     }
 
-    /**
-     * Get dateAjout.
-     */
     public function getDateAjout(): \DateTime
     {
         return $this->dateAjout;
     }
 
-    /**
-     * Set dateAjout.
-     *
-     * @return Annexe
-     */
     public function setDateAjout(\DateTime $dateAjout): static
     {
         $this->dateAjout = $dateAjout;
@@ -87,19 +67,11 @@ class Annexe implements \Stringable
         return $this;
     }
 
-    /**
-     * Get actif.
-     */
     public function getActif(): bool
     {
         return $this->actif;
     }
 
-    /**
-     * Set actif.
-     *
-     * @return Annexe
-     */
     public function setActif(bool $actif): static
     {
         $this->actif = $actif;
@@ -113,19 +85,11 @@ class Annexe implements \Stringable
         return $this::SERVER_PATH_TO_IMAGE_FOLDER.'/'.$this->getFichier();
     }
 
-    /**
-     * Get fichier.
-     */
     public function getFichier(): ?string
     {
         return $this->fichier;
     }
 
-    /**
-     * Set fichier.
-     *
-     * @return Annexe
-     */
     public function setFichier(?string $fichier): static
     {
         $this->fichier = $fichier;
@@ -138,9 +102,6 @@ class Annexe implements \Stringable
         return $this->fichierFile;
     }
 
-    /**
-     * @param File|UploadedFile $fichierFile
-     */
     public function setFichierFile(?File $fichierFile = null): void
     {
         $this->fichierFile = $fichierFile;
