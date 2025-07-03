@@ -101,7 +101,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     #[ORM\Column(name: 'username', type: 'string', length: 180, nullable: false)]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
     #[Anonymize('md5')]
-    protected $username = '';
+    protected ?string $username = '';
 
     #[ORM\Column(name: 'email', type: 'string', length: 255, nullable: true)]
     #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
@@ -110,13 +110,13 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     #[ORM\Column(name: 'last_login', type: 'datetime', nullable: true)]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
-    protected $lastLogin;
+    protected ?\DateTime $lastLogin = null;
 
     #[ORM\Column(name: 'id', type: 'integer', nullable: false)]
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
-    protected $id;
+    protected ?int $id = null;
 
     #[ORM\Column(name: 'createdAt', type: 'datetime', nullable: false)]
     #[Gedmo\Timestampable(on: 'create')]
