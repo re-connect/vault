@@ -158,4 +158,38 @@ class NoteApiV3Test extends AbstractApiTest
             204,
         );
     }
+
+    public function testToggleVisibility(): void
+    {
+        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
+        /** @var Beneficiaire $beneficiary */
+        $beneficiary = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
+        $note = NoteFactory::findOrCreate([
+            'beneficiaire' => $beneficiary,
+            'bPrive' => false,
+        ])->object();
+        $noteId = $note->getId();
+
+        $this->assertEndpoint(
+            'reconnect_pro',
+            sprintf('/notes/%s/toggle-visibility', $noteId),
+            'PATCH',
+            200,
+            [
+                '@context' => '/api/contexts/Note',
+                '@id' => sprintf('/api/v3/notes/%s/toggle-visibility', $noteId),
+                '@type' => 'Note',
+            ],
+            []
+        );
+        // Once item has been set to private, it should not be found
+        $this->assertEndpoint(
+            'reconnect_pro',
+            sprintf('/notes/%s/toggle-visibility', $noteId),
+            'PATCH',
+            404,
+            null,
+            []
+        );
+    }
 }

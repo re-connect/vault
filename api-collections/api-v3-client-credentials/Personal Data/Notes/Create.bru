@@ -7,16 +7,12 @@ meta {
 post {
   url: {{baseUrl}}/api/v3/notes
   body: json
-  auth: bearer
-}
-
-auth:bearer {
-  token: {{oauth2_token}}
+  auth: inherit
 }
 
 body:json {
   {
-    "beneficiaireId": 24977,
+    "beneficiaireId": 29952,
     "nom": "Bruno",
     "contenu": "Contenu de ma note"
   }
