@@ -447,7 +447,7 @@ class BeneficiaireRestV2ControllerTest extends AbstractControllerTest
             Request::METHOD_PATCH,
             $this->generateUrl('documents/'.$document->getId()),
             [
-                'nom' => 'new name',
+                'nom' => 'new_name.pdf',
             ]
         );
         $response = $this->client->getResponse();
@@ -456,7 +456,7 @@ class BeneficiaireRestV2ControllerTest extends AbstractControllerTest
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
         $content = json_decode($response->getContent(), 1);
-        $this->assertEquals('new name.pdf', $content['nom']);
+        $this->assertEquals('new_name.pdf', $content['nom']);
 
         /*
          * Je déplace le document dans un dossier non existant
