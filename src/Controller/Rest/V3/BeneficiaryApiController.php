@@ -25,9 +25,10 @@ final class BeneficiaryApiController extends AbstractController
         $user->getSubjectBeneficiaire()
             ->setQuestionSecrete($dto->otherSecretQuestion ?? $dto->secretQuestion)
             ->setReponseSecrete($dto->secretAnswer);
-
         $userManager->updatePassword($user, $dto->password);
 
-        return $this->json($user->getSubjectBeneficiaire());
+        return $this->json($user->getSubjectBeneficiaire(),
+            context: ['groups' => ['beneficiary:read']]
+        );
     }
 }

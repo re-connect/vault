@@ -12,8 +12,10 @@ use App\Entity\Attributes\Document;
 use App\Entity\Attributes\DonneePersonnelle;
 use App\Entity\Attributes\Evenement;
 use App\Entity\Attributes\Note;
+use App\Entity\Attributes\User;
 use App\Security\HelperV2\Oauth2Helper;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Bundle\SecurityBundle\Security;
 
 final readonly class ClientResourceCollectionExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface
 {
@@ -26,7 +28,7 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
         Contact::class,
     ];
 
-    public function __construct(private Oauth2Helper $oauth2Helper)
+    public function __construct(private Oauth2Helper $oauth2Helper, private Security $security)
     {
     }
 
@@ -51,6 +53,7 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
         $rootAliases = $queryBuilder->getRootAliases();
         if (
             $this->oauth2Helper->isClientGrantedAllPrivileges()
+            || !$this->isAuthenticatedAsClient()
             || !in_array($resourceClass, self::HANDLED_CLASSES)
             || 0 === count($rootAliases)
         ) {
@@ -73,5 +76,10 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
             ->innerJoin('externalLink.client', 'client')
             ->andWhere('client = :client')
             ->setParameter('client', $this->oauth2Helper->getClient());
+    }
+
+    private function isAuthenticatedAsClient(): bool
+    {
+        return !($this->security->getUser() instanceof User);
     }
 }

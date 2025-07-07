@@ -177,7 +177,8 @@ class BeneficiaireRepository extends ServiceEntityRepository
             ->andWhere('mc.bValid = true')
             ->andWhere('mc.droits LIKE :access')
             ->setParameter('id', $proId)
-            ->setParameter('access', sprintf('%%"%s";b:1%%', MembreCentre::MANAGE_BENEFICIARIES_PERMISSION));
+            ->setParameter('access', sprintf('%%"%s";b:1%%', MembreCentre::MANAGE_BENEFICIARIES_PERMISSION))
+        ;
     }
 
     /** @return Beneficiaire[] */

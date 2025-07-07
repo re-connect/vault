@@ -6,9 +6,10 @@ use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
+use App\Api\Dto\UserDto;
 use App\Api\Filters\UsernameFilter;
 use App\Api\State\SearchBeneficiaryProvider;
-use App\Api\State\UserPasswordProcessor;
+use App\Api\State\UserStateProcessor;
 use App\Entity\UserWithCentresInterface;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -40,7 +41,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 #[ApiResource(
     operations: [
         new GetCollection(security: "is_granted('ROLE_OAUTH2_USERS') or is_granted('ROLE_USER')", provider: SearchBeneficiaryProvider::class),
-        new Patch(security: "is_granted('UPDATE', object)", processor: UserPasswordProcessor::class),
+        new Patch(security: 'object == user', input: UserDto::class, processor: UserStateProcessor::class),
     ],
     normalizationContext: ['groups' => ['v3:user:read']],
     denormalizationContext: ['groups' => ['v3:user:write']],
@@ -122,17 +123,17 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     private $updatedAt;
 
     #[ORM\Column(name: 'prenom', type: 'string', length: 255, nullable: true)]
-    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
+    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:user:write', 'v3:beneficiary:write'])]
     #[Anonymize('fr-fr.firstname')]
     private $prenom;
 
     #[ORM\Column(name: 'nom', type: 'string', length: 255, nullable: true)]
-    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
+    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:user:write', 'v3:beneficiary:write'])]
     #[Anonymize('fr-fr.lastname')]
     private $nom;
 
     #[ORM\Column(name: 'birthDate', type: 'date', nullable: true)]
-    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:beneficiary:write'])]
+    #[Groups(['read', 'user:read', 'v3:user:read', 'v3:user:write', 'v3:beneficiary:write'])]
     #[Anonymize('date', options: ['min' => 'now -70 years', 'max' => 'now -15 years'])]
     private ?\DateTime $birthDate = null;
 
@@ -292,6 +293,12 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->prenom;
     }
 
+    #[Groups('v3:user:read')]
+    public function getFirstName(): ?string
+    {
+        return $this->prenom;
+    }
+
     /**
      * @param string $prenom
      *
@@ -324,6 +331,12 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this;
     }
 
+    #[Groups('v3:user:read')]
+    public function getLastName(): ?string
+    {
+        return $this->nom;
+    }
+
     public function setEmail($email)
     {
         $this->email = $email;
@@ -332,6 +345,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this;
     }
 
+    #[Groups('v3:user:read')]
     public function getEmail()
     {
         return $this->email;
@@ -345,6 +359,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public function setBirthDate(?\DateTime $birthDate): self
     {
         $this->birthDate = $birthDate;
+        $this->subjectBeneficiaire?->setDateNaissance($birthDate);
 
         return $this;
     }
@@ -360,6 +375,12 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
      * @return ?string
      */
     public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    #[Groups('v3:user:read')]
+    public function getPhone(): ?string
     {
         return $this->telephone;
     }
@@ -501,11 +522,13 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return self::USER_TYPE_BENEFICIAIRE === $this->typeUser || $this->subjectBeneficiaire;
     }
 
+    #[Groups('v3:user:read')]
     public function getSecretAnswer(): string
     {
         return !$this->getSubjectBeneficiaire() ? '' : $this->getSubjectBeneficiaire()->getReponseSecrete();
     }
 
+    #[Groups('v3:user:read')]
     public function getSecretQuestion(): string
     {
         return !$this->getSubjectBeneficiaire() ? '' : $this->getSubjectBeneficiaire()->getQuestionSecrete();
@@ -1015,12 +1038,16 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
 
     public function addCreatorClient(Client $client): self
     {
-        return $this->addCreator(new CreatorClient($client));
+        $creator = (new CreatorClient($client))->setUser($this);
+
+        return $this->addCreator($creator);
     }
 
     public function addCreatorUser(User $user): self
     {
-        return $this->addCreator(new CreatorUser($user));
+        $creator = (new CreatorUser($user))->setUser($this);
+
+        return $this->addCreator($creator);
     }
 
     public function getAutoLoginToken(): ?string
@@ -1085,6 +1112,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     }
 
     /** @return Collection<int, UserCentre> */
+    #[Groups(['v3:user:read'])]
     public function getUserCentres(): Collection
     {
         $subject = $this->getSubject();
@@ -1192,6 +1220,16 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public function hasCreator(): bool
     {
         return $this->creators->count() > 0;
+    }
+
+    public function hasCreatorUser(): bool
+    {
+        return null !== $this->getCreatorUser();
+    }
+
+    public function hasCreatorClient(): bool
+    {
+        return null !== $this->getCreatorClient();
     }
 
     public function getSluggedFirstName(): string
@@ -1558,5 +1596,19 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         }
 
         return $this->subjectBeneficiaire->isCreating();
+    }
+
+    public function setSecretQuestion(?string $secretQuestion): self
+    {
+        $this->subjectBeneficiaire?->setQuestionSecrete($secretQuestion);
+
+        return $this;
+    }
+
+    public function setSecretAnswer(?string $secretAnswer): self
+    {
+        $this->subjectBeneficiaire?->setReponseSecrete($secretAnswer);
+
+        return $this;
     }
 }

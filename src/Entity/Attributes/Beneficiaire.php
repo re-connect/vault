@@ -35,7 +35,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     shortName: 'beneficiary',
     operations: [
-        new Get(security: "is_granted('READ', object)", provider: BeneficiaryStateProvider::class),
+        new Get(security: "is_granted('UPDATE', object)", provider: BeneficiaryStateProvider::class),
         new Patch(security: "is_granted('UPDATE', object)",
             processor: BeneficiaryStateProcessor::class),
         new Patch(
@@ -55,9 +55,9 @@ use Symfony\Component\Validator\Constraints as Assert;
             description: 'Unlink a beneficiary from your oauth2 client',
             security: "is_granted('UPDATE', object)"
         ),
-        new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES') or is_granted('ROLE_USER')"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES') or is_granted('ROLE_MEMBRE')"),
         new Post(
-            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES') or is_granted('ROLE_USER')",
+            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES') or is_granted('ROLE_MEMBRE')",
             input: BeneficiaryDto::class,
             processor: BeneficiaryStateProcessor::class,
         ),
@@ -767,7 +767,9 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     public function setDateNaissance(?\DateTime $dateNaissance): self
     {
         $this->dateNaissance = $dateNaissance;
-        $this->user?->setBirthDate($dateNaissance);
+        if ($dateNaissance !== $this->user?->getBirthDate()) {
+            $this->user?->setBirthDate($dateNaissance);
+        }
 
         return $this;
     }

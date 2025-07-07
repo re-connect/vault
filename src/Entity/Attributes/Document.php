@@ -68,7 +68,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     normalizationContext: ['groups' => ['v3:document:read']],
     denormalizationContext: ['groups' => ['v3:document:write']],
     openapiContext: ['tags' => ['Documents']],
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES') or is_granted('ROLE_USER')",
 )]
 class Document extends DonneePersonnelle implements FolderableEntityInterface
 {

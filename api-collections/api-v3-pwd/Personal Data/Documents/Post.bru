@@ -1,5 +1,5 @@
 meta {
-  name: Post Document
+  name: Post
   type: http
   seq: 2
 }
@@ -7,7 +7,7 @@ meta {
 post {
   url: {{baseUrl}}/api/v3/documents
   body: multipartForm
-  auth: none
+  auth: inherit
 }
 
 body:multipart-form {
