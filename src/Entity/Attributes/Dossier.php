@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Api\ApiOperations;
 use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Entity\Interface\FolderableEntityInterface;
@@ -34,8 +35,14 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
         new Delete(security: "is_granted('UPDATE', object)"),
         new Get(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('ROLE_USER')"),
-        new Post(security: "is_granted('ROLE_USER')", processor: PersonalDataStateProcessor::class),
+        new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_DOCUMENTS')", processor: PersonalDataStateProcessor::class),
         new Patch(security: "is_granted('UPDATE', object)"),
+        new Patch(
+            uriTemplate: '/folders/{id}/toggle-visibility',
+            security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
+            name: ApiOperations::TOGGLE_VISIBILITY.'_folder',
+            processor: PersonalDataStateProcessor::class
+        ),
     ],
     normalizationContext: ['groups' => ['v3:folder:read']],
     denormalizationContext: ['groups' => ['v3:folder:write']],
@@ -78,13 +85,16 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     #[AssertFolder\NoCircularDependency]
     private ?Dossier $dossierParent = null;
 
+    #[Groups(['v3:folder:write', 'v3:folder:read'])]
+    public ?int $dossierParentId = null;
+
     #[ORM\OneToMany(mappedBy: 'dossierParent', targetEntity: Dossier::class, cascade: ['persist', 'remove'])]
     #[Groups(['read-personal-data', 'read-personal-data-v2'])]
     private Collection $sousDossiers;
 
     #[ORM\ManyToOne(targetEntity: FolderIcon::class)]
     #[ORM\JoinColumn(name: 'icon_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
-    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2'])]
     private ?FolderIcon $icon = null;
 
     #[ORM\OneToMany(mappedBy: 'dossier', targetEntity: Creator::class, cascade: ['persist', 'remove'])]

@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Api\ApiOperations;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
 use Doctrine\Common\Collections\Collection;
@@ -27,6 +28,12 @@ use Symfony\Component\Validator\Constraints as Assert;
         new GetCollection(security: "is_granted('ROLE_OAUTH2_CONTACTS') or is_granted('ROLE_USER')"),
         new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_BENEFICIARIES')", processor: PersonalDataStateProcessor::class),
         new Patch(security: "is_granted('UPDATE', object)"),
+        new Patch(
+            uriTemplate: '/contacts/{id}/toggle-visibility',
+            security: "is_granted('ROLE_OAUTH2_CONTACTS')",
+            name: ApiOperations::TOGGLE_VISIBILITY.'_contact',
+            processor: PersonalDataStateProcessor::class
+        ),
     ],
     normalizationContext: ['groups' => ['v3:contact:read']],
     denormalizationContext: ['groups' => ['v3:contact:write']],
@@ -48,6 +55,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 )]
 class Contact extends DonneePersonnelle
 {
+    public const TOGGLE_VISIBILITY_API_ROUTE = 'ToggleVisibility';
     #[ORM\Column(name: 'prenom', type: 'string', length: 255, nullable: false)]
     #[Groups(['read-personal-data', 'write-personal-data', 'v3:contact:write', 'v3:contact:read'])]
     #[Anonymize('fr-fr.firstname')]

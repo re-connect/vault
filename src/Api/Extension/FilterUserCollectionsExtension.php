@@ -3,12 +3,14 @@
 namespace App\Api\Extension;
 
 use ApiPlatform\Doctrine\Orm\Extension\QueryCollectionExtensionInterface;
+use ApiPlatform\Doctrine\Orm\Extension\QueryItemExtensionInterface;
 use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
 use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\Contact;
 use App\Entity\Attributes\Document;
+use App\Entity\Attributes\DonneePersonnelle;
 use App\Entity\Attributes\Dossier;
 use App\Entity\Attributes\Evenement;
 use App\Entity\Attributes\Note;
@@ -18,7 +20,7 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-final readonly class FilterUserCollectionsExtension implements QueryCollectionExtensionInterface
+final readonly class FilterUserCollectionsExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface
 {
     public function __construct(private Security $security)
     {
@@ -37,6 +39,16 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
             Document::class, Dossier::class, Contact::class, Note::class, Evenement::class => $this->filterPersonalData($queryBuilder, $rootAlias, $user),
             default => null,
         };
+    }
+
+    #[\Override]
+    public function applyToItem(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, array $identifiers, ?Operation $operation = null, array $context = []): void
+    {
+        if (is_subclass_of($resourceClass, DonneePersonnelle::class)) {
+            if (!$this->security->getUser() instanceof User) {
+                $queryBuilder->andWhere(sprintf('%s.bPrive = false', $queryBuilder->getRootAliases()[0]));
+            }
+        }
     }
 
     public function filterRelays(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void

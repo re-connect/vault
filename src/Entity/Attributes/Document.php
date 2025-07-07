@@ -10,7 +10,9 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Api\ApiOperations;
 use App\Api\Filters\FolderIdFilter;
+use App\Api\State\PersonalDataStateProcessor;
 use App\Controller\Api\UploadDocumentController;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Interface\FolderableEntityInterface;
@@ -35,6 +37,12 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
         new Get(security: "is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_USER')"),
         new Patch(security: "is_granted('UPDATE', object)"),
+        new Patch(
+            uriTemplate: '/documents/{id}/toggle-visibility',
+            security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
+            name: ApiOperations::TOGGLE_VISIBILITY.'_document',
+            processor: PersonalDataStateProcessor::class
+        ),
         new Post(
             controller: UploadDocumentController::class,
             openapiContext: [
@@ -44,6 +52,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
                     'properties' => [
                         'file' => ['type' => 'file'],
                         'distant_id' => ['type' => 'string', 'format' => 'string'],
+                        'beneficiary_id' => ['type' => 'string', 'format' => 'string'],
+                        'folder_id' => ['type' => 'string', 'format' => 'string'],
                     ],
                 ], ], ], ],
             ],
