@@ -280,7 +280,7 @@ class DocumentRestV2Controller extends REController
         int $id,
         Request $request,
         DocumentProvider $provider,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
     ): JsonResponse {
         try {
             if (null === $name = $request->get('name')) {
