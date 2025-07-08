@@ -666,4 +666,9 @@ class Centre implements \JsonSerializable, \Stringable
 
         return $this;
     }
+
+    public function getDistantIdsForClient(Client $client): ArrayCollection
+    {
+        return $this->externalLinks->filter(fn (ClientCentre $externalLink) => $client === $externalLink->getClient())->map(fn (ClientCentre $externalLink) => $externalLink->getDistantId());
+    }
 }

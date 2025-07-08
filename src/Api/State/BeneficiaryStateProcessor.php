@@ -75,10 +75,14 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
 
     private function createExternalLink(LinkBeneficiaryDto $data, Client $client, Beneficiaire $beneficiary): void
     {
-        if ($data->externalCenter) {
+        $externalRelayId = $data->externalCenter;
+        if ($externalRelayId) {
+            if ($beneficiary->hasExternalLinkForRelay($client, $externalRelayId)) {
+                throw new UnprocessableEntityHttpException('This beneficiary already has a link for this client and center.');
+            }
             $beneficiary->setDistantId($data->distantId);
             $beneficiary->getUser()?->setExternalProId($data->externalProId);
-            $this->relayAssignationHelper->assignRelayFromExternalId($beneficiary->getUser(), $client, $data->externalCenter);
+            $this->relayAssignationHelper->assignRelayFromExternalId($beneficiary->getUser(), $client, $externalRelayId);
             $this->entityManager->flush();
 
             return;

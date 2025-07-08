@@ -32,7 +32,6 @@ sonata_admin:
                     - sonata.admin.verbatim
                     - sonata.admin.partenaire
                     - sonata.admin.faq
-                    - reo_auth.admin.client
                     - re_admin.admin.annexe
                     - re_admin.admin.region
             superAdminFeatures:
@@ -42,6 +41,7 @@ sonata_admin:
                     - sonata.admin.admin
                     - sonata.admin.feature_toggle
                     - sonata.admin.folder_icon
+                    - reo_auth.admin.client
                 roles:
                     - ROLE_SUPER_ADMIN
 

@@ -9,6 +9,7 @@ use App\Entity\Attributes\UserCentre;
 use App\Repository\CentreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 readonly class RelayAssignationHelper
 {
@@ -33,6 +34,9 @@ readonly class RelayAssignationHelper
         }
         try {
             $relay = $this->repository->findByDistantId($externalRelayId, $client->getRandomId());
+            if (!$relay) {
+                throw new UnprocessableEntityHttpException();
+            }
             /** @var BeneficiaireCentre $userRelay */
             $userRelay = $user->getUserRelays()->filter(fn (UserCentre $userCentre) => $relay === $userCentre->getCentre())->first() ?: User::createUserRelay($user, $relay, $acceptRelay);
             $user->getSubjectBeneficiaire()->addBeneficiairesCentre($userRelay);
@@ -45,6 +49,7 @@ readonly class RelayAssignationHelper
             }
         } catch (\Exception) {
             $this->apiLogger->error(sprintf('Did not find any center on vault for distant id %s when creating user %s from client %s', $externalRelayId, $user->getId(), $client->getRandomId()));
+            throw new UnprocessableEntityHttpException('Invalid external center id');
         }
     }
 }

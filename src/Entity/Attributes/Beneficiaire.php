@@ -1161,4 +1161,15 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     {
         return !$this->hasExternalLinkForClient($client) || ($client->allowsMultipleLinks() && !$this->externalLinkExists($client, $externalId));
     }
+
+    public function hasExternalLinkForRelay(Client $client, int $externalRelayId): bool
+    {
+        foreach ($this->getUserCentres() as $userCentre) {
+            if ($userCentre->getExternalLink()?->getClient() === $client && $userCentre->getCentre()?->getDistantIdsForClient($client)->contains((string) $externalRelayId)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
