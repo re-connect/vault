@@ -1,0 +1,15 @@
+meta {
+  name: Get
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v3/beneficiaries/{{beneficiaryId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
+}

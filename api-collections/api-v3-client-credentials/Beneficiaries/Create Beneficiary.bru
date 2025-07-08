@@ -1,0 +1,25 @@
+meta {
+  name: Create Beneficiary
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/v3/beneficiaries
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "birth_date": "2023-02-13T13:44:28.762Z",
+    "first_name": "first",
+    "last_name": "last",
+    "email": "first.last@example.com",
+    "phone": "0612312312",
+    "distant_id": "122629",
+    "centers": [],
+    "external_center": "99",
+    "external_pro_id": "2054"
+  }
+}

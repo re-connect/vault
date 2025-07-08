@@ -1,0 +1,15 @@
+meta {
+  name: Make private
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{baseUrl}}/api/v3/contacts/16741/toggle-visibility
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {}
+}

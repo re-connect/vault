@@ -1,0 +1,28 @@
+meta {
+  name: GetCollection
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/v3/centers
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
+}
+
+body:json {
+  {
+    "secretQuestion": "Coucou",
+    "otherSecretQuestion": "Coucasasou",
+    "secretAnswer": "coucou",
+    "password": "{{benefPwd}}"
+  }
+}
+
+vars:post-response {
+  centerId: res.body['hydra:member'][0].id
+}

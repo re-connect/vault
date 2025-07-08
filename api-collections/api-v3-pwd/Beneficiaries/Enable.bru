@@ -7,14 +7,18 @@ meta {
 put {
   url: {{baseUrl}}/api/v3/beneficiaries/me/enable
   body: json
-  auth: none
+  auth: bearer
 }
 
 body:json {
   {
     "secretQuestion": "Coucou",
-    "otherSecretQuestion": "Coucasasou",
+  //   "otherSecretQuestion": "Coucasasou",
     "secretAnswer": "coucou",
-    "password": "{{benefPwd}}"
+    "password": "StrongPassword123"
   }
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
 }

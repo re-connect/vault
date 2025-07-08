@@ -1,0 +1,22 @@
+meta {
+  name: Create
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v3/folders
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "b_prive": true,
+    "nom": "string"
+  }
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
+}

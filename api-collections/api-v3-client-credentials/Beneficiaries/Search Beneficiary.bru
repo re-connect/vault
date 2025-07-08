@@ -1,0 +1,19 @@
+meta {
+  name: Search Beneficiary
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/v3/users?username=first.last.12/12/12
+  body: none
+  auth: bearer
+}
+
+params:query {
+  username: first.last.12/12/12
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
+}

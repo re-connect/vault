@@ -1,0 +1,15 @@
+meta {
+  name: Accept
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{baseUrl}}/api/v3/centers/{{centerId}}/accept
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
+}

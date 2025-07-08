@@ -11,8 +11,8 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class BeneficiaryVoter extends Voter
 {
-    public const MANAGE = 'MANAGE_BENEFICIARIES';
-    public const UPDATE = 'UPDATE';
+    public const string MANAGE = 'MANAGE_BENEFICIARIES';
+    public const string UPDATE = 'UPDATE';
 
     public function __construct(private readonly UserHelper $helper)
     {
