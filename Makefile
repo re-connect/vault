@@ -25,10 +25,10 @@ fixer:
 	@$(PHP_CS_FIXER) fix tests --allow-risky=yes --using-cache=no
 
 deploy-preprod:
-	@$(DEPLOYER) deploy stage=preprod
+	@$(DEPLOYER) deploy vault-pp
 
 deploy-prod:
-	@$(DEPLOYER) deploy stage=prod
+	@$(DEPLOYER) deploy vault-prod
 
 dep: deploy-preprod
 

@@ -10,7 +10,6 @@ set('flush_cache_file_name', 'flush-cache.php');
 set('flush_cache_file_path', '{{current_path}}/public/{{flush_cache_file_name}}');
 set('ssh_multiplexing', true);
 set('config_file', '~/.ssh/config');
-set('keep_releases', 4);
 
 add('shared_files', [
     '.env',
@@ -34,6 +33,7 @@ add('writable_dirs', []);
 
 host('vault-pp')
     ->setLabels(['stage' => 'preprod'])
+    ->set('keep_releases', 4)
     ->set('branch', 'dev')
     ->set('deploy_path', '~/www')
     ->set('http_user', 'preprod_reconnect_fr')
