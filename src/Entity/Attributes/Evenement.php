@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Api\ApiOperations;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Repository\EvenementRepository;
@@ -36,6 +37,12 @@ use Symfony\Component\Validator\Constraints as Assert;
         new GetCollection(security: "is_granted('ROLE_OAUTH2_EVENTS') or is_granted('ROLE_USER')"),
         new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_BENEFICIARIES')", processor: PersonalDataStateProcessor::class),
         new Patch(security: "is_granted('UPDATE', object)"),
+        new Patch(
+            uriTemplate: '/events/{id}/toggle-visibility',
+            security: "is_granted('ROLE_OAUTH2_EVENTS')",
+            name: ApiOperations::TOGGLE_VISIBILITY.'_event',
+            processor: PersonalDataStateProcessor::class
+        ),
     ],
     normalizationContext: ['groups' => ['v3:event:read']],
     denormalizationContext: ['groups' => ['v3:event:write']],
