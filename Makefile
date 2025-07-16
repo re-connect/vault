@@ -45,3 +45,13 @@ test-v1:
 
 test-v2:
 	@$(PHPUNIT) tests/v2
+
+test-v1-stop-on-failure:
+	@$(PHPUNIT) tests/v1 --stop-on-failure
+
+test-v2-stop-on-failure:
+	@$(PHPUNIT) tests/v2 --stop-on-failure
+
+v1: fixture-v1 test-v1-stop-on-failure
+
+v2: fixture-v2 test-v2-stop-on-failure

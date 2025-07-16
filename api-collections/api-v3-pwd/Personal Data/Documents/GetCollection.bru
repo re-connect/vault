@@ -1,11 +1,11 @@
 meta {
-  name: SecretQuestions
+  name: GetCollection
   type: http
   seq: 1
 }
 
 get {
-  url: {{baseUrl}}/api/v3/users/secret-questions
+  url: {{baseUrl}}/api/v3/beneficiaries/{id}/documents
   body: none
   auth: bearer
 }

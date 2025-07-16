@@ -1,13 +1,13 @@
 meta {
-  name: Notes
+  name: GetCollection
   type: http
   seq: 2
 }
 
-post {
+get {
   url: {{baseUrl}}/api/v3/notes
-  body: json
-  auth: none
+  body: none
+  auth: bearer
 }
 
 body:json {
@@ -16,4 +16,8 @@ body:json {
     "b_prive": true,
     "nom": "string"
   }
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
 }

@@ -1,0 +1,27 @@
+meta {
+  name: Update
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/v3/contacts/{id}
+  body: json
+  auth: bearer
+}
+
+body:json {
+  {
+    "prenom": "string",
+    "nom": "string",
+    "telephone": "string",
+    "email": "user@example.com",
+    "commentaire": "string",
+    "association": "string",
+    "b_prive": true
+  }
+}
+
+auth:bearer {
+  token: {{oauth2_token}}
+}
