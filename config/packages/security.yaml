@@ -5,6 +5,8 @@ security:
         ROLE_ASSOCIATION: ROLE_MEMBRE
         ROLE_ADMIN: ROLE_BENEFICIAIRE
         ROLE_SUPER_ADMIN: ROLE_ADMIN
+        # OAuth2 scopes hierarchy
+        ROLE_OAUTH2_BENEFICIARIES_UPDATE: ROLE_OAUTH2_BENEFICIARIES_CREATE
 
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
