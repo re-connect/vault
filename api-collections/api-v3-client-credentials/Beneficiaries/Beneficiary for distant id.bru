@@ -1,19 +1,15 @@
 meta {
   name: Beneficiary for distant id
   type: http
-  seq: 3
+  seq: 5
 }
 
 get {
-  url: {{baseUrl}}/api/v3/beneficiaries?distantId=523
+  url: {{baseUrl}}/api/v3/beneficiaries?distantId=122629
   body: none
-  auth: bearer
+  auth: inherit
 }
 
-query {
-  distantId: 523
-}
-
-auth:bearer {
-  token: {{oauth2_token}}
+params:query {
+  distantId: 122629
 }
