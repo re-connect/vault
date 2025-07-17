@@ -15,7 +15,7 @@
     "ext-zip": "*",
     "api-platform/core": "3.*",
     "beberlei/doctrineextensions": "1.3.0",
-    "dbtoolsbundle/pack-fr-fr": "^0.3.0",
+    "db-tools-bundle/pack-fr-fr": "^0.4.0",
     "doctrine/doctrine-bundle": "2.10.*",
     "doctrine/doctrine-migrations-bundle": "3.2.*",
     "erkens/2fa-text": "^2.2",
