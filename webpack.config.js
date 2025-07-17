@@ -52,18 +52,8 @@ Encore
 
   .copyFiles([
     {from: './assets/images', to: 'images/[path][name].[hash:8].[ext]'},
-    {
-      from: './node_modules/ckeditor/',
-      to: './ckeditor/[path][name].[ext]',
-      pattern: /\.(js|css)$/,
-      includeSubdirectories: true
-    },
-    {from: './node_modules/ckeditor/adapters', to: './ckeditor/adapters/[path][name].[ext]'},
-    {from: './node_modules/ckeditor/lang', to: './ckeditor/lang/[path][name].[ext]'},
-    {from: './node_modules/ckeditor/plugins', to: './ckeditor/plugins/[path][name].[ext]'},
-    {from: './node_modules/ckeditor/skins', to: './ckeditor/skins/[path][name].[ext]'},
-    {from: './node_modules/ckeditor/vendor', to: './ckeditor/vendor/[path][name].[ext]'}
   ])
+
   .enableSassLoader()
   .enableLessLoader()
   .autoProvidejQuery()
