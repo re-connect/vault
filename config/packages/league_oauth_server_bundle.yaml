@@ -15,6 +15,9 @@ league_oauth2_server:
         available:
             - default
             - beneficiaries
+            - beneficiaries_read
+            - beneficiaries_create
+            - beneficiaries_update
             - centers
             - documents
             - notes
