@@ -5,9 +5,16 @@ auth {
 auth:oauth2 {
   grant_type: client_credentials
   access_token_url: {{baseUrl}}/api/token
+  refresh_token_url: 
   client_id: {{oauthClientId}}
   client_secret: {{oauthClientSecret}}
-  scope: {{oauthScopes}}
+  scope: 
+  credentials_placement: body
+  credentials_id: credentials
+  token_placement: header
+  token_header_prefix: 
+  auto_fetch_token: true
+  auto_refresh_token: false
 }
 
 script:post-response {
