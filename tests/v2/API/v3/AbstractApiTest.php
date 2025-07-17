@@ -49,7 +49,6 @@ abstract class AbstractApiTest extends ApiTestCase
             'grant_type' => $grantType,
             'client_id' => $client->getRandomId(),
             'client_secret' => $client->getSecret(),
-            'scope' => 'centers beneficiaries documents notes contacts pros events users',
         ]]);
 
         $content = json_decode($response->getContent(), true);
