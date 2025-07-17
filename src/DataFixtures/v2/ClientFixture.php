@@ -18,14 +18,14 @@ class ClientFixture extends Fixture implements FixtureGroupInterface
             'secret' => '1bhcu6uphfz4gc4cwo48ok4gkswgss04gokwgkkws0o8sgos44',
             'name' => 'rosalie',
             'grantType' => 'client_credentials',
-            'scopes' => 'centers beneficiaries documents notes contacts pros events users',
+            'scopes' => 'centers beneficiaries beneficiaries_create beneficiaries_read documents notes contacts pros events users',
         ],
         [
             'id' => 'm5tu4aqwedscccs4sogcgkk8w0wccg8s8c8ogwkso8w8c0ws0',
             'secret' => '4x0abo81dlkw8oso8gs8cg44gow000c0s8g8gwsw4g48880c8g',
             'name' => 'reconnect_pro',
             'grantType' => 'client_credentials',
-            'scopes' => 'centers beneficiaries documents notes contacts pros events users',
+            'scopes' => 'centers beneficiaries beneficiaries_read beneficiaries_update documents notes contacts pros events users',
         ],
         [
             'id' => '1e5430a7f64ab17d3aea672f9eca115b',
