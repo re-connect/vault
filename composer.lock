@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "38a49c3f564a82ad7ba09ad3a00b500b",
+    "content-hash": "abd7dd3ea5686d4d643d361bd58b5e87",
     "packages": [
         {
             "name": "api-platform/core",
@@ -625,24 +625,25 @@
             "time": "2024-11-12T16:29:46+00:00"
         },
         {
-            "name": "dbtoolsbundle/pack-fr-fr",
-            "version": "0.3.0",
+            "name": "db-tools-bundle/pack-fr-fr",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DbToolsBundle/pack-fr-fr.git",
-                "reference": "f7651b6ae1114eed90cab34f5773131f94a1211c"
+                "reference": "6c68ed811292d4a2e2d01a0926cacf2dbd21c9e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DbToolsBundle/pack-fr-fr/zipball/f7651b6ae1114eed90cab34f5773131f94a1211c",
-                "reference": "f7651b6ae1114eed90cab34f5773131f94a1211c",
+                "url": "https://api.github.com/repos/DbToolsBundle/pack-fr-fr/zipball/6c68ed811292d4a2e2d01a0926cacf2dbd21c9e1",
+                "reference": "6c68ed811292d4a2e2d01a0926cacf2dbd21c9e1",
                 "shasum": ""
             },
             "require": {
-                "makinacorpus/db-tools-bundle": "^1.0.6|^1.1",
+                "makinacorpus/db-tools-bundle": "^1.2|^2.0",
                 "php": ">=8.1"
             },
             "require-dev": {
+                "doctrine/dbal": "^3|^4.2",
                 "friendsofphp/php-cs-fixer": "^3.34",
                 "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^10.3",
@@ -668,10 +669,9 @@
             "description": "A pack of anonymizers for fr-FR locale",
             "support": {
                 "issues": "https://github.com/DbToolsBundle/pack-fr-fr/issues",
-                "source": "https://github.com/DbToolsBundle/pack-fr-fr/tree/0.3.0"
+                "source": "https://github.com/DbToolsBundle/pack-fr-fr/tree/0.4.0"
             },
-            "abandoned": "db-tools-bundle/pack-fr-fr",
-            "time": "2024-03-18T09:52:23+00:00"
+            "time": "2024-11-25T12:34:02+00:00"
         },
         {
             "name": "defuse/php-encryption",
