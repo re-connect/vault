@@ -17,14 +17,17 @@ class GetTest extends AbstractApiTest
         parent::setUp();
     }
 
-    public function testGetBeneficiary(): void
+    /**
+     * @dataProvider canGetProvider
+     */
+    public function testCanGetBeneficiary(string $clientName): void
     {
-        $client = ClientFactory::find(['nom' => 'rosalie'])->object();
+        $client = ClientFactory::find(['nom' => $clientName])->object();
         /** @var Beneficiaire $beneficiary */
         $beneficiary = $this->repo->findByClientIdentifier($client->getRandomId())[0];
         $user = $beneficiary->getUser();
         $this->assertEndpoint(
-            'rosalie',
+            $clientName,
             sprintf('/beneficiaries/%s', $beneficiary->getId()),
             'GET',
             200,
@@ -46,5 +49,41 @@ class GetTest extends AbstractApiTest
                 ],
             ],
         );
+    }
+
+    /**
+     * @dataProvider canNotGetProvider
+     */
+    public function testCanNotGetBeneficiary(string $clientName): void
+    {
+        $client = ClientFactory::find(['nom' => $clientName])->object();
+        /** @var Beneficiaire $beneficiary */
+        $beneficiary = $this->repo->findByClientIdentifier($client->getRandomId())[0];
+        $this->assertEndpoint(
+            $clientName,
+            sprintf('/beneficiaries/%s', $beneficiary->getId()),
+            'GET',
+            403,
+            [
+                '@context' => '/api/contexts/Error',
+                '@type' => 'hydra:Error',
+                'hydra:title' => 'An error occurred',
+                'hydra:description' => 'Access Denied.',
+            ],
+        );
+    }
+
+    public function canNotGetProvider(): \Generator
+    {
+        yield 'Should not get beneficiary for client with create only scopes' => ['create_only'];
+        yield 'Should not get beneficiary for client with no scopes' => ['no_scopes'];
+    }
+
+    public function canGetProvider(): \Generator
+    {
+        yield 'Should get beneficiary for client with read only scopes' => ['read_only'];
+        yield 'Should get beneficiary for client with read and update scopes' => ['read_and_update'];
+        yield 'Should get beneficiary  for Reconnect Pro client' => ['reconnect_pro'];
+        yield 'Should get beneficiary for Rosalie client ' => ['rosalie'];
     }
 }
