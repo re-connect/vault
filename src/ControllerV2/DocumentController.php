@@ -49,7 +49,7 @@ class DocumentController extends AbstractController
         Request $request,
         Document $document,
         DocumentManager $manager,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
     ): Response {
         $form = $this->createForm(RenameDocumentType::class, $document, [
             'action' => $this->generateUrl('document_rename', ['id' => $document->getId()]),

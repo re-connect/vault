@@ -9,6 +9,7 @@ use App\Entity\Evenement;
 use App\Entity\Note;
 use App\Form\Model\ExportModel;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query\Parameter;
 use Doctrine\ORM\QueryBuilder;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -80,8 +81,8 @@ class ExportService
     private function getCount(QueryBuilder $qb, ExportModel $exportModel, $filter): int
     {
         $parameters = [
-            'startDate' => $exportModel->getStartDate(),
-            'endDate' => $exportModel->getEndDate(),
+            new Parameter('startDate', $exportModel->getStartDate()),
+            new Parameter('endDate', $exportModel->getEndDate()),
         ];
         $this->addFiltersToQb($exportModel, $qb, $parameters, $filter);
         $qb->setParameters($parameters);

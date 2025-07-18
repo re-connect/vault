@@ -66,7 +66,7 @@ class Note extends DonneePersonnelle
     public function __construct(
         #[ORM\ManyToOne(targetEntity: Beneficiaire::class, inversedBy: 'notes')]
         #[ORM\JoinColumn(name: 'beneficiaire_id', referencedColumnName: 'id', nullable: false)]
-        protected ?Beneficiaire $beneficiaire = null
+        protected ?Beneficiaire $beneficiaire = null,
     ) {
         parent::__construct();
         $this->createdAt = new \DateTime();

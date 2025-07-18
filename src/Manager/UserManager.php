@@ -22,7 +22,7 @@ class UserManager
         private readonly EventDispatcherInterface $eventDispatcher,
         private readonly EntityManagerInterface $entityManager,
         private readonly UserPasswordHasherInterface $hasher,
-        private readonly UserRepository $repository
+        private readonly UserRepository $repository,
     ) {
     }
 

@@ -7,7 +7,7 @@ class SearchBeneficiaryFormModel
     public function __construct(
         private ?string $firstname = '',
         private ?string $lastname = '',
-        private ?\DateTime $birthDate = null
+        private ?\DateTime $birthDate = null,
     ) {
     }
 

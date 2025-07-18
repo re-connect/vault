@@ -24,7 +24,7 @@ class AnonymizeDatabaseCommand extends Command
         private readonly array $adminMails,
         private readonly LoggerInterface $logger,
         private readonly MailerService $mailer,
-        ?string $name = null
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }

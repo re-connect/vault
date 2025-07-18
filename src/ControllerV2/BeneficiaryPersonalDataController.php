@@ -259,7 +259,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         Request $request,
         Beneficiaire $beneficiary,
         DocumentManager $manager,
-        DossierRepository $folderRepository
+        DossierRepository $folderRepository,
     ): Response {
         if (!$files = $request->files->get('files')) {
             return new Response(null, Response::HTTP_BAD_REQUEST);
@@ -319,7 +319,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         Request $request,
         Beneficiaire $beneficiary,
         EntityManagerInterface $em,
-        FolderManager $manager
+        FolderManager $manager,
     ): Response {
         $folder = (new Dossier())->setBeneficiaire($beneficiary);
         $form = $this->getCreateForm(

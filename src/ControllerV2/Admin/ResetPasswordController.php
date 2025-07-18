@@ -20,7 +20,7 @@ class ResetPasswordController extends AbstractController
         Request $request,
         User $user,
         ResetPasswordRequestRepository $repository,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
     ): RedirectResponse {
         foreach ($repository->findBy(['user' => $user]) as $resetPasswordRequest) {
             $em->remove($resetPasswordRequest);

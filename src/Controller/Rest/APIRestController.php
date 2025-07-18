@@ -50,7 +50,7 @@ class APIRestController extends REController
     public function editBeneficiaire(
         Request $request,
         string $distantId,
-        BeneficiaireProvider $beneficiaireProvider
+        BeneficiaireProvider $beneficiaireProvider,
     ): JsonResponse {
         try {
             $beneficiaire = $beneficiaireProvider->getEntityByDistantId($distantId, false);
@@ -72,7 +72,7 @@ class APIRestController extends REController
     public function deleteBeneficiaire(
         string $distantId,
         BeneficiaireProvider $beneficiaireProvider,
-        UserManager $userManager
+        UserManager $userManager,
     ): JsonResponse {
         try {
             $beneficiaire = $beneficiaireProvider->getEntityByDistantId($distantId, false);
@@ -91,7 +91,7 @@ class APIRestController extends REController
         Request $request,
         UserManagerV2 $userManager,
         BeneficiaireProvider $beneficiaireProvider,
-        UserPasswordHasherInterface $hasher
+        UserPasswordHasherInterface $hasher,
     ): JsonResponse {
         try {
             if (null === $request->request->get('idRosalie') && null === $request->request->get('distant_id')) {
@@ -131,7 +131,7 @@ class APIRestController extends REController
         int $distantId,
         Request $request,
         BeneficiaireProvider $beneficiaireProvider,
-        DocumentProvider $documentProvider
+        DocumentProvider $documentProvider,
     ): JsonResponse {
         try {
             $client = $this->apiClientManager->getCurrentOldClient();
@@ -174,7 +174,7 @@ class APIRestController extends REController
         int $distantCenterId,
         BeneficiaireProvider $beneficiaireProvider,
         CentreProvider $centreProvider,
-        CentreManager $centreManager
+        CentreManager $centreManager,
     ): JsonResponse {
         try {
             $beneficiary = $beneficiaireProvider->getEntityByDistantId($distantBeneficiaryId, false);
