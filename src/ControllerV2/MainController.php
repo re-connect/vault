@@ -31,7 +31,7 @@ class MainController extends AbstractController
     public function homeV2(
         Request $request,
         VerbatimRepository $verbatimRepository,
-        AuthenticationUtils $authenticationUtils
+        AuthenticationUtils $authenticationUtils,
     ): Response {
         if ($this->getUser()) {
             return $this->redirectToRoute('redirect_user');
@@ -44,7 +44,7 @@ class MainController extends AbstractController
     public function home(
         Request $request,
         VerbatimRepository $verbatimRepository,
-        AuthenticationUtils $authenticationUtils
+        AuthenticationUtils $authenticationUtils,
     ): Response {
         $form = $this->createForm(LoginTypeV2::class, null, [
             'action' => $this->generateUrl('re_main_login'),

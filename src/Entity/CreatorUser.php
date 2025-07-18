@@ -15,7 +15,7 @@ class CreatorUser extends Creator implements \Stringable
 
     public function __construct(
         #[ORM\ManyToOne(targetEntity: User::class)]
-        private ?User $entity = null
+        private ?User $entity = null,
     ) {
     }
 

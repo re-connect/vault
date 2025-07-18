@@ -243,7 +243,7 @@ class BeneficiaryCreationProcess
     {
         return match (true) {
             $this->isCurrentStep($step) || $this->isStepDone($step) || $this->isStepReached($step) => 'primary',
-            default => 'grey'
+            default => 'grey',
         };
     }
 
