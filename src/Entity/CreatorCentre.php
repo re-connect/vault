@@ -27,7 +27,7 @@ class CreatorCentre extends Creator implements \Stringable
 
     public function __construct(
         #[ORM\ManyToOne(targetEntity: Centre::class)]
-        private ?Centre $entity = null
+        private ?Centre $entity = null,
     ) {
     }
 }
