@@ -9,17 +9,10 @@ auth:oauth2 {
   client_id: {{oauthClientId}}
   client_secret: {{oauthClientSecret}}
   scope: 
-  credentials_placement: body
+  credentials_placement: basic_auth_header
   credentials_id: credentials
-  token_placement: header
-  token_header_prefix: 
+  token_placement: url
+  token_query_key: access_token
   auto_fetch_token: true
   auto_refresh_token: false
-}
-
-script:post-response {
-  var token = res.body.access_token;
-    if (token) {
-      bru.setVar('oauth2_token', token)
-    }
 }
