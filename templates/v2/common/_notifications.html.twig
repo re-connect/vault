@@ -1,3 +1,4 @@
 {% for notification in getUserNotifications() %}
+    {{ dump(notification) }}
     {{include('v2/common/_notification.html.twig', {notification}) }}
 {% endfor %}

@@ -180,7 +180,7 @@ class DossierRestV2Controller extends REController
         MailManager $mailManager,
         TranslatorInterface $translator,
         ValidatorInterface $validator,
-        RestManager $restManager
+        RestManager $restManager,
     ): JsonResponse {
         try {
             $dossier = $provider->getEntity($id, Client::ACCESS_DOCUMENT_READ);

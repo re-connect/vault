@@ -39,8 +39,8 @@ class MemberBeneficiaryManager
                 ->where('cb.beneficiaire = :beneficiary')
                 ->andWhere('cb.membre = :member')
                 ->setParameters([
-                    'beneficiary' => $beneficiary,
-                    'member' => $user->getSubjectMembre(),
+                    'beneficiary', $beneficiary,
+                    'member', $user->getSubjectMembre(),
                 ])
                 ->getQuery();
             try {

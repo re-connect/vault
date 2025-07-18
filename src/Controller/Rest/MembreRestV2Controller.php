@@ -59,7 +59,7 @@ class MembreRestV2Controller extends REController
         Request $request,
         MembreProvider $provider,
         CentreManager $centreManager,
-        RestManager $restManager
+        RestManager $restManager,
     ): JsonResponse {
         try {
             $entity = $provider->getEntity($id);

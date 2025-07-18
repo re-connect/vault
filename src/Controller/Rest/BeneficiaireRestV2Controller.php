@@ -211,7 +211,7 @@ final class BeneficiaireRestV2Controller extends REController
     public function updatePassword(
         int|string $id,
         BeneficiaireProvider $provider,
-        UserManager $userManager
+        UserManager $userManager,
     ): JsonResponse {
         try {
             $entity = $provider->getEntity($id);
@@ -250,7 +250,7 @@ final class BeneficiaireRestV2Controller extends REController
     public function updateSecretQuestion(
         int|string $id,
         BeneficiaireProvider $provider,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
     ): JsonResponse {
         try {
             $entity = $provider->getEntity($id);
@@ -341,7 +341,7 @@ final class BeneficiaireRestV2Controller extends REController
         UserFormFactory $userFormFactory,
         UserProvider $userProvider,
         ValidatorInterface $validator,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
     ): Response {
         try {
             $userConnected = $this->getUser();
@@ -431,7 +431,7 @@ final class BeneficiaireRestV2Controller extends REController
         Request $request,
         UserManager $userManager,
         ValidatorInterface $validator,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
     ): Response {
         try {
             $user = $this->getUser();

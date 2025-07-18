@@ -29,7 +29,7 @@ class CentreRestV2Controller extends REController
     public function getCentresFromBeneficiaire(
         int|string $beneficiaryId,
         CentreProvider $provider,
-        BeneficiaireProvider $beneficiaireProvider
+        BeneficiaireProvider $beneficiaireProvider,
     ): JsonResponse {
         try {
             $beneficiaire = $beneficiaireProvider->getEntity($beneficiaryId, $this->accessRead);
