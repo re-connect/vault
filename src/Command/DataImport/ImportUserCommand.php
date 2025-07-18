@@ -31,7 +31,7 @@ class ImportUserCommand extends Command
         private readonly string $kernelProjectDir,
         private readonly EntityManagerInterface $em,
         private readonly CentreRepository $centreRepository,
-        ?string $name = null
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }

@@ -17,7 +17,7 @@ class EveryDayCommand extends Command
     public function __construct(
         private readonly StatistiqueCentreManager $statistiqueCentreManager,
         private readonly SMSManager $SMSManager,
-        ?string $name = null
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }

@@ -32,7 +32,7 @@ class CreatorClient extends Creator implements \Stringable
 
     public function __construct(
         #[ORM\ManyToOne(targetEntity: Client::class)]
-        private ?Client $entity = null
+        private ?Client $entity = null,
     ) {
     }
 }
