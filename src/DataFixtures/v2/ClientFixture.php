@@ -34,6 +34,34 @@ class ClientFixture extends Fixture implements FixtureGroupInterface
             'grantType' => 'password',
             'scopes' => '',
         ],
+        [
+            'id' => 'read_and_update_id',
+            'secret' => 'read_and_update_secret',
+            'name' => 'read_and_update',
+            'grantType' => 'client_credentials',
+            'scopes' => 'beneficiaries_read beneficiaries_update contacts_read contacts_update',
+        ],
+        [
+            'id' => 'read_only_id',
+            'secret' => 'read_only_secret',
+            'name' => 'read_only',
+            'grantType' => 'client_credentials',
+            'scopes' => 'beneficiaries_read contacts_read',
+        ],
+        [
+            'id' => 'create_only_id',
+            'secret' => 'create_only_secret',
+            'name' => 'create_only',
+            'grantType' => 'client_credentials',
+            'scopes' => 'beneficiaries_create contacts_create',
+        ],
+        [
+            'id' => 'no_scopes_id',
+            'secret' => 'no_scopes_secret',
+            'name' => 'no_scopes',
+            'grantType' => 'client_credentials',
+            'scopes' => '',
+        ],
     ];
 
     #[\Override]
