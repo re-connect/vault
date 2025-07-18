@@ -424,7 +424,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         ?Client $client = null,
         ?UserInterface $byUser = null,
         ?Dossier $dossier = null,
-        bool $log = true
+        bool $log = true,
     ): Document {
         try {
             if (false === $this->authorizationChecker->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $beneficiaire)) {
