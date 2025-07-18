@@ -23,6 +23,9 @@ league_oauth2_server:
             - notes
             - events
             - contacts
+            - contacts_read
+            - contacts_create
+            - contacts_update
             - pros
             - si_siao_numbers
             - users
