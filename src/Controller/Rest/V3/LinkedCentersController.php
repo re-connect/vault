@@ -16,7 +16,7 @@ final class LinkedCentersController extends AbstractController
     public function __invoke(
         Request $request,
         ApiClientManager $apiClientManager,
-        CentreRepository $repository
+        CentreRepository $repository,
     ): ?Centre {
         try {
             return $repository->findByDistantId(

@@ -51,7 +51,7 @@ class FolderController extends AbstractController
     public function rename(
         Request $request,
         Dossier $folder,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
     ): Response {
         $form = $this->createForm(FolderType::class, $folder, [
             'action' => $this->generateUrl('folder_rename', ['id' => $folder->getId()]),
@@ -129,7 +129,7 @@ class FolderController extends AbstractController
         Request $request,
         Dossier $parentFolder,
         EntityManagerInterface $em,
-        FolderManager $manager
+        FolderManager $manager,
     ): Response {
         $folder = Dossier::createFromParent($parentFolder);
 

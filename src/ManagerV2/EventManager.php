@@ -23,7 +23,7 @@ class EventManager
         private readonly RappelRepository $reminderRepository,
         private readonly EvenementRepository $eventRepository,
         private readonly LoggerInterface $logger,
-        private readonly Security $security
+        private readonly Security $security,
     ) {
     }
 

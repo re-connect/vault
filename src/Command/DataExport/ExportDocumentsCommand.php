@@ -93,8 +93,8 @@ class ExportDocumentsCommand extends Command
             ->from(Document::class, 'd')
             ->where('d.createdAt between :startDate and :endDate')
             ->setParameters([
-                'startDate' => $startDate,
-                'endDate' => $endDate,
+                'startDate', $startDate,
+                'endDate', $endDate,
             ])
             ->orderBy('d.createdAt')
             ->getQuery()
