@@ -90,7 +90,7 @@ class UserRestV2Controller extends REController
         int $id,
         BeneficiaireProvider $beneficiaireProvider,
         MembreProvider $membreProvider,
-        GestionnaireProvider $gestionnaireProvider
+        GestionnaireProvider $gestionnaireProvider,
     ): JsonResponse {
         try {
             $user = $this->getUser();

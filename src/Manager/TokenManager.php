@@ -54,7 +54,7 @@ class TokenManager implements TokenManagerInterface
         $qb
             ->delete()
             ->where('t.expiresAt < ?1')
-            ->setParameters([1 => time()]);
+            ->setParameters([1, time()]);
 
         return $qb->getQuery()->execute();
     }
