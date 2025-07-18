@@ -16,17 +16,20 @@ class ClientBeneficiaryFixture extends Fixture implements FixtureGroupInterface,
     #[\Override]
     public function load(ObjectManager $manager)
     {
-        $client = ClientFactory::find(['nom' => 'applimobile'])->object();
+        $clients = ClientFactory::all();
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK)->object();
-        $mobileExternalLink = (new ClientBeneficiaire($client, $beneficiary->getId()))->setEntity($beneficiary);
-        $client = ClientFactory::find(['nom' => 'rosalie'])->object();
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK)->object();
-        $rosalieExternalLink = (new ClientBeneficiaire($client, $beneficiary->getId()))->setEntity($beneficiary);
+
+        foreach ($clients as $client) {
+            if ('reconnect_pro' === $client->getNom()) {
+                continue;
+            }
+            $externalLink = (new ClientBeneficiaire($client->object(), $beneficiary->getId()))->setEntity($beneficiary);
+            $manager->persist($externalLink);
+        }
+
         $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK)->object();
         $reconnectProExternalLink = (new ClientBeneficiaire($client, $beneficiary->getId()))->setEntity($beneficiary)->setBeneficiaireCentre($beneficiary->getBeneficiairesCentres()->first() ?: null);
-        $manager->persist($mobileExternalLink);
-        $manager->persist($rosalieExternalLink);
         $manager->persist($reconnectProExternalLink);
         $manager->flush();
     }
