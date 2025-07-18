@@ -31,10 +31,10 @@ class ApiVoter extends Voter
             return false; // This voter only handles api clients
         }
 
-        return $this->hasRightScopeForOperation($attribute, $subject) && $this->oauth2Helper->canClientAccessRessource($token, $subject);
+        return $this->hasRequiredScopeForOperation($attribute, $subject) && $this->oauth2Helper->canClientAccessRessource($token, $subject);
     }
 
-    private function hasRightScopeForOperation(string $attribute, mixed $subject): bool
+    private function hasRequiredScopeForOperation(string $attribute, mixed $subject): bool
     {
         return $this->checker->isGranted(sprintf('ROLE_OAUTH2_%s_%s', $subject->getScopeName(), $attribute));
     }
