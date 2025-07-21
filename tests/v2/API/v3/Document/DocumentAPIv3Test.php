@@ -4,7 +4,6 @@ namespace App\Tests\v2\API\v3\Document;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Entity\Attributes\Beneficiaire;
-use App\Repository\BeneficiaireRepository;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\ClientFactory;
 use App\Tests\Factory\DocumentFactory;
@@ -13,14 +12,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DocumentAPIv3Test extends AbstractApiTest
 {
-    private readonly BeneficiaireRepository $beneficiaireRepository;
-
-    protected function setUp(): void
-    {
-        $this->beneficiaireRepository = $this->getContainer()->get(BeneficiaireRepository::class);
-        parent::setUp();
-    }
-
     public function testGetCollection(): void
     {
         $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
