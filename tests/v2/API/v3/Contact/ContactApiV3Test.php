@@ -41,17 +41,10 @@ class ContactApiV3Test extends AbstractApiTest
      */
     public function testCanNotGetCollection(string $clientName): void
     {
-        $this->assertEndpoint(
+        $this->assertEndpointAccessIsDenied(
             $clientName,
             '/contacts',
             'GET',
-            403,
-            [
-                '@context' => '/api/contexts/Error',
-                '@type' => 'hydra:Error',
-                'hydra:title' => 'An error occurred',
-                'hydra:description' => 'Access Denied.',
-            ]
         );
     }
 
@@ -81,17 +74,10 @@ class ContactApiV3Test extends AbstractApiTest
     public function testCanNotGetCollectionForBeneficiary(string $clientName): void
     {
         $beneficiary = $this->getBeneficiaryForClient($clientName);
-        $this->assertEndpoint(
+        $this->assertEndpointAccessIsDenied(
             $clientName,
             sprintf('/beneficiaries/%s/contacts', $beneficiary->getId()),
             'GET',
-            403,
-            [
-                '@context' => '/api/contexts/Error',
-                '@type' => 'hydra:Error',
-                'hydra:title' => 'An error occurred',
-                'hydra:description' => 'Access Denied.',
-            ]
         );
     }
 
@@ -133,17 +119,10 @@ class ContactApiV3Test extends AbstractApiTest
             'beneficiaire' => $beneficiary,
         ])->object();
 
-        $this->assertEndpoint(
+        $this->assertEndpointAccessIsDenied(
             $clientName,
             sprintf('/contacts/%d', $contact->getId()),
             'GET',
-            403,
-            [
-                '@context' => '/api/contexts/Error',
-                '@type' => 'hydra:Error',
-                'hydra:title' => 'An error occurred',
-                'hydra:description' => 'Access Denied.',
-            ]
         );
     }
 
@@ -205,17 +184,10 @@ class ContactApiV3Test extends AbstractApiTest
             'commentaire' => 'Un commentaire',
         ];
 
-        $this->assertEndpoint(
+        $this->assertEndpointAccessIsDenied(
             $clientName,
             '/contacts',
             'POST',
-            403,
-            [
-                '@context' => '/api/contexts/Error',
-                '@type' => 'hydra:Error',
-                'hydra:title' => 'An error occurred',
-                'hydra:description' => 'Access Denied.',
-            ],
             $contact
         );
     }
@@ -280,17 +252,10 @@ class ContactApiV3Test extends AbstractApiTest
         ])->object();
         $contactId = $contact->getId();
 
-        $this->assertEndpoint(
+        $this->assertEndpointAccessIsDenied(
             $clientName,
             sprintf('/contacts/%s/toggle-visibility', $contactId),
             'PATCH',
-            403,
-            [
-                '@context' => '/api/contexts/Error',
-                '@type' => 'hydra:Error',
-                'hydra:title' => 'An error occurred',
-                'hydra:description' => 'Access Denied.',
-            ],
             []
         );
     }
