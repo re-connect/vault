@@ -4,6 +4,8 @@ namespace App\Tests\v2\API\v3;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Symfony\Bundle\Test\Client;
+use App\Entity\Attributes\Beneficiaire;
+use App\Repository\BeneficiaireRepository;
 use App\Tests\Factory\ClientFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Zenstruck\Foundry\Test\Factories;
@@ -13,6 +15,7 @@ abstract class AbstractApiTest extends ApiTestCase
     use Factories;
 
     protected Client $client;
+    protected readonly BeneficiaireRepository $beneficiaireRepository;
     protected ?string $accessToken = null;
 
     protected const BASE_URL = '/api/v3';
@@ -21,6 +24,7 @@ abstract class AbstractApiTest extends ApiTestCase
     {
         parent::setUp();
         $this->client = static::createClient();
+        $this->beneficiaireRepository = $this->getContainer()->get(BeneficiaireRepository::class);
     }
 
     /**
@@ -53,6 +57,13 @@ abstract class AbstractApiTest extends ApiTestCase
 
         $content = json_decode($response->getContent(), true);
         $this->accessToken = $content['access_token'];
+    }
+
+    public function getBeneficiaryForClient(string $clientName): Beneficiaire
+    {
+        $client = ClientFactory::find(['nom' => $clientName])->object();
+
+        return $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
     }
 
     public function generateUrl(string $url): string
