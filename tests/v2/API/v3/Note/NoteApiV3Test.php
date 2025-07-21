@@ -4,7 +4,6 @@ namespace App\Tests\v2\API\v3\Note;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Entity\Attributes\Beneficiaire;
-use App\Repository\BeneficiaireRepository;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\ClientFactory;
 use App\Tests\Factory\NoteFactory;
@@ -12,14 +11,6 @@ use App\Tests\v2\API\v3\AbstractApiTest;
 
 class NoteApiV3Test extends AbstractApiTest
 {
-    private readonly BeneficiaireRepository $beneficiaireRepository;
-
-    protected function setUp(): void
-    {
-        $this->beneficiaireRepository = $this->getContainer()->get(BeneficiaireRepository::class);
-        parent::setUp();
-    }
-
     public function testGetCollection(): void
     {
         $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
