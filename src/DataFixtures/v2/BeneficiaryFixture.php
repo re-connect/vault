@@ -101,7 +101,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface, Depen
 
     private function addPersonalData(Beneficiaire $beneficiary): void
     {
-        ContactFactory::createOne(['beneficiaire' => $beneficiary])->object();
+        ContactFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
         NoteFactory::createOne(['beneficiaire' => $beneficiary])->object();
         NoteFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
         EventFactory::createOne(['beneficiaire' => $beneficiary])->object();
