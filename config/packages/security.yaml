@@ -8,6 +8,7 @@ security:
         # OAuth2 scopes hierarchy
         ROLE_OAUTH2_BENEFICIARIES_UPDATE: ROLE_OAUTH2_BENEFICIARIES_CREATE
         ROLE_OAUTH2_CONTACTS_UPDATE: ROLE_OAUTH2_CONTACTS_CREATE
+        ROLE_OAUTH2_DOCUMENTS_UPDATE: ROLE_OAUTH2_DOCUMENTS_CREATE
 
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:

@@ -20,6 +20,9 @@ league_oauth2_server:
             - beneficiaries_update
             - centers
             - documents
+            - documents_read
+            - documents_create
+            - documents_update
             - notes
             - events
             - contacts
