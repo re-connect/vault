@@ -2,9 +2,7 @@
 
 namespace App\Tests\v2\API\v3\Beneficiary;
 
-use App\Entity\Attributes\Beneficiaire;
 use App\Repository\BeneficiaireRepository;
-use App\Tests\Factory\ClientFactory;
 use App\Tests\v2\API\v3\AbstractApiTest;
 
 class GetTest extends AbstractApiTest
@@ -54,7 +52,7 @@ class GetTest extends AbstractApiTest
      */
     public function testCanNotGetBeneficiary(string $clientName): void
     {
-       $beneficiary = $this->getBeneficiaryForClient($clientName);
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
 
         $this->assertEndpointAccessIsDenied(
             $clientName,

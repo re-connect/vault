@@ -231,7 +231,7 @@ class ContactApiV3Test extends AbstractApiTest
         );
         // Once item has been set to private, it should not be found
         $this->assertEndpoint(
-            'reconnect_pro',
+            $clientName,
             sprintf('/contacts/%s/toggle-visibility', $contactId),
             'PATCH',
             404,
