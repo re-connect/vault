@@ -83,17 +83,10 @@ class AddExternalLinkTest extends AbstractApiTest
         $client = $this->clientRepository->findOneBy(['nom' => $clientName]);
         $this->assertFalse($beneficiary->getExternalLinksForClient($client)->first());
 
-        $this->assertEndpoint(
+        $this->assertEndpointAccessIsDenied(
             $clientName,
             sprintf('/beneficiaries/%s/add-external-link', $beneficiary->getId()),
             'PATCH',
-            403,
-            [
-                '@context' => '/api/contexts/Error',
-                '@type' => 'hydra:Error',
-                'hydra:title' => 'An error occurred',
-                'hydra:description' => 'Access Denied.',
-            ],
             [
                 'distant_id' => 1200,
             ]

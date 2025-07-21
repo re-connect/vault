@@ -78,17 +78,10 @@ class CreateTest extends AbstractApiTest
      */
     public function testCanNotCreateBeneficiary(string $clientName): void
     {
-        $this->assertEndpoint(
+        $this->assertEndpointAccessIsDenied(
             $clientName,
             '/beneficiaries',
             'POST',
-            403,
-            [
-                '@context' => '/api/contexts/Error',
-                '@type' => 'hydra:Error',
-                'hydra:title' => 'An error occurred',
-                'hydra:description' => 'Access Denied.',
-            ],
             [
                 'last_name' => 'test',
                 'first_name' => 'api',

@@ -45,6 +45,24 @@ abstract class AbstractApiTest extends ApiTestCase
         }
     }
 
+    public function assertEndpointAccessIsDenied(string $clientName, string $endpoint, string $method, mixed $body = null): void
+    {
+        $this->loginAsClient($clientName);
+        $options = ['body' => json_encode($body)];
+        if (in_array($method, [Request::METHOD_PATCH, Request::METHOD_POST])) {
+            $options['headers'] = ['Content-Type' => 'application/json'];
+        }
+        $this->client->request($method, $this->generateUrl($endpoint), $options);
+
+        $this->assertResponseStatusCodeSame(403);
+        $this->assertJsonContains([
+            '@context' => '/api/contexts/Error',
+            '@type' => 'hydra:Error',
+            'hydra:title' => 'An error occurred',
+            'hydra:description' => 'Access Denied.',
+        ]);
+    }
+
     public function loginAsClient(string $clientName, string $grantType = 'client_credentials'): void
     {
         $client = ClientFactory::find(['nom' => $clientName])->object(); // We use the same value in old client table to access properties easily

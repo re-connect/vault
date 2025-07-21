@@ -22,9 +22,7 @@ class GetTest extends AbstractApiTest
      */
     public function testCanGetBeneficiary(string $clientName): void
     {
-        $client = ClientFactory::find(['nom' => $clientName])->object();
-        /** @var Beneficiaire $beneficiary */
-        $beneficiary = $this->repo->findByClientIdentifier($client->getRandomId())[0];
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
         $user = $beneficiary->getUser();
         $this->assertEndpoint(
             $clientName,
@@ -56,20 +54,12 @@ class GetTest extends AbstractApiTest
      */
     public function testCanNotGetBeneficiary(string $clientName): void
     {
-        $client = ClientFactory::find(['nom' => $clientName])->object();
-        /** @var Beneficiaire $beneficiary */
-        $beneficiary = $this->repo->findByClientIdentifier($client->getRandomId())[0];
-        $this->assertEndpoint(
+       $beneficiary = $this->getBeneficiaryForClient($clientName);
+
+        $this->assertEndpointAccessIsDenied(
             $clientName,
             sprintf('/beneficiaries/%s', $beneficiary->getId()),
             'GET',
-            403,
-            [
-                '@context' => '/api/contexts/Error',
-                '@type' => 'hydra:Error',
-                'hydra:title' => 'An error occurred',
-                'hydra:description' => 'Access Denied.',
-            ],
         );
     }
 
