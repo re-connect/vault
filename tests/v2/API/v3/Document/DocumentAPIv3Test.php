@@ -3,22 +3,21 @@
 namespace App\Tests\v2\API\v3\Document;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
-use App\Entity\Attributes\Beneficiaire;
 use App\Tests\Factory\BeneficiaireFactory;
-use App\Tests\Factory\ClientFactory;
 use App\Tests\Factory\DocumentFactory;
 use App\Tests\v2\API\v3\AbstractApiTest;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DocumentAPIv3Test extends AbstractApiTest
 {
-    public function testGetCollection(): void
+    /**
+     * @dataProvider canGetProvider
+     */
+    public function testGetCollectionForBeneficiary(string $clientName): void
     {
-        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
-        /** @var Beneficiaire $beneficiary */
-        $beneficiary = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
         $this->assertEndpoint(
-            'reconnect_pro',
+            $clientName,
             sprintf('/beneficiaries/%s/documents', $beneficiary->getId()),
             'GET',
             200,
@@ -29,6 +28,33 @@ class DocumentAPIv3Test extends AbstractApiTest
                 'hydra:totalItems' => count(DocumentFactory::findBy(['beneficiaire' => $beneficiary->getId(), 'bPrive' => false])),
             ]
         );
+    }
+
+    /**
+     * @dataProvider canNotGetProvider
+     */
+    public function testCanNotGetCollectionForBeneficiary(string $clientName): void
+    {
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
+        $this->assertEndpointAccessIsDenied(
+            $clientName,
+            sprintf('/beneficiaries/%s/documents', $beneficiary->getId()),
+            'GET',
+        );
+    }
+
+    public function canGetProvider(): \Generator
+    {
+        yield 'Should read when read and update scopes' => ['read_and_update'];
+        yield 'Should read with Reconnect Pro client' => ['reconnect_pro'];
+        yield 'Should read with Rosalie client ' => ['rosalie'];
+        yield 'Should read with read only scopes' => ['read_only'];
+    }
+
+    public function canNotGetProvider(): \Generator
+    {
+        yield 'Should not read with create only scopes' => ['create_only'];
+        yield 'Should not read with no scopes' => ['no_scopes'];
     }
 
     public function testPost(): void
@@ -76,11 +102,12 @@ class DocumentAPIv3Test extends AbstractApiTest
         unlink($filePath);
     }
 
-    public function testToggleVisibility(): void
+    /**
+     * @dataProvider canUpdateProvider
+     */
+    public function testToggleVisibility(string $clientName): void
     {
-        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
-        /** @var Beneficiaire $beneficiary */
-        $beneficiary = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
         $document = DocumentFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
@@ -88,7 +115,7 @@ class DocumentAPIv3Test extends AbstractApiTest
         $documentId = $document->getId();
 
         $this->assertEndpoint(
-            'reconnect_pro',
+            $clientName,
             sprintf('/documents/%s/toggle-visibility', $documentId),
             'PATCH',
             200,
@@ -101,12 +128,47 @@ class DocumentAPIv3Test extends AbstractApiTest
         );
         // Once item has been set to private, it should not be found
         $this->assertEndpoint(
-            'reconnect_pro',
+            $clientName,
             sprintf('/documents/%s/toggle-visibility', $documentId),
             'PATCH',
             404,
             null,
             []
         );
+    }
+
+    /**
+     * @dataProvider canNotUpdateProvider
+     */
+    public function testCanNotToggleVisibility(string $clientName): void
+    {
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
+
+        $document = DocumentFactory::findOrCreate([
+            'beneficiaire' => $beneficiary,
+            'bPrive' => false,
+        ])->object();
+        $documentId = $document->getId();
+
+        $this->assertEndpointAccessIsDenied(
+            $clientName,
+            sprintf('/documents/%s/toggle-visibility', $documentId),
+            'PATCH',
+            []
+        );
+    }
+
+    public function canUpdateProvider(): \Generator
+    {
+        yield 'Should update with read_and_update scopes' => ['read_and_update'];
+        yield 'Should update with Reconnect Pro scopes' => ['reconnect_pro'];
+    }
+
+    public function canNotUpdateProvider(): \Generator
+    {
+        yield 'Should not update with read only scopes' => ['read_only'];
+        yield 'Should not update with Rosalie scopes' => ['rosalie'];
+        yield 'Should not update with no scopes' => ['no_scopes'];
+        yield 'Should not update with create only scopes' => ['create_only'];
     }
 }
