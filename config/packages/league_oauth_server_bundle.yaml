@@ -24,6 +24,9 @@ league_oauth2_server:
             - documents_create
             - documents_update
             - notes
+            - notes_read
+            - notes_create
+            - notes_update
             - events
             - events_read
             - events_create
