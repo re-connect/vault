@@ -24,14 +24,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Index(columns: ['beneficiaire_id'], name: 'IDX_CFBDFA145AF81F68')]
 #[ApiResource(
     operations: [
-        new Delete(security: "is_granted('UPDATE', object)"),
-        new Get(security: "is_granted('ROLE_OAUTH2_NOTES') or is_granted('UPDATE', object)"),
-        new GetCollection(security: "is_granted('ROLE_OAUTH2_NOTES') or is_granted('ROLE_USER')"),
-        new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_BENEFICIARIES')", processor: PersonalDataStateProcessor::class),
-        new Patch(security: "is_granted('UPDATE', object)"),
+        new Delete(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Get(security: "is_granted('ROLE_OAUTH2_NOTES_READ') or is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_NOTES_READ') or is_granted('ROLE_USER')"),
+        new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_NOTES_CREATE')", processor: PersonalDataStateProcessor::class),
+        new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
         new Patch(
             uriTemplate: '/notes/{id}/toggle-visibility',
-            security: "is_granted('ROLE_OAUTH2_NOTES')",
+            security: "is_granted('ROLE_OAUTH2_NOTES_UPDATE')",
             name: ApiOperations::TOGGLE_VISIBILITY.'_note',
             processor: PersonalDataStateProcessor::class
         ),
@@ -52,7 +52,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['v3:note:read']],
     denormalizationContext: ['groups' => ['v3:note:write']],
     openapiContext: ['tags' => ['Notes']],
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ')",
 )]
 class Note extends DonneePersonnelle
 {
