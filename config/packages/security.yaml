@@ -10,6 +10,7 @@ security:
         ROLE_OAUTH2_CONTACTS_UPDATE: ROLE_OAUTH2_CONTACTS_CREATE
         ROLE_OAUTH2_DOCUMENTS_UPDATE: ROLE_OAUTH2_DOCUMENTS_CREATE
         ROLE_OAUTH2_EVENTS_UPDATE: ROLE_OAUTH2_EVENTS_CREATE
+        ROLE_OAUTH2_NOTES_UPDATE: ROLE_OAUTH2_NOTES_CREATE
 
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
