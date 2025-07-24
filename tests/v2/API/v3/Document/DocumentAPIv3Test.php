@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class DocumentAPIv3Test extends AbstractApiTest
 {
     /**
-     * @dataProvider canGetProvider
+     * @dataProvider canGetBeneficiaryProvider
      */
     public function testGetCollectionForBeneficiary(string $clientName): void
     {
@@ -43,7 +43,7 @@ class DocumentAPIv3Test extends AbstractApiTest
         );
     }
 
-    public function canGetProvider(): \Generator
+    public function canGetBeneficiaryProvider(): \Generator
     {
         yield 'Should read when read and update scopes' => ['read_and_update'];
         yield 'Should read with Reconnect Pro client' => ['reconnect_pro'];
@@ -55,6 +55,7 @@ class DocumentAPIv3Test extends AbstractApiTest
     {
         yield 'Should not read with create only scopes' => ['create_only'];
         yield 'Should not read with no scopes' => ['no_scopes'];
+        yield 'Should not read with create personal data scope' => ['create_personal_data'];
     }
 
     public function testPost(): void
@@ -162,6 +163,7 @@ class DocumentAPIv3Test extends AbstractApiTest
     {
         yield 'Should update with read_and_update scopes' => ['read_and_update'];
         yield 'Should update with Reconnect Pro scopes' => ['reconnect_pro'];
+        yield 'Should update with update personal data scope' => ['update_personal_data'];
     }
 
     public function canNotUpdateProvider(): \Generator
@@ -170,5 +172,7 @@ class DocumentAPIv3Test extends AbstractApiTest
         yield 'Should not update with Rosalie scopes' => ['rosalie'];
         yield 'Should not update with no scopes' => ['no_scopes'];
         yield 'Should not update with create only scopes' => ['create_only'];
+        yield 'Should not update with read personal data scope' => ['read_personal_data'];
+        yield 'Should not update with create personal data scope' => ['create_personal_data'];
     }
 }

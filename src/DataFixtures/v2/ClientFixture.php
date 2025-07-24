@@ -56,6 +56,27 @@ class ClientFixture extends Fixture implements FixtureGroupInterface
             'scopes' => 'beneficiaries_create contacts_create documents_create events_create notes_create',
         ],
         [
+            'id' => 'read_personal_data_id',
+            'secret' => 'read_personal_data_secret',
+            'name' => 'read_personal_data',
+            'grantType' => 'client_credentials',
+            'scopes' => 'personal_data_read',
+        ],
+        [
+            'id' => 'create_personal_data_id',
+            'secret' => 'create_personal_data_secret',
+            'name' => 'create_personal_data',
+            'grantType' => 'client_credentials',
+            'scopes' => 'personal_data_create',
+        ],
+        [
+            'id' => 'update_personal_data_id',
+            'secret' => 'update_personal_data_secret',
+            'name' => 'update_personal_data',
+            'grantType' => 'client_credentials',
+            'scopes' => 'personal_data_update',
+        ],
+        [
             'id' => 'no_scopes_id',
             'secret' => 'no_scopes_secret',
             'name' => 'no_scopes',
