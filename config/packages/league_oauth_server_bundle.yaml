@@ -14,29 +14,27 @@ league_oauth2_server:
     scopes:
         available:
             - default
-            - beneficiaries
             - beneficiaries_read
             - beneficiaries_create
             - beneficiaries_update
             - centers
-            - documents
             - documents_read
             - documents_create
             - documents_update
-            - notes
             - notes_read
             - notes_create
             - notes_update
-            - events
             - events_read
             - events_create
             - events_update
-            - contacts
             - contacts_read
             - contacts_create
             - contacts_update
             - pros
             - si_siao_numbers
             - users
+            - personal_data_read
+            - personal_data_create
+            - personal_data_update
         default:
             - default
