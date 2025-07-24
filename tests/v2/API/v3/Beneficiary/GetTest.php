@@ -65,6 +65,9 @@ class GetTest extends AbstractApiTest
     {
         yield 'Should not get beneficiary for client with create only scopes' => ['create_only'];
         yield 'Should not get beneficiary for client with no scopes' => ['no_scopes'];
+        yield 'Should not get beneficiary for client with only personal data read scope' => ['read_personal_data'];
+        yield 'Should not get beneficiary for client with only personal data create scope' => ['create_personal_data'];
+        yield 'Should not get beneficiary for client with only personal data update scope' => ['update_personal_data'];
     }
 
     public function canGetProvider(): \Generator

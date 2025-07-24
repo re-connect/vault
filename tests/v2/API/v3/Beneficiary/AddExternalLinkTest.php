@@ -99,6 +99,9 @@ class AddExternalLinkTest extends AbstractApiTest
     {
         yield 'Should not link beneficiary for client with readonly scopes' => ['read_only'];
         yield 'Should not link beneficiary for client with no scopes' => ['no_scopes'];
+        yield 'Should not link beneficiary for client with only personal data read scope' => ['read_personal_data'];
+        yield 'Should not link beneficiary for client with only personal data create scope' => ['create_personal_data'];
+        yield 'Should not link beneficiary for client with only personal data update scope' => ['update_personal_data'];
     }
 
     public function testShouldNotAddExternalLinkWhenAlreadyExists(): void
