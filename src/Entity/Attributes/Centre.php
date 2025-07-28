@@ -109,11 +109,11 @@ class Centre implements \JsonSerializable, \Stringable
     private Collection $membresCentres;
 
     #[ORM\JoinColumn(name: 'gestionnaire_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
-    #[ORM\ManyToOne(targetEntity: Gestionnaire::class)]
+    #[ORM\ManyToOne(targetEntity: Gestionnaire::class, inversedBy: 'centres')]
     private ?Gestionnaire $gestionnaire = null;
 
     #[ORM\JoinColumn(name: 'typeCentre_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: TypeCentre::class)]
+    #[ORM\ManyToOne(targetEntity: TypeCentre::class, inversedBy: 'centres')]
     private ?TypeCentre $typeCentre = null;
 
     #[ORM\OneToMany(mappedBy: 'centre', targetEntity: SMS::class, cascade: ['persist', 'remove'])]
@@ -149,7 +149,7 @@ class Centre implements \JsonSerializable, \Stringable
     private bool $canada = false;
 
     #[ORM\JoinColumn(name: 'association_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: Association::class)]
+    #[ORM\ManyToOne(targetEntity: Association::class, inversedBy: 'centres')]
     private ?Association $association = null;
 
     #[ORM\JoinColumn(name: 'region_id', referencedColumnName: 'id', onDelete: 'SET NULL')]

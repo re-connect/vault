@@ -87,7 +87,7 @@ class Evenement extends DonneePersonnelle
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_CONTENT]])]
     private ?string $commentaire = null;
 
-    #[ORM\ManyToOne(targetEntity: Membre::class)]
+    #[ORM\ManyToOne(targetEntity: Membre::class, inversedBy: 'evenements')]
     #[ORM\JoinColumn(name: 'membre_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
     private ?Membre $membre = null;
 

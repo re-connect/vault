@@ -27,27 +27,27 @@ abstract class Creator
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: Document::class)]
+    #[ORM\ManyToOne(targetEntity: Document::class, inversedBy: 'creators')]
     #[ORM\JoinColumn(name: 'document_id', referencedColumnName: 'id')]
     private ?Document $document = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'creators')]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(targetEntity: Note::class)]
+    #[ORM\ManyToOne(targetEntity: Note::class, inversedBy: 'creators')]
     #[ORM\JoinColumn(name: 'note_id', referencedColumnName: 'id')]
     private ?Note $note = null;
 
-    #[ORM\ManyToOne(targetEntity: Evenement::class)]
+    #[ORM\ManyToOne(targetEntity: Evenement::class, inversedBy: 'creators')]
     #[ORM\JoinColumn(name: 'evenement_id', referencedColumnName: 'id')]
     private ?Evenement $evenement = null;
 
-    #[ORM\ManyToOne(targetEntity: Contact::class)]
+    #[ORM\ManyToOne(targetEntity: Contact::class, inversedBy: 'creators')]
     #[ORM\JoinColumn(name: 'contact_id', referencedColumnName: 'id')]
     private ?Contact $contact = null;
 
-    #[ORM\ManyToOne(targetEntity: Dossier::class)]
+    #[ORM\ManyToOne(targetEntity: Dossier::class, inversedBy: 'creators')]
     #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id')]
     private ?Dossier $dossier = null;
 
