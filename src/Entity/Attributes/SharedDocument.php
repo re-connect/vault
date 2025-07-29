@@ -31,11 +31,11 @@ class SharedDocument
     #[ORM\Column(name: 'sharedWithEmail', type: 'string', length: 255, nullable: false)]
     private ?string $sharedWithEmail = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'sharedDocuments')]
     #[ORM\JoinColumn(name: 'sharedBy_id', referencedColumnName: 'id')]
     private ?User $sharedBy = null;
 
-    #[ORM\ManyToOne(targetEntity: Document::class)]
+    #[ORM\ManyToOne(targetEntity: Document::class, inversedBy: 'sharedDocuments')]
     #[ORM\JoinColumn(name: 'document_id', referencedColumnName: 'id')]
     private ?Document $document = null;
 

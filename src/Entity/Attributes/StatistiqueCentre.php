@@ -33,7 +33,7 @@ class StatistiqueCentre
     #[ORM\Column(name: 'donnees', type: 'array', nullable: false)]
     private $donnees;
 
-    #[ORM\ManyToOne(targetEntity: Centre::class)]
+    #[ORM\ManyToOne(targetEntity: Centre::class, inversedBy: 'statistiquesCentre')]
     #[ORM\JoinColumn(name: 'centre_id', referencedColumnName: 'id', nullable: false)]
     private Centre $centre;
 

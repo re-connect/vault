@@ -20,11 +20,11 @@ class ConsultationBeneficiaire
     #[Gedmo\Timestampable(on: 'create')]
     private \DateTime $createdAt;
 
-    #[ORM\ManyToOne(targetEntity: Membre::class, inversedBy: 'consultationBeneficiaires')]
+    #[ORM\ManyToOne(targetEntity: Membre::class, inversedBy: 'consultationsBeneficiaires')]
     #[ORM\JoinColumn(name: 'membre_id', referencedColumnName: 'id', nullable: false)]
     private Membre $membre;
 
-    #[ORM\ManyToOne(targetEntity: Beneficiaire::class, inversedBy: 'consultationBeneficiaires')]
+    #[ORM\ManyToOne(targetEntity: Beneficiaire::class, inversedBy: 'consultationsBeneficiaires')]
     #[ORM\JoinColumn(name: 'beneficiaire_id', referencedColumnName: 'id', nullable: false)]
     private Beneficiaire $beneficiaire;
 
