@@ -69,6 +69,7 @@ class UserType extends AbstractType
 
     public function addDefaultFields(FormBuilderInterface $builder): void
     {
+        $user = $builder->getForm()->getData();
         $builder
             ->add('prenom', null, [
                 'label' => 'firstname',
@@ -97,6 +98,7 @@ class UserType extends AbstractType
                 'required' => false,
                 'row_attr' => ['class' => 'col-6 mt-3'],
                 'label' => 'email',
+                'disabled' => $user?->isMembre() && $user->getEmail(),
             ]);
     }
 

@@ -199,4 +199,16 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
     {
         $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email, $alternateSelector);
     }
+
+    public function testEmailIsDisabled(): void
+    {
+        self::ensureKernelShutdown();
+        $client = static::createClient();
+        $user = $this->getTestUserFromDb(MemberFixture::MEMBER_MAIL);
+        $client->loginUser($user);
+
+        $client->request('GET', self::URL);
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorExists('input[disabled][name="user[email]"]');
+    }
 }
