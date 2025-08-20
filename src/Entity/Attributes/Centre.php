@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Api\State\CentreStateProcessor;
 use App\Controller\Rest\V3\LinkedCentersController;
+use App\Entity\Traits\CreatorTrait;
 use App\Repository\CentreRepository;
 use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -53,6 +54,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ApiFilter(SearchFilter::class, properties: ['beneficiairesCentres.beneficiaire'])]
 class Centre implements \JsonSerializable, \Stringable
 {
+    use CreatorTrait;
     public const array REGIONS = ['Auvergne-Rhône-Alpes', 'Bourgogne-Franche-Comté', 'Bretagne', 'Centre-Val de Loire', 'Corse', 'Grand Est', 'Hauts-de-France', 'Ile-de-France', 'Normandie', 'Nouvelle-Aquitaine', 'Occitanie', 'Pays de la Loire', 'Provence-Alpes-Côte d’Azur', 'Autre'];
 
     #[ORM\Id]
