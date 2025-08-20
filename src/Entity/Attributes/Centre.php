@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
+use App\Api\State\CentreStateProcessor;
 use App\Controller\Rest\V3\LinkedCentersController;
 use App\Repository\CentreRepository;
 use App\Validator\Constraints\UniqueExternalLink;
@@ -39,7 +40,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
             security: "is_granted('ROLE_OAUTH2_CENTERS')",
             deserialize: false,
         ),
-        new Post(security: "is_granted('ROLE_OAUTH2_CENTERS')"),
+        new Post(
+            security: "is_granted('ROLE_OAUTH2_CENTERS')",
+            processor: CentreStateProcessor::class
+        ),
     ],
     normalizationContext: ['groups' => ['v3:center:read']],
     denormalizationContext: ['groups' => ['v3:center:write']],
@@ -158,6 +162,9 @@ class Centre implements \JsonSerializable, \Stringable
     #[ORM\ManyToOne(targetEntity: Region::class)]
     private ?Region $region = null;
 
+    #[ORM\OneToMany(mappedBy: 'centre', targetEntity: Creator::class, cascade: ['persist', 'remove'])]
+    protected Collection $creators;
+
     #[Groups(['v3:center:read'])]
     public function getDistantIds(): ArrayCollection
     {
@@ -169,6 +176,7 @@ class Centre implements \JsonSerializable, \Stringable
         $this->beneficiairesCentres = new ArrayCollection();
         $this->membresCentres = new ArrayCollection();
         $this->externalLinks = new ArrayCollection();
+        $this->creators = new ArrayCollection();
         $letters = 'abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $this->code = substr(str_shuffle($letters), 0, 8);
     }
@@ -653,6 +661,34 @@ class Centre implements \JsonSerializable, \Stringable
     public function setAssociation(?Association $association): self
     {
         $this->association = $association;
+
+        return $this;
+    }
+
+    public function getCreators(): Collection
+    {
+        return $this->creators;
+    }
+
+    public function addCreator(Creator $creator): self
+    {
+        if (!$this->creators->contains($creator)) {
+            $this->creators[] = $creator;
+            $creator->setCentre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreator(Creator $creator): self
+    {
+        if ($this->creators->contains($creator)) {
+            $this->creators->removeElement($creator);
+            // set the owning side to null (unless already changed)
+            if ($creator->getCentre() === $this) {
+                $creator->setCentre();
+            }
+        }
 
         return $this;
     }
