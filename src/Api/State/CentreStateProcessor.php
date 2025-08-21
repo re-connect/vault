@@ -6,8 +6,12 @@ use ApiPlatform\Doctrine\Common\State\PersistProcessor;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\State\ProcessorInterface;
+use App\Api\Dto\CentreDto;
 use App\Api\Manager\ApiClientManager;
+use App\Entity\Attributes\Association;
+use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\CreatorClient;
+use App\Repository\AssociationRepository;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 readonly class CentreStateProcessor implements ProcessorInterface
@@ -15,20 +19,36 @@ readonly class CentreStateProcessor implements ProcessorInterface
     public function __construct(
         #[Autowire(service: PersistProcessor::class)]
         private ProcessorInterface $persistProcessor,
-        private ApiClientManager $manager)
-    {
+        private ApiClientManager $apiClientManager,
+        private AssociationRepository $associationRepository,
+    ) {
     }
 
     #[\Override]
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): mixed
     {
-        $client = $this->manager->getCurrentOldClient();
+        $client = $this->apiClientManager->getCurrentOldClient();
 
-        if ($client && $operation instanceof Post) {
-            $creator = new CreatorClient($client);
-            $data->addCreator($creator);
+        if ($client && $operation instanceof Post && $data instanceof CentreDto) {
+            $relay = $data
+                ->toCentre()
+                ->addCreator(new CreatorClient($client));
+            $this->addAssociation($data, $relay);
+
+            return $this->persistProcessor->process($relay, $operation, $uriVariables, $context);
         }
 
         return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
+    }
+
+    private function addAssociation(mixed $data, Centre $relay): void
+    {
+        if ($data->association) {
+            $relay
+                ->setAssociation(
+                    $this->associationRepository->findOneBy(['nom' => $data->association])
+                    ?? (new Association())->setNom($data->association)
+                );
+        }
     }
 }
