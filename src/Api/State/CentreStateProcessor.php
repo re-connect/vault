@@ -12,6 +12,7 @@ use App\Entity\Attributes\Association;
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\CreatorClient;
 use App\Repository\AssociationRepository;
+use App\Repository\RegionRepository;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 readonly class CentreStateProcessor implements ProcessorInterface
@@ -21,6 +22,7 @@ readonly class CentreStateProcessor implements ProcessorInterface
         private ProcessorInterface $persistProcessor,
         private ApiClientManager $apiClientManager,
         private AssociationRepository $associationRepository,
+        private RegionRepository $regionRepository,
     ) {
     }
 
@@ -32,6 +34,7 @@ readonly class CentreStateProcessor implements ProcessorInterface
         if ($client && $operation instanceof Post && $data instanceof CentreDto) {
             $relay = $data
                 ->toCentre()
+                ->setRegion($this->regionRepository->findOneBy(['name' => $data->region]))
                 ->addCreator(new CreatorClient($client));
             $this->addAssociation($data, $relay);
 
