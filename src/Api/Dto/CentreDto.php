@@ -15,6 +15,9 @@ class CentreDto
     #[Groups(['v3:center:write'])]
     public ?string $association = null;
 
+    #[Groups(['v3:center:write'])]
+    public ?string $region = null;
+
     public function toCentre(): Centre
     {
         return (new Centre())->setNom($this->nom);
