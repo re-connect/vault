@@ -11,6 +11,8 @@ use App\Api\Manager\ApiClientManager;
 use App\Entity\Attributes\Association;
 use App\Entity\Attributes\Centre;
 use App\Entity\Attributes\CreatorClient;
+use App\Entity\Attributes\User;
+use App\ManagerV2\UserManager;
 use App\Repository\AssociationRepository;
 use App\Repository\RegionRepository;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
@@ -23,6 +25,7 @@ readonly class CentreStateProcessor implements ProcessorInterface
         private ApiClientManager $apiClientManager,
         private AssociationRepository $associationRepository,
         private RegionRepository $regionRepository,
+        private UserManager $userManager,
     ) {
     }
 
@@ -50,8 +53,23 @@ readonly class CentreStateProcessor implements ProcessorInterface
             $relay
                 ->setAssociation(
                     $this->associationRepository->findOneBy(['nom' => $data->association])
-                    ?? (new Association())->setNom($data->association)
+                    ?? $this->createAssociation($data->association)
                 );
         }
+    }
+
+    private function createAssociation(string $name): Association
+    {
+        $association = (new Association())->setNom($name);
+        $userAssociation = (new User())
+            ->setPlainPassword($this->userManager->getRandomPassword())
+            ->setNom($association->getNom())
+            ->setTypeUser(User::USER_TYPE_ASSOCIATION)
+            ->disable();
+
+        $this->userManager->updatePasswordWithPlain($userAssociation);
+        $userAssociation->setUsername($association->getNom());
+
+        return $association->setUser($userAssociation);
     }
 }
