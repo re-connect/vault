@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
+use App\Api\Dto\CentreDto;
 use App\Api\State\CentreStateProcessor;
 use App\Controller\Rest\V3\LinkedCentersController;
 use App\Entity\Traits\CreatorTrait;
@@ -43,6 +44,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
         ),
         new Post(
             security: "is_granted('ROLE_OAUTH2_CENTERS')",
+            input: CentreDto::class,
             processor: CentreStateProcessor::class
         ),
     ],
@@ -157,7 +159,7 @@ class Centre implements \JsonSerializable, \Stringable
     private bool $canada = false;
 
     #[ORM\JoinColumn(name: 'association_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: Association::class)]
+    #[ORM\ManyToOne(targetEntity: Association::class, cascade: ['persist'], inversedBy: 'centres')]
     private ?Association $association = null;
 
     #[ORM\JoinColumn(name: 'region_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
