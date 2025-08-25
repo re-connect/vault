@@ -256,7 +256,7 @@ error: Fehler
 error_401: Vous n'êtes pas connecté
 error_403: Vous n'êtes pas autorisé à accéder à cette page
 error_404: Oups, il semble que cette page n'existe pas
-error_500: Il y a eu une erreur technique, le problème vient de nous, nous allons le traiter rapidement
+error_500: Il y a une erreur technique, envoyez nous un message sur le support en ligne (la bulle en bas à droite) ou <a href="https://reconnect.fr/nous-contacter ">contactez-nous</a> par mail pour que nous puissions traiter le problème rapidement
 error_during_download: "Erreur : le téléchargement n'a pas pu aboutir"
 event: Termin
 event_created: 'Événement créé'
