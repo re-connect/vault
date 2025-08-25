@@ -51,6 +51,10 @@ abstract class Creator
     #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id')]
     private ?Dossier $dossier = null;
 
+    #[ORM\ManyToOne(targetEntity: Centre::class)]
+    #[ORM\JoinColumn(name: 'centre_id', referencedColumnName: 'id')]
+    private ?Centre $centre = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,6 +128,18 @@ abstract class Creator
     public function setDossier(?Dossier $dossier = null): static
     {
         $this->dossier = $dossier;
+
+        return $this;
+    }
+
+    public function getCentre(): ?Centre
+    {
+        return $this->centre;
+    }
+
+    public function setCentre(?Centre $centre = null): static
+    {
+        $this->centre = $centre;
 
         return $this;
     }

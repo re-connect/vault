@@ -1,0 +1,17 @@
+meta {
+  name: Create Relay
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/v3/centers
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "New Center"
+  }
+}
