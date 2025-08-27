@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Validator\Constraints\File;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
 final class AnnexeAdmin extends AbstractAdmin
@@ -47,6 +48,12 @@ final class AnnexeAdmin extends AbstractAdmin
             ->add('fichierFile', VichFileType::class, [
                 'required' => false,
                 'label' => 'Fichier',
+                'constraints' => [
+                    new File(
+                        extensions: ['pdf'],
+                        extensionsMessage: 'Veuillez choisir un PDF valide',
+                    ),
+                ],
             ])
             ->add('actif');
     }
