@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\Process\Process;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use function Symfony\Component\String\u;
@@ -116,7 +117,7 @@ class DocumentManager
 
     public function uploadFile(UploadedFile $file, Beneficiaire $beneficiary, ?Dossier $folder = null): ?Document
     {
-        if ($this->isFileExtensionAllowed($file)) {
+        if ($this->isFileExtensionAllowed($file) && $this->isFileClean($file)) {
             try {
                 $key = $this->s3Client->uploadFile($file);
 
@@ -156,6 +157,15 @@ class DocumentManager
         }
 
         return true;
+    }
+
+    private function isFileClean(UploadedFile $file): bool
+    {
+        $filePath = $file->getPathname();
+        $process = Process::fromShellCommandline(sprintf('echo SCAN %s | nc -U /tmp/clamd.socket', $filePath));
+        $process->run();
+
+        return trim($process->getOutput()) === sprintf('%s: OK', $filePath);
     }
 
     public function downloadDocument(Document $document): ?StreamedResponse
