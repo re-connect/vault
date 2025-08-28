@@ -1,19 +1,15 @@
 meta {
   name: Search Beneficiary
   type: http
-  seq: 7
+  seq: 1
 }
 
 get {
-  url: {{baseUrl}}/api/v3/users?username=first.last.12/12/12
+  url: {{baseUrl}}/api/v3/users?username=first.last.13/02/2023
   body: none
-  auth: bearer
+  auth: inherit
 }
 
-query {
-  username: first.last.12/12/12
-}
-
-auth:bearer {
-  token: {{oauth2_token}}
+params:query {
+  username: first.last.13/02/2023
 }
