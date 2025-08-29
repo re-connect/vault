@@ -84,6 +84,7 @@ class CentreRepository extends ServiceEntityRepository
             $qb->andWhere('uc.bValid = :isAccepted');
         }
 
+        // dd($qb->getQuery()->getSQL());
         return $qb->setParameters($parameters)
             ->getQuery()
             ->getResult();

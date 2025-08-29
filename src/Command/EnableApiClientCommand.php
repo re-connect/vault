@@ -22,7 +22,7 @@ class EnableApiClientCommand extends Command
     public function __construct(
         private readonly ClientManagerInterface $clientManager,
         private readonly EntityManagerInterface $em,
-        ?string $name = null
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }

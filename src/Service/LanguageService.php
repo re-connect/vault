@@ -11,7 +11,7 @@ class LanguageService
 
     public function __construct(
         private readonly RequestStack $request,
-        private readonly LocaleSwitcher $localeSwitcher
+        private readonly LocaleSwitcher $localeSwitcher,
     ) {
     }
 

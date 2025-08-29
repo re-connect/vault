@@ -211,7 +211,7 @@ class DocumentRestV2Controller extends REController
         ValidatorInterface $validator,
         MailManager $mailManager,
         TranslatorInterface $translator,
-        RestManager $restManager
+        RestManager $restManager,
     ): JsonResponse {
         try {
             $document = $this->provider->getEntity($id, Client::ACCESS_DOCUMENT_WRITE);
@@ -280,7 +280,7 @@ class DocumentRestV2Controller extends REController
         int $id,
         Request $request,
         DocumentProvider $provider,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
     ): JsonResponse {
         try {
             if (null === $name = $request->get('name')) {
@@ -308,7 +308,7 @@ class DocumentRestV2Controller extends REController
         int $id,
         int $dossierId,
         DocumentProvider $provider,
-        DossierProvider $dossierProvider
+        DossierProvider $dossierProvider,
     ): JsonResponse {
         try {
             $entity = $provider->getEntity($id);
