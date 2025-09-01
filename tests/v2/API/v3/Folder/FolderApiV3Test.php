@@ -88,7 +88,23 @@ class FolderApiV3Test extends AbstractApiTest
         $folder = FolderFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
+            'nom' => 'Folder with documents',
         ])->object();
+
+        // Check that only public documents are returned
+        $publicDocuments = [];
+        foreach ($folder->getDocuments() as $document) {
+            if (!$document->getBPrive()) {
+                $publicDocuments[] = [
+                    'id' => $document->getId(),
+                    'b_prive' => false,
+                    'nom' => $document->getNom(),
+                    'beneficiaire_id' => $beneficiary->getId(),
+                    'created_at' => $document->getCreatedAt()->format('c'),
+                    'updated_at' => $document->getUpdatedAt()->format('c'),
+                ];
+            }
+        }
 
         $this->assertEndpoint(
             $clientName,
@@ -103,6 +119,7 @@ class FolderApiV3Test extends AbstractApiTest
                 'beneficiaire' => sprintf('/api/v3/beneficiaries/%d', $folder->getBeneficiaire()->getId()),
                 'created_at' => $folder->getCreatedAt()->format('c'),
                 'updated_at' => $folder->getUpdatedAt()->format('c'),
+                'documents' => $publicDocuments,
             ]
         );
     }
