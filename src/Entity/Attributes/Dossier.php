@@ -82,7 +82,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface, Cl
 
     #[ORM\ManyToOne(targetEntity: Dossier::class, inversedBy: 'sousDossiers')]
     #[ORM\JoinColumn(name: 'dossier_parent_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
-    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write'])]
     #[AssertFolder\NoCircularDependency]
     private ?Dossier $dossierParent = null;
 
@@ -333,5 +333,11 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface, Cl
     public function getScopeName(): string
     {
         return 'DOCUMENTS';
+    }
+
+    // Needed for API
+    public function getDossierParentId(): ?int
+    {
+        return $this->dossierParent?->getId();
     }
 }
