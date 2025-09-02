@@ -46,8 +46,8 @@ final class FolderIconAdmin extends AbstractAdmin
                 'label' => 'Fichier',
                 'constraints' => [
                     new File(
-                        extensions: ['png', 'jpg'],
-                        extensionsMessage: 'Veuillez choisir une image valide (.png, .jpg)',
+                        extensions: ['png', 'jpg', 'svg'],
+                        extensionsMessage: 'Veuillez choisir une image valide (.png, .jpg, .svg)',
                     ),
                 ],
             ]);
