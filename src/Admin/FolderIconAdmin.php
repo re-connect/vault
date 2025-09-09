@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Validator\Constraints\File;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
 final class FolderIconAdmin extends AbstractAdmin
@@ -43,6 +44,12 @@ final class FolderIconAdmin extends AbstractAdmin
             ->add('imageFile', VichFileType::class, [
                 'required' => false,
                 'label' => 'Fichier',
+                'constraints' => [
+                    new File(
+                        extensions: ['png', 'jpg', 'svg'],
+                        extensionsMessage: 'Veuillez choisir une image valide (.png, .jpg, .svg)',
+                    ),
+                ],
             ]);
     }
 
