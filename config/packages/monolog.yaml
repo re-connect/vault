@@ -18,6 +18,7 @@ when@dev:
             - affiliation
             - sms
             - api
+            - disk_capacity
         handlers:
             main:
                 type: fingers_crossed
@@ -64,6 +65,11 @@ when@dev:
                 type: stream
                 path: '%kernel.logs_dir%/api_dev/v3.log'
                 channels: [ 'api' ]
+            disk_capacity:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/monitoring/disk_capacity.log'
+                channels: [ 'disk_capacity' ]
             console:
                 type: console
                 process_psr_3_messages: false
@@ -78,6 +84,7 @@ when@test:
             - relay
             - affiliation
             - api
+            - disk_capacity
         handlers:
             main:
                 type: fingers_crossed
@@ -119,6 +126,11 @@ when@test:
                 type: stream
                 path: '%kernel.logs_dir%/api_test/v3.log'
                 channels: [ 'api' ]
+            disk_capacity:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/monitoring/disk_capacity.log'
+                channels: [ 'disk_capacity' ]
 
 when@preprod:
     monolog:
@@ -130,6 +142,7 @@ when@preprod:
             - affiliation
             - api
             - sms
+            - disk_capacity
         handlers:
             main:
                 type: fingers_crossed
@@ -187,6 +200,11 @@ when@preprod:
                 type: stream
                 path: '%kernel.logs_dir%/activity_preprod/sms.log'
                 channels: [ 'sms' ]
+            disk_capacity:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/monitoring_preprod/disk_capacity.log'
+                channels: [ 'disk_capacity' ]
 
 when@prod:
     monolog:
@@ -197,6 +215,7 @@ when@prod:
             - relay
             - affiliation
             - api
+            - disk_capacity
         handlers:
             main:
                 type: fingers_crossed
@@ -249,4 +268,9 @@ when@prod:
                 path: '%kernel.logs_dir%/api/v3.log'
                 channels: [ 'api' ]
                 max_files: 10
+            disk_capacity:
+                level: debug
+                type: stream
+                path: '%kernel.logs_dir%/monitoring/disk_capacity.log'
+                channels: [ 'disk_capacity' ]
 

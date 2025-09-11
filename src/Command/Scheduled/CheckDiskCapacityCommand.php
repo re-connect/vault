@@ -3,6 +3,7 @@
 namespace App\Command\Scheduled;
 
 use App\ServiceV2\Mailer\MailerService;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -17,6 +18,7 @@ use Symfony\Component\Process\Process;
 class CheckDiskCapacityCommand extends Command
 {
     private const int CAPACITY_ALERT_THRESHOLD = 85;
+    private const string CURRENT_FILE_SYSTEM_USAGE_COMMAND = 'df -h | grep $(findmnt -T $(pwd) -o SOURCE -n)';
 
     /**
      * @param string[] $adminMails
@@ -25,6 +27,7 @@ class CheckDiskCapacityCommand extends Command
         private readonly MailerService $mailer,
         private readonly string $env,
         private readonly array $adminMails,
+        private readonly LoggerInterface $diskCapacityLogger
     ) {
         parent::__construct();
     }
@@ -32,7 +35,15 @@ class CheckDiskCapacityCommand extends Command
     #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $process = Process::fromShellCommandline("df -h | grep $(findmnt -T $(pwd) -o SOURCE -n) | awk '{print $5}'");
+        $this->checkAvailableCapacity();
+        $this->logCapacityInfo();
+
+        return Command::SUCCESS;
+    }
+
+    private function checkAvailableCapacity(): void
+    {
+        $process = Process::fromShellCommandline(sprintf("%s | awk '{print $5}'", self::CURRENT_FILE_SYSTEM_USAGE_COMMAND));
         $process->run();
         $capacityPercentage = $process->getOutput();
 
@@ -48,7 +59,12 @@ class CheckDiskCapacityCommand extends Command
                     ->to(...$this->adminMails),
             );
         }
+    }
 
-        return Command::SUCCESS;
+    private function logCapacityInfo(): void
+    {
+        $process = Process::fromShellCommandline(sprintf("%s | awk '{print $2, $3, $4}'", self::CURRENT_FILE_SYSTEM_USAGE_COMMAND));
+        $process->run();
+        $this->diskCapacityLogger->info($process->getOutput());
     }
 }
