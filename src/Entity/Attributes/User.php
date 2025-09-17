@@ -572,6 +572,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
         return $this->hasRole('ROLE_ADMIN');
     }
 
+    #[\Override]
     public function isSuperAdmin(): bool
     {
         return $this->hasRole('ROLE_SUPER_ADMIN');

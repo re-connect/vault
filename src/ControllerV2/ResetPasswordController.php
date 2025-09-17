@@ -191,7 +191,7 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('app_forgot_password_email_request');
         }
 
-        $form = $this->createForm(ChangePasswordFormType::class, null,[
+        $form = $this->createForm(ChangePasswordFormType::class, null, [
             'user' => $user,
         ])->handleRequest($request);
 

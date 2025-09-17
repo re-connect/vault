@@ -3,12 +3,12 @@
 namespace App\Entity\Attributes;
 
 use App\Entity\Traits\DeactivatableTrait;
+use App\Validator\Constraints as CustomAssert;
 use Doctrine\ORM\Mapping as ORM;
 use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Security\Core\User\LegacyPasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-use App\Validator\Constraints as CustomAssert;
 
 abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, UserInterface, \Stringable
 {
