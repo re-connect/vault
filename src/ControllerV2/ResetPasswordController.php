@@ -151,7 +151,7 @@ class ResetPasswordController extends AbstractController
 
         return $this->render('v2/reset_password/public/reset.html.twig', [
             'form' => $form,
-            'isBeneficiaire' => $user->isBeneficiaire(),
+            'user' => $user,
         ]);
     }
 
@@ -206,7 +206,7 @@ class ResetPasswordController extends AbstractController
 
         return $this->render('v2/reset_password/public/reset.html.twig', [
             'form' => $form,
-            'isBeneficiaire' => $user->isBeneficiaire(),
+            'user' => $user,
         ]);
     }
 }
