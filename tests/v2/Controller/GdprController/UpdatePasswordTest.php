@@ -2,8 +2,10 @@
 
 namespace App\Tests\v2\Controller\GdprController;
 
+use App\DataFixtures\v2\AdminFixture;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
+use App\DataFixtures\v2\SuperAdminFixture;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestFormInterface;
@@ -31,7 +33,7 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
 
     public function provideTestFormIsValid(): \Generator
     {
-        yield 'Should redirect when passwords match with required criteria' => [
+        yield 'Should redirect when passwords match with required criteria for standard user' => [
             self::URL,
             'submit',
             [
@@ -39,6 +41,28 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
                 'change_password_form[plainPassword][second]' => '123456Aaaa',
             ],
             MemberFixture::MEMBER_MAIL,
+            '/login-end',
+        ];
+
+        yield 'Should redirect when passwords match with required criteria for admin' => [
+            self::URL,
+            'submit',
+            [
+                'change_password_form[plainPassword][first]' => '123456Aaaa1111111111',
+                'change_password_form[plainPassword][second]' => '123456Aaaa1111111111',
+            ],
+            AdminFixture::ADMIN_MAIL,
+            '/login-end',
+        ];
+
+        yield 'Should redirect when passwords match with required criteria for super admin' => [
+            self::URL,
+            'submit',
+            [
+                'change_password_form[plainPassword][first]' => '123456Aaaa1111111111',
+                'change_password_form[plainPassword][second]' => '123456Aaaa1111111111',
+            ],
+            SuperAdminFixture::SUPER_ADMIN_MAIL,
             '/login-end',
         ];
     }
@@ -78,6 +102,38 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
                 ],
             ],
             MemberFixture::MEMBER_MAIL,
+        ];
+
+        $values = [
+            'change_password_form[plainPassword][first]' => '1234567890TooShort!',
+            'change_password_form[plainPassword][second]' => '1234567890TooShort!',
+        ];
+        yield 'Should return an error if password is 19 char long for admin' => [
+            self::URL,
+            'app_update_password',
+            'submit',
+            $values,
+            [
+                [
+                    'message' => 'Votre mot de passe doit contenir au moins 20 caractères',
+                    'params' => null,
+                ],
+            ],
+            AdminFixture::ADMIN_MAIL,
+        ];
+
+        yield 'Should return an error if password is 19 char long for super admin' => [
+            self::URL,
+            'app_update_password',
+            'submit',
+            $values,
+            [
+                [
+                    'message' => 'Votre mot de passe doit contenir au moins 20 caractères',
+                    'params' => null,
+                ],
+            ],
+            SuperAdminFixture::SUPER_ADMIN_MAIL,
         ];
 
         $values = [
