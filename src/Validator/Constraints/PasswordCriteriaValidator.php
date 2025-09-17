@@ -18,14 +18,17 @@ class PasswordCriteriaValidator extends ConstraintValidator
             return;
         }
 
-        $this->validatePasswordLength($value);
+        $this->validatePasswordLength($value, $constraint);
         $this->validatePasswordFormat($value);
         $this->validatePasswordCriteria($value);
     }
 
-    private function validatePasswordLength(string $value): void
+    private function validatePasswordLength(string $value, Constraint $constraint): void
     {
-        $passwordMinLength = User::USER_PASSWORD_LENGTH;
+        $user = $constraint->user ?? ($this->context->getObject() instanceof User ? $this->context->getObject() : null);
+        $passwordMinLength = $user?->isAdmin() || $user?->isSuperAdmin()
+            ? User::ADMIN_PASSWORD_LENGTH
+            : User::USER_PASSWORD_LENGTH;
 
         if (strlen($value) < $passwordMinLength) {
             $this->context->buildViolation('password_too_short', ['{{ limit }}' => $passwordMinLength])

@@ -24,7 +24,7 @@ class ChangePasswordFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [
-                    'constraints' => [new PasswordCriteria()],
+                    'constraints' => [new PasswordCriteria($options['user'])],
                     'label' => 'your_new_password',
                     'attr' => [
                         ...PasswordField::PASSWORD_STRENGTH_CONTROLLER_DATA_ATTRIBUTES,
@@ -56,6 +56,7 @@ class ChangePasswordFormType extends AbstractType
     {
         $resolver->setDefaults([
             'checkCurrentPassword' => false,
+            'user' => null,
         ])
         ->setAllowedTypes('checkCurrentPassword', 'bool');
     }

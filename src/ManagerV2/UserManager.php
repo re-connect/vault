@@ -56,7 +56,7 @@ class UserManager
     public function updatePassword(User $user, string $password): void
     {
         $user->setPassword($this->hasher->hashPassword($user, $password));
-        $user->setHasPasswordWithLatestPolicy($this->passwordHelper->isStrongPassword($password));
+        $user->setHasPasswordWithLatestPolicy($this->passwordHelper->isStrongPassword($user, $password));
         $this->em->flush();
         $user->eraseCredentials();
     }
