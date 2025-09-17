@@ -8,6 +8,7 @@ use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Security\Core\User\LegacyPasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Validator\Constraints as CustomAssert;
 
 abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, UserInterface, \Stringable
 {
@@ -35,6 +36,7 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
     #[ORM\Column(name: 'password', type: 'string', length: 255, nullable: false)]
     protected $password;
 
+    #[CustomAssert\PasswordCriteria(groups: ['password', 'password-admin'])]
     #[Groups(['v3:user:write', 'v3:user:read'])]
     protected $plainPassword;
 
