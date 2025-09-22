@@ -62,6 +62,8 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public const string USER_TYPE_ADMINISTRATEUR = 'ROLE_ADMIN';
     public const string USER_TYPE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
     public const int USER_PASSWORD_LENGTH = 9;
+    public const int ADMIN_PASSWORD_LENGTH = 20;
+    public const string RECONNECT_USERS_DOMAIN = 'reconnect.fr';
 
     public const array ADMIN_TYPES = [
         self::USER_TYPE_ADMINISTRATEUR => self::USER_TYPE_ADMINISTRATEUR,
@@ -600,6 +602,17 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public function hasMemberAccess(): bool
     {
         return $this->isMembre() || $this->isGestionnaire() || $this->isAdministrateur();
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->hasRole('ROLE_ADMIN');
+    }
+
+    #[\Override]
+    public function isSuperAdmin(): bool
+    {
+        return $this->hasRole('ROLE_SUPER_ADMIN');
     }
 
     public function isValidUser(): bool

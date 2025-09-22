@@ -65,7 +65,7 @@ class UserApiController extends AbstractController
         $password = $request->request->get('password');
         if (!$password) {
             return $this->json(['password' => 'missing'], Response::HTTP_BAD_REQUEST);
-        } elseif (!$helper->isStrongPassword($password)) {
+        } elseif (!$helper->isStrongPassword($user, $password)) {
             return $this->json(['password' => 'weak'], Response::HTTP_BAD_REQUEST);
         }
 

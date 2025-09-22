@@ -69,6 +69,7 @@ class UserController extends AbstractController
 
         $passwordForm = $this->createForm(ChangePasswordFormType::class, null, [
             'checkCurrentPassword' => true,
+            'user' => $user,
         ])->handleRequest($request);
 
         if ($userForm->isSubmitted()) {
