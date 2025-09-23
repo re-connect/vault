@@ -98,8 +98,8 @@ class AdminUserAdmin extends AbstractAdmin
 
         $query->andWhere($rootAlias.'.roles LIKE :adminRole OR '.$rootAlias.'.roles LIKE :superAdminRole');
         $query->setParameters([
-            'adminRole', '%'.User::USER_TYPE_ADMINISTRATEUR.'%',
-            'superAdminRole', '%'.User::USER_TYPE_SUPER_ADMIN.'%',
+            'adminRole' => '%'.User::USER_TYPE_ADMINISTRATEUR.'%',
+            'superAdminRole' => '%'.User::USER_TYPE_SUPER_ADMIN.'%',
         ]);
 
         return $query;
