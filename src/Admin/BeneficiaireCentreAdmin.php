@@ -32,8 +32,8 @@ class BeneficiaireCentreAdmin extends AbstractAdmin
                     ->andWhere('cb.entity = :beneficiaireId')
                     ->andWhere('cb.entity_name = :entityName')
                     ->setParameters([
-                        'beneficiaireId', $beneficiaireId,
-                        'entityName', 'ClientBeneficiaire',
+                        'beneficiaireId' => $beneficiaireId,
+                        'entityName' => 'ClientBeneficiaire',
                     ]),
                 'required' => false,
             ])
