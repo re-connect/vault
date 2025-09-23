@@ -38,8 +38,8 @@ class EvenementProvider extends DonneePersonnelleProvider
             ->andWhere('rappel.date > :nowLess12h05')
             ->andWhere('rappel.date < :nowPlus12h')
             ->setParameters([
-                'nowPlus12h', $nowPlus12h,
-                'nowLess12h05', $nowLess12h05,
+                'nowPlus12h' => $nowPlus12h,
+                'nowLess12h05' => $nowLess12h05,
             ])
             ->getQuery()
             ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
