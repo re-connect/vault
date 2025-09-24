@@ -66,8 +66,8 @@ class AddExternalLinkTest extends AbstractApiTest
 
     public function canAddLinkProvider(): \Generator
     {
-        yield 'Should link beneficiary for client with update scopes' => ['read_and_update'];
-        yield 'Should link beneficiary for client with create scopes' => ['create_only'];
+        yield 'Should link beneficiary for client with update scopes' => ['read_and_update_client'];
+        yield 'Should link beneficiary for client with create scopes' => ['create_only_client'];
         yield 'Should link beneficiary with external center for Reconnect Pro client' => ['reconnect_pro', 42];
         yield 'Should link beneficiary for Rosalie client ' => ['rosalie'];
     }
@@ -97,11 +97,11 @@ class AddExternalLinkTest extends AbstractApiTest
 
     public function canNotAddLinkProvider(): \Generator
     {
-        yield 'Should not link beneficiary for client with readonly scopes' => ['read_only'];
-        yield 'Should not link beneficiary for client with no scopes' => ['no_scopes'];
-        yield 'Should not link beneficiary for client with only personal data read scope' => ['read_personal_data'];
-        yield 'Should not link beneficiary for client with only personal data create scope' => ['create_personal_data'];
-        yield 'Should not link beneficiary for client with only personal data update scope' => ['update_personal_data'];
+        yield 'Should not link beneficiary for client with readonly scopes' => ['read_only_client'];
+        yield 'Should not link beneficiary for client with no scopes' => ['no_scopes_client'];
+        yield 'Should not link beneficiary for client with only personal data read scope' => ['read_personal_data_client'];
+        yield 'Should not link beneficiary for client with only personal data create scope' => ['create_personal_data_client'];
+        yield 'Should not link beneficiary for client with only personal data update scope' => ['update_personal_data_client'];
     }
 
     public function testShouldNotAddExternalLinkWhenAlreadyExists(): void
