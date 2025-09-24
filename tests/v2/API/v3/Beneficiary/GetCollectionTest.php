@@ -63,18 +63,18 @@ class GetCollectionTest extends AbstractApiTest
 
     public function canGetProvider(): \Generator
     {
-        yield 'Should read when read and update scopes' => ['read_and_update'];
+        yield 'Should read when read and update scopes' => ['read_and_update_client'];
         yield 'Should read with Reconnect Pro client' => ['reconnect_pro'];
         yield 'Should read with Rosalie client ' => ['rosalie'];
-        yield 'Should read with read only scopes' => ['read_only'];
+        yield 'Should read with read only scopes' => ['read_only_client'];
     }
 
     public function canNotGetProvider(): \Generator
     {
-        yield 'Should not read with create only scopes' => ['create_only'];
-        yield 'Should not read with no scopes' => ['no_scopes'];
-        yield 'Should not read with create personal data scope' => ['create_personal_data'];
-        yield 'Should not read with update personal data scope' => ['update_personal_data'];
-        yield 'Should not read with read personal data scope' => ['read_personal_data'];
+        yield 'Should not read with create only scopes' => ['create_only_client'];
+        yield 'Should not read with no scopes' => ['no_scopes_client'];
+        yield 'Should not read with create personal data scope' => ['create_personal_data_client'];
+        yield 'Should not read with update personal data scope' => ['update_personal_data_client'];
+        yield 'Should not read with read personal data scope' => ['read_personal_data_client'];
     }
 }
