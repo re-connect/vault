@@ -131,26 +131,26 @@ class EventApiV3Test extends AbstractApiTest
 
     public function canGetProvider(): \Generator
     {
-        yield 'Should read when read and update scopes' => ['read_and_update'];
+        yield 'Should read when read and update scopes' => ['read_and_update_client'];
         yield 'Should read with Reconnect Pro client' => ['reconnect_pro'];
         yield 'Should read with Rosalie client ' => ['rosalie'];
-        yield 'Should read with read only scopes' => ['read_only'];
-        yield 'Should read with read personal data scope' => ['read_personal_data'];
+        yield 'Should read with read only scopes' => ['read_only_client'];
+        yield 'Should read with read personal data scope' => ['read_personal_data_client'];
     }
 
     public function canGetBeneficiaryProvider(): \Generator
     {
-        yield 'Should read when read and update scopes' => ['read_and_update'];
+        yield 'Should read when read and update scopes' => ['read_and_update_client'];
         yield 'Should read with Reconnect Pro client' => ['reconnect_pro'];
         yield 'Should read with Rosalie client ' => ['rosalie'];
-        yield 'Should read with read only scopes' => ['read_only'];
+        yield 'Should read with read only scopes' => ['read_only_client'];
     }
 
     public function canNotGetProvider(): \Generator
     {
-        yield 'Should not read with create only scopes' => ['create_only'];
-        yield 'Should not read with no scopes' => ['no_scopes'];
-        yield 'Should not read with create personal data scope' => ['create_personal_data'];
+        yield 'Should not read with create only scopes' => ['create_only_client'];
+        yield 'Should not read with no scopes' => ['no_scopes_client'];
+        yield 'Should not read with create personal data scope' => ['create_personal_data_client'];
     }
 
     /**
@@ -203,19 +203,19 @@ class EventApiV3Test extends AbstractApiTest
 
     public function canCreateProvider(): \Generator
     {
-        yield 'Should create with only create scopes' => ['create_only'];
-        yield 'Should create with update and read scopes' => ['read_and_update'];
+        yield 'Should create with only create scopes' => ['create_only_client'];
+        yield 'Should create with update and read scopes' => ['read_and_update_client'];
         yield 'Should create with RP scopes' => ['reconnect_pro'];
         yield 'Should create with Rosalie scopes' => ['rosalie'];
-        yield 'Should create with create personal data scope' => ['create_personal_data'];
-        yield 'Should create with update personal data scope' => ['update_personal_data'];
+        yield 'Should create with create personal data scope' => ['create_personal_data_client'];
+        yield 'Should create with update personal data scope' => ['update_personal_data_client'];
     }
 
     public function canNotCreateProvider(): \Generator
     {
-        yield 'Should not create with only read scopes' => ['read_only'];
-        yield 'Should not create with no scopes' => ['no_scopes'];
-        yield 'Should not create with read personal data scope' => ['read_personal_data'];
+        yield 'Should not create with only read scopes' => ['read_only_client'];
+        yield 'Should not create with no scopes' => ['no_scopes_client'];
+        yield 'Should not create with read personal data scope' => ['read_personal_data_client'];
     }
 
     /**
@@ -276,19 +276,19 @@ class EventApiV3Test extends AbstractApiTest
 
     public function canUpdateProvider(): \Generator
     {
-        yield 'Should update with read_and_update scopes' => ['read_and_update'];
+        yield 'Should update with read_and_update scopes' => ['read_and_update_client'];
         yield 'Should update with Reconnect Pro scopes' => ['reconnect_pro'];
-        yield 'Should update with update personal data scope' => ['update_personal_data'];
+        yield 'Should update with update personal data scope' => ['update_personal_data_client'];
     }
 
     public function canNotUpdateProvider(): \Generator
     {
-        yield 'Should not update with read only scopes' => ['read_only'];
+        yield 'Should not update with read only scopes' => ['read_only_client'];
         yield 'Should not update with Rosalie scopes' => ['rosalie'];
-        yield 'Should not update with no scopes' => ['no_scopes'];
-        yield 'Should not update with create only scopes' => ['create_only'];
-        yield 'Should not update with read personal data scope' => ['read_personal_data'];
-        yield 'Should not update with create personal data scope' => ['create_personal_data'];
+        yield 'Should not update with no scopes' => ['no_scopes_client'];
+        yield 'Should not update with create only scopes' => ['create_only_client'];
+        yield 'Should not update with read personal data scope' => ['read_personal_data_client'];
+        yield 'Should not update with create personal data scope' => ['create_personal_data_client'];
     }
 
     public function testPut(): void
