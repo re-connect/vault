@@ -431,7 +431,7 @@ password_criterion_lowercase: Lowercase
 password_criterion_nonAlphabetic: Special/Number
 password_criterion_uppercase: Uppercase
 password_expired: 'Your password has expired. Please enter a new password.'
-password_help: 'The password must be at least 9 characters long, including: 1 uppercase, 1 lowercase, 1 special/number'
+password_help: 'The password must be at least %minLength% characters long, including: 1 uppercase, 1 lowercase, 1 special/number'
 password_help_criteria: 'Criteria below are missing :'
 password_new_should_be_different_from_current: 'Your new password must be different from your current password.'
 password_renewal_due: "Your password is about to expire. Please enter a new password."

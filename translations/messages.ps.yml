@@ -431,7 +431,7 @@ password_criterion_lowercase: کوچني توري
 password_criterion_nonAlphabetic: ځانګړې/شمیره
 password_criterion_uppercase: لوی لیک
 password_expired: 'Votre mot de passe a expiré. Veuillez choisir un nouveau mot de passe.'
-password_help: پټنومه باید لوړه وي (لږ تل ۹ کارواکې) او د یوه برخه بزرګه، یوه برخه کښې یا د یوه عدد یا ویژنې په ځای کې شامل وي
+password_help: پټنومه باید لوړه وي (لږ تل %minLength% کارواکې) او د یوه برخه بزرګه، یوه برخه کښې یا د یوه عدد یا ویژنې په ځای کې شامل وي
 password_help_criteria: 'Il manque les critères ci-dessous :'
 password_new_should_be_different_from_current: 'Votre nouveau mot de passe doit être différent de votre mot de passe actuel.'
 password_renewal_due: "Votre mot de passe est sur le point d'expirer. Veuillez choisir un nouveau mot de passe."
