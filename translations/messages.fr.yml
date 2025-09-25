@@ -431,7 +431,7 @@ password_criterion_lowercase: Minuscule
 password_criterion_nonAlphabetic: Spécial/Chiffre
 password_criterion_uppercase: Majuscule
 password_expired: 'Votre mot de passe a expiré. Veuillez choisir un nouveau mot de passe.'
-password_help: Le mot de passe doit être long (au moins 9 caractères) avec 1 majuscule, 1 minuscule et 1 chiffre ou caractère spécial
+password_help: Le mot de passe doit être long (au moins %minLentgh% caractères) avec 1 majuscule, 1 minuscule et 1 chiffre ou caractère spécial
 password_help_criteria: 'Il manque les critères ci-dessous :'
 password_new_should_be_different_from_current: 'Votre nouveau mot de passe doit être différent de votre mot de passe actuel.'
 password_renewal_due: "Votre mot de passe est sur le point d'expirer. Veuillez choisir un nouveau mot de passe."
