@@ -40,8 +40,6 @@ abstract class BaseUser implements LegacyPasswordAuthenticatedUserInterface, Use
 
     /**
      * Plain password. Used for model validation. Must not be persisted.
-     *
-     * @var string|null
      */
     #[CustomAssert\PasswordCriteria(groups: ['password', 'password-admin'])]
     #[Groups(['v3:user:write', 'v3:user:read'])]

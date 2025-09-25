@@ -36,7 +36,7 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
         private BeneficiaireRepository $beneficiaryRepository,
         private EntityManagerInterface $entityManager,
         private TranslatorInterface $translator,
-        private ValidatorInterface $validator
+        private ValidatorInterface $validator,
     ) {
     }
 
