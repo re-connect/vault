@@ -32,7 +32,7 @@
             &nbsp;
             <span class="filenameLabel">
                 {% if isUpdating %}
-                    {% set path = object is instanceof('App\\\Entity\\\Attributes\\\FolderIcon')
+                    {% set path = object is instanceof('App\\\Entity\\\FolderIcon')
                         ? path('folder_icon_display', {'name': object.name })
                         : path('re_admin_annexe', {'url': object.url })
                     %}
