@@ -431,7 +431,7 @@ password_criterion_lowercase: Строчная буква
 password_criterion_nonAlphabetic: Особенный/число
 password_criterion_uppercase: прописная буква
 password_expired: 'Votre mot de passe a expiré. Veuillez choisir un nouveau mot de passe.'
-password_help: Пароль должен быть длинным (по крайней мере, 9 символов) с одной заглавной буквой, одной строчной буквой и одной цифрой или специальным символом
+password_help: Пароль должен быть длинным (по крайней мере, %minLength% символов) с одной заглавной буквой, одной строчной буквой и одной цифрой или специальным символом
 password_help_criteria: 'Il manque les critères ci-dessous :'
 password_new_should_be_different_from_current: 'Votre nouveau mot de passe doit être différent de votre mot de passe actuel.'
 password_renewal_due: "Votre mot de passe est sur le point d'expirer. Veuillez choisir un nouveau mot de passe."
