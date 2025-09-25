@@ -12,6 +12,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\ApiOperations;
 use App\Api\Filters\FolderIdFilter;
+use App\Api\State\FolderTreeStateProvider;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Entity\Interface\FolderableEntityInterface;
@@ -36,6 +37,19 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
         new Delete(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
         new Get(security: "is_granted('ROLE_OAUTH2_DOCUMENTS_READ') or is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_DOCUMENTS_READ') or is_granted('ROLE_USER')"),
+        new GetCollection(
+            uriTemplate: '/beneficiaries/{id}/folders_tree',
+            uriVariables: [
+                'id' => new Link(
+                    fromProperty: 'dossiers',
+                    fromClass: Beneficiaire::class,
+                ),
+            ],
+            normalizationContext: ['groups' => ['v3:folder_only:read']],
+            security: "is_granted('ROLE_OAUTH2_DOCUMENTS_READ')",
+            provider: FolderTreeStateProvider::class,
+        ),
+
         new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_DOCUMENTS_CREATE')", processor: PersonalDataStateProcessor::class),
         new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
         new Patch(
@@ -90,7 +104,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface, Cl
     public ?int $dossierParentId = null;
 
     #[ORM\OneToMany(mappedBy: 'dossierParent', targetEntity: Dossier::class, cascade: ['persist', 'remove'])]
-    #[Groups(['read-personal-data', 'read-personal-data-v2'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:folder_only:read'])]
     private Collection $sousDossiers;
 
     #[ORM\ManyToOne(targetEntity: FolderIcon::class)]
