@@ -2,8 +2,8 @@
 
 namespace App\Tests\v2\Entity;
 
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\Region;
+use App\Entity\Centre;
+use App\Entity\Region;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;

@@ -2,7 +2,7 @@
 
 namespace App\FormV2;
 
-use App\Entity\Attributes\Contact;
+use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;

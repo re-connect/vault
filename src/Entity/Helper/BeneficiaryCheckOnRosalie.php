@@ -2,7 +2,7 @@
 
 namespace App\Entity\Helper;
 
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 use Symfony\Component\HttpFoundation\Response;
 
 readonly class BeneficiaryCheckOnRosalie

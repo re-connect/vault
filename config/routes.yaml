@@ -1,54 +1,54 @@
 re.api_rest:
-    type: annotation
+    type: attribute
     resource: App\Controller\Rest\APIRestController
 
 ##### API REST V2 #####
 api_v2_beneficiaire:
-    type: annotation
+    type: attribute
     resource: App\Controller\Rest\BeneficiaireRestV2Controller
 
 api_v2_centre:
-    type: annotation
+    type: attribute
     resource: App\Controller\Rest\CentreRestV2Controller
 
 api_v2_contact:
-    type: annotation
+    type: attribute
     resource: App\Controller\Rest\ContactRestV2Controller
 
 api_v2_document:
-    type: annotation
+    type: attribute
     resource: App\Controller\Rest\DocumentRestV2Controller
 
 api_v2_dossier:
-    type: annotation
+    type: attribute
     resource: App\Controller\Rest\DossierRestV2Controller
 
 api_v2_evenement:
-    type: annotation
+    type: attribute
     resource: App\Controller\Rest\EvenementRestV2Controller
 
 api_v2_membre:
-    type: annotation
+    type: attribute
     resource: App\Controller\Rest\MembreRestV2Controller
 
 api_v2_note:
-    type: annotation
+    type: attribute
     resource: App\Controller\Rest\NoteRestV2Controller
 
 api_v2_user:
-    type: annotation
+    type: attribute
     resource: App\Controller\Rest\UserRestV2Controller
 
 re_rest_public:
-    type: annotation
+    type: attribute
     resource: App\Controller\Rest\PublicRestController
 
 api_v3_document:
-    type: annotation
+    type: attribute
     resource: App\Controller\Api\DocumentApiController
 
 api_v3_beneficiary:
-    type: annotation
+    type: attribute
     resource: App\Controller\Api\BeneficiaryApiController
 
 oauth2:
@@ -57,10 +57,10 @@ oauth2:
     prefix: /api
 
 controllers:
-    type: annotation
+    type: attribute
     resource: '../src/Controller/'
 
 #Controllers V2
 controllers_v2:
-    type: annotation
+    type: attribute
     resource: '../src/ControllerV2/'

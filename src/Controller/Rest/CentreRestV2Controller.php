@@ -3,9 +3,9 @@
 namespace App\Controller\Rest;
 
 use App\Controller\REController;
-use App\Entity\Attributes\BeneficiaireCentre;
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\User;
+use App\Entity\BeneficiaireCentre;
+use App\Entity\Client;
+use App\Entity\User;
 use App\Exception\JsonResponseException;
 use App\Manager\CentreManager;
 use App\Provider\BeneficiaireProvider;
@@ -27,9 +27,9 @@ class CentreRestV2Controller extends REController
 
     #[Route(path: 'beneficiaries/{beneficiaryId}/centers', methods: ['GET'], requirements: ['beneficiaryId' => '\d{1,10}'], name: 'get_centres_from_beneficiaire')]
     public function getCentresFromBeneficiaire(
-        $beneficiaryId,
+        int|string $beneficiaryId,
         CentreProvider $provider,
-        BeneficiaireProvider $beneficiaireProvider
+        BeneficiaireProvider $beneficiaireProvider,
     ): JsonResponse {
         try {
             $beneficiaire = $beneficiaireProvider->getEntity($beneficiaryId, $this->accessRead);
@@ -45,14 +45,14 @@ class CentreRestV2Controller extends REController
     }
 
     #[Route(path: 'beneficiaries/{beneficiaryId}/pending-centers', methods: ['GET'], requirements: ['beneficiaryId' => '\d{1,10}'], name: 'get_pending_centres_from_beneficiaire')]
-    public function getPendingCentresFromBeneficiaire($beneficiaryId, CentreProvider $provider, BeneficiaireProvider $beneficiaireProvider): JsonResponse
+    public function getPendingCentresFromBeneficiaire(int|string $beneficiaryId, CentreProvider $provider, BeneficiaireProvider $beneficiaireProvider): JsonResponse
     {
         try {
             $beneficiaire = $beneficiaireProvider->getEntity($beneficiaryId, $this->accessRead);
 
             $entities = $provider->getPendingCentresFromUserWithCentre($beneficiaire);
 
-            return $this->json($entities);
+            return $this->createJsonResponse($entities, 200, ['center:read']);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -79,7 +79,7 @@ class CentreRestV2Controller extends REController
                 $entities = $user->getCentres();
             }
 
-            return $this->json($entities->toArray(), Response::HTTP_ACCEPTED);
+            return $this->createJsonResponse($entities->toArray(), Response::HTTP_ACCEPTED, ['center:read']);
         } catch (AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -93,7 +93,7 @@ class CentreRestV2Controller extends REController
         $user = $this->getUser();
         $entities = !$user instanceof User ? [] : $provider->getEntitiesForUser($user)->toArray();
 
-        return $this->json($entities);
+        return $this->createJsonResponse($entities, Response::HTTP_OK, ['center:read']);
     }
 
     #[Route(path: 'centers/waiting-ad', name: 'get_waiting_ad', methods: ['GET'])]
@@ -116,7 +116,7 @@ class CentreRestV2Controller extends REController
                 $entities[] = $beneficiaireCentre->getCentre();
             }
 
-            return $this->json($entities);
+            return $this->createJsonResponse($entities, Response::HTTP_OK, ['center:read']);
         } catch (AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -125,7 +125,7 @@ class CentreRestV2Controller extends REController
     }
 
     #[Route(path: 'centers/{id}/accept', methods: ['PATCH'], requirements: ['id' => '\d{1,10}'], name: 'accept')]
-    public function accept($id, CentreProvider $provider, CentreManager $manager): JsonResponse
+    public function accept(string $id, CentreProvider $provider, CentreManager $manager): JsonResponse
     {
         try {
             $user = $this->getUser();
@@ -137,7 +137,7 @@ class CentreRestV2Controller extends REController
 
             $manager->accepterCentre($user->getSubject(), $entity);
 
-            return $this->json($entity);
+            return $this->createJsonResponse($entities, Response::HTTP_OK, ['center:read']);
         } catch (AccessDeniedException|NotFoundHttpException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -146,7 +146,7 @@ class CentreRestV2Controller extends REController
     }
 
     #[Route(path: 'centers/{id}/refuse', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'], name: 'refuse')]
-    public function refuse($id, CentreProvider $provider, CentreManager $manager): JsonResponse
+    public function refuse(string $id, CentreProvider $provider, CentreManager $manager): JsonResponse
     {
         try {
             $user = $this->getUser();
@@ -167,7 +167,7 @@ class CentreRestV2Controller extends REController
     }
 
     #[Route(path: 'users/{userId}/centers/{id}/leave', methods: ['PATCH'], requirements: ['userId' => '\d{1,10}', 'id' => '\d{1,10}'], name: 'leave_center')]
-    public function leaveCenter($userId, $id, UserProvider $userProvider, CentreProvider $provider, CentreManager $manager): JsonResponse
+    public function leaveCenter(string $userId, string $id, UserProvider $userProvider, CentreProvider $provider, CentreManager $manager): JsonResponse
     {
         try {
             if (!$this->getUser() instanceof User) {
@@ -179,7 +179,7 @@ class CentreRestV2Controller extends REController
 
             $manager->deassociateUserWithCentres($user->getSubject(), $entity);
 
-            return $this->json($entity, Response::HTTP_NO_CONTENT);
+            return $this->createJsonResponse($entity, Response::HTTP_NO_CONTENT, ['user:read']);
         } catch (AccessDeniedException|NotFoundHttpException $e) {
             $jsonResponseException = new JsonResponseException($e);
 

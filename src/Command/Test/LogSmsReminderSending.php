@@ -16,7 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class LogSmsReminderSending extends Command
 {
-    public function __construct(private readonly LoggerInterface $smsLogger, private readonly RappelRepository $reminderRepository, private readonly EntityManagerInterface $em, $name = null)
+    public function __construct(private readonly LoggerInterface $smsLogger, private readonly RappelRepository $reminderRepository, private readonly EntityManagerInterface $em, ?string $name = null)
     {
         parent::__construct($name);
     }

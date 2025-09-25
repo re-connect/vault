@@ -4,11 +4,11 @@ namespace App\Controller\Rest;
 
 use App\Api\Manager\ApiClientManager;
 use App\Controller\REController;
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\Document;
-use App\Entity\Attributes\Dossier;
-use App\Entity\Attributes\Membre;
-use App\Entity\Attributes\User;
+use App\Entity\Client;
+use App\Entity\Document;
+use App\Entity\Dossier;
+use App\Entity\Membre;
+use App\Entity\User;
 use App\EventV2\BeneficiaryConsultationEvent;
 use App\Exception\JsonResponseException;
 use App\Manager\MailManager;
@@ -211,7 +211,7 @@ class DocumentRestV2Controller extends REController
         ValidatorInterface $validator,
         MailManager $mailManager,
         TranslatorInterface $translator,
-        RestManager $restManager
+        RestManager $restManager,
     ): JsonResponse {
         try {
             $document = $this->provider->getEntity($id, Client::ACCESS_DOCUMENT_WRITE);
@@ -308,7 +308,7 @@ class DocumentRestV2Controller extends REController
         int $id,
         int $dossierId,
         DocumentProvider $provider,
-        DossierProvider $dossierProvider
+        DossierProvider $dossierProvider,
     ): JsonResponse {
         try {
             $entity = $provider->getEntity($id);

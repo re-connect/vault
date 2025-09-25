@@ -3,7 +3,7 @@
 namespace App\Tests\v2\EventSubscriber;
 
 use App\DataFixtures\v2\MemberFixture;
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\MembreFactory;
 use App\Tests\Factory\RelayFactory;

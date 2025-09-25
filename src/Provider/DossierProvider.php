@@ -2,10 +2,10 @@
 
 namespace App\Provider;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Document;
-use App\Entity\Attributes\DonneePersonnelle;
-use App\Entity\Attributes\Dossier;
+use App\Entity\Beneficiaire;
+use App\Entity\Document;
+use App\Entity\DonneePersonnelle;
+use App\Entity\Dossier;
 use App\Event\DonneePersonnelleEvent;
 use App\Event\REEvent;
 use App\Form\Type\DossierSimpleType;
@@ -52,7 +52,7 @@ class DossierProvider extends DonneePersonnelleProvider
         return $dossier;
     }
 
-    public function getEntity($id, $accessAttribute = null): Dossier
+    public function getEntity(string $id, $accessAttribute = null): Dossier
     {
         /** @var Dossier $entity */
         if (!$entity = $this->em->getRepository(Dossier::class)->find($id)) {

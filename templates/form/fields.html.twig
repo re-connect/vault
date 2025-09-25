@@ -26,14 +26,13 @@
 
 {% block vich_file_widget %}
     {% set isUpdating = object.id is not null %}
-    {% apply spaceless %}
         <div class="vich-file">
             {{ form_widget(form.file) }}
             <button class="btn btnUploadFile">{{ isUpdating ? 'edit_file'|trans : 'choose_file'|trans }}</button>
             &nbsp;
             <span class="filenameLabel">
                 {% if isUpdating %}
-                    {% set path = object is instanceof('App\\\Entity\\\Attributes\\\FolderIcon')
+                    {% set path = object is instanceof('App\\\Entity\\\FolderIcon')
                         ? path('folder_icon_display', {'name': object.name })
                         : path('re_admin_annexe', {'url': object.url })
                     %}
@@ -41,7 +40,6 @@
                 {% endif %}
             </span>
         </div>
-    {% endapply %}
 {% endblock %}
 
 {% block file_widget %}

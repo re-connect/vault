@@ -2,10 +2,10 @@
 
 namespace App\Command\DataImport;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Membre;
-use App\Entity\Attributes\MembreCentre;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\Membre;
+use App\Entity\MembreCentre;
+use App\Entity\User;
 use App\Repository\CentreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use League\Csv\Exception;
@@ -31,7 +31,7 @@ class ImportUserCommand extends Command
         private readonly string $kernelProjectDir,
         private readonly EntityManagerInterface $em,
         private readonly CentreRepository $centreRepository,
-        ?string $name = null
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }

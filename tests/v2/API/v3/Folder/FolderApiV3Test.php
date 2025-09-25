@@ -69,7 +69,7 @@ class FolderApiV3Test extends AbstractApiTest
     public function testToggleVisibility(): void
     {
         $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
-        /** @var \App\Entity\Attributes\Beneficiaire $beneficiary */
+        /** @var Beneficiaire $beneficiary */
         $beneficiary = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
         $folder = FolderFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
