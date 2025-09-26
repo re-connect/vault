@@ -28,6 +28,7 @@ class CreateTest extends AbstractApiTest
             'phone' => '1234567890',
             'distant_id' => '1200',
             'external_pro_id' => '4972',
+            'password' => 'P@ssw0rd!',
         ];
 
         if ($externalCenterId) {
@@ -55,6 +56,7 @@ class CreateTest extends AbstractApiTest
                     'nom' => 'test',
                     'type_user' => 'ROLE_BENEFICIAIRE',
                     'b_first_mobile_connexion' => false,
+                    'plain_password' => 'P@ssw0rd!',
                 ],
             ],
             $beneficiary
@@ -108,5 +110,31 @@ class CreateTest extends AbstractApiTest
         yield 'Should create beneficiary for client with create scopes' => ['create_only_client'];
         yield 'Should create beneficiary with external center for Reconnect Pro client' => ['reconnect_pro', '42'];
         yield 'Should create beneficiary for Rosalie client ' => ['rosalie'];
+    }
+
+    public function testCanNotCreateBeneficiaryWithUnsecurePassword(): void
+    {
+        $this->assertEndpoint(
+            'create_only_client',
+            '/beneficiaries',
+            'POST',
+            422,
+            [
+                '@context' => '/api/contexts/Error',
+                '@type' => 'hydra:Error',
+                'hydra:title' => 'An error occurred',
+                'hydra:description' => 'The password must be at least 9 characters long, including: 1 uppercase, 1 lowercase, 1 special/number',
+            ],
+            [
+                'last_name' => 'test',
+                'first_name' => 'api',
+                'birth_date' => '2023-02-13T13:44:28.762Z',
+                'email' => 'api@test.com',
+                'phone' => '1234567890',
+                'distant_id' => '1200',
+                'external_pro_id' => '4972',
+                'password' => 'password',
+            ]
+        );
     }
 }
