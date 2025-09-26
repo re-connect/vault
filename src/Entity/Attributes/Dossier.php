@@ -46,7 +46,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
                 ),
             ],
             normalizationContext: ['groups' => ['v3:folder_only:read']],
-            security: "is_granted('ROLE_OAUTH2_DOCUMENTS_READ')",
+            security: "is_granted('ROLE_OAUTH2_FOLDERS_READ')",
             provider: FolderTreeStateProvider::class,
         ),
 
