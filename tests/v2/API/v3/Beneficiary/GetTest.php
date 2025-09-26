@@ -63,17 +63,17 @@ class GetTest extends AbstractApiTest
 
     public function canNotGetProvider(): \Generator
     {
-        yield 'Should not get beneficiary for client with create only scopes' => ['create_only'];
-        yield 'Should not get beneficiary for client with no scopes' => ['no_scopes'];
-        yield 'Should not get beneficiary for client with only personal data read scope' => ['read_personal_data'];
-        yield 'Should not get beneficiary for client with only personal data create scope' => ['create_personal_data'];
-        yield 'Should not get beneficiary for client with only personal data update scope' => ['update_personal_data'];
+        yield 'Should not get beneficiary for client with create only scopes' => ['create_only_client'];
+        yield 'Should not get beneficiary for client with no scopes' => ['no_scopes_client'];
+        yield 'Should not get beneficiary for client with only personal data read scope' => ['read_personal_data_client'];
+        yield 'Should not get beneficiary for client with only personal data create scope' => ['create_personal_data_client'];
+        yield 'Should not get beneficiary for client with only personal data update scope' => ['update_personal_data_client'];
     }
 
     public function canGetProvider(): \Generator
     {
-        yield 'Should get beneficiary for client with read only scopes' => ['read_only'];
-        yield 'Should get beneficiary for client with read and update scopes' => ['read_and_update'];
+        yield 'Should get beneficiary for client with read only scopes' => ['read_only_client'];
+        yield 'Should get beneficiary for client with read and update scopes' => ['read_and_update_client'];
         yield 'Should get beneficiary  for Reconnect Pro client' => ['reconnect_pro'];
         yield 'Should get beneficiary for Rosalie client ' => ['rosalie'];
     }
