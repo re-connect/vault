@@ -68,7 +68,7 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
             }
             $errors = $this->validator->validate($data->getUser()->getPlainPassword(), new PasswordCriteria());
             if (0 < $errors->count()) {
-                throw new UnprocessableEntityHttpException($this->translator->trans('password_help', [], 'messages', 'en'));
+                throw new UnprocessableEntityHttpException($this->translator->trans('password_help', ['%minLength%' => 9], 'messages', 'en'));
             }
 
             $this->createBeneficiary($data, $client);
