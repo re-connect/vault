@@ -66,6 +66,26 @@ class FolderApiV3Test extends AbstractApiTest
     }
 
     /**
+     * @dataProvider canGetBeneficiaryProvider
+     */
+    public function testGetCollectionTreeFromBeneficiary(string $clientName): void
+    {
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
+        $this->assertEndpoint(
+            $clientName,
+            sprintf('/beneficiaries/%s/folders_tree', $beneficiary->getId()),
+            'GET',
+            200,
+            [
+                '@context' => '/api/contexts/folder',
+                '@id' => sprintf('/api/v3/beneficiaries/%s/folders_tree', $beneficiary->getId()),
+                '@type' => 'hydra:Collection',
+                'hydra:totalItems' => count(FolderFactory::findBy(['beneficiaire' => $beneficiary->getId(), 'bPrive' => false, 'dossierParent' => null])),
+            ]
+        );
+    }
+
+    /**
      * @dataProvider canNotGetProvider
      */
     public function testCanNotGetCollectionFromBeneficiary(string $clientName): void
