@@ -18,14 +18,14 @@ class ClientFixture extends Fixture implements FixtureGroupInterface
             'secret' => '1bhcu6uphfz4gc4cwo48ok4gkswgss04gokwgkkws0o8sgos44',
             'name' => 'rosalie',
             'grantType' => 'client_credentials',
-            'scopes' => 'centers beneficiaries beneficiaries_create beneficiaries_read documents documents_read documents_create notes contacts_read contacts_create pros events events_read events_create users notes_read notes_create',
+            'scopes' => 'centers beneficiaries beneficiaries_create beneficiaries_read documents documents_read documents_create folders_read notes contacts_read contacts_create pros events events_read events_create users notes_read notes_create',
         ],
         [
             'id' => 'm5tu4aqwedscccs4sogcgkk8w0wccg8s8c8ogwkso8w8c0ws0',
             'secret' => '4x0abo81dlkw8oso8gs8cg44gow000c0s8g8gwsw4g48880c8g',
             'name' => 'reconnect_pro',
             'grantType' => 'client_credentials',
-            'scopes' => 'centers beneficiaries beneficiaries_read beneficiaries_update documents documents_read documents_update notes contacts_read contacts_update pros events events_read events_update users notes_read notes_update',
+            'scopes' => 'centers beneficiaries beneficiaries_read beneficiaries_update documents documents_read documents_update folders_read notes contacts_read contacts_update pros events events_read events_update users notes_read notes_update',
         ],
         [
             'id' => '1e5430a7f64ab17d3aea672f9eca115b',
@@ -39,14 +39,14 @@ class ClientFixture extends Fixture implements FixtureGroupInterface
             'secret' => 'read_and_update_secret',
             'name' => 'read_and_update_client',
             'grantType' => 'client_credentials',
-            'scopes' => 'beneficiaries_read beneficiaries_update contacts_read contacts_update documents_read documents_update events_read events_update notes_read notes_update',
+            'scopes' => 'beneficiaries_read beneficiaries_update contacts_read contacts_update documents_read documents_update folders_read events_read events_update notes_read notes_update',
         ],
         [
             'id' => 'read_only_id',
             'secret' => 'read_only_secret',
             'name' => 'read_only_client',
             'grantType' => 'client_credentials',
-            'scopes' => 'beneficiaries_read contacts_read documents_read events_read notes_read',
+            'scopes' => 'beneficiaries_read contacts_read documents_read events_read notes_read folders_read',
         ],
         [
             'id' => 'create_only_id',

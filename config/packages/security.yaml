@@ -14,6 +14,7 @@ security:
         ROLE_OAUTH2_PERSONAL_DATA_READ: [
             ROLE_OAUTH2_CONTACTS_READ,
             ROLE_OAUTH2_DOCUMENTS_READ,
+            ROLE_OAUTH2_FOLDERS_READ,
             ROLE_OAUTH2_EVENTS_READ,
             ROLE_OAUTH2_NOTES_READ
         ]
