@@ -431,7 +431,7 @@ password_criterion_lowercase: أحرف صغيرة
 password_criterion_nonAlphabetic: حرف خاص/رقم
 password_criterion_uppercase: .حرف كبير
 password_expired: 'Votre mot de passe a expiré. Veuillez choisir un nouveau mot de passe.'
-password_help: يجب أن تكون كلمة المرور طويلة (على الأقل ٩ أحرف) مع حرف كبير واحد وحرف صغير واحد ورقم أو حرف خاص
+password_help: يجب أن تكون كلمة المرور طويلة (على الأقل %minLength% أحرف) مع حرف كبير واحد وحرف صغير واحد ورقم أو حرف خاص
 password_help_criteria: 'Il manque les critères ci-dessous :'
 password_new_should_be_different_from_current: 'Votre nouveau mot de passe doit être différent de votre mot de passe actuel.'
 password_renewal_due: "Votre mot de passe est sur le point d'expirer. Veuillez choisir un nouveau mot de passe."
