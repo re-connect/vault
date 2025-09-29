@@ -10,7 +10,12 @@
                 {{ form_errors(form.plainPassword.first) }}
             </div>
             <div class="col-6">
-                {{ include('v2/user/strong_password/_strong_password_row.html.twig', {'field' : form.plainPassword.first, 'isBeneficiare': isBeneficiaire, 'hideAndShow': true }) }}
+                {{ include('v2/user/strong_password/_strong_password_row.html.twig', {
+                    'field' : form.plainPassword.first,
+                    'isBeneficiare': user.isBeneficiaire,
+                    'hideAndShow': true,
+                    user,
+                }) }}
             </div>
         </div>
         <div class="row">

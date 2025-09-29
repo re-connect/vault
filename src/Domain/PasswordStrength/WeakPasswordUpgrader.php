@@ -18,7 +18,7 @@ readonly class WeakPasswordUpgrader
 
     public function markPasswordCompliant(User $user, string $password): void
     {
-        if (!$user->hasPasswordWithLatestPolicy() && $this->passwordHelper->isStrongPassword($password)) {
+        if (!$user->hasPasswordWithLatestPolicy() && $this->passwordHelper->isStrongPassword($user, $password)) {
             $user->setHasPasswordWithLatestPolicy(true);
             $this->em->flush();
         }
@@ -26,7 +26,7 @@ readonly class WeakPasswordUpgrader
 
     public function checkUpdateWeakPassword(User $user, mixed $newPassword): void
     {
-        if ($newPassword && $this->passwordHelper->isStrongPassword($newPassword)) {
+        if ($newPassword && $this->passwordHelper->isStrongPassword($user, $newPassword)) {
             $this->userManager->updatePassword($user, $newPassword);
         }
     }

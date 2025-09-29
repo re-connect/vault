@@ -170,7 +170,7 @@ class UserRestV2Controller extends REController
             throw $this->createAccessDeniedException();
         } elseif (!$password) {
             return $this->json(['password' => 'missing'], Response::HTTP_BAD_REQUEST);
-        } elseif (!$helper->isStrongPassword($password)) {
+        } elseif (!$helper->isStrongPassword($user, $password)) {
             return $this->json(['password' => 'weak'], Response::HTTP_BAD_REQUEST);
         }
 
