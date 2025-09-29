@@ -96,7 +96,10 @@ class ProController extends AbstractController
             return $this->redirectToRoute('invite_user', ['id' => $user->getId()]);
         }
 
-        return $this->render('v2/pro/create/create.html.twig', ['form' => $form]);
+        return $this->render('v2/pro/create/create.html.twig', [
+            'form' => $form,
+            'user' => $user,
+        ]);
     }
 
     #[Route(path: '/search', name: 'search_pro', methods: ['GET', 'POST'])]

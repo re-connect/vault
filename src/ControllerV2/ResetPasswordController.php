@@ -136,7 +136,9 @@ class ResetPasswordController extends AbstractController
         /** @var User $user */
         $user = $passwordRequest->getUser();
 
-        $form = $this->createForm(ChangePasswordFormType::class)->handleRequest($request);
+        $form = $this->createForm(ChangePasswordFormType::class, null, [
+            'user' => $user,
+        ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $service->removePasswordRequest($passwordRequest);
@@ -149,7 +151,7 @@ class ResetPasswordController extends AbstractController
 
         return $this->render('v2/reset_password/public/reset.html.twig', [
             'form' => $form,
-            'isBeneficiaire' => $user->isBeneficiaire(),
+            'user' => $user,
         ]);
     }
 
@@ -189,7 +191,9 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('app_forgot_password_email_request');
         }
 
-        $form = $this->createForm(ChangePasswordFormType::class)->handleRequest($request);
+        $form = $this->createForm(ChangePasswordFormType::class, null, [
+            'user' => $user,
+        ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->resetPasswordHelper->removeResetRequest($token);
@@ -202,7 +206,7 @@ class ResetPasswordController extends AbstractController
 
         return $this->render('v2/reset_password/public/reset.html.twig', [
             'form' => $form,
-            'isBeneficiaire' => $user->isBeneficiaire(),
+            'user' => $user,
         ]);
     }
 }
