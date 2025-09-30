@@ -15,7 +15,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class RosalieService
 {
-    private const string KEY_VERIFICATION_PATH = '/famille/verification_cle/';
+    private const string KEY_VERIFICATION_PATH = '/api/famille/verification_cle/';
 
     public function __construct(
         private readonly HttpClientInterface $httpClient,
