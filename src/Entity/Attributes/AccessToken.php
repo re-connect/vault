@@ -31,7 +31,7 @@ class AccessToken implements TokenInterface
     #[ORM\Column(name: 'scope', type: 'string', length: 255, nullable: true)]
     protected ?string $scope = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'accessTokens')]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: true)]
     protected ?User $user = null;
 

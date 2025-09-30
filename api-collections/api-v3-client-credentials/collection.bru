@@ -5,14 +5,14 @@ auth {
 auth:oauth2 {
   grant_type: client_credentials
   access_token_url: {{baseUrl}}/api/token
+  refresh_token_url: 
   client_id: {{oauthClientId}}
   client_secret: {{oauthClientSecret}}
-  scope: {{oauthScopes}}
-}
-
-script:post-response {
-  var token = res.body.access_token;
-    if (token) {
-      bru.setVar('oauth2_token', token)
-    }
+  scope: 
+  credentials_placement: basic_auth_header
+  credentials_id: credentials
+  token_placement: url
+  token_query_key: access_token
+  auto_fetch_token: true
+  auto_refresh_token: false
 }

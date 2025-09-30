@@ -23,7 +23,7 @@ class SMS implements \JsonSerializable, \Stringable
     #[ORM\Column(name: 'dest', type: 'string', length: 255, nullable: false)]
     private $dest;
 
-    #[ORM\ManyToOne(targetEntity: Beneficiaire::class)]
+    #[ORM\ManyToOne(targetEntity: Beneficiaire::class, inversedBy: 'sms')]
     #[ORM\JoinColumn(name: 'beneficiaire_id', referencedColumnName: 'id', nullable: false)]
     private ?Beneficiaire $beneficiaire = null;
 
@@ -31,7 +31,7 @@ class SMS implements \JsonSerializable, \Stringable
     #[ORM\JoinColumn(name: 'evenement_id', referencedColumnName: 'id', nullable: true)]
     private ?Evenement $evenement = null;
 
-    #[ORM\ManyToOne(targetEntity: Centre::class)]
+    #[ORM\ManyToOne(targetEntity: Centre::class, inversedBy: 'sms')]
     #[ORM\JoinColumn(name: 'centre_id', referencedColumnName: 'id', nullable: true)]
     private ?Centre $centre = null;
 

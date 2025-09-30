@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 class ClientCentre extends ClientEntity
 {
-    #[ORM\ManyToOne(targetEntity: Centre::class, inversedBy: 'externalLink')]
+    #[ORM\ManyToOne(targetEntity: Centre::class, inversedBy: 'externalLinks')]
     protected mixed $entity = null;
 
     public function setEntity(?Centre $entity = null): self

@@ -26,7 +26,7 @@ class Rappel implements \JsonSerializable
     #[Assert\Type(\DateTimeInterface::class)]
     private ?\DateTime $date = null;
 
-    #[ORM\ManyToOne(targetEntity: Evenement::class)]
+    #[ORM\ManyToOne(targetEntity: Evenement::class, inversedBy: 'rappels')]
     #[ORM\JoinColumn(name: 'evenement_id', referencedColumnName: 'id')]
     private Evenement $evenement;
 

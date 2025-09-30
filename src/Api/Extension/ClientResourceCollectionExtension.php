@@ -10,6 +10,7 @@ use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Contact;
 use App\Entity\Attributes\Document;
 use App\Entity\Attributes\DonneePersonnelle;
+use App\Entity\Attributes\Dossier;
 use App\Entity\Attributes\Evenement;
 use App\Entity\Attributes\Note;
 use App\Security\HelperV2\Oauth2Helper;
@@ -21,6 +22,7 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
         Beneficiaire::class,
         DonneePersonnelle::class,
         Document::class,
+        Dossier::class,
         Note::class,
         Evenement::class,
         Contact::class,
@@ -50,7 +52,8 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
     {
         $rootAliases = $queryBuilder->getRootAliases();
         if (
-            $this->oauth2Helper->isClientGrantedAllPrivileges()
+            !$this->oauth2Helper->isAuthenticatedAsClient()
+            || $this->oauth2Helper->isClientGrantedAllPrivileges()
             || !in_array($resourceClass, self::HANDLED_CLASSES)
             || 0 === count($rootAliases)
         ) {
@@ -63,8 +66,9 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
             $beneficiaryAlias = 'beneficiaire';
             $queryBuilder->innerJoin(sprintf('%s.beneficiaire', $rootAlias), $beneficiaryAlias);
             if (Evenement::class === $resourceClass) {
-                $queryBuilder->andWhere(sprintf('%s.date > :today', $rootAlias))
-                ->setParameter('today', new \DateTime());
+                $queryBuilder
+                    ->andWhere(sprintf('%s.date > :today', $rootAlias))
+                    ->setParameter('today', new \DateTime());
             }
         }
 

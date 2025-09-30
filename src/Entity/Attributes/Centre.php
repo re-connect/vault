@@ -119,11 +119,11 @@ class Centre implements \JsonSerializable, \Stringable
     private Collection $membresCentres;
 
     #[ORM\JoinColumn(name: 'gestionnaire_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
-    #[ORM\ManyToOne(targetEntity: Gestionnaire::class)]
+    #[ORM\ManyToOne(targetEntity: Gestionnaire::class, inversedBy: 'centres')]
     private ?Gestionnaire $gestionnaire = null;
 
     #[ORM\JoinColumn(name: 'typeCentre_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: TypeCentre::class)]
+    #[ORM\ManyToOne(targetEntity: TypeCentre::class, inversedBy: 'centres')]
     private ?TypeCentre $typeCentre = null;
 
     #[ORM\OneToMany(mappedBy: 'centre', targetEntity: SMS::class, cascade: ['persist', 'remove'])]
@@ -608,10 +608,10 @@ class Centre implements \JsonSerializable, \Stringable
     {
         if ($this->id) {
             $this->adresse = clone $this->adresse;
-            $this->consultationsCentre = [];
-            $this->externalLinks = [];
-            $this->sms = [];
-            $this->statistiquesCentre = [];
+            $this->consultationsCentre = new ArrayCollection();
+            $this->externalLinks = new ArrayCollection();
+            $this->sms = new ArrayCollection();
+            $this->statistiquesCentre = new ArrayCollection();
             $this->typeCentre = clone $this->typeCentre;
             $this->canada = true;
             $beneficiairesCentres = new ArrayCollection();

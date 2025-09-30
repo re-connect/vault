@@ -15,10 +15,28 @@ class CreateTest extends AbstractApiTest
         parent::setUp();
     }
 
-    public function testCreateBeneficiary(): void
+    /**
+     * @dataProvider canCreateProvider
+     */
+    public function testCreateBeneficiary(string $clientName, ?string $externalCenterId = null): void
     {
+        $beneficiary = [
+            'last_name' => 'test',
+            'first_name' => 'api',
+            'birth_date' => '2023-02-13T13:44:28.762Z',
+            'email' => 'api@test.com',
+            'phone' => '1234567890',
+            'distant_id' => '1200',
+            'external_pro_id' => '4972',
+            'password' => 'P@ssw0rd!',
+        ];
+
+        if ($externalCenterId) {
+            $beneficiary['external_center'] = $externalCenterId;
+        }
+
         $this->assertEndpoint(
-            'reconnect_pro',
+            $clientName,
             '/beneficiaries',
             'POST',
             201,
@@ -38,7 +56,74 @@ class CreateTest extends AbstractApiTest
                     'nom' => 'test',
                     'type_user' => 'ROLE_BENEFICIAIRE',
                     'b_first_mobile_connexion' => false,
+                    'plain_password' => 'P@ssw0rd!',
                 ],
+            ],
+            $beneficiary
+        );
+
+        $benef = $this->repo->findByUsername('api.test.13/02/2023');
+        $this->assertNotNull($benef);
+        $this->assertNotEmpty($benef->getExternalLinks());
+        $externalLink = $benef->getExternalLinks()->first();
+        $this->assertEquals($clientName, $externalLink->getClient()->getNom());
+        if ($externalCenterId) {
+            $beneficiaireCentre = $benef->getBeneficiairesCentres()->first();
+            $this->assertEquals($beneficiaireCentre, $externalLink->getBeneficiaireCentre());
+            $this->assertTrue($beneficiaireCentre->getBValid());
+        }
+        $this->assertEquals(1200, $benef->getExternalLinks()->first()->getDistantId());
+    }
+
+    /**
+     * @dataProvider canNotCreateProvider
+     */
+    public function testCanNotCreateBeneficiary(string $clientName): void
+    {
+        $this->assertEndpointAccessIsDenied(
+            $clientName,
+            '/beneficiaries',
+            'POST',
+            [
+                'last_name' => 'test',
+                'first_name' => 'api',
+                'birth_date' => '2023-02-13T13:44:28.762Z',
+                'email' => 'api@test.com',
+                'phone' => '1234567890',
+                'distant_id' => '1200',
+            ]
+        );
+    }
+
+    public function canNotCreateProvider(): \Generator
+    {
+        yield 'Should not create beneficiary for client with readonly scopes' => ['read_only_client'];
+        yield 'Should not create beneficiary for client with no scopes' => ['no_scopes_client'];
+        yield 'Should not create beneficiary for client with only personal data read scope' => ['read_personal_data_client'];
+        yield 'Should not create beneficiary for client with only personal data create scope' => ['create_personal_data_client'];
+        yield 'Should not create beneficiary for client with only personal data update scope' => ['update_personal_data_client'];
+    }
+
+    public function canCreateProvider(): \Generator
+    {
+        yield 'Should create beneficiary for client with update scopes' => ['read_and_update_client'];
+        yield 'Should create beneficiary for client with create scopes' => ['create_only_client'];
+        yield 'Should create beneficiary with external center for Reconnect Pro client' => ['reconnect_pro', '42'];
+        yield 'Should create beneficiary for Rosalie client ' => ['rosalie'];
+    }
+
+    public function testCanNotCreateBeneficiaryWithUnsecurePassword(): void
+    {
+        $this->assertEndpoint(
+            'create_only_client',
+            '/beneficiaries',
+            'POST',
+            422,
+            [
+                '@context' => '/api/contexts/Error',
+                '@type' => 'hydra:Error',
+                'hydra:title' => 'An error occurred',
+                'hydra:description' => 'The password must be at least 9 characters long, including: 1 uppercase, 1 lowercase, 1 special/number',
             ],
             [
                 'last_name' => 'test',
@@ -47,18 +132,9 @@ class CreateTest extends AbstractApiTest
                 'email' => 'api@test.com',
                 'phone' => '1234567890',
                 'distant_id' => '1200',
-                'external_center' => '42',
                 'external_pro_id' => '4972',
+                'password' => 'password',
             ]
         );
-        $benef = $this->repo->findByUsername('api.test.13/02/2023');
-        $this->assertNotNull($benef);
-        $this->assertNotEmpty($benef->getExternalLinks());
-        $externalLink = $benef->getExternalLinks()->first();
-        $beneficiaireCentre = $benef->getBeneficiairesCentres()->first();
-        $this->assertEquals('reconnect_pro', $externalLink->getClient()->getNom());
-        $this->assertEquals($beneficiaireCentre, $externalLink->getBeneficiaireCentre());
-        $this->assertEquals(1200, $benef->getExternalLinks()->first()->getDistantId());
-        $this->assertTrue($beneficiaireCentre->getBValid());
     }
 }
