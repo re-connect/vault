@@ -235,7 +235,7 @@ documents: وثائق
 download: تحميل
 download_document: 'تحميل وثيقة'
 download_document_click_button: 'انقر على الرابط أدناه لتحميل الوثيقة'
-download_training_catalogue: 'قم بتنزيل كتالوج التدريب'
+download_training_catalogue: 'حمّل كتالوجنا المخصص للجمهور المرافق'
 drop_files: 'ايداع ملفات'
 duplicated_username: "تكرار اسم المستخدم"
 duplicated_username_alert: "يوجد بالفعل خزانة أمان رقمية باسم، الاسم الأول، وتاريخ الميلاد. إذا لم يكن هذا المستفيد المرافق، يمكنك متابعة الإنشاء وسيتم إضافة -1 إلى معرفه."
@@ -431,7 +431,7 @@ password_criterion_lowercase: أحرف صغيرة
 password_criterion_nonAlphabetic: حرف خاص/رقم
 password_criterion_uppercase: .حرف كبير
 password_expired: 'Votre mot de passe a expiré. Veuillez choisir un nouveau mot de passe.'
-password_help: Le mot de passe doit être long (au moins %minLength% caractères) avec 1 majuscule, 1 minuscule et 1 chiffre ou caractère spécial
+password_help: يجب أن تكون كلمة المرور طويلة (على الأقل %minLength% أحرف) مع حرف كبير واحد وحرف صغير واحد ورقم أو حرف خاص
 password_help_criteria: 'Il manque les critères ci-dessous :'
 password_new_should_be_different_from_current: 'Votre nouveau mot de passe doit être différent de votre mot de passe actuel.'
 password_renewal_due: "Votre mot de passe est sur le point d'expirer. Veuillez choisir un nouveau mot de passe."
@@ -705,3 +705,4 @@ training_provision: CGV des prestations de formation
 training_internal_rules: Règlement intérieur des formations
 training_information_booklet: Livret d’informations
 digital_care: Accompagnement numérique
+download_pro_training_catalogue: حمّل كتالوجنا المخصص للمهنيين
