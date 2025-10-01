@@ -235,7 +235,7 @@ documents: Documents
 download: Télécharger
 download_document: 'Télécharger un document'
 download_document_click_button: 'Cliquer sur le bouton ci-dessous pour télécharger le document'
-download_training_catalogue: 'Téléchargez le catalogue de formation'
+download_training_catalogue: 'Téléchargez notre catalogue dédié au public accompagné'
 drop_files: 'Déposer des fichiers'
 duplicated_username: "Duplicat de nom d'utilisateur"
 duplicated_username_alert: "Il existe déjà un coffre-fort numérique à ce nom, prénom et date de naissance. S'il ne s'agit pas du bénéficiaire accompagné, vous pouvez poursuivre la création et un -1 sera ajouté à son identifiant."
@@ -705,3 +705,4 @@ training_provision: CGV des prestations de formation
 training_internal_rules: Règlement intérieur des formations
 training_information_booklet: Livret d’informations
 digital_care: Accompagnement numérique
+download_pro_training_catalogue: Téléchargez notre catalogue dédié aux professionnels
