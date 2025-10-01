@@ -235,7 +235,7 @@ documents: Documents
 download: Download
 download_document: 'Télécharger un document'
 download_document_click_button: 'Cliquer sur le bouton ci-dessous pour télécharger le document'
-download_training_catalogue: 'Download the training catalogue'
+download_training_catalogue: 'Download our catalog dedicated to assisted audiences'
 drop_files: 'Deposit of files'
 duplicated_username: "Duplicated username"
 duplicated_username_alert: "There is already a Reconnect account with this name, first name and date of birth. If it is not the accompanied beneficiary, you can resume the creation and a -1 will be added to its username."
@@ -705,3 +705,4 @@ training_provision: CGV of training services
 training_internal_rules: Internal rules for training courses
 training_information_booklet: Information booklet
 digital_care: Digital cares
+download_pro_training_catalogue: Download our catalog dedicated to professionals
