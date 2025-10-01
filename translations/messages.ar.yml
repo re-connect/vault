@@ -235,7 +235,7 @@ documents: وثائق
 download: تحميل
 download_document: 'تحميل وثيقة'
 download_document_click_button: 'انقر على الرابط أدناه لتحميل الوثيقة'
-download_training_catalogue: 'قم بتنزيل كتالوج التدريب'
+download_training_catalogue: 'حمّل كتالوجنا المخصص للجمهور المرافق'
 drop_files: 'ايداع ملفات'
 duplicated_username: "تكرار اسم المستخدم"
 duplicated_username_alert: "يوجد بالفعل خزانة أمان رقمية باسم، الاسم الأول، وتاريخ الميلاد. إذا لم يكن هذا المستفيد المرافق، يمكنك متابعة الإنشاء وسيتم إضافة -1 إلى معرفه."
@@ -705,3 +705,4 @@ training_provision: CGV des prestations de formation
 training_internal_rules: Règlement intérieur des formations
 training_information_booklet: Livret d’informations
 digital_care: Accompagnement numérique
+download_pro_training_catalogue: حمّل كتالوجنا المخصص للمهنيين
