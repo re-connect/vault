@@ -14,4 +14,6 @@ interface ClientResourceInterface
     public function hasExternalLinkForClient(Client $client): bool;
 
     public function getExternalLinkForClient(Client $client): ?ClientEntity;
+
+    public function getScopeName(): string;
 }

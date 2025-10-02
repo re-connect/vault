@@ -32,14 +32,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     shortName: 'Event',
     operations: [
-        new Delete(security: "is_granted('UPDATE', object)"),
-        new Get(security: "is_granted('ROLE_OAUTH2_EVENTS') or is_granted('UPDATE', object)"),
-        new GetCollection(security: "is_granted('ROLE_OAUTH2_EVENTS') or is_granted('ROLE_USER')"),
-        new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_BENEFICIARIES')", processor: PersonalDataStateProcessor::class),
-        new Patch(security: "is_granted('UPDATE', object)"),
+        new Delete(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Get(security: "is_granted('ROLE_OAUTH2_EVENTS_READ') or is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_EVENTS_READ') or is_granted('ROLE_USER')"),
+        new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_EVENTS_CREATE')", processor: PersonalDataStateProcessor::class),
+        new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
         new Patch(
             uriTemplate: '/events/{id}/toggle-visibility',
-            security: "is_granted('ROLE_OAUTH2_EVENTS')",
+            security: "is_granted('ROLE_OAUTH2_EVENTS_UPDATE')",
             name: ApiOperations::TOGGLE_VISIBILITY.'_event',
             processor: PersonalDataStateProcessor::class
         ),
@@ -60,7 +60,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['v3:event:read']],
     denormalizationContext: ['groups' => ['v3:event:write']],
     openapiContext: ['tags' => ['Events']],
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ')",
 )]
 class Evenement extends DonneePersonnelle
 {

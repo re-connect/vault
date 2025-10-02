@@ -36,7 +36,8 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
             Centre::class => $this->filterRelays($queryBuilder, $rootAlias, $user),
             User::class => $this->filterUsers($queryBuilder, $rootAlias, $user),
             Beneficiaire::class => $this->filterBeneficiaries($queryBuilder, $rootAlias, $user),
-            Document::class, Dossier::class, Contact::class, Note::class, Evenement::class => $this->filterPersonalData($queryBuilder, $rootAlias, $user),
+            Document::class, Contact::class, Note::class, Evenement::class => $this->filterPersonalData($queryBuilder, $rootAlias, $user),
+            Dossier::class => $this->filterFolders($queryBuilder, $rootAlias, $user),
             default => null,
         };
     }
@@ -44,10 +45,15 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
     #[\Override]
     public function applyToItem(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, array $identifiers, ?Operation $operation = null, array $context = []): void
     {
+        $rootAlias = $queryBuilder->getRootAliases()[0];
         if (is_subclass_of($resourceClass, DonneePersonnelle::class)) {
             if (!$this->security->getUser() instanceof User) {
-                $queryBuilder->andWhere(sprintf('%s.bPrive = false', $queryBuilder->getRootAliases()[0]));
+                $queryBuilder->andWhere(sprintf('%s.bPrive = false', $rootAlias));
             }
+        }
+
+        if ($this->isAuthenticatedAsClient($this->security->getUser()) && Dossier::class === $resourceClass) {
+            $this->addJoinOnDocuments($queryBuilder, $rootAlias);
         }
     }
 
@@ -99,6 +105,20 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
         $queryBuilder
             ->andWhere(sprintf('%s.id = :userId', $rootAlias))
             ->setParameter('userId', $user->getId());
+    }
+
+    private function filterFolders(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void
+    {
+        if ($this->isAuthenticatedAsClient($user)) {
+            $this->addJoinOnDocuments($queryBuilder, $rootAlias);
+        }
+        $this->filterPersonalData($queryBuilder, $rootAlias, $user);
+    }
+
+    private function addJoinOnDocuments(QueryBuilder $queryBuilder, string $rootAlias): void
+    {
+        $queryBuilder->leftJoin(sprintf('%s.documents', $rootAlias), 'd', 'WITH', 'd.bPrive = false')
+            ->addSelect('d');
     }
 
     private function isAuthenticatedAsClient(?UserInterface $user): bool
