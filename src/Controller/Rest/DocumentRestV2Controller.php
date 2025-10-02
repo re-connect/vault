@@ -137,7 +137,7 @@ class DocumentRestV2Controller extends REController
                 }
             }
 
-            return $this->json($entity);
+            return $this->createJsonResponse($entity, 200, ['document:read']);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -252,7 +252,7 @@ class DocumentRestV2Controller extends REController
             $this->provider->changePrive($entity);
             $this->provider->generatePresignedUris($entity);
 
-            return $this->json($entity, Response::HTTP_ACCEPTED);
+            return $this->createJsonResponse($entity, Response::HTTP_ACCEPTED, ['document:read']);
         } catch (NotFoundHttpException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
