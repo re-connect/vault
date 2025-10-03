@@ -2,7 +2,7 @@
 
 namespace App\FormV2\ResetPassword\BeneficiaryRequest;
 
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ResetPasswordSecretAnswerFormModel

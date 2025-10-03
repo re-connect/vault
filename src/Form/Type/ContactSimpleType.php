@@ -2,8 +2,8 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Attributes\Contact;
-use App\Entity\Attributes\DonneePersonnelle;
+use App\Entity\Contact;
+use App\Entity\DonneePersonnelle;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ContactSimpleType extends AbstractType
 {
     #[\Override]
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nom', null, ['label' => 'name', 'label_attr' => ['class' => 'font-size-1']])
@@ -36,7 +36,7 @@ class ContactSimpleType extends AbstractType
     }
 
     #[\Override]
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Contact::class,

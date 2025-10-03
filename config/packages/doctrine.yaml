@@ -18,15 +18,9 @@ doctrine:
             AppAttributes:
                 is_bundle: false
                 type: attribute
-                dir: '%kernel.project_dir%/src/Entity/Attributes'
-                prefix: 'App\Entity\Attributes'
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: 'App\Entity'
                 alias: AppAttributes
-            AppAnnotations:
-                is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/Entity/Annotations'
-                prefix: 'App\Entity\Annotations'
-                alias: AppAnnotations
         dql:
             string-functions:
                 binary: DoctrineExtensions\Query\Mysql\Binary

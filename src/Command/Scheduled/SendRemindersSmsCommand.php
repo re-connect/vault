@@ -15,7 +15,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class SendRemindersSmsCommand extends Command
 {
-    public function __construct(private readonly EventManager $eventManager, $name = null)
+    public function __construct(private readonly EventManager $eventManager, ?string $name = null)
     {
         parent::__construct($name);
     }

@@ -1,4 +1,4 @@
-App\Entity\Attributes\User:
+App\Entity\User:
     constraints:
         -   Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
                 fields: username
@@ -57,12 +57,12 @@ App\Entity\Attributes\User:
             -   NotBlank:
                     message: phone_not_empty
                     groups: [ beneficiaire-remotely ]
-App\Entity\Attributes\Membre:
+App\Entity\Membre:
     properties:
         user:
             -   Valid: ~
 
-App\Entity\Attributes\Gestionnaire:
+App\Entity\Gestionnaire:
     properties:
         association:
             -   NotBlank:
@@ -77,7 +77,7 @@ App\Entity\Attributes\Gestionnaire:
         user:
             -   Valid: ~
 
-App\Entity\Attributes\Association:
+App\Entity\Association:
     properties:
         nom:
             -   App\Validator\Constraints\ContainsAlphanumeric: ~

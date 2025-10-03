@@ -2,12 +2,12 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Contact;
-use App\Entity\Attributes\DonneePersonnelle;
-use App\Entity\Attributes\Dossier;
-use App\Entity\Attributes\Evenement;
-use App\Entity\Attributes\Note;
+use App\Entity\Beneficiaire;
+use App\Entity\Contact;
+use App\Entity\DonneePersonnelle;
+use App\Entity\Dossier;
+use App\Entity\Evenement;
+use App\Entity\Note;
 use App\EventV2\BeneficiaryConsultationEvent;
 use App\FormV2\ContactType;
 use App\FormV2\EventType;
@@ -26,6 +26,7 @@ use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -258,7 +259,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         Request $request,
         Beneficiaire $beneficiary,
         DocumentManager $manager,
-        DossierRepository $folderRepository
+        DossierRepository $folderRepository,
     ): Response {
         if (!$files = $request->files->get('files')) {
             return new Response(null, Response::HTTP_BAD_REQUEST);
@@ -318,7 +319,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         Request $request,
         Beneficiaire $beneficiary,
         EntityManagerInterface $em,
-        FolderManager $manager
+        FolderManager $manager,
     ): Response {
         $folder = (new Dossier())->setBeneficiaire($beneficiary);
         $form = $this->getCreateForm(
@@ -350,6 +351,9 @@ class BeneficiaryPersonalDataController extends AbstractController
         ]);
     }
 
+    /**
+     * @param class-string<FormTypeInterface<DonneePersonnelle>> $formTypeClassName
+     */
     private function getCreateForm(string $formTypeClassName, DonneePersonnelle $entity, string $url): FormInterface
     {
         $user = $entity->getBeneficiaire()?->getUser();

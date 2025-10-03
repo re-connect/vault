@@ -2,7 +2,7 @@
 
 namespace App\RepositoryV2;
 
-use App\Entity\Attributes\BeneficiaryCreationProcess;
+use App\Entity\BeneficiaryCreationProcess;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

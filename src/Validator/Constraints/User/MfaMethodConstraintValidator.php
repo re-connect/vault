@@ -2,7 +2,7 @@
 
 namespace App\Validator\Constraints\User;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
