@@ -55,8 +55,9 @@ class RenameTest extends AbstractControllerTest implements TestRouteInterface, T
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $url = sprintf($url, $beneficiary->getDocuments()[0]->getId());
-        $redirectUrl = $redirectUrl ? sprintf($redirectUrl, $beneficiary->getId()) : '';
+        $document = $beneficiary->getDocuments()[0];
+        $url = sprintf($url, $document->getId());
+        $redirectUrl = $document->hasParentFolder() ? sprintf('/folder/%s', $document->getDossier()->getId()) : sprintf('/beneficiary/%s/documents', $beneficiary->getId());
         $this->assertFormIsValid($url, $formSubmit, $values, $email, $redirectUrl);
     }
 
@@ -67,7 +68,7 @@ class RenameTest extends AbstractControllerTest implements TestRouteInterface, T
             'confirm',
             self::FORM_VALUES,
             BeneficiaryFixture::BENEFICIARY_MAIL,
-            '/beneficiary/%s/documents',
+            null,
         ];
     }
 

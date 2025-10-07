@@ -3,8 +3,6 @@
 namespace App\Tests\v2\API\v3\Contact;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
-use App\Entity\Attributes\Beneficiaire;
-use App\Repository\BeneficiaireRepository;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\ClientFactory;
 use App\Tests\Factory\ContactFactory;
@@ -12,21 +10,52 @@ use App\Tests\v2\API\v3\AbstractApiTest;
 
 class ContactApiV3Test extends AbstractApiTest
 {
-    private readonly BeneficiaireRepository $beneficiaireRepository;
-
-    protected function setUp(): void
+    /**
+     * @dataProvider canGetProvider
+     */
+    public function testGetCollection(string $clientName): void
     {
-        $this->beneficiaireRepository = $this->getContainer()->get(BeneficiaireRepository::class);
-        parent::setUp();
+        $client = ClientFactory::find(['nom' => $clientName])->object();
+        $beneficiaries = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId());
+        $contactsCount = 0;
+        foreach ($beneficiaries as $beneficiary) {
+            $contactsCount += $beneficiary->getContacts()->filter(function ($contact) {
+                return !$contact->getBPrive();
+            })->count();
+        }
+        $this->assertEndpoint(
+            $clientName,
+            '/contacts',
+            'GET',
+            200,
+            [
+                '@context' => '/api/contexts/Contact',
+                '@type' => 'hydra:Collection',
+                'hydra:totalItems' => $contactsCount,
+            ]
+        );
     }
 
-    public function testGetCollection(): void
+    /**
+     * @dataProvider canNotGetProvider
+     */
+    public function testCanNotGetCollection(string $clientName): void
     {
-        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
-        /** @var Beneficiaire $beneficiary */
-        $beneficiary = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
+        $this->assertEndpointAccessIsDenied(
+            $clientName,
+            '/contacts',
+            'GET',
+        );
+    }
+
+    /**
+     * @dataProvider canGetBeneficiaryProvider
+     */
+    public function testGetCollectionForBeneficiary(string $clientName): void
+    {
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
         $this->assertEndpoint(
-            'reconnect_pro',
+            $clientName,
             sprintf('/beneficiaries/%s/contacts', $beneficiary->getId()),
             'GET',
             200,
@@ -39,15 +68,31 @@ class ContactApiV3Test extends AbstractApiTest
         );
     }
 
-    public function testGetOne(): void
+    /**
+     * @dataProvider canNotGetProvider
+     */
+    public function testCanNotGetCollectionForBeneficiary(string $clientName): void
     {
-        $this->markTestSkipped('Contact api ressource is currently disabled');
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
+        $this->assertEndpointAccessIsDenied(
+            $clientName,
+            sprintf('/beneficiaries/%s/contacts', $beneficiary->getId()),
+            'GET',
+        );
+    }
+
+    /**
+     * @dataProvider canGetProvider
+     */
+    public function testGetOne(string $clientName): void
+    {
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
         $contact = ContactFactory::findOrCreate([
-            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
+            'beneficiaire' => $beneficiary,
         ])->object();
 
         $this->assertEndpoint(
-            'rosalie',
+            $clientName,
             sprintf('/contacts/%d', $contact->getId()),
             'GET',
             200,
@@ -64,10 +109,55 @@ class ContactApiV3Test extends AbstractApiTest
         );
     }
 
-    public function testPost(): void
+    /**
+     * @dataProvider canNotGetProvider
+     */
+    public function testCanNotGetOne(string $clientName): void
     {
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
+        $contact = ContactFactory::findOrCreate([
+            'beneficiaire' => $beneficiary,
+        ])->object();
+
+        $this->assertEndpointAccessIsDenied(
+            $clientName,
+            sprintf('/contacts/%d', $contact->getId()),
+            'GET',
+        );
+    }
+
+    public function canGetProvider(): \Generator
+    {
+        yield 'Should read when read and update scopes' => ['read_and_update_client'];
+        yield 'Should read with Reconnect Pro client' => ['reconnect_pro'];
+        yield 'Should read with Rosalie client ' => ['rosalie'];
+        yield 'Should read with read only scopes' => ['read_only_client'];
+        yield 'Should read with read personal data scope' => ['read_personal_data_client'];
+    }
+
+    public function canGetBeneficiaryProvider(): \Generator
+    {
+        yield 'Should read when read and update scopes' => ['read_and_update_client'];
+        yield 'Should read with Reconnect Pro client' => ['reconnect_pro'];
+        yield 'Should read with Rosalie client ' => ['rosalie'];
+        yield 'Should read with read only scopes' => ['read_only_client'];
+    }
+
+    public function canNotGetProvider(): \Generator
+    {
+        yield 'Should not read with create only scopes' => ['create_only_client'];
+        yield 'Should not read with no scopes' => ['no_scopes_client'];
+        yield 'Should not read with create personal data scope' => ['create_personal_data_client'];
+    }
+
+    /**
+     * @dataProvider canCreateProvider
+     */
+    public function testPost(string $clientName): void
+    {
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
         $contact = [
-            'beneficiaire_id' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK)->object()->getId(),
+            'beneficiaire_id' => $beneficiary->getId(),
             'nom' => 'CONTACT',
             'prenom' => 'test',
             'telephone' => '+33620746411',
@@ -76,7 +166,7 @@ class ContactApiV3Test extends AbstractApiTest
         ];
 
         $this->assertEndpoint(
-            'reconnect_pro',
+            $clientName,
             '/contacts',
             'POST',
             201,
@@ -89,33 +179,116 @@ class ContactApiV3Test extends AbstractApiTest
         );
     }
 
-    public function testPut(): void
+    /**
+     * @dataProvider canNotCreateProvider
+     */
+    public function testCanNotPost(string $clientName): void
     {
-        $this->markTestSkipped('Contact api ressource is currently disabled');
-        $contact = ContactFactory::findOrCreate([
-            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ])->object();
-
-        $updatedProperties = [
-            'nom' => 'testNomPUT',
-            'prenom' => 'testPrenomPUT',
-            'b_prive' => true,
-            'created_at' => (new \DateTime())->format('c'),
-            'updated_at' => (new \DateTime())->format('c'),
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
+        $contact = [
+            'beneficiaire_id' => $beneficiary->getId(),
+            'nom' => 'CONTACT',
+            'prenom' => 'test',
+            'telephone' => '+33620746411',
+            'email' => 'contact.test@mail.com',
+            'commentaire' => 'Un commentaire',
         ];
 
+        $this->assertEndpointAccessIsDenied(
+            $clientName,
+            '/contacts',
+            'POST',
+            $contact
+        );
+    }
+
+    public function canCreateProvider(): \Generator
+    {
+        yield 'Should create with only create scopes' => ['create_only_client'];
+        yield 'Should create with update and read scopes' => ['read_and_update_client'];
+        yield 'Should create with RP scopes' => ['reconnect_pro'];
+        yield 'Should create with Rosalie scopes' => ['rosalie'];
+        yield 'Should create with create personal data scope' => ['create_personal_data_client'];
+        yield 'Should create with update personal data scope' => ['update_personal_data_client'];
+    }
+
+    public function canNotCreateProvider(): \Generator
+    {
+        yield 'Should not create with only read scopes' => ['read_only_client'];
+        yield 'Should not create with no scopes' => ['no_scopes_client'];
+        yield 'Should not create with read personal data scope' => ['read_personal_data_client'];
+    }
+
+    /**
+     * @dataProvider canUpdateProvider
+     */
+    public function testToggleVisibility(string $clientName): void
+    {
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
+        $contact = ContactFactory::findOrCreate([
+            'beneficiaire' => $beneficiary,
+            'bPrive' => false,
+        ])->object();
+        $contactId = $contact->getId();
+
         $this->assertEndpoint(
-            'rosalie',
-            sprintf('/contacts/%d', $contact->getId()),
-            'PUT',
+            $clientName,
+            sprintf('/contacts/%s/toggle-visibility', $contactId),
+            'PATCH',
             200,
             [
                 '@context' => '/api/contexts/Contact',
+                '@id' => sprintf('/api/v3/contacts/%s/toggle-visibility', $contactId),
                 '@type' => 'Contact',
-                ...$updatedProperties,
             ],
-            $updatedProperties
+            []
         );
+        // Once item has been set to private, it should not be found
+        $this->assertEndpoint(
+            $clientName,
+            sprintf('/contacts/%s/toggle-visibility', $contactId),
+            'PATCH',
+            404,
+            null,
+            []
+        );
+    }
+
+    /**
+     * @dataProvider canNotUpdateProvider
+     */
+    public function testCanNotToggleVisibility(string $clientName): void
+    {
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
+        $contact = ContactFactory::findOrCreate([
+            'beneficiaire' => $beneficiary,
+            'bPrive' => false,
+        ])->object();
+        $contactId = $contact->getId();
+
+        $this->assertEndpointAccessIsDenied(
+            $clientName,
+            sprintf('/contacts/%s/toggle-visibility', $contactId),
+            'PATCH',
+            []
+        );
+    }
+
+    public function canUpdateProvider(): \Generator
+    {
+        yield 'Should update with read_and_update scopes' => ['read_and_update_client'];
+        yield 'Should update with Reconnect Pro scopes' => ['reconnect_pro'];
+        yield 'Should update with update personal data scope' => ['update_personal_data_client'];
+    }
+
+    public function canNotUpdateProvider(): \Generator
+    {
+        yield 'Should not update with read only scopes' => ['read_only_client'];
+        yield 'Should not update with Rosalie scopes' => ['rosalie'];
+        yield 'Should not update with no scopes' => ['no_scopes_client'];
+        yield 'Should not update with create only scopes' => ['create_only_client'];
+        yield 'Should not update with read personal data scope' => ['read_personal_data_client'];
+        yield 'Should not update with create personal data scope' => ['create_personal_data_client'];
     }
 
     public function testPatch(): void
@@ -159,40 +332,6 @@ class ContactApiV3Test extends AbstractApiTest
             sprintf('/contacts/%d', $contact->getId()),
             'DELETE',
             204,
-        );
-    }
-
-    public function testToggleVisibility(): void
-    {
-        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
-        /** @var Beneficiaire $beneficiary */
-        $beneficiary = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
-        $contact = ContactFactory::findOrCreate([
-            'beneficiaire' => $beneficiary,
-            'bPrive' => false,
-        ])->object();
-        $contactId = $contact->getId();
-
-        $this->assertEndpoint(
-            'reconnect_pro',
-            sprintf('/contacts/%s/toggle-visibility', $contactId),
-            'PATCH',
-            200,
-            [
-                '@context' => '/api/contexts/Contact',
-                '@id' => sprintf('/api/v3/contacts/%s/toggle-visibility', $contactId),
-                '@type' => 'Contact',
-            ],
-            []
-        );
-        // Once item has been set to private, it should not be found
-        $this->assertEndpoint(
-            'reconnect_pro',
-            sprintf('/contacts/%s/toggle-visibility', $contactId),
-            'PATCH',
-            404,
-            null,
-            []
         );
     }
 }
