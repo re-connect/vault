@@ -17,7 +17,7 @@ class FolderApiV3Test extends AbstractApiTest
         $beneficiaries = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId());
         $foldersCount = 0;
         foreach ($beneficiaries as $beneficiary) {
-            $foldersCount += $beneficiary->getSharedRootFolders()->count();
+            $foldersCount += $beneficiary->getSharedFolders()->count();
         }
 
         $this->assertEndpoint(
