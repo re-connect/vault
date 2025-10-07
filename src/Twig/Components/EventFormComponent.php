@@ -13,7 +13,7 @@ use Symfony\UX\LiveComponent\Attribute\PreReRender;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\UX\LiveComponent\LiveCollectionTrait;
 
-#[AsLiveComponent('event_form')]
+#[AsLiveComponent('event_form', method: 'get')]
 class EventFormComponent extends AbstractController
 {
     use LiveCollectionTrait;
