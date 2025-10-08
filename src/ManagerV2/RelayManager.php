@@ -2,9 +2,9 @@
 
 namespace App\ManagerV2;
 
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\User;
-use App\Entity\Attributes\UserCentre;
+use App\Entity\Centre;
+use App\Entity\User;
+use App\Entity\UserCentre;
 use App\Repository\CentreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\ReadableCollection;

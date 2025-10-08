@@ -2,8 +2,8 @@
 
 namespace App\DataFixtures\v2;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\User;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\BeneficiaryCreationProcessFactory;
 use App\Tests\Factory\ContactFactory;
@@ -37,7 +37,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface, Depen
     public const BENEFICIARY_WITH_RP_LINK = 'test_user_beneficiary_with_rp_link@mail.com';
 
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $this->createTestBeneficiary(
             $this->getTestUser(self::BENEFICIARY_MAIL)->setTelephone(self::BENEFICIARY_PHONE),

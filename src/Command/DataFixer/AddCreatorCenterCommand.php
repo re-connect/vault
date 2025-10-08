@@ -2,7 +2,7 @@
 
 namespace App\Command\DataFixer;
 
-use App\Entity\Attributes\CreatorCentre;
+use App\Entity\CreatorCentre;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\CentreRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,7 +27,7 @@ class AddCreatorCenterCommand extends Command
         private readonly BeneficiaireRepository $beneficiaryRepository,
         private readonly CentreRepository $centreRepository,
         private readonly string $kernelProjectDir,
-        $name = null
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }
@@ -56,7 +56,7 @@ class AddCreatorCenterCommand extends Command
             foreach ($records as $record) {
                 [
                     'beneficiaryId' => $beneficiaryId,
-                    'centerId' => $centerId
+                    'centerId' => $centerId,
                 ] = $record;
 
                 $io->note(sprintf('Finding beneficiary with Id: %s and center with Id: %s', $beneficiaryId, $centerId));

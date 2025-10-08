@@ -3,7 +3,7 @@
 namespace App\EventSubscriber\Api;
 
 use App\Domain\TermsOfUse\TermsOfUseHelper;
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\Repository\UserRepository;
 use App\ServiceV2\GdprService;
 use Doctrine\ORM\EntityManagerInterface;

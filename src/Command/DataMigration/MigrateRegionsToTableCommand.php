@@ -2,8 +2,8 @@
 
 namespace App\Command\DataMigration;
 
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\Region;
+use App\Entity\Centre;
+use App\Entity\Region;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -42,7 +42,7 @@ class MigrateRegionsToTableCommand extends Command
     ];
 
     #[\Override]
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 

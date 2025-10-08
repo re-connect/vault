@@ -2,35 +2,29 @@
 
 namespace App\Event;
 
-use App\Entity\Attributes\Membre;
-use App\Entity\Attributes\User;
+use App\Entity\Membre;
+use App\Entity\User;
 
 class MembreEvent extends REEvent
 {
     public const MEMBRE_CREATED = 1;
     public const MEMBRE_MODIFIED = 2;
-
-    protected $membre;
-    protected $user;
     protected $context = [];
 
-    public function __construct(Membre $membre, protected $type, ?User $user = null)
+    public function __construct(protected Membre $membre, protected $type, protected ?User $user = null)
     {
-        $this->membre = $membre;
-        $this->user = $user;
-
         $this->context = [
             'user_id' => $this->membre->getUser()->getId(),
             'by_user_id' => (null !== $this->user) ? $this->user->getId() : null,
         ];
     }
 
-    public function getMembre()
+    public function getMembre(): Membre
     {
         return $this->membre;
     }
 
-    public function getUser()
+    public function getUser(): ?User
     {
         return $this->user;
     }

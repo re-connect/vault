@@ -2,14 +2,13 @@
 
 namespace App\Serializer\Normalizer;
 
-use App\Entity\Attributes\Document;
+use App\Entity\Document;
 use App\Provider\DocumentProvider;
-use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class DocumentNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface, NormalizerAwareInterface
+class DocumentNormalizer implements NormalizerInterface, NormalizerAwareInterface
 {
     use NormalizerAwareTrait;
 
@@ -17,12 +16,6 @@ class DocumentNormalizer implements NormalizerInterface, CacheableSupportsMethod
 
     public function __construct(private DocumentProvider $provider)
     {
-    }
-
-    #[\Override]
-    public function hasCacheableSupportsMethod(): bool
-    {
-        return false;
     }
 
     #[\Override]

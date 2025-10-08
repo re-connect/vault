@@ -2,7 +2,7 @@
 
 namespace App\ServiceV2\Mailer\Email;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 abstract class LocalizedTemplatedEmail

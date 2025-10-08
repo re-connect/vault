@@ -2,7 +2,7 @@
 
 namespace App\Api\Dto;
 
-use App\Entity\Attributes\Centre;
+use App\Entity\Centre;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
