@@ -121,7 +121,9 @@ class Evenement extends DonneePersonnelle
 
     public function setDate($date): static
     {
-        $this->date = $date;
+        if (null !== $date) {
+            $this->date = $date;
+        }
 
         return $this;
     }
