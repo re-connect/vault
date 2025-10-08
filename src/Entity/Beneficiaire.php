@@ -989,6 +989,14 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     /**
      * @return Collection<int, Dossier>
      */
+    public function getSharedFolders(): Collection
+    {
+        return $this->getDossiers()->filter(fn (Dossier $folder) => !$folder->isPrivate());
+    }
+
+    /**
+     * @return Collection<int, Dossier>
+     */
     public function getRootDocuments(): Collection
     {
         $criteria = Criteria::create()->andWhere(Criteria::expr()->isNull('dossier'));
