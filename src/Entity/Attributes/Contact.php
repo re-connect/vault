@@ -12,6 +12,7 @@ use ApiPlatform\Metadata\Post;
 use App\Api\ApiOperations;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
+use App\Entity\Interface\ClientResourceInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
@@ -23,14 +24,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Index(columns: ['deposePar_id'], name: 'IDX_4C62E638F2AB781')]
 #[ApiResource(
     operations: [
-        new Delete(security: "is_granted('UPDATE', object)"),
-        new Get(security: "is_granted('ROLE_OAUTH2_CONTACTS') or is_granted('UPDATE', object)"),
-        new GetCollection(security: "is_granted('ROLE_OAUTH2_CONTACTS') or is_granted('ROLE_USER')"),
-        new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_BENEFICIARIES')", processor: PersonalDataStateProcessor::class),
-        new Patch(security: "is_granted('UPDATE', object)"),
+        new Delete(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Get(security: "is_granted('ROLE_OAUTH2_CONTACTS_READ') or is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_CONTACTS_READ') or is_granted('ROLE_USER')"),
+        new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_CONTACTS_CREATE')", processor: PersonalDataStateProcessor::class),
+        new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
         new Patch(
             uriTemplate: '/contacts/{id}/toggle-visibility',
-            security: "is_granted('ROLE_OAUTH2_CONTACTS')",
+            security: "is_granted('UPDATE', object)",
             name: ApiOperations::TOGGLE_VISIBILITY.'_contact',
             processor: PersonalDataStateProcessor::class
         ),
@@ -51,9 +52,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['v3:contact:read']],
     denormalizationContext: ['groups' => ['v3:contact:write']],
     openapiContext: ['tags' => ['Contacts']],
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ')",
 )]
-class Contact extends DonneePersonnelle
+class Contact extends DonneePersonnelle implements ClientResourceInterface
 {
     public const TOGGLE_VISIBILITY_API_ROUTE = 'ToggleVisibility';
     #[ORM\Column(name: 'prenom', type: 'string', length: 255, nullable: false)]
@@ -193,5 +194,29 @@ class Contact extends DonneePersonnelle
     public function getFullName(): string
     {
         return sprintf('%s %s', $this->nom, $this->prenom);
+    }
+
+    #[\Override]
+    public function getExternalLinks(): Collection
+    {
+        return $this->beneficiaire?->getExternalLinks();
+    }
+
+    #[\Override]
+    public function hasExternalLinkForClient(Client $client): bool
+    {
+        return $this->beneficiaire?->hasExternalLinkForClient($client);
+    }
+
+    #[\Override]
+    public function getExternalLinkForClient(Client $client): ?ClientEntity
+    {
+        return $this->beneficiaire?->getExternalLinkForClient($client);
+    }
+
+    #[\Override]
+    public function getScopeName(): string
+    {
+        return 'CONTACTS';
     }
 }

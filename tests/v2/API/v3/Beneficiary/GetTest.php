@@ -2,9 +2,7 @@
 
 namespace App\Tests\v2\API\v3\Beneficiary;
 
-use App\Entity\Attributes\Beneficiaire;
 use App\Repository\BeneficiaireRepository;
-use App\Tests\Factory\ClientFactory;
 use App\Tests\v2\API\v3\AbstractApiTest;
 
 class GetTest extends AbstractApiTest
@@ -17,14 +15,15 @@ class GetTest extends AbstractApiTest
         parent::setUp();
     }
 
-    public function testGetBeneficiary(): void
+    /**
+     * @dataProvider canGetProvider
+     */
+    public function testCanGetBeneficiary(string $clientName): void
     {
-        $client = ClientFactory::find(['nom' => 'rosalie'])->object();
-        /** @var Beneficiaire $beneficiary */
-        $beneficiary = $this->repo->findByClientIdentifier($client->getRandomId())[0];
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
         $user = $beneficiary->getUser();
         $this->assertEndpoint(
-            'rosalie',
+            $clientName,
             sprintf('/beneficiaries/%s', $beneficiary->getId()),
             'GET',
             200,
@@ -46,5 +45,36 @@ class GetTest extends AbstractApiTest
                 ],
             ],
         );
+    }
+
+    /**
+     * @dataProvider canNotGetProvider
+     */
+    public function testCanNotGetBeneficiary(string $clientName): void
+    {
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
+
+        $this->assertEndpointAccessIsDenied(
+            $clientName,
+            sprintf('/beneficiaries/%s', $beneficiary->getId()),
+            'GET',
+        );
+    }
+
+    public function canNotGetProvider(): \Generator
+    {
+        yield 'Should not get beneficiary for client with create only scopes' => ['create_only_client'];
+        yield 'Should not get beneficiary for client with no scopes' => ['no_scopes_client'];
+        yield 'Should not get beneficiary for client with only personal data read scope' => ['read_personal_data_client'];
+        yield 'Should not get beneficiary for client with only personal data create scope' => ['create_personal_data_client'];
+        yield 'Should not get beneficiary for client with only personal data update scope' => ['update_personal_data_client'];
+    }
+
+    public function canGetProvider(): \Generator
+    {
+        yield 'Should get beneficiary for client with read only scopes' => ['read_only_client'];
+        yield 'Should get beneficiary for client with read and update scopes' => ['read_and_update_client'];
+        yield 'Should get beneficiary  for Reconnect Pro client' => ['reconnect_pro'];
+        yield 'Should get beneficiary for Rosalie client ' => ['rosalie'];
     }
 }
