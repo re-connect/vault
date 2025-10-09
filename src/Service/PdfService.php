@@ -44,9 +44,11 @@ class PdfService
 
             $sizR = round($size * (min($imW, $imH) / max($imW, $imH))); // relative pixels of the shorter side
 
-            $img->setImageColorspace(255);        // prevent image colors from inverting
-            $img->setImageBackgroundColor('white');    // set background color and flatten
-            $img = $img->mergeImageLayers(\Imagick::LAYERMETHOD_FLATTEN);            // prevents black zones on transparency in pdf
+            if ($img->getImageAlphaChannel()) {
+                $img->setImageColorspace($img::COLORSPACE_SRGB);        // prevent image colors from inverting
+                $img->setImageBackgroundColor('white');    // set background color and flatten
+                $img = $img->mergeImageLayers(\Imagick::LAYERMETHOD_FLATTEN);            // prevents black zones on transparency in pdf
+            }
             $img->setimageformat('jpeg');
 
             if ($imH == $imW) {
