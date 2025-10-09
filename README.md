@@ -8,6 +8,12 @@ To install project, follow these steps :
 
 ## Start developing
 
+* Install assets
+
+```bash
+symfony console assets:install
+```
+
 * Dump frontend routes
 
 ```bash
