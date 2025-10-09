@@ -179,7 +179,7 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Gestionnaire::class)]
     private ?Gestionnaire $subjectGestionnaire = null;
 
-    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Adresse::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: Adresse::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(name: 'adresse_id', referencedColumnName: 'id', nullable: true)]
     #[Groups(['read', 'user:read', 'v3:user:read'])]
     private ?Adresse $adresse = null;
