@@ -37,7 +37,7 @@ class RosalieServiceTest extends KernelTestCase
         $this->httpClient->expects($this->once())->method('request')
             ->with(
                 Request::METHOD_POST,
-                'http://rosalie/famille/verification_cle/',
+                'http://rosalie/api/famille/verification_cle/',
                 [
                     'headers' => ['Authorization: Basic token'],
                     'body' => [
