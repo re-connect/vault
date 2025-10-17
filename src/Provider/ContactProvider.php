@@ -2,8 +2,9 @@
 
 namespace App\Provider;
 
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\Contact;
+use App\Entity\Client;
+use App\Entity\Contact;
+use App\Entity\DonneePersonnelle;
 use App\Form\Type\ContactSimpleType;
 use App\Form\Type\ContactType;
 use App\Security\Authorization\Voter\DonneePersonnelleVoter;
@@ -19,7 +20,7 @@ class ContactProvider extends DonneePersonnelleProvider
     /**
      * @param string|null $accessAttribute
      */
-    public function getEntity($id, $accessAttribute = null): Contact
+    public function getEntity(string $id, $accessAttribute = null): Contact
     {
         if (!$entity = $this->em->find(Contact::class, $id)) {
             throw new NotFoundHttpException('No contact found for id '.$id);
@@ -37,7 +38,7 @@ class ContactProvider extends DonneePersonnelleProvider
     }
 
     #[\Override]
-    public function populate($entity, Client $client): void
+    public function populate(DonneePersonnelle $entity, Client $client): void
     {
         parent::populate($entity, $client);
 

@@ -2,7 +2,7 @@
 
 namespace App\ServiceV2;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use Psr\Log\LoggerInterface;
 
 class ActivityLogger

@@ -2,10 +2,10 @@
 
 namespace App\Command;
 
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\Membre;
-use App\Entity\Attributes\MembreCentre;
-use App\Entity\Attributes\User;
+use App\Entity\Centre;
+use App\Entity\Membre;
+use App\Entity\MembreCentre;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use League\Csv\Reader;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -22,7 +22,7 @@ class CreateMembersFromCsvCommand extends Command
 {
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
-        ?string $name = null
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }

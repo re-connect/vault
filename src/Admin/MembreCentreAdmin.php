@@ -2,7 +2,7 @@
 
 namespace App\Admin;
 
-use App\Entity\Attributes\MembreCentre;
+use App\Entity\MembreCentre;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;
@@ -33,7 +33,7 @@ class MembreCentreAdmin extends AbstractAdmin
             ])
             ->end();
 
-        $form->getFormBuilder()->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
+        $form->getFormBuilder()->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event): void {
             $data = $event->getData();
             if (!$data instanceof MembreCentre || $data->getId()) {
                 return;

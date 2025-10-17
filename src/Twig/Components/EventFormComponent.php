@@ -3,8 +3,8 @@
 namespace App\Twig\Components;
 
 use App\ControllerV2\AbstractController;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Evenement;
+use App\Entity\Beneficiaire;
+use App\Entity\Evenement;
 use App\FormV2\EventType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
@@ -13,7 +13,7 @@ use Symfony\UX\LiveComponent\Attribute\PreReRender;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\UX\LiveComponent\LiveCollectionTrait;
 
-#[AsLiveComponent('event_form')]
+#[AsLiveComponent('event_form', method: 'get')]
 class EventFormComponent extends AbstractController
 {
     use LiveCollectionTrait;

@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2\Admin;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\RepositoryV2\ResetPasswordRequestRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,7 +20,7 @@ class ResetPasswordController extends AbstractController
         Request $request,
         User $user,
         ResetPasswordRequestRepository $repository,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
     ): RedirectResponse {
         foreach ($repository->findBy(['user' => $user]) as $resetPasswordRequest) {
             $em->remove($resetPasswordRequest);
