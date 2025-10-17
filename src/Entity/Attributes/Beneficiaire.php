@@ -79,13 +79,13 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     private const string DEFAULT_BIRTHDATE = '01/01/1975';
     public const int|float MAX_VAULT_SIZE = 1024 * 1024 * 600; // 600Mo
     public const array SECRET_QUESTIONS = [
-        'secret_question_mother_firstname' => 'secret_question_mother_firstname',
         'secret_question_pet' => 'secret_question_pet',
         'secret_question_favorite_street' => 'secret_question_favorite_street',
         'secret_question_secondary_school' => 'secret_question_secondary_school',
         'secret_question_nickname' => 'secret_question_nickname',
         'secret_question_city_of_birth' => 'secret_question_city_of_birth',
         'secret_question_mother_lastname' => 'secret_question_mother_lastname',
+        'secret_question_mother_firstname' => 'secret_question_mother_firstname',
         'secret_question_custom' => 'secret_question_custom',
     ];
 
