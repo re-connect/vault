@@ -4,11 +4,13 @@ namespace App\ServiceV2;
 
 use App\Entity\Attributes\User;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class ActivityLogger
 {
     public function __construct(
         private readonly LoggerInterface $loginLogger,
+        private readonly RequestStack $requestStack,
     ) {
     }
 
@@ -18,6 +20,7 @@ class ActivityLogger
             'id ' => $user->getId(),
             'date' => (new \DateTimeImmutable())->format('d/m/Y'),
             'time' => (new \DateTimeImmutable())->format('H:i'),
+            'ip_address' => $this->requestStack->getCurrentRequest() ? $this->requestStack->getCurrentRequest()->getClientIp() : 'Error retrieving IP',
         ]);
     }
 }

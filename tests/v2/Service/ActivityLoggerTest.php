@@ -4,12 +4,12 @@ namespace App\Tests\v2\Service;
 
 use App\Entity\Attributes\User;
 use App\ServiceV2\ActivityLogger;
-use Doctrine\ORM\EntityManagerInterface;
 use Monolog\Handler\TestHandler;
 use Monolog\Logger;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class ActivityLoggerTest extends TestCase
 {
@@ -24,7 +24,7 @@ class ActivityLoggerTest extends TestCase
         $this->testHandler = new TestHandler();
         $logger->pushHandler($this->testHandler);
         $this->security = $this->createMock(Security::class);
-        $this->activityLogger = new ActivityLogger($logger, $this->security, $this->createMock(EntityManagerInterface::class));
+        $this->activityLogger = new ActivityLogger($logger, $this->createMock(RequestStack::class));
     }
 
     public function testLogLoginShouldLog(): void
