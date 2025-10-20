@@ -26,7 +26,7 @@ api_platform:
         json: [ 'application/json' ]
         jsonapi: [ 'application/vnd.api+json' ]
     formats:
-        json: [ 'application/json' ]
         jsonld: ['application/ld+json']
+        json: [ 'application/json' ]
     use_symfony_listeners: false
     inflector: api_platform.metadata.inflector
