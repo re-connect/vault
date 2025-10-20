@@ -2,7 +2,7 @@
 
 namespace App\ListenerV2;
 
-use App\Entity\Attributes\Note;
+use App\Entity\Note;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
