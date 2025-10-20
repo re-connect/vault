@@ -4,7 +4,7 @@ namespace App\Tests\v2\API\v3;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Symfony\Bundle\Test\Client;
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 use App\Repository\BeneficiaireRepository;
 use App\Tests\Factory\ClientFactory;
 use Symfony\Component\HttpFoundation\Request;

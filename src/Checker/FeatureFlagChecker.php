@@ -2,7 +2,7 @@
 
 namespace App\Checker;
 
-use App\Entity\Attributes\FeatureFlag;
+use App\Entity\FeatureFlag;
 use App\Repository\FeatureFlagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 

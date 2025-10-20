@@ -3,7 +3,7 @@
 namespace App\Security;
 
 use App\Domain\PasswordStrength\WeakPasswordUpgrader;
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\Event\UserEvent;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;

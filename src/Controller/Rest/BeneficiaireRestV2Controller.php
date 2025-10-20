@@ -4,11 +4,11 @@ namespace App\Controller\Rest;
 
 use App\Api\Manager\ApiClientManager;
 use App\Controller\REController;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\BeneficiaireCentre;
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\ClientBeneficiaire;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\BeneficiaireCentre;
+use App\Entity\Centre;
+use App\Entity\ClientBeneficiaire;
+use App\Entity\User;
 use App\Exception\JsonResponseException;
 use App\Form\Factory\UserFormFactory;
 use App\Manager\CentreManager;
@@ -100,8 +100,8 @@ final class BeneficiaireRestV2Controller extends REController
         }
     }
 
-    #[Route(path: 'beneficiaries/{id}/send-sms-activation-code', requirements: ['id' => '\d{1,10}'], name: 'send_activation_code', methods: ['PATCH'])]
-    public function sendActivationCode($id, BeneficiaireProvider $provider, SMSManager $SMSManager): JsonResponse
+    #[Route(path: 'beneficiaries/{id}/send-sms-activation-code', name: 'send_activation_code', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
+    public function sendActivationCode(int|string $id, BeneficiaireProvider $provider, SMSManager $SMSManager): JsonResponse
     {
         try {
             $entity = $provider->getEntity($id);
@@ -116,7 +116,7 @@ final class BeneficiaireRestV2Controller extends REController
     }
 
     #[Route(path: 'beneficiaries/{id}', requirements: ['id' => '\d{1,10}'], name: 'get_beneficiaire', methods: ['GET'])]
-    public function getEntity($id, BeneficiaireProvider $provider): JsonResponse
+    public function getEntity(int|string $id, BeneficiaireProvider $provider): JsonResponse
     {
         try {
             return $this->json($provider->getEntity($id), 200, [], ['groups' => ['v3:beneficiary:read', 'v3:user:read']]);
@@ -126,7 +126,7 @@ final class BeneficiaireRestV2Controller extends REController
     }
 
     #[Route(path: 'beneficiaries/{id}/phone-number', requirements: ['id' => '\d{1,10}'], name: 'update_phone_number', methods: ['PATCH'])]
-    public function updatePhoneNumber($id, BeneficiaireProvider $provider): JsonResponse
+    public function updatePhoneNumber(int|string $id, BeneficiaireProvider $provider): JsonResponse
     {
         try {
             if (null === $telephone = $this->request->get('telephone')) {
@@ -147,7 +147,7 @@ final class BeneficiaireRestV2Controller extends REController
     }
 
     #[Route(path: 'beneficiaries/{id}', requirements: ['id' => '\d{1,10}'], name: 'delete', methods: ['DELETE'])]
-    public function delete($id, BeneficiaireProvider $provider): JsonResponse
+    public function delete(int|string $id, BeneficiaireProvider $provider): JsonResponse
     {
         try {
             $entity = $provider->getEntity($id);
@@ -168,7 +168,7 @@ final class BeneficiaireRestV2Controller extends REController
     }
 
     #[Route(path: 'beneficiaries/{id}/test-activation-sms-code', requirements: ['id' => '\d{1,10}'], name: 'test_code_sms', methods: ['PATCH'])]
-    public function testCodeSms($id, BeneficiaireProvider $provider, CentreManager $centreManager): JsonResponse
+    public function testCodeSms(int|string $id, BeneficiaireProvider $provider, CentreManager $centreManager): JsonResponse
     {
         try {
             $entity = $provider->getEntity($id);
@@ -209,9 +209,9 @@ final class BeneficiaireRestV2Controller extends REController
 
     #[Route(path: 'beneficiaries/{id}/password', requirements: ['id' => '\d{1,10}'], name: 'update_password', methods: ['PATCH'])]
     public function updatePassword(
-        $id,
+        int|string $id,
         BeneficiaireProvider $provider,
-        UserManager $userManager
+        UserManager $userManager,
     ): JsonResponse {
         try {
             $entity = $provider->getEntity($id);
@@ -248,9 +248,9 @@ final class BeneficiaireRestV2Controller extends REController
 
     #[Route(path: 'beneficiaries/{id}/update-secret-question', requirements: ['id' => '\d{1,10}'], name: 'update_secret_question', methods: ['PATCH'])]
     public function updateSecretQuestion(
-        $id,
+        int|string $id,
         BeneficiaireProvider $provider,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
     ): JsonResponse {
         try {
             $entity = $provider->getEntity($id);
@@ -341,7 +341,7 @@ final class BeneficiaireRestV2Controller extends REController
         UserFormFactory $userFormFactory,
         UserProvider $userProvider,
         ValidatorInterface $validator,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
     ): Response {
         try {
             $userConnected = $this->getUser();
@@ -431,7 +431,7 @@ final class BeneficiaireRestV2Controller extends REController
         Request $request,
         UserManager $userManager,
         ValidatorInterface $validator,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
     ): Response {
         try {
             $user = $this->getUser();
@@ -489,7 +489,7 @@ final class BeneficiaireRestV2Controller extends REController
     }
 
     #[Route(path: 'beneficiaries/{username}', requirements: ['username' => '[a-z\-]+\.[a-z\-]+\.[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3}(.[0-9]{1,2})?'], name: 'exists', methods: ['GET'])]
-    public function exists($username, BeneficiaireProvider $beneficiaryProvider): JsonResponse
+    public function exists(string $username, BeneficiaireProvider $beneficiaryProvider): JsonResponse
     {
         try {
             $entity = $beneficiaryProvider->getEntityByUsername($username, null);
@@ -503,7 +503,7 @@ final class BeneficiaireRestV2Controller extends REController
     }
 
     #[Route(path: 'beneficiaries/{id}/distant-id', requirements: ['id' => '\d{1,10}'], name: 'set_distant_id', methods: ['PATCH'])]
-    public function updateDistantId($id, BeneficiaireProvider $provider): JsonResponse
+    public function updateDistantId(int|string $id, BeneficiaireProvider $provider): JsonResponse
     {
         try {
             $distantId = (string) $this->request->get('distant_id');
@@ -526,7 +526,7 @@ final class BeneficiaireRestV2Controller extends REController
     }
 
     #[Route(path: 'beneficiaries/{id}/add-external-link', name: 'add_external_link', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
-    public function addExternalLink($id, BeneficiaireProvider $provider, CentreProvider $centreProvider, string $env): JsonResponse
+    public function addExternalLink(string $id, BeneficiaireProvider $provider, CentreProvider $centreProvider, string $env): JsonResponse
     {
         try {
             $distantId = $this->request->get('distant_id');
@@ -591,7 +591,7 @@ final class BeneficiaireRestV2Controller extends REController
      *
      * @param $errors array
      */
-    private function addKey(&$errors, $key, $addKey, $lastKey, $message)
+    private function addKey(array &$errors, $key, $addKey, $lastKey, $message): void
     {
         if (array_key_exists($key, $errors)) {
             /* si la clef existe alors on vérifie si on est dans la situation de la derniere clef ou pas */

@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\FormV2\ChangePasswordFormType;
 use App\FormV2\ResetPassword\PublicRequest\ResetPasswordCheckSMSFormModel;
 use App\FormV2\ResetPassword\PublicRequest\ResetPasswordRequestFormModel;

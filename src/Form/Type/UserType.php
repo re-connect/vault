@@ -2,7 +2,7 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\EventSubscriber\AddFormattedPhoneSubscriber;
 use App\FormV2\Field\PasswordField;
 use Symfony\Component\Form\AbstractType;

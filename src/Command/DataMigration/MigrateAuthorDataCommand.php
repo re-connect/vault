@@ -2,12 +2,12 @@
 
 namespace App\Command\DataMigration;
 
-use App\Entity\Attributes\Contact;
-use App\Entity\Attributes\CreatorUser;
-use App\Entity\Attributes\Document;
-use App\Entity\Attributes\Dossier;
-use App\Entity\Attributes\Evenement;
-use App\Entity\Attributes\Note;
+use App\Entity\Contact;
+use App\Entity\CreatorUser;
+use App\Entity\Document;
+use App\Entity\Dossier;
+use App\Entity\Evenement;
+use App\Entity\Note;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -23,7 +23,7 @@ class MigrateAuthorDataCommand extends Command
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
-        $name = null,
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }

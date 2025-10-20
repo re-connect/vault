@@ -2,9 +2,9 @@
 
 namespace App\EventSubscriber;
 
-use App\Entity\Attributes\Association;
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\User;
+use App\Entity\Association;
+use App\Entity\Centre;
+use App\Entity\User;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -66,6 +66,7 @@ class AssociationCreationSubscriber implements EventSubscriberInterface
 
     private function createUserAssociation(Association $association, bool $isTest = false): User
     {
+        /** @var User $userAssociation */
         $userAssociation = (new User())
             ->setPlainPassword($this->userManager->getRandomPassword())
             ->setNom($association->getNom())
