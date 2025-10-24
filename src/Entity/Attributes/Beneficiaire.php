@@ -94,7 +94,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     protected ?int $id = null;
 
     #[ORM\Column(name: 'totalFileSize', type: 'integer', nullable: true)]
-    private ?int $totalFileSize = 0;
+    private ?int $totalFileSize = 1000000;
 
     #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
     #[Assert\NotBlank(message: 'secret_question_not_empty', groups: ['beneficiaireQuestionSecrete'])]
