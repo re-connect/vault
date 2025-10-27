@@ -142,7 +142,6 @@ class DocumentManager
 
             return null;
         }
-
     }
 
     /**
@@ -169,7 +168,7 @@ class DocumentManager
         return true;
     }
 
-    private function isFileClean(File $file): bool
+    public function isFileClean(File $file): bool
     {
         $process = new Process(['clamdscan', '--fdpass', $file->getPathname()]);
 
