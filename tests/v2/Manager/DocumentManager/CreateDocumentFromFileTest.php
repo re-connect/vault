@@ -48,6 +48,7 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
             $translatorMock,
             $bucketServiceMock,
             $folderManager,
+            'test',
         );
     }
 
