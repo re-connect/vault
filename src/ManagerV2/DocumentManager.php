@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\Process\Process;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use function Symfony\Component\String\u;
@@ -38,6 +39,7 @@ class DocumentManager
         private readonly TranslatorInterface $translator,
         private readonly BucketService $bucketService,
         private readonly FolderManager $folderManager,
+        private readonly string $env,
     ) {
     }
 
@@ -116,32 +118,41 @@ class DocumentManager
 
     public function uploadFile(UploadedFile $file, Beneficiaire $beneficiary, ?Dossier $folder = null): ?Document
     {
-        if ($this->isFileExtensionAllowed($file)) {
-            try {
-                $key = $this->s3Client->uploadFile($file);
-
-                return $this->createDocumentFromFile($file, $key, $file->getClientOriginalName(), $beneficiary, $folder);
-            } catch (\Exception $exception) {
-                $this->logger->error(sprintf(
-                    'There has been an error uploading file for beneficiary id = %d : %s',
-                    $beneficiary->getId(),
-                    $exception->getMessage()
-                ));
-                $this->addFlashMessage('danger', 'error');
-            }
+        if (!$this->isFileExtensionAllowed($file)) {
+            return null;
         }
 
-        return null;
+        if (in_array($this->env, ['preprod', 'prod']) && !$this->isFileClean($file)) {
+            $this->removeFileFromDisk($file);
+
+            return null;
+        }
+
+        try {
+            $key = $this->s3Client->uploadFile($file);
+
+            return $this->createDocumentFromFile($file, $key, $file->getClientOriginalName(), $beneficiary, $folder);
+        } catch (\Exception $exception) {
+            $this->logger->error(sprintf(
+                'There has been an error uploading file for beneficiary id = %d : %s',
+                $beneficiary->getId(),
+                $exception->getMessage()
+            ));
+
+            return null;
+        }
     }
 
     /**
      * @param UploadedFile[] $files
-     *
-     * @return Document[]
      */
-    public function uploadFiles(array $files, Beneficiaire $beneficiary, ?Dossier $folder = null): array
+    public function uploadFiles(array $files, Beneficiaire $beneficiary, ?Dossier $folder = null): void
     {
-        return array_map(fn (UploadedFile $file) => $this->uploadFile($file, $beneficiary, $folder), $files);
+        foreach ($files as $file) {
+            if (!$this->uploadFile($file, $beneficiary, $folder)) {
+                $this->addFlashMessage('danger', 'error');
+            }
+        }
     }
 
     private function isFileExtensionAllowed(UploadedFile $file): bool
@@ -156,6 +167,21 @@ class DocumentManager
         }
 
         return true;
+    }
+
+    public function isFileClean(File $file): bool
+    {
+        $process = new Process(['clamdscan', '--fdpass', $file->getPathname()]);
+
+        try {
+            $process->mustRun();
+
+            return true;
+        } catch (\Exception $e) {
+            $this->logger->error(sprintf('Document upload AV check failed, cause : %s', $e->getMessage()));
+
+            return false;
+        }
     }
 
     public function downloadDocument(Document $document): ?StreamedResponse
@@ -201,6 +227,13 @@ class DocumentManager
             $this->addFlashMessage('success', 'document_deleted_successfully');
         } catch (\Exception) {
             $this->addFlashMessage('danger', 'error');
+        }
+    }
+
+    public function removeFileFromDisk(File $file): void
+    {
+        if (file_exists($file->getPathname())) {
+            @unlink($file->getPathname());
         }
     }
 }
