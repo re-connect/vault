@@ -138,7 +138,6 @@ class DocumentManager
                 $beneficiary->getId(),
                 $exception->getMessage()
             ));
-            $this->addFlashMessage('danger', 'error');
 
             return null;
         }
@@ -146,12 +145,14 @@ class DocumentManager
 
     /**
      * @param UploadedFile[] $files
-     *
-     * @return Document[]
      */
-    public function uploadFiles(array $files, Beneficiaire $beneficiary, ?Dossier $folder = null): array
+    public function uploadFiles(array $files, Beneficiaire $beneficiary, ?Dossier $folder = null): void
     {
-        return array_map(fn (UploadedFile $file) => $this->uploadFile($file, $beneficiary, $folder), $files);
+        foreach ($files as $file) {
+            if (!$this->uploadFile($file, $beneficiary, $folder)) {
+                $this->addFlashMessage('danger', 'error');
+            }
+        }
     }
 
     private function isFileExtensionAllowed(UploadedFile $file): bool
