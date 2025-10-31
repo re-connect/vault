@@ -19,6 +19,7 @@ class SendRemindersTest extends KernelTestCase
 
     protected function setUp(): void
     {
+        date_default_timezone_set('UTC'); // fixe la timezone pour la CI
         $this->manager = $this->getContainer()->get(EventManager::class);
         $this->em = $this->getContainer()->get(EntityManagerInterface::class);
     }
