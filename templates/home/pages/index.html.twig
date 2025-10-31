@@ -1,6 +1,7 @@
 {% extends 'home/base.html.twig' %}
 
 {% block body %}
+    {{ include('v2/flash_messages.html.twig', {textColor: 'text-primary', bgColor: 'bg-white'}) }}
     {{ include('home/sections/hero-section.html.twig') }}
     {{ include('home/sections/who-we-are-section.html.twig') }}
     {{ include('home/sections/our-solutions-section.html.twig') }}

@@ -17,6 +17,7 @@ return [
     'GOOGLE_SITE_VERIFICATION' => null,
     'JWT_PASSPHRASE' => null,
     'MAILER_DSN' => null,
+    'MAX_IDLE_TIME' => null,
     'MJ_APIKEY_PRIVATE' => null,
     'MJ_APIKEY_PUBLIC' => null,
     'OAUTH_ENCRYPTION_KEY' => null,
