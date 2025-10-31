@@ -6,9 +6,9 @@ use App\ServiceV2\Traits\SessionsAwareTrait;
 use App\ServiceV2\Traits\UserAwareTrait;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Exception\SessionNotFoundException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -23,9 +23,13 @@ readonly class SessionTimeoutSubscriber implements EventSubscriberInterface
 
     public function checkIdleTime(RequestEvent $event): void
     {
-        $session = $this->getSession();
+        try {
+            $session = $this->getSession();
+        } catch (SessionNotFoundException) {
+            return;
+        }
 
-        if (!$this->getUser() || !$session instanceof Session) {
+        if (!$this->getUser()) {
             return;
         }
 
