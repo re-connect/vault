@@ -10,6 +10,7 @@ use App\Entity\Attributes\Beneficiaire;
 use App\Entity\Attributes\Contact;
 use App\Entity\Attributes\Document;
 use App\Entity\Attributes\DonneePersonnelle;
+use App\Entity\Attributes\Dossier;
 use App\Entity\Attributes\Evenement;
 use App\Entity\Attributes\Note;
 use App\Security\HelperV2\Oauth2Helper;
@@ -21,6 +22,7 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
         Beneficiaire::class,
         DonneePersonnelle::class,
         Document::class,
+        Dossier::class,
         Note::class,
         Evenement::class,
         Contact::class,

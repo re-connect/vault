@@ -15,6 +15,7 @@ use App\Api\Filters\FolderIdFilter;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Controller\Api\UploadDocumentController;
 use App\Domain\Anonymization\AnonymizationHelper;
+use App\Entity\Interface\ClientResourceInterface;
 use App\Entity\Interface\FolderableEntityInterface;
 use App\Repository\DocumentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -33,13 +34,13 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[Vich\Uploadable]
 #[ApiResource(
     operations: [
-        new Delete(security: "is_granted('UPDATE', object)"),
-        new Get(security: "is_granted('UPDATE', object)"),
+        new Delete(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Get(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
         new GetCollection(security: "is_granted('ROLE_USER')"),
-        new Patch(security: "is_granted('UPDATE', object)"),
+        new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
         new Patch(
             uriTemplate: '/documents/{id}/toggle-visibility',
-            security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
+            security: "is_granted('UPDATE', object)",
             name: ApiOperations::TOGGLE_VISIBILITY.'_document',
             processor: PersonalDataStateProcessor::class
         ),
@@ -57,7 +58,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
                     ],
                 ], ], ], ],
             ],
-            security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
+            security: "is_granted('ROLE_OAUTH2_DOCUMENTS_CREATE')",
             deserialize: false,
         ),
     ],
@@ -78,9 +79,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     normalizationContext: ['groups' => ['v3:document:read']],
     denormalizationContext: ['groups' => ['v3:document:write']],
     openapiContext: ['tags' => ['Documents']],
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ')",
 )]
-class Document extends DonneePersonnelle implements FolderableEntityInterface
+class Document extends DonneePersonnelle implements FolderableEntityInterface, ClientResourceInterface
 {
     use SoftDeleteableEntity;
 
@@ -434,5 +435,29 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface
         if ($parentFolder?->isPrivate()) {
             $this->makePrivate();
         }
+    }
+
+    #[\Override]
+    public function getExternalLinks(): Collection
+    {
+        return $this->beneficiaire?->getExternalLinks();
+    }
+
+    #[\Override]
+    public function hasExternalLinkForClient(Client $client): bool
+    {
+        return $this->beneficiaire?->hasExternalLinkForClient($client);
+    }
+
+    #[\Override]
+    public function getExternalLinkForClient(Client $client): ?ClientEntity
+    {
+        return $this->beneficiaire?->getExternalLinkForClient($client);
+    }
+
+    #[\Override]
+    public function getScopeName(): string
+    {
+        return 'DOCUMENTS';
     }
 }

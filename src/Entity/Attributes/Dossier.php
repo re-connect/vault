@@ -12,7 +12,9 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Api\ApiOperations;
 use App\Api\Filters\FolderIdFilter;
+use App\Api\State\FolderTreeStateProvider;
 use App\Api\State\PersonalDataStateProcessor;
+use App\Entity\Interface\ClientResourceInterface;
 use App\Entity\Interface\FolderableEntityInterface;
 use App\Repository\DossierRepository;
 use App\Validator\Constraints\Folder as AssertFolder;
@@ -32,14 +34,27 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 #[ApiResource(
     shortName: 'folder',
     operations: [
-        new Delete(security: "is_granted('UPDATE', object)"),
-        new Get(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('UPDATE', object)"),
-        new GetCollection(security: "is_granted('ROLE_OAUTH2_DOCUMENTS') or is_granted('ROLE_USER')"),
-        new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_DOCUMENTS')", processor: PersonalDataStateProcessor::class),
-        new Patch(security: "is_granted('UPDATE', object)"),
+        new Delete(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Get(security: "is_granted('ROLE_OAUTH2_DOCUMENTS_READ') or is_granted('UPDATE', object)"),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_DOCUMENTS_READ') or is_granted('ROLE_USER')"),
+        new GetCollection(
+            uriTemplate: '/beneficiaries/{id}/folders_tree',
+            uriVariables: [
+                'id' => new Link(
+                    fromProperty: 'dossiers',
+                    fromClass: Beneficiaire::class,
+                ),
+            ],
+            normalizationContext: ['groups' => ['v3:folder_only:read']],
+            security: "is_granted('ROLE_OAUTH2_FOLDERS_READ')",
+            provider: FolderTreeStateProvider::class,
+        ),
+
+        new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_DOCUMENTS_CREATE')", processor: PersonalDataStateProcessor::class),
+        new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
         new Patch(
             uriTemplate: '/folders/{id}/toggle-visibility',
-            security: "is_granted('ROLE_OAUTH2_DOCUMENTS')",
+            security: "is_granted('ROLE_OAUTH2_DOCUMENTS_UPDATE')",
             name: ApiOperations::TOGGLE_VISIBILITY.'_folder',
             processor: PersonalDataStateProcessor::class
         ),
@@ -61,9 +76,9 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
     normalizationContext: ['groups' => ['v3:folder:read']],
     denormalizationContext: ['groups' => ['v3:folder:write']],
     openapiContext: ['tags' => ['Folders']],
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES')",
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ')",
 )]
-class Dossier extends DonneePersonnelle implements FolderableEntityInterface
+class Dossier extends DonneePersonnelle implements FolderableEntityInterface, ClientResourceInterface
 {
     final public const array AUTOCOMPLETE_NAMES = ['health', 'housing', 'identity', 'tax', 'work'];
     final public const string DEFAULT_ICON_FILE_PATH = 'img/folder_icon/neutral.svg';
@@ -81,7 +96,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
 
     #[ORM\ManyToOne(targetEntity: Dossier::class, inversedBy: 'sousDossiers')]
     #[ORM\JoinColumn(name: 'dossier_parent_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
-    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write'])]
     #[AssertFolder\NoCircularDependency]
     private ?Dossier $dossierParent = null;
 
@@ -89,7 +104,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     public ?int $dossierParentId = null;
 
     #[ORM\OneToMany(mappedBy: 'dossierParent', targetEntity: Dossier::class, cascade: ['persist', 'remove'])]
-    #[Groups(['read-personal-data', 'read-personal-data-v2'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'v3:folder_only:read'])]
     private Collection $sousDossiers;
 
     #[ORM\ManyToOne(targetEntity: FolderIcon::class)]
@@ -308,5 +323,35 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface
     public function getSluggedName(): string
     {
         return (new AsciiSlugger())->slug($this->nom);
+    }
+
+    #[\Override]
+    public function getExternalLinks(): Collection
+    {
+        return $this->beneficiaire?->getExternalLinks();
+    }
+
+    #[\Override]
+    public function hasExternalLinkForClient(Client $client): bool
+    {
+        return $this->beneficiaire?->hasExternalLinkForClient($client);
+    }
+
+    #[\Override]
+    public function getExternalLinkForClient(Client $client): ?ClientEntity
+    {
+        return $this->beneficiaire?->getExternalLinkForClient($client);
+    }
+
+    #[\Override]
+    public function getScopeName(): string
+    {
+        return 'DOCUMENTS';
+    }
+
+    // Needed for API
+    public function getDossierParentId(): ?int
+    {
+        return $this->dossierParent?->getId();
     }
 }
