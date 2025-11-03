@@ -19,7 +19,6 @@ class SendRemindersTest extends KernelTestCase
 
     protected function setUp(): void
     {
-        date_default_timezone_set('UTC'); // fixe la timezone pour la CI
         $this->manager = $this->getContainer()->get(EventManager::class);
         $this->em = $this->getContainer()->get(EntityManagerInterface::class);
     }
@@ -29,6 +28,8 @@ class SendRemindersTest extends KernelTestCase
      */
     public function testSendSmsReminders(\DateTime $reminderDate, bool $isDue): void
     {
+        date_default_timezone_set('UTC'); // fixe la timezone pour la CI
+
         // No reminders due
         $remindersRepo = $this->em->getRepository(Rappel::class);
         self::assertCount(0, $remindersRepo->getDueReminders());
@@ -61,6 +62,7 @@ class SendRemindersTest extends KernelTestCase
 
     public function provideTestSendSmsReminders(): \Generator
     {
+        date_default_timezone_set('UTC'); // fixe la timezone pour la CI
         yield 'Should not send reminder 13 hours in past' => [(new \DateTime('now'))->modify('-13 hours'), false];
         yield 'Should send reminder 12 hours in past' => [(new \DateTime('now'))->modify('-12 hours'), true];
         yield 'Should send reminder with date now()' => [new \DateTime('now'), true];
