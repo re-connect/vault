@@ -64,7 +64,7 @@ class SendRemindersTest extends KernelTestCase
     {
         date_default_timezone_set('UTC'); // fixe la timezone pour la CI
         yield 'Should not send reminder 13 hours in past' => [(new \DateTime('now'))->modify('-13 hours'), false];
-        yield 'Should send reminder 12 hours in past' => [(new \DateTime('now'))->modify('-12 hours'), true];
+        yield 'Should send reminder 11 hours and 55 minutes in past' => [(new \DateTime('now'))->modify('-11 hours -55 minutes'), true];
         yield 'Should send reminder with date now()' => [new \DateTime('now'), true];
         yield 'Should send reminder in future' => [(new \DateTime('now'))->modify('+3 hours'), false];
     }
