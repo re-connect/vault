@@ -33,10 +33,10 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
         array $body = [],
     ): void {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => null])->object();
 
         $url = sprintf($url, $folder->getId());
-        $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : '';
+        $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : null;
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 
         // Also check that authorized Pro can't update private data
@@ -45,5 +45,17 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
             $newUrl = sprintf(self::URL, $newFolder->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
         }
+    }
+
+    public function testShouldRedirectToParentFolderAfterDelete(): void
+    {
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => null])->object();
+        $subFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => $folder])->object();
+        $this->assertNotNull($subFolder);
+
+        $url = sprintf(self::URL, $subFolder->getId());
+        $expectedRedirect = sprintf('/folder/%s', $folder->getId());
+        $this->assertRoute($url, 302, BeneficiaryFixture::BENEFICIARY_MAIL, $expectedRedirect);
     }
 }
