@@ -16,6 +16,7 @@ use App\Event\REEvent;
 use App\Form\Type\DocumentSimpleType;
 use App\Form\Type\DocumentType;
 use App\Manager\DocumentManager;
+use App\ManagerV2\DocumentManager as DocumentManagerV2;
 use App\Repository\ClientRepository as OldClientRepository;
 use App\Security\Authorization\Voter\BeneficiaireVoter;
 use App\Security\Authorization\Voter\DonneePersonnelleVoter;
@@ -69,6 +70,8 @@ class DocumentProvider extends DonneePersonnelleProvider
         OldClientRepository $oldClientRepository,
         ClientRepository $clientRepository,
         ApiClientManager $apiClientManager,
+        private readonly DocumentManagerV2 $documentManagerV2,
+        private readonly string $env,
     ) {
         parent::__construct(
             $formFactory,
@@ -432,6 +435,10 @@ class DocumentProvider extends DonneePersonnelleProvider
 
             if (!in_array($file->guessExtension(), $uploadExtensionsAllow)) {
                 throw new ExtensionFileException('Extension not allowed '.$file->guessExtension());
+            }
+
+            if (in_array($this->env, ['preprod', 'prod']) && !$this->documentManagerV2->isFileClean($file)) {
+                throw new \Exception('File unsafe');
             }
 
             $extension = str_replace('jpeg', 'jpg', (string) $file->guessExtension());
