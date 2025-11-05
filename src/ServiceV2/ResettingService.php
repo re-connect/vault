@@ -168,7 +168,7 @@ class ResettingService
                 return $user;
             } catch (\Exception) {
                 $this->addFlashMessage('success', 'public_reset_password_SMS_has_been_sent');
-                
+
                 return null;
             }
         }
