@@ -114,7 +114,7 @@ class ResettingService
         $usersCount = $userRepository->count(['email' => $email]);
 
         if (1 !== $usersCount) {
-            $this->addFlashMessage('danger', 0 === $usersCount ? 'no_user_found_with_this_email_address' : 'email_duplicate');
+            $this->addFlashMessage('success', 'public_reset_password_email_has_been_sent');
 
             return;
         }
@@ -126,13 +126,8 @@ class ResettingService
             $this->sendEmail($user, $resetToken);
             $this->requestStack->getCurrentRequest()->getSession()->set('ResetPasswordPublicToken', $resetToken);
             $this->addFlashMessage('success', 'public_reset_password_email_has_been_sent');
-        } catch (TooManyPasswordRequestsException) {
-            $this->addFlashMessage('danger', 'public_reset_password_already_requested');
-            if ($this->isRequestingBySMS($user)) {
-                $this->addFlashMessage('danger', 'reset_password_requested_by_SMS');
-            }
-        } catch (ResetPasswordExceptionInterface) {
-            $this->addFlashMessage('danger', 'error');
+        } catch (TooManyPasswordRequestsException|ResetPasswordExceptionInterface) {
+            $this->addFlashMessage('success', 'public_reset_password_email_has_been_sent');
         }
     }
 
