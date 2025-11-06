@@ -46,7 +46,7 @@ class ResetPasswordController extends AbstractController
             try {
                 $service->sendPasswordResetEmail($formModel->email);
                 $this->addFlash('success', 'public_reset_password_email_has_been_sent');
-            } catch (TooManyPasswordRequestsException|ResetPasswordExceptionInterface $e) {
+            } catch (TooManyPasswordRequestsException|ResetPasswordExceptionInterface) {
                 $this->addFlash('success', 'public_reset_password_email_has_been_sent');
             }
         }
