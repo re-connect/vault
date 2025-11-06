@@ -11,6 +11,7 @@ use App\FormV2\ResetPassword\PublicRequest\ResetPasswordSmsCheckFormType;
 use App\ManagerV2\UserManager;
 use App\Service\LanguageService;
 use App\ServiceV2\ResettingService;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -25,7 +26,7 @@ class ResetPasswordController extends AbstractController
     use ResetPasswordControllerTrait;
 
     public function __construct(
-        private readonly ResetPasswordHelperInterface $resetPasswordHelper,
+        private readonly ResetPasswordHelperInterface $resetPasswordHelper, private readonly LoggerInterface $logger,
     ) {
     }
 
@@ -59,12 +60,16 @@ class ResetPasswordController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $service->processSendingPasswordResetSms($formModel->phone);
-            if ($user && $service->isRequestingBySMS($user)) {
-                $form = $this->createForm(
-                    ResetPasswordSmsCheckFormType::class,
-                    new ResetPasswordCheckSMSFormModel($user->getTelephone()), [
-                        'action' => $this->generateUrl('app_forgot_password_check_sms'),
-                    ])->handleRequest($request);
+            if ($user) {
+                if ($service->isRequestingBySMS($user)) {
+                    $form = $this->createForm(
+                        ResetPasswordSmsCheckFormType::class,
+                        new ResetPasswordCheckSMSFormModel($user->getTelephone()), [
+                            'action' => $this->generateUrl('app_forgot_password_check_sms'),
+                        ])->handleRequest($request);
+                } else {
+                    $this->logger->error('[Reset Password][SMS] The request was not made via SMS');
+                }
             }
             $this->addFlash('success', 'public_reset_password_SMS_has_been_sent');
         }

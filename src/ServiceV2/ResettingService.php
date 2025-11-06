@@ -130,7 +130,7 @@ class ResettingService
         } catch (TooManyPasswordRequestsException) {
             $this->logger->error('[Reset Password][Email] Too many reset password requested');
             if ($this->isRequestingBySMS($user)) {
-                $this->logger->error('[Reset Password][Email] Already requested by SMS');
+                $this->logger->error('[Reset Password][Email] The request was already made via SMS');
             }
         } catch (ResetPasswordExceptionInterface) {
             $this->logger->error('[Reset Password][Email] Internal Error');
@@ -143,6 +143,8 @@ class ResettingService
         $usersCount = $userRepository->count(['telephone' => $phone]);
 
         if (1 !== $usersCount) {
+            $this->logger->error('[Reset Password][SMS] Phone not found or a duplicate found', ['phone' => $phone]);
+
             return null;
         }
 
@@ -151,8 +153,12 @@ class ResettingService
             // in order to create request
             $this->resetPasswordHelper->generateResetToken($user);
         } catch (TooManyPasswordRequestsException) {
+            $this->logger->error('[Reset Password][SMS] Too many reset password requested');
+
             return $user;
         } catch (ResetPasswordExceptionInterface) {
+            $this->logger->error('[Reset Password][SMS] Internal Error');
+
             return null;
         }
 
