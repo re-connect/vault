@@ -17,6 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ExpiredResetPasswordTokenException;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
+use SymfonyCasts\Bundle\ResetPassword\Exception\TooManyPasswordRequestsException;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
 #[Route(path: '/public/reset-password')]
@@ -42,7 +43,12 @@ class ResetPasswordController extends AbstractController
         $form = $this->createForm(ResetPasswordRequestFormType::class, $formModel)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $service->sendPasswordResetEmail($formModel->email);
+            try {
+                $service->sendPasswordResetEmail($formModel->email);
+                $this->addFlash('success', 'public_reset_password_email_has_been_sent');
+            } catch (TooManyPasswordRequestsException|ResetPasswordExceptionInterface $e) {
+                $this->addFlash('success', 'public_reset_password_email_has_been_sent');
+            }
         }
 
         return $this->render('v2/reset_password/public/request.html.twig', ['form' => $form]);
