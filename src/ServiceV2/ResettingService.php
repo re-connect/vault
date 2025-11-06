@@ -10,6 +10,7 @@ use App\RepositoryV2\ResetPasswordRequestRepository;
 use App\Service\TokenGeneratorInterface;
 use App\ServiceV2\Traits\SessionsAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
@@ -31,6 +32,7 @@ class ResettingService
         private readonly ResetPasswordHelperInterface $resetPasswordHelper,
         private readonly UserManager $userManager,
         private readonly RequestStack $requestStack,
+        private readonly LoggerInterface $logger
     ) {
     }
 
@@ -108,23 +110,31 @@ class ResettingService
         return 0 < count($requests) && null !== $requests[0]->getSmsCode();
     }
 
-    /**
-     * @throws TooManyPasswordRequestsException|ResetPasswordExceptionInterface
-     */
     public function sendPasswordResetEmail(string $email): void
     {
         $userRepository = $this->em->getRepository(User::class);
         $usersCount = $userRepository->count(['email' => $email]);
 
         if (1 !== $usersCount) {
+            $this->logger->error('[Reset Password][Email] Email not found or a duplicate found', ['email' => $email]);
+
             return;
         }
 
         $user = $userRepository->findOneBy(['email' => $email]);
 
-        $resetToken = $this->resetPasswordHelper->generateResetToken($user);
-        $this->sendEmail($user, $resetToken);
-        $this->requestStack->getCurrentRequest()->getSession()->set('ResetPasswordPublicToken', $resetToken);
+        try {
+            $resetToken = $this->resetPasswordHelper->generateResetToken($user);
+            $this->sendEmail($user, $resetToken);
+            $this->requestStack->getCurrentRequest()->getSession()->set('ResetPasswordPublicToken', $resetToken);
+        } catch (TooManyPasswordRequestsException) {
+            $this->logger->error('[Reset Password][Email] Too many reset password requested');
+            if ($this->isRequestingBySMS($user)) {
+                $this->logger->error('[Reset Password][Email] Already requested by SMS');
+            }
+        } catch (ResetPasswordExceptionInterface) {
+            $this->logger->error('[Reset Password][Email] Internal Error');
+        }
     }
 
     public function processSendingPasswordResetSms(string $phone): ?User
