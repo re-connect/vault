@@ -133,24 +133,16 @@ class ResettingService
         $usersCount = $userRepository->count(['telephone' => $phone]);
 
         if (1 !== $usersCount) {
-            $this->addFlashMessage('success', 'public_reset_password_SMS_has_been_sent');
-
             return null;
         }
 
-        $user = $userRepository->findOneBy([
-            'telephone' => $phone,
-        ]);
+        $user = $userRepository->findOneBy(['telephone' => $phone]);
         try {
             // in order to create request
             $this->resetPasswordHelper->generateResetToken($user);
         } catch (TooManyPasswordRequestsException) {
-            $this->addFlashMessage('success', 'public_reset_password_SMS_has_been_sent');
-
             return $user;
         } catch (ResetPasswordExceptionInterface) {
-            $this->addFlashMessage('success', 'public_reset_password_SMS_has_been_sent');
-
             return null;
         }
 
@@ -159,12 +151,9 @@ class ResettingService
         if ($smsCode) {
             try {
                 $this->sendSms($user, $smsCode);
-                $this->addFlashMessage('success', 'public_reset_password_SMS_has_been_sent');
 
                 return $user;
             } catch (\Exception) {
-                $this->addFlashMessage('success', 'public_reset_password_SMS_has_been_sent');
-
                 return null;
             }
         }

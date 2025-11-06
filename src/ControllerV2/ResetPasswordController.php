@@ -71,6 +71,7 @@ class ResetPasswordController extends AbstractController
                         'action' => $this->generateUrl('app_forgot_password_check_sms'),
                     ])->handleRequest($request);
             }
+            $this->addFlash('success', 'public_reset_password_SMS_has_been_sent');
         }
 
         return $this->render('v2/reset_password/public/request.html.twig', [
