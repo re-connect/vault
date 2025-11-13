@@ -8,3 +8,5 @@ framework:
                     - script
                 allow_elements:
                     li: ['data-list']
+                with_attribute_sanitizers:
+                    style: 'App\Sanitizer\NoteAttributeSanitizer'
