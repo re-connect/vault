@@ -11,7 +11,6 @@ use App\FormV2\ResetPassword\PublicRequest\ResetPasswordSmsCheckFormType;
 use App\ManagerV2\UserManager;
 use App\Service\LanguageService;
 use App\ServiceV2\ResettingService;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -26,7 +25,7 @@ class ResetPasswordController extends AbstractController
     use ResetPasswordControllerTrait;
 
     public function __construct(
-        private readonly ResetPasswordHelperInterface $resetPasswordHelper, private readonly LoggerInterface $logger,
+        private readonly ResetPasswordHelperInterface $resetPasswordHelper,
     ) {
     }
 

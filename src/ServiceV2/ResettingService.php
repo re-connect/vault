@@ -147,6 +147,7 @@ class ResettingService
             return $user;
         } catch (ResetPasswordExceptionInterface $e) {
             $this->logger->error(sprintf('[Reset Password][SMS] Internal Error, cause : %s', $e->getMessage()));
+
             return null;
         }
 
@@ -155,6 +156,7 @@ class ResettingService
         if ($smsCode) {
             try {
                 $this->sendSms($user, $smsCode);
+
                 return $user;
             } catch (\Exception) {
                 return null;
