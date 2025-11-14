@@ -136,8 +136,6 @@ class ResettingService
         $usersCount = $userRepository->count(['telephone' => $phone]);
 
         if (1 !== $usersCount) {
-            $this->logger->error('[Reset Password][SMS] Phone not found or a duplicate found', ['phone' => $phone]);
-
             return null;
         }
 
@@ -146,12 +144,9 @@ class ResettingService
             // in order to create request
             $this->resetPasswordHelper->generateResetToken($user);
         } catch (TooManyPasswordRequestsException) {
-            $this->logger->error('[Reset Password][SMS] Too many reset password requested');
-
             return $user;
-        } catch (ResetPasswordExceptionInterface) {
-            $this->logger->error('[Reset Password][SMS] Internal Error');
-
+        } catch (ResetPasswordExceptionInterface $e) {
+            $this->logger->error(sprintf('[Reset Password][SMS] Internal Error, cause : %s', $e->getMessage()));
             return null;
         }
 
@@ -160,7 +155,6 @@ class ResettingService
         if ($smsCode) {
             try {
                 $this->sendSms($user, $smsCode);
-
                 return $user;
             } catch (\Exception) {
                 return null;

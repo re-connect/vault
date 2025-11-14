@@ -60,16 +60,12 @@ class ResetPasswordController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $service->processSendingPasswordResetSms($formModel->phone);
-            if ($user) {
-                if ($service->isRequestingBySMS($user)) {
-                    $form = $this->createForm(
-                        ResetPasswordSmsCheckFormType::class,
-                        new ResetPasswordCheckSMSFormModel($user->getTelephone()), [
-                            'action' => $this->generateUrl('app_forgot_password_check_sms'),
-                        ])->handleRequest($request);
-                } else {
-                    $this->logger->error('[Reset Password][SMS] The request was not made via SMS');
-                }
+            if ($user && $service->isRequestingBySMS($user)) {
+                $form = $this->createForm(
+                    ResetPasswordSmsCheckFormType::class,
+                    new ResetPasswordCheckSMSFormModel($user->getTelephone()), [
+                        'action' => $this->generateUrl('app_forgot_password_check_sms'),
+                    ])->handleRequest($request);
             }
             $this->addFlash('success', 'public_reset_password_SMS_has_been_sent');
         }
