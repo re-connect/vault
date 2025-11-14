@@ -116,8 +116,6 @@ class ResettingService
         $usersCount = $userRepository->count(['email' => $email]);
 
         if (1 !== $usersCount) {
-            $this->logger->error('[Reset Password][Email] Email not found or a duplicate found', ['email' => $email]);
-
             return;
         }
 
@@ -127,13 +125,8 @@ class ResettingService
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
             $this->sendEmail($user, $resetToken);
             $this->requestStack->getCurrentRequest()->getSession()->set('ResetPasswordPublicToken', $resetToken);
-        } catch (TooManyPasswordRequestsException) {
-            $this->logger->error('[Reset Password][Email] Too many reset password requested');
-            if ($this->isRequestingBySMS($user)) {
-                $this->logger->error('[Reset Password][Email] The request was already made via SMS');
-            }
-        } catch (ResetPasswordExceptionInterface) {
-            $this->logger->error('[Reset Password][Email] Internal Error');
+        } catch (ResetPasswordExceptionInterface $e) {
+            $this->logger->error(sprintf('[Reset Password][Email] Internal Error, cause : %s', $e->getMessage()));
         }
     }
 
