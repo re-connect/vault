@@ -43,6 +43,7 @@ class ResetPasswordController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $service->sendPasswordResetEmail($formModel->email);
+            $this->addFlash('success', 'public_reset_password_email_has_been_sent');
         }
 
         return $this->render('v2/reset_password/public/request.html.twig', ['form' => $form]);
@@ -58,17 +59,14 @@ class ResetPasswordController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $service->processSendingPasswordResetSms($formModel->phone);
-            if ($user) {
-                if ($service->isRequestingBySMS($user)) {
-                    $form = $this->createForm(
-                        ResetPasswordSmsCheckFormType::class,
-                        new ResetPasswordCheckSMSFormModel($user->getTelephone()), [
-                            'action' => $this->generateUrl('app_forgot_password_check_sms'),
-                        ])->handleRequest($request);
-                } else {
-                    $this->addFlash('danger', 'reset_password_requested_by_email');
-                }
+            if ($user && $service->isRequestingBySMS($user)) {
+                $form = $this->createForm(
+                    ResetPasswordSmsCheckFormType::class,
+                    new ResetPasswordCheckSMSFormModel($user->getTelephone()), [
+                        'action' => $this->generateUrl('app_forgot_password_check_sms'),
+                    ])->handleRequest($request);
             }
+            $this->addFlash('success', 'public_reset_password_SMS_has_been_sent');
         }
 
         return $this->render('v2/reset_password/public/request.html.twig', [
