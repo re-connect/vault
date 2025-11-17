@@ -1,0 +1,15 @@
+meta {
+  name: Unlink Beneficiary
+  type: http
+  seq: 6
+}
+
+patch {
+  url: {{baseUrl}}/api/v3/beneficiaries/35779/unlink
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {}
+}
