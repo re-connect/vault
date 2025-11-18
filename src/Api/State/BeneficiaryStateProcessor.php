@@ -58,7 +58,11 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
         }
 
         if ($data instanceof Beneficiaire && $operation instanceof Patch && $client) {
-            $this->updateExternalLink($data, $client);
+            $beneficiary = $this->beneficiaryRepository->find($uriVariables['id']);
+            $this->updateExternalLink($beneficiary, $data, $client);
+            $this->entityManager->flush();
+
+            return $beneficiary;
         }
 
         if ($data instanceof BeneficiaryDto && $operation instanceof Post) {
@@ -77,9 +81,9 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
         return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
     }
 
-    private function updateExternalLink(Beneficiaire $data, Client $client): void
+    private function updateExternalLink(Beneficiaire $beneficiary, Beneficiaire $data, Client $client): void
     {
-        $externalLink = $data->getExternalLinkForClient($client);
+        $externalLink = $beneficiary->getExternalLinkForClient($client);
         $externalLink?->setDistantId($data->getDistantId());
     }
 
