@@ -16,10 +16,13 @@ use App\ManagerV2\UserManager;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\MembreRepository;
 use App\ServiceV2\Helper\RelayAssignationHelper;
+use App\Validator\Constraints\PasswordCriteria;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 readonly class BeneficiaryStateProcessor implements ProcessorInterface
 {
@@ -32,6 +35,8 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
         private UserManager $userManager,
         private BeneficiaireRepository $beneficiaryRepository,
         private EntityManagerInterface $entityManager,
+        private TranslatorInterface $translator,
+        private ValidatorInterface $validator
     ) {
     }
 
@@ -53,23 +58,32 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
         }
 
         if ($data instanceof Beneficiaire && $operation instanceof Patch && $client) {
-            $this->updateExternalLink($data, $client);
+            $beneficiary = $this->beneficiaryRepository->find($uriVariables['id']);
+            $this->updateExternalLink($beneficiary, $data, $client);
+            $this->entityManager->flush();
+
+            return $beneficiary;
         }
 
         if ($data instanceof BeneficiaryDto && $operation instanceof Post) {
             $data = $data->toBeneficiary();
-            if (!$data->getUser()?->getPassword()) {
+            if (!$data->getUser()?->getPlainPassword()) {
                 $data->getUser()?->setPlainPassword($this->userManager->getRandomPassword());
             }
+            $errors = $this->validator->validate($data->getUser()->getPlainPassword(), new PasswordCriteria());
+            if (0 < $errors->count()) {
+                throw new UnprocessableEntityHttpException($this->translator->trans('password_help', ['%minLength%' => 9], 'messages', 'en'));
+            }
+
             $this->createBeneficiary($data, $client);
         }
 
         return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
     }
 
-    private function updateExternalLink(Beneficiaire $data, Client $client): void
+    private function updateExternalLink(Beneficiaire $beneficiary, Beneficiaire $data, Client $client): void
     {
-        $externalLink = $data->getExternalLinkForClient($client);
+        $externalLink = $beneficiary->getExternalLinkForClient($client);
         $externalLink?->setDistantId($data->getDistantId());
     }
 

@@ -1,15 +1,11 @@
 meta {
   name: GetCollection
   type: http
-  seq: 1
+  seq: 2
 }
 
 get {
-  url: {{baseUrl}}/api/v3/beneficiaries/29952/folders?folderId=29612
+  url: {{baseUrl}}/api/v3/folders
   body: none
   auth: inherit
-}
-
-params:query {
-  folderId: 29612
 }

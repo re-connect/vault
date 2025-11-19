@@ -24,16 +24,28 @@ class AddExternalLinkTest extends AbstractApiTest
         parent::setUp();
     }
 
-    public function testAddExternalLink(): void
+    /**
+     * @dataProvider canAddLinkProvider
+     */
+    public function testCanAddExternalLink(string $clientName, ?int $externalCenterId = null): void
     {
         $beneficiary = BeneficiaireFactory::createOne();
         // With no Relay or external links
         $this->assertFalse($beneficiary->getBeneficiairesCentres()->first());
-        $client = $this->clientRepository->findOneBy(['nom' => 'reconnect_pro']);
+        $client = $this->clientRepository->findOneBy(['nom' => $clientName]);
         $this->assertFalse($beneficiary->getExternalLinksForClient($client)->first());
 
+        $data = [
+            'distant_id' => 1200,
+            'external_pro_id' => 4972,
+        ];
+
+        if ($externalCenterId) {
+            $data['external_center'] = $externalCenterId;
+        }
+
         $this->assertEndpoint(
-            'reconnect_pro',
+            $clientName,
             sprintf('/beneficiaries/%s/add-external-link', $beneficiary->getId()),
             'PATCH',
             200,
@@ -42,16 +54,54 @@ class AddExternalLinkTest extends AbstractApiTest
                 '@type' => 'beneficiary',
                 '@id' => sprintf('/api/v3/beneficiaries/%s/add-external-link', $beneficiary->getId()),
             ],
+            $data
+        );
+
+        if ($externalCenterId) {
+            $beneficiaireCentre = $beneficiary->getBeneficiairesCentres()->first();
+            $this->assertNotNull($beneficiaireCentre);
+        }
+        $this->assertNotNull($beneficiary->getExternalLinksForClient($client)->first());
+    }
+
+    public function canAddLinkProvider(): \Generator
+    {
+        yield 'Should link beneficiary for client with update scopes' => ['read_and_update_client'];
+        yield 'Should link beneficiary for client with create scopes' => ['create_only_client'];
+        yield 'Should link beneficiary with external center for Reconnect Pro client' => ['reconnect_pro', 42];
+        yield 'Should link beneficiary for Rosalie client ' => ['rosalie'];
+    }
+
+    /**
+     * @dataProvider canNotAddLinkProvider
+     */
+    public function testCanNotAddExternalLink(string $clientName): void
+    {
+        $beneficiary = BeneficiaireFactory::createOne();
+        // With no Relay or external links
+        $this->assertFalse($beneficiary->getBeneficiairesCentres()->first());
+        $client = $this->clientRepository->findOneBy(['nom' => $clientName]);
+        $this->assertFalse($beneficiary->getExternalLinksForClient($client)->first());
+
+        $this->assertEndpointAccessIsDenied(
+            $clientName,
+            sprintf('/beneficiaries/%s/add-external-link', $beneficiary->getId()),
+            'PATCH',
             [
                 'distant_id' => 1200,
-                'external_center' => 42,
-                'external_pro_id' => 4972,
             ]
         );
 
-        $beneficiaireCentre = $beneficiary->getBeneficiairesCentres()->first();
-        $this->assertNotNull($beneficiaireCentre);
-        $this->assertNotNull($beneficiary->getExternalLinksForClient($client)->first());
+        $this->assertFalse($beneficiary->getExternalLinksForClient($client)->first());
+    }
+
+    public function canNotAddLinkProvider(): \Generator
+    {
+        yield 'Should not link beneficiary for client with readonly scopes' => ['read_only_client'];
+        yield 'Should not link beneficiary for client with no scopes' => ['no_scopes_client'];
+        yield 'Should not link beneficiary for client with only personal data read scope' => ['read_personal_data_client'];
+        yield 'Should not link beneficiary for client with only personal data create scope' => ['create_personal_data_client'];
+        yield 'Should not link beneficiary for client with only personal data update scope' => ['update_personal_data_client'];
     }
 
     public function testShouldNotAddExternalLinkWhenAlreadyExists(): void

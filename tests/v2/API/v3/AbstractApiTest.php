@@ -4,6 +4,8 @@ namespace App\Tests\v2\API\v3;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Symfony\Bundle\Test\Client;
+use App\Entity\Attributes\Beneficiaire;
+use App\Repository\BeneficiaireRepository;
 use App\Tests\Factory\ClientFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Zenstruck\Foundry\Test\Factories;
@@ -13,6 +15,7 @@ abstract class AbstractApiTest extends ApiTestCase
     use Factories;
 
     protected Client $client;
+    protected readonly BeneficiaireRepository $beneficiaireRepository;
     protected ?string $accessToken = null;
 
     protected const BASE_URL = '/api/v3';
@@ -21,6 +24,7 @@ abstract class AbstractApiTest extends ApiTestCase
     {
         parent::setUp();
         $this->client = static::createClient();
+        $this->beneficiaireRepository = $this->getContainer()->get(BeneficiaireRepository::class);
     }
 
     /**
@@ -41,6 +45,24 @@ abstract class AbstractApiTest extends ApiTestCase
         }
     }
 
+    public function assertEndpointAccessIsDenied(string $clientName, string $endpoint, string $method, mixed $body = null): void
+    {
+        $this->loginAsClient($clientName);
+        $options = ['body' => json_encode($body)];
+        if (in_array($method, [Request::METHOD_PATCH, Request::METHOD_POST])) {
+            $options['headers'] = ['Content-Type' => 'application/json'];
+        }
+        $this->client->request($method, $this->generateUrl($endpoint), $options);
+
+        $this->assertResponseStatusCodeSame(403);
+        $this->assertJsonContains([
+            '@context' => '/api/contexts/Error',
+            '@type' => 'hydra:Error',
+            'hydra:title' => 'An error occurred',
+            'hydra:description' => 'Access Denied.',
+        ]);
+    }
+
     public function loginAsClient(string $clientName, string $grantType = 'client_credentials'): void
     {
         $client = ClientFactory::find(['nom' => $clientName])->object(); // We use the same value in old client table to access properties easily
@@ -49,11 +71,17 @@ abstract class AbstractApiTest extends ApiTestCase
             'grant_type' => $grantType,
             'client_id' => $client->getRandomId(),
             'client_secret' => $client->getSecret(),
-            'scope' => 'centers beneficiaries documents notes contacts pros events users',
         ]]);
 
         $content = json_decode($response->getContent(), true);
         $this->accessToken = $content['access_token'];
+    }
+
+    public function getBeneficiaryForClient(string $clientName): Beneficiaire
+    {
+        $client = ClientFactory::find(['nom' => $clientName])->object();
+
+        return $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
     }
 
     public function generateUrl(string $url): string
