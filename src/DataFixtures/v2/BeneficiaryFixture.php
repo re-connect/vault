@@ -101,12 +101,18 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface, Depen
 
     private function addPersonalData(Beneficiaire $beneficiary): void
     {
-        ContactFactory::createOne(['beneficiaire' => $beneficiary])->object();
-        NoteFactory::createOne(['beneficiaire' => $beneficiary])->object();
+        ContactFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        NoteFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
         NoteFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
-        EventFactory::createOne(['beneficiaire' => $beneficiary])->object();
-        DocumentFactory::createOne(['beneficiaire' => $beneficiary])->object();
-        FolderFactory::createMany(2, ['beneficiaire' => $beneficiary]);
+        EventFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+        EventFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true]);
+        FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false]);
+        $folder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false, 'nom' => 'Folder with documents'])->object();
+        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true, 'dossier' => $folder])->object();
+        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossier' => $folder])->object();
     }
 
     private function addCreators(User $user): void

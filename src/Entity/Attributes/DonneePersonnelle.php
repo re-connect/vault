@@ -24,7 +24,7 @@ abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
     #[ORM\Column]
     #[Groups([
         'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
-        'document:read', 'read-personal-data', 'read-personal-data-v2',
+        'document:read', 'read-personal-data', 'read-personal-data-v2', 'v3:folder_only:read',
     ])]
     protected ?int $id = null;
 
@@ -42,7 +42,7 @@ abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
         'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
         'v3:document:write', 'v3:folder:write', 'v3:event:write', 'v3:note:write', 'v3:contact:write',
         'document:read', 'read-personal-data', 'read-personal-data-v2',
-        'write-personal-data', 'write-personal-data-v2',
+        'write-personal-data', 'write-personal-data-v2', 'v3:folder_only:read',
     ])]
     #[Anonymize('reconnect.personal_data_name')]
     protected ?string $nom = null;
@@ -62,14 +62,14 @@ abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups([
         'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
-        'document:read', 'read-personal-data', 'read-personal-data-v2', ])]
+        'document:read', 'read-personal-data', 'read-personal-data-v2', 'v3:folder_only:read', ])]
     protected \DateTime $createdAt;
 
     #[Gedmo\Timestampable(on: 'update')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups([
         'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
-        'document:read', 'read-personal-data', 'read-personal-data-v2', ])]
+        'document:read', 'read-personal-data', 'read-personal-data-v2', 'v3:folder_only:read', ])]
     protected \DateTime $updatedAt;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
