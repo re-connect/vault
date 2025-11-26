@@ -10,6 +10,7 @@ use App\RepositoryV2\ResetPasswordRequestRepository;
 use App\Service\TokenGeneratorInterface;
 use App\ServiceV2\Traits\SessionsAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
@@ -31,6 +32,7 @@ class ResettingService
         private readonly ResetPasswordHelperInterface $resetPasswordHelper,
         private readonly UserManager $userManager,
         private readonly RequestStack $requestStack,
+        private readonly LoggerInterface $logger
     ) {
     }
 
@@ -114,8 +116,6 @@ class ResettingService
         $usersCount = $userRepository->count(['email' => $email]);
 
         if (1 !== $usersCount) {
-            $this->addFlashMessage('danger', 0 === $usersCount ? 'no_user_found_with_this_email_address' : 'email_duplicate');
-
             return;
         }
 
@@ -125,14 +125,8 @@ class ResettingService
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
             $this->sendEmail($user, $resetToken);
             $this->requestStack->getCurrentRequest()->getSession()->set('ResetPasswordPublicToken', $resetToken);
-            $this->addFlashMessage('success', 'public_reset_password_email_has_been_sent');
-        } catch (TooManyPasswordRequestsException) {
-            $this->addFlashMessage('danger', 'public_reset_password_already_requested');
-            if ($this->isRequestingBySMS($user)) {
-                $this->addFlashMessage('danger', 'reset_password_requested_by_SMS');
-            }
-        } catch (ResetPasswordExceptionInterface) {
-            $this->addFlashMessage('danger', 'error');
+        } catch (ResetPasswordExceptionInterface $e) {
+            $this->logger->error(sprintf('[Reset Password][Email] Internal Error, cause : %s', $e->getMessage()));
         }
     }
 
@@ -142,28 +136,17 @@ class ResettingService
         $usersCount = $userRepository->count(['telephone' => $phone]);
 
         if (1 !== $usersCount) {
-            $this->addFlashMessage(
-                'danger',
-                0 === $usersCount
-                    ? 'phone_does_not_exist'
-                    : 'phone_duplicate'
-            );
-
             return null;
         }
 
-        $user = $userRepository->findOneBy([
-            'telephone' => $phone,
-        ]);
+        $user = $userRepository->findOneBy(['telephone' => $phone]);
         try {
             // in order to create request
             $this->resetPasswordHelper->generateResetToken($user);
         } catch (TooManyPasswordRequestsException) {
-            $this->addFlashMessage('danger', 'public_reset_password_already_requested');
-
             return $user;
-        } catch (ResetPasswordExceptionInterface) {
-            $this->addFlashMessage('danger', 'error');
+        } catch (ResetPasswordExceptionInterface $e) {
+            $this->logger->error(sprintf('[Reset Password][SMS] Internal Error, cause : %s', $e->getMessage()));
 
             return null;
         }
@@ -173,7 +156,6 @@ class ResettingService
         if ($smsCode) {
             try {
                 $this->sendSms($user, $smsCode);
-                $this->addFlashMessage('success', 'public_reset_password_SMS_has_been_sent');
 
                 return $user;
             } catch (\Exception) {
