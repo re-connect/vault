@@ -1,4 +1,4 @@
-App\Entity\Attributes\Client:
+App\Entity\Client:
   properties:
     nom:
       - NotBlank: ~

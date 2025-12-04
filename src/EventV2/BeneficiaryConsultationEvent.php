@@ -2,7 +2,7 @@
 
 namespace App\EventV2;
 
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 
 readonly class BeneficiaryConsultationEvent
 {

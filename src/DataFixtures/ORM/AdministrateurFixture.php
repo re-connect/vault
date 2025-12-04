@@ -2,8 +2,8 @@
 
 namespace App\DataFixtures\ORM;
 
-use App\Entity\Attributes\Administrateur;
-use App\Entity\Attributes\User;
+use App\Entity\Administrateur;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -11,7 +11,7 @@ use Doctrine\Persistence\ObjectManager;
 class AdministrateurFixture extends Fixture implements FixtureGroupInterface
 {
     #[\Override]
-    public function load(ObjectManager $em)
+    public function load(ObjectManager $em): void
     {
         $user = new User();
         $user->setUsername('pleuh');

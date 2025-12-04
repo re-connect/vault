@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 class NoteType extends NoteSimpleType
 {
     #[\Override]
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         parent::buildForm($builder, $options);
         $builder

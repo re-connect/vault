@@ -2,9 +2,9 @@
 
 namespace App\Tests\v2\Validator;
 
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\Membre;
-use App\Entity\Attributes\MembreCentre;
+use App\Entity\Centre;
+use App\Entity\Membre;
+use App\Entity\MembreCentre;
 use App\Validator\Constraints\RelayUnique;
 use App\Validator\Constraints\RelayUniqueValidator;
 use Doctrine\Common\Collections\ArrayCollection;

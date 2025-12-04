@@ -2,8 +2,8 @@
 
 namespace App\Event;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\User;
 
 class BeneficiaireEvent extends REEvent
 {
@@ -15,26 +15,20 @@ class BeneficiaireEvent extends REEvent
     public const BENEFICIAIRE_FOLDER_OPENED_ERROR = 6;
     public const BENEFICIAIRE_FOLDER_CLOSED_ERROR = 7;
 
-    protected $beneficiaire;
-    protected $user;
-
-    public function __construct(Beneficiaire $beneficiaire, protected $type, ?User $user = null)
+    public function __construct(protected Beneficiaire $beneficiaire, protected $type, protected ?User $user = null)
     {
-        $this->beneficiaire = $beneficiaire;
-        $this->user = $user;
-
         $this->context = [
-            'user_id' => $beneficiaire->getUser()->getId(),
+            'user_id' => $this->beneficiaire->getUser()->getId(),
             'by_user_id' => (null !== $this->user) ? $this->user->getId() : null,
         ];
     }
 
-    public function getBeneficiaire()
+    public function getBeneficiaire(): Beneficiaire
     {
         return $this->beneficiaire;
     }
 
-    public function getUser()
+    public function getUser(): ?User
     {
         return $this->user;
     }

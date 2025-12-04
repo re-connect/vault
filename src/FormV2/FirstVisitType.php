@@ -2,7 +2,7 @@
 
 namespace App\FormV2;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\ServiceV2\Traits\UserAwareTrait;
 use App\Validator\Constraints\AcceptCGS;
 use Symfony\Bundle\SecurityBundle\Security;

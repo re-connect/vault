@@ -2,7 +2,7 @@
 
 namespace App\Form\Event;
 
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Event\PostSetDataEvent;
 use Symfony\Component\Form\Event\PreSubmitEvent;

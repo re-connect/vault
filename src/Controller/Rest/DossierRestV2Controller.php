@@ -3,8 +3,8 @@
 namespace App\Controller\Rest;
 
 use App\Controller\REController;
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\User;
+use App\Entity\Client;
+use App\Entity\User;
 use App\Exception\JsonResponseException;
 use App\Manager\MailManager;
 use App\Manager\RestManager;
@@ -92,7 +92,7 @@ class DossierRestV2Controller extends REController
             $provider->addCreatorClient($entity);
             $provider->save($entity);
 
-            return $this->json($entity, Response::HTTP_CREATED);
+            return $this->createJsonResponse($entity, Response::HTTP_CREATED, ['read-personal-data-v2']);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -141,7 +141,7 @@ class DossierRestV2Controller extends REController
                 $entity = null;
             }
 
-            return $this->json($entity);
+            return $this->createJsonResponse($entity, Response::HTTP_OK, ['read-personal-data-v2']);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -164,7 +164,7 @@ class DossierRestV2Controller extends REController
 
             $dossiers = $beneficiaire->getDossiers($isBeneficiaire);
 
-            return $this->json($dossiers);
+            return $this->createJsonResponse($dossiers, Response::HTTP_OK, ['read-personal-data-v2']);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -180,16 +180,16 @@ class DossierRestV2Controller extends REController
         MailManager $mailManager,
         TranslatorInterface $translator,
         ValidatorInterface $validator,
-        RestManager $restManager
+        RestManager $restManager,
     ): JsonResponse {
         try {
             $dossier = $provider->getEntity($id, Client::ACCESS_DOCUMENT_READ);
             if ($dossier->getDocuments()->isEmpty()) {
-                return $this->json($restManager->getErrorsToJson(['folder' => $translator->trans('empty')]), Response::HTTP_BAD_REQUEST);
+                return $this->createJsonResponse($restManager->getErrorsToJson(['folder' => $translator->trans('empty')]), Response::HTTP_BAD_REQUEST, ['read-personal-data-v2']);
             }
 
             if (null === $email = $request->request->get('email')) {
-                return $this->json($restManager->getErrorsToJson(['email' => 'Missing email address.']), Response::HTTP_BAD_REQUEST);
+                return $this->createJsonResponse($restManager->getErrorsToJson(['email' => 'Missing email address.']), Response::HTTP_BAD_REQUEST, ['read-personal-data-v2']);
             }
 
             $emailConstraint = new Assert\Email();
@@ -225,7 +225,7 @@ class DossierRestV2Controller extends REController
 
             $provider->changePrive($entity);
 
-            return $this->json($entity, Response::HTTP_ACCEPTED);
+            return $this->createJsonResponse($entity, Response::HTTP_ACCEPTED, ['read-personal-data-v2']);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -241,7 +241,7 @@ class DossierRestV2Controller extends REController
 
             $provider->setNom($entity, $request);
 
-            return $this->json($entity, Response::HTTP_ACCEPTED);
+            return $this->createJsonResponse($entity, Response::HTTP_ACCEPTED, ['read-personal-data-v2']);
         } catch (ValidatorException $e) {
             $jsonResponseException = new JsonResponseException($e, Response::HTTP_UNPROCESSABLE_ENTITY);
         } catch (\Exception $e) {

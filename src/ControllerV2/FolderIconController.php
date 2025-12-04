@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Attributes\FolderIcon;
+use App\Entity\FolderIcon;
 use App\Repository\FolderIconRepository;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
