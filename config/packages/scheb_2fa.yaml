@@ -8,6 +8,11 @@ scheb_two_factor:
         sender_email: noreply@reconnect.fr
         sender_name: Reconnect
         mailer: App\ServiceV2\Mailer\MailerService
+    trusted_device:
+      enabled: true
+      lifetime: '%2fa_trusted_device_lifetime%'
+      cookie_name: trusted_device
+      cookie_secure: true
 two_factor_text:
     enabled: true
     digits: 4
