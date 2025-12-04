@@ -27,7 +27,7 @@
             </p>
         </div>
         {% if displayTrustedOption %}
-            <p class="widget"><label for="_trusted"><input id="_trusted" type="checkbox" name="{{ trustedParameterName }}" /> {{ "trusted"|trans({}, 'SchebTwoFactorBundle') }}</label></p>
+            <p class="widget"><label for="_trusted"><input id="_trusted" type="checkbox" name="{{ trustedParameterName }}" /> {{ 'remember_two_factor_code'|trans }}</label></p>
         {% endif %}
         {% if isCsrfProtectionEnabled %}
             <input type="hidden" name="{{ csrfParameterName }}" value="{{ csrf_token(csrfTokenId) }}">
