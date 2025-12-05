@@ -707,3 +707,4 @@ training_information_booklet: Livret d’informations
 digital_care: Accompagnement numérique
 download_pro_training_catalogue: Laden Sie unseren Katalog für Fachleute herunter
 session_timeout: Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.
+remember_two_factor_code: Ne plus me demander de code sur cet appareil pendant %daysNumber% jours
