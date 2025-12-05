@@ -478,7 +478,6 @@ relay_leaved_successfully: 'Vous avez bien quitté le centre'
 relay_wishes_to_add_you: 'Un relais Reconnect souhaite vous ajouter'
 relays: Relais
 relays_choice: Choix des relais
-remember_two_factor_code: Ne plus me demander de code sur cet appareil pendant %daysNumber% jours
 reminder: Rappel
 reminder_already_send: "La date du rappel {{ string }} n'est pas modifiable car un SMS a déjà été envoyé."
 reminder_outdated: La date de rappel est déjà passée.
