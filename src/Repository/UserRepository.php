@@ -236,4 +236,14 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
 
         return $qb->getQuery()->getResult();
     }
+
+    public function findAllAdmins(): array
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->andWhere('u.roles LIKE :adminRole OR u.roles LIKE :superAdminRole')
+            ->setParameter('adminRole', '%ROLE_ADMIN%')
+            ->setParameter('superAdminRole', '%ROLE_SUPER_ADMIN%');
+
+        return $qb->getQuery()->getResult();
+    }
 }
