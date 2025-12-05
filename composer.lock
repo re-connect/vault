@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4d25957833f18a5078ef6404910d1b0",
+    "content-hash": "fdd9ba837faa7918ac439ef4c5dd974f",
     "packages": [
         {
             "name": "api-platform/core",
@@ -6728,6 +6728,57 @@
             ],
             "support": {
                 "source": "https://github.com/scheb/2fa-email/tree/v6.12.0"
+            },
+            "time": "2023-12-03T15:44:26+00:00"
+        },
+        {
+            "name": "scheb/2fa-trusted-device",
+            "version": "v6.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scheb/2fa-trusted-device.git",
+                "reference": "1ca6158dc6518ca9dba8b111bd9807a8b9be2903"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/scheb/2fa-trusted-device/zipball/1ca6158dc6518ca9dba8b111bd9807a8b9be2903",
+                "reference": "1ca6158dc6518ca9dba8b111bd9807a8b9be2903",
+                "shasum": ""
+            },
+            "require": {
+                "lcobucci/clock": "^2.0 || ^3.0",
+                "lcobucci/jwt": "^4.1 || ^5.0",
+                "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0",
+                "scheb/2fa-bundle": "self.version"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Scheb\\TwoFactorBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Scheb",
+                    "email": "me@christianscheb.de"
+                }
+            ],
+            "description": "Extends scheb/2fa-bundle with trusted devices support",
+            "homepage": "https://github.com/scheb/2fa",
+            "keywords": [
+                "2fa",
+                "Authentication",
+                "symfony",
+                "trusted-device",
+                "two-factor",
+                "two-step"
+            ],
+            "support": {
+                "source": "https://github.com/scheb/2fa-trusted-device/tree/v6.12.0"
             },
             "time": "2023-12-03T15:44:26+00:00"
         },

@@ -6,6 +6,7 @@ twig:
         crispWebsiteId: '%env(CRISP_WEBSITE_ID)%'
         appUrl: '%env(APP_ROOT_URL)%'
         reconnectProEndpoint: '%env(RP_ENDPOINT)%'
+        trusted_device_lifetime: '%2fa_trusted_device_lifetime%'
     form_themes:
         - '@VichUploader/Form/fields.html.twig'
         - 'form/fields.html.twig'
