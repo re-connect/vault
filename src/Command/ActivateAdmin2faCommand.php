@@ -38,7 +38,7 @@ class ActivateAdmin2faCommand extends Command
             return Command::FAILURE;
         }
 
-        $users = $this->em->getRepository(User::class)->findReconnectAdmins();
+        $users = $this->em->getRepository(User::class)->findAllAdmins();
         $io->progressStart(count($users));
 
         $countActivated = 0;
