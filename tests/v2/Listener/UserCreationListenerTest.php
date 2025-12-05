@@ -17,12 +17,21 @@ use Zenstruck\Foundry\Test\Factories;
 class UserCreationListenerTest extends AuthenticatedTestCase
 {
     use Factories;
-    private EntityManagerInterface $em;
+    private ?EntityManagerInterface $em;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->em = self::getContainer()->get(EntityManagerInterface::class);
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        if ($this->em) {
+            $this->em->close();
+            $this->em = null;
+        }
     }
 
     public function testShouldFormatBeneficiaryUsername(): void
