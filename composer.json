@@ -38,6 +38,7 @@
     "reconnect/s3bundle": "1.5.*",
     "scheb/2fa-bundle": "^6.12",
     "scheb/2fa-email": "^6.12",
+    "scheb/2fa-trusted-device": "^6.12",
     "sonata-project/admin-bundle": "4.28.*",
     "sonata-project/doctrine-orm-admin-bundle": "4.14.*",
     "sonata-project/intl-bundle": "3.1.*",
