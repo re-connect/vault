@@ -11,7 +11,8 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
      */
     public function testPageIsSuccessful(string $url): void
     {
-        $this->assertRoute($url);
+        self::ensureKernelShutdown();
+        $this->assertRoute(static::createClient(), $url);
     }
 
     public function urlProvider(): \Generator
