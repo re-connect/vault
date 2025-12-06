@@ -15,7 +15,7 @@ class DeactivatableListenerTest extends AuthenticatedKernelTestCase
 {
     use Factories;
 
-    private EntityManagerInterface $em;
+    private ?EntityManagerInterface $em;
 
     protected function setUp(): void
     {
@@ -23,6 +23,15 @@ class DeactivatableListenerTest extends AuthenticatedKernelTestCase
         $container = static::getContainer();
         $this->em = $container->get(EntityManagerInterface::class);
         $this->loginUser(MemberFixture::MEMBER_MAIL);
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        if ($this->em) {
+            $this->em->close();
+            $this->em = null;
+        }
     }
 
     public function testShouldSetDisabledByAndDisabledAt(): void

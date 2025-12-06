@@ -12,11 +12,20 @@ use Zenstruck\Foundry\Test\Factories;
 class DocumentListenerTest extends KernelTestCase
 {
     use Factories;
-    private EntityManagerInterface $em;
+    private ?EntityManagerInterface $em;
 
     protected function setUp(): void
     {
         $this->em = $this->getContainer()->get(EntityManagerInterface::class);
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        if ($this->em) {
+            $this->em->close();
+            $this->em = null;
+        }
     }
 
     /**

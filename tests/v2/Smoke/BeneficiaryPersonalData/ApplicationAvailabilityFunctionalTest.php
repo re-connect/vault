@@ -11,12 +11,14 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
      */
     public function testBeneficiaryPages(string $url, bool $beneficiaryOnly = false): void
     {
-        $this->client->loginUser($this->beneficiary->getUser());
-        $this->assertRoute(sprintf($url, $this->beneficiary->getId()));
+        self::ensureKernelShutdown();
+        $client = static::createClient();
+        $client->loginUser($this->beneficiary->getUser());
+        $this->assertRoute($client, sprintf($url, $this->beneficiary->getId()));
 
         if (!$beneficiaryOnly) {
-            $this->client->loginUser($this->professional->getUser());
-            $this->assertRoute(sprintf($url, $this->beneficiary->getId()));
+            $client->loginUser($this->professional->getUser());
+            $this->assertRoute($client, sprintf($url, $this->beneficiary->getId()));
         }
     }
 

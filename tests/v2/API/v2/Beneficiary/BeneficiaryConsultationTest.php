@@ -17,11 +17,13 @@ class BeneficiaryConsultationTest extends AbstractApiV2Test
         $pro = $this->em->getRepository(Membre::class)->findByClientIdentifier($client->getIdentifier())[0];
         $beneficiary = $this->em->getRepository(Beneficiaire::class)->findByClientIdentifier($client->getIdentifier())[0];
 
-        $this->loginAsMember();
+        $httpClient = static::createClient();
+
+        $this->loginAsMember($httpClient);
         $beneficiaryConsultationRepository = $this->em->getRepository(ConsultationBeneficiaire::class);
         $consultationsBeforeTestCount = count($beneficiaryConsultationRepository->findAll());
 
-        $this->client->request(Request::METHOD_GET, $this->generateUrl(sprintf('/beneficiaries/%s/documents', $beneficiary->getId())));
+        $httpClient->request(Request::METHOD_GET, $this->generateUrl(sprintf('/beneficiaries/%s/documents', $beneficiary->getId())));
 
         $consultationsAfterTest = $beneficiaryConsultationRepository->findAll();
         $consultationAfterTestCount = count($consultationsAfterTest);
