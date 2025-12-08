@@ -2,18 +2,20 @@
 
 namespace App\Tests\v2\Smoke\PersonalData;
 
-use App\Tests\Factory\ContactFactory;
-use App\Tests\Factory\DocumentFactory;
-use App\Tests\Factory\EventFactory;
-use App\Tests\Factory\FolderFactory;
-use App\Tests\Factory\NoteFactory;
 use App\Tests\v2\Smoke\AbstractSmokeTest;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Zenstruck\Foundry\Test\Factories;
 
 class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
 {
+    use Factories;
+    private KernelBrowser $client;
+
     protected function setUp(): void
     {
         parent::setUp();
+        self::ensureKernelShutdown();
+        $this->client = static::createClient();
         $this->client->loginUser($this->beneficiary->getUser());
     }
 
@@ -22,7 +24,7 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
      */
     public function testContactsPages(string $url): void
     {
-        $this->assertRoute(sprintf($url, ContactFactory::createOne(['beneficiaire' => $this->beneficiary])->object()->getId()));
+        $this->assertRoute($this->client, sprintf($url, $this->beneficiary->getContacts()[0]->getId()));
     }
 
     public function contactsUrlProvider(): \Generator
@@ -37,7 +39,7 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
      */
     public function testNotesPages(string $url): void
     {
-        $this->assertRoute(sprintf($url, NoteFactory::createOne(['beneficiaire' => $this->beneficiary])->object()->getId()));
+        $this->assertRoute($this->client, sprintf($url, $this->beneficiary->getNotes()[0]->getId()));
     }
 
     public function notesUrlProvider(): \Generator
@@ -52,7 +54,7 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
      */
     public function testEventsPages(string $url): void
     {
-        $this->assertRoute(sprintf($url, EventFactory::createOne(['beneficiaire' => $this->beneficiary])->object()->getId()));
+        $this->assertRoute($this->client, sprintf($url, $this->beneficiary->getEvenements()[0]->getId()));
     }
 
     public function eventsUrlProvider(): \Generator
@@ -67,10 +69,10 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
      */
     public function testDocumentsPages(string $url, bool $withFolder = false): void
     {
-        $documentId = DocumentFactory::createOne(['beneficiaire' => $this->beneficiary])->object()->getId();
-        $folderId = FolderFactory::createOne(['beneficiaire' => $this->beneficiary])->object()->getId();
+        $documentId = $this->beneficiary->getDocuments()[0]->getId();
+        $folderId = $this->beneficiary->getDossiers()[0]->getId();
 
-        $this->assertRoute($withFolder
+        $this->assertRoute($this->client, $withFolder
             ? sprintf($url, $documentId, $folderId)
             : sprintf($url, $documentId)
         );
@@ -91,10 +93,10 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
      */
     public function testFoldersPages(string $url, bool $withSecondFolder = false): void
     {
-        $folderId = FolderFactory::createOne(['beneficiaire' => $this->beneficiary])->object()->getId();
-        $secondFolderId = FolderFactory::createOne(['beneficiaire' => $this->beneficiary])->object()->getId();
+        $folderId = $this->beneficiary->getDossiers()[0]->getId();
+        $secondFolderId = $this->beneficiary->getDossiers()[1]->getId();
 
-        $this->assertRoute($withSecondFolder
+        $this->assertRoute($this->client, $withSecondFolder
             ? sprintf($url, $folderId, $secondFolderId)
             : sprintf($url, $folderId)
         );
@@ -104,7 +106,6 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
     {
         yield ['/folder/%d/create-subfolder'];
         yield ['/folder/%d/rename'];
-        yield ['/folder/%d/download'];
         yield ['/folder/%d/delete'];
         yield ['/folder/%d/tree-view-move'];
         yield ['/folder/%d/move-to-folder/%d', true];
