@@ -6,6 +6,7 @@ use App\Entity\Attributes\User;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AdminUserAdminTest extends AbstractControllerTest
@@ -94,16 +95,16 @@ class AdminUserAdminTest extends AbstractControllerTest
 
         $form = $crawler->selectButton('Créer')->form();
 
-        $emailField = $crawler->filterXPath('//input[contains(@name, "[email]")]')->attr('name');
+        $emailField = $this->findField($crawler, '[email]');
         $form[$emailField] = 'new.admin@reconnect.fr';
 
-        $lastnameFiel = $crawler->filterXPath('//input[contains(@name, "[nom]")]')->attr('name');
+        $lastnameFiel = $this->findField($crawler, '[nom]');
         $form[$lastnameFiel] = 'Admin';
 
-        $fistnameField = $crawler->filterXPath('//input[contains(@name, "[prenom]")]')->attr('name');
+        $fistnameField = $this->findField($crawler, '[prenom]');
         $form[$fistnameField] = 'New';
 
-        $typeUserField = $crawler->filterXPath('//select[contains(@name, "[typeUser]")]')->attr('name');
+        $typeUserField = $this->findField($crawler, '[typeUser]', 'select');
         $form[$typeUserField] = $role;
 
         $client->submit($form);
@@ -124,5 +125,12 @@ class AdminUserAdminTest extends AbstractControllerTest
     {
         yield 'Should activate 2fa after super admin user is created' => [User::USER_TYPE_SUPER_ADMIN];
         yield 'Should activate 2fa after admin user is created' => [User::USER_TYPE_ADMINISTRATEUR];
+    }
+
+    private function findField(Crawler $crawler, string $fieldName, ?string $fieldType = 'input'): string
+    {
+        return $crawler->filterXPath(
+            sprintf('//%s[contains(@name, "%s")]', $fieldType, $fieldName)
+        )->attr('name');
     }
 }
