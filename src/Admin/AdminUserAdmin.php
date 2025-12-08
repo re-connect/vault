@@ -24,7 +24,7 @@ class AdminUserAdmin extends AbstractAdmin
     {
         if ($object instanceof User) {
             $object->setFirstVisit();
-            if (($object->isAdmin() || $object->isSuperAdmin()) && !$object->isMfaEnabled()) {
+            if (!$object->isMfaEnabled()) {
                 $object->setMfaEnabled(true);
             }
             $this->userManager->createRandomPassword($object);
