@@ -13,7 +13,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
     name: 'app:activate-admin-2fa',
-    description: 'Add a short description for your command',
+    description: 'Activate admin 2FA for all admin and super admin users',
 )]
 class ActivateAdmin2faCommand extends Command
 {
