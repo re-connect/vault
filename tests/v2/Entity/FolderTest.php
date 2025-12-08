@@ -2,8 +2,8 @@
 
 namespace App\Tests\v2\Entity;
 
-use App\Entity\Attributes\Dossier;
-use App\Entity\Attributes\FolderIcon;
+use App\Entity\Dossier;
+use App\Entity\FolderIcon;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Validator\Constraints\Folder\NoCircularDependency;
 use Zenstruck\Foundry\Test\Factories;

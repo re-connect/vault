@@ -2,8 +2,8 @@
 
 namespace App\Manager;
 
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\StatistiqueCentre;
+use App\Entity\Centre;
+use App\Entity\StatistiqueCentre;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 
@@ -19,7 +19,7 @@ class StatistiqueCentreManager
     /**
      * @throws \Exception
      */
-    public function storeStatistics()
+    public function storeStatistics(): void
     {
         $iterableResult = $this->em->createQueryBuilder()
             ->select('c', 'b', 'bc', 'mc', 'm', 'sc', 'sms')
@@ -72,7 +72,7 @@ class StatistiqueCentreManager
     /**
      * @throws \Exception
      */
-    private function updateStatisticValue(Centre $centre, $statKey)
+    private function updateStatisticValue(Centre $centre, string $statKey): void
     {
         $foundStat = null;
         foreach ($centre->getStatistiquesCentre() as $statistique) {
@@ -94,10 +94,7 @@ class StatistiqueCentreManager
         $this->em->persist($foundStat);
     }
 
-    /**
-     * @return int|null
-     */
-    private function getStatisticValue(Centre $centre, $statKey)
+    private function getStatisticValue(Centre $centre, string $statKey): ?int
     {
         return match ($statKey) {
             StatistiqueCentre::STATISTIQUECENTRE_NB_BENEFICIAIRES => count($centre->getBeneficiairesCentres()),

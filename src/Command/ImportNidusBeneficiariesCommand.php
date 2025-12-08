@@ -2,9 +2,9 @@
 
 namespace App\Command;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Dossier;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\Dossier;
+use App\Entity\User;
 use App\ManagerV2\DocumentManager;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;

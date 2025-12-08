@@ -4,14 +4,14 @@
     {% set permissions = [
         {
             icon: 'user',
-            value: constant('App\\Entity\\Attributes\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION'),
+            value: constant('App\\Entity\\MembreCentre::MANAGE_BENEFICIARIES_PERMISSION'),
             tooltip: 'beneficiaries_management'|trans,
             isShown: not currentUserRelay or is_granted('MANAGE_BENEFICIARIES', relay),
             isOwned: currentUserRelay and currentUserRelay.canManageBeneficiaries,
         },
         {
             icon: 'user-cog',
-            value: constant('App\\Entity\\Attributes\\MembreCentre::MANAGE_PROS_PERMISSION'),
+            value: constant('App\\Entity\\MembreCentre::MANAGE_PROS_PERMISSION'),
             tooltip: 'team_management'|trans,
             isShown: not currentUserRelay or is_granted('MANAGE_PRO', relay),
             isOwned: currentUserRelay and currentUserRelay.canManageProfessionals,

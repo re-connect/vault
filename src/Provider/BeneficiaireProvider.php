@@ -3,14 +3,14 @@
 namespace App\Provider;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Attributes\Adresse;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\BeneficiaireCentre;
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\ClientBeneficiaire;
-use App\Entity\Attributes\CreatorCentre;
-use App\Entity\Attributes\CreatorClient;
-use App\Entity\Attributes\User;
+use App\Entity\Adresse;
+use App\Entity\Beneficiaire;
+use App\Entity\BeneficiaireCentre;
+use App\Entity\Centre;
+use App\Entity\ClientBeneficiaire;
+use App\Entity\CreatorCentre;
+use App\Entity\CreatorClient;
+use App\Entity\User;
 use App\Event\BeneficiaireEvent;
 use App\Event\REEvent;
 use App\Manager\UserManager;
@@ -52,11 +52,11 @@ final class BeneficiaireProvider
     ) {
     }
 
-    public function getBeneficiairesFromIdWithBeneficiairesWithCentres($id)
+    public function getBeneficiairesFromIdWithBeneficiairesWithCentres(string $id)
     {
         $result = $this->entityManager->createQueryBuilder()
             ->select('b', 'u', 'bc', 'c')
-            ->from('App:Attributes\Beneficiaire', 'b')
+            ->from(Beneficiaire::class, 'b')
             ->innerJoin('b.user', 'u')
             ->innerJoin('b.beneficiairesCentres', 'bc')
             ->innerJoin('bc.centre', 'c')
@@ -72,11 +72,11 @@ final class BeneficiaireProvider
         return $result[0];
     }
 
-    public function getBeneficiairesFromId($id)
+    public function getBeneficiairesFromId(string $id)
     {
         $result = $this->entityManager->createQueryBuilder()
             ->select('b', 'u', 'bc', 'c')
-            ->from('App:Attributes\Beneficiaire', 'b')
+            ->from(Beneficiaire::class, 'b')
             ->innerJoin('b.user', 'u')
             ->join('b.beneficiairesCentres', 'bc')
             ->join('bc.centre', 'c')
@@ -92,7 +92,7 @@ final class BeneficiaireProvider
         return $result[0];
     }
 
-    public function getEntityByDistantId($distantId, $secured = true, $accessAttribute = null): Beneficiaire
+    public function getEntityByDistantId(string $distantId, $secured = true, $accessAttribute = null): Beneficiaire
     {
         $client = $this->apiClientManager->getCurrentOldClient();
         /** @var Beneficiaire $entity */
@@ -110,7 +110,7 @@ final class BeneficiaireProvider
         return $entity;
     }
 
-    public function getEntityByUsername($userName, $secured = true): Beneficiaire
+    public function getEntityByUsername(string $userName, $secured = true): Beneficiaire
     {
         /** @var Beneficiaire $entity */
         if (!$entity = $this->entityManager->getRepository(Beneficiaire::class)->findByUsername($userName)) {
@@ -149,7 +149,7 @@ final class BeneficiaireProvider
     /**
      * @throws \Exception
      */
-    public function populate(Beneficiaire $entity)
+    public function populate(Beneficiaire $entity): void
     {
         $request = $this->requestStack->getCurrentRequest();
         if (null === $request) {
@@ -293,7 +293,7 @@ final class BeneficiaireProvider
         return $response;
     }
 
-    public function delete(Beneficiaire $entity, User $user)
+    public function delete(Beneficiaire $entity, User $user): void
     {
         $this->entityManager->remove($entity);
         $this->entityManager->remove($entity->getUser());
@@ -314,7 +314,7 @@ final class BeneficiaireProvider
     /**
      * @throws EntityNotFoundException
      */
-    public function setExternalLink($entity, $distantId): void
+    public function setExternalLink($entity, int|string|null $distantId): void
     {
         $client = $this->apiClientManager->getCurrentOldClient();
         if (null === $client) {
@@ -385,7 +385,7 @@ final class BeneficiaireProvider
         return $entity;
     }
 
-    public function getEntityById($id, $accessAttribute = null, ?bool $secured = true): Beneficiaire
+    public function getEntityById(string $id, $accessAttribute = null, ?bool $secured = true): Beneficiaire
     {
         if (!$entity = $this->entityManager->find(Beneficiaire::class, $id)) {
             throw new NotFoundHttpException('No beneficiary found for id '.$id);

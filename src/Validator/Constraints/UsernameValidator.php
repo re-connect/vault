@@ -11,7 +11,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 class UsernameValidator extends ConstraintValidator
 {
     #[\Override]
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         /* @var Username $constraint */
         if (null !== $value && !preg_match('#^[/0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð .-]+$#', (string) $value, $matches)) {

@@ -28,7 +28,7 @@
             {{ stimulus_controller('upload', {
                 locale: app.session.get("_locale") ?: 'fr',
                 url: path('upload_document', {'id': beneficiary.id, 'folder': currentFolder.id ?? ''}),
-                allowedFileExtensions: constant('App\\\Entity\\\Attributes\\\Document::ALLOWED_FILE_EXTENSIONS')
+                allowedFileExtensions: constant('App\\\Entity\\\Document::ALLOWED_FILE_EXTENSIONS')
             }) }}
     >
         <i class="fas fa-plus-circle me-md-1"></i>

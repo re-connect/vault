@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2\Listener;
 
-use App\Entity\Attributes\Document;
+use App\Entity\Document;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\DocumentFactory;
 use Doctrine\ORM\EntityManagerInterface;

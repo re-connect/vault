@@ -3,7 +3,7 @@
 namespace App\Tests\v2\API\v2;
 
 use ApiPlatform\Symfony\Bundle\Test\Client as ApiPlatformClient;
-use App\Entity\Attributes\Membre;
+use App\Entity\Membre;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\API\v3\AbstractApiTest;
 use Doctrine\ORM\EntityManagerInterface;

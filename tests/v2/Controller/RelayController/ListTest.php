@@ -4,7 +4,7 @@ namespace App\Tests\v2\Controller\RelayController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
-use App\Entity\Attributes\MembreCentre;
+use App\Entity\MembreCentre;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 

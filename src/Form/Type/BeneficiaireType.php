@@ -2,8 +2,8 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Centre;
+use App\Entity\Beneficiaire;
+use App\Entity\Centre;
 use App\Form\DataTransformer\QuestionSecreteTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -20,7 +20,7 @@ class BeneficiaireType extends AbstractType
     }
 
     #[\Override]
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $request = $this->requestStack->getCurrentRequest();
         $builder
@@ -45,7 +45,7 @@ class BeneficiaireType extends AbstractType
     }
 
     #[\Override]
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Beneficiaire::class,

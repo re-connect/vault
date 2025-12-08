@@ -3,14 +3,14 @@
 namespace App\Provider;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\CreatorClient;
-use App\Entity\Attributes\CreatorUser;
-use App\Entity\Attributes\Document;
-use App\Entity\Attributes\DonneePersonnelle;
-use App\Entity\Attributes\Dossier;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\Client;
+use App\Entity\CreatorClient;
+use App\Entity\CreatorUser;
+use App\Entity\Document;
+use App\Entity\DonneePersonnelle;
+use App\Entity\Dossier;
+use App\Entity\User;
 use App\Event\DonneePersonnelleEvent;
 use App\Event\REEvent;
 use App\Form\Type\DocumentSimpleType;
@@ -88,7 +88,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         );
     }
 
-    public function findOneBy($criteria)
+    public function findOneBy(array $criteria)
     {
         return $this->em->getRepository(Document::class)->findOneBy($criteria);
     }
@@ -158,7 +158,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         return $entities;
     }
 
-    public function generateUrls(Document $document)
+    public function generateUrls(Document $document): void
     {
         $id = $document->getId();
         $document->setThumb($this->router->generate('api_document_show', ['id' => $id, 'version' => 'small']));
@@ -167,7 +167,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         $this->generateUrlsAction($document);
     }
 
-    private function generateUrlsAction(Document $document)
+    private function generateUrlsAction(Document $document): void
     {
         $id = $document->getId();
         $document->setDeleteUrl($this->router->generate('api_document_delete', ['id' => $id]));
@@ -234,11 +234,11 @@ class DocumentProvider extends DonneePersonnelleProvider
      *
      * @param array|ArrayCollection|Document[] $documents
      *
-     * @return bool|false|string
+     * @return false|false|string
      *
      * @throws \Exception
      */
-    public function createZipFromDocuments($documents = [], bool $asBase64 = true)
+    public function createZipFromDocuments(array $documents = [], bool $asBase64 = true): false|string
     {
         if (0 === $documents->count()) {
             throw new \RuntimeException('erreur : le dossier est vide.');
@@ -361,7 +361,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         return $document;
     }
 
-    public function setDocumentsToClientFolder(Document $entity, Client $client)
+    public function setDocumentsToClientFolder(Document $entity, Client $client): void
     {
         if (null !== $dossierNom = $client->getDossierNom()) {
             $beneficiaire = $entity->getBeneficiaire();
@@ -424,7 +424,7 @@ class DocumentProvider extends DonneePersonnelleProvider
         ?Client $client = null,
         ?UserInterface $byUser = null,
         ?Dossier $dossier = null,
-        bool $log = true
+        bool $log = true,
     ): Document {
         try {
             if (false === $this->authorizationChecker->isGranted(BeneficiaireVoter::GESTION_BENEFICIAIRE, $beneficiaire)) {
@@ -519,7 +519,7 @@ class DocumentProvider extends DonneePersonnelleProvider
     }
 
     #[\Override]
-    public function rename(DonneePersonnelle $donneePersonnelle, $newNameWithOrWithoutExtension, bool $andPersist = true)
+    public function rename(DonneePersonnelle $donneePersonnelle, $newNameWithOrWithoutExtension, bool $andPersist = true): string|array|null
     {
         /** @var Document $donneePersonnelle */
         if (false === $this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_EDIT, $donneePersonnelle)) {
