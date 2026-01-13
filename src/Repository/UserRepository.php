@@ -225,15 +225,24 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
             ->setParameter('search', '%'.$search.'%');
     }
 
-    public function findReconnectAdmins(): array
+    public function findAllAdminsQb(): QueryBuilder
     {
-        $qb = $this->createQueryBuilder('u')
-            ->andWhere('u.email LIKE :domain')
+        return $this->createQueryBuilder('u')
             ->andWhere('u.roles LIKE :adminRole OR u.roles LIKE :superAdminRole')
             ->setParameter('adminRole', '%ROLE_ADMIN%')
-            ->setParameter('superAdminRole', '%ROLE_SUPER_ADMIN%')
-            ->setParameter('domain', sprintf('%%%s', User::RECONNECT_USERS_DOMAIN));
+            ->setParameter('superAdminRole', '%ROLE_SUPER_ADMIN%');
+    }
 
-        return $qb->getQuery()->getResult();
+    public function findAllAdmins(): array
+    {
+        return $this->findAllAdminsQb()->getQuery()->getResult();
+    }
+
+    public function findReconnectAdmins(): array
+    {
+        return $this->findAllAdminsQb()
+            ->andWhere('u.email LIKE :domain')
+            ->setParameter('domain', sprintf('%%%s', User::RECONNECT_USERS_DOMAIN))
+            ->getQuery()->getResult();
     }
 }
