@@ -3,7 +3,7 @@
 namespace App\ControllerV2;
 
 use App\Domain\Download\FolderTreeDownloader;
-use App\Entity\Attributes\Dossier;
+use App\Entity\Dossier;
 use App\FormV2\FolderType;
 use App\FormV2\Search\SearchType;
 use App\ManagerV2\FolderableItemManager;
@@ -51,7 +51,7 @@ class FolderController extends AbstractController
     public function rename(
         Request $request,
         Dossier $folder,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
     ): Response {
         $form = $this->createForm(FolderType::class, $folder, [
             'action' => $this->generateUrl('folder_rename', ['id' => $folder->getId()]),
@@ -129,7 +129,7 @@ class FolderController extends AbstractController
         Request $request,
         Dossier $parentFolder,
         EntityManagerInterface $em,
-        FolderManager $manager
+        FolderManager $manager,
     ): Response {
         $folder = Dossier::createFromParent($parentFolder);
 

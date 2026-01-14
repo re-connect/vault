@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2\Listener;
 
-use App\Entity\Attributes\Document;
+use App\Entity\Document;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\DocumentFactory;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,11 +12,20 @@ use Zenstruck\Foundry\Test\Factories;
 class DocumentListenerTest extends KernelTestCase
 {
     use Factories;
-    private EntityManagerInterface $em;
+    private ?EntityManagerInterface $em;
 
     protected function setUp(): void
     {
         $this->em = $this->getContainer()->get(EntityManagerInterface::class);
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        if ($this->em) {
+            $this->em->close();
+            $this->em = null;
+        }
     }
 
     /**

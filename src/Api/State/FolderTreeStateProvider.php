@@ -5,8 +5,8 @@ namespace App\Api\State;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Dossier;
+use App\Entity\Beneficiaire;
+use App\Entity\Dossier;
 use Doctrine\ORM\EntityManagerInterface;
 
 class FolderTreeStateProvider implements ProviderInterface

@@ -3,12 +3,17 @@
 namespace App\Tests\v2\Smoke\Professional;
 
 use App\Tests\v2\Smoke\AbstractSmokeTest;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
 class ProApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
 {
+    private KernelBrowser $client;
+
     protected function setUp(): void
     {
         parent::setUp();
+        self::ensureKernelShutdown();
+        $this->client = static::createClient();
         $this->client->loginUser($this->professional->getUser());
     }
 
@@ -17,7 +22,7 @@ class ProApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
      */
     public function testProfessionalPages(string $url): void
     {
-        $this->assertRoute($url);
+        $this->assertRoute($this->client, $url);
     }
 
     public function professionalUrlProvider(): \Generator

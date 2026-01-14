@@ -2,7 +2,7 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 use App\Provider\DocumentProvider;
 use App\Repository\DocumentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

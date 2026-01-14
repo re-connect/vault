@@ -2,9 +2,9 @@
 
 namespace App\Command\DataMigration;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\ClientBeneficiaire;
+use App\Entity\Beneficiaire;
+use App\Entity\Client;
+use App\Entity\ClientBeneficiaire;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\ClientRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -36,7 +36,7 @@ class MigrateRosalieIdsToSiSiaoIdsCommand extends Command
     {
         return array_reduce(
             $records,
-            function (array $carry, array $item) {
+            function (array $carry, array $item): array {
                 $carry[$item['uid']] = $item['cle'];
 
                 return $carry;

@@ -2,7 +2,7 @@
 
 namespace App\ServiceV2\Helper;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\Validator\Constraints\PasswordCriteria;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 

@@ -4,9 +4,9 @@ namespace App\Tests\v2\Listener;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Membre;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\Membre;
+use App\Entity\User;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\MembreFactory;
 use App\Tests\Factory\UserFactory;
@@ -17,12 +17,21 @@ use Zenstruck\Foundry\Test\Factories;
 class UserCreationListenerTest extends AuthenticatedTestCase
 {
     use Factories;
-    private EntityManagerInterface $em;
+    private ?EntityManagerInterface $em;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->em = self::getContainer()->get(EntityManagerInterface::class);
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        if ($this->em) {
+            $this->em->close();
+            $this->em = null;
+        }
     }
 
     public function testShouldFormatBeneficiaryUsername(): void
