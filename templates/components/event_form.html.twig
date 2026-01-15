@@ -1,6 +1,6 @@
 {% form_theme form 'v2/vault/form_themes/personnal_data_theme.html.twig' %}
 
-<div{{ attributes }} data-action="change->live#update">
+<div{{ attributes }}>
     {{ form_start(form) }}
     {{ form_row(form.nom) }}
     {{ form_row(form.date) }}
@@ -13,7 +13,8 @@
             id="event_rappels_add"
             name="event[rappels][add]"
             data-action="live#action"
-            data-action-name="addCollectionItem(name=event[rappels])"
+            data-live-action-param="addCollectionItem"
+            data-live-name-param="event[rappels]"
             type="button"
             class="btn {{ getUserButtonColor() }} text-white mb-2"
     >
@@ -38,7 +39,9 @@
                     </div>
                 {% else %}
                     <button data-action="live#action"
-                            data-action-name="removeCollectionItem(name=event[rappels], index={{ key }})"
+                            data-live-action-param="removeCollectionItem"
+                            data-live-name-param="event[rappels]"
+                            data-live-index-param="{{ key }}"
                             type="button" class="btn btn-red">
                         <i class="fas fa-times"></i>
                     </button>

@@ -14,7 +14,7 @@ class BucketService
         string $bucketHost,
         string $bucketAccess,
         string $bucketSecret,
-        private readonly LoggerInterface $logger
+        private readonly LoggerInterface $logger,
     ) {
         $this->client = new S3Client([
             'endpoint' => $bucketHost,

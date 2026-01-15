@@ -2,8 +2,8 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Attributes\DonneePersonnelle;
-use App\Entity\Attributes\Note;
+use App\Entity\DonneePersonnelle;
+use App\Entity\Note;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class NoteSimpleType extends AbstractType
 {
     #[\Override]
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nom', TextType::class, [
@@ -41,7 +41,7 @@ class NoteSimpleType extends AbstractType
     }
 
     #[\Override]
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Note::class,

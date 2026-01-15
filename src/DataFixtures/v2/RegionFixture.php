@@ -10,7 +10,7 @@ use Doctrine\Persistence\ObjectManager;
 class RegionFixture extends Fixture implements FixtureGroupInterface
 {
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         RegionFactory::createOne(['name' => 'Occitanie']);
     }

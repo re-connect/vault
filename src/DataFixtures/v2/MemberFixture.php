@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures\v2;
 
-use App\Entity\Attributes\Centre;
+use App\Entity\Centre;
 use App\Tests\Factory\MembreFactory;
 use App\Tests\Factory\RelayFactory;
 use App\Tests\Factory\UserFactory;
@@ -32,7 +32,7 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
     public const MEMBER_WITH_CLIENT = 'test_membre_with_client';
 
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $this->createMember([
             'email' => self::MEMBER_MAIL,

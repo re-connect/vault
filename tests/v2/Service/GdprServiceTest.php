@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2\Service;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\ServiceV2\GdprService;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

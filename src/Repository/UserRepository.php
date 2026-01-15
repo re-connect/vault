@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
@@ -57,7 +57,7 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
      * @param array        $columns
      *                              Ajout au 'query builder' les colonnes spécifié et non null
      */
-    public function andWhereColumnsNotNull($qb, $columns)
+    public function andWhereColumnsNotNull($qb, $columns): void
     {
         foreach ($columns as $column) {
             $qb
@@ -165,7 +165,7 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
 
         $query = $entityManager->createQuery(
             'SELECT u
-                FROM App\Entity\Attributes\User u
+                FROM App\Entity\User u
                 WHERE u.username = :query
                 OR u.email = :query
                 OR u.oldUsername = :query'

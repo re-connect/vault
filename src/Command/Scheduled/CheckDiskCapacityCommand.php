@@ -27,7 +27,7 @@ class CheckDiskCapacityCommand extends Command
         private readonly MailerService $mailer,
         private readonly string $env,
         private readonly array $adminMails,
-        private readonly LoggerInterface $diskCapacityLogger
+        private readonly LoggerInterface $diskCapacityLogger,
     ) {
         parent::__construct();
     }

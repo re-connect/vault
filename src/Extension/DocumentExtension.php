@@ -2,7 +2,7 @@
 
 namespace App\Extension;
 
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 use App\Provider\DocumentProvider;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -50,7 +50,7 @@ class DocumentExtension extends AbstractExtension
         return $this->documentProvider->maxSizeSoonReached($beneficiaire);
     }
 
-    public function printFileSize($fileSize): string
+    public function printFileSize(string $fileSize): string
     {
         if ($fileSize / 1024 > 1024) {
             return number_format($fileSize / (1024 * 1024), 2).'mo';

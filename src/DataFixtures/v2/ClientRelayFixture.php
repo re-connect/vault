@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures\v2;
 
-use App\Entity\Attributes\ClientCentre;
+use App\Entity\ClientCentre;
 use App\Tests\Factory\ClientFactory;
 use App\Tests\Factory\RelayFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -14,7 +14,7 @@ use Doctrine\Persistence\ObjectManager;
 class ClientRelayFixture extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $client = ClientFactory::find(['nom' => 'reconnect_pro'])->object();
         $relay = RelayFactory::find(['nom' => RelayFixture::DEFAULT_BENEFICIARY_RELAY]);

@@ -11,7 +11,7 @@ class DoctrineExtensionListener
     public function __construct(
         private readonly Security $security,
         private readonly TranslatableListener $translatableListener,
-        private readonly LoggableListener $loggableListener
+        private readonly LoggableListener $loggableListener,
     ) {
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\ListenerV2;
 
-use App\Entity\Attributes\Evenement;
+use App\Entity\Evenement;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;

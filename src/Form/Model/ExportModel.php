@@ -19,12 +19,12 @@ class ExportModel
         $this->endDate = new \DateTime();
     }
 
-    public function getCenters()
+    public function getCenters(): Collection
     {
         return $this->centers;
     }
 
-    public function setCenters($centers): void
+    public function setCenters(Collection $centers): void
     {
         $this->centers = $centers;
     }

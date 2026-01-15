@@ -2,7 +2,7 @@
 
 namespace App\Command\DataExport;
 
-use App\Entity\Attributes\Document;
+use App\Entity\Document;
 use App\Service\ExportService;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;

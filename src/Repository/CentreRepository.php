@@ -2,12 +2,12 @@
 
 namespace App\Repository;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\BeneficiaireCentre;
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\MembreCentre;
-use App\Entity\Attributes\User;
-use App\Entity\Attributes\UserCentre;
+use App\Entity\Beneficiaire;
+use App\Entity\BeneficiaireCentre;
+use App\Entity\Centre;
+use App\Entity\MembreCentre;
+use App\Entity\User;
+use App\Entity\UserCentre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;

@@ -13,7 +13,7 @@ final class JsonResponseException
         $this->initialize();
     }
 
-    public function initialize()
+    public function initialize(): void
     {
         $code = $this->codeError;
 
