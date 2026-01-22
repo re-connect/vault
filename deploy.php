@@ -33,7 +33,7 @@ add('writable_dirs', []);
 
 host('vault-pp')
     ->setLabels(['stage' => 'preprod'])
-    ->set('keep_releases', 4)
+    ->set('keep_releases', 2)
     ->set('branch', 'dev')
     ->set('deploy_path', '~/www')
     ->set('http_user', 'preprod_reconnect_fr')
