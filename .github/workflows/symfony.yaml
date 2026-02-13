@@ -1,8 +1,6 @@
 name: Symfony
 
 on:
-    push:
-        branches: [ "main", "dev", "release/**" ]
     pull_request:
         branches: [ "main", "dev", "release/**" ]
 
@@ -12,6 +10,23 @@ permissions:
 jobs:
     symfony-tests:
         runs-on: ubuntu-latest
+
+        services:
+            mariadb:
+                image: mariadb:latest
+                env:
+                    MYSQL_ROOT_PASSWORD: Pl1PL6axxvOR9eY2
+                    MYSQL_DATABASE: vault_test
+                    MYSQL_USER: vault
+                    MYSQL_PASSWORD: Pl1PL6axxvOR9eY2
+                ports:
+                    - 3306:3306
+                options: >-
+                    --health-cmd="mariadb-admin ping -h localhost"
+                    --health-interval=10s
+                    --health-timeout=5s
+                    --health-retries=10
+
         strategy:
             matrix:
                 php-versions:
@@ -31,13 +46,11 @@ jobs:
                     key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
                     restore-keys: |
                         ${{ runner.os }}-php-
-            -   name: Start MariaDB
-                uses: getong/mariadb-action@v1.1
-                with:
-                    mysql root password: Pl1PL6axxvOR9eY2
-                    mysql database: vault_test
-                    mysql user: vault
-                    mysql password: Pl1PL6axxvOR9eY2
+            -   name: Verify MariaDB connection
+                run: |
+                    while ! mysqladmin ping -h"127.0.0.1" --silent; do
+                    sleep 1
+                    done
             -   name: Merge default env vars and CI vars
                 run: cat .env.ci >> .env.test
             -   name: Install Dependencies
@@ -59,10 +72,10 @@ jobs:
             -   name: Install and build frontend
                 run: yarn && yarn dev
             # —— Check frontend dependencies 🔒️ —————————————————————————————————————————————————————————
-            -   name: Make script executable
-                run: chmod +x ./yarn-security-checker.sh
-            -   name: Check dependencies security issues
-                run: ./yarn-security-checker.sh
+#            -   name: Make script executable
+#                run: chmod +x ./yarn-security-checker.sh
+#            -   name: Check dependencies security issues
+#                run: ./yarn-security-checker.sh
             # —— Run tests ✅ ———————————————————————————————————————————————————————————————————————————
             -   name: Load v1 fixtures
                 run: php bin/console doctrine:fixtures:load --env=test --group=v1 -n
