@@ -1350,12 +1350,12 @@
     schema-utils "^3.0.0"
 
 "@symfony/ux-live-component@file:vendor/symfony/ux-live-component/assets":
-  version "2.26.1"
+  version "1.0.0"
   dependencies:
-    idiomorph "^0.3.0"
+    morphdom "^2.6.1"
 
 "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/assets":
-  version "2.26.1"
+  version "0.1.0"
 
 "@symfony/webpack-encore@^5.2.0":
   version "5.3.1"
@@ -3298,9 +3298,9 @@ eventemitter3@^4.0.0:
   integrity sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==
 
 eventemitter3@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-5.0.1.tgz#53f5ffd0a492ac800721bb42c66b841de96423c4"
-  integrity sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-5.0.4.tgz#a86d66170433712dde814707ac52b5271ceb1feb"
+  integrity sha512-mlsTRyGaPBjPedk6Bvw+aqbsXDtoAyAzm5MO7JgU+yVRyMQ5O8bD4Kcci7BS85f93veegeCPkL8R4GLClnjLFw==
 
 events@^3.2.0:
   version "3.3.0"
@@ -3763,11 +3763,6 @@ icss-utils@^5.0.0, icss-utils@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/icss-utils/-/icss-utils-5.1.0.tgz#c6be6858abd013d768e98366ae47e25d5887b1ae"
   integrity sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==
-
-idiomorph@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/idiomorph/-/idiomorph-0.3.0.tgz#f6675bc5bef1a72c94021e43141a3f605d2d6288"
-  integrity sha512-UhV1Ey5xCxIwR9B+OgIjQa+1Jx99XQ1vQHUsKBU1RpQzCx1u+b+N6SOXgf5mEJDqemUI/ffccu6+71l2mJUsRA==
 
 ignore@^5.1.1, ignore@^5.2.0:
   version "5.3.2"
@@ -4328,9 +4323,9 @@ locate-path@^6.0.0:
     p-locate "^5.0.0"
 
 lodash-es@^4.17.21:
-  version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
-  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
+  version "4.17.23"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.23.tgz#58c4360fd1b5d33afc6c0bbd3d1149349b1138e0"
+  integrity sha512-kVI48u3PZr38HdYz98UmfPnXl2DXrpdctLrFLCd3kOx1xUkOmpFPx7gCWWM5MPkL/fD8zb+Ph0QzjGFs4+hHWg==
 
 lodash.clonedeep@^4.5.0:
   version "4.5.0"
@@ -4532,6 +4527,11 @@ moment@^2.29.4:
   version "2.29.4"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
   integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
+
+morphdom@^2.6.1:
+  version "2.7.8"
+  resolved "https://registry.yarnpkg.com/morphdom/-/morphdom-2.7.8.tgz#9a81aae144136702d58cfae8226470bfd64fe74c"
+  integrity sha512-D/fR4xgGUyVRbdMGU6Nejea1RFzYxYtyurG4Fbv2Fi/daKlWKuXGLOdXtl+3eIwL110cI2hz1ZojGICjjFLgTg==
 
 ms@2.0.0:
   version "2.0.0"
