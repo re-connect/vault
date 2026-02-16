@@ -319,7 +319,7 @@ class DocumentRestV2Controller extends REController
 
             $provider->generateUrls($entity);
 
-            return $this->json($entity);
+            return $this->json($entity, context: ['groups' => ['document:read']]);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -336,7 +336,7 @@ class DocumentRestV2Controller extends REController
             $provider->getOutFromFolder($entity);
             $provider->generateUrls($entity);
 
-            return $this->json($entity);
+            return $this->json($entity, context: ['groups' => ['document:read']]);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -370,6 +370,6 @@ class DocumentRestV2Controller extends REController
             'errors' => $errors,
         ];
 
-        return $this->json($jsonBody, $status);
+        return $this->json($jsonBody, $status, context: ['groups' => ['document:read']]);
     }
 }
