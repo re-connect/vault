@@ -72,14 +72,15 @@ class CentreRestV2Controller extends REController
             $entities = new ArrayCollection();
             if ($user->isBeneficiaire()) {
                 $beneficiaire = $user->getSubjectBeneficiaire();
-                $entities = $beneficiaire->getBeneficiairesCentres();
+                $repo = $this->entityManager->getRepository(BeneficiaireCentre::class);
+                $entities = $repo->findBy(['beneficiaire' => $beneficiaire]);
             } elseif ($user->isMembre()) {
                 $entities = $user->getSubjectMembre()->getMembresCentres();
             } elseif ($user->isGestionnaire()) {
                 $entities = $user->getCentres();
             }
 
-            return $this->createJsonResponse($entities->toArray(), Response::HTTP_ACCEPTED, ['center:read']);
+            return $this->createJsonResponse(is_array($entities) ? $entities : $entities->toArray(), Response::HTTP_ACCEPTED, ['v3:center:read']);
         } catch (AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
