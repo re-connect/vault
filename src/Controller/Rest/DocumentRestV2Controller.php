@@ -195,7 +195,7 @@ class DocumentRestV2Controller extends REController
                 $this->provider->generatePresignedUris($entity);
             }
 
-            return $this->json($entities->toArray());
+            return $this->json($entities->toArray(), Response::HTTP_CREATED, [], ['groups' => 'document:read']);
         } catch (UploadException $e) {
             $jsonResponseException = new JsonResponseException($e, Response::HTTP_BAD_REQUEST);
         } catch (\Exception $e) {
