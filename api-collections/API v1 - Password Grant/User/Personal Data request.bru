@@ -1,0 +1,16 @@
+meta {
+  name: Personal Data request
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/v3/user/request-personal-account-data
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
