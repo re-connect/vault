@@ -6,7 +6,6 @@ use App\ControllerV2\AbstractController;
 use App\ManagerV2\UserManager;
 use App\Provider\BeneficiaireProvider;
 use App\ServiceV2\Helper\PasswordHelper;
-use App\ServiceV2\Mailer\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,23 +18,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[IsGranted('ROLE_USER')]
 class UserApiController extends AbstractController
 {
-    #[Route(path: '/request-personal-account-data', methods: ['GET'])]
-    #[Route(path: '/me/request-personal-account-data', methods: ['GET'])]
-    public function requestPersonalAccountData(MailerService $mailer): Response
-    {
-        $user = $this->getUser();
-
-        if (!$user->isBeneficiaire()) {
-            throw $this->createAccessDeniedException();
-        }
-
-        if (!$user->hasRequestedPersonalAccountData()) {
-            $mailer->sendPersonalDataRequestEmail($user);
-        }
-
-        return $this->json($user, 200, [], ['groups' => ['v3:user:read']]);
-    }
-
     #[Route(path: '/me/register-notification-token', methods: ['POST'])]
     public function setFcnToken(Request $request, EntityManagerInterface $em): JsonResponse
     {
