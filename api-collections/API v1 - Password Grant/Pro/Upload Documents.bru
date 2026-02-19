@@ -1,0 +1,24 @@
+meta {
+  name: Upload Documents
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/beneficiaries/27947/documents
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  files: 
+}
+
+body:file {
+  file:
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
