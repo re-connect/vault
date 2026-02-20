@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "53d5acbd18f8cfff3c242cb46169ebd2",
+    "content-hash": "69143ad1124b27736f42f83877db4732",
     "packages": [
         {
             "name": "api-platform/core",
@@ -6614,22 +6614,22 @@
         },
         {
             "name": "scheb/2fa-trusted-device",
-            "version": "v6.12.0",
+            "version": "v6.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scheb/2fa-trusted-device.git",
-                "reference": "1ca6158dc6518ca9dba8b111bd9807a8b9be2903"
+                "reference": "38e690325232a4037ff4aec8de926c938906942c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scheb/2fa-trusted-device/zipball/1ca6158dc6518ca9dba8b111bd9807a8b9be2903",
-                "reference": "1ca6158dc6518ca9dba8b111bd9807a8b9be2903",
+                "url": "https://api.github.com/repos/scheb/2fa-trusted-device/zipball/38e690325232a4037ff4aec8de926c938906942c",
+                "reference": "38e690325232a4037ff4aec8de926c938906942c",
                 "shasum": ""
             },
             "require": {
                 "lcobucci/clock": "^2.0 || ^3.0",
                 "lcobucci/jwt": "^4.1 || ^5.0",
-                "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0",
+                "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
                 "scheb/2fa-bundle": "self.version"
             },
             "type": "library",
@@ -6659,9 +6659,9 @@
                 "two-step"
             ],
             "support": {
-                "source": "https://github.com/scheb/2fa-trusted-device/tree/v6.12.0"
+                "source": "https://github.com/scheb/2fa-trusted-device/tree/v6.13.1"
             },
-            "time": "2023-12-03T15:44:26+00:00"
+            "time": "2024-11-29T19:22:48+00:00"
         },
         {
             "name": "sonata-project/admin-bundle",
@@ -17361,7 +17361,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -17375,6 +17375,6 @@
         "ext-openssl": "*",
         "ext-zip": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
