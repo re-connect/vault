@@ -117,7 +117,7 @@ cfn_vault_is_safe_p: 'الخزانة الرقمية هي أداة أخلاقية
 cfn_vault_is_safe_title: 'المعلومات بأمان'
 cfn_vault_is_satisfying_alt_img: 'المحترفون يشعرون برضا كبير عن المواكبة'
 cfn_vault_is_satisfying_p: "المحترفون يشعرون برضا كبير عن المواكبة على استخدام الخزانة الرقمية في عام 2024"
-cfn_vault_is_satisfying_title: 96%
+cfn_vault_is_satisfying_title: 98%
 cfn_vault_is_title: "الخزانة الرقمية، هي"
 choose: اختار
 choose_beneficiary: اختيار المستفيد
@@ -195,7 +195,7 @@ digital_care_is: "Ateliers numériques 2024 : vos retours en chiffres"
 digital_cares: "L'accompagnement \n numérique"
 digital_cares_acquire_skills_img_alt: "Permet d'acquérir des compétences"
 digital_cares_acquire_skills_text: 'des participants estiment que les ateliers leur ont permis d’acquérir des compétences'
-digital_cares_acquire_skills_title: '98 %'
+digital_cares_acquire_skills_title: '99 %'
 digital_cares_appreciated_training_img_alt: 'Formation appréciée'
 digital_cares_appreciated_training_text: 'des participants ont aimé la formation'
 digital_cares_appreciated_training_title: '99 %'
@@ -511,7 +511,7 @@ rp_is_adaptable_p: 'Le paramétrage permet de répondre aux besoins propres du f
 rp_is_adaptable_title: 'Adaptable à vos besoins'
 rp_is_satisfying_alt_img: 'Des professionnel.le.s très satisfait.e.s de l''accompagnement'
 rp_is_satisfying_p: "المحترفون يشعرون برضا كبير عن المواكبة المقدمة لاستخدام الخزانة الرقمية في عام 2024"
-rp_is_satisfying_title: 78%
+rp_is_satisfying_title: 76%
 rp_is_simple_alt_img: 'outil simple et agreable'
 rp_is_simple_p: "L'ergonomie a été particulièrement travaillée afin que la prise en main soit très simple et vous permette de vous concentrer sur l'accompagnement."
 rp_is_simple_title: 'Un outil simple et agréable'
