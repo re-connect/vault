@@ -116,7 +116,7 @@ cfn_vault_is_safe_alt_img: 'Sicherheit'
 cfn_vault_is_safe_p: 'Die Cloud ist ein sicheres Tool und entspricht den Standards der DSGVO. Dabei hat der Schutz persönlicher Daten unserer Nutzer*innen höchste Priorität.'
 cfn_vault_is_safe_title: 'Sicherheit'
 cfn_vault_is_satisfying_alt_img: 'Les professionnel.le.s sont très satisfait.e.s de l''accompagnement'
-cfn_vault_is_satisfying_p: "Die Fachleute sind sehr zufrieden mit der Begleitung zur Nutzung des digitalen Tresors im Jahr 2024"
+cfn_vault_is_satisfying_p: "Die Fachleute sind sehr zufrieden mit der Begleitung zur Nutzung des digitalen Tresors im Jahr 2025"
 cfn_vault_is_satisfying_title: 98%
 cfn_vault_is_title: "Die Cloud bedeutet"
 choose: Choisir
@@ -195,7 +195,7 @@ digital_care_is: "Ateliers numériques 2024 : vos retours en chiffres"
 digital_cares: "L'accompagnement \n numérique"
 digital_cares_acquire_skills_img_alt: "Permet d'acquérir des compétences"
 digital_cares_acquire_skills_text: 'des participants estiment que les ateliers leur ont permis d’acquérir des compétences'
-digital_cares_acquire_skills_title: '99 %'
+digital_cares_acquire_skills_title: '99%'
 digital_cares_appreciated_training_img_alt: 'Formation appréciée'
 digital_cares_appreciated_training_text: 'des participants ont aimé la formation'
 digital_cares_appreciated_training_title: '99 %'
@@ -207,7 +207,7 @@ digital_cares_improve_reintegration_pathways_text: 'Les ateliers numériques s�
 digital_cares_improve_reintegration_pathways_title: 'Un accompagnement pour faciliter les parcours d’insertion'
 digital_cares_knowledge_img_alt: 'Permet de réaliser les actions apprises'
 digital_cares_knowledge_text: 'des participants se sentent capables de réaliser les actions apprises'
-digital_cares_knowledge_title: '98 %'
+digital_cares_knowledge_title: '98%'
 digital_cares_logo_alt: 'Logo des accompagnements numériques'
 digital_cares_participatory_content_img_alt: 'Contenus ludiques et participatifs'
 digital_cares_participatory_content_text: 'Nos ateliers contiennent une dimension théorique et pratique afin de faciliter l’assimilation des informations. Les sessions sont construites à l’aide d’une méthodologie « gamifiée » qui facilite l’attention et améliore l’attractivité. Nous portons une attention particulière à la mise en pratique immédiate des formations proposées.'
