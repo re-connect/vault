@@ -152,7 +152,7 @@ class HomeProvider
         ],
     ];
 
-    public const DIGITAL_CARES_FEATURES_CONTENT = [
+    public const DIGITAL_LABS_FEATURES_CONTENT = [
         [
             'title' => 'digital_cares_improve_reintegration_pathways_title',
             'text' => 'digital_cares_improve_reintegration_pathways_text',
@@ -191,7 +191,7 @@ class HomeProvider
         ],
     ];
 
-    public const DIGITAL_CARES_IS_CONTENT = [
+    public const DIGITAL_LABS_IS_CONTENT = [
         [
             'icon_file_name' => 'logo_digital_cares_like.png',
             'icon_alt' => 'digital_cares_appreciated_training_img_alt',
