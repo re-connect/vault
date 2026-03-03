@@ -95,6 +95,16 @@ class MainController extends AbstractController
         ]);
     }
 
+    #[Route('/nos-formations-pour-les-professionnels', name: 'pro_learning')]
+    public function proLearning(): Response
+    {
+        return $this->render('home/pages/professional_learning.html.twig', [
+            'features' => HomeProvider::PRO_LEARNING_FEATURES_CONTENT,
+            'product_is' => HomeProvider::PRO_LEARNING_IS_CONTENT,
+            'testimonials' => HomeProvider::PRO_LEARNING_TESTIMONIALS_CONTENT,
+        ]);
+    }
+
     #[Route('/public/newsletter-confirmation', name: 'newsletter_confirmation')]
     public function newsletterConfirmation(): Response
     {
