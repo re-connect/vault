@@ -7,6 +7,8 @@
         {{ include ('home/sections/workshop_section.html.twig',
             {
                 direction: loop.index is even ? 'row' : 'row-reverse',
+                bg_class: 'bg-light-yellow',
+                box_shadow: 'box-shadow-light-yellow',
                 feature
             }) }}
     {% endfor %}
