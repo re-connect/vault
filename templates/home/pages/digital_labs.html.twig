@@ -4,7 +4,7 @@
 {% block body %}
     {{ include('home/sections/digital_labs_section.html.twig') }}
     {% for feature in features %}
-        {{ include ('home/sections/digital_cares_workshop_section.html.twig',
+        {{ include ('home/sections/workshop_section.html.twig',
             {
                 direction: loop.index is even ? 'row' : 'row-reverse',
                 feature
