@@ -20,7 +20,7 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
         yield ['/'];
         yield ['/login'];
         yield ['/public/newsletter-confirmation'];
-        yield ['/reconnect-accompagnement-numerique'];
+        yield ['/nos-ateliers-numeriques'];
         yield ['/reconnect-la-solution-pro'];
         yield ['/nous-contacter'];
         yield ['/reconnect-le-coffre-fort-numerique'];
