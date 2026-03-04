@@ -307,7 +307,7 @@ header_link_our_blog: 'Notre <span class="d-lg-block">blog</span>'
 health: Verfassung
 home_meta_desc: "Digitalisierung als Unterstützung der Sozialarbeit und Inklusion"
 home_meta_title_contact: 'Reconnect - Kontakt aufnehmen'
-home_meta_title_digital_cares: "Reconnect - L'accompagnement numérique"
+home_meta_title_digital_cares: "Reconnect - L'accompagnement numérique - Nos ateliers numériques"
 home_meta_title_rp: 'Reconnect - Die Software für Sozialarbeiter*innen'
 home_meta_title_vault: 'Reconnect - Cloud für wohnungslose Menschen'
 home_our_solutions_CTA: 'Mehr erfahren'
@@ -708,3 +708,8 @@ digital_care: Accompagnement numérique
 download_pro_training_catalogue: Laden Sie unseren Katalog für Fachleute herunter
 session_timeout: Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.
 remember_two_factor_code: Ne plus me demander de code sur cet appareil pendant %daysNumber% jours
+header_link_digital_labs: Nos ateliers numériques
+header_link_pro_learning: Nos formations pour les professionnels
+home_meta_title_pro_learning: Reconnect - L'accompagnement numérique - Nos formations pour les professionnels
+pro_learning_no_prerequisites_title: Une formation adaptée à toutes et tous sans prérequis
+pro_learning_no_prerequisites_text: Nos formations sont conçues pour être accessibles à chacun.ne sans prérequis nécessaire. Cette approche permet à toutes les personnes, qu’elles soient en difficulté ou simplement peu familières avec le numérique, de se sentir légitimes et capables d’apprendre. <br><br> Nos formateur·rice·s, fort·e·s d’une solide expérience terrain, savent s’adapter à tous types de  freins pour créer un environnement d’apprentissage bienveillant, rassurant et stimulant.
