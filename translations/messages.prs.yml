@@ -307,7 +307,7 @@ header_link_our_blog: 'Notre <span class="d-lg-block">blog</span>'
 health: Santé
 home_meta_desc: "Le numérique au service de l'inclusion et de l'action sociale"
 home_meta_title_contact: 'Reconnect - Nous contacter'
-home_meta_title_digital_cares: "Reconnect - L'accompagnement numérique"
+home_meta_title_digital_cares: "Reconnect - L'accompagnement numérique - Nos ateliers numériques"
 home_meta_title_rp: 'Reconnect - Le logiciel métier suivi social'
 home_meta_title_vault: 'Reconnect - Le coffre-fort numérique'
 home_our_solutions_CTA: 'En savoir plus'
@@ -708,3 +708,9 @@ digital_care: Accompagnement numérique
 download_pro_training_catalogue: کاتالوگ ویژهٔ متخصصین ما را دانلود کنید
 session_timeout: نشست شما پایان یافته است. لطفاً دوباره وارد شوید.
 remember_two_factor_code: Ne plus me demander de code sur cet appareil pendant %daysNumber% jours
+header_link_digital_labs: Nos ateliers numériques
+header_link_pro_learning: Nos formations pour les professionnels
+home_meta_title_pro_learning: Reconnect - L'accompagnement numérique - Nos formations pour les professionnels
+pro_learning_no_prerequisites_title: Une formation adaptée à toutes et tous sans prérequis
+pro_learning_no_prerequisites_text: Nos formations sont conçues pour être accessibles à chacun.ne sans prérequis nécessaire. Cette approche permet à toutes les personnes, qu’elles soient en difficulté ou simplement peu familières avec le numérique, de se sentir légitimes et capables d’apprendre. <br><br> Nos formateur·rice·s, fort·e·s d’une solide expérience terrain, savent s’adapter à tous types de  freins pour créer un environnement d’apprentissage bienveillant, rassurant et stimulant.
+pro_learning_no_prerequisites_img_alt: Formation adaptée sans prérequis
