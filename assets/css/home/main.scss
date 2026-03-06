@@ -61,23 +61,23 @@ $position-values: (
 }
 
 .box-shadow-white {
-  -webkit-box-shadow: 0px 0px 4px 1px rgba(255, 255, 255, 0.5);
-  box-shadow: 0px 0px 4px 1px rgba(255, 255, 255, 0.5);
+  -webkit-box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.5);
 }
 
 .box-shadow-light-green {
-  -webkit-box-shadow: 0px 0px 50px 5px rgba(77, 185, 95, 0.4);
-  box-shadow: 0px 0px 50px 5px rgba(77, 185, 95, 0.4);
+  -webkit-box-shadow: 0 0 50px 5px rgba(77, 185, 95, 0.4);
+  box-shadow: 0 0 50px 5px rgba(77, 185, 95, 0.4);
 }
 
 .box-shadow-light-eton-blue {
-  -webkit-box-shadow: 0px 0px 50px 5px rgba(148, 206, 189, 0.4);
-  box-shadow: 0px 0px 50px 5px rgba(148, 206, 189, 0.4);
+  -webkit-box-shadow: 0 0 50px 5px rgba(148, 206, 189, 0.4);
+  box-shadow: 0 0 50px 5px rgba(148, 206, 189, 0.4);
 }
 
 .box-shadow-light-blue {
-  -webkit-box-shadow: 0px 0px 50px 5px rgba(71, 180, 209, 0.4);
-  box-shadow: 0px 0px 50px 5px rgba(71, 180, 209, 0.4);
+  -webkit-box-shadow: 0 0 50px 5px rgba(71, 180, 209, 0.4);
+  box-shadow: 0 0 50px 5px rgba(71, 180, 209, 0.4);
 }
 
 .bg-yellow {
@@ -93,8 +93,8 @@ $position-values: (
 }
 
 .box-shadow-light-yellow {
-  -webkit-box-shadow: 0px 0px 50px 5px rgba(249, 176, 42, 0.4);
-  box-shadow: 0px 0px 50px 5px rgba(249, 176, 42, 0.4);
+  -webkit-box-shadow: 0 0 50px 5px rgba(249, 176, 42, 0.4);
+  box-shadow: 0 0 50px 5px rgba(249, 176, 42, 0.4);
 }
 
 .border-radius-20 {
