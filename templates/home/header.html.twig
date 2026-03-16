@@ -20,8 +20,25 @@
                        href="{{ path('re_main_page_vault') }}">{{ 'header_link_cfn'|trans|raw }}</a>
                     <a target="_self" class="nav-item nav-link nav-links px-5"
                        href="{{ path('re_main_page_RP') }}">{{ 'header_link_rp'|trans|raw }}</a>
-                    <a target="_self" class="nav-item nav-link nav-links px-5"
-                       href="{{ path('digital_cares') }}">{{ 'digital_cares'|trans|nl2br }}</a>
+                    <div class="dropdown">
+                        <a role="button"
+                           class="nav-item nav-link nav-links px-5 dropdown-toggle"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            {{ 'digital_cares'|trans|nl2br }}
+                        </a>
+                        <ul class="dropdown-menu text-center border border-primary fs-5 rounded-0 mt-0">
+                            <li>
+                                <a target="_self" class="nav-item nav-link nav-links py-1 px-3"
+                                   href="{{ path('digital_labs') }}">{{ 'header_link_digital_labs'|trans|raw }}</a>
+                            </li>
+                            <li><hr class="dropdown-divider border-primary mx-2"></li>
+                            <li>
+                                <a target="_self" class="nav-item nav-link nav-links py-1 px-3"
+                                   href="{{ path('pro_learning') }}">{{ 'header_link_pro_learning'|trans|raw }}</a>
+                            </li>
+                        </ul>
+                    </div>
                     <a target="_self" class="nav-item nav-link nav-links px-5"
                        href="{{ path('re_main_accueil') }}#qui-sommes-nous">{{ 'header_link_who_we_are'|trans|raw }}</a>
                     <a target="_blank" class="nav-item nav-link nav-links text-primary px-5"

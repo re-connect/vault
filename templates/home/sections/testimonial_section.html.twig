@@ -1,0 +1,12 @@
+<section class="{{ bg_class }} py-2 py-md-5 px-4 px-md-0">
+    <div class="container py-3">
+        <h2 class="h2 pb-1 text-primary text-uppercase text-center">{{ 'home_testimonial_title'| trans }}</h2>
+        <div class="row text-primary">
+            <div class="col-12 col-md-12 p-3 justify-content-center">
+                {% for testimonial in testimonials %}
+                    <h4>{{ testimonial.content|trans|raw }}<span class="p-2">{{ testimonial.author|trans }}</span></h4>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
