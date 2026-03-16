@@ -32,7 +32,7 @@ class ResettingService
         private readonly ResetPasswordHelperInterface $resetPasswordHelper,
         private readonly UserManager $userManager,
         private readonly RequestStack $requestStack,
-        private readonly LoggerInterface $logger
+        private readonly LoggerInterface $logger,
     ) {
     }
 

@@ -64,7 +64,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
         ];
 
         $values = self::FORM_VALUES;
-        $values['event[date]'] = (new \DateTime())->modify('-12 hours')->format('Y-m-d H:i:s');
+        $values['event[date]'] = (new \DateTime())->modify('-11 hours')->format('Y-m-d H:i:s');
         yield 'Should redirect when form is correct, with date less than 12 hours in the past' => [
             self::URL,
             'confirm',

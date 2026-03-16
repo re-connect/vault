@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2\EventSubscriber;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\EventSubscriber\SessionTimeoutSubscriber;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\SecurityBundle\Security;
