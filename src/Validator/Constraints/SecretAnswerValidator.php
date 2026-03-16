@@ -12,7 +12,7 @@ class SecretAnswerValidator extends ConstraintValidator
     }
 
     #[\Override]
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         if (strtolower((string) $constraint->beneficiary->getReponseSecrete()) !== strtolower((string) $value)) {
             $this->context->addViolation($constraint->message);

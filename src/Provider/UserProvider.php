@@ -2,7 +2,7 @@
 
 namespace App\Provider;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\Security\Authorization\Voter\UserVoter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
@@ -57,7 +57,7 @@ class UserProvider
         $user->setUsername($usernameNew)->setUsernameCanonical($usernameNew);
     }
 
-    public function getEntity($id): User
+    public function getEntity(string $id): User
     {
         if (!$entity = $this->em->find(User::class, $id)) {
             throw new NotFoundHttpException('No user found for id '.$id);

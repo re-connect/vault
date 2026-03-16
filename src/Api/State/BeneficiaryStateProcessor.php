@@ -9,9 +9,9 @@ use ApiPlatform\State\ProcessorInterface;
 use App\Api\Dto\BeneficiaryDto;
 use App\Api\Dto\LinkBeneficiaryDto;
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\ClientBeneficiaire;
+use App\Entity\Beneficiaire;
+use App\Entity\Client;
+use App\Entity\ClientBeneficiaire;
 use App\ManagerV2\UserManager;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\MembreRepository;
@@ -36,7 +36,7 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
         private BeneficiaireRepository $beneficiaryRepository,
         private EntityManagerInterface $entityManager,
         private TranslatorInterface $translator,
-        private ValidatorInterface $validator
+        private ValidatorInterface $validator,
     ) {
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures\v2;
 
-use App\Entity\Attributes\ClientMembre;
+use App\Entity\ClientMembre;
 use App\Tests\Factory\ClientFactory;
 use App\Tests\Factory\MembreFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -14,7 +14,7 @@ use Doctrine\Persistence\ObjectManager;
 class ClientMemberFixture extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
     #[\Override]
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $client = ClientFactory::find(['nom' => 'applimobile'])->object();
         $membre = MembreFactory::findByEmail(MemberFixture::MEMBER_WITH_CLIENT)->object();

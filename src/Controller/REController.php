@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Api\Manager\ApiClientManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -40,7 +41,7 @@ abstract class REController extends AbstractController
         $this->addFlash('success', $message);
     }
 
-    protected function errorFlashTranslate(string $message, $domain = null): void
+    protected function errorFlashTranslate(string $message, ?string $domain = null): void
     {
         $message = $this->translator->trans($message, [], $domain);
         $this->addFlash('error', $message);
@@ -49,5 +50,10 @@ abstract class REController extends AbstractController
     protected function errorFlash(string $message): void
     {
         $this->addFlash('error', $message);
+    }
+
+    protected function createJsonResponse(mixed $entity, int $statusCode = 200, array $serializationGroups = []): JsonResponse
+    {
+        return $this->json($entity, $statusCode, [], ['groups' => $serializationGroups]);
     }
 }

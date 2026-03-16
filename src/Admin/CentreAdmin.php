@@ -2,12 +2,12 @@
 
 namespace App\Admin;
 
-use App\Entity\Attributes\Association;
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\CreatorCentre;
-use App\Entity\Attributes\CreatorClient;
-use App\Entity\Attributes\Region;
+use App\Entity\Association;
+use App\Entity\Centre;
+use App\Entity\Client;
+use App\Entity\CreatorCentre;
+use App\Entity\CreatorClient;
+use App\Entity\Region;
 use App\EventSubscriber\AssociationCreationSubscriber;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,7 +45,7 @@ class CentreAdmin extends AbstractAdmin
      * @param Centre $object
      */
     #[\Override]
-    public function preUpdate($object = null): void
+    public function preUpdate(?object $object = null): void
     {
         if (!$object->getAdresse()->getNom()) {
             $object->setAdresse();

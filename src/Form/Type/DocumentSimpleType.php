@@ -2,8 +2,8 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Attributes\Document;
-use App\Entity\Attributes\DonneePersonnelle;
+use App\Entity\Document;
+use App\Entity\DonneePersonnelle;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -14,7 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class DocumentSimpleType extends AbstractType
 {
     #[\Override]
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nom', TextType::class, ['label' => 'name'])
@@ -30,7 +30,7 @@ class DocumentSimpleType extends AbstractType
     }
 
     #[\Override]
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Document::class,

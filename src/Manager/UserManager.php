@@ -2,8 +2,8 @@
 
 namespace App\Manager;
 
-use App\Entity\Attributes\Association;
-use App\Entity\Attributes\User;
+use App\Entity\Association;
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -22,11 +22,11 @@ class UserManager
         private readonly EventDispatcherInterface $eventDispatcher,
         private readonly EntityManagerInterface $entityManager,
         private readonly UserPasswordHasherInterface $hasher,
-        private readonly UserRepository $repository
+        private readonly UserRepository $repository,
     ) {
     }
 
-    private function sanitize($str, $charset = 'utf-8')
+    private function sanitize($str, $charset = 'utf-8'): string
     {
         $str = htmlentities((string) $str, ENT_NOQUOTES, $charset);
         $str = preg_replace('#&([A-za-z])(?:acute|cedil| caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
@@ -77,7 +77,7 @@ class UserManager
         $association->getUser()->setUsername($username);
     }
 
-    public function authenticateUser($user)
+    public function authenticateUser($user): void
     {
         if (!$user) {
             throw new UserNotFoundException('User not found');
@@ -107,12 +107,12 @@ class UserManager
         return hash_equals($string1, $string2);
     }
 
-    public function testPassword(User $user, $password)
+    public function testPassword(User $user, string $password): bool
     {
         return $this->hasher->isPasswordValid($user, $password);
     }
 
-    public function deleteUser($user)
+    public function deleteUser($user): void
     {
         /** @var User $user */
         if ($user->isBeneficiaire()) {
@@ -158,12 +158,12 @@ class UserManager
         $this->entityManager->flush();
     }
 
-    public function updateCanonicalFields(User $user)
+    public function updateCanonicalFields(User $user): void
     {
         $user->setEmailCanonical($user->getEmail());
     }
 
-    public function updateUser(User $user, $andFlush = true)
+    public function updateUser(User $user, $andFlush = true): void
     {
         $this->updateCanonicalFields($user);
         $this->updatePassword($user);

@@ -3,13 +3,13 @@
 namespace App\Provider;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\Gestionnaire;
-use App\Entity\Attributes\Membre;
-use App\Entity\Attributes\MembreCentre;
-use App\Entity\Attributes\Subject;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\Centre;
+use App\Entity\Gestionnaire;
+use App\Entity\Membre;
+use App\Entity\MembreCentre;
+use App\Entity\Subject;
+use App\Entity\User;
 use App\Entity\UserWithCentresInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
@@ -64,7 +64,7 @@ class CentreProvider
     {
         return $this->em->createQueryBuilder()
             ->select('b', 'bc', 'c', 'g', 'u')
-            ->from('App:Attributes\Beneficiaire', 'b')
+            ->from(Beneficiaire::class, 'b')
             ->innerJoin('b.beneficiairesCentres', 'bc')
             ->innerJoin('bc.centre', 'c')
             ->innerJoin('c.gestionnaire', 'g')
@@ -97,10 +97,7 @@ class CentreProvider
             ->getResult();
     }
 
-    /**
-     * @return array
-     */
-    public function getBeneficiairesFromMembreByCentre(Membre $membre, $takeUnvalid = false)
+    public function getBeneficiairesFromMembreByCentre(Membre $membre, ?bool $takeUnvalid = false): array
     {
         /** @var Beneficiaire $beneficiaire */
         $beneficiaires = $this->getBeneficiairesFromMembre($membre, $takeUnvalid);
@@ -162,7 +159,7 @@ class CentreProvider
      * @throws NonUniqueResultException
      * @throws NoResultException
      */
-    public function getScalarBeneficaireForMembre($id, $membreId)
+    public function getScalarBeneficaireForMembre(string $id, string $membreId)
     {
         $qb = $this->em->createQueryBuilder()
             ->select('count(b.id)')
@@ -251,10 +248,7 @@ class CentreProvider
         return [];
     }
 
-    /**
-     * @return array
-     */
-    public function getOtherMembresFromMembreByCentre(Membre $membre)
+    public function getOtherMembresFromMembreByCentre(Membre $membre): array
     {
         $otherMembres = $this->getOtherMembresFromMembre($membre);
 
@@ -275,14 +269,11 @@ class CentreProvider
         return $arRet;
     }
 
-    /**
-     * @return array
-     */
-    public function getOtherMembresFromMembre(Membre $membre)
+    public function getOtherMembresFromMembre(Membre $membre): array
     {
         $results = $this->em->createQueryBuilder()
             ->select('m', 'mc', 'c', 'omc', 'om', 'u')
-            ->from('App:Membre', 'om')
+            ->from(Membre::class, 'om')
             ->leftJoin('om.user', 'u')
             ->leftJoin('om.membresCentres', 'omc')
             ->leftJoin('omc.centre', 'c')
@@ -336,7 +327,7 @@ class CentreProvider
             ->getResult();
     }
 
-    public function getEntity($id): Centre
+    public function getEntity(string $id): Centre
     {
         /** @var Centre $entity */
         if (!$entity = $this->em->find(Centre::class, $id)) {
@@ -346,7 +337,7 @@ class CentreProvider
         return $entity;
     }
 
-    public function getEntityByDistantId($distantId): Centre
+    public function getEntityByDistantId(string $distantId): Centre
     {
         $client = $this->apiClientManager->getCurrentOldClient();
         /** @var Centre $entity */

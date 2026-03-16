@@ -2,7 +2,7 @@
 
 namespace App\Manager;
 
-use App\Entity\Attributes\AccessToken;
+use App\Entity\AccessToken;
 use App\Entity\TokenInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
@@ -22,7 +22,7 @@ class TokenManager implements TokenManagerInterface
     }
 
     #[\Override]
-    public function getClass()
+    public function getClass(): string
     {
         return AccessToken::class;
     }
@@ -34,14 +34,14 @@ class TokenManager implements TokenManagerInterface
     }
 
     #[\Override]
-    public function updateToken(TokenInterface $token)
+    public function updateToken(TokenInterface $token): void
     {
         $this->em->persist($token);
         $this->em->flush();
     }
 
     #[\Override]
-    public function deleteToken(TokenInterface $token)
+    public function deleteToken(TokenInterface $token): void
     {
         $this->em->remove($token);
         $this->em->flush();

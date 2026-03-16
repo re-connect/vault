@@ -4,11 +4,11 @@ namespace App\Controller\Rest;
 
 use App\Api\Manager\ApiClientManager;
 use App\Controller\REController;
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\Document;
-use App\Entity\Attributes\Dossier;
-use App\Entity\Attributes\Membre;
-use App\Entity\Attributes\User;
+use App\Entity\Client;
+use App\Entity\Document;
+use App\Entity\Dossier;
+use App\Entity\Membre;
+use App\Entity\User;
 use App\EventV2\BeneficiaryConsultationEvent;
 use App\Exception\JsonResponseException;
 use App\Manager\MailManager;
@@ -137,7 +137,7 @@ class DocumentRestV2Controller extends REController
                 }
             }
 
-            return $this->json($entity);
+            return $this->json($entity, 200, [], ['groups' => ['v3:document:read']]);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -195,7 +195,7 @@ class DocumentRestV2Controller extends REController
                 $this->provider->generatePresignedUris($entity);
             }
 
-            return $this->json($entities->toArray());
+            return $this->json($entities->toArray(), Response::HTTP_CREATED, [], ['groups' => 'document:read']);
         } catch (UploadException $e) {
             $jsonResponseException = new JsonResponseException($e, Response::HTTP_BAD_REQUEST);
         } catch (\Exception $e) {
@@ -211,7 +211,7 @@ class DocumentRestV2Controller extends REController
         ValidatorInterface $validator,
         MailManager $mailManager,
         TranslatorInterface $translator,
-        RestManager $restManager
+        RestManager $restManager,
     ): JsonResponse {
         try {
             $document = $this->provider->getEntity($id, Client::ACCESS_DOCUMENT_WRITE);
@@ -252,7 +252,7 @@ class DocumentRestV2Controller extends REController
             $this->provider->changePrive($entity);
             $this->provider->generatePresignedUris($entity);
 
-            return $this->json($entity, Response::HTTP_ACCEPTED);
+            return $this->json($entity, Response::HTTP_ACCEPTED, [], ['groups' => ['v3:document:read']]);
         } catch (NotFoundHttpException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -308,7 +308,7 @@ class DocumentRestV2Controller extends REController
         int $id,
         int $dossierId,
         DocumentProvider $provider,
-        DossierProvider $dossierProvider
+        DossierProvider $dossierProvider,
     ): JsonResponse {
         try {
             $entity = $provider->getEntity($id);
@@ -319,7 +319,7 @@ class DocumentRestV2Controller extends REController
 
             $provider->generateUrls($entity);
 
-            return $this->json($entity);
+            return $this->json($entity, context: ['groups' => ['document:read']]);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -336,7 +336,7 @@ class DocumentRestV2Controller extends REController
             $provider->getOutFromFolder($entity);
             $provider->generateUrls($entity);
 
-            return $this->json($entity);
+            return $this->json($entity, context: ['groups' => ['document:read']]);
         } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
@@ -370,6 +370,6 @@ class DocumentRestV2Controller extends REController
             'errors' => $errors,
         ];
 
-        return $this->json($jsonBody, $status);
+        return $this->json($jsonBody, $status, context: ['groups' => ['document:read']]);
     }
 }
