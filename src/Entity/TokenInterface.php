@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Entity\Attributes\Client;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 interface TokenInterface

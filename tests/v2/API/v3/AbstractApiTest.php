@@ -4,7 +4,7 @@ namespace App\Tests\v2\API\v3;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Symfony\Bundle\Test\Client;
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 use App\Repository\BeneficiaireRepository;
 use App\Tests\Factory\ClientFactory;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,8 +14,7 @@ abstract class AbstractApiTest extends ApiTestCase
 {
     use Factories;
 
-    protected Client $client;
-    protected readonly BeneficiaireRepository $beneficiaireRepository;
+    protected ?BeneficiaireRepository $beneficiaireRepository;
     protected ?string $accessToken = null;
 
     protected const BASE_URL = '/api/v3';
@@ -23,8 +22,13 @@ abstract class AbstractApiTest extends ApiTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->client = static::createClient();
         $this->beneficiaireRepository = $this->getContainer()->get(BeneficiaireRepository::class);
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        $this->beneficiaireRepository = null;
     }
 
     /**
@@ -32,12 +36,16 @@ abstract class AbstractApiTest extends ApiTestCase
      */
     public function assertEndpoint(string $clientName, string $endpoint, string $method, int $expectedStatusCode, ?array $expectedJson = null, mixed $body = null): void
     {
-        $this->loginAsClient($clientName);
+        $client = static::createClient();
+
+        $this->loginAsClient($client, $clientName);
+
         $options = ['body' => json_encode($body)];
         if (in_array($method, [Request::METHOD_PATCH, Request::METHOD_POST])) {
             $options['headers'] = ['Content-Type' => 'application/json'];
         }
-        $this->client->request($method, $this->generateUrl($endpoint), $options);
+
+        $client->request($method, $this->generateUrl($endpoint), $options);
 
         $this->assertResponseStatusCodeSame($expectedStatusCode);
         if ($expectedJson) {
@@ -47,12 +55,14 @@ abstract class AbstractApiTest extends ApiTestCase
 
     public function assertEndpointAccessIsDenied(string $clientName, string $endpoint, string $method, mixed $body = null): void
     {
-        $this->loginAsClient($clientName);
+        $client = static::createClient();
+
+        $this->loginAsClient($client, $clientName);
         $options = ['body' => json_encode($body)];
         if (in_array($method, [Request::METHOD_PATCH, Request::METHOD_POST])) {
             $options['headers'] = ['Content-Type' => 'application/json'];
         }
-        $this->client->request($method, $this->generateUrl($endpoint), $options);
+        $client->request($method, $this->generateUrl($endpoint), $options);
 
         $this->assertResponseStatusCodeSame(403);
         $this->assertJsonContains([
@@ -63,14 +73,14 @@ abstract class AbstractApiTest extends ApiTestCase
         ]);
     }
 
-    public function loginAsClient(string $clientName, string $grantType = 'client_credentials'): void
+    public function loginAsClient(Client $client, string $clientName, string $grantType = 'client_credentials'): void
     {
-        $client = ClientFactory::find(['nom' => $clientName])->object(); // We use the same value in old client table to access properties easily
+        $apiClient = ClientFactory::find(['nom' => $clientName])->object();
 
-        $response = $this->client->request('POST', '/oauth/v2/token', ['json' => [
+        $response = $client->request('POST', '/oauth/v2/token', ['json' => [
             'grant_type' => $grantType,
-            'client_id' => $client->getRandomId(),
-            'client_secret' => $client->getSecret(),
+            'client_id' => $apiClient->getRandomId(),
+            'client_secret' => $apiClient->getSecret(),
         ]]);
 
         $content = json_decode($response->getContent(), true);

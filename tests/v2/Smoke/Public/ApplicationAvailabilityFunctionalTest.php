@@ -11,7 +11,8 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
      */
     public function testPageIsSuccessful(string $url): void
     {
-        $this->assertRoute($url);
+        self::ensureKernelShutdown();
+        $this->assertRoute(static::createClient(), $url);
     }
 
     public function urlProvider(): \Generator
@@ -19,7 +20,7 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
         yield ['/'];
         yield ['/login'];
         yield ['/public/newsletter-confirmation'];
-        yield ['/reconnect-accompagnement-numerique'];
+        yield ['/nos-ateliers-numeriques'];
         yield ['/reconnect-la-solution-pro'];
         yield ['/nous-contacter'];
         yield ['/reconnect-le-coffre-fort-numerique'];

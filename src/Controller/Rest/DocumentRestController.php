@@ -3,7 +3,7 @@
 namespace App\Controller\Rest;
 
 use App\Controller\REController;
-use App\Entity\Attributes\Document;
+use App\Entity\Document;
 use App\Exception\JsonResponseException;
 use App\Manager\MailManager;
 use App\Provider\BeneficiaireProvider;
@@ -33,7 +33,7 @@ class DocumentRestController extends REController
     public function listAction(
         int $beneficiaryId,
         DocumentProvider $provider,
-        BeneficiaireProvider $beneficiaireProvider
+        BeneficiaireProvider $beneficiaireProvider,
     ): JsonResponse {
         try {
             $beneficiaire = $beneficiaireProvider->getEntity($beneficiaryId);
@@ -70,7 +70,7 @@ class DocumentRestController extends REController
         int $beneficiaryId,
         int $folderId,
         DocumentProvider $provider,
-        BeneficiaireProvider $beneficiaireProvider
+        BeneficiaireProvider $beneficiaireProvider,
     ): JsonResponse {
         try {
             $beneficiaire = $beneficiaireProvider->getEntity($beneficiaryId);
@@ -92,7 +92,7 @@ class DocumentRestController extends REController
     public function deleteAction(
         int $id,
         DocumentProvider $provider,
-        AuthorizationCheckerInterface $authorizationChecker
+        AuthorizationCheckerInterface $authorizationChecker,
     ): JsonResponse {
         try {
             $document = $provider->getEntity($id);
@@ -156,7 +156,7 @@ class DocumentRestController extends REController
         int $id,
         Request $request,
         DocumentProvider $provider,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
     ): JsonResponse {
         try {
             if (null === $name = $request->get('name')) {
@@ -187,7 +187,7 @@ class DocumentRestController extends REController
         int $id,
         int $dossierId,
         DocumentProvider $provider,
-        DossierProvider $dossierProvider
+        DossierProvider $dossierProvider,
     ): JsonResponse {
         try {
             $entity = $provider->getEntity($id);
@@ -235,7 +235,7 @@ class DocumentRestController extends REController
         DocumentProvider $provider,
         BeneficiaireProvider $beneficiaireProvider,
         DossierProvider $dossierProvider,
-        Request $request
+        Request $request,
     ): JsonResponse {
         try {
             $beneficiaire = $beneficiaireProvider->getEntity($beneficiaryId);
@@ -282,7 +282,7 @@ class DocumentRestController extends REController
         DocumentProvider $provider,
         ValidatorInterface $validator,
         TranslatorInterface $translator,
-        MailManager $mailManager
+        MailManager $mailManager,
     ): JsonResponse {
         try {
             $document = $provider->getEntity($id);

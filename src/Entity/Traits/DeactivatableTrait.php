@@ -2,7 +2,7 @@
 
 namespace App\Entity\Traits;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 trait DeactivatableTrait

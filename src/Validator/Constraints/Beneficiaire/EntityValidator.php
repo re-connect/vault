@@ -2,8 +2,8 @@
 
 namespace App\Validator\Constraints\Beneficiaire;
 
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Centre;
+use App\Entity\Beneficiaire;
+use App\Entity\Centre;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -22,7 +22,7 @@ class EntityValidator extends ConstraintValidator
      * @throws \Exception
      */
     #[\Override]
-    public function validate($entity, Constraint $constraint)
+    public function validate($entity, Constraint $constraint): void
     {
         if (null === $entity || '' === $entity) {
             return;

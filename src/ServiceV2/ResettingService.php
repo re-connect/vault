@@ -2,9 +2,9 @@
 
 namespace App\ServiceV2;
 
-use App\Entity\Annotations\ResetPasswordRequest;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\ResetPasswordRequest;
+use App\Entity\User;
 use App\ManagerV2\UserManager;
 use App\RepositoryV2\ResetPasswordRequestRepository;
 use App\Service\TokenGeneratorInterface;
@@ -32,7 +32,7 @@ class ResettingService
         private readonly ResetPasswordHelperInterface $resetPasswordHelper,
         private readonly UserManager $userManager,
         private readonly RequestStack $requestStack,
-        private readonly LoggerInterface $logger
+        private readonly LoggerInterface $logger,
     ) {
     }
 

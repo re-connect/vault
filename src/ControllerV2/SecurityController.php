@@ -3,7 +3,7 @@
 namespace App\ControllerV2;
 
 use App\Domain\MFA\MfaCodeSender;
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\Security\VoterV2\BeneficiaryVoter;
 use App\ServiceV2\GdprService;
 use Symfony\Component\HttpFoundation\RedirectResponse;

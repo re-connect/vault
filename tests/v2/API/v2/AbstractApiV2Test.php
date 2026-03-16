@@ -2,7 +2,8 @@
 
 namespace App\Tests\v2\API\v2;
 
-use App\Entity\Attributes\Membre;
+use ApiPlatform\Symfony\Bundle\Test\Client as ApiPlatformClient;
+use App\Entity\Membre;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\API\v3\AbstractApiTest;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,7 +18,7 @@ abstract class AbstractApiV2Test extends AbstractApiTest
     protected function setUp(): void
     {
         parent::setUp();
-        $this->em = $this->client->getContainer()->get(EntityManagerInterface::class);
+        $this->em = $this->getContainer()->get(EntityManagerInterface::class);
     }
 
     public function generateUrl(string $url): string
@@ -25,24 +26,24 @@ abstract class AbstractApiV2Test extends AbstractApiTest
         return sprintf('%s%s?access_token=%s', self::BASE_URL, $url, $this->accessToken);
     }
 
-    public function loginAsMember($clientName = 'applimobile', $grantType = 'password'): Membre
+    public function loginAsMember(ApiPlatformClient $client, $clientName = 'applimobile', $grantType = 'password'): Membre
     {
-        $em = $this->client->getContainer()->get(EntityManagerInterface::class);
+        $em = $this->getContainer()->get(EntityManagerInterface::class);
         /** @var Client $client */
-        $client = $em->getRepository(Client::class)->findOneBy(['name' => $clientName]);
-        $member = $em->getRepository(Membre::class)->findByClientIdentifier($client->getIdentifier())[0];
+        $apiClient = $em->getRepository(Client::class)->findOneBy(['name' => $clientName]);
+        $member = $em->getRepository(Membre::class)->findByClientIdentifier($apiClient->getIdentifier())[0];
 
-        $this->client->request('GET', '/oauth/v2/token', ['json' => [
+        $client->request('GET', '/oauth/v2/token', ['json' => [
             'grant_type' => $grantType,
-            'client_id' => $client->getIdentifier(),
-            'client_secret' => $client->getSecret(),
+            'client_id' => $apiClient->getIdentifier(),
+            'client_secret' => $apiClient->getSecret(),
             'username' => $member->getUser()->getUsername(),
             'password' => UserFactory::STRONG_PASSWORD_CLEAR,
         ]]);
 
         $this->assertResponseStatusCodeSame(200);
 
-        $content = json_decode($this->client->getResponse()->getContent(), true);
+        $content = json_decode($client->getResponse()->getContent(), true);
         $this->accessToken = $content['access_token'];
 
         return $member;

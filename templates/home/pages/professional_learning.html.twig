@@ -1,0 +1,22 @@
+{% extends 'home/base.html.twig' %}
+    {% block title %}{{ 'home_meta_title_pro_learning'| trans }}{% endblock %}
+    {% block meta_title %}{{ 'home_meta_title_pro_learning'| trans }}{% endblock %}
+{% block body %}
+    {{ include('home/sections/professional_learning_section.html.twig') }}
+    {% for feature in features %}
+        {{ include ('home/sections/workshop_section.html.twig',
+            {
+                direction: loop.index is even ? 'row' : 'row-reverse',
+                bg_class: 'bg-light-eton-blue',
+                box_shadow: 'box-shadow-light-eton-blue',
+                feature
+            }) }}
+    {% endfor %}
+    {{ include('home/templates/product-is-template.html.twig', {section_title: 'pro_learning_is', product_is }) }}
+    {{ include('home/sections/testimonial_section.html.twig', { bg_class: 'bg-light-eton-blue', testimonials}) }}
+    {{ include('home/templates/contact-us-template.html.twig', {
+        bg_class: 'bg-eton-blue',
+        logo_file_name: 'watermark_pro_learning_white.png',
+        logo_alt: 'contact_us_alt_logo_reconnect'
+    }) }}
+{% endblock body %}

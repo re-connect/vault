@@ -2,7 +2,7 @@
 
 namespace App\Tests\v2\Manager\UserManager;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\ManagerV2\UserManager;
 use App\ServiceV2\Helper\PasswordHelper;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

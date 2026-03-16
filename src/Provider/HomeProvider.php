@@ -152,7 +152,7 @@ class HomeProvider
         ],
     ];
 
-    public const DIGITAL_CARES_FEATURES_CONTENT = [
+    public const DIGITAL_LABS_FEATURES_CONTENT = [
         [
             'title' => 'digital_cares_improve_reintegration_pathways_title',
             'text' => 'digital_cares_improve_reintegration_pathways_text',
@@ -191,7 +191,7 @@ class HomeProvider
         ],
     ];
 
-    public const DIGITAL_CARES_IS_CONTENT = [
+    public const DIGITAL_LABS_IS_CONTENT = [
         [
             'icon_file_name' => 'logo_digital_cares_like.png',
             'icon_alt' => 'digital_cares_appreciated_training_img_alt',
@@ -209,6 +209,71 @@ class HomeProvider
             'icon_alt' => 'digital_cares_knowledge_img_alt',
             'title' => 'digital_cares_knowledge_title',
             'text' => 'digital_cares_knowledge_text',
+        ],
+    ];
+
+    public const PRO_LEARNING_FEATURES_CONTENT = [
+        [
+            'title' => 'pro_learning_no_prerequisites_title',
+            'text' => 'pro_learning_no_prerequisites_text',
+            'img_fileName' => 'pro_learning_workshop_1.png',
+            'img_alt' => 'pro_learning_no_prerequisites_img_alt',
+            'is_mobile' => false,
+        ],
+        [
+            'title' => 'pro_learning_modular_pathways_title',
+            'text' => 'pro_learning_modular_pathways_text',
+            'img_fileName' => 'pro_learning_workshop_2.png',
+            'img_alt' => 'pro_learning_modular_pathways_img_alt',
+            'is_mobile' => false,
+        ],
+        [
+            'title' => 'pro_learning_short_formats_title',
+            'text' => 'pro_learning_short_formats_text',
+            'img_fileName' => 'pro_learning_workshop_3.png',
+            'img_alt' => 'pro_learning_short_formats_img_alt',
+            'is_mobile' => false,
+        ],
+        [
+            'title' => 'pro_learning_custom_title',
+            'text' => 'pro_learning_custom_text',
+            'is_mobile' => false,
+        ],
+    ];
+
+    public const PRO_LEARNING_IS_CONTENT = [
+        [
+            'icon_file_name' => 'logo_pro_learning_like.png',
+            'icon_alt' => 'pro_learning_satisfaction_rate_img_alt',
+            'title' => 'pro_learning_satisfaction_rate_title',
+            'text' => 'pro_learning_satisfaction_rate_text',
+        ],
+        [
+            'icon_file_name' => 'logo_pro_learning_student.png',
+            'icon_alt' => 'pro_learning_progress_rate_img_alt',
+            'title' => 'pro_learning_progress_rate_title',
+            'text' => 'pro_learning_progress_rate_text',
+        ],
+        [
+            'icon_file_name' => 'logo_pro_learning_knowledge.png',
+            'icon_alt' => 'pro_learning_reuse_rate_img_alt',
+            'title' => 'pro_learning_reuse_rate_title',
+            'text' => 'pro_learning_reuse_rate_text',
+        ],
+    ];
+
+    public const PRO_LEARNING_TESTIMONIALS_CONTENT = [
+        [
+            'author' => 'pro_learning_testimonial_1_author',
+            'content' => 'pro_learning_testimonial_1_content',
+        ],
+        [
+            'author' => 'pro_learning_testimonial_2_author',
+            'content' => 'pro_learning_testimonial_2_content',
+        ],
+        [
+            'author' => 'pro_learning_testimonial_3_author',
+            'content' => 'pro_learning_testimonial_3_content',
         ],
     ];
 }

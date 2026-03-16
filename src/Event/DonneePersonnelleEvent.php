@@ -2,8 +2,8 @@
 
 namespace App\Event;
 
-use App\Entity\Attributes\DonneePersonnelle;
-use App\Entity\Attributes\User;
+use App\Entity\DonneePersonnelle;
+use App\Entity\User;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class DonneePersonnelleEvent extends REEvent
@@ -14,27 +14,21 @@ class DonneePersonnelleEvent extends REEvent
     public const DONNEEPERSONNELLE_SETPRIVE = 4;
     public const DONNEEPERSONNELLE_SETPUBLIC = 5;
 
-    protected $donneePersonnelle;
-    protected $user;
-
-    public function __construct(DonneePersonnelle $donneePersonnelle, ?UserInterface $user = null, protected $type = null)
+    public function __construct(protected DonneePersonnelle $donneePersonnelle, protected ?UserInterface $user = null, protected $type = null)
     {
-        $this->donneePersonnelle = $donneePersonnelle;
-        $this->user = $user;
-
         $this->context = [
-            'user_id' => $donneePersonnelle->getBeneficiaire()->getUser()->getId(),
-            'by_user_id' => $user instanceof User ? $user->getId() : null,
-            'entity_id' => $donneePersonnelle->getId(),
+            'user_id' => $this->donneePersonnelle->getBeneficiaire()->getUser()->getId(),
+            'by_user_id' => $this->user instanceof User ? $this->user->getId() : null,
+            'entity_id' => $this->donneePersonnelle->getId(),
         ];
 
         $m = [];
-        if (preg_match('#\\\\([a-zA-Z]+)$#', $this->donneePersonnelle::class, $m)) {
+        if (preg_match('#\\\\([a-zA-Z]+)$#', (string) $this->donneePersonnelle::class, $m)) {
             $this->context['entity'] = $m[1];
         }
     }
 
-    public function getDonneePersonnelle()
+    public function getDonneePersonnelle(): DonneePersonnelle
     {
         return $this->donneePersonnelle;
     }

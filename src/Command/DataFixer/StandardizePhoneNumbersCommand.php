@@ -2,7 +2,7 @@
 
 namespace App\Command\DataFixer;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -24,7 +24,7 @@ class StandardizePhoneNumbersCommand extends Command
     }
 
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         $this->addOption('delete', 'd', InputOption::VALUE_NONE, 'Delete wrongly formatted numbers');
     }

@@ -3,19 +3,19 @@
 namespace App\Provider;
 
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Centre;
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\Contact;
-use App\Entity\Attributes\CreatorCentre;
-use App\Entity\Attributes\CreatorClient;
-use App\Entity\Attributes\CreatorUser;
-use App\Entity\Attributes\Document;
-use App\Entity\Attributes\DonneePersonnelle;
-use App\Entity\Attributes\Dossier;
-use App\Entity\Attributes\Evenement;
-use App\Entity\Attributes\Note;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\Centre;
+use App\Entity\Client;
+use App\Entity\Contact;
+use App\Entity\CreatorCentre;
+use App\Entity\CreatorClient;
+use App\Entity\CreatorUser;
+use App\Entity\Document;
+use App\Entity\DonneePersonnelle;
+use App\Entity\Dossier;
+use App\Entity\Evenement;
+use App\Entity\Note;
+use App\Entity\User;
 use App\Event\DonneePersonnelleEvent;
 use App\Event\REEvent;
 use App\Exception\JsonResponseException;
@@ -181,7 +181,7 @@ abstract class DonneePersonnelleProvider
         $this->em->flush();
     }
 
-    public function rename(DonneePersonnelle $donneePersonnelle, $newName)
+    public function rename(DonneePersonnelle $donneePersonnelle, $newName): string|array|null
     {
         if (false === $this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_EDIT, $donneePersonnelle)) {
             throw new AccessDeniedException($this->translator->trans('you_can_not_edit_personal_data'));
@@ -198,7 +198,7 @@ abstract class DonneePersonnelleProvider
         return $sanitizedString;
     }
 
-    public function sanitize($str, $charset = 'utf-8')
+    public function sanitize($str, $charset = 'utf-8'): string|array|null
     {
         $str = htmlentities((string) $str, ENT_NOQUOTES, $charset);
         $str = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
@@ -305,7 +305,7 @@ abstract class DonneePersonnelleProvider
     /**
      * @param Contact|Note|Evenement|Document|Dossier $entity
      */
-    public function populate($entity, Client $client): void
+    public function populate(DonneePersonnelle $entity, Client $client): void
     {
         $bPrive = filter_var($this->request->get('b_prive'), FILTER_VALIDATE_BOOLEAN);
         $entity

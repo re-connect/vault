@@ -4,16 +4,15 @@ namespace App\Controller\Api;
 
 use App\Api\Manager\ApiClientManager;
 use App\ControllerV2\AbstractController;
-use App\Entity\Attributes\Beneficiaire;
-use App\Entity\Attributes\Client;
-use App\Entity\Attributes\Document;
-use App\Entity\Attributes\Dossier;
-use App\Entity\Attributes\User;
+use App\Entity\Beneficiaire;
+use App\Entity\Client;
+use App\Entity\Dossier;
 use App\ManagerV2\DocumentManager;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\DossierRepository;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -26,14 +25,15 @@ final class UploadDocumentController extends AbstractController
     {
     }
 
-    public function __invoke(Request $request, DocumentManager $documentManager): ?Document
+    public function __invoke(Request $request, DocumentManager $documentManager): Response
     {
         $file = $this->getFile($request);
         $client = $this->getClient();
         $beneficiary = $this->getBeneficiary($request, $client);
         $folder = $this->getFolder($request, $beneficiary);
+        $document = $documentManager->uploadFile($file, $beneficiary, $folder);
 
-        return $documentManager->uploadFile($file, $beneficiary, $folder);
+        return $this->json($document, Response::HTTP_CREATED, [], ['groups' => 'document:read']);
     }
 
     private function getBeneficiary(Request $request, Client $client): Beneficiaire

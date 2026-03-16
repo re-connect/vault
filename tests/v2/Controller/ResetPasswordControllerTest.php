@@ -3,7 +3,7 @@
 namespace App\Tests\v2\Controller;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\RepositoryV2\ResetPasswordRequestRepository;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\AuthenticatedTestCase;

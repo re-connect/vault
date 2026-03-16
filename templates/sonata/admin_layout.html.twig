@@ -11,11 +11,9 @@
 {% endblock %}
 
 {% block logo %}
-    {% apply spaceless %}
         <a class="logo" href="{{ url('sonata_admin_dashboard') }}">
             <span>Reconnect<br/>{{ 'database'|trans }}</span>
         </a>
-    {% endapply %}
 {% endblock %}
 
 {% block sonata_top_nav_menu_add_block %}

@@ -5,7 +5,7 @@ namespace App\Api\State;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use App\Api\Manager\ApiClientManager;
-use App\Entity\Attributes\Beneficiaire;
+use App\Entity\Beneficiaire;
 
 readonly class BeneficiaryStateProvider implements ProviderInterface
 {

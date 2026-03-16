@@ -2,7 +2,7 @@
 
 namespace App\ControllerV2;
 
-use App\Entity\Attributes\User;
+use App\Entity\User;
 use App\Form\Type\LoginTypeV2;
 use App\Provider\CentreProvider;
 use App\Provider\HomeProvider;
@@ -31,7 +31,7 @@ class MainController extends AbstractController
     public function homeV2(
         Request $request,
         VerbatimRepository $verbatimRepository,
-        AuthenticationUtils $authenticationUtils
+        AuthenticationUtils $authenticationUtils,
     ): Response {
         if ($this->getUser()) {
             return $this->redirectToRoute('redirect_user');
@@ -44,7 +44,7 @@ class MainController extends AbstractController
     public function home(
         Request $request,
         VerbatimRepository $verbatimRepository,
-        AuthenticationUtils $authenticationUtils
+        AuthenticationUtils $authenticationUtils,
     ): Response {
         $form = $this->createForm(LoginTypeV2::class, null, [
             'action' => $this->generateUrl('re_main_login'),
@@ -86,12 +86,22 @@ class MainController extends AbstractController
         ]);
     }
 
-    #[Route('/reconnect-accompagnement-numerique', name: 'digital_cares')]
-    public function digitalCares(): Response
+    #[Route('/nos-ateliers-numeriques', name: 'digital_labs')]
+    public function digitalLabs(): Response
     {
-        return $this->render('home/pages/digital_cares.html.twig', [
-            'features' => HomeProvider::DIGITAL_CARES_FEATURES_CONTENT,
-            'product_is' => HomeProvider::DIGITAL_CARES_IS_CONTENT,
+        return $this->render('home/pages/digital_labs.html.twig', [
+            'features' => HomeProvider::DIGITAL_LABS_FEATURES_CONTENT,
+            'product_is' => HomeProvider::DIGITAL_LABS_IS_CONTENT,
+        ]);
+    }
+
+    #[Route('/nos-formations-pour-les-professionnels', name: 'pro_learning')]
+    public function proLearning(): Response
+    {
+        return $this->render('home/pages/professional_learning.html.twig', [
+            'features' => HomeProvider::PRO_LEARNING_FEATURES_CONTENT,
+            'product_is' => HomeProvider::PRO_LEARNING_IS_CONTENT,
+            'testimonials' => HomeProvider::PRO_LEARNING_TESTIMONIALS_CONTENT,
         ]);
     }
 
