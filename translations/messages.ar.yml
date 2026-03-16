@@ -116,8 +116,8 @@ cfn_vault_is_safe_alt_img: 'المعلومات بأمان'
 cfn_vault_is_safe_p: 'الخزانة الرقمية هي أداة أخلاقية وآمنة. تتوافق مع قانون حماية البيانات العامة العامة الأوروبي (GDPR). حماية بيانات المستخدمين الشخصية هي أولويتنا المطلقة.'
 cfn_vault_is_safe_title: 'المعلومات بأمان'
 cfn_vault_is_satisfying_alt_img: 'المحترفون يشعرون برضا كبير عن المواكبة'
-cfn_vault_is_satisfying_p: "المحترفون يشعرون برضا كبير عن المواكبة على استخدام الخزانة الرقمية في عام 2024"
-cfn_vault_is_satisfying_title: 96%
+cfn_vault_is_satisfying_p: "المحترفون يشعرون برضا كبير عن المواكبة على استخدام الخزانة الرقمية في عام 2025"
+cfn_vault_is_satisfying_title: 98%
 cfn_vault_is_title: "الخزانة الرقمية، هي"
 choose: اختار
 choose_beneficiary: اختيار المستفيد
@@ -191,11 +191,11 @@ date_period_start: 'تاريخ بدء الفترة'
 decline: رفض
 delete: حذف
 delete_your_account: 'اذا اردت الغاء حسابك انقر هنا'
-digital_care_is: "Ateliers numériques 2024 : vos retours en chiffres"
+digital_care_is: "Ateliers numériques 2025 : vos retours en chiffres"
 digital_cares: "L'accompagnement \n numérique"
 digital_cares_acquire_skills_img_alt: "Permet d'acquérir des compétences"
 digital_cares_acquire_skills_text: 'des participants estiment que les ateliers leur ont permis d’acquérir des compétences'
-digital_cares_acquire_skills_title: '98 %'
+digital_cares_acquire_skills_title: '99%'
 digital_cares_appreciated_training_img_alt: 'Formation appréciée'
 digital_cares_appreciated_training_text: 'des participants ont aimé la formation'
 digital_cares_appreciated_training_title: '99 %'
@@ -207,7 +207,7 @@ digital_cares_improve_reintegration_pathways_text: 'Les ateliers numériques s�
 digital_cares_improve_reintegration_pathways_title: 'Un accompagnement pour faciliter les parcours d’insertion'
 digital_cares_knowledge_img_alt: 'Permet de réaliser les actions apprises'
 digital_cares_knowledge_text: 'des participants se sentent capables de réaliser les actions apprises'
-digital_cares_knowledge_title: '97 %'
+digital_cares_knowledge_title: '98%'
 digital_cares_logo_alt: 'Logo des accompagnements numériques'
 digital_cares_participatory_content_img_alt: 'Contenus ludiques et participatifs'
 digital_cares_participatory_content_text: 'Nos ateliers contiennent une dimension théorique et pratique afin de faciliter l’assimilation des informations. Les sessions sont construites à l’aide d’une méthodologie « gamifiée » qui facilite l’attention et améliore l’attractivité. Nous portons une attention particulière à la mise en pratique immédiate des formations proposées.'
@@ -307,7 +307,7 @@ header_link_our_blog: 'Notre <span class="d-lg-block">blog</span>'
 health: Santé
 home_meta_desc: "Le numérique au service de l'inclusion et de l'action sociale"
 home_meta_title_contact: 'Reconnect - Nous contacter'
-home_meta_title_digital_cares: "Reconnect - L'accompagnement numérique"
+home_meta_title_digital_cares: "Reconnect - L'accompagnement numérique - Nos ateliers numériques"
 home_meta_title_rp: 'Reconnect - Le logiciel métier suivi social'
 home_meta_title_vault: 'Reconnect - Le coffre-fort numérique'
 home_our_solutions_CTA: 'En savoir plus'
@@ -510,8 +510,8 @@ rp_is_adaptable_alt_img: 'adaptable aux besoins'
 rp_is_adaptable_p: 'Le paramétrage permet de répondre aux besoins propres du fonctionnement de votre structure.'
 rp_is_adaptable_title: 'Adaptable à vos besoins'
 rp_is_satisfying_alt_img: 'Des professionnel.le.s très satisfait.e.s de l''accompagnement'
-rp_is_satisfying_p: "المحترفون يشعرون برضا كبير عن المواكبة المقدمة لاستخدام الخزانة الرقمية في عام 2024"
-rp_is_satisfying_title: 78%
+rp_is_satisfying_p: "المحترفون يشعرون برضا كبير عن المواكبة المقدمة لاستخدام الخزانة الرقمية في عام 2025"
+rp_is_satisfying_title: 76%
 rp_is_simple_alt_img: 'outil simple et agreable'
 rp_is_simple_p: "L'ergonomie a été particulièrement travaillée afin que la prise en main soit très simple et vous permette de vous concentrer sur l'accompagnement."
 rp_is_simple_title: 'Un outil simple et agréable'
@@ -708,3 +708,36 @@ digital_care: Accompagnement numérique
 download_pro_training_catalogue: حمّل كتالوجنا المخصص للمهنيين
 session_timeout: انتهت جلستك. يرجى تسجيل الدخول مرة أخرى.
 remember_two_factor_code: Ne plus me demander de code sur cet appareil pendant %daysNumber% jours
+header_link_digital_labs: Nos ateliers numériques
+header_link_pro_learning: Nos formations pour les professionnels
+home_meta_title_pro_learning: Reconnect - L'accompagnement numérique - Nos formations pour les professionnels
+pro_learning_no_prerequisites_title: Une formation adaptée à toutes et tous sans prérequis
+pro_learning_no_prerequisites_text: Nos formations sont conçues pour être accessibles à chacun.ne sans prérequis nécessaire. Cette approche permet à toutes les personnes, qu’elles soient en difficulté ou simplement peu familières avec le numérique, de se sentir légitimes et capables d’apprendre. <br><br> Nos formateur·rice·s, fort·e·s d’une solide expérience terrain, savent s’adapter à tous types de  freins pour créer un environnement d’apprentissage bienveillant, rassurant et stimulant.
+pro_learning_no_prerequisites_img_alt: Formation adaptée sans prérequis
+pro_learning_modular_pathways_title: Des parcours de formation modulables selon vos besoins
+pro_learning_modular_pathways_text: 'Chaque structure, chaque équipe, chaque métier a ses spécificités. C’est pourquoi nous proposons des parcours modulables, construits sur mesure en fonction de vos objectifs, de vos contraintes et du niveau des participant·e·s. Vous choisissez les thématiques : nous adaptons le parcours de formation pour qu’il soit utile, pertinent et immédiatement mobilisable.'
+pro_learning_modular_pathways_img_alt: Des parcours modulables
+pro_learning_short_formats_title: Des formats courts avec une prise en main immédiate
+pro_learning_short_formats_text: 'Nos formations sont pensées pour les professionnel·le·s de terrain, qui ont peu de temps à consacrer à la formation. En 1 journée, nous proposons des séquences courtes, dynamiques et pratiques, avec des mises en situation concrètes. L’objectif : une prise en main rapide, une montée en compétences efficace, et des acquis directement réutilisables dans le quotidien professionnel.'
+pro_learning_short_formats_img_alt: Formats courts, prise en main immédiate
+pro_learning_satisfaction_rate_title: 100%
+pro_learning_satisfaction_rate_text: des professionnels ont aimé la formation
+pro_learning_satisfaction_rate_img_alt: Satisfaction rate icon
+pro_learning_progress_rate_title: 79%
+pro_learning_progress_rate_text: des professionnels déclarent avoir beaucoup progressé grâce à notre accompagnement
+pro_learning_progress_rate_img_alt: Progress rate icon
+pro_learning_reuse_rate_title: 100%
+pro_learning_reuse_rate_text: réutilisent les acquis, dont 70% dès la fin de la formation
+pro_learning_reuse_rate_img_alt: Knowledge reuse rate icon
+pro_learning_is: 'Formation numérique 2025 : vos retours en chiffres'
+pro_learning_custom_title: Des créations sur mesure pour accompagner vos équipes dans la prise en main de vos outils métier
+pro_learning_custom_text: 'Vous utilisez des outils spécifiques dans votre structure ? Nous concevons des <b>formations sur mesure</b>, centrées sur vos logiciels ou vos plateformes. <br><br><b>Prenez rendez-vous avec notre équipe</b> : nous prenons le temps de <b>recueillir vos besoins</b>, de comprendre vos usages et vos contraintes, afin de concevoir une formation <b>personnalisée, opérationnelle et immédiatement utile</b> pour vos équipes.<br><br>Notre engagement : accompagner chaque personne, quel que soit son niveau ou ses freins, vers une utilisation sereine et efficace du numérique. Parce qu’une société inclusive, c’est une société où chacun.e a les mêmes chances d’accès à la connaissance et aux outils du quotidien.<br><br><b>Une formation certifiée Qualiopi.</b>'
+home_testimonial_title: Témoignages
+pro_learning_testimonial_1_author: Amy
+pro_learning_testimonial_1_content: '« Une formation très intéressante pour mon bien-être et celui de mon travail. »'
+pro_learning_testimonial_2_author: Severine
+pro_learning_testimonial_2_content: '« Formation intéressante lorsqu''on utilise difficilement Excel. »'
+pro_learning_testimonial_3_author: Maryse
+pro_learning_testimonial_3_content: '« La Formation a été formidable pour moi. La formatrice et le formateur étaient très à l''écoute. »'
+professional_digital_training: La formation numérique à destination des professionnels
+professional_digital_training_tagline: 'La solution pour se former au numérique autrement : accessible, inclusive et directement utile sur le terrain.'
