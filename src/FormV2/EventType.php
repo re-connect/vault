@@ -33,8 +33,13 @@ class EventType extends AbstractType
                 'data' => $event?->getId() ? $event->getDate() : (new \DateTime())->modify('+1 hour'),
             ])
             ->add('timezone', TimezoneType::class, [
-                'attr' => ['data-controller' => 'timezone'],
-                'row_attr' => ['class' => 'd-none'],
+                'attr' => [
+                    'data-controller' => 'timezone',
+                ],
+                'row_attr' => [
+                    'class' => 'd-none',
+                    'data-live-ignore' => true,
+                ],
             ])
             ->add('lieu', TextType::class, [
                 'label' => 'location',
