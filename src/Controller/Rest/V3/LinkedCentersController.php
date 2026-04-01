@@ -4,10 +4,10 @@ namespace App\Controller\Rest\V3;
 
 use App\Api\Manager\ApiClientManager;
 use App\ControllerV2\AbstractController;
-use App\Entity\Centre;
 use App\Repository\CentreRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 
 #[AsController]
@@ -17,14 +17,14 @@ final class LinkedCentersController extends AbstractController
         Request $request,
         ApiClientManager $apiClientManager,
         CentreRepository $repository,
-    ): ?Centre {
+    ): Response {
         try {
-            return $repository->findByDistantId(
+            return $this->json($repository->findByDistantId(
                 $request->attributes->getInt('id'),
                 $apiClientManager->getCurrentOldClient()?->getRandomId()
-            );
+            ), Response::HTTP_OK, [], ['groups' => ['v3:center:read']]);
         } catch (NonUniqueResultException) {
-            return null;
+            throw $this->createNotFoundException();
         }
     }
 }
