@@ -1,0 +1,16 @@
+meta {
+  name: Get Linked Centers
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v3/linked-centers/{id}
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
