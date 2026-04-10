@@ -63,9 +63,15 @@ class ImportNidusBeneficiariesCommand extends Command
 
     private function getBeneficiaryRecord(string $beneficiaryFilePath): array
     {
-        $csv = Reader::createFromPath($beneficiaryFilePath, 'r')->setHeaderOffset(0);
+        $csv = Reader::createFromPath($beneficiaryFilePath)->setHeaderOffset(0);
 
-        return (new Statement())->process($csv)->getIterator()->current();
+        $records = (new Statement())->process($csv);
+
+        foreach ($records as $record) {
+            return $record;
+        }
+
+        throw new \RuntimeException('Le fichier CSV est vide ou invalide.');
     }
 
     private function createBeneficiary(array $record): Beneficiaire
