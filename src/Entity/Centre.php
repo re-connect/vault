@@ -35,7 +35,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     shortName: 'center',
     operations: [
         new Get(security: "is_granted('ROLE_OAUTH2_CENTERS') or is_granted('VIEW', object)"),
-        new GetCollection(security: "is_granted('ROLE_OAUTH2_CENTERS') or is_granted('ROLE_USER')"),
+        new GetCollection(security: "is_granted('ROLE_USER')"),
         new GetCollection(
             uriTemplate: '/linked-centers/{id}',
             requirements: ['id' => '\d+'],
@@ -604,12 +604,12 @@ class Centre implements \JsonSerializable, \Stringable
     public function __clone()
     {
         if ($this->id) {
-            $this->adresse = clone $this->adresse;
-            $this->consultationsCentre = [];
-            $this->externalLinks = [];
-            $this->sms = [];
-            $this->statistiquesCentre = [];
-            $this->typeCentre = clone $this->typeCentre;
+            $this->adresse = $this->adresse ? clone $this->adresse : null;
+            $this->consultationsCentre = new ArrayCollection();
+            $this->externalLinks = new ArrayCollection();
+            $this->sms = new ArrayCollection();
+            $this->statistiquesCentre = new ArrayCollection();
+            $this->typeCentre = $this->typeCentre ? clone $this->typeCentre : null;
             $this->canada = true;
             $beneficiairesCentres = new ArrayCollection();
             foreach ($this->beneficiairesCentres as $beneficiairesCentre) {
