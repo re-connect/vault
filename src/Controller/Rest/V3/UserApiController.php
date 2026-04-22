@@ -27,19 +27,6 @@ class UserApiController extends AbstractController
         return $this->json($user, 200, [], ['groups' => ['v3:user:read']]);
     }
 
-    #[Route(path: '/me/switch-locale', methods: 'POST')]
-    public function switch(Request $request, EntityManagerInterface $em): JsonResponse
-    {
-        $newLocale = $request->request->get('locale');
-        $user = $this->getUser();
-        if ($user && $newLocale) {
-            $user->setLastLang($newLocale);
-            $em->flush();
-        }
-
-        return $this->json($user, 200, [], ['groups' => ['v3:user:read']]);
-    }
-
     #[Route(path: '/me/update_password', methods: ['POST'])]
     public function updatePassword(Request $request, UserManager $userManager, PasswordHelper $helper): JsonResponse
     {
