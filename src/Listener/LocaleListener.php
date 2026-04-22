@@ -17,7 +17,7 @@ class LocaleListener
     {
         $request = $event->getRequest();
 
-        if (!$request->hasPreviousSession()) {
+        if (!$request->hasPreviousSession() || str_starts_with($request->getPathInfo(), '/api')) {
             return;
         }
 

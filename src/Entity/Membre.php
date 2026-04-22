@@ -3,12 +3,6 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Delete;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
-use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
 use ApiPlatform\OpenApi\Model\Operation;
 use App\Repository\MembreRepository;
 use App\Validator\Constraints as CustomAssert;
@@ -26,7 +20,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\UniqueConstraint(name: 'UNIQ_F6B4FB29A76ED395', columns: ['user_id'])]
 #[ApiResource(
     shortName: 'pro',
-    operations: [new Get(), new GetCollection(), new Post(), new Put(), new Patch(), new Delete()],
+    // Right now we don't need any operations on this entity, so we don't expose it in the API.
+    operations: [],
     normalizationContext: ['groups' => ['v3:member:read', 'v3:user:read']],
     denormalizationContext: ['groups' => ['v3:member:write', 'v3:user:write']],
     openapi: new Operation(
