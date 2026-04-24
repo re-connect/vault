@@ -31,6 +31,7 @@ class EventType extends AbstractType
                 'widget' => 'single_text',
                 'minutes' => [0, 15, 30, 45],
                 'data' => $event?->getId() ? $event->getDate() : (new \DateTime())->modify('+1 hour'),
+                'mapped' => false,
             ])
             ->add('timezone', TimezoneType::class, [
                 'attr' => [
