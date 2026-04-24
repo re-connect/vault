@@ -72,10 +72,10 @@ jobs:
             -   name: Install and build frontend
                 run: yarn && yarn dev
             # —— Check frontend dependencies 🔒️ —————————————————————————————————————————————————————————
-#            -   name: Make script executable
-#                run: chmod +x ./yarn-security-checker.sh
-#            -   name: Check dependencies security issues
-#                run: ./yarn-security-checker.sh
+            -   name: Make script executable
+                run: chmod +x ./yarn-security-checker.sh
+            -   name: Check dependencies security issues
+                run: ./yarn-security-checker.sh
             # —— Run tests ✅ ———————————————————————————————————————————————————————————————————————————
             -   name: Load v1 fixtures
                 run: php bin/console doctrine:fixtures:load --env=test --group=v1 -n
