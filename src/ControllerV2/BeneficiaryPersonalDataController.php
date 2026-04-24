@@ -206,6 +206,7 @@ class BeneficiaryPersonalDataController extends AbstractController
         )->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $event->setDate($form->get('date')->getData());
             $em->persist($event);
             $em->flush();
             $this->addFlash('success', 'event_created');
