@@ -25,6 +25,7 @@ class EventController extends AbstractController
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $event->setDate($form->get('date')->getData());
             $manager->updateReminders($event);
             $this->addFlash('success', 'event_updated');
 
