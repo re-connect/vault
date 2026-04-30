@@ -25,7 +25,6 @@ class EventController extends AbstractController
         ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $event->setDate($form->get('date')->getData()->setTimezone(new \DateTimeZone($event->getTimezone())));
             $manager->updateReminders($event);
             $this->addFlash('success', 'event_updated');
 
