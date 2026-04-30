@@ -12,19 +12,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormError;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 
 class EventType extends AbstractType
 {
-    public function __construct(private readonly TranslatorInterface $translator)
-    {
-    }
-
     #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -72,16 +64,7 @@ class EventType extends AbstractType
                 'data' => $options['private'],
             ]
             )
-            ->addEventSubscriber(new TimezoneListener())
-            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-                $form = $event->getForm();
-                $date = $form->get('date')->getData();
-                $nowMinus12HoursUtc = (new \DateTime('now', new \DateTimeZone('UTC')))->modify('-12 hours -5 minutes');
-                if ($date && $date->setTimezone(new \DateTimeZone('UTC')) < $nowMinus12HoursUtc) {
-                    $form->get('date')
-                        ->addError(new FormError($this->translator->trans('event_outdated')));
-                }
-            });
+            ->addEventSubscriber(new TimezoneListener());
     }
 
     #[\Override]
