@@ -7,9 +7,12 @@ use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
+use Zenstruck\Foundry\Test\Factories;
 
 class RequestAccountDataTest extends AbstractControllerTest implements TestRouteInterface
 {
+    use Factories;
+
     private const URL = '/user/request-personal-account-data';
 
     public function provideTestRoute(): ?\Generator

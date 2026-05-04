@@ -9,9 +9,12 @@ use App\Tests\Factory\DocumentFactory;
 use App\Tests\Factory\FolderFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
+use Zenstruck\Foundry\Test\Factories;
 
 class TreeViewMoveTest extends AbstractControllerTest implements TestRouteInterface
 {
+    use Factories;
+
     private const URL = '/document/%d/tree-view-move';
 
     public function provideTestRoute(): ?\Generator

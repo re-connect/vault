@@ -10,11 +10,9 @@ use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\MembreFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Zenstruck\Foundry\Test\Factories;
 
 abstract class AbstractSmokeTest extends WebTestCase
 {
-    use Factories;
     protected ?Beneficiaire $beneficiary;
     protected ?Membre $professional;
 

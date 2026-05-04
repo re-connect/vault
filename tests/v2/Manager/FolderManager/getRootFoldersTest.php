@@ -8,9 +8,12 @@ use App\ManagerV2\FolderManager;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\FolderFactory;
 use App\Tests\v2\AuthenticatedKernelTestCase;
+use Zenstruck\Foundry\Test\Factories;
 
 class getRootFoldersTest extends AuthenticatedKernelTestCase
 {
+    use Factories;
+
     public function testBeneficiaryShouldGetAllRootFolders()
     {
         self::ensureKernelShutdown();

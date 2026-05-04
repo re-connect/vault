@@ -8,9 +8,12 @@ use App\Tests\v2\Controller\AbstractControllerTest;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Zenstruck\Foundry\Test\Factories;
 
 class AdminUserAdminTest extends AbstractControllerTest
 {
+    use Factories;
+
     private function createUserByRole(string $role): User
     {
         /** @var User $user */

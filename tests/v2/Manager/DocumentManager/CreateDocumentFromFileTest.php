@@ -20,9 +20,12 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Zenstruck\Foundry\Test\Factories;
 
 class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
 {
+    use Factories;
+
     private ?DocumentManager $manager;
     private Security|MockObject $securityMock;
 

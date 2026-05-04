@@ -11,9 +11,12 @@ use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Zenstruck\Foundry\Test\Factories;
 
 class RelaysTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
+    use Factories;
+
     private const URL = '/beneficiary/%s/affiliate/relays';
     private const FORM_VALUES = [
         'affiliate_beneficiary[relays][0]' => '',
