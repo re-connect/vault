@@ -30,3 +30,4 @@ api_platform:
         jsonld: ['application/ld+json']
     use_symfony_listeners: false
     inflector: api_platform.metadata.inflector
+    keep_legacy_inflector: false
