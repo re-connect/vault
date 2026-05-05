@@ -124,7 +124,7 @@ class Evenement extends DonneePersonnelle
         return new \DateTime($date->format('Y-m-d H:i:s'), new \DateTimeZone($timezone));
     }
 
-    public function setDate(\DateTime $date): static
+    public function setDate(?\DateTime $date): static
     {
         if (null !== $date) {
             $this->date = $date;
