@@ -17,7 +17,7 @@ class getRootFoldersTest extends AuthenticatedKernelTestCase
     public function testBeneficiaryShouldGetAllRootFolders()
     {
         self::ensureKernelShutdown();
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $this->loginUser(BeneficiaryFixture::BENEFICIARY_MAIL);
         $manager = static::getContainer()->get(FolderManager::class);
         $this->assertEquals($beneficiary->getRootFolders(), $manager->getRootFolders($beneficiary));
@@ -26,7 +26,7 @@ class getRootFoldersTest extends AuthenticatedKernelTestCase
     public function testMemberShouldGetSharedRootFoldersOnly()
     {
         self::ensureKernelShutdown();
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         // Ensure beneficiary has at least 1 private folder for test purpose
         FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true]);
         $this->loginUser(MemberFixture::MEMBER_MAIL);

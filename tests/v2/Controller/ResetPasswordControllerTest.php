@@ -29,7 +29,7 @@ class ResetPasswordControllerTest extends AuthenticatedTestCase
         $this->client = static::createClient();
         $this->container = self::getContainer();
         $this->em = $this->container->get(EntityManagerInterface::class);
-        $this->user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL])->object();
+        $this->user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL])->_real();
         $this->resetPasswordRequestRepository = $this->container->get(ResetPasswordRequestRepository::class);
         $this->passwordHasher = $this->container->get(UserPasswordHasherInterface::class);
     }

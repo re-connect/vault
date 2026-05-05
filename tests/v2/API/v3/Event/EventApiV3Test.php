@@ -15,7 +15,7 @@ class EventApiV3Test extends AbstractApiTest
      */
     public function testGetCollection(string $clientName): void
     {
-        $client = ClientFactory::find(['nom' => $clientName])->object();
+        $client = ClientFactory::find(['nom' => $clientName])->_real();
         $beneficiaries = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId());
         $eventCounts = 0;
         foreach ($beneficiaries as $beneficiary) {
@@ -91,7 +91,7 @@ class EventApiV3Test extends AbstractApiTest
         $event = EventFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->object();
+        ])->_real();
 
         $this->assertEndpoint(
             $clientName,
@@ -120,7 +120,7 @@ class EventApiV3Test extends AbstractApiTest
         $event = EventFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->object();
+        ])->_real();
 
         $this->assertEndpointAccessIsDenied(
             $clientName,
@@ -227,7 +227,7 @@ class EventApiV3Test extends AbstractApiTest
         $event = EventFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->object();
+        ])->_real();
         $eventId = $event->getId();
 
         $this->assertEndpoint(
@@ -263,7 +263,7 @@ class EventApiV3Test extends AbstractApiTest
         $event = EventFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->object();
+        ])->_real();
         $eventId = $event->getId();
 
         $this->assertEndpointAccessIsDenied(
@@ -296,7 +296,7 @@ class EventApiV3Test extends AbstractApiTest
         $this->markTestSkipped('Event api ressource is currently disabled');
         $note = EventFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ])->object();
+        ])->_real();
 
         $updatedProperties = [
             'nom' => 'testNomPUT',
@@ -326,7 +326,7 @@ class EventApiV3Test extends AbstractApiTest
         $this->markTestSkipped('Event api ressource is currently disabled');
         $event = EventFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ])->object();
+        ])->_real();
 
         $updatedProperties = [
             'nom' => 'testNomPATCH',
@@ -356,7 +356,7 @@ class EventApiV3Test extends AbstractApiTest
         $this->markTestSkipped('Event api ressource is currently disabled');
         $event = EventFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ])->object();
+        ])->_real();
 
         $this->assertEndpoint(
             'rosalie',

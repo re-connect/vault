@@ -25,7 +25,7 @@ class ResetMfaRetryCount extends AbstractControllerTest implements TestRouteInte
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $url = sprintf($url, UserFactory::random()->object()->getId());
+        $url = sprintf($url, UserFactory::random()->_real()->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
 
@@ -40,18 +40,18 @@ class ResetMfaRetryCount extends AbstractControllerTest implements TestRouteInte
     public function testShouldResetMfaRetryCount(): void
     {
         $client = self::createClient();
-        $adminUser = UserFactory::findByEmail(AdminFixture::ADMIN_MAIL)->object();
+        $adminUser = UserFactory::findByEmail(AdminFixture::ADMIN_MAIL);
         $client->loginUser($adminUser);
 
         // User has 2 retry
-        $user = UserFactory::random()->object();
+        $user = UserFactory::random()->_real();
         $user->setMfaRetryCount(2);
         $this->getEntityManager()->flush();
-        self::assertEquals(2, UserFactory::find($user)->object()->getMfaRetryCount());
+        self::assertEquals(2, UserFactory::find($user)->_real()->getMfaRetryCount());
 
         // User has 0 retry after request
         $client->request('GET', sprintf(self::URL, $user->getId()));
         self::assertResponseRedirects();
-        self::assertEquals(0, UserFactory::find($user)->object()->getMfaRetryCount());
+        self::assertEquals(0, UserFactory::find($user)->_real()->getMfaRetryCount());
     }
 }

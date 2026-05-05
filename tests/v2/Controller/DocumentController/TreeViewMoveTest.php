@@ -36,14 +36,14 @@ class TreeViewMoveTest extends AbstractControllerTest implements TestRouteInterf
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
         $url = sprintf($url, $document->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $newDocument = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+            $newDocument = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
             $newUrl = sprintf(self::URL, $newDocument->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
         }
@@ -66,22 +66,22 @@ class TreeViewMoveTest extends AbstractControllerTest implements TestRouteInterf
         $clientTest->loginUser($user);
         $beneficiary = $user->getSubjectBeneficiaire();
 
-        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivateDoc])->object();
+        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivateDoc])->_real();
 
         // We access first folder link in the tree view, and access folderId
         $crawler = $clientTest->request('GET', sprintf(self::URL, $document->getId()));
         $treeViewMoveUri = $crawler->filter('ul.tree-list > li > a')->attr('href');
         $uriToArray = explode('/', $treeViewMoveUri);
         $folderId = end($uriToArray);
-        $folder = FolderFactory::find(['id' => $folderId])->object();
+        $folder = FolderFactory::find(['id' => $folderId])->_real();
 
         // We hydrate folder with desired visibility before moving document inside for test purposes
         $folder->setBprive($isPrivateFolder);
         $this->getEntityManager()->flush();
 
         $clientTest->request('GET', $treeViewMoveUri);
-        $document = DocumentFactory::find($document)->object();
-        $folder = FolderFactory::find($folder)->object();
+        $document = DocumentFactory::find($document)->_real();
+        $folder = FolderFactory::find($folder)->_real();
         self::assertSame($folder, $document->getDossier());
         self::assertEquals($shouldBePrivate, $document->getBPrive());
     }

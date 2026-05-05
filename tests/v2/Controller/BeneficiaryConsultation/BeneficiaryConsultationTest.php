@@ -20,8 +20,8 @@ class BeneficiaryConsultationTest extends AbstractControllerTest
         self::ensureKernelShutdown();
         $client = self::createClient();
 
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $proUser = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $proUser = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES);
         $client->loginUser($proUser);
         $repository = $this->getEntityManager()->getRepository(ConsultationBeneficiaire::class);
 

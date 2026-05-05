@@ -2,6 +2,7 @@
 
 namespace App\Tests\v2\Listener;
 
+use App\Entity\Beneficiaire;
 use App\Entity\Document;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\DocumentFactory;
@@ -37,7 +38,7 @@ class DocumentListenerTest extends KernelTestCase
         $document = DocumentFactory::createOne([
             'nom' => $dummyName,
             'extension' => $noExtension ? '' : 'pdf',
-        ])->object();
+        ])->_real();
 
         $noExtension
             ? self::assertTrue('dummy_pdf' === $document->getNom())
@@ -54,11 +55,13 @@ class DocumentListenerTest extends KernelTestCase
      */
     public function testFileNameSanitizationOnCreate(string $originalName, string $expectedSanitizedName, bool $noExtension = false): void
     {
+        /** @var Beneficiaire $beneficiaire */
+        $beneficiaire = BeneficiaireFactory::random()->_real();
         $document = (new Document())
             ->setNom($originalName)
             ->setTaille(100)
             ->setExtension($noExtension ? '' : 'pdf')
-            ->setBeneficiaire(BeneficiaireFactory::random()->object());
+            ->setBeneficiaire($beneficiaire);
         $this->em->persist($document);
         $this->em->flush();
         $document = DocumentFactory::find($document);

@@ -75,7 +75,7 @@ abstract class AbstractApiTest extends ApiTestCase
 
     public function loginAsClient(Client $client, string $clientName, string $grantType = 'client_credentials'): void
     {
-        $apiClient = ClientFactory::find(['nom' => $clientName])->object();
+        $apiClient = ClientFactory::find(['nom' => $clientName]);
 
         $response = $client->request('POST', '/oauth/v2/token', ['json' => [
             'grant_type' => $grantType,
@@ -89,7 +89,7 @@ abstract class AbstractApiTest extends ApiTestCase
 
     public function getBeneficiaryForClient(string $clientName): Beneficiaire
     {
-        $client = ClientFactory::find(['nom' => $clientName])->object();
+        $client = ClientFactory::find(['nom' => $clientName]);
 
         return $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId())[0];
     }

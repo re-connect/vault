@@ -32,7 +32,7 @@ class SMSTest extends AbstractControllerTest implements TestRouteInterface
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $url = sprintf(self::URL, $beneficiary->getId());
 
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
@@ -41,12 +41,12 @@ class SMSTest extends AbstractControllerTest implements TestRouteInterface
     public function testResetPasswordRequestIsSend(): void
     {
         $client = self::createClient();
-        $client->loginUser(MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES)->object()->getUser());
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $client->loginUser(MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES)->_real()->getUser());
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $client->request('GET', sprintf(self::URL, $beneficiary->getId()));
 
         // Check request is created with correct user
-        $resetPasswordRequest = ResetPasswordRequestFactory::last()->object();
+        $resetPasswordRequest = ResetPasswordRequestFactory::last()->_real();
         self::assertEquals($beneficiary->getUser()->getId(), $resetPasswordRequest->getUser()->getId());
 
         // Check that password request is SMS request

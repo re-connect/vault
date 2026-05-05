@@ -38,7 +38,7 @@ class RequestAccountDataTest extends AbstractControllerTest implements TestRoute
     public function testEmailIsSend(): void
     {
         $client = self::createClient();
-        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $client->loginUser($user);
         $client->request('GET', self::URL);
 
@@ -53,7 +53,7 @@ class RequestAccountDataTest extends AbstractControllerTest implements TestRoute
     public function testBeneficiaryNeedsEmailOrTelephoneToSendRequest(bool $isSent, ?string $email, ?string $phone): void
     {
         $client = self::createClient();
-        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $client->loginUser($user);
 
         $user->setTelephone($phone)->setEmail($email);

@@ -32,15 +32,15 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false]);
         $url = sprintf($url, $contact->getId());
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : '';
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $privateContact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+            $privateContact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true]);
             $newUrl = sprintf(self::URL, $privateContact->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method);
         }

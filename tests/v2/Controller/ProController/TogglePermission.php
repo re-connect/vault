@@ -26,8 +26,8 @@ class TogglePermission extends AbstractControllerTest implements TestRouteInterf
     /** @dataProvider provideTestRoute */
     public function testRoute(string $url, int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = null, string $method = 'GET', bool $isXmlHttpRequest = false, array $body = []): void
     {
-        $randomPro = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL)->object();
-        $authorizedPro = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER)->object();
+        $randomPro = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL)->_real();
+        $authorizedPro = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER)->_real();
 
         // Test with beneficiaryManagement
         $url = sprintf(self::URL, $randomPro->getId(), $authorizedPro->getAffiliatedRelaysWithProfessionalManagement()[0]->getId(), MembreCentre::MANAGE_BENEFICIARIES_PERMISSION);
@@ -51,7 +51,7 @@ class TogglePermission extends AbstractControllerTest implements TestRouteInterf
     {
         self::ensureKernelShutdown();
         $client = self::createClient();
-        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER)->object();
+        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER);
         $client->loginUser($user);
 
         // Request to pro list, with relay query param
@@ -59,7 +59,7 @@ class TogglePermission extends AbstractControllerTest implements TestRouteInterf
         $crawler = $client->request('GET', sprintf('/pro?relay=%s', $relay->getId()));
 
         // Fetch the first pro in list, check permissions
-        $userInList = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL)->object();
+        $userInList = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL);
         $userRelay = $userInList->getUserRelay($relay);
         $userPermissionBeforeUpdate = $userRelay->getDroits()[$permission];
 
@@ -85,7 +85,7 @@ class TogglePermission extends AbstractControllerTest implements TestRouteInterf
     {
         self::ensureKernelShutdown();
         $client = self::createClient();
-        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER)->object();
+        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER);
         $client->loginUser($user);
 
         // Test only for beneficiary management as pro list is unreachable without pro management permission
@@ -107,14 +107,14 @@ class TogglePermission extends AbstractControllerTest implements TestRouteInterf
     {
         self::ensureKernelShutdown();
         $client = self::createClient();
-        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER)->object();
+        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER);
         $client->loginUser($user);
 
         $testedPermission = MembreCentre::MANAGE_BENEFICIARIES_PERMISSION;
         $relay = $this->getRelayToTestNotOwnedPermission($user, $testedPermission);
 
         // Fetch pro from relay
-        $firstUserInList = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL)->object();
+        $firstUserInList = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL);
 
         // Can not update permission
         $client->request('GET', sprintf(self::URL, $firstUserInList->getSubjectMembre()->getId(), $relay->getId(), $testedPermission));

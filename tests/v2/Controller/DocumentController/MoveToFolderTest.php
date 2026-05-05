@@ -24,9 +24,9 @@ class MoveToFolderTest extends AbstractControllerTest implements TestRouteInterf
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $document = DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
-        $folder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $document = DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
+        $folder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
 
         $url = sprintf(
             $url,
@@ -38,8 +38,8 @@ class MoveToFolderTest extends AbstractControllerTest implements TestRouteInterf
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $newDocument = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
-            $newFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+            $newDocument = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
+            $newFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
             $newUrl = sprintf(
                 self::URL,
                 $newDocument->getId(),
@@ -65,10 +65,10 @@ class MoveToFolderTest extends AbstractControllerTest implements TestRouteInterf
         $clientTest->loginUser($user);
 
         $testedBeneficiary = $user->getSubjectBeneficiaire();
-        $randomBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS)->object();
+        $randomBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS);
 
-        $testedBeneficiaryDocument = DocumentFactory::createOne(['beneficiaire' => $testedBeneficiary, 'bPrive' => false])->object();
-        $randomBeneficiaryFolder = FolderFactory::createOne(['beneficiaire' => $randomBeneficiary])->object();
+        $testedBeneficiaryDocument = DocumentFactory::createOne(['beneficiaire' => $testedBeneficiary, 'bPrive' => false])->_real();
+        $randomBeneficiaryFolder = FolderFactory::createOne(['beneficiaire' => $randomBeneficiary])->_real();
 
         // Tested beneficiary tries to move document inside random beneficiarie's folder
         $clientTest->request('GET', sprintf(self::URL, $testedBeneficiaryDocument->getId(), $randomBeneficiaryFolder->getId()));
@@ -92,12 +92,12 @@ class MoveToFolderTest extends AbstractControllerTest implements TestRouteInterf
         $beneficiary = $user->getSubjectBeneficiaire();
 
         // Document and destination folder have different visibility
-        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivateDoc])->object();
-        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivateFolder])->object();
+        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivateDoc])->_real();
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivateFolder])->_real();
 
         $clientTest->request('GET', sprintf(self::URL, $document->getId(), $folder->getId()));
-        $document = DocumentFactory::find($document)->object();
-        $folder = FolderFactory::find($folder)->object();
+        $document = DocumentFactory::find($document)->_real();
+        $folder = FolderFactory::find($folder)->_real();
 
         self::assertEquals($folder->getId(), $document->getDossier()->getId());
         self::assertEquals($shouldBePrivate, $document->getBprive());

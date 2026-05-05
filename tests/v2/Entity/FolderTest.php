@@ -74,7 +74,7 @@ class FolderTest extends AbstractEntityTest
 
     public function getValidEntity(): Dossier
     {
-        $beneficiary = BeneficiaireFactory::random()->object();
+        $beneficiary = BeneficiaireFactory::random()->_real();
 
         return (new Dossier())->setNom('folder_test')->setBeneficiaire($beneficiary);
     }

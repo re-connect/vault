@@ -13,7 +13,7 @@ class FolderApiV3Test extends AbstractApiTest
      */
     public function testGetCollection(string $clientName): void
     {
-        $client = ClientFactory::find(['nom' => $clientName])->object();
+        $client = ClientFactory::find(['nom' => $clientName])->_real();
         $beneficiaries = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId());
         $foldersCount = 0;
         foreach ($beneficiaries as $beneficiary) {
@@ -109,7 +109,7 @@ class FolderApiV3Test extends AbstractApiTest
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
             'nom' => 'Folder with documents',
-        ])->object();
+        ])->_real();
 
         // Check that only public documents are returned
         $publicDocuments = [];
@@ -153,7 +153,7 @@ class FolderApiV3Test extends AbstractApiTest
         $folder = FolderFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->object();
+        ])->_real();
 
         $this->assertEndpointAccessIsDenied(
             $clientName,
@@ -263,7 +263,7 @@ class FolderApiV3Test extends AbstractApiTest
         $folder = FolderFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->object();
+        ])->_real();
         $folderId = $folder->getId();
 
         $this->assertEndpoint(
@@ -298,7 +298,7 @@ class FolderApiV3Test extends AbstractApiTest
         $folder = FolderFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->object();
+        ])->_real();
         $folderId = $folder->getId();
 
         $this->assertEndpointAccessIsDenied(

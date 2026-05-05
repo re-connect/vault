@@ -36,8 +36,8 @@ class RenameTest extends AbstractControllerTest implements TestRouteInterface, T
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
 
         $url = sprintf($url, $document->getId());
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : '';
@@ -45,7 +45,7 @@ class RenameTest extends AbstractControllerTest implements TestRouteInterface, T
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $newDocument = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+            $newDocument = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
             $newUrl = sprintf(self::URL, $newDocument->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
         }
@@ -54,7 +54,7 @@ class RenameTest extends AbstractControllerTest implements TestRouteInterface, T
     /**  @dataProvider provideTestFormIsValid */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $document = $beneficiary->getDocuments()[0];
         $url = sprintf($url, $document->getId());
         $redirectUrl = $document->hasParentFolder() ? sprintf('/folder/%s', $document->getDossier()->getId()) : sprintf('/beneficiary/%s/documents', $beneficiary->getId());
@@ -80,7 +80,7 @@ class RenameTest extends AbstractControllerTest implements TestRouteInterface, T
      */
     public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $url = sprintf($url, $beneficiary->getDocuments()[0]->getId());
         $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email);
     }

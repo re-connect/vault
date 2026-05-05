@@ -25,7 +25,7 @@ class AuthenticatedKernelTestCase extends KernelTestCase
 
     protected function getTestUserFromDb(string $email): User
     {
-        return UserFactory::find(['email' => $email])->object();
+        return UserFactory::find(['email' => $email])->_real();
     }
 
     protected function getPrivateMethod(string $className, string $method): \ReflectionMethod

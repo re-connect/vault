@@ -17,12 +17,12 @@ class MailerServiceTest extends WebTestCase
         // We create 2 users with duplicate firstname and lastname
         $user = UserFactory::createOne([
             'typeUser' => $typeUser,
-        ])->object();
+        ])->_real();
         $duplicatedUser = UserFactory::createOne([
             'prenom' => $user->getPrenom(),
             'nom' => $user->getNom(),
             'typeUser' => $typeUser,
-        ])->object();
+        ])->_real();
 
         $email = $this->getMailerMessage();
         if (User::USER_TYPE_BENEFICIAIRE === $typeUser) {
@@ -41,10 +41,10 @@ class MailerServiceTest extends WebTestCase
         // We create 2 users with different information
         UserFactory::createOne([
             'typeUser' => $typeUser,
-        ])->object();
+        ])->_real();
         UserFactory::createOne([
             'typeUser' => $typeUser,
-        ])->object();
+        ])->_real();
 
         $email = $this->getMailerMessage();
         self::assertNull($email);
