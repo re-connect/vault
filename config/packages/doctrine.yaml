@@ -24,6 +24,8 @@ doctrine:
         dql:
             string-functions:
                 binary: DoctrineExtensions\Query\Mysql\Binary
+        controller_resolver:
+            auto_mapping: false
 
 when@test:
     doctrine:

@@ -42,7 +42,7 @@ class EventFactory extends ModelFactory
             'date' => new \DateTime('tomorrow'),
             'createdAt' => new \DateTime('now'),
             'updatedAt' => new \DateTime('now'),
-            'beneficiaire' => BeneficiaireFactory::randomOrCreate()->object(),
+            'beneficiaire' => BeneficiaireFactory::randomOrCreate()->_real(),
         ];
     }
 

@@ -23,27 +23,36 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class UserSimpleAdmin extends AbstractAdmin
 {
     use UserAwareTrait;
     private EntityManagerInterface $entityManager;
-
-    public function __construct(
-        ?string $code = null,
-        ?string $class = null,
-        ?string $baseControllerName = null,
-        ?Security $security = null,
-        private readonly ?RouterInterface $router = null,
-        private readonly ?FeatureFlagChecker $featureFlagChecker = null,
-    ) {
-        $this->security = $security;
-        parent::__construct($code, $class, $baseControllerName);
-    }
+    private RouterInterface $router;
+    private FeatureFlagChecker $featureFlagChecker;
 
     public function setEntityManager(EntityManagerInterface $entityManager): void
     {
         $this->entityManager = $entityManager;
+    }
+
+    #[Required]
+    public function setSecurity(Security $security): void
+    {
+        $this->security = $security;
+    }
+
+    #[Required]
+    public function setRouter(RouterInterface $router): void
+    {
+        $this->router = $router;
+    }
+
+    #[Required]
+    public function setFeatureFlagChecker(FeatureFlagChecker $featureFlagChecker): void
+    {
+        $this->featureFlagChecker = $featureFlagChecker;
     }
 
     #[\Override]

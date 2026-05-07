@@ -41,7 +41,7 @@ class FolderFactory extends ModelFactory
             'nom' => self::faker()->text(),
             'createdAt' => new \DateTime('now'),
             'updatedAt' => new \DateTime('now'),
-            'beneficiaire' => BeneficiaireFactory::randomOrCreate()->object(),
+            'beneficiaire' => BeneficiaireFactory::randomOrCreate()->_real(),
         ];
     }
 

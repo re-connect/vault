@@ -42,7 +42,7 @@ class SanitizeNoteContentListenerTest extends AuthenticatedKernelTestCase
      */
     public function testSanitizeNoteOnCreate(string $content, ?string $updatedContent = null): void
     {
-        $note = NoteFactory::createOne(['contenu' => $content])->object();
+        $note = NoteFactory::createOne(['contenu' => $content])->_real();
 
         self::assertEquals($updatedContent ?? $content, $note->getContenu());
     }
@@ -52,7 +52,7 @@ class SanitizeNoteContentListenerTest extends AuthenticatedKernelTestCase
      */
     public function testSanitizeNoteOnUpdate(string $content, ?string $updatedContent = null): void
     {
-        $note = NoteFactory::createOne()->object();
+        $note = NoteFactory::createOne()->_real();
 
         $note->setContenu($content);
         $this->em->flush();

@@ -17,7 +17,7 @@ abstract class AbstractLogActivityListenerTest extends AuthenticatedKernelTestCa
         self::ensureKernelShutdown();
         $this->logDir = sprintf('%s/activity_test', $this->getContainer()->get('kernel')->getLogDir());
 
-        $this->loggedUser = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL)->object()->getUser();
+        $this->loggedUser = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL)->_real()->getUser();
         $this->loginUser(MemberFixture::MEMBER_MAIL);
     }
 

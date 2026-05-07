@@ -62,9 +62,9 @@ final class BeneficiaireFactory extends ModelFactory
         return Beneficiaire::class;
     }
 
-    public static function findByEmail(string $email): Beneficiaire|Proxy
+    public static function findByEmail(string $email): Beneficiaire
     {
-        return BeneficiaireFactory::find(['user' => UserFactory::find(['email' => $email])]);
+        return BeneficiaireFactory::find(['user' => UserFactory::find(['email' => $email])])->_real();
     }
 
     /** @param array<Centre> $centres */

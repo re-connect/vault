@@ -15,7 +15,7 @@ class ContactApiV3Test extends AbstractApiTest
      */
     public function testGetCollection(string $clientName): void
     {
-        $client = ClientFactory::find(['nom' => $clientName])->object();
+        $client = ClientFactory::find(['nom' => $clientName])->_real();
         $beneficiaries = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId());
         $contactsCount = 0;
         foreach ($beneficiaries as $beneficiary) {
@@ -89,7 +89,7 @@ class ContactApiV3Test extends AbstractApiTest
         $beneficiary = $this->getBeneficiaryForClient($clientName);
         $contact = ContactFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
-        ])->object();
+        ])->_real();
 
         $this->assertEndpoint(
             $clientName,
@@ -117,7 +117,7 @@ class ContactApiV3Test extends AbstractApiTest
         $beneficiary = $this->getBeneficiaryForClient($clientName);
         $contact = ContactFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
-        ])->object();
+        ])->_real();
 
         $this->assertEndpointAccessIsDenied(
             $clientName,
@@ -228,7 +228,7 @@ class ContactApiV3Test extends AbstractApiTest
         $contact = ContactFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->object();
+        ])->_real();
         $contactId = $contact->getId();
 
         $this->assertEndpoint(
@@ -263,7 +263,7 @@ class ContactApiV3Test extends AbstractApiTest
         $contact = ContactFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->object();
+        ])->_real();
         $contactId = $contact->getId();
 
         $this->assertEndpointAccessIsDenied(
@@ -296,7 +296,7 @@ class ContactApiV3Test extends AbstractApiTest
         $this->markTestSkipped('Contact api ressource is currently disabled');
         $contact = ContactFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ])->object();
+        ])->_real();
 
         $updatedProperties = [
             'nom' => 'testNomPATCH',
@@ -325,7 +325,7 @@ class ContactApiV3Test extends AbstractApiTest
         $this->markTestSkipped('Contact api ressource is currently disabled');
         $contact = ContactFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ])->object();
+        ])->_real();
 
         $this->assertEndpoint(
             'rosalie',

@@ -80,8 +80,8 @@ final class UserFactory extends ModelFactory
         return User::class;
     }
 
-    public static function findByEmail(string $email): User|Proxy
+    public static function findByEmail(string $email): User
     {
-        return UserFactory::find(['email' => $email]);
+        return UserFactory::find(['email' => $email])->_real();
     }
 }

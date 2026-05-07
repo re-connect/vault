@@ -19,7 +19,7 @@ class DisaffiliateTest extends AbstractControllerTest
         ?string $expectedRedirect = null,
         string $method = 'GET',
     ): void {
-        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $url = sprintf($url, $user->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
@@ -40,7 +40,7 @@ class DisaffiliateTest extends AbstractControllerTest
         ?string $expectedRedirect = null,
         string $method = 'GET',
     ): void {
-        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL)->object();
+        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL);
         $url = sprintf($url, $user->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
@@ -55,7 +55,7 @@ class DisaffiliateTest extends AbstractControllerTest
 
     public function testDisaffiliateAjaxCall(): void
     {
-        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL)->object();
+        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL);
         $relays = $user->getCentres();
         $relaysCount = count($relays);
         $url = sprintf('/user/%s/relay/%s/disaffiliate', $user->getId(), $relays[0]->getId());

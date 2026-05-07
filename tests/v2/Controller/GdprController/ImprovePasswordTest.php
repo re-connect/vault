@@ -203,7 +203,7 @@ class ImprovePasswordTest extends AbstractControllerTest implements TestRouteInt
 
     public function testUpdatePasswordHydrateUser(): void
     {
-        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_PASSWORD_WEAK)->object();
+        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_PASSWORD_WEAK);
 
         self::assertFalse($user->hasPasswordWithLatestPolicy());
 
@@ -218,6 +218,6 @@ class ImprovePasswordTest extends AbstractControllerTest implements TestRouteInt
             '/user/redirect-user/',
         );
 
-        self::assertTrue(UserFactory::find($user)->object()->hasPasswordWithLatestPolicy());
+        self::assertTrue(UserFactory::find($user)->_real()->hasPasswordWithLatestPolicy());
     }
 }

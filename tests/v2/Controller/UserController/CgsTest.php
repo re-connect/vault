@@ -46,14 +46,14 @@ class CgsTest extends AbstractControllerTest implements TestRouteInterface, Test
     /** @dataProvider provideTestFormIsValid */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
-        $user = UserFactory::findByEmail($email)->object();
+        $user = UserFactory::findByEmail($email);
         // Check that use has not accpted terms of use
         self::assertTrue($user->isFirstVisit());
         self::assertNull($user->getCgsAcceptedAt());
 
         $this->assertFormIsValid($url, $formSubmit, $values, $email, $redirectUrl);
 
-        $user = UserFactory::findByEmail($email)->object();
+        $user = UserFactory::findByEmail($email);
         // Then check that user has accepted terms of use
         $this->assertNotNull($user->getCgsAcceptedAt());
         // Check if first visit process is over

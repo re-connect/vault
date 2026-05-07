@@ -41,7 +41,7 @@ class NoteFactory extends ModelFactory
             'nom' => self::faker()->text(),
             'contenu' => self::faker()->text(),
             'updatedAt' => new \DateTime('now'),
-            'beneficiaire' => BeneficiaireFactory::randomOrCreate()->object(),
+            'beneficiaire' => BeneficiaireFactory::randomOrCreate()->_real(),
         ];
     }
 

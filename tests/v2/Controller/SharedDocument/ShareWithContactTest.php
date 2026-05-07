@@ -33,9 +33,9 @@ class ShareWithContactTest extends AbstractControllerTest implements TestRouteIn
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
-        $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'email' => 'test@yopmail.com'])->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
+        $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'email' => 'test@yopmail.com'])->_real();
 
         $url = sprintf($url, $document->getId(), $contact->getId());
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : '';
@@ -48,11 +48,11 @@ class ShareWithContactTest extends AbstractControllerTest implements TestRouteIn
     public function testSendEmailToContact(string $email): void
     {
         $clientTest = static::createClient();
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $clientTest->loginUser($beneficiary->getUser());
 
-        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary])->object();
-        $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'email' => $email])->object();
+        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary])->_real();
+        $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'email' => $email])->_real();
 
         $clientTest->request('GET', sprintf(self::URL, $document->getId(), $contact->getId()));
         $this->assertEmailCount($email ? 1 : 0);

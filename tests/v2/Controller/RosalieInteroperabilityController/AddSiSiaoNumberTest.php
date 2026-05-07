@@ -21,14 +21,14 @@ class AddSiSiaoNumberTest extends AbstractControllerTest
     /** @dataProvider provideTestRoute */
     public function testRoute(int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = '', string $method = 'GET'): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
 
         $this->assertRoute($this->buildUrlString(self::URL, [$beneficiary->getId()]), $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
 
     public function testTemplateContainsTextAndForm(): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
 
         $client = $this->assertRoute($this->buildUrlString(self::URL, [$beneficiary->getId()]), 200, MemberFixture::MEMBER_MAIL);
 

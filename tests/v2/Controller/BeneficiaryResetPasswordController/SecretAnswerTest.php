@@ -36,7 +36,7 @@ class SecretAnswerTest extends AbstractControllerTest implements TestRouteInterf
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $url = sprintf(self::URL, $beneficiary->getId());
 
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
@@ -45,7 +45,7 @@ class SecretAnswerTest extends AbstractControllerTest implements TestRouteInterf
     /**  @dataProvider provideTestFormIsValid */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $url = sprintf(self::URL, $beneficiary->getId());
         $values['reset_password_secret_answer[secretAnswer]'] = $beneficiary->getReponseSecrete();
 
@@ -72,7 +72,7 @@ class SecretAnswerTest extends AbstractControllerTest implements TestRouteInterf
      */
     public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $url = sprintf(self::URL, $beneficiary->getId());
 
         $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email, $alternateSelector);

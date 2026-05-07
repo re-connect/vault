@@ -20,9 +20,12 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Zenstruck\Foundry\Test\Factories;
 
 class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
 {
+    use Factories;
+
     private ?DocumentManager $manager;
     private Security|MockObject $securityMock;
 
@@ -70,7 +73,7 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
         bool $visibility,
     ): void {
         self::ensureKernelShutdown();
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $this->loginUser($userMail);
 
         $file = $this->getDummyFile();
@@ -107,10 +110,10 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
         bool $visibility,
     ): void {
         self::ensureKernelShutdown();
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $this->loginUser($userMail);
 
-        $sharedFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        $sharedFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
         $file = $this->getDummyFile();
         $this->securityMock->method('getUser')->willReturn($this->getTestUserFromDb($userMail));
         $document = $this->getPrivateMethod(DocumentManager::class, 'createDocumentFromFile')->invokeArgs(
@@ -129,10 +132,10 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
     public function testUploadVisibilityPrivateFolder(): void
     {
         self::ensureKernelShutdown();
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $this->loginUser(BeneficiaryFixture::BENEFICIARY_MAIL);
 
-        $privateFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+        $privateFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
         $file = $this->getDummyFile();
         $this->securityMock->method('getUser')->willReturn($this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL));
         $document = $this->getPrivateMethod(DocumentManager::class, 'createDocumentFromFile')->invokeArgs(

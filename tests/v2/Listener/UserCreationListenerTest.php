@@ -37,7 +37,7 @@ class UserCreationListenerTest extends AuthenticatedTestCase
     public function testShouldFormatBeneficiaryUsername(): void
     {
         // Test standard username
-        $beneficiary = BeneficiaireFactory::createOne()->object();
+        $beneficiary = BeneficiaireFactory::createOne()->_real();
         $user = $beneficiary->getUser();
         $expectedUsername = strtolower(
             sprintf(
@@ -72,7 +72,7 @@ class UserCreationListenerTest extends AuthenticatedTestCase
     public function testShouldFormatProUsername(): void
     {
         // Test standard username
-        $pro = MembreFactory::createOne()->object();
+        $pro = MembreFactory::createOne()->_real();
         $user = $pro->getUser();
         $expectedUsername = strtolower(
             sprintf(
@@ -105,7 +105,7 @@ class UserCreationListenerTest extends AuthenticatedTestCase
     /** @dataProvider provideTestTriggerListener */
     public function testShouldTriggerListener(string $userMail): void
     {
-        $user = UserFactory::findByEmail($userMail)->object();
+        $user = UserFactory::findByEmail($userMail);
         $baseUsername = $user->getUsername();
 
         $user->setNom('nom');
@@ -130,7 +130,7 @@ class UserCreationListenerTest extends AuthenticatedTestCase
     /** @dataProvider provideTestTriggerListener */
     public function testShouldNotTriggerListener(string $userMail): void
     {
-        $user = UserFactory::findByEmail($userMail)->object();
+        $user = UserFactory::findByEmail($userMail);
         $baseUsername = $user->getUsername();
         $user
             ->setEnabled(!$user->isEnabled())
@@ -142,7 +142,7 @@ class UserCreationListenerTest extends AuthenticatedTestCase
             ->setEmail('dummymail@mail.com')
             ->setLastLang('dd')
             ->setDisabledAt(new \DateTime())
-            ->setDisabledBy(UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object())
+            ->setDisabledBy(UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS))
             ->setTest(!$user->isTest())
             ->setCanada($user->isCanada());
         $this->em->flush();
@@ -161,7 +161,7 @@ class UserCreationListenerTest extends AuthenticatedTestCase
     /** @dataProvider providePhoneNumbers */
     public function testShouldFormatUserPhoneNumber(string $phoneNumber, string $expectedResult): void
     {
-        $user = UserFactory::createOne(['telephone' => $phoneNumber])->object();
+        $user = UserFactory::createOne(['telephone' => $phoneNumber])->_real();
         $this->assertEquals($expectedResult, $user->getTelephone());
     }
 

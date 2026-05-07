@@ -42,7 +42,7 @@ final class ContactFactory extends ModelFactory
             'createdAt' => new \DateTime('now'),
             'updatedAt' => new \DateTime('now'),
             'prenom' => self::faker()->firstName(),
-            'beneficiaire' => BeneficiaireFactory::randomOrCreate()->object(),
+            'beneficiaire' => BeneficiaireFactory::randomOrCreate()->_real(),
         ];
     }
 

@@ -110,14 +110,14 @@ class EditTest extends AbstractControllerTest implements TestRouteInterface, Tes
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
         $url = sprintf($url, $contact->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $privateContact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+            $privateContact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
             $newUrl = sprintf(self::URL, $privateContact->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method);
         }
@@ -126,7 +126,7 @@ class EditTest extends AbstractControllerTest implements TestRouteInterface, Tes
     /**  @dataProvider provideTestFormIsValid */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $url = sprintf($url, $beneficiary->getContacts()[0]->getId());
         $redirectUrl = $redirectUrl ? sprintf($redirectUrl, $beneficiary->getId()) : '';
         $this->assertFormIsValid($url, $formSubmit, $values, $email, $redirectUrl);
@@ -140,7 +140,7 @@ class EditTest extends AbstractControllerTest implements TestRouteInterface, Tes
      */
     public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $url = sprintf($url, $beneficiary->getContacts()[0]->getId());
         $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email, $alternateSelector);
     }

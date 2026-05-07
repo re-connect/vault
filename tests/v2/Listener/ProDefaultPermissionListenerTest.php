@@ -38,7 +38,7 @@ class ProDefaultPermissionListenerTest extends AuthenticatedKernelTestCase
     /** @dataProvider provideTestProDefaultPermissionListener */
     public function testProDefaultPermission(bool $hasPermission): void
     {
-        $loggedUser = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object();
+        $loggedUser = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS);
         $this->loginUser(MemberFixture::MEMBER_MAIL_WITH_RELAYS);
 
         $relay = $loggedUser->getCentres()->first();
@@ -50,7 +50,7 @@ class ProDefaultPermissionListenerTest extends AuthenticatedKernelTestCase
 
         self::assertEquals($hasPermission, $relayLink->getDroits()[MembreCentre::MANAGE_BENEFICIARIES_PERMISSION]);
 
-        $proUser = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_NO_RELAY_NO_PERMISSION)->object();
+        $proUser = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_NO_RELAY_NO_PERMISSION);
         self::assertEmpty($proUser->getCentres());
 
         $userRelay = User::createUserRelay($proUser, $relay);

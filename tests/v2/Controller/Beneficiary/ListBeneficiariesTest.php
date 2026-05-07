@@ -57,7 +57,7 @@ class ListBeneficiariesTest extends AbstractControllerTest implements TestRouteI
         // We check that all fetched beneficiaries can be managed by the professional
         foreach ($beneficiaries as $beneficiary) {
             // We need to fetch each beneficiaries with factory, because findByAuthorizedProfessional does not hydrate properties such as $beneficiaireCentre
-            $beneficiary = BeneficiaireFactory::find($beneficiary->getId())->object();
+            $beneficiary = BeneficiaireFactory::find($beneficiary->getId())->_real();
             self::assertTrue($this->userHelper->canUpdateBeneficiary($proUser, $beneficiary));
         }
     }
@@ -65,9 +65,9 @@ class ListBeneficiariesTest extends AbstractControllerTest implements TestRouteI
     public function testCanNotFilterOnUnauthorizedRelays(): void
     {
         $userMail = MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES;
-        $user = UserFactory::findByEmail($userMail)->object();
+        $user = UserFactory::findByEmail($userMail);
 
-        $allRelaysIds = array_map(fn (Proxy $relay) => $relay->object()->getId(), RelayFactory::all());
+        $allRelaysIds = array_map(fn (Proxy $relay) => $relay->_real()->getId(), RelayFactory::all());
         $allUserRelaysIds = array_map(fn (Centre $relay) => $relay->getId(), $user->getAffiliatedRelaysWithBeneficiaryManagement()->toArray());
         $notAffiliatedRelaysIds = array_diff($allRelaysIds, $allUserRelaysIds);
 

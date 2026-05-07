@@ -31,7 +31,7 @@ class AbortCreationTest extends AbstractControllerTest implements TestRouteInter
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true])->object();
+        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true])->_real();
         $url = sprintf($url, $creationProcess->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 

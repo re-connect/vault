@@ -8,9 +8,12 @@ use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\FolderFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
+use Zenstruck\Foundry\Test\Factories;
 
 class TreeViewMoveTest extends AbstractControllerTest implements TestRouteInterface
 {
+    use Factories;
+
     private const URL = '/folder/%d/tree-view-move';
 
     /** @dataProvider provideTestRoute */
@@ -23,15 +26,15 @@ class TreeViewMoveTest extends AbstractControllerTest implements TestRouteInterf
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $publicFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $publicFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
 
         $url = sprintf($url, $publicFolder->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $privateFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+            $privateFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
             $newUrl = sprintf(self::URL, $privateFolder->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
         }
@@ -62,22 +65,22 @@ class TreeViewMoveTest extends AbstractControllerTest implements TestRouteInterf
         $clientTest->loginUser($user);
         $beneficiary = $user->getSubjectBeneficiaire();
 
-        $folder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivateFolder])->object();
+        $folder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivateFolder])->_real();
 
         // We access first folder link in the tree view, and access folderId
         $crawler = $clientTest->request('GET', sprintf(self::URL, $folder->getId()));
         $treeViewMoveUri = $crawler->filter('ul.tree-list > li > a')->attr('href');
         $uriToArray = explode('/', $treeViewMoveUri);
         $parentFolderId = end($uriToArray);
-        $parentFolder = FolderFactory::find(['id' => $parentFolderId])->object();
+        $parentFolder = FolderFactory::find(['id' => $parentFolderId])->_real();
 
         // We hydrate folder with desired visibility before moving document inside for test purposes
         $parentFolder->setBprive($isPrivateParentFolder);
         $this->getEntityManager()->flush();
 
         $clientTest->request('GET', $treeViewMoveUri);
-        $folder = FolderFactory::find($folder)->object();
-        $parentFolder = FolderFactory::find($parentFolder)->object();
+        $folder = FolderFactory::find($folder)->_real();
+        $parentFolder = FolderFactory::find($parentFolder)->_real();
         self::assertSame($parentFolder, $folder->getDossierParent());
         self::assertEquals($shouldBePrivate, $folder->getBprive());
     }
