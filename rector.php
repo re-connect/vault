@@ -8,9 +8,10 @@ use Rector\Set\ValueObject\LevelSetList;
 use Rector\Symfony\CodeQuality\Rector\ClassMethod\ActionSuffixRemoverRector;
 use Rector\Symfony\CodeQuality\Rector\ClassMethod\ParamTypeFromRouteRequiredRegexRector;
 use Rector\Symfony\Set\SymfonySetList;
+use Zenstruck\Foundry\Utils\Rector\FoundrySetList;
 
 return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->paths([__DIR__.'/src']);
+    $rectorConfig->paths([__DIR__.'/src', __DIR__.'/tests/Factory']);
 
     $rectorConfig->skip([
         ActionSuffixRemoverRector::class,
@@ -23,6 +24,7 @@ return static function (RectorConfig $rectorConfig): void {
         SymfonySetList::SYMFONY_CODE_QUALITY,
         SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
         SymfonySetList::ANNOTATIONS_TO_ATTRIBUTES,
+        FoundrySetList::UP_TO_FOUNDRY_2,
         //        DoctrineSetList::ANNOTATIONS_TO_ATTRIBUTES,
     ]);
 };
