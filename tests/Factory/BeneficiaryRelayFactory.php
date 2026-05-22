@@ -3,6 +3,7 @@
 namespace App\Tests\Factory;
 
 use App\Entity\BeneficiaireCentre;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
  * @method        \App\Entity\BeneficiaireCentre|\Zenstruck\Foundry\Persistence\Proxy                                                     create(array|callable $attributes = [])
@@ -42,7 +43,7 @@ use App\Entity\BeneficiaireCentre;
  *
  * @extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory<\App\Entity\BeneficiaireCentre>
  */
-final class BeneficiaryRelayFactory extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory
+final class BeneficiaryRelayFactory extends PersistentProxyObjectFactory
 {
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services

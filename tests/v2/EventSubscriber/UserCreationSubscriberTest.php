@@ -10,7 +10,6 @@ use App\Tests\Factory\RelayFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Bundle\SecurityBundle\Security;
-use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\ObjectFactory;
 use Zenstruck\Foundry\Test\Factories;
 

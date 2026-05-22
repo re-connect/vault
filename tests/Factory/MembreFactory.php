@@ -5,6 +5,7 @@ namespace App\Tests\Factory;
 use App\Entity\Centre;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 use Zenstruck\Foundry\Persistence\Proxy;
 
 /**
@@ -45,7 +46,7 @@ use Zenstruck\Foundry\Persistence\Proxy;
  *
  * @extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory<\App\Entity\Membre>
  */
-final class MembreFactory extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory
+final class MembreFactory extends PersistentProxyObjectFactory
 {
     public function __construct()
     {

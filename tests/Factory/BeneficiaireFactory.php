@@ -4,6 +4,7 @@ namespace App\Tests\Factory;
 
 use App\Entity\Beneficiaire;
 use App\Entity\Centre;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
  * @method        \App\Entity\Beneficiaire|\Zenstruck\Foundry\Persistence\Proxy                                                             create(array|callable $attributes = [])
@@ -43,7 +44,7 @@ use App\Entity\Centre;
  *
  * @extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory<\App\Entity\Beneficiaire>
  */
-final class BeneficiaireFactory extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory
+final class BeneficiaireFactory extends PersistentProxyObjectFactory
 {
     public function __construct()
     {

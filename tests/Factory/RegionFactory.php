@@ -3,6 +3,7 @@
 namespace App\Tests\Factory;
 
 use App\Entity\Region;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
  * @method        \App\Entity\Region|\Zenstruck\Foundry\Persistence\Proxy                                                     create(array|callable $attributes = [])
@@ -42,7 +43,7 @@ use App\Entity\Region;
  *
  * @extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory<\App\Entity\Region>
  */
-final class RegionFactory extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory
+final class RegionFactory extends PersistentProxyObjectFactory
 {
     public function __construct()
     {

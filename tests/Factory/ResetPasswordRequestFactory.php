@@ -3,6 +3,7 @@
 namespace App\Tests\Factory;
 
 use App\Entity\ResetPasswordRequest;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
  * @method        \App\Entity\ResetPasswordRequest|\Zenstruck\Foundry\Persistence\Proxy                                                                       create(array|callable $attributes = [])
@@ -42,7 +43,7 @@ use App\Entity\ResetPasswordRequest;
  *
  * @extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory<\App\Entity\ResetPasswordRequest>
  */
-final class ResetPasswordRequestFactory extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory
+final class ResetPasswordRequestFactory extends PersistentProxyObjectFactory
 {
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services

@@ -3,6 +3,7 @@
 namespace App\Tests\Factory;
 
 use App\Entity\Evenement;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
  * @method        \App\Entity\Evenement|\Zenstruck\Foundry\Persistence\Proxy                                                          create(array|callable $attributes = [])
@@ -42,7 +43,7 @@ use App\Entity\Evenement;
  *
  * @extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory<\App\Entity\Evenement>
  */
-class EventFactory extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory
+class EventFactory extends PersistentProxyObjectFactory
 {
     public function __construct()
     {

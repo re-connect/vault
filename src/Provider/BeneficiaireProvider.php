@@ -18,6 +18,7 @@ use App\OtherClasses\ErrorCode;
 use App\Repository\ClientBeneficiaireRepository;
 use App\Security\Authorization\Voter\BeneficiaireVoter;
 use App\Validator\Constraints\DateNaissance;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\Query;
@@ -359,7 +360,7 @@ final class BeneficiaireProvider
             }
 
             /** Vérification si le bénéficiaire a accepté au moins un ajout d'un ces centres du client */
-            /** @var \Doctrine\Common\Collections\Collection<int, ClientBeneficiaire> $externalLinks */
+            /** @var Collection<int, ClientBeneficiaire> $externalLinks */
             $externalLinks = $entity->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $element->getDistantId() == $id && $element->getClient() === $oldClient);
             foreach ($externalLinks as $externalLink) {
                 if (!$externalLink->getBeneficiaireCentre()?->getBValid()) {

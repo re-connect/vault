@@ -3,6 +3,7 @@
 namespace App\Tests\Factory;
 
 use App\Entity\User;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
  * @method        \App\Entity\User|\Zenstruck\Foundry\Persistence\Proxy                                                     create(array|callable $attributes = [])
@@ -42,7 +43,7 @@ use App\Entity\User;
  *
  * @extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory<\App\Entity\User>
  */
-final class UserFactory extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory
+final class UserFactory extends PersistentProxyObjectFactory
 {
     public const string WEAK_PASSWORD_HASH = '$2y$13$1e.Kr4Ru31eHQBKU3d6BY..EIerE6/IYA5K/JxMjGwBYb5dL7B6eG'; // = 'password'
     public const string WEAK_PASSWORD_CLEAR = 'password';
