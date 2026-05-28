@@ -94,7 +94,7 @@ class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInt
         $this->assertFormIsValid($url, $formSubmit, $values, $email, $redirectUrl);
 
         $subFolder = $parentFolder->getSousDossiers()[0]->getId();
-        FolderFactory::find($subFolder)->remove();
+        FolderFactory::find($subFolder)->_delete();
     }
 
     /**
@@ -133,7 +133,7 @@ class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInt
         self::assertCount(1, $parentFolder->getSousDossiers());
         self::assertSame($parentFolder, $subFolder->getDossierParent());
         self::assertEquals($parentFolder->getBprive(), $subFolder->getBprive());
-        FolderFactory::find($subFolder)->remove();
-        FolderFactory::find($parentFolder)->remove();
+        FolderFactory::find($subFolder)->_delete();
+        FolderFactory::find($parentFolder)->_delete();
     }
 }

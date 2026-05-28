@@ -126,7 +126,7 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
         self::assertEquals($parentFolder->_real()->getSousDossiers()->last()->getId(), $subFolder->_real()->getId());
         self::assertEquals($shouldBePrivate, $subFolder->_real()->getBprive());
 
-        $subFolder->remove();
-        $parentFolder->remove();
+        $subFolder->_delete();
+        $parentFolder->_delete();
     }
 }
