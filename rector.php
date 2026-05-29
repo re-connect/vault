@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Rector\Doctrine\Set\DoctrineSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Symfony\CodeQuality\Rector\ClassMethod\ActionSuffixRemoverRector;
@@ -25,6 +26,7 @@ return static function (RectorConfig $rectorConfig): void {
         SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
         SymfonySetList::ANNOTATIONS_TO_ATTRIBUTES,
         FoundrySetList::UP_TO_FOUNDRY_2,
+        DoctrineSetList::DOCTRINE_COLLECTION_22
         //        DoctrineSetList::ANNOTATIONS_TO_ATTRIBUTES,
     ]);
 };

@@ -22,6 +22,7 @@ use App\Validator\Constraints\Folder as AssertFolder;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\String\Slugger\AsciiSlugger;
@@ -140,7 +141,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface, Cl
      */
     public function getDocuments(bool $accesPrive = true)
     {
-        $criteria = Criteria::create()->orderBy(['id' => Criteria::DESC]);
+        $criteria = Criteria::create()->orderBy(['id' => Order::Descending]);
         if (!$accesPrive) {
             $criteria->where(Criteria::expr()->eq('bPrive', false));
         }

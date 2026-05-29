@@ -8,7 +8,7 @@ use App\Entity\Client;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -28,7 +28,7 @@ class BeneficiaireRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('b')
             ->setFirstResult($offset)
             ->setMaxResults($batchSize)
-            ->orderBy('b.id', Criteria::ASC)
+            ->orderBy('b.id', Order::Ascending)
             ->getQuery()
             ->getResult();
     }
