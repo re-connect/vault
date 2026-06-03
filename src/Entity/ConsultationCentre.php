@@ -18,11 +18,11 @@ class ConsultationCentre
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: \Centre::class, inversedBy: 'consultationsCentre')]
+    #[ORM\ManyToOne(targetEntity: Centre::class, inversedBy: 'consultationsCentre')]
     #[ORM\JoinColumn(name: 'centre_id', referencedColumnName: 'id', nullable: false)]
     private Centre $centre;
 
-    #[ORM\ManyToOne(targetEntity: \Beneficiaire::class, inversedBy: 'consultationsCentre')]
+    #[ORM\ManyToOne(targetEntity: Beneficiaire::class, inversedBy: 'consultationsCentre')]
     #[ORM\JoinColumn(name: 'beneficiaire_id', referencedColumnName: 'id', nullable: false)]
     private Beneficiaire $beneficiaire;
 
