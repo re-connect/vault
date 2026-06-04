@@ -59,6 +59,7 @@ class UserType extends AbstractType
                 'property_path' => 'subjectBeneficiaire.dateNaissance',
                 'required' => false,
                 'label' => 'birthDate',
+                'widget' => 'choice',
             ])
             ->add('secretQuestion', SecretQuestionType::class, [
                 'property_path' => 'subjectBeneficiaire',

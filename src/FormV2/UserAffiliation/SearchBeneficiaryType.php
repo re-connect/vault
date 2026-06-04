@@ -21,6 +21,7 @@ class SearchBeneficiaryType extends AbstractType
             ->add('birthDate', BirthdayType::class, [
                 'label' => 'birthDate',
                 'data' => Beneficiaire::getDefaultBirthDate(),
+                'widget' => 'choice',
             ]);
     }
 
