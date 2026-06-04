@@ -45,3 +45,8 @@ test-v1:
 
 test-v2:
 	@$(PHPUNIT) tests/v2
+
+db-test:
+	@$(CONSOLE) d:d:drop --env=test --force
+	@$(CONSOLE) d:d:create --env=test
+	@$(CONSOLE) d:m:m --env=test
