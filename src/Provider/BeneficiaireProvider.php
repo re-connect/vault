@@ -21,7 +21,6 @@ use App\Validator\Constraints\DateNaissance;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
-use Doctrine\ORM\Query;
 use League\Bundle\OAuth2ServerBundle\Security\User\NullUser;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -63,7 +62,6 @@ final class BeneficiaireProvider
             ->innerJoin('bc.centre', 'c')
             ->where('b.id = '.$id)
             ->getQuery()
-            ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
             ->getResult();
 
         if (null === $result || 0 === count($result)) {
@@ -83,7 +81,6 @@ final class BeneficiaireProvider
             ->join('bc.centre', 'c')
             ->where('b.id = '.$id)
             ->getQuery()
-            ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
             ->getResult();
 
         if (null === $result || 0 === count($result)) {
