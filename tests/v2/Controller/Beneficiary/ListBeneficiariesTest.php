@@ -12,7 +12,7 @@ use App\Tests\Factory\RelayFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 class ListBeneficiariesTest extends AbstractControllerTest implements TestRouteInterface
 {
