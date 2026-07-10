@@ -38,6 +38,7 @@ class DocumentNormalizer implements NormalizerInterface, NormalizerAwareInterfac
         return $this->normalizer->normalize($object, $format, $context);
     }
 
+    #[\Override]
     public function getSupportedTypes(?string $format): array
     {
         return [Document::class => false];
