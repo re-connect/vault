@@ -5,6 +5,7 @@ namespace App\Security\Authorization\Voter;
 use App\Entity\Beneficiaire;
 use App\Entity\MembreCentre;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\Voter\Vote;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class BeneficiaireVoter extends REVoter
@@ -22,7 +23,7 @@ class BeneficiaireVoter extends REVoter
     }
 
     #[\Override]
-    protected function voteOnAttribute(string $attribute, mixed $beneficiaire, TokenInterface $token): bool
+    protected function voteOnAttribute(string $attribute, mixed $beneficiaire, TokenInterface $token, ?Vote $vote = null): bool
     {
         // get current logged in user
         $user = $token->getUser();
