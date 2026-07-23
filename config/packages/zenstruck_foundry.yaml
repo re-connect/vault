@@ -1,7 +1,7 @@
 when@dev: &dev
     # See full configuration: https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#full-default-bundle-configuration
     zenstruck_foundry:
-        # Whether to auto-refresh proxies by default (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#auto-refresh)
-        auto_refresh_proxies: true
+        # PHP 8.4 native lazy objects auto-refresh: not usable while the project targets PHP 8.3
+        enable_auto_refresh_with_lazy_objects: false
 
 when@test: *dev

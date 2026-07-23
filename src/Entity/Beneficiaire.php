@@ -24,6 +24,7 @@ use App\Validator\Constraints\UniqueExternalLink;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -364,7 +365,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     /** @return Collection<int, Document> */
     public function getDocuments(?bool $isBeneficiaire = true, mixed $dossier = null): Collection
     {
-        $criteria = Criteria::create()->orderBy(['id' => Criteria::DESC]);
+        $criteria = Criteria::create()->orderBy(['id' => Order::Descending]);
         if (!$isBeneficiaire) {
             $criteria->andWhere(Criteria::expr()->eq('bPrive', false));
         }
@@ -398,7 +399,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     /** @return Collection<int, Dossier> */
     public function getDossiers(?bool $isBeneficiaire = true): Collection
     {
-        $criteria = Criteria::create()->orderBy(['nom' => Criteria::ASC]);
+        $criteria = Criteria::create()->orderBy(['nom' => Order::Ascending]);
         if (!$isBeneficiaire) {
             $criteria->where(Criteria::expr()->eq('bPrive', false));
         }
@@ -409,7 +410,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     /** @return Collection<int, Contact> */
     public function getContacts(?bool $isBeneficiaire = true): Collection
     {
-        $criteria = Criteria::create()->orderBy(['id' => Criteria::DESC]);
+        $criteria = Criteria::create()->orderBy(['id' => Order::Descending]);
         if (!$isBeneficiaire) {
             $criteria->where(Criteria::expr()->eq('bPrive', false));
         }
@@ -419,7 +420,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function getNotes(?bool $accesPrive = true): Collection
     {
-        $criteria = Criteria::create()->orderBy(['id' => Criteria::DESC]);
+        $criteria = Criteria::create()->orderBy(['id' => Order::Descending]);
         if (!$accesPrive) {
             $criteria->where(Criteria::expr()->eq('bPrive', false));
         }
@@ -429,7 +430,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function getEvenements(?bool $accesPrive = true, ?bool $beforeNow = true): Collection
     {
-        $criteria = Criteria::create()->orderBy(['date' => Criteria::ASC]);
+        $criteria = Criteria::create()->orderBy(['date' => Order::Ascending]);
         if (!$beforeNow) {
             $criteria->andWhere(Criteria::expr()->gt('date', new \DateTime()));
         }

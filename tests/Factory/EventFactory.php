@@ -3,38 +3,55 @@
 namespace App\Tests\Factory;
 
 use App\Entity\Evenement;
-use App\Repository\EvenementRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @extends ModelFactory<Evenement>
+ * @method        \App\Entity\Evenement|\Zenstruck\Foundry\Persistence\Proxy                                                          create(array|callable $attributes = [])
+ * @method static \App\Entity\Evenement|\Zenstruck\Foundry\Persistence\Proxy                                                          createOne(array $attributes = [])
+ * @method static \App\Entity\Evenement|\Zenstruck\Foundry\Persistence\Proxy                                                          find(object|array|mixed $criteria)
+ * @method static \App\Entity\Evenement|\Zenstruck\Foundry\Persistence\Proxy                                                          findOrCreate(array $attributes)
+ * @method static \App\Entity\Evenement|\Zenstruck\Foundry\Persistence\Proxy                                                          first(string $sortedField = 'id')
+ * @method static \App\Entity\Evenement|\Zenstruck\Foundry\Persistence\Proxy                                                          last(string $sortedField = 'id')
+ * @method static \App\Entity\Evenement|\Zenstruck\Foundry\Persistence\Proxy                                                          random(array $attributes = [])
+ * @method static \App\Entity\Evenement|\Zenstruck\Foundry\Persistence\Proxy                                                          randomOrCreate(array $attributes = [])
+ * @method static \App\Entity\Evenement[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                      all()
+ * @method static \App\Entity\Evenement[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                      createMany(int $number, array|callable $attributes = [])
+ * @method static \App\Entity\Evenement[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                      createSequence(iterable|callable $sequence)
+ * @method static \App\Entity\Evenement[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                      findBy(array $attributes)
+ * @method static \App\Entity\Evenement[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                      randomRange(int $min, int $max, array $attributes = [])
+ * @method static \App\Entity\Evenement[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                      randomSet(int $number, array $attributes = [])
+ * @method        \Zenstruck\Foundry\FactoryCollection<\App\Entity\Evenement|\Zenstruck\Foundry\Persistence\Proxy>                    many(int $min, int|null $max = null)
+ * @method        \Zenstruck\Foundry\FactoryCollection<\App\Entity\Evenement|\Zenstruck\Foundry\Persistence\Proxy>                    sequence(iterable|callable $sequence)
+ * @method static \Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator<\App\Entity\Evenement, \App\Repository\EvenementRepository> repository()
  *
- * @method static Evenement|Proxy                     createOne(array $attributes = [])
- * @method static Evenement[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
- * @method static Evenement[]|Proxy[]                 createSequence(array|callable $sequence)
- * @method static Evenement|Proxy                     find(object|array|mixed $criteria)
- * @method static Evenement|Proxy                     findOrCreate(array $attributes)
- * @method static Evenement|Proxy                     first(string $sortedField = 'id')
- * @method static Evenement|Proxy                     last(string $sortedField = 'id')
- * @method static Evenement|Proxy                     random(array $attributes = [])
- * @method static Evenement|Proxy                     randomOrCreate(array $attributes = [])
- * @method static Evenement[]|Proxy[]                 all()
- * @method static Evenement[]|Proxy[]                 findBy(array $attributes)
- * @method static Evenement[]|Proxy[]                 randomSet(int $number, array $attributes = [])
- * @method static Evenement[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
- * @method static EvenementRepository|RepositoryProxy repository()
- * @method        Evenement|Proxy                     create(array|callable $attributes = [])
+ * @phpstan-method \App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement> create(array|callable $attributes = [])
+ * @phpstan-method static \App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement> createOne(array $attributes = [])
+ * @phpstan-method static \App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement> find(object|array|mixed $criteria)
+ * @phpstan-method static \App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement> findOrCreate(array $attributes)
+ * @phpstan-method static \App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement> first(string $sortedField = 'id')
+ * @phpstan-method static \App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement> last(string $sortedField = 'id')
+ * @phpstan-method static \App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement> random(array $attributes = [])
+ * @phpstan-method static \App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement> randomOrCreate(array $attributes = [])
+ * @phpstan-method static list<\App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement>> all()
+ * @phpstan-method static list<\App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement>> createMany(int $number, array|callable $attributes = [])
+ * @phpstan-method static list<\App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement>> createSequence(iterable|callable $sequence)
+ * @phpstan-method static list<\App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement>> findBy(array $attributes)
+ * @phpstan-method static list<\App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement>> randomRange(int $min, int $max, array $attributes = [])
+ * @phpstan-method static list<\App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement>> randomSet(int $number, array $attributes = [])
+ * @phpstan-method \Zenstruck\Foundry\FactoryCollection<\App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement>> many(int $min, int|null $max = null)
+ * @phpstan-method \Zenstruck\Foundry\FactoryCollection<\App\Entity\Evenement&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Evenement>> sequence(iterable|callable $sequence)
+ *
+ * @extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory<\App\Entity\Evenement>
  */
-class EventFactory extends ModelFactory
+class EventFactory extends PersistentProxyObjectFactory
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    protected function getDefaults(): array
+    #[\Override]
+    protected function defaults(): array
     {
         return [
             'bPrive' => self::faker()->boolean(),
@@ -46,7 +63,8 @@ class EventFactory extends ModelFactory
         ];
     }
 
-    protected function initialize(): self
+    #[\Override]
+    protected function initialize(): static
     {
         // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
         return $this
@@ -54,7 +72,8 @@ class EventFactory extends ModelFactory
         ;
     }
 
-    protected static function getClass(): string
+    #[\Override]
+    public static function class(): string
     {
         return Evenement::class;
     }

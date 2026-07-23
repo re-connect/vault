@@ -29,7 +29,7 @@ class PdfService
                 $page = 0;
             }            // we cannot have negative values
 
-            $img = new \Imagick($source."[$page]"); // [0] = first page, [1] = second page
+            $img = new Imagick($source."[$page]"); // [0] = first page, [1] = second page
 
             $imH = $img->getImageHeight();
             $imW = $img->getImageWidth();
@@ -45,7 +45,7 @@ class PdfService
             if ($img->getImageAlphaChannel()) {
                 $img->setImageColorspace($img::COLORSPACE_SRGB);        // prevent image colors from inverting
                 $img->setImageBackgroundColor('white');    // set background color and flatten
-                $img = $img->mergeImageLayers(\Imagick::LAYERMETHOD_FLATTEN);            // prevents black zones on transparency in pdf
+                $img = $img->mergeImageLayers(Imagick::LAYERMETHOD_FLATTEN);            // prevents black zones on transparency in pdf
             }
             $img->setimageformat('jpeg');
 

@@ -10,7 +10,7 @@ use App\Tests\Factory\RelayFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Bundle\SecurityBundle\Security;
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\ObjectFactory;
 use Zenstruck\Foundry\Test\Factories;
 
 class UserCreationSubscriberTest extends KernelTestCase
@@ -40,7 +40,7 @@ class UserCreationSubscriberTest extends KernelTestCase
     /**
      * @dataProvider provideTestAddCreatorRelay
      */
-    public function testAddCreatorRelay(ModelFactory $modelFactory): void
+    public function testAddCreatorRelay(ObjectFactory $modelFactory): void
     {
         $loggedUser = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real()->getUser();
         $this->securityMock->method('getUser')->willReturn($loggedUser);

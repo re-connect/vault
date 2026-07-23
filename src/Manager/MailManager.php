@@ -7,6 +7,7 @@ use App\Entity\Dossier;
 use App\Provider\DocumentProvider;
 use Mailjet\Client;
 use Mailjet\Resources;
+use Mailjet\Response;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -30,7 +31,7 @@ class MailManager
         $this->mailjet = new Client($apikey, $apisecret, true, ['version' => 'v3.1']);
     }
 
-    private function sendTemplate(int $id, $dest, array $variables = [], $attachment = null): \Mailjet\Response
+    private function sendTemplate(int $id, $dest, array $variables = [], $attachment = null): Response
     {
         $body = [
             'Messages' => [

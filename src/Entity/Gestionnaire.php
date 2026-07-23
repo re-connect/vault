@@ -23,7 +23,7 @@ class Gestionnaire extends Subject implements UserHandleCentresInterface
     #[ORM\OneToMany(mappedBy: 'gestionnaire', targetEntity: Centre::class)]
     private Collection $centres;
 
-    #[ORM\ManyToOne(targetEntity: \Association::class, inversedBy: 'gestionnaire')]
+    #[ORM\ManyToOne(targetEntity: Association::class, inversedBy: 'gestionnaire')]
     #[ORM\JoinColumn(name: 'association_id', referencedColumnName: 'id', nullable: false)]
     private ?Association $association = null;
 

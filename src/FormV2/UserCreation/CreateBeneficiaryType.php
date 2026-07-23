@@ -55,6 +55,7 @@ class CreateBeneficiaryType extends AbstractType
                 'label' => 'birthDate',
                 'row_attr' => ['class' => 'mt-3'],
                 'data' => $birthDate,
+                'widget' => 'choice',
             ]);
 
         $builder->get('user')->get('telephone')->setRequired($remotely);
