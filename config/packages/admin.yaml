@@ -58,6 +58,7 @@ services:
             - [ setEntityManager, [ '@Doctrine\ORM\EntityManagerInterface' ] ]
             - [ setFeatureFlagChecker, [ '@App\Checker\FeatureFlagChecker' ] ]
             - [ setSecurity, [ '@Symfony\Bundle\SecurityBundle\Security' ] ]
+            - [ setRouter, [ '@Symfony\Component\Routing\RouterInterface' ] ]
 
     sonata.admin.beneficiaire:
         class: App\Admin\BeneficiaireAdmin
