@@ -1,5 +1,5 @@
 <li class="list-group-item hover p-0 border-0 my-1 d-grid gap-2">
-    <a href="{{ action.path }}" class="btn p-0 text-primary text-start ps-3"
+    <a href="{{ action.path }}" class="btn p-0 text-primary text-start ps-3" data-turbo-prefetch="false"
             {% if action.confirmMessage is defined %}
                 {{ stimulus_controller('alert', {
                     confirmButtonText: action.confirmButtonText,
