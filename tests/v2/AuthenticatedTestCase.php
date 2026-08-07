@@ -8,12 +8,9 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Zenstruck\Foundry\Test\Factories;
 
 class AuthenticatedTestCase extends WebTestCase
 {
-    use Factories;
-
     public function createBeneficiaryAndLogin(KernelBrowser $client, string $email): User
     {
         $beneficiary = $this->createTestBeneficiary($email);

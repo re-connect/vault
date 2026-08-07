@@ -42,7 +42,7 @@ class NotificationServiceTest extends AuthenticatedTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->beneficiaryUser = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $this->beneficiaryUser = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $this->em = $this->getEntityManager();
         $this->translatorMock = $this->createMock(TranslatorInterface::class);
         $this->translator = $this->getContainer()->get(TranslatorInterface::class);

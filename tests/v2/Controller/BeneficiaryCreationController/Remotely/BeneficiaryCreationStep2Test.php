@@ -27,7 +27,7 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->object();
+        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->_real();
         $url = sprintf($url, $creationProcess->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
@@ -47,7 +47,7 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
         $this->markTestSkipped();
-        $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object();
+        $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real();
         $relays = $professional->getCentres();
         $values = [
             'create_beneficiary[relays][0]' => $relays[0]->getId(),
@@ -55,7 +55,7 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
             'create_beneficiary[relays][2]' => $relays[2]->getId(),
         ];
 
-        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => true])->object();
+        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => true])->_real();
         $url = sprintf($url, $creationProcess->getId());
         $redirectUrl = sprintf($redirectUrl, $creationProcess->getId());
         $beneficiary = $creationProcess->getBeneficiary();

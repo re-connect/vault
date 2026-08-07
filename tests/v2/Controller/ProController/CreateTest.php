@@ -54,7 +54,7 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
     /**  @dataProvider provideTestFormIsValid */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
-        $nextUserId = UserFactory::createOne()->object()->getId() + 1;
+        $nextUserId = UserFactory::createOne()->_real()->getId() + 1;
         $redirectUrl = sprintf($redirectUrl, $nextUserId);
         $this->assertFormIsValid($url, $formSubmit, $values, $email, $redirectUrl);
     }

@@ -18,6 +18,7 @@ use App\Validator\Constraints\Evenement as CustomAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\Mapping as ORM;
 use MakinaCorpus\DbToolsBundle\Attribute\Anonymize;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -258,7 +259,7 @@ class Evenement extends DonneePersonnelle
      */
     public function getRappels($archive = true)
     {
-        $criteria = Criteria::create()->orderBy(['date' => Criteria::ASC]);
+        $criteria = Criteria::create()->orderBy(['date' => Order::Ascending]);
         if (!$archive) {
             $criteria->andWhere(Criteria::expr()->eq('archive', false));
         }

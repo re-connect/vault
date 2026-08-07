@@ -32,8 +32,8 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => null])->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => null])->_real();
 
         $url = sprintf($url, $folder->getId());
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : null;
@@ -41,7 +41,7 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $newFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+            $newFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
             $newUrl = sprintf(self::URL, $newFolder->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
         }
@@ -49,9 +49,9 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
 
     public function testShouldRedirectToParentFolderAfterDelete(): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => null])->object();
-        $subFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => $folder])->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => null])->_real();
+        $subFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => $folder])->_real();
         $this->assertNotNull($subFolder);
 
         $url = sprintf(self::URL, $subFolder->getId());

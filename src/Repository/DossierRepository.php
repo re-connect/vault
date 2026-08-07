@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Beneficiaire;
 use App\Entity\Dossier;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 
 /** @extends ServiceEntityRepository<Dossier> */
@@ -29,7 +29,7 @@ class DossierRepository extends ServiceEntityRepository
             $criteria['bPrive'] = false;
         }
 
-        return parent::findBy($criteria, ['nom' => Criteria::ASC]);
+        return parent::findBy($criteria, ['nom' => Order::Ascending]);
     }
 
     /**

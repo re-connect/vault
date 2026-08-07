@@ -26,7 +26,7 @@ class CreateTest extends AbstractControllerTest
     {
         self::ensureKernelShutdown();
         $client = $this->createClient();
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $url = sprintf($url, $beneficiary->getId());
         $file = new UploadedFile('tests/test-file.pdf', 'test', 'application/pdf');
 

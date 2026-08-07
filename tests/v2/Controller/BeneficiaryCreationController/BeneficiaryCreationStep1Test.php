@@ -45,7 +45,7 @@ class BeneficiaryCreationStep1Test extends AbstractControllerTest implements Tes
     /**  @dataProvider provideTestFormIsValid */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
-        $nextCreatedBeneficiaryId = BeneficiaryCreationProcessFactory::createOne()->object()->getId() + 1;
+        $nextCreatedBeneficiaryId = BeneficiaryCreationProcessFactory::createOne()->_real()->getId() + 1;
         $redirectUrl = sprintf($redirectUrl, $nextCreatedBeneficiaryId);
         $this->assertFormIsValid($url, $formSubmit, $values, $email, $redirectUrl);
     }

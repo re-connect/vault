@@ -123,7 +123,7 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
 
     public function getTestUserFromDb(string $email): User
     {
-        return UserFactory::find(['email' => $email])->object();
+        return UserFactory::find(['email' => $email])->_real();
     }
 
     /**

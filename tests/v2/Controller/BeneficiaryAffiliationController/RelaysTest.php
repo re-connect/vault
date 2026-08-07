@@ -11,9 +11,12 @@ use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Zenstruck\Foundry\Test\Factories;
 
 class RelaysTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
+    use Factories;
+
     private const URL = '/beneficiary/%s/affiliate/relays';
     private const FORM_VALUES = [
         'affiliate_beneficiary[relays][0]' => '',
@@ -30,7 +33,7 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $beneficiary = BeneficiaireFactory::createOne()->object();
+        $beneficiary = BeneficiaireFactory::createOne()->_real();
         $url = sprintf($url, $beneficiary->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
@@ -47,8 +50,8 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
     {
         $this->markTestSkipped();
         // With correct secret answer
-        $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object();
-        $beneficiary = BeneficiaireFactory::createOne()->object();
+        $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real();
+        $beneficiary = BeneficiaireFactory::createOne()->_real();
         $url = sprintf($url, $beneficiary->getId());
         $relays = $professional->getCentres();
         $values = [
@@ -87,8 +90,8 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
     {
         $this->markTestSkipped();
         // With empty secret answer
-        $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object();
-        $beneficiary = BeneficiaireFactory::createOne()->object();
+        $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real();
+        $beneficiary = BeneficiaireFactory::createOne()->_real();
         $url = sprintf(self::URL, $beneficiary->getId());
         $relays = $professional->getCentres();
         $values = [
@@ -118,8 +121,8 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
     public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
         $this->markTestSkipped();
-        $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object();
-        $beneficiary = BeneficiaireFactory::createOne()->object();
+        $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real();
+        $beneficiary = BeneficiaireFactory::createOne()->_real();
         $url = sprintf($url, $beneficiary->getId());
         $relays = $professional->getCentres();
         $values = [
@@ -155,7 +158,7 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
     public function testFormIsNotValidNoRelaysSelected(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
         $this->markTestSkipped();
-        $beneficiary = BeneficiaireFactory::createOne()->object();
+        $beneficiary = BeneficiaireFactory::createOne()->_real();
         $url = sprintf($url, $beneficiary->getId());
         $values = [];
 
@@ -182,8 +185,8 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
     public function testInfoMessageIfNoRelayAvailable(): void
     {
         $this->markTestSkipped();
-        $professional = MembreFactory::createOne()->object();
-        $beneficiary = BeneficiaireFactory::createOne()->object();
+        $professional = MembreFactory::createOne()->_real();
+        $beneficiary = BeneficiaireFactory::createOne()->_real();
 
         $crawler = $this->assertRoute(
             sprintf(self::URL, $beneficiary->getId()),
@@ -196,9 +199,9 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
 
     public function testShouldSeeEditSisiaoNumberLink(): void
     {
-        $professional = MembreFactory::createOne(['usesRosalie' => true])->object();
+        $professional = MembreFactory::createOne(['usesRosalie' => true])->_real();
 
-        $beneficiary = BeneficiaireFactory::createOne(['siSiaoNumber' => '1234'])->object();
+        $beneficiary = BeneficiaireFactory::createOne(['siSiaoNumber' => '1234'])->_real();
         $crawler = $this->assertRoute(
             sprintf(self::URL, $beneficiary->getId()),
             200,
@@ -210,9 +213,9 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
 
     public function testShouldNotSeeEditSisiaoNumberLinkWhenNotUsingRosalie(): void
     {
-        $professional = MembreFactory::createOne(['usesRosalie' => false])->object();
+        $professional = MembreFactory::createOne(['usesRosalie' => false])->_real();
 
-        $beneficiary = BeneficiaireFactory::createOne(['siSiaoNumber' => '1234'])->object();
+        $beneficiary = BeneficiaireFactory::createOne(['siSiaoNumber' => '1234'])->_real();
         $crawler = $this->assertRoute(
             sprintf(self::URL, $beneficiary->getId()),
             200,
@@ -224,8 +227,8 @@ class RelaysTest extends AbstractControllerTest implements TestRouteInterface, T
 
     public function testShouldNotSeeEditSisiaoNumberLinkWhenExternalLinkAlreadyExists(): void
     {
-        $beneficiary = BeneficiaireFactory::createOne(['siSiaoNumber' => '1234'])->object();
-        $professional = MembreFactory::createOne(['usesRosalie' => true])->object();
+        $beneficiary = BeneficiaireFactory::createOne(['siSiaoNumber' => '1234'])->_real();
+        $professional = MembreFactory::createOne(['usesRosalie' => true])->_real();
         $clientRepo = self::getContainer()->get(ClientRepository::class);
         $em = self::getContainer()->get(EntityManagerInterface::class);
 

@@ -6,7 +6,7 @@ use App\Entity\Beneficiaire;
 use App\Entity\Document;
 use App\Entity\Dossier;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
@@ -51,7 +51,7 @@ class DocumentRepository extends ServiceEntityRepository
             $criteria['bPrive'] = false;
         }
 
-        return parent::findBy($criteria, ['id' => Criteria::DESC]);
+        return parent::findBy($criteria, ['id' => Order::Descending]);
     }
 
     /**

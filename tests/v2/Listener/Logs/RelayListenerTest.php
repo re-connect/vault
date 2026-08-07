@@ -36,7 +36,7 @@ class RelayListenerTest extends AbstractLogActivityListenerTest implements TestL
 
     public function testPreUpdate(): void
     {
-        $relay = RelayFactory::random()->object();
+        $relay = RelayFactory::random()->_real();
         $relay->setNom('test');
         $this->em->flush();
 
@@ -45,7 +45,7 @@ class RelayListenerTest extends AbstractLogActivityListenerTest implements TestL
 
     public function testPreRemove(): void
     {
-        $relay = RelayFactory::random()->object();
+        $relay = RelayFactory::random()->_real();
         $this->em->remove($relay);
         $logContent = $this->getLogContent($relay);
         $this->em->flush();

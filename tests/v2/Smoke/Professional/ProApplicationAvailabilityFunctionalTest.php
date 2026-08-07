@@ -4,9 +4,11 @@ namespace App\Tests\v2\Smoke\Professional;
 
 use App\Tests\v2\Smoke\AbstractSmokeTest;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Zenstruck\Foundry\Test\Factories;
 
 class ProApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
 {
+    use Factories;
     private KernelBrowser $client;
 
     protected function setUp(): void

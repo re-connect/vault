@@ -131,7 +131,7 @@ class AddExternalLinkTest extends AbstractApiTest
     public function testShouldAddSecondExternalLink(): void
     {
         // This sould only work for Reconnect Pro Client
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK);
         $client = $this->clientRepository->findOneBy(['nom' => 'reconnect_pro']);
         $externalLinks = $this->clientBeneficiaireRepository->findBy(['entity' => $beneficiary, 'client' => $client]);
         $this->assertCount(1, $externalLinks);
@@ -161,7 +161,7 @@ class AddExternalLinkTest extends AbstractApiTest
 
     public function testShouldNotAddSecondExternalLink(): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK);
         $client = $this->clientRepository->findOneBy(['nom' => 'reconnect_pro']);
         $externalLinks = $this->clientBeneficiaireRepository->findBy(['entity' => $beneficiary, 'client' => $client]);
         $this->assertCount(1, $externalLinks);

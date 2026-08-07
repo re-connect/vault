@@ -20,9 +20,6 @@ framework:
     #fragments: true
     php_errors:
         log: true
-
-    annotations:
-        enabled: false
 when@test:
     framework:
         test: true

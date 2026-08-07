@@ -43,7 +43,7 @@ class UserListenerTest extends AbstractLogActivityListenerTest implements TestLo
 
     public function testPreUpdate(): void
     {
-        $user = UserFactory::random()->object();
+        $user = UserFactory::random()->_real();
         $user->setNom('test');
         $this->em->flush();
 
@@ -52,7 +52,7 @@ class UserListenerTest extends AbstractLogActivityListenerTest implements TestLo
 
     public function testPreRemove(): void
     {
-        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL)->object();
+        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL);
         $this->em->remove($user->getSubject());
         $this->em->remove($user);
         $logContent = $this->getLogContent($user);

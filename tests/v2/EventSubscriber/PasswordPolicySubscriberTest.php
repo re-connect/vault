@@ -29,7 +29,7 @@ class PasswordPolicySubscriberTest extends WebTestCase
         self::ensureKernelShutdown();
         $client = static::createClient();
 
-        $user = UserFactory::findByEmail($email)->object();
+        $user = UserFactory::findByEmail($email);
         $client->loginUser($user);
         $client->request('GET', '/user/redirect-user/');
 

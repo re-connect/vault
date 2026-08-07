@@ -29,7 +29,7 @@ class BeneficiaryCreationStep3Test extends AbstractControllerTest implements Tes
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->object();
+        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->_real();
         $url = sprintf($url, $creationProcess->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
@@ -51,7 +51,7 @@ class BeneficiaryCreationStep3Test extends AbstractControllerTest implements Tes
         $firstTranslatedQuestion = array_key_first($this->getTranslatedSecretQuestions());
         $values['create_beneficiary[questionSecreteChoice]'] = $firstTranslatedQuestion;
 
-        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->object();
+        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->_real();
         $url = sprintf($url, $creationProcess->getId());
         $redirectUrl = sprintf($redirectUrl, $creationProcess->getId());
 
@@ -77,7 +77,7 @@ class BeneficiaryCreationStep3Test extends AbstractControllerTest implements Tes
         $firstTranslatedQuestion = array_key_first($this->getTranslatedSecretQuestions());
         $values['create_beneficiary[questionSecreteChoice]'] = $firstTranslatedQuestion;
 
-        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->object();
+        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->_real();
         $url = sprintf($url, $creationProcess->getId());
         $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email, $alternateSelector);
     }
@@ -145,7 +145,7 @@ class BeneficiaryCreationStep3Test extends AbstractControllerTest implements Tes
         $values['create_beneficiary[questionSecreteChoice]'] = $this->getTranslatedSecretQuestions()['Autre'];
         $values['create_beneficiary[autreQuestionSecrete]'] = $customSecretQuestion;
 
-        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->object();
+        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->_real();
         $url = sprintf(self::URL, $creationProcess->getId());
         $crawler = $client->request('GET', $url);
         $form = $crawler->selectButton(self::$translator->trans('submit'))->form();

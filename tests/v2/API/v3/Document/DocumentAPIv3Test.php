@@ -71,7 +71,7 @@ class DocumentAPIv3Test extends AbstractApiTest
             null,
             true
         );
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK);
 
         $this->loginAsClient('reconnect_pro');
         $options['headers'] = ['Content-Type' => 'application/json'];
@@ -112,7 +112,7 @@ class DocumentAPIv3Test extends AbstractApiTest
         $document = DocumentFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->object();
+        ])->_real();
         $documentId = $document->getId();
 
         $this->assertEndpoint(
@@ -148,7 +148,7 @@ class DocumentAPIv3Test extends AbstractApiTest
         $document = DocumentFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->object();
+        ])->_real();
         $documentId = $document->getId();
 
         $this->assertEndpointAccessIsDenied(

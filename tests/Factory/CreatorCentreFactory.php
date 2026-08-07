@@ -3,45 +3,63 @@
 namespace App\Tests\Factory;
 
 use App\Entity\CreatorCentre;
-use App\Repository\CreatorCentreRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @extends ModelFactory<CreatorCentre>
+ * @method        \App\Entity\CreatorCentre|\Zenstruck\Foundry\Persistence\Proxy                                                     create(array|callable $attributes = [])
+ * @method static \App\Entity\CreatorCentre|\Zenstruck\Foundry\Persistence\Proxy                                                     createOne(array $attributes = [])
+ * @method static \App\Entity\CreatorCentre|\Zenstruck\Foundry\Persistence\Proxy                                                     find(object|array|mixed $criteria)
+ * @method static \App\Entity\CreatorCentre|\Zenstruck\Foundry\Persistence\Proxy                                                     findOrCreate(array $attributes)
+ * @method static \App\Entity\CreatorCentre|\Zenstruck\Foundry\Persistence\Proxy                                                     first(string $sortedField = 'id')
+ * @method static \App\Entity\CreatorCentre|\Zenstruck\Foundry\Persistence\Proxy                                                     last(string $sortedField = 'id')
+ * @method static \App\Entity\CreatorCentre|\Zenstruck\Foundry\Persistence\Proxy                                                     random(array $attributes = [])
+ * @method static \App\Entity\CreatorCentre|\Zenstruck\Foundry\Persistence\Proxy                                                     randomOrCreate(array $attributes = [])
+ * @method static \App\Entity\CreatorCentre[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                 all()
+ * @method static \App\Entity\CreatorCentre[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                 createMany(int $number, array|callable $attributes = [])
+ * @method static \App\Entity\CreatorCentre[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                 createSequence(iterable|callable $sequence)
+ * @method static \App\Entity\CreatorCentre[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                 findBy(array $attributes)
+ * @method static \App\Entity\CreatorCentre[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                 randomRange(int $min, int $max, array $attributes = [])
+ * @method static \App\Entity\CreatorCentre[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                 randomSet(int $number, array $attributes = [])
+ * @method        \Zenstruck\Foundry\FactoryCollection<\App\Entity\CreatorCentre|\Zenstruck\Foundry\Persistence\Proxy>               many(int $min, int|null $max = null)
+ * @method        \Zenstruck\Foundry\FactoryCollection<\App\Entity\CreatorCentre|\Zenstruck\Foundry\Persistence\Proxy>               sequence(iterable|callable $sequence)
+ * @method static \Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator<\App\Entity\CreatorCentre, \Doctrine\ORM\EntityRepository> repository()
  *
- * @method static CreatorCentre|Proxy                     createOne(array $attributes = [])
- * @method static CreatorCentre[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
- * @method static CreatorCentre[]|Proxy[]                 createSequence(array|callable $sequence)
- * @method static CreatorCentre|Proxy                     find(object|array|mixed $criteria)
- * @method static CreatorCentre|Proxy                     findOrCreate(array $attributes)
- * @method static CreatorCentre|Proxy                     first(string $sortedField = 'id')
- * @method static CreatorCentre|Proxy                     last(string $sortedField = 'id')
- * @method static CreatorCentre|Proxy                     random(array $attributes = [])
- * @method static CreatorCentre|Proxy                     randomOrCreate(array $attributes = [])
- * @method static CreatorCentre[]|Proxy[]                 all()
- * @method static CreatorCentre[]|Proxy[]                 findBy(array $attributes)
- * @method static CreatorCentre[]|Proxy[]                 randomSet(int $number, array $attributes = [])
- * @method static CreatorCentre[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
- * @method static CreatorCentreRepository|RepositoryProxy repository()
- * @method        CreatorCentre|Proxy                     create(array|callable $attributes = [])
+ * @phpstan-method \App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre> create(array|callable $attributes = [])
+ * @phpstan-method static \App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre> createOne(array $attributes = [])
+ * @phpstan-method static \App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre> find(object|array|mixed $criteria)
+ * @phpstan-method static \App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre> findOrCreate(array $attributes)
+ * @phpstan-method static \App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre> first(string $sortedField = 'id')
+ * @phpstan-method static \App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre> last(string $sortedField = 'id')
+ * @phpstan-method static \App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre> random(array $attributes = [])
+ * @phpstan-method static \App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre> randomOrCreate(array $attributes = [])
+ * @phpstan-method static list<\App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre>> all()
+ * @phpstan-method static list<\App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre>> createMany(int $number, array|callable $attributes = [])
+ * @phpstan-method static list<\App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre>> createSequence(iterable|callable $sequence)
+ * @phpstan-method static list<\App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre>> findBy(array $attributes)
+ * @phpstan-method static list<\App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre>> randomRange(int $min, int $max, array $attributes = [])
+ * @phpstan-method static list<\App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre>> randomSet(int $number, array $attributes = [])
+ * @phpstan-method \Zenstruck\Foundry\FactoryCollection<\App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre>> many(int $min, int|null $max = null)
+ * @phpstan-method \Zenstruck\Foundry\FactoryCollection<\App\Entity\CreatorCentre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\CreatorCentre>> sequence(iterable|callable $sequence)
+ *
+ * @extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory<\App\Entity\CreatorCentre>
  */
-final class CreatorCentreFactory extends ModelFactory
+final class CreatorCentreFactory extends PersistentProxyObjectFactory
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    protected function getDefaults(): array
+    #[\Override]
+    protected function defaults(): array
     {
         return [
             'entity' => RelayFactory::randomOrCreate(),
         ];
     }
 
-    protected function initialize(): self
+    #[\Override]
+    protected function initialize(): static
     {
         // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
         return $this
@@ -49,7 +67,8 @@ final class CreatorCentreFactory extends ModelFactory
         ;
     }
 
-    protected static function getClass(): string
+    #[\Override]
+    public static function class(): string
     {
         return CreatorCentre::class;
     }

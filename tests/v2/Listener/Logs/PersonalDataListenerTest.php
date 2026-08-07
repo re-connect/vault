@@ -27,7 +27,7 @@ class PersonalDataListenerTest extends AbstractLogActivityListenerTest implement
 
     public function testPostPersist(): void
     {
-        $contact = (new Contact(BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object()))
+        $contact = (new Contact(BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)))
             ->setNom('test')
             ->setPrenom('test')
             ->setPrenom('test');
@@ -40,7 +40,7 @@ class PersonalDataListenerTest extends AbstractLogActivityListenerTest implement
 
     public function testPreUpdate(): void
     {
-        $contact = ContactFactory::random()->object();
+        $contact = ContactFactory::random()->_real();
         $contact->setNom('test');
         $this->em->flush();
 
@@ -55,7 +55,7 @@ class PersonalDataListenerTest extends AbstractLogActivityListenerTest implement
 
     public function testPreRemove(): void
     {
-        $contact = ContactFactory::random()->object();
+        $contact = ContactFactory::random()->_real();
         $this->em->remove($contact);
         $logContent = $this->getLogContent($contact);
         $this->em->flush();

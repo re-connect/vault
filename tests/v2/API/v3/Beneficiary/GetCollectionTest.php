@@ -12,7 +12,7 @@ class GetCollectionTest extends AbstractApiTest
      */
     public function testGetCollection(string $clientName): void
     {
-        $client = ClientFactory::find(['nom' => $clientName])->object();
+        $client = ClientFactory::find(['nom' => $clientName])->_real();
         $beneficiaries = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId());
 
         $this->assertEndpoint(
@@ -33,7 +33,7 @@ class GetCollectionTest extends AbstractApiTest
      */
     public function testGetCollectionFromDistantId(string $clientName): void
     {
-        $client = ClientFactory::find(['nom' => $clientName])->object();
+        $client = ClientFactory::find(['nom' => $clientName]);
         $beneficiaries = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId());
 
         $this->assertEndpoint(

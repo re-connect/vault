@@ -27,7 +27,7 @@ class SmsCodeTest extends AbstractControllerTest implements TestRouteInterface, 
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $beneficiary = BeneficiaireFactory::createOne()->object();
+        $beneficiary = BeneficiaireFactory::createOne()->_real();
         $url = sprintf($url, $beneficiary->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
@@ -42,7 +42,7 @@ class SmsCodeTest extends AbstractControllerTest implements TestRouteInterface, 
     /** @dataProvider provideTestFormIsValid */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
-        $beneficiary = BeneficiaireFactory::createOne(['relayInvitationSmsCode' => '1234', 'relayInvitationSmsCodeSendAt' => new \DateTime()])->object();
+        $beneficiary = BeneficiaireFactory::createOne(['relayInvitationSmsCode' => '1234', 'relayInvitationSmsCodeSendAt' => new \DateTime()])->_real();
         $url = sprintf(self::URL, $beneficiary->getId());
         $redirectUrl = sprintf(self::URL_RELAYS, $beneficiary->getId());
         $this->assertFormIsValid($url, $formSubmit, $values, $email, $redirectUrl);
@@ -62,7 +62,7 @@ class SmsCodeTest extends AbstractControllerTest implements TestRouteInterface, 
     /** @dataProvider provideTestFormIsNotValid */
     public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
-        $beneficiary = BeneficiaireFactory::createOne(['relayInvitationSmsCode' => '1234', 'relayInvitationSmsCodeSendAt' => new \DateTime()])->object();
+        $beneficiary = BeneficiaireFactory::createOne(['relayInvitationSmsCode' => '1234', 'relayInvitationSmsCodeSendAt' => new \DateTime()])->_real();
         $url = sprintf(self::URL, $beneficiary->getId());
         $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email, $alternateSelector);
     }

@@ -30,7 +30,7 @@ class ChoiceTest extends AbstractControllerTest implements TestRouteInterface
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $url = sprintf(self::URL, $beneficiary->getId());
 
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);

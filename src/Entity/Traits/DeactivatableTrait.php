@@ -10,7 +10,7 @@ trait DeactivatableTrait
     #[ORM\Column(name: 'enabled', type: 'boolean', nullable: false)]
     protected bool $enabled = true;
 
-    #[ORM\ManyToOne(targetEntity: \User::class)]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(name: 'disabledBy_id', referencedColumnName: 'id')]
     protected ?User $disabledBy = null;
 

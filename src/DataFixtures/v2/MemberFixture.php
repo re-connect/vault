@@ -94,14 +94,14 @@ class MemberFixture extends Fixture implements FixtureGroupInterface, DependentF
         if (!empty($relays)) {
             MembreFactory::new()
                 ->linkToRelays($relays, $beneficiaryManagement, $proManagement)
-                ->withAttributes(['user' => $user])
+                ->with(['user' => $user])
                 ->create();
 
             return;
         }
 
         MembreFactory::new()
-            ->withAttributes(['user' => $user])
+            ->with(['user' => $user])
             ->create();
     }
 

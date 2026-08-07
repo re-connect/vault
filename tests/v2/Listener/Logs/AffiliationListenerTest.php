@@ -2,7 +2,10 @@
 
 namespace App\Tests\v2\Listener\Logs;
 
+use App\Entity\Beneficiaire;
 use App\Entity\BeneficiaireCentre;
+use App\Entity\Centre;
+use App\Entity\Membre;
 use App\Entity\MembreCentre;
 use App\Entity\UserCentre;
 use App\ListenerV2\Logs\AffiliationListener;
@@ -92,9 +95,13 @@ class AffiliationListenerTest extends AbstractLogActivityListenerTest
 
     private function createBeneficiaireCentre(): BeneficiaireCentre
     {
+        /** @var Centre $relay */
+        $relay = RelayFactory::createOne()->_real();
+        /** @var Beneficiaire $beneficiaire */
+        $beneficiaire = BeneficiaireFactory::createOne()->_real();
         $beneficiaireCentre = (new BeneficiaireCentre())
-                ->setCentre(RelayFactory::createOne()
-                ->object())->setBeneficiaire(BeneficiaireFactory::createOne()->object())
+                ->setCentre($relay)
+                ->setBeneficiaire($beneficiaire)
                 ->setBValid(false);
 
         $this->em->persist($beneficiaireCentre);
@@ -105,7 +112,11 @@ class AffiliationListenerTest extends AbstractLogActivityListenerTest
 
     private function createMembreCentre(): MembreCentre
     {
-        $membreCentre = (new MembreCentre())->setCentre(RelayFactory::createOne()->object())->setMembre(MembreFactory::createOne()->object());
+        /** @var Centre $relay */
+        $relay = RelayFactory::createOne()->_real();
+        /** @var Membre $membre */
+        $membre = MembreFactory::createOne()->_real();
+        $membreCentre = (new MembreCentre())->setCentre($relay)->setMembre($membre)->setBValid(false);
 
         $this->em->persist($membreCentre);
         $this->em->flush();

@@ -31,14 +31,14 @@ class BeneficiaryCreationStep4Test extends AbstractControllerTest implements Tes
             'creators' => [
                 CreatorCentreFactory::createOne(),
                 CreatorUserFactory::createOne(),
-            ], ])->object();
-        $beneficiary = BeneficiaireFactory::createOne(['user' => $user])->object();
+            ], ])->_real();
+        $beneficiary = BeneficiaireFactory::createOne(['user' => $user])->_real();
 
         $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate([
             'isCreating' => true,
             'remotely' => true,
             'beneficiary' => $beneficiary,
-        ])->object();
+        ])->_real();
 
         $url = sprintf($url, $creationProcess->getId());
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $creationProcess->getId()) : null;
@@ -47,7 +47,7 @@ class BeneficiaryCreationStep4Test extends AbstractControllerTest implements Tes
         $client->request('GET', sprintf('/beneficiary/create/4/%s', $creationProcess->getId()));
 
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS === $userMail) {
-            self::assertFalse(BeneficiaryCreationProcessFactory::find($creationProcess)->object()->getIsCreating());
+            self::assertFalse(BeneficiaryCreationProcessFactory::find($creationProcess)->_real()->getIsCreating());
         }
     }
 

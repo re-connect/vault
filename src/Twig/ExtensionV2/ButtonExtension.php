@@ -3,6 +3,9 @@
 namespace App\Twig\ExtensionV2;
 
 use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -24,9 +27,9 @@ class ButtonExtension extends AbstractExtension
     }
 
     /**
-     * @throws \Twig\Error\SyntaxError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\LoaderError
+     * @throws SyntaxError
+     * @throws RuntimeError
+     * @throws LoaderError
      */
     public function button(Environment $env, string $type, string $message, string $color): string
     {
@@ -38,9 +41,9 @@ class ButtonExtension extends AbstractExtension
     }
 
     /**
-     * @throws \Twig\Error\SyntaxError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\LoaderError
+     * @throws SyntaxError
+     * @throws RuntimeError
+     * @throws LoaderError
      */
     public function link(Environment $env, string $path, string $message, string $color, ?string $icon = null, ?string $attr = null): string
     {

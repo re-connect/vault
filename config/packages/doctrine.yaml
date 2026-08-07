@@ -24,6 +24,8 @@ doctrine:
         dql:
             string-functions:
                 binary: DoctrineExtensions\Query\Mysql\Binary
+        controller_resolver:
+            auto_mapping: false
 
 when@test:
     doctrine:
@@ -31,6 +33,7 @@ when@test:
             # "TEST_TOKEN" is typically set by ParaTest
             dbname_suffix: '_test%env(default::TEST_TOKEN)%'
             logging: false
+            use_savepoints: true
 
 when@prod:
     doctrine:
