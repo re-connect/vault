@@ -7,9 +7,12 @@ use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
+use Zenstruck\Foundry\Test\Factories;
 
 class RequestAccountDataTest extends AbstractControllerTest implements TestRouteInterface
 {
+    use Factories;
+
     private const URL = '/user/request-personal-account-data';
 
     public function provideTestRoute(): ?\Generator
@@ -35,7 +38,7 @@ class RequestAccountDataTest extends AbstractControllerTest implements TestRoute
     public function testEmailIsSend(): void
     {
         $client = self::createClient();
-        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $client->loginUser($user);
         $client->request('GET', self::URL);
 
@@ -50,7 +53,7 @@ class RequestAccountDataTest extends AbstractControllerTest implements TestRoute
     public function testBeneficiaryNeedsEmailOrTelephoneToSendRequest(bool $isSent, ?string $email, ?string $phone): void
     {
         $client = self::createClient();
-        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $client->loginUser($user);
 
         $user->setTelephone($phone)->setEmail($email);

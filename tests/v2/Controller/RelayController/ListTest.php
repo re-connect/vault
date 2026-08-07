@@ -7,9 +7,12 @@ use App\DataFixtures\v2\MemberFixture;
 use App\Entity\MembreCentre;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
+use Zenstruck\Foundry\Test\Factories;
 
 class ListTest extends AbstractControllerTest implements TestRouteInterface
 {
+    use Factories;
+
     private const URL = '/relays/mine';
     private const SHOW_BENEFICIARY_BUTTON = 'Voir les bénéficiaires';
     private const SHOW_PROFESSIONAL_BUTTON = 'Voir les professionnels';

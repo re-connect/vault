@@ -32,15 +32,15 @@ class SwitchPrivateTest extends AbstractControllerTest implements TestRouteInter
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
-        $publicFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $publicFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
         $url = sprintf($url, $publicFolder->getId());
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : '';
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $privateFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->object();
+            $privateFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
             $newUrl = sprintf(self::URL, $privateFolder->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method);
         }
@@ -73,12 +73,12 @@ class SwitchPrivateTest extends AbstractControllerTest implements TestRouteInter
     /** @dataProvider provideTestCanNotSwitchPrivateWithParentFolder */
     public function testCanNotSwitchPrivateWithPrivateParentFolder(string $userMail, bool $isPrivateParentFolder, int $statusCode): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $folder = FolderFactory::findOrCreate([
             'bPrive' => false,
             'beneficiaire' => $beneficiary,
             'dossierParent' => FolderFactory::random(['bPrive' => $isPrivateParentFolder]),
-        ])->object();
+        ])->_real();
 
         $this->assertRoute(sprintf(self::URL, $folder->getId()), $statusCode, $userMail);
     }

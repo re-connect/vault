@@ -157,9 +157,6 @@
             ".php-cs-fixer.dist.php"
         ]
     },
-    "friendsofphp/proxy-manager-lts": {
-        "version": "v1.0.2"
-    },
     "friendsofsymfony/jsrouting-bundle": {
         "version": "2.3",
         "recipe": {
@@ -207,9 +204,6 @@
     },
     "knplabs/knp-paginator-bundle": {
         "version": "v5.5.1"
-    },
-    "laminas/laminas-code": {
-        "version": "3.4.1"
     },
     "lcobucci/clock": {
         "version": "2.0.0"
@@ -322,6 +316,18 @@
     },
     "php-cs-fixer/diff": {
         "version": "v2.0.2"
+    },
+    "php-http/discovery": {
+        "version": "1.20",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.18",
+            "ref": "f45b5dd173a27873ab19f5e3180b2f661c21de02"
+        },
+        "files": [
+            "config/packages/http_discovery.yaml"
+        ]
     },
     "php-http/message-factory": {
         "version": "v1.0.2"
@@ -737,9 +743,6 @@
     },
     "symfony/property-info": {
         "version": "v4.4.9"
-    },
-    "symfony/proxy-manager-bridge": {
-        "version": "v5.4.0"
     },
     "symfony/psr-http-message-bridge": {
         "version": "v2.1.2"

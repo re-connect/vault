@@ -12,8 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EvenementSimpleType extends AbstractType
@@ -83,19 +81,7 @@ class EvenementSimpleType extends AbstractType
                 ]
             )
             ->add('submit', SubmitType::class, ['label' => 'confirm', 'attr' => ['class' => 'btn-blue btn btn-green font-size-1 js-loading-container']])
-            ->setAction('#')
-            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event): void {
-                $data = $event->getData();
-                if (!$data instanceof Evenement || !$data->getDate() || !$data->getTimezone()) {
-                    return;
-                }
-
-                $date = $data->getDate();
-                $timezone = $data->getTimezone();
-
-                $data->setDate(new \DateTime($date->format('Y-m-d H:i:s'), new \DateTimeZone($timezone)));
-                $event->setData($data);
-            });
+            ->setAction('#');
     }
 
     #[\Override]

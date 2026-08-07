@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Rector\Doctrine\Set\DoctrineSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Symfony\CodeQuality\Rector\ClassMethod\ActionSuffixRemoverRector;
@@ -10,7 +11,7 @@ use Rector\Symfony\CodeQuality\Rector\ClassMethod\ParamTypeFromRouteRequiredRege
 use Rector\Symfony\Set\SymfonySetList;
 
 return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->paths([__DIR__.'/src']);
+    $rectorConfig->paths([__DIR__.'/src', __DIR__.'/tests/Factory']);
 
     $rectorConfig->skip([
         ActionSuffixRemoverRector::class,
@@ -20,9 +21,12 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->sets([
         LevelSetList::UP_TO_PHP_83,
         SymfonySetList::SYMFONY_64,
+        SymfonySetList::SYMFONY_70,
+        SymfonySetList::SYMFONY_71,
         SymfonySetList::SYMFONY_CODE_QUALITY,
         SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
         SymfonySetList::ANNOTATIONS_TO_ATTRIBUTES,
+        DoctrineSetList::DOCTRINE_COLLECTION_22
         //        DoctrineSetList::ANNOTATIONS_TO_ATTRIBUTES,
     ]);
 };

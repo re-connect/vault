@@ -18,7 +18,7 @@ class StrongPasswordLoginCheckTest extends WebTestCase
     public function testLoginSuccessHydrateUserDependingPasswordWeakness(string $email, string $password, bool $shouldFlagUserWithLatestPolicy): void
     {
         $client = $this->createClient();
-        $user = UserFactory::findByEmail($email)->object();
+        $user = UserFactory::findByEmail($email);
         $user->setHasPasswordWithLatestPolicy(false);
         self::getContainer()->get(EntityManagerInterface::class)->flush();
 
@@ -33,7 +33,7 @@ class StrongPasswordLoginCheckTest extends WebTestCase
         ]);
         $client->submit($form);
 
-        $user = UserFactory::find($user)->object();
+        $user = UserFactory::find($user)->_real();
         self::assertEquals($shouldFlagUserWithLatestPolicy, $user->hasPasswordWithLatestPolicy());
     }
 

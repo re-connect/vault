@@ -25,8 +25,8 @@ class ToggleUserInvitationTest extends AbstractControllerTest
         array $body = [],
     ): void {
         // Test toggle pro invite
-        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL)->object();
-        $relay = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object()->getCentres()[0];
+        $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL);
+        $relay = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real()->getCentres()[0];
         $url = sprintf(self::URL, $user->getId(), $relay->getId());
 
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS === $userMail) {
@@ -56,9 +56,9 @@ class ToggleUserInvitationTest extends AbstractControllerTest
     /** @dataProvider provideTestForceBeneficiaryAffiliation */
     public function testForceBeneficiaryAffiliation(string $email, bool $isCreating)
     {
-        $loggedUser = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object();
+        $loggedUser = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS);
         $relay = $loggedUser->getCentres()[0];
-        $testedUser = UserFactory::findByEmail($email)->object();
+        $testedUser = UserFactory::findByEmail($email);
 
         self::assertEquals($isCreating, $testedUser->getSubjectBeneficiaire()->getCreationProcess()->isCreating());
         self::assertFalse($testedUser->isLinkedToRelay($relay));
@@ -66,8 +66,8 @@ class ToggleUserInvitationTest extends AbstractControllerTest
         $url = sprintf(self::URL, $testedUser->getId(), $relay->getId());
         $this->assertRoute($url, 302, MemberFixture::MEMBER_MAIL_WITH_RELAYS, sprintf('/beneficiary/%s/affiliate/relays', $testedUser->getSubject()->getId()));
 
-        $testedUser = UserFactory::find($testedUser)->object();
-        $relay = RelayFactory::find($relay)->object();
+        $testedUser = UserFactory::find($testedUser)->_real();
+        $relay = RelayFactory::find($relay)->_real();
         self::assertEquals($isCreating, $testedUser->getUserRelay($relay)->getBValid());
     }
 
@@ -79,17 +79,17 @@ class ToggleUserInvitationTest extends AbstractControllerTest
 
     public function testProPermissionOnInvitation(): void
     {
-        $loggedUser = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object();
+        $loggedUser = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS);
         $relay = $loggedUser->getCentres()[0];
-        $testedUser = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_NO_RELAY_NO_PERMISSION)->object();
+        $testedUser = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL_NO_RELAY_NO_PERMISSION);
 
         self::assertFalse($testedUser->isLinkedToRelay($relay));
 
         $url = sprintf(self::URL, $testedUser->getId(), $relay->getId());
         $this->assertRoute($url, 302, MemberFixture::MEMBER_MAIL_WITH_RELAYS, sprintf('/user/%s/invite', $testedUser->getId()));
 
-        $testedUser = UserFactory::find($testedUser)->object();
-        $relay = RelayFactory::find($relay)->object();
+        $testedUser = UserFactory::find($testedUser)->_real();
+        $relay = RelayFactory::find($relay)->_real();
         $userRelay = $testedUser->getUserRelay($relay);
 
         self::assertSame(

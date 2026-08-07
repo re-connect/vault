@@ -10,7 +10,7 @@ use App\Tests\Factory\RelayFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Bundle\SecurityBundle\Security;
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\ObjectFactory;
 use Zenstruck\Foundry\Test\Factories;
 
 class UserCreationSubscriberTest extends KernelTestCase
@@ -27,7 +27,7 @@ class UserCreationSubscriberTest extends KernelTestCase
     public function testFormatUsername(): void
     {
         /** @var Beneficiaire $beneficiary */
-        $beneficiary = BeneficiaireFactory::createOne()->object();
+        $beneficiary = BeneficiaireFactory::createOne()->_real();
         $user = $beneficiary->getUser();
         $expectedUsername = sprintf('%s.%s.%s',
             strtolower($user->getPrenom()),
@@ -40,17 +40,17 @@ class UserCreationSubscriberTest extends KernelTestCase
     /**
      * @dataProvider provideTestAddCreatorRelay
      */
-    public function testAddCreatorRelay(ModelFactory $modelFactory): void
+    public function testAddCreatorRelay(ObjectFactory $modelFactory): void
     {
-        $loggedUser = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->object()->getUser();
+        $loggedUser = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real()->getUser();
         $this->securityMock->method('getUser')->willReturn($loggedUser);
         self::getContainer()->set(Security::class, $this->securityMock);
 
-        $relay = RelayFactory::createOne()->object();
+        $relay = RelayFactory::createOne()->_real();
         $subject = $modelFactory
             ->linkToRelays([$relay])
             ->create()
-            ->object();
+            ->_real();
 
         $createdUser = $subject->getUser();
         $this->assertEquals(

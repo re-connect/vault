@@ -16,16 +16,22 @@ export default class extends Controller {
                      this.buttonTarget.disabled = 'disabled';
                      this.loadingContentTarget.style.display = 'inline-block';
                      this.contentTarget.style.display = 'none';
+
+                     const requestTarget = form ?? this.element.closest('turbo-frame') ?? document;
+                     requestTarget.addEventListener('turbo:before-fetch-response', this.reset, { once: true });
+                     requestTarget.addEventListener('turbo:fetch-request-error', this.reset, { once: true });
+
                      if (form) {
                             form.submit();
                      }
               }
-              setTimeout(() => {
-                     this.buttonTarget.disabled = false;
-                     this.buttonTarget.classList.remove('disabled');
-                     this.buttonTarget.dataset.ariaDisabled = 'false';
-                     this.loadingContentTarget.style.display = 'none';
-                     this.contentTarget.style.display = 'inline-block';
-              }, 2000);
+       }
+
+       reset = () => {
+              this.buttonTarget.disabled = false;
+              this.buttonTarget.classList.remove('disabled');
+              this.buttonTarget.dataset.ariaDisabled = 'false';
+              this.loadingContentTarget.style.display = 'none';
+              this.contentTarget.style.display = 'inline-block';
        }
 }

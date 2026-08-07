@@ -18,9 +18,9 @@ use App\OtherClasses\ErrorCode;
 use App\Repository\ClientBeneficiaireRepository;
 use App\Security\Authorization\Voter\BeneficiaireVoter;
 use App\Validator\Constraints\DateNaissance;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
-use Doctrine\ORM\Query;
 use League\Bundle\OAuth2ServerBundle\Security\User\NullUser;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -62,7 +62,6 @@ final class BeneficiaireProvider
             ->innerJoin('bc.centre', 'c')
             ->where('b.id = '.$id)
             ->getQuery()
-            ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
             ->getResult();
 
         if (null === $result || 0 === count($result)) {
@@ -82,7 +81,6 @@ final class BeneficiaireProvider
             ->join('bc.centre', 'c')
             ->where('b.id = '.$id)
             ->getQuery()
-            ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
             ->getResult();
 
         if (null === $result || 0 === count($result)) {
@@ -359,7 +357,7 @@ final class BeneficiaireProvider
             }
 
             /** Vérification si le bénéficiaire a accepté au moins un ajout d'un ces centres du client */
-            /** @var \Doctrine\Common\Collections\Collection<int, ClientBeneficiaire> $externalLinks */
+            /** @var Collection<int, ClientBeneficiaire> $externalLinks */
             $externalLinks = $entity->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $element->getDistantId() == $id && $element->getClient() === $oldClient);
             foreach ($externalLinks as $externalLink) {
                 if (!$externalLink->getBeneficiaireCentre()?->getBValid()) {

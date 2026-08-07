@@ -22,7 +22,7 @@ class BeneficiaryCreationTermsOfUseTest extends AbstractControllerTest implement
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $creationProcess = BeneficiaryCreationProcessFactory::createOne(['isCreating' => false, 'remotely' => false])->object();
+        $creationProcess = BeneficiaryCreationProcessFactory::createOne(['isCreating' => false, 'remotely' => false])->_real();
         $url = sprintf($url, $creationProcess->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }

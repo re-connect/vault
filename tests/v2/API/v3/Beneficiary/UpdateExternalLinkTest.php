@@ -23,7 +23,7 @@ class UpdateExternalLinkTest extends AbstractApiTest
 
     public function testShouldUpdateDistantId(): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK);
         $client = $this->clientRepository->findOneBy(['nom' => 'reconnect_pro']);
         $externalLinks = $this->clientBeneficiaireRepository->findBy(['entity' => $beneficiary, 'client' => $client]);
         $this->assertCount(1, $externalLinks);
@@ -55,7 +55,7 @@ class UpdateExternalLinkTest extends AbstractApiTest
      */
     public function testShouldNotUpdateDistantIdWhenNotSameClient(string $clientName): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK)->object();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK);
         $client = $this->clientRepository->findOneBy(['nom' => 'reconnect_pro']);
         $externalLinks = $this->clientBeneficiaireRepository->findBy(['entity' => $beneficiary, 'client' => $client]);
         $this->assertCount(1, $externalLinks);

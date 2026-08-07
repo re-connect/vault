@@ -17,17 +17,17 @@ class BeneficiaryCreationNoRelaySelectedTest extends AbstractControllerTest
     /** @dataProvider  provideTestNoRelaySelectedNotification**/
     public function testNoRelaySelectedNotification(string $url, bool $beneficiaryHasRelay): void
     {
-        $beneficiary = BeneficiaireFactory::createOne()->object();
+        $beneficiary = BeneficiaireFactory::createOne()->_real();
 
         if ($beneficiaryHasRelay) {
-            $beneficiary->addBeneficiairesCentre(BeneficiaireCentre::createValid(RelayFactory::randomOrCreate()->object()));
+            $beneficiary->addBeneficiairesCentre(BeneficiaireCentre::createValid(RelayFactory::randomOrCreate()->_real()));
         }
         self::assertCount($beneficiaryHasRelay ? 1 : 0, $beneficiary->getAffiliatedRelays());
 
         // Request to summary step
         $url = sprintf(
             $url,
-            BeneficiaryCreationProcessFactory::createOne(['beneficiary' => $beneficiary])->object()->getId(),
+            BeneficiaryCreationProcessFactory::createOne(['beneficiary' => $beneficiary])->_real()->getId(),
         );
 
         $client = $this->assertRoute($url, 200, MemberFixture::MEMBER_MAIL);

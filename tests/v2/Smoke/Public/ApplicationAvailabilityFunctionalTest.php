@@ -3,9 +3,12 @@
 namespace App\Tests\v2\Smoke\Public;
 
 use App\Tests\v2\Smoke\AbstractSmokeTest;
+use Zenstruck\Foundry\Test\Factories;
 
 class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
 {
+    use Factories;
+
     /**
      * @dataProvider urlProvider
      */

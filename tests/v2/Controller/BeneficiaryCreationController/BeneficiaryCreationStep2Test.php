@@ -28,7 +28,7 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
         bool $isXmlHttpRequest = false,
         array $body = [],
     ): void {
-        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->object();
+        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->_real();
         $url = sprintf($url, $creationProcess->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
     }
@@ -47,7 +47,7 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
      */
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
-        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->object();
+        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->_real();
         $url = sprintf($url, $creationProcess->getId());
         $redirectUrl = sprintf($redirectUrl, $creationProcess->getId());
         $this->assertFormIsValid($url, $formSubmit, $values, $email, $redirectUrl);
@@ -83,7 +83,7 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
      */
     public function testFormIsNotValid(string $url, string $route, string $formSubmit, array $values, array $errors, ?string $email, ?string $alternateSelector = null): void
     {
-        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->object();
+        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['isCreating' => true, 'remotely' => false])->_real();
         $url = sprintf($url, $creationProcess->getId());
         $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email, $alternateSelector);
     }

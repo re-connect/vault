@@ -29,17 +29,23 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class BeneficiaireAdmin extends AbstractAdmin
 {
-    public function __construct(
-        ?string $code = null,
-        ?string $class = null,
-        ?string $baseControllerName = null,
-        private readonly ?RouterInterface $router = null,
-        private readonly ?AuthorizationCheckerInterface $authorizationChecker = null,
-    ) {
-        parent::__construct($code, $class, $baseControllerName);
+    private RouterInterface $router;
+    private AuthorizationCheckerInterface $authorizationChecker;
+
+    #[Required]
+    public function setRouter(RouterInterface $router): void
+    {
+        $this->router = $router;
+    }
+
+    #[Required]
+    public function setAuthorizationChecker(AuthorizationCheckerInterface $authorizationChecker): void
+    {
+        $this->authorizationChecker = $authorizationChecker;
     }
 
     #[\Override]
