@@ -3,6 +3,7 @@
 namespace App\Command\DataImport;
 
 use App\Entity\Beneficiaire;
+use App\Entity\Document;
 use App\Entity\Dossier;
 use App\Entity\User;
 use App\ManagerV2\DocumentManager;
@@ -15,6 +16,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -27,6 +29,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class ImportNidusBeneficiariesCommand extends Command
 {
+    /** @var array<int, array{file: string, location: string, reason: string}> */
+    private array $ignoredDocuments = [];
+
+    private int $importedDocumentsCount = 0;
+
     public function __construct(
         private readonly string $kernelProjectDir,
         private readonly UserManager $userManager,
@@ -45,6 +52,7 @@ class ImportNidusBeneficiariesCommand extends Command
     #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $io = new SymfonyStyle($input, $output);
         $folderPath = sprintf('%s/var/nidus_import/%s', $this->kernelProjectDir, $input->getArgument('folderName'));
 
         $beneficiary = $this->createBeneficiary(
@@ -57,6 +65,8 @@ class ImportNidusBeneficiariesCommand extends Command
         );
 
         $this->em->flush();
+
+        $this->displaySummary($io, $beneficiary);
 
         return Command::SUCCESS;
     }
@@ -113,19 +123,62 @@ class ImportNidusBeneficiariesCommand extends Command
                 $this->em->persist($folder);
                 $this->importFolderAndDocumentsRecursively($beneficiary, $item->getRealPath(), $folder);
             } else {
-                $document = $this->documentManager->uploadFile(
-                    new UploadedFile(
-                        $item->getRealPath(),
-                        $item->getFilename(),
-                        mime_content_type($item->getRealPath()),
-                        null,
-                        true
-                    ),
-                    $beneficiary,
-                    $parentFolder,
+                $uploadedFile = new UploadedFile(
+                    $item->getRealPath(),
+                    $item->getFilename(),
+                    mime_content_type($item->getRealPath()),
+                    null,
+                    true
                 );
+
+                if (!in_array($uploadedFile->guessExtension(), Document::ALLOWED_FILE_EXTENSIONS, true)) {
+                    $this->ignoredDocuments[] = [
+                        'file' => $item->getFilename(),
+                        'location' => $parentFolder?->getNom() ?? '/',
+                        'reason' => 'Type de fichier non supporté',
+                    ];
+
+                    continue;
+                }
+
+                $document = $this->documentManager->uploadFile($uploadedFile, $beneficiary, $parentFolder);
+
+                if (null === $document) {
+                    $this->ignoredDocuments[] = [
+                        'file' => $item->getFilename(),
+                        'location' => $parentFolder?->getNom() ?? '/',
+                        'reason' => "Échec de l'upload",
+                    ];
+
+                    continue;
+                }
+
                 $document->setBPrive(true);
+                ++$this->importedDocumentsCount;
             }
         }
+    }
+
+    private function displaySummary(SymfonyStyle $io, Beneficiaire $beneficiary): void
+    {
+        $io->success(sprintf(
+            'Import réussi pour %s %s : %d document(s) importé(s).',
+            $beneficiary->getUser()->getPrenom(),
+            $beneficiary->getUser()->getNom(),
+            $this->importedDocumentsCount,
+        ));
+
+        if ([] === $this->ignoredDocuments) {
+            return;
+        }
+
+        $io->warning(sprintf('%d document(s) ignoré(s) car non pris en charge :', count($this->ignoredDocuments)));
+        $io->table(
+            ['Fichier', 'Emplacement', 'Raison'],
+            array_map(
+                static fn (array $ignored) => [$ignored['file'], $ignored['location'], $ignored['reason']],
+                $this->ignoredDocuments,
+            ),
+        );
     }
 }
