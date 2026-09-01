@@ -8,8 +8,10 @@ use App\Entity\Client;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\Query\Parameter;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -69,6 +71,26 @@ class BeneficiaireRepository extends ServiceEntityRepository
                 'distantIds' => $distantIds,
                 'clientId' => $clientIdentifier,
             ])->getQuery()->getResult();
+    }
+
+    /**
+     * @param string[] $distantIds
+     **/
+    public function findExistingDistantIds(array $distantIds, string $clientIdentifier): array
+    {
+        return array_column(
+            $this->createQueryBuilder('b')
+                ->select('DISTINCT c.distantId AS distantId')
+                ->join('b.externalLinks', 'c')
+                ->join('c.client', 'client')
+                ->andWhere('c.distantId IN (:distantIds)')
+                ->andWhere('client.randomId = :clientId')
+                ->setParameters(new ArrayCollection([
+                    new Parameter('distantIds', $distantIds),
+                    new Parameter('clientId', $clientIdentifier)
+                ]))->getQuery()->getScalarResult(),
+            'distantId',
+        );
     }
 
     public function findByUsername(string $username): ?Beneficiaire
