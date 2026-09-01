@@ -27,11 +27,11 @@ final class BeneficiaryClientApiController extends AbstractController
         }
 
         $distantIds = $dto->getNormalizedDistantIds();
-        $existingDistantIds = $repository->findExistingDistantIds($distantIds, $client->getRandomId());
+        $existingDistantIds = array_flip($repository->findExistingDistantIds($distantIds, $client->getRandomId()));
 
         $existence = [];
         foreach ($distantIds as $distantId) {
-            $existence[$distantId] = in_array($distantId, $existingDistantIds, true);
+            $existence[$distantId] = isset($existingDistantIds[$distantId]);
         }
 
         return $this->json($existence);
