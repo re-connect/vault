@@ -87,7 +87,7 @@ class BeneficiaireRepository extends ServiceEntityRepository
                 ->andWhere('client.randomId = :clientId')
                 ->setParameters(new ArrayCollection([
                     new Parameter('distantIds', $distantIds),
-                    new Parameter('clientId', $clientIdentifier)
+                    new Parameter('clientId', $clientIdentifier),
                 ]))->getQuery()->getScalarResult(),
             'distantId',
         );
