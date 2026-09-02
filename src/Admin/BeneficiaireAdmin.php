@@ -9,6 +9,7 @@ use App\Entity\Client;
 use App\Entity\CreatorCentre;
 use App\Entity\CreatorClient;
 use App\Entity\CreatorUser;
+use App\Entity\Region;
 use App\ManagerV2\UserManager;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
@@ -25,7 +26,6 @@ use Sonata\Form\Type\DatePickerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -218,14 +218,14 @@ class BeneficiaireAdmin extends AbstractAdmin
                         ->innerJoin($alias.'.beneficiairesCentres', 'bc1')
                         ->innerJoin('bc1.centre', 'c1')
                         ->innerJoin('c1.region', 'r')
-                        ->andWhere('r.name IN (:regions)')
+                        ->andWhere('r.id IN (:regions)')
                         ->setParameter('regions', $value);
 
                     return true;
                 },
-                'field_type' => ChoiceType::class,
+                'field_type' => EntityType::class,
                 'field_options' => [
-                    'choices' => array_combine(Centre::REGIONS, Centre::REGIONS),
+                    'class' => Region::class,
                     'multiple' => true,
                 ],
             ])
