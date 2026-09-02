@@ -7,6 +7,7 @@ use App\Entity\Client;
 use App\Entity\CreatorCentre;
 use App\Entity\CreatorClient;
 use App\Entity\CreatorUser;
+use App\Entity\Region;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -17,7 +18,6 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\DoctrineORMAdminBundle\Filter\CallbackFilter;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ContactAdmin extends AbstractAdmin
@@ -67,14 +67,14 @@ class ContactAdmin extends AbstractAdmin
                         ->innerJoin('b.beneficiairesCentres', 'bc')
                         ->innerJoin('bc.centre', 'c')
                         ->innerJoin('c.region', 'r')
-                        ->andWhere('r.name IN (:regions)')
+                        ->andWhere('r.id IN (:regions)')
                         ->setParameter('regions', $value);
 
                     return true;
                 },
-                'field_type' => ChoiceType::class,
+                'field_type' => EntityType::class,
                 'field_options' => [
-                    'choices' => array_combine(Centre::REGIONS, Centre::REGIONS),
+                    'class' => Region::class,
                     'multiple' => true,
                 ],
             ])
