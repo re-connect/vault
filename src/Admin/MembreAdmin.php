@@ -5,6 +5,7 @@ namespace App\Admin;
 use App\Entity\Centre;
 use App\Entity\CreatorUser;
 use App\Entity\MembreCentre;
+use App\Entity\Region;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
@@ -234,14 +235,14 @@ class MembreAdmin extends AbstractAdmin
                         ->innerJoin($alias.'.membresCentres', 'mc')
                         ->innerJoin('mc.centre', 'c')
                         ->innerJoin('c.region', 'r')
-                        ->andWhere('r.name IN (:regions)')
+                        ->andWhere('r.id IN (:regions)')
                         ->setParameter('regions', $value);
 
                     return true;
                 },
-                'field_type' => ChoiceType::class,
+                'field_type' => EntityType::class,
                 'field_options' => [
-                    'choices' => array_combine(Centre::REGIONS, Centre::REGIONS),
+                    'class' => Region::class,
                     'multiple' => true,
                 ],
             ])

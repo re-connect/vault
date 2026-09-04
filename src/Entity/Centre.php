@@ -60,7 +60,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Centre implements \JsonSerializable, \Stringable
 {
     use CreatorTrait;
-    public const array REGIONS = ['Auvergne-Rhône-Alpes', 'Bourgogne-Franche-Comté', 'Bretagne', 'Centre-Val de Loire', 'Corse', 'Grand Est', 'Hauts-de-France', 'Ile-de-France', 'Normandie', 'Nouvelle-Aquitaine', 'Occitanie', 'Pays de la Loire', 'Provence-Alpes-Côte d’Azur', 'Autre'];
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
