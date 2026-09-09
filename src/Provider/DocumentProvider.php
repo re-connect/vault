@@ -21,6 +21,7 @@ use App\Repository\ClientRepository as OldClientRepository;
 use App\Security\Authorization\Voter\BeneficiaireVoter;
 use App\Security\Authorization\Voter\DonneePersonnelleVoter;
 use App\Service\PdfService;
+use App\ServiceV2\Antivirus\Exception\DocumentInfectedException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
@@ -71,7 +72,6 @@ class DocumentProvider extends DonneePersonnelleProvider
         ClientRepository $clientRepository,
         ApiClientManager $apiClientManager,
         private readonly DocumentManagerV2 $documentManagerV2,
-        private readonly string $env,
     ) {
         parent::__construct(
             $formFactory,
@@ -437,8 +437,8 @@ class DocumentProvider extends DonneePersonnelleProvider
                 throw new ExtensionFileException('Extension not allowed '.$file->guessExtension());
             }
 
-            if (in_array($this->env, ['preprod', 'prod']) && !$this->documentManagerV2->isFileClean($file)) {
-                throw new \Exception('File unsafe');
+            if (!$this->documentManagerV2->isFileClean($file)) {
+                throw new DocumentInfectedException();
             }
 
             $extension = str_replace('jpeg', 'jpg', (string) $file->guessExtension());

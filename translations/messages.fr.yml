@@ -231,6 +231,8 @@ document_added: Nouveau document
 document_added_to_vault: Un document a été ajouté sur votre coffre-fort Reconnect
 document_deleted_successfully: 'Votre document a bien été supprimé'
 document_successfully_send_email: 'Votre document a bien été envoyé par mail'
+document_upload_infected: "Ce fichier a été identifié comme dangereux et n'a pas pu être déposé."
+document_scan_unavailable: "L'analyse antivirus est momentanément indisponible. Veuillez contacter le support."
 documents: Documents
 download: Télécharger
 download_document: 'Télécharger un document'

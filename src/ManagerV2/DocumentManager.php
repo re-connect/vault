@@ -6,6 +6,8 @@ use App\Entity\Beneficiaire;
 use App\Entity\Document;
 use App\Entity\Dossier;
 use App\Repository\DocumentRepository;
+use App\ServiceV2\Antivirus\ClamavScanner;
+use App\ServiceV2\Antivirus\Exception\AntivirusUnavailableException;
 use App\ServiceV2\BucketService;
 use App\ServiceV2\Traits\SessionsAwareTrait;
 use App\ServiceV2\Traits\UserAwareTrait;
@@ -19,7 +21,6 @@ use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use Symfony\Component\Process\Process;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use function Symfony\Component\String\u;
@@ -39,7 +40,8 @@ class DocumentManager
         private readonly TranslatorInterface $translator,
         private readonly BucketService $bucketService,
         private readonly FolderManager $folderManager,
-        private readonly string $env,
+        private readonly ClamavScanner $clamavScanner,
+        private readonly bool $antivirusEnabled,
     ) {
     }
 
@@ -122,8 +124,16 @@ class DocumentManager
             return null;
         }
 
-        if (in_array($this->env, ['preprod', 'prod']) && !$this->isFileClean($file)) {
+        try {
+            if (!$this->isFileClean($file)) {
+                $this->removeFileFromDisk($file);
+                $this->addFlashMessage('danger', 'document_upload_infected');
+
+                return null;
+            }
+        } catch (AntivirusUnavailableException) {
             $this->removeFileFromDisk($file);
+            $this->addFlashMessage('danger', 'document_scan_unavailable');
 
             return null;
         }
@@ -138,6 +148,7 @@ class DocumentManager
                 $beneficiary->getId(),
                 $exception->getMessage()
             ));
+            $this->addFlashMessage('danger', 'error');
 
             return null;
         }
@@ -149,9 +160,7 @@ class DocumentManager
     public function uploadFiles(array $files, Beneficiaire $beneficiary, ?Dossier $folder = null): void
     {
         foreach ($files as $file) {
-            if (!$this->uploadFile($file, $beneficiary, $folder)) {
-                $this->addFlashMessage('danger', 'error');
-            }
+            $this->uploadFile($file, $beneficiary, $folder);
         }
     }
 
@@ -169,19 +178,16 @@ class DocumentManager
         return true;
     }
 
+    /**
+     * @throws AntivirusUnavailableException
+     */
     public function isFileClean(File $file): bool
     {
-        $process = new Process(['clamdscan', '--fdpass', $file->getPathname()]);
-
-        try {
-            $process->mustRun();
-
+        if (!$this->antivirusEnabled) {
             return true;
-        } catch (\Exception $e) {
-            $this->logger->error(sprintf('Document upload AV check failed, cause : %s', $e->getMessage()));
-
-            return false;
         }
+
+        return $this->clamavScanner->isClean($file);
     }
 
     public function downloadDocument(Document $document): ?StreamedResponse

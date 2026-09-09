@@ -7,6 +7,7 @@ use App\DataFixtures\v2\MemberFixture;
 use App\ManagerV2\DocumentManager;
 use App\ManagerV2\FolderManager;
 use App\Repository\DocumentRepository;
+use App\ServiceV2\Antivirus\ClamavScanner;
 use App\ServiceV2\BucketService;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\FolderFactory;
@@ -41,6 +42,7 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
         $translatorMock = $this->createMock(TranslatorInterface::class);
         $bucketServiceMock = $this->createMock(BucketService::class);
         $folderManager = $this->createMock(FolderManager::class);
+        $clamavScannerMock = $this->createMock(ClamavScanner::class);
         $this->manager = new DocumentManager(
             $s3ClientMock,
             $repositoryMock,
@@ -51,7 +53,8 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
             $translatorMock,
             $bucketServiceMock,
             $folderManager,
-            'test',
+            $clamavScannerMock,
+            false,
         );
     }
 
