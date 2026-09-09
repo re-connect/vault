@@ -39,7 +39,7 @@ class DocumentManager
         private readonly TranslatorInterface $translator,
         private readonly BucketService $bucketService,
         private readonly FolderManager $folderManager,
-        private readonly string $env,
+        //        private readonly string $env,
     ) {
     }
 
@@ -122,11 +122,11 @@ class DocumentManager
             return null;
         }
 
-        if (in_array($this->env, ['preprod', 'prod']) && !$this->isFileClean($file)) {
-            $this->removeFileFromDisk($file);
-
-            return null;
-        }
+        //        if (in_array($this->env, ['preprod', 'prod']) && !$this->isFileClean($file)) {
+        //            $this->removeFileFromDisk($file);
+        //
+        //            return null;
+        //        }
 
         try {
             $key = $this->s3Client->uploadFile($file);
