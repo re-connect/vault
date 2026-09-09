@@ -437,9 +437,9 @@ class DocumentProvider extends DonneePersonnelleProvider
                 throw new ExtensionFileException('Extension not allowed '.$file->guessExtension());
             }
 
-            if (in_array($this->env, ['preprod', 'prod']) && !$this->documentManagerV2->isFileClean($file)) {
-                throw new \Exception('File unsafe');
-            }
+            //            if (in_array($this->env, ['preprod', 'prod']) && !$this->documentManagerV2->isFileClean($file)) {
+            //                throw new \Exception('File unsafe');
+            //            }
 
             $extension = str_replace('jpeg', 'jpg', (string) $file->guessExtension());
 
