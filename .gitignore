@@ -37,3 +37,13 @@ vendor/
 /config/jwt/private.pem
 /config/jwt/public.pem
 ###< lexik/jwt-authentication-bundle ###
+
+###> docker/db-data ###
+docker/shared/data/
+###< docker/db-data ###
+
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
