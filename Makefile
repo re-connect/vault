@@ -1,52 +1,27 @@
-.PHONY          :
+.DEFAULT_GOAL := help
 
-SYMFONY         = symfony
-CONSOLE         = $(SYMFONY) console
-COMPOSER        = $(SYMFONY) composer
-BIN             = ./vendor/bin
-DEPLOYER      	= $(BIN)/dep
-PHPUNIT         = $(BIN)/simple-phpunit
-PHPSTAN         = $(BIN)/phpstan
-RECTOR          = $(BIN)/rector
-PHP_CS_FIXER    = $(BIN)/php-cs-fixer
-PHPSTAN_LEVEL   = 7
+# On the host, `symfony php` picks the version declared in .php-version (8.3);
+# otherwise (container without Symfony CLI, CI) fall back to the `php` in PATH.
+PHP          ?= $(shell command -v symfony >/dev/null 2>&1 && echo 'symfony php' || echo php)
+CONSOLE       = $(PHP) bin/console
+BIN           = ./vendor/bin
+PHPUNIT       = $(PHP) $(BIN)/phpunit
+PARATEST      = $(PHP) $(BIN)/paratest
+PHPSTAN       = $(PHP) $(BIN)/phpstan
+RECTOR        = $(PHP) $(BIN)/rector
+PHP_CS_FIXER  = $(PHP) $(BIN)/php-cs-fixer
+DEPLOYER      = $(PHP) $(BIN)/dep
 
-cs: stan rector fixer
-ci: cs test
+##@ Aide
+help: ## Affiche cette aide (groupée par catégorie)
+	@awk 'BEGIN {FS = ":.*##"} \
+		/^##@/ { printf "\n\033[1m%s\033[0m\n\033[90m────────────────────────────────────────────────────────\033[0m\n", substr($$0, 5); next } \
+		/^[a-zA-Z0-9_-]+:.*?##/ { printf "  \033[36m%-30s\033[0m %s\n", $$1, $$2 }' \
+		$(MAKEFILE_LIST)
 
-stan:
-	@$(PHPSTAN) analyse -l $(PHPSTAN_LEVEL) --xdebug
+# ── Split by domain (make/*.mk) ──────────────────────────────────────────────
+# Help display order follows the numeric prefix of the files.
+include $(sort $(wildcard make/*.mk))
 
-rector:
-	@$(RECTOR) process --clear-cache
-
-fixer:
-	@$(PHP_CS_FIXER) fix src --allow-risky=yes --using-cache=no
-	@$(PHP_CS_FIXER) fix tests --allow-risky=yes --using-cache=no
-
-deploy-preprod:
-	@$(DEPLOYER) deploy vault-pp
-
-deploy-prod:
-	@$(DEPLOYER) deploy vault-prod
-
-dep: deploy-preprod
-
-fixture-v1:
-	@$(CONSOLE) doctrine:fixtures:load --env=test --group=v1 -n
-
-fixture-v2:
-	@$(CONSOLE) doctrine:fixtures:load --env=test --group=v2 -n
-
-test: fixture-v1 test-v1 fixture-v2 test-v2
-
-test-v1:
-	@$(PHPUNIT) tests/v1
-
-test-v2:
-	@$(PHPUNIT) tests/v2
-
-db-test:
-	@$(CONSOLE) d:d:drop --env=test --force
-	@$(CONSOLE) d:d:create --env=test
-	@$(CONSOLE) d:m:m --env=test
+# Automatically mark every documented target (`target: ## …`) as phony
+.PHONY: $(shell grep -hE '^[a-zA-Z0-9_-]+:.*?##' $(MAKEFILE_LIST) | sed 's/:.*//')
