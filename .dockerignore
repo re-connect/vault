@@ -1,0 +1,8 @@
+# Code is bind-mounted: the build context only needs docker/shared/
+.git
+vendor
+node_modules
+var
+public/build
+public/bundles
+docker/shared/data

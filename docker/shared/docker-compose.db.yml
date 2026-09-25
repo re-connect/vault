@@ -1,0 +1,27 @@
+name: vault-db
+
+services:
+  mariadb:
+    container_name: vault-db
+    image: mariadb:${MARIADB_VERSION}
+    environment:
+      MYSQL_ROOT_PASSWORD: vault
+      MYSQL_USER: vault
+      MYSQL_PASSWORD: vault
+    # Bound to localhost only
+    ports:
+      - "127.0.0.1:3311:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pvault" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - vault_shared_db
+
+networks:
+  vault_shared_db:
+    name: vault_shared_db
+    driver: bridge

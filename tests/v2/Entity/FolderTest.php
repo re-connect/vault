@@ -17,10 +17,14 @@ class FolderTest extends AbstractEntityTest
         $this->assertEntityIsValid($this->getValidEntity());
     }
 
-    /** @dataProvider provideInvalidEntities */
-    public function testEntityIsNotValid(Dossier $entity, string $property, string $constraintClass): void
+    /**
+     * @param \Closure(self): Dossier $buildEntity
+     *
+     * @dataProvider provideInvalidEntities
+     */
+    public function testEntityIsNotValid(\Closure $buildEntity, string $property, string $constraintClass): void
     {
-        $this->assertEntityIsNotValid($entity, $property, $constraintClass);
+        $this->assertEntityIsNotValid($buildEntity($this), $property, $constraintClass);
     }
 
     public function testRemoveIcon(): void
@@ -46,30 +50,56 @@ class FolderTest extends AbstractEntityTest
         self::assertNull($folder->getIcon());
     }
 
-    public function provideInvalidEntities(): \Generator
+    /**
+     * Entities are built lazily inside the test: data providers run before setUp(),
+     * outside the DAMA transaction and with a possibly stale Foundry/kernel state.
+     */
+    public static function provideInvalidEntities(): \Generator
     {
-        $this->setUp();
-        $folder = $this->getValidEntity();
-        $folder->setDossierParent($folder);
-        yield 'Should fail when folder is child of itself' => [$folder, 'dossierParent', NoCircularDependency::class];
+        yield 'Should fail when folder is child of itself' => [
+            static function (self $test): Dossier {
+                $folder = $test->getValidEntity();
 
+                return $folder->setDossierParent($folder);
+            },
+            'dossierParent',
+            NoCircularDependency::class,
+        ];
+
+        yield 'Should fail when folder is child of its child' => [
+            static function (self $test): Dossier {
+                [$folder, $childFolder] = $test->createFolderHierarchy();
+
+                return $folder->setDossierParent($childFolder);
+            },
+            'dossierParent',
+            NoCircularDependency::class,
+        ];
+
+        yield 'Should fail when folder is child of its grandchild' => [
+            static function (self $test): Dossier {
+                [$folder, , $grandChildFolder] = $test->createFolderHierarchy();
+
+                return $folder->setDossierParent($grandChildFolder);
+            },
+            'dossierParent',
+            NoCircularDependency::class,
+        ];
+    }
+
+    /**
+     * @return array{Dossier, Dossier, Dossier} folder, child, grandchild
+     */
+    public function createFolderHierarchy(): array
+    {
         $folder = $this->getValidEntity();
         $childFolder = $this->getValidEntity();
-        $grandChildfolder = $this->getValidEntity();
+        $grandChildFolder = $this->getValidEntity();
 
         $folder->addSousDossier($childFolder);
-        $childFolder->addSousDossier($grandChildfolder);
+        $childFolder->addSousDossier($grandChildFolder);
 
-        $this->em->persist($folder);
-        $this->em->persist($childFolder);
-        $this->em->persist($grandChildfolder);
-        $this->em->flush();
-
-        $folder->setDossierParent($childFolder);
-        yield 'Should fail when folder is child of its child' => [$folder, 'dossierParent', NoCircularDependency::class];
-
-        $folder->setDossierParent($grandChildfolder);
-        yield 'Should fail when folder is child of its grandchild' => [$folder, 'dossierParent', NoCircularDependency::class];
+        return [$folder, $childFolder, $grandChildFolder];
     }
 
     public function getValidEntity(): Dossier
