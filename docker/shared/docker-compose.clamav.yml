@@ -1,0 +1,28 @@
+name: vault-clamav
+
+services:
+  vault-clamav:
+    image: clamav/clamav:latest
+    # clamav/clamav:latest has no arm64 manifest. Default to amd64 (native on
+    # Linux/Intel, emulated on Apple Silicon). Override with CLAMAV_PLATFORM.
+    platform: ${CLAMAV_PLATFORM:-linux/amd64}
+    container_name: vault-clamav
+    volumes:
+      # Persist the virus database so freshclam does not re-download it on every restart
+      - ./data/clamav:/var/lib/clamav
+    healthcheck:
+      # clamdcheck.sh ships with the official image and pings the running daemon
+      test: ["CMD", "clamdcheck.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      # First boot downloads the signature database (freshclam), which is slow
+      start_period: 120s
+    networks:
+      - vault_shared_clamav
+    restart: unless-stopped
+
+networks:
+  vault_shared_clamav:
+    name: vault_shared_clamav
+    driver: bridge

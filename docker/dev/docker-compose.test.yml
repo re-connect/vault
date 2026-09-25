@@ -1,0 +1,33 @@
+name: vault-dev-test
+
+services:
+  mariadb:
+    container_name: vault-dev-test-db
+    image: mariadb:${MARIADB_VERSION}
+    environment:
+      MYSQL_ROOT_PASSWORD: vault
+      MYSQL_DATABASE: vault_test
+    # Disposable database: in memory, durability disabled for speed
+    tmpfs:
+      - /var/lib/mysql:mode=1777
+    command: >
+      --innodb-flush-log-at-trx-commit=0
+      --innodb-doublewrite=0
+      --sync-binlog=0
+      --innodb-flush-method=nosync
+
+  mailpit:
+    profiles:
+      - donotstart
+
+  app:
+    container_name: vault-dev-test
+    depends_on: !reset [ ]
+    ports: !reset [ ]
+    # Only test values: docker/dev/.env (Mailpit, MinIO…) must not override .env.test
+    env_file: !override
+      - .env.test.override
+    tmpfs:
+      - /vault/var:mode=1777
+    volumes:
+      - ../shared/php/opcache.test.ini:/usr/local/etc/php/conf.d/opcache.ini

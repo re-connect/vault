@@ -87,6 +87,7 @@
     "vich/uploader-bundle": "2.7.*"
   },
   "require-dev": {
+    "brianium/paratest": "^6",
     "dama/doctrine-test-bundle": "8.2.*",
     "deployer/deployer": "^7.3",
     "doctrine/doctrine-fixtures-bundle": "4.1.*",
@@ -95,6 +96,7 @@
     "phpstan/phpstan": "^1.12",
     "phpstan/phpstan-doctrine": "^1.5",
     "phpstan/phpstan-symfony": "^1.0",
+    "phpunit/phpunit": "^9.6",
     "rector/rector": "1.2.10",
     "symfony/browser-kit": "7.4.*",
     "symfony/css-selector": "7.4.*",

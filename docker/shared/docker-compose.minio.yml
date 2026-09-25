@@ -1,0 +1,27 @@
+name: vault-minio
+
+services:
+  vault-minio:
+    image: minio/minio:latest
+    container_name: vault-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+      MINIO_BROWSER_REDIRECT_URL: https://console.minio.vault.local:8443
+    # Bound to localhost only
+    ports:
+      - "127.0.0.1:9200:9000"
+      - "127.0.0.1:9201:9001"
+    volumes:
+      - ./data/minio:/data
+    networks:
+      - vault_shared_minio
+      - vault_nginx
+    restart: unless-stopped
+
+networks:
+  vault_shared_minio:
+    name: vault_shared_minio
+  vault_nginx:
+    external: true

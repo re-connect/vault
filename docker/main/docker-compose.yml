@@ -1,0 +1,61 @@
+name: vault-main
+
+services:
+  mailpit:
+    container_name: vault-main-mailpit
+    image: axllent/mailpit:latest
+    # Bound to localhost only
+    ports:
+      - "127.0.0.1:8029:8025"
+      - "127.0.0.1:1029:1025"
+
+  app:
+    container_name: vault-main
+    image: vault:main-local
+    build:
+      context: ../..
+      dockerfile: docker/shared/Dockerfile
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+        NODE_VERSION: ${NODE_VERSION}
+        YARN_VERSION: ${YARN_VERSION}
+    env_file:
+      - .env
+    environment:
+      # Empty on macOS, set by the Makefile on native Linux
+      HOST_UID: ${HOST_UID:-}
+      HOST_GID: ${HOST_GID:-}
+    volumes:
+      - ../..:/vault
+      - /tmp/composer-cache:/root/.composer/cache
+      - /tmp/yarn-cache:/tmp/yarn-cache
+      - nginx-certs:/etc/nginx/certs:ro
+    depends_on:
+      - mailpit
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # Bound to localhost only
+    ports:
+      - "127.0.0.1:8012:8010"
+    networks:
+      - vault_shared_db
+      - vault_shared_minio
+      - vault_shared_clamav
+      - vault_nginx
+      - default
+
+volumes:
+  nginx-certs:
+    external: true
+    name: vault-nginx_nginx-certs
+
+networks:
+  vault_shared_db:
+    external: true
+  vault_shared_minio:
+    external: true
+  vault_shared_clamav:
+    external: true
+  vault_nginx:
+    external: true
+  default: { }
