@@ -15,5 +15,4 @@ parameters:
         - ./src/EventSubscriber
         - ./src/ServiceV2
     bootstrapFiles:
-        - ./vendor/bin/.phpunit/phpunit/vendor/autoload.php
         - ./vendor/autoload.php
