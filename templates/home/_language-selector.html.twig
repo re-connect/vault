@@ -10,20 +10,21 @@
     {isoCode: 'ru',flag: asset('build/images/icons/flags/ru.png')},
 ] %}
 {% set locale =  app.session.get("_locale") ?: 'fr' %}
-<div class="js-language-selector text-white bg-primary box-shadow-white barlow-medium pb-1"
+{% set dropdown_position = (dropdown_direction|default('up')) is same as('down') ? 'top: 100%' : 'bottom: 100%' %}
+<div class="js-language-selector text-white bg-primary box-shadow-white barlow-medium"
      style="min-width: 100px"
 >
-    <div class="js-language-selector-click shadow" style="position:relative; cursor: pointer">
+    <div class="js-language-selector-click shadow d-flex align-items-center" style="position:relative; cursor: pointer; min-height: 34px">
         <img class="border m-2" style="width:20px;"
              src="{{ asset('build/images/icons/flags/'~locale~'.png') }}"
              alt="{{ locale }}">
         {{ locale|upper }}
-        <div style="position: absolute; bottom: 100%; width: 100%; left: 0"
+        <div style="position: absolute; {{ dropdown_position }}; width: 100%; left: 0; z-index: 10"
              class="js-language-selector-show bg-primary d-none">
             {% for language in languages %}
                 {% if not language.isoCode is same as(locale) %}
                     <div data-language="{{ language.isoCode }}"
-                         class="js-language-selector-change-lang border-bottom border-dark p-2"
+                         class="js-language-selector-change-lang border-bottom border-dark p-2 d-flex align-items-center"
                          style="cursor: pointer;"
                     >
                         <img class="border m-2" style="width:20px;"
