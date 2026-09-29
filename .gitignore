@@ -47,3 +47,7 @@ docker/shared/data/
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+###> symfony/framework-bundle: generated config reference ###
+/config/reference.php
+###< symfony/framework-bundle: generated config reference ###
