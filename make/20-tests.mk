@@ -24,7 +24,8 @@ db-test: ## Recrée la base de test (⚠️ efface les données)
 # Only tests/v2 runs in parallel: tests/v1 is 11 tests (~7s), not worth it.
 # Each paratest worker gets TEST_TOKEN=1..N and its own database vault_test<N>
 # (dbname_suffix in config/packages/doctrine.yaml).
-# paratest 6 / PHPUnit 9 on purpose: moving to PHPUnit 11 + paratest 7 is part of the PHP 8.4 upgrade.
+# paratest 6 / PHPUnit 9 on purpose: both run on PHP 8.4; moving to PHPUnit 11 + paratest 7 is a
+# separate modernisation, not required by the 8.4 upgrade.
 PARATEST_PROCESSES ?= 4
 
 # $(call for_each_worker,<command>) : runs <command> once per worker in parallel,
