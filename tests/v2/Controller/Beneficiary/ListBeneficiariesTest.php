@@ -12,7 +12,6 @@ use App\Tests\Factory\RelayFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
-use Zenstruck\Foundry\Persistence\Proxy;
 
 class ListBeneficiariesTest extends AbstractControllerTest implements TestRouteInterface
 {
@@ -67,7 +66,7 @@ class ListBeneficiariesTest extends AbstractControllerTest implements TestRouteI
         $userMail = MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES;
         $user = UserFactory::findByEmail($userMail);
 
-        $allRelaysIds = array_map(fn (Proxy $relay) => $relay->_real()->getId(), RelayFactory::all());
+        $allRelaysIds = array_map(fn (Centre $relay) => $relay->getId(), RelayFactory::all());
         $allUserRelaysIds = array_map(fn (Centre $relay) => $relay->getId(), $user->getAffiliatedRelaysWithBeneficiaryManagement()->toArray());
         $notAffiliatedRelaysIds = array_diff($allRelaysIds, $allUserRelaysIds);
 

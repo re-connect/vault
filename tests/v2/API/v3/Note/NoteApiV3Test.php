@@ -15,7 +15,7 @@ class NoteApiV3Test extends AbstractApiTest
      */
     public function testGetCollection(string $clientName): void
     {
-        $client = ClientFactory::find(['nom' => $clientName])->_real();
+        $client = ClientFactory::find(['nom' => $clientName]);
         $beneficiaries = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId());
         $notesCount = 0;
         foreach ($beneficiaries as $beneficiary) {
