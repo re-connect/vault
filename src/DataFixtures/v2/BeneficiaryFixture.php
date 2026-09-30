@@ -117,8 +117,8 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface, Depen
 
     private function addCreators(User $user): void
     {
-        $creatorRelay = CreatorCentreFactory::createOne()->_real();
-        $creatorUser = CreatorUserFactory::createOne()->_real();
+        $creatorRelay = CreatorCentreFactory::createOne();
+        $creatorUser = CreatorUserFactory::createOne();
         $user->addCreator($creatorRelay);
         $user->addCreator($creatorUser);
     }
