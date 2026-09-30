@@ -27,7 +27,7 @@ class BeneficiaryCreationNoRelaySelectedTest extends AbstractControllerTest
         // Request to summary step
         $url = sprintf(
             $url,
-            BeneficiaryCreationProcessFactory::createOne(['beneficiary' => $beneficiary])->_real()->getId(),
+            BeneficiaryCreationProcessFactory::createOne(['beneficiary' => $beneficiary])->getId(),
         );
 
         $client = $this->assertRoute($url, 200, MemberFixture::MEMBER_MAIL);
