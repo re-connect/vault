@@ -110,7 +110,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface, Depen
         DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false]);
         FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true]);
         FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false]);
-        $folder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false, 'nom' => 'Folder with documents'])->_real();
+        $folder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false, 'nom' => 'Folder with documents']);
         DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true, 'dossier' => $folder]);
         DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossier' => $folder]);
     }
