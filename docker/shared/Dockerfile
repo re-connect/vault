@@ -1,6 +1,6 @@
 # ── Build arguments ────────────────────────────────────────────────────────────
 # Declared before FROM: available as global ARGs passed to the build via --build-arg
-ARG PHP_VERSION=8.3
+ARG PHP_VERSION=8.4
 ARG NODE_VERSION=22
 ARG YARN_VERSION=1.22.22
 
