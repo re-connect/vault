@@ -46,7 +46,7 @@ class UserCreationSubscriberTest extends KernelTestCase
         $this->securityMock->method('getUser')->willReturn($loggedUser);
         self::getContainer()->set(Security::class, $this->securityMock);
 
-        $relay = RelayFactory::createOne()->_real();
+        $relay = RelayFactory::createOne();
         $subject = $modelFactory
             ->linkToRelays([$relay])
             ->create()

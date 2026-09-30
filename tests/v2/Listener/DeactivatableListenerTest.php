@@ -91,7 +91,7 @@ class DeactivatableListenerTest extends AuthenticatedKernelTestCase
     public function testShouldEnableOnNewUserRelay(): void
     {
         $randomUser = UserFactory::findOrCreate(['email' => MemberFixture::MEMBER_DISABLED])->_real();
-        $randomRelay = RelayFactory::createOne()->_real();
+        $randomRelay = RelayFactory::createOne();
         self::assertFalse($randomUser->isEnabled());
 
         $userRelay = (new MembreCentre())->setCentre($randomRelay)->setUser($randomUser);
