@@ -73,7 +73,7 @@ class TreeViewMoveTest extends AbstractControllerTest implements TestRouteInterf
         $treeViewMoveUri = $crawler->filter('ul.tree-list > li > a')->attr('href');
         $uriToArray = explode('/', $treeViewMoveUri);
         $folderId = end($uriToArray);
-        $folder = FolderFactory::find(['id' => $folderId])->_real();
+        $folder = FolderFactory::find(['id' => $folderId]);
 
         // We hydrate folder with desired visibility before moving document inside for test purposes
         $folder->setBprive($isPrivateFolder);
@@ -81,7 +81,7 @@ class TreeViewMoveTest extends AbstractControllerTest implements TestRouteInterf
 
         $clientTest->request('GET', $treeViewMoveUri);
         $document = DocumentFactory::find($document);
-        $folder = FolderFactory::find($folder)->_real();
+        $folder = FolderFactory::find($folder);
         self::assertSame($folder, $document->getDossier());
         self::assertEquals($shouldBePrivate, $document->getBPrive());
     }
