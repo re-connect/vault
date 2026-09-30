@@ -33,7 +33,7 @@ class StrongPasswordLoginCheckTest extends WebTestCase
         ]);
         $client->submit($form);
 
-        $user = UserFactory::find($user)->_real();
+        $user = UserFactory::find($user);
         self::assertEquals($shouldFlagUserWithLatestPolicy, $user->hasPasswordWithLatestPolicy());
     }
 

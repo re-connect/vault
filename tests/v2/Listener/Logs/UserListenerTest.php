@@ -43,7 +43,7 @@ class UserListenerTest extends AbstractLogActivityListenerTest implements TestLo
 
     public function testPreUpdate(): void
     {
-        $user = UserFactory::random()->_real();
+        $user = UserFactory::random();
         $user->setNom('test');
         $this->em->flush();
 

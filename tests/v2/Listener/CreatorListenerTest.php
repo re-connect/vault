@@ -30,7 +30,7 @@ class CreatorListenerTest extends AuthenticatedKernelTestCase
     /** @dataProvider provideTestCreatorListener */
     public function testContactCreator(string $email): void
     {
-        $user = UserFactory::find(['email' => $email])->_real();
+        $user = UserFactory::find(['email' => $email]);
         $this->loginUser($email);
 
         ContactFactory::createOne();
@@ -41,7 +41,7 @@ class CreatorListenerTest extends AuthenticatedKernelTestCase
     /** @dataProvider provideTestCreatorListener */
     public function testNoteCreator(string $email): void
     {
-        $user = UserFactory::find(['email' => $email])->_real();
+        $user = UserFactory::find(['email' => $email]);
         $this->loginUser($email);
 
         NoteFactory::createOne();
@@ -52,7 +52,7 @@ class CreatorListenerTest extends AuthenticatedKernelTestCase
     /** @dataProvider provideTestCreatorListener */
     public function testEventCreator(string $email): void
     {
-        $user = UserFactory::find(['email' => $email])->_real();
+        $user = UserFactory::find(['email' => $email]);
         $this->loginUser($email);
 
         EventFactory::createOne();
@@ -63,7 +63,7 @@ class CreatorListenerTest extends AuthenticatedKernelTestCase
     /** @dataProvider provideTestCreatorListener */
     public function testFolderCreator(string $email): void
     {
-        $user = UserFactory::find(['email' => $email])->_real();
+        $user = UserFactory::find(['email' => $email]);
         $this->loginUser($email);
 
         FolderFactory::createOne();
@@ -74,7 +74,7 @@ class CreatorListenerTest extends AuthenticatedKernelTestCase
     /** @dataProvider provideTestCreatorListener */
     public function testDocumentCreator(string $email): void
     {
-        $user = UserFactory::find(['email' => $email])->_real();
+        $user = UserFactory::find(['email' => $email]);
         $this->loginUser($email);
 
         DocumentFactory::createOne();

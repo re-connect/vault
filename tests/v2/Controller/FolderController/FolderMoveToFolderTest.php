@@ -63,7 +63,7 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
     public function testShouldNotMoveToOtherBeneficiary(): void
     {
         $clientTest = static::createClient();
-        $user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL])->_real();
+        $user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL]);
         $clientTest->loginUser($user);
 
         $testedBeneficiary = $user->getSubjectBeneficiaire();
@@ -81,7 +81,7 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
         $errorMessage = "ERREUR Ce mouvement de dossier n'est pas valide";
         $clientTest = static::createClient();
         $clientTest->followRedirects();
-        $user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL])->_real();
+        $user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL]);
         $clientTest->loginUser($user);
         $beneficiary = $user->getSubjectBeneficiaire();
 
@@ -116,7 +116,7 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
     public function testMoveToFolder(bool $isPrivateFolder, bool $isPrivateParentFolder, bool $shouldBePrivate): void
     {
         $clientTest = static::createClient();
-        $user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL])->_real();
+        $user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL]);
         $clientTest->loginUser($user);
 
         $testedBeneficiary = $user->getSubjectBeneficiaire();
