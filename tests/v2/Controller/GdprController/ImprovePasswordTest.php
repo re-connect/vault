@@ -9,6 +9,8 @@ use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
 
+use function Zenstruck\Foundry\Persistence\refresh;
+
 class ImprovePasswordTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
     private const URL = '/improve-password';
@@ -218,6 +220,6 @@ class ImprovePasswordTest extends AbstractControllerTest implements TestRouteInt
             '/user/redirect-user/',
         );
 
-        self::assertTrue(UserFactory::find($user)->_real()->hasPasswordWithLatestPolicy());
+        self::assertTrue(refresh($user)->hasPasswordWithLatestPolicy());
     }
 }

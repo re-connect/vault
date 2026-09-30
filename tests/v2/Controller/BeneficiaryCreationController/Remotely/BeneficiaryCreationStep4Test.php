@@ -12,6 +12,8 @@ use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 
+use function Zenstruck\Foundry\Persistence\refresh;
+
 class BeneficiaryCreationStep4Test extends AbstractControllerTest implements TestRouteInterface
 {
     private const URL = '/beneficiary/create/4/%s';
@@ -47,7 +49,7 @@ class BeneficiaryCreationStep4Test extends AbstractControllerTest implements Tes
         $client->request('GET', sprintf('/beneficiary/create/4/%s', $creationProcess->getId()));
 
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS === $userMail) {
-            self::assertFalse(BeneficiaryCreationProcessFactory::find($creationProcess)->_real()->getIsCreating());
+            self::assertFalse(refresh($creationProcess)->getIsCreating());
         }
     }
 

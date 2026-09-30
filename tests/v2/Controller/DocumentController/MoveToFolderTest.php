@@ -10,6 +10,8 @@ use App\Tests\Factory\FolderFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 
+use function Zenstruck\Foundry\Persistence\refresh;
+
 class MoveToFolderTest extends AbstractControllerTest implements TestRouteInterface
 {
     private const URL = '/documents/%d/move/folder/%d';
@@ -96,8 +98,8 @@ class MoveToFolderTest extends AbstractControllerTest implements TestRouteInterf
         $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivateFolder])->_real();
 
         $clientTest->request('GET', sprintf(self::URL, $document->getId(), $folder->getId()));
-        $document = DocumentFactory::find($document)->_real();
-        $folder = FolderFactory::find($folder)->_real();
+        refresh($document);
+        refresh($folder);
 
         self::assertEquals($folder->getId(), $document->getDossier()->getId());
         self::assertEquals($shouldBePrivate, $document->getBprive());

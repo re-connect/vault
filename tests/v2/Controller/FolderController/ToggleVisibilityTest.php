@@ -10,6 +10,8 @@ use App\Tests\Factory\FolderFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 
+use function Zenstruck\Foundry\Persistence\refresh;
+
 class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteInterface
 {
     private const URL = '/folder/%s/toggle-visibility';
@@ -71,10 +73,10 @@ class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteIn
             true,
         );
 
-        $publicFolderVisibility = FolderFactory::find($folder)->_real()->getBprive();
-        $childFolderVisibility = FolderFactory::find($childFolder)->_real()->getBprive();
-        $firstDocumentVisibility = DocumentFactory::find($firstDocument)->_real()->getBprive();
-        $secondDocumentVisibility = DocumentFactory::find($secondDocumentWithWrongVisibility)->_real()->getBprive();
+        $publicFolderVisibility = refresh($folder)->getBprive();
+        $childFolderVisibility = refresh($childFolder)->getBprive();
+        $firstDocumentVisibility = refresh($firstDocument)->getBprive();
+        $secondDocumentVisibility = refresh($secondDocumentWithWrongVisibility)->getBprive();
 
         self::assertEquals(!$isPrivate, $publicFolderVisibility);
         self::assertEquals($childFolderVisibility, $publicFolderVisibility);
