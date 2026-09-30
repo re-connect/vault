@@ -58,7 +58,7 @@ class NoteFactory extends PersistentObjectFactory
             'nom' => self::faker()->text(),
             'contenu' => self::faker()->text(),
             'updatedAt' => new \DateTime('now'),
-            'beneficiaire' => BeneficiaireFactory::randomOrCreate()->_real(),
+            'beneficiaire' => BeneficiaireFactory::randomOrCreate(),
         ];
     }
 

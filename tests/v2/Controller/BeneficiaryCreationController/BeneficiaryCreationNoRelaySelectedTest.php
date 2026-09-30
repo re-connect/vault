@@ -17,7 +17,7 @@ class BeneficiaryCreationNoRelaySelectedTest extends AbstractControllerTest
     /** @dataProvider  provideTestNoRelaySelectedNotification**/
     public function testNoRelaySelectedNotification(string $url, bool $beneficiaryHasRelay): void
     {
-        $beneficiary = BeneficiaireFactory::createOne()->_real();
+        $beneficiary = BeneficiaireFactory::createOne();
 
         if ($beneficiaryHasRelay) {
             $beneficiary->addBeneficiairesCentre(BeneficiaireCentre::createValid(RelayFactory::randomOrCreate()));

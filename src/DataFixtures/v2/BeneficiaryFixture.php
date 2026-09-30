@@ -86,7 +86,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface, Depen
                 : [RelayFactory::findOrCreate(['nom' => RelayFixture::DEFAULT_PRO_RELAY])]
             )
             ->with(['user' => $user])
-            ->create()->_real();
+            ->create();
 
         $this->addPersonalData($beneficiary);
         $this->addCreators($user);
