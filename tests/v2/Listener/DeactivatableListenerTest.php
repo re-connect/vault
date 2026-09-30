@@ -37,7 +37,7 @@ class DeactivatableListenerTest extends AuthenticatedKernelTestCase
     public function testShouldSetDisabledByAndDisabledAt(): void
     {
         /** @var User $user */
-        $user = UserFactory::randomOrCreate(['enabled' => true])->_real();
+        $user = UserFactory::randomOrCreate(['enabled' => true]);
         $user->setEnabled(false);
 
         $this->em->persist($user);
@@ -50,7 +50,7 @@ class DeactivatableListenerTest extends AuthenticatedKernelTestCase
     public function testShouldNotSetDisabledByAndDisabledAt(): void
     {
         /** @var User $user */
-        $user = UserFactory::randomOrCreate(['enabled' => true])->_real();
+        $user = UserFactory::randomOrCreate(['enabled' => true]);
         $user->setEmail('should_not_set@mail.com');
 
         $this->em->persist($user);
@@ -63,7 +63,7 @@ class DeactivatableListenerTest extends AuthenticatedKernelTestCase
     public function testShouldResetDisabledByAndDisabledAt(): void
     {
         /** @var User $user */
-        $user = UserFactory::randomOrCreate(['enabled' => false])->_real();
+        $user = UserFactory::randomOrCreate(['enabled' => false]);
         $user->setEnabled(true);
 
         $this->em->persist($user);
@@ -75,10 +75,10 @@ class DeactivatableListenerTest extends AuthenticatedKernelTestCase
 
     public function testShouldNotResetDisabledByAndDisabledAt(): void
     {
-        $randomUser = UserFactory::findOrCreate(['email' => MemberFixture::MEMBER_MAIL])->_real();
+        $randomUser = UserFactory::findOrCreate(['email' => MemberFixture::MEMBER_MAIL]);
         $today = new \DateTime();
         /** @var User $user */
-        $user = UserFactory::createOne(['enabled' => false, 'disabledBy' => $randomUser, 'disabledAt' => $today])->_real();
+        $user = UserFactory::createOne(['enabled' => false, 'disabledBy' => $randomUser, 'disabledAt' => $today]);
         $user->setEmail('should_not_reset@mail.com');
 
         $this->em->persist($user);
@@ -90,7 +90,7 @@ class DeactivatableListenerTest extends AuthenticatedKernelTestCase
 
     public function testShouldEnableOnNewUserRelay(): void
     {
-        $randomUser = UserFactory::findOrCreate(['email' => MemberFixture::MEMBER_DISABLED])->_real();
+        $randomUser = UserFactory::findOrCreate(['email' => MemberFixture::MEMBER_DISABLED]);
         $randomRelay = RelayFactory::createOne();
         self::assertFalse($randomUser->isEnabled());
 
@@ -104,7 +104,7 @@ class DeactivatableListenerTest extends AuthenticatedKernelTestCase
     /**  @dataProvider provideTestDisableWhenRemovingRelay */
     public function testDisableWhenRemovingRelay(string $userMail, int $relayCount, bool $shouldBeEnabled): void
     {
-        $randomUser = UserFactory::findOrCreate(['email' => $userMail])->_real();
+        $randomUser = UserFactory::findOrCreate(['email' => $userMail]);
         self::assertTrue($randomUser->isEnabled());
         self::assertCount($relayCount, $randomUser->getCentres());
 

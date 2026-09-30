@@ -33,7 +33,7 @@ class BeneficiaryCreationStep4Test extends AbstractControllerTest implements Tes
             'creators' => [
                 CreatorCentreFactory::createOne(),
                 CreatorUserFactory::createOne(),
-            ], ])->_real();
+            ], ]);
         $beneficiary = BeneficiaireFactory::createOne(['user' => $user]);
 
         $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate([

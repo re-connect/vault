@@ -119,7 +119,7 @@ class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInt
     {
         self::ensureKernelShutdown();
         $clientTest = static::createClient();
-        $user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL])->_real();
+        $user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL]);
         $clientTest->loginUser($user);
 
         $beneficiary = $user->getSubjectBeneficiaire();
