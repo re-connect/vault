@@ -10,6 +10,9 @@ use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 
+use function Zenstruck\Foundry\Persistence\delete;
+use function Zenstruck\Foundry\Persistence\refresh;
+
 class FolderMoveToFolderTest extends AbstractControllerTest implements TestRouteInterface
 {
     private const URL = '/folder/%s/move-to-folder/%s';
@@ -121,12 +124,12 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
         $subFolder = FolderFactory::createOne(['beneficiaire' => $testedBeneficiary, 'bPrive' => $isPrivateParentFolder])->_real();
 
         $clientTest->request('GET', sprintf(self::URL, $subFolder->getId(), $parentFolder->getId()));
-        $parentFolder = FolderFactory::find(['id' => $parentFolder->getId()]);
-        $subFolder = FolderFactory::find(['id' => $subFolder->getId()]);
-        self::assertEquals($parentFolder->_real()->getSousDossiers()->last()->getId(), $subFolder->_real()->getId());
-        self::assertEquals($shouldBePrivate, $subFolder->_real()->getBprive());
+        refresh($parentFolder);
+        refresh($subFolder);
+        self::assertEquals($parentFolder->getSousDossiers()->last()->getId(), $subFolder->getId());
+        self::assertEquals($shouldBePrivate, $subFolder->getBprive());
 
-        $subFolder->_delete();
-        $parentFolder->_delete();
+        delete($subFolder);
+        delete($parentFolder);
     }
 }
