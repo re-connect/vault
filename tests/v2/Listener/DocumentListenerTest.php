@@ -56,7 +56,7 @@ class DocumentListenerTest extends KernelTestCase
     public function testFileNameSanitizationOnCreate(string $originalName, string $expectedSanitizedName, bool $noExtension = false): void
     {
         /** @var Beneficiaire $beneficiaire */
-        $beneficiaire = BeneficiaireFactory::random()->_real();
+        $beneficiaire = BeneficiaireFactory::random();
         $document = (new Document())
             ->setNom($originalName)
             ->setTaille(100)

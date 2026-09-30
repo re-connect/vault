@@ -55,7 +55,7 @@ class ListProTest extends AbstractControllerTest implements TestRouteInterface
 
         // We check that all fetched professionals can be managed by the professional
         foreach ($professionals as $professional) {
-            $professional = MembreFactory::find($professional->getId())->_real();
+            $professional = MembreFactory::find($professional->getId());
             self::assertTrue($this->userHelper->canUpdateProfessional($proUser, $professional));
         }
     }

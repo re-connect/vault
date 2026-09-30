@@ -61,7 +61,7 @@ class DocumentFactory extends PersistentObjectFactory
             'objectKey' => self::faker()->text(),
             'extension' => self::faker()->fileExtension(),
             'taille' => self::faker()->numberBetween(0, 200000),
-            'beneficiaire' => BeneficiaireFactory::randomOrCreate()->_real(),
+            'beneficiaire' => BeneficiaireFactory::randomOrCreate(),
         ];
     }
 

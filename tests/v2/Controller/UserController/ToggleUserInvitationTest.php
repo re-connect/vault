@@ -27,7 +27,7 @@ class ToggleUserInvitationTest extends AbstractControllerTest
     ): void {
         // Test toggle pro invite
         $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL);
-        $relay = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real()->getCentres()[0];
+        $relay = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->getCentres()[0];
         $url = sprintf(self::URL, $user->getId(), $relay->getId());
 
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS === $userMail) {

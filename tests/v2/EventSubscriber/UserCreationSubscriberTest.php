@@ -27,7 +27,7 @@ class UserCreationSubscriberTest extends KernelTestCase
     public function testFormatUsername(): void
     {
         /** @var Beneficiaire $beneficiary */
-        $beneficiary = BeneficiaireFactory::createOne()->_real();
+        $beneficiary = BeneficiaireFactory::createOne();
         $user = $beneficiary->getUser();
         $expectedUsername = sprintf('%s.%s.%s',
             strtolower($user->getPrenom()),
@@ -42,15 +42,14 @@ class UserCreationSubscriberTest extends KernelTestCase
      */
     public function testAddCreatorRelay(ObjectFactory $modelFactory): void
     {
-        $loggedUser = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real()->getUser();
+        $loggedUser = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->getUser();
         $this->securityMock->method('getUser')->willReturn($loggedUser);
         self::getContainer()->set(Security::class, $this->securityMock);
 
         $relay = RelayFactory::createOne();
         $subject = $modelFactory
             ->linkToRelays([$relay])
-            ->create()
-            ->_real();
+            ->create();
 
         $createdUser = $subject->getUser();
         $this->assertEquals(
