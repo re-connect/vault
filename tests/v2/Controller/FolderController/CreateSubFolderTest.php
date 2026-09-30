@@ -11,6 +11,9 @@ use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
 
+use function Zenstruck\Foundry\Persistence\delete;
+use function Zenstruck\Foundry\Persistence\refresh;
+
 class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
     private const URL = '/folder/%s/create-subfolder';
@@ -94,7 +97,7 @@ class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInt
         $this->assertFormIsValid($url, $formSubmit, $values, $email, $redirectUrl);
 
         $subFolder = $parentFolder->getSousDossiers()[0]->getId();
-        FolderFactory::find($subFolder)->_delete();
+        delete(FolderFactory::find($subFolder));
     }
 
     /**
@@ -127,13 +130,13 @@ class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInt
         $form->setValues(self::FORM_VALUES);
         $clientTest->submit($form);
 
-        $parentFolder = FolderFactory::find(['id' => $parentFolder->getId()])->_real();
+        refresh($parentFolder);
         $subFolder = $parentFolder->getSousDossiers()[0];
 
         self::assertCount(1, $parentFolder->getSousDossiers());
         self::assertSame($parentFolder, $subFolder->getDossierParent());
         self::assertEquals($parentFolder->getBprive(), $subFolder->getBprive());
-        FolderFactory::find($subFolder)->_delete();
-        FolderFactory::find($parentFolder)->_delete();
+        delete($subFolder);
+        delete($parentFolder);
     }
 }

@@ -9,9 +9,10 @@ use App\Entity\MembreCentre;
 use App\Tests\Factory\BeneficiaryRelayFactory;
 use App\Tests\Factory\MembreCentreFactory;
 use App\Tests\Factory\MembreFactory;
-use App\Tests\Factory\RelayFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
+
+use function Zenstruck\Foundry\Persistence\refresh;
 
 class ToggleUserInvitationTest extends AbstractControllerTest
 {
@@ -69,8 +70,8 @@ class ToggleUserInvitationTest extends AbstractControllerTest
         $url = sprintf(self::URL, $testedUser->getId(), $relay->getId());
         $this->assertRoute($url, 302, MemberFixture::MEMBER_MAIL_WITH_RELAYS, sprintf('/beneficiary/%s/affiliate/relays', $testedUser->getSubject()->getId()));
 
-        $testedUser = UserFactory::find($testedUser)->_real();
-        $relay = RelayFactory::find($relay)->_real();
+        refresh($testedUser);
+        refresh($relay);
         self::assertEquals($isCreating, $testedUser->getUserRelay($relay)->getBValid());
     }
 
@@ -91,8 +92,8 @@ class ToggleUserInvitationTest extends AbstractControllerTest
         $url = sprintf(self::URL, $testedUser->getId(), $relay->getId());
         $this->assertRoute($url, 302, MemberFixture::MEMBER_MAIL_WITH_RELAYS, sprintf('/user/%s/invite', $testedUser->getId()));
 
-        $testedUser = UserFactory::find($testedUser)->_real();
-        $relay = RelayFactory::find($relay)->_real();
+        refresh($testedUser);
+        refresh($relay);
         $userRelay = $testedUser->getUserRelay($relay);
 
         self::assertSame(
