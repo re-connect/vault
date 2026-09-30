@@ -38,7 +38,7 @@ class DocumentListenerTest extends KernelTestCase
         $document = DocumentFactory::createOne([
             'nom' => $dummyName,
             'extension' => $noExtension ? '' : 'pdf',
-        ])->_real();
+        ]);
 
         $noExtension
             ? self::assertTrue('dummy_pdf' === $document->getNom())

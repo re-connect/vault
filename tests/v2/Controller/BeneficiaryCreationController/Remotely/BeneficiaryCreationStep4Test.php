@@ -40,7 +40,7 @@ class BeneficiaryCreationStep4Test extends AbstractControllerTest implements Tes
             'isCreating' => true,
             'remotely' => true,
             'beneficiary' => $beneficiary,
-        ])->_real();
+        ]);
 
         $url = sprintf($url, $creationProcess->getId());
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $creationProcess->getId()) : null;
