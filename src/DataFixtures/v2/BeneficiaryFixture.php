@@ -129,7 +129,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface, Depen
         $attributes['username'] = $username;
         $attributes['email'] = $email;
 
-        return UserFactory::createOne($attributes)->_real();
+        return UserFactory::createOne($attributes);
     }
 
     /** @return string[] */

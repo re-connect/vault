@@ -161,7 +161,7 @@ class UserCreationListenerTest extends AuthenticatedTestCase
     /** @dataProvider providePhoneNumbers */
     public function testShouldFormatUserPhoneNumber(string $phoneNumber, string $expectedResult): void
     {
-        $user = UserFactory::createOne(['telephone' => $phoneNumber])->_real();
+        $user = UserFactory::createOne(['telephone' => $phoneNumber]);
         $this->assertEquals($expectedResult, $user->getTelephone());
     }
 
