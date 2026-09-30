@@ -29,7 +29,7 @@ class UserHelperTest extends KernelTestCase
         // No relay common
         self::assertFalse($this->userHelper->canUpdateBeneficiary($this->membre->getUser(), $this->beneficiary));
 
-        $relay = RelayFactory::createOne()->_real();
+        $relay = RelayFactory::createOne();
         $this->beneficiary->addBeneficiaryRelayForRelay($relay);
         $this->membre->addMembresCentre((new MembreCentre())->setMembre($this->membre)->setCentre($relay));
 

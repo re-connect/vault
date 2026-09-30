@@ -35,7 +35,7 @@ class ShareWithContactTest extends AbstractControllerTest implements TestRouteIn
     ): void {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
-        $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'email' => 'test@yopmail.com'])->_real();
+        $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'email' => 'test@yopmail.com']);
 
         $url = sprintf($url, $document->getId(), $contact->getId());
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : '';
@@ -52,7 +52,7 @@ class ShareWithContactTest extends AbstractControllerTest implements TestRouteIn
         $clientTest->loginUser($beneficiary->getUser());
 
         $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary])->_real();
-        $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'email' => $email])->_real();
+        $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'email' => $email]);
 
         $clientTest->request('GET', sprintf(self::URL, $document->getId(), $contact->getId()));
         $this->assertEmailCount($email ? 1 : 0);

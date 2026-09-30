@@ -33,9 +33,9 @@ class CreatorListenerTest extends AuthenticatedKernelTestCase
         $user = UserFactory::find(['email' => $email])->_real();
         $this->loginUser($email);
 
-        ContactFactory::createOne()->_real();
+        ContactFactory::createOne();
 
-        self::assertSame(ContactFactory::last()->_real()->getCreatorUser()->getEntity()->getId(), $user->getId());
+        self::assertSame(ContactFactory::last()->getCreatorUser()->getEntity()->getId(), $user->getId());
     }
 
     /** @dataProvider provideTestCreatorListener */
@@ -55,9 +55,9 @@ class CreatorListenerTest extends AuthenticatedKernelTestCase
         $user = UserFactory::find(['email' => $email])->_real();
         $this->loginUser($email);
 
-        EventFactory::createOne()->_real();
+        EventFactory::createOne();
 
-        self::assertSame(EventFactory::last()->_real()->getCreatorUser()->getEntity()->getId(), $user->getId());
+        self::assertSame(EventFactory::last()->getCreatorUser()->getEntity()->getId(), $user->getId());
     }
 
     /** @dataProvider provideTestCreatorListener */

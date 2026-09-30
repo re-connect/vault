@@ -20,7 +20,7 @@ class BeneficiaryCreationNoRelaySelectedTest extends AbstractControllerTest
         $beneficiary = BeneficiaireFactory::createOne()->_real();
 
         if ($beneficiaryHasRelay) {
-            $beneficiary->addBeneficiairesCentre(BeneficiaireCentre::createValid(RelayFactory::randomOrCreate()->_real()));
+            $beneficiary->addBeneficiairesCentre(BeneficiaireCentre::createValid(RelayFactory::randomOrCreate()));
         }
         self::assertCount($beneficiaryHasRelay ? 1 : 0, $beneficiary->getAffiliatedRelays());
 
