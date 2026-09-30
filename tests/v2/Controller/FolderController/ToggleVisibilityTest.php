@@ -61,9 +61,9 @@ class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteIn
         // We create 1 folder with 1 child folder that contains 2 documents
         $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate])->_real();
         $childFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate, 'dossierParent' => $folder])->_real();
-        $firstDocument = DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate, 'dossier' => $childFolder])->_real();
+        $firstDocument = DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate, 'dossier' => $childFolder]);
         // Second document does not have the same visibility as parent folder, this case should not occur, but we need to make sure that visibility is toggled only if childen visibility is different
-        $secondDocumentWithWrongVisibility = DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => !$isPrivate, 'dossier' => $childFolder])->_real();
+        $secondDocumentWithWrongVisibility = DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => !$isPrivate, 'dossier' => $childFolder]);
 
         $this->assertRoute(
             sprintf(self::URL, $folder->getId()),
