@@ -59,7 +59,7 @@ final class ContactFactory extends PersistentObjectFactory
             'createdAt' => new \DateTime('now'),
             'updatedAt' => new \DateTime('now'),
             'prenom' => self::faker()->firstName(),
-            'beneficiaire' => BeneficiaireFactory::randomOrCreate()->_real(),
+            'beneficiaire' => BeneficiaireFactory::randomOrCreate(),
         ];
     }
 

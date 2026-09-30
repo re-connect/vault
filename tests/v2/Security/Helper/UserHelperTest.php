@@ -20,8 +20,8 @@ class UserHelperTest extends KernelTestCase
     protected function setUp(): void
     {
         $this->userHelper = $this->getContainer()->get(UserHelper::class);
-        $this->beneficiary = BeneficiaireFactory::createOne()->_real();
-        $this->membre = MembreFactory::createOne()->_real();
+        $this->beneficiary = BeneficiaireFactory::createOne();
+        $this->membre = MembreFactory::createOne();
     }
 
     public function testCanManageBeneficiary(): void

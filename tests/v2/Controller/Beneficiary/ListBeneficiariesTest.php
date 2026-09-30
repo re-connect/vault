@@ -56,7 +56,7 @@ class ListBeneficiariesTest extends AbstractControllerTest implements TestRouteI
         // We check that all fetched beneficiaries can be managed by the professional
         foreach ($beneficiaries as $beneficiary) {
             // We need to fetch each beneficiaries with factory, because findByAuthorizedProfessional does not hydrate properties such as $beneficiaireCentre
-            $beneficiary = BeneficiaireFactory::find($beneficiary->getId())->_real();
+            $beneficiary = BeneficiaireFactory::find($beneficiary->getId());
             self::assertTrue($this->userHelper->canUpdateBeneficiary($proUser, $beneficiary));
         }
     }

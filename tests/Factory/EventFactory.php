@@ -59,7 +59,7 @@ class EventFactory extends PersistentObjectFactory
             'date' => new \DateTime('tomorrow'),
             'createdAt' => new \DateTime('now'),
             'updatedAt' => new \DateTime('now'),
-            'beneficiaire' => BeneficiaireFactory::randomOrCreate()->_real(),
+            'beneficiaire' => BeneficiaireFactory::randomOrCreate(),
         ];
     }
 

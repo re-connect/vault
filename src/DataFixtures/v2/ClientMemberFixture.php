@@ -17,7 +17,7 @@ class ClientMemberFixture extends Fixture implements FixtureGroupInterface, Depe
     public function load(ObjectManager $manager): void
     {
         $client = ClientFactory::find(['nom' => 'applimobile']);
-        $membre = MembreFactory::findByEmail(MemberFixture::MEMBER_WITH_CLIENT)->_real();
+        $membre = MembreFactory::findByEmail(MemberFixture::MEMBER_WITH_CLIENT);
         $externalLink = (new ClientMembre($client, $membre->getId()))->setEntity($membre);
         $manager->persist($externalLink);
         $manager->flush();

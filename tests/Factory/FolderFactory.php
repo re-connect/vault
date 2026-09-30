@@ -58,7 +58,7 @@ class FolderFactory extends PersistentProxyObjectFactory
             'nom' => self::faker()->text(),
             'createdAt' => new \DateTime('now'),
             'updatedAt' => new \DateTime('now'),
-            'beneficiaire' => BeneficiaireFactory::randomOrCreate()->_real(),
+            'beneficiaire' => BeneficiaireFactory::randomOrCreate(),
         ];
     }
 

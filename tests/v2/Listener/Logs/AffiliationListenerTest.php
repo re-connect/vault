@@ -98,7 +98,7 @@ class AffiliationListenerTest extends AbstractLogActivityListenerTest
         /** @var Centre $relay */
         $relay = RelayFactory::createOne();
         /** @var Beneficiaire $beneficiaire */
-        $beneficiaire = BeneficiaireFactory::createOne()->_real();
+        $beneficiaire = BeneficiaireFactory::createOne();
         $beneficiaireCentre = (new BeneficiaireCentre())
                 ->setCentre($relay)
                 ->setBeneficiaire($beneficiaire)
@@ -115,7 +115,7 @@ class AffiliationListenerTest extends AbstractLogActivityListenerTest
         /** @var Centre $relay */
         $relay = RelayFactory::createOne();
         /** @var Membre $membre */
-        $membre = MembreFactory::createOne()->_real();
+        $membre = MembreFactory::createOne();
         $membreCentre = (new MembreCentre())->setCentre($relay)->setMembre($membre)->setBValid(false);
 
         $this->em->persist($membreCentre);

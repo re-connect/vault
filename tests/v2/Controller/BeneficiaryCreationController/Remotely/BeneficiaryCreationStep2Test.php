@@ -47,7 +47,7 @@ class BeneficiaryCreationStep2Test extends AbstractControllerTest implements Tes
     public function testFormIsValid(string $url, string $formSubmit, array $values, ?string $email, ?string $redirectUrl): void
     {
         $this->markTestSkipped();
-        $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real();
+        $professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS);
         $relays = $professional->getCentres();
         $values = [
             'create_beneficiary[relays][0]' => $relays[0]->getId(),
