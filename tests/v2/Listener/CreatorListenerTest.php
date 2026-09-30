@@ -66,9 +66,9 @@ class CreatorListenerTest extends AuthenticatedKernelTestCase
         $user = UserFactory::find(['email' => $email])->_real();
         $this->loginUser($email);
 
-        FolderFactory::createOne()->_real();
+        FolderFactory::createOne();
 
-        self::assertSame(FolderFactory::last()->_real()->getCreatorUser()->getEntity()->getId(), $user->getId());
+        self::assertSame(FolderFactory::last()->getCreatorUser()->getEntity()->getId(), $user->getId());
     }
 
     /** @dataProvider provideTestCreatorListener */

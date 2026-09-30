@@ -109,7 +109,7 @@ class FolderApiV3Test extends AbstractApiTest
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
             'nom' => 'Folder with documents',
-        ])->_real();
+        ]);
 
         // Check that only public documents are returned
         $publicDocuments = [];
@@ -153,7 +153,7 @@ class FolderApiV3Test extends AbstractApiTest
         $folder = FolderFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->_real();
+        ]);
 
         $this->assertEndpointAccessIsDenied(
             $clientName,
@@ -263,7 +263,7 @@ class FolderApiV3Test extends AbstractApiTest
         $folder = FolderFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->_real();
+        ]);
         $folderId = $folder->getId();
 
         $this->assertEndpoint(
@@ -298,7 +298,7 @@ class FolderApiV3Test extends AbstractApiTest
         $folder = FolderFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->_real();
+        ]);
         $folderId = $folder->getId();
 
         $this->assertEndpointAccessIsDenied(

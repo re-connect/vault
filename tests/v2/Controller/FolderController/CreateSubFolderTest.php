@@ -73,14 +73,14 @@ class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInt
         array $body = [],
     ): void {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
-        $publicFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
+        $publicFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false]);
 
         $url = sprintf($url, $publicFolder->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $privateFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
+            $privateFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true]);
             $newUrl = sprintf(self::URL, $privateFolder->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
         }
@@ -91,7 +91,7 @@ class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInt
     {
         $parentFolder = FolderFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ])->_real();
+        ]);
         $url = sprintf($url, $parentFolder->getId());
         $redirectUrl = $redirectUrl ? sprintf($redirectUrl, $parentFolder->getId()) : '';
         $this->assertFormIsValid($url, $formSubmit, $values, $email, $redirectUrl);
@@ -110,7 +110,7 @@ class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInt
     {
         $folder = FolderFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ])->_real();
+        ]);
         $url = sprintf($url, $folder->getId());
         $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email, $alternateSelector);
     }
@@ -123,7 +123,7 @@ class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInt
         $clientTest->loginUser($user);
 
         $beneficiary = $user->getSubjectBeneficiaire();
-        $parentFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary])->_real();
+        $parentFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary]);
 
         $crawler = $clientTest->request('GET', sprintf(self::URL, $parentFolder->getId()));
         $form = $crawler->selectButton(self::$translator->trans('confirm'))->form();
