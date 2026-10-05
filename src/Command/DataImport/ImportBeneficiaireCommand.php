@@ -53,7 +53,7 @@ class ImportBeneficiaireCommand extends Command
         }
         $row = 1;
         if (($handle = fopen($documentPath, 'r')) !== false) {
-            while (($data = fgetcsv($handle, 1000, ';')) !== false) {
+            while (($data = fgetcsv($handle, 1000, ';', escape: '\\')) !== false) {
                 $prenom = trim((string) $data[0]);
                 $nom = trim((string) $data[1]);
                 $dateNaissance = trim((string) $data[2]);
@@ -136,7 +136,7 @@ class ImportBeneficiaireCommand extends Command
         }
 
         foreach ($data as $row) {
-            fputcsv($fichier_csv, $row, $delimiteur);
+            fputcsv($fichier_csv, $row, $delimiteur, escape: '\\');
         }
         fclose($fichier_csv);
     }

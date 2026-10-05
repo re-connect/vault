@@ -5,48 +5,47 @@ namespace App\Tests\Factory;
 use App\Entity\Centre;
 use App\Entity\Membre;
 use App\Entity\MembreCentre;
-use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
-use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\PersistentObjectFactory;
 
 /**
- * @method        \App\Entity\Membre|\Zenstruck\Foundry\Persistence\Proxy                                                       create(array|callable $attributes = [])
- * @method static \App\Entity\Membre|\Zenstruck\Foundry\Persistence\Proxy                                                       createOne(array $attributes = [])
- * @method static \App\Entity\Membre|\Zenstruck\Foundry\Persistence\Proxy                                                       find(object|array|mixed $criteria)
- * @method static \App\Entity\Membre|\Zenstruck\Foundry\Persistence\Proxy                                                       findOrCreate(array $attributes)
- * @method static \App\Entity\Membre|\Zenstruck\Foundry\Persistence\Proxy                                                       first(string $sortedField = 'id')
- * @method static \App\Entity\Membre|\Zenstruck\Foundry\Persistence\Proxy                                                       last(string $sortedField = 'id')
- * @method static \App\Entity\Membre|\Zenstruck\Foundry\Persistence\Proxy                                                       random(array $attributes = [])
- * @method static \App\Entity\Membre|\Zenstruck\Foundry\Persistence\Proxy                                                       randomOrCreate(array $attributes = [])
- * @method static \App\Entity\Membre[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                   all()
- * @method static \App\Entity\Membre[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                   createMany(int $number, array|callable $attributes = [])
- * @method static \App\Entity\Membre[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                   createSequence(iterable|callable $sequence)
- * @method static \App\Entity\Membre[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                   findBy(array $attributes)
- * @method static \App\Entity\Membre[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                   randomRange(int $min, int $max, array $attributes = [])
- * @method static \App\Entity\Membre[]|\Zenstruck\Foundry\Persistence\Proxy[]                                                   randomSet(int $number, array $attributes = [])
- * @method        \Zenstruck\Foundry\FactoryCollection<\App\Entity\Membre|\Zenstruck\Foundry\Persistence\Proxy>                 many(int $min, int|null $max = null)
- * @method        \Zenstruck\Foundry\FactoryCollection<\App\Entity\Membre|\Zenstruck\Foundry\Persistence\Proxy>                 sequence(iterable|callable $sequence)
- * @method static \Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator<\App\Entity\Membre, \App\Repository\MembreRepository> repository()
+ * @method        \App\Entity\Membre                                                                                       create(array|callable $attributes = [])
+ * @method static \App\Entity\Membre                                                                                       createOne(array $attributes = [])
+ * @method static \App\Entity\Membre                                                                                       find(object|array|mixed $criteria)
+ * @method static \App\Entity\Membre                                                                                       findOrCreate(array $attributes)
+ * @method static \App\Entity\Membre                                                                                       first(string $sortedField = 'id')
+ * @method static \App\Entity\Membre                                                                                       last(string $sortedField = 'id')
+ * @method static \App\Entity\Membre                                                                                       random(array $attributes = [])
+ * @method static \App\Entity\Membre                                                                                       randomOrCreate(array $attributes = [])
+ * @method static \App\Entity\Membre[]                                                                                     all()
+ * @method static \App\Entity\Membre[]                                                                                     createMany(int $number, array|callable $attributes = [])
+ * @method static \App\Entity\Membre[]                                                                                     createSequence(iterable|callable $sequence)
+ * @method static \App\Entity\Membre[]                                                                                     findBy(array $attributes)
+ * @method static \App\Entity\Membre[]                                                                                     randomRange(int $min, int $max, array $attributes = [])
+ * @method static \App\Entity\Membre[]                                                                                     randomSet(int $number, array $attributes = [])
+ * @method        \Zenstruck\Foundry\FactoryCollection<\App\Entity\Membre>                                                 many(int $min, int|null $max = null)
+ * @method        \Zenstruck\Foundry\FactoryCollection<\App\Entity\Membre>                                                 sequence(iterable|callable $sequence)
+ * @method static \Zenstruck\Foundry\Persistence\RepositoryDecorator<\App\Entity\Membre, \App\Repository\MembreRepository> repository()
  *
- * @phpstan-method \App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre> create(array|callable $attributes = [])
- * @phpstan-method static \App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre> createOne(array $attributes = [])
- * @phpstan-method static \App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre> find(object|array|mixed $criteria)
- * @phpstan-method static \App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre> findOrCreate(array $attributes)
- * @phpstan-method static \App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre> first(string $sortedField = 'id')
- * @phpstan-method static \App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre> last(string $sortedField = 'id')
- * @phpstan-method static \App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre> random(array $attributes = [])
- * @phpstan-method static \App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre> randomOrCreate(array $attributes = [])
- * @phpstan-method static list<\App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre>> all()
- * @phpstan-method static list<\App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre>> createMany(int $number, array|callable $attributes = [])
- * @phpstan-method static list<\App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre>> createSequence(iterable|callable $sequence)
- * @phpstan-method static list<\App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre>> findBy(array $attributes)
- * @phpstan-method static list<\App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre>> randomRange(int $min, int $max, array $attributes = [])
- * @phpstan-method static list<\App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre>> randomSet(int $number, array $attributes = [])
- * @phpstan-method \Zenstruck\Foundry\FactoryCollection<\App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre>> many(int $min, int|null $max = null)
- * @phpstan-method \Zenstruck\Foundry\FactoryCollection<\App\Entity\Membre&\Zenstruck\Foundry\Persistence\Proxy<\App\Entity\Membre>> sequence(iterable|callable $sequence)
+ * @phpstan-method \App\Entity\Membre create(array|callable $attributes = [])
+ * @phpstan-method static \App\Entity\Membre createOne(array $attributes = [])
+ * @phpstan-method static \App\Entity\Membre find(object|array|mixed $criteria)
+ * @phpstan-method static \App\Entity\Membre findOrCreate(array $attributes)
+ * @phpstan-method static \App\Entity\Membre first(string $sortedField = 'id')
+ * @phpstan-method static \App\Entity\Membre last(string $sortedField = 'id')
+ * @phpstan-method static \App\Entity\Membre random(array $attributes = [])
+ * @phpstan-method static \App\Entity\Membre randomOrCreate(array $attributes = [])
+ * @phpstan-method static list<\App\Entity\Membre> all()
+ * @phpstan-method static list<\App\Entity\Membre> createMany(int $number, array|callable $attributes = [])
+ * @phpstan-method static list<\App\Entity\Membre> createSequence(iterable|callable $sequence)
+ * @phpstan-method static list<\App\Entity\Membre> findBy(array $attributes)
+ * @phpstan-method static list<\App\Entity\Membre> randomRange(int $min, int $max, array $attributes = [])
+ * @phpstan-method static list<\App\Entity\Membre> randomSet(int $number, array $attributes = [])
+ * @phpstan-method \Zenstruck\Foundry\FactoryCollection<\App\Entity\Membre> many(int $min, int|null $max = null)
+ * @phpstan-method \Zenstruck\Foundry\FactoryCollection<\App\Entity\Membre> sequence(iterable|callable $sequence)
  *
- * @extends \Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory<\App\Entity\Membre>
+ * @extends \Zenstruck\Foundry\Persistence\PersistentObjectFactory<\App\Entity\Membre>
  */
-final class MembreFactory extends PersistentProxyObjectFactory
+final class MembreFactory extends PersistentObjectFactory
 {
     public function __construct()
     {
@@ -78,7 +77,7 @@ final class MembreFactory extends PersistentProxyObjectFactory
         return Membre::class;
     }
 
-    public static function findByEmail(string $email): Membre|Proxy
+    public static function findByEmail(string $email): Membre
     {
         return MembreFactory::find(['user' => UserFactory::find(['email' => $email])]);
     }

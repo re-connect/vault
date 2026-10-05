@@ -86,7 +86,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface, Depen
                 : [RelayFactory::findOrCreate(['nom' => RelayFixture::DEFAULT_PRO_RELAY])]
             )
             ->with(['user' => $user])
-            ->create()->_real();
+            ->create();
 
         $this->addPersonalData($beneficiary);
         $this->addCreators($user);
@@ -95,30 +95,30 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface, Depen
 
     private function initCreationProcess(Beneficiaire $beneficiary, bool $inCreation = false): void
     {
-        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['beneficiary' => $beneficiary])->_real();
+        $creationProcess = BeneficiaryCreationProcessFactory::findOrCreate(['beneficiary' => $beneficiary]);
         $creationProcess->setIsCreating($inCreation);
     }
 
     private function addPersonalData(Beneficiaire $beneficiary): void
     {
-        ContactFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
-        NoteFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
-        NoteFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
-        EventFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
-        EventFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
-        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
-        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
+        ContactFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false]);
+        NoteFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true]);
+        NoteFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false]);
+        EventFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true]);
+        EventFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false]);
+        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true]);
+        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false]);
         FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true]);
         FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false]);
-        $folder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false, 'nom' => 'Folder with documents'])->_real();
-        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true, 'dossier' => $folder])->_real();
-        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossier' => $folder])->_real();
+        $folder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false, 'nom' => 'Folder with documents']);
+        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true, 'dossier' => $folder]);
+        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossier' => $folder]);
     }
 
     private function addCreators(User $user): void
     {
-        $creatorRelay = CreatorCentreFactory::createOne()->_real();
-        $creatorUser = CreatorUserFactory::createOne()->_real();
+        $creatorRelay = CreatorCentreFactory::createOne();
+        $creatorUser = CreatorUserFactory::createOne();
         $user->addCreator($creatorRelay);
         $user->addCreator($creatorUser);
     }
@@ -129,7 +129,7 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface, Depen
         $attributes['username'] = $username;
         $attributes['email'] = $email;
 
-        return UserFactory::createOne($attributes)->_real();
+        return UserFactory::createOne($attributes);
     }
 
     /** @return string[] */
