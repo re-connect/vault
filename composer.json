@@ -32,7 +32,7 @@
     "makinacorpus/db-tools-bundle": "^1.2",
     "nelmio/cors-bundle": "2.5.*",
     "phpdocumentor/reflection-docblock": "5.6.*",
-    "phpoffice/phpspreadsheet": "1.29.*",
+    "phpoffice/phpspreadsheet": "5.10.*",
     "ramsey/uuid": "4.9.*",
     "reconnect/s3bundle": "1.5.*",
     "scheb/2fa-bundle": "^6.13",
