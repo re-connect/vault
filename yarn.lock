@@ -1444,9 +1444,7 @@
     schema-utils "^3.0.0"
 
 "@symfony/ux-live-component@file:vendor/symfony/ux-live-component/assets":
-  version "2.26.1"
-  dependencies:
-    idiomorph "^0.3.0"
+  version "2.35.0"
 
 "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/assets":
   version "2.26.1"
@@ -3859,11 +3857,6 @@ icss-utils@^5.0.0, icss-utils@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/icss-utils/-/icss-utils-5.1.0.tgz#c6be6858abd013d768e98366ae47e25d5887b1ae"
   integrity sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==
-
-idiomorph@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/idiomorph/-/idiomorph-0.3.0.tgz#f6675bc5bef1a72c94021e43141a3f605d2d6288"
-  integrity sha512-UhV1Ey5xCxIwR9B+OgIjQa+1Jx99XQ1vQHUsKBU1RpQzCx1u+b+N6SOXgf5mEJDqemUI/ffccu6+71l2mJUsRA==
 
 ignore@^5.1.1, ignore@^5.2.0:
   version "5.3.2"
