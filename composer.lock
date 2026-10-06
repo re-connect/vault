@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0f64b28760a2fd4ceee1859c4c4995cc",
+    "content-hash": "f31db5ff3689cd5355d9b8ed10750973",
     "packages": [
         {
             "name": "api-platform/core",
@@ -13704,25 +13704,25 @@
         },
         {
             "name": "symfony/ux-live-component",
-            "version": "v2.27.0",
+            "version": "v2.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-live-component.git",
-                "reference": "05def4e467d378810f46f826dc67506180df8bd2"
+                "reference": "a3fb5f24ff430db6a78019294086c16f70c86192"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-live-component/zipball/05def4e467d378810f46f826dc67506180df8bd2",
-                "reference": "05def4e467d378810f46f826dc67506180df8bd2",
+                "url": "https://api.github.com/repos/symfony/ux-live-component/zipball/a3fb5f24ff430db6a78019294086c16f70c86192",
+                "reference": "a3fb5f24ff430db6a78019294086c16f70c86192",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
                 "symfony/deprecation-contracts": "^2.5|^3.0",
-                "symfony/property-access": "^5.4.5|^6.0|^7.0",
-                "symfony/property-info": "^5.4|^6.0|^7.0",
-                "symfony/stimulus-bundle": "^2.9",
-                "symfony/ux-twig-component": "^2.25.1",
+                "symfony/property-access": "^5.4.5|^6.0|^7.0|^8.0",
+                "symfony/property-info": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/stimulus-bundle": "^2.9|^3.0",
+                "symfony/ux-twig-component": "^2.33.0|^3.0",
                 "twig/twig": "^3.10.3"
             },
             "conflict": {
@@ -13731,23 +13731,25 @@
                 "symfony/type-info": "<7.2"
             },
             "require-dev": {
-                "doctrine/annotations": "^1.0",
+                "doctrine/annotations": "^1.0|^2.0",
                 "doctrine/collections": "^1.6.8|^2.0",
-                "doctrine/doctrine-bundle": "^2.4.3",
-                "doctrine/orm": "^2.9.4",
-                "doctrine/persistence": "^2.5.2|^3.0",
-                "phpdocumentor/reflection-docblock": "5.x-dev",
-                "symfony/dependency-injection": "^5.4|^6.0|^7.0",
-                "symfony/expression-language": "^5.4|^6.0|^7.0",
-                "symfony/form": "^5.4|^6.0|^7.0",
-                "symfony/framework-bundle": "^5.4|^6.0|^7.0",
-                "symfony/options-resolver": "^5.4|^6.0|^7.0",
-                "symfony/phpunit-bridge": "^6.1|^7.0",
-                "symfony/security-bundle": "^5.4|^6.0|^7.0",
-                "symfony/serializer": "^5.4|^6.0|^7.0",
-                "symfony/twig-bundle": "^5.4|^6.0|^7.0",
-                "symfony/uid": "^5.4|^6.0|^7.0",
-                "symfony/validator": "^5.4|^6.0|^7.0",
+                "doctrine/doctrine-bundle": "^2.4.3|^3.0|^4.0",
+                "doctrine/orm": "^2.9.4|^3.0",
+                "doctrine/persistence": "^2.5.2|^3.0|^4.0",
+                "phpdocumentor/reflection-docblock": "^5.6.2",
+                "symfony/config": "^6.3|^7.0|^8.0",
+                "symfony/dependency-injection": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/expression-language": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/form": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/framework-bundle": "^5.4|^6.1|^7.0|^8.0",
+                "symfony/http-kernel": "^6.1|^7.0|^8.0",
+                "symfony/options-resolver": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/phpunit-bridge": "^6.1|^7.0|^8.0",
+                "symfony/security-bundle": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/serializer": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/twig-bundle": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/uid": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/validator": "^5.4|^6.0|^7.0|^8.0",
                 "zenstruck/browser": "^1.2.0",
                 "zenstruck/foundry": "^2.0"
             },
@@ -13781,7 +13783,7 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-live-component/tree/v2.27.0"
+                "source": "https://github.com/symfony/ux-live-component/tree/v2.36.0"
             },
             "funding": [
                 {
@@ -13793,11 +13795,15 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-06-22T19:07:55+00:00"
+            "time": "2026-05-29T06:59:30+00:00"
         },
         {
             "name": "symfony/ux-turbo",
