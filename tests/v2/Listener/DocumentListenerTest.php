@@ -38,7 +38,7 @@ class DocumentListenerTest extends KernelTestCase
         $document = DocumentFactory::createOne([
             'nom' => $dummyName,
             'extension' => $noExtension ? '' : 'pdf',
-        ])->_real();
+        ]);
 
         $noExtension
             ? self::assertTrue('dummy_pdf' === $document->getNom())
@@ -56,7 +56,7 @@ class DocumentListenerTest extends KernelTestCase
     public function testFileNameSanitizationOnCreate(string $originalName, string $expectedSanitizedName, bool $noExtension = false): void
     {
         /** @var Beneficiaire $beneficiaire */
-        $beneficiaire = BeneficiaireFactory::random()->_real();
+        $beneficiaire = BeneficiaireFactory::random();
         $document = (new Document())
             ->setNom($originalName)
             ->setTaille(100)

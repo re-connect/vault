@@ -12,7 +12,6 @@ use App\Tests\Factory\RelayFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
-use Zenstruck\Foundry\Persistence\Proxy;
 
 class ListProTest extends AbstractControllerTest implements TestRouteInterface
 {
@@ -56,7 +55,7 @@ class ListProTest extends AbstractControllerTest implements TestRouteInterface
 
         // We check that all fetched professionals can be managed by the professional
         foreach ($professionals as $professional) {
-            $professional = MembreFactory::find($professional->getId())->_real();
+            $professional = MembreFactory::find($professional->getId());
             self::assertTrue($this->userHelper->canUpdateProfessional($proUser, $professional));
         }
     }
@@ -66,7 +65,7 @@ class ListProTest extends AbstractControllerTest implements TestRouteInterface
         $userMail = MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER;
         $user = UserFactory::findByEmail($userMail);
 
-        $allRelaysIds = array_map(fn (Proxy $relay) => $relay->_real()->getId(), RelayFactory::all());
+        $allRelaysIds = array_map(fn (Centre $relay) => $relay->getId(), RelayFactory::all());
         $allUserRelaysIds = array_map(fn (Centre $relay) => $relay->getId(), $user->getAffiliatedRelaysWithProfessionalManagement()->toArray());
         $notAffiliatedRelaysIds = array_diff($allRelaysIds, $allUserRelaysIds);
 

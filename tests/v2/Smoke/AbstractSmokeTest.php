@@ -20,7 +20,7 @@ abstract class AbstractSmokeTest extends WebTestCase
     {
         self::ensureKernelShutdown();
         $this->beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
-        $this->professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES)->_real();
+        $this->professional = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES);
         parent::setUp();
     }
 

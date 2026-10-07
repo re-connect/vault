@@ -34,7 +34,7 @@ class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteIn
         array $body = [],
     ): void {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
-        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
+        $document = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false]);
 
         $url = sprintf($url, $document->getId());
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : '';
@@ -42,7 +42,7 @@ class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteIn
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $newDocument = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
+            $newDocument = DocumentFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true]);
             $newUrl = sprintf(self::URL, $newDocument->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
         }
@@ -80,7 +80,7 @@ class ToggleVisibilityTest extends AbstractControllerTest implements TestRouteIn
             'bPrive' => false,
             'beneficiaire' => $beneficiary,
             'dossier' => FolderFactory::random(['bPrive' => $isPrivateParentFolder]),
-        ])->_real();
+        ]);
 
         $this->assertRoute(sprintf(self::URL, $document->getId()), $statusCode, $userMail, null, 'PATCH', true);
     }

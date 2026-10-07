@@ -25,7 +25,7 @@
     "knplabs/knp-paginator-bundle": "6.8.*",
     "league/csv": "9.24.*",
     "league/oauth2-server-bundle": "0.8.*",
-    "lexik/jwt-authentication-bundle": "^2.21",
+    "lexik/jwt-authentication-bundle": "^3.2",
     "liip/imagine-bundle": "2.13.*",
     "maennchen/zipstream-php": "3.1.*",
     "mailjet/mailjet-apiv3-php": "1.6.*",

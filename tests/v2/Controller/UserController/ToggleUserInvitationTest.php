@@ -6,9 +6,10 @@ use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Entity\MembreCentre;
 use App\Tests\Factory\MembreFactory;
-use App\Tests\Factory\RelayFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
+
+use function Zenstruck\Foundry\Persistence\refresh;
 
 class ToggleUserInvitationTest extends AbstractControllerTest
 {
@@ -26,7 +27,7 @@ class ToggleUserInvitationTest extends AbstractControllerTest
     ): void {
         // Test toggle pro invite
         $user = UserFactory::findByEmail(MemberFixture::MEMBER_MAIL);
-        $relay = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real()->getCentres()[0];
+        $relay = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->getCentres()[0];
         $url = sprintf(self::URL, $user->getId(), $relay->getId());
 
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS === $userMail) {
@@ -66,8 +67,8 @@ class ToggleUserInvitationTest extends AbstractControllerTest
         $url = sprintf(self::URL, $testedUser->getId(), $relay->getId());
         $this->assertRoute($url, 302, MemberFixture::MEMBER_MAIL_WITH_RELAYS, sprintf('/beneficiary/%s/affiliate/relays', $testedUser->getSubject()->getId()));
 
-        $testedUser = UserFactory::find($testedUser)->_real();
-        $relay = RelayFactory::find($relay)->_real();
+        refresh($testedUser);
+        refresh($relay);
         self::assertEquals($isCreating, $testedUser->getUserRelay($relay)->getBValid());
     }
 
@@ -88,8 +89,8 @@ class ToggleUserInvitationTest extends AbstractControllerTest
         $url = sprintf(self::URL, $testedUser->getId(), $relay->getId());
         $this->assertRoute($url, 302, MemberFixture::MEMBER_MAIL_WITH_RELAYS, sprintf('/user/%s/invite', $testedUser->getId()));
 
-        $testedUser = UserFactory::find($testedUser)->_real();
-        $relay = RelayFactory::find($relay)->_real();
+        refresh($testedUser);
+        refresh($relay);
         $userRelay = $testedUser->getUserRelay($relay);
 
         self::assertSame(

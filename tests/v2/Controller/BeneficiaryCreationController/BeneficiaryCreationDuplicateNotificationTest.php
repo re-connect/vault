@@ -24,7 +24,7 @@ class BeneficiaryCreationDuplicateNotificationTest extends AbstractControllerTes
     public function testDuplicatedUsernameNotification(string $url, int $expectedStatusCode, ?string $userMail = null): void
     {
         // We create first user
-        $beneficiary = BeneficiaireFactory::createOne()->_real();
+        $beneficiary = BeneficiaireFactory::createOne();
         $user = $beneficiary->getUser();
 
         // We create user with duplicated username
@@ -33,7 +33,7 @@ class BeneficiaryCreationDuplicateNotificationTest extends AbstractControllerTes
             'prenom' => $user->getPrenom(),
         ]);
         $duplicatedBeneficiary = BeneficiaireFactory::createOne(['user' => $duplicatedUser, 'dateNaissance' => $beneficiary->getDateNaissance()]);
-        $creationProcessWithDuplicatedBeneficiary = BeneficiaryCreationProcessFactory::createOne(['beneficiary' => $duplicatedBeneficiary])->_real();
+        $creationProcessWithDuplicatedBeneficiary = BeneficiaryCreationProcessFactory::createOne(['beneficiary' => $duplicatedBeneficiary]);
 
         // Request to step 2
         $url = sprintf($url, $creationProcessWithDuplicatedBeneficiary->getId());

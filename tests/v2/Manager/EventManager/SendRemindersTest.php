@@ -36,7 +36,7 @@ class SendRemindersTest extends KernelTestCase
         self::assertCount(0, $remindersRepo->getDueReminders());
 
         // Init test reminders
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->_real();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         self::assertNotNull($beneficiary->getUser()->getTelephone());
 
         $event = (new Evenement())

@@ -41,12 +41,12 @@ class EmailTest extends AbstractControllerTest implements TestRouteInterface
     public function testResetPasswordRequestIsSend(): void
     {
         $client = self::createClient();
-        $client->loginUser(MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES)->_real()->getUser());
+        $client->loginUser(MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES)->getUser());
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $client->request('GET', sprintf(self::URL, $beneficiary->getId()));
 
         // Check request is created with correct user
-        $resetPasswordRequest = ResetPasswordRequestFactory::last()->_real();
+        $resetPasswordRequest = ResetPasswordRequestFactory::last();
         self::assertEquals($beneficiary->getUser()->getId(), $resetPasswordRequest->getUser()->getId());
 
         // Check that password request is not SMS request

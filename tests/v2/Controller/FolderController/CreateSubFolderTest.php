@@ -11,6 +11,9 @@ use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
 
+use function Zenstruck\Foundry\Persistence\delete;
+use function Zenstruck\Foundry\Persistence\refresh;
+
 class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
     private const URL = '/folder/%s/create-subfolder';
@@ -70,14 +73,14 @@ class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInt
         array $body = [],
     ): void {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
-        $publicFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
+        $publicFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false]);
 
         $url = sprintf($url, $publicFolder->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $privateFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
+            $privateFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true]);
             $newUrl = sprintf(self::URL, $privateFolder->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
         }
@@ -88,13 +91,13 @@ class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInt
     {
         $parentFolder = FolderFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ])->_real();
+        ]);
         $url = sprintf($url, $parentFolder->getId());
         $redirectUrl = $redirectUrl ? sprintf($redirectUrl, $parentFolder->getId()) : '';
         $this->assertFormIsValid($url, $formSubmit, $values, $email, $redirectUrl);
 
         $subFolder = $parentFolder->getSousDossiers()[0]->getId();
-        FolderFactory::find($subFolder)->_delete();
+        delete(FolderFactory::find($subFolder));
     }
 
     /**
@@ -107,7 +110,7 @@ class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInt
     {
         $folder = FolderFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ])->_real();
+        ]);
         $url = sprintf($url, $folder->getId());
         $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email, $alternateSelector);
     }
@@ -116,24 +119,24 @@ class CreateSubFolderTest extends AbstractControllerTest implements TestRouteInt
     {
         self::ensureKernelShutdown();
         $clientTest = static::createClient();
-        $user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL])->_real();
+        $user = UserFactory::find(['email' => BeneficiaryFixture::BENEFICIARY_MAIL]);
         $clientTest->loginUser($user);
 
         $beneficiary = $user->getSubjectBeneficiaire();
-        $parentFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary])->_real();
+        $parentFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary]);
 
         $crawler = $clientTest->request('GET', sprintf(self::URL, $parentFolder->getId()));
         $form = $crawler->selectButton(self::$translator->trans('confirm'))->form();
         $form->setValues(self::FORM_VALUES);
         $clientTest->submit($form);
 
-        $parentFolder = FolderFactory::find(['id' => $parentFolder->getId()])->_real();
+        refresh($parentFolder);
         $subFolder = $parentFolder->getSousDossiers()[0];
 
         self::assertCount(1, $parentFolder->getSousDossiers());
         self::assertSame($parentFolder, $subFolder->getDossierParent());
         self::assertEquals($parentFolder->getBprive(), $subFolder->getBprive());
-        FolderFactory::find($subFolder)->_delete();
-        FolderFactory::find($parentFolder)->_delete();
+        delete($subFolder);
+        delete($parentFolder);
     }
 }
