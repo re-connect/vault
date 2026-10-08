@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Tests\v2\API\v2\Beneficiary;
+namespace App\Tests\v2\API\v2\PasswordGrant\Beneficiary;
 
 use App\Entity\Beneficiaire;
 use App\Entity\ConsultationBeneficiaire;
 use App\Entity\Membre;
-use App\Tests\v2\API\v2\AbstractApiV2Test;
+use App\Tests\v2\API\v2\PasswordGrant\AbstractPasswordGrantApiV2TestCase;
 use League\Bundle\OAuth2ServerBundle\Model\Client;
 use Symfony\Component\HttpFoundation\Request;
 
-class BeneficiaryConsultationTest extends AbstractApiV2Test
+class BeneficiaryConsultationTest extends AbstractPasswordGrantApiV2TestCase
 {
     public function testRecordBeneficiaryConsultation(): void
     {

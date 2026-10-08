@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Tests\v2\API\v3\Note;
+namespace App\Tests\v2\API\v3\ClientCredentials\Folder;
 
-use App\DataFixtures\v2\BeneficiaryFixture;
-use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\ClientFactory;
-use App\Tests\Factory\NoteFactory;
-use App\Tests\v2\API\v3\AbstractApiTest;
+use App\Tests\Factory\FolderFactory;
+use App\Tests\v2\API\AbstractClientCredentialsApiTestCase;
 
-class NoteApiV3Test extends AbstractApiTest
+class FolderApiV3Test extends AbstractClientCredentialsApiTestCase
 {
     /**
      * @dataProvider canGetProvider
@@ -17,22 +15,20 @@ class NoteApiV3Test extends AbstractApiTest
     {
         $client = ClientFactory::find(['nom' => $clientName]);
         $beneficiaries = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId());
-        $notesCount = 0;
+        $foldersCount = 0;
         foreach ($beneficiaries as $beneficiary) {
-            $notesCount += $beneficiary->getNotes()->filter(function ($note) {
-                return !$note->getBPrive();
-            })->count();
+            $foldersCount += $beneficiary->getSharedFolders()->count();
         }
 
         $this->assertEndpoint(
             $clientName,
-            '/notes',
+            '/folders',
             'GET',
             200,
             [
-                '@context' => '/api/contexts/Note',
+                '@context' => '/api/contexts/folder',
                 '@type' => 'hydra:Collection',
-                'hydra:totalItems' => $notesCount,
+                'hydra:totalItems' => $foldersCount,
             ]
         );
     }
@@ -40,11 +36,11 @@ class NoteApiV3Test extends AbstractApiTest
     /**
      * @dataProvider canNotGetProvider
      */
-    public function testNotGetCollection(string $clientName): void
+    public function testCanNotGetCollection(string $clientName): void
     {
         $this->assertEndpointAccessIsDenied(
             $clientName,
-            '/notes',
+            '/folders',
             'GET',
         );
     }
@@ -57,14 +53,34 @@ class NoteApiV3Test extends AbstractApiTest
         $beneficiary = $this->getBeneficiaryForClient($clientName);
         $this->assertEndpoint(
             $clientName,
-            sprintf('/beneficiaries/%s/notes', $beneficiary->getId()),
+            sprintf('/beneficiaries/%s/folders', $beneficiary->getId()),
             'GET',
             200,
             [
-                '@context' => '/api/contexts/Note',
-                '@id' => sprintf('/api/v3/beneficiaries/%s/notes', $beneficiary->getId()),
+                '@context' => '/api/contexts/folder',
+                '@id' => sprintf('/api/v3/beneficiaries/%s/folders', $beneficiary->getId()),
                 '@type' => 'hydra:Collection',
-                'hydra:totalItems' => count(NoteFactory::findBy(['beneficiaire' => $beneficiary->getId(), 'bPrive' => false])),
+                'hydra:totalItems' => count(FolderFactory::findBy(['beneficiaire' => $beneficiary->getId(), 'bPrive' => false])),
+            ]
+        );
+    }
+
+    /**
+     * @dataProvider canGetBeneficiaryProvider
+     */
+    public function testGetCollectionTreeFromBeneficiary(string $clientName): void
+    {
+        $beneficiary = $this->getBeneficiaryForClient($clientName);
+        $this->assertEndpoint(
+            $clientName,
+            sprintf('/beneficiaries/%s/folders_tree', $beneficiary->getId()),
+            'GET',
+            200,
+            [
+                '@context' => '/api/contexts/folder',
+                '@id' => sprintf('/api/v3/beneficiaries/%s/folders_tree', $beneficiary->getId()),
+                '@type' => 'hydra:Collection',
+                'hydra:totalItems' => count(FolderFactory::findBy(['beneficiaire' => $beneficiary->getId(), 'bPrive' => false, 'dossierParent' => null])),
             ]
         );
     }
@@ -75,9 +91,10 @@ class NoteApiV3Test extends AbstractApiTest
     public function testCanNotGetCollectionFromBeneficiary(string $clientName): void
     {
         $beneficiary = $this->getBeneficiaryForClient($clientName);
+
         $this->assertEndpointAccessIsDenied(
             $clientName,
-            sprintf('/beneficiaries/%s/notes', $beneficiary->getId()),
+            sprintf('/beneficiaries/%s/folders', $beneficiary->getId()),
             'GET',
         );
     }
@@ -88,25 +105,41 @@ class NoteApiV3Test extends AbstractApiTest
     public function testGetOne(string $clientName): void
     {
         $beneficiary = $this->getBeneficiaryForClient($clientName);
-        $note = NoteFactory::findOrCreate([
+        $folder = FolderFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
+            'nom' => 'Folder with documents',
         ]);
+
+        // Check that only public documents are returned
+        $publicDocuments = [];
+        foreach ($folder->getDocuments() as $document) {
+            if (!$document->getBPrive()) {
+                $publicDocuments[] = [
+                    'id' => $document->getId(),
+                    'b_prive' => false,
+                    'nom' => $document->getNom(),
+                    'beneficiaire_id' => $beneficiary->getId(),
+                    'created_at' => $document->getCreatedAt()->format('c'),
+                    'updated_at' => $document->getUpdatedAt()->format('c'),
+                ];
+            }
+        }
 
         $this->assertEndpoint(
             $clientName,
-            sprintf('/notes/%d', $note->getId()),
+            sprintf('/folders/%d', $folder->getId()),
             'GET',
             200,
             [
-                '@context' => '/api/contexts/Note',
-                '@type' => 'Note',
-                'nom' => $note->getNom(),
-                'contenu' => $note->getContenu(),
-                'b_prive' => $note->getBPrive(),
-                'beneficiaire' => sprintf('/api/v3/beneficiaries/%d', $note->getBeneficiaire()->getId()),
-                'created_at' => $note->getCreatedAt()->format('c'),
-                'updated_at' => $note->getUpdatedAt()->format('c'),
+                '@context' => '/api/contexts/folder',
+                '@type' => 'folder',
+                'nom' => $folder->getNom(),
+                'b_prive' => $folder->getBPrive(),
+                'beneficiaire' => sprintf('/api/v3/beneficiaries/%d', $folder->getBeneficiaire()->getId()),
+                'created_at' => $folder->getCreatedAt()->format('c'),
+                'updated_at' => $folder->getUpdatedAt()->format('c'),
+                'documents' => $publicDocuments,
             ]
         );
     }
@@ -117,14 +150,14 @@ class NoteApiV3Test extends AbstractApiTest
     public function testCanNotGetOne(string $clientName): void
     {
         $beneficiary = $this->getBeneficiaryForClient($clientName);
-        $note = NoteFactory::findOrCreate([
+        $folder = FolderFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
         ]);
 
         $this->assertEndpointAccessIsDenied(
             $clientName,
-            sprintf('/notes/%d', $note->getId()),
+            sprintf('/folders/%d', $folder->getId()),
             'GET',
         );
     }
@@ -159,23 +192,27 @@ class NoteApiV3Test extends AbstractApiTest
     public function testPost(string $clientName): void
     {
         $beneficiary = $this->getBeneficiaryForClient($clientName);
-        $note = [
-            'nom' => 'testNom',
-            'contenu' => 'testContenu',
+        $folder = [
             'beneficiaire_id' => $beneficiary->getId(),
+            'nom' => 'CONTACT',
+            'dossierParentId' => $beneficiary->getRootFolders()->first()->getId(),
+            'bPrive' => true,
         ];
 
         $this->assertEndpoint(
             $clientName,
-            '/notes',
+            '/folders',
             'POST',
             201,
             [
-                '@context' => '/api/contexts/Note',
-                '@type' => 'Note',
-                ...$note,
+                '@context' => '/api/contexts/folder',
+                '@type' => 'folder',
+                ...[
+                    'beneficiaire_id' => $beneficiary->getId(),
+                    'nom' => 'CONTACT',
+                ],
             ],
-            $note
+            $folder
         );
     }
 
@@ -185,17 +222,18 @@ class NoteApiV3Test extends AbstractApiTest
     public function testCanNotPost(string $clientName): void
     {
         $beneficiary = $this->getBeneficiaryForClient($clientName);
-        $note = [
-            'nom' => 'testNom',
-            'contenu' => 'testContenu',
+        $folder = [
             'beneficiaire_id' => $beneficiary->getId(),
+            'nom' => 'CONTACT',
+            'dossierParentId' => $beneficiary->getRootFolders()->first()->getId(),
+            'bPrive' => true,
         ];
 
         $this->assertEndpointAccessIsDenied(
             $clientName,
-            '/notes',
+            '/folders',
             'POST',
-            $note
+            $folder
         );
     }
 
@@ -222,28 +260,28 @@ class NoteApiV3Test extends AbstractApiTest
     public function testToggleVisibility(string $clientName): void
     {
         $beneficiary = $this->getBeneficiaryForClient($clientName);
-        $note = NoteFactory::findOrCreate([
+        $folder = FolderFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
         ]);
-        $noteId = $note->getId();
+        $folderId = $folder->getId();
 
         $this->assertEndpoint(
             $clientName,
-            sprintf('/notes/%s/toggle-visibility', $noteId),
+            sprintf('/folders/%s/toggle-visibility', $folderId),
             'PATCH',
             200,
             [
-                '@context' => '/api/contexts/Note',
-                '@id' => sprintf('/api/v3/notes/%s/toggle-visibility', $noteId),
-                '@type' => 'Note',
+                '@context' => '/api/contexts/folder',
+                '@id' => sprintf('/api/v3/folders/%s/toggle-visibility', $folderId),
+                '@type' => 'folder',
             ],
             []
         );
         // Once item has been set to private, it should not be found
         $this->assertEndpoint(
             $clientName,
-            sprintf('/notes/%s/toggle-visibility', $noteId),
+            sprintf('/folders/%s/toggle-visibility', $folderId),
             'PATCH',
             404,
             null,
@@ -257,15 +295,15 @@ class NoteApiV3Test extends AbstractApiTest
     public function testCanNotToggleVisibility(string $clientName): void
     {
         $beneficiary = $this->getBeneficiaryForClient($clientName);
-        $note = NoteFactory::findOrCreate([
+        $folder = FolderFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
         ]);
-        $noteId = $note->getId();
+        $folderId = $folder->getId();
 
         $this->assertEndpointAccessIsDenied(
             $clientName,
-            sprintf('/notes/%s/toggle-visibility', $noteId),
+            sprintf('/folders/%s/toggle-visibility', $folderId),
             'PATCH',
             []
         );
@@ -286,78 +324,5 @@ class NoteApiV3Test extends AbstractApiTest
         yield 'Should not update with create only scopes' => ['create_only_client'];
         yield 'Should not update with read personal data scope' => ['read_personal_data_client'];
         yield 'Should not update with create personal data scope' => ['create_personal_data_client'];
-    }
-
-    public function testPut(): void
-    {
-        $this->markTestSkipped('Notes api ressource is currently disabled');
-        $note = NoteFactory::findOrCreate([
-            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ]);
-
-        $updatedProperties = [
-            'nom' => 'testNomPUT',
-            'contenu' => 'testContenuPUT',
-            'b_prive' => true,
-            'created_at' => (new \DateTime())->format('c'),
-            'updated_at' => (new \DateTime())->format('c'),
-        ];
-
-        $this->assertEndpoint(
-            'rosalie',
-            sprintf('/notes/%d', $note->getId()),
-            'PUT',
-            200,
-            [
-                '@context' => '/api/contexts/Note',
-                '@type' => 'Note',
-                ...$updatedProperties,
-            ],
-            $updatedProperties
-        );
-    }
-
-    public function testPatch(): void
-    {
-        $this->markTestSkipped('Notes api ressource is currently disabled');
-        $note = NoteFactory::findOrCreate([
-            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ]);
-
-        $updatedProperties = [
-            'nom' => 'testNomPATCH',
-            'contenu' => 'testContenuPATCH',
-            'b_prive' => true,
-            'created_at' => (new \DateTime())->format('c'),
-            'updated_at' => (new \DateTime())->format('c'),
-        ];
-
-        $this->assertEndpoint(
-            'rosalie',
-            sprintf('/notes/%d', $note->getId()),
-            'PATCH',
-            200,
-            [
-                '@context' => '/api/contexts/Note',
-                '@type' => 'Note',
-                ...$updatedProperties,
-            ],
-            $updatedProperties
-        );
-    }
-
-    public function testDelete(): void
-    {
-        $this->markTestSkipped('Notes api ressource is currently disabled');
-        $note = NoteFactory::findOrCreate([
-            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ]);
-
-        $this->assertEndpoint(
-            'rosalie',
-            sprintf('/notes/%d', $note->getId()),
-            'DELETE',
-            204,
-        );
     }
 }
