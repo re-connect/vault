@@ -1,0 +1,20 @@
+meta {
+  name: Toggle access
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/v2/notes/{{noteId}}/toggle-access
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Appelé par `src/hooks/DataHooks.tsx`.
+}

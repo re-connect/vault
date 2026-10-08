@@ -1,0 +1,28 @@
+meta {
+  name: Rename
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{baseUrl}}/api/v2/folders/{{folderId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Nouveau nom",
+    "nom": "Nouveau nom",
+    "icon_id": 1
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Renommage et changement d'icône. Appelé par `renameItem` dans `src/services/documents.ts`.
+}

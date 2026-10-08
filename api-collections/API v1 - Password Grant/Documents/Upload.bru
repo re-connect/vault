@@ -1,0 +1,24 @@
+meta {
+  name: Upload
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/beneficiaries/{{beneficiaryId}}/documents
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  files[]: @file()
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Route non versionnée (`apiEndpoint`), appelée via `fetch` par `src/services/documents.ts` (`uploadDocuments`, `uploadBase64`). Choisir un ou plusieurs fichiers pour `files[]`.
+}

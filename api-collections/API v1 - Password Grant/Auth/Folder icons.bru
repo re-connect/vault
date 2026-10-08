@@ -1,0 +1,20 @@
+meta {
+  name: Folder icons
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/public/folder_icons
+  body: none
+  auth: none
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Route publique. Appelé par `src/hooks/FoldersHooks.tsx`.
+}

@@ -1,0 +1,31 @@
+meta {
+  name: Enable
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{baseUrl}}/api/v2/beneficiary/enable
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "question_secrete": "",
+    "autre_question_secrete": "",
+    "reponse_secrete": "",
+    "password": "{{newPassword}}",
+    "confirmPassword": "{{newPassword}}",
+    "email": "jean.dupont@example.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Activation du compte bénéficiaire à la première connexion. Appelé par `src/hooks/BeneficiariesHooks.tsx`.
+}
