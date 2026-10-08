@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Tests\v2\API\v3\Beneficiary;
+namespace App\Tests\v2\API\v3\ClientCredentials\Beneficiary;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Repository\ClientBeneficiaireRepository;
 use App\Repository\ClientRepository;
 use App\Tests\Factory\BeneficiaireFactory;
-use App\Tests\v2\API\v3\AbstractApiTest;
+use App\Tests\v2\API\AbstractClientCredentialsApiTestCase;
 use Doctrine\ORM\EntityManagerInterface;
 
-class AddExternalLinkTest extends AbstractApiTest
+class AddExternalLinkTest extends AbstractClientCredentialsApiTestCase
 {
     private ClientRepository $clientRepository;
     private ClientBeneficiaireRepository $clientBeneficiaireRepository;

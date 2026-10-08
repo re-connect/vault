@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Tests\v2\API\v3\Beneficiary;
+namespace App\Tests\v2\API\v3\ClientCredentials\Beneficiary;
 
 use App\Tests\Factory\BeneficiaireFactory;
-use App\Tests\v2\API\v3\AbstractApiTest;
+use App\Tests\v2\API\AbstractClientCredentialsApiTestCase;
 
-class SearchTest extends AbstractApiTest
+class SearchTest extends AbstractClientCredentialsApiTestCase
 {
     public function testSearchBeneficiary(): void
     {

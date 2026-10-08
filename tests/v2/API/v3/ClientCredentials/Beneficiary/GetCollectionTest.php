@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Tests\v2\API\v3\Beneficiary;
+namespace App\Tests\v2\API\v3\ClientCredentials\Beneficiary;
 
 use App\Tests\Factory\ClientFactory;
-use App\Tests\v2\API\v3\AbstractApiTest;
+use App\Tests\v2\API\AbstractClientCredentialsApiTestCase;
 
-class GetCollectionTest extends AbstractApiTest
+class GetCollectionTest extends AbstractClientCredentialsApiTestCase
 {
     /**
      * @dataProvider canGetProvider
