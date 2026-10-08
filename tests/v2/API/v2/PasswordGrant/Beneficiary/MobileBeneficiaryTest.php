@@ -39,7 +39,7 @@ class MobileBeneficiaryTest extends AbstractPasswordGrantApiV2TestCase
     {
         $relay = RelayFactory::find(['nom' => RelayFixture::SHARED_PRO_BENEFICIARY_RELAY_1]);
 
-        $response = $this->requestAsUser(MemberFixture::MEMBER_WITH_CLIENT, Request::METHOD_POST, '/beneficiaries', ['json' => [
+        $this->requestAsUser(MemberFixture::MEMBER_WITH_CLIENT, Request::METHOD_POST, '/beneficiaries', ['json' => [
             'first_name' => 'Jean',
             'last_name' => 'Mobile',
             'phone' => '0611223344',
@@ -56,7 +56,7 @@ class MobileBeneficiaryTest extends AbstractPasswordGrantApiV2TestCase
         $this->assertJsonContains(['prenom' => 'Jean', 'nom' => 'Mobile', 'email' => 'jean.mobile@mail.com']);
 
         $this->em->clear();
-        $beneficiary = $this->em->find(Beneficiaire::class, $response->toArray()['id']);
+        $beneficiary = $this->em->getRepository(User::class)->findOneBy(['email' => 'jean.mobile@mail.com'])->getSubjectBeneficiaire();
         $this->assertSame('31/01/1990', $beneficiary->getDateNaissance()->format('d/m/Y'));
         $this->assertSame([$relay->getId()], array_map(fn ($relay) => $relay->getId(), $beneficiary->getCentres()->toArray()));
     }

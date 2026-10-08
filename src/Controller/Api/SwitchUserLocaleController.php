@@ -11,7 +11,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class SwitchUserLocaleController extends AbstractController
 {
-    #[Route('api/v3/users/switch-locale', methods: 'PATCH')]
+    #[Route('api/v3/users/switch-locale', methods: 'PATCH', priority: 1)]
     #[IsGranted('ROLE_USER')]
     public function switch(Request $request, EntityManagerInterface $em): JsonResponse
     {

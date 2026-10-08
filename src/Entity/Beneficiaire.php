@@ -755,7 +755,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function jsonSerializeForClient(?Client $client): array
     {
-        $clientBeneficiaire = !$client ? null : $this->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $client === $element->getClient())->first();
+        $clientBeneficiaire = !$client ? null : ($this->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $client === $element->getClient())->first() ?: null);
         $distantId = $clientBeneficiaire?->getDistantId();
 
         return [
@@ -785,7 +785,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function jsonSerializeForClientV2(?Client $client): array
     {
-        $clientBeneficiaire = !$client ? null : $this->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $client === $element->getClient())->first();
+        $clientBeneficiaire = !$client ? null : ($this->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $client === $element->getClient())->first() ?: null);
 
         return [
             'distant_id' => $clientBeneficiaire?->getDistantId(),
