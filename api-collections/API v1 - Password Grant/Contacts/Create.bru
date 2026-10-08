@@ -1,0 +1,32 @@
+meta {
+  name: Create
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v2/beneficiaries/{{beneficiaryId}}/contacts
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nom": "Dupont",
+    "prenom": "Jean",
+    "telephone": "0600000000",
+    "email": "jean.dupont@example.com",
+    "association": "",
+    "commentaire": "",
+    "b_prive": false
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Appelé par `src/hooks/DataHooks.tsx`.
+}
