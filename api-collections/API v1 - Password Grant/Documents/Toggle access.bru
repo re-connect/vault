@@ -1,0 +1,20 @@
+meta {
+  name: Toggle access
+  type: http
+  seq: 9
+}
+
+patch {
+  url: {{baseUrl}}/api/v2/documents/{{documentId}}/toggle-access
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Bascule privé/partagé. Appelé par `src/hooks/DataHooks.tsx`.
+}

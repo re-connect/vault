@@ -1,0 +1,20 @@
+meta {
+  name: Delete
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/v2/contacts/{{contactId}}
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Appelé par `src/hooks/DataHooks.tsx`.
+}

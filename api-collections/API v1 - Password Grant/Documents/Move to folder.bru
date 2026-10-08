@@ -1,0 +1,20 @@
+meta {
+  name: Move to folder
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{baseUrl}}/api/v2/documents/{{documentId}}/folder/{{folderId}}
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Appelé par `src/hooks/DocumentsHooks.tsx` et après un upload dans un dossier (`src/services/documents.ts`).
+}
