@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Tests\v2\API\v3\Contact;
+namespace App\Tests\v2\API\v3\ClientCredentials\Contact;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\ClientFactory;
 use App\Tests\Factory\ContactFactory;
-use App\Tests\v2\API\v3\AbstractApiTest;
+use App\Tests\v2\API\AbstractClientCredentialsApiTestCase;
 
-class ContactApiV3Test extends AbstractApiTest
+class ContactApiV3Test extends AbstractClientCredentialsApiTestCase
 {
     /**
      * @dataProvider canGetProvider

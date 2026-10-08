@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Tests\v2\API\v3\Document;
+namespace App\Tests\v2\API\v3\ClientCredentials\Document;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\DocumentFactory;
-use App\Tests\v2\API\v3\AbstractApiTest;
+use App\Tests\v2\API\AbstractClientCredentialsApiTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class DocumentAPIv3Test extends AbstractApiTest
+class DocumentAPIv3Test extends AbstractClientCredentialsApiTestCase
 {
     /**
      * @dataProvider canGetBeneficiaryProvider
