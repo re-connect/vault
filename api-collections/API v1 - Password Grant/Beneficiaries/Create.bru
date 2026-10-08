@@ -1,0 +1,35 @@
+meta {
+  name: Create
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v2/beneficiaries
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "first_name": "Jean",
+    "last_name": "Dupont",
+    "phone": "0600000000",
+    "email": "jean.dupont@example.com",
+    "password": "{{newPassword}}",
+    "confirmPassword": "{{newPassword}}",
+    "secret_question": "",
+    "secret_question_answer": "",
+    "birth_date": "31/01/1990",
+    "centers": [{{centerId}}]
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Appelé par `src/hooks/BeneficiariesHooks.tsx`.
+}

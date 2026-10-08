@@ -1,0 +1,20 @@
+meta {
+  name: List
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/v2/centers
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Sert aussi à détecter les invitations en attente (`b_valid: false`). Appelé par `src/hooks/CentersHooks.tsx`.
+}
