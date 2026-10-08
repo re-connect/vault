@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Tests\v2\API\v3\Event;
+namespace App\Tests\v2\API\v3\ClientCredentials\Event;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\ClientFactory;
 use App\Tests\Factory\EventFactory;
-use App\Tests\v2\API\v3\AbstractApiTest;
+use App\Tests\v2\API\AbstractClientCredentialsApiTestCase;
 
-class EventApiV3Test extends AbstractApiTest
+class EventApiV3Test extends AbstractClientCredentialsApiTestCase
 {
     /**
      * @dataProvider canGetProvider

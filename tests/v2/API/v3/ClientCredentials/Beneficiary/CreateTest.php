@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Tests\v2\API\v3\Beneficiary;
+namespace App\Tests\v2\API\v3\ClientCredentials\Beneficiary;
 
 use App\Repository\BeneficiaireRepository;
-use App\Tests\v2\API\v3\AbstractApiTest;
+use App\Tests\v2\API\AbstractClientCredentialsApiTestCase;
 
-class CreateTest extends AbstractApiTest
+class CreateTest extends AbstractClientCredentialsApiTestCase
 {
     private readonly BeneficiaireRepository $repo;
 
