@@ -18,6 +18,7 @@ when@dev:
             - affiliation
             - sms
             - api
+            - api_usage
             - disk_capacity
         handlers:
             main:
@@ -25,7 +26,7 @@ when@dev:
                 action_level: error
                 handler: nested
                 excluded_http_codes: [ 404, 405 ]
-                channels: [ "!event" ]
+                channels: [ "!event", "!api_usage" ]
             nested:
                 type: stream
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
@@ -73,7 +74,13 @@ when@dev:
             console:
                 type: console
                 process_psr_3_messages: false
-                channels: [ "!event", "!doctrine", "!console" ]
+                channels: [ "!event", "!doctrine", "!console", "!api_usage" ]
+            api_usage:
+                level: info
+                type: stream
+                path: '%kernel.logs_dir%/api_usage/%kernel.environment%.log'
+                formatter: monolog.formatter.json
+                channels: [ 'api_usage' ]
 
 when@test:
     monolog:
@@ -84,6 +91,7 @@ when@test:
             - relay
             - affiliation
             - api
+            - api_usage
             - disk_capacity
         handlers:
             main:
@@ -91,7 +99,7 @@ when@test:
                 action_level: error
                 handler: nested
                 excluded_http_codes: [ 404, 405 ]
-                channels: [ "!event" ]
+                channels: [ "!event", "!api_usage" ]
             nested:
                 type: stream
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
@@ -131,6 +139,10 @@ when@test:
                 type: stream
                 path: '%kernel.logs_dir%/monitoring/disk_capacity.log'
                 channels: [ 'disk_capacity' ]
+            api_usage:
+                level: info
+                type: test
+                channels: [ 'api_usage' ]
 
 when@preprod:
     monolog:
@@ -141,6 +153,7 @@ when@preprod:
             - relay
             - affiliation
             - api
+            - api_usage
             - sms
             - disk_capacity
         handlers:
@@ -149,6 +162,7 @@ when@preprod:
                 action_level: error
                 handler: nested
                 excluded_http_codes: [ 404, 405 ]
+                channels: [ "!api_usage" ]
                 buffer_size: 50 # How many messages should be saved? Prevent memory leaks
             nested:
                 type: rotating_file
@@ -158,7 +172,7 @@ when@preprod:
             console:
                 type: console
                 process_psr_3_messages: false
-                channels: [ "!event", "!doctrine" ]
+                channels: [ "!event", "!doctrine", "!api_usage" ]
             activity:
                 level: debug
                 type: rotating_file
@@ -205,6 +219,13 @@ when@preprod:
                 type: stream
                 path: '%kernel.logs_dir%/monitoring_preprod/disk_capacity.log'
                 channels: [ 'disk_capacity' ]
+            api_usage:
+                level: info
+                type: rotating_file
+                path: '%kernel.logs_dir%/api_usage/%kernel.environment%.log'
+                formatter: monolog.formatter.json
+                channels: [ 'api_usage' ]
+                max_files: 100
 
 when@prod:
     monolog:
@@ -215,6 +236,7 @@ when@prod:
             - relay
             - affiliation
             - api
+            - api_usage
             - disk_capacity
         handlers:
             main:
@@ -222,6 +244,7 @@ when@prod:
                 action_level: error
                 handler: nested
                 excluded_http_codes: [ 404, 405 ]
+                channels: [ "!api_usage" ]
                 buffer_size: 50 # How many messages should be saved? Prevent memory leaks
             nested:
                 type: rotating_file
@@ -231,7 +254,7 @@ when@prod:
             console:
                 type: console
                 process_psr_3_messages: false
-                channels: [ "!event", "!doctrine" ]
+                channels: [ "!event", "!doctrine", "!api_usage" ]
             activity:
                 level: debug
                 type: rotating_file
@@ -273,4 +296,10 @@ when@prod:
                 type: stream
                 path: '%kernel.logs_dir%/monitoring/disk_capacity.log'
                 channels: [ 'disk_capacity' ]
-
+            api_usage:
+                level: info
+                type: rotating_file
+                path: '%kernel.logs_dir%/api_usage/%kernel.environment%.log'
+                formatter: monolog.formatter.json
+                channels: [ 'api_usage' ]
+                max_files: 365
