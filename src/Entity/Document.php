@@ -39,7 +39,11 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
         new Delete(security: "is_granted('DELETE', object) and is_granted('ROLE_USER')"),
         new Get(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
         new GetCollection(security: "is_granted('ROLE_USER')"),
-        new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Patch(
+            security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')",
+            // Prevents moving an item to another beneficiary (or into another beneficiary's folder) through IRIs
+            securityPostDenormalize: "is_granted('UPDATE', object) and object.getBeneficiaire() === previous_object.getBeneficiaire() and (object.getDossier() === null or object.getDossier().getBeneficiaire() === object.getBeneficiaire())",
+        ),
         new Patch(
             uriTemplate: '/documents/{id}/toggle-visibility',
             security: "is_granted('UPDATE', object)",
