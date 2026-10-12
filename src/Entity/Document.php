@@ -36,7 +36,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[Vich\Uploadable]
 #[ApiResource(
     operations: [
-        new Delete(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Delete(security: "is_granted('DELETE', object) and is_granted('ROLE_USER')"),
         new Get(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
         new GetCollection(security: "is_granted('ROLE_USER')"),
         new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
