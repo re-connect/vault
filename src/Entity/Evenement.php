@@ -11,6 +11,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\OpenApi\Model\Operation;
 use App\Api\ApiOperations;
+use App\Api\State\EventStateProcessor;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Repository\EvenementRepository;
@@ -40,6 +41,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_EVENTS_CREATE')", processor: PersonalDataStateProcessor::class),
         new Patch(
             security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')",
+            processor: EventStateProcessor::class,
             securityPostDenormalize: "is_granted('UPDATE', object) and object.getBeneficiaire() === previous_object.getBeneficiaire()",
         ),
         new Patch(
