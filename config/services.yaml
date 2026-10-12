@@ -94,6 +94,9 @@ services:
     App\Api\State\PersonalDataStateProcessor:
         bind:
             $persistProcessor: '@api_platform.doctrine.orm.state.persist_processor'
+    App\Api\State\EventStateProcessor:
+        bind:
+            $persistProcessor: '@api_platform.doctrine.orm.state.persist_processor'
     App\Api\State\UserPasswordProcessor:
         bind:
             $persistProcessor: '@api_platform.doctrine.orm.state.persist_processor'
