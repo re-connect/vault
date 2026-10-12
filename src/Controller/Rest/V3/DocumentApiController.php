@@ -32,7 +32,8 @@ final class DocumentApiController extends AbstractController
         $sharedDocument = $factory->generateSharedDocument($user, $document, $email, $user->getLastLang());
         $mailerService->sendSharedDocumentLink($sharedDocument, $email);
 
-        return $this->json($sharedDocument, Response::HTTP_OK);
+        // The shared document holds the secret token sent by email: it must not be returned
+        return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
 
     /**
