@@ -32,7 +32,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
         new Patch(
             uriTemplate: '/notes/{id}/toggle-visibility',
-            security: "is_granted('ROLE_OAUTH2_NOTES_UPDATE')",
+            security: "is_granted('ROLE_OAUTH2_NOTES_UPDATE') or (is_granted('ROLE_USER') and is_granted('UPDATE', object))",
             name: ApiOperations::TOGGLE_VISIBILITY.'_note',
             processor: PersonalDataStateProcessor::class
         ),
