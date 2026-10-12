@@ -2,6 +2,7 @@ api_platform:
     title: 'Reconnect API'
     version: 1.0.0
     enable_swagger_ui: true
+    enable_link_security: true
     name_converter: 'Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter'
     mapping:
         paths: [ '%kernel.project_dir%/src/Entity' ]
