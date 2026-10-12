@@ -106,12 +106,12 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     #[ORM\Column(name: 'totalFileSize', type: 'integer', nullable: true)]
     private ?int $totalFileSize = 0;
 
-    #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
+    #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read', 'v3:me:read'])]
     #[Assert\NotBlank(message: 'secret_question_not_empty', groups: ['beneficiaireQuestionSecrete'])]
     #[ORM\Column(name: 'questionSecrete', type: 'string', length: 255, nullable: true)]
     private ?string $questionSecrete = null;
 
-    #[Groups(['write'])]
+    #[Groups(['write', 'v3:me:read'])]
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_SECRET_ANSWER]])]
     #[Assert\NotBlank(message: 'secret_answer_not_empty', groups: ['beneficiaireQuestionSecrete'])]
     #[Assert\Length(min: 3, groups: ['beneficiaireQuestionSecrete'])]
@@ -516,7 +516,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return false;
     }
 
-    #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
+    #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read', 'v3:me:read'])]
     public function getTotalFileSize(): ?int
     {
         return $this->documents->reduce(fn (int $acc, Document $document) => $acc + $document->getTaille(), 0);
