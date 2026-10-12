@@ -66,6 +66,63 @@ class PersonalDataCollectionTest extends AbstractPasswordGrantApiTestCase
         $this->assertEmpty(array_intersect($notManagedIds, $ids), 'Personal data of a beneficiary the pro does not manage should not be listed');
     }
 
+    /**
+     * @dataProvider provideResources
+     *
+     * @param class-string<DocumentFactory|FolderFactory|NoteFactory|ContactFactory|EventFactory> $factory
+     */
+    public function testBeneficiaryListsOwnPersonalDataFromBeneficiaryEndpoint(string $endpoint, string $factory): void
+    {
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $this->createSharedAndPrivateItems($factory, $beneficiary);
+        $expectedIds = $this->getIds($factory::findBy(['beneficiaire' => $beneficiary->getId()]));
+
+        $ids = $this->getCollectionIds(BeneficiaryFixture::BENEFICIARY_MAIL, sprintf('/beneficiaries/%d%s', $beneficiary->getId(), $endpoint));
+
+        $this->assertEqualsCanonicalizing($expectedIds, $ids);
+    }
+
+    /**
+     * @dataProvider provideResources
+     *
+     * @param class-string<DocumentFactory|FolderFactory|NoteFactory|ContactFactory|EventFactory> $factory
+     */
+    public function testMemberListsSharedPersonalDataFromBeneficiaryEndpoint(string $endpoint, string $factory): void
+    {
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $this->createSharedAndPrivateItems($factory, $beneficiary);
+        $expectedIds = $this->getIds($factory::findBy(['beneficiaire' => $beneficiary->getId(), 'bPrive' => false]));
+
+        $ids = $this->getCollectionIds(MemberFixture::MEMBER_WITH_CLIENT, sprintf('/beneficiaries/%d%s', $beneficiary->getId(), $endpoint));
+
+        $this->assertEqualsCanonicalizing($expectedIds, $ids);
+    }
+
+    public function provideForbiddenBeneficiaryEndpoints(): \Generator
+    {
+        foreach (['/documents', '/folders', '/notes', '/contacts', '/events'] as $endpoint) {
+            yield sprintf('%s: another beneficiary', $endpoint) => [$endpoint, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS];
+            yield sprintf('%s: a pro who does not manage the beneficiary', $endpoint) => [$endpoint, MemberFixture::MEMBER_MAIL_WITH_RELAYS];
+        }
+    }
+
+    /** @dataProvider provideForbiddenBeneficiaryEndpoints */
+    public function testCanNotListPersonalDataOfAnUnmanagedBeneficiary(string $endpoint, string $email): void
+    {
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+
+        $this->requestAsUser($email, Request::METHOD_GET, sprintf('/beneficiaries/%d%s', $beneficiary->getId(), $endpoint));
+
+        $this->assertResponseStatusCodeSame(403);
+    }
+
+    public function testListingPersonalDataOfAnUnknownBeneficiaryReturnsNotFound(): void
+    {
+        $this->requestAsUser(BeneficiaryFixture::BENEFICIARY_MAIL, Request::METHOD_GET, '/beneficiaries/999999999/notes');
+
+        $this->assertResponseStatusCodeSame(404);
+    }
+
     public function testPastEventsAreNotListed(): void
     {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
