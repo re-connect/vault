@@ -12,7 +12,7 @@ class BeneficiaryCollectionTest extends AbstractPasswordGrantApiTestCase
 {
     public function testMemberListsManagedBeneficiaries(): void
     {
-        $managedBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK);
+        $managedBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $notManagedBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS);
 
         $response = $this->requestAsUser(MemberFixture::MEMBER_WITH_CLIENT, Request::METHOD_GET, '/beneficiaries');
@@ -25,7 +25,7 @@ class BeneficiaryCollectionTest extends AbstractPasswordGrantApiTestCase
 
     public function testBeneficiaryCanNotListBeneficiaries(): void
     {
-        $response = $this->requestAsUser(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK, Request::METHOD_GET, '/beneficiaries');
+        $response = $this->requestAsUser(BeneficiaryFixture::BENEFICIARY_MAIL, Request::METHOD_GET, '/beneficiaries');
 
         $this->assertResponseIsSuccessful();
         $this->assertSame([], $response->toArray()['hydra:member']);
