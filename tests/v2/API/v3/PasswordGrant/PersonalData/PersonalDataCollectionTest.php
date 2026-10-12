@@ -4,6 +4,7 @@ namespace App\Tests\v2\API\v3\PasswordGrant\PersonalData;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
+use App\Entity\Beneficiaire;
 use App\Entity\DonneePersonnelle;
 use App\Entity\Evenement;
 use App\Tests\Factory\BeneficiaireFactory;
@@ -33,10 +34,11 @@ class PersonalDataCollectionTest extends AbstractPasswordGrantApiTestCase
      */
     public function testBeneficiaryListsOwnPersonalData(string $endpoint, string $factory): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK);
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $this->createSharedAndPrivateItems($factory, $beneficiary);
         $expectedIds = $this->getIds($factory::findBy(['beneficiaire' => $beneficiary->getId()]));
 
-        $ids = $this->getCollectionIds(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK, $endpoint);
+        $ids = $this->getCollectionIds(BeneficiaryFixture::BENEFICIARY_MAIL, $endpoint);
 
         $this->assertNotEmpty($expectedIds);
         $this->assertEqualsCanonicalizing($expectedIds, $ids);
@@ -49,8 +51,9 @@ class PersonalDataCollectionTest extends AbstractPasswordGrantApiTestCase
      */
     public function testMemberListsSharedPersonalDataOfManagedBeneficiaries(string $endpoint, string $factory): void
     {
-        $managedBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK);
+        $managedBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $notManagedBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS);
+        $this->createSharedAndPrivateItems($factory, $managedBeneficiary);
         $sharedIds = $this->getIds($factory::findBy(['beneficiaire' => $managedBeneficiary->getId(), 'bPrive' => false]));
         $privateIds = $this->getIds($factory::findBy(['beneficiaire' => $managedBeneficiary->getId(), 'bPrive' => true]));
         $notManagedIds = $this->getIds($factory::findBy(['beneficiaire' => $notManagedBeneficiary->getId()]));
@@ -65,14 +68,26 @@ class PersonalDataCollectionTest extends AbstractPasswordGrantApiTestCase
 
     public function testPastEventsAreNotListed(): void
     {
-        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK);
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $pastEvent = EventFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false, 'date' => new \DateTime('-1 day')]);
         $upcomingEvent = EventFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false, 'date' => new \DateTime('+1 day')]);
 
-        $ids = $this->getCollectionIds(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK, '/events');
+        $ids = $this->getCollectionIds(BeneficiaryFixture::BENEFICIARY_MAIL, '/events');
 
         $this->assertContains($upcomingEvent->getId(), $ids);
         $this->assertNotContains($pastEvent->getId(), $ids);
+    }
+
+    /**
+     * Fixture events may already be past, so each test creates its own upcoming items.
+     *
+     * @param class-string<DocumentFactory|FolderFactory|NoteFactory|ContactFactory|EventFactory> $factory
+     */
+    private function createSharedAndPrivateItems(string $factory, Beneficiaire $beneficiary): void
+    {
+        $attributes = EventFactory::class === $factory ? ['date' => new \DateTime('+1 day')] : [];
+        $factory::createOne([...$attributes, 'beneficiaire' => $beneficiary, 'bPrive' => false]);
+        $factory::createOne([...$attributes, 'beneficiaire' => $beneficiary, 'bPrive' => true]);
     }
 
     /** @return int[] */
