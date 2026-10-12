@@ -53,7 +53,11 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
         ),
 
         new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_DOCUMENTS_CREATE')", processor: PersonalDataStateProcessor::class),
-        new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Patch(
+            security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')",
+            // Prevents moving an item to another beneficiary (or into another beneficiary's folder) through IRIs
+            securityPostDenormalize: "is_granted('UPDATE', object) and object.getBeneficiaire() === previous_object.getBeneficiaire() and (object.getDossierParent() === null or object.getDossierParent().getBeneficiaire() === object.getBeneficiaire())",
+        ),
         new Patch(
             uriTemplate: '/folders/{id}/toggle-visibility',
             security: "is_granted('ROLE_OAUTH2_DOCUMENTS_UPDATE') or (is_granted('ROLE_USER') and is_granted('UPDATE', object))",

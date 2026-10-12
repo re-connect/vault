@@ -29,7 +29,10 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Get(security: "is_granted('ROLE_OAUTH2_NOTES_READ') or is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_NOTES_READ') or is_granted('ROLE_USER')"),
         new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_NOTES_CREATE')", processor: PersonalDataStateProcessor::class),
-        new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Patch(
+            security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')",
+            securityPostDenormalize: "is_granted('UPDATE', object) and object.getBeneficiaire() === previous_object.getBeneficiaire()",
+        ),
         new Patch(
             uriTemplate: '/notes/{id}/toggle-visibility',
             security: "is_granted('ROLE_OAUTH2_NOTES_UPDATE') or (is_granted('ROLE_USER') and is_granted('UPDATE', object))",
