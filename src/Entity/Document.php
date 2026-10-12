@@ -70,7 +70,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
                     ])
                 )
             ),
-            security: "is_granted('ROLE_OAUTH2_DOCUMENTS_CREATE')",
+            security: "is_granted('ROLE_OAUTH2_DOCUMENTS_CREATE') or is_granted('ROLE_USER')",
             deserialize: false,
         ),
     ],
