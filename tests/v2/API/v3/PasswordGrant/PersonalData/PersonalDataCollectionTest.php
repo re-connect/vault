@@ -1,0 +1,98 @@
+<?php
+
+namespace App\Tests\v2\API\v3\PasswordGrant\PersonalData;
+
+use App\DataFixtures\v2\BeneficiaryFixture;
+use App\DataFixtures\v2\MemberFixture;
+use App\Entity\DonneePersonnelle;
+use App\Entity\Evenement;
+use App\Tests\Factory\BeneficiaireFactory;
+use App\Tests\Factory\ContactFactory;
+use App\Tests\Factory\DocumentFactory;
+use App\Tests\Factory\EventFactory;
+use App\Tests\Factory\FolderFactory;
+use App\Tests\Factory\NoteFactory;
+use App\Tests\v2\API\AbstractPasswordGrantApiTestCase;
+use Symfony\Component\HttpFoundation\Request;
+
+class PersonalDataCollectionTest extends AbstractPasswordGrantApiTestCase
+{
+    public function provideResources(): \Generator
+    {
+        yield 'Documents' => ['/documents', DocumentFactory::class];
+        yield 'Folders' => ['/folders', FolderFactory::class];
+        yield 'Notes' => ['/notes', NoteFactory::class];
+        yield 'Contacts' => ['/contacts', ContactFactory::class];
+        yield 'Events' => ['/events', EventFactory::class];
+    }
+
+    /**
+     * @dataProvider provideResources
+     *
+     * @param class-string<DocumentFactory|FolderFactory|NoteFactory|ContactFactory|EventFactory> $factory
+     */
+    public function testBeneficiaryListsOwnPersonalData(string $endpoint, string $factory): void
+    {
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK);
+        $expectedIds = $this->getIds($factory::findBy(['beneficiaire' => $beneficiary->getId()]));
+
+        $ids = $this->getCollectionIds(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK, $endpoint);
+
+        $this->assertNotEmpty($expectedIds);
+        $this->assertEqualsCanonicalizing($expectedIds, $ids);
+    }
+
+    /**
+     * @dataProvider provideResources
+     *
+     * @param class-string<DocumentFactory|FolderFactory|NoteFactory|ContactFactory|EventFactory> $factory
+     */
+    public function testMemberListsSharedPersonalDataOfManagedBeneficiaries(string $endpoint, string $factory): void
+    {
+        $managedBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK);
+        $notManagedBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS);
+        $sharedIds = $this->getIds($factory::findBy(['beneficiaire' => $managedBeneficiary->getId(), 'bPrive' => false]));
+        $privateIds = $this->getIds($factory::findBy(['beneficiaire' => $managedBeneficiary->getId(), 'bPrive' => true]));
+        $notManagedIds = $this->getIds($factory::findBy(['beneficiaire' => $notManagedBeneficiary->getId()]));
+
+        $ids = $this->getCollectionIds(MemberFixture::MEMBER_WITH_CLIENT, $endpoint);
+
+        $this->assertNotEmpty($sharedIds);
+        $this->assertEmpty(array_diff($sharedIds, $ids), 'Shared personal data of a managed beneficiary should be listed');
+        $this->assertEmpty(array_intersect($privateIds, $ids), 'Private personal data should not be listed');
+        $this->assertEmpty(array_intersect($notManagedIds, $ids), 'Personal data of a beneficiary the pro does not manage should not be listed');
+    }
+
+    public function testPastEventsAreNotListed(): void
+    {
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK);
+        $pastEvent = EventFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false, 'date' => new \DateTime('-1 day')]);
+        $upcomingEvent = EventFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false, 'date' => new \DateTime('+1 day')]);
+
+        $ids = $this->getCollectionIds(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK, '/events');
+
+        $this->assertContains($upcomingEvent->getId(), $ids);
+        $this->assertNotContains($pastEvent->getId(), $ids);
+    }
+
+    /** @return int[] */
+    private function getCollectionIds(string $email, string $endpoint): array
+    {
+        $response = $this->requestAsUser($email, Request::METHOD_GET, $endpoint);
+        $this->assertResponseIsSuccessful();
+
+        return array_column($response->toArray()['hydra:member'], 'id');
+    }
+
+    /**
+     * Events are only listed when in the future.
+     *
+     * @param DonneePersonnelle[] $entities
+     **/
+    private function getIds(array $entities): array
+    {
+        $entities = array_filter($entities, fn (DonneePersonnelle $entity) => !$entity instanceof Evenement || $entity->getDate() > new \DateTime());
+
+        return array_values(array_map(fn (DonneePersonnelle $entity) => $entity->getId(), $entities));
+    }
+}
