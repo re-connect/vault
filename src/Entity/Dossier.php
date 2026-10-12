@@ -74,7 +74,9 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
     uriVariables: [
         'id' => new Link(
             fromProperty: 'dossiers',
-            fromClass: Beneficiaire::class
+            fromClass: Beneficiaire::class,
+            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('UPDATE', beneficiary)",
+            securityObjectName: 'beneficiary',
         ),
     ],
     normalizationContext: ['groups' => ['v3:folder:read']],
@@ -82,7 +84,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
     openapi: new Operation(
         tags: ['Folders'],
     ),
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ')",
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('ROLE_USER')",
 )]
 class Dossier extends DonneePersonnelle implements FolderableEntityInterface, ClientResourceInterface
 {
