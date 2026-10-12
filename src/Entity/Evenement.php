@@ -58,7 +58,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     uriVariables: [
         'id' => new Link(
             fromProperty: 'evenements',
-            fromClass: Beneficiaire::class
+            fromClass: Beneficiaire::class,
+            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('UPDATE', beneficiary)",
+            securityObjectName: 'beneficiary',
         ),
     ],
     normalizationContext: ['groups' => ['v3:event:read']],
@@ -66,7 +68,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     openapi: new Operation(
         tags: ['Events'],
     ),
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ')",
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('ROLE_USER')",
 )]
 class Evenement extends DonneePersonnelle
 {

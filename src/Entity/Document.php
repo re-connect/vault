@@ -83,7 +83,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     uriVariables: [
         'id' => new Link(
             fromProperty: 'documents',
-            fromClass: Beneficiaire::class
+            fromClass: Beneficiaire::class,
+            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('UPDATE', beneficiary)",
+            securityObjectName: 'beneficiary',
         ),
     ],
     normalizationContext: ['groups' => ['v3:document:read']],
@@ -91,7 +93,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     openapi: new Operation(
         tags: ['Documents'],
     ),
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ')",
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('ROLE_USER')",
 )]
 class Document extends DonneePersonnelle implements FolderableEntityInterface, ClientResourceInterface
 {

@@ -49,7 +49,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     uriVariables: [
         'id' => new Link(
             fromProperty: 'notes',
-            fromClass: Beneficiaire::class
+            fromClass: Beneficiaire::class,
+            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('UPDATE', beneficiary)",
+            securityObjectName: 'beneficiary',
         ),
     ],
     normalizationContext: ['groups' => ['v3:note:read']],
@@ -57,7 +59,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     openapi: new Operation(
         tags: ['Notes'],
     ),
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ')",
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('ROLE_USER')",
 )]
 class Note extends DonneePersonnelle
 {
