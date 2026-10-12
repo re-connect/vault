@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Index(columns: ['beneficiaire_id'], name: 'IDX_CFBDFA145AF81F68')]
 #[ApiResource(
     operations: [
-        new Delete(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Delete(security: "is_granted('DELETE', object) and is_granted('ROLE_USER')"),
         new Get(security: "is_granted('ROLE_OAUTH2_NOTES_READ') or is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_NOTES_READ') or is_granted('ROLE_USER')"),
         new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_NOTES_CREATE')", processor: PersonalDataStateProcessor::class),
