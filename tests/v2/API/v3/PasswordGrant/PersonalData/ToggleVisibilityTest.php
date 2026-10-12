@@ -25,6 +25,29 @@ class ToggleVisibilityTest extends AbstractPasswordGrantApiTestCase
         yield 'Event' => ['/events', EventFactory::class];
     }
 
+    public function provideBeneficiaryToggles(): \Generator
+    {
+        foreach ($this->provideResources() as $name => [$endpoint, $factory]) {
+            yield sprintf('%s: shared to private', $name) => [$endpoint, $factory, false];
+            yield sprintf('%s: private to shared', $name) => [$endpoint, $factory, true];
+        }
+    }
+
+    /**
+     * @dataProvider provideBeneficiaryToggles
+     *
+     * @param class-string<DocumentFactory|FolderFactory|NoteFactory|ContactFactory|EventFactory> $factory
+     */
+    public function testBeneficiaryTogglesOwnItem(string $endpoint, string $factory, bool $isPrivate): void
+    {
+        $item = $this->createItem($factory, $isPrivate);
+
+        $this->toggle(BeneficiaryFixture::BENEFICIARY_MAIL, $endpoint, $item);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSame(!$isPrivate, $this->findItem($factory, $item->getId())->getBPrive());
+    }
+
     /**
      * @dataProvider provideResources
      *
