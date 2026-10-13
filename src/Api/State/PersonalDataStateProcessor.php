@@ -35,7 +35,8 @@ readonly class PersonalDataStateProcessor implements ProcessorInterface
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): ?DonneePersonnelle
     {
         if (ApiOperations::isSameOperation($operation, ApiOperations::TOGGLE_VISIBILITY)) {
-            $data->setBPrive(!$data->getBPrive());
+            // A folder's visibility also applies to its documents and sub-folders
+            $data->toggleVisibility();
 
             return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
         }
