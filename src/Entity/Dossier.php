@@ -13,6 +13,7 @@ use ApiPlatform\Metadata\Post;
 use ApiPlatform\OpenApi\Model\Operation;
 use App\Api\ApiOperations;
 use App\Api\Filters\FolderIdFilter;
+use App\Api\State\FolderableItemStateProcessor;
 use App\Api\State\FolderTreeStateProvider;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Entity\Interface\ClientResourceInterface;
@@ -55,6 +56,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
         new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_DOCUMENTS_CREATE')", processor: PersonalDataStateProcessor::class),
         new Patch(
             security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')",
+            processor: FolderableItemStateProcessor::class,
             // Prevents moving an item to another beneficiary (or into another beneficiary's folder) through IRIs
             securityPostDenormalize: "is_granted('UPDATE', object) and object.getBeneficiaire() === previous_object.getBeneficiaire() and (object.getDossierParent() === null or object.getDossierParent().getBeneficiaire() === object.getBeneficiaire())",
         ),

@@ -97,6 +97,9 @@ services:
     App\Api\State\EventStateProcessor:
         bind:
             $persistProcessor: '@api_platform.doctrine.orm.state.persist_processor'
+    App\Api\State\FolderableItemStateProcessor:
+        bind:
+            $persistProcessor: '@api_platform.doctrine.orm.state.persist_processor'
     App\Api\State\UserPasswordProcessor:
         bind:
             $persistProcessor: '@api_platform.doctrine.orm.state.persist_processor'
