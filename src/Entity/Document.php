@@ -14,6 +14,7 @@ use ApiPlatform\OpenApi\Model\Operation;
 use ApiPlatform\OpenApi\Model\RequestBody;
 use App\Api\ApiOperations;
 use App\Api\Filters\FolderIdFilter;
+use App\Api\State\FolderableItemStateProcessor;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Controller\Api\UploadDocumentController;
 use App\Domain\Anonymization\AnonymizationHelper;
@@ -41,6 +42,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
         new GetCollection(security: "is_granted('ROLE_USER')"),
         new Patch(
             security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')",
+            processor: FolderableItemStateProcessor::class,
             // Prevents moving an item to another beneficiary (or into another beneficiary's folder) through IRIs
             securityPostDenormalize: "is_granted('UPDATE', object) and object.getBeneficiaire() === previous_object.getBeneficiaire() and (object.getDossier() === null or object.getDossier().getBeneficiaire() === object.getBeneficiaire())",
         ),
