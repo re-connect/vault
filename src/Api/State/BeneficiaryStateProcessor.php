@@ -14,12 +14,16 @@ use App\Entity\Client;
 use App\Entity\ClientBeneficiaire;
 use App\ManagerV2\UserManager;
 use App\Repository\BeneficiaireRepository;
+use App\Repository\CentreRepository;
 use App\Repository\MembreRepository;
+use App\Security\HelperV2\Oauth2Helper;
+use App\Security\VoterV2\RelayVoter;
 use App\ServiceV2\Helper\RelayAssignationHelper;
 use App\Validator\Constraints\PasswordCriteria;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Psr\Log\LoggerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -37,13 +41,19 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
         private EntityManagerInterface $entityManager,
         private TranslatorInterface $translator,
         private ValidatorInterface $validator,
+        private Oauth2Helper $oauth2Helper,
+        private CentreRepository $centreRepository,
+        private Security $security,
     ) {
     }
 
     #[\Override]
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): mixed
     {
-        $this->entityManager->clear();
+        if ($operation instanceof Patch) {
+            // Fixes a strange personal data update when linking a beneficiary (see 1ce4c22d)
+            $this->entityManager->clear();
+        }
         $client = $this->apiClientManager->getCurrentOldClient();
 
         if ($data instanceof LinkBeneficiaryDto && $operation instanceof Patch && $client) {
@@ -81,6 +91,29 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
         return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
     }
 
+    /**
+     * Like the v2 API, a pro creates the beneficiary in relays they manage, and the relay links are accepted.
+     */
+    private function createBeneficiaryForPro(Beneficiaire $data): void
+    {
+        $relayIds = $data->getUser()->getRelaysIds();
+        if (!$relayIds) {
+            throw new UnprocessableEntityHttpException('At least one center is required');
+        }
+
+        $relays = [];
+        foreach ($relayIds as $relayId) {
+            $relay = $this->centreRepository->find($relayId);
+            if (!$relay || !$this->security->isGranted(RelayVoter::MANAGE_BENEFICIARIES, $relay)) {
+                throw new UnprocessableEntityHttpException(sprintf('Invalid center id %s', $relayId));
+            }
+            $relays[] = $relay;
+        }
+
+        $this->relayAssignationHelper->assignRelaysFromIdsArray($data->getUser(), true);
+        $data->getUser()->addCreatorRelay($relays[0]);
+    }
+
     private function updateExternalLink(Beneficiaire $beneficiary, Beneficiaire $data, Client $client): void
     {
         $externalLink = $beneficiary->getExternalLinkForClient($client);
@@ -110,6 +143,12 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
 
     private function createBeneficiary(Beneficiaire $data, ?Client $client): void
     {
+        if (!$this->oauth2Helper->isAuthenticatedAsClient()) {
+            $this->createBeneficiaryForPro($data);
+
+            return;
+        }
+
         $this->relayAssignationHelper->assignRelaysFromIdsArray($data->getUser());
         if (!$client) {
             return;
