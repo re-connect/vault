@@ -1,0 +1,27 @@
+meta {
+  name: Create
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/v2/beneficiaries/{{beneficiaryId}}/folders
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nom": "Nouveau dossier",
+    "icon_id": 1
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  `dossier_parent_id` est ajouté pour créer un sous-dossier. Appelé par `src/hooks/FoldersHooks.tsx`.
+}

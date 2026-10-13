@@ -6,8 +6,10 @@ use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use App\Api\ApiOperations;
 use App\Api\Manager\ApiClientManager;
+use App\Entity\Beneficiaire;
 use App\Entity\DonneePersonnelle;
 use App\Entity\Dossier;
+use App\Entity\User;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\DossierRepository;
 use App\Security\HelperV2\Oauth2Helper;
@@ -32,36 +34,52 @@ readonly class PersonalDataStateProcessor implements ProcessorInterface
     #[\Override]
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): ?DonneePersonnelle
     {
+        if (ApiOperations::isSameOperation($operation, ApiOperations::TOGGLE_VISIBILITY)) {
+            // A folder's visibility also applies to its documents and sub-folders
+            $data->toggleVisibility();
+
+            return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
+        }
+
+        $beneficiary = $this->getBeneficiary($data);
+        $data->setBeneficiaire($beneficiary);
+
+        if ($data instanceof Dossier && $data->dossierParentId) {
+            $dossierParent = $this->dossierRepository->find($data->dossierParentId);
+            if (!$dossierParent || $dossierParent->getBeneficiaire() !== $beneficiary) {
+                throw new BadRequestHttpException('Dossier parent not found');
+            }
+            $data->setDossierParent($dossierParent);
+            if ($dossierParent->getBPrive()) {
+                $data->setBPrive(true);
+            }
+        }
+
+        return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
+    }
+
+    private function getBeneficiary(DonneePersonnelle $data): Beneficiaire
+    {
         $user = $this->security->getUser();
-        if (!$this->oauth2Helper->isAuthenticatedAsClient() && $user->isBeneficiaire() && $user->getSubjectBeneficiaire()) {
-            $data->setBeneficiaire($user->getSubjectBeneficiaire());
+        $isAuthenticatedAsClient = $this->oauth2Helper->isAuthenticatedAsClient();
 
-            return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
+        // Beneficiaries always create personal data for themselves
+        if (!$isAuthenticatedAsClient && $user instanceof User && $user->isBeneficiaire() && $user->getSubjectBeneficiaire()) {
+            return $user->getSubjectBeneficiaire();
         }
 
-        if ($data->beneficiaireId) {
-            $beneficiary = $this->beneficiaireRepository->find($data->beneficiaireId);
-            if (!$beneficiary || !$beneficiary->hasExternalLinkForClient($this->apiClientManager->getCurrentOldClient())) {
-                throw new NotFoundHttpException('Beneficiaire Not Found');
-            }
-            $data->setBeneficiaire($beneficiary);
-            if ($data instanceof Dossier && $data->dossierParentId) {
-                $dossierParent = $this->dossierRepository->find($data->dossierParentId);
-                if (!$dossierParent) {
-                    throw new BadRequestHttpException('Dossier parent not found');
-                }
-                $data->setDossierParent($dossierParent);
-            }
-
-            return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
+        $beneficiary = $data->beneficiaireId ? $this->beneficiaireRepository->find($data->beneficiaireId) : $data->getBeneficiaire();
+        if (!$data->beneficiaireId && !$beneficiary) {
+            throw new BadRequestHttpException('BeneficiaireId missing');
         }
 
-        if ($data instanceof DonneePersonnelle && ApiOperations::isSameOperation($operation, ApiOperations::TOGGLE_VISIBILITY)) {
-            $data->setBPrive(!$data->getBPrive());
-
-            return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
+        $canCreate = $isAuthenticatedAsClient
+            ? $beneficiary?->hasExternalLinkForClient($this->apiClientManager->getCurrentOldClient())
+            : $beneficiary && $this->security->isGranted('UPDATE', $beneficiary);
+        if (!$beneficiary || !$canCreate) {
+            throw new NotFoundHttpException('Beneficiaire Not Found');
         }
 
-        throw new BadRequestHttpException('BeneficiaireId missing');
+        return $beneficiary;
     }
 }

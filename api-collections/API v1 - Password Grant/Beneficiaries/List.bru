@@ -1,0 +1,20 @@
+meta {
+  name: List
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/v2/beneficiaires
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Liste des bénéficiaires du pro connecté (orthographe française). Appelé par `src/hooks/BeneficiariesHooks.tsx`.
+}

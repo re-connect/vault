@@ -13,6 +13,7 @@ use ApiPlatform\Metadata\Post;
 use ApiPlatform\OpenApi\Model\Operation;
 use App\Api\ApiOperations;
 use App\Api\Filters\FolderIdFilter;
+use App\Api\State\FolderableItemStateProcessor;
 use App\Api\State\FolderTreeStateProvider;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Entity\Interface\ClientResourceInterface;
@@ -36,7 +37,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 #[ApiResource(
     shortName: 'folder',
     operations: [
-        new Delete(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Delete(security: "is_granted('DELETE', object) and is_granted('ROLE_USER')"),
         new Get(security: "is_granted('ROLE_OAUTH2_DOCUMENTS_READ') or is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_DOCUMENTS_READ') or is_granted('ROLE_USER')"),
         new GetCollection(
@@ -53,10 +54,15 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
         ),
 
         new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_DOCUMENTS_CREATE')", processor: PersonalDataStateProcessor::class),
-        new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Patch(
+            security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')",
+            processor: FolderableItemStateProcessor::class,
+            // Prevents moving an item to another beneficiary (or into another beneficiary's folder) through IRIs
+            securityPostDenormalize: "is_granted('UPDATE', object) and object.getBeneficiaire() === previous_object.getBeneficiaire() and (object.getDossierParent() === null or object.getDossierParent().getBeneficiaire() === object.getBeneficiaire())",
+        ),
         new Patch(
             uriTemplate: '/folders/{id}/toggle-visibility',
-            security: "is_granted('ROLE_OAUTH2_DOCUMENTS_UPDATE')",
+            security: "is_granted('ROLE_OAUTH2_DOCUMENTS_UPDATE') or (is_granted('ROLE_USER') and is_granted('TOGGLE_VISIBILITY', object))",
             name: ApiOperations::TOGGLE_VISIBILITY.'_folder',
             processor: PersonalDataStateProcessor::class
         ),
@@ -74,7 +80,9 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
     uriVariables: [
         'id' => new Link(
             fromProperty: 'dossiers',
-            fromClass: Beneficiaire::class
+            fromClass: Beneficiaire::class,
+            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('UPDATE', beneficiary)",
+            securityObjectName: 'beneficiary',
         ),
     ],
     normalizationContext: ['groups' => ['v3:folder:read']],
@@ -82,7 +90,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
     openapi: new Operation(
         tags: ['Folders'],
     ),
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ')",
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('ROLE_USER')",
 )]
 class Dossier extends DonneePersonnelle implements FolderableEntityInterface, ClientResourceInterface
 {
@@ -115,7 +123,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface, Cl
 
     #[ORM\ManyToOne(targetEntity: FolderIcon::class)]
     #[ORM\JoinColumn(name: 'icon_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
-    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2'])]
+    #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write', 'v3:folder:read'])]
     private ?FolderIcon $icon = null;
 
     #[ORM\OneToMany(mappedBy: 'dossier', targetEntity: Creator::class, cascade: ['persist', 'remove'])]

@@ -1,0 +1,31 @@
+meta {
+  name: Login
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/oauth/v2/token?username={{username}}&password={{password}}&client_id={{clientId}}&client_secret={{clientSecret}}&grant_type=password
+  body: none
+  auth: none
+}
+
+params:query {
+  username: {{username}}
+  password: {{password}}
+  client_id: {{clientId}}
+  client_secret: {{clientSecret}}
+  grant_type: password
+  ~_auth_code:
+  ~_new_password:
+  ~_accept_terms_of_use: 1
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Appelé par `src/services/authentication.ts`. Le token des autres requêtes est récupéré automatiquement via l'auth OAuth2 de la collection ; cette requête reproduit l'appel GET du mobile (2FA, renouvellement de mot de passe, CGU).
+}

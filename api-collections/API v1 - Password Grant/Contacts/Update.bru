@@ -1,0 +1,32 @@
+meta {
+  name: Update
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{baseUrl}}/api/v2/contacts/{{contactId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nom": "Dupont",
+    "prenom": "Jean",
+    "telephone": "0600000000",
+    "email": "jean.dupont@example.com",
+    "association": "",
+    "commentaire": "",
+    "b_prive": false
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Appelé par `src/hooks/DataHooks.tsx`.
+}

@@ -1,0 +1,20 @@
+meta {
+  name: Show
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v2/documents/{{documentId}}
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  URL construite par `showDocument` dans `src/services/documents.ts`.
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Register notification token
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/api/v3/users/me/register-notification-token
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "notification_token": "ExponentPushToken[xxxxxxxxxxxxxxxxxxxxxx]"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Appelé par `src/services/notificator.ts`.
+}

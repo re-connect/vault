@@ -1,0 +1,20 @@
+meta {
+  name: Personal data request
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/v3/user/request-personal-account-data
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Déjà en v3. Réservé aux bénéficiaires. Sans slash final (l'appli v2 en met un, ce qui provoque une redirection 301).
+}
