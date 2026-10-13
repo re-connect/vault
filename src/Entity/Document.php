@@ -46,7 +46,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
         ),
         new Patch(
             uriTemplate: '/documents/{id}/toggle-visibility',
-            security: "is_granted('UPDATE', object)",
+            // TOGGLE_VISIBILITY forbids sharing a document inside a private folder, but only handles user tokens
+            security: "is_granted('ROLE_USER') ? is_granted('TOGGLE_VISIBILITY', object) : is_granted('UPDATE', object)",
             name: ApiOperations::TOGGLE_VISIBILITY.'_document',
             processor: PersonalDataStateProcessor::class
         ),

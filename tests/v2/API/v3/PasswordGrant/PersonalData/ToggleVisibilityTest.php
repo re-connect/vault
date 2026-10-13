@@ -106,6 +106,28 @@ class ToggleVisibilityTest extends AbstractPasswordGrantApiTestCase
         $this->assertTrue($this->findItem(FolderFactory::class, $subFolder->getId())->getBPrive());
     }
 
+    public function provideItemsInFolder(): \Generator
+    {
+        yield 'Document' => ['/documents', DocumentFactory::class, 'dossier'];
+        yield 'Folder' => ['/folders', FolderFactory::class, 'dossierParent'];
+    }
+
+    /**
+     * @dataProvider provideItemsInFolder
+     *
+     * @param class-string<DocumentFactory|FolderFactory> $factory
+     */
+    public function testCanNotShareItemInsidePrivateFolder(string $endpoint, string $factory, string $parentProperty): void
+    {
+        $privateFolder = $this->createItem(FolderFactory::class, true);
+        $item = $factory::createOne(['beneficiaire' => $privateFolder->getBeneficiaire(), 'bPrive' => true, $parentProperty => $privateFolder]);
+
+        $this->toggle(BeneficiaryFixture::BENEFICIARY_MAIL, $endpoint, $item);
+
+        $this->assertResponseStatusCodeSame(403);
+        $this->assertTrue($this->findItem($factory, $item->getId())->getBPrive());
+    }
+
     /** @param class-string<DocumentFactory|FolderFactory|NoteFactory|ContactFactory|EventFactory> $factory */
     private function createItem(string $factory, bool $isPrivate): DonneePersonnelle
     {
