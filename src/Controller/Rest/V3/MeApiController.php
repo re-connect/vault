@@ -4,6 +4,7 @@ namespace App\Controller\Rest\V3;
 
 use App\ControllerV2\AbstractController;
 use App\Entity\User;
+use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -88,6 +89,17 @@ final class MeApiController extends AbstractController
         $em->flush();
 
         return $this->json($this->normalizeUser($user));
+    }
+
+    #[Route(path: '', methods: ['DELETE'], priority: 1)]
+    public function delete(UserManager $userManager): JsonResponse
+    {
+        $user = $this->getUser();
+        $this->denyAccessUnlessGranted('DELETE', $user);
+
+        $userManager->remove($user);
+
+        return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
 
     /** @return array<string, mixed> */
