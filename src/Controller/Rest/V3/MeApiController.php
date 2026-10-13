@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -111,7 +112,10 @@ final class MeApiController extends AbstractController
         $user = $this->getUser();
         $this->denyAccessUnlessGranted('DELETE', $user);
 
-        $userManager->remove($user);
+        $isRemoved = $userManager->remove($user);
+        if (!$isRemoved) {
+            throw new HttpException(Response::HTTP_INTERNAL_SERVER_ERROR, 'The account could not be deleted');
+        }
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
