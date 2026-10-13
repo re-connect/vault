@@ -62,9 +62,10 @@ class UpdateMeTest extends AbstractPasswordGrantApiTestCase
         $response = $this->updateMe(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS_EDIT, ['email' => 'not an email', 'reponse_secrete' => '']);
 
         $this->assertResponseStatusCodeSame(422);
-        $propertyPaths = array_column($response->toArray(false)['violations'], 'property_path');
+        // Same format as the other v3 validation errors
+        $propertyPaths = array_column($response->toArray(false)['violations'], 'propertyPath');
         $this->assertContains('email', $propertyPaths);
-        $this->assertContains('reponseSecrete', $propertyPaths);
+        $this->assertContains('reponse_secrete', $propertyPaths);
         $this->assertSame($previousEmail, $this->findUser($user->getId())->getEmail());
     }
 
