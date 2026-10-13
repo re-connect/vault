@@ -65,7 +65,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         ),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('ROLE_USER')"),
         new Post(
-            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_CREATE') or is_granted('ROLE_USER')",
+            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_CREATE') or is_granted('MANAGE_BENEFICIARIES')",
             input: BeneficiaryDto::class,
             processor: BeneficiaryStateProcessor::class,
         ),
