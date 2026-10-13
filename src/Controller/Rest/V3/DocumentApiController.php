@@ -55,7 +55,7 @@ final class DocumentApiController extends AbstractController
 
         try {
             $folderableItemManager->move($document, $folder);
-        } catch (\Exception $exception) {
+        } catch (\DomainException $exception) {
             throw new BadRequestHttpException($exception->getMessage(), $exception);
         }
 
