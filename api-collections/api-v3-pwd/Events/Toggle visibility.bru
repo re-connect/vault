@@ -1,0 +1,24 @@
+meta {
+  name: Toggle visibility
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/v3/events/{{eventId}}/toggle-visibility
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Remplace `PATCH /api/v2/events/{id}/toggle-access`.
+}

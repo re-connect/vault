@@ -1,0 +1,27 @@
+meta {
+  name: Update
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{baseUrl}}/api/v3/folders/{{folderId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nom": "Nouveau nom",
+    "icon": "/api/v3/folder_icons/{{folderIconId}}"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Remplace `PATCH /api/v2/folders/{id}` (renommage, icône). `"icon": null` retire l'icône.
+}

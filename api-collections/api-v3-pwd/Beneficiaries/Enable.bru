@@ -1,20 +1,30 @@
 meta {
   name: Enable
   type: http
-  seq: 3
+  seq: 4
 }
 
 put {
   url: {{baseUrl}}/api/v3/beneficiaries/me/enable
   body: json
-  auth: none
+  auth: inherit
 }
 
 body:json {
   {
-    "secretQuestion": "Coucou",
-    "otherSecretQuestion": "Coucasasou",
-    "secretAnswer": "coucou",
-    "password": "{{benefPwd}}"
+    "secret_question": "Autre",
+    "other_secret_question": "Ma question secrète",
+    "secret_answer": "Ma réponse",
+    "password": "{{newPassword}}",
+    "email": "jean.dupont@example.com"
   }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Remplace `PATCH /api/v2/beneficiary/enable` (activation à la première connexion). `other_secret_question` remplace `secret_question` quand celle-ci vaut `Autre`. Répond 204 sans corps ; erreurs de validation (question, réponse, mot de passe trop faible, email invalide ou déjà utilisé) : 422.
 }

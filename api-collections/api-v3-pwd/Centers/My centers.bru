@@ -1,0 +1,20 @@
+meta {
+  name: My centers
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/v3/users/me/centers
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Remplace `GET /api/v2/centers`. Liens de l'utilisateur avec ses centres : `b_valid` (false = invitation en attente), `centre`, et `droits` pour un pro.
+}
