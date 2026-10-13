@@ -11,7 +11,7 @@ get {
 }
 
 params:query {
-  ~folder_id: root
+  ~folderId: root
 }
 
 settings {
@@ -20,5 +20,5 @@ settings {
 }
 
 docs {
-  Remplace `GET /api/v2/beneficiaries/{id}/documents`. Ne renvoie que les documents (les dossiers sont dans Folders/List). Filtre `folder_id` : `root` ou un id de dossier. Un pro ne voit que les documents partagés.
+  Remplace `GET /api/v2/beneficiaries/{id}/documents`. Ne renvoie que les documents (les dossiers sont dans Folders/List). Filtre `folderId` (en camelCase) : `root` ou un id de dossier. Un pro ne voit que les documents partagés.
 }
