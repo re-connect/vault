@@ -19,15 +19,15 @@ class ApiUsageReportCommandTest extends TestCase
     {
         $this->filesystem = new Filesystem();
         $this->logDirectory = sys_get_temp_dir().'/api_usage_test_'.uniqid();
-        $this->filesystem->dumpFile($this->logDirectory.'/prod-2026-01-01.log', implode("\n", [
-            $this->line('-2 days', 're_api_user_get_mine', 'v2', 'mobile-id', 'ROLE_BENEFICIAIRE'),
+        $this->appendDailyFile('-2 days', [$this->line('-2 days', 're_api_user_get_mine', 'v2', 'mobile-id', 'ROLE_BENEFICIAIRE')]);
+        $this->appendDailyFile('-1 day', [
             $this->line('-1 day', 're_api_user_get_mine', 'v2', 'mobile-id', 'ROLE_BENEFICIAIRE'),
             $this->line('-1 day', 're_api_user_get_mine', 'legacy', 'mobile-id', 'ROLE_BENEFICIAIRE'),
-            $this->line('-90 days', 'oauth_server_token_post_old', 'oauth', null, 'anonymous'),
             '{"message":"another message","context":{},"datetime":"2026-01-01T00:00:00+00:00"}',
             'not json',
-        ]));
-        $this->filesystem->dumpFile($this->logDirectory.'/prod-2026-01-02.log', $this->line('-3 hours', '_api_/v3/beneficiaries{._format}_get_collection', 'v3', 'rosalie-id', 'client'));
+        ]);
+        $this->appendDailyFile('-90 days', [$this->line('-90 days', 'oauth_server_token_post_old', 'oauth', null, 'anonymous')]);
+        $this->appendDailyFile('-3 hours', [$this->line('-3 hours', '_api_/v3/beneficiaries{._format}_get_collection', 'v3', 'rosalie-id', 'client')]);
     }
 
     protected function tearDown(): void
@@ -70,6 +70,13 @@ class ApiUsageReportCommandTest extends TestCase
         $this->assertSame(0, $commandTester->getStatusCode());
 
         return $commandTester->getDisplay();
+    }
+
+    /** @param string[] $lines */
+    private function appendDailyFile(string $when, array $lines): void
+    {
+        // Appends, as two calls can fall on the same day (e.g. "-3 hours" just after midnight)
+        $this->filesystem->appendToFile(sprintf('%s/prod-%s.log', $this->logDirectory, (new \DateTimeImmutable($when))->format('Y-m-d')), implode("\n", $lines)."\n");
     }
 
     private function line(string $when, string $route, string $version, ?string $clientId, string $userType): string
