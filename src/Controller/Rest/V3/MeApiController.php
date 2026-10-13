@@ -3,7 +3,9 @@
 namespace App\Controller\Rest\V3;
 
 use App\ControllerV2\AbstractController;
+use App\Entity\MembreCentre;
 use App\Entity\User;
+use App\Entity\UserCentre;
 use App\ManagerV2\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -32,6 +34,17 @@ final class MeApiController extends AbstractController
     public function me(): JsonResponse
     {
         return $this->json($this->normalizeUser($this->getUser()));
+    }
+
+    #[Route(path: '/centers', methods: ['GET'], priority: 1)]
+    public function relays(): JsonResponse
+    {
+        return $this->json(array_values(array_map(fn (UserCentre $userRelay) => [
+            'id' => $userRelay->getId(),
+            'b_valid' => $userRelay->getBValid(),
+            'centre' => $this->normalizer->normalize($userRelay->getCentre(), 'json', ['groups' => ['v3:center:read']]),
+            ...($userRelay instanceof MembreCentre ? ['droits' => $userRelay->getDroits()] : []),
+        ], $this->getUser()->getUserRelays()->toArray())));
     }
 
     #[Route(path: '', methods: ['PATCH'], priority: 1)]
