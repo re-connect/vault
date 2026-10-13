@@ -60,7 +60,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
         ),
         new Patch(
             uriTemplate: '/folders/{id}/toggle-visibility',
-            security: "is_granted('ROLE_OAUTH2_DOCUMENTS_UPDATE') or (is_granted('ROLE_USER') and is_granted('UPDATE', object))",
+            security: "is_granted('ROLE_OAUTH2_DOCUMENTS_UPDATE') or (is_granted('ROLE_USER') and is_granted('TOGGLE_VISIBILITY', object))",
             name: ApiOperations::TOGGLE_VISIBILITY.'_folder',
             processor: PersonalDataStateProcessor::class
         ),
