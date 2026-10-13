@@ -46,6 +46,10 @@ class ApiUsageReportCommand extends Command
 
         $rows = [];
         foreach (glob(sprintf('%s/*.log', $this->logDirectory)) ?: [] as $file) {
+            if ($this->isOlderThan($file, $since)) {
+                continue;
+            }
+
             foreach (new \SplFileObject($file) as $line) {
                 $record = json_decode((string) $line, true);
                 if (!is_array($record) || ApiRouteUsageSubscriber::MESSAGE !== ($record['message'] ?? null)) {
@@ -79,6 +83,16 @@ class ApiUsageReportCommand extends Command
         );
 
         return Command::SUCCESS;
+    }
+
+    private function isOlderThan(string $file, \DateTimeImmutable $since): bool
+    {
+        // Rotating files are named after the day of their records, e.g. prod-2026-10-13.log
+        if (!preg_match('/-(\d{4}-\d{2}-\d{2})\.log$/', $file, $matches)) {
+            return false;
+        }
+
+        return $matches[1] < $since->format('Y-m-d');
     }
 
     private function getClientName(?string $clientId): string
