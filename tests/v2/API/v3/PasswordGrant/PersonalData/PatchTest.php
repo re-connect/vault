@@ -114,6 +114,28 @@ class PatchTest extends AbstractPasswordGrantApiTestCase
         $this->assertNull($folder->getDossierParent());
     }
 
+    public function provideItemsInFolder(): \Generator
+    {
+        yield 'Document' => ['/documents', DocumentFactory::class, 'dossier'];
+        yield 'Folder' => ['/folders', FolderFactory::class, 'dossier_parent'];
+    }
+
+    /**
+     * @dataProvider provideItemsInFolder
+     *
+     * @param class-string<DocumentFactory|FolderFactory> $factory
+     */
+    public function testMovingItemIntoPrivateFolderMakesItPrivate(string $endpoint, string $factory, string $parentField): void
+    {
+        $item = $this->createItem($factory, BeneficiaryFixture::BENEFICIARY_MAIL);
+        $privateFolder = FolderFactory::createOne(['beneficiaire' => $item->getBeneficiaire(), 'bPrive' => true]);
+
+        $this->patch(BeneficiaryFixture::BENEFICIARY_MAIL, $endpoint, $item, [$parentField => sprintf('/api/v3/folders/%d', $privateFolder->getId())]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertTrue($this->findItem($factory, $item->getId())->getBPrive());
+    }
+
     /** @param class-string<DocumentFactory|FolderFactory|NoteFactory|ContactFactory|EventFactory> $factory */
     private function createItem(string $factory, string $beneficiaryEmail): DonneePersonnelle
     {
