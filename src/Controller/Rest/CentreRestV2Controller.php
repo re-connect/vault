@@ -138,7 +138,7 @@ class CentreRestV2Controller extends REController
 
             $manager->accepterCentre($user->getSubject(), $entity);
 
-            return $this->createJsonResponse($entities, Response::HTTP_OK, ['center:read']);
+            return $this->createJsonResponse($entity, Response::HTTP_OK, ['center:read']);
         } catch (AccessDeniedException|NotFoundHttpException $e) {
             $jsonResponseException = new JsonResponseException($e);
 

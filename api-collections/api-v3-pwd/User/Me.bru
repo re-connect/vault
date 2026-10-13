@@ -1,11 +1,20 @@
 meta {
   name: Me
   type: http
-  seq: 2
+  seq: 1
 }
 
 get {
-  url: {{baseUrl}}/api/v3/users
+  url: {{baseUrl}}/api/v3/users/me
   body: none
-  auth: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Remplace `GET /api/v2/user`. `subject_id` est l'id du bénéficiaire ou du membre ; pour un bénéficiaire, `beneficiary` contient `question_secrete`, `reponse_secrete` et `total_file_size`. Une question secrète vide signifie que le compte doit être activé (voir Beneficiaries/Enable).
 }

@@ -1,0 +1,27 @@
+meta {
+  name: Rename
+  type: http
+  seq: 8
+}
+
+patch {
+  url: {{baseUrl}}/api/v2/documents/{{documentId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Nouveau nom",
+    "nom": "Nouveau nom"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Appelé par `renameItem` dans `src/services/documents.ts` (envoie `name` et `nom`).
+}

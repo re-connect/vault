@@ -65,7 +65,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         ),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('ROLE_USER')"),
         new Post(
-            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_CREATE') or is_granted('ROLE_USER')",
+            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_CREATE') or is_granted('MANAGE_BENEFICIARIES')",
             input: BeneficiaryDto::class,
             processor: BeneficiaryStateProcessor::class,
         ),
@@ -106,12 +106,12 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
     #[ORM\Column(name: 'totalFileSize', type: 'integer', nullable: true)]
     private ?int $totalFileSize = 0;
 
-    #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
+    #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read', 'v3:me:read'])]
     #[Assert\NotBlank(message: 'secret_question_not_empty', groups: ['beneficiaireQuestionSecrete'])]
     #[ORM\Column(name: 'questionSecrete', type: 'string', length: 255, nullable: true)]
     private ?string $questionSecrete = null;
 
-    #[Groups(['write'])]
+    #[Groups(['write', 'v3:me:read'])]
     #[Anonymize('string', options: ['sample' => [AnonymizationHelper::ANONYMIZED_SECRET_ANSWER]])]
     #[Assert\NotBlank(message: 'secret_answer_not_empty', groups: ['beneficiaireQuestionSecrete'])]
     #[Assert\Length(min: 3, groups: ['beneficiaireQuestionSecrete'])]
@@ -516,7 +516,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
         return false;
     }
 
-    #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read'])]
+    #[Groups(['read', 'beneficiary:read', 'v3:beneficiary:read', 'v3:me:read'])]
     public function getTotalFileSize(): ?int
     {
         return $this->documents->reduce(fn (int $acc, Document $document) => $acc + $document->getTaille(), 0);
@@ -755,7 +755,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function jsonSerializeForClient(?Client $client): array
     {
-        $clientBeneficiaire = !$client ? null : $this->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $client === $element->getClient())->first();
+        $clientBeneficiaire = !$client ? null : ($this->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $client === $element->getClient())->first() ?: null);
         $distantId = $clientBeneficiaire?->getDistantId();
 
         return [
@@ -785,7 +785,7 @@ class Beneficiaire extends Subject implements UserWithCentresInterface, ClientRe
 
     public function jsonSerializeForClientV2(?Client $client): array
     {
-        $clientBeneficiaire = !$client ? null : $this->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $client === $element->getClient())->first();
+        $clientBeneficiaire = !$client ? null : ($this->getExternalLinks()->filter(static fn (ClientBeneficiaire $element) => $client === $element->getClient())->first() ?: null);
 
         return [
             'distant_id' => $clientBeneficiaire?->getDistantId(),

@@ -11,6 +11,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\OpenApi\Model\Operation;
 use App\Api\ApiOperations;
+use App\Api\State\EventStateProcessor;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Repository\EvenementRepository;
@@ -34,14 +35,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     shortName: 'Event',
     operations: [
-        new Delete(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Delete(security: "is_granted('DELETE', object) and is_granted('ROLE_USER')"),
         new Get(security: "is_granted('ROLE_OAUTH2_EVENTS_READ') or is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_EVENTS_READ') or is_granted('ROLE_USER')"),
         new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_EVENTS_CREATE')", processor: PersonalDataStateProcessor::class),
-        new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Patch(
+            security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')",
+            processor: EventStateProcessor::class,
+            securityPostDenormalize: "is_granted('UPDATE', object) and object.getBeneficiaire() === previous_object.getBeneficiaire()",
+        ),
         new Patch(
             uriTemplate: '/events/{id}/toggle-visibility',
-            security: "is_granted('ROLE_OAUTH2_EVENTS_UPDATE')",
+            security: "is_granted('ROLE_OAUTH2_EVENTS_UPDATE') or (is_granted('ROLE_USER') and is_granted('UPDATE', object))",
             name: ApiOperations::TOGGLE_VISIBILITY.'_event',
             processor: PersonalDataStateProcessor::class
         ),
@@ -58,7 +63,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     uriVariables: [
         'id' => new Link(
             fromProperty: 'evenements',
-            fromClass: Beneficiaire::class
+            fromClass: Beneficiaire::class,
+            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('UPDATE', beneficiary)",
+            securityObjectName: 'beneficiary',
         ),
     ],
     normalizationContext: ['groups' => ['v3:event:read']],
@@ -66,7 +73,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     openapi: new Operation(
         tags: ['Events'],
     ),
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ')",
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('ROLE_USER')",
 )]
 class Evenement extends DonneePersonnelle
 {

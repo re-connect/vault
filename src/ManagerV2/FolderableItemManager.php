@@ -22,7 +22,7 @@ class FolderableItemManager
     }
 
     /**
-     * @throws \Exception
+     * @throws \DomainException
      */
     public function move(FolderableEntityInterface $folderableEntity, ?Dossier $folder): void
     {
@@ -30,7 +30,7 @@ class FolderableItemManager
         $constraintViolations = $this->validator->validate($folderableEntity);
 
         if (0 !== count($constraintViolations)) {
-            throw new \Exception($this->translator->trans($constraintViolations[0]->getMessage()));
+            throw new \DomainException($this->translator->trans($constraintViolations[0]->getMessage()));
         }
 
         $this->em->flush();

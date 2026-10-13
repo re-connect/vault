@@ -1,0 +1,26 @@
+meta {
+  name: Share
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/api/v2/documents/{{documentId}}/share
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "jean.dupont@example.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Envoi du document par email. Appelé par `src/hooks/DocumentsHooks.tsx`.
+}
