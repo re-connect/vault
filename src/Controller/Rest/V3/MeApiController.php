@@ -10,10 +10,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Validator\ConstraintViolationListInterface;
+use Symfony\Component\Validator\Exception\ValidationFailedException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -83,7 +84,7 @@ final class MeApiController extends AbstractController
                 $em->refresh($beneficiary);
             }
 
-            return $this->json($this->formatViolations($violations), Response::HTTP_UNPROCESSABLE_ENTITY);
+            throw new UnprocessableEntityHttpException((string) $violations, new ValidationFailedException($user, $violations));
         }
 
         $em->flush();
@@ -116,16 +117,5 @@ final class MeApiController extends AbstractController
         }
 
         return $data;
-    }
-
-    /** @return array{violations: array<array{property_path: string, message: string}>} */
-    private function formatViolations(ConstraintViolationListInterface $violations): array
-    {
-        $formattedViolations = [];
-        foreach ($violations as $violation) {
-            $formattedViolations[] = ['property_path' => $violation->getPropertyPath(), 'message' => (string) $violation->getMessage()];
-        }
-
-        return ['violations' => $formattedViolations];
     }
 }
