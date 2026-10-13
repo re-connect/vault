@@ -1,0 +1,32 @@
+meta {
+  name: Create
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v3/events
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nom": "Rendez-vous",
+    "date": "2026-12-01T10:00:00+01:00",
+    "lieu": "",
+    "commentaire": "",
+    "rappels": [{ "date": "2026-11-30T10:00:00+01:00" }],
+    "b_prive": false,
+    "beneficiaire_id": {{beneficiaryId}}
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Remplace `POST /api/v2/beneficiaries/{id}/events`. `beneficiaire_id` est obligatoire pour un pro, ignoré pour un bénéficiaire. 201.
+}

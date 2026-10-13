@@ -1,0 +1,32 @@
+meta {
+  name: Update me
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{baseUrl}}/api/v3/users/me
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "prenom": "Jean",
+    "nom": "Dupont",
+    "email": "jean.dupont@example.com",
+    "telephone": "0600000000",
+    "birth_date": "1990-01-31",
+    "question_secrete": "Quel est le nom de votre premier animal ?",
+    "reponse_secrete": "Rex"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Remplace `PUT /api/v2/users/{id}`. Seuls les champs envoyés sont modifiés. `birth_date`, `question_secrete` et `reponse_secrete` ne concernent que les bénéficiaires ; un pro ne peut pas changer un email existant (400). Erreurs de validation : 422.
+}
