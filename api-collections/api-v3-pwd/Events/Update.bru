@@ -1,0 +1,30 @@
+meta {
+  name: Update
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{baseUrl}}/api/v3/events/{{eventId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nom": "Rendez-vous",
+    "rappels": [
+      { "id": {{reminderId}}, "date": "2026-11-30T10:00:00+01:00" },
+      { "date": "2026-12-01T08:00:00+01:00" }
+    ]
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Remplace `PUT /api/v2/events/{id}` : seuls les champs envoyés sont modifiés.
+}

@@ -1,0 +1,20 @@
+meta {
+  name: List
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/v3/beneficiaries/{{beneficiaryId}}/events
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Remplace `GET /api/v2/beneficiaries/{id}/events`. Un pro ne voit que les éléments partagés. Seuls les événements à venir sont listés. Dans Update, les rappels conservés se renvoient avec leur `id` et leur `date` ; un rappel retiré est archivé si son SMS est parti, supprimé sinon ; un rappel sans `id` est créé ; sans la clé `rappels`, ils ne changent pas.
+}
