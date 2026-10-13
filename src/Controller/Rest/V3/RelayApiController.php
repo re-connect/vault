@@ -16,7 +16,11 @@ class RelayApiController extends AbstractController
     #[Route(path: '/{id<\d+>}/accept', methods: ['PATCH'])]
     public function accept(Centre $relay, EntityManagerInterface $em): JsonResponse
     {
-        $userRelay = $this->getUser()->getUserRelay($relay)?->setBValid(true);
+        $userRelay = $this->getUser()->getUserRelay($relay);
+        if (!$userRelay) {
+            throw $this->createNotFoundException('You are not linked to this center');
+        }
+        $userRelay->setBValid(true);
         $em->flush();
 
         return $this->json($userRelay);
@@ -26,6 +30,9 @@ class RelayApiController extends AbstractController
     public function leave(Centre $relay, EntityManagerInterface $em): JsonResponse
     {
         $userRelay = $this->getUser()->getUserRelay($relay);
+        if (!$userRelay) {
+            throw $this->createNotFoundException('You are not linked to this center');
+        }
         $em->remove($userRelay);
         $em->flush();
 
