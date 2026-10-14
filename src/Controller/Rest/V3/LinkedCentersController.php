@@ -9,10 +9,13 @@ use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[AsController]
 final class LinkedCentersController extends AbstractController
 {
+    // API Platform does not evaluate the operation "security" when the operation has its own controller
+    #[IsGranted('ROLE_OAUTH2_CENTERS')]
     public function __invoke(
         Request $request,
         ApiClientManager $apiClientManager,
