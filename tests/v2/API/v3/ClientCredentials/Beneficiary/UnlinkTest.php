@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 namespace App\Tests\v2\API\v3\ClientCredentials\Beneficiary;
 
