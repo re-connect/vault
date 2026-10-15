@@ -129,7 +129,7 @@ class DocumentProvider extends DonneePersonnelleProvider
             throw new NotFoundHttpException('No document found for id '.$id);
         }
 
-        if (!$this->isAccessGranted($entity)) {
+        if (!$this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW, $entity)) {
             throw new AccessDeniedException();
         }
 
