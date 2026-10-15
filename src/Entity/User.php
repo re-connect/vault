@@ -39,7 +39,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 #[ApiResource(
     operations: [
         new GetCollection(security: "is_granted('ROLE_OAUTH2_USERS')", provider: SearchBeneficiaryProvider::class),
-        new Patch(security: "is_granted('UPDATE', object)", processor: UserPasswordProcessor::class),
+        new Patch(security: "is_granted('UPDATE', object)", validationContext: ['groups' => ['Default', 'password']], processor: UserPasswordProcessor::class),
     ],
     normalizationContext: ['groups' => ['v3:user:read']],
     denormalizationContext: ['groups' => ['v3:user:write']],
