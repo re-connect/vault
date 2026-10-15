@@ -15,14 +15,12 @@ use App\Tests\Factory\NoteFactory;
 use App\Tests\v2\API\v2\PasswordGrant\AbstractPasswordGrantApiV2TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * A pro must not access the private personal data of a beneficiary they manage.
- */
 class ProPrivateDataAccessTest extends AbstractPasswordGrantApiV2TestCase
 {
     public function provideRequests(): \Generator
     {
         yield 'Share a private document' => [DocumentFactory::class, Request::METHOD_POST, '/documents/%d/share', ['email' => 'recipient@mail.com']];
+        yield 'Show a private document' => [DocumentFactory::class, Request::METHOD_GET, '/documents/%d/thumbnails', null];
         yield 'Rename a private folder' => [FolderFactory::class, Request::METHOD_PATCH, '/folders/%d', ['nom' => 'Renamed']];
         yield 'Get a private note' => [NoteFactory::class, Request::METHOD_GET, '/notes/%d', null];
         yield 'Delete a private note' => [NoteFactory::class, Request::METHOD_DELETE, '/notes/%d', null];
@@ -53,6 +51,25 @@ class ProPrivateDataAccessTest extends AbstractPasswordGrantApiV2TestCase
         $item = $this->findItem($factory, $item->getId());
         $this->assertNotNull($item);
         $this->assertSame($name, $item->getNom());
+    }
+
+    public function provideDocumentReadEndpoints(): \Generator
+    {
+        yield 'Get' => ['/documents/%d'];
+        yield 'Show' => ['/documents/%d/thumbnails'];
+    }
+
+    /** @dataProvider provideDocumentReadEndpoints */
+    public function testOtherBeneficiaryCanNotReadDocument(string $endpoint): void
+    {
+        $document = DocumentFactory::createOne([
+            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
+            'bPrive' => false,
+        ]);
+
+        $this->requestAsUser(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS, Request::METHOD_GET, sprintf($endpoint, $document->getId()));
+
+        $this->assertResponseStatusCodeSame(403);
     }
 
     /** @param class-string<DocumentFactory|FolderFactory|NoteFactory|ContactFactory|EventFactory> $factory */
