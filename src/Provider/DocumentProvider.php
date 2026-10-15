@@ -124,8 +124,13 @@ class DocumentProvider extends DonneePersonnelleProvider
 
     public function getEntity(int $id, ?string $accessAttribute = null): Document
     {
-        if (!$entity = $this->em->getRepository(Document::class)->find($id)) {
+        $entity = $this->em->getRepository(Document::class)->find($id);
+        if (!$entity) {
             throw new NotFoundHttpException('No document found for id '.$id);
+        }
+
+        if (!$this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW, $entity)) {
+            throw new AccessDeniedException();
         }
 
         return $entity;

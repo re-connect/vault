@@ -43,14 +43,6 @@ re_rest_public:
     type: attribute
     resource: App\Controller\Rest\PublicRestController
 
-api_v3_document:
-    type: attribute
-    resource: App\Controller\Api\DocumentApiController
-
-api_v3_beneficiary:
-    type: attribute
-    resource: App\Controller\Api\BeneficiaryApiController
-
 oauth2:
     resource: '@LeagueOAuth2ServerBundle/Resources/config/routes.php'
     type: php

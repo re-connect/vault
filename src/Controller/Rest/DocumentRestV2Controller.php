@@ -268,7 +268,7 @@ class DocumentRestV2Controller extends REController
             $this->provider->generatePresignedUris($entity);
 
             return $this->json($entity);
-        } catch (NotFoundHttpException $e) {
+        } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
             return $jsonResponseException->getResponse();
