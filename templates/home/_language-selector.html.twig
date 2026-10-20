@@ -1,39 +1,55 @@
 {% set languages = [
-    {isoCode: 'ar',flag: asset('build/images/icons/flags/ar.png')},
-    {isoCode: 'de',flag: asset('build/images/icons/flags/de.png')},
-    {isoCode: 'en',flag: asset('build/images/icons/flags/en.png')},
-    {isoCode: 'es',flag: asset('build/images/icons/flags/es.png')},
-    {isoCode: 'fr',flag: asset('build/images/icons/flags/fr.png')},
-    {isoCode: 'it',flag: asset('build/images/icons/flags/it.png')},
-    {isoCode: 'ps',flag: asset('build/images/icons/flags/ps.png')},
-    {isoCode: 'prs',flag: asset('build/images/icons/flags/prs.png')},
-    {isoCode: 'ru',flag: asset('build/images/icons/flags/ru.png')},
+    {isoCode: 'ar', flag: asset('build/images/icons/flags/ar.png'), name: 'العربية', dir: 'rtl'},
+    {isoCode: 'de', flag: asset('build/images/icons/flags/de.png'), name: 'Deutsch', dir: 'ltr'},
+    {isoCode: 'en', flag: asset('build/images/icons/flags/en.png'), name: 'English', dir: 'ltr'},
+    {isoCode: 'es', flag: asset('build/images/icons/flags/es.png'), name: 'Español', dir: 'ltr'},
+    {isoCode: 'fr', flag: asset('build/images/icons/flags/fr.png'), name: 'Français', dir: 'ltr'},
+    {isoCode: 'it', flag: asset('build/images/icons/flags/it.png'), name: 'Italiano', dir: 'ltr'},
+    {isoCode: 'ps', flag: asset('build/images/icons/flags/ps.png'), name: 'پښتو', dir: 'rtl'},
+    {isoCode: 'prs', flag: asset('build/images/icons/flags/prs.png'), name: 'دری', dir: 'rtl'},
+    {isoCode: 'ru', flag: asset('build/images/icons/flags/ru.png'), name: 'Русский', dir: 'ltr'},
 ] %}
 {% set locale =  app.session.get("_locale") ?: 'fr' %}
+{% set current_language = languages|filter(language => language.isoCode is same as(locale))|first %}
 {% set dropdown_position = (dropdown_direction|default('up')) is same as('down') ? 'top: 100%' : 'bottom: 100%' %}
+{% set list_id = 'language-selector-list-' ~ random() %}
 <div class="js-language-selector text-white bg-primary box-shadow-white barlow-medium"
-     style="min-width: 100px"
+     style="min-width: 100px; position: relative"
+        {{ stimulus_controller('lang-selector') }}
+     data-action="keydown.esc->lang-selector#closeAndFocus click@window->lang-selector#closeOnOutsideClick focusout->lang-selector#closeOnFocusOut"
 >
-    <div class="js-language-selector-click shadow d-flex align-items-center" style="position:relative; cursor: pointer; min-height: 34px">
+    <button type="button"
+            class="shadow d-flex align-items-center w-100 p-0 border-0 bg-transparent text-white barlow-medium"
+            style="min-height: 34px"
+            aria-expanded="false" aria-controls="{{ list_id }}"
+            data-lang-selector-target="button" data-action="lang-selector#toggle"
+    >
         <img class="border m-2" style="width:20px;"
              src="{{ asset('build/images/icons/flags/'~locale~'.png') }}"
-             alt="{{ locale }}">
-        {{ locale|upper }}
-        <div style="position: absolute; {{ dropdown_position }}; width: 100%; left: 0; z-index: 10"
-             class="js-language-selector-show bg-primary d-none">
-            {% for language in languages %}
-                {% if not language.isoCode is same as(locale) %}
-                    <div data-language="{{ language.isoCode }}"
-                         class="js-language-selector-change-lang border-bottom border-dark p-2 d-flex align-items-center"
-                         style="cursor: pointer;"
+             alt="">
+        <span aria-hidden="true">{{ locale|upper }}</span>
+        {% if current_language %}
+            <span class="visually-hidden" lang="{{ locale }}" dir="{{ current_language.dir }}">{{ current_language.name }}</span>
+        {% endif %}
+    </button>
+    <ul id="{{ list_id }}"
+        style="position: absolute; {{ dropdown_position }}; width: 100%; left: 0; z-index: 10"
+        class="bg-primary list-unstyled m-0 d-none"
+        data-lang-selector-target="list"
+    >
+        {% for language in languages %}
+            {% if not language.isoCode is same as(locale) %}
+                <li>
+                    <a href="{{ path('re_main_change_lang', {lang: language.isoCode}) }}"
+                       hreflang="{{ language.isoCode }}"
+                       class="border-bottom border-dark p-2 d-flex align-items-center text-white text-decoration-none"
                     >
-                        <img class="border m-2" style="width:20px;"
-                             data-language="{{ language.isoCode }}"
-                             src="{{ language.flag }}" alt="{{ language.isoCode }}">
-                        {{ language.isoCode|upper }}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
+                        <img class="border m-2" style="width:20px;" src="{{ language.flag }}" alt="">
+                        <span aria-hidden="true">{{ language.isoCode|upper }}</span>
+                        <span class="visually-hidden" lang="{{ language.isoCode }}" dir="{{ language.dir }}">{{ language.name }}</span>
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
 </div>
