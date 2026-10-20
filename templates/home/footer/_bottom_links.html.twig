@@ -23,6 +23,10 @@
                 <a class="d-block text-decoration-none"
                    href="{{ path('sitemap') }}">{{ 'sitemap_title' | trans }}</a>
             </li>
+            <li class="col-12 my-1">
+                <a class="d-block text-decoration-none" lang="fr"
+                   href="{{ path('accessibility_statement') }}">Accessibilité&nbsp;: {{ include('home/accessibility/_conformance_status.html.twig') }}</a>
+            </li>
         </ul>
     </div>
 </div>
