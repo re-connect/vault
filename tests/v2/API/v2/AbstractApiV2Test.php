@@ -48,4 +48,23 @@ abstract class AbstractApiV2Test extends AbstractApiTest
 
         return $member;
     }
+
+    public function loginAsUser(ApiPlatformClient $client, string $email): void
+    {
+        $user = UserFactory::findByEmail($email);
+        $apiClient = $this->getContainer()->get(EntityManagerInterface::class)->getRepository(Client::class)->findOneBy(['name' => 'applimobile']);
+
+        $client->request('GET', '/oauth/v2/token', ['json' => [
+            'grant_type' => 'password',
+            'client_id' => $apiClient->getIdentifier(),
+            'client_secret' => $apiClient->getSecret(),
+            'username' => $user->getUsername(),
+            'password' => UserFactory::STRONG_PASSWORD_CLEAR,
+        ]]);
+
+        $this->assertResponseStatusCodeSame(200);
+
+        $content = json_decode($client->getResponse()->getContent(), true);
+        $this->accessToken = $content['access_token'];
+    }
 }
