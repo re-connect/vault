@@ -10,7 +10,8 @@ use App\FormV2\FirstVisitType;
 use App\FormV2\UserType;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
-use App\Security\VoterV2\RelayVoter;
+use App\Security\VoterV2\RelayInvitation;
+use App\Security\VoterV2\RelayInvitationVoter;
 use App\ServiceV2\Mailer\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
@@ -139,9 +140,7 @@ class UserController extends AbstractController
     #[Route(path: '/{id<\d+>}/toggle-invite/{relay<\d+>}', name: 'toggle_user_invitation', methods: ['GET'])]
     public function toggleUserInvitation(Request $request, User $user, #[MapEntity(id: 'relay')] Centre $relay, RelayManager $manager): Response
     {
-        if (!$this->canToggleInvitation($user, $relay)) {
-            throw $this->createAccessDeniedException();
-        }
+        $this->denyAccessUnlessGranted(RelayInvitationVoter::TOGGLE, new RelayInvitation($user, $relay));
 
         $manager->toggleUserInvitationToRelay($user, $relay);
 
@@ -230,18 +229,5 @@ class UserController extends AbstractController
         return $request->headers->get('referer')
             ? $this->redirect($request->headers->get('referer'))
             : $this->redirectToRoute('re_main_accueil');
-    }
-
-    private function canToggleInvitation(User $user, Centre $relay): bool
-    {
-        if ($user->hasValidLinkToRelay($relay) && !$user->getSubjectBeneficiaire()?->isCreating()) {
-            return false;
-        }
-
-        if ($user->isMembre()) {
-            return $this->isGranted(RelayVoter::MANAGE_PRO, $relay);
-        }
-
-        return $user->isBeneficiaire() && (bool) $this->getUser()?->getValidRelays()->contains($relay);
     }
 }
