@@ -120,6 +120,20 @@ abstract class DonneePersonnelleProvider
         $this->em->flush();
     }
 
+    public function isAccessGranted(DonneePersonnelle $donneePersonnelle): bool
+    {
+        if (!$this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW, $donneePersonnelle)) {
+            return false;
+        }
+
+        $user = $this->tokenStorage->getToken()?->getUser();
+
+        // DONNEEPERSONNELLE_VIEW also grants linked pros access to private personal data, so restrict those to their owner
+        return !$donneePersonnelle->isPrivate()
+            || !$user instanceof User
+            || ($user->isBeneficiaire() && $user->getSubjectBeneficiaire() === $donneePersonnelle->getBeneficiaire());
+    }
+
     public function reportAbuse(DonneePersonnelle $donneePersonnelle): bool
     {
         if (false === $this->authorizationChecker->isGranted(
