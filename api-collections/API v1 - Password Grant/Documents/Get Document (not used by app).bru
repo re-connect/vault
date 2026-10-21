@@ -1,0 +1,16 @@
+meta {
+  name: Get Document (not used by app)
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{baseUrl}}/api/v2/documents/{{documentId}}/json
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

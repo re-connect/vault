@@ -1,0 +1,22 @@
+meta {
+  name: Rename Document (not used by app)
+  type: http
+  seq: 10
+}
+
+patch {
+  url: {{baseUrl}}/api/v2/documents/{{documentId}}/name
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "renamed-by-another-user"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
