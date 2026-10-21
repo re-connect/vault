@@ -136,20 +136,6 @@ class DocumentProvider extends DonneePersonnelleProvider
         return $entity;
     }
 
-    public function isAccessGranted(Document $document): bool
-    {
-        if (!$this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW, $document)) {
-            return false;
-        }
-
-        $user = $this->tokenStorage->getToken()?->getUser();
-
-        // DONNEEPERSONNELLE_VIEW also grants linked pros access to private documents, so restrict those to their owner
-        return !$document->isPrivate()
-            || !$user instanceof User
-            || ($user->isBeneficiaire() && $user->getSubjectBeneficiaire() === $document->getBeneficiaire());
-    }
-
     public function getEntities(Beneficiaire $beneficiaire, ?int $dossierId = null): array
     {
         /** @var User $user */

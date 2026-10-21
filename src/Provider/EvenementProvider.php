@@ -74,12 +74,12 @@ class EvenementProvider extends DonneePersonnelleProvider
             throw new NotFoundHttpException('No evenement found for id '.$id);
         }
 
-        $attributes = [DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW, $accessAttribute];
+        if (!$this->isAccessGranted($entity)) {
+            throw new AccessDeniedException();
+        }
 
-        foreach ($attributes as $attribute) {
-            if ($attribute && !$this->authorizationChecker->isGranted($attribute, $entity)) {
-                throw new AccessDeniedException();
-            }
+        if ($accessAttribute && !$this->authorizationChecker->isGranted($accessAttribute, $entity)) {
+            throw new AccessDeniedException();
         }
 
         return $entity;

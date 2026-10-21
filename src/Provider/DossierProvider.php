@@ -59,12 +59,8 @@ class DossierProvider extends DonneePersonnelleProvider
             throw new NotFoundHttpException('No folder found for id '.$id);
         }
 
-        $attributes = [DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW];
-
-        foreach ($attributes as $attribute) {
-            if ($attribute && !$this->authorizationChecker->isGranted($attribute, $entity)) {
-                throw new AccessDeniedException();
-            }
+        if (!$this->isAccessGranted($entity)) {
+            throw new AccessDeniedException();
         }
 
         return $entity;
