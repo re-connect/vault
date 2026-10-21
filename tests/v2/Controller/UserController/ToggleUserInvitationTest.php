@@ -4,7 +4,10 @@ namespace App\Tests\v2\Controller\UserController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
+use App\Entity\Centre;
 use App\Entity\MembreCentre;
+use App\Tests\Factory\BeneficiaryRelayFactory;
+use App\Tests\Factory\MembreCentreFactory;
 use App\Tests\Factory\MembreFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
@@ -100,5 +103,67 @@ class ToggleUserInvitationTest extends AbstractControllerTest
             ],
             $userRelay->getDroits()
         );
+    }
+
+    public function testCannotInviteBeneficiaryToUnaffiliatedRelay(): void
+    {
+        $this->assertInvitationDenied(BeneficiaryFixture::BENEFICIARY_MAIL, RelayFactory::createOne()->_real());
+    }
+
+    public function testCannotForceBeneficiaryAffiliationToUnaffiliatedRelay(): void
+    {
+        $this->assertInvitationDenied(BeneficiaryFixture::BENEFICIARY_MAIL_IN_CREATION, RelayFactory::createOne()->_real());
+    }
+
+    public function testCannotInviteBeneficiaryToPendingRelay(): void
+    {
+        $relay = $this->createLoggedProRelay(false, true, true);
+
+        $this->assertInvitationDenied(BeneficiaryFixture::BENEFICIARY_MAIL, $relay);
+    }
+
+    public function testCannotInviteProWithoutProManagementPermission(): void
+    {
+        $relay = $this->createLoggedProRelay(true, true, false);
+
+        $this->assertInvitationDenied(MemberFixture::MEMBER_MAIL_NO_RELAY_NO_PERMISSION, $relay);
+    }
+
+    public function testCannotRemoveBeneficiaryWithValidatedAffiliation(): void
+    {
+        $relay = $this->createLoggedProRelay(true, true, true);
+        $testedUser = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        BeneficiaryRelayFactory::createOne(['beneficiaire' => $testedUser->getSubjectBeneficiaire(), 'centre' => $relay, 'bValid' => true]);
+
+        $this->assertRoute(sprintf(self::URL, $testedUser->getId(), $relay->getId()), 403, MemberFixture::MEMBER_MAIL_WITH_RELAYS);
+
+        $testedUser = UserFactory::find($testedUser)->_real();
+        self::assertTrue($testedUser->hasValidLinkToRelay(RelayFactory::find($relay)->_real()));
+    }
+
+    private function assertInvitationDenied(string $testedUserMail, Centre $relay): void
+    {
+        $testedUser = UserFactory::findByEmail($testedUserMail);
+
+        $this->assertRoute(sprintf(self::URL, $testedUser->getId(), $relay->getId()), 403, MemberFixture::MEMBER_MAIL_WITH_RELAYS);
+
+        $testedUser = UserFactory::find($testedUser)->_real();
+        self::assertFalse($testedUser->isLinkedToRelay(RelayFactory::find($relay)->_real()));
+    }
+
+    private function createLoggedProRelay(bool $isValid, bool $beneficiaryManagement, bool $proManagement): Centre
+    {
+        $relay = RelayFactory::createOne()->_real();
+        MembreCentreFactory::createOne([
+            'membre' => MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real(),
+            'centre' => $relay,
+            'bValid' => $isValid,
+            'droits' => [
+                MembreCentre::MANAGE_BENEFICIARIES_PERMISSION => $beneficiaryManagement,
+                MembreCentre::MANAGE_PROS_PERMISSION => $proManagement,
+            ],
+        ]);
+
+        return $relay;
     }
 }
