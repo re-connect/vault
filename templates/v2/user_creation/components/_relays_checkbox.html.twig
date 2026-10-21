@@ -2,7 +2,7 @@
 {% set isBeneficiaryInCreation = not isPro and user.subjectBeneficiaire.isCreating %}
 {% set hasValidLinkToRelay = user.hasValidLinkToRelay(relay) %}
 {% set isLinkedToRelay = user.isLinkedToRelay(relay) %}
-{% set isUpdatable = isBeneficiaryInCreation or not hasValidLinkToRelay %}
+{% set isUpdatable = is_granted('TOGGLE_RELAY_INVITATION', relayInvitation(user, relay)) %}
 {% set checkboxColor = isLinkedToRelay ? activeClasses : inactiveClasses %}
 
 {% if hasValidLinkToRelay and isPro %}
