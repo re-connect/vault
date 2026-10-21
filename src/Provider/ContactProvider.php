@@ -7,7 +7,6 @@ use App\Entity\Contact;
 use App\Entity\DonneePersonnelle;
 use App\Form\Type\ContactSimpleType;
 use App\Form\Type\ContactType;
-use App\Security\Authorization\Voter\DonneePersonnelleVoter;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -26,12 +25,12 @@ class ContactProvider extends DonneePersonnelleProvider
             throw new NotFoundHttpException('No contact found for id '.$id);
         }
 
-        $attributes = [DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW, $accessAttribute];
+        if (!$this->isAccessGranted($entity)) {
+            throw new AccessDeniedException();
+        }
 
-        foreach ($attributes as $attribute) {
-            if ($attribute && !$this->authorizationChecker->isGranted($attribute, $entity)) {
-                throw new AccessDeniedException();
-            }
+        if ($accessAttribute && !$this->authorizationChecker->isGranted($accessAttribute, $entity)) {
+            throw new AccessDeniedException();
         }
 
         return $entity;
