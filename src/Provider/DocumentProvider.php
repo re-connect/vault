@@ -124,11 +124,30 @@ class DocumentProvider extends DonneePersonnelleProvider
 
     public function getEntity(int $id, ?string $accessAttribute = null): Document
     {
-        if (!$entity = $this->em->getRepository(Document::class)->find($id)) {
+        $entity = $this->em->getRepository(Document::class)->find($id);
+        if (!$entity) {
             throw new NotFoundHttpException('No document found for id '.$id);
         }
 
+        if (!$this->isAccessGranted($entity)) {
+            throw new AccessDeniedException();
+        }
+
         return $entity;
+    }
+
+    public function isAccessGranted(Document $document): bool
+    {
+        if (!$this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW, $document)) {
+            return false;
+        }
+
+        $user = $this->tokenStorage->getToken()?->getUser();
+
+        // DONNEEPERSONNELLE_VIEW also grants linked pros access to private documents, so restrict those to their owner
+        return !$document->isPrivate()
+            || !$user instanceof User
+            || ($user->isBeneficiaire() && $user->getSubjectBeneficiaire() === $document->getBeneficiaire());
     }
 
     public function getEntities(Beneficiaire $beneficiaire, ?int $dossierId = null): array
