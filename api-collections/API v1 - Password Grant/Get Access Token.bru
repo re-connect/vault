@@ -1,0 +1,24 @@
+meta {
+  name: Get Access Token
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/oauth/v2/token?grant_type=password&client_id={{clientId}}&client_secret={{clientSecret}}&username={{username}}&password={{password}}
+  body: none
+  auth: none
+}
+
+params:query {
+  grant_type: password
+  client_id: {{clientId}}
+  client_secret: {{clientSecret}}
+  username: {{username}}
+  password: {{password}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

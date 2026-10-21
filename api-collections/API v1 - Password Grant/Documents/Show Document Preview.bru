@@ -1,0 +1,17 @@
+meta {
+  name: Show Document Preview
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/v2/documents/{{documentId}}/large
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+  followRedirects: false
+}
