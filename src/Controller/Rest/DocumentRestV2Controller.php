@@ -17,7 +17,6 @@ use App\ManagerV2\SharedDocumentManager;
 use App\Provider\BeneficiaireProvider;
 use App\Provider\DocumentProvider;
 use App\Provider\DossierProvider;
-use App\Security\Authorization\Voter\DonneePersonnelleVoter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\UploadException;
@@ -28,7 +27,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\ValidatorException;
@@ -236,7 +234,7 @@ class DocumentRestV2Controller extends REController
             $errorMessage = $errors[0]->getMessage();
 
             throw new \RuntimeException($errorMessage);
-        } catch (NotFoundHttpException $e) {
+        } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
             return $jsonResponseException->getResponse();
@@ -253,7 +251,7 @@ class DocumentRestV2Controller extends REController
             $this->provider->generatePresignedUris($entity);
 
             return $this->json($entity, Response::HTTP_ACCEPTED, [], ['groups' => ['v3:document:read']]);
-        } catch (NotFoundHttpException $e) {
+        } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
             return $jsonResponseException->getResponse();
@@ -268,7 +266,7 @@ class DocumentRestV2Controller extends REController
             $this->provider->generatePresignedUris($entity);
 
             return $this->json($entity);
-        } catch (NotFoundHttpException $e) {
+        } catch (NotFoundHttpException|AccessDeniedException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
             return $jsonResponseException->getResponse();
@@ -345,11 +343,11 @@ class DocumentRestV2Controller extends REController
     }
 
     #[Route(path: 'documents/{id}/share', name: 'api_share_document', requirements: ['id' => '\d{1,10}'], methods: ['POST'])]
-    public function shareDocument(Request $request, AuthorizationCheckerInterface $authorizationChecker, Document $document, SharedDocumentManager $manager): JsonResponse
+    public function shareDocument(Request $request, Document $document, SharedDocumentManager $manager): JsonResponse
     {
         $errors = [];
         $status = Response::HTTP_NO_CONTENT;
-        if (false === $authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW, $document)) {
+        if (!$this->provider->isAccessGranted($document)) {
             $errors[] = $this->translator->trans('not_allowed_to_share_this_document');
             $status = Response::HTTP_FORBIDDEN;
         } else {
