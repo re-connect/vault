@@ -88,7 +88,7 @@ class EditTest extends AbstractControllerTest implements TestRouteInterface, Tes
         array $body = [],
     ): void {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
-        $publicNote = NoteFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
+        $publicNote = NoteFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false]);
 
         $url = sprintf($url, $publicNote->getId());
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : '';
@@ -96,7 +96,7 @@ class EditTest extends AbstractControllerTest implements TestRouteInterface, Tes
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $privateNote = NoteFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
+            $privateNote = NoteFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true]);
             $newUrl = sprintf(self::URL, $privateNote->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method);
         }

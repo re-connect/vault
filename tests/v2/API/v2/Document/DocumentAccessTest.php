@@ -71,7 +71,7 @@ class DocumentAccessTest extends AbstractApiV2Test
     private function assertAccessDenied(string $userMail, bool $isPrivate, string $method, string $url, array $body): void
     {
         $document = $this->createOwnerDocument($isPrivate);
-        $folder = FolderFactory::createOne(['beneficiaire' => $document->getBeneficiaire(), 'bPrive' => false])->_real();
+        $folder = FolderFactory::createOne(['beneficiaire' => $document->getBeneficiaire(), 'bPrive' => false]);
         $documentId = $document->getId();
         $documentName = $document->getNom();
 
@@ -94,6 +94,6 @@ class DocumentAccessTest extends AbstractApiV2Test
     {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
 
-        return DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate, 'extension' => 'pdf'])->_real();
+        return DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate, 'extension' => 'pdf']);
     }
 }

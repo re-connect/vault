@@ -32,14 +32,14 @@ class ToggleVisibilityTest extends AbstractControllerTest
         array $body = [],
     ): void {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
-        $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
+        $contact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false]);
         $url = sprintf($url, $contact->getId());
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : '';
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, 'PATCH', true);
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $privateContact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
+            $privateContact = ContactFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true]);
             $newUrl = sprintf(self::URL, $privateContact->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
         }

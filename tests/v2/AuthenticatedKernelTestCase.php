@@ -7,6 +7,8 @@ use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
+use function Zenstruck\Foundry\Persistence\refresh;
+
 class AuthenticatedKernelTestCase extends KernelTestCase
 {
     protected function loginUser(string $email): void
@@ -25,7 +27,10 @@ class AuthenticatedKernelTestCase extends KernelTestCase
 
     protected function getTestUserFromDb(string $email): User
     {
-        return UserFactory::find(['email' => $email])->_real();
+        $user = UserFactory::find(['email' => $email]);
+        refresh($user);
+
+        return $user;
     }
 
     protected function getPrivateMethod(string $className, string $method): \ReflectionMethod

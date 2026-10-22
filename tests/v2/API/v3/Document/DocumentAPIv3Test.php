@@ -112,7 +112,7 @@ class DocumentAPIv3Test extends AbstractApiTest
         $document = DocumentFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->_real();
+        ]);
         $documentId = $document->getId();
 
         $this->assertEndpoint(
@@ -148,7 +148,7 @@ class DocumentAPIv3Test extends AbstractApiTest
         $document = DocumentFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->_real();
+        ]);
         $documentId = $document->getId();
 
         $this->assertEndpointAccessIsDenied(

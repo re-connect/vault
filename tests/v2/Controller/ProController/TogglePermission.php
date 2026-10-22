@@ -26,8 +26,8 @@ class TogglePermission extends AbstractControllerTest implements TestRouteInterf
     /** @dataProvider provideTestRoute */
     public function testRoute(string $url, int $expectedStatusCode, ?string $userMail = null, ?string $expectedRedirect = null, string $method = 'GET', bool $isXmlHttpRequest = false, array $body = []): void
     {
-        $randomPro = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL)->_real();
-        $authorizedPro = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER)->_real();
+        $randomPro = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL);
+        $authorizedPro = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_MEMBER);
 
         // Test with beneficiaryManagement
         $url = sprintf(self::URL, $randomPro->getId(), $authorizedPro->getAffiliatedRelaysWithProfessionalManagement()[0]->getId(), MembreCentre::MANAGE_BENEFICIARIES_PERMISSION);

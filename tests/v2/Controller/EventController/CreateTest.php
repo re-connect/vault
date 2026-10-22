@@ -62,16 +62,23 @@ class CreateTest extends AbstractControllerTest implements TestRouteInterface, T
             BeneficiaryFixture::BENEFICIARY_MAIL,
             '/beneficiary/%d/events',
         ];
+    }
 
+    // The date is computed when the test runs, not in a data provider: providers run when the suite is loaded,
+    // and the 12-hour tolerance would be exceeded if the suite takes over an hour to reach this test.
+    public function testFormIsValidWithDateLessThan12HoursInThePast(): void
+    {
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $values = self::FORM_VALUES;
         $values['event[date]'] = (new \DateTime())->modify('-11 hours')->format('Y-m-d H:i:s');
-        yield 'Should redirect when form is correct, with date less than 12 hours in the past' => [
-            self::URL,
+
+        $this->assertFormIsValid(
+            sprintf(self::URL, $beneficiary->getId()),
             'confirm',
             $values,
             BeneficiaryFixture::BENEFICIARY_MAIL,
-            '/beneficiary/%d/events',
-        ];
+            sprintf('/beneficiary/%d/events', $beneficiary->getId()),
+        );
     }
 
     /**

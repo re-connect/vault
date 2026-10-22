@@ -40,7 +40,7 @@ class PersonalDataListenerTest extends AbstractLogActivityListenerTest implement
 
     public function testPreUpdate(): void
     {
-        $contact = ContactFactory::random()->_real();
+        $contact = ContactFactory::random();
         $contact->setNom('test');
         $this->em->flush();
 
@@ -55,7 +55,7 @@ class PersonalDataListenerTest extends AbstractLogActivityListenerTest implement
 
     public function testPreRemove(): void
     {
-        $contact = ContactFactory::random()->_real();
+        $contact = ContactFactory::random();
         $this->em->remove($contact);
         $logContent = $this->getLogContent($contact);
         $this->em->flush();
