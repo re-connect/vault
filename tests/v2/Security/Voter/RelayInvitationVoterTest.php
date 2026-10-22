@@ -39,7 +39,7 @@ class RelayInvitationVoterTest extends AuthenticatedKernelTestCase
     public function testBeneficiaryInvitationRequiresValidRelay(?bool $isLoggedProAffiliationValid, bool $expected): void
     {
         $relay = null === $isLoggedProAffiliationValid
-            ? RelayFactory::createOne()->_real()
+            ? RelayFactory::createOne()
             : $this->createLoggedProRelay($isLoggedProAffiliationValid, true);
 
         self::assertSame($expected, $this->isGranted(BeneficiaryFixture::BENEFICIARY_MAIL, $relay));
@@ -89,9 +89,9 @@ class RelayInvitationVoterTest extends AuthenticatedKernelTestCase
 
     private function createLoggedProRelay(bool $isValid, bool $proManagement): Centre
     {
-        $relay = RelayFactory::createOne()->_real();
+        $relay = RelayFactory::createOne();
         MembreCentreFactory::createOne([
-            'membre' => MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real(),
+            'membre' => MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS),
             'centre' => $relay,
             'bValid' => $isValid,
             'droits' => [
