@@ -1,38 +1,46 @@
 {% set languages = {
-    'ar': {url: asset('build/images/icons/flags/ar.png')},
-    'de': {url: asset('build/images/icons/flags/de.png')},
-    'en': {url: asset('build/images/icons/flags/en.png')},
-    'es': {url: asset('build/images/icons/flags/es.png')},
-    'fr': {url: asset('build/images/icons/flags/fr.png')},
-    'it': {url: asset('build/images/icons/flags/it.png')},
-    'ps': {url: asset('build/images/icons/flags/ps.png')},
-    'prs': {url: asset('build/images/icons/flags/prs.png')},
-    'ru': {url: asset('build/images/icons/flags/ru.png')}
+    'ar': {url: asset('build/images/icons/flags/ar.png'), name: 'العربية', dir: 'rtl'},
+    'de': {url: asset('build/images/icons/flags/de.png'), name: 'Deutsch', dir: 'ltr'},
+    'en': {url: asset('build/images/icons/flags/en.png'), name: 'English', dir: 'ltr'},
+    'es': {url: asset('build/images/icons/flags/es.png'), name: 'Español', dir: 'ltr'},
+    'fr': {url: asset('build/images/icons/flags/fr.png'), name: 'Français', dir: 'ltr'},
+    'it': {url: asset('build/images/icons/flags/it.png'), name: 'Italiano', dir: 'ltr'},
+    'ps': {url: asset('build/images/icons/flags/ps.png'), name: 'پښتو', dir: 'rtl'},
+    'prs': {url: asset('build/images/icons/flags/prs.png'), name: 'دری', dir: 'rtl'},
+    'ru': {url: asset('build/images/icons/flags/ru.png'), name: 'Русский', dir: 'ltr'}
 } %}
 {% set locale = app.session.get("_locale") ?: 'fr' %}
+{% set list_id = 'lang-selector-list-' ~ random() %}
 
 <div class="lang-selector bg-primary rounded shadow text-white mb-5 position-absolute"
         {{ stimulus_controller('lang-selector') }}
-     data-action="click->lang-selector#toggle"
+     data-action="keydown.esc->lang-selector#closeAndFocus click@window->lang-selector#closeOnOutsideClick focusout->lang-selector#closeOnFocusOut"
 >
-    <img class="lang-selector-flag border m-2"
-         src="{{ languages[locale].url }}"
-         alt="{{ locale }}">
-    <span class="btn p-0 text-white">{{ locale|upper }}</span>
-    <i class="fas fa-chevron-down text-white btn ps-0 float-end"></i>
-    <div class="lang-selector-list d-none position-absolute bg-primary rounded-top"
-         data-lang-selector-target="list"
+    <button type="button" class="btn w-100 p-0 border-0 text-white text-start"
+            aria-expanded="false" aria-controls="{{ list_id }}"
+            data-lang-selector-target="button" data-action="lang-selector#toggle"
+    >
+        <img class="lang-selector-flag border m-2" src="{{ languages[locale].url }}" alt="">
+        <span aria-hidden="true">{{ locale|upper }}</span>
+        <span class="visually-hidden" lang="{{ locale }}" dir="{{ languages[locale].dir }}">{{ languages[locale].name }}</span>
+        <i class="fas fa-chevron-down text-white btn ps-0 float-end" aria-hidden="true"></i>
+    </button>
+    <ul id="{{ list_id }}" class="lang-selector-list list-unstyled m-0 d-none position-absolute bg-primary rounded-top"
+        data-lang-selector-target="list"
     >
         {% for lang, content in languages %}
             {% if not lang is same as(locale) %}
-                <div data-action="click->lang-selector#select"
-                     data-lang="{{ lang }}"
-                >
-                    <img class="lang-selector-flag border m-2"
-                         src="{{ content.url }}" alt="{{ lang }}">
-                    <span class="btn p-0 text-white">{{ lang|upper }}</span>
-                </div>
+                <li>
+                    <a class="d-block text-white text-decoration-none"
+                       href="{{ path('re_main_change_lang', {lang: lang}) }}"
+                       hreflang="{{ lang }}"
+                    >
+                        <img class="lang-selector-flag border m-2" src="{{ content.url }}" alt="">
+                        <span class="btn p-0 text-white" aria-hidden="true">{{ lang|upper }}</span>
+                        <span class="visually-hidden" lang="{{ lang }}" dir="{{ content.dir }}">{{ content.name }}</span>
+                    </a>
+                </li>
             {% endif %}
         {% endfor %}
-    </div>
+    </ul>
 </div>
