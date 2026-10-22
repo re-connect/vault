@@ -28,16 +28,28 @@ abstract class AbstractApiV2Test extends AbstractApiTest
 
     public function loginAsMember(ApiPlatformClient $client, $clientName = 'applimobile', $grantType = 'password'): Membre
     {
-        $em = $this->getContainer()->get(EntityManagerInterface::class);
-        /** @var Client $client */
-        $apiClient = $em->getRepository(Client::class)->findOneBy(['name' => $clientName]);
-        $member = $em->getRepository(Membre::class)->findByClientIdentifier($apiClient->getIdentifier())[0];
+        $apiClient = $this->em->getRepository(Client::class)->findOneBy(['name' => $clientName]);
+        $member = $this->em->getRepository(Membre::class)->findByClientIdentifier($apiClient->getIdentifier())[0];
 
+        $this->requestAccessToken($client, $apiClient, $member->getUser()->getUsername(), $grantType);
+
+        return $member;
+    }
+
+    public function loginAsUser(ApiPlatformClient $client, string $email): void
+    {
+        $apiClient = $this->em->getRepository(Client::class)->findOneBy(['name' => 'applimobile']);
+
+        $this->requestAccessToken($client, $apiClient, UserFactory::findByEmail($email)->getUsername(), 'password');
+    }
+
+    private function requestAccessToken(ApiPlatformClient $client, Client $apiClient, string $username, string $grantType): void
+    {
         $client->request('GET', '/oauth/v2/token', ['json' => [
             'grant_type' => $grantType,
             'client_id' => $apiClient->getIdentifier(),
             'client_secret' => $apiClient->getSecret(),
-            'username' => $member->getUser()->getUsername(),
+            'username' => $username,
             'password' => UserFactory::STRONG_PASSWORD_CLEAR,
         ]]);
 
@@ -45,7 +57,5 @@ abstract class AbstractApiV2Test extends AbstractApiTest
 
         $content = json_decode($client->getResponse()->getContent(), true);
         $this->accessToken = $content['access_token'];
-
-        return $member;
     }
 }

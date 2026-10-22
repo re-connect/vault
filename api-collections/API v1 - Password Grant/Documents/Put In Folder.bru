@@ -1,0 +1,16 @@
+meta {
+  name: Put In Folder
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/v2/documents/{{documentId}}/folder/{{folderId}}
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
