@@ -1,0 +1,22 @@
+meta {
+  name: Send Document (not used by app)
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{baseUrl}}/api/v2/documents/{{documentId}}/send
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "test@example.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
