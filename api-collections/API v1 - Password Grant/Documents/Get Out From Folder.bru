@@ -1,0 +1,16 @@
+meta {
+  name: Get Out From Folder
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{baseUrl}}/api/v2/documents/{{documentId}}/get-out-from-folder
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

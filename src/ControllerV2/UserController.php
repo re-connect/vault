@@ -10,6 +10,8 @@ use App\FormV2\FirstVisitType;
 use App\FormV2\UserType;
 use App\ManagerV2\RelayManager;
 use App\ManagerV2\UserManager;
+use App\Security\VoterV2\RelayInvitation;
+use App\Security\VoterV2\RelayInvitationVoter;
 use App\ServiceV2\Mailer\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
@@ -138,6 +140,8 @@ class UserController extends AbstractController
     #[Route(path: '/{id<\d+>}/toggle-invite/{relay<\d+>}', name: 'toggle_user_invitation', methods: ['GET'])]
     public function toggleUserInvitation(Request $request, User $user, #[MapEntity(id: 'relay')] Centre $relay, RelayManager $manager): Response
     {
+        $this->denyAccessUnlessGranted(RelayInvitationVoter::TOGGLE, new RelayInvitation($user, $relay));
+
         $manager->toggleUserInvitationToRelay($user, $relay);
 
         if ($request->isXmlHttpRequest()) {
