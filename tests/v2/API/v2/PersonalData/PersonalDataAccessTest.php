@@ -92,6 +92,6 @@ class PersonalDataAccessTest extends AbstractApiV2Test
     {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
 
-        return $factory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate])->_real();
+        return $factory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => $isPrivate]);
     }
 }

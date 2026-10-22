@@ -9,6 +9,7 @@ use App\Entity\MembreCentre;
 use App\Tests\Factory\BeneficiaryRelayFactory;
 use App\Tests\Factory\MembreCentreFactory;
 use App\Tests\Factory\MembreFactory;
+use App\Tests\Factory\RelayFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 
@@ -107,12 +108,12 @@ class ToggleUserInvitationTest extends AbstractControllerTest
 
     public function testCannotInviteBeneficiaryToUnaffiliatedRelay(): void
     {
-        $this->assertInvitationDenied(BeneficiaryFixture::BENEFICIARY_MAIL, RelayFactory::createOne()->_real());
+        $this->assertInvitationDenied(BeneficiaryFixture::BENEFICIARY_MAIL, RelayFactory::createOne());
     }
 
     public function testCannotForceBeneficiaryAffiliationToUnaffiliatedRelay(): void
     {
-        $this->assertInvitationDenied(BeneficiaryFixture::BENEFICIARY_MAIL_IN_CREATION, RelayFactory::createOne()->_real());
+        $this->assertInvitationDenied(BeneficiaryFixture::BENEFICIARY_MAIL_IN_CREATION, RelayFactory::createOne());
     }
 
     public function testCannotInviteBeneficiaryToPendingRelay(): void
@@ -137,8 +138,9 @@ class ToggleUserInvitationTest extends AbstractControllerTest
 
         $this->assertRoute(sprintf(self::URL, $testedUser->getId(), $relay->getId()), 403, MemberFixture::MEMBER_MAIL_WITH_RELAYS);
 
-        $testedUser = UserFactory::find($testedUser)->_real();
-        self::assertTrue($testedUser->hasValidLinkToRelay(RelayFactory::find($relay)->_real()));
+        refresh($testedUser);
+        refresh($relay);
+        self::assertTrue($testedUser->hasValidLinkToRelay($relay));
     }
 
     private function assertInvitationDenied(string $testedUserMail, Centre $relay): void
@@ -147,15 +149,16 @@ class ToggleUserInvitationTest extends AbstractControllerTest
 
         $this->assertRoute(sprintf(self::URL, $testedUser->getId(), $relay->getId()), 403, MemberFixture::MEMBER_MAIL_WITH_RELAYS);
 
-        $testedUser = UserFactory::find($testedUser)->_real();
-        self::assertFalse($testedUser->isLinkedToRelay(RelayFactory::find($relay)->_real()));
+        refresh($testedUser);
+        refresh($relay);
+        self::assertFalse($testedUser->isLinkedToRelay($relay));
     }
 
     private function createLoggedProRelay(bool $isValid, bool $beneficiaryManagement, bool $proManagement): Centre
     {
-        $relay = RelayFactory::createOne()->_real();
+        $relay = RelayFactory::createOne();
         MembreCentreFactory::createOne([
-            'membre' => MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real(),
+            'membre' => MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS),
             'centre' => $relay,
             'bValid' => $isValid,
             'droits' => [
