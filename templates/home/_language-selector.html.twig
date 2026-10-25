@@ -27,6 +27,7 @@
         <img class="border m-2" style="width:20px;"
              src="{{ asset('build/images/icons/flags/'~locale~'.png') }}"
              alt="">
+        <span class="visually-hidden">{{ 'a11y_language_selector'|trans }} :</span>
         <span aria-hidden="true">{{ locale|upper }}</span>
         {% if current_language %}
             <span class="visually-hidden" lang="{{ locale }}" dir="{{ current_language.dir }}">{{ current_language.name }}</span>

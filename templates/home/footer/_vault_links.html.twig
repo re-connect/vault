@@ -15,6 +15,7 @@
                    href="{{ link.url }}"
                 >
                     {{ link.name|trans }}
+                    {% if link.target == '_blank' %}<span class="visually-hidden">{{ 'a11y_new_window'|trans }}</span>{% endif %}
                 </a>
             </li>
         {% endfor %}

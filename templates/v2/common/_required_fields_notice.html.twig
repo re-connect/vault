@@ -1,0 +1,4 @@
+{# Explains the asterisk shown on required labels by forms with the "display-required-labels" class (RGAA 11.10) #}
+{% if form.children|filter(child => child.vars.required and 'hidden' not in child.vars.block_prefixes)|length > 0 %}
+    <p class="small">{{ 'a11y_required_fields'|trans }}</p>
+{% endif %}
