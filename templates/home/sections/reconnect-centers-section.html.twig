@@ -1,10 +1,15 @@
 <section id="reconnect-centers" class="bg-success py-5">
     <div class="container">
         <div class="row py-4 align-items-center">
-            <div class="col-12 col-md-6 col-lg-6 pe-lg-5 text-center text-md-start">
+            <div class="col-12 col-md-6 col-lg-6 pe-lg-5 text-center text-md-start"
+                 {{ stimulus_controller('carousel-autoplay', {
+                     pauseLabel: 'a11y_carousel_pause'|trans,
+                     playLabel: 'a11y_carousel_play'|trans,
+                 }) }}>
                 <h2 class="h2 text-primary pb-1 text-uppercase">{{ 'home_reconnect_centers_title'| trans }}</h2>
                 <p class="text-primary">{{ 'home_reconnect_centers_p'| trans }}</p>
-                <div id="carousel-reconnect-centers" class="carousel slide py-3 mx-auto" data-bs-ride="carousel">
+                <div id="carousel-reconnect-centers" class="carousel slide py-3 mx-auto" data-bs-ride="carousel"
+                     {{ stimulus_target('carousel-autoplay', 'carousel') }}>
                     <div class="carousel-inner">
                         <div class="carousel-item active text-center">
                             <img src="{{ asset('build/images/home/logo-samu-social.jpg') }}"
@@ -43,6 +48,14 @@
                     <button class="carousel-control-next border-0 bg-transparent w-0" type="button" data-bs-target="#carousel-reconnect-centers" data-bs-slide="next">
                         <i class="text-primary fas fa-angle-right font-size-2" aria-hidden="true"></i>
                         <span class="visually-hidden">{{ 'next'|trans }}</span>
+                    </button>
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-link p-1 text-primary" hidden
+                            {{ stimulus_target('carousel-autoplay', 'button') }}
+                            {{ stimulus_action('carousel-autoplay', 'toggle') }}>
+                        <i class="fas fa-pause" aria-hidden="true" {{ stimulus_target('carousel-autoplay', 'icon') }}></i>
+                        <span class="visually-hidden" {{ stimulus_target('carousel-autoplay', 'label') }}>{{ 'a11y_carousel_pause'|trans }}</span>
                     </button>
                 </div>
             </div>

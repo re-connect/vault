@@ -6,15 +6,15 @@
         <ul class="row text-center mx-auto list-unstyled mb-0">
             <li class="col-12 col-sm-3 my-1">
                 <a class="d-block text-decoration-none" target="_blank"
-                   href="{{ path('re_admin_annexe', { url: 'cgu-reconnect'}) }}">{{ 'website_CGS' | trans }}</a>
+                   href="{{ path('re_admin_annexe', { url: 'cgu-reconnect'}) }}">{{ 'website_CGS' | trans }} <span class="visually-hidden">{{ 'a11y_new_window'|trans }}</span></a>
             </li>
             <li class="col-12 col-sm-4 my-1">
                 <a class="d-block text-decoration-none" target="_blank"
-                   href="{{ path('re_admin_annexe', { url: 'confidentialite-reconnect'}) }}">{{ 'website_confidentiality' | trans }}</a>
+                   href="{{ path('re_admin_annexe', { url: 'confidentialite-reconnect'}) }}">{{ 'website_confidentiality' | trans }} <span class="visually-hidden">{{ 'a11y_new_window'|trans }}</span></a>
             </li>
             <li class="col-12 col-sm-3 my-1">
                 <a class="d-block text-decoration-none" target="_blank"
-                   href="{{ path('re_admin_annexe', { url: 'mentions-legales'}) }}">{{ 'website_legal' | trans }}</a>
+                   href="{{ path('re_admin_annexe', { url: 'mentions-legales'}) }}">{{ 'website_legal' | trans }} <span class="visually-hidden">{{ 'a11y_new_window'|trans }}</span></a>
             </li>
             <li class="col-12 col-sm-1 my-1">
                 {{ include('home/_language-selector.html.twig') }}

@@ -30,6 +30,7 @@
 </head>
 
 <body class="preload {% block bodyClass %}{% endblock bodyClass %}">
+{{ include('v2/common/_skip_link.html.twig') }}
 
 <div id="wrapper{% if app.user %}Connected{% endif %}">
     {% include('home/header.html.twig') %}

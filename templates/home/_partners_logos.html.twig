@@ -18,7 +18,7 @@
             >
         {% endset %}
         {% if partner.url is defined %}
-            <a href="{{ partner.url }}" target="_blank" rel="noopener noreferrer">{{ logo }}</a>
+            <a href="{{ partner.url }}" target="_blank" rel="noopener noreferrer">{{ logo }} <span class="visually-hidden">{{ 'a11y_new_window'|trans }}</span></a>
         {% else %}
             {{ logo }}
         {% endif %}
