@@ -24,13 +24,14 @@
                    href="{{ link.url }}"
                 >
                     {{ link.name|trans }}
+                    {% if link.target == '_blank' %}<span class="visually-hidden">{{ 'a11y_new_window'|trans }}</span>{% endif %}
                 </a>
             </li>
         {% endfor %}
     </ul>
     <ul class="list-unstyled mb-3">
         {% for link in icon_links %}
-            <li class="d-inline"><a target="_blank" href="{{ link.url }}"><i class="fab fa-{{ link.icon }} font-size-1-3 mx-1" aria-hidden="true"></i><span class="visually-hidden">{{ link.name }}</span></a></li>
+            <li class="d-inline"><a target="_blank" href="{{ link.url }}"><i class="fab fa-{{ link.icon }} font-size-1-3 mx-1" aria-hidden="true"></i><span class="visually-hidden">{{ link.name }} {{ 'a11y_new_window'|trans }}</span></a></li>
         {% endfor %}
     </ul>
 </div>

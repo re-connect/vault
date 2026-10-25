@@ -9,7 +9,7 @@
         {% for link in links %}
             <li>
                 <a target="_blank" class="d-block text-decoration-none my-3"
-                   href="{{ path('re_admin_annexe', { url: link.url}) }}">{{ link.name|trans }}</a>
+                   href="{{ path('re_admin_annexe', { url: link.url}) }}">{{ link.name|trans }} <span class="visually-hidden">{{ 'a11y_new_window'|trans }}</span></a>
             </li>
         {% endfor %}
     </ul>

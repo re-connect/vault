@@ -12,6 +12,7 @@
             {{ form_start(form, {
                 attr: {class: 'display-required-labels'}
             }) }}
+            {{ include('v2/common/_required_fields_notice.html.twig', {form}) }}
             {{ form_widget(form) }}
             <button type="submit" data-turbo="false" class="btn btn-blue text-white mt-3 w-100">
                 {{ 'search'|trans }}
