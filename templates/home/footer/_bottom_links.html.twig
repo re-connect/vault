@@ -19,6 +19,10 @@
             <li class="col-12 col-sm-1 my-1">
                 {{ include('home/_language-selector.html.twig') }}
             </li>
+            <li class="col-12 col-sm-3 my-1">
+                <a class="d-block text-decoration-none"
+                   href="{{ path('sitemap') }}">{{ 'sitemap_title' | trans }}</a>
+            </li>
         </ul>
     </div>
 </div>
