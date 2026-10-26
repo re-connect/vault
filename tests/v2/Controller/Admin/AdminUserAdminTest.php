@@ -2,6 +2,8 @@
 
 namespace App\Tests\v2\Controller\Admin;
 
+use App\DataFixtures\v2\AdminFixture;
+use App\DataFixtures\v2\SuperAdminFixture;
 use App\Entity\User;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
@@ -67,24 +69,30 @@ class AdminUserAdminTest extends AbstractControllerTest
     }
 
     /**
-     * @dataProvider provideTestAccessCreateAdminPage
+     * @dataProvider provideTestAccessAdminPage
      */
-    public function testCanAccessCreateAdminPage(string $email, bool $canAccess): void
+    public function testAccessAdminPage(string $url, string $email, int $expectedStatusCode): void
     {
-        $client = $this->assertRoute('/admin/dashboard', 200, $email);
-        $client->request('GET', '/admin/app/user/create');
-
-        if ($canAccess) {
-            $this->assertResponseIsSuccessful();
-        } else {
-            $this->assertEquals(403, $client->getResponse()->getStatusCode());
-        }
+        $this->assertRoute($url, $expectedStatusCode, $email);
     }
 
-    public function provideTestAccessCreateAdminPage(): \Generator
+    public static function provideTestAccessAdminPage(): \Generator
     {
-        yield 'Should access admin create page with super admin user' => ['super_admin@mail.com', true];
-        //        yield 'Should not access admin create page with admin user' => ['admin@mail.com', false];
+        $superAdminPages = [
+            'admin list' => '/admin/app/user/list',
+            'admin create' => '/admin/app/user/create',
+            'feature flag list' => '/admin/app/featureflag/list',
+            'folder icon list' => '/admin/app/foldericon/list',
+            'client list' => '/admin/app/client/list',
+        ];
+
+        foreach ($superAdminPages as $page => $url) {
+            yield sprintf('Should access %s page with super admin user', $page) => [$url, SuperAdminFixture::SUPER_ADMIN_MAIL, 200];
+            yield sprintf('Should not access %s page with admin user', $page) => [$url, AdminFixture::ADMIN_MAIL, 403];
+        }
+
+        yield 'Should access beneficiary list page with admin user' => ['/admin/app/beneficiaire/list', AdminFixture::ADMIN_MAIL, 200];
+        yield 'Should access beneficiary client list page with admin user' => ['/admin/app/clientbeneficiaire/list', AdminFixture::ADMIN_MAIL, 200];
     }
 
     /**
