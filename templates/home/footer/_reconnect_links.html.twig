@@ -6,12 +6,12 @@
 ] %}
 
 {% set icon_links = [
-    {icon: 'facebook-square', url: 'https://www.facebook.com/reconnectlecloudsolidaire'},
-    {icon: 'linkedin', url: 'https://www.linkedin.com/company/reconnect_2/'},
-    {icon: 'twitter-square', url: 'https://twitter.com/ReconnectCloud'},
-    {icon: 'youtube-square', url: 'https://www.youtube.com/channel/UCYQOlpeG9KrVvCiKHgUNZcA'},
-    {icon: 'medium', url: 'https://medium.com/reconnect'},
-    {icon: 'github', url: 'https://github.com/re-connect/vault'},
+    {icon: 'facebook-square', name: 'Facebook', url: 'https://www.facebook.com/reconnectlecloudsolidaire'},
+    {icon: 'linkedin', name: 'LinkedIn', url: 'https://www.linkedin.com/company/reconnect_2/'},
+    {icon: 'twitter-square', name: 'X (Twitter)', url: 'https://twitter.com/ReconnectCloud'},
+    {icon: 'youtube-square', name: 'YouTube', url: 'https://www.youtube.com/channel/UCYQOlpeG9KrVvCiKHgUNZcA'},
+    {icon: 'medium', name: 'Medium', url: 'https://medium.com/reconnect'},
+    {icon: 'github', name: 'GitHub', url: 'https://github.com/re-connect/vault'},
 ] %}
 
 <div class="col-12 mt-1 pb-1 text-center col-sm-3 text-sm-start">
@@ -26,7 +26,7 @@
     {% endfor %}
     <div class="mb-3">
         {% for link in icon_links %}
-            <a target="_blank" href="{{ link.url }}"><i class="fab fa-{{ link.icon }} font-size-1-3 mx-1"></i></a>
+            <a target="_blank" href="{{ link.url }}"><i class="fab fa-{{ link.icon }} font-size-1-3 mx-1" aria-hidden="true"></i><span class="visually-hidden">{{ link.name }}</span></a>
         {% endfor %}
     </div>
 </div>
