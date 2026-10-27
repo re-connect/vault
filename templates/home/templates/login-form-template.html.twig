@@ -1,5 +1,5 @@
 <div class="{{ bg_class }} box-shadow-white border-radius-20 p-3 mt-4 mt-md-0">
-    <h6 class="text-white text-center mb-3 lighter font-size-1-2 fw-bold">{{ 'login_form_title'| trans }}</h6>
+    <h2 class="h6 text-white text-center mb-3 lighter font-size-1-2 fw-bold">{{ 'login_form_title'| trans }}</h2>
     {% for label, messages in app.flashes(['success', 'danger']) %}
         {% for message in messages %}
             <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
