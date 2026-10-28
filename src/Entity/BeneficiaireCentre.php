@@ -33,12 +33,12 @@ class BeneficiaireCentre extends UserCentre
     #[ORM\ManyToOne(targetEntity: Beneficiaire::class, inversedBy: 'beneficiairesCentres')]
     #[ORM\JoinColumn(name: 'beneficiaire_id', referencedColumnName: 'id', nullable: false)]
     #[Groups(['v3:center:read', 'v3:center:write'])]
-    private Beneficiaire $beneficiaire;
+    private ?Beneficiaire $beneficiaire = null;
 
     #[ORM\ManyToOne(targetEntity: Centre::class, inversedBy: 'beneficiairesCentres')]
     #[ORM\JoinColumn(name: 'centre_id', referencedColumnName: 'id', nullable: false)]
     #[Groups(['v3:center:read', 'v3:center:write'])]
-    private Centre $centre;
+    private ?Centre $centre = null;
 
     #[ORM\OneToOne(mappedBy: 'beneficiaireCentre', targetEntity: ClientBeneficiaire::class, cascade: ['persist', 'remove'])]
     private ?ClientBeneficiaire $externalLink = null;
@@ -56,7 +56,7 @@ class BeneficiaireCentre extends UserCentre
         return $this;
     }
 
-    public function getBeneficiaire(): Beneficiaire
+    public function getBeneficiaire(): ?Beneficiaire
     {
         return $this->beneficiaire;
     }
