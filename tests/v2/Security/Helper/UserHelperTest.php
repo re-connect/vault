@@ -20,8 +20,8 @@ class UserHelperTest extends KernelTestCase
     protected function setUp(): void
     {
         $this->userHelper = $this->getContainer()->get(UserHelper::class);
-        $this->beneficiary = BeneficiaireFactory::createOne()->_real();
-        $this->membre = MembreFactory::createOne()->_real();
+        $this->beneficiary = BeneficiaireFactory::createOne();
+        $this->membre = MembreFactory::createOne();
     }
 
     public function testCanManageBeneficiary(): void
@@ -29,7 +29,7 @@ class UserHelperTest extends KernelTestCase
         // No relay common
         self::assertFalse($this->userHelper->canUpdateBeneficiary($this->membre->getUser(), $this->beneficiary));
 
-        $relay = RelayFactory::createOne()->_real();
+        $relay = RelayFactory::createOne();
         $this->beneficiary->addBeneficiaryRelayForRelay($relay);
         $this->membre->addMembresCentre((new MembreCentre())->setMembre($this->membre)->setCentre($relay));
 

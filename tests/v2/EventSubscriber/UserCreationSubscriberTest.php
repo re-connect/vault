@@ -7,6 +7,7 @@ use App\Entity\Beneficiaire;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\MembreFactory;
 use App\Tests\Factory\RelayFactory;
+use App\Tests\Factory\UserFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -27,14 +28,12 @@ class UserCreationSubscriberTest extends KernelTestCase
     public function testFormatUsername(): void
     {
         /** @var Beneficiaire $beneficiary */
-        $beneficiary = BeneficiaireFactory::createOne()->_real();
-        $user = $beneficiary->getUser();
-        $expectedUsername = sprintf('%s.%s.%s',
-            strtolower($user->getPrenom()),
-            strtolower($user->getNom()),
-            $beneficiary->getDateNaissanceStr()
-        );
-        $this->assertEquals($expectedUsername, $user->getUsername());
+        $beneficiary = BeneficiaireFactory::createOne([
+            'user' => UserFactory::new(['prenom' => 'Jean-Éric', 'nom' => "O'Hara"]),
+            'dateNaissance' => new \DateTime('1990-12-23'),
+        ]);
+
+        $this->assertSame('jeaneric.ohara.23/12/1990', $beneficiary->getUser()->getUsername());
     }
 
     /**
@@ -42,15 +41,14 @@ class UserCreationSubscriberTest extends KernelTestCase
      */
     public function testAddCreatorRelay(ObjectFactory $modelFactory): void
     {
-        $loggedUser = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->_real()->getUser();
+        $loggedUser = MembreFactory::findByEmail(MemberFixture::MEMBER_MAIL_WITH_RELAYS)->getUser();
         $this->securityMock->method('getUser')->willReturn($loggedUser);
         self::getContainer()->set(Security::class, $this->securityMock);
 
-        $relay = RelayFactory::createOne()->_real();
+        $relay = RelayFactory::createOne();
         $subject = $modelFactory
             ->linkToRelays([$relay])
-            ->create()
-            ->_real();
+            ->create();
 
         $createdUser = $subject->getUser();
         $this->assertEquals(

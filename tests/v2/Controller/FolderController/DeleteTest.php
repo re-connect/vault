@@ -33,7 +33,7 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
         array $body = [],
     ): void {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
-        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => null])->_real();
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => null]);
 
         $url = sprintf($url, $folder->getId());
         $expectedRedirect = $expectedRedirect ? sprintf($expectedRedirect, $beneficiary->getId()) : null;
@@ -41,7 +41,7 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $newFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
+            $newFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true]);
             $newUrl = sprintf(self::URL, $newFolder->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
         }
@@ -50,8 +50,8 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
     public function testShouldRedirectToParentFolderAfterDelete(): void
     {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
-        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => null])->_real();
-        $subFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => $folder])->_real();
+        $folder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => null]);
+        $subFolder = FolderFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false, 'dossierParent' => $folder]);
         $this->assertNotNull($subFolder);
 
         $url = sprintf(self::URL, $subFolder->getId());

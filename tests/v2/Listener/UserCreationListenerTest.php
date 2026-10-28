@@ -37,7 +37,7 @@ class UserCreationListenerTest extends AuthenticatedTestCase
     public function testShouldFormatBeneficiaryUsername(): void
     {
         // Test standard username
-        $beneficiary = BeneficiaireFactory::createOne()->_real();
+        $beneficiary = BeneficiaireFactory::createOne();
         $user = $beneficiary->getUser();
         $expectedUsername = strtolower(
             sprintf(
@@ -72,7 +72,7 @@ class UserCreationListenerTest extends AuthenticatedTestCase
     public function testShouldFormatProUsername(): void
     {
         // Test standard username
-        $pro = MembreFactory::createOne()->_real();
+        $pro = MembreFactory::createOne();
         $user = $pro->getUser();
         $expectedUsername = strtolower(
             sprintf(
@@ -161,7 +161,7 @@ class UserCreationListenerTest extends AuthenticatedTestCase
     /** @dataProvider providePhoneNumbers */
     public function testShouldFormatUserPhoneNumber(string $phoneNumber, string $expectedResult): void
     {
-        $user = UserFactory::createOne(['telephone' => $phoneNumber])->_real();
+        $user = UserFactory::createOne(['telephone' => $phoneNumber]);
         $this->assertEquals($expectedResult, $user->getTelephone());
     }
 

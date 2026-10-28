@@ -23,11 +23,11 @@ class ClientBeneficiaryFixture extends Fixture implements FixtureGroupInterface,
             if ('reconnect_pro' === $client->getNom()) {
                 continue;
             }
-            $externalLink = (new ClientBeneficiaire($client->_real(), $beneficiary->getId()))->setEntity($beneficiary);
+            $externalLink = (new ClientBeneficiaire($client, $beneficiary->getId()))->setEntity($beneficiary);
             $manager->persist($externalLink);
         }
 
-        $client = ClientFactory::find(['nom' => 'reconnect_pro'])->_real();
+        $client = ClientFactory::find(['nom' => 'reconnect_pro']);
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_RP_LINK);
         $reconnectProExternalLink = (new ClientBeneficiaire($client, $beneficiary->getId()))->setEntity($beneficiary)->setBeneficiaireCentre($beneficiary->getBeneficiairesCentres()->first() ?: null);
         $manager->persist($reconnectProExternalLink);

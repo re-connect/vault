@@ -22,7 +22,7 @@ class UserCheckerTest extends KernelTestCase
 
     public function testDisableUserThrowException(): void
     {
-        $user = UserFactory::findOrCreate(['enabled' => false])->_real();
+        $user = UserFactory::findOrCreate(['enabled' => false]);
 
         $this->expectException(CustomUserMessageAccountStatusException::class);
         $this->userChecker->checkPreAuth($user);
@@ -30,7 +30,7 @@ class UserCheckerTest extends KernelTestCase
 
     public function testEnableUserDoesNotThrowException(): void
     {
-        $user = UserFactory::findOrCreate(['enabled' => true])->_real();
+        $user = UserFactory::findOrCreate(['enabled' => true]);
 
         // Test will generate error if userChecker trows an exception
         $this->expectNotToPerformAssertions();

@@ -30,55 +30,55 @@ class CreatorListenerTest extends AuthenticatedKernelTestCase
     /** @dataProvider provideTestCreatorListener */
     public function testContactCreator(string $email): void
     {
-        $user = UserFactory::find(['email' => $email])->_real();
+        $user = UserFactory::find(['email' => $email]);
         $this->loginUser($email);
 
-        ContactFactory::createOne()->_real();
+        ContactFactory::createOne();
 
-        self::assertSame(ContactFactory::last()->_real()->getCreatorUser()->getEntity()->getId(), $user->getId());
+        self::assertSame(ContactFactory::last()->getCreatorUser()->getEntity()->getId(), $user->getId());
     }
 
     /** @dataProvider provideTestCreatorListener */
     public function testNoteCreator(string $email): void
     {
-        $user = UserFactory::find(['email' => $email])->_real();
+        $user = UserFactory::find(['email' => $email]);
         $this->loginUser($email);
 
-        NoteFactory::createOne()->_real();
+        NoteFactory::createOne();
 
-        self::assertSame(NoteFactory::last()->_real()->getCreatorUser()->getEntity()->getId(), $user->getId());
+        self::assertSame(NoteFactory::last()->getCreatorUser()->getEntity()->getId(), $user->getId());
     }
 
     /** @dataProvider provideTestCreatorListener */
     public function testEventCreator(string $email): void
     {
-        $user = UserFactory::find(['email' => $email])->_real();
+        $user = UserFactory::find(['email' => $email]);
         $this->loginUser($email);
 
-        EventFactory::createOne()->_real();
+        EventFactory::createOne();
 
-        self::assertSame(EventFactory::last()->_real()->getCreatorUser()->getEntity()->getId(), $user->getId());
+        self::assertSame(EventFactory::last()->getCreatorUser()->getEntity()->getId(), $user->getId());
     }
 
     /** @dataProvider provideTestCreatorListener */
     public function testFolderCreator(string $email): void
     {
-        $user = UserFactory::find(['email' => $email])->_real();
+        $user = UserFactory::find(['email' => $email]);
         $this->loginUser($email);
 
-        FolderFactory::createOne()->_real();
+        FolderFactory::createOne();
 
-        self::assertSame(FolderFactory::last()->_real()->getCreatorUser()->getEntity()->getId(), $user->getId());
+        self::assertSame(FolderFactory::last()->getCreatorUser()->getEntity()->getId(), $user->getId());
     }
 
     /** @dataProvider provideTestCreatorListener */
     public function testDocumentCreator(string $email): void
     {
-        $user = UserFactory::find(['email' => $email])->_real();
+        $user = UserFactory::find(['email' => $email]);
         $this->loginUser($email);
 
-        DocumentFactory::createOne()->_real();
+        DocumentFactory::createOne();
 
-        self::assertSame(DocumentFactory::last()->_real()->getCreatorUser()->getEntity()->getId(), $user->getId());
+        self::assertSame(DocumentFactory::last()->getCreatorUser()->getEntity()->getId(), $user->getId());
     }
 }
