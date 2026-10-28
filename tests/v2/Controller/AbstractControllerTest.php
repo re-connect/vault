@@ -10,6 +10,8 @@ use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Translation\DataCollectorTranslator;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+use function Zenstruck\Foundry\Persistence\refresh;
+
 abstract class AbstractControllerTest extends AuthenticatedTestCase
 {
     protected static TranslatorInterface $translator;
@@ -123,7 +125,10 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
 
     public function getTestUserFromDb(string $email): User
     {
-        return UserFactory::find(['email' => $email])->_real();
+        $user = UserFactory::find(['email' => $email]);
+        refresh($user);
+
+        return $user;
     }
 
     /**

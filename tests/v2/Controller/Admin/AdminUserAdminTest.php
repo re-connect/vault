@@ -17,7 +17,7 @@ class AdminUserAdminTest extends AbstractControllerTest
     private function createUserByRole(string $role): User
     {
         /** @var User $user */
-        $user = UserFactory::createOne()->_real();
+        $user = UserFactory::createOne();
 
         /** @var UserPasswordHasherInterface $hasher */
         $hasher = self::getContainer()->get(UserPasswordHasherInterface::class);

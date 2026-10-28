@@ -15,7 +15,7 @@ class NoteApiV3Test extends AbstractApiTest
      */
     public function testGetCollection(string $clientName): void
     {
-        $client = ClientFactory::find(['nom' => $clientName])->_real();
+        $client = ClientFactory::find(['nom' => $clientName]);
         $beneficiaries = $this->beneficiaireRepository->findByClientIdentifier($client->getRandomId());
         $notesCount = 0;
         foreach ($beneficiaries as $beneficiary) {
@@ -91,7 +91,7 @@ class NoteApiV3Test extends AbstractApiTest
         $note = NoteFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->_real();
+        ]);
 
         $this->assertEndpoint(
             $clientName,
@@ -120,7 +120,7 @@ class NoteApiV3Test extends AbstractApiTest
         $note = NoteFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->_real();
+        ]);
 
         $this->assertEndpointAccessIsDenied(
             $clientName,
@@ -225,7 +225,7 @@ class NoteApiV3Test extends AbstractApiTest
         $note = NoteFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->_real();
+        ]);
         $noteId = $note->getId();
 
         $this->assertEndpoint(
@@ -260,7 +260,7 @@ class NoteApiV3Test extends AbstractApiTest
         $note = NoteFactory::findOrCreate([
             'beneficiaire' => $beneficiary,
             'bPrive' => false,
-        ])->_real();
+        ]);
         $noteId = $note->getId();
 
         $this->assertEndpointAccessIsDenied(
@@ -293,7 +293,7 @@ class NoteApiV3Test extends AbstractApiTest
         $this->markTestSkipped('Notes api ressource is currently disabled');
         $note = NoteFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ])->_real();
+        ]);
 
         $updatedProperties = [
             'nom' => 'testNomPUT',
@@ -322,7 +322,7 @@ class NoteApiV3Test extends AbstractApiTest
         $this->markTestSkipped('Notes api ressource is currently disabled');
         $note = NoteFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ])->_real();
+        ]);
 
         $updatedProperties = [
             'nom' => 'testNomPATCH',
@@ -351,7 +351,7 @@ class NoteApiV3Test extends AbstractApiTest
         $this->markTestSkipped('Notes api ressource is currently disabled');
         $note = NoteFactory::findOrCreate([
             'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
-        ])->_real();
+        ]);
 
         $this->assertEndpoint(
             'rosalie',

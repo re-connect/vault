@@ -113,7 +113,7 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $this->loginUser($userMail);
 
-        $sharedFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
+        $sharedFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false]);
         $file = $this->getDummyFile();
         $this->securityMock->method('getUser')->willReturn($this->getTestUserFromDb($userMail));
         $document = $this->getPrivateMethod(DocumentManager::class, 'createDocumentFromFile')->invokeArgs(
@@ -135,7 +135,7 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $this->loginUser(BeneficiaryFixture::BENEFICIARY_MAIL);
 
-        $privateFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
+        $privateFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true]);
         $file = $this->getDummyFile();
         $this->securityMock->method('getUser')->willReturn($this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL));
         $document = $this->getPrivateMethod(DocumentManager::class, 'createDocumentFromFile')->invokeArgs(

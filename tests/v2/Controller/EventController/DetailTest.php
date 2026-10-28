@@ -33,13 +33,13 @@ class DetailTest extends AbstractControllerTest implements TestRouteInterface
         array $body = [],
     ): void {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
-        $publicEvent = EventFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false])->_real();
+        $publicEvent = EventFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => false]);
         $url = sprintf($url, $publicEvent->getId());
         $this->assertRoute($url, $expectedStatusCode, $userMail, $expectedRedirect, $method);
 
         // Also check that authorized Pro can't update private data
         if (MemberFixture::MEMBER_MAIL_WITH_RELAYS_SHARED_WITH_BENEFICIARIES === $userMail) {
-            $privateEvent = EventFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true])->_real();
+            $privateEvent = EventFactory::findOrCreate(['beneficiaire' => $beneficiary, 'bPrive' => true]);
             $newUrl = sprintf(self::URL, $privateEvent->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method);
         }
