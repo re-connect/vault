@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center align-items-center">
-    <i class="fas fa-lock{{ private ? ' text-primary' : '-open text-light-grey' }} me-2"
+    <i class="fas fa-lock{{ private ? ' text-primary' : '-open text-light-grey' }} me-2" aria-hidden="true"
        {{ stimulus_target('ajax-toggle', 'icon') }}
        data-toggle-classes='text-light-grey fa-lock-open fa-lock'
        data-next-toggle-tooltip='{{ private ? '' : 'private'|trans }}'
@@ -20,13 +20,13 @@
             data-cancel-text="{{ 'cancel'|trans }}"
         {% endif %}
     >
-        <input type="checkbox"
+        <input type="checkbox" role="switch" aria-label="{{ 'shared'|trans }}"
                class="form-check-input form-check-vault-visibility text-white me-0"
                {{ stimulus_action('ajax-toggle', 'toggle') }}
                 {{ private ? '' : 'checked' }}
         >
     </div>
-    <i class="fas fa-share {{ private ? 'text-light-grey' : 'text-green' }}"
+    <i class="fas fa-share {{ private ? 'text-light-grey' : 'text-green' }}" aria-hidden="true"
         {{ stimulus_target('ajax-toggle', 'icon') }}
        data-toggle-classes='text-light-grey text-green'
        data-next-toggle-tooltip='{{ private ? 'shared'|trans : '' }}'
