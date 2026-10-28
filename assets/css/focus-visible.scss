@@ -1,0 +1,39 @@
+// Visible keyboard focus indicator (RGAA 10.7, WCAG 2.4.7).
+// Some layouts remove the default outline on :focus; :focus-visible restores an
+// indicator for keyboard navigation only, so mouse clicks keep their current look.
+a,
+button,
+input,
+select,
+textarea,
+summary,
+label,
+[tabindex],
+[role="button"],
+[role="switch"],
+[contenteditable="true"] {
+  &:focus-visible {
+    outline: 3px solid #203468 !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 5px #ffffff !important;
+  }
+}
+
+.bg-primary,
+.bg-blue,
+.bg-green,
+.bg-secondary,
+.text-white {
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  [tabindex],
+  [role="button"] {
+    &:focus-visible {
+      outline-color: #ffffff !important;
+      box-shadow: 0 0 0 5px #203468 !important;
+    }
+  }
+}
