@@ -13,7 +13,7 @@
     {{ kind|split('-')|filter((i) => i in route ) ? 'current-item' : '' }}" title="{{ title|trans }}"
     >
         <img src="{{ asset(image) }}"
-             alt="{{ title|trans }}"
+             alt="{{ isBeneficiary ? '' : title|trans }}"
              class="img-{{ kind }} {{ isBeneficiary ? 'd-none d-sm-inline' : '' }}"
         >
         {% if isBeneficiary %}
