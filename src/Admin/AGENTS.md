@@ -26,3 +26,33 @@
   `AdminUserAdmin` pour n'importe quel utilisateur. `user_simple` n'est utilisé qu'en formulaire intégré (`admin_code`).
 - `AdminUserAdmin::configureQuery()` ne filtre que la liste, pas l'édition par id.
 - `User::setTypeUser()` remplace tous les rôles (`setRoles([$typeUser])`).
+
+## Collections inline et bouton « + Ajouter »
+
+- Le bouton envoie **tout le formulaire parent** en AJAX vers `/admin/core/append-form-field-element`
+  (`AppendFormFieldElementAction` de Sonata → `AdminHelper::appendFormFieldElement()`).
+- En création, pas d'`objectId` : Sonata part de `getNewInstance()`, soumet les données postées (`handleRequest`),
+  puis reconstruit le formulaire pour afficher la nouvelle ligne. Conséquences pour `configureFormFields()` :
+  - appelée deux fois par clic : pas d'effet de bord ;
+  - `isCurrentRoute('create')` et `isCurrentRoute('edit')` valent `false` pendant cet appel (route `sonata_admin_append_form_element`) ;
+  - l'entité de la ligne est neuve : toute propriété lue par son `*CentreAdmin` doit être initialisée (`?Type $x = null`),
+    sinon « must not be accessed before initialization » et le clic renvoie une 500.
+- Modèle : `MembreCentre` (`?Membre $membre = null`, `?Centre $centre = null`). `BeneficiaireCentre` a été corrigé
+  de la même façon, avec `#[Assert\NotNull]` pour continuer à refuser une ligne incomplète.
+- Un setter qui reçoit `null` à la soumission doit correspondre au type de sa propriété : un champ vidé qui arrive
+  sur une propriété non nullable renvoie aussi une 500.
+
+## Tests fonctionnels de formulaires
+
+- Poster ce que le navigateur envoie (exemple : `tests/v2/Controller/Admin/BeneficiaireAdminTest.php`) :
+  - fixer le nom du formulaire avec `?uniqid=<valeur>` : les champs deviennent `<uniqid>[user][nom]` ;
+  - lire le jeton CSRF dans `input[name="<uniqid>[_token]"]` sur la page en GET ;
+  - envoyer aussi les champs préremplis : un champ absent arrive à `null` dans les setters et fait échouer le test pour une autre raison ;
+  - `BirthdayType` est en `single_text` : envoyer `Y-m-d` (`1990-01-01`).
+- Couvrir « + Ajouter » en création (sans `objectId`) et en modification (avec `objectId`).
+
+## Dette connue
+
+- `MembreAdmin::preUpdate()` utilise `Query::HINT_FORCE_PARTIAL_LOAD` (retiré dans Doctrine ORM 3) et concatène l'id
+  dans le DQL : ne pas recopier, utiliser un paramètre lié.
+- `MembreAdmin` passe l'option `admin_code_external_links`, qui n'est pas une option Sonata.
