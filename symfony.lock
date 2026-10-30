@@ -136,9 +136,6 @@
     "erkens/2fa-text": {
         "version": "v2.2.0"
     },
-    "ezyang/htmlpurifier": {
-        "version": "v4.14.0"
-    },
     "fakerphp/faker": {
         "version": "v1.17.0"
     },
