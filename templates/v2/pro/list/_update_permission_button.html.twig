@@ -39,6 +39,7 @@
                         {{ stimulus_controller('tooltip', {title: currentUserRelay ? permission.tooltip : 'you_must_select_center_for_right_update'|trans}) }}
                     >
                     </i>
+                    <i class="fas fa-{{ permission.isOwned ? 'check' : 'times' }} text-{{ permission.isOwned ? 'primary' : 'grey' }}" aria-hidden="true"></i>
                 </button>
             {% if currentUserRelay %}
                 </form>
