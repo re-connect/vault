@@ -3,16 +3,22 @@
         <p class="my-1 font-size-1">{{ 'now' | date('Y') }} {{ 'footer_copyright' | trans }}</p>
     </div>
     <div class="col-12 col-sm-8">
-        <div class="row text-center  mx-auto">
-            <a class="col-12 col-sm-3 text-decoration-none my-1" target="_blank"
-               href="{{ path('re_admin_annexe', { url: 'cgu-reconnect'}) }}">{{ 'website_CGS' | trans }}</a>
-            <a class="col-12 col-sm-4 text-decoration-none my-1" target="_blank"
-               href="{{ path('re_admin_annexe', { url: 'confidentialite-reconnect'}) }}">{{ 'website_confidentiality' | trans }}</a>
-            <a class="col-12 col-sm-3 text-decoration-none my-1" target="_blank"
-               href="{{ path('re_admin_annexe', { url: 'mentions-legales'}) }}">{{ 'website_legal' | trans }}</a>
-            <div class="col-12 col-sm-1 my-1">
+        <ul class="row text-center mx-auto list-unstyled mb-0">
+            <li class="col-12 col-sm-3 my-1">
+                <a class="d-block text-decoration-none" target="_blank"
+                   href="{{ path('re_admin_annexe', { url: 'cgu-reconnect'}) }}">{{ 'website_CGS' | trans }}</a>
+            </li>
+            <li class="col-12 col-sm-4 my-1">
+                <a class="d-block text-decoration-none" target="_blank"
+                   href="{{ path('re_admin_annexe', { url: 'confidentialite-reconnect'}) }}">{{ 'website_confidentiality' | trans }}</a>
+            </li>
+            <li class="col-12 col-sm-3 my-1">
+                <a class="d-block text-decoration-none" target="_blank"
+                   href="{{ path('re_admin_annexe', { url: 'mentions-legales'}) }}">{{ 'website_legal' | trans }}</a>
+            </li>
+            <li class="col-12 col-sm-1 my-1">
                 {{ include('home/_language-selector.html.twig') }}
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 </div>
