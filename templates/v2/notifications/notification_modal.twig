@@ -20,7 +20,7 @@
                             {{ 'cancel'|trans }}
                         </a>
                     {% else %}
-                        <button type="button" class="btn btn-blue text-white" data-bs-dismiss="modal" aria-label="Close">
+                        <button type="button" class="btn btn-blue text-white" data-bs-dismiss="modal" aria-label="{{ 'a11y_close'|trans }}">
                             {{ 'cancel'|trans }}
                         </button>
                     {% endif %}
@@ -34,7 +34,7 @@
                             {{ 'continue'|trans }}
                         </a>
                     {% else %}
-                        <button type="button" class="btn {{ getUserButtonColor() }} text-white" data-bs-dismiss="modal" aria-label="Close">
+                        <button type="button" class="btn {{ getUserButtonColor() }} text-white" data-bs-dismiss="modal" aria-label="{{ 'a11y_close'|trans }}">
                             {{ 'continue'|trans }}
                         </button>
                     {% endif %}

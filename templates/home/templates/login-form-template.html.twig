@@ -4,7 +4,7 @@
         {% for message in messages %}
             <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
                 <small>{{ message|trans() }}</small>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ 'a11y_close'|trans }}"></button>
             </div>
         {% endfor %}
     {% endfor %}
