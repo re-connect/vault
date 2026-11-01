@@ -45,7 +45,7 @@ class ChangePasswordFormType extends AbstractType
                 ->add('currentPassword', PasswordType::class, [
                     'label' => 'actual_password',
                     'attr' => [
-                        'autocomplete' => 'new-password',
+                        'autocomplete' => 'current-password',
                     ],
                 ]);
         }
