@@ -3,9 +3,16 @@
 {% elseif document.extension in ['xls', 'xlsx', 'csv'] %}
     {% set url = asset('build/images/icons/excel.PNG') %}
 {% endif %}
+{% set thumbnailUrl = document.thumbnailPresignedUrl ?? url ?? null %}
 
-<div class="d-flex justify-content-center align-items-center rounded thumbnail-size">
-    <img class="img-fluid bg-white rounded shadow-sm p-1 thumbnail-size border rounded" src="{{ document.thumbnailPresignedUrl ?? url ?? '' }}"
-         alt="{{ document.nom }}"
-    />
-</div>
+<span class="d-flex justify-content-center align-items-center rounded thumbnail-size">
+    {% if thumbnailUrl %}
+        <img class="img-fluid bg-white rounded shadow-sm p-1 thumbnail-size border rounded" src="{{ thumbnailUrl }}"
+             alt="{{ document.nom }}"
+        />
+    {% else %}
+        <span class="d-block bg-white rounded shadow-sm p-1 thumbnail-size border rounded">
+            <span class="visually-hidden">{{ document.nom }}</span>
+        </span>
+    {% endif %}
+</span>
