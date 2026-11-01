@@ -20,6 +20,7 @@ class LoginTypeV2 extends AbstractType
                 'attr' => [
                     'autocomplete' => 'username',
                     'placeholder' => 'form_login',
+                    'title' => 'form_login',
                     'class' => 'mb-2 py-1 text-primary lighter fw-bold',
                 ],
             ])
@@ -29,6 +30,7 @@ class LoginTypeV2 extends AbstractType
                 'attr' => [
                     'autocomplete' => 'current-password',
                     'placeholder' => 'password',
+                    'title' => 'password',
                     'class' => 'mb-3 py-1 text-primary lighter fw-bold login-form-password-input',
                 ],
             ])
