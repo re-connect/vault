@@ -1,5 +1,7 @@
 {% extends 'v2/vault/standard_layout.html.twig' %}
 
+{% block metaTitle %}{{ 'events'|trans }} - {{ (event.id ? 'edit' : 'add')|trans }}{% endblock metaTitle %}
+
 {% block metas %}
     <meta name="turbo-cache-control" content="no-preview">
 {% endblock %}
@@ -7,6 +9,7 @@
 {% block content %}
     <div class="container row mx-auto my-4">
         <div class="col-12 col-lg-5 mx-auto text-primary bg-white rounded py-2 shadow">
+            <h1 class="visually-hidden">{{ block('metaTitle') }}</h1>
             {{ component('event_form', {
                 'form': form,
                 'event': event.id ? event : null,

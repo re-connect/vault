@@ -17,13 +17,18 @@
             </div>
             <div class="modal-body text-center">
                     <a href="{{ document.presignedUrl }}" target="_blank">
-                        {% if document.extension == 'pdf' %}
+                        {% if document.extension == 'pdf' and document.thumbnailPresignedUrl %}
                             <img class="img-fluid img-thumbnail" src="{{ document.thumbnailPresignedUrl }}"
                                  alt="{{ document.nom }}"/>
                         {% elseif document.thumbnailPresignedUrl %}
                             <img src="{{ document.presignedUrl }}" alt="{{ document.nom }}" class="img-fluid w-100 border rounded shadow-sm p-1">
+                        {% elseif url is defined %}
+                            <img src="{{ url }}" alt="{{ document.nom }}" class="img-fluid w-100 border rounded shadow-sm p-1" style="max-width: 85px">
                         {% else %}
-                            <img src="{{ url ?? '' }}" alt="{{ document.nom }}" class="img-fluid w-100 border rounded shadow-sm p-1" style="max-width: 85px">
+                            <span class="d-inline-block w-100 border rounded shadow-sm p-1" style="max-width: 85px">
+                                <i class="fas fa-file fa-3x" aria-hidden="true"></i>
+                                <span class="visually-hidden">{{ document.nom }}</span>
+                            </span>
                         {% endif %}
                     </a>
                 <p class="mt-4 mb-0">{{ 'add_date'|trans }} : {{ document.createdAt|date('d/m/Y') }}</p>

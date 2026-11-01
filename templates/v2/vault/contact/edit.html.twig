@@ -1,5 +1,7 @@
 {% extends 'v2/vault/standard_layout.html.twig' %}
 
+{% block metaTitle %}{{ 'contacts'|trans }} - {{ 'edit'|trans }}{% endblock metaTitle %}
+
 {% block metas %}
     <meta name="turbo-cache-control" content="no-preview">
 {% endblock %}
@@ -7,6 +9,7 @@
 {% block content %}
     {{ include('v2/vault/form/_personal_data_form.html.twig', {
         'title': 'edit',
+        section: 'contacts',
         'cancelPath': path('list_contacts', {'id': beneficiary.id})
     }) }}
 {% endblock %}

@@ -16,17 +16,21 @@
 
 <div class="col-12 mt-1 pb-1 text-center col-sm-3 text-sm-start">
     <h5 class="pb-1">Reconnect</h5>
-    {% for link in links %}
-        <a target="{{ link.target }}"
-           class="d-block text-decoration-none my-3"
-           href="{{ link.url }}"
-        >
-            {{ link.name|trans }}
-        </a>
-    {% endfor %}
-    <div class="mb-3">
-        {% for link in icon_links %}
-            <a target="_blank" href="{{ link.url }}"><i class="fab fa-{{ link.icon }} font-size-1-3 mx-1"></i></a>
+    <ul class="list-unstyled mb-0">
+        {% for link in links %}
+            <li>
+                <a target="{{ link.target }}"
+                   class="d-block text-decoration-none my-3"
+                   href="{{ link.url }}"
+                >
+                    {{ link.name|trans }}
+                </a>
+            </li>
         {% endfor %}
-    </div>
+    </ul>
+    <ul class="list-unstyled mb-3">
+        {% for link in icon_links %}
+            <li class="d-inline"><a target="_blank" href="{{ link.url }}"><i class="fab fa-{{ link.icon }} font-size-1-3 mx-1"></i></a></li>
+        {% endfor %}
+    </ul>
 </div>

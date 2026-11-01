@@ -5,8 +5,12 @@
         {name: 'training_internal_rules', url: 'règlement interieur'},
         {name: 'training_information_booklet', url: "Livret d'informations - Formations Reconnect"}
     ] %}
-    {% for link in links %}
-        <a target="_blank" class="d-block text-decoration-none my-3"
-           href="{{ path('re_admin_annexe', { url: link.url}) }}">{{ link.name|trans }}</a>
-    {% endfor %}
+    <ul class="list-unstyled mb-0">
+        {% for link in links %}
+            <li>
+                <a target="_blank" class="d-block text-decoration-none my-3"
+                   href="{{ path('re_admin_annexe', { url: link.url}) }}">{{ link.name|trans }}</a>
+            </li>
+        {% endfor %}
+    </ul>
 </div>

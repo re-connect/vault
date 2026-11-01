@@ -7,12 +7,16 @@
 
 <div class="col-12 mt-1 pb-1 text-center col-sm-3 text-sm-start">
     <h5 class="pb-1">Reconnect Pro</h5>
-    {% for link in links %}
-        <a target="{{ link.target }}"
-           class="d-block text-decoration-none my-3"
-           href="{{ link.url }}"
-        >
-            {{ link.name|trans }}
-        </a>
-    {% endfor %}
+    <ul class="list-unstyled mb-0">
+        {% for link in links %}
+            <li>
+                <a target="{{ link.target }}"
+                   class="d-block text-decoration-none my-3"
+                   href="{{ link.url }}"
+                >
+                    {{ link.name|trans }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
 </div>

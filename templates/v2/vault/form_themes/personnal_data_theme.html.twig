@@ -27,3 +27,8 @@
     {{- form_errors(form) -}}
     </{{ element|default('div') }}>
 {%- endblock %}
+
+{%- block form_label_content -%}
+    {{- parent() -}}
+    {%- if required -%}<span class="required-asterisk" aria-hidden="true">*</span>{%- endif -%}
+{%- endblock form_label_content -%}

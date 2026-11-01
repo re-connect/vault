@@ -3,6 +3,10 @@
 {% block form_row -%}
     {%- if compound is defined and compound -%}
         {%- set element = 'fieldset' -%}
+        {%- if label is same as(false) -%}
+            {#- No legend to give: the fieldset only wraps the fields, it is not exposed as a group -#}
+            {%- set row_attr = row_attr|merge({role: 'presentation'}) -%}
+        {%- endif -%}
     {%- endif -%}
     {%- set widget_attr = {} -%}
     {%- set described_by = help is not empty ? [id ~ '_help'] : [] -%}
@@ -32,6 +36,9 @@
     {% if label is not same as(false) -%}
         {% if not compound -%}
             {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- else -%}
+            {% set element = 'legend' %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' legend-as-label')|trim}) %}
         {%- endif -%}
         {% if required -%}
             {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
@@ -60,6 +67,16 @@
                 {{- label|trans(label_translation_parameters, translation_domain)|raw -}}
             {%- endif -%}
         {%- endif -%}
+        {{- block('required_asterisk') -}}
         </{{ element|default('label') }}>
     {%- endif -%}
 {%- endblock form_label -%}
+
+{%- block form_label_content -%}
+    {{- parent() -}}
+    {{- block('required_asterisk') -}}
+{%- endblock form_label_content -%}
+
+{%- block required_asterisk -%}
+    {%- if required -%}<span class="required-asterisk" aria-hidden="true">*</span>{%- endif -%}
+{%- endblock required_asterisk -%}

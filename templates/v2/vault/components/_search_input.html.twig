@@ -1,11 +1,12 @@
 <div class="mb-2">
     {{ form_start(form, {'attr': {'data-ajax-list-filter-target': 'form'}}) }}
     <div class="input-group rounded-pill border bg-white z-0">
-        <i class="fa fa-search text-grey p-2 input-group-text bg-white rounded-pill border-0"></i>
+        <i class="fa fa-search text-grey p-2 input-group-text bg-white rounded-pill border-0" aria-hidden="true"></i>
         {{ form_widget(form.search, {attr: {
             'data-ajax-list-filter-target': 'input',
             'data-input-name': 'search',
             'data-action': 'ajax-list-filter#filter',
+            'aria-label': 'search'|trans,
         }}) }}
     </div>
     {{ form_end(form) }}
