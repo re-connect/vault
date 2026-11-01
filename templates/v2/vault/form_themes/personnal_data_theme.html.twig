@@ -5,8 +5,14 @@
         {%- set element = 'fieldset' -%}
     {%- endif -%}
     {%- set widget_attr = {} -%}
-    {%- if help is not empty -%}
-        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- set described_by = help is not empty ? [id ~ '_help'] : [] -%}
+    {%- if not compound and errors|length > 0 -%}
+        {%- for error in errors -%}
+            {%- set described_by = described_by|merge([id ~ '_error' ~ loop.index]) -%}
+        {%- endfor -%}
+    {%- endif -%}
+    {%- if described_by is not empty -%}
+        {%- set widget_attr = {attr: attr|merge({'aria-describedby': described_by|join(' ')})|merge(errors|length > 0 and not compound ? {'aria-invalid': 'true'} : {})} -%}
     {%- endif -%}
     {%- set row_class = row_class|default(row_attr.class|default('my-1')|trim) -%}
     <{{ element|default('div') }}{% with {attr: row_attr|merge({class: row_class})} %}{{ block('attributes') }}{% endwith %}>

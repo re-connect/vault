@@ -12,7 +12,7 @@
                 <img src="{{ asset(folder.iconFilePath) }}" style="width: 80px" alt="{{ 'folder_icon'|trans }}" {{ stimulus_target('folder-icon', 'img') }}>
             </div>
         {% endif %}
-        {{ form_start(form) }}
+        {{ form_start(form, {attr: {class: 'display-required-labels'}}) }}
         {{ form_widget(form) }}
         <div class="row mx-1 mt-2">
             {{ link(cancelPath, 'back', 'grey') }}
