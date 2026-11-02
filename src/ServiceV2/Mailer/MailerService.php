@@ -41,6 +41,7 @@ class MailerService implements AuthCodeMailerInterface
         private readonly string $mailerSender,
         private readonly array $adminMails,
         private readonly string $duplicateDefaultRecipient,
+        private readonly string $env,
     ) {
     }
 
@@ -120,13 +121,19 @@ class MailerService implements AuthCodeMailerInterface
 
     public function sendPersonalDataRequestEmail(User $user): void
     {
+        $text = sprintf(
+            'Un utilisateur (id user = %d) vient d’effectuer une demande de récupération de ses données sur le coffre-fort numérique (%s)',
+            $user->getId(),
+            (new \DateTime())->format('d/m/Y à H\hi'),
+        );
+
+        if ('preprod' === $this->env) {
+            $text = sprintf("⚠️ Ce mail a été envoyé depuis l'environnement de préproduction.\n\n%s", $text);
+        }
+
         $email = (new Email())
             ->subject('CFN - Demande de récupération de données')
-            ->text(sprintf(
-                'Un utilisateur (id user = %d) vient d’effectuer une demande de récupération de ses données sur le coffre-fort numérique (%s)',
-                $user->getId(),
-                (new \DateTime())->format('d/m/Y à H\hi'),
-            ))
+            ->text($text)
             ->to(...$this->adminMails);
 
         $this->send($email);
