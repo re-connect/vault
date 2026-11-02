@@ -6,6 +6,7 @@
 {% block metaTitle %}{{ 'my_relays_title'|trans }}{% endblock metaTitle %}
 
 {% block content %}
+    {% if app.user.beneficiaire %}<h1 class="visually-hidden">{{ block('metaTitle') }}</h1>{% endif %}
     <div class="max-width-lg mt-4 m-auto">
         {% block list %}
             {{ userRelays is not empty

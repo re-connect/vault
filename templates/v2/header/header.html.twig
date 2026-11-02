@@ -23,26 +23,29 @@
                     >
                         {% if app.user.isBeneficiaire %}
                             {{ include('v2/header/available_capacity_progress_bar.html.twig') }}
-                        {% else %}
-                            <div class="col-12">
-                                <a href="{{ path('my_relays') }}"
-                                   class="text-white text-decoration-none"><i
-                                            class="fas fa-hotel me-1"></i>{{ 'my_reconnect_relays'|trans|upper }}
-                                </a>
-                            </div>
                         {% endif %}
-                        <div class="col-12 mt-2">
-                            <a href="{{ path('user_settings') }}"
-                               class="text-white text-decoration-none"
-                               data-turbo="false"
-                            >
-                                <i class="fas fa-cog me-1"></i>{{ 'parameters'|trans|upper }}
-                            </a>
-                        </div>
-                        <div class="col-12 text-end">
-                            <a href="{{ path('app_logout') }}"
-                               class="btn {{ getUserButtonColor() }} text-white bold">{{ 'logout'|trans }}</a>
-                        </div>
+                        <ul class="list-unstyled mb-0">
+                            {% if not app.user.isBeneficiaire %}
+                                <li class="col-12">
+                                    <a href="{{ path('my_relays') }}"
+                                       class="text-white text-decoration-none"><i
+                                                class="fas fa-hotel me-1"></i>{{ 'my_reconnect_relays'|trans|upper }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                            <li class="col-12 mt-2">
+                                <a href="{{ path('user_settings') }}"
+                                   class="text-white text-decoration-none"
+                                   data-turbo="false"
+                                >
+                                    <i class="fas fa-cog me-1"></i>{{ 'parameters'|trans|upper }}
+                                </a>
+                            </li>
+                            <li class="col-12 text-end">
+                                <a href="{{ path('app_logout') }}"
+                                   class="btn {{ getUserButtonColor() }} text-white bold">{{ 'logout'|trans }}</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

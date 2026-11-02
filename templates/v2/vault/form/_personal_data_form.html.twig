@@ -2,17 +2,18 @@
 
 <div class="container row mx-auto my-4">
     <div class="col-12 col-lg-4 offset-lg-4 text-primary bg-white rounded py-2 shadow">
-        <h4 class="font-size-1-3 text-center mt-1">
+        <h1 class="h4 font-size-1-3 text-center mt-1">
             <i class="{{ icon is defined ? icon : 'fa fa-pencil-alt' }} me-2" aria-hidden="true"></i>
+            {% if section is defined %}<span class="visually-hidden">{{ section|trans }} : </span>{% endif %}
             {{ title|trans }}
-        </h4>
+        </h1>
         <hr class="text-light-grey">
         {% if folder is defined %}
             <div class="text-center">
                 <img src="{{ asset(folder.iconFilePath) }}" style="width: 80px" alt="{{ 'folder_icon'|trans }}" {{ stimulus_target('folder-icon', 'img') }}>
             </div>
         {% endif %}
-        {{ form_start(form) }}
+        {{ form_start(form, {attr: {class: 'display-required-labels'}}) }}
         {{ form_widget(form) }}
         <div class="row mx-1 mt-2">
             {{ link(cancelPath, 'back', 'grey') }}

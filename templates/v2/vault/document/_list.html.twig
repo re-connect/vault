@@ -3,7 +3,7 @@
     <tr class="text-primary text-center font-size-1-3">
         <th class="bg-grey borderless text-start"></th>
         <th class="bg-grey borderless text-start w-100">{{ 'name'|trans }}</th>
-        <th class="bg-grey borderless px-0 px-sm-5"></th>
+        <th class="bg-grey borderless px-0 px-sm-5"><span class="visually-hidden">{{ 'download'|trans }}</span></th>
         {% if app.user.isBeneficiaire and currentFolder is not defined %}
             <th class="bg-grey borderless pe-3 w-25">
                 {{ 'access'|trans }}

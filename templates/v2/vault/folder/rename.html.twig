@@ -1,5 +1,7 @@
 {% extends 'v2/vault/standard_layout.html.twig' %}
 
+{% block metaTitle %}{{ 'documents'|trans }} - {{ 'edit'|trans }}{% endblock metaTitle %}
+
 {% block metas %}
     <meta name="turbo-cache-control" content="no-preview">
 {% endblock %}
@@ -8,6 +10,7 @@
     <div {{ stimulus_controller('folder-icon') }}>
         {{ include('v2/vault/form/_personal_data_form.html.twig', {
             title: 'edit',
+            section: 'documents',
             cancelPath: folder.dossierParent
             ? path('folder', {'id': folder.dossierParent.id})
             : path('list_documents', {'id': folder.beneficiaire.id})

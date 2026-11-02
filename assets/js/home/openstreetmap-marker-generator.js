@@ -26,15 +26,13 @@ $(document).ready(($) => {
                 const {lat, lng, pays, nom, ville} = center.adresse;
                 if (lat !== null && lng !== null) {
                     let marker = L.marker([lat, lng], {icon: greenIcon}).addTo(map);
-                    marker.bindPopup(`<b>
-                                            <div>
+                    marker.bindPopup(`<div class="fw-bold">
                                                 <h6 class="text-primary">
                                                     ${center.nom}
                                                 </h6>
                                                 <img style="width: 12px;" src="build/images/homeV2/reconnect-centers-home.3d2de150.png" alt="">
                                                 <small>${nom} - ${ville}</small>
-                                            </div>
-                                        </b>`);
+                                        </div>`);
                 }
             }
         )

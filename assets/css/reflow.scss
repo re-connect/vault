@@ -1,0 +1,19 @@
+// Content must reflow at 320px wide without horizontal scrolling of the page
+// (RGAA 10.11, WCAG 1.4.10).
+
+// Long unbreakable strings (file names, e-mail addresses) may wrap anywhere.
+// The name column keeps a minimum width so ordinary words are not split.
+.table-100 td.w-100,
+a[href^="mailto:"] {
+  overflow-wrap: anywhere;
+}
+
+.table-100 td.w-100 {
+  min-width: 7rem;
+}
+
+// Data tables are allowed to scroll horizontally (two-dimensional content),
+// but inside their own container rather than the whole page.
+:has(> .table-100) {
+  overflow-x: auto;
+}

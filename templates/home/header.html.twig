@@ -15,19 +15,27 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-                <div class="navbar-nav text-center font-size-1-3 d-flex justify-content-around">
-                    <a target="_self" class="nav-item nav-link nav-links px-5"
-                       href="{{ path('re_main_page_vault') }}">{{ 'header_link_cfn'|trans|raw }}</a>
-                    <a target="_self" class="nav-item nav-link nav-links px-5"
-                       href="{{ path('re_main_page_RP') }}">{{ 'header_link_rp'|trans|raw }}</a>
-                    <div class="dropdown">
-                        <a role="button"
-                           class="nav-item nav-link nav-links px-5 dropdown-toggle"
-                           data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            {{ 'digital_cares'|trans|nl2br }}
-                        </a>
-                        <ul class="dropdown-menu text-center border border-primary fs-5 rounded-0 mt-0">
+                <ul class="navbar-nav text-center font-size-1-3 d-flex justify-content-around">
+                    <li>
+                        <a target="_self" class="nav-item nav-link nav-links px-5"
+                           href="{{ path('re_main_page_vault') }}">{{ 'header_link_cfn'|trans|raw }}</a>
+                    </li>
+                    <li>
+                        <a target="_self" class="nav-item nav-link nav-links px-5"
+                           href="{{ path('re_main_page_RP') }}">{{ 'header_link_rp'|trans|raw }}</a>
+                    </li>
+                    <li class="dropdown">
+                        {% set digitalCaresLines = 'digital_cares'|trans|split("\n") %}
+                        <button type="button"
+                                class="nav-item nav-link nav-links px-5 dropdown-toggle w-100"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                aria-controls="digital-cares-menu">
+                            {% for line in digitalCaresLines -%}
+                                {%- if loop.last %} {{ line|trim }}{% else %}<span class="d-block">{{ line|trim }}</span>{% endif -%}
+                            {%- endfor %}
+                        </button>
+                        <ul id="digital-cares-menu" class="dropdown-menu text-center border border-primary fs-5 rounded-0 mt-0">
                             <li>
                                 <a target="_self" class="nav-item nav-link nav-links py-1 px-3"
                                    href="{{ path('digital_labs') }}">{{ 'header_link_digital_labs'|trans|raw }}</a>
@@ -38,14 +46,20 @@
                                    href="{{ path('pro_learning') }}">{{ 'header_link_pro_learning'|trans|raw }}</a>
                             </li>
                         </ul>
-                    </div>
-                    <a target="_self" class="nav-item nav-link nav-links px-5"
-                       href="{{ path('re_main_accueil') }}#qui-sommes-nous">{{ 'header_link_who_we_are'|trans|raw }}</a>
-                    <a target="_blank" class="nav-item nav-link nav-links text-primary px-5"
-                       href="https://medium.com/reconnect">{{ 'header_link_our_blog'|trans|raw }}</a>
-                    <a target="_self" class="nav-item nav-link nav-links px-5"
-                       href="{{ path('re_main_contactV2') }}">{{ 'header_link_contact'|trans|raw }}</a>
-                </div>
+                    </li>
+                    <li>
+                        <a target="_self" class="nav-item nav-link nav-links px-5"
+                           href="{{ path('re_main_accueil') }}#qui-sommes-nous">{{ 'header_link_who_we_are'|trans|raw }}</a>
+                    </li>
+                    <li>
+                        <a target="_blank" class="nav-item nav-link nav-links text-primary px-5"
+                           href="https://medium.com/reconnect">{{ 'header_link_our_blog'|trans|raw }}</a>
+                    </li>
+                    <li>
+                        <a target="_self" class="nav-item nav-link nav-links px-5"
+                           href="{{ path('re_main_contactV2') }}">{{ 'header_link_contact'|trans|raw }}</a>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="position-absolute me-3 mt-2" style="top: 100%; right: 0">

@@ -83,7 +83,7 @@ function updateTooltipTitle(element) {
     tooltip.update();
   } else {
     new Tooltip(element, {
-      trigger: 'hover',
+      trigger: 'hover focus',
       container: element.parentNode,
       title: nextTooltipTitle,
     });
