@@ -747,3 +747,14 @@ contact_page_offices_region_drom: DROM-COM
 contact_page_offices_city_centre: ' '
 contact_page_offices_city_corse: ' '
 contact_page_offices_city_drom: ' '
+a11y_show_password: Afficher le mot de passe
+a11y_language_selector: Langue
+a11y_skip_to_content: Aller au contenu
+a11y_new_window: (nouvelle fenêtre)
+a11y_required_fields: Les champs marqués d'un astérisque (*) sont obligatoires.
+a11y_carousel_pause: Mettre en pause le défilement
+a11y_carousel_play: Reprendre le défilement
+sitemap_title: Plan du site
+sitemap_home: Accueil
+sitemap_legal_information: Informations légales
+a11y_close: Fermer
