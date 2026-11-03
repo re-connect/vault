@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ app.request ? app.request.locale : 'fr' }}">
 <head>
     <title>{% block metaTitle %}{{ 'vault_meta_title'|trans }}{% endblock metaTitle %}
         - {{ 'reconnect'|trans }}</title>
@@ -20,7 +20,7 @@
 <body class="d-flex flex-column" data-turbo-prefetch="false" {{ stimulus_controller('tooltip') }}>
 {{ include('v2/header/header.html.twig') }}
 
-<main role="main" class="position-relative {% block bodyColor %}{{ getUserBackgroundColor() }}{% endblock %} pb-5">
+<main role="main" id="main-content" class="position-relative {% block bodyColor %}{{ getUserBackgroundColor() }}{% endblock %} pb-5">
     {{ include('v2/flash_messages.html.twig') }}
     {% block notifications %}{{ include('v2/common/_notifications.html.twig') }}{% endblock %}
 
