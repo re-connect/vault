@@ -18,15 +18,19 @@
     </td>
     {% block phone %}
         <td class="bg-white borderless d-none d-lg-table-cell p-0">
-            <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
-                {{ contact.telephone }}
-            </a>
+            {% if contact.telephone %}
+                <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
+                    {{ contact.telephone }}
+                </a>
+            {% endif %}
         </td>
     {% endblock %}
     <td class="bg-white borderless d-none d-lg-table-cell p-0">
-        <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
-            {{ contact.email }}
-        </a>
+        {% if contact.email %}
+            <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
+                {{ contact.email }}
+            </a>
+        {% endif %}
     </td>
     {% block toggle_visibility_button %}
         {% if app.user.isBeneficiaire %}
