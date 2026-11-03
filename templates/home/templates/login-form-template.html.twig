@@ -16,9 +16,9 @@
     {{ form_row(form._username, {full_name:'_username', value: last_username}) }}
     <div class="position-relative" {{ stimulus_controller('hide-show-password') }}>
         {{ form_row(form._password, {full_name:'_password', attr: {'data-hide-show-password-target' : 'input'}}) }}
-        <button type="button" class="btn position-absolute border-0" style="right:0; top:-1px; z-index:2;"
-                {{ stimulus_action('hide-show-password', 'toggle') }}>
-            <i class="fas fa-eye font-size-1 {{ icon_color }}"
+        <button type="button" class="btn position-absolute border-0" style="right:0; top:-1px; z-index:2;" aria-pressed="false"
+                {{ stimulus_action('hide-show-password', 'toggle') }} {{ stimulus_target('hide-show-password', 'button') }}>
+            <i class="fas fa-eye font-size-1 {{ icon_color }}" aria-hidden="true"
                 {{ stimulus_target('hide-show-password', 'icon') }}></i>
         </button>
     </div>
