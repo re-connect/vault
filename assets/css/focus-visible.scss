@@ -37,3 +37,24 @@ label,
     }
   }
 }
+
+// A link that wraps over several lines gets one outline per line box. With the
+// tight line height of the login form, each halo then covers the next line and
+// the text becomes unreadable. Keep this link in a single box.
+.login-form-link a {
+  display: inline-block;
+}
+
+// The Quill editable area only grows with its text, inside a 200px container,
+// so an outline on it frames the typed lines, not the field. Browsers also show
+// :focus-visible on an editable area after a mouse click. Frame the whole field.
+.ql-container .ql-editor:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ql-container:focus-within {
+  outline: 3px solid #203468;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px #ffffff;
+}
