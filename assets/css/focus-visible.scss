@@ -1,0 +1,60 @@
+// Visible keyboard focus indicator (RGAA 10.7, WCAG 2.4.7).
+// Some layouts remove the default outline on :focus; :focus-visible restores an
+// indicator for keyboard navigation only, so mouse clicks keep their current look.
+a,
+button,
+input,
+select,
+textarea,
+summary,
+label,
+[tabindex],
+[role="button"],
+[role="switch"],
+[contenteditable="true"] {
+  &:focus-visible {
+    outline: 3px solid #203468 !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 5px #ffffff !important;
+  }
+}
+
+.bg-primary,
+.bg-blue,
+.bg-green,
+.bg-secondary,
+.text-white {
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  [tabindex],
+  [role="button"] {
+    &:focus-visible {
+      outline-color: #ffffff !important;
+      box-shadow: 0 0 0 5px #203468 !important;
+    }
+  }
+}
+
+// A link that wraps over several lines gets one outline per line box. With the
+// tight line height of the login form, each halo then covers the next line and
+// the text becomes unreadable. Keep this link in a single box.
+.login-form-link a {
+  display: inline-block;
+}
+
+// The Quill editable area only grows with its text, inside a 200px container,
+// so an outline on it frames the typed lines, not the field. Browsers also show
+// :focus-visible on an editable area after a mouse click. Frame the whole field.
+.ql-container .ql-editor:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ql-container:focus-within {
+  outline: 3px solid #203468;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px #ffffff;
+}
