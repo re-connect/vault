@@ -38,3 +38,9 @@ th:last-child{
   border-collapse: separate;
   border-spacing: 0 10px;
 }
+
+// The contact name link fills its table cell: draw its focus indicator inside
+// the cell so the neighbouring cells do not cover part of it.
+.table-row-link:focus-visible {
+  outline-offset: -3px !important;
+}

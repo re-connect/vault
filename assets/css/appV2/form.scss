@@ -58,8 +58,22 @@ input[data-intl-tel-input-id]::placeholder {
   color: theme-color('light-grey');
 }
 
+// Visually hidden but still focusable: with display: none the box could not be
+// reached or checked with the keyboard (RGAA 7.3, 12.13). The label draws it.
 input[type="checkbox"].checkbox {
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  opacity: 0;
+}
+input[type="checkbox"].checkbox:focus-visible + label::before {
+  outline: 3px solid #203468;
+  outline-offset: 2px;
 }
 input[type="checkbox"].checkbox + label::before {
   border-radius: 5px;

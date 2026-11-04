@@ -6,11 +6,14 @@
         {% set isReached = beneficiaryCreationProcess.isStepReached(step) %}
         {% set isCurrentStep = beneficiaryCreationProcess.isCurrentStep(step) %}
         {% set isDone = beneficiaryCreationProcess.isStepDone(step) %}
-        <a href="{{ path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': step}) }}"
+        {# Steps not reached yet are not links, so they cannot be reached with the keyboard either (RGAA 7.3) #}
+        {% set stepTag = isReached ? 'a' : 'span' %}
+        <{{ stepTag }}
+           {% if isReached %}href="{{ path('create_beneficiary', {'id': beneficiaryCreationProcess.id, 'step': step}) }}" data-turbo="false"{% endif %}
+           {% if isCurrentStep %}aria-current="step"{% endif %}
            class="btn ps-0 py-0 my-4
            text-{{ color }}
-           {{ isReached ? '' : 'pe-none' }}"
-           data-turbo="false">
+           {{ isReached ? '' : 'pe-none' }}">
             <i class="fa fa-lg breadcrumb-icon position-relative rounded-circle text-{{ color }}
                 {% if isCurrentStep %}
                     fa-circle bg-white
@@ -21,7 +24,7 @@
                 {% endif %}
             "></i>
             {{ breadCrumbStepNames[step]|trans }}
-        </a>
+        </{{ stepTag }}>
         <br>
     {% endfor %}
 </div>

@@ -7,19 +7,19 @@
         {{ stimulus_target('ajax-toggle', 'card') }}
         data-toggle-classes="shared private"
     >
-        <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
-            {{ contact.nom|upper }}
+        <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100 table-row-link">
+            {{ contact.nom|upper }}<span class="visually-hidden"> {{ contact.prenom }}</span>
         </a>
     </td>
     <td class="bg-white borderless p-0">
-        <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
+        <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100" tabindex="-1">
             {{ contact.prenom }}
         </a>
     </td>
     {% block phone %}
         <td class="bg-white borderless d-none d-lg-table-cell p-0">
             {% if contact.telephone %}
-                <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
+                <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100" tabindex="-1">
                     {{ contact.telephone }}
                 </a>
             {% endif %}
@@ -27,7 +27,7 @@
     {% endblock %}
     <td class="bg-white borderless d-none d-lg-table-cell p-0">
         {% if contact.email %}
-            <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100">
+            <a href="{{ path('contact_detail', {'id': contact.id}) }}" class="text-decoration-none text-primary d-block py-2 h-100" tabindex="-1">
                 {{ contact.email }}
             </a>
         {% endif %}
