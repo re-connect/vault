@@ -1,15 +1,15 @@
 $primary: #203468;
-$secondary: #28ad7a;
+$secondary: #1f865e; // charte #28ad7a, contraste 2.86:1 -> 4.54:1 (validé le 04/11)
 $success: #b1dfcd;
 $light: #cdd1dc;
-$green: #4db95f;
+$green: #348542; // charte #4db95f, 2.49:1 -> 4.59:1
 $light-green: #9ee3a9;
 $eton-blue: #94cebd;
 $light-eton-blue: #94cebd15;
-$blue: #47b4d1;
+$blue: #267f97; // charte #47b4d1, 2.41:1 -> 4.60:1
 $yellow: #f9b02a;
 $light-yellow: #fffbf5;
-$red: #ee5253;
+$red: #e91d1e; // charte #ee5253, 3.52:1 -> 4.51:1
 $enable-shadows: true;
 $navbar-light-color: $primary;
 $position-values: (
@@ -162,5 +162,6 @@ $position-values: (
 
 @import './fonts.scss';
 @import './globalStructure.scss';
+@import './contrast.scss';
 @import '../language-selector.scss';
 @import '../helper/intl-tel-input.scss';

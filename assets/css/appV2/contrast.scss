@@ -1,0 +1,39 @@
+// Text set in the light grey of the theme (dates, secondary details) was at
+// 1.53:1 on white. The light grey stays for backgrounds and borders; text uses
+// the darker shade validated on 04/11 (RGAA 3.2).
+.text-light-grey {
+  color: #6a7697 !important;
+}
+
+input[data-intl-tel-input-id]::placeholder {
+  color: #687599;
+}
+
+// Grey stays as a background (table headers carry navy text). Grey text and
+// white text on grey buttons use the darker shade (RGAA 3.2).
+.text-grey,
+input.grey-placeholder::placeholder {
+  color: #687599 !important;
+}
+
+.btn-grey {
+  background-color: #687599 !important;
+  border-color: #687599 !important;
+}
+
+// Steps of the beneficiary creation not reached yet sit on a light blue panel,
+// where #687599 reaches only 4.06:1.
+.breadcrumb-step .text-grey {
+  color: #5a6688 !important;
+}
+
+// Vault pages sit on a light blue (pro) or light green (beneficiary) background.
+// There, normal-size blue or green text needs a slightly darker shade to reach
+// 4.5:1 (#267f97 gives 4.08:1 on #e5f4f8, #348542 gives 4.14:1 on #e9f7ed).
+.bg-light-blue .text-blue {
+  color: #23768c !important;
+}
+
+.bg-light-green .text-green {
+  color: #307b3d !important;
+}
