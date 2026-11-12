@@ -18,7 +18,7 @@ class CreateTest extends AbstractApiTest
     /**
      * @dataProvider canCreateProvider
      */
-    public function testCreateBeneficiary(string $clientName, ?string $externalCenterId = null): void
+    public function testCreateBeneficiary(string $clientName, ?string $externalCenterId = null, bool $expectedTemporaryPassword = false): void
     {
         $beneficiary = [
             'last_name' => 'test',
@@ -73,6 +73,7 @@ class CreateTest extends AbstractApiTest
             $this->assertTrue($beneficiaireCentre->getBValid());
         }
         $this->assertEquals(1200, $benef->getExternalLinks()->first()->getDistantId());
+        $this->assertSame($expectedTemporaryPassword, $benef->getUser()->hasTemporaryPassword());
     }
 
     /**
@@ -104,11 +105,11 @@ class CreateTest extends AbstractApiTest
         yield 'Should not create beneficiary for client with only personal data update scope' => ['update_personal_data_client'];
     }
 
-    public function canCreateProvider(): \Generator
+    public static function canCreateProvider(): \Generator
     {
         yield 'Should create beneficiary for client with update scopes' => ['read_and_update_client'];
         yield 'Should create beneficiary for client with create scopes' => ['create_only_client'];
-        yield 'Should create beneficiary with external center for Reconnect Pro client' => ['reconnect_pro', '42'];
+        yield 'Should create beneficiary with external center and temporary password for Reconnect Pro client' => ['reconnect_pro', '42', true];
         yield 'Should create beneficiary for Rosalie client ' => ['rosalie'];
     }
 
