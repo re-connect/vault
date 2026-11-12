@@ -166,6 +166,23 @@ class SettingsTest extends AbstractControllerTest implements TestRouteInterface,
         ];
     }
 
+    public function testUsernameIsUpdatedWhenMemberChangesName(): void
+    {
+        $oldUsername = $this->getTestUserFromDb(MemberFixture::MEMBER_MAIL)->getUsername();
+
+        $this->assertFormIsValid(
+            self::URL,
+            'submit',
+            ['user[prenom]' => 'Lucie', 'user[nom]' => 'Aubrac'],
+            MemberFixture::MEMBER_MAIL,
+            self::URL,
+        );
+
+        $username = $this->getTestUserFromDb(MemberFixture::MEMBER_MAIL)->getUsername();
+        self::assertSame('aubrac.lucie', $username);
+        self::assertNotSame($oldUsername, $username);
+    }
+
     /** @dataProvider provideTestRoute */
     public function testRoute(
         string $url,
