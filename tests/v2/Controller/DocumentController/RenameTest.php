@@ -4,6 +4,7 @@ namespace App\Tests\v2\Controller\DocumentController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
+use App\Entity\Document;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\DocumentFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
@@ -70,6 +71,14 @@ class RenameTest extends AbstractControllerTest implements TestRouteInterface, T
             BeneficiaryFixture::BENEFICIARY_MAIL,
             null,
         ];
+
+        yield 'Should refresh when name has the maximum length' => [
+            self::URL,
+            'confirm',
+            ['rename_document[nom]' => str_repeat('a', Document::NAME_MAX_LENGTH)],
+            BeneficiaryFixture::BENEFICIARY_MAIL,
+            null,
+        ];
     }
 
     /**
@@ -83,6 +92,23 @@ class RenameTest extends AbstractControllerTest implements TestRouteInterface, T
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $url = sprintf($url, $beneficiary->getDocuments()[0]->getId());
         $this->assertFormIsNotValid($url, $route, $formSubmit, $values, $errors, $email);
+    }
+
+    public function testFormIsNotValidWhenNameIsTooLong(): void
+    {
+        self::ensureKernelShutdown();
+        $client = static::createClient();
+        $client->loginUser($this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL));
+        $documentId = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL)->getDocuments()[0]->getId();
+
+        $crawler = $client->request('GET', '/document/'.$documentId.'/rename');
+        $form = $crawler->selectButton(self::$translator->trans('confirm'))->form();
+        $client->submit($form, ['rename_document[nom]' => str_repeat('a', Document::NAME_MAX_LENGTH + 1)]);
+
+        // Validator messages are translated from the "validators" domain, whatever the "messages" catalogue holds
+        $expectedMessage = self::$translator->trans('document_name_too_long', ['{{ limit }}' => Document::NAME_MAX_LENGTH], 'validators');
+        $this->assertResponseStatusCodeSame(422);
+        $this->assertSelectorTextContains('span.help-block', $expectedMessage);
     }
 
     public function provideTestFormIsNotValid(): ?\Generator
