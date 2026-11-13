@@ -25,12 +25,15 @@
 
 ## Ordre des écrans à la connexion
 
-- **Web** : CGS (`CheckAcceptedTermsOfUseSubscriber`) puis mot de passe. Chaque subscriber de redirection autorise
-  `AbstractWebUserSubscriber::FIRST_VISIT_ROUTES` ; celui du mot de passe temporaire autorise aussi `improve_password`
-  pour éviter une boucle avec `PasswordPolicySubscriber`. Tout nouveau subscriber de redirection doit autoriser les pages
-  des autres, sinon redirection infinie.
+- **Web, mot de passe temporaire** : mot de passe **puis** CGS / première visite, pour que seul le titulaire accepte les CGS.
+  `CheckAcceptedTermsOfUseSubscriber` ne redirige pas tant que `hasTemporaryPassword()` ; `TemporaryPasswordSubscriber`
+  n'autorise que les pages de mot de passe (`improve_password` compris, sinon boucle avec `PasswordPolicySubscriber`),
+  la 2FA, la langue et les annexes : ni première visite, ni suppression du compte.
+- **Web, autres comptes** : CGS puis mot de passe ; les subscribers autorisent `AbstractWebUserSubscriber::FIRST_VISIT_ROUTES`.
+  Tout nouveau subscriber de redirection doit autoriser les pages des autres, sinon redirection infinie
+  (cas à tester : première visite + mot de passe faible + mot de passe temporaire).
 - **Mobile** : ordre des `elseif` de `EventSubscriber/Api/Oauth2ResponseSubscriber` : MFA, compte désactivé, en création,
-  `weak_password`, `expired_password`, `cgs_not_accepted`. Mot de passe **avant** CGS, donc l'inverse du web.
+  `weak_password`, `expired_password`, `cgs_not_accepted`. Mot de passe avant CGS pour tous.
 - L'app répond à `weak_password` en se reconnectant avec `_new_password` ; `Oauth2TokenIssuedSubscriber` (`ACCESS_TOKEN_ISSUED`)
   met à jour le mot de passe **avant** `TOKEN_REQUEST_RESOLVE`, qui construit la réponse. `WeakPasswordUpgrader::checkUpdateWeakPassword()`
   ignore un mot de passe identique à l'actuel ou trop faible.
