@@ -13,6 +13,7 @@ use App\EventV2\BeneficiaryConsultationEvent;
 use App\Exception\JsonResponseException;
 use App\Manager\MailManager;
 use App\Manager\RestManager;
+use App\ManagerV2\DocumentManager;
 use App\ManagerV2\SharedDocumentManager;
 use App\Provider\BeneficiaireProvider;
 use App\Provider\DocumentProvider;
@@ -26,6 +27,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -105,12 +107,16 @@ class DocumentRestV2Controller extends REController
     }
 
     #[Route(path: 'documents/{id}', name: 'patch', requirements: ['id' => '\d{1,10}'], methods: ['PATCH'])]
-    public function patch(int $id, DossierProvider $dossierProvider): JsonResponse
+    public function patch(int $id, DossierProvider $dossierProvider, DocumentManager $documentManager): JsonResponse
     {
         try {
             $entity = $this->provider->getEntity($id, Client::ACCESS_DOCUMENT_WRITE);
 
             if (null !== $data = $this->request->request->all()) {
+                if (array_key_exists('nom', $data)) {
+                    $documentManager->validateName((string) $data['nom']);
+                }
+
                 foreach ($data as $key => $item) {
                     switch ($key) {
                         case 'folder_id':
@@ -136,7 +142,7 @@ class DocumentRestV2Controller extends REController
             }
 
             return $this->json($entity, 200, [], ['groups' => ['v3:document:read']]);
-        } catch (NotFoundHttpException|AccessDeniedException $e) {
+        } catch (NotFoundHttpException|AccessDeniedException|UnprocessableEntityHttpException $e) {
             $jsonResponseException = new JsonResponseException($e);
 
             return $jsonResponseException->getResponse();
@@ -169,7 +175,7 @@ class DocumentRestV2Controller extends REController
     }
 
     #[Route(path: 'beneficiaries/{beneficiaryId}/documents', name: 'upload', requirements: ['beneficiaryId' => '\d{1,10}'], methods: ['POST'])]
-    public function upload(Request $request, int $beneficiaryId, BeneficiaireProvider $beneficiaireProvider, RestManager $restManager): Response
+    public function upload(Request $request, int $beneficiaryId, BeneficiaireProvider $beneficiaireProvider, RestManager $restManager, DocumentManager $documentManager): Response
     {
         try {
             $client = $this->apiClientManager->getCurrentOldClient();
@@ -185,6 +191,10 @@ class DocumentRestV2Controller extends REController
             $entities = new ArrayCollection();
             if (!is_array($files)) {
                 $files = [$files];
+            }
+            // All names are checked first, so that no file is saved when one of them is refused
+            foreach ($files as $file) {
+                $documentManager->validateName($file->getClientOriginalName());
             }
             foreach ($files as $file) {
                 $entities->add($this->provider->uploadFile($file, $beneficiaire, $client, $byUser));
@@ -279,12 +289,14 @@ class DocumentRestV2Controller extends REController
         Request $request,
         DocumentProvider $provider,
         EntityManagerInterface $entityManager,
+        DocumentManager $documentManager,
     ): JsonResponse {
         try {
             if (null === $name = $request->get('name')) {
                 throw new BadRequestHttpException($this->translator->trans('donneePersonnelle.missingName'));
             }
             $entity = $provider->getEntity($id);
+            $documentManager->validateName((string) $name);
 
             $entity->setNom($name);
             $entityManager->flush();

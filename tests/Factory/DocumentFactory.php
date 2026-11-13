@@ -55,7 +55,7 @@ class DocumentFactory extends PersistentObjectFactory
     {
         return [
             'bPrive' => self::faker()->boolean(),
-            'nom' => self::faker()->text(),
+            'nom' => self::faker()->text(Document::NAME_MAX_LENGTH),
             'createdAt' => new \DateTime('now'),
             'updatedAt' => new \DateTime('now'),
             'objectKey' => self::faker()->text(),
