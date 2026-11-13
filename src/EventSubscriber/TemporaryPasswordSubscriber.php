@@ -8,11 +8,19 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 /**
  * A beneficiary created from Reconnect Pro has a password known by the pro:
- * they must choose their own before accessing their vault (after the terms of use).
+ * they must choose their own before anything else, terms of use included.
+ * The weak password page stays allowed to avoid a redirect loop with PasswordPolicySubscriber.
  */
 class TemporaryPasswordSubscriber extends AbstractWebUserSubscriber implements EventSubscriberInterface
 {
-    private const array ALLOWED_ROUTES = [...self::FIRST_VISIT_ROUTES, 'app_update_password', 'improve_password'];
+    private const array ALLOWED_ROUTES = [
+        'app_update_password',
+        'improve_password',
+        '2fa_login',
+        'resend_auth_code',
+        're_main_change_lang',
+        're_admin_annexe',
+    ];
 
     public function redirectToPasswordUpdate(RequestEvent $event): void
     {

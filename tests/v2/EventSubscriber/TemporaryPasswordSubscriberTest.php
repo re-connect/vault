@@ -52,16 +52,16 @@ class TemporaryPasswordSubscriberTest extends WebTestCase
         self::assertResponseIsSuccessful();
     }
 
-    public function testAcceptTermsOfUseBeforePasswordUpdate(): void
+    public function testUpdatePasswordBeforeAcceptingTermsOfUse(): void
     {
         $client = static::createClient();
         $client->loginUser(UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_TEMPORARY_PASSWORD_FIRST_VISIT));
 
         $client->request('GET', self::FIRST_VISIT_URL);
-        self::assertResponseIsSuccessful();
+        self::assertResponseRedirects(self::UPDATE_PASSWORD_URL);
 
         $client->request('GET', self::UPDATE_PASSWORD_URL);
-        self::assertResponseRedirects(self::FIRST_VISIT_URL);
+        self::assertResponseIsSuccessful();
     }
 
     public function testDoesNotLoopWithWeakPasswordRedirection(): void
