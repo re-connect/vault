@@ -50,7 +50,7 @@ readonly class Oauth2ResponseSubscriber
             return $event->setResponse(new JsonResponse(['login' => 'failure', 'disabled' => true], Response::HTTP_UNAUTHORIZED));
         } elseif ($user->isBeingCreated()) {
             return $event->setResponse(new JsonResponse(['login' => 'failure', 'isBeingCreated' => true], Response::HTTP_UNAUTHORIZED));
-        } elseif (!$user->hasPasswordWithLatestPolicy()) {
+        } elseif (!$user->hasPasswordWithLatestPolicy() || $user->hasTemporaryPassword()) {
             return $event->setResponse(new JsonResponse(['login' => 'success', 'weak_password' => true]));
         } elseif ($this->gdprService->mustRenewPassword($user)) {
             return $event->setResponse(new JsonResponse(['login' => 'success', 'expired_password' => true]));
