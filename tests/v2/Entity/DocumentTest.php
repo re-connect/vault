@@ -30,4 +30,21 @@ class DocumentTest extends TestCase
         $this->document->setNom($this->nom);
         $this->assertEquals($this->nameWithoutExtension, $this->document->getNameWithoutExtension());
     }
+
+    /** @dataProvider provideNamesForExtensionRemoval */
+    public function testRemoveExtension(string $name, string $expectedName): void
+    {
+        self::assertSame($expectedName, Document::removeExtension($name));
+    }
+
+    public static function provideNamesForExtensionRemoval(): \Generator
+    {
+        yield 'Lowercase extension' => ['rapport.pdf', 'rapport'];
+        yield 'Uppercase extension' => ['photo.JPEG', 'photo'];
+        yield 'Only the last extension' => ['archive.tar.gz', 'archive.tar'];
+        yield 'No extension' => ['rapport', 'rapport'];
+        yield 'Suffix with a space is not an extension' => ['Report. v2', 'Report. v2'];
+        yield 'Suffix longer than 4 characters is not an extension' => ['rapport.final', 'rapport.final'];
+        yield 'Dot without a name before it' => ['.pdf', '.pdf'];
+    }
 }
