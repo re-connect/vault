@@ -759,3 +759,4 @@ sitemap_home: Accueil
 sitemap_legal_information: Informations légales
 a11y_close: Fermer
 temporary_password_beneficiary: Your account was created by a professional with a temporary password. To protect your data, choose your own password.
+document_name_too_long: Name too long (maximum {{ limit }} characters).
