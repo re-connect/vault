@@ -6,6 +6,7 @@ use App\Controller\REController;
 use App\Entity\Document;
 use App\Exception\JsonResponseException;
 use App\Manager\MailManager;
+use App\ManagerV2\DocumentManager;
 use App\Provider\BeneficiaireProvider;
 use App\Provider\DocumentProvider;
 use App\Provider\DossierProvider;
@@ -157,12 +158,14 @@ class DocumentRestController extends REController
         Request $request,
         DocumentProvider $provider,
         EntityManagerInterface $entityManager,
+        DocumentManager $documentManager,
     ): JsonResponse {
         try {
             if (null === $name = $request->get('name')) {
                 throw new BadRequestHttpException($this->translator->trans('donneePersonnelle.missingName'));
             }
             $entity = $provider->getEntity($id);
+            $documentManager->validateName((string) $name);
 
             $entity->setNom($name);
             $entityManager->flush();
@@ -236,6 +239,7 @@ class DocumentRestController extends REController
         BeneficiaireProvider $beneficiaireProvider,
         DossierProvider $dossierProvider,
         Request $request,
+        DocumentManager $documentManager,
     ): JsonResponse {
         try {
             $beneficiaire = $beneficiaireProvider->getEntity($beneficiaryId);
@@ -251,6 +255,11 @@ class DocumentRestController extends REController
 
             $user = $this->getUser();
             $byUser = $user ?? $beneficiaire->getUser();
+
+            // All names are checked first, so that no file is saved when one of them is refused
+            foreach ($files as $file) {
+                $documentManager->validateName($file->getClientOriginalName());
+            }
 
             $documents = new ArrayCollection();
             foreach ($files as $file) {
