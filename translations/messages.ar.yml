@@ -759,3 +759,4 @@ sitemap_home: Accueil
 sitemap_legal_information: Informations légales
 a11y_close: Fermer
 temporary_password_beneficiary: Votre compte a été créé par un professionnel avec un mot de passe temporaire. Pour protéger vos données, choisissez votre propre mot de passe.
+document_name_too_long: Nom trop long (maximum {{ limit }} caractères).
