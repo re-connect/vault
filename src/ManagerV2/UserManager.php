@@ -57,6 +57,7 @@ class UserManager
     {
         $user->setPassword($this->hasher->hashPassword($user, $password));
         $user->setHasPasswordWithLatestPolicy($this->passwordHelper->isStrongPassword($user, $password));
+        $user->setHasTemporaryPassword(false);
         $this->em->flush();
         $user->eraseCredentials();
     }

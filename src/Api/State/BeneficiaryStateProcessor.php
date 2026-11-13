@@ -110,18 +110,22 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
 
     private function createBeneficiary(Beneficiaire $data, ?Client $client): void
     {
-        $this->relayAssignationHelper->assignRelaysFromIdsArray($data->getUser());
+        $user = $data->getUser();
+        $this->relayAssignationHelper->assignRelaysFromIdsArray($user);
         if (!$client) {
             return;
         }
-        $this->relayAssignationHelper->assignRelayFromExternalId($data->getUser(), $client, null, true);
+        if (Client::CLIENT_RECONNECT_PRO === $client->getNom()) {
+            $user->setHasTemporaryPassword(true);
+        }
+        $this->relayAssignationHelper->assignRelayFromExternalId($user, $client, null, true);
         try {
-            $pro = $this->membreRepository->findByDistantId($data->getUser()->getExternalProId(), $client->getRandomId());
+            $pro = $this->membreRepository->findByDistantId($user->getExternalProId(), $client->getRandomId());
             if ($pro) {
-                $data->getUser()->addCreatorUser($pro->getUser());
+                $user->addCreatorUser($pro->getUser());
             }
         } catch (NonUniqueResultException) {
-            $this->apiLogger->error(sprintf('Multiple pros found for distant id %s and client %s', $data->getUser()->getExternalProId(), $client->getRandomId()));
+            $this->apiLogger->error(sprintf('Multiple pros found for distant id %s and client %s', $user->getExternalProId(), $client->getRandomId()));
         }
     }
 }
