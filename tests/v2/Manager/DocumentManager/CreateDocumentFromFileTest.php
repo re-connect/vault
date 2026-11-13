@@ -19,6 +19,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Zenstruck\Foundry\Test\Factories;
 
@@ -51,7 +52,7 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
             $translatorMock,
             $bucketServiceMock,
             $folderManager,
-            'test',
+            $this->createMock(ValidatorInterface::class),
         );
     }
 

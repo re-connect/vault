@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use function Symfony\Component\String\u;
@@ -39,6 +40,7 @@ class DocumentManager
         private readonly TranslatorInterface $translator,
         private readonly BucketService $bucketService,
         private readonly FolderManager $folderManager,
+        private readonly ValidatorInterface $validator,
         //        private readonly string $env,
     ) {
     }
@@ -149,6 +151,18 @@ class DocumentManager
     public function uploadFiles(array $files, Beneficiaire $beneficiary, ?Dossier $folder = null): void
     {
         foreach ($files as $file) {
+            $nameViolations = $this->validator->validatePropertyValue(
+                Document::class,
+                'nom',
+                $file->getClientOriginalName(),
+                ['Default', Document::NAME_VALIDATION_GROUP],
+            );
+            if (count($nameViolations) > 0) {
+                $this->addFlashMessage('danger', (string) $nameViolations->get(0)->getMessage());
+
+                continue;
+            }
+
             if (!$this->uploadFile($file, $beneficiary, $folder)) {
                 $this->addFlashMessage('danger', 'error');
             }
