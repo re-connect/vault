@@ -109,6 +109,9 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface, C
     public const array BROWSER_EXTENSIONS_NOT_VIEWABLE = ['doc', 'docx', 'txt', 'odt', 'xls', 'xlsx', 'csv'];
     public const array BROWSER_EXTENSIONS_VIEWABLE = ['jpg', 'jpeg', 'pdf', 'gif', 'png'];
     public const array ALLOWED_FILE_EXTENSIONS = [...self::BROWSER_EXTENSIONS_NOT_VIEWABLE, ...self::BROWSER_EXTENSIONS_VIEWABLE];
+    final public const int NAME_MAX_LENGTH = 128;
+    /** Validation group of the name length rule, left out of the third-party apps (API v3, Rosalie) */
+    final public const string NAME_VALIDATION_GROUP = 'document_name';
 
     protected ?\DateTime $dateEmission = null;
 
@@ -222,12 +225,14 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface, C
 
     public function getNameWithoutExtension(): string
     {
-        $m = [];
-        if (preg_match('#(.+)\\..{2,4}$#', (string) $this->nom, $m)) {
-            return $m[1];
-        }
+        return self::removeExtension((string) $this->nom);
+    }
 
-        return $this->nom;
+    public static function removeExtension(string $name): string
+    {
+        $matches = [];
+
+        return preg_match('#(.+)\\.[a-z0-9]{2,4}$#i', $name, $matches) ? $matches[1] : $name;
     }
 
     public function getDateEmission(): ?\DateTime

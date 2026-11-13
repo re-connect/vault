@@ -5,3 +5,12 @@ App\Entity\DonneePersonnelle:
     bPrive:
       - Type: boolean
 
+App\Entity\Document:
+  properties:
+    nom:
+      - Length:
+          max: !php/const App\Entity\Document::NAME_MAX_LENGTH
+          maxMessage: document_name_too_long
+          normalizer: [ 'App\Entity\Document', 'removeExtension' ]
+          groups: [ !php/const App\Entity\Document::NAME_VALIDATION_GROUP ]
+
