@@ -10,6 +10,7 @@ use App\Tests\Factory\DocumentFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class RenameTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
@@ -128,5 +129,35 @@ class RenameTest extends AbstractControllerTest implements TestRouteInterface, T
             BeneficiaryFixture::BENEFICIARY_MAIL,
             'div.invalid-feedback',
         ];
+    }
+
+    /** @dataProvider provideNamesWithAndWithoutExtension */
+    public function testFormHidesFileExtension(string $submittedName, string $expectedSavedName): void
+    {
+        self::ensureKernelShutdown();
+        $client = static::createClient();
+        $client->loginUser($this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL));
+        $document = DocumentFactory::createOne([
+            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
+            'nom' => 'facture_recette.pdf',
+            'extension' => 'pdf',
+        ]);
+        $documentId = $document->getId();
+
+        $crawler = $client->request('GET', '/document/'.$documentId.'/rename');
+        self::assertSame('facture_recette', $crawler->filter('input[name="rename_document[nom]"]')->attr('value'));
+
+        $form = $crawler->selectButton(self::$translator->trans('confirm'))->form();
+        $client->submit($form, ['rename_document[nom]' => $submittedName]);
+
+        $em = static::getContainer()->get(EntityManagerInterface::class);
+        $em->clear();
+        self::assertSame($expectedSavedName, $em->find(Document::class, $documentId)->getNom());
+    }
+
+    public static function provideNamesWithAndWithoutExtension(): \Generator
+    {
+        yield 'Extension is added back when the name has none' => ['nouveau nom', 'nouveau_nom.pdf'];
+        yield 'Extension is not doubled when the user types it' => ['nouveau.pdf', 'nouveau.pdf'];
     }
 }
