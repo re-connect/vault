@@ -5,6 +5,7 @@ namespace App\Tests\v2\Controller;
 use App\Entity\User;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\AuthenticatedTestCase;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Translation\DataCollectorTranslator;
@@ -129,6 +130,18 @@ abstract class AbstractControllerTest extends AuthenticatedTestCase
         refresh($user);
 
         return $user;
+    }
+
+    /**
+     * Reads the user from the database through the container of the last request,
+     * not from an identity map loaded before it.
+     */
+    protected function findUserFromDb(int $userId): User
+    {
+        $em = static::getContainer()->get(EntityManagerInterface::class);
+        $em->clear();
+
+        return $em->find(User::class, $userId);
     }
 
     /**

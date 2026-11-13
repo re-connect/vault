@@ -6,12 +6,10 @@ use App\DataFixtures\v2\AdminFixture;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\DataFixtures\v2\SuperAdminFixture;
-use App\Entity\User;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
@@ -52,18 +50,6 @@ class UpdatePasswordTest extends AbstractControllerTest implements TestRouteInte
 
         $this->assertSelectorTextContains('div.alert-dismissible', self::$translator->trans('password_new_should_be_different_from_current'));
         self::assertTrue($this->findUserFromDb($user->getId())->hasTemporaryPassword());
-    }
-
-    /**
-     * Reads the user from the database through the container of the last request,
-     * not from an identity map loaded before it.
-     */
-    private function findUserFromDb(int $userId): User
-    {
-        $em = static::getContainer()->get(EntityManagerInterface::class);
-        $em->clear();
-
-        return $em->find(User::class, $userId);
     }
 
     public function provideTestRoute(): \Generator
