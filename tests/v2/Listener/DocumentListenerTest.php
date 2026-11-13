@@ -69,6 +69,30 @@ class DocumentListenerTest extends KernelTestCase
         self::assertTrue($expectedSanitizedName === $document->getNom());
     }
 
+    /**
+     * @dataProvider provideExtensionAliases
+     */
+    public function testFileExtensionAliasIsDroppedOnCreate(string $originalName, string $documentExtension, string $expectedName): void
+    {
+        $document = (new Document())
+            ->setNom($originalName)
+            ->setTaille(100)
+            ->setExtension($documentExtension)
+            ->setBeneficiaire(BeneficiaireFactory::random());
+        $this->em->persist($document);
+        $this->em->flush();
+
+        self::assertSame($expectedName, DocumentFactory::find($document)->getNom());
+    }
+
+    public static function provideExtensionAliases(): \Generator
+    {
+        yield 'jpeg file stored as jpg' => ['photo.jpeg', 'jpg', 'photo.jpg'];
+        yield 'uppercase extension' => ['photo.JPG', 'jpg', 'photo.jpg'];
+        yield 'tiff file stored as tif' => ['scan.tiff', 'tif', 'scan.tif'];
+        yield 'different file type keeps its extension in the name' => ['rapport.docx', 'pdf', 'rapport_docx.pdf'];
+    }
+
     public function fileNameSanitizationProvider(): array
     {
         return [

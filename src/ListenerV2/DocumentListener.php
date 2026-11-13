@@ -7,12 +7,17 @@ use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
+use Symfony\Component\Mime\MimeTypesInterface;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[AsEntityListener(event: Events::preUpdate, method: 'preUpdate', entity: Document::class)]
 #[AsEntityListener(event: Events::prePersist, method: 'prePersist', entity: Document::class)]
 class DocumentListener
 {
+    public function __construct(private readonly MimeTypesInterface $mimeTypes)
+    {
+    }
+
     public function preUpdate(Document $document, PreUpdateEventArgs $args): void
     {
         if ($args->hasChangedField('nom')) {
@@ -37,7 +42,7 @@ class DocumentListener
 
         $documentExtension = $document->getExtension();
         $extension = $pathInfo['extension'] ?? null;
-        if ($extension && $extension !== $documentExtension) {
+        if ($extension && !$this->isSameFileType($extension, $documentExtension)) {
             $name = sprintf('%s.%s', $name, $extension);
         }
 
@@ -48,5 +53,22 @@ class DocumentListener
         }
 
         $document->setNom($sanitizedName);
+    }
+
+    /**
+     * Aliases such as "jpeg" and "jpg" share a MIME type: keeping both would give "photo_jpeg.jpg".
+     */
+    private function isSameFileType(string $extension, ?string $documentExtension): bool
+    {
+        if ($extension === $documentExtension) {
+            return true;
+        }
+
+        $sharedMimeTypes = array_intersect(
+            $this->mimeTypes->getMimeTypes($extension),
+            $this->mimeTypes->getMimeTypes((string) $documentExtension),
+        );
+
+        return [] !== $sharedMimeTypes;
     }
 }

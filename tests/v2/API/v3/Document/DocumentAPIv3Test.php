@@ -3,9 +3,11 @@
 namespace App\Tests\v2\API\v3\Document;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
+use App\Entity\Document;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\DocumentFactory;
 use App\Tests\v2\API\v3\AbstractApiTest;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DocumentAPIv3Test extends AbstractApiTest
@@ -136,6 +138,23 @@ class DocumentAPIv3Test extends AbstractApiTest
             null,
             []
         );
+    }
+
+    public function testToggleVisibilityWhenNameIsTooLong(): void
+    {
+        $clientName = 'reconnect_pro';
+        $document = DocumentFactory::createOne([
+            'beneficiaire' => $this->getBeneficiaryForClient($clientName),
+            'bPrive' => false,
+            'nom' => str_repeat('a', Document::NAME_MAX_LENGTH + 1),
+        ]);
+        $documentId = $document->getId();
+
+        $this->assertEndpoint($clientName, '/documents/'.$documentId.'/toggle-visibility', 'PATCH', 200, null, []);
+
+        $em = static::getContainer()->get(EntityManagerInterface::class);
+        $em->clear();
+        self::assertTrue($em->find(Document::class, $documentId)->getBPrive());
     }
 
     /**

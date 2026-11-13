@@ -14,7 +14,11 @@ class RenameDocumentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class, ['label' => false]);
+            ->add('nom', TextType::class, [
+                'label' => false,
+                // The extension is added back by DocumentListener when the document is saved
+                'getter' => fn (Document $document): string => $document->getNameWithoutExtension(),
+            ]);
     }
 
     #[\Override]
@@ -22,6 +26,7 @@ class RenameDocumentType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Document::class,
+            'validation_groups' => ['Default', Document::NAME_VALIDATION_GROUP],
         ]);
     }
 }

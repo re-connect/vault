@@ -4,11 +4,13 @@ namespace App\Tests\v2\Controller\DocumentController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
+use App\Entity\Document;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\DocumentFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestFormInterface;
 use App\Tests\v2\Controller\TestRouteInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class RenameTest extends AbstractControllerTest implements TestRouteInterface, TestFormInterface
 {
@@ -70,6 +72,14 @@ class RenameTest extends AbstractControllerTest implements TestRouteInterface, T
             BeneficiaryFixture::BENEFICIARY_MAIL,
             null,
         ];
+
+        yield 'Should refresh when name has the maximum length' => [
+            self::URL,
+            'confirm',
+            ['rename_document[nom]' => str_repeat('a', Document::NAME_MAX_LENGTH)],
+            BeneficiaryFixture::BENEFICIARY_MAIL,
+            null,
+        ];
     }
 
     /**
@@ -104,5 +114,50 @@ class RenameTest extends AbstractControllerTest implements TestRouteInterface, T
             BeneficiaryFixture::BENEFICIARY_MAIL,
             'div.invalid-feedback',
         ];
+
+        yield 'Should return an error when name is too long' => [
+            self::URL,
+            'document_rename',
+            'confirm',
+            ['rename_document[nom]' => str_repeat('a', Document::NAME_MAX_LENGTH + 1)],
+            [
+                [
+                    'message' => 'document_name_too_long',
+                    'params' => ['{{ limit }}' => (string) Document::NAME_MAX_LENGTH],
+                ],
+            ],
+            BeneficiaryFixture::BENEFICIARY_MAIL,
+            'div.invalid-feedback',
+        ];
+    }
+
+    /** @dataProvider provideNamesWithAndWithoutExtension */
+    public function testFormHidesFileExtension(string $submittedName, string $expectedSavedName): void
+    {
+        self::ensureKernelShutdown();
+        $client = static::createClient();
+        $client->loginUser($this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL));
+        $document = DocumentFactory::createOne([
+            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
+            'nom' => 'facture_recette.pdf',
+            'extension' => 'pdf',
+        ]);
+        $documentId = $document->getId();
+
+        $crawler = $client->request('GET', '/document/'.$documentId.'/rename');
+        self::assertSame('facture_recette', $crawler->filter('input[name="rename_document[nom]"]')->attr('value'));
+
+        $form = $crawler->selectButton(self::$translator->trans('confirm'))->form();
+        $client->submit($form, ['rename_document[nom]' => $submittedName]);
+
+        $em = static::getContainer()->get(EntityManagerInterface::class);
+        $em->clear();
+        self::assertSame($expectedSavedName, $em->find(Document::class, $documentId)->getNom());
+    }
+
+    public static function provideNamesWithAndWithoutExtension(): \Generator
+    {
+        yield 'Extension is added back when the name has none' => ['nouveau nom', 'nouveau_nom.pdf'];
+        yield 'Extension is not doubled when the user types it' => ['nouveau.pdf', 'nouveau.pdf'];
     }
 }

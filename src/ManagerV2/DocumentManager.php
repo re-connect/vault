@@ -6,6 +6,7 @@ use App\Entity\Beneficiaire;
 use App\Entity\Document;
 use App\Entity\Dossier;
 use App\Repository\DocumentRepository;
+use App\Security\HelperV2\Oauth2Helper;
 use App\ServiceV2\BucketService;
 use App\ServiceV2\Traits\SessionsAwareTrait;
 use App\ServiceV2\Traits\UserAwareTrait;
@@ -19,7 +20,9 @@ use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use function Symfony\Component\String\u;
@@ -39,6 +42,8 @@ class DocumentManager
         private readonly TranslatorInterface $translator,
         private readonly BucketService $bucketService,
         private readonly FolderManager $folderManager,
+        private readonly ValidatorInterface $validator,
+        private readonly Oauth2Helper $oauth2Helper,
         //        private readonly string $env,
     ) {
     }
@@ -149,9 +154,35 @@ class DocumentManager
     public function uploadFiles(array $files, Beneficiaire $beneficiary, ?Dossier $folder = null): void
     {
         foreach ($files as $file) {
+            try {
+                $this->validateName($file->getClientOriginalName());
+            } catch (UnprocessableEntityHttpException $exception) {
+                $this->addFlashMessage('danger', $exception->getMessage());
+
+                continue;
+            }
+
             if (!$this->uploadFile($file, $beneficiary, $folder)) {
                 $this->addFlashMessage('danger', 'error');
             }
+        }
+    }
+
+    /**
+     * The rule only applies to the vault users (web, mobile app): third-party apps (API clients without a user,
+     * such as RP or Rosalie) keep their former behavior.
+     *
+     * @throws UnprocessableEntityHttpException when the name breaks a constraint of Document::$nom
+     */
+    public function validateName(string $name): void
+    {
+        if ($this->oauth2Helper->isAuthenticatedAsClient()) {
+            return;
+        }
+
+        $violations = $this->validator->validatePropertyValue(Document::class, 'nom', $name, ['Default', Document::NAME_VALIDATION_GROUP]);
+        if (count($violations) > 0) {
+            throw new UnprocessableEntityHttpException((string) $violations->get(0)->getMessage());
         }
     }
 
