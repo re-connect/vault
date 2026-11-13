@@ -10,12 +10,12 @@
     <div class="modal-dialog">
         <div class="modal-content text-primary bg-white p-3 rounded">
             <div class="modal-header d-flex">
-                <h4 class="modal-title bold">
+                <h4 class="modal-title bold text-break">
                     {{ document.nom }}
                 </h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body text-center">
+            <div class="modal-body text-center text-break">
                     <a href="{{ document.presignedUrl }}" target="_blank">
                         {% if document.extension == 'pdf' %}
                             <img class="img-fluid img-thumbnail" src="{{ document.thumbnailPresignedUrl }}"
