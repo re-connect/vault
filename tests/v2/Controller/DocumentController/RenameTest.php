@@ -4,6 +4,7 @@ namespace App\Tests\v2\Controller\DocumentController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
+use App\Entity\Document;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\DocumentFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
@@ -70,6 +71,14 @@ class RenameTest extends AbstractControllerTest implements TestRouteInterface, T
             BeneficiaryFixture::BENEFICIARY_MAIL,
             null,
         ];
+
+        yield 'Should refresh when name has the maximum length' => [
+            self::URL,
+            'confirm',
+            ['rename_document[nom]' => str_repeat('a', Document::NAME_MAX_LENGTH)],
+            BeneficiaryFixture::BENEFICIARY_MAIL,
+            null,
+        ];
     }
 
     /**
@@ -99,6 +108,21 @@ class RenameTest extends AbstractControllerTest implements TestRouteInterface, T
                 [
                     'message' => 'This value should not be blank.',
                     'params' => null,
+                ],
+            ],
+            BeneficiaryFixture::BENEFICIARY_MAIL,
+            'div.invalid-feedback',
+        ];
+
+        yield 'Should return an error when name is too long' => [
+            self::URL,
+            'document_rename',
+            'confirm',
+            ['rename_document[nom]' => str_repeat('a', Document::NAME_MAX_LENGTH + 1)],
+            [
+                [
+                    'message' => 'document_name_too_long',
+                    'params' => ['{{ limit }}' => (string) Document::NAME_MAX_LENGTH],
                 ],
             ],
             BeneficiaryFixture::BENEFICIARY_MAIL,
