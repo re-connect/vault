@@ -22,6 +22,7 @@ class RenameDocumentType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Document::class,
+            'validation_groups' => ['Default', Document::NAME_VALIDATION_GROUP],
         ]);
     }
 }
