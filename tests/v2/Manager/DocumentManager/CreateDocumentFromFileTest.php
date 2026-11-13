@@ -7,6 +7,7 @@ use App\DataFixtures\v2\MemberFixture;
 use App\ManagerV2\DocumentManager;
 use App\ManagerV2\FolderManager;
 use App\Repository\DocumentRepository;
+use App\Security\HelperV2\Oauth2Helper;
 use App\ServiceV2\BucketService;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\FolderFactory;
@@ -19,6 +20,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Zenstruck\Foundry\Test\Factories;
 
@@ -51,7 +53,8 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
             $translatorMock,
             $bucketServiceMock,
             $folderManager,
-            'test',
+            $this->createMock(ValidatorInterface::class),
+            $this->createMock(Oauth2Helper::class),
         );
     }
 
