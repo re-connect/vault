@@ -20,7 +20,7 @@
             <hr class="text-light-grey">
             {{ form_start(form) }}
             {{ form_widget(form) }}
-            <div class="d-flex justify-content-center my-2">
+            <div class="d-flex justify-content-center my-2 text-break">
                 <div class="d-flex justify-content-center align-items-center rounded">
                         <img class="img-fluid bg-white rounded shadow-sm p-1" src="{{ document.thumbnailPresignedUrl ?? url ?? '' }}"
                              alt="{{ document.nom }}"
