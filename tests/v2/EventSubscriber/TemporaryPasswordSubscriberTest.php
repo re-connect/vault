@@ -8,6 +8,7 @@ use App\Tests\Factory\UserFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Zenstruck\Foundry\Test\Factories;
 
 class TemporaryPasswordSubscriberTest extends WebTestCase
@@ -16,7 +17,7 @@ class TemporaryPasswordSubscriberTest extends WebTestCase
 
     private const string UPDATE_PASSWORD_URL = '/update-password';
     private const string FIRST_VISIT_URL = '/user/first-visit';
-    private const array RANDOM_URLS = ['/beneficiary', '/user/settings', '/user/redirect-user/'];
+    private const array RANDOM_URLS = ['/beneficiary', '/user/settings', '/user/redirect-user/', '/user/delete'];
 
     public function testEventSubscription(): void
     {
@@ -74,5 +75,37 @@ class TemporaryPasswordSubscriberTest extends WebTestCase
 
         $client->request('GET', '/improve-password');
         self::assertResponseIsSuccessful();
+    }
+
+    public function testDoesNotLoopWithTermsOfUseAndWeakPassword(): void
+    {
+        $client = static::createClient();
+        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_TEMPORARY_PASSWORD_FIRST_VISIT);
+        $user->setHasPasswordWithLatestPolicy(false);
+        static::getContainer()->get(EntityManagerInterface::class)->flush();
+        $client->loginUser($user);
+        $client->followRedirects();
+        $client->setMaxRedirects(5);
+
+        $client->request('GET', '/beneficiary');
+
+        self::assertRouteSame('improve_password');
+    }
+
+    public function testShowsTermsOfUseOncePasswordIsUpdated(): void
+    {
+        $client = static::createClient();
+        $client->loginUser(UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_TEMPORARY_PASSWORD_FIRST_VISIT));
+        $submitLabel = static::getContainer()->get(TranslatorInterface::class)->trans('submit');
+
+        $crawler = $client->request('GET', self::UPDATE_PASSWORD_URL);
+        $form = $crawler->selectButton($submitLabel)->form([
+            'change_password_form[plainPassword][first]' => 'OwnChosenPassword42!',
+            'change_password_form[plainPassword][second]' => 'OwnChosenPassword42!',
+        ]);
+        $client->followRedirects();
+        $client->submit($form);
+
+        self::assertRouteSame('user_first_visit');
     }
 }
