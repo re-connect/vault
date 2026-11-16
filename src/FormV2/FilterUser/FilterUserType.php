@@ -42,6 +42,7 @@ class FilterUserType extends AbstractType
                 'required' => false,
                 'choices' => $options['relays'],
                 'attr' => [
+                    'title' => 'choose_relay',
                     'data-ajax-list-filter-target' => 'input',
                     'data-input-name' => 'relay',
                     'data-action' => 'ajax-list-filter#filter',

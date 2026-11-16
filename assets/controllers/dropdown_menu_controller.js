@@ -26,5 +26,9 @@ export default class extends Controller {
 
     toggleClasses.forEach(toggleClass => button.classList.toggle(toggleClass));
     menu.classList.toggle('d-none');
+
+    if (button.hasAttribute('aria-expanded')) {
+      button.setAttribute('aria-expanded', menu.classList.contains('d-none') ? 'false' : 'true');
+    }
   }
 }
