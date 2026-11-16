@@ -6,5 +6,5 @@ class ReconnectProPageTest extends AbstractPageTest
 {
     protected const URL = '/reconnect-pro';
     protected const PAGE_TITLE = 'rp_page_hero_text';
-    protected const SELECTOR = 'h3';
+    protected const SELECTOR = 'h1';
 }

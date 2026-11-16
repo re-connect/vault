@@ -6,4 +6,5 @@ class ContactUsPageTest extends AbstractPageTest
 {
     protected const URL = '/nous-contacter';
     protected const PAGE_TITLE = 'contact_page_title';
+    protected const SELECTOR = 'h1';
 }

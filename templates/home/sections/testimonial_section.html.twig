@@ -4,7 +4,7 @@
         <div class="row text-primary">
             <div class="col-12 col-md-12 p-3 justify-content-center">
                 {% for testimonial in testimonials %}
-                    <h4>{{ testimonial.content|trans|raw }}<span class="p-2">{{ testimonial.author|trans }}</span></h4>
+                    <blockquote class="h4">{{ testimonial.content|trans|raw }}<span class="p-2">{{ testimonial.author|trans }}</span></blockquote>
                 {% endfor %}
             </div>
         </div>
