@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ app.request ? app.request.locale : 'fr' }}">
 <head>
     <meta charset="UTF-8"/>
     <title>
@@ -8,7 +8,7 @@
     <meta name="description" content="{{ 'home_meta_desc'| trans }}"/>
     <meta property="og:title" content="{% block meta_title %}{% endblock %}"/>
     <meta property="og:image" content="https://www.reconnect.fr{{ asset('build/images/home/meta_image.png') }}"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     {% block metas %}{% endblock %}
 
     {% block javascripts %}
@@ -29,8 +29,9 @@
 
 <body class="preload {% block bodyClass %}{% endblock bodyClass %}">
 
-<main role="main" id="wrapper{% if app.user %}Connected{% endif %}">
+<div id="wrapper{% if app.user %}Connected{% endif %}">
     {% include('home/header.html.twig') %}
+    <main role="main" id="main-content">
     {% block body %}
         {{ include('v2/flash_messages.html.twig', {textColor: 'text-primary', bgColor: 'bg-white'}) }}
 
@@ -40,7 +41,8 @@
             {% endblock bodyCentered %}
         </div>
     {% endblock body %}
-</main>
+    </main>
+</div>
 
 {{ include('home/footer/footer.html.twig') }}
 

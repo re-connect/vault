@@ -1,5 +1,5 @@
 <div class="{{ bg_class }} box-shadow-white border-radius-20 p-3 mt-4 mt-md-0">
-    <h6 class="text-white text-center mb-3 lighter font-size-1-2 fw-bold">{{ 'login_form_title'| trans }}</h6>
+    <h2 class="h6 text-white text-center mb-3 lighter font-size-1-2 fw-bold">{{ 'login_form_title'| trans }}</h2>
     {% for label, messages in app.flashes(['success', 'danger']) %}
         {% for message in messages %}
             <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
@@ -16,9 +16,9 @@
     {{ form_row(form._username, {full_name:'_username', value: last_username}) }}
     <div class="position-relative" {{ stimulus_controller('hide-show-password') }}>
         {{ form_row(form._password, {full_name:'_password', attr: {'data-hide-show-password-target' : 'input'}}) }}
-        <button type="button" class="btn position-absolute border-0" style="right:0; top:-1px; z-index:2;"
-                {{ stimulus_action('hide-show-password', 'toggle') }}>
-            <i class="fas fa-eye font-size-1 {{ icon_color }}"
+        <button type="button" class="btn position-absolute border-0" style="right:0; top:-1px; z-index:2;" aria-pressed="false"
+                {{ stimulus_action('hide-show-password', 'toggle') }} {{ stimulus_target('hide-show-password', 'button') }}>
+            <i class="fas fa-eye font-size-1 {{ icon_color }}" aria-hidden="true"
                 {{ stimulus_target('hide-show-password', 'icon') }}></i>
         </button>
     </div>
