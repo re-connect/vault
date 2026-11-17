@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\v2\API\v2\PersonalData;
+namespace App\Tests\v2\API\v2\PasswordGrant\PersonalData;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
@@ -10,10 +10,10 @@ use App\Tests\Factory\ContactFactory;
 use App\Tests\Factory\EventFactory;
 use App\Tests\Factory\FolderFactory;
 use App\Tests\Factory\NoteFactory;
-use App\Tests\v2\API\v2\AbstractApiV2Test;
+use App\Tests\v2\API\v2\PasswordGrant\AbstractPasswordGrantApiV2TestCase;
 use Doctrine\ORM\EntityManagerInterface;
 
-class PersonalDataAccessTest extends AbstractApiV2Test
+class PersonalDataAccessTest extends AbstractPasswordGrantApiV2TestCase
 {
     private const string FORBIDDEN_NAME = 'renamed-by-unauthorized-user';
 

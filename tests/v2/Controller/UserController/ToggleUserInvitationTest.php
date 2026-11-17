@@ -9,6 +9,7 @@ use App\Entity\MembreCentre;
 use App\Tests\Factory\BeneficiaryRelayFactory;
 use App\Tests\Factory\MembreCentreFactory;
 use App\Tests\Factory\MembreFactory;
+use App\Tests\Factory\RelayFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 
