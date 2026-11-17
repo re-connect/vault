@@ -1,0 +1,10 @@
+// The contact band carries a navy title and a white subtitle, both in large
+// text. The intermediate shades validated on 04/11 give at least 3:1 to both;
+// the darker shades used elsewhere would push the navy title under 3:1 (RGAA 3.2).
+.contact-us-section {
+  &.bg-secondary { background-color: #27a776 !important; }
+  &.bg-green { background-color: #42a853 !important; }
+  &.bg-blue { background-color: #30a1bf !important; }
+  &.bg-yellow { background-color: #cc8606 !important; }
+  &.bg-eton-blue { background-color: #4ba48a !important; }
+}
