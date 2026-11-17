@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\v2\API\v2\Document;
+namespace App\Tests\v2\API\v2\PasswordGrant\Document;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
@@ -8,10 +8,10 @@ use App\Entity\Document;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\DocumentFactory;
 use App\Tests\Factory\FolderFactory;
-use App\Tests\v2\API\v2\AbstractApiV2Test;
+use App\Tests\v2\API\v2\PasswordGrant\AbstractPasswordGrantApiV2TestCase;
 use Doctrine\ORM\EntityManagerInterface;
 
-class DocumentAccessTest extends AbstractApiV2Test
+class DocumentAccessTest extends AbstractPasswordGrantApiV2TestCase
 {
     private const string FORBIDDEN_NAME = 'renamed-by-unauthorized-user';
 

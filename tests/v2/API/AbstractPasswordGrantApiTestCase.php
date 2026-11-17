@@ -60,13 +60,6 @@ abstract class AbstractPasswordGrantApiTestCase extends AbstractApiTestCase
         return $member;
     }
 
-    public function loginAsUser(ApiPlatformClient $client, string $email): void
-    {
-        $apiClient = $this->em->getRepository(Client::class)->findOneBy(['name' => 'applimobile']);
-
-        $this->requestAccessToken($client, $apiClient, UserFactory::findByEmail($email)->getUsername(), 'password');
-    }
-
     private function requestAccessToken(ApiPlatformClient $client, Client $apiClient, string $username, string $grantType): void
     {
         $client->request('GET', '/oauth/v2/token', ['json' => [
