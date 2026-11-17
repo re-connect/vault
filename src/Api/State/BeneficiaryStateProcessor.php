@@ -12,6 +12,7 @@ use App\Api\Manager\ApiClientManager;
 use App\Entity\Beneficiaire;
 use App\Entity\Client;
 use App\Entity\ClientBeneficiaire;
+use App\Entity\ClientCentre;
 use App\ManagerV2\UserManager;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\CentreRepository;
@@ -149,6 +150,12 @@ readonly class BeneficiaryStateProcessor implements ProcessorInterface
             return;
         }
 
+        foreach ($data->getUser()->getRelaysIds() as $relayId) {
+            $relay = $this->centreRepository->find($relayId);
+            if (!$relay || !$relay->getExternalLinks()->exists(fn (int $key, ClientCentre $link) => $link->getClient() === $client)) {
+                throw new UnprocessableEntityHttpException(sprintf('Invalid center id %s', $relayId));
+            }
+        }
         $this->relayAssignationHelper->assignRelaysFromIdsArray($data->getUser());
         if (!$client) {
             return;
