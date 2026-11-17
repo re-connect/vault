@@ -38,8 +38,8 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     operations: [
-        new GetCollection(security: "is_granted('ROLE_OAUTH2_USERS') or is_granted('ROLE_USER')", provider: SearchBeneficiaryProvider::class),
-        new Patch(security: "is_granted('UPDATE', object)", processor: UserPasswordProcessor::class),
+        new GetCollection(security: "is_granted('ROLE_OAUTH2_USERS')", provider: SearchBeneficiaryProvider::class),
+        new Patch(security: "is_granted('UPDATE', object)", validationContext: ['groups' => ['Default', 'password']], processor: UserPasswordProcessor::class),
     ],
     normalizationContext: ['groups' => ['v3:user:read']],
     denormalizationContext: ['groups' => ['v3:user:write']],

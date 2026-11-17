@@ -1,0 +1,20 @@
+meta {
+  name: List
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/v3/beneficiaries
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Remplace `GET /api/v2/beneficiaires`. Pour un pro : bénéficiaires des centres où il gère les bénéficiaires. Vide pour un bénéficiaire ou un gestionnaire.
+}

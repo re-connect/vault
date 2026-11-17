@@ -17,11 +17,14 @@ readonly class RelayAssignationHelper
     {
     }
 
-    public function assignRelaysFromIdsArray(User $user): void
+    public function assignRelaysFromIdsArray(User $user, bool $acceptRelays = false): void
     {
         foreach ($user->getRelaysIds() as $relayId) {
             $relay = $this->repository->find($relayId);
-            $userRelay = User::createUserRelay($user, $relay);
+            if (!$relay) {
+                throw new UnprocessableEntityHttpException(sprintf('Invalid center id %s', $relayId));
+            }
+            $userRelay = User::createUserRelay($user, $relay, $acceptRelays);
             $this->em->persist($userRelay);
         }
     }

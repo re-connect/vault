@@ -25,14 +25,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Index(columns: ['beneficiaire_id'], name: 'IDX_CFBDFA145AF81F68')]
 #[ApiResource(
     operations: [
-        new Delete(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Delete(security: "is_granted('DELETE', object) and is_granted('ROLE_USER')"),
         new Get(security: "is_granted('ROLE_OAUTH2_NOTES_READ') or is_granted('UPDATE', object)"),
         new GetCollection(security: "is_granted('ROLE_OAUTH2_NOTES_READ') or is_granted('ROLE_USER')"),
         new Post(security: "is_granted('ROLE_USER') or is_granted('ROLE_OAUTH2_NOTES_CREATE')", processor: PersonalDataStateProcessor::class),
-        new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Patch(
+            security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')",
+            securityPostDenormalize: "is_granted('UPDATE', object) and object.getBeneficiaire() === previous_object.getBeneficiaire()",
+        ),
         new Patch(
             uriTemplate: '/notes/{id}/toggle-visibility',
-            security: "is_granted('ROLE_OAUTH2_NOTES_UPDATE')",
+            security: "is_granted('ROLE_OAUTH2_NOTES_UPDATE') or (is_granted('ROLE_USER') and is_granted('UPDATE', object))",
             name: ApiOperations::TOGGLE_VISIBILITY.'_note',
             processor: PersonalDataStateProcessor::class
         ),
@@ -49,7 +52,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     uriVariables: [
         'id' => new Link(
             fromProperty: 'notes',
-            fromClass: Beneficiaire::class
+            fromClass: Beneficiaire::class,
+            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('UPDATE', beneficiary)",
+            securityObjectName: 'beneficiary',
         ),
     ],
     normalizationContext: ['groups' => ['v3:note:read']],
@@ -57,7 +62,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     openapi: new Operation(
         tags: ['Notes'],
     ),
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ')",
+    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('ROLE_USER')",
 )]
 class Note extends DonneePersonnelle
 {

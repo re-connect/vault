@@ -1,0 +1,32 @@
+meta {
+  name: Update profile
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/api/v2/users/{{userId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "prenom": "Jean",
+    "nom": "Dupont",
+    "email": "jean.dupont@example.com",
+    "telephone": "0600000000",
+    "date_naissance": "1990-01-31",
+    "question_secrete": "Quel est le nom de votre premier animal ?",
+    "reponse_secrete": "Rex"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Appelé par `src/hooks/UserHooks.tsx`. Le mobile envoie l'objet `UserInterface` complet fusionné avec les champs modifiés. Pour un bénéficiaire, `date_naissance` (format `yyyy-MM-dd`), `question_secrete` et `reponse_secrete` sont écrasés : il faut les renvoyer.
+}

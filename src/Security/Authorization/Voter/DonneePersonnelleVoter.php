@@ -93,6 +93,9 @@ class DonneePersonnelleVoter extends REVoter
                 if ($user->isAdministrateur()) {
                     return true;
                 }
+                if (self::DONNEEPERSONNELLE_VIEW === $attribute && $subject->getBPrive()) {
+                    return false;
+                }
                 if ($user->isMembre()) {
                     $scalar = $this->provider->getScalarBeneficaireForMembre($subject->getBeneficiaire()->getId(), $user->getSubjectMembre()->getId());
 
