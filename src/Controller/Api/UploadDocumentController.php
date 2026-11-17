@@ -7,16 +7,19 @@ use App\ControllerV2\AbstractController;
 use App\Entity\Beneficiaire;
 use App\Entity\Client;
 use App\Entity\Dossier;
+use App\Entity\User;
 use App\ManagerV2\DocumentManager;
 use App\Repository\BeneficiaireRepository;
 use App\Repository\DossierRepository;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[AsController]
 final class UploadDocumentController extends AbstractController
@@ -25,25 +28,48 @@ final class UploadDocumentController extends AbstractController
     {
     }
 
+    // API Platform does not evaluate the operation "security" when the operation has its own controller
+    #[IsGranted(new Expression("is_granted('ROLE_OAUTH2_DOCUMENTS_CREATE') or is_granted('ROLE_USER')"))]
     public function __invoke(Request $request, DocumentManager $documentManager): Response
     {
         $file = $this->getFile($request);
-        $client = $this->getClient();
-        $beneficiary = $this->getBeneficiary($request, $client);
+        $user = $this->security->getUser();
+        $beneficiary = $user instanceof User ? $this->getBeneficiaryForUser($request, $user) : $this->getBeneficiaryForClient($request, $this->getClient());
         $folder = $this->getFolder($request, $beneficiary);
         $document = $documentManager->uploadFile($file, $beneficiary, $folder);
+        if (!$document) {
+            throw new BadRequestHttpException(sprintf('The file "%s" could not be uploaded', $file->getClientOriginalName()));
+        }
 
         return $this->json($document, Response::HTTP_CREATED, [], ['groups' => 'document:read']);
     }
 
-    private function getBeneficiary(Request $request, Client $client): Beneficiaire
+    private function getBeneficiaryForUser(Request $request, User $user): Beneficiaire
     {
-        $user = $this->security->getUser();
-        //         Prepare for password grant
-        //        if ($user instanceof User && $user->isBeneficiaire() && $user->getSubjectBeneficiaire()) {
-        //            return $user->getSubjectBeneficiaire();
-        //        }
+        // Beneficiaries always upload for themselves
+        if ($user->isBeneficiaire() && $user->getSubjectBeneficiaire()) {
+            return $user->getSubjectBeneficiaire();
+        }
 
+        $beneficiaryId = $request->request->get('beneficiary_id');
+        if (!$beneficiaryId) {
+            throw new BadRequestHttpException('"beneficiary_id" is required');
+        }
+
+        $beneficiary = $this->beneficiaireRepository->find($beneficiaryId);
+        if (!$beneficiary) {
+            throw new NotFoundHttpException('Beneficiary not found');
+        }
+
+        if (!$this->security->isGranted('UPDATE', $beneficiary)) {
+            throw new AccessDeniedException('You do not have permission to access this beneficiary');
+        }
+
+        return $beneficiary;
+    }
+
+    private function getBeneficiaryForClient(Request $request, Client $client): Beneficiaire
+    {
         $distantId = $request->request->get('distant_id');
         $beneficiaryId = $request->request->get('beneficiary_id');
         if (!$distantId && !$beneficiaryId) {
@@ -54,12 +80,6 @@ final class UploadDocumentController extends AbstractController
         if (!$beneficiary) {
             throw new NotFoundHttpException('Beneficiary not found');
         }
-        //        Prepare for password grant
-        //        if ($user instanceof User) {
-        //            if (!$this->security->isGranted('UPDATE', $beneficiary)) {
-        //                throw new AccessDeniedException('You do not have permission to access this beneficiary');
-        //            }
-        //        }
 
         if (!$beneficiary->hasExternalLinkForClient($client)) {
             throw new AccessDeniedException('You do not have permission to access this beneficiary');
@@ -80,6 +100,10 @@ final class UploadDocumentController extends AbstractController
 
             if ($folder->getBeneficiaire() !== $beneficiary) {
                 throw new BadRequestHttpException('The folder does not belong to the beneficiary');
+            }
+
+            if ($this->security->getUser() instanceof User && !$this->security->isGranted('UPDATE', $folder)) {
+                throw new AccessDeniedException('You do not have permission to access this folder');
             }
         }
 

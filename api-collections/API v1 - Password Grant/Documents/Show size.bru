@@ -1,0 +1,20 @@
+meta {
+  name: Show size
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/v2/documents/{{documentId}}/{{documentSize}}
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  `documentSize` : `large` ou `thumbnails` côté mobile. URL construite par `showDocument` dans `src/services/documents.ts`.
+}

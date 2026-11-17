@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Tests\v2\API\v2\PasswordGrant\Beneficiary;
+
+use App\Entity\Beneficiaire;
+use App\Entity\ConsultationBeneficiaire;
+use App\Entity\Membre;
+use App\Tests\v2\API\v2\PasswordGrant\AbstractPasswordGrantApiV2TestCase;
+use League\Bundle\OAuth2ServerBundle\Model\Client;
+use Symfony\Component\HttpFoundation\Request;
+
+class BeneficiaryConsultationTest extends AbstractPasswordGrantApiV2TestCase
+{
+    public function testRecordBeneficiaryConsultation(): void
+    {
+        $client = $this->em->getRepository(Client::class)->findOneBy(['name' => 'applimobile']);
+        $pro = $this->em->getRepository(Membre::class)->findByClientIdentifier($client->getIdentifier())[0];
+        $beneficiary = $this->em->getRepository(Beneficiaire::class)->findByClientIdentifier($client->getIdentifier())[0];
+
+        $httpClient = static::createClient();
+
+        $this->loginAsMember($httpClient);
+        $beneficiaryConsultationRepository = $this->em->getRepository(ConsultationBeneficiaire::class);
+        $consultationsBeforeTestCount = count($beneficiaryConsultationRepository->findAll());
+
+        $httpClient->request(Request::METHOD_GET, $this->generateUrl(sprintf('/beneficiaries/%s/documents', $beneficiary->getId())));
+
+        $consultationsAfterTest = $beneficiaryConsultationRepository->findAll();
+        $consultationAfterTestCount = count($consultationsAfterTest);
+        $lastConsultation = end($consultationsAfterTest);
+        self::assertEquals($consultationsBeforeTestCount + 1, $consultationAfterTestCount);
+        self::assertEquals($lastConsultation->getBeneficiaire()->getId(), $beneficiary->getId());
+        self::assertEquals($lastConsultation->getMembre()->getId(), $pro->getId());
+    }
+}

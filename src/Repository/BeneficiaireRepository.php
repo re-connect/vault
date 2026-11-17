@@ -160,23 +160,32 @@ class BeneficiaireRepository extends ServiceEntityRepository
 
     public static function addProAccessJoinsAndConditions(QueryBuilder $qb, string $rootAlias, int $proId): QueryBuilder
     {
-        return $qb
-            ->innerJoin(sprintf('%s.beneficiairesCentres', $rootAlias), 'bc')
-            ->innerJoin('bc.centre', 'c')
-            ->innerJoin(sprintf('%s.user', $rootAlias), 'u')
-            ->innerJoin('c.membresCentres', 'mc')
-            ->innerJoin('mc.membre', 'm')
-            ->leftJoin(sprintf('%s.creationProcess', $rootAlias), 'cp')
+        return self::addProAccessConditions($qb, $rootAlias, $proId)
             ->addSelect('u')
             ->addSelect('bc')
-            ->addSelect('c')
-            ->andWhere('cp.id IS NULL OR cp.isCreating = false')
-            ->andWhere('bc.bValid = true')
-            ->andWhere('m.id = :id')
-            ->andWhere('mc.bValid = true')
-            ->andWhere('mc.droits LIKE :access')
-            ->setParameter('id', $proId)
-            ->setParameter('access', sprintf('%%"%s";b:1%%', MembreCentre::MANAGE_BENEFICIARIES_PERMISSION));
+            ->addSelect('c');
+    }
+
+    /**
+     * Restricts beneficiaries to the ones the pro can manage. Aliases and parameters are prefixed, so that the conditions
+     * can also be used in a subquery.
+     */
+    public static function addProAccessConditions(QueryBuilder $qb, string $rootAlias, int $proId, string $prefix = ''): QueryBuilder
+    {
+        return $qb
+            ->innerJoin(sprintf('%s.beneficiairesCentres', $rootAlias), $prefix.'bc')
+            ->innerJoin(sprintf('%sbc.centre', $prefix), $prefix.'c')
+            ->innerJoin(sprintf('%s.user', $rootAlias), $prefix.'u')
+            ->innerJoin(sprintf('%sc.membresCentres', $prefix), $prefix.'mc')
+            ->innerJoin(sprintf('%smc.membre', $prefix), $prefix.'m')
+            ->leftJoin(sprintf('%s.creationProcess', $rootAlias), $prefix.'cp')
+            ->andWhere(sprintf('%1$scp.id IS NULL OR %1$scp.isCreating = false', $prefix))
+            ->andWhere(sprintf('%sbc.bValid = true', $prefix))
+            ->andWhere(sprintf('%1$sm.id = :%1$sid', $prefix))
+            ->andWhere(sprintf('%smc.bValid = true', $prefix))
+            ->andWhere(sprintf('%1$smc.droits LIKE :%1$saccess', $prefix))
+            ->setParameter($prefix.'id', $proId)
+            ->setParameter($prefix.'access', sprintf('%%"%s";b:1%%', MembreCentre::MANAGE_BENEFICIARIES_PERMISSION));
     }
 
     /** @return Beneficiaire[] */

@@ -52,7 +52,9 @@ final readonly class ClientResourceCollectionExtension implements QueryCollectio
     {
         $rootAliases = $queryBuilder->getRootAliases();
         if (
-            $this->oauth2Helper->isClientGrantedAllPrivileges()
+            // User tokens (e.g. mobile app) are scoped by FilterUserCollectionsExtension and voters instead
+            !$this->oauth2Helper->isAuthenticatedAsClient()
+            || $this->oauth2Helper->isClientGrantedAllPrivileges()
             || !in_array($resourceClass, self::HANDLED_CLASSES)
             || 0 === count($rootAliases)
         ) {
