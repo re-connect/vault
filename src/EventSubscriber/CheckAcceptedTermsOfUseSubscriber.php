@@ -22,14 +22,15 @@ class CheckAcceptedTermsOfUseSubscriber extends AbstractWebUserSubscriber implem
     {
         $user = $this->getUser();
 
-        if (!$user || !$this->isAuthenticatedWebUser($user)) {
+        // A temporary password must be replaced first (TemporaryPasswordSubscriber), so that only the account owner accepts the terms.
+        if (!$user || !$this->isAuthenticatedWebUser($user) || $user->hasTemporaryPassword()) {
             return;
         }
 
         if (
             $this->termsOfUseHelper->mustAcceptTermsOfUse($user)
             && $event->isMainRequest()
-            && !in_array($event->getRequest()->get('_route'), self::FIRST_VISIT_ROUTES)
+            && !in_array($event->getRequest()->attributes->get('_route'), self::FIRST_VISIT_ROUTES)
         ) {
             $event->setResponse(new RedirectResponse($user->isFirstVisit() ? $this->router->generate('user_first_visit') : $this->router->generate('user_cgs')));
         }

@@ -26,7 +26,11 @@ readonly class WeakPasswordUpgrader
 
     public function checkUpdateWeakPassword(User $user, mixed $newPassword): void
     {
-        if ($newPassword && $this->passwordHelper->isStrongPassword($user, $newPassword)) {
+        $isNewStrongPassword = $newPassword
+            && !$this->userManager->isPasswordValid($user, $newPassword)
+            && $this->passwordHelper->isStrongPassword($user, $newPassword);
+
+        if ($isNewStrongPassword) {
             $this->userManager->updatePassword($user, $newPassword);
         }
     }

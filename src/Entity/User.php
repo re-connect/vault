@@ -238,6 +238,9 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     #[ORM\Column(name: 'hasPasswordWithLatestPolicy', type: 'boolean', nullable: false, options: ['default' => false])]
     private bool $hasPasswordWithLatestPolicy = false;
 
+    #[ORM\Column(name: 'hasTemporaryPassword', type: 'boolean', nullable: false, options: ['default' => false])]
+    private bool $hasTemporaryPassword = false;
+
     #[ORM\Column(name: 'authCode', type: 'string', length: 255, nullable: true)]
     private ?string $authCode = null;
 
@@ -1327,6 +1330,18 @@ class User extends BaseUser implements \JsonSerializable, TwoFactorInterface, Tw
     public function setHasPasswordWithLatestPolicy(bool $hasUpdatedPasswordWithLatestPolicy): static
     {
         $this->hasPasswordWithLatestPolicy = $hasUpdatedPasswordWithLatestPolicy;
+
+        return $this;
+    }
+
+    public function hasTemporaryPassword(): bool
+    {
+        return $this->hasTemporaryPassword;
+    }
+
+    public function setHasTemporaryPassword(bool $hasTemporaryPassword): static
+    {
+        $this->hasTemporaryPassword = $hasTemporaryPassword;
 
         return $this;
     }

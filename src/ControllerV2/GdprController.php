@@ -43,11 +43,15 @@ class GdprController extends AbstractController
         $user = $this->getUser();
         $form = $this->createPasswordForm($user)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid() && $user) {
-            $user->setHasPasswordWithLatestPolicy(true);
-            $userManager->updatePassword($user, $form->get('plainPassword')->getData());
-            $this->addFlash('success', 'password_updated_successfully');
+            $newPassword = $form->get('plainPassword')->getData();
+            if (!$userManager->isPasswordValid($user, $newPassword)) {
+                $user->setHasPasswordWithLatestPolicy(true);
+                $userManager->updatePassword($user, $newPassword);
+                $this->addFlash('success', 'password_updated_successfully');
 
-            return $this->redirectToRoute('redirect_user');
+                return $this->redirectToRoute('redirect_user');
+            }
+            $this->addFlash('danger', 'password_new_should_be_different_from_current');
         }
 
         return $this->renderPasswordPage($user, $form);

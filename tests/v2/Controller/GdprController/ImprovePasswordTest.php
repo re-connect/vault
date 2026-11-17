@@ -222,4 +222,31 @@ class ImprovePasswordTest extends AbstractControllerTest implements TestRouteInt
 
         self::assertTrue(refresh($user)->hasPasswordWithLatestPolicy());
     }
+
+    public function testReplaceTemporaryPassword(): void
+    {
+        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_TEMPORARY_PASSWORD);
+        $newPasswordFields = [
+            'change_password_form[plainPassword][first]' => 'OwnChosenPassword42!',
+            'change_password_form[plainPassword][second]' => 'OwnChosenPassword42!',
+        ];
+
+        $this->assertFormIsValid(self::URL, 'submit', $newPasswordFields, BeneficiaryFixture::BENEFICIARY_TEMPORARY_PASSWORD, '/user/redirect-user/');
+
+        self::assertFalse($this->findUserFromDb($user->getId())->hasTemporaryPassword());
+    }
+
+    public function testCanNotKeepTemporaryPassword(): void
+    {
+        $user = UserFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_TEMPORARY_PASSWORD);
+        $temporaryPasswordFields = [
+            'change_password_form[plainPassword][first]' => UserFactory::STRONG_PASSWORD_CLEAR,
+            'change_password_form[plainPassword][second]' => UserFactory::STRONG_PASSWORD_CLEAR,
+        ];
+
+        $this->assertFormIsValid(self::URL, 'submit', $temporaryPasswordFields, BeneficiaryFixture::BENEFICIARY_TEMPORARY_PASSWORD, null);
+
+        $this->assertSelectorTextContains('div.alert-dismissible', self::$translator->trans('password_new_should_be_different_from_current'));
+        self::assertTrue($this->findUserFromDb($user->getId())->hasTemporaryPassword());
+    }
 }

@@ -32,6 +32,8 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface, Depen
     public const BENEFICIARY_MAIL_IN_CREATION = 'v2_test_user_beneficiary_in_creation@mail.com';
     public const BENEFICIARY_PHONE = '0612345678';
     public const BENEFICIARY_PASSWORD_WEAK = 'v2_test_user_beneficiary_weak_password@mail.com';
+    public const BENEFICIARY_TEMPORARY_PASSWORD = 'v2_test_user_beneficiary_temporary_password@mail.com';
+    public const BENEFICIARY_TEMPORARY_PASSWORD_FIRST_VISIT = 'v2_test_user_beneficiary_temporary_password_first_visit@mail.com';
     public const BENEFICIARY_WITH_MFA_ENABLE = 'v2_test_user_beneficiary_with_mfa_enable@mail.com';
     public const BENEFICIARY_WITH_CLIENT_LINK = 'test_user_beneficiary_with_client_link@mail.com';
     public const BENEFICIARY_WITH_RP_LINK = 'test_user_beneficiary_with_rp_link@mail.com';
@@ -57,6 +59,12 @@ class BeneficiaryFixture extends Fixture implements FixtureGroupInterface, Depen
             ->setHasPasswordWithLatestPolicy(false)
             ->setPassword(UserFactory::WEAK_PASSWORD_HASH)
         );
+        $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_TEMPORARY_PASSWORD, ['hasTemporaryPassword' => true]));
+        $this->createTestBeneficiary($this->getTestUser(self::BENEFICIARY_TEMPORARY_PASSWORD_FIRST_VISIT, [
+            'hasTemporaryPassword' => true,
+            'firstVisit' => true,
+            'telephone' => null,
+        ]));
         $this->createTestBeneficiary(
             $this->getTestUser(self::BENEFICIARY_WITH_CLIENT_LINK),
             [],
