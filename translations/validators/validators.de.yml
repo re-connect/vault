@@ -18,3 +18,4 @@ wrong_secret_answer: 'La réponse à la question secrète est incorrecte'
 wrong_sms_code: 'Le code est incorrect'
 folder_circular_dependency: Ce mouvement de dossier n'est pas valide
 you_must_accept_terms_of_use: "Du musst die Nutzungsbedingungen akzeptieren"
+folder_belongs_to_another_beneficiary: Le dossier de destination appartient à un autre bénéficiaire
