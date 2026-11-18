@@ -8,6 +8,8 @@ use App\FormV2\FolderType;
 use App\FormV2\Search\SearchType;
 use App\ManagerV2\FolderableItemManager;
 use App\ManagerV2\FolderManager;
+use App\Security\VoterV2\FolderDestination;
+use App\Security\VoterV2\FolderDestinationVoter;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
@@ -87,7 +89,10 @@ class FolderController extends AbstractController
         #[MapEntity(id: 'folderId')] ?Dossier $parentFolder = null,
     ): Response {
         if ($parentFolder) {
-            $this->denyAccessUnlessGranted('UPDATE', $parentFolder);
+            $this->denyAccessUnlessGranted(
+                FolderDestinationVoter::WRITE_INTO,
+                new FolderDestination($parentFolder, $folder->getBeneficiaire()),
+            );
         }
         $initialParentFolder = $folder->getDossierParent();
 

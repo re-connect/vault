@@ -112,6 +112,7 @@ class Dossier extends DonneePersonnelle implements FolderableEntityInterface, Cl
     #[ORM\JoinColumn(name: 'dossier_parent_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
     #[Groups(['read-personal-data', 'read-personal-data-v2', 'write-personal-data-v2', 'v3:folder:write'])]
     #[AssertFolder\NoCircularDependency]
+    #[AssertFolder\SameBeneficiaryAsFolder]
     private ?Dossier $dossierParent = null;
 
     #[Groups(['v3:folder:write', 'v3:folder:read'])]

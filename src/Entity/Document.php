@@ -21,6 +21,7 @@ use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Entity\Interface\FolderableEntityInterface;
 use App\Repository\DocumentRepository;
+use App\Validator\Constraints\Folder as AssertFolder;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -115,6 +116,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface, C
     #[ORM\ManyToOne(targetEntity: Dossier::class, inversedBy: 'documents')]
     #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id')]
     #[Groups(['v3:document:write', 'v3:document:read'])]
+    #[AssertFolder\SameBeneficiaryAsFolder]
     protected ?Dossier $dossier = null;
 
     #[ORM\Column(name: 'extension', type: 'string', length: 255, nullable: true)]
