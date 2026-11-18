@@ -58,3 +58,16 @@ label,
   outline-offset: 2px;
   box-shadow: 0 0 0 5px #ffffff;
 }
+
+// Search fields drawn as a pill with a magnifier: frame the whole pill, icon
+// included, rather than the text input alone.
+.input-group.rounded-pill:has(> input:focus-visible) {
+  outline: 3px solid #203468;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px #ffffff;
+}
+
+.input-group.rounded-pill > input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
