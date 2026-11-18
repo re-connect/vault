@@ -5,11 +5,11 @@ namespace App\Tests\v2\API\v2\OAuth;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\UserFactory;
-use App\Tests\v2\API\v2\AbstractApiV2Test;
+use App\Tests\v2\API\v2\PasswordGrant\AbstractPasswordGrantApiV2TestCase;
 use Doctrine\ORM\EntityManagerInterface;
 use League\Bundle\OAuth2ServerBundle\Model\Client;
 
-class PasswordGrantTest extends AbstractApiV2Test
+class PasswordGrantTest extends AbstractPasswordGrantApiV2TestCase
 {
     private const string OLD_USERNAME = 'old.username.oauth-test';
 
