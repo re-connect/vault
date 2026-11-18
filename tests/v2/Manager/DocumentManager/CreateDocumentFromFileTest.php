@@ -19,6 +19,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Validation;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Zenstruck\Foundry\Test\Factories;
 
@@ -51,7 +52,7 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
             $translatorMock,
             $bucketServiceMock,
             $folderManager,
-            'test',
+            Validation::createValidatorBuilder()->enableAttributeMapping()->getValidator(),
         );
     }
 
@@ -149,6 +150,31 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
         );
 
         self::assertEquals(true, $document->getBPrive());
+    }
+
+    public function testCanNotCreateDocumentInFolderOfAnotherBeneficiary(): void
+    {
+        self::ensureKernelShutdown();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $this->loginUser(BeneficiaryFixture::BENEFICIARY_MAIL);
+
+        $otherBeneficiaryFolder = FolderFactory::createOne([
+            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS),
+            'bPrive' => false,
+        ]);
+        $file = $this->getDummyFile();
+        $this->securityMock->method('getUser')->willReturn($this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL));
+
+        $this->expectException(\DomainException::class);
+        $this->getPrivateMethod(DocumentManager::class, 'createDocumentFromFile')->invokeArgs(
+            $this->manager,
+            [
+                $file, Uuid::v4(),
+                $file->getBasename(),
+                $beneficiary,
+                $otherBeneficiaryFolder,
+            ],
+        );
     }
 
     private function getDummyFile(): File

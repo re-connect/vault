@@ -8,6 +8,8 @@ use App\FormV2\RenameDocumentType;
 use App\ManagerV2\DocumentManager;
 use App\ManagerV2\FolderableItemManager;
 use App\ManagerV2\FolderManager;
+use App\Security\VoterV2\FolderDestination;
+use App\Security\VoterV2\FolderDestinationVoter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -116,7 +118,10 @@ class DocumentController extends AbstractController
         #[MapEntity(id: 'folderId')] ?Dossier $folder,
     ): Response {
         if ($folder) {
-            $this->denyAccessUnlessGranted('UPDATE', $folder);
+            $this->denyAccessUnlessGranted(
+                FolderDestinationVoter::WRITE_INTO,
+                new FolderDestination($folder, $document->getBeneficiaire()),
+            );
         }
         $initialParentFolder = $document->getDossier();
 
