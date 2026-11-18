@@ -77,6 +77,28 @@ class MoveToFolderTest extends AbstractControllerTest implements TestRouteInterf
         self::assertResponseStatusCodeSame(403);
     }
 
+    public function testProCanNotMoveDocumentBetweenManagedBeneficiaries(): void
+    {
+        self::ensureKernelShutdown();
+        $clientTest = static::createClient();
+        $clientTest->loginUser($this->getTestUserFromDb(MemberFixture::MEMBER_WITH_CLIENT));
+
+        $document = DocumentFactory::createOne([
+            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
+            'bPrive' => false,
+        ]);
+        $otherBeneficiaryFolder = FolderFactory::createOne([
+            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK),
+            'bPrive' => false,
+        ]);
+
+        $clientTest->request('GET', sprintf(self::URL, $document->getId(), $otherBeneficiaryFolder->getId()));
+
+        self::assertResponseStatusCodeSame(403);
+        refresh($document);
+        self::assertNull($document->getDossier());
+    }
+
     public function provideTestMoveToFolder(): ?\Generator
     {
         yield 'Shared document moved in shared folder should be shared' => [false, false, false];
