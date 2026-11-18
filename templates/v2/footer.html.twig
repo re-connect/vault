@@ -4,18 +4,24 @@
     <div class="container text-center pt-3">
         <div class="row mb-3">
             <small class="text-primary col-xs-12 col-sm-4 mb-2">{{ 'now' | date('Y') }} {{ 'footer_copyright' | trans }}</small>
-            <a class="text-primary text-decoration-none col-12 col-sm-4 mb-2"
-               href="{{ path('cgs') }}"
-               target="_blank"
-            >
-                <small>{{ 'footer_CGS_vault'|trans }}</small>
-            </a>
-            <a class="text-primary text-decoration-none col-12 col-sm-4 mb-2"
-               href="https://www.reconnect.fr/annexe/confidentialite-cs"
-               target="_blank"
-            >
-                <small>{{ 'footer_confidentiality_vault'|trans }}</small>
-            </a>
+            <ul class="list-unstyled row col-12 col-sm-8 mx-0 px-0 mb-0">
+                <li class="col-12 col-sm-6 mb-2">
+                    <a class="text-primary text-decoration-none"
+                       href="{{ path('cgs') }}"
+                       target="_blank"
+                    >
+                        <small>{{ 'footer_CGS_vault'|trans }}</small>
+                    </a>
+                </li>
+                <li class="col-12 col-sm-6 mb-2">
+                    <a class="text-primary text-decoration-none"
+                       href="https://www.reconnect.fr/annexe/confidentialite-cs"
+                       target="_blank"
+                    >
+                        <small>{{ 'footer_confidentiality_vault'|trans }}</small>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </footer>
