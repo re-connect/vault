@@ -1,0 +1,40 @@
+// Right-to-left reading for Arabic, Pashto and Dari (RGAA 8.10). The <html>
+// element gets dir="rtl" for these locales; the browser then mirrors the text
+// and the flex layouts. These rules handle what the LTR build of Bootstrap and
+// the existing templates set physically.
+
+[dir="rtl"] {
+  // Strings not translated yet fall back to French. Let each one take the
+  // direction of its own text, so "Qui sommes-nous ?" keeps its question mark
+  // at the end instead of being displayed "? Qui sommes-nous".
+  a,
+  span,
+  button,
+  label,
+  p,
+  li,
+  h1, h2, h3, h4, h5, h6,
+  th,
+  td,
+  .btn {
+    unicode-bidi: plaintext;
+  }
+
+  .text-start,
+  .text-left {
+    text-align: right !important;
+  }
+
+  .text-end,
+  .text-right {
+    text-align: left !important;
+  }
+
+  // E-mail addresses, user names, passwords and phone numbers are typed left
+  // to right whatever the interface language.
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"] {
+    direction: ltr;
+  }
+}
