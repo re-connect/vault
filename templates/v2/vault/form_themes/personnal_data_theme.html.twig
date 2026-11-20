@@ -30,5 +30,6 @@
 
 {%- block form_label_content -%}
     {{- parent() -}}
-    {%- if required -%}<span class="required-asterisk" aria-hidden="true">*</span>{%- endif -%}
+    {#- The group legend carries the asterisk, not each radio button or checkbox of the group -#}
+    {%- if required and not (form.parent is not null and form.parent.vars.expanded|default(false)) -%}<span class="required-asterisk" aria-hidden="true">*</span>{%- endif -%}
 {%- endblock form_label_content -%}
