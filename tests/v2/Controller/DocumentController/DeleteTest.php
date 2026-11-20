@@ -6,11 +6,14 @@ use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\DocumentFactory;
+use App\Tests\v2\BucketServiceSpyTrait;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 
 class DeleteTest extends AbstractControllerTest implements TestRouteInterface
 {
+    use BucketServiceSpyTrait;
+
     private const URL = '/document/%s/delete';
 
     public function provideTestRoute(): ?\Generator
@@ -45,5 +48,23 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
             $newUrl = sprintf(self::URL, $newDocument->getId());
             $this->assertRoute($newUrl, 403, $userMail, null, $method, true);
         }
+    }
+
+    public function testDeletingDocumentRemovesItsFilesFromStorage(): void
+    {
+        self::ensureKernelShutdown();
+        $client = static::createClient();
+        $deletedKeys = $this->spyOnDeletedFiles($client);
+        $document = DocumentFactory::createOne([
+            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
+            'objectKey' => 'web-document-object-key',
+            'thumbnailKey' => 'web-document-thumbnail-key',
+        ]);
+        $client->loginUser($this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL));
+
+        $client->request('GET', sprintf(self::URL, $document->getId()));
+
+        self::assertResponseStatusCodeSame(302);
+        self::assertEqualsCanonicalizing(['web-document-object-key', 'web-document-thumbnail-key'], $deletedKeys->getArrayCopy());
     }
 }

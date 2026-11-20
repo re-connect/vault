@@ -236,12 +236,6 @@ class DocumentManager
     public function delete(Document $document): void
     {
         try {
-            if ($key = $document->getObjectKey()) {
-                $this->bucketService->deleteFile($key);
-            }
-            if ($thumbKey = $document->getThumbnailKey()) {
-                $this->bucketService->deleteFile($thumbKey);
-            }
             $this->em->remove($document);
             $this->em->flush();
             $this->addFlashMessage('success', 'document_deleted_successfully');
