@@ -41,6 +41,12 @@ th:last-child{
 
 // The contact name link fills its table cell: draw its focus indicator inside
 // the cell so the neighbouring cells do not cover part of it.
+// Padding keeps the indicator off the name itself (recette 20/11).
+.table-row-link {
+  display: inline-block;
+  padding: 4px 8px;
+}
+
 .table-row-link:focus-visible {
   outline-offset: -3px !important;
 }
