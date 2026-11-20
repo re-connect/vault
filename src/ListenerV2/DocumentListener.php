@@ -3,6 +3,7 @@
 namespace App\ListenerV2;
 
 use App\Entity\Document;
+use App\Entity\DonneePersonnelle;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
@@ -47,12 +48,11 @@ class DocumentListener
         }
 
         $sanitizedName = (new AsciiSlugger())->slug($name, '_')->toString();
+        $extensionSuffix = $documentExtension ? '.'.$documentExtension : '';
 
-        if ($documentExtension) {
-            $sanitizedName = sprintf('%s.%s', $sanitizedName, $document->getExtension());
-        }
-
-        $document->setNom($sanitizedName);
+        // Transliteration can make the name much longer ("中文" becomes "zhong_wen"): keep it within the column
+        $maxNameLength = DonneePersonnelle::NAME_COLUMN_LENGTH - strlen($extensionSuffix);
+        $document->setNom(rtrim(substr($sanitizedName, 0, $maxNameLength), '_').$extensionSuffix);
     }
 
     /**
