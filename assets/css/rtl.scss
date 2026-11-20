@@ -31,4 +31,20 @@
     /*!rtl:ignore*/
     direction: ltr;
   }
+
+  // Icons that show a direction (arrows, chevrons, back / next) point the other
+  // way; other icons (logos, envelope, lock, magnifier...) stay as they are.
+  .fa-arrow-left,
+  .fa-arrow-right,
+  .fa-long-arrow-alt-left,
+  .fa-long-arrow-alt-right,
+  .fa-angle-left,
+  .fa-angle-right,
+  .fa-chevron-left,
+  .fa-chevron-right,
+  .fa-caret-left,
+  .fa-caret-right {
+    /*!rtl:ignore*/
+    transform: scaleX(-1);
+  }
 }
