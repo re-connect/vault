@@ -4,6 +4,7 @@
 {% block customContent %}
     <div class="text-start">
         {{ form_start(form, {attr: {class: 'display-required-labels'}}) }}
+        {{ include('v2/common/_required_fields_notice.html.twig', {form}) }}
         <div class="row text-primary">
             {% for field in form %}
 {#          The 'plainPassword' field name is only used when creating a professionnal #}

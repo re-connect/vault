@@ -21,6 +21,7 @@
             data-lang-selector-target="button" data-action="lang-selector#toggle"
     >
         <img class="lang-selector-flag border m-2" src="{{ languages[locale].url }}" alt="">
+        <span class="visually-hidden">{{ 'a11y_language_selector'|trans }} :</span>
         <span aria-hidden="true">{{ locale|upper }}</span>
         <span class="visually-hidden" lang="{{ locale }}" dir="{{ languages[locale].dir }}">{{ languages[locale].name }}</span>
         <i class="fas fa-chevron-down text-white btn ps-0 float-end" aria-hidden="true"></i>
