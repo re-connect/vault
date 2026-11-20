@@ -1,4 +1,6 @@
 {% extends 'home/base.html.twig' %}
+
+{% block title %}{{ 'faq_gdpr'|trans }} - {{ 'website_title'|trans }}{% endblock %}
     {% block base_link %}
         <base target="_blank">
     {% endblock base_link %}
@@ -49,8 +51,8 @@
                         </div>
                     </div>
                 {% endfor %}
-                {% endif %}
             </div>
+            {% endif %}
         </div>
     </section>
 {% endblock body %}

@@ -41,7 +41,10 @@
                 {% for office in offices %}
                     <article class="col-6 col-lg-3 py-1 mb-3 mb-lg-4">
                         <p class="mb-0">{{ office.region |trans }}</p>
-                        <p class="text-uppercase mb-0">{{ office.city |trans }}</p>
+                        {% set city = office.city|trans %}
+                        {% if city|trim is not empty %}
+                            <p class="text-uppercase mb-0">{{ city }}</p>
+                        {% endif %}
                         <a class="text-decoration-none font-size-1-1"
                            href="mailto:{{ office.link }}">{{ office.link }}</a>
                     </article>
