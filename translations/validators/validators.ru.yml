@@ -18,3 +18,5 @@ wrong_secret_answer: 'La réponse à la question secrète est incorrecte'
 wrong_sms_code: 'Le code est incorrect'
 folder_circular_dependency: Ce mouvement de dossier n'est pas valide
 you_must_accept_terms_of_use: "Вы должны принять условия пользования"
+folder_belongs_to_another_beneficiary: Le dossier de destination appartient à un autre bénéficiaire
+document_name_too_long: Nom trop long (maximum {{ limit }} caractères).
