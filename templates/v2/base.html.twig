@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="{{ app.request ? app.request.locale : 'fr' }}">
+{% set page_locale = app.request ? app.request.locale : 'fr' %}
+{# Arabic, Pashto and Dari are read from right to left (RGAA 8.10) #}
+<html lang="{{ page_locale }}" dir="{{ page_locale in ['ar', 'ps', 'prs'] ? 'rtl' : 'ltr' }}">
 <head>
     <title>{% block metaTitle %}{{ 'vault_meta_title'|trans }}{% endblock metaTitle %}
         - {{ 'reconnect'|trans }}</title>
