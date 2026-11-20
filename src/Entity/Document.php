@@ -338,7 +338,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface, C
         return '';
     }
 
-    public function getObjectKey(): string
+    public function getObjectKey(): ?string
     {
         return $this->objectKey;
     }

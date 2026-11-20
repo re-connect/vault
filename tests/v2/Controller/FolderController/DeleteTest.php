@@ -5,12 +5,16 @@ namespace App\Tests\v2\Controller\FolderController;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\BeneficiaireFactory;
+use App\Tests\Factory\DocumentFactory;
 use App\Tests\Factory\FolderFactory;
+use App\Tests\v2\BucketServiceSpyTrait;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 
 class DeleteTest extends AbstractControllerTest implements TestRouteInterface
 {
+    use BucketServiceSpyTrait;
+
     private const URL = '/folder/%s/delete';
 
     public function provideTestRoute(): ?\Generator
@@ -57,5 +61,26 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
         $url = sprintf(self::URL, $subFolder->getId());
         $expectedRedirect = sprintf('/folder/%s', $folder->getId());
         $this->assertRoute($url, 302, BeneficiaryFixture::BENEFICIARY_MAIL, $expectedRedirect);
+    }
+
+    public function testDeletingFolderRemovesFilesOfAllItsDocuments(): void
+    {
+        self::ensureKernelShutdown();
+        $client = static::createClient();
+        $deletedKeys = $this->spyOnDeletedFiles($client);
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $folder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'dossierParent' => null]);
+        $subFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'dossierParent' => $folder]);
+        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'dossier' => $folder, 'objectKey' => 'folder-object-key', 'thumbnailKey' => 'folder-thumbnail-key']);
+        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'dossier' => $subFolder, 'objectKey' => 'sub-folder-object-key', 'thumbnailKey' => 'sub-folder-thumbnail-key']);
+        $client->loginUser($this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL));
+
+        $client->request('GET', sprintf(self::URL, $folder->getId()));
+
+        self::assertResponseStatusCodeSame(302);
+        self::assertEqualsCanonicalizing(
+            ['folder-object-key', 'folder-thumbnail-key', 'sub-folder-object-key', 'sub-folder-thumbnail-key'],
+            $deletedKeys->getArrayCopy(),
+        );
     }
 }
