@@ -4,6 +4,7 @@ namespace App\Tests\v2\Listener;
 
 use App\Entity\Beneficiaire;
 use App\Entity\Document;
+use App\Entity\DonneePersonnelle;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\DocumentFactory;
 use Doctrine\ORM\EntityManagerInterface;
@@ -91,6 +92,23 @@ class DocumentListenerTest extends KernelTestCase
         yield 'uppercase extension' => ['photo.JPG', 'jpg', 'photo.jpg'];
         yield 'tiff file stored as tif' => ['scan.tiff', 'tif', 'scan.tif'];
         yield 'different file type keeps its extension in the name' => ['rapport.docx', 'pdf', 'rapport_docx.pdf'];
+    }
+
+    public function testTransliteratedNameIsKeptWithinTheColumn(): void
+    {
+        // 54 Chinese characters become 269 ASCII characters once transliterated, more than the column allows
+        $document = (new Document())
+            ->setNom(str_repeat('中文文件名称', 9).'.pdf')
+            ->setTaille(100)
+            ->setExtension('pdf')
+            ->setBeneficiaire(BeneficiaireFactory::random());
+        $this->em->persist($document);
+        $this->em->flush();
+
+        $savedName = DocumentFactory::find($document)->getNom();
+        self::assertLessThanOrEqual(DonneePersonnelle::NAME_COLUMN_LENGTH, strlen($savedName));
+        self::assertStringStartsWith('zhong_wen_wen_jian_ming_cheng', $savedName);
+        self::assertStringEndsWith('.pdf', $savedName);
     }
 
     public function fileNameSanitizationProvider(): array
