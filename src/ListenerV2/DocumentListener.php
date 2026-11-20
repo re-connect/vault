@@ -3,16 +3,22 @@
 namespace App\ListenerV2;
 
 use App\Entity\Document;
+use App\Entity\DonneePersonnelle;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
+use Symfony\Component\Mime\MimeTypesInterface;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[AsEntityListener(event: Events::preUpdate, method: 'preUpdate', entity: Document::class)]
 #[AsEntityListener(event: Events::prePersist, method: 'prePersist', entity: Document::class)]
 class DocumentListener
 {
+    public function __construct(private readonly MimeTypesInterface $mimeTypes)
+    {
+    }
+
     public function preUpdate(Document $document, PreUpdateEventArgs $args): void
     {
         if ($args->hasChangedField('nom')) {
@@ -37,16 +43,32 @@ class DocumentListener
 
         $documentExtension = $document->getExtension();
         $extension = $pathInfo['extension'] ?? null;
-        if ($extension && $extension !== $documentExtension) {
+        if ($extension && !$this->isSameFileType($extension, $documentExtension)) {
             $name = sprintf('%s.%s', $name, $extension);
         }
 
         $sanitizedName = (new AsciiSlugger())->slug($name, '_')->toString();
+        $extensionSuffix = $documentExtension ? '.'.$documentExtension : '';
 
-        if ($documentExtension) {
-            $sanitizedName = sprintf('%s.%s', $sanitizedName, $document->getExtension());
+        // Transliteration can make the name much longer ("中文" becomes "zhong_wen"): keep it within the column
+        $maxNameLength = DonneePersonnelle::NAME_COLUMN_LENGTH - strlen($extensionSuffix);
+        $document->setNom(rtrim(substr($sanitizedName, 0, $maxNameLength), '_').$extensionSuffix);
+    }
+
+    /**
+     * Aliases such as "jpeg" and "jpg" share a MIME type: keeping both would give "photo_jpeg.jpg".
+     */
+    private function isSameFileType(string $extension, ?string $documentExtension): bool
+    {
+        if ($extension === $documentExtension) {
+            return true;
         }
 
-        $document->setNom($sanitizedName);
+        $sharedMimeTypes = array_intersect(
+            $this->mimeTypes->getMimeTypes($extension),
+            $this->mimeTypes->getMimeTypes((string) $documentExtension),
+        );
+
+        return [] !== $sharedMimeTypes;
     }
 }

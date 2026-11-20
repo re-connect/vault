@@ -18,6 +18,7 @@ abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
 
     public const PRIVE = true;
     public const PARTAGE = false;
+    public const int NAME_COLUMN_LENGTH = 255;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -37,7 +38,7 @@ abstract class DonneePersonnelle implements \JsonSerializable, \Stringable
     ])]
     protected bool $bPrive = self::PARTAGE;
 
-    #[ORM\Column(name: 'nom', type: 'string', length: 255)]
+    #[ORM\Column(name: 'nom', type: 'string', length: self::NAME_COLUMN_LENGTH)]
     #[Groups([
         'v3:document:read', 'v3:folder:read', 'v3:event:read', 'v3:note:read', 'v3:contact:read',
         'v3:document:write', 'v3:folder:write', 'v3:event:write', 'v3:note:write', 'v3:contact:write',

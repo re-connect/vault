@@ -4,7 +4,9 @@ namespace App\Tests\v2\Controller\DocumentController;
 
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
+use App\Entity\Document;
 use App\Tests\Factory\BeneficiaireFactory;
+use App\Tests\Factory\DocumentFactory;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -37,5 +39,23 @@ class CreateTest extends AbstractControllerTest
 
         $client->request('POST', $url, [], ['files' => [$file]]);
         $this->assertResponseStatusCodeSame($expectedStatusCode);
+    }
+
+    public function testUploadWhenNameIsTooLong(): void
+    {
+        self::ensureKernelShutdown();
+        $client = $this->createClient();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $documentCount = DocumentFactory::count(['beneficiaire' => $beneficiary]);
+        $client->loginUser($this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL));
+        $tooLongFileName = str_repeat('a', Document::NAME_MAX_LENGTH + 1).'.pdf';
+        $file = new UploadedFile('tests/test-file.pdf', $tooLongFileName, 'application/pdf');
+
+        $client->request('POST', '/beneficiary/'.$beneficiary->getId().'/documents/upload', [], ['files' => [$file]]);
+
+        $this->assertResponseStatusCodeSame(201);
+        $expectedMessage = self::$translator->trans('document_name_too_long', ['{{ limit }}' => Document::NAME_MAX_LENGTH], 'validators');
+        self::assertContains($expectedMessage, $client->getRequest()->getSession()->getFlashBag()->peek('danger'));
+        self::assertSame($documentCount, DocumentFactory::count(['beneficiaire' => $beneficiary]));
     }
 }
