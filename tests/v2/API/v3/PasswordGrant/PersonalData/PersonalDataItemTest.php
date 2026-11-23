@@ -5,6 +5,7 @@ namespace App\Tests\v2\API\v3\PasswordGrant\PersonalData;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Tests\Factory\BeneficiaireFactory;
+use App\Tests\Factory\BeneficiaryCreationProcessFactory;
 use App\Tests\Factory\ContactFactory;
 use App\Tests\Factory\DocumentFactory;
 use App\Tests\Factory\EventFactory;
@@ -49,6 +50,32 @@ class PersonalDataItemTest extends AbstractPasswordGrantApiTestCase
         if (200 === $expectedStatus) {
             $this->assertJsonContains(['id' => $item->getId()]);
         }
+    }
+
+    public function provideResources(): \Generator
+    {
+        yield 'Document' => ['/documents', DocumentFactory::class];
+        yield 'Folder' => ['/folders', FolderFactory::class];
+        yield 'Note' => ['/notes', NoteFactory::class];
+        yield 'Contact' => ['/contacts', ContactFactory::class];
+        yield 'Event' => ['/events', EventFactory::class];
+    }
+
+    /**
+     * @dataProvider provideResources
+     *
+     * @param class-string<DocumentFactory|FolderFactory|NoteFactory|ContactFactory|EventFactory> $factory
+     */
+    public function testProCanNotGetItemOfBeneficiaryBeingCreated(string $endpoint, string $factory): void
+    {
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        BeneficiaryCreationProcessFactory::find(['beneficiary' => $beneficiary])->setIsCreating(true);
+        $this->em->flush();
+        $item = $factory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => false]);
+
+        $this->requestAsUser(MemberFixture::MEMBER_WITH_CLIENT, Request::METHOD_GET, sprintf('%s/%d', $endpoint, $item->getId()));
+
+        $this->assertResponseStatusCodeSame(403);
     }
 
     public function testBeneficiaryGetsOwnPastEvent(): void
