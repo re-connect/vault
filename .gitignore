@@ -51,3 +51,7 @@ docker/shared/data/
 ###> symfony/framework-bundle: generated config reference ###
 /config/reference.php
 ###< symfony/framework-bundle: generated config reference ###
+
+###> local notes ###
+/docs/**/*.local.md
+###< local notes ###
