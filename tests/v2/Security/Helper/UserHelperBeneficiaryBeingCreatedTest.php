@@ -9,9 +9,12 @@ use App\Tests\Factory\BeneficiaryCreationProcessFactory;
 use App\Tests\Factory\MembreFactory;
 use App\Tests\Factory\RelayFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Zenstruck\Foundry\Test\Factories;
 
 class UserHelperBeneficiaryBeingCreatedTest extends KernelTestCase
 {
+    use Factories;
+
     public function testCanNotManageBeneficiaryBeingCreated(): void
     {
         $userHelper = $this->getContainer()->get(UserHelper::class);
