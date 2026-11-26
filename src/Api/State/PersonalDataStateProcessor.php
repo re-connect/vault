@@ -44,14 +44,17 @@ readonly class PersonalDataStateProcessor implements ProcessorInterface
         $beneficiary = $this->getBeneficiary($data);
         $data->setBeneficiaire($beneficiary);
 
-        if ($data instanceof Dossier && $data->dossierParentId) {
-            $dossierParent = $this->dossierRepository->find($data->dossierParentId);
-            if (!$dossierParent || $dossierParent->getBeneficiaire() !== $beneficiary) {
+        if ($data instanceof Dossier) {
+            // The parent can be given by id or by IRI
+            $dossierParent = $data->dossierParentId ? $this->dossierRepository->find($data->dossierParentId) : $data->getDossierParent();
+            if (($data->dossierParentId && !$dossierParent) || ($dossierParent && $dossierParent->getBeneficiaire() !== $beneficiary)) {
                 throw new BadRequestHttpException('Dossier parent not found');
             }
-            $data->setDossierParent($dossierParent);
-            if ($dossierParent->getBPrive()) {
-                $data->setBPrive(true);
+            if ($dossierParent) {
+                $data->setDossierParent($dossierParent);
+                if ($dossierParent->getBPrive()) {
+                    $data->setBPrive(true);
+                }
             }
         }
 

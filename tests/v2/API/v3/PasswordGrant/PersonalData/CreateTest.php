@@ -83,27 +83,51 @@ class CreateTest extends AbstractPasswordGrantApiTestCase
         $this->assertResponseStatusCodeSame(400);
     }
 
-    public function testBeneficiaryCreatesSubFolderInheritingPrivacy(): void
+    public function provideParentFolderReference(): \Generator
+    {
+        yield 'Parent folder given by id' => [false];
+        yield 'Parent folder given by IRI' => [true];
+    }
+
+    /** @dataProvider provideParentFolderReference */
+    public function testBeneficiaryCreatesSubFolderInheritingPrivacy(bool $parentAsIri): void
     {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
         $parentFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'bPrive' => true]);
 
         /** @var Dossier $folder */
-        $folder = $this->create(BeneficiaryFixture::BENEFICIARY_MAIL, '/folders', Dossier::class, ['nom' => 'Sous-dossier', 'b_prive' => false, 'dossier_parent_id' => $parentFolder->getId()]);
+        $folder = $this->create(BeneficiaryFixture::BENEFICIARY_MAIL, '/folders', Dossier::class, [
+            'nom' => 'Sous-dossier',
+            'b_prive' => false,
+            ...$this->parentFolderReference($parentFolder, $parentAsIri),
+        ]);
 
         $this->assertResponseStatusCodeSame(201);
         $this->assertSame($parentFolder->getId(), $folder->getDossierParent()?->getId());
         $this->assertTrue($folder->getBPrive());
     }
 
-    public function testCanNotCreateSubFolderInAnotherBeneficiaryFolder(): void
+    /** @dataProvider provideParentFolderReference */
+    public function testCanNotCreateSubFolderInAnotherBeneficiaryFolder(bool $parentAsIri): void
     {
         $otherBeneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS);
         $otherFolder = FolderFactory::createOne(['beneficiaire' => $otherBeneficiary, 'bPrive' => false]);
 
-        $this->requestAsUser(BeneficiaryFixture::BENEFICIARY_MAIL, Request::METHOD_POST, '/folders', ['json' => ['nom' => 'Sous-dossier', 'dossier_parent_id' => $otherFolder->getId()]]);
+        $this->requestAsUser(BeneficiaryFixture::BENEFICIARY_MAIL, Request::METHOD_POST, '/folders', ['json' => [
+            'nom' => 'Sous-dossier',
+            ...$this->parentFolderReference($otherFolder, $parentAsIri),
+        ]]);
 
         $this->assertResponseStatusCodeSame(400);
+        $this->assertSame(0, FolderFactory::count(['dossierParent' => $otherFolder->getId()]));
+    }
+
+    /** @return array<string, int|string|null> */
+    private function parentFolderReference(Dossier $parentFolder, bool $asIri): array
+    {
+        return $asIri
+            ? ['dossier_parent' => sprintf('/api/v3/folders/%d', $parentFolder->getId())]
+            : ['dossier_parent_id' => $parentFolder->getId()];
     }
 
     /**
