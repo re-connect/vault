@@ -22,7 +22,12 @@ class SameBeneficiaryAsFolderValidator extends ConstraintValidator
         }
 
         $item = $this->context->getObject();
-        if ($item instanceof DonneePersonnelle && $value->getBeneficiaire() !== $item->getBeneficiaire()) {
+        // On API creation the beneficiary is only set by PersonalDataStateProcessor, which checks the folder itself
+        if (!$item instanceof DonneePersonnelle || null === $item->getBeneficiaire()) {
+            return;
+        }
+
+        if ($value->getBeneficiaire() !== $item->getBeneficiaire()) {
             $this->context->buildViolation($constraint->message)->addViolation();
         }
     }
