@@ -146,9 +146,13 @@ class DocumentManager
         try {
             return $this->createDocumentFromFile($file, $key, $file->getClientOriginalName(), $beneficiary, $folder);
         } catch (\Exception $exception) {
-            // The file is already stored: remove it so that a rejected upload leaves no orphan behind
-            $this->bucketService->deleteFile($key);
             $this->logUploadError($beneficiary, $exception);
+            // The file is already stored: remove it so that a rejected upload leaves no orphan behind
+            try {
+                $this->bucketService->deleteFile($key);
+            } catch (\Exception) {
+                // Already logged by BucketService, the upload must still fail gracefully
+            }
 
             return null;
         }
