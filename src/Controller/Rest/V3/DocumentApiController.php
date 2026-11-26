@@ -5,10 +5,13 @@ namespace App\Controller\Rest\V3;
 use App\ControllerV2\AbstractController;
 use App\Entity\Document;
 use App\Factory\SharedDocumentFactory;
+use App\ManagerV2\FolderableItemManager;
+use App\Repository\DossierRepository;
 use App\ServiceV2\Mailer\MailerService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -29,6 +32,33 @@ final class DocumentApiController extends AbstractController
         $sharedDocument = $factory->generateSharedDocument($user, $document, $email, $user->getLastLang());
         $mailerService->sendSharedDocumentLink($sharedDocument, $email);
 
-        return $this->json($sharedDocument, Response::HTTP_OK);
+        // The shared document holds the secret token sent by email: it must not be returned
+        return new JsonResponse(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * Moves a document into a folder, or back to the root folder when "folder_id" is null.
+     */
+    #[Route(path: '/{id<\d+>}/move', methods: ['PATCH'])]
+    #[IsGranted('UPDATE', 'document')]
+    public function move(Request $request, Document $document, DossierRepository $folderRepository, FolderableItemManager $folderableItemManager): JsonResponse
+    {
+        $folderId = $request->request->get('folder_id');
+        $folder = null;
+        if (null !== $folderId) {
+            $folder = $folderRepository->find($folderId);
+            if (!$folder || $folder->getBeneficiaire() !== $document->getBeneficiaire()) {
+                throw new BadRequestHttpException(sprintf('Folder not found for id %s', $folderId));
+            }
+            $this->denyAccessUnlessGranted('UPDATE', $folder);
+        }
+
+        try {
+            $folderableItemManager->move($document, $folder);
+        } catch (\DomainException $exception) {
+            throw new BadRequestHttpException($exception->getMessage(), $exception);
+        }
+
+        return $this->json($document, Response::HTTP_OK, [], ['groups' => ['v3:document:read']]);
     }
 }

@@ -1,0 +1,20 @@
+meta {
+  name: Delete
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/api/v2/beneficiaries/{{beneficiaryId}}
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Suppression irréversible du compte. Appelé par `src/hooks/BeneficiariesHooks.tsx`.
+}

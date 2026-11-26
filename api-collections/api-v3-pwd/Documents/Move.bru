@@ -1,0 +1,26 @@
+meta {
+  name: Move
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/v3/documents/{{documentId}}/move
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "folder_id": {{folderId}}
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Remplace `PATCH /api/v2/documents/{id}/folder/{folderId}` et `PATCH /api/v2/documents/{id}/get-out-from-folder`. `folder_id: null` remet le document à la racine. Un document rangé dans un dossier privé devient privé.
+}

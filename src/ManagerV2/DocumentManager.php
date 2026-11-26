@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use function Symfony\Component\String\u;
@@ -39,6 +40,7 @@ class DocumentManager
         private readonly TranslatorInterface $translator,
         private readonly BucketService $bucketService,
         private readonly FolderManager $folderManager,
+        private readonly ValidatorInterface $validator,
         //        private readonly string $env,
     ) {
     }
@@ -101,6 +103,11 @@ class DocumentManager
             ->setDossier($folder)
             ->setBPrive($folder ? $folder->getBPrive() : $user?->isBeneficiaire());
 
+        $violations = $this->validator->validate($document);
+        if (0 !== count($violations)) {
+            throw new \DomainException((string) $violations->get(0)->getMessage());
+        }
+
         try {
             $thumbnailKey = $this->s3Client->generateThumbnail($file);
             $document
@@ -130,17 +137,34 @@ class DocumentManager
 
         try {
             $key = $this->s3Client->uploadFile($file);
-
-            return $this->createDocumentFromFile($file, $key, $file->getClientOriginalName(), $beneficiary, $folder);
         } catch (\Exception $exception) {
-            $this->logger->error(sprintf(
-                'There has been an error uploading file for beneficiary id = %d : %s',
-                $beneficiary->getId(),
-                $exception->getMessage()
-            ));
+            $this->logUploadError($beneficiary, $exception);
 
             return null;
         }
+
+        try {
+            return $this->createDocumentFromFile($file, $key, $file->getClientOriginalName(), $beneficiary, $folder);
+        } catch (\Exception $exception) {
+            $this->logUploadError($beneficiary, $exception);
+            // The file is already stored: remove it so that a rejected upload leaves no orphan behind
+            try {
+                $this->bucketService->deleteFile($key);
+            } catch (\Exception) {
+                // Already logged by BucketService, the upload must still fail gracefully
+            }
+
+            return null;
+        }
+    }
+
+    private function logUploadError(Beneficiaire $beneficiary, \Exception $exception): void
+    {
+        $this->logger->error(sprintf(
+            'There has been an error uploading file for beneficiary id = %d : %s',
+            $beneficiary->getId(),
+            $exception->getMessage()
+        ));
     }
 
     /**
@@ -216,12 +240,6 @@ class DocumentManager
     public function delete(Document $document): void
     {
         try {
-            if ($key = $document->getObjectKey()) {
-                $this->bucketService->deleteFile($key);
-            }
-            if ($thumbKey = $document->getThumbnailKey()) {
-                $this->bucketService->deleteFile($thumbKey);
-            }
             $this->em->remove($document);
             $this->em->flush();
             $this->addFlashMessage('success', 'document_deleted_successfully');

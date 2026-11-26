@@ -14,12 +14,14 @@ use ApiPlatform\OpenApi\Model\Operation;
 use ApiPlatform\OpenApi\Model\RequestBody;
 use App\Api\ApiOperations;
 use App\Api\Filters\FolderIdFilter;
+use App\Api\State\FolderableItemStateProcessor;
 use App\Api\State\PersonalDataStateProcessor;
 use App\Controller\Api\UploadDocumentController;
 use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Entity\Interface\FolderableEntityInterface;
 use App\Repository\DocumentRepository;
+use App\Validator\Constraints\Folder as AssertFolder;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -36,13 +38,19 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[Vich\Uploadable]
 #[ApiResource(
     operations: [
-        new Delete(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Delete(security: "is_granted('DELETE', object) and is_granted('ROLE_USER')"),
         new Get(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
         new GetCollection(security: "is_granted('ROLE_USER')"),
-        new Patch(security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')"),
+        new Patch(
+            security: "is_granted('UPDATE', object) and is_granted('ROLE_USER')",
+            processor: FolderableItemStateProcessor::class,
+            // Prevents moving an item to another beneficiary (or into another beneficiary's folder) through IRIs
+            securityPostDenormalize: "is_granted('UPDATE', object) and object.getBeneficiaire() === previous_object.getBeneficiaire() and (object.getDossier() === null or object.getDossier().getBeneficiaire() === object.getBeneficiaire())",
+        ),
         new Patch(
             uriTemplate: '/documents/{id}/toggle-visibility',
-            security: "is_granted('UPDATE', object)",
+            // TOGGLE_VISIBILITY forbids sharing a document inside a private folder, but only handles user tokens
+            security: "is_granted('ROLE_USER') ? is_granted('TOGGLE_VISIBILITY', object) : is_granted('UPDATE', object)",
             name: ApiOperations::TOGGLE_VISIBILITY.'_document',
             processor: PersonalDataStateProcessor::class
         ),
@@ -66,7 +74,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
                     ])
                 )
             ),
-            security: "is_granted('ROLE_OAUTH2_DOCUMENTS_CREATE')",
+            security: "is_granted('ROLE_OAUTH2_DOCUMENTS_CREATE') or is_granted('ROLE_USER')",
             deserialize: false,
         ),
     ],
@@ -83,7 +91,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     uriVariables: [
         'id' => new Link(
             fromProperty: 'documents',
-            fromClass: Beneficiaire::class
+            fromClass: Beneficiaire::class,
+            security: "is_granted('ROLE_OAUTH2_DOCUMENTS_READ') or is_granted('UPDATE', beneficiary)",
+            securityObjectName: 'beneficiary',
         ),
     ],
     normalizationContext: ['groups' => ['v3:document:read']],
@@ -91,7 +101,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     openapi: new Operation(
         tags: ['Documents'],
     ),
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ')",
+    security: "is_granted('ROLE_OAUTH2_DOCUMENTS_READ') or is_granted('ROLE_USER')",
 )]
 class Document extends DonneePersonnelle implements FolderableEntityInterface, ClientResourceInterface
 {
@@ -106,6 +116,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface, C
     #[ORM\ManyToOne(targetEntity: Dossier::class, inversedBy: 'documents')]
     #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id')]
     #[Groups(['v3:document:write', 'v3:document:read'])]
+    #[AssertFolder\SameBeneficiaryAsFolder]
     protected ?Dossier $dossier = null;
 
     #[ORM\Column(name: 'extension', type: 'string', length: 255, nullable: true)]
@@ -327,7 +338,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface, C
         return '';
     }
 
-    public function getObjectKey(): string
+    public function getObjectKey(): ?string
     {
         return $this->objectKey;
     }

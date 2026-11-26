@@ -129,7 +129,7 @@ class DocumentProvider extends DonneePersonnelleProvider
             throw new NotFoundHttpException('No document found for id '.$id);
         }
 
-        if (!$this->isAccessGranted($entity)) {
+        if (!$this->authorizationChecker->isGranted(DonneePersonnelleVoter::DONNEEPERSONNELLE_VIEW, $entity)) {
             throw new AccessDeniedException();
         }
 
@@ -325,23 +325,7 @@ class DocumentProvider extends DonneePersonnelleProvider
     {
         if ($donneePersonnelle instanceof Document) {
             parent::delete($donneePersonnelle, $log);
-            $this->deleteOnBucket($donneePersonnelle);
         }
-    }
-
-    private function deleteOnBucket(Document $document): void
-    {
-        if ($key = $document->getObjectKey()) {
-            $this->deleteKeyOnBucket($key);
-        }
-        if ($thumbKey = $document->getThumbnailKey()) {
-            $this->deleteKeyOnBucket($thumbKey);
-        }
-    }
-
-    private function deleteKeyOnBucket(string $key): void
-    {
-        $this->manager->deleteFile($key);
     }
 
     public function getOutFromFolder(Document $document): Document

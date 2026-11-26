@@ -95,7 +95,7 @@ class UserManager
         return $isUserAmongHomonyms ? $user->getUsername() : $this->getNextHomonymUsername($baseUsername, $homonyms);
     }
 
-    public function remove(User $user): void
+    public function remove(User $user): bool
     {
         $this->removeSubject($user->getSubject());
         $this->em->remove($user);
@@ -110,7 +110,11 @@ class UserManager
                     $e->getMessage(),
                 )
             );
+
+            return false;
         }
+
+        return true;
     }
 
     private function removeSubject(Administrateur|Association|Beneficiaire|Gestionnaire|Membre|null $subject): void

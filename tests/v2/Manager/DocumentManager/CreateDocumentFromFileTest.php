@@ -17,8 +17,10 @@ use Psr\Log\LoggerInterface;
 use Reconnect\S3Bundle\Service\FlysystemS3Client;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Validation;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Zenstruck\Foundry\Test\Factories;
 
@@ -28,30 +30,33 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
 
     private ?DocumentManager $manager;
     private Security|MockObject $securityMock;
+    private FlysystemS3Client|MockObject $s3ClientMock;
+    private LoggerInterface|MockObject $loggerMock;
+    private BucketService|MockObject $bucketServiceMock;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $s3ClientMock = $this->createMock(FlysystemS3Client::class);
+        $this->s3ClientMock = $this->createMock(FlysystemS3Client::class);
         $repositoryMock = $this->createMock(DocumentRepository::class);
         $emMock = $this->createMock(EntityManagerInterface::class);
         $this->securityMock = $this->createMock(Security::class);
         $requestStackMock = $this->createMock(RequestStack::class);
-        $loggerMock = $this->createMock(LoggerInterface::class);
+        $this->loggerMock = $this->createMock(LoggerInterface::class);
         $translatorMock = $this->createMock(TranslatorInterface::class);
-        $bucketServiceMock = $this->createMock(BucketService::class);
+        $this->bucketServiceMock = $this->createMock(BucketService::class);
         $folderManager = $this->createMock(FolderManager::class);
         $this->manager = new DocumentManager(
-            $s3ClientMock,
+            $this->s3ClientMock,
             $repositoryMock,
             $emMock,
             $this->securityMock,
-            $loggerMock,
+            $this->loggerMock,
             $requestStackMock,
             $translatorMock,
-            $bucketServiceMock,
+            $this->bucketServiceMock,
             $folderManager,
-            'test',
+            Validation::createValidatorBuilder()->enableAttributeMapping()->getValidator(),
         );
     }
 
@@ -149,6 +154,51 @@ class CreateDocumentFromFileTest extends AuthenticatedKernelTestCase
         );
 
         self::assertEquals(true, $document->getBPrive());
+    }
+
+    public function testCanNotCreateDocumentInFolderOfAnotherBeneficiary(): void
+    {
+        self::ensureKernelShutdown();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $this->loginUser(BeneficiaryFixture::BENEFICIARY_MAIL);
+
+        $otherBeneficiaryFolder = FolderFactory::createOne([
+            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS),
+            'bPrive' => false,
+        ]);
+        $file = $this->getDummyFile();
+        $this->securityMock->method('getUser')->willReturn($this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL));
+
+        $this->expectException(\DomainException::class);
+        $this->getPrivateMethod(DocumentManager::class, 'createDocumentFromFile')->invokeArgs(
+            $this->manager,
+            [
+                $file, Uuid::v4(),
+                $file->getBasename(),
+                $beneficiary,
+                $otherBeneficiaryFolder,
+            ],
+        );
+    }
+
+    public function testUploadFileFailsGracefullyWhenStoredFileCanNotBeDeleted(): void
+    {
+        self::ensureKernelShutdown();
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $this->loginUser(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $this->securityMock->method('getUser')->willReturn($this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL));
+        $otherBeneficiaryFolder = FolderFactory::createOne([
+            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS),
+            'bPrive' => false,
+        ]);
+
+        $this->s3ClientMock->method('uploadFile')->willReturn('stored-file-key');
+        $this->bucketServiceMock->expects(self::once())->method('deleteFile')->with('stored-file-key')->willThrowException(new \RuntimeException('S3 unavailable'));
+        $this->loggerMock->expects(self::once())->method('error')->with(self::stringContains('There has been an error uploading file'));
+
+        $file = new UploadedFile('tests/test-file.pdf', 'test-file.pdf', 'application/pdf', null, true);
+
+        self::assertNull($this->manager->uploadFile($file, $beneficiary, $otherBeneficiaryFolder));
     }
 
     private function getDummyFile(): File

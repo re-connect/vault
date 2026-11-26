@@ -36,7 +36,8 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
             Centre::class => $this->filterRelays($queryBuilder, $rootAlias, $user),
             User::class => $this->filterUsers($queryBuilder, $rootAlias, $user),
             Beneficiaire::class => $this->filterBeneficiaries($queryBuilder, $rootAlias, $user),
-            Document::class, Contact::class, Note::class, Evenement::class => $this->filterPersonalData($queryBuilder, $rootAlias, $user),
+            Document::class, Contact::class, Note::class => $this->filterPersonalData($queryBuilder, $rootAlias, $user),
+            Evenement::class => $this->filterEvents($queryBuilder, $rootAlias, $user),
             Dossier::class => $this->filterFolders($queryBuilder, $rootAlias, $user),
             default => null,
         };
@@ -76,23 +77,60 @@ final readonly class FilterUserCollectionsExtension implements QueryCollectionEx
             return;
         }
 
-        if (!$user->isBeneficiaire()) {
+        if ($user->isBeneficiaire()) {
+            $queryBuilder
+                ->andWhere(sprintf('%s.beneficiaire = :beneficiaryId', $rootAlias))
+                ->setParameter('beneficiaryId', $user->getSubjectBeneficiaire()->getId());
+
+            return;
+        }
+
+        $proId = $user->isMembre() ? $user->getSubjectMembre()?->getId() : null;
+        if (null === $proId) {
             $queryBuilder->andWhere('1 = 0'); // Always failing condition to return null result
 
             return;
         }
 
+        // Pros only see the shared personal data of the beneficiaries they manage
+        $accessibleBeneficiaries = $queryBuilder->getEntityManager()->createQueryBuilder()
+            ->select('pro_access_beneficiary.id')
+            ->from(Beneficiaire::class, 'pro_access_beneficiary');
+        BeneficiaireRepository::addProAccessConditions($accessibleBeneficiaries, 'pro_access_beneficiary', $proId, 'pro_access_');
+
         $queryBuilder
-            ->andWhere(sprintf('%s.beneficiaire = :beneficiaryId', $rootAlias))
-            ->setParameter('beneficiaryId', $user->getSubjectBeneficiaire()->getId());
+            ->andWhere($queryBuilder->expr()->in(sprintf('%s.beneficiaire', $rootAlias), $accessibleBeneficiaries->getDQL()))
+            ->andWhere(sprintf('%s.bPrive = false', $rootAlias));
+        foreach ($accessibleBeneficiaries->getParameters() as $parameter) {
+            $queryBuilder->setParameter($parameter->getName(), $parameter->getValue());
+        }
+    }
+
+    private function filterEvents(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void
+    {
+        $this->filterPersonalData($queryBuilder, $rootAlias, $user);
+        if ($this->isAuthenticatedAsClient($user)) {
+            return;
+        }
+
+        // Only get upcoming events
+        $queryBuilder
+            ->andWhere(sprintf('%s.date > :now', $rootAlias))
+            ->setParameter('now', new \DateTime());
     }
 
     private function filterBeneficiaries(QueryBuilder $queryBuilder, string $rootAlias, ?UserInterface $user): void
     {
-        if (!$user instanceof User || !$user->isMembre() || !$user->getSubjectMembre()?->getId()) {
+        if ($this->isAuthenticatedAsClient($user)) {
             return;
         }
-        $proId = $user->getSubjectMembre()?->getId();
+
+        $proId = $user->isMembre() ? $user->getSubjectMembre()?->getId() : null;
+        if (null === $proId) {
+            $queryBuilder->andWhere('1 = 0'); // Only pros can list beneficiaries
+
+            return;
+        }
 
         BeneficiaireRepository::addProAccessJoinsAndConditions($queryBuilder, $rootAlias, $proId);
     }
