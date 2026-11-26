@@ -5,11 +5,16 @@ namespace App\Tests\v2\Controller\UserController;
 use App\DataFixtures\v2\BeneficiaryFixture;
 use App\DataFixtures\v2\MemberFixture;
 use App\Repository\UserRepository;
+use App\Tests\Factory\BeneficiaireFactory;
+use App\Tests\Factory\DocumentFactory;
+use App\Tests\v2\BucketServiceSpyTrait;
 use App\Tests\v2\Controller\AbstractControllerTest;
 use App\Tests\v2\Controller\TestRouteInterface;
 
 class DeleteTest extends AbstractControllerTest implements TestRouteInterface
 {
+    use BucketServiceSpyTrait;
+
     private const URL = '/user/delete';
 
     public function provideTestRoute(): ?\Generator
@@ -38,6 +43,26 @@ class DeleteTest extends AbstractControllerTest implements TestRouteInterface
         self::assertResponseRedirects('/login');
         $user = $userRepository->find($user->getId());
         self::assertNull($user);
+    }
+
+    public function testDeletingAccountRemovesDocumentFilesFromStorage(): void
+    {
+        self::ensureKernelShutdown();
+        $client = static::createClient();
+        $deletedKeys = $this->spyOnDeletedFiles($client);
+        DocumentFactory::createOne([
+            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS_DELETE),
+            'objectKey' => 'account-object-key',
+            'thumbnailKey' => 'account-thumbnail-key',
+        ]);
+        $client->loginUser($this->getTestUserFromDb(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS_DELETE));
+        $crawler = $client->request('GET', self::URL);
+
+        $client->submit($crawler->selectButton('Supprimer')->form());
+
+        self::assertResponseRedirects('/login');
+        self::assertContains('account-object-key', $deletedKeys->getArrayCopy());
+        self::assertContains('account-thumbnail-key', $deletedKeys->getArrayCopy());
     }
 
     /** @dataProvider provideTestRoute */

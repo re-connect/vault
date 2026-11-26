@@ -10,6 +10,10 @@ class UserHelper
 {
     public function canUpdateBeneficiary(User $user, Beneficiaire $beneficiary): bool
     {
+        if ($beneficiary->isCreating()) {
+            return false;
+        }
+
         return 0 < count(array_intersect(
             $user->getAffiliatedRelaysWithBeneficiaryManagement()->toArray(),
             $beneficiary->getAffiliatedRelays()->toArray(),

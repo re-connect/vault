@@ -22,6 +22,8 @@ use App\ManagerV2\FolderableItemManager;
 use App\ManagerV2\FolderManager;
 use App\ManagerV2\NoteManager;
 use App\Repository\DossierRepository;
+use App\Security\VoterV2\FolderDestination;
+use App\Security\VoterV2\FolderDestinationVoter;
 use App\ServiceV2\PaginatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
@@ -265,12 +267,18 @@ class BeneficiaryPersonalDataController extends AbstractController
             return new Response(null, Response::HTTP_BAD_REQUEST);
         }
         $folderId = $request->query->get('folder');
+        $folder = $folderId ? $folderRepository->find($folderId) : null;
+        if ($folderId && !$folder) {
+            return new Response(null, Response::HTTP_BAD_REQUEST);
+        }
+        if ($folder) {
+            $this->denyAccessUnlessGranted(
+                FolderDestinationVoter::WRITE_INTO,
+                new FolderDestination($folder, $beneficiary),
+            );
+        }
 
-        $manager->uploadFiles(
-            $files,
-            $beneficiary,
-            $folderId ? $folderRepository->find($folderId) : null
-        );
+        $manager->uploadFiles($files, $beneficiary, $folder);
 
         return new Response(null, Response::HTTP_CREATED);
     }

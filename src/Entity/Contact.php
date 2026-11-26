@@ -54,7 +54,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         'id' => new Link(
             fromProperty: 'contacts',
             fromClass: Beneficiaire::class,
-            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('UPDATE', beneficiary)",
+            security: "is_granted('ROLE_OAUTH2_CONTACTS_READ') or is_granted('UPDATE', beneficiary)",
             securityObjectName: 'beneficiary',
         ),
     ],
@@ -63,7 +63,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     openapi: new Operation(
         tags: ['Contacts'],
     ),
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('ROLE_USER')",
+    security: "is_granted('ROLE_OAUTH2_CONTACTS_READ') or is_granted('ROLE_USER')",
 )]
 class Contact extends DonneePersonnelle implements ClientResourceInterface
 {

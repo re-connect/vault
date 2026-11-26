@@ -77,6 +77,13 @@ class ClientFixture extends Fixture implements FixtureGroupInterface
             'scopes' => 'personal_data_update',
         ],
         [
+            'id' => 'beneficiaries_only_id',
+            'secret' => 'beneficiaries_only_secret',
+            'name' => 'beneficiaries_only_client',
+            'grantType' => 'client_credentials',
+            'scopes' => 'beneficiaries_read',
+        ],
+        [
             'id' => 'no_scopes_id',
             'secret' => 'no_scopes_secret',
             'name' => 'no_scopes_client',

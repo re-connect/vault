@@ -177,6 +177,7 @@ class FolderApiV3Test extends AbstractClientCredentialsApiTestCase
         yield 'Should read with Reconnect Pro client' => ['reconnect_pro'];
         yield 'Should read with Rosalie client ' => ['rosalie'];
         yield 'Should read with read only scopes' => ['read_only_client'];
+        yield 'Should read with read personal data scope' => ['read_personal_data_client'];
     }
 
     public function canNotGetProvider(): \Generator
@@ -184,6 +185,7 @@ class FolderApiV3Test extends AbstractClientCredentialsApiTestCase
         yield 'Should not read with create only scopes' => ['create_only_client'];
         yield 'Should not read with no scopes' => ['no_scopes_client'];
         yield 'Should not read with create personal data scope' => ['create_personal_data_client'];
+        yield 'Should not read with beneficiaries scope only' => ['beneficiaries_only_client'];
     }
 
     /**
