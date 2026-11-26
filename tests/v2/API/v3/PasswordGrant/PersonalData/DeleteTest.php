@@ -12,10 +12,13 @@ use App\Tests\Factory\EventFactory;
 use App\Tests\Factory\FolderFactory;
 use App\Tests\Factory\NoteFactory;
 use App\Tests\v2\API\AbstractPasswordGrantApiTestCase;
+use App\Tests\v2\BucketServiceSpyTrait;
 use Symfony\Component\HttpFoundation\Request;
 
 class DeleteTest extends AbstractPasswordGrantApiTestCase
 {
+    use BucketServiceSpyTrait;
+
     private const array RESOURCES = [
         'Document' => ['/documents', DocumentFactory::class],
         'Folder' => ['/folders', FolderFactory::class],
@@ -76,6 +79,43 @@ class DeleteTest extends AbstractPasswordGrantApiTestCase
 
         $this->assertResponseStatusCodeSame(403);
         $this->assertNotNull($this->findItem($factory, $item->getId()));
+    }
+
+    public function testDeletingDocumentRemovesItsFilesFromStorage(): void
+    {
+        $document = DocumentFactory::createOne([
+            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
+            'objectKey' => 'deleted-document-object-key',
+            'thumbnailKey' => 'deleted-document-thumbnail-key',
+        ]);
+        $client = static::createClient();
+        $deletedKeys = $this->spyOnDeletedFiles($client);
+        $this->loginAsUser($client, BeneficiaryFixture::BENEFICIARY_MAIL);
+
+        $client->request(Request::METHOD_DELETE, $this->generateUrl(sprintf('/documents/%d', $document->getId())));
+
+        $this->assertResponseStatusCodeSame(204);
+        $this->assertEqualsCanonicalizing(['deleted-document-object-key', 'deleted-document-thumbnail-key'], $deletedKeys->getArrayCopy());
+    }
+
+    public function testDeletingFolderRemovesFilesOfAllItsDocuments(): void
+    {
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL);
+        $folder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'dossierParent' => null]);
+        $subFolder = FolderFactory::createOne(['beneficiaire' => $beneficiary, 'dossierParent' => $folder]);
+        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'dossier' => $folder, 'objectKey' => 'folder-object-key', 'thumbnailKey' => 'folder-thumbnail-key']);
+        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'dossier' => $subFolder, 'objectKey' => 'sub-folder-object-key', 'thumbnailKey' => 'sub-folder-thumbnail-key']);
+        $client = static::createClient();
+        $deletedKeys = $this->spyOnDeletedFiles($client);
+        $this->loginAsUser($client, BeneficiaryFixture::BENEFICIARY_MAIL);
+
+        $client->request(Request::METHOD_DELETE, $this->generateUrl(sprintf('/folders/%d', $folder->getId())));
+
+        $this->assertResponseStatusCodeSame(204);
+        $this->assertEqualsCanonicalizing(
+            ['folder-object-key', 'folder-thumbnail-key', 'sub-folder-object-key', 'sub-folder-thumbnail-key'],
+            $deletedKeys->getArrayCopy(),
+        );
     }
 
     /** @param class-string<DocumentFactory|FolderFactory|NoteFactory|ContactFactory|EventFactory> $factory */

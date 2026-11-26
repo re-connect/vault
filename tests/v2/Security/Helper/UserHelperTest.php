@@ -10,9 +10,12 @@ use App\Tests\Factory\BeneficiaireFactory;
 use App\Tests\Factory\MembreFactory;
 use App\Tests\Factory\RelayFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Zenstruck\Foundry\Test\Factories;
 
 class UserHelperTest extends KernelTestCase
 {
+    use Factories;
+
     private ?UserHelper $userHelper;
     private Beneficiaire $beneficiary;
     private ?Membre $membre;

@@ -2,10 +2,12 @@
 
 namespace App\Tests\v2\Entity;
 
+use App\Entity\Beneficiaire;
 use App\Entity\Dossier;
 use App\Entity\FolderIcon;
 use App\Tests\Factory\BeneficiaireFactory;
 use App\Validator\Constraints\Folder\NoCircularDependency;
+use App\Validator\Constraints\Folder\SameBeneficiaryAsFolder;
 use Zenstruck\Foundry\Test\Factories;
 
 class FolderTest extends AbstractEntityTest
@@ -85,6 +87,17 @@ class FolderTest extends AbstractEntityTest
             'dossierParent',
             NoCircularDependency::class,
         ];
+
+        yield 'Should fail when parent folder belongs to another beneficiary' => [
+            static function (self $test): Dossier {
+                $beneficiaries = BeneficiaireFactory::randomSet(2);
+                $parentFolder = $test->getValidEntity($beneficiaries[0]);
+
+                return $test->getValidEntity($beneficiaries[1])->setDossierParent($parentFolder);
+            },
+            'dossierParent',
+            SameBeneficiaryAsFolder::class,
+        ];
     }
 
     /**
@@ -92,9 +105,11 @@ class FolderTest extends AbstractEntityTest
      */
     public function createFolderHierarchy(): array
     {
-        $folder = $this->getValidEntity();
-        $childFolder = $this->getValidEntity();
-        $grandChildFolder = $this->getValidEntity();
+        // A whole hierarchy belongs to a single beneficiary
+        $beneficiary = BeneficiaireFactory::random();
+        $folder = $this->getValidEntity($beneficiary);
+        $childFolder = $this->getValidEntity($beneficiary);
+        $grandChildFolder = $this->getValidEntity($beneficiary);
 
         $folder->addSousDossier($childFolder);
         $childFolder->addSousDossier($grandChildFolder);
@@ -102,9 +117,9 @@ class FolderTest extends AbstractEntityTest
         return [$folder, $childFolder, $grandChildFolder];
     }
 
-    public function getValidEntity(): Dossier
+    public function getValidEntity(?Beneficiaire $beneficiary = null): Dossier
     {
-        $beneficiary = BeneficiaireFactory::random();
+        $beneficiary ??= BeneficiaireFactory::random();
 
         return (new Dossier())->setNom('folder_test')->setBeneficiaire($beneficiary);
     }

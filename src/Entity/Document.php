@@ -21,6 +21,7 @@ use App\Domain\Anonymization\AnonymizationHelper;
 use App\Entity\Interface\ClientResourceInterface;
 use App\Entity\Interface\FolderableEntityInterface;
 use App\Repository\DocumentRepository;
+use App\Validator\Constraints\Folder as AssertFolder;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -91,7 +92,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
         'id' => new Link(
             fromProperty: 'documents',
             fromClass: Beneficiaire::class,
-            security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('UPDATE', beneficiary)",
+            security: "is_granted('ROLE_OAUTH2_DOCUMENTS_READ') or is_granted('UPDATE', beneficiary)",
             securityObjectName: 'beneficiary',
         ),
     ],
@@ -100,7 +101,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     openapi: new Operation(
         tags: ['Documents'],
     ),
-    security: "is_granted('ROLE_OAUTH2_BENEFICIARIES_READ') or is_granted('ROLE_USER')",
+    security: "is_granted('ROLE_OAUTH2_DOCUMENTS_READ') or is_granted('ROLE_USER')",
 )]
 class Document extends DonneePersonnelle implements FolderableEntityInterface, ClientResourceInterface
 {
@@ -115,6 +116,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface, C
     #[ORM\ManyToOne(targetEntity: Dossier::class, inversedBy: 'documents')]
     #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id')]
     #[Groups(['v3:document:write', 'v3:document:read'])]
+    #[AssertFolder\SameBeneficiaryAsFolder]
     protected ?Dossier $dossier = null;
 
     #[ORM\Column(name: 'extension', type: 'string', length: 255, nullable: true)]
@@ -336,7 +338,7 @@ class Document extends DonneePersonnelle implements FolderableEntityInterface, C
         return '';
     }
 
-    public function getObjectKey(): string
+    public function getObjectKey(): ?string
     {
         return $this->objectKey;
     }

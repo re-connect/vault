@@ -76,6 +76,28 @@ class FolderMoveToFolderTest extends AbstractControllerTest implements TestRoute
         self::assertResponseStatusCodeSame(403);
     }
 
+    public function testProCanNotMoveFolderBetweenManagedBeneficiaries(): void
+    {
+        self::ensureKernelShutdown();
+        $clientTest = static::createClient();
+        $clientTest->loginUser($this->getTestUserFromDb(MemberFixture::MEMBER_WITH_CLIENT));
+
+        $folder = FolderFactory::createOne([
+            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL),
+            'bPrive' => false,
+        ]);
+        $otherBeneficiaryFolder = FolderFactory::createOne([
+            'beneficiaire' => BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_WITH_CLIENT_LINK),
+            'bPrive' => false,
+        ]);
+
+        $clientTest->request('GET', sprintf(self::URL, $folder->getId(), $otherBeneficiaryFolder->getId()));
+
+        self::assertResponseStatusCodeSame(403);
+        refresh($folder);
+        self::assertNull($folder->getDossierParent());
+    }
+
     public function testCanNotMoveParentFolderIntoChild(): void
     {
         $errorMessage = "ERREUR Ce mouvement de dossier n'est pas valide";

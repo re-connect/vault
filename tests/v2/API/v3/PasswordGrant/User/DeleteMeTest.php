@@ -23,10 +23,13 @@ use App\Tests\Factory\FolderFactory;
 use App\Tests\Factory\NoteFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\v2\API\AbstractPasswordGrantApiTestCase;
+use App\Tests\v2\BucketServiceSpyTrait;
 use Symfony\Component\HttpFoundation\Request;
 
 class DeleteMeTest extends AbstractPasswordGrantApiTestCase
 {
+    use BucketServiceSpyTrait;
+
     public function testBeneficiaryDeletesOwnAccountWithAllTheirData(): void
     {
         $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS_DELETE);
@@ -75,6 +78,24 @@ class DeleteMeTest extends AbstractPasswordGrantApiTestCase
         // The access token of the deleted account can not be used anymore
         $client->request(Request::METHOD_GET, $this->generateUrl('/users/me'));
         $this->assertResponseStatusCodeSame(401);
+    }
+
+    public function testDeletingAccountRemovesDocumentFilesFromStorage(): void
+    {
+        $beneficiary = BeneficiaireFactory::findByEmail(BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS_DELETE);
+        $folder = FolderFactory::createOne(['beneficiaire' => $beneficiary]);
+        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'objectKey' => 'root-object-key', 'thumbnailKey' => 'root-thumbnail-key']);
+        DocumentFactory::createOne(['beneficiaire' => $beneficiary, 'dossier' => $folder, 'objectKey' => 'folder-object-key', 'thumbnailKey' => 'folder-thumbnail-key']);
+        $client = static::createClient();
+        $deletedKeys = $this->spyOnDeletedFiles($client);
+        $this->loginAsUser($client, BeneficiaryFixture::BENEFICIARY_MAIL_SETTINGS_DELETE);
+
+        $client->request(Request::METHOD_DELETE, $this->generateUrl('/users/me'));
+
+        $this->assertResponseStatusCodeSame(204);
+        foreach (['root-object-key', 'root-thumbnail-key', 'folder-object-key', 'folder-thumbnail-key'] as $key) {
+            $this->assertContains($key, $deletedKeys->getArrayCopy());
+        }
     }
 
     public function testMemberCanNotDeleteOwnAccount(): void
