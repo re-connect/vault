@@ -4,17 +4,21 @@
     Déclaration d'accessibilité RGAA 4.1.2, structure conforme au modèle publié par la DINUM
     (accessibilite.numerique.gouv.fr, « Obligations », « Déclaration d'accessibilité »).
 
-    Les valeurs ci-dessous sont à renseigner après l'audit final du 5 novembre 2026.
-    Tant qu'une valeur n'est pas connue, elle reste affichée sous la forme [À COMPLÉTER : ...].
-    L'état de conformité est défini dans home/accessibility/_conformance_status.html.twig,
-    car il est aussi affiché dans les pieds de page.
+    Valeurs de l'audit final du 27 novembre 2026.
+    charter_colors_adopted : true si les teintes proposées pour la charte (PR « contrastes des couleurs »)
+    sont en production, false si les couleurs initiales sont conservées. Le taux et la liste des
+    non-conformités suivent cette valeur.
+    Les dates de la déclaration sont à mettre au jour de la mise en ligne.
+    Une fois le formulaire Brevo corrigé et les 7 PDF accessibles en ligne, retirer les lignes
+    correspondantes : le taux passe alors à 97,4 % (teintes adoptées) ou 94,9 % (couleurs initiales).
 #}
+{% set charter_colors_adopted = true %}
 {% set conformance_status = include('home/accessibility/_conformance_status.html.twig') %}
-{% set conformance_rate = '[À COMPLÉTER : pourcentage de critères respectés]' %}
-{% set average_conformance_rate = '[À COMPLÉTER : taux moyen de conformité, facultatif]' %}
-{% set audit_date = '[À COMPLÉTER : date de l’audit, 5 novembre 2026 prévu]' %}
-{% set statement_date = '[À COMPLÉTER : date d’établissement de la déclaration]' %}
-{% set statement_update_date = '[À COMPLÉTER : date de dernière mise à jour]' %}
+{% set conformance_rate = charter_colors_adopted ? '93,6 %' : '92,3 %' %}
+{% set audit_date = '27 novembre 2026' %}
+{% set statement_date = '27 novembre 2026' %}
+{% set statement_update_date = '27 novembre 2026' %}
+{# Adresses du schéma pluriannuel et du plan d'action, à renseigner une fois les documents publiés. #}
 {% set multiyear_plan_url = null %}
 {% set action_plan_url = null %}
 {% set audit_report_url = null %}
@@ -38,14 +42,14 @@
                     {% if multiyear_plan_url %}
                         <a href="{{ multiyear_plan_url }}">Schéma pluriannuel de mise en accessibilité</a>
                     {% else %}
-                        Schéma pluriannuel de mise en accessibilité [À COMPLÉTER : lien vers le document]
+                        Schéma pluriannuel de mise en accessibilité 2026-2028
                     {% endif %}
                 </li>
                 <li>
                     {% if action_plan_url %}
                         <a href="{{ action_plan_url }}">Plan d’action de l’année en cours</a>
                     {% else %}
-                        Plan d’action de l’année en cours [À COMPLÉTER : lien vers le document]
+                        Plan d’action de l’année en cours
                     {% endif %}
                 </li>
             </ul>
@@ -68,68 +72,49 @@
                 L’audit de conformité réalisé le {{ audit_date }} par la société AVANGARDISM révèle que
                 {{ conformance_rate }} des critères du RGAA version 4.1.2 sont respectés.
             </p>
-            <p>Le taux moyen de conformité du service en ligne s’élève à {{ average_conformance_rate }}.</p>
             {% if audit_report_url %}
                 <p><a href="{{ audit_report_url }}">Consulter le rapport d’audit RGAA</a></p>
-            {% else %}
-                <p>[À COMPLÉTER : lien vers le rapport d’audit et la grille d’évaluation, facultatif]</p>
             {% endif %}
 
             <h2 class="h3 pt-4">Contenus non accessibles</h2>
             <p>Les contenus listés ci-dessous ne sont pas accessibles pour les raisons suivantes.</p>
 
             <h3 class="h4 pt-3">Non-conformité</h3>
-            <p>[À COMPLÉTER : liste définitive des critères non conformes après l’audit du 5 novembre 2026.
-                Points ouverts à ce jour, à confirmer ou à retirer&nbsp;:]</p>
             <ul>
+                {% if not charter_colors_adopted %}
+                    <li>
+                        Certains textes et composants d’interface utilisant les couleurs de la charte graphique,
+                        le vert (#4db95f) et le bleu clair (#47b4d1), n’offrent pas un contraste suffisant avec
+                        leur arrière-plan (critères 3.2 et 3.3).
+                    </li>
+                {% endif %}
                 <li>
-                    Certains textes et composants d’interface utilisant les couleurs de la charte graphique,
-                    le vert (#4db95f) et le bleu clair (#47b4d1), n’offrent pas un contraste suffisant avec
-                    leur arrière-plan (critères 3.2 et 3.3).
-                    [À COMPLÉTER : selon la décision de Reconnect sur la charte graphique]
+                    Le formulaire d’inscription à la lettre d’information, fourni par le service Brevo, présente
+                    des textes au contraste insuffisant sur fond vert (critère 3.2) et trois champs identifiés
+                    par leur seul texte indicatif, sans étiquette (critère 11.1).
                 </li>
                 <li>
-                    Le site ne propose pas de plan du site&nbsp;: un seul système de navigation est
-                    disponible (critère 12.1).
-                </li>
-                <li>
-                    Le carrousel des partenaires défile automatiquement et ne peut pas être mis en pause
-                    (critère 13.8).
-                </li>
-                <li>
-                    Le formulaire d’inscription à la lettre d’information, fourni par le service tiers Brevo
-                    et intégré dans un cadre, comporte une liste déroulante sans étiquette (critère 11.1).
-                    [À COMPLÉTER : non-conformité ou contenu tiers non soumis, à arbitrer]
-                </li>
-                <li>
-                    Les contenus en arabe, en pachto et en dari ne sont pas présentés avec un sens de lecture
-                    de droite à gauche (critère 8.10).
-                    [À COMPLÉTER : selon la décision de Reconnect sur la mise en page de droite à gauche]
-                </li>
-                <li>
-                    Certains documents PDF proposés en téléchargement ne disposent pas d’une version
+                    Certains documents PDF proposés en téléchargement ne disposent pas encore d’une version
                     accessible (critère 13.3).
-                    [À COMPLÉTER : liste des documents concernés, en attente de Reconnect]
+                </li>
+                <li>
+                    Certains textes traduits contiennent des sauts de ligne utilisés pour la mise en forme
+                    (critère 8.9).
+                </li>
+                <li>
+                    Dans l’éditeur de notes du coffre-fort, le bouton de choix de la couleur du texte n’a pas
+                    de nom accessible (critère 7.1).
                 </li>
             </ul>
 
             <h3 class="h4 pt-3">Dérogations pour charge disproportionnée</h3>
-            <p>[À COMPLÉTER : contenus concernés et justification, ou « Aucune dérogation n’est invoquée. »]</p>
+            <p>Aucune dérogation n’est invoquée.</p>
 
             <h3 class="h4 pt-3">Contenus non soumis à l’obligation d’accessibilité</h3>
-            <p>[À COMPLÉTER : liste à confirmer après l’audit. Pistes à vérifier&nbsp;:]</p>
             <ul>
-                <li>
-                    La carte interactive des points d’accueil, dès lors que les informations essentielles
-                    (adresses des structures) sont fournies sous une forme accessible.
-                </li>
                 <li>
                     Les documents bureautiques publiés avant le 23 septembre 2018, sauf s’ils sont nécessaires
                     à l’accomplissement d’une démarche.
-                </li>
-                <li>
-                    Les contenus de tiers qui ne sont ni financés, ni développés par Reconnect, et qui ne sont
-                    pas sous son contrôle.
                 </li>
             </ul>
 
@@ -147,25 +132,21 @@
 
             <h3 class="h4 pt-3">Environnement de test</h3>
             <p>
-                Les vérifications de restitution de contenus ont été réalisées sur la base de la combinaison
-                fournie par la base de référence du RGAA, avec les versions suivantes&nbsp;:
+                Les vérifications ont été réalisées avec Chromium sous macOS, à partir de l’arbre
+                d’accessibilité exposé par le navigateur, au clavier, à 320 pixels de large et avec un
+                espacement du texte augmenté.
             </p>
-            <ul>
-                <li>NVDA [À COMPLÉTER : version] et Firefox [À COMPLÉTER : version], sous Windows</li>
-                <li>VoiceOver et Safari [À COMPLÉTER : versions], sous macOS</li>
-                <li>[À COMPLÉTER : autres combinaisons éventuelles]</li>
-            </ul>
 
             <h3 class="h4 pt-3">Outils pour évaluer l’accessibilité</h3>
             <ul>
                 <li>axe-core 4.11, exécuté avec Playwright</li>
                 <li>Tests de navigation au clavier</li>
-                <li>Lecteurs d’écran NVDA et VoiceOver</li>
-                <li>[À COMPLÉTER : autres outils utilisés lors de l’audit]</li>
+                <li>Calcul des contrastes de couleur</li>
+                <li>Validateur HTML Tidy</li>
             </ul>
 
             <h3 class="h4 pt-3">Pages du site ayant fait l’objet de la vérification de conformité</h3>
-            <p>[À COMPLÉTER : échantillon définitif de l’audit. Pages publiques connues à ce jour&nbsp;:]</p>
+            <p>33 pages ont été vérifiées, dont&nbsp;:</p>
             <ul>
                 <li>Accueil&nbsp;: {{ url('re_main_accueil') }}</li>
                 <li>Le coffre-fort numérique&nbsp;: {{ url('re_main_page_vault') }}</li>
@@ -174,8 +155,16 @@
                 <li>Nos formations pour les professionnels&nbsp;: {{ url('pro_learning') }}</li>
                 <li>Nous contacter&nbsp;: {{ url('re_main_contactV2') }}</li>
                 <li>FAQ RGPD&nbsp;: {{ url('re_main_faq') }}</li>
-                <li>Déclaration d’accessibilité&nbsp;: {{ url('accessibility_statement') }}</li>
-                <li>[À COMPLÉTER : pages de l’espace professionnel et de l’espace bénéficiaire]</li>
+                <li>Plan du site&nbsp;: {{ url('sitemap') }}</li>
+                <li>Connexion et mot de passe oublié</li>
+                <li>
+                    Espace bénéficiaire&nbsp;: tableau de bord, documents, évènements, contacts, notes,
+                    paramètres et double authentification
+                </li>
+                <li>
+                    Espace professionnel&nbsp;: tableau de bord, liste et création des bénéficiaires,
+                    professionnels du centre, relais
+                </li>
             </ul>
 
             <h2 class="h3 pt-4">Retour d’information et contact</h2>
