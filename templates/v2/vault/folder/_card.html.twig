@@ -26,9 +26,10 @@
                 'path': path('folder_download', {'id': folder.id}),
             }) }}
         {% else %}
-            <i class="fas fa-file-download text-grey"
+            <i class="fas fa-ban text-grey"
                aria-hidden="true" title="{{ 'empty'|trans }}">
             </i>
+            <span class="visually-hidden">{{ 'empty'|trans }}</span>
         {% endif %}
     </td>
     {% if isBenef %}

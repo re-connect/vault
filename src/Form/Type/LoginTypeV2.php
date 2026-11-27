@@ -15,16 +15,22 @@ class LoginTypeV2 extends AbstractType
     {
         $builder
             ->add('_username', null, [
-                'label' => false,
+                'label' => 'form_login',
+                'label_attr' => ['class' => 'visually-hidden'],
                 'attr' => [
+                    'autocomplete' => 'username',
                     'placeholder' => 'form_login',
+                    'title' => 'form_login',
                     'class' => 'mb-2 py-1 text-primary lighter fw-bold',
                 ],
             ])
             ->add('_password', PasswordType::class, [
-                'label' => false,
+                'label' => 'password',
+                'label_attr' => ['class' => 'visually-hidden'],
                 'attr' => [
+                    'autocomplete' => 'current-password',
                     'placeholder' => 'password',
+                    'title' => 'password',
                     'class' => 'mb-3 py-1 text-primary lighter fw-bold login-form-password-input',
                 ],
             ])
