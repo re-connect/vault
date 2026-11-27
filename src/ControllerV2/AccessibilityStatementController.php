@@ -16,4 +16,10 @@ class AccessibilityStatementController extends AbstractController
     {
         return $this->render('home/pages/accessibility_statement.html.twig');
     }
+
+    #[Route(path: '/accessibilite-application', name: 'accessibility_statement_app', methods: ['GET'])]
+    public function showApp(): Response
+    {
+        return $this->render('home/pages/accessibility_statement_app.html.twig');
+    }
 }
