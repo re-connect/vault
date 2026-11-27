@@ -55,6 +55,7 @@ Encore
   ])
 
   .enableSassLoader()
+  .enablePostCssLoader()
   .enableLessLoader()
   .autoProvidejQuery()
   .configureDevServerOptions(options => {
