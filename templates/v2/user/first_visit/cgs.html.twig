@@ -27,6 +27,7 @@
                         {{ include('v2/user/first_visit/_cgs_text.html.twig') }}
                     {% endif %}
                     {{ form_start(form, {"attr" : {"class" : "display-required-labels", "novalidate":"novalidate"}}) }}
+                    {{ include('v2/common/_required_fields_notice.html.twig', {form}) }}
                     <div class="row font-size-1-2">
                         {{ form_errors(form) }}
                         {{ form_row(form.accept) }}

@@ -13,7 +13,7 @@
                 <h4 class="modal-title bold">
                     {{ document.nom }}
                 </h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'a11y_close'|trans }}"></button>
             </div>
             <div class="modal-body text-center">
                     <a href="{{ document.presignedUrl }}" target="_blank">
