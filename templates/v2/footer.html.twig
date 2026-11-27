@@ -30,6 +30,13 @@
                         <small>{{ 'sitemap_title'|trans }}</small>
                     </a>
                 </li>
+                <li class="col-12 mb-2">
+                    <a class="text-primary text-decoration-none" lang="fr"
+                       href="{{ path('accessibility_statement') }}"
+                    >
+                        <small>Accessibilité&nbsp;: {{ include('home/accessibility/_conformance_status.html.twig') }}</small>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

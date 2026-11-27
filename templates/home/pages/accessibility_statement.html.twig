@@ -1,0 +1,207 @@
+{% extends 'home/base.html.twig' %}
+
+{#
+    Déclaration d'accessibilité RGAA 4.1.2, structure conforme au modèle publié par la DINUM
+    (accessibilite.numerique.gouv.fr, « Obligations », « Déclaration d'accessibilité »).
+
+    Valeurs de l'audit final du 27 novembre 2026.
+    charter_colors_adopted : true si les teintes proposées pour la charte (PR « contrastes des couleurs »)
+    sont en production, false si les couleurs initiales sont conservées. Le taux et la liste des
+    non-conformités suivent cette valeur.
+    Les dates de la déclaration sont à mettre au jour de la mise en ligne.
+    Une fois le formulaire Brevo corrigé et les 7 PDF accessibles en ligne, retirer les lignes
+    correspondantes : le taux passe alors à 97,4 % (teintes adoptées) ou 94,9 % (couleurs initiales).
+#}
+{% set charter_colors_adopted = true %}
+{% set conformance_status = include('home/accessibility/_conformance_status.html.twig') %}
+{% set conformance_rate = charter_colors_adopted ? '93,6 %' : '92,3 %' %}
+{% set audit_date = '27 novembre 2026' %}
+{% set statement_date = '27 novembre 2026' %}
+{% set statement_update_date = '27 novembre 2026' %}
+{# Adresses du schéma pluriannuel et du plan d'action, à renseigner une fois les documents publiés. #}
+{% set multiyear_plan_url = null %}
+{% set action_plan_url = null %}
+{% set audit_report_url = null %}
+{% set contact_email = 'reconnect_contact_mail'|trans %}
+
+{% block title %}Déclaration d’accessibilité - {{ 'website_title'|trans }}{% endblock %}
+{% block meta_title %}Déclaration d’accessibilité - {{ 'website_title'|trans }}{% endblock %}
+
+{% block body %}
+    <section class="mt-5 pt-5 pb-5" lang="fr" dir="ltr">
+        <div class="container my-5 py-3 text-primary">
+            <h1 class="h2 py-3">Déclaration d’accessibilité</h1>
+
+            <p>
+                Reconnect s’engage à rendre son site internet et son coffre-fort numérique accessibles
+                conformément à l’article 47 de la loi n°&nbsp;2005-102 du 11 février 2005.
+            </p>
+            <p>À cette fin, Reconnect met en œuvre la stratégie et les actions suivantes&nbsp;:</p>
+            <ul>
+                <li>
+                    {% if multiyear_plan_url %}
+                        <a href="{{ multiyear_plan_url }}">Schéma pluriannuel de mise en accessibilité</a>
+                    {% else %}
+                        Schéma pluriannuel de mise en accessibilité 2026-2028
+                    {% endif %}
+                </li>
+                <li>
+                    {% if action_plan_url %}
+                        <a href="{{ action_plan_url }}">Plan d’action de l’année en cours</a>
+                    {% else %}
+                        Plan d’action de l’année en cours
+                    {% endif %}
+                </li>
+            </ul>
+            <p>
+                Cette déclaration d’accessibilité s’applique au site www.reconnect.fr et au coffre-fort numérique
+                Reconnect, dans son espace professionnel et dans son espace bénéficiaire.
+                L’application mobile Reconnect fait l’objet d’une
+                <a href="{{ path('accessibility_statement_app') }}">déclaration d’accessibilité distincte</a>.
+            </p>
+
+            <h2 class="h3 pt-4">État de conformité</h2>
+            <p>
+                Le site www.reconnect.fr et le coffre-fort numérique Reconnect sont
+                <strong>{{ conformance_status }}</strong> avec le référentiel général d’amélioration de
+                l’accessibilité (RGAA), version 4.1.2, en raison des non-conformités et des dérogations
+                énumérées ci-dessous.
+            </p>
+
+            <h2 class="h3 pt-4">Résultats des tests</h2>
+            <p>
+                L’audit de conformité réalisé le {{ audit_date }} par la société AVANGARDISM révèle que
+                {{ conformance_rate }} des critères du RGAA version 4.1.2 sont respectés.
+            </p>
+            {% if audit_report_url %}
+                <p><a href="{{ audit_report_url }}">Consulter le rapport d’audit RGAA</a></p>
+            {% endif %}
+
+            <h2 class="h3 pt-4">Contenus non accessibles</h2>
+            <p>Les contenus listés ci-dessous ne sont pas accessibles pour les raisons suivantes.</p>
+
+            <h3 class="h4 pt-3">Non-conformité</h3>
+            <ul>
+                {% if not charter_colors_adopted %}
+                    <li>
+                        Certains textes et composants d’interface utilisant les couleurs de la charte graphique,
+                        le vert (#4db95f) et le bleu clair (#47b4d1), n’offrent pas un contraste suffisant avec
+                        leur arrière-plan (critères 3.2 et 3.3).
+                    </li>
+                {% endif %}
+                <li>
+                    Le formulaire d’inscription à la lettre d’information, fourni par le service Brevo, présente
+                    des textes au contraste insuffisant sur fond vert (critère 3.2) et trois champs identifiés
+                    par leur seul texte indicatif, sans étiquette (critère 11.1).
+                </li>
+                <li>
+                    Certains documents PDF proposés en téléchargement ne disposent pas encore d’une version
+                    accessible (critère 13.3).
+                </li>
+                <li>
+                    Certains textes traduits contiennent des sauts de ligne utilisés pour la mise en forme
+                    (critère 8.9).
+                </li>
+                <li>
+                    Dans l’éditeur de notes du coffre-fort, le bouton de choix de la couleur du texte n’a pas
+                    de nom accessible (critère 7.1).
+                </li>
+            </ul>
+
+            <h3 class="h4 pt-3">Dérogations pour charge disproportionnée</h3>
+            <p>Aucune dérogation n’est invoquée.</p>
+
+            <h3 class="h4 pt-3">Contenus non soumis à l’obligation d’accessibilité</h3>
+            <ul>
+                <li>
+                    Les documents bureautiques publiés avant le 23 septembre 2018, sauf s’ils sont nécessaires
+                    à l’accomplissement d’une démarche.
+                </li>
+            </ul>
+
+            <h2 class="h3 pt-4">Établissement de cette déclaration d’accessibilité</h2>
+            <p>Cette déclaration a été établie le {{ statement_date }}.</p>
+            <p>Elle a été mise à jour le {{ statement_update_date }}.</p>
+
+            <h3 class="h4 pt-3">Technologies utilisées pour la réalisation du site</h3>
+            <ul>
+                <li>HTML5</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>Symfony et Twig (côté serveur)</li>
+            </ul>
+
+            <h3 class="h4 pt-3">Environnement de test</h3>
+            <p>
+                Les vérifications ont été réalisées avec Chromium sous macOS, à partir de l’arbre
+                d’accessibilité exposé par le navigateur, au clavier, à 320 pixels de large et avec un
+                espacement du texte augmenté.
+            </p>
+
+            <h3 class="h4 pt-3">Outils pour évaluer l’accessibilité</h3>
+            <ul>
+                <li>axe-core 4.11, exécuté avec Playwright</li>
+                <li>Tests de navigation au clavier</li>
+                <li>Calcul des contrastes de couleur</li>
+                <li>Validateur HTML Tidy</li>
+            </ul>
+
+            <h3 class="h4 pt-3">Pages du site ayant fait l’objet de la vérification de conformité</h3>
+            <p>33 pages ont été vérifiées, dont&nbsp;:</p>
+            <ul>
+                <li>Accueil&nbsp;: {{ url('re_main_accueil') }}</li>
+                <li>Le coffre-fort numérique&nbsp;: {{ url('re_main_page_vault') }}</li>
+                <li>Reconnect Pro&nbsp;: {{ url('re_main_page_RP') }}</li>
+                <li>Nos ateliers numériques&nbsp;: {{ url('digital_labs') }}</li>
+                <li>Nos formations pour les professionnels&nbsp;: {{ url('pro_learning') }}</li>
+                <li>Nous contacter&nbsp;: {{ url('re_main_contactV2') }}</li>
+                <li>FAQ RGPD&nbsp;: {{ url('re_main_faq') }}</li>
+                <li>Plan du site&nbsp;: {{ url('sitemap') }}</li>
+                <li>Connexion et mot de passe oublié</li>
+                <li>
+                    Espace bénéficiaire&nbsp;: tableau de bord, documents, évènements, contacts, notes,
+                    paramètres et double authentification
+                </li>
+                <li>
+                    Espace professionnel&nbsp;: tableau de bord, liste et création des bénéficiaires,
+                    professionnels du centre, relais
+                </li>
+            </ul>
+
+            <h2 class="h3 pt-4">Retour d’information et contact</h2>
+            <p>
+                Si vous n’arrivez pas à accéder à un contenu ou à un service, vous pouvez contacter le
+                responsable du site www.reconnect.fr pour être orienté vers une alternative accessible ou
+                obtenir le contenu sous une autre forme.
+            </p>
+            <ul>
+                <li><a href="{{ path('re_main_contactV2') }}">Nous contacter</a></li>
+                <li>Par courriel&nbsp;: <a href="mailto:{{ contact_email }}">{{ contact_email }}</a></li>
+                <li>Par courrier&nbsp;: Reconnect, 102c rue Amelot, 75011 Paris</li>
+            </ul>
+            <p>
+                Nous nous engageons à accuser réception de votre demande et à vous répondre dans un délai
+                d’une semaine.
+            </p>
+
+            <h2 class="h3 pt-4">Voies de recours</h2>
+            <p>
+                Cette procédure est à utiliser dans le cas suivant&nbsp;: vous avez signalé au responsable du
+                site internet un défaut d’accessibilité qui vous empêche d’accéder à un contenu ou à un des
+                services du site et vous n’avez pas obtenu de réponse satisfaisante.
+            </p>
+            <ul>
+                <li>
+                    <a href="https://formulaire.defenseurdesdroits.fr/">Écrire un message au Défenseur des droits</a>
+                </li>
+                <li>
+                    <a href="https://www.defenseurdesdroits.fr/saisir/delegues">Contacter le délégué du Défenseur des droits dans votre région</a>
+                </li>
+                <li>
+                    Envoyer un courrier par la poste (gratuit, ne pas mettre de timbre)&nbsp;:
+                    <address class="mb-0">Défenseur des droits<br>Libre réponse 71120<br>75342 Paris CEDEX 07</address>
+                </li>
+            </ul>
+        </div>
+    </section>
+{% endblock body %}

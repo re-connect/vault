@@ -29,6 +29,8 @@ class ApplicationAvailabilityFunctionalTest extends AbstractSmokeTest
         yield ['/reconnect-le-coffre-fort-numerique'];
         yield ['/faq-rgpd'];
         yield ['/plan-du-site'];
+        yield ['/accessibilite'];
+        yield ['/accessibilite-application'];
         yield ['/public/shared-document-mail-translation'];
         yield ['/public/resetting-mail-translation'];
         yield ['/public/reset-password/choose'];

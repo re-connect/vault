@@ -1,0 +1,155 @@
+{% extends 'home/base.html.twig' %}
+
+{#
+    Déclaration d'accessibilité de l'application mobile, sur le référentiel RAAM 2.0 Urbilog
+    (© Urbilog, licence CC BY 4.0 : l'attribution ci-dessous est obligatoire).
+
+    Valeurs de l'audit final du 27 novembre 2026 (Android ; iOS non audité).
+    app_palette_adopted : true si la nouvelle palette de couleurs de l'application est publiée,
+    false sinon. Le taux et la liste des non-conformités suivent cette valeur.
+#}
+{% set app_palette_adopted = true %}
+{% set conformance_rate = app_palette_adopted ? '81,6 %' : '76,3 %' %}
+{% set compliant_criteria = app_palette_adopted ? 31 : 29 %}
+{% set audit_date = '27 novembre 2026' %}
+{% set statement_date = '27 novembre 2026' %}
+{% set contact_email = 'reconnect_contact_mail'|trans %}
+
+{% block title %}Déclaration d’accessibilité de l’application mobile - {{ 'website_title'|trans }}{% endblock %}
+{% block meta_title %}Déclaration d’accessibilité de l’application mobile - {{ 'website_title'|trans }}{% endblock %}
+
+{% block body %}
+    <section class="mt-5 pt-5 pb-5" lang="fr" dir="ltr">
+        <div class="container my-5 py-3 text-primary">
+            <h1 class="h2 py-3">Déclaration d’accessibilité de l’application mobile</h1>
+
+            <p>
+                Reconnect s’engage à rendre son application mobile accessible conformément à l’article 47
+                de la loi n°&nbsp;2005-102 du 11 février 2005.
+            </p>
+            <p>
+                Cette déclaration d’accessibilité s’applique à l’application mobile Reconnect pour Android
+                et iOS. Le site www.reconnect.fr et le coffre-fort numérique font l’objet d’une
+                <a href="{{ path('accessibility_statement') }}">déclaration distincte</a>.
+            </p>
+
+            <h2 class="h3 pt-4">État de conformité</h2>
+            <p>
+                L’application mobile Reconnect est <strong>partiellement conforme</strong> avec le référentiel
+                d’évaluation de l’accessibilité des applications mobiles RAAM 2.0 Urbilog, en raison des
+                non-conformités énumérées ci-dessous.
+            </p>
+
+            <h2 class="h3 pt-4">Résultats des tests</h2>
+            <p>
+                L’audit de conformité réalisé le {{ audit_date }} par la société AVANGARDISM révèle que, sur
+                Android, {{ conformance_rate }} des critères du RAAM 2.0 sont respectés&nbsp;:
+                {{ compliant_criteria }} critères conformes sur 38 applicables.
+            </p>
+            <p>L’application iOS n’a pas encore été auditée.</p>
+            <p>
+                Audit réalisé sur la base du RAAM 2.0 Urbilog (Référentiel d’accessibilité des applications
+                mobiles), © Urbilog, sous licence CC BY 4.0. Source&nbsp;:
+                <a href="https://www.urbilog.com/accessibilite-numerique-raam" lang="fr">https://www.urbilog.com/accessibilite-numerique-raam</a>
+            </p>
+
+            <h2 class="h3 pt-4">Contenus non accessibles</h2>
+
+            <h3 class="h4 pt-3">Non-conformité</h3>
+            <ul>
+                {% if not app_palette_adopted %}
+                    <li>
+                        Certains textes, boutons et icônes aux couleurs de la charte n’offrent pas un contraste
+                        suffisant (critères 1.2 et 1.3).
+                    </li>
+                {% endif %}
+                <li>
+                    Les présentations audio sont identifiées par le seul nom de la langue et n’ont pas de
+                    transcription (critères 2.1 et 2.2).
+                </li>
+                <li>
+                    Le libellé des champs de formulaire n’apparaît que dans le champ et disparaît pendant la
+                    saisie (critère 5.1).
+                </li>
+                <li>L’écran de connexion n’a pas de titre visible (critère 6.2).</li>
+                <li>Avec un clavier, l’élément qui a le focus n’est pas mis en évidence (critère 8.1).</li>
+                <li>
+                    Les conditions générales de service sont affichées dans un PDF dont le contenu n’est pas
+                    lisible par un lecteur d’écran (critère 9.2).
+                </li>
+                <li>L’application n’est utilisable qu’en orientation portrait (critère 9.6).</li>
+            </ul>
+
+            <h3 class="h4 pt-3">Dérogations pour charge disproportionnée</h3>
+            <p>Aucune dérogation n’est invoquée.</p>
+
+            <h3 class="h4 pt-3">Contenus non soumis à l’obligation d’accessibilité</h3>
+            <ul>
+                <li>
+                    Le service de messagerie instantanée, fourni par un prestataire tiers et intégré dans
+                    l’application, n’est ni développé ni contrôlé par Reconnect.
+                </li>
+            </ul>
+
+            <h2 class="h3 pt-4">Établissement de cette déclaration d’accessibilité</h2>
+            <p>Cette déclaration a été établie le {{ statement_date }}.</p>
+
+            <h3 class="h4 pt-3">Technologies utilisées pour la réalisation de l’application</h3>
+            <ul>
+                <li>React Native</li>
+                <li>Expo</li>
+            </ul>
+
+            <h3 class="h4 pt-3">Environnement de test</h3>
+            <ul>
+                <li>Android 15 (émulateur Pixel), avec TalkBack 15</li>
+                <li>iOS&nbsp;: non testé</li>
+            </ul>
+
+            <h3 class="h4 pt-3">Outils pour évaluer l’accessibilité</h3>
+            <ul>
+                <li>Relevé de l’arbre d’accessibilité Android, écran par écran</li>
+                <li>Contrôles à l’écran sur émulateur</li>
+                <li>Calcul des contrastes de la palette de couleurs</li>
+                <li>Lecture du code de l’application</li>
+            </ul>
+
+            <h3 class="h4 pt-3">Écrans de l’application ayant fait l’objet de la vérification de conformité</h3>
+            <p>
+                Connexion, activation du compte, documents, évènements, contacts, notes, formulaires de
+                création, paramètres, mes informations, mes centres, présentations, sélecteur de langue.
+            </p>
+
+            <h2 class="h3 pt-4">Retour d’information et contact</h2>
+            <p>
+                Si vous n’arrivez pas à accéder à un contenu ou à un service de l’application, vous pouvez
+                contacter Reconnect pour être orienté vers une alternative accessible ou obtenir le contenu
+                sous une autre forme.
+            </p>
+            <ul>
+                <li><a href="{{ path('re_main_contactV2') }}">Nous contacter</a></li>
+                <li>Par courriel&nbsp;: <a href="mailto:{{ contact_email }}">{{ contact_email }}</a></li>
+                <li>Par courrier&nbsp;: Reconnect, 102c rue Amelot, 75011 Paris</li>
+            </ul>
+
+            <h2 class="h3 pt-4">Voies de recours</h2>
+            <p>
+                Cette procédure est à utiliser dans le cas suivant&nbsp;: vous avez signalé à Reconnect un
+                défaut d’accessibilité qui vous empêche d’accéder à un contenu ou à un des services de
+                l’application et vous n’avez pas obtenu de réponse satisfaisante.
+            </p>
+            <ul>
+                <li>
+                    <a href="https://formulaire.defenseurdesdroits.fr/">Écrire un message au Défenseur des droits</a>
+                </li>
+                <li>
+                    <a href="https://www.defenseurdesdroits.fr/saisir/delegues">Contacter le délégué du Défenseur des droits dans votre région</a>
+                </li>
+                <li>
+                    Envoyer un courrier par la poste (gratuit, ne pas mettre de timbre)&nbsp;:
+                    <address class="mb-0">Défenseur des droits<br>Libre réponse 71120<br>75342 Paris CEDEX 07</address>
+                </li>
+            </ul>
+        </div>
+    </section>
+{% endblock body %}
