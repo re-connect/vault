@@ -3,7 +3,9 @@
 
 // Long unbreakable strings (file names, e-mail addresses) may wrap anywhere.
 // The name column keeps a minimum width so ordinary words are not split.
-.table-100 td.w-100,
+// In data tables every text cell may wrap, so long names and e-mail addresses go
+// to the next line instead of widening the table (contacts list, recette 20/11).
+.table-100 td,
 a[href^="mailto:"] {
   overflow-wrap: anywhere;
 }

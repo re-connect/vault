@@ -1,7 +1,8 @@
 // Right-to-left reading for Arabic, Pashto and Dari (RGAA 8.10). The <html>
 // element gets dir="rtl" for these locales; the browser then mirrors the text
-// and the flex layouts. These rules handle what the LTR build of Bootstrap and
-// the existing templates set physically.
+// and the flex layouts, and postcss-rtlcss (postcss.config.js) mirrors the
+// margins, paddings, offsets and alignments of Bootstrap and of the site styles.
+// The rules below cover what an automatic mirror cannot know.
 
 [dir="rtl"] {
   // Strings not translated yet fall back to French. Let each one take the
@@ -20,21 +21,30 @@
     unicode-bidi: plaintext;
   }
 
-  .text-start,
-  .text-left {
-    text-align: right !important;
-  }
-
-  .text-end,
-  .text-right {
-    text-align: left !important;
-  }
-
   // E-mail addresses, user names, passwords and phone numbers are typed left
   // to right whatever the interface language.
   input[type="email"],
   input[type="password"],
-  input[type="tel"] {
+  input[type="tel"],
+  input[name="_username"],
+  input[name$="[username]"] {
+    /*!rtl:ignore*/
     direction: ltr;
+  }
+
+  // Icons that show a direction (arrows, chevrons, back / next) point the other
+  // way; other icons (logos, envelope, lock, magnifier...) stay as they are.
+  .fa-arrow-left,
+  .fa-arrow-right,
+  .fa-long-arrow-alt-left,
+  .fa-long-arrow-alt-right,
+  .fa-angle-left,
+  .fa-angle-right,
+  .fa-chevron-left,
+  .fa-chevron-right,
+  .fa-caret-left,
+  .fa-caret-right {
+    /*!rtl:ignore*/
+    transform: scaleX(-1);
   }
 }
