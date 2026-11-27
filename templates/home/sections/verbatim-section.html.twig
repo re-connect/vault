@@ -1,11 +1,18 @@
 <section class="py-5">
     <div class="container">
         <h2 class="h2 pb-1 text-primary text-uppercase text-center">{{ 'home_press_title'| trans }}</h2>
-        <div class="row py-4 text-primary">
-            <div id="carousel-verbatim" class="carousel slide py-3" data-bs-ride="carousel">
+        <div class="row py-4 text-primary"
+             {% if verbatims|length > 1 %}
+                 {{ stimulus_controller('carousel-autoplay', {
+                     pauseLabel: 'a11y_carousel_pause'|trans,
+                     playLabel: 'a11y_carousel_play'|trans,
+                 }) }}
+             {% endif %}>
+            <div id="carousel-verbatim" class="carousel slide py-3" data-bs-ride="carousel"
+                 {{ stimulus_target('carousel-autoplay', 'carousel') }}>
                 <div class="carousel-indicators">
                     {% for verbatim in verbatims  %}
-                        <button type="button" data-bs-target="#carousel-verbatim" data-bs-slide-to="{{ loop.index0 }}" class="{{ loop.index0 == 0 ? 'active' }} px-1 py-1 bg-primary border-0 mx-1 rounded-circle" aria-current="true" aria-label="Slide {{ loop.index0 }}"></button>
+                        <button type="button" data-bs-target="#carousel-verbatim" data-bs-slide-to="{{ loop.index0 }}" class="{{ loop.index0 == 0 ? 'active' }} px-1 py-1 bg-primary border-0 mx-1 rounded-circle" aria-current="true" aria-label="{{ loop.index }} / {{ loop.length }}"></button>
                     {% endfor %}
                 </div>
                 <div class="carousel-inner">
@@ -14,6 +21,16 @@
                     {% endfor %}
                 </div>
             </div>
+            {% if verbatims|length > 1 %}
+            <div class="text-center">
+                <button type="button" class="btn btn-link p-1 text-primary" hidden
+                        {{ stimulus_target('carousel-autoplay', 'button') }}
+                        {{ stimulus_action('carousel-autoplay', 'toggle') }}>
+                    <i class="fas fa-pause" aria-hidden="true" {{ stimulus_target('carousel-autoplay', 'icon') }}></i>
+                    <span class="visually-hidden" {{ stimulus_target('carousel-autoplay', 'label') }}>{{ 'a11y_carousel_pause'|trans }}</span>
+                </button>
+            </div>
+            {% endif %}
         </div>
     </div>
 </section>

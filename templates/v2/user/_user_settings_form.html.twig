@@ -2,6 +2,7 @@
 {% set isPro = is_granted('ROLE_MEMBRE') %}
 
 {{ form_start(form, {attr: { class: 'display-required-labels','data-controller': 'conditional-field' }}) }}
+{{ include('v2/common/_required_fields_notice.html.twig', {form}) }}
 <div class="row bold">
     {% set fieldsSets = {
         'information': [form.prenom, form.nom, form.telephone, form.email, isPro ? null : form.dateNaissance],

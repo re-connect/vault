@@ -9,6 +9,7 @@
             {{ form_start(form, {
                 attr: {class: 'display-required-labels'},
             }) }}
+            {{ include('v2/common/_required_fields_notice.html.twig', {form}) }}
             {{ form_row(form.firstname) }}
             {{ form_row(form.lastname) }}
             <div class="mt-3">
