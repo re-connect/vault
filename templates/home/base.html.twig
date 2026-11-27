@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="{{ app.request ? app.request.locale : 'fr' }}">
+{% set page_locale = app.request ? app.request.locale : 'fr' %}
+{# Arabic, Pashto and Dari are read from right to left (RGAA 8.10) #}
+<html lang="{{ page_locale }}" dir="{{ page_locale in ['ar', 'ps', 'prs'] ? 'rtl' : 'ltr' }}">
 <head>
     <meta charset="UTF-8"/>
     <title>
@@ -28,6 +30,7 @@
 </head>
 
 <body class="preload {% block bodyClass %}{% endblock bodyClass %}">
+{{ include('v2/common/_skip_link.html.twig') }}
 
 <div id="wrapper{% if app.user %}Connected{% endif %}">
     {% include('home/header.html.twig') %}

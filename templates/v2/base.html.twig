@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="{{ app.request ? app.request.locale : 'fr' }}">
+{% set page_locale = app.request ? app.request.locale : 'fr' %}
+{# Arabic, Pashto and Dari are read from right to left (RGAA 8.10) #}
+<html lang="{{ page_locale }}" dir="{{ page_locale in ['ar', 'ps', 'prs'] ? 'rtl' : 'ltr' }}">
 <head>
     <title>{% block metaTitle %}{{ 'vault_meta_title'|trans }}{% endblock metaTitle %}
         - {{ 'reconnect'|trans }}</title>
@@ -18,6 +20,7 @@
     {{ include('favicons.html.twig') }}
 </head>
 <body class="d-flex flex-column" data-turbo-prefetch="false" {{ stimulus_controller('tooltip') }}>
+{{ include('v2/common/_skip_link.html.twig') }}
 {{ include('v2/header/header.html.twig') }}
 
 <main role="main" id="main-content" class="position-relative {% block bodyColor %}{{ getUserBackgroundColor() }}{% endblock %} pb-5">

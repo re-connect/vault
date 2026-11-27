@@ -24,6 +24,8 @@ export default class extends Controller {
     const isValid = validCriteria.includes(target.dataset.criterionName);
     target.classList.toggle('bg-green', isValid);
     target.classList.toggle('bg-red', !isValid);
+    target.querySelector('[data-criterion-state="valid"]').classList.toggle('d-none', !isValid);
+    target.querySelector('[data-criterion-state="invalid"]').classList.toggle('d-none', isValid);
   };
 
   toggleContainerVisibility (value) {

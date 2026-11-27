@@ -17,6 +17,7 @@ $position-values: (
 );
 
 @import '~bootstrap-next/scss/bootstrap.scss';
+@import '../rtl.scss';
 
 .bg-light-purple {
   background-color: #374976;
@@ -164,3 +165,5 @@ $position-values: (
 @import './globalStructure.scss';
 @import '../language-selector.scss';
 @import '../helper/intl-tel-input.scss';
+@import '../focus-visible.scss';
+@import '../reflow.scss';

@@ -9,7 +9,10 @@ export default class extends Controller {
 
     this.quill = new Quill(editorDiv, {
       theme: 'snow',
-      modules: {toolbar: this.getToolbarOptions()},
+      modules: {
+        toolbar: this.getToolbarOptions(),
+        keyboard: {bindings: this.getKeyboardBindings()},
+      },
     });
 
     this.quill.clipboard.dangerouslyPasteHTML(input.value)
@@ -28,6 +31,20 @@ export default class extends Controller {
       [{'list': 'ordered'}, {'list': 'bullet'}],
       ['clean']
     ];
+  }
+
+  // Let Tab and Shift+Tab move the focus out of the editor instead of inserting
+  // a tab or changing the list indentation, so keyboard users are not trapped.
+  getKeyboardBindings() {
+    return {
+      'tab': null,
+      'remove tab': null,
+      'indent': null,
+      'outdent': null,
+      'indent code-block': null,
+      'outdent code-block': null,
+      'table tab': null,
+    };
   }
 
   createEditorDiv(input) {

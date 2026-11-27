@@ -1,0 +1,94 @@
+{% extends 'home/base.html.twig' %}
+
+{#
+    Plan du site public (RGAA 4.1.2, critère 12.1).
+    Les intitulés reprennent les clés de traduction déjà utilisées par le menu et le pied de page.
+    Toute nouvelle page publique ajoutée au menu ou au pied de page doit aussi être ajoutée ici.
+#}
+{% set sections = [
+    {
+        title: 'website_title',
+        links: [
+            {name: 'sitemap_home', url: path('re_main_accueil')},
+            {name: 'home_who_we_are_title', url: path('re_main_accueil') ~ '#qui-sommes-nous'},
+            {name: 'contact_page_title', url: path('re_main_contactV2')},
+            {name: 'faq_gdpr', url: path('re_main_faq')},
+        ],
+    },
+    {
+        title: 'vault',
+        links: [
+            {name: 'footer_discover_vault', url: path('re_main_page_vault')},
+            {
+                name: 'form_connexion',
+                url: path('re_main_login'),
+                children: [
+                    {name: 'form_forgot_password', url: path('app_forgot_password_request_choose')},
+                ],
+            },
+            {name: 'footer_CGS_vault', url: path('cgs')},
+            {name: 'footer_confidentiality_vault', url: path('re_admin_annexe', {url: 'confidentialite-cs'})},
+        ],
+    },
+    {
+        title: 'header_link_rp',
+        links: [
+            {name: 'footer_discover_rp', url: path('re_main_page_RP')},
+        ],
+    },
+    {
+        title: 'digital_care',
+        links: [
+            {name: 'header_link_digital_labs', url: path('digital_labs')},
+            {name: 'header_link_pro_learning', url: path('pro_learning')},
+            {name: 'training_provision', url: path('re_admin_annexe', {url: 'cgv-formation'})},
+            {name: 'training_internal_rules', url: path('re_admin_annexe', {url: 'règlement interieur'})},
+            {name: 'training_information_booklet', url: path('re_admin_annexe', {url: "Livret d'informations - Formations Reconnect"})},
+        ],
+    },
+    {
+        title: 'sitemap_legal_information',
+        links: [
+            {name: 'website_CGS', url: path('re_admin_annexe', {url: 'cgu-reconnect'})},
+            {name: 'website_confidentiality', url: path('re_admin_annexe', {url: 'confidentialite-reconnect'})},
+            {name: 'website_legal', url: path('re_admin_annexe', {url: 'mentions-legales'})},
+        ],
+    },
+] %}
+
+{% block title %}{{ 'sitemap_title'|trans }} - {{ 'website_title'|trans }}{% endblock %}
+{% block meta_title %}{{ 'sitemap_title'|trans }} - {{ 'website_title'|trans }}{% endblock %}
+
+{% block body %}
+    <section class="mt-5 pt-5 pb-5">
+        <div class="container my-5 py-3 text-primary">
+            <h1 id="sitemap-title" class="h2 py-3">{{ 'sitemap_title'|trans }}</h1>
+
+            <nav aria-labelledby="sitemap-title">
+                <ul class="list-unstyled">
+                    {% for section in sections %}
+                        <li class="mb-4">
+                            <h2 class="h4">{{ section.title|trans|striptags }}</h2>
+                            <ul>
+                                {% for link in section.links %}
+                                    <li class="my-2">
+                                        <a href="{{ link.url }}">{{ link.name|trans|striptags }}</a>
+                                        {% if link.children is defined %}
+                                            <ul>
+                                                {% for child in link.children %}
+                                                    <li class="my-2">
+                                                        <a href="{{ child.url }}">{{ child.name|trans|striptags }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </section>
+{% endblock body %}

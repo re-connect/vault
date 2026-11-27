@@ -4,6 +4,7 @@
 @import './header.scss';
 @import './flash-messages.scss';
 @import './vault-nav.scss';
+@import '../rtl.scss';
 @import './fonts.scss';
 @import './table.scss';
 @import './components.scss';
@@ -19,3 +20,5 @@
 @import './pagination.scss';
 @import './upload.scss';
 @import './quill.scss';
+@import '../focus-visible.scss';
+@import '../reflow.scss';

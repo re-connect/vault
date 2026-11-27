@@ -1,3 +1,18 @@
+{# Autocomplete purposes for the user's own data (RGAA 11.13). This list is only used by the account settings form. #}
+{% set autocomplete = {
+    'user[prenom]': 'given-name',
+    'user[nom]': 'family-name',
+    'user[email]': 'email',
+    'user[telephone]': 'tel',
+    'user[adresse][nom]': 'street-address',
+    'user[adresse][ville]': 'address-level2',
+    'user[adresse][codePostal]': 'postal-code',
+    'user[adresse][pays]': 'country-name',
+} %}
 {% for field in fields|filter(f => f is not null) %}
-    {{ form_row(field) }}
+    {% if autocomplete[field.vars.full_name] is defined %}
+        {{ form_row(field, {attr: field.vars.attr|merge({autocomplete: autocomplete[field.vars.full_name]})}) }}
+    {% else %}
+        {{ form_row(field) }}
+    {% endif %}
 {% endfor %}
